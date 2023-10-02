@@ -1,6 +1,6 @@
 ﻿using System;
 
-public abstract class HexMoveActionData<THex> : EditorCombinableActionData
+public abstract class HexMoveActionData<THex, TContext> : EditorCombinableActionData<TContext>
     where THex : class, IActionHex
 {
     public THex MovedHex;
@@ -30,7 +30,7 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this hex got moved in the same session again
-        if (other is HexMoveActionData<THex> moveActionData &&
+        if (other is HexMoveActionData<THex, TContext> moveActionData &&
             moveActionData.MovedHex.MatchesDefinition(MovedHex))
         {
             // If this hex got moved back and forth
@@ -45,7 +45,7 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
         }
 
         // If this hex got placed in this session
-        if (other is HexPlacementActionData<THex> placementActionData &&
+        if (other is HexPlacementActionData<THex, TContext> placementActionData &&
             placementActionData.PlacedHex.MatchesDefinition(MovedHex) &&
             placementActionData.Location == OldLocation &&
             placementActionData.Orientation == OldRotation)
@@ -54,7 +54,7 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
         }
 
         // If this hex got removed in this session
-        if (other is HexRemoveActionData<THex> removeActionData &&
+        if (other is HexRemoveActionData<THex, TContext> removeActionData &&
             removeActionData.RemovedHex.MatchesDefinition(MovedHex) &&
             removeActionData.Location == NewLocation)
         {
@@ -68,12 +68,12 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
     {
         switch (other)
         {
-            case HexPlacementActionData<THex> placementActionData:
+            case HexPlacementActionData<THex, TContext> placementActionData:
                 return CreateDerivedPlacementAction(placementActionData);
-            case HexMoveActionData<THex> moveActionData when moveActionData.NewLocation == OldLocation:
+            case HexMoveActionData<THex, TContext> moveActionData when moveActionData.NewLocation == OldLocation:
                 return CreateDerivedMoveAction(MovedHex, moveActionData.OldLocation, NewLocation,
                     moveActionData.OldRotation, NewRotation);
-            case HexMoveActionData<THex> moveActionData:
+            case HexMoveActionData<THex, TContext> moveActionData:
                 return CreateDerivedMoveAction(moveActionData.MovedHex, OldLocation, moveActionData.NewLocation,
                     OldRotation, moveActionData.NewRotation);
             default:
@@ -84,5 +84,5 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
     protected abstract CombinableActionData CreateDerivedMoveAction(THex hex, Hex oldLocation, Hex newLocation,
         int oldRotation, int newRotation);
 
-    protected abstract CombinableActionData CreateDerivedPlacementAction(HexPlacementActionData<THex> data);
+    protected abstract CombinableActionData CreateDerivedPlacementAction(HexPlacementActionData<THex, TContext> data);
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
-public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate>
+public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate, CellType>
 {
     public List<OrganelleTemplate>? ReplacedCytoplasm;
 
@@ -34,13 +34,15 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
         return base.GetInterferenceModeWithGuaranteed(other);
     }
 
-    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<OrganelleTemplate> data)
+    protected override CombinableActionData CreateDerivedMoveAction(
+        HexRemoveActionData<OrganelleTemplate, CellType> data)
     {
         return new OrganelleMoveActionData(data.RemovedHex, data.Location, Location,
             data.Orientation, Orientation);
     }
 
-    protected override CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<OrganelleTemplate> data)
+    protected override CombinableActionData CreateDerivedPlacementAction(
+        HexMoveActionData<OrganelleTemplate, CellType> data)
     {
         return new OrganellePlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }

@@ -55,7 +55,8 @@ public partial class CellEditorComponent
         base.RegisterTooltips();
 
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
-        digestionEfficiencyDetails.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
+        digestionEfficiencyLabel.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
+        storageLabel.RegisterToolTipForControl("storageDetails", "editor");
     }
 
     protected override void OnTranslationsChanged()
@@ -105,6 +106,10 @@ public partial class CellEditorComponent
 
         foreach (var organelle in organelles)
         {
+            // Don't bother updating the tooltips for organelles that aren't even shown
+            if (organelle.Unimplemented || organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
+                continue;
+
             float osmoregulationCost = organelle.HexCount * osmoregulationCostPerHex;
 
             var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
@@ -170,9 +175,43 @@ public partial class CellEditorComponent
         hpLabel.Value = hp;
     }
 
-    private void UpdateStorage(float storage)
+    private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
     {
-        storageLabel.Value = (float)Math.Round(storage, 1);
+        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
+
+        if (storage.Count == 0)
+        {
+            storageLabel.UnRegisterFirstToolTipForControl();
+            return;
+        }
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
+        if (tooltip == null)
+        {
+            GD.PrintErr("Can't update storage tooltip");
+            return;
+        }
+
+        if (!storageLabel.IsToolTipRegistered(tooltip))
+            storageLabel.RegisterToolTipForControl(tooltip, true);
+
+        var description = new LocalizedStringBuilder(100);
+
+        bool first = true;
+
+        foreach (var entry in storage)
+        {
+            if (!first)
+                description.Append("\n");
+
+            first = false;
+
+            description.Append(entry.Key.Name);
+            description.Append(": ");
+            description.Append(entry.Value);
+        }
+
+        tooltip.Description = description.ToString();
     }
 
     private void UpdateTotalDigestionSpeed(float speed)
@@ -187,7 +226,6 @@ public partial class CellEditorComponent
         {
             digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
             digestionEfficiencyLabel.Value = (float)Math.Round(efficiencies.First().Value * 100, 2);
-            digestionEfficiencyDetails.Visible = false;
         }
         else
         {
@@ -197,34 +235,32 @@ public partial class CellEditorComponent
             // Using sum makes the arrow almost always go up, using average makes the arrow almost always point down...
             // digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Average() * 100;
             digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Sum() * 100;
+        }
 
-            var description = new LocalizedStringBuilder(100);
+        var description = new LocalizedStringBuilder(100);
 
-            bool first = true;
+        bool first = true;
 
-            foreach (var enzyme in efficiencies)
-            {
-                if (!first)
-                    description.Append("\n");
+        foreach (var enzyme in efficiencies)
+        {
+            if (!first)
+                description.Append("\n");
 
-                first = false;
+            first = false;
 
-                description.Append(enzyme.Key.Name);
-                description.Append(": ");
-                description.Append(new LocalizedString("PERCENTAGE_VALUE", (float)Math.Round(enzyme.Value * 100, 2)));
-            }
+            description.Append(enzyme.Key.Name);
+            description.Append(": ");
+            description.Append(new LocalizedString("PERCENTAGE_VALUE", (float)Math.Round(enzyme.Value * 100, 2)));
+        }
 
-            var tooltip = ToolTipManager.Instance.GetToolTip("digestionEfficiencyDetails", "editor");
-            if (tooltip != null)
-            {
-                tooltip.Description = description.ToString();
-            }
-            else
-            {
-                GD.PrintErr("Can't update digestion efficiency tooltip");
-            }
-
-            digestionEfficiencyDetails.Visible = true;
+        var tooltip = ToolTipManager.Instance.GetToolTip("digestionEfficiencyDetails", "editor");
+        if (tooltip != null)
+        {
+            tooltip.Description = description.ToString();
+        }
+        else
+        {
+            GD.PrintErr("Can't update digestion efficiency tooltip");
         }
     }
 
@@ -498,7 +534,7 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
+        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
 
         ApplyLightLevelOption();
     }

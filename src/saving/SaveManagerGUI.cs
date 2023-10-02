@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -40,6 +41,9 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath SaveDirectoryWarningDialogPath = null!;
 
+    [Export]
+    public NodePath SaveDeletionFailedErrorPath = null!;
+
 #pragma warning disable CA2213
     private SaveList saveList = null!;
     private Label selectedItemCount = null!;
@@ -51,6 +55,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
+    private CustomConfirmationDialog errorSaveDeletionFailed = null!;
 #pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
@@ -97,6 +102,7 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
+        errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -155,6 +161,7 @@ public class SaveManagerGUI : Control
                 DeleteSelectedConfirmDialogPath.Dispose();
                 DeleteOldConfirmDialogPath.Dispose();
                 SaveDirectoryWarningDialogPath.Dispose();
+                SaveDeletionFailedErrorPath.Dispose();
             }
         }
 
@@ -265,7 +272,16 @@ public class SaveManagerGUI : Control
 
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
-        Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        try
+        {
+            Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        }
+        catch (IOException e)
+        {
+            errorSaveDeletionFailed.PopupCenteredShrink();
+            GD.Print("Failed to delete save: ", e.Message);
+        }
+
         deleteSelectedButton.Disabled = true;
         selected = null;
 
