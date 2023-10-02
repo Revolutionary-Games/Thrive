@@ -734,8 +734,6 @@ public class PatchMapDrawer : Control
                             link.Points[intermediate].x += lineSeparation * left;
                             left += 1;
                         }
-
-                        link.UpdateGraphics();
                     }
                 }
                 else
@@ -768,10 +766,14 @@ public class PatchMapDrawer : Control
                             link.Points[intermediate].y += lineSeparation * up;
                             up += 1;
                         }
-
-                        link.UpdateGraphics();
                     }
                 }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var link in connectionsToDirections[(Direction)i])
+                    link.UpdateGraphics();
             }
         }
     }
@@ -1096,7 +1098,7 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   A group of <see cref="RegionLink"/>s connecting the same two regions
+    ///   A group of <see cref="RegionLink"/>s connecting the same two regions.
     /// </summary>
     private struct RegionLinkGroup
     {
@@ -1133,6 +1135,7 @@ public class PatchMapDrawer : Control
         public Patch To;
         public Patch From;
 
+        // Below values are used in AdjustEndpoints
         public int EndpointIndex;
         public int IntermediateIndex;
         public float Distance;
@@ -1146,6 +1149,9 @@ public class PatchMapDrawer : Control
             From = from;
         }
 
+        /// <summary>
+        ///   Update <see cref="Line"/> to match <see cref="Points"/>
+        /// </summary>
         public void UpdateGraphics()
         {
             Line.Points = Points;
