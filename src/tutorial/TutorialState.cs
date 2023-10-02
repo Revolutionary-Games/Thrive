@@ -88,6 +88,13 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
+    /// <summary>
+    ///   Tutorial for the become multicellular button. Needs to be before <see cref="EarlyMulticellularWelcome"/>
+    ///   as this should see the become multicellular event before that other tutorial consumes it.
+    /// </summary>
+    [JsonProperty]
+    public BecomeMulticellularTutorial BecomeMulticellularTutorial { get; private set; } = new();
+
     [JsonProperty]
     public EarlyMulticellularWelcome EarlyMulticellularWelcome { get; private set; } = new();
 
@@ -373,6 +380,7 @@ public class TutorialState : ITutorialInput
             AutoEvoPrediction,
             StaySmallTutorial,
             LeaveColonyTutorial,
+            BecomeMulticellularTutorial,
             EarlyMulticellularWelcome,
             DayNightTutorial,
         };
