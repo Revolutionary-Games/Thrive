@@ -444,10 +444,13 @@ public class PatchMapDrawer : Control
                     var (to, from) = connectionTuples[i];
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
                     var line = CreateLink(pathToAdjacent, DefaultConnectionColor);
-                    var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from);
+                    var regionLink = new RegionLink(connectionKey, linkGroup, pathToAdjacent, line, to, from);
 
                     linkGroup.Links[i] = regionLink;
                 }
+
+                if (region.Explored && adjacent.Explored)
+                    linkGroup.RenderSingle = true;
 
                 connections.Add(linkGroup);
             }
@@ -677,7 +680,7 @@ public class PatchMapDrawer : Control
                 foreach (var link in connectionsToDirections[direction])
                 {
                     var endpoint = link.EndpointIndex;
-                    var id = link.Id;
+                    var id = link.GroupID;
 
                     var endRegion = map.Regions[id.y]!;
                     var startRegion = map.Regions[id.x]!;
@@ -714,7 +717,7 @@ public class PatchMapDrawer : Control
                         var path = link.Points;
                         var endpoint = link.EndpointIndex;
                         var intermediate = link.IntermediateIndex;
-                        var id = link.Id;
+                        var id = link.GroupID;
 
                         var start = map.Regions[id.x]!;
                         var end = map.Regions[id.y]!;
@@ -746,7 +749,7 @@ public class PatchMapDrawer : Control
                         var path = link.Points;
                         var endpoint = link.EndpointIndex;
                         var intermediate = link.IntermediateIndex;
-                        var id = link.Id;
+                        var id = link.GroupID;
 
                         var start = map.Regions[id.x]!;
                         var end = map.Regions[id.y]!;
@@ -770,6 +773,7 @@ public class PatchMapDrawer : Control
                 }
             }
 
+            // Update the graphics of all connections
             for (int i = 0; i < 4; i++)
             {
                 foreach (var link in connectionsToDirections[(Direction)i])
@@ -907,8 +911,8 @@ public class PatchMapDrawer : Control
         {
             foreach (var entry in group.Links)
             {
-                var start = map.Regions[entry.Id.x];
-                var end = map.Regions[entry.Id.y];
+                var start = map.Regions[entry.GroupID.x];
+                var end = map.Regions[entry.GroupID.y];
 
                 // If both regions are unexplored, don't render the line
                 if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
@@ -929,22 +933,34 @@ public class PatchMapDrawer : Control
                     entry.Line.DefaultColor = DefaultConnectionColor;
                 }
 
-                if (IgnoreFogOfWar)
-                    return;
+                if (!IgnoreFogOfWar)
+                {
+                    // Add a fade to the line if it's ending at an unexplored region
+                    if (start.VisibilityState == MapElementVisibility.Undiscovered)
+                    {
+                        AddFadeToLine(entry.Line, true);
+                    }
+                    else if (end.VisibilityState == MapElementVisibility.Undiscovered)
+                    {
+                        AddFadeToLine(entry.Line, false);
+                    }
+                    else
+                    {
+                        entry.Line.Gradient = null;
+                    }
+                }
 
-                // Add a fade to the line if its ending at an unexplored region
-                //if (start.VisibilityState == MapElementVisibility.Undiscovered)
-                //{
-                //    AddFadeToLine(entry.Line, true);
-                //}
-                //else if (end.VisibilityState == MapElementVisibility.Undiscovered)
-                //{
-                //    AddFadeToLine(entry.Line, false);
-                //}
-                //else
-                //{
-                    entry.Line.Gradient = null;
-                //}
+                // TDOO: This looks weird and probably should be refactored
+                if (group.RenderSingle)
+                {
+                    foreach (var link in group.Links)
+                    {
+                        if (link != entry)
+                            link.Line.Visible = false;
+                    }
+
+                    break;
+                }
             }
         }
     }
@@ -1100,10 +1116,15 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   A group of <see cref="RegionLink"/>s connecting the same two regions.
     /// </summary>
-    private struct RegionLinkGroup
+    private class RegionLinkGroup
     {
         public RegionLink[] Links;
         public Int2 Id;
+
+        /// <summary>
+        ///   If true, only one of of the <see cref="RegionLink"/>s will be rendered
+        /// </summary>
+        public bool RenderSingle;
 
         public RegionLinkGroup(Int2 id, RegionLink[] links)
         {
@@ -1128,7 +1149,7 @@ public class PatchMapDrawer : Control
     /// </summary>
     private class RegionLink
     {
-        public Int2 Id;
+        public Int2 GroupID;
         public Vector2[] Points;
         public Line2D Line;
 
@@ -1140,13 +1161,16 @@ public class PatchMapDrawer : Control
         public int IntermediateIndex;
         public float Distance;
 
-        public RegionLink(Int2 id, Vector2[] points, Line2D line, Patch to, Patch from)
+        public RegionLinkGroup Group;
+
+        public RegionLink(Int2 groupID, RegionLinkGroup group, Vector2[] points, Line2D line, Patch to, Patch from)
         {
-            Id = id;
+            GroupID = groupID;
             Points = points;
             Line = line;
             To = to;
             From = from;
+            Group = group;
         }
 
         /// <summary>
