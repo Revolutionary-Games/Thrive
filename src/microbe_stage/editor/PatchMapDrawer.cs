@@ -829,63 +829,68 @@ public class PatchMapDrawer : Control
         }
 
         // Calculate line-to-line intersections
-        foreach (var target in connections.Values)
+        foreach (var group in connections)
         {
-            for (int i = 1; i < path.Length; ++i)
+            foreach (var link in group.Links)
             {
-                var startPoint = path[i - 1];
-                var endPoint = path[i];
+                var target = link.Points;
 
-                for (int j = 1; j < target.Length; ++j)
+                for (int i = 1; i < path.Length; ++i)
                 {
-                    if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
-                        ++pathIntersectionCount;
+                    var startPoint = path[i - 1];
+                    var endPoint = path[i];
+
+                    for (int j = 1; j < target.Length; ++j)
+                    {
+                        if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
+                            ++pathIntersectionCount;
+                    }
                 }
-            }
 
-            // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
-            if (path[0] == target[0])
-            {
-                --pathIntersectionCount;
-
-                // And if they goes the same direction, the second segment intersects but it actually isn't either.
-                if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
+                // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
+                if (path[0] == target[0])
                 {
                     --pathIntersectionCount;
-                    ++startPointOverlapCount;
-                }
-            }
-            else if (path[0] == target[target.Length - 1])
-            {
-                --pathIntersectionCount;
 
-                if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
-                    < MathUtils.EPSILON)
+                    // And if they goes the same direction, the second segment intersects but it actually isn't either.
+                    if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
+                    {
+                        --pathIntersectionCount;
+                        ++startPointOverlapCount;
+                    }
+                }
+                else if (path[0] == target[target.Length - 1])
                 {
                     --pathIntersectionCount;
-                    ++startPointOverlapCount;
-                }
-            }
-            else if (path[path.Length - 1] == target[0])
-            {
-                --pathIntersectionCount;
 
-                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
-                    < MathUtils.EPSILON)
+                    if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
+                        < MathUtils.EPSILON)
+                    {
+                        --pathIntersectionCount;
+                        ++startPointOverlapCount;
+                    }
+                }
+                else if (path[path.Length - 1] == target[0])
                 {
                     --pathIntersectionCount;
-                    ++startPointOverlapCount;
-                }
-            }
-            else if (path[path.Length - 1] == target[target.Length - 1])
-            {
-                --pathIntersectionCount;
 
-                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
-                        target[target.Length - 1])) < MathUtils.EPSILON)
+                    if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
+                        < MathUtils.EPSILON)
+                    {
+                        --pathIntersectionCount;
+                        ++startPointOverlapCount;
+                    }
+                }
+                else if (path[path.Length - 1] == target[target.Length - 1])
                 {
                     --pathIntersectionCount;
-                    ++startPointOverlapCount;
+
+                    if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
+                            target[target.Length - 1])) < MathUtils.EPSILON)
+                    {
+                        --pathIntersectionCount;
+                        ++startPointOverlapCount;
+                    }
                 }
             }
         }
@@ -896,45 +901,48 @@ public class PatchMapDrawer : Control
 
     private void UpdateRegionLinks()
     {
-        foreach (var entry in regionLinkLines)
+        foreach (var group in connections)
         {
-            var start = map.Regions[entry.Key.x];
-            var end = map.Regions[entry.Key.y];
+            foreach (var entry in group.Links)
+            {
+                var start = map.Regions[entry.Id.x];
+                var end = map.Regions[entry.Id.y];
 
-            // If both regions are unexplored, don't render the line
-            if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
-            {
-                entry.Value.Visible = false;
-                continue;
-            }
+                // If both regions are unexplored, don't render the line
+                if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
+                {
+                    entry.Line.Visible = false;
+                    continue;
+                }
 
-            entry.Value.Visible = true;
+                entry.Line.Visible = true;
 
-            // Set the color of the line if highlighted
-            if (CheckHighlightedAdjacency(start, end))
-            {
-                entry.Value.DefaultColor = HighlightedConnectionColor;
-            }
-            else
-            {
-                entry.Value.DefaultColor = DefaultConnectionColor;
-            }
+                // Set the color of the line if highlighted
+                if (CheckHighlightedAdjacency(start, end))
+                {
+                    entry.Line.DefaultColor = HighlightedConnectionColor;
+                }
+                else
+                {
+                    entry.Line.DefaultColor = DefaultConnectionColor;
+                }
 
-            if (IgnoreFogOfWar)
-                return;
+                if (IgnoreFogOfWar)
+                    return;
 
-            // Add a fade to the line if its ending at an unexplored region
-            if (start.VisibilityState == MapElementVisibility.Undiscovered)
-            {
-                AddFadeToLine(entry.Value, true);
-            }
-            else if (end.VisibilityState == MapElementVisibility.Undiscovered)
-            {
-                AddFadeToLine(entry.Value, false);
-            }
-            else
-            {
-                entry.Value.Gradient = null;
+                // Add a fade to the line if its ending at an unexplored region
+                //if (start.VisibilityState == MapElementVisibility.Undiscovered)
+                //{
+                //    AddFadeToLine(entry.Line, true);
+                //}
+                //else if (end.VisibilityState == MapElementVisibility.Undiscovered)
+                //{
+                //    AddFadeToLine(entry.Line, false);
+                //}
+                //else
+                //{
+                    entry.Line.Gradient = null;
+                //}
             }
         }
     }
