@@ -29,6 +29,14 @@
 
                     break;
                 }
+
+                // Make sure the tutorial doesn't trigger after it is no longer relevant
+                case TutorialEventType.EnteredEarlyMulticellularStage:
+                case TutorialEventType.EnteredEarlyMulticellularEditor:
+                {
+                    Inhibit();
+                    break;
+                }
             }
 
             return false;
