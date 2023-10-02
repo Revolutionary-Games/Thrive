@@ -499,7 +499,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (affectedACell)
         {
             GD.Print("Undone / redone action affected cell types");
-            cellEditorTab.OnFinishEditing();
+            cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
             bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
@@ -517,7 +517,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         // or not
         var oldName = selectedCellTypeToEdit.TypeName;
 
-        cellEditorTab.OnFinishEditing();
+        cellEditorTab.OnFinishEditing(false);
 
         // Revert to old name if the name is a duplicate
         if (EditedSpecies.CellTypes.Any(c =>
