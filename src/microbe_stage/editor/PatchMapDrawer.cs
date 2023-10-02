@@ -34,12 +34,10 @@ public class PatchMapDrawer : Control
 
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
-    private readonly Dictionary<Int2, Line2D> regionLinkLines = new();
-
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
-    private readonly Dictionary<Int2, Vector2[]> connections = new();
+    private readonly List<RegionLinkGroup> connections = new();
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
@@ -340,11 +338,10 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void ClearObjects()
     {
-        foreach (var line in regionLinkLines.Values)
-            line.QueueFree();
+        foreach (var group in connections)
+            group.FreeLines();
 
         connections.Clear();
-        regionLinkLines.Clear();
     }
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2, Color connectionColor)
@@ -352,7 +349,7 @@ public class PatchMapDrawer : Control
         DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
     }
 
-    private void CreateLink(Vector2[] points, Color connectionColor, Int2 id)
+    private Line2D CreateLink(Vector2[] points, Color connectionColor)
     {
         var link = new Line2D
         {
@@ -362,7 +359,7 @@ public class PatchMapDrawer : Control
         };
 
         AddChild(link);
-        regionLinkLines.Add(id, link);
+        return link;
     }
 
     private void AddFadeToLine(Line2D line, bool reversed)
@@ -423,6 +420,8 @@ public class PatchMapDrawer : Control
     {
         var mapCenter = map.Center;
 
+        var createdLinkIds = new HashSet<Int2>();
+
         // When ordered by distance to center, central regions will be linked first, which reduces intersections.
         foreach (var region in map.Regions.Values.OrderBy(r => mapCenter.DistanceSquaredTo(r.ScreenCoordinates)))
         {
@@ -431,36 +430,30 @@ public class PatchMapDrawer : Control
                 var connectionKey = new Int2(region.ID, adjacent.ID);
                 var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
 
-                if (connections.ContainsKey(connectionKey) || connections.ContainsKey(reverseConnectionKey))
+                if (createdLinkIds.Contains(connectionKey) || createdLinkIds.Contains(reverseConnectionKey))
                     continue;
+
+                createdLinkIds.Add(connectionKey);
+                createdLinkIds.Add(reverseConnectionKey);
 
                 var connectionTuples = region.ConnectingPatches[adjacent.ID];
-
-                if (connectionTuples.Count == 1 || adjacent.DiscoveredPatches == 0)
-                {
-                    var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, 0);
-                    connections.Add(connectionKey, pathToAdjacent);
-                    continue;
-                }
+                var linkGroup = new RegionLinkGroup(connectionKey, new RegionLink[connectionTuples.Count]);
 
                 for (int i = 0; i < connectionTuples.Count; i++)
                 {
                     var (to, from) = connectionTuples[i];
-
-                    if (!to.Discovered || !from.Discovered)
-                        continue;
-
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
-                    connections.Add(connectionKey, pathToAdjacent);
-                    break;
+                    var line = CreateLink(pathToAdjacent, DefaultConnectionColor);
+                    var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from);
+
+                    linkGroup.Links[i] = regionLink;
                 }
+
+                connections.Add(linkGroup);
             }
         }
 
         AdjustPathEndpoints();
-
-        foreach (var entry in connections)
-            CreateLink(entry.Value, DefaultConnectionColor, entry.Key);
     }
 
     /// <summary>
@@ -1078,22 +1071,54 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   A link between two <see cref="PatchRegion"/>.
-    ///   Used in <see cref="AdjustPathEndpoints"/>
+    ///   A group of <see cref="RegionLink"/>s connecting the same two regions
+    /// </summary>
+    private struct RegionLinkGroup
+    {
+        public RegionLink[] Links;
+        public Int2 Id;
+
+        public RegionLinkGroup(Int2 id, RegionLink[] links)
+        {
+            Id = id;
+            Links = links;
+        }
+
+        public RegionLink GetLink(Patch from, Patch to)
+        {
+            return Links.Where(l => l.To == to && l.From == from).FirstOrDefault();
+        }
+
+        public void FreeLines()
+        {
+            foreach (var link in Links)
+                link.Line.Free();
+        }
+    }
+
+    /// <summary>
+    ///   A link between two <see cref="PatchRegion"/>s
     /// </summary>
     private class RegionLink
     {
         public Int2 Id;
         public Vector2[] Points;
+        public Line2D Line;
+
+        public Patch To;
+        public Patch From;
 
         public int? Endpoint;
         public int? Intermediate;
         public float? Distance;
 
-        public RegionLink(Int2 id, Vector2[] points)
+        public RegionLink(Int2 id, Vector2[] points, Line2D line, Patch to, Patch from)
         {
             Id = id;
             Points = points;
+            Line = line;
+            To = to;
+            From = from;
         }
 
         public (Vector2[] Points, int Endpoint, int Intermediate, float Distance, Int2 Id) ToTuple()
