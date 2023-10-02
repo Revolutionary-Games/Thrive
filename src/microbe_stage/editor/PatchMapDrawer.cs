@@ -617,44 +617,49 @@ public class PatchMapDrawer : Control
         foreach (var region in Map!.Regions)
         {
             int regionId = region.Key;
-            var connectionStartHere = connections.Where(p => p.Key.x == regionId);
-            var connectionEndHere = connections.Where(p => p.Key.y == regionId);
-
-            var connectionTupleList = connectionStartHere.Select(c => (c.Value, 0, 1, c.Key)).ToList();
-            connectionTupleList.AddRange(
-                connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2, c.Key)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             var connectionsToDirections = new Dictionary<Direction, List<RegionLink>>();
 
             for (int i = 0; i < 4; ++i)
-            {
                 connectionsToDirections[(Direction)i] = new List<RegionLink>();
-            }
 
-            foreach (var (path, endpoint, intermediate, id) in connectionTupleList)
+            foreach (var group in connections)
             {
-                if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
+                foreach (var link in group.Links)
                 {
-                    var link = new RegionLink(id, path);
+                    if (group.Id.x == regionId)
+                    {
+                        link.EndpointIndex = 0;
+                        link.IntermediateIndex = 1;
+                    }
+                    else if (group.Id.y == regionId)
+                    {
+                        link.EndpointIndex = link.Points.Length - 1;
+                        link.IntermediateIndex = link.Points.Length - 2;
+                    }
+                    else
+                    {
+                        continue;
+                    }
 
-                    connectionsToDirections[
-                        path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add(link);
+                    var path = link.Points;
+                    var endpoint = link.EndpointIndex;
+                    var intermediate = link.IntermediateIndex;
 
-                    link.Endpoint = endpoint;
-                    link.Intermediate = intermediate;
-                    link.Distance = Math.Abs(path[endpoint].y - path[intermediate].y);
-                }
-                else
-                {
-                    var link = new RegionLink(id, path);
+                    if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
+                    {
+                        connectionsToDirections[
+                            path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add(link);
+                        link.Distance = Math.Abs(path[endpoint].y - path[intermediate].y);
+                    }
+                    else
+                    {
+                        connectionsToDirections[
+                            path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add(link);
 
-                    connectionsToDirections[
-                        path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add(link);
-
-                    link.Endpoint = endpoint;
-                    link.Intermediate = intermediate;
-                    link.Distance = Math.Abs(path[endpoint].x - path[intermediate].x);
+                        link.Distance = Math.Abs(path[endpoint].x - path[intermediate].x);
+                    }
                 }
             }
 
@@ -671,7 +676,9 @@ public class PatchMapDrawer : Control
 
                 foreach (var link in connectionsToDirections[direction])
                 {
-                    var (path, endpoint, _, _, id) = link.ToTuple();
+                    var endpoint = link.EndpointIndex;
+                    var id = link.Id;
+
                     var endRegion = map.Regions[id.y]!;
                     var startRegion = map.Regions[id.x]!;
 
@@ -681,7 +688,7 @@ public class PatchMapDrawer : Control
                     var regionSize = targetRegion.Size + borderVector;
                     var size = targetRegion.Explored ? regionSize : patchSize;
 
-                    path[endpoint] = AdjustEndpoint(path[endpoint], size, direction);
+                    link.Points[endpoint] = AdjustEndpoint(link.Points[endpoint], size, direction);
                 }
             }
 
@@ -702,9 +709,12 @@ public class PatchMapDrawer : Control
                     float right = (connectionsToDirection.Count - 1) / 2.0f;
                     float left = -right;
 
-                    foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
+                    foreach (var link in connectionsToDirection.OrderBy(l => l.Distance))
                     {
-                        var (path, endpoint, intermediate, _, id) = link.ToTuple();
+                        var path = link.Points;
+                        var endpoint = link.EndpointIndex;
+                        var intermediate = link.IntermediateIndex;
+                        var id = link.Id;
 
                         var start = map.Regions[id.x]!;
                         var end = map.Regions[id.y]!;
@@ -714,16 +724,18 @@ public class PatchMapDrawer : Control
 
                         if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
                         {
-                            path[endpoint].x += lineSeparation * right;
-                            path[intermediate].x += lineSeparation * right;
+                            link.Points[endpoint].x += lineSeparation * right;
+                            link.Points[intermediate].x += lineSeparation * right;
                             right -= 1;
                         }
                         else
                         {
-                            path[endpoint].x += lineSeparation * left;
-                            path[intermediate].x += lineSeparation * left;
+                            link.Points[endpoint].x += lineSeparation * left;
+                            link.Points[intermediate].x += lineSeparation * left;
                             left += 1;
                         }
+
+                        link.UpdateGraphics();
                     }
                 }
                 else
@@ -733,7 +745,10 @@ public class PatchMapDrawer : Control
 
                     foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        var (path, endpoint, intermediate, _, id) = link.ToTuple();
+                        var path = link.Points;
+                        var endpoint = link.EndpointIndex;
+                        var intermediate = link.IntermediateIndex;
+                        var id = link.Id;
 
                         var start = map.Regions[id.x]!;
                         var end = map.Regions[id.y]!;
@@ -743,16 +758,18 @@ public class PatchMapDrawer : Control
 
                         if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
                         {
-                            path[endpoint].y += lineSeparation * down;
-                            path[intermediate].y += lineSeparation * down;
+                            link.Points[endpoint].y += lineSeparation * down;
+                            link.Points[intermediate].y += lineSeparation * down;
                             down -= 1;
                         }
                         else
                         {
-                            path[endpoint].y += lineSeparation * up;
-                            path[intermediate].y += lineSeparation * up;
+                            link.Points[endpoint].y += lineSeparation * up;
+                            link.Points[intermediate].y += lineSeparation * up;
                             up += 1;
                         }
+
+                        link.UpdateGraphics();
                     }
                 }
             }
@@ -1108,9 +1125,9 @@ public class PatchMapDrawer : Control
         public Patch To;
         public Patch From;
 
-        public int? Endpoint;
-        public int? Intermediate;
-        public float? Distance;
+        public int EndpointIndex;
+        public int IntermediateIndex;
+        public float Distance;
 
         public RegionLink(Int2 id, Vector2[] points, Line2D line, Patch to, Patch from)
         {
@@ -1121,9 +1138,9 @@ public class PatchMapDrawer : Control
             From = from;
         }
 
-        public (Vector2[] Points, int Endpoint, int Intermediate, float Distance, Int2 Id) ToTuple()
+        public void UpdateGraphics()
         {
-            return (Points, Endpoint!.Value, Intermediate!.Value, Distance!.Value, Id);
+            Line.Points = Points;
         }
     }
 }
