@@ -120,7 +120,7 @@ public partial class CellBodyPlanEditorComponent :
     private bool forceUpdateCellGraphics;
 
     [Signal]
-    public delegate void OnCellTypeToEditSelected(string name);
+    public delegate void OnCellTypeToEditSelected(string name, bool switchTab);
 
     public enum SelectionMenuTab
     {
@@ -849,7 +849,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnModifyPressed()
     {
-        EmitSignal(nameof(OnCellTypeToEditSelected), cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName);
+        EmitSignal(nameof(OnCellTypeToEditSelected), cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName, true);
     }
 
     /// <summary>
@@ -1129,7 +1129,11 @@ public partial class CellBodyPlanEditorComponent :
         Editor.EditedSpecies.CellTypes.Add(newType);
         GD.Print("New cell type created: ", newType.TypeName);
 
+        EmitSignal(nameof(OnCellTypeToEditSelected), newType.TypeName, false);
+
         UpdateCellTypeSelections();
+
+        OnCellToPlaceSelected(newType.TypeName);
 
         duplicateCellTypeDialog.Hide();
     }
@@ -1167,7 +1171,7 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName);
+        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName, true);
     }
 
     private void RegenerateCellTypeIcon(CellType type)
