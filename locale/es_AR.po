@@ -10,8 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2023-10-02 11:55+0300\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
-"Language-Team: Spanish (Argentina) <https://translate."
-"revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
+"Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,9 +59,7 @@ msgstr "Recién levantado ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr ""
-"Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo "
-"de tejido son axones)."
+msgstr "Anda a la etapa del despertar. Solo cuando dejes de ser un boludo ( El tipo de tejido son axones)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:681
@@ -104,14 +101,13 @@ msgstr "Hilos actuales:"
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Los pibes activos van a estar dando vueltas cuando nada piola pasa.\n"
-"Los pibes tranquilos van a estar quietos y esperando a que algo cambie antes "
-"de hacer boludeces."
+"Los pibes tranquilos van a estar quietos y esperando a que algo cambie antes de hacer boludeces."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validaciones adicionales encontraron un quilombo: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4098
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Agrega un nuevo control"
 
@@ -291,7 +287,6 @@ msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4116
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -312,13 +307,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -444,16 +436,16 @@ msgid "BACKSPACE"
 msgstr "Retroceso"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3422
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3696
 msgid "BASE_MOBILITY"
 msgstr "Que tanto corres"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
 msgstr "Que tanto corres"
 
@@ -481,17 +473,17 @@ msgstr "tecla \"Bass Up\""
 msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Volverte re chiquito ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:509
+#: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Volvete re polenta al unirte con el resto de los pibes ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "BEGIN_THRIVING"
 msgstr "Empeza a vivirla"
 
@@ -565,7 +557,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
@@ -573,12 +564,10 @@ msgstr ""
 "vinculación"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1494
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -604,7 +593,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2430
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
@@ -652,13 +640,11 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3394
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 #, fuzzy
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato de calcio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -702,10 +688,6 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr ""
 
@@ -788,13 +770,11 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2900
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 #, fuzzy
 msgid "CELLULOSE"
 msgstr "Celulosa"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -830,49 +810,40 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1951
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Quimioplastia"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1953
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 msgid "CHEMORECEPTOR"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:590
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteínas de quimiosíntesis"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:592
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -883,7 +854,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "Quitina"
 
@@ -897,23 +867,19 @@ msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3148
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1758
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Cloroplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -926,7 +892,6 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberración cromática:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:494
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -936,17 +901,14 @@ msgstr "{0} consume"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1445
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 msgid "CILIA_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1205,7 +1167,6 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:419
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 msgid "CONTINUE_THRIVING"
 msgstr ""
 
@@ -1412,12 +1373,10 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:293
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:295
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 
@@ -1426,7 +1385,6 @@ msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:294
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1630,7 +1588,6 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1640,7 +1597,6 @@ msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "población:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 msgid "DIGESTION_SPEED"
 msgstr ""
 
@@ -1650,7 +1606,6 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "población:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1762,7 +1717,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2733
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 #, fuzzy
 msgid "DOUBLE"
 msgstr "Doble"
@@ -1772,7 +1726,6 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2734
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -1793,79 +1746,57 @@ msgstr "Poner organela"
 #: ../simulation_parameters/common/help_texts.json:145
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:172
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
-"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
-"dos. Para eso necesitás juntar amoníaco y fosfato."
+msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:175
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-"Pero si sobrevivís por veinte generaciones, está considerado que ganaste el "
-"juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
 #: ../simulation_parameters/common/help_texts.json:178
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
-"Cuidado porque las otras especies también evolucionan cada vez que entrás al "
-"editor."
+msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
 
 #: ../simulation_parameters/common/help_texts.json:181
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:184
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:187
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:190
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:193
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:196
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:199
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:148
 #, fuzzy
@@ -1915,33 +1846,22 @@ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 #: ../simulation_parameters/common/help_texts.json:151
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco "
-"(Nube Naranja) y Fosfato (Nube Violeta)."
+msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:154
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
-"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
-"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo "
-"engullir."
+msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:157
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
-"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar "
-"para evitar perder ATP."
+msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
 
 #: ../simulation_parameters/common/help_texts.json:160
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Hay varias organelas en el editor para que evoluciones, permitiendo "
-"diferentes modos de jugar."
+msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
 
 #: ../simulation_parameters/common/help_texts.json:163
 #, fuzzy
@@ -1963,16 +1883,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:169
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de "
-"hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
 #: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/general/NewGameSettings.tscn:1130
 msgid "EASTER_EGGS_EXPLANATION"
@@ -2017,27 +1933,22 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Permitir efectos de luz del GUI"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2399
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2394
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
 msgid "ENERGY_SOURCES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2308,23 +2219,19 @@ msgstr "población:"
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
-#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:400
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1110
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Flagelo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1112
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1111
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -2377,7 +2284,6 @@ msgid "FOOD_CHAIN"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2416
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2411
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2511,11 +2417,7 @@ msgstr "GLES2 advertencia de modo"
 
 #: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr ""
-"Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y "
-"seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de "
-"video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin "
-"que se te trabe."
+msgstr "Estas abriendo Thrive mediante GLES2. Esto esta casi totalmente sin probar y seguro se te crashea o bugea. Intenta pibe actualizar tus controladores de video y/o fuerce el uso de gráficos AMD o Nvidia para ejecutar Thrive sin que se te trabe."
 
 #: ../src/general/OptionsMenu.cs:1067
 msgid "GLES3"
@@ -2593,7 +2495,6 @@ msgid "GUI"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4110
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -2612,12 +2513,6 @@ msgstr "Volumen de la interfaz"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3525
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3799
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr ""
 
@@ -3125,12 +3020,9 @@ msgstr "Este lenguaje todavía esta en progreso ({0}% completado)"
 
 #: ../src/general/OptionsMenu.cs:1557
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
-"Esta traducción esta bastante incompleta ({0}% hecha) porfis ayudanos a "
-"terminarla!"
+msgstr "Esta traducción esta bastante incompleta ({0}% hecha) porfis ayudanos a terminarla!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1342
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3513,18 +3405,15 @@ msgstr "población:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oxitocina"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2454
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -3629,18 +3518,15 @@ msgstr "Mesopelágico"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:392
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 #, fuzzy
 msgid "METABOLOSOMES"
 msgstr "Metabolismo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:394
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:393
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -3663,16 +3549,12 @@ msgstr ""
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 #, fuzzy
 msgid "MICROBE"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:590
@@ -3690,14 +3572,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3709,14 +3588,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3728,14 +3604,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3747,14 +3620,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3766,14 +3636,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3785,14 +3652,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3814,14 +3678,11 @@ msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -3832,9 +3693,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:291
 #, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 #, fuzzy
@@ -3842,106 +3701,81 @@ msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:150
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
-"dos. Para eso necesitás juntar amoníaco y fosfato."
+msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Pero si sobrevivís por veinte generaciones, está considerado que ganaste el "
-"juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Cuidado porque las otras especies también evolucionan cada vez que entrás al "
-"editor."
+msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
 
 #: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -3951,33 +3785,22 @@ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco "
-"(Nube Naranja) y Fosfato (Nube Violeta)."
+msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
-"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
-"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo "
-"engullir."
+msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
-"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar "
-"para evitar perder ATP."
+msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Hay varias organelas en el editor para que evoluciones, permitiendo "
-"diferentes modos de jugar."
+msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3998,12 +3821,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de "
-"hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
@@ -4061,22 +3881,18 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:464
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitocondria"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1675
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1674
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Presiona cualquier tecla…"
@@ -4198,9 +4014,7 @@ msgstr "Error cargando tus mods"
 
 #: ../src/general/MainMenu.tscn:987
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
-"Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs "
-"pueden que contengan información adicional del error."
+msgstr "Un error ha ocurrido mientras cargábamos uno o varios de tus mods. Los logs pueden que contengan información adicional del error."
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
@@ -4520,34 +4334,28 @@ msgstr "Nitrógeno"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:100
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:791
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:790
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:298
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2036
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plástido fijador de nitrógeno"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2037
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4557,12 +4365,10 @@ msgstr "Ninguno (no activado)"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2562
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2563
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -4618,7 +4424,6 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4637,7 +4442,6 @@ msgstr "Desactivado"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1862
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -4659,22 +4463,18 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:668
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1576
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Núcleo"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1340
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1335
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
@@ -4690,8 +4490,6 @@ msgstr "Bloq Num"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
 msgid "N_A"
 msgstr ""
 
@@ -4816,13 +4614,11 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:918
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2510
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "Pili de depredador"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2511
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "población:"
@@ -4834,30 +4630,25 @@ msgstr "Poner organela"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:960
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2534
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Pili de depredador"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "población:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
 msgstr "Pili de depredador"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1326
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4866,7 +4657,6 @@ msgid "ORGANISM_STATISTICS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -4900,36 +4690,6 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3212
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3457
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:445
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:644
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
@@ -4972,18 +4732,15 @@ msgstr "Oxigeno"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:200
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:887
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 #, fuzzy
 msgid "OXYTOXISOME"
 msgstr "Oxitocina"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:889
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:888
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5067,7 +4824,6 @@ msgid "PATCH_MAP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4145
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
@@ -5151,8 +4907,6 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -5189,9 +4943,6 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3067
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3559
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
@@ -5295,7 +5046,6 @@ msgid "POPULATION_IN_PATCHES"
 msgstr "populación en parches:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2280
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2275
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -5522,8 +5272,6 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5537,12 +5285,6 @@ msgstr "Resolución:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3491
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
@@ -5667,9 +5409,7 @@ msgstr "Se dividieron desde {0}"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
-"la población en algunos de los tuyos los dividieron en otra especie "
-"totalmente diferente {0}"
+msgstr "la población en algunos de los tuyos los dividieron en otra especie totalmente diferente {0}"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
@@ -5682,19 +5422,16 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:692
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 #, fuzzy
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:694
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5879,7 +5616,6 @@ msgstr "Piso marino"
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
-#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -5974,7 +5710,6 @@ msgid "SESSILE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4104
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6000,7 +5735,6 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "\" {0} \" - {1}"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
@@ -6017,7 +5751,6 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4121
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
@@ -6027,7 +5760,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr ""
@@ -6035,12 +5767,10 @@ msgstr ""
 "vinculación"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2333
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -6076,13 +5806,11 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3666
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 #, fuzzy
 msgid "SILICA"
 msgstr "Silicio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3667
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -6101,18 +5829,15 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1247
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "población:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1246
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "población:"
@@ -6134,9 +5859,7 @@ msgstr "Pedacito de hierro"
 #: ../simulation_parameters/common/gallery.json:441
 #, fuzzy
 msgid "SOCIETY_STAGE"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
@@ -6161,9 +5884,7 @@ msgstr "Barra espaciadora"
 #: ../simulation_parameters/common/gallery.json:469
 #, fuzzy
 msgid "SPACE_STAGE"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
@@ -6265,7 +5986,6 @@ msgid "SPECIES_WITH_POPULATION"
 msgstr "población:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1129
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
 msgid "SPEED"
 msgstr ""
 
@@ -6408,27 +6128,6 @@ msgstr "tecla \"Stop\""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2485
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:407
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:606
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:703
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1958
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2343
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2477
 msgid "STORAGE"
 msgstr ""
 
@@ -6443,9 +6142,7 @@ msgstr "Logeado como: {0}"
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
@@ -6525,7 +6222,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 msgid "SUNLIGHT"
 msgstr "Luz solar"
 
@@ -6648,7 +6344,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -6679,34 +6374,28 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:811
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:330
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:985
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 msgid "THERMOSYNTHASE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "población:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:986
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -6773,7 +6462,6 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:493
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
 msgid "THYLAKOID"
 msgstr ""
 
@@ -6782,7 +6470,6 @@ msgid "THYLAKOIDS"
 msgstr "Tilacoides"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:495
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
@@ -6851,7 +6538,6 @@ msgstr "población:"
 
 #: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
-#: ../src/microbe_stage/MicrobeStage.tscn:2006
 msgid "TOGGLE_BINDING"
 msgstr "Activar vinculación"
 
@@ -6864,7 +6550,6 @@ msgstr "Activar/Desactivar engullir"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "Activar/Desactivar engullir"
 
@@ -6922,15 +6607,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3593
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3867
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 #, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6938,17 +6619,14 @@ msgstr ""
 "Toxinas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2234
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -6987,13 +6665,10 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 msgid "TUTORIAL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:396
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Poner organela"
@@ -7008,14 +6683,11 @@ msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, "
-"pero hace glicólisis.\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
 "\n"
 "Rusticianina: Convierte el hierro en ATP.\n"
 "\n"
@@ -7024,9 +6696,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -7045,71 +6715,46 @@ msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:386
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés "
-"una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:339
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
@@ -7135,7 +6780,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
-#: ../src/microbe_stage/MicrobeStage.tscn:2018
 msgid "UNBIND_ALL"
 msgstr "Desvincular a todos"
 
@@ -7285,12 +6929,10 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Vacuola"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2137
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
@@ -7304,7 +6946,6 @@ msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "población:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2136
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
