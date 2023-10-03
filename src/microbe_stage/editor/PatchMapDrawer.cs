@@ -444,13 +444,10 @@ public class PatchMapDrawer : Control
                     var (to, from) = connectionTuples[i];
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
                     var line = CreateLink(pathToAdjacent, DefaultConnectionColor);
-                    var regionLink = new RegionLink(connectionKey, linkGroup, pathToAdjacent, line, to, from);
+                    var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from);
 
                     linkGroup.Links[i] = regionLink;
                 }
-
-                if (region.Explored && adjacent.Explored)
-                    linkGroup.RenderSingle = true;
 
                 connections.Add(linkGroup);
             }
@@ -617,192 +614,98 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void AdjustPathEndpoints()
     {
-        foreach (var region in Map!.Regions)
+        foreach (var group in connections)
         {
-            int regionId = region.Key;
-
-            // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
-            var connectionsToDirections = new Dictionary<Direction, List<RegionLink>>();
-
-            for (int i = 0; i < 4; ++i)
-                connectionsToDirections[(Direction)i] = new List<RegionLink>();
-
-            foreach (var group in connections)
-            {
-                foreach (var link in group.Links)
-                {
-                    if (group.Id.x == regionId)
-                    {
-                        link.EndpointIndex = 0;
-                        link.IntermediateIndex = 1;
-                    }
-                    else if (group.Id.y == regionId)
-                    {
-                        link.EndpointIndex = link.Points.Length - 1;
-                        link.IntermediateIndex = link.Points.Length - 2;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                    var path = link.Points;
-                    var endpoint = link.EndpointIndex;
-                    var intermediate = link.IntermediateIndex;
-
-                    if (Math.Abs(path[endpoint].x - path[intermediate].x) < MathUtils.EPSILON)
-                    {
-                        connectionsToDirections[
-                            path[endpoint].y > path[intermediate].y ? Direction.Up : Direction.Down].Add(link);
-                        link.Distance = Math.Abs(path[endpoint].y - path[intermediate].y);
-                    }
-                    else
-                    {
-                        connectionsToDirections[
-                            path[endpoint].x > path[intermediate].x ? Direction.Left : Direction.Right].Add(link);
-
-                        link.Distance = Math.Abs(path[endpoint].x - path[intermediate].x);
-                    }
-                }
-            }
-
-            // Endpoint position
-            var patchSize = new Vector2(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
-                Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
-
-            var borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
-                Constants.PATCH_REGION_BORDER_WIDTH);
-
-            for (int i = 0; i < 4; i++)
-            {
-                var direction = (Direction)i;
-
-                foreach (var link in connectionsToDirections[direction])
-                {
-                    var endpoint = link.EndpointIndex;
-                    var id = link.GroupID;
-
-                    var endRegion = map.Regions[id.y]!;
-                    var startRegion = map.Regions[id.x]!;
-
-                    var incoming = endRegion == region.Value;
-                    var targetRegion = incoming ? endRegion : startRegion;
-
-                    var regionSize = targetRegion.Size + borderVector;
-                    var size = targetRegion.Explored ? regionSize : patchSize;
-
-                    link.Points[endpoint] = AdjustEndpoint(link.Points[endpoint], size, direction);
-                }
-            }
-
-            // Separation
-            const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
-
-            for (int i = 0; i < 4; ++i)
-            {
-                var direction = (Direction)i;
-                var connectionsToDirection = connectionsToDirections[direction];
-
-                // Only when we have more than 1 connections do we need to offset them
-                if (connectionsToDirection.Count <= 1)
-                    continue;
-
-                if (direction is Direction.Up or Direction.Down)
-                {
-                    float right = (connectionsToDirection.Count - 1) / 2.0f;
-                    float left = -right;
-
-                    foreach (var link in connectionsToDirection.OrderBy(l => l.Distance))
-                    {
-                        var path = link.Points;
-                        var endpoint = link.EndpointIndex;
-                        var intermediate = link.IntermediateIndex;
-                        var id = link.GroupID;
-
-                        var start = map.Regions[id.x]!;
-                        var end = map.Regions[id.y]!;
-
-                        if (!start.Explored && !end.Explored)
-                            continue;
-
-                        if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
-                        {
-                            link.Points[endpoint].x += lineSeparation * right;
-                            link.Points[intermediate].x += lineSeparation * right;
-                            right -= 1;
-                        }
-                        else
-                        {
-                            link.Points[endpoint].x += lineSeparation * left;
-                            link.Points[intermediate].x += lineSeparation * left;
-                            left += 1;
-                        }
-                    }
-                }
-                else
-                {
-                    float down = (connectionsToDirection.Count - 1) / 2.0f;
-                    float up = -down;
-
-                    foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
-                    {
-                        var path = link.Points;
-                        var endpoint = link.EndpointIndex;
-                        var intermediate = link.IntermediateIndex;
-                        var id = link.GroupID;
-
-                        var start = map.Regions[id.x]!;
-                        var end = map.Regions[id.y]!;
-
-                        if (!start.Explored && !end.Explored)
-                            continue;
-
-                        if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
-                        {
-                            link.Points[endpoint].y += lineSeparation * down;
-                            link.Points[intermediate].y += lineSeparation * down;
-                            down -= 1;
-                        }
-                        else
-                        {
-                            link.Points[endpoint].y += lineSeparation * up;
-                            link.Points[intermediate].y += lineSeparation * up;
-                            up += 1;
-                        }
-                    }
-                }
-            }
-
-            // Update the graphics of all connections
-            for (int i = 0; i < 4; i++)
-            {
-                foreach (var link in connectionsToDirections[(Direction)i])
-                    link.UpdateGraphics();
-            }
-        }
-    }
-
-    private Vector2 AdjustEndpoint(Vector2 endpoint, Vector2 size, Direction direction)
-    {
-        Vector2 newEndpoint = endpoint;
-
-        switch (direction)
-        {
-            case Direction.Left:
-                newEndpoint.x -= size.x / 2;
-                break;
-            case Direction.Up:
-                newEndpoint.y -= size.y / 2;
-                break;
-            case Direction.Right:
-                newEndpoint.x += size.x / 2;
-                break;
-            case Direction.Down:
-                newEndpoint.y += size.y / 2;
-                break;
+            group.AdjustEndpoints();
         }
 
-        return newEndpoint;
+        // foreach (var region in Map!.Regions)
+        // {
+        //     // Separation
+        //     const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
+        // 
+        //     for (int i = 0; i < 4; ++i)
+        //     {
+        //         var direction = (Direction)i;
+        //         var connectionsToDirection = connectionsToDirections[direction];
+        // 
+        //         // Only when we have more than 1 connections do we need to offset them
+        //         if (connectionsToDirection.Count <= 1)
+        //             continue;
+        // 
+        //         if (direction is Direction.Up or Direction.Down)
+        //         {
+        //             float right = (connectionsToDirection.Count - 1) / 2.0f;
+        //             float left = -right;
+        // 
+        //             foreach (var link in connectionsToDirection.OrderBy(l => l.Distance))
+        //             {
+        //                 var path = link.Points;
+        //                 var endpoint = link.EndpointIndex;
+        //                 var intermediate = link.IntermediateIndex;
+        //                 var id = link.GroupID;
+        // 
+        //                 var start = map.Regions[id.x]!;
+        //                 var end = map.Regions[id.y]!;
+        // 
+        //                 if (!start.Explored && !end.Explored)
+        //                     continue;
+        // 
+        //                 if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
+        //                 {
+        //                     link.Points[endpoint].x += lineSeparation * right;
+        //                     link.Points[intermediate].x += lineSeparation * right;
+        //                     right -= 1;
+        //                 }
+        //                 else
+        //                 {
+        //                     link.Points[endpoint].x += lineSeparation * left;
+        //                     link.Points[intermediate].x += lineSeparation * left;
+        //                     left += 1;
+        //                 }
+        //             }
+        //         }
+        //         else
+        //         {
+        //             float down = (connectionsToDirection.Count - 1) / 2.0f;
+        //             float up = -down;
+        // 
+        //             foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
+        //             {
+        //                 var path = link.Points;
+        //                 var endpoint = link.EndpointIndex;
+        //                 var intermediate = link.IntermediateIndex;
+        //                 var id = link.GroupID;
+        // 
+        //                 var start = map.Regions[id.x]!;
+        //                 var end = map.Regions[id.y]!;
+        // 
+        //                 if (!start.Explored && !end.Explored)
+        //                     continue;
+        // 
+        //                 if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
+        //                 {
+        //                     link.Points[endpoint].y += lineSeparation * down;
+        //                     link.Points[intermediate].y += lineSeparation * down;
+        //                     down -= 1;
+        //                 }
+        //                 else
+        //                 {
+        //                     link.Points[endpoint].y += lineSeparation * up;
+        //                     link.Points[intermediate].y += lineSeparation * up;
+        //                     up += 1;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // 
+        //     // Update the graphics of all connections
+        //     for (int i = 0; i < 4; i++)
+        //     {
+        //         foreach (var link in connectionsToDirections[(Direction)i])
+        //             link.UpdateGraphics();
+        //     }
+        // }
     }
 
     /// <summary>
@@ -948,18 +851,6 @@ public class PatchMapDrawer : Control
                     {
                         entry.Line.Gradient = null;
                     }
-                }
-
-                // TDOO: This looks weird and probably should be refactored
-                if (group.RenderSingle)
-                {
-                    foreach (var link in group.Links)
-                    {
-                        if (link != entry)
-                            link.Line.Visible = false;
-                    }
-
-                    break;
                 }
             }
         }
@@ -1121,20 +1012,22 @@ public class PatchMapDrawer : Control
         public RegionLink[] Links;
         public Int2 Id;
 
-        /// <summary>
-        ///   If true, only one of of the <see cref="RegionLink"/>s will be rendered
-        /// </summary>
-        public bool RenderSingle;
-
         public RegionLinkGroup(Int2 id, RegionLink[] links)
         {
             Id = id;
             Links = links;
         }
 
-        public RegionLink GetLink(Patch from, Patch to)
+        public void AdjustEndpoints()
         {
-            return Links.Where(l => l.To == to && l.From == from).FirstOrDefault();
+            foreach (var link in Links)
+            {
+                // Adjust start endpoint
+                link.AdjustEndpoint(true);
+
+                // Adjust end endpoint
+                link.AdjustEndpoint(false);
+            }
         }
 
         public void FreeLines()
@@ -1156,29 +1049,74 @@ public class PatchMapDrawer : Control
         public Patch To;
         public Patch From;
 
-        // Below values are used in AdjustEndpoints
-        public int EndpointIndex;
-        public int IntermediateIndex;
-        public float Distance;
+        private readonly Vector2 patchSize = new(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
+            Constants.PATCH_NODE_TEXTURE_RECT_LENGTH);
 
-        public RegionLinkGroup Group;
+        private readonly Vector2 borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
+            Constants.PATCH_REGION_BORDER_WIDTH);
 
-        public RegionLink(Int2 groupID, RegionLinkGroup group, Vector2[] points, Line2D line, Patch to, Patch from)
+        public RegionLink(Int2 groupID, Vector2[] points, Line2D line, Patch to, Patch from)
         {
             GroupID = groupID;
             Points = points;
             Line = line;
             To = to;
             From = from;
-            Group = group;
+        }
+
+        public void AdjustEndpoint(bool start)
+        {
+            var targetRegion = start ? From.Region : To.Region;
+            var endpointIndex = start ? 0 : Points.Length - 1;
+
+            var regionSize = targetRegion.Size + borderVector;
+            var size = targetRegion.Explored ? regionSize : patchSize;
+
+            var endpoint = Points[endpointIndex];
+            var intermediate = Points[start ? 1 : Points.Length - 2];
+
+            Direction direction;
+
+            if (Math.Abs(endpoint.x - intermediate.x) < MathUtils.EPSILON)
+            {
+                direction = endpoint.y > intermediate.y ? Direction.Up : Direction.Down;
+                //link.Distance = Math.Abs(path[endpoint].y - path[intermediate].y);
+            }
+            else
+            {
+                direction = endpoint.x > intermediate.x ? Direction.Left : Direction.Right;
+                //link.Distance = Math.Abs(path[endpoint].x - path[intermediate].x);
+            }
+
+            ShiftPoint(endpointIndex, size, direction);
+            UpdateGraphics();
         }
 
         /// <summary>
-        ///   Update <see cref="Line"/> to match <see cref="Points"/>
+        ///   Updates <see cref="Line"/> to match <see cref="Points"/>
         /// </summary>
         public void UpdateGraphics()
         {
             Line.Points = Points;
+        }
+
+        private void ShiftPoint(int index, Vector2 size, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    Points[index].x -= size.x / 2;
+                    break;
+                case Direction.Up:
+                    Points[index].y -= size.y / 2;
+                    break;
+                case Direction.Right:
+                    Points[index].x += size.x / 2;
+                    break;
+                case Direction.Down:
+                    Points[index].y += size.y / 2;
+                    break;
+            }
         }
     }
 }
