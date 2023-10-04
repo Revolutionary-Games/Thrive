@@ -149,14 +149,16 @@ public class CellStatsIndicator : HBoxContainer
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
             changeIndicator.RectMinSize = ChangeIndicatorSize;
-            
-            if (Value > initialValue){
+            if (Value > initialValue)
+            {
                 changeIndicator.Texture = increaseIcon;
             }
-            else if (Value < initialValue){
+            else if (Value < initialValue)
+            {
                 changeIndicator.Texture = decreaseIcon;
             }
-            else{
+            else
+            {
                 changeIndicator.Texture = blankIcon;
             }
         }
