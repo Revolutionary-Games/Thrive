@@ -31,6 +31,7 @@ public class CellStatsIndicator : HBoxContainer
     private TextureRect? changeIndicator;
     private TextureRect? iconRect;
 
+    private Texture blankIcon = null!;
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
 #pragma warning restore CA2213
@@ -104,6 +105,7 @@ public class CellStatsIndicator : HBoxContainer
 
         InvalidIcon ??= GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
+        blankIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/blankStat.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
 
@@ -147,8 +149,16 @@ public class CellStatsIndicator : HBoxContainer
         if (initialValue.HasValue && !float.IsNaN(initialValue.Value) && !float.IsNaN(Value))
         {
             changeIndicator.RectMinSize = ChangeIndicatorSize;
-            changeIndicator.Texture = Value > initialValue ? increaseIcon : decreaseIcon;
-            changeIndicator.Visible = Value != initialValue;
+            
+            if (Value > initialValue){
+                changeIndicator.Texture = increaseIcon;
+            }
+            else if (Value < initialValue){
+                changeIndicator.Texture = decreaseIcon;
+            }
+            else{
+                changeIndicator.Texture = blankIcon;
+            }
         }
         else
         {
