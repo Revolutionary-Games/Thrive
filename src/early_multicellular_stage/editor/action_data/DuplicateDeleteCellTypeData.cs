@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 ///   Stores information for duplicating and deleting cell types.
 /// </summary>
 [JSONAlwaysDynamicType]
@@ -18,7 +20,7 @@ public class DuplicateDeleteCellTypeData : EditorCombinableActionData<EarlyMulti
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        throw new System.NotSupportedException();
+        throw new NotSupportedException();
     }
 
     protected override int CalculateCostInternal()
