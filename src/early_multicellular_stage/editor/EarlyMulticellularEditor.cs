@@ -435,14 +435,14 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
             return;
         }
 
-        var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        var newTypeToEdit = EditedSpecies.CellTypes.FirstOrDefault(c => c.TypeName == name);
 
         // Only reinitialize the editor when required
         if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
         {
             selectedCellTypeToEdit = newTypeToEdit;
 
-            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+            GD.Print("Start editing cell type: ", selectedCellTypeToEdit?.TypeName);
 
             // Reinitialize the cell editor to be able to edit the new cell type
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
