@@ -135,7 +135,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem, parallelRunner);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
-        colonyBindingSystem = new ColonyBindingSystem(EntitySystem, parallelRunner);
+        colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
         colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem, parallelRunner);
         colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(EntitySystem, parallelRunner);
 
@@ -143,15 +143,12 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, parallelRunner);
-        engulfedDigestionSystem = new EngulfedDigestionSystem(EntitySystem, parallelRunner);
+        engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, parallelRunner);
-        engulfingSystem = new EngulfingSystem(EntitySystem);
+        engulfingSystem = new EngulfingSystem(this, EntitySystem);
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
 
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
-
-        CloudSystem = cloudSystem;
-        cloudSystem.Init(fluidCurrentsSystem);
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
@@ -185,6 +182,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem = new SpawnSystem(this);
 
         microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+
+        CloudSystem = cloudSystem;
+        cloudSystem.Init(fluidCurrentsSystem);
 
         OnInitialized();
     }

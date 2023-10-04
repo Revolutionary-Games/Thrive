@@ -13,6 +13,11 @@ namespace Components
         ///   colony
         /// </summary>
         public Entity ColonyLeader;
+
+        public MicrobeColonyMember(in Entity colonyLeader)
+        {
+            ColonyLeader = colonyLeader;
+        }
     }
 
     public static class MicrobeColonyMemberHelpers

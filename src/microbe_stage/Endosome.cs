@@ -3,10 +3,8 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   This does nothing (for now) and only exist so saving could work.
+///   Visuals of engulfing something and encasing it in a "membrane" bubble
 /// </summary>
-[JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/Endosome.tscn", UsesEarlyResolve = false)]
 public class Endosome : Spatial, IEntity
 {
     [JsonProperty]

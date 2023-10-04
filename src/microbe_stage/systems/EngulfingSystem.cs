@@ -19,16 +19,39 @@
     [With(typeof(CollisionManagement))]
     [With(typeof(MicrobePhysicsExtraData))]
     [With(typeof(MicrobeControl))]
+    [With(typeof(CellProperties))]
+    [With(typeof(CompoundStorage))]
+    [With(typeof(SoundEffectPlayer))]
+    [With(typeof(SpatialInstance))]
+    [With(typeof(SpeciesMember))]
+    [WritesToComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(PilusDamageSystem))]
+    [RunsAfter(typeof(MicrobeVisualsSystem))]
+    [RunsOnMainThread]
     public sealed class EngulfingSystem : AEntitySetSystem<float>
     {
 #pragma warning disable CA2213
         private readonly PackedScene endosomeScene;
 #pragma warning restore CA2213
 
-        public EngulfingSystem(World world) : base(world, null)
+        private readonly IWorldSimulation worldSimulation;
+
+        private readonly Compound atp;
+
+        /// <summary>
+        ///   Holds temporary data needed by this system to process engulfed objects
+        /// </summary>
+        private readonly Dictionary<Entity, List<MicrobePhysicsExtraData>> entityEngulfingExtraObjects = new();
+
+        public EngulfingSystem(IWorldSimulation worldSimulation, World world) : base(world, null)
         {
+            this.worldSimulation = worldSimulation;
             endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
+
+            atp = SimulationParameters.Instance.GetCompound("atp");
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -39,91 +62,83 @@
             if (health.Dead)
                 return;
 
-            var actuallyEngulfing = State == MicrobeState.Engulf && CanEngulf;
+            ref var control = ref entity.Get<MicrobeControl>();
+            ref var engulfer = ref entity.Get<Engulfer>();
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
             if (actuallyEngulfing)
             {
                 // Drain atp
                 var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
-                if (Compounds.TakeCompound(atp, cost) < cost - 0.001f || PhagocytosisStep != PhagocytosisPhase.None)
+                var compounds = entity.Get<CompoundStorage>().Compounds;
+
+                // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
+                bool engulfed = false;
+
+                if (entity.Has<Engulfable>())
                 {
-                    State = MicrobeState.Normal;
+                    engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+                }
+
+                if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
+                {
+                    control.State = MicrobeState.Normal;
+                }
+                else
+                {
+                    if (entity.Has<MicrobeColonyMember>())
+                    {
+                        // TODO: fix colony members to be able to engulf things
+                        throw new NotImplementedException();
+                    }
+
+                    CheckStartEngulfing(ref entity.Get<CollisionManagement>(), ref cellProperties, ref engulfer,
+                        entity);
                 }
             }
             else
             {
-                attemptingToEngulf.Clear();
+                if (control.State == MicrobeState.Engulf)
+                {
+                    // Force out of incorrect state
+                    control.State = MicrobeState.Normal;
+                }
+
+                engulfer.AttemptingToEngulf?.Clear();
             }
+
+            ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+
+            // To simplify the logic this audio is now played non-looping
+            // TODO: if this sounds too bad with the sound volume no longer fading then this will need to change
+            soundPlayer.PlaySoundEffectIfNotPlayingAlready(Constants.MICROBE_BINDING_MODE_SOUND, 0.6f);
 
             // Play sound
             if (actuallyEngulfing)
             {
-                if (!engulfAudio.Playing)
-                    engulfAudio.Play();
-
                 // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
-
-                if (engulfAudio.Volume < 0.6f)
-                {
-                    engulfAudio.Volume += delta;
-                }
-                else if (engulfAudio.Volume >= 0.6f)
-                {
-                    engulfAudio.Volume = 0.6f;
-                }
+                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0, delta);
             }
             else
             {
-                if (engulfAudio.Playing && engulfAudio.Volume > 0)
-                {
-                    engulfAudio.Volume -= delta;
-
-                    if (engulfAudio.Volume <= 0)
-                        engulfAudio.Stop();
-                }
+                soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
             }
 
-            // Movement modifier
-            if (actuallyEngulfing)
+            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
             {
-                MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
-            }
+                var engulfedObject = engulfer.EngulfedObjects[i];
 
-            // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
-            if (hasEscaped)
-            {
-                escapeInterval += delta;
-                if (escapeInterval >= Constants.CREATURE_ESCAPE_INTERVAL)
+                if (!engulfedObject.IsAlive || !engulfedObject.Has<Engulfable>())
                 {
-                    hasEscaped = false;
-                    escapeInterval = 0;
-
-                    GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
-                        Constants.CREATURE_ESCAPE_POPULATION_GAIN,
-                        TranslationServer.Translate("ESCAPE_ENGULFING"));
-                }
-            }
-
-            for (int i = engulfedObjects.Count - 1; i >= 0; --i)
-            {
-                var engulfedObject = engulfedObjects[i];
-
-                var engulfable = engulfedObject.Object.Value;
-
-                // ReSharper disable once UseNullPropagation
-                if (engulfable == null)
-                    continue;
-
-                var body = engulfable as RigidBody;
-                if (body == null)
-                {
-                    attemptingToEngulf.Remove(engulfable);
-                    engulfedObjects.Remove(engulfedObject);
+                    engulfer.AttemptingToEngulf.Remove(engulfedObject);
+                    engulfer.EngulfedObjects.Remove(engulfedObject);
                     continue;
                 }
 
-                body.Mode = AudioEffectDistortion.ModeEnum.Static;
+                ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested)
                 {
@@ -142,8 +157,8 @@
                             CompleteIngestion(engulfedObject);
                             break;
                         case PhagocytosisPhase.Digested:
-                            engulfable.DestroyAndQueueFree();
-                            engulfedObjects.Remove(engulfedObject);
+                            worldSimulation.DestroyEntity(engulfedObject);
+                            engulfer.EngulfedObjects.Remove(engulfedObject);
                             break;
                         case PhagocytosisPhase.Exocytosis:
                             engulfedObject.Phagosome.Value?.Hide();
@@ -158,17 +173,27 @@
                 }
             }
 
-            foreach (var expelled in expelledObjects)
+            foreach (var expelled in engulfer.ExpelledObjects)
                 expelled.TimeElapsedSinceEjection += delta;
 
-            expelledObjects.RemoveAll(e => e.TimeElapsedSinceEjection >= Constants.ENGULF_EJECTED_COOLDOWN);
+            engulfer.ExpelledObjects?.RemoveAll(e =>
+            {
+                e.TimeElapsedSinceEjection >= Constants.ENGULF_EJECTED_COOLDOWN
+            });
         }
 
-        private void CheckStartEngulfing(ref CollisionManagement collisionManagement, in Entity entity)
+        private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
+            ref Engulfer engulfer, in Entity entity)
         {
             ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
 
             var count = collisionManagement.GetActiveCollisions(out var collisions);
+
+            if (count < 1)
+                return;
+
+            ref var species = ref entity.Get<SpeciesMember>();
+
             for (int i = 0; i < count; ++i)
             {
                 ref var collision = ref collisions![i];
@@ -192,45 +217,49 @@
                     continue;
 
                 // Pili don't block engulfing, check starting engulfing
-                CheckStartEngulfingOnCandidate(collision.SecondEntity);
+                CheckStartEngulfingOnCandidate(ref cellProperties, ref engulfer, ref species, in entity,
+                    collision.SecondEntity);
             }
         }
 
         /// <summary>
         ///   This checks if we can start engulfing
         /// </summary>
-        private void CheckStartEngulfingOnCandidate(in Entity engulfable)
+        private void CheckStartEngulfingOnCandidate(ref CellProperties cellProperties,
+            ref Engulfer engulfer, ref SpeciesMember speciesMember, in Entity entity, in Entity engulfable)
         {
-            if (State != MicrobeState.Engulf)
-                return;
-
-            foreach (var entity in touchedEntities)
-            {
-                if (entity is Microbe microbe && microbe.destroyed)
-                {
-                    GD.Print($"Removed destroyed microbe from {nameof(touchedEntities)}");
-                    touchedEntities.Remove(microbe);
-                    break;
-                }
-            }
-
-            var engulfCheckResult = CanEngulfObject(engulfable);
+            var engulfCheckResult = cellProperties.CanEngulfObject(ref speciesMember, ref engulfer, engulfable);
 
             if (engulfCheckResult == EngulfCheckResult.Ok)
             {
-                IngestEngulfable(engulfable);
+                // TODO: add some way for this to detect delay added components so that this can't conflict with the
+                // binding system
+                lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+                {
+                    IngestEngulfable(engulfable);
+                }
             }
             else if (engulfCheckResult == EngulfCheckResult.IngestedMatterFull)
             {
-                OnEngulfmentStorageFull?.Invoke(this);
+                if (entity.Has<MicrobeEventCallbacks>())
+                {
+                    ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
 
-                OnNoticeMessage?.Invoke(this,
-                    new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+                    callbacks.OnEngulfmentStorageFull?.Invoke(entity);
+
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+                }
             }
             else if (engulfCheckResult == EngulfCheckResult.TargetTooBig)
             {
-                OnNoticeMessage?.Invoke(this,
-                    new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
+                if (entity.Has<MicrobeEventCallbacks>())
+                {
+                    ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                    entity.SendNoticeIfPossible(() =>
+                        new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_SIZE_TOO_SMALL")));
+                }
             }
         }
 
@@ -250,7 +279,7 @@
                 return;
             }
 
-            attemptingToEngulf.Add(target);
+            engulfer.AttemptingToEngulf.Add(target);
             touchedEntities.Remove(target);
 
             target.HostileEngulfer.Value = this;
@@ -300,7 +329,7 @@
             phagosome.RenderPriority = target.RenderPriority + engulfedObjects.Count + 1;
             target.EntityGraphics.AddChild(phagosome);
 
-            var engulfedObject = new EngulfedObject(target, phagosome)
+            var engulfedObject = new EngulfedObjectTemporaryState(target, phagosome)
             {
                 TargetValuesToLerp = (ingestionPoint, body.Scale / 2, boundingBoxSize),
                 OriginalScale = body.Scale,
@@ -331,7 +360,7 @@
             target.OnAttemptedToBeEngulfed();
         }
 
-        private void CompleteIngestion(EngulfedObject engulfed)
+        private void CompleteIngestion(EngulfedObjectTemporaryState engulfed)
         {
             var engulfable = engulfed.Object.Value;
             if (engulfable == null)
@@ -339,7 +368,7 @@
 
             engulfable.PhagocytosisStep = PhagocytosisPhase.Ingested;
 
-            attemptingToEngulf.Remove(engulfable);
+            engulfer.AttemptingToEngulf.Remove(engulfable);
             touchedEntities.Remove(engulfable);
 
             OnSuccessfulEngulfment?.Invoke(this, engulfable);
@@ -357,7 +386,7 @@
                 return;
             }
 
-            attemptingToEngulf.Remove(target);
+            engulfer.AttemptingToEngulf.Remove(target);
 
             var body = target as RigidBody;
             if (body == null)
@@ -398,13 +427,13 @@
             // The rest of the operation is done in CompleteEjection
         }
 
-        private void CompleteEjection(EngulfedObject engulfed)
+        private void CompleteEjection(EngulfedObjectTemporaryState engulfed)
         {
             var engulfable = engulfed.Object.Value;
             if (engulfable == null)
                 return;
 
-            attemptingToEngulf.Remove(engulfable);
+            engulfer.AttemptingToEngulf.Remove(engulfable);
             engulfedObjects.Remove(engulfed);
             expelledObjects.Add(engulfed);
 
@@ -451,7 +480,8 @@
         /// <summary>
         ///   Begins phagocytosis related lerp animation
         /// </summary>
-        private void StartBulkTransport(EngulfedObject engulfedObject, float duration, bool resetElapsedTime = true)
+        private void StartBulkTransport(EngulfedObjectTemporaryState engulfedObject, float duration,
+            bool resetElapsedTime = true)
         {
             if (engulfedObject.Object.Value == null || engulfedObject.Phagosome.Value == null)
                 return;
@@ -468,7 +498,7 @@
         /// <summary>
         ///   Stops phagocytosis related lerp animation
         /// </summary>
-        private void StopBulkTransport(EngulfedObject engulfedObject)
+        private void StopBulkTransport(EngulfedObjectTemporaryState engulfedObject)
         {
             engulfedObject.AnimationTimeElapsed = 0;
             engulfedObject.Interpolate = false;
@@ -478,7 +508,7 @@
         ///   Animates transporting objects from phagocytosis process with linear interpolation.
         /// </summary>
         /// <returns>True when Lerp finishes.</returns>
-        private bool AnimateBulkTransport(float delta, EngulfedObject engulfed)
+        private bool AnimateBulkTransport(float delta, EngulfedObjectTemporaryState engulfed)
         {
             if (engulfed.Object.Value == null || engulfed.Phagosome.Value == null)
                 return false;
@@ -541,70 +571,59 @@
         }
 
         /// <summary>
-    ///   Stores extra information to the objects that have been engulfed.
-    /// </summary>
-    private class EngulfedObject
-    {
-        public EngulfedObject(IEngulfable @object, Endosome phagosome)
-        {
-            Object = new EntityReference<IEngulfable>(@object);
-            Phagosome = new EntityReference<Endosome>(phagosome);
-
-            AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds()?
-                .Where(c => c.Key.Digestible)
-                .ToDictionary(c => c.Key, c => c.Value);
-
-            InitialTotalEngulfableCompounds = @object.Compounds.Compounds
-                .Where(c => c.Key.Digestible)
-                .Sum(c => c.Value);
-
-            if (AdditionalEngulfableCompounds != null)
-                InitialTotalEngulfableCompounds += AdditionalEngulfableCompounds.Sum(c => c.Value);
-
-            OriginalGroups = @object.EntityNode.GetGroups();
-        }
-
-        [JsonConstructor]
-        public EngulfedObject(IEngulfable @object, Endosome phagosome,
-            Dictionary<Compound, float> additionalEngulfableCompounds, float initialTotalEngulfableCompounds)
-        {
-            Object = new EntityReference<IEngulfable>(@object);
-            Phagosome = new EntityReference<Endosome>(phagosome);
-            AdditionalEngulfableCompounds = additionalEngulfableCompounds;
-            InitialTotalEngulfableCompounds = initialTotalEngulfableCompounds;
-        }
-
-        /// <summary>
-        ///   The solid matter that has been engulfed.
+        ///   Stores extra information to the objects that have been engulfed. All core data is saved on the entity
+        ///   components and this data can be re-created on-demand
         /// </summary>
-        public EntityReference<IEngulfable> Object { get; private set; }
+        private class EngulfedObjectTemporaryState
+        {
+            public EngulfedObjectTemporaryState(IEngulfable @object, Endosome phagosome)
+            {
+                Object = new EntityReference<IEngulfable>(@object);
+                Phagosome = new EntityReference<Endosome>(phagosome);
 
-        /// <summary>
-        ///   A food vacuole containing the engulfed object. Only decorative.
-        /// </summary>
-        public EntityReference<Endosome> Phagosome { get; private set; }
+                AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds()?
+                    .Where(c => c.Key.Digestible)
+                    .ToDictionary(c => c.Key, c => c.Value);
 
-        [JsonProperty]
-        public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
+                InitialTotalEngulfableCompounds = @object.Compounds.Compounds
+                    .Where(c => c.Key.Digestible)
+                    .Sum(c => c.Value);
 
-        [JsonProperty]
-        public float? InitialTotalEngulfableCompounds { get; private set; }
+                if (AdditionalEngulfableCompounds != null)
+                    InitialTotalEngulfableCompounds += AdditionalEngulfableCompounds.Sum(c => c.Value);
+            }
 
-        [JsonProperty]
-        public Array OriginalGroups { get; private set; } = new();
+            /// <summary>
+            ///   The solid matter that has been engulfed.
+            /// </summary>
+            public EntityReference<IEngulfable> Object { get; private set; }
 
-        public bool Interpolate { get; set; }
-        public float LerpDuration { get; set; }
-        public float AnimationTimeElapsed { get; set; }
-        public float TimeElapsedSinceEjection { get; set; }
-        public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp { get; set; }
-        public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
-        public Vector3 OriginalScale { get; set; }
-        public int OriginalRenderPriority { get; set; }
+            /// <summary>
+            ///   A food vacuole containing the engulfed object. Only decorative.
+            /// </summary>
+            public EntityReference<Endosome> Phagosome { get; private set; }
 
-        // These values (default microbe collision layer & mask) are here for save compatibility
-        public uint OriginalCollisionLayer { get; set; } = 3;
-        public uint OriginalCollisionMask { get; set; } = 3;
-    }
+            [JsonProperty]
+            public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
+
+            [JsonProperty]
+            public float? InitialTotalEngulfableCompounds { get; private set; }
+
+            [JsonProperty]
+            public Array OriginalGroups { get; private set; } = new();
+
+            public bool Interpolate { get; set; }
+            public float LerpDuration { get; set; }
+            public float AnimationTimeElapsed { get; set; }
+            public float TimeElapsedSinceEjection { get; set; }
+            public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp { get; set; }
+            public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
+            public Vector3 OriginalScale { get; set; }
+            public int OriginalRenderPriority { get; set; }
+
+            // These values (default microbe collision layer & mask) are here for save compatibility
+            public uint OriginalCollisionLayer { get; set; } = 3;
+            public uint OriginalCollisionMask { get; set; } = 3;
+        }
     }
 }

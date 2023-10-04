@@ -204,8 +204,9 @@
             if (control.SlowedBySlime)
                 force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
+            // Movement modifier from engulf (this used to be handled in the engulfing code, now it's here)
             if (control.State == MicrobeState.Engulf)
-                force *= 0.5f;
+                force *= Constants.ENGULFING_MOVEMENT_MULTIPLIER;
 
             force *= cellProperties.MembraneType.MovementFactor -
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);

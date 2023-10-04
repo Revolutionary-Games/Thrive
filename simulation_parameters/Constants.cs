@@ -575,9 +575,9 @@ public static class Constants
     public const float ENGULFING_ATP_COST_PER_SECOND = 1.5f;
 
     /// <summary>
-    ///   The speed reduction when a cell is in engulfing mode.
+    ///   The speed reduction (multiplies the movement force) when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
+    public const float ENGULFING_MOVEMENT_MULTIPLIER = 0.588f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.

@@ -162,6 +162,11 @@
             if (!other.Has<MicrobeSpeciesMember>())
                 return false;
 
+            // Things with missing binding agents can't bind (this is just an extra safety check and an excuse to make
+            // organelleContainer parameter be actually used)
+            if (!organelleContainer.HasBindingAgent)
+                return false;
+
             // Cannot hijack the player
             if (other.Has<PlayerMarker>())
                 return false;
@@ -177,6 +182,10 @@
 
             // Can't bind with dead things
             if (other.Get<Health>().Dead)
+                return false;
+
+            // Other must have membrane created (but not absolutely necessarily up to date)
+            if (other.Get<CellProperties>().CreatedMembrane == null)
                 return false;
 
             return true;

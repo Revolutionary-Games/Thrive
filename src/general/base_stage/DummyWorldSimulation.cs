@@ -8,6 +8,7 @@ using DefaultEcs.Command;
 public class DummyWorldSimulation : IWorldSimulation
 {
     public World EntitySystem { get; } = new();
+    public bool Processing { get; set; }
 
     public Entity CreateEmptyEntity()
     {
@@ -56,5 +57,15 @@ public class DummyWorldSimulation : IWorldSimulation
 
     public void Dispose()
     {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            EntitySystem.Dispose();
+        }
     }
 }

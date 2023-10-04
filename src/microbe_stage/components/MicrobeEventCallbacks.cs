@@ -73,5 +73,22 @@
             callbacks.OnNoticeMessage.Invoke(entity, messageFactory());
             return true;
         }
+
+        /// <summary>
+        ///   Variant that uses an always allocated HUD message
+        /// </summary>
+        public static bool SendNoticeIfPossible(this in Entity entity, SimpleHUDMessage message)
+        {
+            if (!entity.Has<MicrobeEventCallbacks>())
+                return false;
+
+            ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+            if (callbacks.OnNoticeMessage == null)
+                return false;
+
+            callbacks.OnNoticeMessage.Invoke(entity, new SimpleHUDMessage(message.ToString()));
+            return true;
+        }
     }
 }

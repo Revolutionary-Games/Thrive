@@ -17,16 +17,23 @@ namespace Systems
     [With(typeof(OrganelleContainer))]
     [With(typeof(CompoundStorage))]
     [With(typeof(MicrobeStatus))]
+    [With(typeof(CellProperties))]
     [With(typeof(Health))]
+    [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(EngulfingSystem))]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
     {
+        private readonly CompoundCloudSystem compoundCloudSystem;
         private readonly Compound oxytoxy;
         private readonly IReadOnlyCollection<Compound> digestibleCompounds;
 
         private readonly Enzyme lipase;
 
-        public EngulfedDigestionSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
+            IParallelRunner parallelRunner) : base(world, parallelRunner)
         {
+            this.compoundCloudSystem = compoundCloudSystem;
             var simulationParameters = SimulationParameters.Instance;
             oxytoxy = simulationParameters.GetCompound("oxytoxy");
             digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).ToList();
@@ -58,9 +65,21 @@ namespace Systems
 
             float usedCapacity = 0;
 
+            ref var cellProperties = ref entity.Get<CellProperties>();
+            ref var position = ref entity.Get<WorldPosition>();
+
             for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
             {
                 var engulfedObject = engulfer.EngulfedObjects[i];
+
+#if DEBUG
+                if (!engulfedObject.IsAlive)
+                {
+                    throw new Exception(
+                        "Digestion system has a non-alive engulfed object, engulfing system should have taken care " +
+                        "of this before it reached us");
+                }
+#endif
 
                 if (!engulfedObject.Has<Engulfable>())
                 {
@@ -137,50 +156,68 @@ namespace Systems
                     if (totalAvailable <= 0)
                         continue;
 
-                    var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme]);
+                    var amount =
+                        MicrobeInternalCalculations.CalculateDigestionSpeed(organelles.AvailableEnzymes[usedEnzyme]);
                     amount *= delta;
 
                     // Efficiency starts from Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD up to
                     // Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM. This means at least 7 lysosomes
                     // are needed to achieve "maximum" efficiency
-                    var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
+                    var efficiency =
+                        MicrobeInternalCalculations.CalculateDigestionEfficiency(
+                            organelles.AvailableEnzymes[usedEnzyme]);
 
                     var taken = Mathf.Min(totalAvailable, amount);
 
                     // Toxin damage
                     if (compound == oxytoxy && taken > 0)
                     {
-                        lastCheckedOxytoxyDigestionDamage += delta;
+                        ref var status = ref entity.Get<MicrobeStatus>();
 
-                        if (lastCheckedOxytoxyDigestionDamage >= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL)
+                        status.LastCheckedOxytoxyDigestionDamage += delta;
+
+                        if (status.LastCheckedOxytoxyDigestionDamage >= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL)
                         {
-                            lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
-                            Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
+                            status.LastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
 
-                            OnNoticeMessage?.Invoke(this,
-                                new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
-                                    DisplayDuration.Short));
+                            ref var health = ref entity.Get<Health>();
+
+                            health.DealMicrobeDamage(ref cellProperties,
+                                health.MaxHealth * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
+
+                            entity.SendNoticeIfPossible(() => new SimpleHUDMessage(
+                                TranslationServer.Translate("NOTICE_ENGULF_DAMAGE_FROM_TOXIN"),
+                                DisplayDuration.Short));
                         }
                     }
 
                     if (additionalCompounds?.ContainsKey(compound) == true)
                         additionalCompounds[compound] -= taken;
 
-                    engulfable.Compounds.TakeCompound(compound, taken);
+                    if (engulfedObject.Has<CompoundStorage>())
+                    {
+                        // TODO: shouldn't this read the amount of compounds actually taken here?
+                        // This used to be like this even before the ECS conversion
+                        engulfedObject.Get<CompoundStorage>().Compounds.TakeCompound(compound, taken);
+                    }
 
                     var takenAdjusted = taken * efficiency;
                     var added = compounds.AddCompound(compound, takenAdjusted);
 
                     // Eject excess
-                    SpawnEjectedCompound(compound, takenAdjusted - added, Vector3.Back);
+                    cellProperties.SpawnEjectedCompound(ref position, compoundCloudSystem, compound,
+                        takenAdjusted - added, Vector3.Back);
                 }
 
-                var initialTotalEngulfableCompounds = engulfedObject.InitialTotalEngulfableCompounds;
+                var initialTotalEngulfableCompounds = engulfable.InitialTotalEngulfableCompounds;
 
-                if (initialTotalEngulfableCompounds.HasValue && initialTotalEngulfableCompounds.Value != 0)
+                if (initialTotalEngulfableCompounds != 0)
                 {
-                    engulfable.DigestedAmount = 1 -
-                        (totalAmountLeft / initialTotalEngulfableCompounds.Value);
+                    engulfable.DigestedAmount = 1 - (totalAmountLeft / initialTotalEngulfableCompounds);
+                }
+                else
+                {
+                    GD.PrintErr("Engulfing system hasn't initialized InitialTotalEngulfableCompounds");
                 }
 
                 if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)

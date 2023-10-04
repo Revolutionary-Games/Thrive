@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
+// TODO: delete this class as with ECS this shouldn't be necessary anywhere
 /// <summary>
 ///   Allows safely keeping references to game entities across multiple frames. Needs to be used instead of raw
 ///   references as those can't clear themselves when the entity is disposed

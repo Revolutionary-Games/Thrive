@@ -60,8 +60,6 @@
 
     public static class EngulferHelpers
     {
-        private static readonly object EngulfRelationshipModifyLock = new();
-
         /// <summary>
         ///   Direct engulfing check. Microbe should use <see cref="CellPropertiesHelpers.CanEngulfObject"/>
         /// </summary>
@@ -223,7 +221,7 @@
         public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,
             in Entity engulferEntity, ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
         {
-            lock (EngulfRelationshipModifyLock)
+            lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
             {
                 if (engulfer.EngulfedObjects is not { Count: > 0 })
                     return;
@@ -252,7 +250,7 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     This has to be called with <see cref="EngulfRelationshipModifyLock"/> already locked
+        ///     This has to be called with <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/> already locked
         ///   </para>
         /// </remarks>
         private static void TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,

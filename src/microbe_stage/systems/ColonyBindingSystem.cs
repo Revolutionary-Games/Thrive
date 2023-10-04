@@ -3,6 +3,7 @@ namespace Systems
     using System;
     using Components;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
     using Godot;
@@ -18,15 +19,22 @@ namespace Systems
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundStorage))]
     [With(typeof(OrganelleContainer))]
+    [With(typeof(MicrobePhysicsExtraData))]
+    [With(typeof(CellProperties))]
+    [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
+        private readonly IWorldSimulation worldSimulation;
         private readonly Compound atp;
 
-        public ColonyBindingSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public ColonyBindingSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
+            base(world, parallelRunner)
         {
+            this.worldSimulation = worldSimulation;
             atp = SimulationParameters.Instance.GetCompound("atp");
         }
 
@@ -81,115 +89,129 @@ namespace Systems
 
             var count = entity.Get<CollisionManagement>().GetActiveCollisions(out var collisions);
 
-            if (count > 0)
+            if (count <= 0)
+                return;
+
+            // Can't bind when membrane is not ready (note this doesn't manage to check colony members so this isn't
+            // an exact check meaning the actual bind method can still fail later even if this check passes)
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            if (cellProperties.CreatedMembrane == null || cellProperties.CreatedMembrane.Dirty)
+                return;
+
+            ref var extraPhysicsData = ref entity.Get<MicrobePhysicsExtraData>();
+
+            for (int i = 0; i < count; ++i)
             {
-                for (int i = 0; i < count; ++i)
+                ref var collision = ref collisions![i];
+
+                if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))
+                    continue;
+
+                // TODO: to ensure no engulf can start on the same frame as a bind, maybe we need a cache of touched
+                // entities in AttachedToEntityHelpers that gets cleared each world update?
+                // Can't bind with an attached entity (engulfed entity for example)
+                // The above check already checks against binding to something that is in a colony
+                if (collision.SecondEntity.Has<AttachedToEntity>())
+                    continue;
+
+                // Second entity is not a full microbe (this shouldn't happen but for safety this check is here)
+                if (!collision.SecondEntity.Has<MicrobePhysicsExtraData>())
+                    continue;
+
+                // Skip if trying to bind through a pilus
+                if (extraPhysicsData.IsSubShapePilus(collision.FirstSubShapeData))
+                    continue;
+
+                if (collision.SecondEntity.Get<MicrobePhysicsExtraData>()
+                    .IsSubShapePilus(collision.SecondSubShapeData))
                 {
-                    ref var collision = ref collisions![i];
+                    continue;
+                }
 
-                    if (!organelles.CanBindWith(ourSpecies.Species, collision.SecondEntity))
-                        continue;
+                if (!extraPhysicsData.MicrobeIndexFromSubShape(collision.FirstSubShapeData,
+                        out var indexOfMemberToBindTo))
+                {
+                    GD.PrintErr("Couldn't get colony member index to bind to");
+                    continue;
+                }
 
-                    // Can't bind with an attached entity (engulfed entity for example)
-                    if (collision.SecondEntity.Has<AttachedToEntity>())
-                        continue;
-
-                    // TODO: skip if this body or other body hit is a pilus to disallow binding through it
-                    throw new NotImplementedException();
-
+                // Lock here to try to guarantee no entity is going to get attached to multiple colonies at the same
+                // time
+                lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
+                {
                     // Binding can proceed
-                    BeginBind(collision.SecondEntity);
+                    if (BeginBind(ref control, entity, indexOfMemberToBindTo, collision.SecondEntity))
+                    {
+                        // Try to bind at most once per frame
+                        break;
+                    }
                 }
             }
         }
 
-        private void BeginBind(in Entity other)
+        private bool BeginBind(ref MicrobeControl control, in Entity primaryEntity, int indexOfMemberToBindTo,
+            in Entity other)
         {
             if (!other.IsAlive)
             {
                 GD.PrintErr("Binding attempted on a dead entity");
-                return;
+                return false;
             }
 
-            // Create a colony if there isn't one yet
-            if (Colony == null)
-            {
-                MicrobeColony.CreateColonyForMicrobe(this);
+            // A recorder is used to record the new components to ensure thread safety here
+            var recorder = worldSimulation.StartRecordingEntityCommands();
 
-                if (Colony == null)
+            bool success;
+
+            // Create a colony if there isn't one yet
+            if (!primaryEntity.Has<MicrobeColony>())
+            {
+                if (indexOfMemberToBindTo != 0)
                 {
-                    GD.PrintErr("An issue occured during colony creation!");
-                    return;
+                    // This should never happen as the colony is not yet created, the parent cell is by itself so the
+                    // index should always be 0
+                    GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
+                    indexOfMemberToBindTo = 0;
                 }
 
-                GD.Print("Created a new colony");
+                var colony = new MicrobeColony(primaryEntity, control.State, other);
+
+                MicrobeColonyHelpers.OnColonyMemberAdded(primaryEntity);
+
+                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
+
+                recorder.Record(primaryEntity).Set(colony);
+            }
+            else
+            {
+                ref var colony = ref primaryEntity.Get<MicrobeColony>();
+
+                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
+            }
+
+            if (!success)
+            {
+                GD.PrintErr("Failed to bind a new cell to a colony, rolling back entity commands");
+                recorder.Clear();
+                worldSimulation.FinishRecordingEntityCommands(recorder);
+                return false;
             }
 
             // Move out of binding state before adding the colony member to avoid accidental collisions being able to
             // recursively trigger colony attachment
-            State = MicrobeState.Normal;
-            other.State = MicrobeState.Normal;
+            control.State = MicrobeState.Normal;
 
-            Colony.AddToColony(other, this);
+            // Other cell control is set by MicrobeColonyHelpers.OnColonyMemberAdded
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+            return true;
         }
 
-        /// <summary>
-        ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
-        ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
-        ///     Visual explanation
-        ///   </a>
-        /// </summary>
-        /// <returns>Returns relative translation and rotation</returns>
-        private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform(ref WorldPosition colonyParentPosition,
-            ref CellProperties colonyParentProperties, ref WorldPosition cellPosition,
-            ref CellProperties cellProperties)
+        private bool HandleAddToColony(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
+            in Entity newCell, EntityCommandRecorder entityCommandRecorder)
         {
-            // TODO: the result of this method needs to have the relative transform of the colony parent (if it isn't
-            // the colony leader) applied on top to get the total position
-
-            if (colonyParentProperties.CreatedMembrane == null)
-                throw new InvalidOperationException("Colony parent cell has no membrane set");
-
-            if (cellProperties.CreatedMembrane == null)
-                throw new InvalidOperationException("Cell to add to colony has no membrane set");
-
-            // Gets the global rotation of the parent
-            var globalParentRotation = colonyParentPosition.Rotation.GetEuler();
-
-            // A vector from the parent to me
-            var vectorFromParent = cellPosition.Position - colonyParentPosition.Position;
-
-            // A vector from me to the parent
-            var vectorToParent = -vectorFromParent;
-
-            // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
-            // This vector represents the vectorToParent as if I had no rotation.
-            // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
-            // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
-            var vectorToParentWithoutRotation =
-                vectorToParent.Rotated(Vector3.Down, cellPosition.Rotation.GetEuler().y);
-
-            // This vector represents the vectorFromParent as if the parent had no rotation.
-            var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
-
-            // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
-            // This gets added to the vector calculated one call before.
-            var correctedVectorFromParent = colonyParentProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
-                    vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
-
-            // Calculates the vector from my center to my membrane towards the parent.
-            // This vector gets rotated back to cancel out the rotation applied two calls above.
-            // -= to negate the vector, so that the two membrane vectors amplify
-            correctedVectorFromParent -= cellProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x,
-                    vectorToParentWithoutRotation.z)
-                .Rotated(Vector3.Up, cellPosition.Rotation.GetEuler().y);
-
-            // Rotated because the rotational scope is different.
-            var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
-
-            return (newTranslation, cellPosition.Rotation.GetEuler() - globalParentRotation);
+            return colony.AddToColony(colonyEntity, parentIndex, newCell, entityCommandRecorder);
         }
     }
 }

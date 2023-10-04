@@ -86,7 +86,7 @@ namespace Systems
                 }
                 else if (damageEvent.DamageSource == "atpDamage")
                 {
-                    callbacks.OnNoticeMessage?.Invoke(entity,
+                    entity.SendNoticeIfPossible(() =>
                         new SimpleHUDMessage(TranslationServer.Translate("NOTICE_DAMAGED_BY_NO_ATP"),
                             DisplayDuration.Short));
                 }

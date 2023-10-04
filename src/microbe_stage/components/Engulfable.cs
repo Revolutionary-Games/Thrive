@@ -42,6 +42,16 @@
         public float DigestedAmount;
 
         /// <summary>
+        ///   When this is engulfed this gets the total amount of compounds that exist here for digestion progress.
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: investigate if this is correct as the process system keeps running for engulfed cells
+        ///   </para>
+        /// </remarks>
+        public float InitialTotalEngulfableCompounds;
+
+        /// <summary>
         ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
         ///   state is None.
         /// </summary>

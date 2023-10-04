@@ -14,6 +14,11 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     public World EntitySystem { get; }
 
     /// <summary>
+    ///   True if this is currently processing a simulation
+    /// </summary>
+    public bool Processing { get; }
+
+    /// <summary>
     ///   Thread safe variant of <see cref="IEntityContainer.CreateEmptyEntity"/>
     /// </summary>
     /// <returns>Record of the deferred entity creation referring to it</returns>

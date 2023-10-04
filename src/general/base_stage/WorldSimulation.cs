@@ -39,8 +39,6 @@ public abstract class WorldSimulation : IWorldSimulation
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
-    private bool processing;
-
     [JsonIgnore]
     public World EntitySystem => entities;
 
@@ -65,6 +63,9 @@ public abstract class WorldSimulation : IWorldSimulation
 
     [JsonIgnore]
     public bool Initialized { get; private set; }
+
+    [JsonIgnore]
+    public bool Processing { get; private set; }
 
     /// <summary>
     ///   Process everything that needs to be done in a neat single method call
@@ -98,7 +99,7 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return;
 
-        processing = true;
+        Processing = true;
 
         OnCheckPhysicsBeforeProcessStart();
 
@@ -114,7 +115,7 @@ public abstract class WorldSimulation : IWorldSimulation
         OnProcessPhysics(accumulatedLogicTime);
 
         accumulatedLogicTime = 0;
-        processing = false;
+        Processing = false;
 
         // TODO: periodically run
         // EntitySystem.Optimize() and maybe TrimExcess
@@ -209,6 +210,8 @@ public abstract class WorldSimulation : IWorldSimulation
 
             availableRecorders.Enqueue(recorder);
 
+            // This check is here to allow "failed" recording code to simply return the recorders with this same method
+            // even if they didn't record anything
             if (recorder.Size > 0)
                 nonEmptyRecorders.Add(recorder);
         }
@@ -237,7 +240,7 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <exception cref="InvalidOperationException">If an update is currently running</exception>
     public void ProcessDelaySpawnedEntitiesImmediately()
     {
-        if (processing)
+        if (Processing)
             throw new InvalidOperationException("Do not call this while world is being processed");
 
         ApplyRecordedCommands();
@@ -250,8 +253,6 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <returns>The first found entity or an invalid entity</returns>
     public Entity FindFirstEntityWithComponent<T>()
     {
-        var predicate = EntitySystem.GetEntities().With<T>().AsPredicate();
-
         foreach (var entity in EntitySystem)
         {
             if (entity.Has<T>())
