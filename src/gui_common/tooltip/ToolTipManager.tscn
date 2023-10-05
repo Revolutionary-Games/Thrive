@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/parts/FlagellumIcon.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/SpeedIcon.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/StorageIcon.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=12]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=21]
@@ -1234,23 +1235,24 @@ margin_bottom = 200.0
 margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "SPEED"
 ModifierValue = "+0.7"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 6 )
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/speed"]
-margin_top = 1.0
-margin_right = 27.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+0.7"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/speed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/speed"]
-margin_left = 31.0
-margin_right = 72.0
+margin_left = 24.0
+margin_right = 65.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Speed"
@@ -1258,37 +1260,40 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/speed"]
-margin_left = 76.0
-margin_right = 96.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/speed"]
+margin_left = 69.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+0.7"
+align = 2
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
 margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_top = 1.0
-margin_right = 27.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+0.5"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 31.0
-margin_right = 84.0
+margin_left = 24.0
+margin_right = 77.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Storage"
@@ -1296,36 +1301,40 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 88.0
-margin_right = 108.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 12 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 81.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+0.5"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
 margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 167.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1333,13 +1342,16 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 171.0
-margin_right = 191.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="5"]
 margin_top = 215.0
@@ -1356,29 +1368,36 @@ ProcessesDescription = "SLIME_JET_PROCESSES_DESCRIPTION"
 Description = "SLIME_JET_DESCRIPTION"
 MutationPointCost = 60
 
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/slimeJet" index="0"]
+margin_bottom = 263.0
+
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer" index="0"]
 margin_bottom = 247.0
 
+[node name="ModifierList" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer" index="4"]
+margin_bottom = 176.0
+
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 333.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_top = 1.0
-margin_right = 27.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+0.5"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 31.0
-margin_right = 84.0
+margin_left = 24.0
+margin_right = 77.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Storage"
@@ -1386,34 +1405,39 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 88.0
-margin_right = 108.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 12 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 81.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+0.5"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList" index="1"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 167.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1421,13 +1445,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 171.0
-margin_right = 191.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer" index="5"]
+margin_top = 191.0
+margin_bottom = 195.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer" index="6"]
+margin_top = 210.0
+margin_bottom = 232.0
 
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1437,35 +1472,36 @@ Description = "ORGANELLE_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
-margin_bottom = 240.0
+margin_bottom = 239.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer" index="0"]
-margin_bottom = 224.0
+margin_bottom = 223.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
-margin_bottom = 158.0
+margin_bottom = 152.0
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_top = 48.0
-margin_right = 318.0
-margin_bottom = 68.0
+margin_right = 333.0
+margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 167.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1473,21 +1509,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 171.0
-margin_right = 191.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
-margin_top = 173.0
-margin_bottom = 177.0
+margin_top = 167.0
+margin_bottom = 171.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="6"]
-margin_top = 192.0
-margin_bottom = 209.0
+margin_top = 186.0
+margin_bottom = 208.0
 
 [node name="chemoreceptor" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1497,35 +1536,36 @@ Description = "CHEMORECEPTOR_DESCRIPTION"
 MutationPointCost = 45
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/chemoreceptor" index="0"]
-margin_bottom = 240.0
+margin_bottom = 239.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer" index="0"]
-margin_bottom = 224.0
+margin_bottom = 223.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="4"]
-margin_bottom = 158.0
+margin_bottom = 152.0
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_top = 48.0
-margin_right = 318.0
-margin_bottom = 68.0
+margin_right = 333.0
+margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 167.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1533,21 +1573,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 171.0
-margin_right = 191.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="5"]
-margin_top = 173.0
-margin_bottom = 177.0
+margin_top = 167.0
+margin_bottom = 171.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="6"]
-margin_top = 192.0
-margin_bottom = 209.0
+margin_top = 186.0
+margin_bottom = 208.0
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1557,30 +1600,37 @@ Description = "CILIA_DESCRIPTION"
 MutationPointCost = 40
 RequiresNucleus = true
 
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/cilia" index="0"]
+margin_bottom = 239.0
+
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer" index="0"]
 margin_bottom = 223.0
 
+[node name="ModifierList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="4"]
+margin_bottom = 152.0
+
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_top = 48.0
-margin_right = 318.0
-margin_bottom = 68.0
+margin_right = 333.0
+margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 167.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1588,13 +1638,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 171.0
-margin_right = 191.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="5"]
+margin_top = 167.0
+margin_bottom = 171.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="6"]
+margin_top = 186.0
+margin_bottom = 208.0
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1604,30 +1665,37 @@ Description = "BINDING_AGENT_DESCRIPTION"
 MutationPointCost = 55
 RequiresNucleus = true
 
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/bindingAgent" index="0"]
+margin_bottom = 263.0
+
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer" index="0"]
 margin_bottom = 247.0
 
+[node name="ModifierList" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer" index="4"]
+margin_bottom = 176.0
+
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
 ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 28.0
-margin_right = 81.0
+margin_left = 24.0
+margin_right = 77.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Storage"
@@ -1635,36 +1703,40 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 85.0
-margin_right = 105.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 12 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 81.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+1"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 28.0
-margin_right = 175.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1672,13 +1744,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 179.0
-margin_right = 199.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+align = 2
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer" index="5"]
+margin_top = 191.0
+margin_bottom = 195.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer" index="6"]
+margin_top = 210.0
+margin_bottom = 232.0
 
 [node name="nucleus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1688,35 +1771,36 @@ Description = "NUCLEUS_DESCRIPTION"
 MutationPointCost = 70
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nucleus" index="0"]
-margin_bottom = 216.0
+margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer" index="0"]
 margin_bottom = 247.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="4"]
-margin_bottom = 134.0
+margin_bottom = 176.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
 ModifierValue = "+4"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+4"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 9 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 28.0
-margin_right = 81.0
+margin_left = 24.0
+margin_right = 77.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Storage"
@@ -1724,36 +1808,40 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
-margin_left = 85.0
-margin_right = 105.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 12 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/storage"]
+margin_left = 81.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+4"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+10"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+10"
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 28.0
-margin_right = 175.0
+margin_left = 24.0
+margin_right = 171.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Osmoregulation Cost"
@@ -1761,21 +1849,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 179.0
-margin_right = 199.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 175.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+10"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="5"]
-margin_top = 149.0
-margin_bottom = 153.0
+margin_top = 191.0
+margin_bottom = 195.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="6"]
-margin_top = 168.0
-margin_bottom = 185.0
+margin_top = 210.0
+margin_bottom = 232.0
 
 [node name="mitochondrion" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
