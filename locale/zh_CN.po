@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-02 11:55+0300\n"
-"PO-Revision-Date: 2023-06-24 20:02+0000\n"
-"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
+"PO-Revision-Date: 2023-10-05 07:44+0000\n"
+"Last-Translator: HOT CAT <ice_sweetcandy@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2154,9 +2154,8 @@ msgid "FAILED"
 msgstr "失败"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "我的绝棒的Mod"
+msgstr "错误：无法删除更多存档文件。"
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
 #, fuzzy
@@ -4263,8 +4262,9 @@ msgid "NAME_LABEL_FLEET"
 msgstr "生物群系：{0}"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
+#, fuzzy
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0}未完成"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -5617,8 +5617,9 @@ msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:353
+#, fuzzy
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "搜索..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -6540,8 +6541,9 @@ msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "时间经过了{0:#,#}年"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
+#, fuzzy
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "当前时间"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
