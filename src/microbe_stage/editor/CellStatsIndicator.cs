@@ -161,6 +161,7 @@ public class CellStatsIndicator : HBoxContainer
             {
                 changeIndicator.Texture = blankIcon;
             }
+            
             changeIndicator.Visible = true;
         }
         else
