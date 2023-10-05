@@ -946,7 +946,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
 
         // After clearing the selected cell, emit a signal to let the editor know
-        EmitSignal(nameof(OnCellTypeToEditSelected), string.Empty, false);
+        EmitSignal(nameof(OnCellTypeToEditSelected), null, false);
     }
 
     private void OnCellsChanged()

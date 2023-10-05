@@ -426,7 +426,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         reportTab.UpdatePatchDetails(patch, patch);
     }
 
-    private void OnStartEditingCellType(string name, bool switchTab)
+    private void OnStartEditingCellType(string? name, bool switchTab)
     {
         if (CanCancelAction)
         {
