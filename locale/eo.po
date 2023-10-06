@@ -9,8 +9,10 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-02 11:55+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
-"Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
+"com>\n"
+"Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,14 +26,12 @@ msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Redaktilo"
+msgstr "3D Redaktilo"
 
 #: ../simulation_parameters/common/input_options.json:194
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Movado"
+msgstr "3D Movado"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
@@ -42,12 +42,10 @@ msgid "ABILITIES"
 msgstr "Kapabloj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
-#, fuzzy
 msgid "ABORT"
-msgstr "Nuligita."
+msgstr "Nuligi"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Nuligita."
 
@@ -73,51 +71,44 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "KONFIRMU"
+msgstr "Forigi"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Specio loĝantaro"
+msgstr "Duobligi Loĝantaron"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "KONFIRMU"
+msgstr "Duobligi Unuojn"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} kun loĝantaro: {1}"
+msgstr "Duonigi Loĝantaron"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "KONFIRMU"
+msgstr "Teleporti"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1107
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Konservu kaj"
+msgstr "Nunaj fadenoj:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:322
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Aŭtomata evolucio malsukcesis"
+msgstr "Kromaj kontroloj detektis problemon: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4098
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Aldonunovan funkcion por klavo"
+msgstr "Aldoni novan fulmoklavon"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
@@ -138,14 +129,12 @@ msgid "AGENTS"
 msgstr "Agentoj"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Specioj:"
+msgstr "Agentoj:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Kaverno"
+msgstr "{0} Agent"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -156,39 +145,46 @@ msgid "AGGRESSIVE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:475
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutaciaj Poentoj"
+msgstr "Mutaciofteco de AI"
 
 #: ../src/general/NewGameSettings.tscn:515
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+msgstr "(la rapideco de mutacio en AI-specioj)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Ĉiuj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "havas mutacion"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organisma Statistiko"
+msgstr "Ĝeneralaj Statistikoj de Ĉiuj Mondoj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1004
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organisma Statistiko"
+msgstr ""
+"[b]Generations:[/b]\n"
+"{0}\n"
+"[b]Total Species:[/b]\n"
+"Averaĝo {1}; Norma devio {2}\n"
+"[b]Specioj Kiuj Ankoraŭ Vivas:[/b]\n"
+"Averaĝo {3}; Norma devio {4}\n"
+"[b]Kvanto da specioj po loko:[/b]\n"
+"Averaĝo {5}; Norma devio {6}\n"
+"[b]Loĝantaro po loko:[/b]\n"
+"Averaĝo {7}; Norma devio {8}\n"
+"[b]Mikroba Specio Averaĝa Seslatera Grando:[/b]\n"
+"Averaĝo {9}; Norma devio {10}\n"
+"[b]Ĝeneralaj Organetaj Datumoj:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
@@ -240,11 +236,13 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:2086
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Ĉu vi certas, ke vi volas restarigi ĈIUJN agordojn al defaŭltaj valoroj?"
+msgstr ""
+"Ĉu vi certas, ke vi volas restarigi ĈIUJN agordojn al defaŭltaj valoroj?"
 
 #: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Ĉu vi certas, ke vi volas reagordi la enirajn agordojn al defaŭltaj valoroj?"
+msgstr ""
+"Ĉu vi certas, ke vi volas reagordi la enirajn agordojn al defaŭltaj valoroj?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -252,9 +250,8 @@ msgid "ARTIST_COLON"
 msgstr "Specioj:"
 
 #: ../src/general/Asset.cs:50
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "VI PROSPERIS!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
@@ -287,6 +284,7 @@ msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -307,10 +305,13 @@ msgstr "ATP-bilanco"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktado"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
@@ -355,7 +356,14 @@ msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+msgstr ""
+"La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
+"duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas "
+"prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti "
+"glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la "
+"citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon "
+"por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos "
+"la rapidon de ĝia produktado de ATP."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
@@ -422,13 +430,17 @@ msgstr ""
 #, fuzzy
 msgid "AWARE_STAGE"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
@@ -442,14 +454,12 @@ msgid "BACK"
 msgstr "Reen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Reen"
+msgstr "Deklivo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Reen"
+msgstr "Retropaŝo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
@@ -458,11 +468,18 @@ msgstr "Reen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3177
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3422
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3696
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Movebleco"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Baza Movado"
 
@@ -493,15 +510,18 @@ msgstr "Batipelagika"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
+#: ../src/microbe_stage/MicrobeHUD.cs:545
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeHUD.cs:509
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
 msgid "BEGIN_THRIVING"
 msgstr "Komencu Prosperadon(Thriving)"
 
@@ -513,9 +533,8 @@ msgid "BEHAVIOUR"
 msgstr "Konduto"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Konduto"
+msgstr "Aktiveco"
 
 #: ../src/general/BehaviourDictionary.cs:102
 #, fuzzy
@@ -583,6 +602,7 @@ msgstr "{0} Mrd"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
@@ -590,14 +610,24 @@ msgstr ""
 "Ĉu vi volas forigi la enigon de {1}?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
 msgid "BIND_AXES_SENSITIVITY"
@@ -621,6 +651,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineska Vakuolo"
 
@@ -671,12 +702,18 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3394
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcia Karbonato"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr "Ĉi tiu membrano havas fortan ŝelon el kalcia karbonato. Ĝi povas facile rezisti damaĝon kaj postulas malpli da energio por ne misformi. La malavantaĝoj de havi tian pezan ŝelon estas, ke la ĉelo estas multe pli malrapida kaj bezonas iom da tempo por sorbi resursojn."
+msgstr ""
+"Ĉi tiu membrano havas fortan ŝelon el kalcia karbonato. Ĝi povas facile "
+"rezisti damaĝon kaj postulas malpli da energio por ne misformi. La "
+"malavantaĝoj de havi tian pezan ŝelon estas, ke la ĉelo estas multe pli "
+"malrapida kaj bezonas iom da tempo por sorbi resursojn."
 
 #: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
@@ -696,14 +733,13 @@ msgstr "Nuligi"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "KONFIRMU"
+msgstr "NULIGI AGON"
 
 #: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Nuligi nunan agon"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
@@ -719,6 +755,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
 msgid "CANNOT_ENGULF"
 msgstr "Ne povas engluti"
 
@@ -799,16 +839,27 @@ msgstr "Celulozo"
 #: ../simulation_parameters/microbe_stage/enzymes.json:9
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
 msgid "CELLULOSE"
 msgstr "Celulozo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Ĉi tiu membrano havas muron, kio rezultigas pli bonan protekton kontraŭ ĝenerala damaĝo kaj precipe kontraŭ fizika damaĝo. Ankaŭ kostas malpli da energio konservi sian formon, sed ne povas absorbi aĵojn rapide kaj estas pli malrapida."
+msgstr ""
+"Ĉi tiu membrano havas muron, kio rezultigas pli bonan protekton kontraŭ "
+"ĝenerala damaĝo kaj precipe kontraŭ fizika damaĝo. Ankaŭ kostas malpli da "
+"energio konservi sian formon, sed ne povas absorbi aĵojn rapide kaj estas "
+"pli malrapida."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -845,47 +896,84 @@ msgstr "Aldonunovan funkcion por klavo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "CHEMOPLAST"
 msgstr "Kemoplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1953
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
 #, fuzzy
 msgid "CHEMORECEPTOR"
 msgstr "Kemoplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosintezaj Proteinoj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
+msgstr ""
+"Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo "
+"kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar "
+"la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la "
+"ĉirkaŭa fluido iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
+msgstr ""
+"Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo "
+"kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar "
+"la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la "
+"ĉirkaŭa fluido iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
@@ -894,6 +982,7 @@ msgstr "Kemisintezo"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
 msgid "CHITIN"
 msgstr "itino"
 
@@ -905,25 +994,54 @@ msgstr "itino"
 #: ../simulation_parameters/microbe_stage/enzymes.json:14
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3148
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Ĉi tiu membrano havas muron, kio signifas, ke ĝi havas pli bonajn protektojn kontraŭ kutima damaĝo kaj precipe kontraŭ toksina damaĝo. Ankaŭ kostas malpli da energio konservi sian formon, sed ĝi estas pli malrapida kaj ne povas absorbi aĵojn rapide."
+msgstr ""
+"Ĉi tiu membrano havas muron, kio signifas, ke ĝi havas pli bonajn protektojn "
+"kontraŭ kutima damaĝo kaj precipe kontraŭ toksina damaĝo. Ankaŭ kostas "
+"malpli da energio konservi sian formon, sed ĝi estas pli malrapida kaj ne "
+"povas absorbi aĵojn rapide."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "CHLOROPLAST"
 msgstr "Kloroplasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
+msgstr ""
+"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
+"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
+"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
+"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj "
+"gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ "
+"donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo "
+"dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
+msgstr ""
+"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
+"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
+"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
+"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj "
+"gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ "
+"donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo "
+"dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
 #: ../src/saving/NewSaveMenu.cs:98
 #, fuzzy
@@ -935,9 +1053,16 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Kromata Aberacio:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:486
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
+msgstr ""
+"Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo "
+"kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar "
+"la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la "
+"ĉirkaŭa fluido iom fermentas."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 #, fuzzy
@@ -946,18 +1071,35 @@ msgstr "Kunmetitaj nuboj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CILIA"
 msgstr "Cilio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/industrial_stage/gui/CityScreen.cs:134
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
@@ -1233,6 +1375,7 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:419
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Komencu Prosperadon(Thriving)"
@@ -1380,7 +1523,11 @@ msgstr "Kreu Novan Konservadon"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
@@ -1399,7 +1546,11 @@ msgstr "Kreu Novan Konservadon"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/modding/ModUploader.cs:493
 #, fuzzy
@@ -1452,21 +1603,32 @@ msgstr "Via Salutnomo:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:293
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 msgid "CYTOPLASM"
 msgstr "Citoplasmo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:295
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Citoplasma Glikolizo"
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:294
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
@@ -1502,7 +1664,9 @@ msgstr ""
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:984
 msgid "DEATH"
@@ -1535,14 +1699,17 @@ msgstr "Elimini"
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
-"Forigi ĉiujn malnovajn Aŭtomatajn kaj Rapidajn konservdojn ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi-sekvajn?\n"
+"Forigi ĉiujn malnovajn Aŭtomatajn kaj Rapidajn konservdojn ne povas esti "
+"malfarita, ĉu vi certas, ke vi volas forigi ĉi-sekvajn?\n"
 " - {0} Aŭtomataj konservadoj\n"
 " - {1} Rapida konservado(j)"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
 #, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 #, fuzzy
@@ -1556,7 +1723,9 @@ msgstr "Disloku organeton"
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/saving/SaveManagerGUI.tscn:71
 msgid "DELETE_SELECTED"
@@ -1569,7 +1738,9 @@ msgstr "Ĉu forigu elektitajn Konservadojn?"
 
 #: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr "Forigi la elektitajn konservojn ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0} konservado(j)n?"
+msgstr ""
+"Forigi la elektitajn konservojn ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas por ĉiam forigi {0} konservado(j)n?"
 
 #: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
@@ -1579,12 +1750,16 @@ msgstr "Ĉu forigi ĉi tiun Konservadon?"
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
 #, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
 #, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
 #, fuzzy
@@ -1685,6 +1860,7 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1694,6 +1870,7 @@ msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Priskribo:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "Rimedo-Absorba Rapideo"
@@ -1704,18 +1881,17 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "Rapideco:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Priskribo:"
+msgstr "Maldesktra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Priskribo:"
+msgstr "Dekstra"
 
 #: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
 msgid "DISABLED"
@@ -1744,7 +1920,8 @@ msgstr "Malkonektitaj Organetoj"
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la aliaj.\n"
-"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn ŝanĝojn."
+"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
+"ŝanĝojn."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 #, fuzzy
@@ -1756,7 +1933,8 @@ msgstr "Malkonektitaj Organetoj"
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la aliaj.\n"
-"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn ŝanĝojn."
+"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
+"ŝanĝojn."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
 msgid "DISCONNECTED_ORGANELLES"
@@ -1766,7 +1944,8 @@ msgstr "Malkonektitaj Organetoj"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la aliaj.\n"
-"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn ŝanĝojn."
+"Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
+"ŝanĝojn."
 
 #: ../src/general/MainMenu.tscn:862
 #, fuzzy
@@ -1830,6 +2009,7 @@ msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2733
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
 msgid "DOUBLE"
 msgstr "Duobla"
 
@@ -1838,8 +2018,12 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo kaj bezonas malpli da energio por ne misformi. Tamen ĝi iom malrapidigas la ĉelon kaj malpliigas la rapidon, per kiu ĝi povas sorbi rimedojn."
+msgstr ""
+"Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo kaj "
+"bezonas malpli da energio por ne misformi. Tamen ĝi iom malrapidigas la "
+"ĉelon kaj malpliigas la rapidon, per kiu ĝi povas sorbi rimedojn."
 
 #: ../src/engine/DebugOverlays.tscn:138
 msgid "DUMP_SCENE_TREE"
@@ -1858,7 +2042,10 @@ msgstr "Disloku organeton"
 
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
+msgstr ""
+"Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato de "
+"predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la Didinio "
+"aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
@@ -1874,11 +2061,15 @@ msgstr "Tiuj bluaj ĉeloj tamen."
 
 #: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Jen konsilo, Biomoj estas pli ol nur malsamaj fonoj, la kunmetaĵoj en malsamaj biomoj foje generiĝas kun malsamaj rapidecoj."
+msgstr ""
+"Jen konsilo, Biomoj estas pli ol nur malsamaj fonoj, la kunmetaĵoj en "
+"malsamaj biomoj foje generiĝas kun malsamaj rapidecoj."
 
 #: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Jen konsilo, Ju pli da flageloj vi havas, des pli rapide vi iras, sed ĝi kostas pli da ATP"
+msgstr ""
+"Jen konsilo, Ju pli da flageloj vi havas, des pli rapide vi iras, sed ĝi "
+"kostas pli da ATP"
 
 #: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
@@ -1886,15 +2077,22 @@ msgstr "Jen konsilo, vi povas engluti pecojn da fero aŭ da alia."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Jen konsilo, preparu antaŭ ol aldoni kernon. Tiuj aĵoj estas multekostaj! En prizorgado kaj antaŭkosto."
+msgstr ""
+"Jen konsilo, preparu antaŭ ol aldoni kernon. Tiuj aĵoj estas multekostaj! En "
+"prizorgado kaj antaŭkosto."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Amuza Fakto, ĉu vi sciis, ke ekzistas pli ol 8000 specioj de ciliatoj sur la planedo Tero?"
+msgstr ""
+"Amuza Fakto, ĉu vi sciis, ke ekzistas pli ol 8000 specioj de ciliatoj sur la "
+"planedo Tero?"
 
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Amuza Fakto: La Stentoro estas ciliato, kiu povas streĉi sin kaj kapti predon en simila al trumpeto buŝo, kiu allogas predon, generante akvofluojn kun cilioj."
+msgstr ""
+"Amuza Fakto: La Stentoro estas ciliato, kiu povas streĉi sin kaj kapti "
+"predon en simila al trumpeto buŝo, kiu allogas predon, generante akvofluojn "
+"kun cilioj."
 
 #: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
@@ -1902,31 +2100,47 @@ msgstr "Amuza Fakto, La Didinio estas ciliato, kiu ĉasas paramecion."
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Jen konsilo, toksinoj povas esti uzataj por forpeli aliajn toksinojn de vi, se vi estas sufiĉe rapida."
+msgstr ""
+"Jen konsilo, toksinoj povas esti uzataj por forpeli aliajn toksinojn de vi, "
+"se vi estas sufiĉe rapida."
 
 #: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Amuza Fakto: La Amebo ĉasas kaj kaptas predojn per 'kruroj' el citoplasmo nomata pseŭdopodoj, ni volas havi tiujn en Thrive."
+msgstr ""
+"Amuza Fakto: La Amebo ĉasas kaj kaptas predojn per 'kruroj' el citoplasmo "
+"nomata pseŭdopodoj, ni volas havi tiujn en Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Jen konsilo: gardu sin de pli grandaj ĉeloj kaj grandaj bakterioj, ĉar ne estas amuze esti digestita, se ili manĝos vin."
+msgstr ""
+"Jen konsilo: gardu sin de pli grandaj ĉeloj kaj grandaj bakterioj, ĉar ne "
+"estas amuze esti digestita, se ili manĝos vin."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "La teama gvidanto de Thrive kreis multajn kantojn, kiuj ankoraŭ ne estis aldonitaj al la ludo. Vi povas aŭdi ilin, aŭ spekti fluojn de li komponanta sur sia jutuba kanalo, Oliver Lugg."
+msgstr ""
+"La teama gvidanto de Thrive kreis multajn kantojn, kiuj ankoraŭ ne estis "
+"aldonitaj al la ludo. Vi povas aŭdi ilin, aŭ spekti fluojn de li komponanta "
+"sur sia jutuba kanalo, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Jen konsilo, se via ĉelo havas 150 sesangulojn, vi povas engluti la grandajn ferajn pecojn."
+msgstr ""
+"Jen konsilo, se via ĉelo havas 150 sesangulojn, vi povas engluti la grandajn "
+"ferajn pecojn."
 
 #: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive estas simulado de fremda planedo, tial havas sencon, ke plej multaj bestoj, kiujn vi trovas, rilatos al unu aŭ du aliaj specioj pro evoluo okazanta ĉirkaŭ vi. Ni vidu, ĉu vi povas identigi ilin!"
+msgstr ""
+"Thrive estas simulado de fremda planedo, tial havas sencon, ke plej multaj "
+"bestoj, kiujn vi trovas, rilatos al unu aŭ du aliaj specioj pro evoluo "
+"okazanta ĉirkaŭ vi. Ni vidu, ĉu vi povas identigi ilin!"
 
 #: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Amuze, La Thrive-teamo faras podkastojn de tempo al tempo, vi devas kontroli ilin!"
+msgstr ""
+"Amuze, La Thrive-teamo faras podkastojn de tempo al tempo, vi devas kontroli "
+"ilin!"
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
@@ -1934,19 +2148,29 @@ msgstr "Amuza Fakto, Thrive estas farita per la malfermitkoda Godot engine!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Amuza Fakto, Unu el la unuaj ludeblaj ludaj prototipoj estis farita per nia brava programisto, untrustedlife!"
+msgstr ""
+"Amuza Fakto, Unu el la unuaj ludeblaj ludaj prototipoj estis farita per nia "
+"brava programisto, untrustedlife!"
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Jen konsilo, ke Osmoregado konsumas 1 ATP-on per sekundo por ĉiu sesangulo kiun vi havas. Ĉiu malplena sesangulo de citoplasmo generas ankaŭ 5 ATP-ojn per sekundo, kio signifas, ke se vi perdas ATP-ojn pro osmozregulacio, nur aldonu kelkajn malplenajn citoplasmajn sesangulojn aŭ forigu iujn organetojn."
+msgstr ""
+"Jen konsilo, ke Osmoregado konsumas 1 ATP-on per sekundo por ĉiu sesangulo "
+"kiun vi havas. Ĉiu malplena sesangulo de citoplasmo generas ankaŭ 5 ATP-ojn "
+"per sekundo, kio signifas, ke se vi perdas ATP-ojn pro osmozregulacio, nur "
+"aldonu kelkajn malplenajn citoplasmajn sesangulojn aŭ forigu iujn organetojn."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Amuza Fakto: En la reala vivo prokariotoj havas ion nomatan Biokompartmentoj, kiuj funkcias kiel organetoj. Fakte ili nomiĝas Pluredraj organetoj."
+msgstr ""
+"Amuza Fakto: En la reala vivo prokariotoj havas ion nomatan "
+"Biokompartmentoj, kiuj funkcias kiel organetoj. Fakte ili nomiĝas Pluredraj "
+"organetoj."
 
 #: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Amuza Fakto: La metabolosomo estas tio, kion oni nomas Pluredra organeto."
+msgstr ""
+"Amuza Fakto: La metabolosomo estas tio, kion oni nomas Pluredra organeto."
 
 #: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
@@ -1954,20 +2178,30 @@ msgstr "Jen konsilo, foje plej bone estas nur forkuri de aliaj ĉeloj."
 
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Jen konsilo, se ĉelo estas ĉirkaŭ duono de via grandeco, tiam vi povas engluti ĝin."
+msgstr ""
+"Jen konsilo, se ĉelo estas ĉirkaŭ duono de via grandeco, tiam vi povas "
+"engluti ĝin."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Jen konsilo, Bakterioj povas esti pli fortaj ol ili ŝajnas, ili eble aspektas malgrandaj, sed iuj el ili povas enkaŝiĝi en vin kaj mortigi vin tiel!"
+msgstr ""
+"Jen konsilo, Bakterioj povas esti pli fortaj ol ili ŝajnas, ili eble "
+"aspektas malgrandaj, sed iuj el ili povas enkaŝiĝi en vin kaj mortigi vin "
+"tiel!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne sufiĉe zorgas, ili ankaŭ povas fari ĉi tion."
+msgstr ""
+"Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne sufiĉe "
+"zorgas, ili ankaŭ povas fari ĉi tion."
 
 #: ../src/general/NewGameSettings.tscn:1122
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
+msgstr ""
+"Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato de "
+"predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la Didinio "
+"aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
 
 #: ../src/general/NewGameSettings.tscn:1130
 #, fuzzy
@@ -1994,11 +2228,14 @@ msgstr "Aldonunovan funkcion por klavo"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bonvenon al la Mikrobredaktilo.\n"
-"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi "
+"laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
 "\n"
-"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj "
+"kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
 "\n"
-"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra "
+"fundo."
 
 #: ../src/general/OptionsMenu.tscn:337
 #, fuzzy
@@ -2025,22 +2262,27 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2399
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2394
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
 msgid "ENERGY_SOURCES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2198,7 +2440,10 @@ msgstr "Eksteraj efikoj:"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos forgesita, malsukcesa eksperimento de evolucio."
+msgstr ""
+"Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. "
+"Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos "
+"forgesita, malsukcesa eksperimento de evolucio."
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -2247,7 +2492,11 @@ msgstr "Konservado malsukcesis"
 #: ../src/saving/SaveManagerGUI.tscn:209
 #, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
 #, fuzzy
@@ -2257,7 +2506,12 @@ msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 #: ../src/saving/SaveList.tscn:139
 #, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2329,22 +2583,32 @@ msgstr "kun koncentriĝo de"
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeStage.tscn:1996
+#: ../src/microbe_stage/MicrobeStage.tscn:1995
 msgid "FIRE_TOXIN"
 msgstr "Pafu toksinon"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:400
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
 msgid "FLAGELLUM"
 msgstr "Flagelo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
+msgstr ""
+"La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la "
+"membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en "
+"direkto."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
+msgstr ""
+"La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la "
+"membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en "
+"direkto."
 
 #: ../src/space_stage/SpaceFleet.cs:86
 #, fuzzy
@@ -2395,6 +2659,7 @@ msgid "FOOD_CHAIN"
 msgstr "Manĝoĉeno"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2416
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2411
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2430,7 +2695,12 @@ msgstr "loĝantaro:"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
 #, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2454,7 +2724,12 @@ msgstr "Aŭtomata evolucio malsukcesis"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
 #, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2534,7 +2809,10 @@ msgstr "Averto Modo GLES2"
 
 #: ../src/general/MainMenu.tscn:960
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ Nvidia-grafikaĵojn por ke Thrive funkciu."
+msgstr ""
+"Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas "
+"problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ "
+"Nvidia-grafikaĵojn por ke Thrive funkciu."
 
 #: ../src/general/OptionsMenu.cs:1067
 msgid "GLES3"
@@ -2614,9 +2892,17 @@ msgid "GUI"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
-msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+msgstr ""
+"La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
+"duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas "
+"prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti "
+"glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la "
+"citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon "
+"por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos "
+"la rapidon de ĝia produktado de ATP."
 
 #: ../simulation_parameters/common/input_options.json:261
 #, fuzzy
@@ -2634,6 +2920,12 @@ msgstr "Interfaca volumo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3280
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3525
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3799
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
 msgid "HEALTH"
 msgstr "Sano"
 
@@ -3164,6 +3456,7 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1342
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3456,7 +3749,14 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/enzymes.json:4
 #, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
 msgid "LOAD"
@@ -3514,8 +3814,11 @@ msgstr "Aldonunovan funkcion por klavo"
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
-"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
+"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio "
+"de Thrive.\n"
+"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej "
+"granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn "
+"konservadojn."
 
 #: ../src/saving/SaveList.tscn:78 ../src/saving/SaveList.tscn:86
 #, fuzzy
@@ -3525,8 +3828,11 @@ msgstr "Ĉu ŝarĝu malkongruan konservadon?"
 #: ../src/saving/SaveList.tscn:104
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
-"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
+"Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio "
+"de Thrive.\n"
+"Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej "
+"granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn "
+"konservadojn."
 
 #: ../src/saving/SaveList.tscn:94
 #, fuzzy
@@ -3537,7 +3843,8 @@ msgstr "Ĉu ŝargu nevalidan konservadon?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Konservita informo ne povas esti ŝarĝita de ĉi tiu dosiero.\n"
-"Ĉi tiu konservado plej verŝajne estas korupta aŭ kun pli nova formato, kiu ne estas komprenebla en ĉi tiu versio de Thrive.\n"
+"Ĉi tiu konservado plej verŝajne estas korupta aŭ kun pli nova formato, kiu "
+"ne estas komprenebla en ĉi tiu versio de Thrive.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
@@ -3560,23 +3867,44 @@ msgstr "Agado"
 #: ../src/general/MainMenu.tscn:1011
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti "
+"farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj "
+"estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oxytoxisomo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti "
+"farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj "
+"estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti "
+"farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj "
+"estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -3625,7 +3953,9 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.cs:1387
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas por ĉiam forigi {0}?"
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "MAY"
@@ -3640,9 +3970,8 @@ msgid "MEDIAPLAY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "antaŭa:"
+msgstr "Media Prev"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
@@ -3680,17 +4009,28 @@ msgstr "Mezopelagia zono"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:384
 msgid "METABOLOSOMES"
 msgstr "Metabolosomoj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:394
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti "
+"farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj "
+"estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:385
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:393
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Kurzo skalas kun la koncentro de "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3712,25 +4052,33 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
 #: ../src/general/MainMenu.tscn:590
@@ -3750,15 +4098,19 @@ msgstr ""
 "\n"
 "Metabolosomoj: Produktas ATP-ojn el glukozo\n"
 "\n"
-"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 Sesangulon\n"
+"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena "
+"Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 Sesangulon\n"
 "\n"
-"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala kloroplasto, sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
+"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala kloroplasto, "
+"sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
 "\n"
 "Rusticyanin: Konvertas feron en ATP-ojn\n"
 "\n"
-"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon malaerobe\n"
+"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon "
+"malaerobe\n"
 "\n"
-"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas malgrandajn kvantojn de ATP)"
+"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas malgrandajn "
+"kvantojn de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:22
 #, fuzzy
@@ -3768,15 +4120,19 @@ msgstr ""
 "\n"
 "Metabolosomoj: Produktas ATP-ojn el glukozo\n"
 "\n"
-"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 Sesangulon\n"
+"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena "
+"Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 Sesangulon\n"
 "\n"
-"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala kloroplasto, sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
+"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala kloroplasto, "
+"sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
 "\n"
 "Rusticyanin: Konvertas feron en ATP-ojn\n"
 "\n"
-"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon malaerobe\n"
+"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon "
+"malaerobe\n"
 "\n"
-"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas malgrandajn kvantojn de ATP)"
+"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas malgrandajn "
+"kvantojn de ATP)"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3792,15 +4148,19 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membranaj Binditaj Organetoj\n"
 "\n"
-"Nukleo: Prenas 11 sesangulojn kaj permesas evoluon de membranligitaj organetoj. Kaj ankaŭ duobligas la grandecon de via ĉelo. (Evolueblas nur unufoje)\n"
+"Nukleo: Prenas 11 sesangulojn kaj permesas evoluon de membranligitaj "
+"organetoj. Kaj ankaŭ duobligas la grandecon de via ĉelo. (Evolueblas nur "
+"unufoje)\n"
 "\n"
-"Mitokondrio: Produktas ATP-ojn el glukozo kaj atmosfera O2. Multe pli efika ol citoplasmo\n"
+"Mitokondrio: Produktas ATP-ojn el glukozo kaj atmosfera O2. Multe pli efika "
+"ol citoplasmo\n"
 "\n"
 "Kloroplasto: Faras glukozon el sunlumo kaj atmosfera CO2\n"
 "\n"
 "Chememioplasto: Faras glukozon el Hidrogena Sulfido\n"
 "\n"
-"Nitrogenfiksanta plastido: Faras amoniakon de ATP kaj atmosfera Nitrogeno kaj Oksigeno\n"
+"Nitrogenfiksanta plastido: Faras amoniakon de ATP kaj atmosfera Nitrogeno "
+"kaj Oksigeno\n"
 "\n"
 "Vakuolo: Konservas 15 kolektitajn komponaĵojn\n"
 "\n"
@@ -3808,11 +4168,21 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj forigo de organetoj kostas MP-ojn, tamen forigi organetojn kiu estis lokitaj en la nuna mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi organeton per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A kaj D."
+msgstr ""
+"Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu "
+"ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj forigo de "
+"organetoj kostas MP-ojn, tamen forigi organetojn kiu estis lokitaj en la "
+"nuna mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi "
+"organeton per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A "
+"kaj D."
 
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie vi povas ŝanĝi vian specion (aldonante, movante aŭ forigante organetojn) por pliigi la sukceson de via specio. Ĉiu vizito al la redaktoro en la Mikroba Scenejo reprezentas 100 milionojn da jaroj da evoluo."
+msgstr ""
+"Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie vi "
+"povas ŝanĝi vian specion (aldonante, movante aŭ forigante organetojn) por "
+"pliigi la sukceson de via specio. Ĉiu vizito al la redaktoro en la Mikroba "
+"Scenejo reprezentas 100 milionojn da jaroj da evoluo."
 
 #: ../src/general/MainMenu.tscn:408
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -3839,13 +4209,17 @@ msgstr ""
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 #, fuzzy
@@ -3856,6 +4230,7 @@ msgstr ""
 "Sekvu la linion de via ĉelo al proksima glukozo."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kolektu glukozon (blankajn nubojn) moviĝante super ili.\n"
@@ -3863,21 +4238,26 @@ msgstr ""
 "Sekvu la linion de via ĉelo al proksima glukozo."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:150
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3887,6 +4267,7 @@ msgstr ""
 "Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
@@ -3897,36 +4278,55 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr ""
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] kaj muso por moviĝi. [thrive:"
+"input]g_fire_toxin[/thrive:input] por pafi [thrive:compound type=\"oxytoxy\"]"
+"[/thrive:compound]-on, se vi havas toksinan vakuolon. [thrive:"
+"input]g_toggle_engulf[/thrive:input] por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Por reproduktiĝi vi devas dividi ĉiun el viaj organetoj en du. Organetoj bezonas amoniakon kaj fosfaton por duiĝi."
+msgstr ""
+"Por reproduktiĝi vi devas dividi ĉiun el viaj organetoj en du. Organetoj "
+"bezonas amoniakon kaj fosfaton por duiĝi."
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Sed se vi postvivos dudek generaciojn kun 300 aŭ pli loĝantoj, vi gajnas la ludon. Post kiam vi gajnas, aperas ŝprucfenestro, sed vi povas ludi plu, se vi volas."
+msgstr ""
+"Sed se vi postvivos dudek generaciojn kun 300 aŭ pli loĝantoj, vi gajnas la "
+"ludon. Post kiam vi gajnas, aperas ŝprucfenestro, sed vi povas ludi plu, se "
+"vi volas."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Evoluu saĝe ĉar viaj konkurantoj evoluas kune kun vi. Ĉiufoje, kiam vi uzas la redaktilon, ili evoluas."
+msgstr ""
+"Evoluu saĝe ĉar viaj konkurantoj evoluas kune kun vi. Ĉiufoje, kiam vi uzas "
+"la redaktilon, ili evoluas."
 
 #: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr ""
+"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+"toksinan vakuolon). G por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:30
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr ""
+"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+"toksinan vakuolon). G por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr ""
+"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+"toksinan vakuolon). G por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
@@ -3936,22 +4336,32 @@ msgstr "Via ĉelo uzas ATP-on kiel energifonton, se ĝi finiĝos, vi mortos."
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Por malfermi la redaktilon kaj reprodukti, vi devas kolekti Amoniakon (Oranĝa Nubo) kaj Fosfaton (Purpura Nubo)."
+msgstr ""
+"Por malfermi la redaktilon kaj reprodukti, vi devas kolekti Amoniakon "
+"(Oranĝa Nubo) kaj Fosfaton (Purpura Nubo)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Vi ankaŭ povas engluti ĉelojn, bakteriojn, ferajn pecojn kaj ĉelajn pecojn pli malgrandajn ol vi premante G. Ĉi tio kostos aldonan ATP-on kaj malrapidigos vin. Ne forgesu premi G duan fojon por ĉesi engluti."
+msgstr ""
+"Vi ankaŭ povas engluti ĉelojn, bakteriojn, ferajn pecojn kaj ĉelajn pecojn "
+"pli malgrandajn ol vi premante G. Ĉi tio kostos aldonan ATP-on kaj "
+"malrapidigos vin. Ne forgesu premi G duan fojon por ĉesi engluti."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregado kostas ATP-ojn, kio signifas, ju pli granda estas via ĉelo, des pli da Mitokondrioj aŭ Metabolosomoj aŭ Rusticianinoj (aŭ citoplasmo, kiu faras Glikolizon) vi bezonas por eviti perdi ATP-on kiam vi estas senmova."
+msgstr ""
+"Osmoregado kostas ATP-ojn, kio signifas, ju pli granda estas via ĉelo, des "
+"pli da Mitokondrioj aŭ Metabolosomoj aŭ Rusticianinoj (aŭ citoplasmo, kiu "
+"faras Glikolizon) vi bezonas por eviti perdi ATP-on kiam vi estas senmova."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Estas multaj Organetoj en la redaktilo por ke vi evoluu, permesante larĝan gamon de malsamaj ludstiloj."
+msgstr ""
+"Estas multaj Organetoj en la redaktilo por ke vi evoluu, permesante larĝan "
+"gamon de malsamaj ludstiloj."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -3974,18 +4384,25 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:46
 #: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj kemosintezaj proteinoj. Fero povas esti transformita en ATP per rusticianino."
+msgstr ""
+"Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj "
+"kemosintezaj proteinoj. Fero povas esti transformita en ATP per rusticianino."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:246
 msgid "MIDDLE_MOUSE"
@@ -4008,7 +4425,9 @@ msgstr "Versio:"
 #: ../src/gui_common/charts/line/LineChart.cs:1392
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas por ĉiam forigi {0}?"
 
 #: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
@@ -4045,19 +4464,37 @@ msgstr "VI PROSPERIS!"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:464
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "MITOCHONDRION"
 msgstr "Mitokondrio"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+msgstr ""
+"La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
+"duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas "
+"prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti "
+"glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la "
+"citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon "
+"por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos "
+"la rapidon de ĝia produktado de ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1674
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
+msgstr ""
+"La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas "
+"duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas "
+"prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti "
+"glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la "
+"citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon "
+"por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos "
+"la rapidon de ĝia produktado de ATP."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4148,17 +4585,31 @@ msgstr "Priskribo:"
 #: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/modding/ModLoader.cs:498
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/modding/ModLoader.cs:519
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/modding/ModLoader.cs:339
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -4455,7 +4906,8 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne kongruas.\n"
+"Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne "
+"kongruas.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
@@ -4482,7 +4934,11 @@ msgstr ""
 #: ../src/modding/NewModGUI.cs:211
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
+msgstr ""
+"La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn "
+"kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en "
+"glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de "
+"ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
@@ -4516,31 +4972,53 @@ msgstr "Nitrogeno"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:100
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
 msgid "NITROGENASE"
 msgstr "Nitrogenazo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:783
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:790
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:782
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:298
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2036
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-fiksa Plastido"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
+msgstr ""
+"La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan "
+"nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti "
+"amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata "
+"Aerobia Nitrogena Fiksado."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
+msgstr ""
+"La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan "
+"nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti "
+"amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata "
+"Aerobia Nitrogena Fiksado."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 msgid "NONE"
@@ -4548,12 +5026,17 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "NORMAL"
 msgstr "Normala"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2563
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
+msgstr ""
+"La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. "
+"Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi "
+"permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
 #: ../src/gui_common/MouseHoverPanel.tscn:72
 msgid "NOTHING_HERE"
@@ -4608,6 +5091,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4627,6 +5111,7 @@ msgstr "Trompaĵoj estas ebligitaj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1862
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Disloku organeton"
@@ -4652,18 +5137,31 @@ msgstr "Elektita(j):"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:668
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1576
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
 msgid "NUCLEUS"
 msgstr "Kerno/Nukleo"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1335
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman retikulo kaj la golgi-korpon. Ĉi tio estas evoluado de prokariotaj ĉeloj por disvolvi sistemon de internaj membranoj, farita per asimilado de alia prokarioto en si mem. Ĉi tio permesas al ili dividi, aŭ kunestigi la malsamajn procezojn okazantajn ene de la ĉelo kaj malhelpi ilin interkovri. Ĉi tio permesas al iliaj novaj membranoligitaj organetoj esti multe pli kompleksaj, efikaj kaj specialigitaj ol se ili libere flosus en la citoplasmo. Tamen ĉi tio kostas fari la ĉelon multe pli granda kaj postuli multan energion por konservi la ĉelon."
+msgstr ""
+"La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman "
+"retikulo kaj la golgi-korpon. Ĉi tio estas evoluado de prokariotaj ĉeloj por "
+"disvolvi sistemon de internaj membranoj, farita per asimilado de alia "
+"prokarioto en si mem. Ĉi tio permesas al ili dividi, aŭ kunestigi la "
+"malsamajn procezojn okazantajn ene de la ĉelo kaj malhelpi ilin interkovri. "
+"Ĉi tio permesas al iliaj novaj membranoligitaj organetoj esti multe pli "
+"kompleksaj, efikaj kaj specialigitaj ol se ili libere flosus en la "
+"citoplasmo. Tamen ĉi tio kostas fari la ĉelon multe pli granda kaj postuli "
+"multan energion por konservi la ĉelon."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Permesas la evoluon de pli kompleksaj,\n"
@@ -4683,6 +5181,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
 #, fuzzy
 msgid "N_A"
 msgstr "N/A MP"
@@ -4720,8 +5220,10 @@ msgstr "JES"
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ĉi tiu konservado devenas de malnova versio de Thrive kaj eble ne kongruas.\n"
-"Ĉar Thrive nuntempe estas en frua disvolviĝo kaj kongruo de konsevadoj ne estas prioritato.\n"
-"Vi eble raportos iujn ajn problemojn, kiujn vi renkontas, sed ili ne estas la plej alta prioritato nun.\n"
+"Ĉar Thrive nuntempe estas en frua disvolviĝo kaj kongruo de konsevadoj ne "
+"estas prioritato.\n"
+"Vi eble raportos iujn ajn problemojn, kiujn vi renkontas, sed ili ne estas "
+"la plej alta prioritato nun.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../src/modding/ModManager.tscn:154
@@ -4820,11 +5322,13 @@ msgstr "Organetoj"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:918
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "Organetoj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2511
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
@@ -4836,25 +5340,30 @@ msgstr "Disloku organeton"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:960
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Raba Vilo (Pilus)"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
 msgid "ORGANELLE_PILUS"
 msgstr "Raba Vilo (Pilus)"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
 #, fuzzy
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Piku aliajn ĉelojn per ĉi tio."
@@ -4864,6 +5373,7 @@ msgid "ORGANISM_STATISTICS"
 msgstr "Organisma Statistiko"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "Osmoregado"
 
@@ -4897,6 +5407,36 @@ msgstr "Osmoregado"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3212
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3457
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:644
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregada Kosto"
 
@@ -4934,7 +5474,9 @@ msgstr "Anstataŭigi ekzistantan konservadon:"
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas forigi ĉi tion por ĉiam?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas forigi ĉi tion por ĉiam?"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:124
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:480
@@ -4943,17 +5485,28 @@ msgstr "Oksigeno"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:200
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisomo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:881
 msgid "OXYTOXISOME_DESC"
-msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
+msgstr ""
+"Modifita metabolosomo, responsanta pri la produktado de primitiva formo de "
+"la toksa agento OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr ""
+"Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili "
+"povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti "
+"farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi "
+"postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la "
+"medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj "
+"estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
@@ -4967,9 +5520,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Sintezo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Movigu malsupren"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -5027,7 +5579,10 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos forgesita, malsukcesa eksperimento de evolucio."
+msgstr ""
+"Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. "
+"Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos "
+"forgesita, malsukcesa eksperimento de evolucio."
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
@@ -5039,6 +5594,7 @@ msgid "PATCH_MAP"
 msgstr "Mapo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
@@ -5075,7 +5631,10 @@ msgstr ""
 #: ../src/gui_common/PatchNotesList.cs:248
 #, fuzzy
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos forgesita, malsukcesa eksperimento de evolucio."
+msgstr ""
+"Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. "
+"Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos "
+"forgesita, malsukcesa eksperimento de evolucio."
 
 #: ../src/general/MainMenu.tscn:814
 #, fuzzy
@@ -5129,6 +5688,8 @@ msgstr ""
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
 #: ../src/microbe_stage/MicrobeHUD.cs:252
 #: ../src/society_stage/gui/ResearchScreen.cs:46
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -5166,6 +5727,9 @@ msgstr "Fizikaj Kondiĉoj"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3067
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3559
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizika Rezisto"
 
@@ -5231,9 +5795,10 @@ msgid "PLAYER_REPRODUCED"
 msgstr "ludanto reproduktita"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "ludanto mortis"
+msgstr ""
+"Ludanto\n"
+"Rapido"
 
 #: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_3"
@@ -5276,6 +5841,7 @@ msgid "POPULATION_IN_PATCHES"
 msgstr "POPULACIO:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2280
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2275
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULACIO:"
@@ -5290,9 +5856,8 @@ msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Rekomenci"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
-#, fuzzy
 msgid "PRESSURE"
-msgstr "Premo."
+msgstr "Premo"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
 #: ../src/microbe_stage/MicrobeStage.tscn:979
@@ -5513,6 +6078,8 @@ msgstr "Ĉu restarigu al defaŭltaj?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5526,6 +6093,12 @@ msgstr "Distingivo:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3491
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rimedo-Absorba Rapideo"
 
@@ -5613,7 +6186,9 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Pli malmola membrano pli rezistas damaĝon, sed malfaciligas la movadon de la ĉelo."
+msgstr ""
+"Pli malmola membrano pli rezistas damaĝon, sed malfaciligas la movadon de la "
+"ĉelo."
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
@@ -5676,18 +6251,27 @@ msgstr "Aldonunovan funkcion por klavo"
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:684
 msgid "RUSTICYANIN"
 msgstr "Rusticianino"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:694
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:686
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
+msgstr ""
+"Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj "
+"oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, "
+"nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:685
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
+msgstr ""
+"Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj "
+"oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, "
+"nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
 #: ../src/general/MainMenu.tscn:982
 #, fuzzy
@@ -5712,7 +6296,9 @@ msgstr "Aŭtomata konservado"
 
 #: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
-msgstr "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi volas por ĉiam forigi {0}?"
+msgstr ""
+"Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
+"volas por ĉiam forigi {0}?"
 
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
@@ -5743,7 +6329,8 @@ msgstr "Konservo havas malsaman version"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"La versio de la konservado, kiun vi provas ŝarĝi, ne kongruas kun la ludversio.\n"
+"La versio de la konservado, kiun vi provas ŝarĝi, ne kongruas kun la "
+"ludversio.\n"
 "Bonvolu ŝargi la konservadon permane per la menuo."
 
 #: ../src/saving/InProgressLoad.cs:143
@@ -5761,7 +6348,12 @@ msgstr "Konservado ne validas"
 #: ../src/saving/SaveList.tscn:114
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/saving/InProgressLoad.cs:244
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -5787,7 +6379,12 @@ msgstr "Konservado malsukcesis"
 #: ../src/saving/SaveList.tscn:121
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/modding/ModUploader.cs:677
 #, fuzzy
@@ -5802,7 +6399,12 @@ msgstr "Serĉado..."
 #: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
 #, fuzzy
@@ -5881,6 +6483,7 @@ msgstr "Marfundo"
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
+#: ../src/microbe_stage/MicrobeStage.tscn:2040
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -5981,6 +6584,7 @@ msgid "SESSILE"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6006,18 +6610,16 @@ msgstr "Kaverno"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Montru lernilojn"
 
 #: ../src/general/OptionsMenu.tscn:1743
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Montru lernilojn (en ĉi tiu ludo)"
 
 #: ../src/general/OptionsMenu.tscn:1735
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Montru lernilojn (en novaj ludoj)"
 
@@ -6029,6 +6631,7 @@ msgstr ""
 " Ĉu vi volas daŭrigi?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
@@ -6041,6 +6644,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr ""
@@ -6048,14 +6652,24 @@ msgstr ""
 "Ĉu vi volas forigi la enigon de {1}?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion "
+"en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. "
+"Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo "
+"estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../src/microbe_stage/MicrobeHUD.cs:147
 #, fuzzy
@@ -6089,12 +6703,18 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
 msgid "SILICA"
 msgstr "Siliko"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3667
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr "Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝeneralan damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas malpli da energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon kaj la ĉelo sorbas resurson kun malpli granda rapideco."
+msgstr ""
+"Ĉi tiu membrano havas fortan silikan muron. Ĝi povas bone rezisti ĝeneralan "
+"damaĝon kaj tre rezistas al fizika damaĝo. Ĝi ankaŭ postulas malpli da "
+"energio por konservi sian formon. Tamen ĝi malrapidigas la ĉelon kaj la ĉelo "
+"sorbas resurson kun malpli granda rapideco."
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "SIXTEEN_TIMES"
@@ -6111,18 +6731,35 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "SLIME_JET"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1247
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -6142,13 +6779,17 @@ msgstr "Malgranda Fera Peco"
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/general/OptionsMenu.tscn:188
 msgid "SOUND"
@@ -6175,13 +6816,17 @@ msgstr ""
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
 #, fuzzy
@@ -6287,6 +6932,7 @@ msgid "SPECIES_WITH_POPULATION"
 msgstr "Specio loĝantaro"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
 msgid "SPEED"
 msgstr "Rapideco"
 
@@ -6398,7 +7044,12 @@ msgstr "Konservado malsukcesis! Escepto okazis"
 #: ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/general/MainMenu.tscn:790
 #, fuzzy
@@ -6435,6 +7086,27 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:304
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:407
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:606
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:703
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1958
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2477
 msgid "STORAGE"
 msgstr "Stokado"
 
@@ -6451,13 +7123,17 @@ msgstr ""
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:673
 msgid "STRICT_NICHE_COMPETITION"
@@ -6539,6 +7215,7 @@ msgstr "Aldonunovan funkcion por klavo"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
 msgid "SUNLIGHT"
 msgstr "Sunlumo"
 
@@ -6663,6 +7340,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
 msgid "TEMPERATURE"
 msgstr "Temperaturo"
 
@@ -6694,33 +7372,67 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:811
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
 msgid "THERMOPLAST"
 msgstr "Termika plasto"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
+msgstr ""
+"La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
+"pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por "
+"uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la "
+"energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj "
+"gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia "
+"produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj "
+"temperaturo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
+msgstr ""
+"La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
+"pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por "
+"uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la "
+"energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj "
+"gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia "
+"produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj "
+"temperaturo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:330
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
 #, fuzzy
 msgid "THERMOSYNTHASE"
 msgstr "Kemisintezo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:979
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
+msgstr ""
+"La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
+"pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por "
+"uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la "
+"energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj "
+"gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia "
+"produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj "
+"temperaturo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:978
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
+msgstr ""
+"La termoplasto estas duobla membranstrukturo enhavanta termosentemajn "
+"pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por "
+"uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la "
+"energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj "
+"gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia "
+"produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj "
+"temperaturo."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #: ../simulation_parameters/microbe_stage/bio_processes.json:151
@@ -6785,6 +7497,7 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
 msgid "THYLAKOID"
 msgstr "Tilakoido"
 
@@ -6793,8 +7506,15 @@ msgid "THYLAKOIDS"
 msgstr "Tilakoidoj"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:495
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:487
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
+msgstr ""
+"Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La "
+"pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa "
+"karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas "
+"al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de "
+"la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj "
+"estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -6863,6 +7583,7 @@ msgstr "Grandeco:"
 
 #: ../simulation_parameters/common/input_options.json:57
 #: ../src/microbe_stage/MicrobeStage.tscn:2007
+#: ../src/microbe_stage/MicrobeStage.tscn:2006
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Ŝaltu engluton"
@@ -6876,6 +7597,7 @@ msgstr "Ŝaltu engluton"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
 #: ../src/microbe_stage/MicrobeStage.tscn:1983
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "TOGGLE_ENGULF"
 msgstr "Ŝaltu engluton"
 
@@ -6935,26 +7657,39 @@ msgstr "Entute konservadoj:"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3593
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3867
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksinrezisto"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:500
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+msgstr ""
+"La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa "
+"produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj "
+"vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2234
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
+msgstr ""
+"La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa "
+"produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj "
+"vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Devos ankoraŭ esti farita."
 
@@ -6969,9 +7704,8 @@ msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Rado malsupren"
+msgstr "Treble Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
@@ -6996,11 +7730,14 @@ msgstr "Prenu ekrankopion"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Lernilo"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:396
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Ŝarĝante Mikrobredaktilon"
@@ -7012,9 +7749,12 @@ msgstr ""
 "Jen la flikaĵa mapo/karto.\n"
 "Ĉi tie vi povas vidi la malsamajn flikaĵojn en kiuj mikroboj povas vivi.\n"
 "Via nuna diakilo estas reliefigita.\n"
-"Vi povas alklaki la flikaĵojn per via muso por elekti ilin por vidi iliajn detalojn dekstre.\n"
+"Vi povas alklaki la flikaĵojn per via muso por elekti ilin por vidi iliajn "
+"detalojn dekstre.\n"
 "\n"
-"Se vi elektas flikaĵon apud tiu, en kiu vi nun troviĝas, vi povas premi la butonon dekstre por movi tien. Ĉi tio permesas al via loĝantaro disvastiĝi al novaj flikaĵoj.\n"
+"Se vi elektas flikaĵon apud tiu, en kiu vi nun troviĝas, vi povas premi la "
+"butonon dekstre por movi tien. Ĉi tio permesas al via loĝantaro disvastiĝi "
+"al novaj flikaĵoj.\n"
 "\n"
 "Elektu flikaĵon por daŭrigi."
 
@@ -7023,21 +7763,27 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Bonvenon al la Mikrobredaktilo.\n"
-"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi "
+"laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
 "\n"
-"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj "
+"kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
 "\n"
-"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra "
+"fundo."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Tiuj estas la bazoj por redakti vian specion. Vi povas kontroli la aliajn langetojn de ĉelredaktilo por eĉ pli da agardoj.\n"
+"Tiuj estas la bazoj por redakti vian specion. Vi povas kontroli la aliajn "
+"langetojn de ĉelredaktilo por eĉ pli da agardoj.\n"
 "\n"
-"Vi povas renomi vian specion alklakante la nunan specian nomon kaj redaktante la tekston.\n"
+"Vi povas renomi vian specion alklakante la nunan specian nomon kaj "
+"redaktante la tekston.\n"
 "\n"
-"Komence vi devas teni vian ĉelon malgranda kaj direktiĝi al la surfacaj flikaĵoj.\n"
+"Komence vi devas teni vian ĉelon malgranda kaj direktiĝi al la surfacaj "
+"flikaĵoj.\n"
 "\n"
 "Bonŝancon!"
 
@@ -7046,21 +7792,28 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Bonvenon al la Mikrobredaktilo.\n"
-"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
+"Ĉi tie vi povas revizii, kio okazis ekde la komenco de la ludo aŭ kiam vi "
+"laste estis en la redaktilo. Kaj ekde nun vi povas ŝanĝi viajn speciojn.\n"
 "\n"
-"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
+"En ĉi tiu langeto vi povas vidi raporton pri kiaj specioj ekzistas, kie kaj "
+"kiaj estas iliaj populacioj. Vi ankaŭ povas vidi mediajn ŝanĝojn supre.\n"
 "\n"
-"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra fundo."
+"Por iri al la sekva redakta langeto, premu la sekvan butonon en la dekstra "
+"fundo."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Forigi organetojn ankaŭ kostas MP, ĉar ĝi estas mutacio por via specio. Vi povas dekstre alklaki organetojn por aperigi la organan menuon kaj elekti la forigan opcion por forigi ilin.\n"
+"Forigi organetojn ankaŭ kostas MP, ĉar ĝi estas mutacio por via specio. Vi "
+"povas dekstre alklaki organetojn por aperigi la organan menuon kaj elekti la "
+"forigan opcion por forigi ilin.\n"
 "\n"
-"Se vi eraras, vi povas malfari iun ajn ŝanĝon, kiun vi faras en la redaktilo.\n"
+"Se vi eraras, vi povas malfari iun ajn ŝanĝon, kiun vi faras en la "
+"redaktilo.\n"
 "\n"
-"Noto: forigi organetojn, kiujn vi lokis en la nuna redakta kunsido, estas senpaga.\n"
+"Noto: forigi organetojn, kiujn vi lokis en la nuna redakta kunsido, estas "
+"senpaga.\n"
 "\n"
 "Alklaku la malfaran butonon por daŭrigi."
 
@@ -7068,11 +7821,15 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Kiam vi elektas kiujn organetojn vi volas aldoni, atentu la konsiletojn por la organetoj, ekz. en kiuj procezoj ili partoprenas kaj kiujn komponaĵojn ili uzas kaj produktas.\n"
+"Kiam vi elektas kiujn organetojn vi volas aldoni, atentu la konsiletojn por "
+"la organetoj, ekz. en kiuj procezoj ili partoprenas kaj kiujn komponaĵojn "
+"ili uzas kaj produktas.\n"
 "\n"
-"Atentu ankaŭ la ATP-ekvilibron supre dekstre por certigi, ke via ĉelo povas travivi.\n"
+"Atentu ankaŭ la ATP-ekvilibron supre dekstre por certigi, ke via ĉelo povas "
+"travivi.\n"
 "\n"
-"Vi povas turni organetojn per A kaj D (defaŭltaj klavoj) antaŭ ol disloki ilin.\n"
+"Vi povas turni organetojn per A kaj D (defaŭltaj klavoj) antaŭ ol disloki "
+"ilin.\n"
 "\n"
 "Premu la refaran butonon (proksiman al la malfara butono) por daŭrigi."
 
@@ -7080,77 +7837,103 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via specio elspezante mutaciajn punktojn (MP).\n"
+"Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via "
+"specio elspezante mutaciajn punktojn (MP).\n"
 "\n"
-"Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la ĉela redaktilo.\n"
+"Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la "
+"ĉela redaktilo.\n"
 "\n"
-"Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la ekrano por aldoni tiun organeton al via specio."
+"Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona "
+"elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la "
+"ekrano por aldoni tiun organeton al via specio."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo de nova fenomeno en la universo.\n"
+"Sur fora fremda planedo, vulkana kaj meteora agado kondukis al la disvolviĝo "
+"de nova fenomeno en la universo.\n"
 "\n"
 "Vivo.\n"
 "\n"
-"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
+"Simplaj mikroboj loĝas en la profundaj regionoj de la oceano. Vi estas la "
+"lasta universala komuna prapatro (LUCA) sur ĉi tiu planedo.\n"
 "\n"
-"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
+"Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn "
+"komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por "
+"konkurenci kontraŭ la aliaj specioj de mikroboj."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr ""
+"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+"toksinan vakuolon). G por ŝalti englutan reĝimon."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:386
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de sufiĉe da amoniako kaj fosfatoj.\n"
-"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi bezonas."
+"Por reproduktiĝi, vi devas duplikati ĉiujn ĝiajn organetojn per kolektado de "
+"sufiĉe da amoniako kaj fosfatoj.\n"
+"Rigardu la indikilon en la dekstra malsupra parto por vidi kiom pli vi "
+"bezonas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
+"Por regi vian ĉelon, uzu la klavojn montritajn proksime al via ĉelo (centro "
+"de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:339
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Lernilo"
@@ -7176,12 +7959,16 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:587
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
+msgstr ""
+"La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ damaĝo. "
+"Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo estas, ke ĝi "
+"permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
 #: ../simulation_parameters/common/input_options.json:65
+#: ../src/microbe_stage/MicrobeStage.tscn:2018
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Malligi ĉiujn"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:165
 msgid "UNBIND_HELP_TEXT"
@@ -7191,7 +7978,8 @@ msgstr ""
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
-"Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne kongruas.\n"
+"Ĉi tiu konservado estas de pli nova versio de Thrive kaj tre probable ne "
+"kongruas.\n"
 "Ĉu vi volas provi ŝargi la konservadon ĉiuokaze?"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
@@ -7221,9 +8009,8 @@ msgid "UNIT_SIMPLE_ROCKET"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Nekonata musbutono"
+msgstr "Nekonata"
 
 #: ../src/general/OptionsMenu.cs:1072
 #, fuzzy
@@ -7267,13 +8054,27 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:857
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:31
 #: ../simulation_parameters/microbe_stage/organelles.json:853
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:30
 #: ../simulation_parameters/microbe_stage/organelles.json:852
@@ -7283,12 +8084,26 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:34
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:35
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr ""
+"La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de "
+"jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la "
+"internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas "
+"Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli "
+"progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de "
+"ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la "
+"grandecon de la ĉelo."
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 #, fuzzy
@@ -7345,12 +8160,19 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:429
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2135
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
 msgid "VACUOLE"
 msgstr "Vakuolo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
 msgid "VACUOLE_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
@@ -7359,17 +8181,33 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
 #, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
 #, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
+msgstr ""
+"La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. "
+"Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj "
+"membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita "
+"per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn "
+"substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173
@@ -7441,19 +8279,16 @@ msgid "VOLCANIC_VENT"
 msgstr "Vulkana ellastruo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Mute"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Up"
 
 #: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
@@ -7501,7 +8336,10 @@ msgstr "VI PROSPERIS!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Gratulon, ke vi gajnis ĉi tiun version de Thrive! Vi povas daŭre ludi post kiam ĉi tiu ekrano fermiĝas, se vi volas, aŭ komenci novan ludon en nova mondo."
+msgstr ""
+"Gratulon, ke vi gajnis ĉi tiun version de Thrive! Vi povas daŭre ludi post "
+"kiam ĉi tiu ekrano fermiĝas, se vi volas, aŭ komenci novan ludon en nova "
+"mondo."
 
 #: ../src/modding/ModUploader.tscn:294
 #, fuzzy
@@ -7516,7 +8354,14 @@ msgstr "VI PROSPERIS!"
 #: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
+msgstr ""
+"La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn "
+"pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto "
+"asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la "
+"kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj "
+"gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ "
+"donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo "
+"dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
@@ -7667,8 +8512,11 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "MACROSCOPIC_PROTOYPE_WARNING"
 #~ msgstr ""
-#~ "Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu versio de Thrive.\n"
-#~ "Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn konservadojn."
+#~ "Oni scias, ke la elektita ŝarĝota konservado ne kongruas kun ĉi tiu "
+#~ "versio de Thrive.\n"
+#~ "Ĉar Thrive ankoraŭ estas en frua disvolviĝo, kaj konservado ne estas la "
+#~ "plej granda gravaĵo, do ne estas konservadilo por ĝisdatigi malnovajn "
+#~ "konservadojn."
 
 #, fuzzy
 #~ msgid "AUTO_GPU_NAME"
@@ -7735,19 +8583,26 @@ msgstr "Malzomu"
 #~ "Jen la flikaĵa mapo/karto.\n"
 #~ "Ĉi tie vi povas vidi la malsamajn flikaĵojn en kiuj mikroboj povas vivi.\n"
 #~ "Via nuna diakilo estas reliefigita.\n"
-#~ "Vi povas alklaki la flikaĵojn per via muso por elekti ilin por vidi iliajn detalojn dekstre.\n"
+#~ "Vi povas alklaki la flikaĵojn per via muso por elekti ilin por vidi "
+#~ "iliajn detalojn dekstre.\n"
 #~ "\n"
-#~ "Se vi elektas flikaĵon apud tiu, en kiu vi nun troviĝas, vi povas premi la butonon dekstre por movi tien. Ĉi tio permesas al via loĝantaro disvastiĝi al novaj flikaĵoj.\n"
+#~ "Se vi elektas flikaĵon apud tiu, en kiu vi nun troviĝas, vi povas premi "
+#~ "la butonon dekstre por movi tien. Ĉi tio permesas al via loĝantaro "
+#~ "disvastiĝi al novaj flikaĵoj.\n"
 #~ "\n"
 #~ "Elektu flikaĵon por daŭrigi."
 
 #~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
 #~ msgstr ""
-#~ "Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via specio elspezante mutaciajn punktojn (MP).\n"
+#~ "Jen la ĉela redaktilo, kie vi povas aldoni aŭ forigi organetojn de via "
+#~ "specio elspezante mutaciajn punktojn (MP).\n"
 #~ "\n"
-#~ "Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de la ĉela redaktilo.\n"
+#~ "Vi ankaŭ povas ŝanĝi aliajn ecojn de via specio en la aliaj langetoj de "
+#~ "la ĉela redaktilo.\n"
 #~ "\n"
-#~ "Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de la ekrano por aldoni tiun organeton al via specio."
+#~ "Por daŭrigi, elektu organeton el la maldekstra panelo (citoplasmo estas "
+#~ "bona elekto). Poste maldekstre alklaku apud la sesangulo montrita meze de "
+#~ "la ekrano por aldoni tiun organeton al via specio."
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

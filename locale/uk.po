@@ -1240,9 +1240,8 @@ msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Помилка: внутрішній баг у споживанні речей крафту"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1124
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "Зворотня залежність"
+msgstr "Не можливо знайти крафт данних предметів"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
@@ -1279,9 +1278,8 @@ msgstr "Результати"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:215
-#, fuzzy
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr "Оберіть рецепт крафту або додайте предмети до фільтра"
+msgstr "Обрати рецепт крафту чи додати предмет до фільтру"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
@@ -2159,21 +2157,16 @@ msgid "FAILED"
 msgstr "Провалено"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Мій класний мод"
+msgstr "Помилка: невдале видалення одного чи більше збережених фільтрів."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "Помилка: Невдалось зберегти нові налаштування конфігурованих файлів."
+msgstr "Помилка: Невдалось зберегти видалення"
 
 #: ../src/saving/SaveList.tscn:139
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
-"Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
-"Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
+msgstr "Збережений файл неможливо видалити."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2336,16 +2329,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Цей вид має скам'яніти для збереження в музеї. Ви можете відкрити музей через Трайвопедію, або завантажити види з вільного редактору."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Скам'янити цей вид"
+msgstr "Невдале скам'яніння"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
-"Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
+msgstr "Файл скам'яніння неможливо записати"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2362,16 +2351,12 @@ msgid "FOSSILISE"
 msgstr "Скам'яніти"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Невдалось створити мод"
+msgstr "Видалення скам'янілості не вдалося"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Ініціалізація бібліотеки клієнту Steam не вдалася. Функції Steam будуть недоступні.\n"
-"Будь ласка, переконайтесь, що Ви запустили клієнт Steam та увійшли до правильного акаунту. Будь ласка, запустіть гру через клієнт Steam, якщо ця помилка не зникає."
+msgstr "Файл скам'янілості немодливо видалити"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -3419,9 +3404,8 @@ msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Низький ліміт біорізноманіття"
 
 #: ../src/general/MainMenu.tscn:1009
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
-msgstr "Продуктивність"
+msgstr "Виявлено низький рівень продуктивності"
 
 #: ../src/general/MainMenu.tscn:1011
 #, fuzzy
