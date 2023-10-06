@@ -92,7 +92,7 @@ public class ModifierInfoLabel : HBoxContainer
     public override void _Ready()
     {
         nameLabel = GetNode<Label>("Name");
-        valueLabel = GetNode<Label>("Value");
+        valueLabel = GetNode<Label>("HBoxContainer/Value");
         icon = GetNode<TextureRect>("Icon");
 
         UpdateName();

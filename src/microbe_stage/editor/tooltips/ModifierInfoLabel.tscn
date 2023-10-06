@@ -22,11 +22,15 @@ margin_right = 24.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 2 )
 
-[node name="Value" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 28.0
-margin_top = 1.0
 margin_right = 28.0
-margin_bottom = 18.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
+alignment = 2
+
+[node name="Value" type="Label" parent="HBoxContainer"]
+margin_top = 1.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 1 )
-align = 2
+align = 1
