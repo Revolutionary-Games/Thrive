@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/StorageIcon.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/DigestionIcon.png" type="Texture" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/HealthIcon.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/parts/PilusIcon.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=16]
@@ -327,7 +326,7 @@ script = ExtResource( 21 )
 DisplayName = "STORAGE"
 ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
 [node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_right = 20.0
