@@ -1625,6 +1625,8 @@ public partial class CellEditorComponent :
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
 
+        var first = true;
+
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
@@ -1641,6 +1643,11 @@ public partial class CellEditorComponent :
                         return;
                     }
                 }
+
+                if (GetOrganelleDefinition(organelleType).Unique && !first)
+                    return;
+
+                first = false;
 
                 var placed = CreatePlaceActionIfPossible(organelle);
 
