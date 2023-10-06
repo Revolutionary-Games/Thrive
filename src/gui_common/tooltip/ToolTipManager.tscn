@@ -231,6 +231,7 @@ margin_bottom = 40.0
 mouse_filter = 2
 
 [node name="cytoplasm" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
 DisplayName = "CYTOPLASM"
 ProcessesDescription = "CYTOPLASM_PROCESSES_DESCRIPTION"
 Description = "CYTOPLASM_DESCRIPTION"
@@ -270,6 +271,7 @@ margin_top = 210.0
 margin_bottom = 232.0
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
 margin_right = 500.0
 margin_bottom = 2.0
 DisplayName = "METABOLOSOMES"
@@ -1347,7 +1349,6 @@ margin_bottom = 40.0
 mouse_filter = 2
 
 [node name="single" parent="GroupHolder/membraneSelection" instance=ExtResource( 5 )]
-visible = false
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
@@ -1374,18 +1375,28 @@ margin_top = 46.0
 margin_bottom = 138.0
 
 [node name="baseMobility" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
+margin_right = 333.0
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierIcon = ExtResource( 3 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_right = 333.0
+margin_bottom = 68.0
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource( 11 )
 
 [node name="health" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource( 2 )]
+margin_top = 72.0
+margin_right = 333.0
+margin_bottom = 92.0
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource( 13 )
 
@@ -1495,6 +1506,16 @@ ModifierIcon = ExtResource( 13 )
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource( 15 )
 
+[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource( 2 )]
+DisplayName = "CANNOT_ENGULF"
+ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
+ShowValue = false
+
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
+ModifierNameColor = Color( 0, 1, 0, 1 )
+ShowValue = false
+
 [node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="5"]
 margin_top = 225.0
 margin_bottom = 229.0
@@ -1549,6 +1570,16 @@ ModifierIcon = ExtResource( 13 )
 [node name="toxinResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource( 2 )]
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource( 16 )
+
+[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource( 2 )]
+DisplayName = "CANNOT_ENGULF"
+ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
+ShowValue = false
+
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
+DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
+ModifierNameColor = Color( 0, 1, 0, 1 )
+ShowValue = false
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
 margin_top = 225.0
@@ -1606,6 +1637,11 @@ ModifierIcon = ExtResource( 15 )
 [node name="toxinResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource( 2 )]
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource( 16 )
+
+[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
+DisplayName = "CANNOT_ENGULF"
+ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
+ShowValue = false
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
 margin_top = 225.0
@@ -1666,6 +1702,11 @@ ModifierIcon = ExtResource( 15 )
 [node name="toxinResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource( 2 )]
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource( 16 )
+
+[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
+DisplayName = "CANNOT_ENGULF"
+ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
+ShowValue = false
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
 margin_top = 225.0
