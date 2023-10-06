@@ -1,14 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/osmoIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/textures/gui/bevel/parts/FlagellumIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/SpeedIcon.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/StorageIcon.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/DigestionIcon.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/HealthIcon.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/parts/PilusIcon.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=16]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=21]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=26]
@@ -32,13 +37,11 @@ layer = 128
 script = ExtResource( 23 )
 
 [node name="GroupHolder" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="default" type="Control" parent="GroupHolder"]
 margin_right = 40.0
@@ -135,7 +138,7 @@ Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 MutationPointCost = 2
 
 [node name="MarginContainer" parent="GroupHolder/editor/rigiditySlider" index="0"]
-margin_bottom = 168.0
+margin_bottom = 177.0
 
 [node name="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer" index="0"]
 margin_bottom = 161.0
@@ -152,27 +155,29 @@ margin_top = 42.0
 margin_bottom = 42.0
 
 [node name="ModifierList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="4"]
-margin_top = 42.0
-margin_bottom = 86.0
+margin_top = 46.0
+margin_bottom = 90.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-0.4"
+[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Mobility"
@@ -180,34 +185,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 90.0
-margin_right = 110.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-0.4"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+30"
+[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 28.0
-margin_right = 74.0
+margin_left = 24.0
+margin_right = 70.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "Health"
@@ -215,21 +224,24 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 78.0
-margin_right = 98.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 74.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+30"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="5"]
-margin_top = 101.0
-margin_bottom = 105.0
+margin_top = 105.0
+margin_bottom = 109.0
 
 [node name="Description" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="6"]
-margin_top = 120.0
-margin_bottom = 137.0
+margin_top = 124.0
+margin_bottom = 146.0
 
 [node name="aggressionSlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
@@ -2732,6 +2744,7 @@ margin_right = 333.0
 DisplayName = "DIGESTION_SPEED"
 ModifierValue = "+0.05"
 ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 8 )
 
 [node name="digestionEfficiency" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 margin_top = 24.0
@@ -2740,6 +2753,7 @@ margin_bottom = 44.0
 DisplayName = "DIGESTION_EFFICIENCY"
 ModifierValue = "+4.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 10 )
 
 [node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 margin_top = 48.0
@@ -2749,7 +2763,7 @@ mouse_filter = 2
 DisplayName = "STORAGE"
 ModifierValue = "+0.5"
 ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 12 )
+ModifierIcon = ExtResource( 9 )
 
 [node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource( 2 )]
 margin_top = 72.0
@@ -2759,6 +2773,7 @@ mouse_filter = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 3 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer" index="5"]
 margin_top = 239.0
@@ -2849,23 +2864,25 @@ margin_top = 46.0
 margin_bottom = 138.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+10%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 39.0
-margin_right = 112.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -2873,34 +2890,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 116.0
-margin_right = 136.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+10%"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+10%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 39.0
-margin_right = 226.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -2908,33 +2929,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 230.0
-margin_right = 250.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+10%"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+30%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 39.0
-margin_right = 274.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -2942,33 +2968,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 278.0
-margin_right = 298.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+30%"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 21.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-40"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 25.0
-margin_right = 83.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -2976,13 +3007,16 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 87.0
-margin_right = 107.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-40"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="5"]
 margin_top = 153.0
@@ -2999,10 +3033,10 @@ Description = "DOUBLE_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
 
 [node name="MarginContainer" parent="GroupHolder/membraneSelection/double" index="0"]
-margin_bottom = 264.0
+margin_bottom = 225.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer" index="0"]
-margin_bottom = 248.0
+margin_bottom = 209.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -3016,26 +3050,29 @@ margin_top = 42.0
 margin_bottom = 42.0
 
 [node name="ModifierList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="4"]
-margin_top = 42.0
-margin_bottom = 134.0
+margin_top = 46.0
+margin_bottom = 138.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
-text = "+0"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 20.0
-margin_right = 93.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -3043,33 +3080,37 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 97.0
-margin_right = 117.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+text = "+0"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
-text = "+0"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 20.0
-margin_right = 208.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -3077,32 +3118,37 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 212.0
-margin_right = 232.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+text = "+0"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
-text = "+0"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 20.0
-margin_right = 255.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -3110,32 +3156,37 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 259.0
-margin_right = 279.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+text = "+0"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 16.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
-text = "+0"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 20.0
-margin_right = 79.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -3143,21 +3194,23 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+text = "+0"
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="5"]
-margin_top = 149.0
-margin_bottom = 153.0
+margin_top = 153.0
+margin_bottom = 157.0
 
 [node name="Description" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="6"]
-margin_top = 168.0
-margin_bottom = 185.0
+margin_top = 172.0
+margin_bottom = 194.0
 
 [node name="cellulose" parent="GroupHolder/membraneSelection" instance=ExtResource( 5 )]
 visible = false
@@ -3190,20 +3243,22 @@ margin_bottom = 210.0
 margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-10%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 36.0
-margin_right = 109.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -3211,34 +3266,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 113.0
-margin_right = 133.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-10%"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
 margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 36.0
-margin_right = 223.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -3246,33 +3305,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 227.0
-margin_right = 247.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
 margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 36.0
-margin_right = 271.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -3280,33 +3344,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 275.0
-margin_right = 295.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
 margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+10"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -3314,33 +3383,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 90.0
-margin_right = 110.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+10"
+align = 2
 
 [node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
 margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "PHYSICAL_RESISTANCE"
+ModifierIcon = ExtResource( 15 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+40%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 15 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 39.0
-margin_right = 206.0
+margin_left = 24.0
+margin_right = 191.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
@@ -3348,32 +3422,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 210.0
-margin_right = 230.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_left = 195.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+40%"
+align = 2
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
 margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "CANNOT_ENGULF"
 ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
 ShowValue = false
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_top = 1.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 4.0
-margin_right = 132.0
+margin_left = 24.0
+margin_right = 152.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 27 )
@@ -3382,13 +3462,14 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 136.0
-margin_right = 156.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_left = 156.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+align = 2
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
 margin_top = 144.0
@@ -3437,20 +3518,22 @@ margin_bottom = 210.0
 margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-10%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 36.0
-margin_right = 109.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -3458,34 +3541,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 113.0
-margin_right = 133.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-10%"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
 margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 36.0
-margin_right = 223.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -3493,33 +3580,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 227.0
-margin_right = 247.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
 margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 36.0
-margin_right = 271.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -3527,33 +3619,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 275.0
-margin_right = 295.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
 margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+10"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -3561,33 +3658,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 90.0
-margin_right = 110.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+10"
+align = 2
 
 [node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
 margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "TOXIN_RESISTANCE"
+ModifierIcon = ExtResource( 16 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+40%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 16 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 39.0
-margin_right = 181.0
+margin_left = 24.0
+margin_right = 166.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
@@ -3595,32 +3697,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 185.0
-margin_right = 205.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_left = 170.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+40%"
+align = 2
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
 margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "CANNOT_ENGULF"
 ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
 ShowValue = false
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_top = 1.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 4.0
-margin_right = 132.0
+margin_left = 24.0
+margin_right = 152.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 27 )
@@ -3629,13 +3737,14 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 136.0
-margin_right = 156.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_left = 156.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+align = 2
 
 [node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource( 2 )]
 margin_top = 144.0
@@ -3660,7 +3769,7 @@ Description = "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50
 
 [node name="MarginContainer" parent="GroupHolder/membraneSelection/calciumCarbonate" index="0"]
-margin_bottom = 288.0
+margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer" index="0"]
 margin_bottom = 281.0
@@ -3675,27 +3784,29 @@ visible = false
 visible = false
 
 [node name="ModifierList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="4"]
-margin_top = 42.0
-margin_bottom = 206.0
+margin_top = 46.0
+margin_bottom = 210.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 36.0
-margin_right = 109.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -3703,34 +3814,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 113.0
-margin_right = 133.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-30%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 36.0
-margin_right = 224.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -3738,33 +3853,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 228.0
-margin_right = 248.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-30%"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-30%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 36.0
-margin_right = 271.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -3772,33 +3892,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 275.0
-margin_right = 295.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-30%"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+40"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 28.0
-margin_right = 87.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -3806,33 +3931,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 91.0
-margin_right = 111.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+40"
+align = 2
 
 [node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "PHYSICAL_RESISTANCE"
+ModifierIcon = ExtResource( 15 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-40%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 15 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 36.0
-margin_right = 204.0
+margin_left = 24.0
+margin_right = 191.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
@@ -3840,33 +3970,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 208.0
-margin_right = 228.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_left = 195.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-40%"
+align = 2
 
 [node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "TOXIN_RESISTANCE"
+ModifierIcon = ExtResource( 16 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+60%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 16 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 39.0
-margin_right = 182.0
+margin_left = 24.0
+margin_right = 166.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
@@ -3874,32 +4009,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 186.0
-margin_right = 206.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_left = 170.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+60%"
+align = 2
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 144.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 164.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "CANNOT_ENGULF"
 ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
 ShowValue = false
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_top = 1.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 4.0
-margin_right = 132.0
+margin_left = 24.0
+margin_right = 152.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 27 )
@@ -3908,21 +4049,22 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 136.0
-margin_right = 156.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_left = 156.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
-margin_top = 221.0
-margin_bottom = 225.0
+margin_top = 225.0
+margin_bottom = 229.0
 
 [node name="Description" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="6"]
-margin_top = 240.0
-margin_bottom = 257.0
+margin_top = 244.0
+margin_bottom = 266.0
 
 [node name="silica" parent="GroupHolder/membraneSelection" instance=ExtResource( 5 )]
 visible = false
@@ -3953,23 +4095,25 @@ margin_top = 46.0
 margin_bottom = 210.0
 
 [node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="0"]
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 20.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "BASE_MOBILITY"
+ModifierIcon = ExtResource( 7 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-20%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 36.0
-margin_right = 109.0
+margin_left = 24.0
+margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "MOBILITY"
@@ -3977,34 +4121,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
-margin_left = 113.0
-margin_right = 133.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-texture = ExtResource( 6 )
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
+margin_left = 101.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+align = 2
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 44.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
+ModifierIcon = ExtResource( 3 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-30%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 36.0
-margin_right = 223.0
+margin_left = 24.0
+margin_right = 211.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "OSMOREGULATION_COST"
@@ -4012,33 +4160,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
-margin_left = 227.0
-margin_right = 247.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 215.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-30%"
+align = 2
 
 [node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2"]
 margin_top = 48.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 68.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
+ModifierIcon = ExtResource( 11 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-30%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 36.0
-margin_right = 271.0
+margin_left = 24.0
+margin_right = 259.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "RESOURCE_ABSORBTION_SPEED"
@@ -4046,33 +4199,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
-margin_left = 275.0
-margin_right = 295.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/resourceAbsorptionSpeed"]
+margin_left = 263.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-30%"
+align = 2
 
 [node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 72.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 92.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "HEALTH"
+ModifierIcon = ExtResource( 13 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_top = 1.0
-margin_right = 24.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+40"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 13 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 28.0
-margin_right = 86.0
+margin_left = 24.0
+margin_right = 82.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "HEALTH"
@@ -4080,33 +4238,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/health"]
-margin_left = 90.0
-margin_right = 110.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/health"]
+margin_left = 86.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+40"
+align = 2
 
 [node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 96.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 116.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "PHYSICAL_RESISTANCE"
+ModifierIcon = ExtResource( 15 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_top = 1.0
-margin_right = 35.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "+60%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 15 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 39.0
-margin_right = 206.0
+margin_left = 24.0
+margin_right = 191.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "PHYSICAL_RESISTANCE"
@@ -4114,33 +4277,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
-margin_left = 210.0
-margin_right = 230.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/physicalResistance"]
+margin_left = 195.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+60%"
+align = 2
 
 [node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 120.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 140.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "TOXIN_RESISTANCE"
+ModifierIcon = ExtResource( 16 )
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_top = 1.0
-margin_right = 32.0
-margin_bottom = 18.0
-custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
-custom_fonts/font = ExtResource( 26 )
-text = "-40%"
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+texture = ExtResource( 16 )
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 36.0
-margin_right = 178.0
+margin_left = 24.0
+margin_right = 166.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "TOXIN_RESISTANCE"
@@ -4148,32 +4316,38 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
-margin_left = 182.0
-margin_right = 202.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/toxinResistance"]
+margin_left = 170.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-40%"
+align = 2
 
 [node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 144.0
-margin_right = 318.0
+margin_right = 333.0
 margin_bottom = 164.0
 mouse_filter = 2
+size_flags_horizontal = 3
 script = ExtResource( 21 )
 DisplayName = "CANNOT_ENGULF"
 ModifierNameColor = Color( 1, 0.301961, 0.301961, 1 )
 ShowValue = false
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_top = 1.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 26 )
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 4.0
-margin_right = 132.0
+margin_left = 24.0
+margin_right = 152.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 27 )
@@ -4182,13 +4356,14 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
-margin_left = 136.0
-margin_right = 156.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-mouse_filter = 2
-expand = true
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/canEngulf"]
+margin_left = 156.0
+margin_top = 1.0
+margin_right = 333.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 26 )
+align = 2
 
 [node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
 margin_top = 225.0
