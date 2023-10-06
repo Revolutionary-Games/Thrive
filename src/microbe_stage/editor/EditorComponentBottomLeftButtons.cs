@@ -101,6 +101,8 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     public TextureButton RedoButton { get; private set; } = null!;
 
+    public bool SymmetryLocked { get; set; }
+
     public bool UndoEnabled { get => !UndoButton.Disabled; set => UndoButton.Disabled = !value; }
     public bool RedoEnabled { get => !RedoButton.Disabled; set => RedoButton.Disabled = !value; }
     public bool SymmetryEnabled { get => !symmetryButton.Disabled; set => symmetryButton.Disabled = !value; }
