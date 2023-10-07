@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Font = Godot.Font;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
