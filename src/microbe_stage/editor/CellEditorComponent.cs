@@ -1628,8 +1628,8 @@ public partial class CellEditorComponent :
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
 
-        HexEditorSymmetry? overrideSymmetry = componentBottomLeftButtons.SymmetryEnabled
-            ? null : HexEditorSymmetry.None;
+        HexEditorSymmetry? overrideSymmetry = 
+            componentBottomLeftButtons.SymmetryEnabled ? null : HexEditorSymmetry.None;
 
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
