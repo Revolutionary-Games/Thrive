@@ -35,6 +35,7 @@ layer = 128
 script = ExtResource( 23 )
 
 [node name="GroupHolder" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1349,6 +1350,7 @@ margin_bottom = 40.0
 mouse_filter = 2
 
 [node name="single" parent="GroupHolder/membraneSelection" instance=ExtResource( 5 )]
+visible = false
 DisplayName = "NORMAL"
 Description = "NORMAL_MEMBRANE_DESCRIPTION"
 MutationPointCost = 50

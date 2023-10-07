@@ -98,6 +98,7 @@ public class ModifierInfoLabel : HBoxContainer
         UpdateName();
         UpdateValue();
         UpdateIcon();
+        AdjustSize(40.0f);
     }
 
     /// <summary>
@@ -126,6 +127,12 @@ public class ModifierInfoLabel : HBoxContainer
         {
             ModifierValueColor = inverted ? new Color(0, 1, 0) : new Color(1, 0.3f, 0.3f);
         }
+    }
+
+    private void AdjustSize(float size)
+    {
+        if (valueLabel != null)
+            valueLabel!.RectMinSize = new(size, 20.0f);
     }
 
     private void UpdateName()
