@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -118,7 +117,7 @@ public partial class CellBodyPlanEditorComponent :
     [JsonProperty]
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
-    private List<Label> orderNumberLabels = new List<Label>();
+    private List<Label> orderNumberLabels = new();
 
     /// <summary>
     ///   True when visuals of already placed things need to be updated

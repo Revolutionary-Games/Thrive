@@ -216,6 +216,10 @@ public abstract class HexLayout<T> : ICollection<T>
     /// <summary>
     ///   Loops though all hexes and checks if there any without connection to the rest.
     /// </summary>
+    /// <param name="cutoff">
+    ///   The highest index in that should be considered, or -1 if everything should be considered.
+    ///   This is used to check for islands in a certain subset of hexes.
+    /// </param>
     /// <returns>
     ///   Returns a list of hexes that are not connected to the rest
     /// </returns>
@@ -242,6 +246,10 @@ public abstract class HexLayout<T> : ICollection<T>
     /// <summary>
     ///   Computes all the hex positions
     /// </summary>
+    /// <param name="cutoff">
+    ///   The highest index in that should be considered, or -1 if everything should be considered.
+    ///   This is used to check for islands in a certain subset of hexes.
+    /// </param>
     /// <returns>The set of hex positions</returns>
     public HashSet<Hex> ComputeHexCache(int cutoff = -1)
     {
@@ -250,6 +258,7 @@ public abstract class HexLayout<T> : ICollection<T>
 
         var set = new HashSet<Hex>();
 
+        // Only take hexes up to the cutoff to allow checking for islands in a subset of hexes
         foreach (var hex in existingHexes.Take(cutoff + 1).SelectMany(o => GetHexComponentPositions(o)
                      .Select(h => h + o.Position)))
         {
@@ -265,6 +274,10 @@ public abstract class HexLayout<T> : ICollection<T>
     ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
     /// </summary>
     /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
+    /// <param name="cutoff">
+    ///   The highest index in that should be considered, or -1 if everything should be considered.
+    ///   This is used to check for islands in a certain subset of hexes.
+    /// </param>
     private void CheckmarkNeighbors(List<Hex> @checked, int cutoff = -1)
     {
         var hexCache = ComputeHexCache(cutoff);
