@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Handles showing and changing the order in which cells in an early multicellular creature will divide.
