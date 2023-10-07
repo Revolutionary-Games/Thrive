@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -92,7 +92,7 @@ msgstr "{0} z populacją: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "Potwierdź Wyjście"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Ruchliwość"
 
@@ -147,7 +147,7 @@ msgstr ""
 "Pokojowe mikroby nie będą zaczynać pościgu na długie odległości\n"
 "i mniej chętnie używają toksyn przeciwko drapieżnikom."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Agresja"
 
@@ -490,7 +490,7 @@ msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "Zacznij żyć"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -605,7 +605,7 @@ msgstr "Biom: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Odwaga"
 
@@ -664,7 +664,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Anuluj"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -675,12 +675,12 @@ msgstr "ANULUJ AKCJĘ"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Anuluj aktualną czynność"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Rodzaj komórki, który jest obecnie używany w twoim organizmie, nie może zostać usunięty"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Nie Można Usunąć Użytego Typu Komórki"
@@ -745,7 +745,7 @@ msgstr "Trochę"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "Prawie Wcale"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Uważność"
 
@@ -753,7 +753,7 @@ msgstr "Uważność"
 msgid "CELL"
 msgstr "Komórka"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Komórki"
@@ -774,6 +774,15 @@ msgstr "Celulozowa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Dołącz do naszego serwera Discord"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1324,11 +1333,11 @@ msgstr "Stwórz nowego mikroba"
 msgid "CREATE_NEW"
 msgstr "Stwórz Nowy"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Stwórz Nowy Typ Komórki"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone komórki tego typu zostaną zaktualizowane."
 
@@ -1484,7 +1493,7 @@ msgstr "Grudzień"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1691,11 +1700,11 @@ msgstr "Odrzuć i kontynuuj"
 msgid "DISCARD_CHANGES"
 msgstr "Odrzuć Zmiany"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Niepołączone Komórki"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Niektóre komórki nie są połączone do reszty organizmu.\n"
@@ -1792,7 +1801,7 @@ msgstr "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebu
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Powiel Typ"
@@ -2179,7 +2188,7 @@ msgstr ""
 "Inicjalizacja biblioteki klienckiej Steam nie powiodła się. Funkcje Steam będą niedostępne.\n"
 "Upewnij się że Steam jest uruchomiony oraz jesteś zalogowany na odpowiednim koncie. Uruchom grę przez bibliotekę Steam jeśli problem będzie dalej się pojawiał."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Płochliwość"
 
@@ -2300,7 +2309,7 @@ msgstr "Płynna"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Płynność / Sztywność"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Skupienie"
 
@@ -3936,7 +3945,7 @@ msgstr "Modyfikuj"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modyfikuj Organellę"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Modyfikuj Typ"
@@ -4335,17 +4344,17 @@ msgstr "Możesz zmieniać opcje wydajności kiedy chcesz w [color=#3796e1][url=t
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Mój Wspaniały Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Nowa Nazwa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Nowe imię:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4635,7 +4644,7 @@ msgstr ""
 "i będą polować toksynami na zdobycz, jeżeli jest za duża aby pochłonąć ją na drodze fagocytozy.\n"
 "Uważne mikroby będą unikać niebezpiecznej rywalizacji o pożywienie."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Oportunizm"
 
@@ -4923,7 +4932,7 @@ msgstr "Wczytywanie pliku pck ({0}) się nie powiodło"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie istnieje"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Pokojowość"
 
@@ -5241,7 +5250,7 @@ msgstr "Zgłoś Buga"
 msgid "REPRODUCED"
 msgstr "Rozmnożyły się"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Rozmnażanie"
@@ -5251,12 +5260,12 @@ msgstr "Rozmnażanie"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Aseksualne"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pączkowanie"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
@@ -5346,7 +5355,7 @@ msgstr "Zobacz Kod Źródłowy"
 msgid "RESPIRATION"
 msgstr "Oddychanie Tlenowe"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Responsywność"
 
@@ -5736,7 +5745,7 @@ msgstr "Wybrane:"
 msgid "SEPTEMBER"
 msgstr "Wrzesień"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "Osiadłość"
 
@@ -6180,7 +6189,7 @@ msgstr "Rygorystyczna konkurencja nisz (różnice w sprawności są przesadzone)
 msgid "STRUCTURAL"
 msgstr "Strukturalne"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6281,6 +6290,10 @@ msgstr "Przełącz do kamery z góry"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "Wymagania Systemowe"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

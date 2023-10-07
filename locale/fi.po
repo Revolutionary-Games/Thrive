@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2023-08-29 08:18+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -95,7 +95,7 @@ msgstr "{0} populaatiolla: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "Vahvista poistuminen"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Aktiivinen"
 
@@ -154,7 +154,7 @@ msgstr ""
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Agressiivinen"
 
@@ -505,7 +505,7 @@ msgstr "Muutu Monisoluiseksi ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "Aloita selviytyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -625,7 +625,7 @@ msgstr "Biomi: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuroni"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Rohkea"
 
@@ -686,7 +686,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -697,12 +697,12 @@ msgstr "PERU"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Peruuta nykyinen toimenpide"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Soluelimen tyyppiä ei voi poistaa"
@@ -769,7 +769,7 @@ msgstr "hieman"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "erittäin vähän"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Varovainen"
 
@@ -777,7 +777,7 @@ msgstr "Varovainen"
 msgid "CELL"
 msgstr "Solu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Solut"
@@ -800,6 +800,15 @@ msgstr "Selluloosa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1358,11 +1367,11 @@ msgstr "Luo uusi mikrobi"
 msgid "CREATE_NEW"
 msgstr "Luo uusi tallennus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Luo uusi soluelin"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
@@ -1513,7 +1522,7 @@ msgstr "Joulukuu"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Oletus ulostulolaite"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1727,12 +1736,12 @@ msgstr "Hylkää ja jatka"
 msgid "DISCARD_CHANGES"
 msgstr "Hylkää ja jatka"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
@@ -1839,7 +1848,7 @@ msgstr ""
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Kopioi tyyppi"
@@ -2267,7 +2276,7 @@ msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Pelokas"
 
@@ -2394,7 +2403,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Valuvuus / jäykkyys"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Keskittynyt"
 
@@ -4074,7 +4083,7 @@ msgstr "Muokkaa"
 msgid "MODIFY_ORGANELLE"
 msgstr "Muokkaa soluelintä"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Vaihda tyyppiä"
@@ -4479,17 +4488,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Uusi nimi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Uusi nimi:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4782,7 +4791,7 @@ msgstr ""
 "todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
 "Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistinen"
 
@@ -5088,7 +5097,7 @@ msgstr "Lataus on valmistunut"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Lataus on valmistunut"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Rauhallinen"
 
@@ -5418,7 +5427,7 @@ msgstr "Raportti"
 msgid "REPRODUCED"
 msgstr "jatkoi sukuaan"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Lisääntyminen"
@@ -5429,12 +5438,12 @@ msgstr "Lisääntyminen"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Lisääntyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
@@ -5527,7 +5536,7 @@ msgstr "Katsele lähdekoodia"
 msgid "RESPIRATION"
 msgstr "Soluhengitys"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Reagoiva"
 
@@ -5938,7 +5947,7 @@ msgstr "Valittu:"
 msgid "SEPTEMBER"
 msgstr "Syyskuu"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "Sessiili"
 
@@ -6412,7 +6421,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6513,6 +6522,10 @@ msgstr ""
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

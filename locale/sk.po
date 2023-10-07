@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -95,7 +95,7 @@ msgstr "Celková populácia:"
 msgid "ACTION_TELEPORT"
 msgstr "Potvrdiť ukončenie"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Aktívny"
 
@@ -146,7 +146,7 @@ msgstr "{0} {1}"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Agresívny"
 
@@ -485,7 +485,7 @@ msgstr "Stať sa viacbunkovým ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "Začať prosperovať"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -606,7 +606,7 @@ msgstr "Bióm: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Odvážny"
 
@@ -667,7 +667,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Zrušiť"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -678,12 +678,12 @@ msgstr "ZRUŠIŤ AKCIU"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Zrušiť akciu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Nemožno odstrániť typ bunky, ktorý momentálne používaš"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Nemožno odstrániť použitý typ bunky"
@@ -749,7 +749,7 @@ msgstr "trochu"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "veľmi málo"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Opatrný"
 
@@ -757,7 +757,7 @@ msgstr "Opatrný"
 msgid "CELL"
 msgstr "Bunka"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Bunky"
@@ -778,6 +778,15 @@ msgstr "Celulóza"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Uplynulý čas: {0:#,#} rokov"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1315,11 +1324,11 @@ msgstr "Vytvoriť nového mikróba"
 msgid "CREATE_NEW"
 msgstr "Vytvoriť nový"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Vytvoriť nový typ bunky"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Nové typy buniek môžeš vytvoriť duplikovaním existujúcich a pomenovaním ich. Typy buniek je možné upraviť tak, aby sa špecializovali na rôzne roly. Pri úprave typu bunky sa všetky umiestnené bunky toho istého typu aktualizujú."
 
@@ -1462,7 +1471,7 @@ msgstr "December"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1658,11 +1667,11 @@ msgstr "Zahodiť a pokračovať"
 msgid "DISCARD_CHANGES"
 msgstr "Zrušiť zmeny"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Odpojené bunky"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr "Sú tu bunky, ktoré nie sú spojené s ostatnými. Prosím spoj všetky bunky, aby si mohol pokračovať."
 
@@ -1757,7 +1766,7 @@ msgstr ""
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Duplikovať typ"
@@ -2151,7 +2160,7 @@ msgstr "Chyba: Nepodarilo sa uložiť nové nastavenia."
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Bojazlivý"
 
@@ -2288,7 +2297,7 @@ msgstr "Tekutina"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tekutosť / Tuhosť"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Sústredený"
 
@@ -3888,7 +3897,7 @@ msgstr "Upraviť"
 msgid "MODIFY_ORGANELLE"
 msgstr "Upraviť organelu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Upraviť typ"
@@ -4279,17 +4288,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Nové meno"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Nové meno:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4577,7 +4586,7 @@ msgstr "POZASTAVENÉ"
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Oportunistický"
 
@@ -4877,7 +4886,7 @@ msgstr "Načítanie súboru pck ({0}) zlyhalo"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Načítanie súboru pck ({0}) zlyhalo"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Mierumilovný"
 
@@ -5203,7 +5212,7 @@ msgstr ""
 msgid "REPRODUCED"
 msgstr "reprodukované"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Reprodukcia"
@@ -5213,12 +5222,12 @@ msgstr "Reprodukcia"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexuálne"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučanie"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukcia:"
@@ -5311,7 +5320,7 @@ msgstr "Zobraziť zdrojový kód"
 msgid "RESPIRATION"
 msgstr "Aeróbne Dýchanie"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Reagujúci"
 
@@ -5705,7 +5714,7 @@ msgstr "Vybrané:"
 msgid "SEPTEMBER"
 msgstr "September"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr ""
 
@@ -6149,7 +6158,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr "Štrukturálny"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6250,6 +6259,10 @@ msgstr "Prepnúť na pohľad hornej kamery"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

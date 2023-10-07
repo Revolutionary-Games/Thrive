@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -87,7 +87,7 @@ msgstr "使人口减半"
 msgid "ACTION_TELEPORT"
 msgstr "传送"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "活泼"
 
@@ -144,7 +144,7 @@ msgstr ""
 "和平型微生物不会在意更远距离的其它微生物，\n"
 "并且不太可能使用毒素来对付捕食者。"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "激进"
 
@@ -493,7 +493,7 @@ msgstr "成为多细胞（{0}/{1}）"
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -607,7 +607,7 @@ msgstr "生物群系：{0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "勇敢"
 
@@ -665,7 +665,7 @@ msgstr "视角"
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -676,12 +676,12 @@ msgstr "取消"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消当前动作"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "在你的躯体设计中正被使用的细胞类型无法被删除"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "无法删除已使用的细胞类型"
@@ -746,7 +746,7 @@ msgstr "中等"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "谨慎"
 
@@ -754,7 +754,7 @@ msgstr "谨慎"
 msgid "CELL"
 msgstr "细胞"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "细胞"
@@ -775,6 +775,15 @@ msgstr "纤维素"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "以逗号分隔符（csv）格式导出所有世界数据"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1310,11 +1319,11 @@ msgstr "创建一个新微生物"
 msgid "CREATE_NEW"
 msgstr "创建新的Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "创建新细胞类型"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "你可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
 
@@ -1470,7 +1479,7 @@ msgstr "十二月"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1678,11 +1687,11 @@ msgstr "放弃更改并继续"
 msgid "DISCARD_CHANGES"
 msgstr "放弃更变"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "未连接的细胞"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "有一些细胞没有连接到其它细胞上。\n"
@@ -1781,7 +1790,7 @@ msgstr "有两层的细胞膜，对伤害有更好的防护能力，也不需要
 msgid "DUMP_SCENE_TREE"
 msgstr "转储SceneTree"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
@@ -2168,7 +2177,7 @@ msgstr "错误：无法将新设置保存到配置文件。"
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "未能删除化石文件"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "胆小"
 
@@ -2287,7 +2296,7 @@ msgstr "流质"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流动性/刚性"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "专注"
 
@@ -3903,7 +3912,7 @@ msgstr "修改"
 msgid "MODIFY_ORGANELLE"
 msgstr "修改细胞器"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
@@ -4300,17 +4309,17 @@ msgstr "注意：您可以随时在[color=#3796e1][url=thrive://GUI/OptionsMenu/
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我的绝棒的Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "新名称"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "新名称："
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4595,7 +4604,7 @@ msgstr ""
 "并且会在猎物过大无法吞噬的情况下使用毒素攻击。\n"
 "谨慎型微生物则不大可能冒风险争夺物质块。"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "机会主义"
 
@@ -4886,7 +4895,7 @@ msgstr "pck文件（{0}）载入失败"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "pck文件（{0}）因不存在载入失败"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "和平"
 
@@ -5209,7 +5218,7 @@ msgstr "报告一个bug"
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "繁殖"
@@ -5219,12 +5228,12 @@ msgstr "繁殖"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "无性繁殖"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -5309,7 +5318,7 @@ msgstr "木材"
 msgid "RESPIRATION"
 msgstr "有氧呼吸作用"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "应变"
 
@@ -5705,7 +5714,7 @@ msgstr "选中的："
 msgid "SEPTEMBER"
 msgstr "九月"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "沉着"
 
@@ -6141,7 +6150,7 @@ msgstr "严格的生态位竞争（适应性差异被夸大）"
 msgid "STRUCTURAL"
 msgstr "结构"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6241,6 +6250,10 @@ msgstr "切换到俯视图"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "键盘SysRq键"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

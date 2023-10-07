@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -97,7 +97,7 @@ msgstr "{0} kun loĝantaro: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "KONFIRMU"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr "Kaverno"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr "Komencu Prosperadon(Thriving)"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 #, fuzzy
@@ -632,7 +632,7 @@ msgstr "Biomo: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr ""
 
@@ -693,7 +693,7 @@ msgstr "Kamerao"
 msgid "CANCEL"
 msgstr "Nuligi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 #, fuzzy
@@ -705,12 +705,12 @@ msgstr "KONFIRMU"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
@@ -776,7 +776,7 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr ""
 
@@ -785,7 +785,7 @@ msgstr ""
 msgid "CELL"
 msgstr "Celulozo"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 #, fuzzy
 msgid "CELLS"
@@ -809,6 +809,15 @@ msgstr "Celulozo"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ĉi tiu membrano havas muron, kio rezultigas pli bonan protekton kontraŭ ĝenerala damaĝo kaj precipe kontraŭ fizika damaĝo. Ankaŭ kostas malpli da energio konservi sian formon, sed ne povas absorbi aĵojn rapide kaj estas pli malrapida."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Aldonunovan funkcion por klavo"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1372,12 +1381,12 @@ msgstr "Kreu novan mikrobon"
 msgid "CREATE_NEW"
 msgstr "Kreu Novan Konservadon"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Kreu Novan Konservadon"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
@@ -1525,7 +1534,7 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1734,12 +1743,12 @@ msgstr "Forĵetu kaj"
 msgid "DISCARD_CHANGES"
 msgstr "Forĵetu kaj"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Malkonektitaj Organetoj"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
@@ -1845,7 +1854,7 @@ msgstr "Membrano kun du tavoloj, ĝi havas pli bonan protekton kontraŭ damaĝo 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 #, fuzzy
 msgid "DUPLICATE_TYPE"
@@ -2259,7 +2268,7 @@ msgstr "Eraro: Malsukcesis konservi novajn agordojn en agorda dosiero."
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr ""
 
@@ -2382,7 +2391,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flueco / Rigideco"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr ""
 
@@ -4071,7 +4080,7 @@ msgstr "Modifi"
 msgid "MODIFY_ORGANELLE"
 msgstr "Forigu organeton"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 #, fuzzy
 msgid "MODIFY_TYPE"
@@ -4476,19 +4485,19 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Nova ludo"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Rapideco:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4793,7 +4802,7 @@ msgstr "Nuligita."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr ""
 
@@ -5105,7 +5114,7 @@ msgstr "Ŝarĝo estas finita"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Ŝarĝo estas finita"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr ""
 
@@ -5439,7 +5448,7 @@ msgstr "Ra"
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 #, fuzzy
 msgid "REPRODUCTION"
@@ -5451,13 +5460,13 @@ msgstr "ATP-Produktado"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "ATP-Produktado"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "reproduktis"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -5552,7 +5561,7 @@ msgstr "Rigardi Fontkodon"
 msgid "RESPIRATION"
 msgstr "Spirado"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr ""
 
@@ -5968,7 +5977,7 @@ msgstr "Elektita(j):"
 msgid "SEPTEMBER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr ""
 
@@ -6459,7 +6468,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr "Struktura"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6560,6 +6569,10 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273

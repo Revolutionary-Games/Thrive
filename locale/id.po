@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -93,7 +93,7 @@ msgstr "{0} dengan populasi: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "Konfirmasi Keluar"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr "Gua"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr ""
 
@@ -490,7 +490,7 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr "Mulai Berkembang"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -611,7 +611,7 @@ msgstr "Bioma: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr ""
 
@@ -672,7 +672,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Batal"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -683,12 +683,12 @@ msgstr "BATAL TINDAKAN"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Batal tindakan ini"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Sel ini merupakan bagian dari organisme anda dan tidak dapat dihilangkan"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Tidak Dapat Menghilangkan Sel Yang Sedang Dipakai"
@@ -754,7 +754,7 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr ""
 
@@ -763,7 +763,7 @@ msgstr ""
 msgid "CELL"
 msgstr "Selulosa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Sel-sel"
@@ -785,6 +785,15 @@ msgstr "Selulosa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1333,11 +1342,11 @@ msgstr "Buat mikroba baru"
 msgid "CREATE_NEW"
 msgstr "Buat Save Baru"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Buat Sel Baru"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Kamu dapat membuat jenis sel baru dan memberinya nama yang baru dengan menduplikasi sel yang sudah ada. Sel-sel ini dapat dimodifikasi untuk mengkhususkan mereka untuk melakukan peranan-peranan yang berbeda. Ketika sebuah sel diubah, maka semua sel dengan jenis itu akan diperbarui."
 
@@ -1484,7 +1493,7 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output bawaan"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1694,11 +1703,11 @@ msgstr "Buang dan lanjut"
 msgid "DISCARD_CHANGES"
 msgstr "Buang dan lanjut"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Sel-sel Terputus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Ada sel yang tidak tersambung.\n"
@@ -1802,7 +1811,7 @@ msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Gandakan Tipe"
@@ -2216,7 +2225,7 @@ msgstr ""
 "Gagal memperbarui save karena error berikut:\n"
 "{0}"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr ""
 
@@ -2354,7 +2363,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Kelenturan / Ketegaran"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr ""
 
@@ -4011,7 +4020,7 @@ msgstr "Ubah"
 msgid "MODIFY_ORGANELLE"
 msgstr "Hapus organel"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Ubah Tipe"
@@ -4414,17 +4423,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Nama Baru"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Nama Baru:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4719,7 +4728,7 @@ msgstr "Dijeda."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr ""
 
@@ -5029,7 +5038,7 @@ msgstr "Selesai memuat"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Selesai memuat"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr ""
 
@@ -5358,7 +5367,7 @@ msgstr "Laporan"
 msgid "REPRODUCED"
 msgstr "bereproduksi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Reproduksi"
@@ -5369,12 +5378,12 @@ msgstr "Reproduksi"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Produksi ATP"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tunas"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
@@ -5468,7 +5477,7 @@ msgstr "Lihat Kode Sumber"
 msgid "RESPIRATION"
 msgstr "Respirasi Aerob"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr ""
 
@@ -5879,7 +5888,7 @@ msgstr "Terpilih:"
 msgid "SEPTEMBER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr ""
 
@@ -6350,7 +6359,7 @@ msgstr "Kompetisi relung yang ketat (perbedaan fitness (kecocokan) yang dilebihk
 msgid "STRUCTURAL"
 msgstr "Struktural"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6452,6 +6461,10 @@ msgstr "Beralih ke tampilan kamera atas"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

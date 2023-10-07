@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2023-08-30 08:51+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -94,7 +94,7 @@ msgstr "{0}: {1} индивида"
 msgid "ACTION_TELEPORT"
 msgstr "Потвърждение за изход"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Енергично"
 
@@ -149,7 +149,7 @@ msgstr ""
 "Пасивните микроби не преследват пляката си на големи разстояния\n"
 "и са склонни да избягат, когато са нападнати."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Агресивно"
 
@@ -491,7 +491,7 @@ msgstr "Многоклетъчен организъм ({0} от {1})"
 msgid "BEGIN_THRIVING"
 msgstr "Започнете да процъфтявате"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -606,7 +606,7 @@ msgstr "Биом: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Неврон"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Безразсъдно"
 
@@ -667,7 +667,7 @@ msgstr "Камера"
 msgid "CANCEL"
 msgstr "Отказ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -678,12 +678,12 @@ msgstr "ОТКАЗ"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Анулиране на действието"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Тази клетка е част от формата на тялото и не може да бъде премахната"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Клетката не може да бъде премахната"
@@ -748,7 +748,7 @@ msgstr "в умерено количество"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Предпазливо"
 
@@ -756,7 +756,7 @@ msgstr "Предпазливо"
 msgid "CELL"
 msgstr "Клетка"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Клетки"
@@ -777,6 +777,15 @@ msgstr "Целулозна"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Експортиране на данните за всички светове като стойности, разделени с запетая в .csv формат"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1334,11 +1343,11 @@ msgstr "Създаване на нов микроб"
 msgid "CREATE_NEW"
 msgstr "Създаване на нов"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Създаване на нова клетка"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Може да създадете нови клетки с различно наименование чрез удвояване на съществуващите клетки. Свойствата на клетките могат да бъдат променени, за да изпълняват различни функции. Когато дадена клетка бъде променена, всички клетки от нейния вид ще бъдат обновени."
 
@@ -1494,7 +1503,7 @@ msgstr "Декември"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1700,11 +1709,11 @@ msgstr "Отхвърляне и продължаване"
 msgid "DISCARD_CHANGES"
 msgstr "Отхвърляне на промените"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Несвързани клетки"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Има клетки, които не са свързани с останалите.\n"
@@ -1806,7 +1815,7 @@ msgstr "Това е мембрана с два слоя, която осигур
 msgid "DUMP_SCENE_TREE"
 msgstr "Прочистване на възлите"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Удвояване"
@@ -2197,7 +2206,7 @@ msgstr "Грешка: Неуспешно запазване на промени�
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Плашливо"
 
@@ -2319,7 +2328,7 @@ msgstr "Мека"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Свойства"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Вглъбено"
 
@@ -3956,7 +3965,7 @@ msgstr "Свойства"
 msgid "MODIFY_ORGANELLE"
 msgstr "Свойства на органела"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Свойства"
@@ -4356,17 +4365,17 @@ msgstr "Важно: Ако имате проблеми с производите
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Моята невероятна модификация"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Наименование"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Наименование:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4654,7 +4663,7 @@ msgstr ""
 "и са склонни да използват токсини срещу по-големите микроби.\n"
 "Предпазливите микроби не се излагат на опасност за своята плячка."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Самонадеяно"
 
@@ -4948,7 +4957,7 @@ msgstr "Зареждането на основния файл „{0}“ е не�
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Зареждането на основния файл „{0}“ е неуспешно, защото файлът не съществува"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Пасивно"
 
@@ -5273,7 +5282,7 @@ msgstr "Неизправности"
 msgid "REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Възпроизвеждане"
@@ -5283,12 +5292,12 @@ msgstr "Възпроизвеждане"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Асексуално"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Пъпкуване"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
@@ -5375,7 +5384,7 @@ msgstr "Дървесина"
 msgid "RESPIRATION"
 msgstr "Аеробно дишане"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Бдително"
 
@@ -5773,7 +5782,7 @@ msgstr "Избрани:"
 msgid "SEPTEMBER"
 msgstr "Септември"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "Мудно"
 
@@ -6214,7 +6223,7 @@ msgstr "Стриктно съперничество (разликите межд
 msgid "STRUCTURAL"
 msgstr "Строеж"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6315,6 +6324,10 @@ msgstr "Превключване на горната камера"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "Клавиш „SysRq“"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

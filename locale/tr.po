@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2023-09-29 06:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -87,7 +87,7 @@ msgstr "Popülasyonu Yarıya İndir"
 msgid "ACTION_TELEPORT"
 msgstr "Işınlan"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Hareketli"
 
@@ -142,7 +142,7 @@ msgstr ""
 "Barışçıl mikroplar, çok uzun mesafelerdeki mikroplarla uğraşmazlar,\n"
 "yırtıcılara karşı toksin kullanmaları ise düşük ihtimaldir."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Saldırgan"
 
@@ -491,7 +491,7 @@ msgstr "Çok Hücreli Ol ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "İlerlemeye Başla"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -605,7 +605,7 @@ msgstr "Biyom: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Cesur"
 
@@ -663,7 +663,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "İptal"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -674,12 +674,12 @@ msgstr "EYLEMİ İPTAL ET"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Mevcut eylemi iptal et"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Beden planında mevcut olarak kullanılan bir hücre türü silinemez"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kullanılan Hücre Türü Silinemez"
@@ -744,7 +744,7 @@ msgstr "biraz"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "çok az miktarda"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Temkinli"
 
@@ -752,7 +752,7 @@ msgstr "Temkinli"
 msgid "CELL"
 msgstr "Hücre"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Hücreler"
@@ -773,6 +773,15 @@ msgstr "Selüloz"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Tüm dünyaların verilerini virgülle ayrılmış değerler (csv) biçiminde dışa aktarın"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1307,11 +1316,11 @@ msgstr "Yeni bir mikrop oluştur"
 msgid "CREATE_NEW"
 msgstr "Yeni Oluştur"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Yeni Hücre Türü Oluştur"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsiniz. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
@@ -1467,7 +1476,7 @@ msgstr "Aralık"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1675,11 +1684,11 @@ msgstr "Yoksay ve devam et"
 msgid "DISCARD_CHANGES"
 msgstr "Değişiklikleri Yoksay"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Bağlı Olmayan Hücreler"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Birbirine bağlı olmayan bir ya da daha fazla hücre var.\n"
@@ -1778,7 +1787,7 @@ msgstr "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidi
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree dökümünü al"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Türü Kopyala"
@@ -2162,7 +2171,7 @@ msgstr "Hata: Kayıt silme başarısız"
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Kayıt dosyası silinemedi."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Kaygılı"
 
@@ -2281,7 +2290,7 @@ msgstr "Akışkan"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Akışkanlık / Sertlik"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Odaklı"
 
@@ -3896,7 +3905,7 @@ msgstr "Değişiklik Yap"
 msgid "MODIFY_ORGANELLE"
 msgstr "Organelde Değişiklik Yap"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Türde Değişiklik Yap"
@@ -4292,17 +4301,17 @@ msgstr "Not: Oyunun performansını arttırmak için performans ile ilgili ayarl
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Benim Harika Modum"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Yeni İsim"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Yeni İsim:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4587,7 +4596,7 @@ msgstr ""
 "avlarını yutamadıklarında ise onları toksinler ile öldürürler.\n"
 "Temkinli mikroplar, büyük parçalar için hayatlarını tehlikeye atmayabilirler."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Fırsatçı"
 
@@ -4874,7 +4883,7 @@ msgstr "pck dosyasının ({0}) yüklenmesi başarısız"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "pck dosyasının ({0}) yüklenmesi başarısız çünkü dosya mevcut değil"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Barışçıl"
 
@@ -5197,7 +5206,7 @@ msgstr "Bir Hata Bildir"
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Üreme"
@@ -5207,12 +5216,12 @@ msgstr "Üreme"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Eşeysiz"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
@@ -5297,7 +5306,7 @@ msgstr "Odun"
 msgid "RESPIRATION"
 msgstr "Oksijenli Solunum"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Duyarlı"
 
@@ -5686,7 +5695,7 @@ msgstr "Kofulun depolayacağı bileşiği seçin:"
 msgid "SEPTEMBER"
 msgstr "Eylül"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "Durağan"
 
@@ -6121,7 +6130,7 @@ msgstr "Sıkı alan mücadelesi (uyum başarısı farklılıkları abartılı)"
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6221,6 +6230,10 @@ msgstr "Üst kamera görünümüne geç"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "SysRq"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

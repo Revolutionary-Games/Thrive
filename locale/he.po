@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -94,7 +94,7 @@ msgstr "{0} עם אוכלוסיה: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "אשר יציאה"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "פעיל"
 
@@ -151,7 +151,7 @@ msgstr ""
 "מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
 "ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "אגריסיבי"
 
@@ -485,7 +485,7 @@ msgstr "להפוך לרב-תאיים ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "התחל לשגשג"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -600,7 +600,7 @@ msgstr "ביומה: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "אמיץ"
 
@@ -661,7 +661,7 @@ msgstr "מצלמה"
 msgid "CANCEL"
 msgstr "ביטול"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -672,12 +672,12 @@ msgstr "בטל פעולה"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "בטל פעולה נוכחית"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "לא ניתן למחוק סוג תא הנמצא כרגע בשימוש כחלק מתוכנית גוף"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "לא ניתן למחוק סוג תא זה אשר בשימוש"
@@ -742,7 +742,7 @@ msgstr "כמה"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "קטן מאוד"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "זהיר"
 
@@ -750,7 +750,7 @@ msgstr "זהיר"
 msgid "CELL"
 msgstr "תא"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "תאים"
@@ -771,6 +771,15 @@ msgstr "תאית"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1311,11 +1320,11 @@ msgstr "צור מיקרוב חדש"
 msgid "CREATE_NEW"
 msgstr "יוצר חדש"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "יצירת סוג תא חדש"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "אתה יכול ליצור סוגי תא על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי תא בשביל להתמחותם לתפקידי שונים. בעת שינוי סוג התא כל אלו שממוקמים מאותו סוג גם יעודכנו."
 
@@ -1455,7 +1464,7 @@ msgstr "דצמבר"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "פלט ברירת מחדל"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1657,11 +1666,11 @@ msgstr "מחק והמשך"
 msgid "DISCARD_CHANGES"
 msgstr "בטל שינויים"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "תאים מנותקים"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "ישנם תאים שאינם מחוברים לשאר.\n"
@@ -1764,7 +1773,7 @@ msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מ
 msgid "DUMP_SCENE_TREE"
 msgstr "נטוש SceneTree"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "שכפל סוג"
@@ -2157,7 +2166,7 @@ msgstr "שגיאה: נכשל הניסיון לשמור ההגדרות החדשו
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "פחדן"
 
@@ -2300,7 +2309,7 @@ msgstr "גמיש"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "נזילות / קשיחות"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "ממוקד"
 
@@ -3950,7 +3959,7 @@ msgstr "לשנות"
 msgid "MODIFY_ORGANELLE"
 msgstr "שנה תפקוד אברון"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "שנה סוג"
@@ -4348,17 +4357,17 @@ msgstr "הערה: אתה יכול לשנות אפשריות שקושרות לב�
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "המוד המדהים שלי"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "שם חדש"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "שם חדש:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4648,7 +4657,7 @@ msgstr ""
 "וינסו לצוד את טרפם עם רעלנים אם הם לא יכולים לבלוע אותם.\n"
 "מיקרובים זהירים ינסו לא לסכן את עצמם על גושים."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "אופורטוניסטי"
 
@@ -4947,7 +4956,7 @@ msgstr "טעינת קבצי pck ({0}) נכשלה"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "טעינת קבצי pck ({0}) נכשלה בגלל שקובץ זה לא נמצא"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "שלוו"
 
@@ -5269,7 +5278,7 @@ msgstr "תסקיר"
 msgid "REPRODUCED"
 msgstr "התרבה"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "הולדה"
@@ -5279,12 +5288,12 @@ msgstr "הולדה"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "א-מינית"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "הנצה"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
@@ -5375,7 +5384,7 @@ msgstr "צפה בקוד מקור"
 msgid "RESPIRATION"
 msgstr "נשימה ארובית"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "מגיב"
 
@@ -5771,7 +5780,7 @@ msgstr "נבחרו:"
 msgid "SEPTEMBER"
 msgstr "ספטמבר"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "נייח"
 
@@ -6216,7 +6225,7 @@ msgstr "תחרות נישה קפדנית (הבדלי הכושר מוגזמים)"
 msgid "STRUCTURAL"
 msgstr "מִבְנִי"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6317,6 +6326,10 @@ msgstr "החלף לתצוגת מצלמה עליונה"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "מקש SysRq"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"

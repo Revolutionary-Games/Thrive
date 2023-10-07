@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -97,7 +97,7 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "ACTION_TELEPORT"
 msgstr "POTVRDI"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr "Pećina"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr ""
 
@@ -497,7 +497,7 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -617,7 +617,7 @@ msgstr ""
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr ""
 
@@ -678,7 +678,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Otkazati"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 #, fuzzy
@@ -690,12 +690,12 @@ msgstr "POTVRDI"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
@@ -761,7 +761,7 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "CELL"
 msgstr "Celuloza"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 #, fuzzy
 msgid "CELLS"
@@ -794,6 +794,15 @@ msgstr "Celuloza"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1352,12 +1361,12 @@ msgstr "Napravite novi mikrob"
 msgid "CREATE_NEW"
 msgstr "Napravite novi mikrob"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Napravite novi mikrob"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
@@ -1503,7 +1512,7 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1704,12 +1713,12 @@ msgstr "Odbaci i nastavi"
 msgid "DISCARD_CHANGES"
 msgstr "Odbaci i nastavi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Isključene Organele"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
@@ -1815,7 +1824,7 @@ msgstr "Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje e
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 #, fuzzy
 msgid "DUPLICATE_TYPE"
@@ -2216,7 +2225,7 @@ msgstr "Greška: Nije uspelo čuvanje novih postavki u konfiguracionoj datoteci.
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje u ćeliji. Sastoje se od nekoliko vezikula, manjih opnastih struktura koje se široko koriste u ćelijama za skladištenje, a koje su se stopile. Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste materije i druge supstance. Njihov oblik je tečan i može se razlikovati između ćelija."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr ""
 
@@ -2338,7 +2347,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tečnost / Rigidnost"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr ""
 
@@ -3953,7 +3962,7 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr "Maknite organelu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr ""
@@ -4349,19 +4358,19 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Nova igra"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Brzina:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4654,7 +4663,7 @@ msgstr "Prekinuto."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr ""
 
@@ -4959,7 +4968,7 @@ msgstr "Automatska-evolucija nije uspela"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Automatska-evolucija nije uspela"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr ""
 
@@ -5292,7 +5301,7 @@ msgstr "Izveštaj"
 msgid "REPRODUCED"
 msgstr "Proizvodi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 #, fuzzy
 msgid "REPRODUCTION"
@@ -5304,13 +5313,13 @@ msgstr "Proizvodi"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Proizvodi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "Proizvodi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -5405,7 +5414,7 @@ msgstr "Pogledajte Izvorni Kod"
 msgid "RESPIRATION"
 msgstr "Disanje"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr ""
 
@@ -5817,7 +5826,7 @@ msgstr "Zatvoriti opcije?"
 msgid "SEPTEMBER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr ""
 
@@ -6284,7 +6293,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr "Strukturni"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6385,6 +6394,10 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273

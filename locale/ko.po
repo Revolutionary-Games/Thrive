@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -93,7 +93,7 @@ msgstr "{0} 의 개체수: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "나가기 확인"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr "동굴"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr ""
 
@@ -489,7 +489,7 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr "Thrive 시작"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 #, fuzzy
@@ -613,7 +613,7 @@ msgstr "생태계: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr ""
 
@@ -674,7 +674,7 @@ msgstr "카메라"
 msgid "CANCEL"
 msgstr "취소"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 #, fuzzy
@@ -686,12 +686,12 @@ msgstr "확인"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "현재 동작 취소"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
@@ -757,7 +757,7 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr ""
 
@@ -766,7 +766,7 @@ msgstr ""
 msgid "CELL"
 msgstr "섬유소"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 #, fuzzy
 msgid "CELLS"
@@ -789,6 +789,15 @@ msgstr "섬유소"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1350,12 +1359,12 @@ msgstr "새 미생물 생성"
 msgid "CREATE_NEW"
 msgstr "새 저장 생성"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "새 저장 생성"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
@@ -1501,7 +1510,7 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1709,12 +1718,12 @@ msgstr "취소 및 계속"
 msgid "DISCARD_CHANGES"
 msgstr "취소 및 계속"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "단절된 세포기관"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
@@ -1820,7 +1829,7 @@ msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되�
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 #, fuzzy
 msgid "DUPLICATE_TYPE"
@@ -2230,7 +2239,7 @@ msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하�
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr ""
 
@@ -2350,7 +2359,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "유동성 / 강도"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr ""
 
@@ -4013,7 +4022,7 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr "세포 기관 제거"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr ""
@@ -4411,19 +4420,19 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "새 게임"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "속도:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4724,7 +4733,7 @@ msgstr "일시 정지됨."
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr ""
 
@@ -5034,7 +5043,7 @@ msgstr "불러오기 완료"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "불러오기 완료"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr ""
 
@@ -5364,7 +5373,7 @@ msgstr "보고"
 msgid "REPRODUCED"
 msgstr "생산"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 #, fuzzy
 msgid "REPRODUCTION"
@@ -5376,13 +5385,13 @@ msgstr "ATP 생산"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "ATP 생산"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "생산"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -5477,7 +5486,7 @@ msgstr "소스 코드 보기"
 msgid "RESPIRATION"
 msgstr "호흡"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr ""
 
@@ -5895,7 +5904,7 @@ msgstr "선택됨:"
 msgid "SEPTEMBER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr ""
 
@@ -6361,7 +6370,7 @@ msgstr "엄격한 생태적 지위 경쟁 (적합도 차이가 과장됨)"
 msgid "STRUCTURAL"
 msgstr "구조의"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6462,6 +6471,10 @@ msgstr "상향 카메라 보기로 전환"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273

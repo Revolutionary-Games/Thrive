@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-29 15:08+0300\n"
+"POT-Creation-Date: 2023-10-07 11:53-0400\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -95,7 +95,7 @@ msgstr "{0} amb població: {1}"
 msgid "ACTION_TELEPORT"
 msgstr "Confirmar Sortida"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
 msgid "ACTIVE"
 msgstr "Actiu"
 
@@ -152,7 +152,7 @@ msgstr ""
 "Els microbis pacífics desistiran de perseguir les seves preses abans\n"
 "i és menys probable que facin servir toxines contra depredadors."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
 msgid "AGGRESSIVE"
 msgstr "Agressiu"
 
@@ -487,7 +487,7 @@ msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:689
 msgid "BEHAVIOUR"
@@ -607,7 +607,7 @@ msgstr "Bioma: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
 msgid "BRAVE"
 msgstr "Valent"
 
@@ -668,7 +668,7 @@ msgstr "Càmera"
 msgid "CANCEL"
 msgstr "Cancel·lar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -679,12 +679,12 @@ msgstr "CANCEL·LAR ACCIÓ"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Un Tipus de Cèl·lula que s'utilitza actualment en el teu Pla Corporal no es pot eliminar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "No es pot eliminar el Tipus de Cèl·lula"
@@ -749,7 +749,7 @@ msgstr "un xic"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
 msgid "CAUTIOUS"
 msgstr "Prudent"
 
@@ -757,7 +757,7 @@ msgstr "Prudent"
 msgid "CELL"
 msgstr "Cèl·lula"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Cèl·lules"
@@ -778,6 +778,15 @@ msgstr "Cel·lulosa"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+msgid "CELL_GROWTH_ORDER_COLON"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#, fuzzy
+msgid "CELL_GROWTH_ORDER_TOOLTIP"
+msgstr "Han passat: {0:#,#} anys"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
@@ -1321,11 +1330,11 @@ msgstr "Crear un nou microbi"
 msgid "CREATE_NEW"
 msgstr "Crear Nou"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Crear un nou Tipus de Cèl·lula"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Pots crear nous tipus de cèl·lules duplicant-ne de ja existents, i donant-les-hi un nou nou. Els tipus de cèl·lula es poden modificar per a especialitzar-se en diferents rols. Quan es modifica un tipus de cèl·lula, totes les cèl·lules del mateix tipus col·locades s'actualitzaran."
 
@@ -1467,7 +1476,7 @@ msgstr "Desembre"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1672,11 +1681,11 @@ msgstr "Descartar i continuar"
 msgid "DISCARD_CHANGES"
 msgstr "Descartar Canvis"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
 msgid "DISCONNECTED_CELLS"
 msgstr "Cèl·lules Desconnectades"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Hi ha cèl·lules col·locades que no han estat físicament connectats a la resta.\n"
@@ -1780,7 +1789,7 @@ msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor prote
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:562
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipus"
@@ -2178,7 +2187,7 @@ msgstr "Error: No s'ha pogut guardar la nova configuració."
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
 msgstr "Actualitzar l'arxiu de guardat especificat degut al següent error:"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
 msgid "FEARFUL"
 msgstr "Poruc"
 
@@ -2321,7 +2330,7 @@ msgstr "Fluidesa"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
 msgid "FOCUSED"
 msgstr "Centrat"
 
@@ -3980,7 +3989,7 @@ msgstr "Modificar"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modificar orgànul"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Modificar Tipus"
@@ -4400,17 +4409,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "El Meu Mod Esbalaïdor"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Nou Nom"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Nou nom:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4704,7 +4713,7 @@ msgstr ""
 "e intentaran caçar preses amb toxines si no les poden engolir.\n"
 "Els microbis prudents normalment no es posaran a si mateixos en perill per uns mateixos recursos."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
 msgid "OPPORTUNISTIC"
 msgstr "Oportunístic"
 
@@ -5007,7 +5016,7 @@ msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
 msgid "PEACEFUL"
 msgstr "Pacífic"
 
@@ -5332,7 +5341,7 @@ msgstr "Informe"
 msgid "REPRODUCED"
 msgstr "reproducció"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:456
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:458
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:546
 msgid "REPRODUCTION"
 msgstr "Reproducció"
@@ -5342,12 +5351,12 @@ msgstr "Reproducció"
 msgid "REPRODUCTION_ASEXUAL"
 msgstr "Asexual"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:620
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:625
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:612
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
@@ -5440,7 +5449,7 @@ msgstr "Veure Codi Font"
 msgid "RESPIRATION"
 msgstr "Respiració aeròbica"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
 msgid "RESPONSIVE"
 msgstr "Reactiu"
 
@@ -5842,7 +5851,7 @@ msgstr "Seleccionat:"
 msgid "SEPTEMBER"
 msgstr "Setembre"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
 msgid "SESSILE"
 msgstr "Sèssil"
 
@@ -6292,7 +6301,7 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr "Estructural"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:437
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:645
 msgid "STRUCTURE"
@@ -6393,6 +6402,10 @@ msgstr "Commutar a la vista de càmera superior"
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
 msgstr "Requeriments"
+
+#: ../src/early_multicellular_stage/editor/ReproductionOrder.tscn:82
+msgid "Stem at 0,0"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
