@@ -132,7 +132,7 @@ public class ModifierInfoLabel : HBoxContainer
     private void AdjustSize(float size)
     {
         if (valueLabel != null)
-            valueLabel!.RectMinSize = new(size, 20.0f);
+            valueLabel!.RectMinSize = new Vector2(size, 20.0f);
     }
 
     private void UpdateName()
