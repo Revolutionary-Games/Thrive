@@ -291,8 +291,6 @@ public partial class CellEditorComponent :
     /// </summary>
     private MicrobeSpecies? cachedAutoEvoPredictionSpecies;
 
-    private HexEditorSymmetry previousSymmetry;
-
     /// <summary>
     ///   This is the container that has the edited organelles in
     ///   it. This is populated when entering and used to update the
@@ -725,6 +723,9 @@ public partial class CellEditorComponent :
             if (shownOrganelle != null)
             {
                 HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;
 
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
@@ -1627,6 +1628,9 @@ public partial class CellEditorComponent :
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
 
+        HexEditorSymmetry? overrideSymmetry = componentBottomLeftButtons.SymmetryEnabled
+            ? null : HexEditorSymmetry.None;
+
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
@@ -1655,14 +1659,10 @@ public partial class CellEditorComponent :
                         usedHexes.Add(hex);
                     }
                 }
-            });
+            }, overrideSymmetry);
 
         if (GetOrganelleDefinition(organelleType).Unique)
-        {
-            Symmetry = previousSymmetry;
             componentBottomLeftButtons.SymmetryEnabled = true;
-            componentBottomLeftButtons.SetSymmetry(Symmetry);
-        }
 
         if (placementActions.Count < 1)
             return false;
@@ -1820,12 +1820,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle);
 
         if (organelleDefinition.Unique)
-        {
-            previousSymmetry = Symmetry;
-            Symmetry = HexEditorSymmetry.None;
             componentBottomLeftButtons.SymmetryEnabled = false;
-            ResetSymmetryButton();
-        }
 
         ActiveActionName = organelle;
         UpdateOrganelleButtons(organelle);
