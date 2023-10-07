@@ -291,6 +291,8 @@ public partial class CellEditorComponent :
     /// </summary>
     private MicrobeSpecies? cachedAutoEvoPredictionSpecies;
 
+    private HexEditorSymmetry previousSymmetry;
+
     /// <summary>
     ///   This is the container that has the edited organelles in
     ///   it. This is populated when entering and used to update the
@@ -1655,6 +1657,13 @@ public partial class CellEditorComponent :
                 }
             });
 
+        if (GetOrganelleDefinition(organelleType).Unique)
+        {
+            Symmetry = previousSymmetry;
+            componentBottomLeftButtons.SymmetryEnabled = true;
+            componentBottomLeftButtons.SetSymmetry(Symmetry);
+        }
+
         if (placementActions.Count < 1)
             return false;
 
@@ -1812,7 +1821,9 @@ public partial class CellEditorComponent :
 
         if (organelleDefinition.Unique)
         {
+            previousSymmetry = Symmetry;
             Symmetry = HexEditorSymmetry.None;
+            componentBottomLeftButtons.SymmetryEnabled = false;
             ResetSymmetryButton();
         }
 
