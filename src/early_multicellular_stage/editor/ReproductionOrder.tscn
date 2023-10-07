@@ -73,6 +73,9 @@ margin_right = 10.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
 text = "1."
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="CellDescription" type="Label" parent="HBoxContainer"]
 margin_left = 14.0
@@ -80,6 +83,9 @@ margin_right = 102.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
 text = "Stem at 0,0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Down" type="Button" parent="HBoxContainer"]
 margin_left = 106.0
