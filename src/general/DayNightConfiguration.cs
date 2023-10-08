@@ -25,7 +25,7 @@ public class DayNightConfiguration : IRegistryType
     public float DaytimeFraction { get; private set; }
 
     /// <summary>
-    ///   Fraction of the in-game day which does not has sunlight.
+    ///   Fraction of the in-game day which does not have sunlight.
     /// </summary>
     [JsonIgnore]
     public float NighttimeFraction { get; private set; }
