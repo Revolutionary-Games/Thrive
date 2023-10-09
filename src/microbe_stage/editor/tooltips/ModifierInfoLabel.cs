@@ -98,7 +98,7 @@ public class ModifierInfoLabel : HBoxContainer
         UpdateName();
         UpdateValue();
         UpdateIcon();
-        AdjustSize(40.0f);
+        AdjustValueMinSize(40.0f);
     }
 
     /// <summary>
@@ -129,10 +129,10 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
-    private void AdjustSize(float size)
+    private void AdjustValueMinSize(float size)
     {
         if (valueLabel != null)
-            valueLabel!.RectMinSize = new Vector2(size, 20.0f);
+            valueLabel.RectMinSize = new Vector2(size, 20.0f);
     }
 
     private void UpdateName()
