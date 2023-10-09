@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/osmoIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/OsmoregulationIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/SpeedIcon.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/StorageIcon.png" type="Texture" id=9]
@@ -13,7 +14,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/HealthIcon.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/parts/PilusIcon.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=16]
-[ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=21]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
 
@@ -261,7 +261,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -330,7 +330,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -372,7 +372,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -435,7 +435,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -477,7 +477,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -517,7 +517,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -558,7 +558,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -613,7 +613,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -674,7 +674,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="5"]
 margin_top = 215.0
@@ -714,7 +714,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -747,7 +747,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
 margin_top = 167.0
@@ -780,7 +780,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="5"]
 margin_top = 167.0
@@ -814,7 +814,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="5"]
 margin_top = 167.0
@@ -855,7 +855,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -895,7 +895,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+10"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
@@ -930,7 +930,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="chloroplast" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -957,7 +957,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+3"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="thermoplast" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1000,7 +1000,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="5"]
 margin_top = 172.0
@@ -1035,7 +1035,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1068,7 +1068,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+2"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
@@ -1110,7 +1110,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
@@ -1151,7 +1151,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
@@ -1192,18 +1192,7 @@ margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
-
-[node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer/ModifierList" index="2"]
-margin_right = 318.0
-margin_bottom = 20.0
-mouse_filter = 2
-size_flags_horizontal = 3
-script = ExtResource( 21 )
-DisplayName = "STORAGE"
-ModifierValue = "+1"
-ModifierValueColor = Color( 0, 1, 0, 1 )
-ModifierIcon = ExtResource( 9 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
@@ -1286,7 +1275,7 @@ mouse_filter = 2
 DisplayName = "OSMOREGULATION_COST"
 ModifierValue = "+1"
 ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer" index="5"]
 margin_top = 239.0
