@@ -1661,9 +1661,6 @@ public partial class CellEditorComponent :
                 }
             }, overrideSymmetry);
 
-        if (GetOrganelleDefinition(organelleType).Unique)
-            componentBottomLeftButtons.SymmetryEnabled = true;
-
         if (placementActions.Count < 1)
             return false;
 
@@ -1818,9 +1815,7 @@ public partial class CellEditorComponent :
             return;
 
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle);
-
-        if (organelleDefinition.Unique)
-            componentBottomLeftButtons.SymmetryEnabled = false;
+        componentBottomLeftButtons.SymmetryEnabled = !organelleDefinition.Unique;
 
         ActiveActionName = organelle;
         UpdateOrganelleButtons(organelle);
