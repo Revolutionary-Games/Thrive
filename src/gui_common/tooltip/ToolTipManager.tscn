@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/osmoIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/OsmoregulationIcon.png" type="Texture" id=6]
@@ -1173,7 +1172,7 @@ RequiresNucleus = true
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer" index="0"]
-margin_bottom = 251.0
+margin_bottom = 247.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1375,7 +1374,7 @@ margin_top = 24.0
 margin_right = 333.0
 margin_bottom = 44.0
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 margin_top = 48.0
@@ -1432,7 +1431,7 @@ ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
@@ -1483,7 +1482,7 @@ ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
@@ -1548,7 +1547,7 @@ ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
@@ -1611,7 +1610,7 @@ ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
@@ -1676,7 +1675,7 @@ ModifierIcon = ExtResource( 7 )
 
 [node name="osmoregulationCost" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "OSMOREGULATION_COST"
-ModifierIcon = ExtResource( 3 )
+ModifierIcon = ExtResource( 6 )
 
 [node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
