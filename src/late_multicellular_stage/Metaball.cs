@@ -19,10 +19,11 @@ public abstract class Metaball
     public float Radius => Size * 0.5f;
 
     /// <summary>
-    ///   Volume of the metaball sphere
+    ///   Volume of the metaball sphere. Do not scale the result returned from this, use <see cref="GetVolume"/>
+    ///   instead.
     /// </summary>
     [JsonIgnore]
-    public float Volume => (float)(4.0f * Math.PI * Math.Pow(Radius, 3) / 3.0f);
+    public float Volume => GetVolume();
 
     /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
@@ -42,6 +43,11 @@ public abstract class Metaball
     /// <param name="other">The other metaball to check against</param>
     /// <returns>True if these are fundamentally the same kind of placed ball</returns>
     public abstract bool MatchesDefinition(Metaball other);
+
+    public float GetVolume(float multiplier = 1)
+    {
+        return (float)(4.0f * Math.PI * Math.Pow(Radius * multiplier, 3) / 3.0f);
+    }
 
     /// <summary>
     ///   Calculates how many parent links need to be travelled to reach the root
