@@ -142,4 +142,9 @@ public enum TutorialEventType
     ///   The "Become multicellular" button is available to be clicked
     /// </summary>
     MicrobeBecomeMulticellularAvailable,
+
+    /// <summary>
+    ///   The player has achieved a negative ATP balance
+    /// </summary>
+    MicrobeEditorNegativeAtpBalanceAchieved,
 }

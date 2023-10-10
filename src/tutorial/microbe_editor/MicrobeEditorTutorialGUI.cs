@@ -217,7 +217,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
-    public bool NegativeAtpTutorialVisible
+    public bool NegativeAtpBalanceTutorialVisible
     {
         get => negativeAtpBalanceTutorial.Visible;
         set
