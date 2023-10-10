@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 00:18+0100\n"
+"POT-Creation-Date: 2023-10-10 19:44+0100\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Daniel Heslop <daniel@heslop.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1917,7 +1917,7 @@ msgstr ""
 "\n"
 "Wenn du bereit bist, drücke die \"Nächste\"-Schaltfläche unten rechts."
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+#: ../simulation_parameters/common/wiki.json:25
 msgid "EFFECTS_HEADING"
 msgstr ""
 
@@ -3517,13 +3517,53 @@ msgstr "Lysosom"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
+#: ../simulation_parameters/common/wiki.json:4
+#, fuzzy
+msgid "LYSOSOME_PAGE_TITLE"
+msgstr "Seitentitel"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
-#: ../simulation_parameters/common/wiki.json:7
+#: ../simulation_parameters/common/wiki.json:10
 #, fuzzy
 msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:26
+#, fuzzy
+msgid "LYSOSOME_WIKI_EFFECTS"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:22
+#, fuzzy
+msgid "LYSOSOME_WIKI_MODIFICATIONS"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:18
+#, fuzzy
+msgid "LYSOSOME_WIKI_PROCESSES"
+msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
+
+#: ../simulation_parameters/common/wiki.json:14
+#, fuzzy
+msgid "LYSOSOME_WIKI_REQUIREMENTS"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:38
+#, fuzzy
+msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:34
+#, fuzzy
+msgid "LYSOSOME_WIKI_STRATEGY"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
+
+#: ../simulation_parameters/common/wiki.json:30
+#, fuzzy
+msgid "LYSOSOME_WIKI_UPGRADES"
 msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -3995,7 +4035,7 @@ msgstr "Anleitungen zum Erstellen eines Mods findest du unter"
 msgid "MODELS"
 msgstr "Modelle"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#: ../simulation_parameters/common/wiki.json:21
 #, fuzzy
 msgid "MODIFICATIONS_HEADING"
 msgstr "Diese Art fossilisieren"
@@ -5211,7 +5251,7 @@ msgstr "Vorschaubild ist zu groß"
 msgid "PREVIOUS_COLON"
 msgstr "vorherige:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#: ../simulation_parameters/common/wiki.json:17
 #, fuzzy
 msgid "PROCESSES_HEADING"
 msgstr "GPL-Lizenztext folgt:"
@@ -5364,7 +5404,7 @@ msgstr "Knospend"
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#: ../simulation_parameters/common/wiki.json:13
 #, fuzzy
 msgid "REQUIREMENTS_HEADING"
 msgstr "GPL-Lizenztext folgt:"
@@ -5717,7 +5757,7 @@ msgstr "skaliert"
 msgid "SCALING_ON_INVERSE"
 msgstr "invers skaliert"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+#: ../simulation_parameters/common/wiki.json:37
 msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
@@ -6292,7 +6332,7 @@ msgstr "Speicherplatz:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#: ../simulation_parameters/common/wiki.json:33
 #, fuzzy
 msgid "STRATEGY_HEADING"
 msgstr "Mikroben Stadium"
@@ -7080,7 +7120,7 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Unbenannt"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#: ../simulation_parameters/common/wiki.json:29
 #, fuzzy
 msgid "UPGRADES_HEADING"
 msgstr "GPL-Lizenztext folgt:"

@@ -10,10 +10,15 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
     [Export]
     public NodePath MainArticlePath = null!;
 
+    public GameWiki.Page PageContent { get; set; } = null!;
+
     /// <summary>
     ///   Link to this page in the online wiki.
     /// </summary>
-    public abstract string Url { get; }
+    public string Url => PageContent.Url;
+
+    public override string PageName => PageContent.InternalName;
+    public override string TranslatedPageName => TranslationServer.Translate(PageContent.Name);
 
     protected PackedScene pageSectionScene = null!;
     protected VBoxContainer mainArticle = null!;
@@ -24,6 +29,11 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
 
         mainArticle = GetNode<VBoxContainer>(MainArticlePath);
         pageSectionScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/WikiPageSection.tscn");
+
+        foreach (var section in PageContent.Sections)
+        {
+            AddSection(section.SectionHeading, section.SectionBody);
+        }
     }
 
     public override void OnThriveopediaOpened()
@@ -46,7 +56,7 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         {
             var scene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn");
             var page = (ThriveopediaOrganellePage)scene.Instance();
-            page.WikiPage = organellePage;
+            page.PageContent = organellePage;
             page.Organelle = SimulationParameters.Instance.GetOrganelleType(organellePage.InternalName);
             pages.Add(page);
         }

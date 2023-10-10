@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class GameWiki : IRegistryType
 {
@@ -15,24 +16,25 @@ public class GameWiki : IRegistryType
     {
     }
 
-    public List<OrganelleWikiPage> Organelles { get; set; } = null!;
+    [JsonProperty]
+    public List<Page> Organelles { get; set; } = null!;
 
-    public class OrganelleWikiPage
+    public class Page
     {
-        public string InternalName { get; set; } = null!;
-        public string Url { get; set; } = null!;
-        public OrganelleSections Sections { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
-        public class OrganelleSections
+        public string InternalName { get; set; } = null!;
+
+        public string Url { get; set; } = null!;
+
+        [JsonProperty]
+        public List<Section> Sections { get; set; } = null!;
+
+        public class Section
         {
-            public string Description { get; set; } = null!;
-            public string Requirements { get; set; } = null!;
-            public string Processes { get; set; } = null!;
-            public string Modifications { get; set; }  = null!;
-            public string Effects { get; set; } = null!;
-            public string Upgrades { get; set; } = null!;
-            public string Strategy { get; set; } = null!;
-            public string ScientificBackground { get; set; } = null!;
+            public string? SectionHeading { get; set; }
+
+            public string SectionBody { get; set; } = null!;
         }
     }
 }

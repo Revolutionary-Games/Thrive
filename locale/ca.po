@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 00:18+0100\n"
+"POT-Creation-Date: 2023-10-10 19:44+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1931,7 +1931,7 @@ msgstr ""
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+#: ../simulation_parameters/common/wiki.json:25
 msgid "EFFECTS_HEADING"
 msgstr ""
 
@@ -3548,13 +3548,53 @@ msgstr "Lisosoma"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
+#: ../simulation_parameters/common/wiki.json:4
+#, fuzzy
+msgid "LYSOSOME_PAGE_TITLE"
+msgstr "Eliminar Dades Locals"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
 
-#: ../simulation_parameters/common/wiki.json:7
+#: ../simulation_parameters/common/wiki.json:10
 #, fuzzy
 msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:26
+#, fuzzy
+msgid "LYSOSOME_WIKI_EFFECTS"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:22
+#, fuzzy
+msgid "LYSOSOME_WIKI_MODIFICATIONS"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:18
+#, fuzzy
+msgid "LYSOSOME_WIKI_PROCESSES"
+msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
+
+#: ../simulation_parameters/common/wiki.json:14
+#, fuzzy
+msgid "LYSOSOME_WIKI_REQUIREMENTS"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:38
+#, fuzzy
+msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:34
+#, fuzzy
+msgid "LYSOSOME_WIKI_STRATEGY"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#: ../simulation_parameters/common/wiki.json:30
+#, fuzzy
+msgid "LYSOSOME_WIKI_UPGRADES"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -4043,7 +4083,7 @@ msgstr "Instruccions per fer Mods estan disponibles a"
 msgid "MODELS"
 msgstr "Models"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#: ../simulation_parameters/common/wiki.json:21
 #, fuzzy
 msgid "MODIFICATIONS_HEADING"
 msgstr "Text de la llicència GPL:"
@@ -5285,7 +5325,7 @@ msgstr "L'arxiu de la imatge de previsualització és massa gran"
 msgid "PREVIOUS_COLON"
 msgstr "previ:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#: ../simulation_parameters/common/wiki.json:17
 #, fuzzy
 msgid "PROCESSES_HEADING"
 msgstr "Text de la llicència GPL:"
@@ -5441,7 +5481,7 @@ msgstr "Gemmació"
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#: ../simulation_parameters/common/wiki.json:13
 #, fuzzy
 msgid "REQUIREMENTS_HEADING"
 msgstr "Text de la llicència GPL:"
@@ -5794,7 +5834,7 @@ msgstr "Agent de Senyalització"
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+#: ../simulation_parameters/common/wiki.json:37
 msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
@@ -6377,7 +6417,7 @@ msgstr "Emmagatzematge:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#: ../simulation_parameters/common/wiki.json:33
 #, fuzzy
 msgid "STRATEGY_HEADING"
 msgstr "Estadi de Microbi"
@@ -7151,7 +7191,7 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Sense títol"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#: ../simulation_parameters/common/wiki.json:29
 #, fuzzy
 msgid "UPGRADES_HEADING"
 msgstr "Text de la llicència GPL:"

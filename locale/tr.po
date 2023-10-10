@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 00:18+0100\n"
+"POT-Creation-Date: 2023-10-10 19:44+0100\n"
 "PO-Revision-Date: 2023-09-29 06:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1927,7 +1927,7 @@ msgstr ""
 "\n"
 "Hazır olduğunuzda, devam etmek için sağ alttaki \"sonraki\" butonuna basın."
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+#: ../simulation_parameters/common/wiki.json:25
 msgid "EFFECTS_HEADING"
 msgstr ""
 
@@ -3470,13 +3470,53 @@ msgstr "Lizozom"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
 
+#: ../simulation_parameters/common/wiki.json:4
+#, fuzzy
+msgid "LYSOSOME_PAGE_TITLE"
+msgstr "Sayfa Başlığı"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
 
-#: ../simulation_parameters/common/wiki.json:7
+#: ../simulation_parameters/common/wiki.json:10
 #, fuzzy
 msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:26
+#, fuzzy
+msgid "LYSOSOME_WIKI_EFFECTS"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:22
+#, fuzzy
+msgid "LYSOSOME_WIKI_MODIFICATIONS"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:18
+#, fuzzy
+msgid "LYSOSOME_WIKI_PROCESSES"
+msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
+
+#: ../simulation_parameters/common/wiki.json:14
+#, fuzzy
+msgid "LYSOSOME_WIKI_REQUIREMENTS"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:38
+#, fuzzy
+msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:34
+#, fuzzy
+msgid "LYSOSOME_WIKI_STRATEGY"
+msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#: ../simulation_parameters/common/wiki.json:30
+#, fuzzy
+msgid "LYSOSOME_WIKI_UPGRADES"
 msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -3959,7 +3999,7 @@ msgstr "Mod yapma talimatları burada mevcut"
 msgid "MODELS"
 msgstr "Modeller"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#: ../simulation_parameters/common/wiki.json:21
 #, fuzzy
 msgid "MODIFICATIONS_HEADING"
 msgstr "Bu türü fosilleştir"
@@ -5154,7 +5194,7 @@ msgstr "Resim önizlemesi çok büyük"
 msgid "PREVIOUS_COLON"
 msgstr "önceki:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#: ../simulation_parameters/common/wiki.json:17
 #, fuzzy
 msgid "PROCESSES_HEADING"
 msgstr "GPL lisans metni aşağıdadır:"
@@ -5306,7 +5346,7 @@ msgstr "Tomurcuklanma"
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#: ../simulation_parameters/common/wiki.json:13
 #, fuzzy
 msgid "REQUIREMENTS_HEADING"
 msgstr "GPL lisans metni aşağıdadır:"
@@ -5649,7 +5689,7 @@ msgstr "Arttırılmış"
 msgid "SCALING_ON_INVERSE"
 msgstr "Tersine Arttırılmış"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+#: ../simulation_parameters/common/wiki.json:37
 msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
@@ -6207,7 +6247,7 @@ msgstr "Depo:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#: ../simulation_parameters/common/wiki.json:33
 #, fuzzy
 msgid "STRATEGY_HEADING"
 msgstr "Strateji Evreleri"
@@ -6984,7 +7024,7 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Adsız"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#: ../simulation_parameters/common/wiki.json:29
 #, fuzzy
 msgid "UPGRADES_HEADING"
 msgstr "GPL lisans metni aşağıdadır:"

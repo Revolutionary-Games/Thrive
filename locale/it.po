@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 00:18+0100\n"
+"POT-Creation-Date: 2023-10-10 19:44+0100\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1921,7 +1921,7 @@ msgstr ""
 "\n"
 "Quando ti ritieni pronto, premi il pulsante \"AVANTI\" in basso a destra per continuare."
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+#: ../simulation_parameters/common/wiki.json:25
 msgid "EFFECTS_HEADING"
 msgstr ""
 
@@ -3534,13 +3534,53 @@ msgstr "Lisosoma"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
 
+#: ../simulation_parameters/common/wiki.json:4
+#, fuzzy
+msgid "LYSOSOME_PAGE_TITLE"
+msgstr "Rimuovi Dati Locali"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegliere quale. Gli enzimi velocizzano la digestione e la rendono più efficiente."
 
-#: ../simulation_parameters/common/wiki.json:7
+#: ../simulation_parameters/common/wiki.json:10
 #, fuzzy
 msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:26
+#, fuzzy
+msgid "LYSOSOME_WIKI_EFFECTS"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:22
+#, fuzzy
+msgid "LYSOSOME_WIKI_MODIFICATIONS"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:18
+#, fuzzy
+msgid "LYSOSOME_WIKI_PROCESSES"
+msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegliere quale. Gli enzimi velocizzano la digestione e la rendono più efficiente."
+
+#: ../simulation_parameters/common/wiki.json:14
+#, fuzzy
+msgid "LYSOSOME_WIKI_REQUIREMENTS"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:38
+#, fuzzy
+msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:34
+#, fuzzy
+msgid "LYSOSOME_WIKI_STRATEGY"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
+
+#: ../simulation_parameters/common/wiki.json:30
+#, fuzzy
+msgid "LYSOSOME_WIKI_UPGRADES"
 msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -4027,7 +4067,7 @@ msgstr "Le istruzioni per creare mod sono disponibili sulla"
 msgid "MODELS"
 msgstr "Modelli"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#: ../simulation_parameters/common/wiki.json:21
 #, fuzzy
 msgid "MODIFICATIONS_HEADING"
 msgstr "Di seguito il testo della licenza GPL:"
@@ -5263,7 +5303,7 @@ msgstr "Il file dell'immagine di anteprima è troppo grande"
 msgid "PREVIOUS_COLON"
 msgstr "precedente:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#: ../simulation_parameters/common/wiki.json:17
 #, fuzzy
 msgid "PROCESSES_HEADING"
 msgstr "Di seguito il testo della licenza GPL:"
@@ -5419,7 +5459,7 @@ msgstr "Gemmazione"
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#: ../simulation_parameters/common/wiki.json:13
 #, fuzzy
 msgid "REQUIREMENTS_HEADING"
 msgstr "Di seguito il testo della licenza GPL:"
@@ -5772,7 +5812,7 @@ msgstr "Agente di Segnalazione"
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+#: ../simulation_parameters/common/wiki.json:37
 msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
@@ -6350,7 +6390,7 @@ msgstr "Spazio di stoccaggio:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Hai effettuato l'accesso come: {0}"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#: ../simulation_parameters/common/wiki.json:33
 #, fuzzy
 msgid "STRATEGY_HEADING"
 msgstr "Fase Microbica"
@@ -7125,7 +7165,7 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Senza titolo"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#: ../simulation_parameters/common/wiki.json:29
 #, fuzzy
 msgid "UPGRADES_HEADING"
 msgstr "Di seguito il testo della licenza GPL:"

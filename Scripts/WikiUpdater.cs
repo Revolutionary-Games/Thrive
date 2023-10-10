@@ -15,16 +15,15 @@ using ScriptsBase.Utilities;
 
 public static class WikiUpdater
 {
+    private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
-
-    private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
 
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
         var organellesTask = FetchOrganellePages(cancellationToken);
 
-        var (organelles, organellesEnglishContent) = await organellesTask;
+        var (organelles, translatedOrganelles) = await organellesTask;
 
         var wiki = new Wiki(organelles);
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, wiki, cancellationToken);
@@ -36,25 +35,27 @@ public static class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
 
-        await InsertEnglishContentForOrganelles(organellesEnglishContent, cancellationToken);
+        await InsertEnglishPageContent(organelles, translatedOrganelles, cancellationToken);
 
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
 
         return true;
     }
 
-    private static async Task<(List<OrganelleWikiPage>, Dictionary<string, OrganelleWikiPage.OrganelleSections>)> FetchOrganellePages(CancellationToken cancellationToken)
+    private static async Task<(List<Wiki.Page>, List<Wiki.Page>)> FetchOrganellePages(CancellationToken cancellationToken)
     {
         var categoryBody = (await RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
         var organelles = categoryBody.QuerySelectorAll(".mw-category-group > ul > li");
 
-        var organellePages = new List<OrganelleWikiPage>();
-        var organellePagesInEnglish = new Dictionary<string, OrganelleWikiPage.OrganelleSections>();
+        var organellePagesUntranslated = new List<Wiki.Page>();
+        var organellePagesTranslated = new List<Wiki.Page>();
 
         foreach (var organelle in organelles)
         {
             var name = organelle.TextContent.Trim();
             var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name}";
+
+            var untranslatedName = name.ToUpperInvariant().Replace(" ", "_");
 
             ColourConsole.WriteSuccessLine($"Found organelle {name}");
 
@@ -62,7 +63,18 @@ public static class WikiUpdater
             
             var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
 
-            organellePages.Add(new(internalName, url));
+            organellePagesUntranslated.Add(new($"{untranslatedName}_PAGE_TITLE", internalName, url, new()
+                {
+                    (null, $"{untranslatedName}_WIKI_DESCRIPTION"),
+                    ("REQUIREMENTS_HEADING", $"{untranslatedName}_WIKI_REQUIREMENTS"),
+                    ("PROCESSES_HEADING", $"{untranslatedName}_WIKI_PROCESSES"),
+                    ("MODIFICATIONS_HEADING", $"{untranslatedName}_WIKI_MODIFICATIONS"),
+                    ("EFFECTS_HEADING", $"{untranslatedName}_WIKI_EFFECTS"),
+                    ("UPGRADES_HEADING", $"{untranslatedName}_WIKI_UPGRADES"),
+                    ("STRATEGY_HEADING", $"{untranslatedName}_WIKI_STRATEGY"),   
+                    ("SCIENTIFIC_BACKGROUND_HEADING", $"{untranslatedName}_WIKI_SCIENTIFIC_BACKGROUND"),                                                                             
+                }
+            ));
 
             ColourConsole.WriteSuccessLine($"Added organelle with internal name {internalName}");
 
@@ -84,41 +96,49 @@ public static class WikiUpdater
             var strategyText = ConvertHtmlToBbcode(strategy!.InnerHtml);
             var scientificBackgroundText = ConvertHtmlToBbcode(scientificBackground!.InnerHtml);
 
-            var englishContent = new OrganelleWikiPage.OrganelleSections(
-                descriptionText,
-                requirementsText,
-                processesText,
-                modificationsText,
-                effectsText,
-                upgradesText,
-                strategyText,
-                scientificBackgroundText
-            );
-
-            organellePagesInEnglish.Add(internalName, englishContent);
+            organellePagesTranslated.Add(new(name, internalName, url, new()
+                {
+                    (null, descriptionText),
+                    ("Requirements", requirementsText),
+                    ("Processes", processesText),
+                    ("Modifications", modificationsText),
+                    ("Effects", effectsText),
+                    ("Upgrades", upgradesText),
+                    ("Strategy", strategyText),   
+                    ("Scientific Background", scientificBackgroundText),                                                                             
+                }
+            ));
 
             ColourConsole.WriteSuccessLine($"Populated English content for organelle with internal name {internalName}");
         }
 
-        return (organellePages, organellePagesInEnglish);
+        return (organellePagesUntranslated, organellePagesTranslated);
     }
 
-    private static async Task InsertEnglishContentForOrganelles(
-        Dictionary<string, OrganelleWikiPage.OrganelleSections> organellesEnglishContent,
+    private static async Task InsertEnglishPageContent(
+        List<Wiki.Page> untranslatedPages,
+        List<Wiki.Page> translatedPages,
         CancellationToken cancellationToken)
     {
         var lines = new List<string>(await File.ReadAllLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken));
 
-        foreach (var organelle in organellesEnglishContent)
+        for (var i = 0; i < untranslatedPages.Count(); i++)
         {
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_DESCRIPTION", organelle.Value.Description, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_REQUIREMENTS", organelle.Value.Requirements, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_PROCESSES", organelle.Value.Processes, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_MODIFICATIONS", organelle.Value.Modifications, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_EFFECTS", organelle.Value.Effects, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_UPGRADES", organelle.Value.Upgrades, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_STRATEGY", organelle.Value.Strategy, lines);
-            InsertPageSection($"{organelle.Key.ToUpperInvariant()}_WIKI_SCIENTIFIC_BACKGROUND", organelle.Value.ScientificBackground, lines);
+            var untranslatedPage = untranslatedPages[i];
+            var translatedPage = translatedPages[i];
+
+            ReplaceTranslationValue(untranslatedPage.Name, translatedPage.Name, lines);
+
+            for (var j = 0; j < untranslatedPage.Sections.Count(); j++)
+            {
+                var untranslatedSection = untranslatedPage.Sections[j];
+                var translatedSection = translatedPage.Sections[j];
+
+                ReplaceTranslationValue(untranslatedSection.SectionBody, translatedSection.SectionBody, lines);
+
+                if (untranslatedSection.SectionHeading != null && translatedSection.SectionHeading != null)
+                    ReplaceTranslationValue(untranslatedSection.SectionHeading, translatedSection.SectionHeading, lines);
+            }
         }
 
         await File.WriteAllLinesAsync(ENGLISH_TRANSLATION_FILE, lines, new UTF8Encoding(false), cancellationToken);
@@ -151,13 +171,14 @@ public static class WikiUpdater
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
             .Replace("</i>", "[/i]")
+            // Godot 3 doesn't support lists in BBCode, so add custom formatting
             .Replace("<ul><li>", "[indent]•   ")
             .Replace("<li>", "\n[indent]•   ")
             .Replace("</li>", "[/indent]")
             .Replace("</ul>", "\n\n")
             .Trim();
     
-    private static void InsertPageSection(string key, string content, List<string> lines)
+    private static void ReplaceTranslationValue(string key, string content, List<string> lines)
     {
         var keyIndex = lines.FindIndex(l => l.Contains(key));
 
@@ -191,95 +212,51 @@ public static class WikiUpdater
 
     private class Wiki
     {
-        public Wiki(List<OrganelleWikiPage> organelles)
+        public Wiki(List<Page> organelles)
         {
             Organelles = organelles;
         }
 
         [JsonInclude]
-        public List<OrganelleWikiPage> Organelles { get; }
-    }
+        public List<Page> Organelles { get; }
 
-    private class OrganelleWikiPage
-    {
-        public OrganelleWikiPage(
-            string internalName,
-            string url)
+        public class Page
         {
-            InternalName = internalName;
-            Url = url;
-
-            Sections = new OrganelleSections(internalName);
-        }
-
-        [JsonInclude]
-        public string InternalName { get; }
-
-        [JsonInclude]
-        public string Url { get; }
-
-        [JsonInclude]
-        public OrganelleSections Sections { get; }
-
-        public class OrganelleSections
-        {
-            public OrganelleSections(string internalName)
+            public Page(string name, string internalName, string url, List<(string?, string)> sections)
             {
-                var internalNameUpper = internalName.ToUpperInvariant();
+                Name = name;
+                InternalName = internalName;
+                Url = url;
 
-                Description = $"{internalNameUpper}_WIKI_DESCRIPTION";
-                Requirements = $"{internalNameUpper}_WIKI_REQUIREMENTS";
-                Processes = $"{internalNameUpper}_WIKI_PROCESSES";
-                Modifications = $"{internalNameUpper}_WIKI_MODIFICATIONS";
-                Effects = $"{internalNameUpper}_WIKI_EFFECTS";
-                Upgrades = $"{internalNameUpper}_WIKI_UPGRADES";
-                Strategy = $"{internalNameUpper}_WIKI_STRATEGY";
-                ScientificBackground = $"{internalNameUpper}_WIKI_SCIENTIFIC_BACKGROUND";
-            }
-
-            public OrganelleSections(
-                string description,
-                string requirements,
-                string processes,
-                string modifications,
-                string effects,
-                string upgrades,
-                string strategy,
-                string scientificBackground)
-            {
-                Description = description;
-                Requirements = requirements;
-                Processes = processes;
-                Modifications = modifications;
-                Effects = effects;
-                Upgrades = upgrades;
-                Strategy = strategy;
-                ScientificBackground = scientificBackground;
+                Sections = sections.Select(s => new Section(s.Item1, s.Item2)).ToList();
             }
 
             [JsonInclude]
-            public string Description { get; }
+            public string Name { get; }
 
             [JsonInclude]
-            public string Requirements { get; }
+            public string InternalName { get; }
 
             [JsonInclude]
-            public string Processes { get; }
+            public string Url { get; }
 
             [JsonInclude]
-            public string Modifications { get; }
+            public List<Section> Sections { get; }
 
-            [JsonInclude]
-            public string Effects { get; }
+            public class Section
+            {
+                public Section(string? heading, string body)
+                {
+                    SectionHeading = heading;
+                    SectionBody = body;
+                }
 
-            [JsonInclude]
-            public string Upgrades { get; }
+                [JsonInclude]
+                public string? SectionHeading { get; }
 
-            [JsonInclude]
-            public string Strategy { get; }
-
-            [JsonInclude]
-            public string ScientificBackground { get; }
+                [JsonInclude]
+                public string SectionBody { get; }
+            }
         }
     }
 }

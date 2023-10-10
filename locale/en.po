@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 00:18+0100\n"
+"POT-Creation-Date: 2023-10-10 19:44+0100\n"
 "PO-Revision-Date: 2023-09-20 14:11+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1927,7 +1927,7 @@ msgstr ""
 "\n"
 "When you are ready, press the \"next\" button in the bottom right to continue."
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+#: ../simulation_parameters/common/wiki.json:25
 msgid "EFFECTS_HEADING"
 msgstr "Effects"
 
@@ -3462,16 +3462,57 @@ msgstr "Lysosome"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "The lysosome is a membrane-bound organelle that contain hydrolytic enzymes that can break down various biomolecules. Lysosomes allow the cell to digest materials ingested through endocytosis and clean waste products of the cell in a process called [b]autophagy[/b]."
 
+#: ../simulation_parameters/common/wiki.json:4
+msgid "LYSOSOME_PAGE_TITLE"
+msgstr "Lysosome"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contains digestive enzymes. Can be modified to change the type of enzyme it contains. Only one enzyme per lysosome can be utilized at a time. Enzymes speed up and improve efficiency of digestion."
 
-#: ../simulation_parameters/common/wiki.json:7
+#: ../simulation_parameters/common/wiki.json:10
 msgid "LYSOSOME_WIKI_DESCRIPTION"
 msgstr ""
 "Contains digestive enzymes. Can be modified to change the type of enzyme it contains. Only one enzyme per lysosome can be utilized at a time. Enzymes speed up and improve efficiency of digestion.\n"
 "\n"
-"The lysosome is a membrane-bound organelle that contain hydrolytic enzymes that can break down various biomolecules. Lysosomes allow the cell to digest materials ingested through endocytosis and clean waste products of the cell in a process called [b]autophagy[/b]."
+"The lysosome is a membrane-bound organelle that contains hydrolytic enzymes that can break down various biomolecules. Lysosomes allow the cell to digest materials ingested through endocytosis and clean waste products of the cell in a process called [b]autophagy[/b]."
+
+#: ../simulation_parameters/common/wiki.json:26
+msgid "LYSOSOME_WIKI_EFFECTS"
+msgstr ""
+"Equipping a lysosome with [b]chitinase[/b] or [b]cellulase[/b] allows the cell to digest other cells with chitin or cellulose membranes respectively. If a cell has no lysosome equipped with chitinase or cellulase, it can't digest other cells which have these respective membranes.\n"
+"\n"
+"Alongside its general stats, each lysosome contributes:\n"
+"\n"
+"[indent]•   [b]+0.05[/b] digestion speed. Engulfed matter will be digested more quickly.[/indent]\n"
+"[indent]•   [b]+4.5%[/b] digestion efficiency for the chosen enzyme. Engulfed cells with the enzyme's target membrane will yield more compounds when digested.[/indent]"
+
+#: ../simulation_parameters/common/wiki.json:22
+msgid "LYSOSOME_WIKI_MODIFICATIONS"
+msgstr ""
+"Modify the lysosome to select the enzyme it contains. By default, lysosomes contain [b]lipase[/b] which targets single and double membranes.\n"
+"\n"
+"A lysosome can instead contain [b]chitinase[/b], which targets chitin membranes, or [b]cellulase[/b], which targets cellulose membranes."
+
+#: ../simulation_parameters/common/wiki.json:18
+msgid "LYSOSOME_WIKI_PROCESSES"
+msgstr "No processes."
+
+#: ../simulation_parameters/common/wiki.json:14
+msgid "LYSOSOME_WIKI_REQUIREMENTS"
+msgstr "A cell must have a nucleus to evolve lysosomes."
+
+#: ../simulation_parameters/common/wiki.json:38
+msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#: ../simulation_parameters/common/wiki.json:34
+msgid "LYSOSOME_WIKI_STRATEGY"
+msgstr "TBA"
+
+#: ../simulation_parameters/common/wiki.json:30
+msgid "LYSOSOME_WIKI_UPGRADES"
+msgstr "No upgrades."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -3950,7 +3991,7 @@ msgstr "Modding instructions are available on"
 msgid "MODELS"
 msgstr "Models"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#: ../simulation_parameters/common/wiki.json:21
 msgid "MODIFICATIONS_HEADING"
 msgstr "Modifications"
 
@@ -5143,7 +5184,7 @@ msgstr "Preview image file is too large"
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#: ../simulation_parameters/common/wiki.json:17
 msgid "PROCESSES_HEADING"
 msgstr "Processes"
 
@@ -5294,7 +5335,7 @@ msgstr "Budding"
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#: ../simulation_parameters/common/wiki.json:13
 msgid "REQUIREMENTS_HEADING"
 msgstr "Requirements"
 
@@ -5636,7 +5677,7 @@ msgstr "Scaled"
 msgid "SCALING_ON_INVERSE"
 msgstr "Inversely scaled"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+#: ../simulation_parameters/common/wiki.json:37
 msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr "Scientific Background"
 
@@ -6194,7 +6235,7 @@ msgstr "Storage:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#: ../simulation_parameters/common/wiki.json:33
 msgid "STRATEGY_HEADING"
 msgstr "Strategy"
 
@@ -6970,7 +7011,7 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Untitled"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#: ../simulation_parameters/common/wiki.json:29
 msgid "UPGRADES_HEADING"
 msgstr "Upgrades"
 

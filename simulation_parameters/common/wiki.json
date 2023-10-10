@@ -1,18 +1,43 @@
 ﻿{
   "Organelles": [
     {
+      "Name": "LYSOSOME_PAGE_TITLE",
       "InternalName": "lysosome",
       "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Lysosome",
-      "Sections": {
-        "Description": "LYSOSOME_WIKI_DESCRIPTION",
-        "Requirements": "LYSOSOME_WIKI_REQUIREMENTS",
-        "Processes": "LYSOSOME_WIKI_PROCESSES",
-        "Modifications": "LYSOSOME_WIKI_MODIFICATIONS",
-        "Effects": "LYSOSOME_WIKI_EFFECTS",
-        "Upgrades": "LYSOSOME_WIKI_UPGRADES",
-        "Strategy": "LYSOSOME_WIKI_STRATEGY",
-        "ScientificBackground": "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
-      }
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "LYSOSOME_WIKI_DESCRIPTION"
+        },
+        {
+          "SectionHeading": "REQUIREMENTS_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_REQUIREMENTS"
+        },
+        {
+          "SectionHeading": "PROCESSES_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_PROCESSES"
+        },
+        {
+          "SectionHeading": "MODIFICATIONS_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_MODIFICATIONS"
+        },
+        {
+          "SectionHeading": "EFFECTS_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_EFFECTS"
+        },
+        {
+          "SectionHeading": "UPGRADES_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_UPGRADES"
+        },
+        {
+          "SectionHeading": "STRATEGY_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_STRATEGY"
+        },
+        {
+          "SectionHeading": "SCIENTIFIC_BACKGROUND_HEADING",
+          "SectionBody": "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
+        }
+      ]
     }
   ]
 }
