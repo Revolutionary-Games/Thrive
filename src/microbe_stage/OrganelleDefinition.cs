@@ -84,12 +84,6 @@ public class OrganelleDefinition : IRegistryType
     public PackedScene? LoadedScene;
 
     /// <summary>
-    ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
-    /// </summary>
-    [JsonIgnore]
-    public PackedScene? LoadedCorpseChunkScene;
-
-    /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
     [JsonIgnore]
@@ -446,6 +440,18 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Multiple default upgrades specified");
         }
+
+#if DEBUG
+        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            using var directory = new Directory();
+            if (!directory.FileExists(CorpseChunkScene))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Corpse chunk scene path doesn't exist");
+            }
+        }
+#endif
     }
 
     /// <summary>
@@ -463,10 +469,6 @@ public class OrganelleDefinition : IRegistryType
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
         }
 
-        if (!string.IsNullOrEmpty(CorpseChunkScene))
-        {
-            LoadedCorpseChunkScene = GD.Load<PackedScene>(CorpseChunkScene);
-        }
 
         if (!string.IsNullOrEmpty(IconPath))
         {

@@ -11,7 +11,8 @@ namespace Systems
     using World = DefaultEcs.World;
 
     /// <summary>
-    ///   Handles digestion of engulfed objects
+    ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
+    ///   <see cref="EngulfingSystem"/> for the system responsible for pulling in and ejecting engulfables.
     /// </summary>
     [With(typeof(Engulfer))]
     [With(typeof(OrganelleContainer))]
@@ -70,7 +71,7 @@ namespace Systems
 
             for (int i = engulfer.EngulfedObjects!.Count - 1; i >= 0; --i)
             {
-                var engulfedObject = engulfer.EngulfedObjects[i];
+                var engulfedObject = engulfer.EngulfedObjects![i];
 
 #if DEBUG
                 if (!engulfedObject.IsAlive)
@@ -89,11 +90,15 @@ namespace Systems
 
                 ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
+                // Skip processing things that aren't currently fully ingested
+                if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
+                    continue;
+
                 // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
                 // is overloaded
                 if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)
                 {
-                    engulfer.EjectEngulfable(engulfable);
+                    engulfer.EjectEngulfable(ref engulfable);
                     continue;
                 }
 
@@ -111,12 +116,16 @@ namespace Systems
                     case DigestCheckResult.Ok:
                     {
                         usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
+
+                        // TODO: only call this once
+                        engulfable.OnReportBecomeIngestedIfCallbackRegistered(engulfedObject);
+
                         break;
                     }
 
                     case DigestCheckResult.MissingEnzyme:
                     {
-                        engulfer.EjectEngulfable(engulfable);
+                        engulfer.EjectEngulfable(ref engulfable);
 
                         entity.SendNoticeIfPossible(new LocalizedString("NOTICE_ENGULF_MISSING_ENZYME",
                             engulfable.RequisiteEnzymeToDigest!.Name));
@@ -224,10 +233,12 @@ namespace Systems
                 {
                     engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
                 }
-                else
-                {
-                    usedCapacity += engulfable.AdjustedEngulfSize;
-                }
+
+                // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract
+                // the engulfing size when ejecting an object so this ensures that a digested object cannot contribute
+                // negative size for a short while. The digested object's impact will be correctly recalculated once
+                // it is ejected and this system runs again.
+                usedCapacity += engulfable.AdjustedEngulfSize;
             }
 
             engulfer.UsedIngestionCapacity = usedCapacity;

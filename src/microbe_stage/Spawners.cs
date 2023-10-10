@@ -39,37 +39,50 @@ public static class SpawnHelpers
 {
     /// <summary>
     ///   Call this when using the "WithoutFinalizing" variants of spawn methods that allow additional entity
-    ///   customization.
+    ///   customization. This is not mandatory to call when other operations are to be batched with the same recorder.
+    ///   In which case the recorder should be just directly submitted to
+    ///   <see cref="IWorldSimulation.FinishRecordingEntityCommands"/>.
     /// </summary>
-    /// <param name="recorder">The recorder returned from the without finalize method</param>
+    /// <param name="entityRecorder">The entityRecorder returned from the without finalize method</param>
     /// <param name="worldSimulation">The world simulation used to start the entity spawn</param>
-    public static void FinalizeEntitySpawn(EntityCommandRecorder recorder, IWorldSimulation worldSimulation)
+    public static void FinalizeEntitySpawn(EntityCommandRecorder entityRecorder, IWorldSimulation worldSimulation)
     {
-        worldSimulation.FinishRecordingEntityCommands(recorder);
+        worldSimulation.FinishRecordingEntityCommands(entityRecorder);
     }
 
-    public static void SpawnCellBurstEffect(IWorldSimulation worldSimulation, Vector3 location)
+    public static void SpawnCellBurstEffect(IWorldSimulation worldSimulation, Vector3 location, float radius)
     {
         // Support spawning this at any time during an update cycle
         var recorder = worldSimulation.StartRecordingEntityCommands();
-        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+
+        SpawnCellBurstEffectWithoutFinalizing(recorder, worldSimulation, location, radius);
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+    }
+
+    public static void SpawnCellBurstEffectWithoutFinalizing(EntityCommandRecorder entityRecorder,
+        IWorldSimulation worldSimulation, Vector3 location, float radius)
+    {
+        // Support spawning this at any time during an update cycle
+        var entityCreator = worldSimulation.GetRecorderWorld(entityRecorder);
 
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location));
 
+        entity.Set<SpatialInstance>();
         entity.Set(new PredefinedVisuals
         {
             VisualIdentifier = VisualResourceIdentifier.CellBurstEffect,
         });
 
-        entity.Set<SpatialInstance>();
+        // The cell burst effect component initialization by its system configures this
         entity.Set<TimedLife>();
-        entity.Set<CellBurstEffect>();
-
-        worldSimulation.FinishRecordingEntityCommands(recorder);
+        entity.Set(new CellBurstEffect(radius));
     }
 
+    /// <summary>
+    ///   Spawns an agent projectile
+    /// </summary>
     public static EntityRecord SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
         float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
     {
@@ -81,19 +94,29 @@ public static class SpawnHelpers
         return entity;
     }
 
-    /// <summary>
-    ///   Spawns an agent projectile
-    /// </summary>
     public static EntityCommandRecorder SpawnAgentProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
         AgentProperties properties, float amount, float lifetime, Vector3 location, Vector3 direction, float scale,
         Entity emitter, out EntityRecord entity)
     {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        entity = SpawnAgentProjectileWithoutFinalizing(worldSimulation, recorder, properties, amount, lifetime,
+            location, direction, scale, emitter);
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+
+        return recorder;
+    }
+
+    public static EntityRecord SpawnAgentProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
+        EntityCommandRecorder commandRecorder, AgentProperties properties, float amount, float lifetime,
+        Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
         var normalizedDirection = direction.Normalized();
 
-        var recorder = worldSimulation.StartRecordingEntityCommands();
-        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+        var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
 
-        entity = worldSimulation.CreateEntityDeferred(entityCreator);
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location + direction * 1.5f));
 
@@ -145,11 +168,12 @@ public static class SpawnHelpers
 
         entity.Set(new ReadableName(properties.Name));
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
-
-        return recorder;
+        return entity;
     }
 
+    /// <summary>
+    ///   Spawn a floating chunk (cell parts floating around, rocks, hazards)
+    /// </summary>
     public static void SpawnChunk(IWorldSimulation worldSimulation, ChunkConfiguration chunkType, Vector3 location,
         Random random, bool microbeDrop)
     {
@@ -158,11 +182,18 @@ public static class SpawnHelpers
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
-    /// <summary>
-    ///   Spawn a floating chunk (cell parts floating around, rocks, hazards)
-    /// </summary>
     public static EntityCommandRecorder SpawnChunkWithoutFinalizing(IWorldSimulation worldSimulation,
         ChunkConfiguration chunkType, Vector3 location, Random random, bool microbeDrop, out EntityRecord entity)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        entity = SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType, location, random, microbeDrop);
+        return recorder;
+    }
+
+    public static EntityRecord SpawnChunkWithoutFinalizing(IWorldSimulation worldSimulation,
+        EntityCommandRecorder commandRecorder, ChunkConfiguration chunkType, Vector3 location, Random random,
+        bool microbeDrop)
     {
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
@@ -173,10 +204,9 @@ public static class SpawnHelpers
         // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
 
-        var recorder = worldSimulation.StartRecordingEntityCommands();
-        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+        var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
 
-        entity = worldSimulation.CreateEntityDeferred(entityCreator);
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location, new Quat(
             rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
@@ -274,6 +304,9 @@ public static class SpawnHelpers
                 PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
         });
 
+        // See the remarks comment on EntityRadiusInfo
+        entity.Set(new EntityRadiusInfo(chunkType.Radius));
+
         entity.Set<CollisionManagement>();
 
         if (chunkType.Damages > 0)
@@ -319,7 +352,7 @@ public static class SpawnHelpers
 
         entity.Set(new ReadableName(new LocalizedString(chunkType.Name)));
 
-        return recorder;
+        return entity;
     }
 
     // TODO: remove this old variant

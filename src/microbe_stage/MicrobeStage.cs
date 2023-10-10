@@ -199,7 +199,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // TODO: if we start getting a ton of tutorial stuff reported each frame we should only report stuff when
             // relevant, for example only when in a colony or just leaving a colony should the player colony
             // info be sent
-            if (Player.Has<Components.MicrobeColony>())
+            if (Player.Has<MicrobeColony>())
             {
                 throw new NotImplementedException();
                 /*TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
@@ -339,7 +339,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
             // becoming disabled properly
             // https://github.com/Revolutionary-Games/Thrive/issues/2504
-            if (Player.Has<Components.MicrobeColony>())
+            if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
                 return;
@@ -370,7 +370,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// </summary>
     public void MoveToMulticellular()
     {
-        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<Components.MicrobeColony>())
+        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>())
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
             return;
@@ -389,7 +389,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
-        ref var colony = ref Player.Get<Components.MicrobeColony>();
+        ref var colony = ref Player.Get<MicrobeColony>();
 
         throw new NotImplementedException();
 
@@ -459,7 +459,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// </summary>
     public void MoveToMacroscopic()
     {
-        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<Components.MicrobeColony>())
+        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>())
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become macroscopic");
             return;
@@ -473,7 +473,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
-        ref var colony = ref Player.Get<Components.MicrobeColony>();
+        ref var colony = ref Player.Get<MicrobeColony>();
 
         throw new NotImplementedException();
 
@@ -897,7 +897,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
         OnCanEditStatusChanged(ready &&
-            (!player.Has<Components.MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
+            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
     }
 
     [DeserializedCallbackAllowed]
@@ -913,7 +913,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerIngesting(Entity player, IEngulfable ingested)
+    private void OnPlayerIngesting(Entity player, Entity ingested)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
     }

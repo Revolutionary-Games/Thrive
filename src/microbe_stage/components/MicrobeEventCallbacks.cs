@@ -17,7 +17,7 @@
 
         public Action<Entity, Entity>? OnIngestedByHostile;
 
-        public Action<Entity, IEngulfable>? OnSuccessfulEngulfment;
+        public Action<Entity, Entity>? OnSuccessfulEngulfment;
 
         public Action<Entity>? OnEngulfmentStorageFull;
 

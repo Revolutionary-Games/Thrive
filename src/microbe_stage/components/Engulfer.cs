@@ -12,28 +12,16 @@
     public struct Engulfer
     {
         /// <summary>
-        ///   Tracks entities this already engulfed.
+        ///   Tracks entities this already engulfed. Or is in the process of currently pulling in or expelling.
         /// </summary>
         public List<Entity>? EngulfedObjects;
 
         /// <summary>
-        ///   Entities that are currently being attempted to be engulfed. Once succeeded these will be moved to
-        ///   <see cref="EngulfedObjects"/>
-        /// </summary>
-        public List<Entity>? AttemptingToEngulf;
-
-        /// <summary>
         ///   Tracks entities this has previously engulfed. This is used to not constantly attempt to re-engulf
-        ///   something this cannot fully engulf
+        ///   something this cannot fully engulf. The value is how long since the object was expelled. Values are
+        ///   automatically removed once the time reaches <see cref="Constants.ENGULF_EJECTED_COOLDOWN"/>
         /// </summary>
-        public List<Entity>? ExpelledObjects;
-
-        /// <summary>
-        ///   Total size of engulfable objects in <see cref="AttemptingToEngulf"/>. This is a separate variable to
-        ///   avoid having to constantly read the entity components of <see cref="AttemptingToEngulf"/> when checking
-        ///   if more things can be engulfed.
-        /// </summary>
-        public float SumOfAttemptingToEngulfSizes;
+        public Dictionary<Entity, float>? ExpelledObjects;
 
         /// <summary>
         ///   The attacking capability of this engulfer. Used to determine what this can eat
@@ -83,7 +71,7 @@
             }
 
             // Can't engulf recently ejected objects, this act as a cooldown
-            if (engulfer.ExpelledObjects != null && engulfer.ExpelledObjects.Contains(target))
+            if (engulfer.ExpelledObjects != null && engulfer.ExpelledObjects.ContainsKey(target))
                 return EngulfCheckResult.RecentlyExpelled;
 
             try
@@ -113,8 +101,7 @@
                 }
 
                 // Too many things attempted to be pulled in at once
-                if (engulfer.UsedIngestionCapacity + engulfer.SumOfAttemptingToEngulfSizes +
-                    engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
+                if (engulfer.UsedIngestionCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
                 {
                     return EngulfCheckResult.IngestedMatterFull;
                 }
@@ -210,9 +197,25 @@
             return nearestPoint;
         }
 
-        public static bool EjectEngulfable(this ref Engulfer engulfer, in Entity engulfedEntity)
+        public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
         {
-            throw new NotImplementedException();
+            // Cannot start ejecting a thing that is not in a valid state for that
+            switch (engulfable.PhagocytosisStep)
+            {
+                case PhagocytosisPhase.Ingestion:
+                case PhagocytosisPhase.Ingested:
+                    break;
+
+                case PhagocytosisPhase.RequestExocytosis:
+                    // Already requested
+                    return true;
+
+                default:
+                    return false;
+            }
+
+            engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
+            return true;
         }
 
         /// <summary>

@@ -20,6 +20,8 @@
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
+        private readonly Node visualsParent;
+
         private readonly Lazy<PackedScene> membraneScene =
             new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
 
@@ -38,8 +40,9 @@
 
         private uint membraneGenerationRequestNumber;
 
-        public MicrobeVisualsSystem(World world) : base(world, null)
+        public MicrobeVisualsSystem(Node visualsParent, World world) : base(world, null)
         {
+            this.visualsParent = visualsParent;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -60,13 +63,22 @@
 
             cellProperties.CreatedMembrane = null;
 
-            // TODO: background thread membrane generation
-
             ref var spatialInstance = ref entity.Get<SpatialInstance>();
-            spatialInstance.GraphicalInstance?.QueueFree();
-            spatialInstance.GraphicalInstance = new Spatial();
+
+            // Create graphics top level node if missing for entity
+            if (spatialInstance.GraphicalInstance == null)
+            {
+                spatialInstance.GraphicalInstance = new Spatial();
+                visualsParent.AddChild(spatialInstance.GraphicalInstance);
+            }
+
+            // Bacteria is 50% of the scale of other microbes
+            spatialInstance.GraphicalInstance.Scale =
+                cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : Vector3.One;
 
             ref var materialStorage = ref entity.Get<EntityMaterial>();
+
+            // TODO: background thread membrane generation
 
             if (cellProperties.CreatedMembrane == null)
             {
@@ -94,7 +106,7 @@
             // TODO: make the threaded membrane generation instead of forcing it here as getting the external organelle
             // positions forces the full calculation of the membrane data (to no longer be marked dirty)
 
-            // TODO: health value applying (this should probably already work?)
+            // TODO: should this hide organelles when the microbe is dead?
 
             CreateOrganelleVisuals(spatialInstance.GraphicalInstance, ref organelleContainer, ref cellProperties);
 
@@ -119,10 +131,17 @@
         {
             ++membraneGenerationRequestNumber;
 
-            var organellePositions = new List<Vector2>
-            {
-                Capacity = organelleContainer.Organelles!.Count * 2,
-            };
+            // TODO: once background generation is used, this needs to make sure that no multiple generation requests
+            // can affect the membrane at once (probably should refactor the membrane to just directly take in a
+            // membrane generated cache entry)
+            var organellePositions = membrane.ModifiableOrganelles;
+
+            // Reserve a bit of memory before the loop
+            var expectedMinCapacity = organelleContainer.Organelles!.Count * 2;
+            if (organellePositions.Capacity < expectedMinCapacity)
+                organellePositions.Capacity = expectedMinCapacity;
+
+            organellePositions.Clear();
 
             foreach (var entry in organelleContainer.Organelles)
             {
@@ -135,12 +154,14 @@
                 }
             }
 
-            membrane.OrganellePositions = organellePositions;
-
             membrane.Type = cellProperties.MembraneType;
 
+            // TODO: this shouldn't override membrane wigglyness if it was set to 0 due to being engulfed (thankfully
+            // it's probably the case that visuals aren't currently updated while something is engulfed)
             cellProperties.ApplyMembraneWigglyness(membrane);
 
+            // TODO: don't mark dirty if positions didn't end up changing? If the background thread generation is done
+            // then this probably won't matter at all thanks to caching
             membrane.Dirty = true;
         }
 

@@ -1,9 +1,12 @@
 namespace Systems
 {
+    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
+    using Godot;
+    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles <see cref="Engulfable"/> entities that are currently engulfed or have been engulfed before and should
@@ -68,6 +71,17 @@ namespace Systems
                     if (!health.Dead)
 
                         KillEngulfed(entity, ref health, ref engulfable);
+                }
+
+                // If the engulfing entity is dead, then this should have been ejected
+                // See the TODO in the remarks section
+                if (!engulfable.HostileEngulfer.IsAlive)
+                {
+                    GD.PrintErr("Entity is stuck inside a dead engulfer!");
+
+#if DEBUG
+                    throw new InvalidOperationException("Entity is inside a dead engulfer (not ejected)");
+#endif
                 }
             }
         }

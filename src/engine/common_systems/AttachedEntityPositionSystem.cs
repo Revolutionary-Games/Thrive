@@ -31,6 +31,8 @@ namespace Systems
                 return;
             }
 
+            // TODO: optimize for attached entities where the position / parent position doesn't change each frame?
+
             ref var parentPosition = ref attachInfo.AttachedTo.Get<WorldPosition>();
 
             ref var position = ref entity.Get<WorldPosition>();

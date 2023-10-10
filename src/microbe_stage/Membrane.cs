@@ -24,6 +24,13 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </summary>
     private readonly List<Vector2> startingBuffer = new();
 
+    /// <summary>
+    ///   When organelle positions exist, they are set here and this overrides
+    ///   <see cref="PreviewMembraneOrganellePositions"/> when accessed through <see cref="OrganellePositions"/>
+    /// </summary>
+    [JsonProperty]
+    private List<Vector2>? setOrganellePositions;
+
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
@@ -76,10 +83,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     The contents in this list should not be modified, a new list should be assigned.
+    ///     To modify the value here, set it through <see cref="ModifiableOrganelles"/>
     ///   </para>
     /// </remarks>
-    public IReadOnlyList<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
+    [JsonIgnore]
+    public IReadOnlyList<Vector2> OrganellePositions => setOrganellePositions ?? PreviewMembraneOrganellePositions;
+
+    [JsonIgnore]
+    public List<Vector2> ModifiableOrganelles => setOrganellePositions ??= new List<Vector2>();
 
     // TODO: delete this property if this doesn't get used soon
     /// <summary>

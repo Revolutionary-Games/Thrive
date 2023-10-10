@@ -11,5 +11,11 @@
         ///   Used by the burst system to detect which entities are not initialized yet
         /// </summary>
         public bool Initialized;
+
+        public CellBurstEffect(float radius)
+        {
+            Radius = radius;
+            Initialized = false;
+        }
     }
 }

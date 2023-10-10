@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
+// TODO: delete this interface as the data has been converted to components
 /// <summary>
-///   Objects that can be engulfed by a microbe. TODO: convert to a component
+///   Objects that can be engulfed by a microbe.
 /// </summary>
 [UseThriveSerializer]
 public interface IEngulfable : IGraphicalEntity

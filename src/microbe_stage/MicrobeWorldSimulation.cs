@@ -145,7 +145,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageSoundSystem = new DamageSoundSystem(EntitySystem, parallelRunner);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, parallelRunner);
-        engulfingSystem = new EngulfingSystem(this, EntitySystem);
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, parallelRunner);
 
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, parallelRunner);
@@ -155,13 +154,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
-        microbeDeathSystem = new MicrobeDeathSystem(EntitySystem, parallelRunner);
+
         microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, EntitySystem, parallelRunner);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, parallelRunner);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
-        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
+        microbeVisualsSystem = new MicrobeVisualsSystem(visualDisplayRoot, EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, parallelRunner);
         organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, parallelRunner);
@@ -182,6 +181,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem = new SpawnSystem(this);
 
         microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+        microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+        engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         CloudSystem = cloudSystem;
         cloudSystem.Init(fluidCurrentsSystem);
@@ -199,6 +200,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         osmoregulationAndHealingSystem.SetWorld(gameProperties.GameWorld);
         microbeReproductionSystem.SetWorld(gameProperties.GameWorld);
+        microbeDeathSystem.SetWorld(gameProperties.GameWorld);
     }
 
     public override void ProcessFrameLogic(float delta)

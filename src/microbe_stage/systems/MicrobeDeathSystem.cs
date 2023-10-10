@@ -2,8 +2,10 @@ namespace Systems
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Components;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
     using Godot;
@@ -18,146 +20,60 @@ namespace Systems
     [With(typeof(MicrobeShaderParameters))]
     [With(typeof(CellProperties))]
     [With(typeof(Physics))]
+    [With(typeof(WorldPosition))]
+    [With(typeof(MicrobeControl))]
+    [With(typeof(ManualPhysicsControl))]
+    [With(typeof(SoundEffectPlayer))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
+    [RunsBefore(typeof(EngulfingSystem))]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     {
-        public MicrobeDeathSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        private readonly IWorldSimulation worldSimulation;
+        private readonly ISpawnSystem spawnSystem;
+
+        private readonly Random random = new();
+
+        private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+
+        private GameWorld? gameWorld;
+
+        public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
+            IParallelRunner parallelRunner) : base(world, parallelRunner)
         {
-        }
-
-        protected override void Update(float delta, in Entity entity)
-        {
-            ref var health = ref entity.Get<Health>();
-
-            if (health.DeathProcessed)
-                return;
-
-            ref var cellProperties = ref entity.Get<CellProperties>();
-            if (cellProperties.CreatedMembrane != null)
-            {
-                if (health.MaxHealth <= 0)
-                {
-                    GD.PrintErr("Cell doesn't have max health set");
-                    cellProperties.CreatedMembrane.HealthFraction = 0;
-                }
-                else
-                {
-                    cellProperties.CreatedMembrane.HealthFraction = health.CurrentHealth / health.MaxHealth;
-                }
-            }
-
-            if (health.CurrentHealth <= 0 || health.Dead)
-            {
-                HandleMicrobeDeath(entity);
-                health.DeathProcessed = true;
-            }
-        }
-
-        private void HandleMicrobeDeath(in Entity entity)
-        {
-            if (entity.Has<AttachedToEntity>())
-            {
-                // TODO: handle either dying in engulfment or in a cell colony
-                // When in a colony needs to detach
-
-                // Dropping corpse chunks won't make sense while inside a cell
-                throw new NotImplementedException();
-            }
-
-            if (entity.Has<MicrobeColony>())
-            {
-                // TODO: handle colony lead cell dying (disband the colony)
-                throw new NotImplementedException();
-            }
-
-            // TODO: release all engulfed objects (unless this is being currently engulfed in which case our engulfer
-            // should take them)
-
-            ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
-
-            // TODO: the kill method used to return the list of dropped corpse chunks, not sure if that is still
-            // needed by anything
-            OnKilled(entity);
+            this.worldSimulation = worldSimulation;
+            this.spawnSystem = spawnSystem;
         }
 
         /// <summary>
-        ///   Operations that should be done when this cell is killed
+        ///   Delegate called to customize things spawned by <see cref="MicrobeDeathSystem.SpawnCorpseChunks"/>.
+        ///   The return value defines the initial velocity to set. Modifying the position parameter allows
+        ///   controlling the spawn location.
         /// </summary>
-        /// <returns>
-        ///   The dropped corpse chunks.
-        /// </returns>
-        private void /*IEnumerable<Entity>*/ OnKilled(in Entity entity)
+        public delegate Vector3 CustomizeSpawnedChunk(ref Vector3 position);
+
+        public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
+            ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
+            Vector3 basePosition, Random random,
+            CustomizeSpawnedChunk? customizeCallback,
+            Compound? glucose)
         {
-            // Reset some stuff
-            State = MicrobeState.Normal;
-            MovementDirection = new Vector3(0, 0, 0);
-            LinearVelocity = new Vector3(0, 0, 0);
-            allOrganellesDivided = false;
-
-            if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
-            {
-                // When dying when engulfed the normal actions don't apply
-                return;
-            }
-
-            ApplyDeathVisuals(entity);
-
-            // Eject all of the engulfables here
-            foreach (var engulfed in engulfedObjects.ToList())
-            {
-                if (engulfed.Object.Value != null)
-                    EjectEngulfable(engulfed.Object.Value);
-            }
-
-            // Releasing all the agents.
-            // To not completely deadlock in this there is a maximum limit
-            int createdAgents = 0;
-
-            if (AgentVacuoleCount > 0)
-            {
-                var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-
-                var amount = Compounds.GetCompoundAmount(oxytoxy);
-
-                var props = new AgentProperties(Species, oxytoxy);
-
-                throw new NotImplementedException();
-
-                // var agentScene = SpawnHelpers.LoadAgentScene();
-
-                while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
-                {
-                    var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
-                        0, random.Next(0.0f, 1.0f) * 2 - 1);
-
-                    // var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
-                    //     Constants.EMITTED_AGENT_LIFETIME,
-                    //     Translation, direction, GetStageAsParent(),
-                    //     agentScene, this);
-                    //
-                    // ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
-
-                    amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
-                    ++createdAgents;
-
-                    if (createdAgents >= Constants.MAX_EMITTED_AGENTS_ON_DEATH)
-                        break;
-                }
-            }
+            if (organelleContainer.Organelles == null)
+                throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
 
             // Eject the compounds that was in the microbe
             var compoundsToRelease = new Dictionary<Compound, float>();
 
             foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
             {
-                var amount = Compounds.GetCompoundAmount(type) *
+                var amount = compounds.GetCompoundAmount(type) *
                     Constants.COMPOUND_RELEASE_FRACTION;
 
                 compoundsToRelease[type] = amount;
             }
 
             // Eject some part of the build cost of all the organelles
-            foreach (var organelle in organelles!)
+            foreach (var organelle in organelleContainer.Organelles!)
             {
                 foreach (var entry in organelle.Definition.InitialComposition)
                 {
@@ -173,29 +89,25 @@ namespace Systems
                 }
             }
 
-            CalculateBonusDigestibleGlucose(compoundsToRelease);
+            EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds, glucose);
 
             // Queues either 1 corpse chunk or a factor of the hexes
-            int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
-
-            throw new NotImplementedException();
-
-            // var droppedCorpseChunks = new HashSet<FloatingChunk>(chunksToSpawn);
-            //
-            // var chunkScene = SpawnHelpers.LoadChunkScene();
+            // TODO: should there be a max amount (maybe like 20?)
+            int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
             // An enumerator to step through all available organelles in a random order when making chunks
-            using var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
+            using var organellesAvailableEnumerator =
+                organelleContainer.Organelles.Organelles.OrderBy(_ => random.Next()).GetEnumerator();
 
             // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
             var defaultChunkScene = SimulationParameters.Instance
-                    .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene ??
-                throw new Exception("No default chunk scene");
+                    .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).CorpseChunkScene ??
+                throw new Exception("No chunk scene set on default organelle type to use");
 
             for (int i = 0; i < chunksToSpawn; ++i)
             {
                 // Amount of compound in one chunk
-                float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
+                float amount = organelleContainer.HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
                 var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                     random.Next(-2.0f, 2.0f));
@@ -228,114 +140,273 @@ namespace Systems
 
                 chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-                throw new NotImplementedException();
-                /*var sceneToUse = new ChunkConfiguration.ChunkScene
+                var sceneToUse = new ChunkConfiguration.ChunkScene
                 {
-                    LoadedScene = defaultChunkScene,
+                    ScenePath = defaultChunkScene,
                 };
 
                 // Will only loop if there are still organelles available
                 while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
                 {
-                    if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
+                    var organelleDefinition = organellesAvailableEnumerator.Current.Definition;
+
+                    if (!string.IsNullOrEmpty(organelleDefinition.CorpseChunkScene))
                     {
-                        sceneToUse.LoadedScene =
-                            organellesAvailableEnumerator.Current.Definition.LoadedCorpseChunkScene;
+                        sceneToUse.ScenePath = organelleDefinition.CorpseChunkScene!;
                     }
-                    else if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.DisplayScene))
+                    else if (!string.IsNullOrEmpty(organelleDefinition.DisplayScene))
                     {
-                        sceneToUse.LoadedScene = organellesAvailableEnumerator.Current.Definition.LoadedScene;
-                        sceneToUse.SceneModelPath =
-                            organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
+                        sceneToUse.ScenePath = organelleDefinition.DisplayScene!;
+                        sceneToUse.SceneModelPath = organelleDefinition.DisplaySceneModelPath;
                     }
                     else
                     {
                         continue;
                     }
 
-                    if (sceneToUse.LoadedScene != null)
-                        break;
+                    // ScenePath is always valid now here so we just break after the first organelle we were able to
+                    // use
+                    break;
                 }
-
-                if (sceneToUse.LoadedScene == null)
-                    throw new Exception("loaded scene is null");
 
                 chunkType.Meshes.Add(sceneToUse);
 
                 // Finally spawn a chunk with the settings
-                var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                    chunkScene, random);
-                droppedCorpseChunks.Add(chunk);
+
+                var chunk = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType,
+                    basePosition + positionAdded, random, true);
 
                 // Add to the spawn system to make these chunks limit possible number of entities
-                spawnSystem!.NotifyExternalEntitySpawned(chunk);
+                spawnSystem.NotifyExternalEntitySpawned(chunk,
+                    Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, 1);
 
-                ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);*/
+                ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
+            }
+        }
+
+        public void SetWorld(GameWorld world)
+        {
+            gameWorld = world;
+        }
+
+        protected override void PreUpdate(float state)
+        {
+            base.PreUpdate(state);
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
+        }
+
+        protected override void Update(float delta, in Entity entity)
+        {
+            ref var health = ref entity.Get<Health>();
+
+            if (health.DeathProcessed)
+                return;
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+            if (cellProperties.CreatedMembrane != null)
+            {
+                if (health.MaxHealth <= 0)
+                {
+                    GD.PrintErr("Cell doesn't have max health set");
+                    cellProperties.CreatedMembrane.HealthFraction = 0;
+                }
+                else
+                {
+                    cellProperties.CreatedMembrane.HealthFraction = health.CurrentHealth / health.MaxHealth;
+                }
             }
 
-            // Subtract population
-            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
+            if (health.CurrentHealth <= 0 || health.Dead)
             {
-                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
+                if (HandleMicrobeDeath(ref cellProperties, entity))
+                    health.DeathProcessed = true;
+            }
+        }
+
+        private bool HandleMicrobeDeath(ref CellProperties cellProperties, in Entity entity)
+        {
+            if (entity.Has<AttachedToEntity>())
+            {
+                // TODO: handle either dying in engulfment or in a cell colony
+                // When in a colony needs to detach
+                if (entity.Has<MicrobeColonyMember>())
+                {
+                    throw new NotImplementedException();
+                }
+
+                // Else, being engulfed handling is in OnKilled and OnExpelledFromEngulfment
+                // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+            }
+
+            if (entity.Has<MicrobeColony>())
+            {
+                // TODO: handle colony lead cell dying (disband the colony)
+                throw new NotImplementedException();
+            }
+
+            // TODO: release all engulfed objects (unless this is being currently engulfed in which case our engulfer
+            // should take them)
+
+            ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
+
+            // TODO: the kill method used to return the list of dropped corpse chunks, not sure if that is still
+            // needed by anything
+            return OnKilled(ref cellProperties, entity);
+        }
+
+        /// <summary>
+        ///   Operations that should be done when this cell is killed
+        /// </summary>
+        /// <returns>
+        ///   The dropped corpse chunks.
+        /// </returns>
+        private bool /*IEnumerable<Entity>*/ OnKilled(ref CellProperties cellProperties, in Entity entity)
+        {
+            ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+
+            if (organelleContainer.Organelles == null)
+            {
+                GD.Print("Can't kill a microbe yet with uninitialized organelles");
+                return false;
+            }
+
+            ref var control = ref entity.Get<MicrobeControl>();
+            ref var physics = ref entity.Get<Physics>();
+
+            // Reset some stuff
+            control.State = MicrobeState.Normal;
+            control.MovementDirection = new Vector3(0, 0, 0);
+            organelleContainer.AllOrganellesDivided = false;
+
+            // Disable collisions
+            physics.SetCollisionDisableState(true);
+
+            // TODO: should we reset the velocity here?
+            // ref var physicsControl = ref entity.Get<ManualPhysicsControl>();
+            // physicsControl.RemoveVelocity = true;
+            // physicsControl.PhysicsApplied = false;
+
+            var species = entity.Get<SpeciesMember>().Species;
+
+            // Subtract population
+            if (!entity.Has<PlayerMarker>() && !species.PlayerSpecies)
+            {
+                gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
                     Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
             }
 
-            if (IsPlayerMicrobe)
+            ref var engulfable = ref entity.Get<Engulfable>();
+
+            if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
             {
-                // If you died before entering the editor disable that
-                OnReproductionStatus?.Invoke(this, false);
+                // When dying when engulfed the normal actions don't apply
+                // Special handling for this is in EngulfableHelpers.OnExpelledFromEngulfment
+                return true;
             }
 
-            if (IsPlayerMicrobe)
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+            ref var position = ref entity.Get<WorldPosition>();
+
+            var recorder = worldSimulation.StartRecordingEntityCommands();
+
+            ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, recorder);
+
+            var entityRecord = recorder.Record(entity);
+
+            // Add a timed life component to make sure the entity will despawn after the death animation
+            entityRecord.Set(new TimedLife
             {
-                // Playing from a positional audio player won't have any effect since the listener is
-                // directly on it.
-                PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
-            }
-            else
+                TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
+            });
+
+            // Ejecting all engulfed objects on death are now handled by EngulfingSystem
+
+            // Releasing all the agents.
+
+            if (organelleContainer.AgentVacuoleCount > 0)
             {
-                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+                ReleaseAllAgents(ref position, entity, compounds, species, recorder);
             }
 
-            // Disable collisions
-            CollisionLayer = 0;
-            CollisionMask = 0;
+            // Eject compounds and build costs as corpse chunks of the cell
+            SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, recorder,
+                position.Position, random, null, glucose);
 
-            throw new NotImplementedException();
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
 
-            // return droppedCorpseChunks;
+                // If a microbe died, notify about this. This does really important stuff if the player died before
+                // entering the editor
+                callbacks.OnReproductionStatus?.Invoke(entity, false);
+            }
+
+            ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+
+            soundPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+
+            worldSimulation.FinishRecordingEntityCommands(recorder);
+
+            return true;
         }
 
-        private void ApplyDeathVisuals(in Entity entity)
+        private void ReleaseAllAgents(ref WorldPosition position, in Entity entity, CompoundBag compounds,
+            Species species, EntityCommandRecorder recorder)
+        {
+            // To not completely deadlock in this there is a maximum limit
+            int createdAgents = 0;
+
+            var amount = compounds.GetCompoundAmount(oxytoxy);
+
+            var props = new AgentProperties(species, oxytoxy);
+
+            while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
+            {
+                var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
+                    0, random.Next(0.0f, 1.0f) * 2 - 1);
+
+                var spawnedRecord = SpawnHelpers.SpawnAgentProjectileWithoutFinalizing(worldSimulation, recorder,
+                    props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, Constants.EMITTED_AGENT_LIFETIME,
+                    position.Position, direction, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, entity);
+
+                ModLoader.ModInterface.TriggerOnToxinEmitted(spawnedRecord);
+
+                amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
+                ++createdAgents;
+
+                if (createdAgents >= Constants.MAX_EMITTED_AGENTS_ON_DEATH)
+                    break;
+            }
+        }
+
+        private void ApplyDeathVisuals(ref CellProperties cellProperties, ref OrganelleContainer organelleContainer,
+            ref WorldPosition position, in Entity entity, EntityCommandRecorder recorder)
         {
             // Spawn cell death particles.
+            float radius = 1;
 
-
-                throw new NotImplementedException();
-
-                // var cellBurstEffectParticles = (CellBurstEffect)cellBurstEffectScene.Instance();
-                // cellBurstEffectParticles.Translation = Translation;
-                // cellBurstEffectParticles.Radius = Radius;
-                // cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
-                //
-                // GetParent().AddChild(cellBurstEffectParticles);
-
-
-
-            foreach (var organelle in organelles!)
+            if (cellProperties.CreatedMembrane != null)
             {
-                organelle.Hide();
+                radius = cellProperties.CreatedMembrane.EncompassingCircleRadius;
+
+                if (cellProperties.IsBacteria)
+                    radius *= 0.5f;
             }
 
+            SpawnHelpers.SpawnCellBurstEffectWithoutFinalizing(recorder, worldSimulation, position.Position, radius);
 
-            throw new NotImplementedException();
+            // Mark visuals as needing an update to have visuals system re-process this
+            // TODO: determine if it is necessary to re-implement the organelle hiding on death or if a fade animation
+            // will be fine for those
+            organelleContainer.OrganelleVisualsCreated = false;
 
-            // Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
-            //
-            // if (Membrane.DissolveEffectValue >= 1)
-            // {
-            //     this.DestroyDetachAndQueueFree();
-            // }
+            ref var shaderParameters = ref entity.Get<MicrobeShaderParameters>();
+
+            shaderParameters.DissolveAnimationSpeed = Constants.MEMBRANE_DISSOLVE_SPEED;
+            shaderParameters.PlayAnimations = true;
+            shaderParameters.ParametersApplied = false;
         }
     }
 }
