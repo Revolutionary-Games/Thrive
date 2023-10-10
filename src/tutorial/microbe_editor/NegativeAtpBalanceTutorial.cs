@@ -1,9 +1,9 @@
-namespace Tutorial
+﻿namespace Tutorial
 {
     using System;
 
     /// <summary>
-    ///     Tells the player about negative ATP balance
+    ///   Tells the player about negative ATP balance
     /// </summary>
     public class NegativeAtpBalanceTutorial : TutorialPhase
     {
@@ -14,18 +14,19 @@ namespace Tutorial
             gui.NegativeAtpBalanceTutorialVisible = ShownCurrently;
         }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args, object sender)
+        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+            object sender)
         {
             switch (eventType)
             {
                 case TutorialEventType.MicrobeEditorNegativeAtpBalanceAchieved:
-                if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
-                {
-                    Show();
-                    return true;
-                }
+                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
+                    {
+                        Show();
+                        return true;
+                    }
 
-                break;
+                    break;
             }
 
             return false;

@@ -224,7 +224,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         {
             if (value == negativeAtpBalanceTutorial.Visible)
                 return;
-            
+
             if (value)
             {
                 negativeAtpBalanceTutorial.Show();

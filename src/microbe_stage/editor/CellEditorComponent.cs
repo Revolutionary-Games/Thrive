@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.Linq;
 using AutoEvo;
@@ -1856,10 +1855,11 @@ public partial class CellEditorComponent :
 
         StartAutoEvoPrediction();
 
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption)
+        if (energyBalanceInfo != null && energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption)
         {
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorNegativeAtpBalanceAchieved, EventArgs.Empty, this);
         }
+
         UpdateFinishButtonWarningVisibility();
     }
 
