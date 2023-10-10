@@ -29,7 +29,7 @@ CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 AutoEvoPredictionPath = NodePath("AutoEvoPrediction")
 AutoEvoPredictionHighlightPath = NodePath("AutoEvoPredictionHighlight")
 StaySmallTutorialPath = NodePath("StaySmall")
-NegativeAtpBalanceTutorialPath = NodePath("NegativeAtpBalance")
+NegativeAtpBalanceTutorialPath = NodePath("NegativeAtpBalanceTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
@@ -234,7 +234,7 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
-[node name="NegativeAtpBalance" type="Control" parent="."]
+[node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -253,31 +253,31 @@ WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NegativeAtpBalance"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NegativeAtpBalanceTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalance/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalanceTutorial/ScrollContainer"]
 margin_right = 260.0
 margin_bottom = 240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomRichTextLabel" parent="NegativeAtpBalance/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="CustomRichTextLabel" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_right = 260.0
 margin_bottom = 24.0
 custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
-[node name="Control" type="Control" parent="NegativeAtpBalance/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 260.0
 margin_bottom = 201.0
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="NegativeAtpBalance/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
 margin_top = 205.0
 margin_right = 260.0
 margin_bottom = 240.0
@@ -293,5 +293,5 @@ text = "GOT_IT"
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
-[connection signal="hide" from="NegativeAtpBalance" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalance" ]]
-[connection signal="pressed" from="NegativeAtpBalance/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalance" ]]
+[connection signal="hide" from="NegativeAtpBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]
+[connection signal="pressed" from="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]
