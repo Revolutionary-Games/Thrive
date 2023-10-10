@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-06 09:28+0300\n"
+"POT-Creation-Date: 2023-10-10 14:08-0700\n"
 "PO-Revision-Date: 2023-10-05 20:40+0000\n"
 "Last-Translator: Sergey <sergmachine@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -774,7 +774,7 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:651
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
@@ -927,7 +927,7 @@ msgstr "Удалить устаревшие сохранения"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
 msgid "CLOSE"
 msgstr "Закрыть"
 
@@ -1916,7 +1916,7 @@ msgstr "Редактор"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Войдите в редактор для модификации видов"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:47
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добро пожаловать в Микробный Редактор.\n"
@@ -1955,15 +1955,15 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2399
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, результатом чего является нескорректированная популяция количеством в {2}"
 
@@ -2296,7 +2296,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Пищевая Цепочка"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2416
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 
@@ -2474,7 +2474,8 @@ msgstr "Божественные Инструменты"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Клетка с наклеенными глазами"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:164
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Всё понятно"
 
@@ -3023,7 +3024,7 @@ msgstr "Этот язык всё ещё находится в стадии ра�
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1342
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1343
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
@@ -4414,7 +4415,7 @@ msgid "NO_AI"
 msgstr "Выключить ИИ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -4456,7 +4457,7 @@ msgstr "Ни одного мода не выбрано"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1341
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
@@ -4478,8 +4479,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -5040,7 +5041,7 @@ msgstr "популяция:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Популяция в биомах:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2280
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6641,8 +6642,9 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:252
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "TUTORIAL"
@@ -6661,7 +6663,7 @@ msgstr ""
 "\n"
 "Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "На этой панели отображается прогноз вашей будущей численности населения. Эти цифры взяты из моделирования популяции Авто-Эво.\n"
@@ -6672,7 +6674,7 @@ msgstr ""
 "\n"
 "Вы можете просмотреть более подробную информацию, лежащую в основе прогноза, нажав кнопку со знаком вопроса на панели. Нажмите ее, чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:74
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Это редактор клеток, в котором вы можете добавлять или удалять органеллы из вашего вида, тратя очки мутации (ОМ). В каждом поколении вам будет доступно 100 ОМ, очки не сохраняются, поэтому не бойтесь тратить!\n"
@@ -6681,7 +6683,7 @@ msgstr ""
 "\n"
 "Чтобы продолжить, выберите органеллу на панели слева. Затем щелкните левой кнопкой мыши чтобы поместить её. Вы можете вращать органеллы кнопками [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:128
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Это основы редактирования вашего вида. В качестве вишенки на торте вы можете переименовать свой вид, нажав на текущее название вида и отредактировав текст.\n"
@@ -6692,7 +6694,19 @@ msgstr ""
 "\n"
 "Удачи!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+msgstr ""
+"Это карта биомов.\n"
+"\n"
+"Каждый значок представляет уникальную среду, в которой вы можете жить, а панель справа от вас описывает условия выбранного в данном биоме.\n"
+"\n"
+"Если вы выберете биом, смежный с тем, в котором вы находитесь (выделен голубой рамкой), вы сможете нажать кнопку \"Перейти к этому биому\" справа, чтобы перейти туда.\n"
+"\n"
+"Выберите биом, чтобы продолжить."
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Это карта биомов.\n"
@@ -6703,7 +6717,7 @@ msgstr ""
 "\n"
 "Выберите биом, чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Удаление органелл также стоит ОМ, поскольку это мутация для вашего вида, если только они не были помещены в текущую сессию редактора.\n"
@@ -6714,7 +6728,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку Отменить, чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:107
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "При выборе частей \"тела\", обратите внимание на всплывающие подсказки, чтобы понять что они делают. Органеллы могут принести больше вреда чем пользы если вы невнимательных к их функционированию.\n"
@@ -6723,7 +6737,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку Повторить (рядом с кнопкой Отмена), чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Вы должны сосредоточиться на одном или двух источниках энергии, чтобы вам не нужно было собирать все ресурсы для выработки достаточного количества АТФ для выживания.\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-06 09:28+0300\n"
+"POT-Creation-Date: 2023-10-10 14:08-0700\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -775,7 +775,7 @@ msgstr "Celulozowa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:651
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
 
@@ -948,7 +948,7 @@ msgstr "Usuń stare zapisy"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
 msgid "CLOSE"
 msgstr "Zamknij"
 
@@ -1930,7 +1930,7 @@ msgstr "Edytor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:47
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Witaj w Edytorze Mikrobów.\n"
@@ -1969,15 +1969,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2399
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia w {0} dla {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2410
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
 msgid "ENERGY_SOURCES"
 msgstr "Źródła Energii:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
@@ -2315,7 +2315,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Łańcuch Pokarmowy"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2416
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (sprawność: {2}) całkowita dostępna energia: {3} (całkowita sprawność: {4})"
 
@@ -2502,7 +2502,8 @@ msgstr "Dołącz do naszego serwera Discord"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Komórka oczka"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:164
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Rozumiem"
 
@@ -3056,7 +3057,7 @@ msgstr "Ten język nadal jest w trakcie tłumaczenia ({0}% ukończenia)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli możesz, pomóż to zmienić!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1342
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1343
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
@@ -4460,7 +4461,7 @@ msgid "NO_AI"
 msgstr "Brak SI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
@@ -4503,7 +4504,7 @@ msgstr "Nie wybrano Modów"
 msgid "NUCLEUS"
 msgstr "Jądro Komórkowe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1341
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
@@ -4525,8 +4526,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -5087,7 +5088,7 @@ msgstr "populacja:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populacja w obszarach:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2280
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6700,8 +6701,9 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:252
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "TUTORIAL"
@@ -6720,7 +6722,7 @@ msgstr ""
 "\n"
 "Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ten panel pokazuje przewidywania względem przyszłej populacji. Te liczby są populacją z symulacji auto-ewolucji.\n"
@@ -6731,7 +6733,7 @@ msgstr ""
 "\n"
 "Możesz dowiedzieć się więcej klikając pytajnik na tym panelu. Naciśnij, by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:74
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie punktów mutacji (MP). W każdym pokoleniu zawsze masz 100 MP, więc nie przejmuj się oszczędzaniem!\n"
@@ -6740,7 +6742,7 @@ msgstr ""
 "\n"
 "By kontynuować, wybież część z lewego panelu. Następnie naciśnij lewy przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:128
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To są podstawy edycji gatunku. Na zakończenie, możesz zmienić nazwę swojego gatunku poprzez kliknięcie w imię w lewym, dolnym rogu i edytowanie tekstu.\n"
@@ -6751,7 +6753,19 @@ msgstr ""
 "\n"
 "Powodzenia!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+msgstr ""
+"To jest mapa obszarów.\n"
+"\n"
+"Każda ikona reprezentuje unikalne środowisko, które możesz zamieszkiwać, z panelem po twojej prawej, opisującym warunki panujące w obecnie wybranym obszarze.\n"
+"\n"
+"Jeśli wybierzesz obszar połączony z takim zamieszkiwanym przez ciebie, możesz nacisnąć przycisk \"Przenieś się do tego obszaru\" po prawej by tam migrować. (Obszary zamieszkane przez twój gatunek otoczone są cyjanową ramką)\n"
+"\n"
+"Spróbuj wybrać jakiś obszar by kontynuować."
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "To jest mapa obszarów.\n"
@@ -6762,7 +6776,7 @@ msgstr ""
 "\n"
 "Spróbuj wybrać jakiś obszar by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Usuwanie organelli również kosztuje PM, jako iż jest to mutacja, chyba że zostały dodane w obecnej sesji.\n"
@@ -6773,7 +6787,7 @@ msgstr ""
 "\n"
 "Kliknij przycisk cofnij aby kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:107
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Wybierając części z menu, zwracaj szczególną uwagę na podpowiedzi które wyskakują by zrozumieć co te części robią. Mogą one bardziej szkodzić niż pomagać jeśli nie przejmujesz się ich działaniem.\n"
@@ -6782,7 +6796,7 @@ msgstr ""
 "\n"
 "Naciśnij przycisk ponów (obok przycisku cofnij) by kontynuować."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Skup się na jednym lub dwóch źródłach energii, żebyś nie potrzebował wszystkich istniejących zadobów aby przetrwać.\n"
