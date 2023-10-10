@@ -1,255 +1,40 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn" type="PackedScene" id=8]
 
 [node name="ThriveopediaPage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle")
 InfoBoxPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OrganelleDetails/OrganelleInfoBox")
-DescriptionPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/DescriptionBody")
-RequirementsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/RequirementsBody")
-ProcessesPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/ProcessesBody")
-ModificationsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/ModificationsBody")
-EffectsPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/EffectsBody")
-UpgradesPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/UpgradesBody")
-StrategyPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/StrategyBody")
-ScientificBackgroundPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle/ScientificBackgroundBody")
-
-[node name="MarginContainer" parent="MarginContainer/ScrollContainer" index="0"]
-margin_right = 868.0
-margin_bottom = 571.0
-
-[node name="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer" index="0"]
-margin_right = 858.0
-margin_bottom = 561.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
-margin_right = 858.0
-margin_bottom = 561.0
+margin_right = 864.0
+margin_bottom = 525.0
 
 [node name="MainArticle" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 476.0
-margin_bottom = 561.0
+margin_right = 482.0
+margin_bottom = 525.0
 size_flags_horizontal = 3
 
-[node name="DescriptionBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="0" instance=ExtResource( 3 )]
-margin_right = 476.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="1"]
-margin_top = 26.0
-margin_right = 476.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="RequirementsHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="2"]
-margin_top = 40.0
-margin_right = 476.0
-margin_bottom = 65.0
-custom_fonts/font = ExtResource( 5 )
-text = "REQUIREMENTS_HEADING"
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="3"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 69.0
-margin_right = 476.0
-margin_bottom = 73.0
-
-[node name="RequirementsBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="4" instance=ExtResource( 3 )]
-margin_top = 77.0
-margin_right = 476.0
-margin_bottom = 99.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer2" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="5"]
-margin_top = 103.0
-margin_right = 476.0
-margin_bottom = 113.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="ProcessesHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="6"]
-margin_top = 117.0
-margin_right = 476.0
-margin_bottom = 142.0
-custom_fonts/font = ExtResource( 5 )
-text = "PROCESSES_HEADING"
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="7"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 146.0
-margin_right = 476.0
-margin_bottom = 150.0
-
-[node name="ProcessesBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="8" instance=ExtResource( 3 )]
-margin_top = 154.0
-margin_right = 476.0
-margin_bottom = 176.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer3" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="9"]
-margin_top = 180.0
-margin_right = 476.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="ModificationsHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="10"]
-margin_top = 194.0
-margin_right = 476.0
-margin_bottom = 219.0
-custom_fonts/font = ExtResource( 5 )
-text = "MODIFICATIONS_HEADING"
-
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="11"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 223.0
-margin_right = 476.0
-margin_bottom = 227.0
-
-[node name="ModificationsBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="12" instance=ExtResource( 3 )]
-margin_top = 231.0
-margin_right = 476.0
-margin_bottom = 253.0
-theme = null
-custom_fonts/bold_font = ExtResource( 6 )
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer4" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="13"]
-margin_top = 257.0
-margin_right = 476.0
-margin_bottom = 267.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="EffectsHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="14"]
-margin_top = 271.0
-margin_right = 476.0
-margin_bottom = 296.0
-custom_fonts/font = ExtResource( 5 )
-text = "EFFECTS_HEADING"
-
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="15"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 300.0
-margin_right = 476.0
-margin_bottom = 304.0
-
-[node name="EffectsBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="16" instance=ExtResource( 3 )]
-margin_top = 308.0
-margin_right = 476.0
-margin_bottom = 330.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer5" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="17"]
-margin_top = 334.0
-margin_right = 476.0
-margin_bottom = 344.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="UpgradesHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="18"]
-margin_top = 348.0
-margin_right = 476.0
-margin_bottom = 373.0
-custom_fonts/font = ExtResource( 5 )
-text = "UPGRADES_HEADING"
-
-[node name="HSeparator6" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="19"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 377.0
-margin_right = 476.0
-margin_bottom = 381.0
-
-[node name="UpgradesBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="20" instance=ExtResource( 3 )]
-margin_top = 385.0
-margin_right = 476.0
-margin_bottom = 407.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer6" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="21"]
-margin_top = 411.0
-margin_right = 476.0
-margin_bottom = 421.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="StrategyHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="22"]
-margin_top = 425.0
-margin_right = 476.0
-margin_bottom = 450.0
-custom_fonts/font = ExtResource( 5 )
-text = "STRATEGY_HEADING"
-
-[node name="HSeparator7" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="23"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 454.0
-margin_right = 476.0
-margin_bottom = 458.0
-
-[node name="StrategyBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="24" instance=ExtResource( 3 )]
-margin_top = 462.0
-margin_right = 476.0
-margin_bottom = 484.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
-[node name="Spacer7" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="25"]
-margin_top = 488.0
-margin_right = 476.0
-margin_bottom = 498.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="ScientificBackgroundHeading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="26"]
-margin_top = 502.0
-margin_right = 476.0
-margin_bottom = 527.0
-custom_fonts/font = ExtResource( 5 )
-text = "SCIENTIFIC_BACKGROUND_HEADING"
-
-[node name="HSeparator8" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="27"]
-modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 531.0
-margin_right = 476.0
-margin_bottom = 535.0
-
-[node name="ScientificBackgroundBody" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle" index="28" instance=ExtResource( 3 )]
-margin_top = 539.0
-margin_right = 476.0
-margin_bottom = 561.0
-theme = null
-custom_fonts/normal_font = ExtResource( 4 )
-ExtendedBbcode = ""
-
 [node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 480.0
-margin_right = 500.0
-margin_bottom = 561.0
+margin_left = 486.0
+margin_right = 506.0
+margin_bottom = 525.0
 rect_min_size = Vector2( 20, 0 )
 
 [node name="OrganelleDetails" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="2"]
-margin_left = 504.0
-margin_right = 834.0
-margin_bottom = 561.0
+margin_left = 510.0
+margin_right = 840.0
+margin_bottom = 525.0
 
 [node name="OrganelleInfoBox" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OrganelleDetails" index="0" instance=ExtResource( 8 )]
 margin_right = 330.0
 margin_bottom = 525.0
 
 [node name="Spacer2" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="3"]
-margin_left = 838.0
-margin_right = 858.0
-margin_bottom = 561.0
+margin_left = 844.0
+margin_right = 864.0
+margin_bottom = 525.0
 rect_min_size = Vector2( 20, 0 )

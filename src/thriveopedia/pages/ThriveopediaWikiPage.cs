@@ -7,10 +7,24 @@ using Godot;
 /// </summary>
 public abstract class ThriveopediaWikiPage : ThriveopediaPage
 {
+    [Export]
+    public NodePath MainArticlePath = null!;
+
     /// <summary>
     ///   Link to this page in the online wiki.
     /// </summary>
     public abstract string Url { get; }
+
+    protected PackedScene pageSectionScene = null!;
+    protected VBoxContainer mainArticle = null!;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        mainArticle = GetNode<VBoxContainer>(MainArticlePath);
+        pageSectionScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/WikiPageSection.tscn");
+    }
 
     public override void OnThriveopediaOpened()
     {
@@ -38,5 +52,16 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         }
 
         return pages;
+    }
+
+    protected void AddSection(string? heading, string body)
+    {
+        var section = (WikiPageSection)pageSectionScene.Instance();
+
+        if (heading != null)
+            section.HeadingText = heading;
+
+        section.BodyText = body;
+        mainArticle.AddChild(section);
     }
 }
