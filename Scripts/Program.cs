@@ -16,7 +16,7 @@ public class Program
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
                 PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions, GeneratorOptions, GodotProjectValidMakerOptions>(args)
+                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions, GodotProjectValidMakerOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
                 (TestOptions options) => RunTests(options),
@@ -30,6 +30,7 @@ public class Program
                 (GodotTemplateOptions options) => RunTemplateInstall(options),
                 (TranslationProgressOptions options) => RunTranslationProgress(options),
                 (CreditsOptions options) => RunCreditsUpdate(options),
+                (WikiOptions options) => RunWikiUpdate(options),
                 (GeneratorOptions options) => RunFileGenerator(options),
                 (GodotProjectValidMakerOptions options) => RunProjectValidMaker(options),
                 CommandLineHelpers.PrintCommandLineErrors);
@@ -217,6 +218,17 @@ public class Program
         return CreditsUpdater.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int RunWikiUpdate(WikiOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running wiki updating tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        return WikiUpdater.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
     private static int RunFileGenerator(GeneratorOptions options)
     {
         CommandLineHelpers.HandleDefaultOptions(options);
@@ -335,6 +347,11 @@ public class Program
 
     [Verb("credits", HelpText = "Updates credits with some automatically (and some needing manual) retrieved files")]
     public class CreditsOptions : ScriptOptionsBase
+    {
+    }
+
+    [Verb("wiki", HelpText = "Updates the Thriveopedia with content from the online wiki")]
+    public class WikiOptions: ScriptOptionsBase
     {
     }
 

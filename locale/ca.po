@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -63,8 +63,8 @@ msgstr "Despertar"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Despertar"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -369,9 +369,9 @@ msgstr "Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "estat d'execució:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
@@ -380,9 +380,9 @@ msgstr "L'algorisme auto-evo ha tingut un error"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultats de l'algorisme Auto-Evo:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
@@ -932,7 +932,7 @@ msgstr "Netejar els arxius de guardat antics"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Tancar"
@@ -1931,6 +1931,10 @@ msgstr ""
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2617,7 +2621,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Mantingues premut per mostrar el cursor"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 #, fuzzy
 msgid "HOME"
 msgstr "Menú principal"
@@ -2694,6 +2698,58 @@ msgstr "Compostos infinits"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "MP Infinit"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "Nom Intern (de Carpeta):"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "Cost d'Osmoregulació"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "Cap procés"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "Requereix nucli"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -3406,7 +3462,7 @@ msgstr "Carregant l'Editor Multicel·lular Primerenc"
 msgid "LOADING_GAME"
 msgstr "Carregant el joc"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
@@ -3495,6 +3551,11 @@ msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidr
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -3982,6 +4043,11 @@ msgstr "Instruccions per fer Mods estan disponibles a"
 msgid "MODELS"
 msgstr "Models"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#, fuzzy
+msgid "MODIFICATIONS_HEADING"
+msgstr "Text de la llicència GPL:"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Modificar"
@@ -4463,7 +4529,15 @@ msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "Cap"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr "Cap"
 
@@ -4881,17 +4955,17 @@ msgstr "Avall"
 msgid "PAGEUP"
 msgstr "Amunt"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Enrere"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Endavant"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Eliminar Dades Locals"
@@ -5211,6 +5285,11 @@ msgstr "L'arxiu de la imatge de previsualització és massa gran"
 msgid "PREVIOUS_COLON"
 msgstr "previ:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#, fuzzy
+msgid "PROCESSES_HEADING"
+msgstr "Text de la llicència GPL:"
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processant objectes carregats"
@@ -5361,6 +5440,11 @@ msgstr "Gemmació"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#, fuzzy
+msgid "REQUIREMENTS_HEADING"
+msgstr "Text de la llicència GPL:"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
@@ -5710,6 +5794,10 @@ msgstr "Agent de Senyalització"
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -5748,7 +5836,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6289,6 +6377,11 @@ msgstr "Emmagatzematge:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr "Estadi de Microbi"
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6729,7 +6822,7 @@ msgstr "Activar el mode d'unió"
 msgid "TOGGLE_METRICS"
 msgstr "Activar pestanya d'estadístiques"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7058,6 +7151,11 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Sense títol"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#, fuzzy
+msgid "UPGRADES_HEADING"
+msgstr "Text de la llicència GPL:"
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7202,6 +7300,11 @@ msgstr "Visor"
 msgid "VIEW_ALL"
 msgstr "Inhabilitar Tot"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "Inhabilitar Tot"
+
 #: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7248,7 +7351,7 @@ msgstr "Apujar volum"
 msgid "VSYNC"
 msgstr "V-Sync"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
@@ -7377,6 +7480,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr "anys"
+
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "YES"
 msgstr "anys"
 
 #: ../src/general/MainMenu.tscn:838

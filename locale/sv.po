@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -60,8 +60,8 @@ msgstr "Uppvakna ({0:F1} / {1:F1})"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Nå uppvakningsteget. Tillgänglig när du har tillräckigt med hjärnkraft (axonvävnad)."
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -374,9 +374,9 @@ msgstr "Auto-Evolution"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "status:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo kunde inte köras"
 
@@ -385,9 +385,9 @@ msgstr "Auto-evo kunde inte köras"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo resultat:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 #, fuzzy
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status:"
@@ -957,7 +957,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Stäng"
@@ -1975,6 +1975,10 @@ msgstr "Hjälp"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2656,7 +2660,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Håll för att visa muspekaren"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 #, fuzzy
 msgid "HOME"
 msgstr "Hem"
@@ -2733,6 +2737,58 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "DU HAR FRODATS!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "DU HAR FRODATS!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "Osmoreguleringskost"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "Placera organell"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "Kärna"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "DU HAR FRODATS!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "DU HAR FRODATS!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "DU HAR FRODATS!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
@@ -3464,7 +3520,7 @@ msgstr "Laddar mikrobredigerare"
 msgid "LOADING_GAME"
 msgstr "Laddar Spel"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
@@ -3547,6 +3603,11 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -3997,6 +4058,11 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
 msgstr "Modeller"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#, fuzzy
+msgid "MODIFICATIONS_HEADING"
+msgstr "Licenstexten för GPL följer:"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
@@ -4463,7 +4529,15 @@ msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kvä
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "Ingen"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr "Ingen"
 
@@ -4881,17 +4955,17 @@ msgstr "Page down"
 msgid "PAGEUP"
 msgstr "Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Backåt"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Framåt"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Cellprocesser"
@@ -5216,6 +5290,11 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "föregående:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#, fuzzy
+msgid "PROCESSES_HEADING"
+msgstr "Licenstexten för GPL följer:"
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
@@ -5371,6 +5450,11 @@ msgstr "Producerar"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#, fuzzy
+msgid "REQUIREMENTS_HEADING"
+msgstr "Licenstexten för GPL följer:"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -5726,6 +5810,10 @@ msgstr "Signaleringsmedel"
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -5764,7 +5852,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Sök..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6325,6 +6413,11 @@ msgstr "Förråd"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr "Mikrob Stadiet"
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6769,7 +6862,7 @@ msgstr "Växla bindning av och på"
 msgid "TOGGLE_METRICS"
 msgstr "Växla mätvärdesvisning av och på"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7057,6 +7150,11 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Omgivning: {0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#, fuzzy
+msgid "UPGRADES_HEADING"
+msgstr "Licenstexten för GPL följer:"
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7204,6 +7302,11 @@ msgstr "Visare eller åskådare, beroende på situation"
 msgid "VIEW_ALL"
 msgstr ""
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "Tidslinje"
+
 #: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7250,7 +7353,7 @@ msgstr "Öka Volymen"
 msgid "VSYNC"
 msgstr "VSynk"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Väntar på auto-evo:"
 
@@ -7383,6 +7486,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr "år"
+
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "YES"
 msgstr "år"
 
 #: ../src/general/MainMenu.tscn:838

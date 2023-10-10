@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -65,8 +65,8 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -369,9 +369,9 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
@@ -380,9 +380,9 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -951,7 +951,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "ปิด"
@@ -1922,6 +1922,10 @@ msgstr "ดำเนินการต่อ"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 #, fuzzy
 msgid "EIGHT_TIMES"
@@ -2586,7 +2590,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 #, fuzzy
 msgid "HOME"
 msgstr "บ้าน"
@@ -2663,6 +2667,53 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+msgid "INFO_BOX_COST"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "ต้นทุน ออสโมซิส"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+msgid "INFO_BOX_PROCESSES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "นิวเคลียส"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+msgid "INFO_BOX_SIZE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "การจัดเก็บ"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+msgid "INFO_BOX_UNIQUE"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
@@ -3380,7 +3431,7 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -3463,6 +3514,11 @@ msgstr "เมตาโบโลโซมเป็นกลุ่มของโ
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
 msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -3938,6 +3994,10 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+msgid "MODIFICATIONS_HEADING"
+msgstr ""
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr ""
@@ -4395,7 +4455,15 @@ msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สาม
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "เลิกทำ"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr ""
 
@@ -4817,17 +4885,17 @@ msgstr "เลื่อนหน้าลง"
 msgid "PAGEUP"
 msgstr "เลื่อนหน้าขึ้น"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "กลับ"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "ไปข้างหน้า"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "\"{0}\" - {1}"
@@ -5147,6 +5215,10 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "ก่อนหน้า:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+msgid "PROCESSES_HEADING"
+msgstr ""
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
@@ -5296,6 +5368,10 @@ msgstr ""
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+msgid "REQUIREMENTS_HEADING"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
@@ -5652,6 +5728,10 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 msgid "SCREEN_EFFECT"
 msgstr ""
@@ -5689,7 +5769,7 @@ msgstr "เลื่อนล็อค"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6247,6 +6327,11 @@ msgstr "การจัดเก็บ"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6690,7 +6775,7 @@ msgstr "สลับเขมือบ"
 msgid "TOGGLE_METRICS"
 msgstr "สลับการแสดง FPS"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -6980,6 +7065,10 @@ msgstr ""
 msgid "UNTITLED"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+msgid "UPGRADES_HEADING"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7127,6 +7216,10 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+msgid "VIEW_ONLINE"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
@@ -7172,7 +7265,7 @@ msgstr "ปรับระดับเสียงขึ้น"
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
@@ -7304,6 +7397,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr ""
+
+#: ../src/general/utils/TranslationHelper.cs:84
+msgid "YES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:838

@@ -28,6 +28,9 @@ public class Thriveopedia : ControlWithInput
     public NodePath PageTitlePath = null!;
 
     [Export]
+    public NodePath ViewOnlineButtonPath = null!;
+
+    [Export]
     public NodePath PageTreePath = null!;
 
     [Export]
@@ -40,6 +43,7 @@ public class Thriveopedia : ControlWithInput
     private PanelContainer pageTreeContainer = null!;
     private AnimationPlayer pageTreeContainerAnim = null!;
     private Label pageTitle = null!;
+    private Button viewOnlineButton = null!;
     private Tree pageTree = null!;
 
     /// <summary>
@@ -136,6 +140,7 @@ public class Thriveopedia : ControlWithInput
         pageTreeContainer = GetNode<PanelContainer>(PageTreeContainerPath);
         pageTreeContainerAnim = GetNode<AnimationPlayer>(PageTreeContainerAnimPath);
         pageTitle = GetNode<Label>(PageTitlePath);
+        viewOnlineButton = GetNode<Button>(ViewOnlineButtonPath);
         pageTree = GetNode<Tree>(PageTreePath);
 
         // Create and hide a blank root to avoid home being used as the root
@@ -148,6 +153,11 @@ public class Thriveopedia : ControlWithInput
 
         // Add all pages not associated with a game in progress
         AddPage("Museum");
+
+        foreach(var page in ThriveopediaWikiPage.GenerateAllWikiPages())
+        {
+            AddPage(page.Name, page);
+        }
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
@@ -249,6 +259,8 @@ public class Thriveopedia : ControlWithInput
 
         pageTitle.Text = SelectedPage.TranslatedPageName;
         SelectInTreeWithoutEvent(SelectedPage);
+
+        viewOnlineButton.Visible = SelectedPage is ThriveopediaWikiPage;
     }
 
     /// <summary>
@@ -270,14 +282,17 @@ public class Thriveopedia : ControlWithInput
     ///   Adds a page to the Thriveopedia
     /// </summary>
     /// <param name="name">The name of the page</param>
-    private void AddPage(string name)
+    /// <param name="page">Pre-configured page if scene filename does not match the page name or the page needs extra adjustment</param>
+    private void AddPage(string name, ThriveopediaPage? page = null)
     {
         if (allPages.Keys.Any(p => p.PageName == name))
             throw new InvalidOperationException($"Attempted to add duplicate page with name {name}");
 
-        // For now, load by direct reference to the Godot scene. Could be generalised in future.
-        var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
-        var page = (ThriveopediaPage)scene.Instance();
+        if (page == null)
+        {
+            var scene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/Thriveopedia{name}Page.tscn");
+            page = (ThriveopediaPage)scene.Instance();
+        }
 
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
@@ -408,6 +423,14 @@ public class Thriveopedia : ControlWithInput
                 // We can assume a page is always before its children in the list of all pages
                 allPages[page] = CreateTreeItem(page, page.ParentPageName);
             }
+        }
+    }
+
+    private void OnViewOnlinePressed()
+    {
+        if (SelectedPage is ThriveopediaWikiPage wikiPage)
+        {
+            OS.ShellOpen(wikiPage.Url);
         }
     }
 

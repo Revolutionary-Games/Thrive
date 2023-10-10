@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -61,8 +61,8 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -365,9 +365,9 @@ msgstr "Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "실행 상태:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo 실행 실패"
 
@@ -376,9 +376,9 @@ msgstr "Auto-evo 실행 실패"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo 결과:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -956,7 +956,7 @@ msgstr "이전 저장 정리"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "닫기"
@@ -1974,6 +1974,10 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 #, fuzzy
 msgid "EIGHT_TIMES"
@@ -2640,7 +2644,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "눌러서 커서 보이기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 msgid "HOME"
 msgstr ""
 
@@ -2717,6 +2721,58 @@ msgstr "화합물"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "번영했습니다!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "번영했습니다!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "삼투압 비용"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "세포 기관 배치"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "핵"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "번영했습니다!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "번영했습니다!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "번영했습니다!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
@@ -3445,7 +3501,7 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "LOADING_GAME"
 msgstr "게임 불러오는 중"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -3538,6 +3594,11 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -4012,6 +4073,11 @@ msgstr ""
 msgid "MODELS"
 msgstr "모델"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#, fuzzy
+msgid "MODIFICATIONS_HEADING"
+msgstr "자동 진화 실행 실패"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr ""
@@ -4477,7 +4543,15 @@ msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "실행 취소"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr ""
 
@@ -4906,17 +4980,17 @@ msgstr "아래쪽으로 시야 이동"
 msgid "PAGEUP"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "뒤로가기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "앞으로 이동"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "세포 진행률"
@@ -5240,6 +5314,10 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "이전:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+msgid "PROCESSES_HEADING"
+msgstr ""
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "불러온 객체 처리 중"
@@ -5395,6 +5473,10 @@ msgstr "생산"
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "생산"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+msgid "REQUIREMENTS_HEADING"
+msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -5757,6 +5839,10 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -5795,7 +5881,7 @@ msgstr ""
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "검색..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6356,6 +6442,11 @@ msgstr "저장소"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr "미생물 단계"
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6796,7 +6887,7 @@ msgstr "결합 모드 켜고 끄기"
 msgid "TOGGLE_METRICS"
 msgstr "수치 표시 켜고 끄기"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7149,6 +7240,10 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "생태계: {0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+msgid "UPGRADES_HEADING"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7299,6 +7394,11 @@ msgstr "뷰어"
 msgid "VIEW_ALL"
 msgstr ""
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "연대"
+
 #: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7348,7 +7448,7 @@ msgstr "효과음 음량"
 msgid "VSYNC"
 msgstr "수직동기화"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Auto-evo 대기중:"
 
@@ -7483,6 +7583,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr "년"
+
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "YES"
 msgstr "년"
 
 #: ../src/general/MainMenu.tscn:838

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -65,8 +65,8 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -374,9 +374,9 @@ msgstr "Аутоматска-Еволуција"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус покретања:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
@@ -385,9 +385,9 @@ msgstr "Аутоматска-еволуција није успела"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати аутоматске-еволуције:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 
@@ -977,7 +977,7 @@ msgstr "Очистите Старе Чување"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "Затвори"
@@ -1995,6 +1995,10 @@ msgstr ""
 "\n"
 "Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 #, fuzzy
 msgid "EIGHT_TIMES"
@@ -2669,7 +2673,7 @@ msgstr ""
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 msgid "HOME"
 msgstr ""
 
@@ -2746,6 +2750,58 @@ msgstr "Једињење"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "Цена осморегулације"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "Поставите органелу"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "Ћелијско Језгро"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
@@ -3475,7 +3531,7 @@ msgstr "Учитавање Уређивача Микроба"
 msgid "LOADING_GAME"
 msgstr "Учитавање Игре"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
@@ -3569,6 +3625,11 @@ msgstr "Метаболосоми су грозди протеина умотан
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -4068,6 +4129,11 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#, fuzzy
+msgid "MODIFICATIONS_HEADING"
+msgstr "Аутоматска-еволуција није успела"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr ""
@@ -4540,7 +4606,15 @@ msgstr "Пластид за фиксирање азота је протеин к
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Пластид за фиксирање азота је протеин који може да користи гасовити азот и кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна фиксација азота."
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "Поништи"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr ""
 
@@ -4969,17 +5043,17 @@ msgstr "Окрените камеру надоле"
 msgid "PAGEUP"
 msgstr ""
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "Назад"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "Крени напред"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -5307,6 +5381,10 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "Врсте:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+msgid "PROCESSES_HEADING"
+msgstr ""
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обрада учитаних објеката"
@@ -5462,6 +5540,10 @@ msgstr "Производи"
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "Производи"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+msgid "REQUIREMENTS_HEADING"
+msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -5818,6 +5900,10 @@ msgstr ""
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -5856,7 +5942,7 @@ msgstr ""
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Тражи..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6434,6 +6520,18 @@ msgstr "Складиште"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr ""
+"На далекој ванземаљској планети, еони вулканске активности и удара метеора довели су до развоја новог феномена у свемиру.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Једноставни микроби бораве у дубоким пределима океана. Ви сте последњи универзални заједнички предак (LUCA) на овој планети.\n"
+"\n"
+"Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6888,7 +6986,7 @@ msgstr "Укључи повезивање"
 msgid "TOGGLE_METRICS"
 msgstr "Паљење FPS приказа"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -7240,6 +7338,10 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Биом: {0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+msgid "UPGRADES_HEADING"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7390,6 +7492,11 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "Временска линија"
+
 #: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7439,7 +7546,7 @@ msgstr "Том од звучних ефеката"
 msgid "VSYNC"
 msgstr "В-синц"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
@@ -7574,6 +7681,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr "године"
+
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "YES"
 msgstr "године"
 
 #: ../src/general/MainMenu.tscn:838

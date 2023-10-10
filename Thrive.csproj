@@ -25,6 +25,7 @@
     <Compile Include="simulation_parameters\BuildInfo.cs" />
     <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
+    <Compile Include="simulation_parameters\GameWiki.cs" />
     <Compile Include="simulation_parameters\IRegistryAssignable.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="simulation_parameters\VersionPatchNotes.cs" />
@@ -718,6 +719,9 @@
     <Compile Include="src\steam\WorkshopItemData.cs" />
     <Compile Include="src\steam\WorkshopItemState.cs" />
     <Compile Include="src\steam\WorkshopResult.cs" />
+    <Compile Include="src\thriveopedia\pages\ThriveopediaWikiPage.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\OrganelleInfoBox.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\ThriveopediaOrganellePage.cs" />
     <Compile Include="src\thriveopedia\Thriveopedia.cs" />
     <Compile Include="src\thriveopedia\ThriveopediaPage.cs" />
     <Compile Include="src\thriveopedia\pages\ThriveopediaHomePage.cs" />

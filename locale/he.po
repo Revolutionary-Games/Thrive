@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-10 00:18+0100\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -62,8 +62,8 @@ msgstr "מודע"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "מודע"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -366,9 +366,9 @@ msgstr "מפתח - אוטומטי"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "כלים חקר של מפתח-אוטומטי"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
@@ -377,9 +377,9 @@ msgstr "המפתח האוטומטי נכשל"
 msgid "AUTO_EVO_RESULTS"
 msgstr "תוצאות מפתח אוטומטי:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -925,7 +925,7 @@ msgstr "נקה שמירות ישנות"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
 msgid "CLOSE"
 msgstr "סגור"
@@ -1915,6 +1915,10 @@ msgstr ""
 "\n"
 "בשביל לעבור ללשונית הבאה, לחץ על הבא שבפינה הימנית התחתונה."
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:139
+msgid "EFFECTS_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2593,7 +2597,7 @@ msgstr "החזק [thrive:input]g_free_cursor[/thrive:input] עבור סמן הע
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "החזק בשביל להראות את סמן העכבר"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 #, fuzzy
 msgid "HOME"
 msgstr "מקש Home"
@@ -2669,6 +2673,58 @@ msgstr "תרכובות אינסופיות"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "אתה שגשגת!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "שם (תיקייה) פנימי:"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "עלות אוסמורגולציה"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "אין תהליכים"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "נדרש גרעין התא"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "אתה שגשגת!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "אתה שגשגת!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "אתה שגשגת!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+msgid "INFO_BOX_UPGRADES"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -3379,7 +3435,7 @@ msgstr "טוען עורך הקדם רב-תאי"
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -3468,6 +3524,11 @@ msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנ
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
+
+#: ../simulation_parameters/common/wiki.json:7
+#, fuzzy
+msgid "LYSOSOME_WIKI_DESCRIPTION"
+msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא [b]אוטופגיה[/b]."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -3952,6 +4013,11 @@ msgstr "הוראות יצירת מוד זמינים ב-"
 msgid "MODELS"
 msgstr "מודלים"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:111
+#, fuzzy
+msgid "MODIFICATIONS_HEADING"
+msgstr "להלן טקסט רישיון GPL:"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "לשנות"
@@ -4411,7 +4477,15 @@ msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמ
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "NO"
+msgstr "ריק"
+
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
 msgid "NONE"
 msgstr "ריק"
 
@@ -4825,17 +4899,17 @@ msgstr "מקש Page Down"
 msgid "PAGEUP"
 msgstr "מקש Page Up"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 #, fuzzy
 msgid "PAGE_BACK"
 msgstr "מקש חזור"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 #, fuzzy
 msgid "PAGE_FORWARD"
 msgstr "מקש קדימה"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 #, fuzzy
 msgid "PAGE_TITLE"
 msgstr "Thrive הופעל במצב בטוח"
@@ -5151,6 +5225,11 @@ msgstr "תמונה מקדימה כבדה מידי"
 msgid "PREVIOUS_COLON"
 msgstr "קודם:"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:84
+#, fuzzy
+msgid "PROCESSES_HEADING"
+msgstr "להלן טקסט רישיון GPL:"
+
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "מעלה אובייקטים"
@@ -5298,6 +5377,11 @@ msgstr "הנצה"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:57
+#, fuzzy
+msgid "REQUIREMENTS_HEADING"
+msgstr "להלן טקסט רישיון GPL:"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
@@ -5642,6 +5726,10 @@ msgstr "בקנה מידה"
 msgid "SCALING_ON_INVERSE"
 msgstr "בקנה מידה הפוך"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:220
+msgid "SCIENTIFIC_BACKGROUND_HEADING"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
@@ -5680,7 +5768,7 @@ msgstr "מקש Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "מחפש..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -6213,6 +6301,11 @@ msgstr "אחסון:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:193
+#, fuzzy
+msgid "STRATEGY_HEADING"
+msgstr "שלב המיקרובי"
+
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6653,7 +6746,7 @@ msgstr "החלף מצב קישור"
 msgid "TOGGLE_METRICS"
 msgstr "החלף את תצוגת המדדים"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -6985,6 +7078,11 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "ללא כותרת"
 
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn:166
+#, fuzzy
+msgid "UPGRADES_HEADING"
+msgstr "להלן טקסט רישיון GPL:"
+
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
@@ -7127,6 +7225,11 @@ msgstr "צופה"
 msgid "VIEW_ALL"
 msgstr "השבת הכל"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "השבת הכל"
+
 #: ../src/general/OptionsMenu.tscn:1842
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7173,7 +7276,7 @@ msgstr "מקש הגבר קול"
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
@@ -7303,6 +7406,11 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
+msgstr "שנים"
+
+#: ../src/general/utils/TranslationHelper.cs:84
+#, fuzzy
+msgid "YES"
 msgstr "שנים"
 
 #: ../src/general/MainMenu.tscn:838
