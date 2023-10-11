@@ -1855,9 +1855,10 @@ public partial class CellEditorComponent :
 
         StartAutoEvoPrediction();
 
-        if (energyBalanceInfo != null && energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption)
+        if (energyBalanceInfo != null)
         {
-            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorNegativeAtpBalanceAchieved, EventArgs.Empty, this);
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+                new EnergyBalanceEventArgs(energyBalanceInfo), this);
         }
 
         UpdateFinishButtonWarningVisibility();
