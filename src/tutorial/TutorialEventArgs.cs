@@ -123,3 +123,13 @@ public class MicrobeColonyEventArgs : TutorialEventArgs
 
     public bool HasColony => Colony != null;
 }
+
+public class EnergyBalanceEventArgs : TutorialEventArgs
+{
+    public EnergyBalanceEventArgs(EnergyBalanceInfo? energyBalanceInfo)
+    {
+        EnergyBalanceInfo = energyBalanceInfo;
+    }
+
+    public EnergyBalanceInfo? EnergyBalanceInfo { get; }
+}

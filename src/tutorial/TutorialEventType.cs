@@ -146,5 +146,5 @@ public enum TutorialEventType
     /// <summary>
     ///   The player has achieved a negative ATP balance
     /// </summary>
-    MicrobeEditorNegativeAtpBalanceAchieved,
+    MicrobeEditorPlayerEnergyBalanceChanged,
 }
