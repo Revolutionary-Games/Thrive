@@ -144,7 +144,7 @@ public enum TutorialEventType
     MicrobeBecomeMulticellularAvailable,
 
     /// <summary>
-    ///   The player has achieved a negative ATP balance
+    ///   Player energy balance has been changed
     /// </summary>
     MicrobeEditorPlayerEnergyBalanceChanged,
 }
