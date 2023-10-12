@@ -917,32 +917,26 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCurrentActionChanged()
     {
-        // Enable the duplicate, delete, edit buttons for the cell type
-        if (!string.IsNullOrEmpty(activeActionName))
+        var isActionNull = string.IsNullOrEmpty(activeActionName);
+
+        // These buttons should only be enabled if a cell type is selected
+        modifyTypeButton.Disabled = isActionNull;
+        deleteTypeButton.Disabled = isActionNull;
+        duplicateTypeButton.Disabled = isActionNull;
+
+        CellTypeSelection? cellTypeButton = null;
+
+        if (!isActionNull &&
+            !cellTypeSelectionButtons.TryGetValue(activeActionName!, out cellTypeButton))
         {
-            modifyTypeButton.Disabled = false;
-            deleteTypeButton.Disabled = false;
-            duplicateTypeButton.Disabled = false;
-
-            if (!cellTypeSelectionButtons.TryGetValue(activeActionName!, out var cellTypeButton))
-            {
-                GD.PrintErr("Invalid active action for highlight update");
-                return;
-            }
-
-            // Update the icon highlightings
-            foreach (var element in cellTypeSelectionButtons.Values)
-            {
-                element.Selected = element == cellTypeButton;
-            }
+            GD.PrintErr("Invalid active action for highlight update");
+            return;
         }
-        else
+
+        // Update the icon highlightings
+        foreach (var element in cellTypeSelectionButtons.Values)
         {
-            // Clear all highlights
-            foreach (var element in cellTypeSelectionButtons.Values)
-            {
-                element.Selected = false;
-            }
+            element.Selected = element == cellTypeButton;
         }
     }
 
@@ -950,6 +944,9 @@ public partial class CellBodyPlanEditorComponent :
     {
         activeActionName = null;
         OnCurrentActionChanged();
+
+        // After clearing the selected cell, emit a signal to let the editor know
+        EmitSignal(nameof(OnCellTypeToEditSelected), null, false);
     }
 
     private void OnCellsChanged()
@@ -1126,14 +1123,9 @@ public partial class CellBodyPlanEditorComponent :
         var newType = (CellType)type.Clone();
         newType.TypeName = newTypeName;
 
-        Editor.EditedSpecies.CellTypes.Add(newType);
-        GD.Print("New cell type created: ", newType.TypeName);
-
-        EmitSignal(nameof(OnCellTypeToEditSelected), newType.TypeName, false);
-
-        UpdateCellTypeSelections();
-
-        OnCellToPlaceSelected(newType.TypeName);
+        var data = new DuplicateDeleteCellTypeData(newType);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DuplicateCellType, DeleteCellType, data);
+        EnqueueAction(new CombinedEditorAction(action));
 
         duplicateCellTypeDialog.Hide();
     }
@@ -1155,13 +1147,9 @@ public partial class CellBodyPlanEditorComponent :
             return;
         }
 
-        // TODO: make a reversible action
-        if (!Editor.EditedSpecies.CellTypes.Remove(type))
-        {
-            GD.PrintErr("Failed to delete cell type from species");
-        }
-
-        UpdateCellTypeSelections();
+        var data = new DuplicateDeleteCellTypeData(type);
+        var action = new SingleEditorAction<DuplicateDeleteCellTypeData>(DeleteCellType, DuplicateCellType, data);
+        EnqueueAction(new CombinedEditorAction(action));
     }
 
     private void OnModifyCurrentCellTypePressed()

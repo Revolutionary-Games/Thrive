@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-02 11:55+0300\n"
+"POT-Creation-Date: 2023-10-06 09:28+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -24,14 +24,12 @@ msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:222
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Redaktilo"
+msgstr "3D Redaktilo"
 
 #: ../simulation_parameters/common/input_options.json:194
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Movado"
+msgstr "3D Movado"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
@@ -42,12 +40,10 @@ msgid "ABILITIES"
 msgstr "Kapabloj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
-#, fuzzy
 msgid "ABORT"
-msgstr "Nuligita."
+msgstr "Nuligi"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Nuligita."
 
@@ -65,59 +61,52 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
+#: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "KONFIRMU"
+msgstr "Forigi"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Specio loĝantaro"
+msgstr "Duobligi Loĝantaron"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "KONFIRMU"
+msgstr "Duobligi Unuojn"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} kun loĝantaro: {1}"
+msgstr "Duonigi Loĝantaron"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "KONFIRMU"
+msgstr "Teleporti"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1107
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Konservu kaj"
+msgstr "Nunaj fadenoj:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:322
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Aŭtomata evolucio malsukcesis"
+msgstr "Kromaj kontroloj detektis problemon: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4098
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr "Aldonunovan funkcion por klavo"
+msgstr "Aldoni novan fulmoklavon"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
@@ -138,14 +127,12 @@ msgid "AGENTS"
 msgstr "Agentoj"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Specioj:"
+msgstr "Agentoj:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Kaverno"
+msgstr "{0} Agent"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
@@ -156,39 +143,46 @@ msgid "AGGRESSIVE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:475
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutaciaj Poentoj"
+msgstr "Mutaciofteco de AI"
 
 #: ../src/general/NewGameSettings.tscn:515
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+msgstr "(la rapideco de mutacio en AI-specioj)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Ĉiuj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
-#, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "havas mutacion"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Organisma Statistiko"
+msgstr "Ĝeneralaj Statistikoj de Ĉiuj Mondoj"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1004
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Organisma Statistiko"
+msgstr ""
+"[b]Generations:[/b]\n"
+"{0}\n"
+"[b]Total Species:[/b]\n"
+"Averaĝo {1}; Norma devio {2}\n"
+"[b]Specioj Kiuj Ankoraŭ Vivas:[/b]\n"
+"Averaĝo {3}; Norma devio {4}\n"
+"[b]Kvanto da specioj po loko:[/b]\n"
+"Averaĝo {5}; Norma devio {6}\n"
+"[b]Loĝantaro po loko:[/b]\n"
+"Averaĝo {7}; Norma devio {8}\n"
+"[b]Mikroba Specio Averaĝa Seslatera Grando:[/b]\n"
+"Averaĝo {9}; Norma devio {10}\n"
+"[b]Ĝeneralaj Organetaj Datumoj:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
@@ -252,9 +246,8 @@ msgid "ARTIST_COLON"
 msgstr "Specioj:"
 
 #: ../src/general/Asset.cs:50
-#, fuzzy
 msgid "ARTWORK_TITLE"
-msgstr "VI PROSPERIS!"
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
@@ -374,9 +367,9 @@ msgstr "Aŭto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Lanĉa stato:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
@@ -385,9 +378,9 @@ msgstr "Aŭtomata evolucio malsukcesis"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -442,14 +435,12 @@ msgid "BACK"
 msgstr "Reen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Reen"
+msgstr "Deklivo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Reen"
+msgstr "Retropaŝo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
@@ -513,9 +504,8 @@ msgid "BEHAVIOUR"
 msgstr "Konduto"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Konduto"
+msgstr "Aktiveco"
 
 #: ../src/general/BehaviourDictionary.cs:102
 #, fuzzy
@@ -696,14 +686,13 @@ msgstr "Nuligi"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "KONFIRMU"
+msgstr "NULIGI AGON"
 
 #: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Nuligi nunan agon"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
@@ -1464,9 +1453,8 @@ msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Citoplasma Glikolizo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:294
-#, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
+msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
@@ -1708,14 +1696,12 @@ msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Priskribo:"
+msgstr "Maldesktra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Priskribo:"
+msgstr "Dekstra"
 
 #: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
 msgid "DISABLED"
@@ -3482,7 +3468,7 @@ msgstr "Ŝarĝante Mikrobredaktilon"
 msgid "LOADING_GAME"
 msgstr "Ŝarĝante la Ludon"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
@@ -3640,9 +3626,8 @@ msgid "MEDIAPLAY"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "antaŭa:"
+msgstr "Media Prev"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
@@ -3688,9 +3673,8 @@ msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:393
-#, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
+msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Kurzo skalas kun la koncentro de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/engine/DebugOverlays.tscn:37 ../src/engine/DebugOverlays.tscn:110
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -3897,7 +3881,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas toksinan vakuolon). G por ŝalti englutan reĝimon."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] kaj muso por moviĝi. [thrive:input]g_fire_toxin[/thrive:input] por pafi [thrive:compound type=\"oxytoxy\"][/thrive:compound]-on, se vi havas toksinan vakuolon. [thrive:input]g_toggle_engulf[/thrive:input] por ŝalti englutan reĝimon."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:121
@@ -4967,9 +4951,8 @@ msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Sintezo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Movigu malsupren"
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -5231,9 +5214,10 @@ msgid "PLAYER_REPRODUCED"
 msgstr "ludanto reproduktita"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "ludanto mortis"
+msgstr ""
+"Ludanto\n"
+"Rapido"
 
 #: ../src/general/OptionsMenu.tscn:611
 msgid "PLAYSTATION_3"
@@ -5290,9 +5274,8 @@ msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Rekomenci"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
-#, fuzzy
 msgid "PRESSURE"
-msgstr "Premo."
+msgstr "Premo"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
 #: ../src/microbe_stage/MicrobeStage.tscn:979
@@ -6007,17 +5990,14 @@ msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Kaverno"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
-#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Montru lernilojn"
 
 #: ../src/general/OptionsMenu.tscn:1743
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Montru lernilojn (en ĉi tiu ludo)"
 
 #: ../src/general/OptionsMenu.tscn:1735
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Montru lernilojn (en novaj ludoj)"
 
@@ -6969,9 +6949,8 @@ msgid "TRANSPARENCY"
 msgstr "Helpu Traduki La Ludon"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Rado malsupren"
+msgstr "Treble Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
@@ -7181,7 +7160,7 @@ msgstr "La plej baza formo de membrano, ĝi havas malmultan protekton kontraŭ d
 #: ../simulation_parameters/common/input_options.json:65
 #: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Malligi ĉiujn"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:165
 msgid "UNBIND_HELP_TEXT"
@@ -7221,9 +7200,8 @@ msgid "UNIT_SIMPLE_ROCKET"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Nekonata musbutono"
+msgstr "Nekonata"
 
 #: ../src/general/OptionsMenu.cs:1072
 #, fuzzy
@@ -7441,25 +7419,22 @@ msgid "VOLCANIC_VENT"
 msgstr "Vulkana ellastruo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Mute"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Volumo de sonefektoj"
+msgstr "Volume Up"
 
 #: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
 msgstr "VSi"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:257
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 

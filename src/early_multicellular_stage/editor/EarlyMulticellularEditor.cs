@@ -426,12 +426,21 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         reportTab.UpdatePatchDetails(patch, patch);
     }
 
-    private void OnStartEditingCellType(string name, bool switchTab)
+    private void OnStartEditingCellType(string? name, bool switchTab)
     {
         if (CanCancelAction)
         {
             ToolTipManager.Instance.ShowPopup(
                 TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            return;
+        }
+
+        // If there is a null name, that means there is no selected cell,
+        // so clear the selectedCellTypeToEdit and return early
+        if (name == null)
+        {
+            selectedCellTypeToEdit = null;
+            GD.Print("Cleared editing cell type");
             return;
         }
 

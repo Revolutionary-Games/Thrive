@@ -1278,7 +1278,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -1345,7 +1345,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastRound(x);
         int j = FastRound(y);
@@ -1444,7 +1444,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -1571,7 +1571,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -2532,7 +2532,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -2628,7 +2628,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastRound(x);
         int j = FastRound(y);
