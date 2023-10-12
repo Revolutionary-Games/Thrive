@@ -454,9 +454,7 @@ public class Thriveopedia : ControlWithInput
         if (directChildren.Count() < 1)
             return new();
 
-        return directChildren
-            .SelectMany(child => GetAllChildren(child).Append(child))
-            .ToList();
+        return directChildren.Concat(directChildren.SelectMany(child => GetAllChildren(child))).ToList();
     }
 
     private void OnViewOnlinePressed()
