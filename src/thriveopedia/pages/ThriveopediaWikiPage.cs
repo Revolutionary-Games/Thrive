@@ -36,14 +36,6 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         }
     }
 
-    public override void OnThriveopediaOpened()
-    {
-    }
-
-    public override void UpdateCurrentWorldDetails()
-    {
-    }
-
     public static List<ThriveopediaWikiPage> GenerateAllWikiPages()
     {
         var pages = new List<ThriveopediaWikiPage>();

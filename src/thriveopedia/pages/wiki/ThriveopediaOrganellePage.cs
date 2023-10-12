@@ -7,7 +7,7 @@ public class ThriveopediaOrganellePage : ThriveopediaWikiPage
 
     private OrganelleInfoBox infoBox = null!;
 
-    public override string? ParentPageName => null;
+    public override string ParentPageName => "OrganellesRoot";
 
     public OrganelleDefinition Organelle { get; set; } = null!;
 

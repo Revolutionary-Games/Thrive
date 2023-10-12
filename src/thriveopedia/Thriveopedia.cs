@@ -153,6 +153,8 @@ public class Thriveopedia : ControlWithInput
 
         // Add all pages not associated with a game in progress
         AddPage("Museum");
+        AddPage("WikiRoot");
+        AddPage("OrganellesRoot");
 
         foreach(var page in ThriveopediaWikiPage.GenerateAllWikiPages())
         {
@@ -297,9 +299,14 @@ public class Thriveopedia : ControlWithInput
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
+        page.ChangePage = ChangePage;
         page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
         pageContainer.AddChild(page);
-        allPages.Add(page, CreateTreeItem(page, page.ParentPageName));
+
+        var treeItem = CreateTreeItem(page, page.ParentPageName);
+        treeItem.Collapsed = page.StartsCollapsed;
+        allPages.Add(page, treeItem);
+ 
         page.Hide();
     }
 
@@ -358,6 +365,8 @@ public class Thriveopedia : ControlWithInput
 
         var page = GetPage(pageName);
 
+        ExpandParents(page);
+
         if (addToHistory)
             pageHistory.Push(page);
 
@@ -365,6 +374,17 @@ public class Thriveopedia : ControlWithInput
             pageFuture.Clear();
 
         SelectedPage = page;
+    }
+
+    private void ExpandParents(ThriveopediaPage page)
+    {
+        var parent = allPages.FirstOrDefault(p => p.Key.PageName == page.ParentPageName);
+
+        if (parent.Key == null)
+            return;
+        
+        parent.Value.Collapsed = false;
+        ExpandParents(parent.Key);
     }
 
     private void OnCollapseTreePressed()
@@ -412,10 +432,11 @@ public class Thriveopedia : ControlWithInput
         pageTree.Clear();
         pageTree.CreateItem();
 
+        // Need to copy to new list as loop modifies the list
         var pageList = allPages.Keys.ToList();
         foreach (var page in pageList)
         {
-            var children = pageList.Where(otherPage => otherPage.ParentPageName == page.PageName);
+            var children = GetAllChildren(page);
 
             if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
                 children.Any(child => child.TranslatedPageName.ToLower().Contains(newText.ToLower())))
@@ -424,6 +445,18 @@ public class Thriveopedia : ControlWithInput
                 allPages[page] = CreateTreeItem(page, page.ParentPageName);
             }
         }
+    }
+
+    private List<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
+    {
+        var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName);
+
+        if (directChildren.Count() < 1)
+            return new();
+
+        return directChildren
+            .SelectMany(child => GetAllChildren(child).Append(child))
+            .ToList();
     }
 
     private void OnViewOnlinePressed()
