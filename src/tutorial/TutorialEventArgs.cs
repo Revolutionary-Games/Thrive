@@ -126,7 +126,7 @@ public class MicrobeColonyEventArgs : TutorialEventArgs
 
 public class EnergyBalanceEventArgs : TutorialEventArgs
 {
-    public EnergyBalanceEventArgs(EnergyBalanceInfo? energyBalanceInfo)
+    public EnergyBalanceEventArgs(EnergyBalanceInfo energyBalanceInfo)
     {
         EnergyBalanceInfo = energyBalanceInfo;
     }
