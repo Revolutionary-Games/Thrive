@@ -530,6 +530,7 @@ public partial class CellEditorComponent
 
         // Reset to cytoplasm if nothing is selected
         OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
+        ApplySymmetryForCurrentOrganelle();
 
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
