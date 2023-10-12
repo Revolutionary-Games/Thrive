@@ -42,12 +42,16 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
 
         var wiki = SimulationParameters.Instance.GetWiki();
 
-        // TODO add "Wiki" and "Organelles" pages to list first, then set parent pages of all organelles
+        var organellesRootScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.tscn");
+        var organellesRootPage = (ThriveopediaOrganellesRootPage)organellesRootScene.Instance();
+        organellesRootPage.PageContent = wiki.OrganellesRoot;
+        pages.Add(organellesRootPage);
+
+        var organellePageScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn");
 
         foreach (var organellePage in wiki.Organelles)
         {
-            var scene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn");
-            var page = (ThriveopediaOrganellePage)scene.Instance();
+            var page = (ThriveopediaOrganellePage)organellePageScene.Instance();
             page.PageContent = organellePage;
             page.Organelle = SimulationParameters.Instance.GetOrganelleType(organellePage.InternalName);
             pages.Add(page);

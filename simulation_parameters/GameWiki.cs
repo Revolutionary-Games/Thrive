@@ -17,6 +17,9 @@ public class GameWiki : IRegistryType
     }
 
     [JsonProperty]
+    public Page OrganellesRoot { get; set; } = null!;
+
+    [JsonProperty]
     public List<Page> Organelles { get; set; } = null!;
 
     public class Page

@@ -154,7 +154,6 @@ public class Thriveopedia : ControlWithInput
         // Add all pages not associated with a game in progress
         AddPage("Museum");
         AddPage("WikiRoot");
-        AddPage("OrganellesRoot");
 
         foreach(var page in ThriveopediaWikiPage.GenerateAllWikiPages())
         {

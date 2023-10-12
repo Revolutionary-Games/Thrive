@@ -155,7 +155,7 @@ public class OrganelleInfoBox : PanelContainer
         var hasEnzymes = organelle.Enzymes != null && organelle.Enzymes.Count() > 0;
         enzymesLabel.Modulate = hasEnzymes ? opaque : translucent;
         enzymesLabel.Text = hasEnzymes
-            ? organelle.Enzymes!.Keys.Select(e => SimulationParameters.Instance.GetEnzyme(e).Name).Aggregate((a, b) => a + "\n" + b)
+            ? organelle.Enzymes!.Where(e => e.Value > 0).Select(e => SimulationParameters.Instance.GetEnzyme(e.Key).Name).Aggregate((a, b) => a + "\n" + b)
             : TranslationServer.Translate("NONE");
 
         var hasUpgrades = organelle.AvailableUpgrades.Count() > 0;

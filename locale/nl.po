@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 20:57+0100\n"
+"POT-Creation-Date: 2023-10-12 23:56+0100\n"
 "PO-Revision-Date: 2023-06-22 05:54+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1924,10 +1924,6 @@ msgstr ""
 "\n"
 "Wanneer je klaar bent, klik dan op de knop \"volgende\" rechtsonder om door te gaan."
 
-#: ../simulation_parameters/common/wiki.json:25
-msgid "EFFECTS_HEADING"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -3489,54 +3485,9 @@ msgstr "Lysozoom"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
 
-#: ../simulation_parameters/common/wiki.json:4
-#, fuzzy
-msgid "LYSOSOME_PAGE_TITLE"
-msgstr "Paginatitel"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
-
-#: ../simulation_parameters/common/wiki.json:10
-#, fuzzy
-msgid "LYSOSOME_WIKI_DESCRIPTION"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:26
-#, fuzzy
-msgid "LYSOSOME_WIKI_EFFECTS"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:22
-#, fuzzy
-msgid "LYSOSOME_WIKI_MODIFICATIONS"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:18
-#, fuzzy
-msgid "LYSOSOME_WIKI_PROCESSES"
-msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
-
-#: ../simulation_parameters/common/wiki.json:14
-#, fuzzy
-msgid "LYSOSOME_WIKI_REQUIREMENTS"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:38
-#, fuzzy
-msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:34
-#, fuzzy
-msgid "LYSOSOME_WIKI_STRATEGY"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
-
-#: ../simulation_parameters/common/wiki.json:30
-#, fuzzy
-msgid "LYSOSOME_WIKI_UPGRADES"
-msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -4019,11 +3970,6 @@ msgstr "Instructies voor modificeren zijn beschikbaar op"
 msgid "MODELS"
 msgstr "Modellen"
 
-#: ../simulation_parameters/common/wiki.json:21
-#, fuzzy
-msgid "MODIFICATIONS_HEADING"
-msgstr "Fossilizeer deze soort"
-
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Aanpassen"
@@ -4419,6 +4365,8 @@ msgid "NEW_GAME"
 msgstr "Nieuw spel"
 
 #: ../src/general/MainMenu.tscn:299
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start een nieuw spel"
 
@@ -4667,7 +4615,7 @@ msgstr "Open Map"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Open Fossielenmap"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Weet je zeker dat je een nieuw spel met de geselecteerde soort wil beginnen?\n"
@@ -4888,6 +4836,10 @@ msgstr "OxyToxy NT"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy-synthse"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
+msgid "Organelles"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
@@ -5217,11 +5169,6 @@ msgstr "Bestand voorbeeldplaatje is te groot"
 msgid "PREVIOUS_COLON"
 msgstr "vorige:"
 
-#: ../simulation_parameters/common/wiki.json:17
-#, fuzzy
-msgid "PROCESSES_HEADING"
-msgstr "GPL Licentie text volgt:"
-
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Geladen objecten worden verwerkt"
@@ -5368,11 +5315,6 @@ msgstr "Ontkiemen"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproductiemethode:"
-
-#: ../simulation_parameters/common/wiki.json:13
-#, fuzzy
-msgid "REQUIREMENTS_HEADING"
-msgstr "GPL Licentie text volgt:"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 msgid "REQUIRES_NUCLEUS"
@@ -5712,10 +5654,6 @@ msgstr "Geschaald"
 #: ../src/general/OptionsMenu.tscn:1357
 msgid "SCALING_ON_INVERSE"
 msgstr "Omgekeerd geschaald"
-
-#: ../simulation_parameters/common/wiki.json:37
-msgid "SCIENTIFIC_BACKGROUND_HEADING"
-msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
@@ -6281,11 +6219,6 @@ msgstr "Opslag:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als: {0}"
 
-#: ../simulation_parameters/common/wiki.json:33
-#, fuzzy
-msgid "STRATEGY_HEADING"
-msgstr "Strategiefasen"
-
 #: ../simulation_parameters/common/input_options.json:246
 msgid "STRATEGY_STAGES"
 msgstr "Strategiefasen"
@@ -6572,7 +6505,7 @@ msgstr "Thermosynthese"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "De hoeveelheid glucose is verminderd tot {0} van de voorgaande hoeveelheid."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
 msgstr "De Verstoring"
 
@@ -6604,7 +6537,7 @@ msgstr "Fylogenetische stamboom"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Open de Thriveopedia"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 "De Thriveopedia is de centrale bibliotheek en informatieplek voor Thrive inhoud. Hiere vind je antwoorden voor elke vraag die je over het spel zou kunnen hebben, je huidige wereld, en het Thrive ontwikkelproject.\n"
@@ -6991,6 +6924,10 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Type:"
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "Thrive In-Game Wiki"
+msgstr ""
+
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Er zijn niet toegepaste veranderingen"
@@ -7071,11 +7008,6 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
 msgstr "Geen Titel"
-
-#: ../simulation_parameters/common/wiki.json:29
-#, fuzzy
-msgid "UPGRADES_HEADING"
-msgstr "GPL Licentie text volgt:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
@@ -7269,7 +7201,7 @@ msgstr "vSync"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten op auto-evo:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Welkom bij de Thriveopedia"
 
@@ -7296,6 +7228,133 @@ msgstr "Scroll naar rechts"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Scroll omhoog"
+
+#: ../simulation_parameters/common/wiki.json:37
+#, fuzzy
+msgid "WIKI_CYTOPLASM_EFFECTS"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+#: ../simulation_parameters/common/wiki.json:21
+#, fuzzy
+msgid "WIKI_CYTOPLASM_INTRO"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+#: ../simulation_parameters/common/wiki.json:33
+#, fuzzy
+msgid "WIKI_CYTOPLASM_MODIFICATIONS"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+#: ../simulation_parameters/common/wiki.json:29
+#, fuzzy
+msgid "WIKI_CYTOPLASM_PROCESSES"
+msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:25
+msgid "WIKI_CYTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:49
+msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:45
+msgid "WIKI_CYTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:41
+msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:36
+#: ../simulation_parameters/common/wiki.json:75
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#, fuzzy
+msgid "WIKI_HEADING_STRATEGY"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:76
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:60
+#, fuzzy
+msgid "WIKI_LYSOSOME_INTRO"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#: ../simulation_parameters/common/wiki.json:72
+#, fuzzy
+msgid "WIKI_LYSOSOME_MODIFICATIONS"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#: ../simulation_parameters/common/wiki.json:68
+#, fuzzy
+msgid "WIKI_LYSOSOME_PROCESSES"
+msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
+
+#: ../simulation_parameters/common/wiki.json:64
+msgid "WIKI_LYSOSOME_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:88
+msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:84
+msgid "WIKI_LYSOSOME_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:80
+msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:9
+#, fuzzy
+msgid "WIKI_ORGANELLES_ROOT_INTRO"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#: ../simulation_parameters/common/wiki.json:15
+#, fuzzy
+msgid "WIKI_PAGE_CYTOPLASM"
+msgstr "Cytoplasma"
+
+#: ../simulation_parameters/common/wiki.json:54
+#, fuzzy
+msgid "WIKI_PAGE_LYSOSOME"
+msgstr "Lysozoom"
+
+#: ../simulation_parameters/common/wiki.json:3
+#, fuzzy
+msgid "WIKI_PAGE_ORGANELLES_ROOT"
+msgstr "Lysozoom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:69
 msgid "WILL_YOU_THRIVE"

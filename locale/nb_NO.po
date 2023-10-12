@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 20:57+0100\n"
+"POT-Creation-Date: 2023-10-12 23:56+0100\n"
 "PO-Revision-Date: 2023-03-10 06:53+0000\n"
 "Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -1864,10 +1864,6 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:25
-msgid "EFFECTS_HEADING"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr ""
@@ -3381,44 +3377,8 @@ msgstr ""
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:4
-msgid "LYSOSOME_PAGE_TITLE"
-msgstr ""
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:10
-msgid "LYSOSOME_WIKI_DESCRIPTION"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:26
-msgid "LYSOSOME_WIKI_EFFECTS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:22
-msgid "LYSOSOME_WIKI_MODIFICATIONS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:18
-msgid "LYSOSOME_WIKI_PROCESSES"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:14
-msgid "LYSOSOME_WIKI_REQUIREMENTS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:38
-msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:34
-msgid "LYSOSOME_WIKI_STRATEGY"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:30
-msgid "LYSOSOME_WIKI_UPGRADES"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
@@ -3783,10 +3743,6 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:138
 msgid "MODELS"
 msgstr "Modeller"
-
-#: ../simulation_parameters/common/wiki.json:21
-msgid "MODIFICATIONS_HEADING"
-msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
@@ -4161,6 +4117,8 @@ msgid "NEW_GAME"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:299
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4402,7 +4360,7 @@ msgstr ""
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4615,6 +4573,10 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
+msgid "Organelles"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
@@ -4936,10 +4898,6 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:17
-msgid "PROCESSES_HEADING"
-msgstr ""
-
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
@@ -5083,10 +5041,6 @@ msgstr ""
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:606
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
 msgid "REPRODUCTION_METHOD"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:13
-msgid "REQUIREMENTS_HEADING"
 msgstr ""
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
@@ -5409,10 +5363,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1357
 msgid "SCALING_ON_INVERSE"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:37
-msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1928
@@ -5959,11 +5909,6 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:33
-#, fuzzy
-msgid "STRATEGY_HEADING"
-msgstr "Mikrobestadiet"
-
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6232,7 +6177,7 @@ msgstr ""
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6264,7 +6209,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -6560,6 +6505,10 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "Thrive In-Game Wiki"
+msgstr ""
+
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -6637,10 +6586,6 @@ msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:29
-msgid "UPGRADES_HEADING"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:856
@@ -6830,7 +6775,7 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
@@ -6856,6 +6801,121 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:37
+msgid "WIKI_CYTOPLASM_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:21
+msgid "WIKI_CYTOPLASM_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:33
+msgid "WIKI_CYTOPLASM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:29
+msgid "WIKI_CYTOPLASM_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:25
+msgid "WIKI_CYTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:49
+msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:45
+msgid "WIKI_CYTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:41
+msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:36
+#: ../simulation_parameters/common/wiki.json:75
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+msgid "WIKI_HEADING_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:76
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:60
+msgid "WIKI_LYSOSOME_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:72
+msgid "WIKI_LYSOSOME_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:68
+msgid "WIKI_LYSOSOME_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:64
+msgid "WIKI_LYSOSOME_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:88
+msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:84
+msgid "WIKI_LYSOSOME_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:80
+msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:9
+msgid "WIKI_ORGANELLES_ROOT_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:15
+msgid "WIKI_PAGE_CYTOPLASM"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:54
+msgid "WIKI_PAGE_LYSOSOME"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:3
+msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:69

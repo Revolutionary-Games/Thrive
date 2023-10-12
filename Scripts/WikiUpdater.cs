@@ -19,13 +19,32 @@ public static class WikiUpdater
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
 
+    // TODO get these from JSON?
+    private static readonly string[] customBbcodeCompounds = {
+        "ATP",
+        "Ammonia",
+        "Carbon Dioxide",
+        "Glucose",
+        "Hydrogen Sulfide",
+        "Iron",
+        "Mucilage",
+        "Nitrogen",
+        "Oxygen",
+        "OxyToxy",
+        "Phosphates",
+        "Sunlight",
+        "Temperature"
+        };
+
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
+        var organellesRootTask = FetchOrganelleRootPage(cancellationToken);
         var organellesTask = FetchOrganellePages(cancellationToken);
 
+        var (organellesRoot, translatedOrganellesRoot) = await organellesRootTask;
         var (organelles, translatedOrganelles) = await organellesTask;
 
-        var wiki = new Wiki(organelles);
+        var wiki = new Wiki(organellesRoot, organelles);
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, wiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
 
@@ -35,15 +54,37 @@ public static class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
 
-        await InsertEnglishPageContent(organelles, translatedOrganelles, cancellationToken);
+        await InsertEnglishPageContent(
+            organelles.Append(organellesRoot).ToList(),
+            translatedOrganelles.Append(translatedOrganellesRoot).ToList(),
+            cancellationToken);
 
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
 
         return true;
     }
 
+    private static async Task<(Wiki.Page, Wiki.Page)> FetchOrganelleRootPage(CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteSuccessLine($"Fetching organelle root page");
+
+        var body = (await RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
+
+        var sections = GetMainBodySections(body);
+        var translatedSections = sections.Select(section => TranslateSection(section, "ORGANELLES_ROOT")).ToList();
+
+        var untranslatedPage = new Wiki.Page("WIKI_PAGE_ORGANELLES_ROOT", "OrganellesRoot", ORGANELLE_CATEGORY, translatedSections);
+        var translatedPage = new Wiki.Page("Organelles", "OrganellesRoot", ORGANELLE_CATEGORY, sections);
+
+        ColourConsole.WriteSuccessLine($"Populated content for organelle root page");
+
+        return (untranslatedPage, translatedPage);
+    }
+
     private static async Task<(List<Wiki.Page>, List<Wiki.Page>)> FetchOrganellePages(CancellationToken cancellationToken)
     {
+        ColourConsole.WriteSuccessLine($"Fetching organelle pages");
+
         var categoryBody = (await RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
         var organelles = categoryBody.QuerySelectorAll(".mw-category-group > ul > li");
 
@@ -55,64 +96,87 @@ public static class WikiUpdater
             var name = organelle.TextContent.Trim();
             var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name}";
 
-            var untranslatedName = name.ToUpperInvariant().Replace(" ", "_");
+            var untranslatedOrganelleName = name.ToUpperInvariant().Replace(" ", "_");
 
             ColourConsole.WriteSuccessLine($"Found organelle {name}");
 
             var body = (await RetrieveHtmlDocument(url, cancellationToken)).Body!;
             
             var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+            var sections = GetMainBodySections(body);
 
-            organellePagesUntranslated.Add(new($"{untranslatedName}_PAGE_TITLE", internalName, url, new()
-                {
-                    (null, $"{untranslatedName}_WIKI_DESCRIPTION"),
-                    ("REQUIREMENTS_HEADING", $"{untranslatedName}_WIKI_REQUIREMENTS"),
-                    ("PROCESSES_HEADING", $"{untranslatedName}_WIKI_PROCESSES"),
-                    ("MODIFICATIONS_HEADING", $"{untranslatedName}_WIKI_MODIFICATIONS"),
-                    ("EFFECTS_HEADING", $"{untranslatedName}_WIKI_EFFECTS"),
-                    ("UPGRADES_HEADING", $"{untranslatedName}_WIKI_UPGRADES"),
-                    ("STRATEGY_HEADING", $"{untranslatedName}_WIKI_STRATEGY"),   
-                    ("SCIENTIFIC_BACKGROUND_HEADING", $"{untranslatedName}_WIKI_SCIENTIFIC_BACKGROUND"),                                                                             
-                }
-            ));
+            var untranslatedSections = sections.Select(section => TranslateSection(section, untranslatedOrganelleName)).ToList();
 
-            ColourConsole.WriteSuccessLine($"Added organelle with internal name {internalName}");
+            organellePagesTranslated.Add(new(name, internalName, url, sections));
+            organellePagesUntranslated.Add(new($"WIKI_PAGE_{untranslatedOrganelleName}", internalName, url, untranslatedSections));
 
-            var description = body.QuerySelector("#organelle-description");
-            var requirements = body.QuerySelector("#organelle-requirements");
-            var processes = body.QuerySelector("#organelle-processes");
-            var modifications = body.QuerySelector("#organelle-modifications");
-            var effects = body.QuerySelector("#organelle-effects");
-            var upgrades = body.QuerySelector("#organelle-upgrades");
-            var strategy = body.QuerySelector("#organelle-strategy");
-            var scientificBackground = body.QuerySelector("#organelle-scientific-background");
-
-            var descriptionText = ConvertHtmlToBbcode(description!.InnerHtml);
-            var requirementsText = ConvertHtmlToBbcode(requirements!.InnerHtml);
-            var processesText = ConvertHtmlToBbcode(processes!.InnerHtml);
-            var modificationsText = ConvertHtmlToBbcode(modifications!.InnerHtml);
-            var effectsText = ConvertHtmlToBbcode(effects!.InnerHtml);
-            var upgradesText = ConvertHtmlToBbcode(upgrades!.InnerHtml);
-            var strategyText = ConvertHtmlToBbcode(strategy!.InnerHtml);
-            var scientificBackgroundText = ConvertHtmlToBbcode(scientificBackground!.InnerHtml);
-
-            organellePagesTranslated.Add(new(name, internalName, url, new()
-                {
-                    (null, descriptionText),
-                    ("Requirements", requirementsText),
-                    ("Processes", processesText),
-                    ("Modifications", modificationsText),
-                    ("Effects", effectsText),
-                    ("Upgrades", upgradesText),
-                    ("Strategy", strategyText),   
-                    ("Scientific Background", scientificBackgroundText),                                                                             
-                }
-            ));
-
-            ColourConsole.WriteSuccessLine($"Populated English content for organelle with internal name {internalName}");
+            ColourConsole.WriteSuccessLine($"Populated content for organelle with internal name {internalName}");
         }
 
         return (organellePagesUntranslated, organellePagesTranslated);
+    }
+
+    private static List<(string?, string)> GetMainBodySections(IHtmlElement body)
+    {
+        var sections = new List<(string?, string)>() { (null, "") };
+
+        var children = body.QuerySelector(".mw-parser-output")!.Children;
+        foreach (var child in children)
+        {
+            if (child.TagName == "H2")
+            {
+                sections.Add((child.TextContent, ""));
+                continue;
+            }
+
+            var text = "";
+            switch (child.TagName)
+            {
+                case "P":
+                    text = ConvertTextToBbcode(child.InnerHtml) + "\n\n";
+                    break;
+                case "UL":
+                    text = child.Children
+                            .Where(c => c.TagName == "LI")
+                            .Select(li => $"[indent]•   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
+                            .Aggregate((a, b) => a + "\n" + b) + "\n\n";
+                    break;
+                default:
+                    // Ignore all other tag types
+                    continue;
+            }
+
+            sections[^1] = (sections[^1].Item1, sections[^1].Item2 + text);
+        }
+
+        return sections.Select(s => (s.Item1, s.Item2.Trim())).ToList();
+    }
+
+    private static (string?, string) TranslateSection((string?, string) section, string pageName)
+    {
+        var sectionName = section.Item1?.ToUpperInvariant().Replace(" ", "_");
+        var heading = sectionName != null ? $"WIKI_HEADING_{sectionName}" : null;
+        var body = sectionName != null ? $"WIKI_{pageName}_{sectionName}" : $"WIKI_{pageName}_INTRO";
+
+        return (heading, body);
+    }
+
+    private static string ConvertTextToBbcode(string paragraph)
+    {
+        foreach (var compound in customBbcodeCompounds)
+        {
+            paragraph = paragraph.Replace(
+                $"<b>{compound}</b>",
+                $"[thrive:compound type=\"{compound.ToLowerInvariant().Replace(" ", "")}\"][/thrive:compound]");
+        }
+
+        return paragraph
+            .Replace("\n", "")
+            .Replace("<b>", "[b]")
+            .Replace("</b>", "[/b]")
+            .Replace("<i>", "[i]")
+            .Replace("</i>", "[/i]")
+            .Replace("\"", "\\\"");
     }
 
     private static async Task InsertEnglishPageContent(
@@ -120,6 +184,9 @@ public static class WikiUpdater
         List<Wiki.Page> translatedPages,
         CancellationToken cancellationToken)
     {
+        if (untranslatedPages.Count() != translatedPages.Count())
+            throw new Exception("Untranslated and translated page counts don't match");
+
         var lines = new List<string>(await File.ReadAllLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken));
 
         for (var i = 0; i < untranslatedPages.Count(); i++)
@@ -161,22 +228,6 @@ public static class WikiUpdater
 
         return document;
     }
-
-    private static string ConvertHtmlToBbcode(string html) =>
-        html.Replace("\n", "")
-            .Replace("</p>", "\n\n")
-            .Replace("<p>", "")
-            .Replace("<b>", "[b]")
-            .Replace("</b>", "[/b]")
-            .Replace("</b>", "[/b]")
-            .Replace("<i>", "[i]")
-            .Replace("</i>", "[/i]")
-            // Godot 3 doesn't support lists in BBCode, so add custom formatting
-            .Replace("<ul><li>", "[indent]•   ")
-            .Replace("<li>", "\n[indent]•   ")
-            .Replace("</li>", "[/indent]")
-            .Replace("</ul>", "\n\n")
-            .Trim();
     
     private static void ReplaceTranslationValue(string key, string content, List<string> lines)
     {
@@ -212,10 +263,14 @@ public static class WikiUpdater
 
     private class Wiki
     {
-        public Wiki(List<Page> organelles)
+        public Wiki(Page organellesRoot, List<Page> organelles)
         {
+            OrganellesRoot = organellesRoot;
             Organelles = organelles;
         }
+
+        [JsonInclude]
+        public Page OrganellesRoot { get; }
 
         [JsonInclude]
         public List<Page> Organelles { get; }

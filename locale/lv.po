@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 20:57+0100\n"
+"POT-Creation-Date: 2023-10-12 23:56+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -1944,10 +1944,6 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:25
-msgid "EFFECTS_HEADING"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:337
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -3556,55 +3552,10 @@ msgstr "Oksitoksisoma"
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Modifikācijas Apraksts:"
 
-#: ../simulation_parameters/common/wiki.json:4
-#, fuzzy
-msgid "LYSOSOME_PAGE_TITLE"
-msgstr "Šūnas procesi"
-
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]. Likme mainās ar [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrāciju."
-
-#: ../simulation_parameters/common/wiki.json:10
-#, fuzzy
-msgid "LYSOSOME_WIKI_DESCRIPTION"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:26
-#, fuzzy
-msgid "LYSOSOME_WIKI_EFFECTS"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:22
-#, fuzzy
-msgid "LYSOSOME_WIKI_MODIFICATIONS"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:18
-#, fuzzy
-msgid "LYSOSOME_WIKI_PROCESSES"
-msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]. Likme mainās ar [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrāciju."
-
-#: ../simulation_parameters/common/wiki.json:14
-#, fuzzy
-msgid "LYSOSOME_WIKI_REQUIREMENTS"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:38
-#, fuzzy
-msgid "LYSOSOME_WIKI_SCIENTIFIC_BACKGROUND"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:34
-#, fuzzy
-msgid "LYSOSOME_WIKI_STRATEGY"
-msgstr "Modifikācijas Apraksts:"
-
-#: ../simulation_parameters/common/wiki.json:30
-#, fuzzy
-msgid "LYSOSOME_WIKI_UPGRADES"
-msgstr "Modifikācijas Apraksts:"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
@@ -4076,11 +4027,6 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:21
-#, fuzzy
-msgid "MODIFICATIONS_HEADING"
-msgstr "GPL licences teksts seko:"
-
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Modificēt"
@@ -4469,6 +4415,8 @@ msgid "NEW_GAME"
 msgstr "Jauna spēle"
 
 #: ../src/general/MainMenu.tscn:299
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4720,7 +4668,7 @@ msgstr "Atvērt mapi"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Atvērt logu mapi"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4951,6 +4899,10 @@ msgstr "Oksitocīns NT"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy sintēze"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
+msgid "Organelles"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
@@ -5296,11 +5248,6 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "Suga:"
 
-#: ../simulation_parameters/common/wiki.json:17
-#, fuzzy
-msgid "PROCESSES_HEADING"
-msgstr "GPL licences teksts seko:"
-
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
@@ -5451,11 +5398,6 @@ msgstr ""
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
-
-#: ../simulation_parameters/common/wiki.json:13
-#, fuzzy
-msgid "REQUIREMENTS_HEADING"
-msgstr "GPL licences teksts seko:"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
 #, fuzzy
@@ -5796,10 +5738,6 @@ msgstr "Saistviela"
 
 #: ../src/general/OptionsMenu.tscn:1357
 msgid "SCALING_ON_INVERSE"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:37
-msgid "SCIENTIFIC_BACKGROUND_HEADING"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1928
@@ -6388,11 +6326,6 @@ msgstr "Uzglabāšana"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:33
-#, fuzzy
-msgid "STRATEGY_HEADING"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
-
 #: ../simulation_parameters/common/input_options.json:246
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -6669,7 +6602,7 @@ msgstr "Hemosintēze"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glikozes daudzums ir samazināts līdz {0} no iepriekšējā daudzuma."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6701,7 +6634,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -7065,6 +6998,10 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr "Ātrums:"
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "Thrive In-Game Wiki"
+msgstr ""
+
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -7145,11 +7082,6 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:311
 msgid "UNTITLED"
 msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:29
-#, fuzzy
-msgid "UPGRADES_HEADING"
-msgstr "GPL licences teksts seko:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:856
 msgid "UPGRADE_CILIA_PULL"
@@ -7352,7 +7284,7 @@ msgstr "Vertikālā sinhronizācija"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
@@ -7379,6 +7311,130 @@ msgstr "Rullīte pa labi"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Rullīte uz augšu"
+
+#: ../simulation_parameters/common/wiki.json:37
+msgid "WIKI_CYTOPLASM_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:21
+#, fuzzy
+msgid "WIKI_CYTOPLASM_INTRO"
+msgstr "Citoplazma"
+
+#: ../simulation_parameters/common/wiki.json:33
+msgid "WIKI_CYTOPLASM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:29
+#, fuzzy
+msgid "WIKI_CYTOPLASM_PROCESSES"
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:25
+msgid "WIKI_CYTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:49
+msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:45
+msgid "WIKI_CYTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:41
+msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:36
+#: ../simulation_parameters/common/wiki.json:75
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+msgid "WIKI_HEADING_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:76
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:60
+#, fuzzy
+msgid "WIKI_LYSOSOME_INTRO"
+msgstr "Modifikācijas Apraksts:"
+
+#: ../simulation_parameters/common/wiki.json:72
+#, fuzzy
+msgid "WIKI_LYSOSOME_MODIFICATIONS"
+msgstr "Modifikācijas Apraksts:"
+
+#: ../simulation_parameters/common/wiki.json:68
+#, fuzzy
+msgid "WIKI_LYSOSOME_PROCESSES"
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]. Likme mainās ar [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrāciju."
+
+#: ../simulation_parameters/common/wiki.json:64
+msgid "WIKI_LYSOSOME_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:88
+msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:84
+msgid "WIKI_LYSOSOME_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:80
+msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:9
+#, fuzzy
+msgid "WIKI_ORGANELLES_ROOT_INTRO"
+msgstr "Modifikācijas Apraksts:"
+
+#: ../simulation_parameters/common/wiki.json:15
+#, fuzzy
+msgid "WIKI_PAGE_CYTOPLASM"
+msgstr "Citoplazma"
+
+#: ../simulation_parameters/common/wiki.json:54
+#, fuzzy
+msgid "WIKI_PAGE_LYSOSOME"
+msgstr "Oksitoksisoma"
+
+#: ../simulation_parameters/common/wiki.json:3
+#, fuzzy
+msgid "WIKI_PAGE_ORGANELLES_ROOT"
+msgstr "Oksitoksisoma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:69
 msgid "WILL_YOU_THRIVE"

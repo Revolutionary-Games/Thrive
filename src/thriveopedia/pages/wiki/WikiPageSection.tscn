@@ -11,8 +11,6 @@ margin_right = 476.0
 margin_bottom = 73.0
 theme = ExtResource( 5 )
 script = ExtResource( 2 )
-HeadingPath = NodePath("Heading")
-BodyPath = NodePath("Body")
 
 [node name="Heading" type="Label" parent="."]
 margin_right = 476.0
@@ -25,15 +23,21 @@ margin_top = 29.0
 margin_right = 476.0
 margin_bottom = 33.0
 
-[node name="Body" parent="." instance=ExtResource( 4 )]
+[node name="Spacer" type="Control" parent="."]
 margin_top = 37.0
 margin_right = 476.0
-margin_bottom = 59.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Body" parent="." instance=ExtResource( 4 )]
+margin_top = 51.0
+margin_right = 476.0
+margin_bottom = 73.0
 custom_fonts/normal_font = ExtResource( 3 )
 ExtendedBbcode = ""
 
-[node name="Spacer" type="Control" parent="."]
-margin_top = 63.0
+[node name="Spacer2" type="Control" parent="."]
+margin_top = 77.0
 margin_right = 476.0
-margin_bottom = 73.0
+margin_bottom = 87.0
 rect_min_size = Vector2( 0, 10 )
