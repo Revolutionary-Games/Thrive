@@ -94,7 +94,7 @@ public static class WikiUpdater
         foreach (var organelle in organelles)
         {
             var name = organelle.TextContent.Trim();
-            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name}";
+            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             var untranslatedOrganelleName = name.ToUpperInvariant().Replace(" ", "_");
 
