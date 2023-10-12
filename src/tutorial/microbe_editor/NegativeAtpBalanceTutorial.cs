@@ -20,6 +20,7 @@
             switch (eventType)
             {
                 case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
+                {
                     var energyBalanceEventArgs = args as EnergyBalanceEventArgs;
                     var energyBalanceInfo = energyBalanceEventArgs?.EnergyBalanceInfo;
                     bool isNegativeAtpBalance =
@@ -32,6 +33,7 @@
                     }
 
                     break;
+                }
             }
 
             return false;
