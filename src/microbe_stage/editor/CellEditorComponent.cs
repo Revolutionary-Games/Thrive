@@ -1855,12 +1855,6 @@ public partial class CellEditorComponent :
 
         StartAutoEvoPrediction();
 
-        if (energyBalanceInfo != null)
-        {
-            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-                new EnergyBalanceEventArgs(energyBalanceInfo), this);
-        }
-
         UpdateFinishButtonWarningVisibility();
     }
 
