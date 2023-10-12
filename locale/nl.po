@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-06 09:28+0300\n"
-"PO-Revision-Date: 2023-06-22 05:54+0000\n"
+"PO-Revision-Date: 2023-10-12 12:42+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -72,7 +72,6 @@ msgid "ACTION_DELETE"
 msgstr "Verwijder"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Verdubbel Bevolking"
 
@@ -1144,9 +1143,13 @@ msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
 msgstr "Doorgaan naar Ruimtefase?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "Door een fabriek te plaatsen zal je naar de industriële fase gaan. Wil je doorgaan naar de volgende fase?"
+msgstr ""
+"Je kunt nu doorgaan naar de Ruimte fase door je eerste ruimteschip te lanceren.\n"
+"\n"
+"Het is in de prototypen nog niet mogelijk om naar je planeet terug te keren. Uiteindelijk is het de bedoeling dat je gemakkelijk naar planeten in en uit kunt zoomen.\n"
+"\n"
+"Je kunt de lancering annuleren, hiermee zal ook je ruimteschap vernietigd worden. Wil je het ruimteschip lanceren?"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1158,9 +1161,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Sommige instellingen zijn ongeldig"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanopie (Blauw-Geel)"
+msgstr "Eenheid: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1480,9 +1482,8 @@ msgstr ""
 " - {2} Backup opslagbestand(en)"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Het verwijderen van dit fossiel kan niet ongedaan worden gemaakt. Weet je zeker dat je het permanent wilt verwijderen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1513,19 +1514,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Neerdalen"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Weetje zeker dat je wil neerdalen?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Fossilizeer deze soort en sla het op in het museum. Je kunt het museum vanuit de Thriveopedia bezoeken. Je kunt de gefossilizeerde soort ook openen in de vrije bouwmodusbewerker."
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -2074,9 +2077,8 @@ msgstr "Er heeft zich een uitzondering voorgedaan tijdens het laden van opgeslag
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:65
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "Vul Bestaande ID In"
+msgstr "Gebouwen"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2149,21 +2151,16 @@ msgid "FAILED"
 msgstr "Mislukt"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Mijn Geweldige Mod"
+msgstr "Fout: Het verwijderen van een of meer opslagbestanden is niet gelukt."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
+msgstr "Fout: Verwijderen opslagbestand mislukt"
 
 #: ../src/saving/SaveList.tscn:139
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het opslagbestand kan niet worden verwijderd."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -2251,14 +2248,12 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de bewegingssnelheid van de cel te vergroten."
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "stierf uit op de planeet"
+msgstr "{0} Vloot"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Vlooteenheden"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2326,16 +2321,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilizeer deze soort en sla het op in het museum. Je kunt het museum vanuit de Thriveopedia bezoeken. Je kunt de gefossilizeerde soort ook openen in de vrije bouwmodusbewerker."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Fossilizeer deze soort"
+msgstr "Fossilizeren Mislukt"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het fossielbestand kon niet worden geschreven"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2352,16 +2343,12 @@ msgid "FOSSILISE"
 msgstr "Fosillizeren"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Aanmaken Mod Mislukt"
+msgstr "Verwijderen van Fossiel Mislukt"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het fossielbestand kon niet worden verwijderd"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2470,9 +2457,8 @@ msgid "GODMODE"
 msgstr "Godmodus"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Word lid van onze gemeenschapsdiscordserver"
+msgstr "Goddelijke Hulpmiddelen"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2571,9 +2557,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Houdt [thrive:input]g_free_cursor[/thrive:input] ingedrukt voor muisaanwijzer"
 
 #: ../src/ascension_stage/AscensionCeremony.tscn:231
-#, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "Houdt ingedrukt om de muisaanwijzer weer te geven"
+msgstr "Ingedrukt houden om over te slaan"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
@@ -2684,14 +2669,12 @@ msgid "INSPECTOR"
 msgstr "Inspecteerder"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Oogst"
+msgstr "Verheffingspoort Activeren"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Oogst"
+msgstr "Verheffingspoort Activeren (NIET GENOEG ENERGIE)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2714,9 +2697,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Deponeer Materialen (geen geschikte items worden gedragen)"
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "Oogst"
+msgstr "Vernietig"
 
 #: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -2735,7 +2717,6 @@ msgid "INTERACTION_PICK_UP"
 msgstr "Oppakken"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:416
-#, fuzzy
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Oppakken (VOL)"
 
@@ -3406,23 +3387,23 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
-#, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr "Zet dag/nacht cyclus aan"
+msgstr "Zet dag/nacht cyclus vast"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
 
 #: ../src/general/MainMenu.tscn:1009
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
-msgstr "Prestatie"
+msgstr "Lage Prestaties Gedetecteerd"
 
 #: ../src/general/MainMenu.tscn:1011
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
+msgstr ""
+"Je gemiddelde venstervernieuwing is erg laag.\n"
+"3D menu achtergronden zijn aangezet, dit kan veel systeembronnen gebruiken. Het uitzetten van deze optie kan de prestaties veel verbeteren.\n"
+"Wil je dit nu doen?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
@@ -3439,7 +3420,7 @@ msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke 
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Stel Handmatig Tijd In"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3701,14 +3682,11 @@ msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Verzamel glucoze (witte wolken) door er overheen te bewegen.\n"
+"Je hebt de mogelijkheid om multicellulair te worden verkregen. Dit is de volgende stap in je tocht.\n"
 "\n"
-"Je cel heeft glucose nodig om energie te produceren die het nodig heeft om in leven te blijven.\n"
-"\n"
-"Volg de lijn van je cel naar glucose in de buurt."
+"Om verder te gaan, klik op de \"Wordt Meercellig\" knop."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3877,9 +3855,8 @@ msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diversen 3D Fase"
 
 #: ../src/general/OptionsMenu.tscn:1917
-#, fuzzy
 msgid "MISC_FUN"
-msgstr "Overig"
+msgstr "Diverse Lol"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -4266,19 +4243,17 @@ msgid "NAME"
 msgstr "Naam:"
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
-#, fuzzy
 msgid "NAME_LABEL_CITY"
-msgstr "Bioom: {0}"
+msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
-#, fuzzy
 msgid "NAME_LABEL_FLEET"
-msgstr "Bioom: {0}"
+msgstr "{0} (KRT: {1})"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (U)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4561,9 +4536,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Open Info URL"
+msgstr "Goddelijke Hulpmiddelen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -5310,9 +5284,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:18
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "Steen"
+msgstr "Energie"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5484,12 +5457,11 @@ msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gema
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
 
 #: ../src/saving/SaveStatusOverlay.cs:182
-#, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
+msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5590,28 +5562,24 @@ msgid "SCALING_ON_INVERSE"
 msgstr "Omgekeerd geschaald"
 
 #: ../src/general/OptionsMenu.tscn:1928
-#, fuzzy
 msgid "SCREEN_EFFECT"
-msgstr "Effecten van Buiten:"
+msgstr "Schermeffect"
 
 #: ../simulation_parameters/common/screen_effects.json:13
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr "Effecten van Buiten:"
+msgstr "GB Palet"
 
 #: ../simulation_parameters/common/screen_effects.json:18
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr "Effecten van Buiten:"
+msgstr "GB Grafische Kleuren"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Grijstinten"
 
 #: ../simulation_parameters/common/screen_effects.json:3
-#, fuzzy
 msgid "SCREEN_EFFECT_NONE"
-msgstr "Er wordt niets onderzocht"
+msgstr "Geen"
 
 #: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
 #: ../src/general/OptionsMenu.tscn:1520
@@ -5628,7 +5596,7 @@ msgstr "Zoeken..."
 
 #: ../src/thriveopedia/Thriveopedia.tscn:353
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Zoek..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -5705,9 +5673,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecteer Voorbeeld Plaatje"
 
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "Selecteer Constructie om te Plaatsen"
+msgstr "Selecteer Structuur om te Bouwen"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
@@ -5718,9 +5685,8 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Selecteer een weefseltype om hier te bewerken vanuit het tabblad in de bewerker"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
-#, fuzzy
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
-msgstr "Geselecteerd:"
+msgstr "Selecteer stof die door vacuole opgeslagen zal worden:"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
@@ -5893,19 +5859,16 @@ msgid "SPACE_STAGE"
 msgstr "Ruimtefase"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "Benodigde materialen voor constructie gedeponeerd"
+msgstr "Bouw van structuur wacht op constructievloot"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "Bouwen: {0}"
+msgstr "Geen extra informatie beschikbaar"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "Bouwen: {0}"
+msgstr "Structuur wacht op constructievloot en grondstoffen: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5993,9 +5956,8 @@ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Minimale populatie fractie van een soort om splitsing bij mutaties toe te staan"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
-#, fuzzy
 msgid "SPECIES_TO_FIND"
-msgstr "Soorten:"
+msgstr "Soorten om te Vinden:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6172,14 +6134,12 @@ msgid "STRUCTURE"
 msgstr "Structuur"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Gemeenschapscentrum"
+msgstr "Verheffingspoort"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Gemeenschapscentrum"
+msgstr "Dysonzwerm"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
@@ -6293,58 +6253,48 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Maak een screenshot"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
-#, fuzzy
 msgid "TARGET_TYPE_COLON"
-msgstr "Type:"
+msgstr "Doelwittype:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
-#, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Verheffing"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Jagen-Verzamelen"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Geavanceerde Ruimte"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Industrieel"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Voor-Maatschappelijk"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Primitief"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "Simpele Stenen Werktuigen"
+msgstr "Sci-fi"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Ruimtetijdperk"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Benodigd technologieniveau: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Rakketwetenschap"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6566,7 +6516,7 @@ msgstr "Gepasseerde tijd: {0:#,#} jaren"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Tijd"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -6892,18 +6842,16 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "Laatste actie ongedaan maken"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "Maak Constructie Af"
+msgstr "Bouw"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "Oogst"
+msgstr "Beweeg"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Simpele Rakket"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -6958,14 +6906,12 @@ msgid "UPGRADE_NAME_NONE"
 msgstr "Geen upgrade"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:34
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr "Wanneer je in de verzwelgmodus ([thrive:input]g_toggle_engulf[/thrive:input]) zit zal dit type cilia draaikolken in het water maken om objecten in de buurt naar binnen te trekken. Dit is nuttig voor het vangen van prooi."
+msgstr "Injectisoom Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:35
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
-msgstr "Wanneer je in de verzwelgmodus ([thrive:input]g_toggle_engulf[/thrive:input]) zit zal dit type cilia draaikolken in het water maken om objecten in de buurt naar binnen te trekken. Dit is nuttig voor het vangen van prooi."
+msgstr "Vorm de pilus om in een injectisoom. Deze kan gifschade kan aanrichten wanneer het andere cellen doorboort"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -7026,21 +6972,19 @@ msgstr "Dit vacuool is een intern membraanachtig organel dat de cel gebruikt voo
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Gespecializeerd Vacuole"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
-#, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "Verhoogt de opslagcapaciteit van de cel."
+msgstr "Het vacuole zal {0} eenheden van alle stoffen opslaan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2136
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Verhoogt de opslagcapaciteit van de cel."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
-#, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "Verhoogt de opslagcapaciteit van de cel."
+msgstr "Het vacuole zal {0} eenheden van de geselecteerde stof opslaan"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173
