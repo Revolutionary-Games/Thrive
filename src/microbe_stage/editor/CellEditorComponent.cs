@@ -669,6 +669,8 @@ public partial class CellEditorComponent :
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+
+        ApplySymmetryForCurrentOrganelle();
     }
 
     public override void _Process(float delta)
@@ -723,6 +725,9 @@ public partial class CellEditorComponent :
             if (shownOrganelle != null)
             {
                 HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;
 
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
@@ -1625,6 +1630,9 @@ public partial class CellEditorComponent :
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
 
+        HexEditorSymmetry? overrideSymmetry =
+            componentBottomLeftButtons.SymmetryEnabled ? null : HexEditorSymmetry.None;
+
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
@@ -1653,7 +1661,7 @@ public partial class CellEditorComponent :
                         usedHexes.Add(hex);
                     }
                 }
-            });
+            }, overrideSymmetry);
 
         if (placementActions.Count < 1)
             return false;
@@ -1809,6 +1817,8 @@ public partial class CellEditorComponent :
             return;
 
         ActiveActionName = organelle;
+
+        ApplySymmetryForCurrentOrganelle();
         UpdateOrganelleButtons(organelle);
     }
 
@@ -2434,6 +2444,15 @@ public partial class CellEditorComponent :
     private OrganelleDefinition GetOrganelleDefinition(string name)
     {
         return SimulationParameters.Instance.GetOrganelleType(name);
+    }
+
+    private void ApplySymmetryForCurrentOrganelle()
+    {
+        if (ActiveActionName == null)
+            return;
+
+        var organelle = GetOrganelleDefinition(ActiveActionName);
+        componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
     }
 
     private class PendingAutoEvoPrediction

@@ -386,6 +386,9 @@ public partial class CellEditorComponent
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
+        TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+            new EnergyBalanceEventArgs(energyBalance), this);
+
         UpdateEnergyBalanceToolTips(energyBalance);
     }
 
@@ -530,6 +533,7 @@ public partial class CellEditorComponent
 
         // Reset to cytoplasm if nothing is selected
         OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
+        ApplySymmetryForCurrentOrganelle();
 
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
