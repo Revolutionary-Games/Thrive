@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 12:44+0100\n"
+"POT-Creation-Date: 2023-10-13 17:48+0100\n"
 "PO-Revision-Date: 2023-09-10 12:18+0000\n"
 "Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
 "Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
@@ -4050,8 +4050,8 @@ msgid "NEW_GAME"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4367,6 +4367,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
 msgid "ORGANELLES"
 msgstr ""
 
@@ -4505,10 +4506,6 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
-
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
-msgid "Organelles"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
@@ -6432,10 +6429,6 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
-msgid "Thrive In-Game Wiki"
-msgstr ""
-
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -7530,18 +7523,16 @@ msgid "WIKI_PAGE_AXON"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:54
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:93
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:132
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:171
 msgid "WIKI_PAGE_CHEMORECEPTOR"
@@ -7552,9 +7543,8 @@ msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:249
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:288
 msgid "WIKI_PAGE_CILIA"
@@ -7618,18 +7608,16 @@ msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:834
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:873
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:912
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:951
 msgid "WIKI_PAGE_THERMOSYNTHASE"
@@ -7640,9 +7628,8 @@ msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1029
-#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1068
 msgid "WIKI_PAGE_VACUOLE"
@@ -7710,6 +7697,14 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:782
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
+msgid "WIKI_ROOT_BODY"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:817

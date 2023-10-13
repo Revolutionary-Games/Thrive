@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 12:44+0100\n"
+"POT-Creation-Date: 2023-10-13 17:48+0100\n"
 "PO-Revision-Date: 2023-09-20 14:11+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -2666,7 +2666,7 @@ msgstr "Requires Nucleus"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
 msgid "INFO_BOX_SIZE"
-msgstr "Size"
+msgstr "Size (Hexes)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
 msgid "INFO_BOX_STORAGE"
@@ -4332,8 +4332,6 @@ msgid "NEW_GAME"
 msgstr "New Game"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Start a new game"
 
@@ -4660,6 +4658,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
 msgid "ORGANELLES"
 msgstr "Organelles"
 
@@ -4801,10 +4800,6 @@ msgstr "OxyToxy NT"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Synthesis"
-
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
-msgid "Organelles"
-msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
@@ -6866,10 +6861,6 @@ msgstr "2x"
 msgid "TYPE_COLON"
 msgstr "Type:"
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
-msgid "Thrive In-Game Wiki"
-msgstr ""
-
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "There are unapplied changes"
@@ -8166,6 +8157,19 @@ msgstr "TBA"
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "TBA"
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
+msgid "WIKI_ROOT_BODY"
+msgstr ""
+"Welcome to the in-game Thrive wiki. Here you'll find detailed information about game concepts, from strategy guides to the scientific theory underpinning game mechanics.\n"
+"\n"
+"Most pages in this section are auto-generated from English content on the [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online development wiki[/url][/color] and translated by the community. If you'd like to help write and maintain wiki content, please consider [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]joining the team[/url][/color].\n"
+"\n"
+"See the links below for some of the major game concepts."
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "WIKI_ROOT_HEADING"
+msgstr "Thrive In-Game Wiki"
+
 #: ../simulation_parameters/common/wiki.json:817
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "TBA"
@@ -8600,12 +8604,6 @@ msgstr "Zoom out"
 
 #~ msgid "PREDATORY_PILUS"
 #~ msgstr "Predatory Pilus"
-
-#~ msgid "PREDATORY_PILUS_DESCRIPTION"
-#~ msgstr "Pili (singular: pilus) are found on the surface of many micro organisms and resemble fine hairs. Tens to hundreds of pili may be present on the surface of a micro organism and serve one of several purposes, including roles in predation. Pathogenic micro organisms use pili for virulence either to attach and bind to host tissues, or to invade past the outer membrane to gain access to the cytoplasm. Many similar pili exist but are not evolutionarily related and have resulted from convergent evolution. A single organism may have the ability to express several types of pili and those that are present on the surface are constantly being changed and replaced."
-
-#~ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-#~ msgstr "Can be used to stab the other cells or to defend against their toxins."
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Species Details"

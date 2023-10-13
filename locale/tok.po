@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 12:44+0100\n"
+"POT-Creation-Date: 2023-10-13 17:48+0100\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -4106,8 +4106,8 @@ msgid "NEW_GAME"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:95
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4423,6 +4423,7 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
 msgid "ORGANELLES"
 msgstr ""
 
@@ -4561,10 +4562,6 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
-
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:85
-msgid "Organelles"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
@@ -6489,10 +6486,6 @@ msgstr ""
 msgid "TYPE_COLON"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
-msgid "Thrive In-Game Wiki"
-msgstr ""
-
 #: ../src/modding/ModManager.tscn:586
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -6796,9 +6789,8 @@ msgid "WIKI_AXON_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:33
-#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:29
 msgid "WIKI_AXON_PROCESSES"
@@ -6829,9 +6821,8 @@ msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:72
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:68
 msgid "WIKI_BINDING_AGENT_PROCESSES"
@@ -6862,9 +6853,8 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:111
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:107
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
@@ -6895,9 +6885,8 @@ msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:150
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:146
 msgid "WIKI_CHEMOPLAST_PROCESSES"
@@ -6928,9 +6917,8 @@ msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:189
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:185
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
@@ -6993,9 +6981,8 @@ msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:267
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:263
 msgid "WIKI_CHLOROPLAST_PROCESSES"
@@ -7026,9 +7013,8 @@ msgid "WIKI_CILIA_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:306
-#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:302
 msgid "WIKI_CILIA_PROCESSES"
@@ -7091,9 +7077,8 @@ msgid "WIKI_FLAGELLUM_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:384
-#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:380
 msgid "WIKI_FLAGELLUM_PROCESSES"
@@ -7405,9 +7390,8 @@ msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:501
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:497
 msgid "WIKI_MITOCHONDRION_PROCESSES"
@@ -7438,9 +7422,8 @@ msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:540
-#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:536
 msgid "WIKI_MYOFIBRIL_PROCESSES"
@@ -7536,9 +7519,8 @@ msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:657
-#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:653
 msgid "WIKI_NUCLEUS_PROCESSES"
@@ -7601,18 +7583,16 @@ msgid "WIKI_PAGE_AXON"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:54
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:93
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:132
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:171
 msgid "WIKI_PAGE_CHEMORECEPTOR"
@@ -7623,9 +7603,8 @@ msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:249
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:288
 msgid "WIKI_PAGE_CILIA"
@@ -7689,18 +7668,16 @@ msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:834
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:873
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:912
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:951
 msgid "WIKI_PAGE_THERMOSYNTHASE"
@@ -7711,9 +7688,8 @@ msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1029
-#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
-msgstr "pali pi kon ilo kepeken kon"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1068
 msgid "WIKI_PAGE_VACUOLE"
@@ -7783,6 +7759,14 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
+msgid "WIKI_ROOT_BODY"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "WIKI_ROOT_HEADING"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:817
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr ""
@@ -7824,9 +7808,8 @@ msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:852
-#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:848
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
@@ -7857,9 +7840,8 @@ msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:891
-#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:887
 msgid "WIKI_SLIME_JET_PROCESSES"
@@ -7890,9 +7872,8 @@ msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:930
-#, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:926
 msgid "WIKI_THERMOPLAST_PROCESSES"
@@ -7923,9 +7904,8 @@ msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:969
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:965
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
@@ -7988,9 +7968,8 @@ msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1047
-#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1043
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
@@ -8021,9 +8000,8 @@ msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1086
-#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr "pali pi kon ilo kepeken kon ala"
+msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1082
 msgid "WIKI_VACUOLE_PROCESSES"

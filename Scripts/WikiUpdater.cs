@@ -36,6 +36,9 @@ public static class WikiUpdater
         "Temperature"
         };
 
+    /// <summary>
+    ///   Inserts selected content from the online wiki into the game files. See https://wiki.revolutionarygamesstudio.com/wiki/Thriveopedia for instructions.
+    /// </summary>
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
         var organellesRootTask = FetchOrganellesRootPage(cancellationToken);

@@ -14,11 +14,11 @@ margin_right = 864.0
 margin_bottom = 41.0
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer" index="0"]
-margin_left = 265.0
-margin_right = 599.0
+margin_left = 263.0
+margin_right = 601.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
-text = "Thrive In-Game Wiki"
+text = "WIKI_ROOT_HEADING"
 
 [node name="Control" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 margin_top = 51.0
@@ -36,11 +36,7 @@ alignment = 1
 margin_right = 386.0
 margin_bottom = 250.0
 size_flags_horizontal = 3
-ExtendedBbcode = "Welcome to the in-game Thrive wiki. Here you'll find detailed information about game concepts, from strategy guides to the scientific theory underpinning game mechanics.
-
-Most pages in this section are auto-generated from English content on the [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online development wiki[/url][/color] and translated by the community. If you'd like to help write and maintain wiki content, please consider [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]joining the team[/url][/color].
-
-See the links below for some of the major game concepts."
+ExtendedBbcode = "WIKI_ROOT_BODY"
 
 [node name="Control" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 390.0
@@ -78,11 +74,11 @@ custom_constants/separation = 10
 margin_right = 250.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
+hint_tooltip = "OPEN_ORGANELLES_PAGE"
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
-text = "Organelles"
+text = "ORGANELLES"
 __meta__ = {
 "_editor_description_": ""
 }
@@ -92,7 +88,6 @@ margin_top = 50.0
 margin_right = 250.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
-hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
 mouse_filter = 1
