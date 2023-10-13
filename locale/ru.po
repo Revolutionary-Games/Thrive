@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 14:08-0700\n"
-"PO-Revision-Date: 2023-10-05 20:40+0000\n"
-"Last-Translator: Sergey <sergmachine@gmail.com>\n"
+"PO-Revision-Date: 2023-10-09 05:18+0000\n"
+"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgstr "Картина от {0}"
 
 #: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
-msgstr "Галерея изображений"
+msgstr "Галерея"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 msgid "ASCENSION_CONGRATULATIONS"
@@ -523,7 +523,7 @@ msgstr "{0}-{1}м ниже уровня моря"
 
 #: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
-msgstr "Тестирование производительности"
+msgstr "Тест производительности"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 msgid "BENCHMARK_FINISHED"
@@ -689,7 +689,7 @@ msgstr "Нельзя удалить выбранный тип клеток"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
 msgid "CANNOT_ENGULF"
-msgstr "Не может поглощать"
+msgstr "Не может поглощать клетки"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -1764,7 +1764,7 @@ msgstr "..."
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2733
 msgid "DOUBLE"
-msgstr "Двойной"
+msgstr "Двойная"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
@@ -3403,7 +3403,7 @@ msgstr "Замечена Низкая Производительность"
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 "Ваш средний счетчик кадров крайне низок.\n"
-"Трёхмерные задние фоны включены, да они используют значительные ресурсы системы. Отключение этой опции может значительно повысить вашу производительность.\n"
+"Трёхмерные задние фоны включены и они используют значительные ресурсы системы. Отключение этой опции может значительно повысить вашу производительность.\n"
 "Хотели вы бы сделать это сейчас?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
@@ -4073,7 +4073,7 @@ msgstr "Изменять чувствительность мыши в завис
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
-msgstr "Передвижение"
+msgstr "Переместить"
 
 #: ../simulation_parameters/common/input_options.json:8
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
@@ -5264,7 +5264,7 @@ msgstr "Сбросить по умолчанию?"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3380
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr "Устойчиво к базовому поглощению"
+msgstr "Устойчива к базовому поглощению клетками"
 
 #: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
@@ -5367,7 +5367,7 @@ msgstr "Повернуть вправо"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1056
 msgid "ROTATION_COLON"
-msgstr "Популяция:"
+msgstr "Поворот:"
 
 #: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -5463,7 +5463,7 @@ msgstr "Когда вы отправляете сохранение для ре�
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Пожалуйста, удостоверьтесь, что не выключен режим разработчика JSON, перед тем, как вы зарепортите данную ошибку сохранения. Автоматический JSON режим разработчика должен быть создан дополнительным файлом, названным {0} в [color=#3796e1][url={1}]logs folder[/url][/color] . Данный файл содержит в себе критически важную информацию для разработчиков Thrive, ведь он облегчит поиск того, что могло вызвать ошибку."
+msgstr "Пожалуйста, удостоверьтесь в том, что режим отладки JSON не отключен перед отправкой данной ошибки сохранения. Автоматический режим отладки JSON должен был создать дополнительный файл под названием {0} в [color=#3796e1][url={1}]logs folder[/url][/color]. Этот файл содержит критически важную информацию для разработчиков Thrive, позволяя им выяснить в чем, всё же, ошибка файла сохранения."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"

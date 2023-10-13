@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 14:08-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-10-12 00:43+0000\n"
+"Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
+"Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -23,7 +25,7 @@ msgstr "2D judėjimo stilius:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
-msgstr ""
+msgstr "3D Redaktorius"
 
 #: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
@@ -35,7 +37,7 @@ msgstr "3D judėjimo stilius:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
-msgstr ""
+msgstr "Gebėjimai"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
@@ -47,49 +49,43 @@ msgstr "Nutrauktas."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Bedugnė"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1591
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "Nubusti ({0:F1} / {1:F1})"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
-#, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Baigti žaidimą"
+msgstr "Pereiti į Nubudimo Stadiją. Ji galima, kai turi pakankamai protinės galios (audinio tipas su aksonais)."
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
 #: ../src/general/base_stage/EditorBase.cs:688
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Veiksmas blokuojamas kol vyksta kitas veiksmas"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Patvirtinti"
+msgstr "Ištrinti"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
+msgstr "Padvigubinti Populiaciją"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Patvirtinti"
+msgstr "Padauginti Dalis"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "Baigti žaidimą"
+msgstr "Sumažinti Perpus Populiaciją"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Patvirtinti"
+msgstr "Teleportuotis"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -97,31 +93,33 @@ msgstr "Aktyvus"
 
 #: ../src/general/OptionsMenu.tscn:1107
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Gijų skaičius:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:259
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktyvūs mikrobai bėgs ir kris kai nieko įdomaus nevyksta.\n"
+"Sėslūs mikrobai bus stacionarūs ir lauks, kol aplinka pasikeis, prieš veikdami."
 
 #: ../src/modding/NewModGUI.cs:322
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr ""
+msgstr "Papildomos validacijos rado problemą: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4098
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Susieti naują raktą"
 
 #: ../src/general/NewGameSettings.tscn:1182
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Pažengęs"
 
 #: ../src/general/NewGameSettings.tscn:1177
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Atidaryti papildomų nustatymų langą"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobinė Azoto Fiksacija"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
 #: ../src/microbe_stage/MicrobeStage.tscn:1465
@@ -129,18 +127,20 @@ msgid "AGENTS"
 msgstr "Agentai"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Dailininkas:"
+msgstr "Menininkas:"
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "Pavadinimas:"
+msgstr "{0} Menininkas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Agresyvūs mikrobai vysis grobį didesnius atstumus\n"
+"ir bus labiau linkę kovoti su grobuoniu, kai šis užpuls.\n"
+"Taikūs mikrobai nepuls kitų per didesnį atstumą\n"
+"ir bus mažiau linkę naudoti toksinus prieš grobuonis."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
@@ -161,50 +161,63 @@ msgstr "Visi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:499
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+msgstr "Leisti rūšims nemigruoti (jei nerandama geros migracijos)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:492
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
+msgstr "Leisti rūšims nemutuoti (jei nerandama geros mutacijos)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr ""
+msgstr "Bendros Visų Pasaulių Statistikos"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
+"[b]Kartos:[/b]\n"
+"  {0}\n"
+"[b]Iš Viso Rūšių:[/b]\n"
+"  Vidutiniškai {1}; Standartinis nuokrypis {2}\n"
+"[b]Dar Gyvos Rūšys:[/b]\n"
+"  Vidutiniškai {3}; Standartinis nuokrypis {4}\n"
+"[b]Rūšių Skaičius Viename Plote:[/b]\n"
+"  Vidutiniškai {5}; Standartinis nuokrypis {6}\n"
+"[b]Bendra Populiacija Viename Plote:[/b]\n"
+"  Vidutiniškai {7}; Standartinis nuokrypis {8}\n"
+"[b]Mikrobų Rūšių Vidutinis Šešiakampių Dydis:[/b]\n"
+"  Vidutiniškai {9}; Standartinis nuokrypis {10}\n"
+"[b]Bendrieji Organelių Duomenys:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Jūs jau esate pakilęs"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Foninis garsumas"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
 #: ../src/microbe_stage/MicrobeStage.tscn:1207
 msgid "AMMONIA"
-msgstr ""
+msgstr "Amoniakas"
 
 #: ../src/general/OptionsMenu.tscn:1680
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Saugomų automatinių išsaugojimų skaičius:"
 
 #: ../src/general/OptionsMenu.tscn:1708
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Saugomų greitųjų išsaugojimų skaičius:"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Anaerobinė Azoto Fiksacija"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
@@ -217,7 +230,7 @@ msgstr "Pritaikyti"
 
 #: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Pritaikyti Pakeitimus"
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "APRIL"
@@ -225,88 +238,97 @@ msgstr "Balandis"
 
 #: ../src/general/OptionsMenu.tscn:2086
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Ar esate tikras, kad norite grąžinti visus nustatymus į pradines vertes?"
 
 #: ../src/general/OptionsMenu.tscn:2095
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Ar esate tikras, kad norite grąžinti įvesties nustatymus į pradines vertes?"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 msgid "ARTIST_COLON"
-msgstr "Dailininkas:"
+msgstr "Menininkas:"
 
 #: ../src/general/Asset.cs:50
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Asset.cs:54
 msgid "ART_BY"
-msgstr ""
+msgstr "Sukurta {0}"
 
 #: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
-msgstr "Meno galerija"
+msgstr "Meno Galerija"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "Sveikiname!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Jūs pakilote ir baigėte žaidimą. Sveikiname pasiekus žaidimo pabaigą!\n"
+"\n"
+"Jūs galite tęsti žaidimą Kosmoso Etape su atrakintais Dievo Įrankiais, kad paišdykauti smėlio dėžėje.\n"
+"\n"
+"Taip pat yra įmanoma nusileisti ir grįžti į Mikrobo Etapą šiame išsaugotame žaidime ir žaisti per visus etapus dar kartą su papildomais privalumais.\n"
+"\n"
+"Šiame išsaugotame žaidime pakilta kartų: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Modifikacijos surinkimo klasė reikalinga, kai nurodytas surinkimas"
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Mod assembly yra reikalinga, kai įjungta Auto Harmony"
 
 #: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Daryti prielaidą, kad CPU turi įjungtą multigijiškumą"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4116
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Negalima automatiškai nustatyti, ar įjungtas \"hyperthreading\", ar ne.\n"
+"Tai turi įtakos numatytajam gijų skaičiui, nes hipertreadingo gijos nėra tokios greitos kaip tikrieji procesoriaus branduoliai."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
 msgid "ATMOSPHERIC_GASSES"
-msgstr ""
+msgstr "Atmosferos dujos"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr ""
+msgstr "ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "ATP balansas"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION"
-msgstr ""
+msgstr "ATP Gamyba"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "ATP GAMYBA PER MAŽA!"
 
 #: ../src/saving/NewSaveMenu.tscn:146
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr ""
+msgstr "Bandymas įrašyti šį išsaugojimo failą nepavyko. Gali būti, kad išsaugojimo pavadinimas per ilgas arba neturite įrašymo prieigos prie išsaugojimo aplanko."
 
 #: ../src/gui_common/MouseHoverPanel.tscn:46
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Prie Žymeklio:"
 
 #: ../src/general/OptionsMenu.tscn:871
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Garso išvesties įrenginys:"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "AUGUST"
@@ -315,88 +337,88 @@ msgstr "Rugpjūtis"
 #: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
 #: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
 msgid "AUTO"
-msgstr ""
+msgstr "Automatinis"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr ""
+msgstr "Šiame skydelyje rodomi skaičiai, pagal kuriuos atliekama automatinės evoliucijos prognozė. Nuo bendros energijos, kurią rūšis gali surinkti, ir sąnaudų, tenkančių vienam rūšies individui, priklauso galutinė populiacija. Auto-evo naudoja supaprastintą tikrovės modelį, kad apskaičiuotų, kaip gerai rūšims sekasi pagal energiją, kurią jos sugeba surinkti. Kiekvieno maisto šaltinio atveju parodoma, kiek energijos rūšis iš jo gauna. Be to, rodoma bendra iš to šaltinio gaunama energija. Dalis, kurią rūšis gauna iš visos energijos, priklauso nuo to, koks yra jos tinkamumas, palyginti su bendru tinkamumu. Tinkamumas - tai rodiklis, parodantis, kaip gerai rūšis gali panaudoti tą maisto šaltinį."
 
 #: ../src/auto-evo/AutoEvoRun.cs:359
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "{0} gyventojų skaičius pasikeitė {1} per {2} dėl: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Auto-Evo Prognozė"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Šiame skydelyje parodytas tikėtinas redaguotų rūšių populiacijų skaičius pagal Auto-evo.\n"
+"Auto-evo atlieka populiacijos modeliavimą, kuris yra kita dalis (be jūsų pačių veiklos), daranti įtaką jūsų populiacijai."
 
 #: ../src/auto-evo/AutoEvoRun.cs:139
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% atlikta. {1:n0}/{2:n0} žingsniai."
 
 #: ../src/general/OptionsMenu.tscn:1669
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Automatinis išsaugojimas žaidimo metu"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:222
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Automatinė Evoliucija"
 
 #: ../src/general/MainMenu.tscn:419
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "Auto-Evo Tyrinėjimo Įrankis"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Nepavyko paleisti Auto-evo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Auto-evo rezultatai:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "paleidimo būsena:"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:332
-#, fuzzy
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "Dailininkas:"
+msgstr "Auto-Evo Statusas:"
 
 #: ../simulation_parameters/common/input_options.json:28
 msgid "AUTO_MOVE_FORWARDS"
-msgstr ""
+msgstr "Automatinis judėjimas į priekį"
 
 #: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
 msgid "AUTO_RESOLUTION"
-msgstr ""
+msgstr "Auto ({0}x{1})"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Turimi Statybos Projektai"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Galimos Modifikacijos"
 
 #: ../simulation_parameters/common/gallery.json:430
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Nubudimo Etapas"
 
 #: ../simulation_parameters/common/gallery.json:419
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "Mikroorganizmo būsena"
+msgstr "Sąmoningumo Etapas"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
@@ -411,11 +433,11 @@ msgstr "Atgal"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Atgalinis brūkšnys"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Grąžinamasis klavišas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
@@ -425,49 +447,49 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3422
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3696
 msgid "BASE_MOBILITY"
-msgstr ""
+msgstr "Bazinis Mobilumas"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Bazinis Judėjimas"
 
 #: ../src/general/NewGameSettings.tscn:1167
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Bazinis"
 
 #: ../src/general/NewGameSettings.tscn:1162
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Grįžti į pagrindinės sąrankos rodinį"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Žemų dažnių stiprinimas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Mažinti Žemus Dažnius"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Didinti Žemus Dažnius"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:583
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Batipelaginis"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Tapti Daugialąsčiu ({0}/{1})"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Pradėti Klestėti"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
@@ -476,46 +498,40 @@ msgid "BEHAVIOUR"
 msgstr "Elgsena"
 
 #: ../src/general/BehaviourDictionary.cs:105
-#, fuzzy
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr "Elgsena"
+msgstr "Veikla"
 
 #: ../src/general/BehaviourDictionary.cs:102
-#, fuzzy
 msgid "BEHAVIOUR_AGGRESSION"
-msgstr "Elgsena"
+msgstr "Agresyvumas"
 
 #: ../src/general/BehaviourDictionary.cs:104
-#, fuzzy
 msgid "BEHAVIOUR_FEAR"
-msgstr "Elgsena"
+msgstr "Baimė"
 
 #: ../src/general/BehaviourDictionary.cs:106
-#, fuzzy
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Elgsena"
+msgstr "Koncentracija"
 
 #: ../src/general/BehaviourDictionary.cs:103
-#, fuzzy
 msgid "BEHAVIOUR_OPPORTUNISM"
-msgstr "Elgsena"
+msgstr "Oportunizmas"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
 msgid "BELOW_SEA_LEVEL"
-msgstr ""
+msgstr "{0}-{1}m žemiau jūros lygio"
 
 #: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Lyginamieji testai"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
-#, fuzzy
 msgid "BENCHMARK_FINISHED"
-msgstr "Įkrovimas baigtas"
+msgstr "Atliktas lyginamasis testas"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Lyginamasis etapas:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
 msgid "BENCHMARK_RESULTS_COLON"
@@ -523,7 +539,7 @@ msgstr "Rezultatai:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Geriausia Sritis:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
 #: ../simulation_parameters/microbe_stage/biomes.json:326
@@ -537,57 +553,57 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1917
 #: ../simulation_parameters/microbe_stage/biomes.json:2083
 msgid "BIG_IRON_CHUNK"
-msgstr ""
+msgstr "Didelis Geležies Gabalas"
 
 #: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Mlrd"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Rišantis Agentas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1494
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr ""
+msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Paspauskite [thrive:input]g_toggle_binding[/thrive:input], kad perjungtumėte susiejimo režimą. Įjungę susiejimo režimą galite prijungti kitas savo rūšies ląsteles prie savo kolonijos judėdami į jas. Norėdami palikti koloniją, paspauskite [thrive:input]g_unbind_all[/thrive:input]. Pririšti prie kitų ląstelių negalite įeiti į redaktorių."
 
 #: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Susieti ašis"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:512
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
+msgstr "Tikimybė sukurti naujas rūšis kiekviename lopinėlyje, kuriame yra mažai rūšių (maža bioįvairovė)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:532
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
+msgstr "Tikimybė sukurti naujas rūšis, kad padidinti bioįvairovę iš gretima esančio lopinėlio"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:546
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "Biologinę įvairovę didinančioms rūšims iš netoliese esančio lopinėlio suteikiama laisva populiacija"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:553
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
+msgstr "Biologinę įvairovę didinančios rūšys mutuoja sukūrimo metu"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2430
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminescencinė Vakuolė"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Biomas: {0}"
 
 #: ../src/general/GameProperties.cs:148
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Neuronas"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
@@ -599,38 +615,38 @@ msgstr "Naršyti"
 
 #: ../src/modding/ModManager.tscn:507
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Naršyti Workshop"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
 msgid "BUILD_CITY"
-msgstr ""
+msgstr "Sukurti Miestą"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:88
 msgid "BUILD_QUEUE"
-msgstr ""
+msgstr "Statybos Eilė"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
-msgstr ""
+msgstr "Statyti Pastatą"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
-msgstr ""
+msgstr "Pagal:"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Pagal Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3394
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Kalcio Karbonatas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Ši membrana turi tvirtą apvalkalą, pagamintą iš kalcio karbonato. Ji lengvai atlaiko pažeidimus ir reikalauja mažiau energijos, kad nesideformuotų. Tokio sunkaus apvalkalo trūkumas yra tas, kad ląstelė yra daug lėtesnė ir ilgai įsisavina išteklius."
 
 #: ../simulation_parameters/common/input_options.json:102
 msgid "CAMERA"
@@ -651,53 +667,53 @@ msgstr "Atšaukti"
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr ""
+msgstr "ATŠAUKTI VEIKSMĄ"
 
 #: ../simulation_parameters/common/input_options.json:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:82
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Atšaukti dabartinį veiksmą"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Ląstelių tipas, kuris šiuo metu naudojamas jūsų kūno plane, negali būti ištrintas"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Negalima Ištrinti Naudojamo Ląstelės Tipo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3101
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Negalima įtraukti"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Negalima perkelti metabalo į jo palikuonių medį"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "Smegenų galios kiekis dabar yra per mažas, kad išliktų dabartiniame etape. Šiuo metu grįžti į ankstesnius etapus neleidžiama, norėdami tęsti, padidinkite smegenų galią."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Negalima Sumažinti Smegenų Galios, Kad Grįžtumėte Atgal Į Etapus"
 
 #: ../src/saving/NewSaveMenu.tscn:143
 msgid "CANNOT_WRITE_SAVE"
-msgstr ""
+msgstr "Negalima Įrašyti Išsaugojimo"
 
 #: ../src/modding/ModLoader.cs:302 ../src/modding/ModLoader.cs:350
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Negalima įkelti modifikacijos informacijos apie {0}"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:138
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:534
@@ -706,27 +722,27 @@ msgstr "Anglies Dioksidas"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:855
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "gausybė"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:859
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "nemažai"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "mažai"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:857
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "gana nemažai"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:861
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "šiek tiek"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "labai mažai"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
 msgid "CAUTIOUS"
@@ -743,28 +759,28 @@ msgstr "Ląstelės"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:8
 msgid "CELLULASE"
-msgstr ""
+msgstr "Celiulazė"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:9
 msgid "CELLULASE_DESCRIPTION"
-msgstr ""
+msgstr "Celiulazė leidžia ląstelei suskaidyti celiuliozės membraną. Kiekvienas papildymas didina veiksmingumą."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2900
 msgid "CELLULOSE"
-msgstr ""
+msgstr "Celiuliozė"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Ši membrana turi sienelę, todėl geriau apsaugo nuo bendros žalos ir ypač nuo fizinės žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji negali greitai įsisavinti išteklių ir yra lėtesnė. [b]Šią sienelę gali suvirškinti celiulazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:651
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Ląstelės Tipo Pavadinimas"
 
 #: ../src/modding/ModUploader.cs:359 ../src/steam/SteamClient.cs:262
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr ""
+msgstr "Pakeitimų pastabos yra per ilgos"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "CHANGE_THE_SYMMETRY"
@@ -774,80 +790,80 @@ msgstr "Pakeisti simetriją"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
-msgstr ""
+msgstr "Sukčiavimo kodai"
 
 #: ../src/general/OptionsMenu.tscn:1762
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Įjungti sukčiavimo klavišai"
 
 #: ../simulation_parameters/common/input_options.json:306
 msgid "CHEAT_MENU"
-msgstr ""
+msgstr "Sukčiavimo meniu"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:102
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Rodyti / slėpti ląstelių procesus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1951
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Chemoplastas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1953
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Paverčia [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] į [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Chemoreceptorius"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr ""
+msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Chemoreceptorius leidžia aptikti junginius iš didesnio atstumo. Padėjus modifikuoti, pasirinkite junginio tipą ir kreipiamosios linijos spalvą."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:590
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Chemosintetinantys Baltymai"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:592
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
+msgstr "Chemosintezę vykdantys baltymai yra nedideli baltymų telkiniai citoplazmoje, kurie gali paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos. Kadangi chemosintetinantys baltymai yra suspenduoti tiesiai citoplazmoje, aplinkinis skystis atlieka tam tikrą [b]glikolizę[/b]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:591
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Paverčia [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] į [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos. Taip pat paverčia [thrive:compound type=\"glucose\"][/thrive:compound] į [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:70
 #: ../simulation_parameters/microbe_stage/bio_processes.json:80
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Chemosintezė"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3147
 msgid "CHITIN"
-msgstr ""
+msgstr "Chitinas"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:13
 msgid "CHITINASE"
-msgstr ""
+msgstr "Chitinazė"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:14
 msgid "CHITINASE_DESCRIPTION"
-msgstr ""
+msgstr "Chitinazė leidžia ląstelei suardyti chitino membraną. Kiekvienas papildymas didina veiksmingumą."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3148
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr ""
+msgstr "Ši membrana turi sienelę, o tai reiškia, kad ji geriau apsaugo nuo bendros žalos ir ypač nuo toksinų žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji yra lėtesnė ir negali greitai įsisavinti išteklių. [b]Šią sienelę gali suvirškinti [b]chitinazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1758
@@ -856,11 +872,11 @@ msgstr "Chloroplastas"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #: ../src/saving/NewSaveMenu.cs:98
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -868,24 +884,24 @@ msgstr "Failas nurodytu pavadinimu {0} jau yra. Perrašyti?"
 
 #: ../src/general/OptionsMenu.tscn:444
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Chromatinė aberacija:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:494
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} suvartojimas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1445
 msgid "CILIA"
-msgstr ""
+msgstr "Cilija"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
 msgid "CILIA_DESCRIPTION"
-msgstr ""
+msgstr "Cilijos plaukeliai yra panašūs į blakstienėles, tačiau, užuot teikę krypties traukos jėgą, jie suteikia sukimosi jėgą, padedančią ląstelėms suktis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
 msgid "CILIA_PROCESSES_DESCRIPTION"
@@ -896,11 +912,11 @@ msgstr "Padidina didelių ląstelių sukimosi greitį."
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
+msgstr "Pop: {0} Maistas: {1} Mokslas: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Išvalyti Senus Išsaugojimus"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
@@ -921,19 +937,19 @@ msgstr "Uždaryti parinktis?"
 
 #: ../src/general/OptionsMenu.tscn:1028
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Debesų skiriamosios gebos daliklis:"
 
 #: ../src/general/OptionsMenu.tscn:978
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
+msgstr "Debesų modeliavimo minimalus intervalas:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1321
 msgid "COASTAL"
-msgstr ""
+msgstr "Pakrantė"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Sukurti subjektus su susidūrimo formomis"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:909
 msgid "COLOUR"
@@ -941,7 +957,7 @@ msgstr "Spalva"
 
 #: ../src/general/OptionsMenu.tscn:406
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Spalvų aklumo korekcija:"
 
 #: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_ADD_PRESET"
@@ -962,10 +978,12 @@ msgstr "Žalios spalvos kanalo reikšmė"
 #: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"Įjunkite arba išjunkite HSV (atspalvis, sodrumas, vertė) režimą.\n"
+"Negalima įjungti, kai veikiate raw režimu."
 
 #: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Atspalvio vertė, spalvos dalis"
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -981,6 +999,10 @@ msgstr ""
 #: ../src/gui_common/TweakedColourPicker.cs:398
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Įjunkite arba išjunkite raw režimą.\n"
+"Įjungę raw duomenų režimą galite nustatyti R, G, B\n"
+"spalvų reikšmes viršyti 1,0.\n"
+"Negalima įjungti HSV režimu."
 
 #: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_R_TOOLTIP"
@@ -988,42 +1010,39 @@ msgstr "Raudonos spalvos kanalo reikšmė"
 
 #: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Sodrumo vertė - pilkos spalvos kiekis tam tikroje spalvoje"
 
 #: ../src/gui_common/TweakedColourPicker.cs:404
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Vertė (ryškumas) spalvos vertė, ryškumas arba intensyvumas"
 
 #: ../simulation_parameters/common/input_options.json:87
 msgid "COMMON_ABILITIES"
-msgstr ""
+msgstr "Bendri Gebėjimai"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #: ../src/general/MainMenu.tscn:676
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Bendrijos Forumas"
 
 #: ../src/general/MainMenu.tscn:671
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Baigti žaidimą"
+msgstr "Prisijunkite prie \"Thrive\" bendruomenės mūsų bendruomenės forume"
 
 #: ../src/general/MainMenu.tscn:718
 msgid "COMMUNITY_WIKI"
-msgstr ""
+msgstr "Bendruomenės Vikipedija"
 
 #: ../src/general/MainMenu.tscn:713
-#, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "Baigti žaidimą"
+msgstr "Apsilankykite mūsų bendruomenės vikipedijoje"
 
 #: ../src/general/OptionsMenu.tscn:1992
-#, fuzzy
 msgid "COMPILED_AT_COLON"
-msgstr "Pavadinimas:"
+msgstr "Pastatytas:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
@@ -1037,21 +1056,20 @@ msgid "COMPOUNDS"
 msgstr "Junginiai"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:87
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Pakeisti nustatymus"
+msgstr "Rodyti / slėpti junginius"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:87
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Junginiai:"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Junginių Balansai"
 
 #: ../src/general/OptionsMenu.tscn:963
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Junginių debesys"
 
 #: ../src/general/NewGameSettings.tscn:534
 msgid "COMPOUND_CLOUD_DENSITY"
@@ -1063,71 +1081,75 @@ msgstr "(junginių debesų tankis aplinkoje)"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:95
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} koncentracija sumažėjo {1}"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:45
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} suvartojimas"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
-msgstr ""
+msgstr "Ieškotinas Junginys:"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Koncepcinis Menas"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:122
 msgid "CONFIG"
-msgstr ""
+msgstr "Konfigūracija"
 
 #: ../src/general/base_stage/EditorComponentBase.cs:74
 msgid "CONFIRM_CAPITAL"
 msgstr "PATVIRTINTI"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Patvirtinti"
+msgstr "Patvirtinti Ištrinti"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "Patvirtinti Išėjimą"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:194
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Patvirtinti Perrašymą"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+msgstr "Pereiti į Pakilimo Etapą?"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+msgstr ""
+"Dabar galite pakilti ir pasiekti Pakilimo Etapą, įjungę Pakilimo Vartus.\n"
+"\n"
+"Taip atrakinsite neribotą galią - naujus Dievo Įrankius, kuriuos galėsite naudoti šiame išsaugojimo etape.\n"
+"\n"
+"Pakilimas taip pat reikš, kad įveikėte žaidimą, tačiau galėsite žaisti toliau. Pakilti?"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Pereiti į Pramonės Etapą?"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+msgstr "Pastatę gamyklą pereisite į pramonės etapą. Tęsti į kitą etapą?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+msgstr "Persikelti į Kosmoso Etapą?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+msgstr ""
+"Dabar galite pereiti į Kosmoso Etapą ir paleisti pirmąjį erdvėlaivį.\n"
+"\n"
+"Kol kas prototipuose negalite grįžti į savo planetą, tačiau planuojama, kad Kosmoso Etape bus galima sklandžiai priartinti ir atitolinti planetas.\n"
+"\n"
+"Atšaukus paleidimą, erdvėlaivio vienetas bus sunaikintas. Paleisti erdvėlaivį?"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1140,48 +1162,56 @@ msgstr "Kai kurie nustatymai yra neteisingi"
 
 #: ../src/industrial_stage/UnitType.cs:79
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr ""
+msgstr "Vienetas: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "Workshop turinys bus įkeltas iš aplanko: {0}"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:419
 msgid "CONTINUE_THRIVING"
-msgstr ""
+msgstr "Toliau Klestėti"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"Pasiekėte \"Thrive\" \"užbaigtos\" dalies pabaigą.\n"
+"Jei norite, galite tęsti vėlesnių etapų prototipus, kurie pridedami prie žaidimo. Jie gali būti labai neišbaigti, juose gali būti naudojama pakaitinė grafika ir apskritai jie gali būti labai grubūs. Jie įtraukti į žaidimą, kad parodytų galimą būsimą žaidimo kryptį ir mūsų bendrą etapų sujungimo viziją.\n"
+"\n"
+"Daugumoje prototipų negalėsite išsaugoti, jei tęsite žaidimą arba grįšite jį tęsę. Jei norite sugrįžti į šį etapą, prieš tęsdami išsaugokite dabar.\n"
+"\n"
+"Valdiklių palaikymas prototipuose taip pat yra daug neišbaigtesnis. Jei nuspręsite tęsti, supraskite, kad vėlesni etapai yra prototipai, ir nesiskųskite dėl jų neišbaigtumo."
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Toliau rengti prototipus?"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
-msgstr ""
+msgstr "Valdiklio Ašies Vizualizatoriai:"
 
 #: ../src/general/OptionsMenu.tscn:1458
 msgid "CONTROLLER_DEADZONES"
-msgstr ""
+msgstr "Valdiklio Mirusiosios Zonos"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
+"Šiuo įrankiu galima konfigūruoti valdiklio ašių deadzones. Deadzone dydžiai kontroliuoja, kiek reikia pajudinti valdymo svirtelę (arba analoginį mygtuką), kad šis judesys būtų užfiksuotas kaip įvestis.\n"
+"Prieš pradėdami kalibravimą, pajudinkite ir atleiskite visas valdiklio lazdeles, taip pat paspauskite ir atleiskite visus analoginius valdiklio mygtukus (pvz., trigerius)."
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
 msgid "CONTROLLER_DEADZONE_COLON"
-msgstr ""
+msgstr "Mirties Zona:"
 
 #: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Valdiklio mygtukas nurodo tipą:"
 
 #: ../src/general/OptionsMenu.tscn:1388
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Valdiklio jautrumas"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
@@ -1233,9 +1263,8 @@ msgstr ""
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Kopijuoti Rezultatus"
+msgstr "{0} ({1})"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
@@ -1334,9 +1363,8 @@ msgid "CURRENT_RESEARCH_NONE"
 msgstr "Atidaryti pagalbos langą"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Atidaryti pagalbos langą"
+msgstr "Šiuo metu atliekami tyrimai: {0} ({1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -1472,9 +1500,13 @@ msgid "DESCEND_CONFIRMATION"
 msgstr ""
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "(pradžios vieta)"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"

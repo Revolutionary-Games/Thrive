@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 14:08-0700\n"
-"PO-Revision-Date: 2023-09-07 15:18+0000\n"
+"PO-Revision-Date: 2023-10-07 07:19+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -25,11 +25,11 @@ msgstr "Стиль 2D-пересування:"
 
 #: ../simulation_parameters/common/input_options.json:222
 msgid "3D_EDITOR"
-msgstr "3D редактор"
+msgstr "3D-редактор"
 
 #: ../simulation_parameters/common/input_options.json:194
 msgid "3D_MOVEMENT"
-msgstr "3D переміщення"
+msgstr "3D-пересування"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
@@ -41,7 +41,7 @@ msgstr "Здібності"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "ABORT"
-msgstr "Перервано"
+msgstr "Перервати"
 
 #: ../src/auto-evo/AutoEvoRun.cs:124
 msgid "ABORTED_DOT"
@@ -76,14 +76,12 @@ msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Подвоїти популяцію"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Підтвердити вихід"
+msgstr "Копіювати одиниці"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} з популяції: {1}"
+msgstr "Уполовинити популяцію"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
 msgid "ACTION_TELEPORT"
@@ -1359,14 +1357,12 @@ msgstr "Поточна локація"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Панель назв кнопок вибору"
+msgstr "Зараз нічого не досліджується"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Відкрити екран досліджень"
+msgstr "Зараз досліджується: {0} ({1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -1486,9 +1482,8 @@ msgstr ""
 " - {2} резервне(і) збереження"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+msgstr "Видалення цієї скам'янілості буде незворотним, ви точно хочете видалити його назавжди?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1519,9 +1514,8 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Видалити це збереження?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
+msgstr "Спуститися"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
 msgid "DESCEND_CONFIRMATION"
@@ -2254,14 +2248,12 @@ msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Використання [thrive:compound type=\"atp\"][/thrive:compound] пришвидчує рух клітини."
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "вимерли на цілій планеті"
+msgstr "Флот {0}"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Одиниці флоту"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2674,7 +2666,6 @@ msgid "INSPECT"
 msgstr "Оглянути"
 
 #: ../src/engine/DebugOverlays.tscn:131 ../src/engine/DebugOverlays.tscn:166
-#, fuzzy
 msgid "INSPECTOR"
 msgstr "Інспектор"
 
@@ -2825,7 +2816,7 @@ msgstr "Січень"
 
 #: ../src/general/OptionsMenu.tscn:1889
 msgid "JSON_DEBUG_MODE"
-msgstr "Режим направення JSON:"
+msgstr "Режим зневадження JSON:"
 
 #: ../src/general/OptionsMenu.tscn:1905
 msgid "JSON_DEBUG_MODE_ALWAYS"
@@ -3409,9 +3400,11 @@ msgid "LOW_MENU_PERFORMANCE"
 msgstr "Виявлено низький рівень продуктивності"
 
 #: ../src/general/MainMenu.tscn:1011
-#, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Містить травні ферменти. Можна модифікувати тип вмістимого ферменту. Можна використовувати тільки один фермент за раз."
+msgstr ""
+"Ваша середня частота кадрів є дуже низкою.\n"
+"3D-фони заднього плану ввімкнені та можуть вимагати великого об'єму системних ресурсів. Їх вимкнення може значно підвищити продуктивність.\n"
+"Бажаєте зробити це зараз?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
@@ -3428,7 +3421,7 @@ msgstr "Містить травні ферменти. Можна модифік�
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Установити час доби вручну"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3592,9 +3585,9 @@ msgstr ""
 "\n"
 "Метаболосоми: Продукують [thrive:compound type=\"atp\"][/thrive:compound] з [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Тилакоїди: Продукують 1/3іх від кількості [thrive:compound type=\"glucose\"][/thrive:compound] як нормальні хлорпласти, але проводить гліколіз і використовує 1 Гекс\n"
+"Тилакоїди: Продукують 1/3іх від кількості [thrive:compound type=\"glucose\"][/thrive:compound] як нормальні хлоропласти, але проводить гліколіз і використовує 1 Гекс\n"
 "\n"
-"Хемосинтезувальні білки: Продукують частину [thrive:compound type=\"glucose\"][/thrive:compound] із [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] як хемопласти, але проводить гліколіз і використовує 1 Гекс(шестикутник)\n"
+"Хемосинтезувальні білки: Продукують частину [thrive:compound type=\"glucose\"][/thrive:compound] із [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] як хемопласти, але проводить гліколіз і використовує 1 Гекс\n"
 "\n"
 "Рустіціанін: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
 "[thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -3691,14 +3684,11 @@ msgid "MICROBE_STAGE"
 msgstr "Мікробна стадія"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Збирайте глюкозу(білі хмари) рухаючись по них.\n"
+"Ви розблокували здібність прогресувати до багатоклітинності, наступного кроку вашої подорожі.\n"
 "\n"
-"Вашій клітині необхідна глюкоза, щоб продукувати глюкозу для підтримки життя.\n"
-"\n"
-"Слідкуйте за лінією біля вашої клітини до глюкози поблизу."
+"Для продовження розвитку, натисніть \"Перейти до багатоклітинності\"."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -3867,9 +3857,8 @@ msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Різнобічний 3D етап"
 
 #: ../src/general/OptionsMenu.tscn:1917
-#, fuzzy
 msgid "MISC_FUN"
-msgstr "Інше"
+msgstr "Інші розваги"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -4261,9 +4250,8 @@ msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
-#, fuzzy
 msgid "NAME_LABEL_FLEET"
-msgstr "Біом: {0}"
+msgstr "{0} (СИЛА: {1})"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
@@ -4550,9 +4538,8 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Відкрити інформацію про URL"
+msgstr "Інструменти Бога"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
@@ -5244,9 +5231,8 @@ msgid "REQUIRES_NUCLEUS"
 msgstr "Необхідне ядро"
 
 #: ../src/society_stage/gui/ResearchScreen.tscn:16
-#, fuzzy
 msgid "RESEARCH"
-msgstr "Пошук"
+msgstr "Дослідження"
 
 #: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
 msgid "RESET"
@@ -5477,9 +5463,8 @@ msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
 msgstr "Повідомляючи про помилку збереження, будь ласка, прикладіть [color=#3796e1][url={0}]{1}[/url][/color] з [color=#3796e1][url={2}]каталогу журналів[/url][/color], оскільки ця інформація є критичною для розуміння причини помилки. Без цього файлу розробникам Thrive буде дуже складно виявити та полагодити проблему."
 
 #: ../src/saving/SaveStatusOverlay.cs:182
-#, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Режим направення JSON:"
+msgstr "Перш ніж повідомляти про цю помилку збереження, будь ласка, переконайтеся, що режим зневадження JSON не вимкнено. Автоматичний режим зневадження JSON повинен був створити додатковий файл під назвою \"{0}\" у [color=#3796e1][url={1}]каталозі журналів[/url][/color]. Цей файл містить критичну інформацію для розробників Thrive, щоб вони могли зрозуміти природу помилки збереження."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5614,7 +5599,7 @@ msgstr "Пошук..."
 
 #: ../src/thriveopedia/Thriveopedia.tscn:353
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Шукати..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -5703,9 +5688,8 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Оберіть тип тканини для редагування у вкладці редактору"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
-#, fuzzy
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
-msgstr "Вибрано:"
+msgstr "Оберіть речовину, що зберігатиметься у вакуолі:"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
@@ -5878,18 +5862,16 @@ msgid "SPACE_STAGE"
 msgstr "Космічна стадія"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "Потрібні для конструювання матеріали були видані"
+msgstr "Структура чекає на збірку будувального флоту"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "Немає додаткової інформації"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "Конструювання: {0}"
+msgstr "Структура чекає на будувальний флот та ресурси: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5977,9 +5959,8 @@ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Види розділенні за мутаційним поргом частки популяції"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
-#, fuzzy
 msgid "SPECIES_TO_FIND"
-msgstr "Види:"
+msgstr "Наявні види:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
@@ -6160,9 +6141,8 @@ msgid "STRUCTURE_ASCENSION_GATE"
 msgstr "Ворота Піднесення"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Центр суспільства"
+msgstr "Рій Дайсона"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
@@ -6253,19 +6233,19 @@ msgstr "Кл.SysRq"
 
 #: ../simulation_parameters/common/input_options.json:273
 msgid "TAB_SECONDARY_SWITCH_LEFT"
-msgstr ""
+msgstr "Перемкнути вкладку другого рівня вліво"
 
 #: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
-msgstr ""
+msgstr "Перемкнути вкладку другого рівня вправо"
 
 #: ../simulation_parameters/common/input_options.json:265
 msgid "TAB_SWITCH_LEFT"
-msgstr ""
+msgstr "Перемкнути вкладку вліво"
 
 #: ../simulation_parameters/common/input_options.json:269
 msgid "TAB_SWITCH_RIGHT"
-msgstr ""
+msgstr "Перемкнути вкладку вправо"
 
 #: ../src/modding/ModUploader.cs:367
 msgid "TAGS_IS_WHITESPACE"
@@ -6276,9 +6256,8 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
-#, fuzzy
 msgid "TARGET_TYPE_COLON"
-msgstr "Тип:"
+msgstr "Тип цілі:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
@@ -6289,39 +6268,32 @@ msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Полювання-збірництво"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "Відкрито технологію: {0}"
+msgstr "Просунений космічний"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "Відкрито технологію: {0}"
+msgstr "Індустріальний"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Будування центра суспільства"
+msgstr "Досуспільний"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "Відкрито технологію: {0}"
+msgstr "Примітивний"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "Прості кам'яні інструменти"
+msgstr "Науково-фантастичний"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Будування центра суспільства"
+msgstr "Космічна ера"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "Будування центра суспільства"
+msgstr "Необхідний рівень технологій: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
 msgid "TECHNOLOGY_ROCKETRY"
@@ -6547,7 +6519,7 @@ msgstr "Минуло часу: {0:#,#} років"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Час"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -6886,14 +6858,12 @@ msgid "UNDO_THE_LAST_ACTION"
 msgstr "Скасувати попередню дію"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "Завершити конструкцію"
+msgstr "Побудувати"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "Збирати"
+msgstr "Рухатися"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
@@ -6952,14 +6922,12 @@ msgid "UPGRADE_NAME_NONE"
 msgstr "Без модифікацій"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:34
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr "У режими поглинання ([thrive:input]g_toggle_engulf[/thrive:input]) цей тип війок створюватиме завихрення у воді, що притягуватимуть близькі об'єкти. Корисно задля спіймання здобичі."
+msgstr "Отруйна ворсинка"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:35
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
-msgstr "У режими поглинання ([thrive:input]g_toggle_engulf[/thrive:input]) цей тип війок створюватиме завихрення у воді, що притягуватимуть близькі об'єкти. Корисно задля спіймання здобичі."
+msgstr "Робить ворсинку отруйною, що завдає шкоди токсином при контакті з іншими клітинами"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -7020,21 +6988,19 @@ msgstr "Вакуоля — це внутрішня мембранна орган
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Спеціалізована вакуоля"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
-#, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "Збільшує простір для зберігання у клітинні."
+msgstr "Ця вакуоля зберігатиме {0} одиниць усіх речовин"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2136
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Збільшує простір для зберігання у клітинні."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
-#, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "Збільшує простір для зберігання у клітинні."
+msgstr "Ця вакуоля зберігатиме {0} одиниць обраної речовини"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173
