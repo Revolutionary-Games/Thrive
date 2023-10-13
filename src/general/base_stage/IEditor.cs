@@ -74,6 +74,14 @@ public interface IEditor : ISaveLoadedTracked
     /// </remarks>
     public bool EnqueueAction(ReversibleAction action);
 
+    /// <summary>
+    ///   Adds editor state specific context to given sequence of actions. <see cref="EnqueueAction"/> and
+    ///   <see cref="WhatWouldActionsCost"/> perform this automatically. Only adds the context if not missing to give
+    ///   flexibility for editor components to add their custom action context that is not overridden.
+    /// </summary>
+    /// <param name="actions">The action data to add the context to</param>
+    public void AddContextToActions(IEnumerable<CombinableActionData> actions);
+
     public void NotifyUndoRedoStateChanged();
 
     public bool CheckEnoughMPForAction(int cost);
