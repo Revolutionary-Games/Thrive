@@ -5521,7 +5521,7 @@ msgstr "When reporting a save error please include [color=#3796e1][url={0}]{1}[/
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color] that file contains critical information for Thrive developers to figure out what the saving error was."
+msgstr "Please make sure JSON debug mode is not disabled before reporting this save error. Automatic JSON debug mode should have created an extra file called {0} in the [color=#3796e1][url={1}]logs folder[/url][/color]. That file contains critical information for Thrive developers to figure out what the saving error was."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -6754,13 +6754,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"This is the patch map.\n"
+"Your ATP balance is negative.\n"
 "\n"
-"Each icon represents a unique environment that you can inhabit, with the panel on your right describing the conditions of the currently selected patch.\n"
+"When running all processes and moving, your creature will exhaust its energy and die.\n"
 "\n"
-"If you select a patch connected to the one you occupy, which is highlighted with a flashing green border, you can press the \"Move to this patch\" button on the right to migrate there.\n"
+"You can add ATP producing organelles to make a cell that can move constantly.\n"
 "\n"
-"Try selecting a patch to continue."
+"Or you can add storage to make a cell that can only move in bursts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -8627,6 +8627,12 @@ msgstr "Zoom out"
 #~ msgid "PREDATORY_PILUS"
 #~ msgstr "Predatory Pilus"
 
+#~ msgid "PREDATORY_PILUS_DESCRIPTION"
+#~ msgstr "Pili (singular: pilus) are found on the surface of many micro organisms and resemble fine hairs. Tens to hundreds of pili may be present on the surface of a micro organism and serve one of several purposes, including roles in predation. Pathogenic micro organisms use pili for virulence either to attach and bind to host tissues, or to invade past the outer membrane to gain access to the cytoplasm. Many similar pili exist but are not evolutionarily related and have resulted from convergent evolution. A single organism may have the ability to express several types of pili and those that are present on the surface are constantly being changed and replaced."
+
+#~ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
+#~ msgstr "Can be used to stab the other cells or to defend against their toxins."
+
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Species Details"
 
@@ -8755,6 +8761,9 @@ msgstr "Zoom out"
 #~ msgid "MARINE_SNOW_FOOD_SOURCE"
 #~ msgstr "Marine snow consumption"
 
+#~ msgid "INFO_FOR_MOD"
+#~ msgstr "Full Info For Mod"
+
 #~ msgid "Cancel"
 #~ msgstr "Cancel"
 
@@ -8841,6 +8850,11 @@ msgstr "Zoom out"
 
 #~ msgid "RATE"
 #~ msgstr "Rate"
+
+#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
+#~ msgstr ""
+#~ "Chemosynth-\n"
+#~ "esizing Proteins"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""
