@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
+/// <summary>
+///   All wiki pages to be recreated in the Thriveopedia, grouped by type.
+/// </summary>
 public class GameWiki : IRegistryType
 {
     /// <summary>
@@ -16,10 +18,8 @@ public class GameWiki : IRegistryType
     {
     }
 
-    [JsonProperty]
     public Page OrganellesRoot { get; set; } = null!;
 
-    [JsonProperty]
     public List<Page> Organelles { get; set; } = null!;
 
     public class Page
@@ -30,7 +30,6 @@ public class GameWiki : IRegistryType
 
         public string Url { get; set; } = null!;
 
-        [JsonProperty]
         public List<Section> Sections { get; set; } = null!;
 
         public class Section

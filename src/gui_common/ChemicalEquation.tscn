@@ -15,6 +15,9 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 TitlePath = NodePath("HBoxContainer/Label")
 SpinnerPath = NodePath("HBoxContainer/Spinner")
 FirstLineContainerPath = NodePath("FirstLine")

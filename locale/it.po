@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:57+0100\n"
+"POT-Creation-Date: 2023-10-13 18:29+0100\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -4503,9 +4503,9 @@ msgid "NO"
 msgstr "Nessuna"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
 msgid "NONE"
 msgstr "Nessuna"
 
@@ -4773,6 +4773,7 @@ msgstr "Modifica le impostazioni di gioco"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
 msgid "ORGANELLES"
 msgstr "Organuli"
 
@@ -7325,6 +7326,11 @@ msgstr "Scorri a destra (rotellina del mouse)"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Scorri su (rotellina del mouse)"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "nostra Wiki"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy

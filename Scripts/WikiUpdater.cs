@@ -167,7 +167,7 @@ public static class WikiUpdater
     }
 
     /// <summary>
-    ///   Returns an equivalent section of a wiki page where headings and bodies have been replaced with appropriate translation keys.
+    ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate translation keys.
     /// </summary>
     private static Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
     {

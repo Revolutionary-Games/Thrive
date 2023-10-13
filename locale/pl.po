@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:57+0100\n"
+"POT-Creation-Date: 2023-10-13 18:29+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -4456,9 +4456,9 @@ msgid "NO"
 msgstr "Brak"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
 msgid "NONE"
 msgstr "Brak"
 
@@ -4724,6 +4724,7 @@ msgstr "Zmień swoje ustawienia"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
 
@@ -7234,6 +7235,11 @@ msgstr "Koło w prawo"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Koło w górę"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "Nasza strona Wiki"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy

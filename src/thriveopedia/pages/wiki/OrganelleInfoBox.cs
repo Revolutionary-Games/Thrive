@@ -1,9 +1,11 @@
 using Godot;
-using System;
 using System.Globalization;
 using System.Linq;
 using static GalleryCardModel;
 
+/// <summary>
+///   Wiki-style info box for an organelle.
+/// </summary>
 public class OrganelleInfoBox : PanelContainer
 {
     [Export]
@@ -70,6 +72,9 @@ public class OrganelleInfoBox : PanelContainer
     private ImageTask? modelImageTask;
     private bool finishedLoadingModelImage;
 
+    /// <summary>
+    ///   The organelle this info box displays data for.
+    /// </summary>
     public OrganelleDefinition? Organelle
     {
         get => organelle;
@@ -138,10 +143,15 @@ public class OrganelleInfoBox : PanelContainer
         ModelTexture = modelLoadingTexture;
     }
 
+    /// <summary>
+    ///   Sets all textures and text values in the table.
+    /// </summary>
     private void UpdateValues()
     {
         if (organelle == null)
             return;
+
+        icon.Texture = GD.Load<Texture>(organelle.IconPath);
         
         var opaque = new Color(1, 1, 1, 1);
         var translucent = new Color(1, 1, 1, 0.25f);
@@ -165,12 +175,11 @@ public class OrganelleInfoBox : PanelContainer
             : TranslationServer.Translate("NONE");
 
         nameLabel.Text = organelle.Name;
-        icon.Texture = GD.Load<Texture>(organelle.IconPath);
-        costLabel.Text = organelle.MPCost.ToString(CultureInfo.InvariantCulture);
+        costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);
         requiresNucleusLabel.Text = TranslationHelper.TranslateBoolean(organelle.RequiresNucleus);
-        massLabel.Text = organelle.Mass.ToString(CultureInfo.InvariantCulture);
-        sizeLabel.Text = organelle.HexCount.ToString(CultureInfo.InvariantCulture);
-        osmoregulationCostLabel.Text = organelle.HexCount.ToString(CultureInfo.InvariantCulture);
+        massLabel.Text = organelle.Mass.ToString(CultureInfo.CurrentCulture);
+        sizeLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
+        osmoregulationCostLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         storageLabel.Text = (organelle.Components.Storage?.Capacity ?? 0).ToString(CultureInfo.CurrentCulture);
         uniqueLabel.Text = TranslationHelper.TranslateBoolean(organelle.Unique);
         internalNameLabel.Text = organelle.InternalName;

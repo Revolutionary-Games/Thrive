@@ -1,6 +1,8 @@
 using Godot;
 
-// TODO get from wiki????
+/// <summary>
+///   Parent page for organelle pages in the Thriveopedia. Content comes from the organelle category in the online wiki. Also contains a grid of buttons linking to all organelle pages.
+/// </summary>
 public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 {
     [Export]
@@ -10,8 +12,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override string PageName => "OrganellesRoot";
 
-    // TODO translate
-    public override string TranslatedPageName => "Organelles";
+    public override string TranslatedPageName => TranslationServer.Translate("ORGANELLES");
 
     public override string? ParentPageName => "WikiRoot";
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:57+0100\n"
+"POT-Creation-Date: 2023-10-13 18:29+0100\n"
 "PO-Revision-Date: 2023-09-29 06:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -4413,9 +4413,9 @@ msgid "NO"
 msgstr "Yok"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
 msgid "NONE"
 msgstr "Yok"
 
@@ -4676,6 +4676,7 @@ msgstr "Ayarlarını değiştir"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
 msgid "ORGANELLES"
 msgstr "Organeller"
 
@@ -7172,6 +7173,11 @@ msgstr "Fare tekeri sağa"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "Wiki'miz"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy

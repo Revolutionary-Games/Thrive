@@ -1,6 +1,9 @@
 using System;
 using Godot;
 
+/// <summary>
+///   Button which links to an organelle Thriveopedia page.
+/// </summary>
 public class OrganelleLinkButton : VBoxContainer
 {
     private Button button = null!;

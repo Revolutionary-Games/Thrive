@@ -20,6 +20,9 @@ public abstract class ThriveopediaPage : PanelContainer
     [Signal]
     public delegate void OnSceneChanged();
 
+    /// <summary>
+    ///   Method to call to change to another page. Must receive that page's PageName as the argument.
+    /// </summary>
     public Action<string> ChangePage { get; set; } = null!;
 
     /// <summary>
@@ -37,6 +40,9 @@ public abstract class ThriveopediaPage : PanelContainer
     /// </summary>
     public abstract string? ParentPageName { get; }
 
+    /// <summary>
+    ///   Whether this page is initially collapsed in the page tree to save space.
+    /// </summary>
     public virtual bool StartsCollapsed => false;
 
     /// <summary>

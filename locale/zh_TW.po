@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:57+0100\n"
+"POT-Creation-Date: 2023-10-13 18:29+0100\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -4571,9 +4571,9 @@ msgid "NO"
 msgstr "無"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:153
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:159
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:165
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
 msgid "NONE"
 msgstr "無"
 
@@ -4848,6 +4848,7 @@ msgstr "幫助"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
 msgid "ORGANELLES"
 msgstr "細胞器"
 
@@ -7461,6 +7462,11 @@ msgstr "向右滾輪"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "向上滾輪"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "我們的Wiki"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy

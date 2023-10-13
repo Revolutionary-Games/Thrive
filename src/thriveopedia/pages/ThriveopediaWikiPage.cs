@@ -10,6 +10,9 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
     [Export]
     public NodePath MainArticlePath = null!;
 
+    /// <summary>
+    ///   Wiki content to display on this page.
+    /// </summary>
     public GameWiki.Page PageContent { get; set; } = null!;
 
     /// <summary>
@@ -31,11 +34,12 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         pageSectionScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/WikiPageSection.tscn");
 
         foreach (var section in PageContent.Sections)
-        {
-            AddSection(section.SectionHeading, section.SectionBody);
-        }
+            AddSection(section);
     }
 
+    /// <summary>
+    ///   Creates all wiki pages using the data in wiki.json, in order of their definition. In particular, parents must always come before children in this list.
+    /// </summary>
     public static List<ThriveopediaWikiPage> GenerateAllWikiPages()
     {
         var pages = new List<ThriveopediaWikiPage>();
@@ -60,14 +64,17 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         return pages;
     }
 
-    protected void AddSection(string? heading, string body)
+    /// <summary>
+    ///   Adds a page section to the main content container in the scene.
+    /// </summary>
+    protected void AddSection(GameWiki.Page.Section content)
     {
         var section = (WikiPageSection)pageSectionScene.Instance();
 
-        if (heading != null)
-            section.HeadingText = heading;
+        if (content.SectionHeading != null)
+            section.HeadingText = content.SectionHeading;
 
-        section.BodyText = body;
+        section.BodyText = content.SectionBody;
         mainArticle.AddChild(section);
     }
 }

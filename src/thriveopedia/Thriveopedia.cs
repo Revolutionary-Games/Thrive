@@ -375,6 +375,9 @@ public class Thriveopedia : ControlWithInput
         SelectedPage = page;
     }
 
+    /// <summary>
+    ///   Expands all parents of this page in the tree so that it's visible.
+    /// </summary>
     private void ExpandParents(ThriveopediaPage page)
     {
         var parent = allPages.FirstOrDefault(p => p.Key.PageName == page.ParentPageName);
@@ -446,6 +449,9 @@ public class Thriveopedia : ControlWithInput
         }
     }
 
+    /// <summary>
+    ///   Recursively gets all descendents of this page in the page tree.
+    /// </summary>
     private List<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
     {
         var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName);
