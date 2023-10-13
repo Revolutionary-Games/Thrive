@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:48+0100\n"
+"POT-Creation-Date: 2023-10-13 17:57+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -4386,8 +4386,6 @@ msgid "NEW_GAME"
 msgstr "Nowa Gra"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Zacznij nową grę"
 
@@ -4665,6 +4663,11 @@ msgstr "Otwórz Folder z Logami"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "Otwórz URL Informacji"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Otwórz menu organelli"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:48+0100\n"
+"POT-Creation-Date: 2023-10-13 17:57+0100\n"
 "PO-Revision-Date: 2023-09-29 06:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -4343,8 +4343,6 @@ msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Yeni bir oyun başlat"
 
@@ -4619,6 +4617,11 @@ msgstr "Log Klasörünü Aç"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "Bilgi URL'sini Aç"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Organel menüsünü aç"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"

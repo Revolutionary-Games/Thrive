@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:48+0100\n"
+"POT-Creation-Date: 2023-10-13 17:57+0100\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -4444,8 +4444,6 @@ msgid "NEW_GAME"
 msgstr "Nytt spel"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Hjälp"
@@ -4730,6 +4728,11 @@ msgstr "Öppna Logmapp"
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Öppen URL"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Öppna organell meny"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"

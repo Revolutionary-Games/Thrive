@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:48+0100\n"
+"POT-Creation-Date: 2023-10-13 17:57+0100\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -4399,8 +4399,6 @@ msgid "NEW_GAME"
 msgstr "משחק חדש"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "התחל משחק חדש"
 
@@ -4678,6 +4676,11 @@ msgstr "פתח תקיית קבצי לוג"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "פתח כתובת מידע"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "פתח תפריט האברון"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"

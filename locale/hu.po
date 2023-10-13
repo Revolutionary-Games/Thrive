@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 17:48+0100\n"
+"POT-Creation-Date: 2023-10-13 17:57+0100\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4455,8 +4455,6 @@ msgid "NEW_GAME"
 msgstr "Új játék"
 
 #: ../src/general/MainMenu.tscn:299
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:91
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Új játék indítása"
 
@@ -4736,6 +4734,11 @@ msgstr "Feljegyzés mappa megnyitása"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "A mod URL-jének megnyitása"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Sejtszervecske menü megnyitása"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
