@@ -10,8 +10,7 @@ public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate, 
 
     [JsonConstructor]
     public OrganelleRemoveActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
-        location,
-        orientation)
+        location, orientation)
     {
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -400,11 +401,23 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public abstract int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+    public virtual int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    {
+        // TODO: determine if it is better to use extra memory here or if enumerating multiple times is better (or
+        // there's a way to redo this method interface to not need either workaround). Right now this is set to use
+        // extra memory as some quite complex filtering situations trigger this code so just to not have any unexpected
+        // performance impact of complicated data filtering pipelines this uses a temporary list
+        var tempActions = actions.ToList();
+
+        AddContextToActions(tempActions);
+
+        return history.WhatWouldActionsCost(tempActions);
+    }
 
     public virtual bool EnqueueAction(TAction action)
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
+        // It's required to call WhatWouldActionsCost as that will set the right context data
         if (!CheckEnoughMPForAction(WhatWouldActionsCost(action.Data)))
             return false;
 
@@ -428,6 +441,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         return EnqueueAction((TAction)action);
     }
+
+    public abstract void AddContextToActions(IEnumerable<CombinableActionData> editorActions);
 
     public bool CheckEnoughMPForAction(int cost)
     {

@@ -112,25 +112,18 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        return history.WhatWouldActionsCost(actions);
-    }
-
-    public override bool EnqueueAction(EditorAction action)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
     {
         // If a cell type is being edited, add its type to each action data
         // so we can use it for undoing and redoing later
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
         {
-            foreach (var actionData in action.Data)
+            foreach (var actionData in actions)
             {
-                if (actionData is EditorCombinableActionData<CellType> cellTypeData)
+                if (actionData is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                     cellTypeData.Context = selectedCellTypeToEdit;
             }
         }
-
-        return base.EnqueueAction(action);
     }
 
     public override bool CancelCurrentAction()
