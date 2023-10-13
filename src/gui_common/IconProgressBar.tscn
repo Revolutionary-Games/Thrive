@@ -4,18 +4,12 @@
 
 [node name="ProgressBar" type="ColorRect"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 30.0
-margin_bottom = 30.0
+margin_right = 26.0
+margin_bottom = 26.0
 mouse_filter = 2
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Highlight" type="ColorRect" parent="."]
 visible = false
