@@ -13,8 +13,8 @@ public class CustomPopupMenu : TopLevelContainer
     public NodePath ContainerPath = null!;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
+    protected Container container = null!;
     private Panel panel = null!;
-    private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private Vector2 cachedMinSize;
@@ -25,7 +25,6 @@ public class CustomPopupMenu : TopLevelContainer
         container = GetNode<Container>(ContainerPath);
 
         cachedMinSize = RectMinSize;
-        RectMinSize = Vector2.Zero;
 
         ResolveNodeReferences();
         RemapDynamicChildren();
@@ -46,9 +45,44 @@ public class CustomPopupMenu : TopLevelContainer
     {
     }
 
+    /// <summary>
+    ///   Calculates the size the pop should be taking into account minimum
+    ///   height needed by content
+    /// </summary>
+    /// <returns>Returns what should be the size of popup considering content height</returns>
+    protected virtual Vector2 CalculateSize()
+    {
+        RectSize = cachedMinSize;
+
+        var clipControl = GetNodeOrNull<Control>("Panel/Control");
+        var clipControlHeightMargin = 0.0f;
+        if (clipControl != null)
+        {
+            clipControlHeightMargin =
+                Mathf.Abs(clipControl.MarginTop) +
+                Mathf.Abs(clipControl.MarginBottom);
+        }
+
+        var contentSize = new Vector2(
+            RectSize.x,
+            container.RectSize.y +
+            Mathf.Abs(container.MarginTop) +
+            Mathf.Abs(container.MarginBottom) +
+            clipControlHeightMargin);
+
+        var minSize = new Vector2(
+            Mathf.Max(contentSize.x, cachedMinSize.x),
+            Mathf.Max(contentSize.y, cachedMinSize.y));
+
+        return minSize;
+    }
+
     protected override void OnOpen()
     {
-        CreateTween().TweenProperty(this, "rect_size", cachedMinSize, 0.2f)
+        RectSize = CalculateSize();
+
+        GD.Print($"Rect size on open of popup {RectSize}");
+        CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
@@ -57,8 +91,8 @@ public class CustomPopupMenu : TopLevelContainer
     protected override void OnClose()
     {
         var tween = CreateTween();
-        tween.TweenProperty(this, "rect_size", Vector2.Zero, 0.15f)
-            .From(cachedMinSize)
+        tween.TweenProperty(this, "rect_scale", Vector2.Zero, 0.15f)
+            .From(Vector2.One)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
         tween.TweenCallback(this, nameof(OnClosingAnimationFinished));
