@@ -131,5 +131,5 @@ public class EnergyBalanceEventArgs : TutorialEventArgs
         EnergyBalanceInfo = energyBalanceInfo;
     }
 
-    public EnergyBalanceInfo? EnergyBalanceInfo { get; }
+    public EnergyBalanceInfo EnergyBalanceInfo { get; }
 }
