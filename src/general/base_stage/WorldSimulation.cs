@@ -99,6 +99,13 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return;
 
+        if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
+        {
+            // Prevent lag spikes from messing with game logic too bad. The downside here is that at extremely low
+            // framerate the game will run in slow motion
+            accumulatedLogicTime = Constants.SIMULATION_MAX_DELTA_TIME;
+        }
+
         Processing = true;
 
         OnCheckPhysicsBeforeProcessStart();

@@ -12,6 +12,12 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Used to prevent lag causing massive simulation instability spikes (due to resource consumption etc. scaling
+    ///   but storage not scaling)
+    /// </summary>
+    public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
+
+    /// <summary>
     ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
     ///   NewGameSettings.tscn should also be changed.
     /// </summary>
@@ -487,11 +493,6 @@ public static class Constants
 
     // TODO: remove if unused with ECS
     public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
-
-    /// <summary>
-    ///   Used to prevent lag / loading causing big jumps in reproduction progress
-    /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
 
     /// <summary>
     ///   Because reproduction progress is most often time limited,
@@ -1455,9 +1456,6 @@ public static class Constants
 
     private const uint FreeCompoundAmountIsLessThanUsePerSecond =
         (MICROBE_REPRODUCTION_FREE_COMPOUNDS < MICROBE_REPRODUCTION_MAX_COMPOUND_USE) ? 0 : -42;
-
-    private const uint ReproductionProgressIntervalLessThanMaxDelta =
-        (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
