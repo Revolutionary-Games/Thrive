@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 18:36+0100\n"
-"PO-Revision-Date: 2023-09-07 15:18+0000\n"
+"POT-Creation-Date: 2023-10-13 20:30+0100\n"
+"PO-Revision-Date: 2023-10-09 05:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -258,7 +258,7 @@ msgstr "Картина от {0}"
 
 #: ../src/general/MainMenu.tscn:521
 msgid "ART_GALLERY"
-msgstr "Галерея изображений"
+msgstr "Галерея"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 msgid "ASCENSION_CONGRATULATIONS"
@@ -316,7 +316,7 @@ msgstr "Производство АТФ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "СЛИШКОМ НИЗКОЕ ПРОИЗВОДСТВО АТФ!"
+msgstr "НЕДОСТАТОЧНОЕ ПРОИЗВОДСТВО АТФ!"
 
 #: ../src/saving/NewSaveMenu.tscn:146
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
@@ -523,7 +523,7 @@ msgstr "{0}-{1}м ниже уровня моря"
 
 #: ../src/general/MainMenu.tscn:433
 msgid "BENCHMARKS"
-msgstr "Тестирование производительности"
+msgstr "Тест производительности"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
 msgid "BENCHMARK_FINISHED"
@@ -689,7 +689,7 @@ msgstr "Нельзя удалить выбранный тип клеток"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
 msgid "CANNOT_ENGULF"
-msgstr "Не может поглощать"
+msgstr "Не может поглощать клетки"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -1633,19 +1633,19 @@ msgstr "Нормально"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Эффективность переваривания"
+msgstr "Эффективность усвоения"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1075
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Эффективность поглощения:"
+msgstr "Эффектив. усвоения:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 msgid "DIGESTION_SPEED"
-msgstr "Скорость переваривания"
+msgstr "Скорость усвоения"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1068
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Скорость переваривания:"
+msgstr "Скорость усвоения:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
 msgid "DIGESTION_SPEED_VALUE"
@@ -1764,7 +1764,7 @@ msgstr "..."
 #: ../simulation_parameters/microbe_stage/membranes.json:21
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
 msgid "DOUBLE"
-msgstr "Двойной"
+msgstr "Двойная"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
@@ -2151,19 +2151,16 @@ msgid "FAILED"
 msgstr "Неудачно"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Мой потрясающий мод"
+msgstr "Ошибка: Не удалось удалить одно или более сохранение."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
+msgstr "Ошибка: Не удалось удалить сохранение"
 
 #: ../src/saving/SaveList.tscn:139
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr "Файл окаменелости не может быть удалён"
+msgstr "Файл сохранения не может быть удалён."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
@@ -3459,7 +3456,7 @@ msgstr "Замечена Низкая Производительность"
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 "Ваш средний счетчик кадров крайне низок.\n"
-"Трёхмерные задние фоны включены, да они используют значительные ресурсы системы. Отключение этой опции может значительно повысить вашу производительность.\n"
+"Трёхмерные задние фоны включены и они используют значительные ресурсы системы. Отключение этой опции может значительно повысить вашу производительность.\n"
 "Хотели вы бы сделать это сейчас?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
@@ -3739,14 +3736,11 @@ msgid "MICROBE_STAGE"
 msgstr "Одноклеточная стадия"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
-#, fuzzy
 msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
-"Собирайте глюкозу (белые облака), перемещаясь по ней.\n"
+"Вы открыли возможность продвинуться по пути становления многоклеточным. Это следующий шаг в вашем приключении.\n"
 "\n"
-"Ваша клетка нуждается в глюкозе, чтобы вырабатывать энергию для поддержания жизни.\n"
-"\n"
-"Следуйте по линии от вашей клетки к ближайшей глюкозе."
+"Чтобы продолжить, нажмите на кнопку \"Стать многоклеточным\"."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
@@ -4132,7 +4126,7 @@ msgstr "Изменять чувствительность мыши в завис
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
-msgstr "Передвижение"
+msgstr "Переместить"
 
 #: ../simulation_parameters/common/input_options.json:8
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:524
@@ -4412,15 +4406,15 @@ msgstr "Азотфиксирующий пластид — белок, спосо
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "NO"
 msgstr "Отсутствует"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:194
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:203
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:212
 msgid "NONE"
 msgstr "Отсутствует"
 
@@ -4681,7 +4675,7 @@ msgstr "Сменить настройки"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Органеллы"
 
@@ -5338,7 +5332,7 @@ msgstr "Сбросить по умолчанию?"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr "Устойчиво к базовому поглощению"
+msgstr "Устойчива к базовому поглощению клетками"
 
 #: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
@@ -5441,7 +5435,7 @@ msgstr "Повернуть вправо"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1056
 msgid "ROTATION_COLON"
-msgstr "Популяция:"
+msgstr "Поворот:"
 
 #: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -5537,7 +5531,7 @@ msgstr "Когда вы отправляете сохранение для ре�
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "Пожалуйста, удостоверьтесь, что не выключен режим разработчика JSON, перед тем, как вы зарепортите данную ошибку сохранения. Автоматический JSON режим разработчика должен быть создан дополнительным файлом, названным {0} в [color=#3796e1][url={1}]logs folder[/url][/color] . Данный файл содержит в себе критически важную информацию для разработчиков Thrive, ведь он облегчит поиск того, что могло вызвать ошибку."
+msgstr "Пожалуйста, удостоверьтесь в том, что режим отладки JSON не отключен перед отправкой данной ошибки сохранения. Автоматический режим отладки JSON должен был создать дополнительный файл под названием {0} в [color=#3796e1][url={1}]logs folder[/url][/color]. Этот файл содержит критически важную информацию для разработчиков Thrive, позволяя им выяснить в чем, всё же, ошибка файла сохранения."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -6181,11 +6175,11 @@ msgstr "Cтоп"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
 msgid "STORAGE"
-msgstr "Хранилище"
+msgstr "Вместимость"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "STORAGE_COLON"
-msgstr "Вместимость соединений в клетке:"
+msgstr "Вместимость:"
 
 #: ../src/general/MainMenu.cs:651
 msgid "STORE_LOGGED_IN_AS"
@@ -6465,7 +6459,7 @@ msgstr "Термосинтез"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr "Беспорядок"
 
@@ -6497,7 +6491,7 @@ msgstr "Древо Эволюции"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Откройте Thriveopedia"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 "Трайвопедия — это центральная библиотека и хранилище информации для контента Thrive. Здесь вы найдете ответы на любые вопросы об игре, вашем текущем мире или проекте разработки Thrive.\n"
@@ -7163,7 +7157,7 @@ msgstr "Вертикальная синхронизация"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание Авто-Эво:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Добро пожаловать в Thriveopedia"
 
@@ -8728,7 +8722,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "YES"
 msgstr "лет"

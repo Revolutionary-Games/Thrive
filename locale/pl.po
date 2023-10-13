@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 18:36+0100\n"
+"POT-Creation-Date: 2023-10-13 20:30+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -4452,15 +4452,15 @@ msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitro
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "NO"
 msgstr "Brak"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:194
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:203
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:212
 msgid "NONE"
 msgstr "Brak"
 
@@ -4726,7 +4726,7 @@ msgstr "Zmień swoje ustawienia"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
 
@@ -6525,7 +6525,7 @@ msgstr "Termosynteza"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr "Disturbaniec"
 
@@ -6557,7 +6557,7 @@ msgstr "Drzewo Filogenetyczne"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Otwórz Thriveopedia'ę"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -7222,7 +7222,7 @@ msgstr "Synchronizacja pionowa"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Czekanie na auto-ewolucje:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Witam w Thriveopedia'i"
 
@@ -8784,7 +8784,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "lata"
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "YES"
 msgstr "lata"

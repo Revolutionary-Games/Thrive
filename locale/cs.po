@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 18:36+0100\n"
+"POT-Creation-Date: 2023-10-13 20:30+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4507,15 +4507,15 @@ msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:c
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "NO"
 msgstr "Žádná"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:194
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:203
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:212
 msgid "NONE"
 msgstr "Žádná"
 
@@ -4783,7 +4783,7 @@ msgstr "Změna nastavení"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Organely"
 
@@ -6613,7 +6613,7 @@ msgstr "Termosyntéza"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6645,7 +6645,7 @@ msgstr ""
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -7315,7 +7315,7 @@ msgstr "VSync"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
@@ -8881,7 +8881,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 #, fuzzy
 msgid "YES"
 msgstr "roky"

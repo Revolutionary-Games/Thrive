@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 18:36+0100\n"
-"PO-Revision-Date: 2023-09-20 14:11+0200\n"
+"POT-Creation-Date: 2023-10-13 20:30+0100\n"
+"PO-Revision-Date: 2023-10-13 11:04+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -4398,14 +4398,14 @@ msgstr "The Nitrogen-Fixing Plastid is a protein able to use gaseous [thrive:com
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 msgid "NO"
 msgstr "No"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:163
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:169
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:175
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:194
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:203
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:212
 msgid "NONE"
 msgstr "None"
 
@@ -4665,7 +4665,7 @@ msgstr "Change your settings"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:15
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Organelles"
 
@@ -6449,7 +6449,7 @@ msgstr "Thermosynthesis"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
@@ -6481,7 +6481,7 @@ msgstr "Evolutionary Tree"
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Open the Thriveopedia"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 "The Thriveopedia is the central library and information store for Thrive content. Here you'll find the answers to any question you might have about the game, your current world, or the Thrive development project.\n"
@@ -7145,7 +7145,7 @@ msgstr "VSync"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Welcome to the Thriveopedia"
 
@@ -8547,7 +8547,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "years"
 
-#: ../src/general/utils/TranslationHelper.cs:84
+#: ../src/general/utils/TranslationHelper.cs:86
 msgid "YES"
 msgstr "Yes"
 
@@ -8626,12 +8626,6 @@ msgstr "Zoom out"
 
 #~ msgid "PREDATORY_PILUS"
 #~ msgstr "Predatory Pilus"
-
-#~ msgid "PREDATORY_PILUS_DESCRIPTION"
-#~ msgstr "Pili (singular: pilus) are found on the surface of many micro organisms and resemble fine hairs. Tens to hundreds of pili may be present on the surface of a micro organism and serve one of several purposes, including roles in predation. Pathogenic micro organisms use pili for virulence either to attach and bind to host tissues, or to invade past the outer membrane to gain access to the cytoplasm. Many similar pili exist but are not evolutionarily related and have resulted from convergent evolution. A single organism may have the ability to express several types of pili and those that are present on the surface are constantly being changed and replaced."
-
-#~ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-#~ msgstr "Can be used to stab the other cells or to defend against their toxins."
 
 #~ msgid "SPECIES_DETAILS"
 #~ msgstr "Species Details"
@@ -8761,9 +8755,6 @@ msgstr "Zoom out"
 #~ msgid "MARINE_SNOW_FOOD_SOURCE"
 #~ msgstr "Marine snow consumption"
 
-#~ msgid "INFO_FOR_MOD"
-#~ msgstr "Full Info For Mod"
-
 #~ msgid "Cancel"
 #~ msgstr "Cancel"
 
@@ -8850,11 +8841,6 @@ msgstr "Zoom out"
 
 #~ msgid "RATE"
 #~ msgstr "Rate"
-
-#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-#~ msgstr ""
-#~ "Chemosynth-\n"
-#~ "esizing Proteins"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""
