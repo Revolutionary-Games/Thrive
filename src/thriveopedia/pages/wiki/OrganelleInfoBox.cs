@@ -1,7 +1,6 @@
-using Godot;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
-using static GalleryCardModel;
+using Godot;
 
 /// <summary>
 ///   Wiki-style info box for an organelle.
@@ -9,7 +8,7 @@ using static GalleryCardModel;
 public class OrganelleInfoBox : PanelContainer
 {
     [Export]
-    public NodePath NamePath = null!;
+    public NodePath? NamePath;
 
     [Export]
     public NodePath IconPath = null!;
@@ -52,6 +51,7 @@ public class OrganelleInfoBox : PanelContainer
 
     private OrganelleDefinition? organelle;
 
+#pragma warning disable CA2213
     private Label nameLabel = null!;
     private TextureRect icon = null!;
     private TextureRect? model;
@@ -68,7 +68,9 @@ public class OrganelleInfoBox : PanelContainer
     private Label internalNameLabel = null!;
 
     private Texture? modelTexture;
-    private Texture modelLoadingTexture = null!;
+    private Texture? modelLoadingTexture;
+#pragma warning restore CA2213
+
     private ImageTask? modelImageTask;
     private bool finishedLoadingModelImage;
 
@@ -124,7 +126,7 @@ public class OrganelleInfoBox : PanelContainer
 
         if (organelle == null || string.IsNullOrEmpty(organelle.DisplayScene) || finishedLoadingModelImage)
             return;
-        
+
         if (modelImageTask != null)
         {
             if (modelImageTask.Finished)
@@ -136,11 +138,38 @@ public class OrganelleInfoBox : PanelContainer
             return;
         }
 
-        modelImageTask = new ImageTask(new ModelPreview(organelle.DisplayScene!, organelle.DisplaySceneModelPath ?? "."));
+        modelImageTask = new ImageTask(
+            new GalleryCardModel.ModelPreview(organelle.DisplayScene!, organelle.DisplaySceneModelPath ?? "."));
 
         PhotoStudio.Instance.SubmitTask(modelImageTask);
 
         ModelTexture = modelLoadingTexture;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (NamePath != null)
+            {
+                NamePath.Dispose();
+                IconPath.Dispose();
+                ModelPath.Dispose();
+                CostLabelPath.Dispose();
+                RequiresNucleusLabelPath.Dispose();
+                ProcessesLabelPath.Dispose();
+                EnzymesLabelPath.Dispose();
+                MassLabelPath.Dispose();
+                SizeLabelPath.Dispose();
+                OsmoregulationCostLabelPath.Dispose();
+                StorageLabelPath.Dispose();
+                UniqueLabelPath.Dispose();
+                UpgradesLabelPath.Dispose();
+                InternalNameLabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -152,27 +181,35 @@ public class OrganelleInfoBox : PanelContainer
             return;
 
         icon.Texture = GD.Load<Texture>(organelle.IconPath);
-        
+
         var opaque = new Color(1, 1, 1, 1);
         var translucent = new Color(1, 1, 1, 0.25f);
 
-        var hasProcesses = organelle.Processes != null && organelle.Processes.Count() > 0;
+        var hasProcesses = organelle.Processes != null && organelle.Processes.Count > 0;
         processesLabel.Modulate = hasProcesses ? opaque : translucent;
-        processesLabel.Text = hasProcesses
-            ? organelle.Processes!.Keys.Select(p => SimulationParameters.Instance.GetBioProcess(p).Name).Aggregate((a, b) => a + "\n" + b)
-            : TranslationServer.Translate("NONE");
+        processesLabel.Text = hasProcesses ?
+            organelle.Processes!.Keys
+                .Select(p => SimulationParameters.Instance.GetBioProcess(p).Name)
+                .Aggregate((a, b) => a + "\n" + b) :
+            TranslationServer.Translate("NONE");
 
-        var hasEnzymes = organelle.Enzymes != null && organelle.Enzymes.Count() > 0;
+        var hasEnzymes = organelle.Enzymes != null && organelle.Enzymes.Count > 0;
         enzymesLabel.Modulate = hasEnzymes ? opaque : translucent;
-        enzymesLabel.Text = hasEnzymes
-            ? organelle.Enzymes!.Where(e => e.Value > 0).Select(e => SimulationParameters.Instance.GetEnzyme(e.Key).Name).Aggregate((a, b) => a + "\n" + b)
-            : TranslationServer.Translate("NONE");
+        enzymesLabel.Text = hasEnzymes ?
+            organelle.Enzymes!
+                .Where(e => e.Value > 0)
+                .Select(e => SimulationParameters.Instance.GetEnzyme(e.Key).Name)
+                .Aggregate((a, b) => a + "\n" + b) :
+            TranslationServer.Translate("NONE");
 
-        var hasUpgrades = organelle.AvailableUpgrades.Count() > 0;
+        var hasUpgrades = organelle.AvailableUpgrades.Count > 0;
         upgradesLabel.Modulate = hasUpgrades ? opaque : translucent;
-        upgradesLabel.Text = hasUpgrades
-            ? organelle.AvailableUpgrades.Where(u => u.Key != "none").Select(u => u.Value.Name).Aggregate((a, b) => a + "\n" + b)
-            : TranslationServer.Translate("NONE");
+        upgradesLabel.Text = hasUpgrades ?
+            organelle.AvailableUpgrades
+                .Where(u => u.Key != "none")
+                .Select(u => u.Value.Name)
+                .Aggregate((a, b) => a + "\n" + b) :
+            TranslationServer.Translate("NONE");
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);

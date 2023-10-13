@@ -11,6 +11,9 @@ margin_right = 476.0
 margin_bottom = 73.0
 theme = ExtResource( 5 )
 script = ExtResource( 2 )
+HeadingPath = NodePath("Heading")
+SeparatorPath = NodePath("HSeparator")
+BodyPath = NodePath("Body")
 
 [node name="Heading" type="Label" parent="."]
 margin_right = 476.0

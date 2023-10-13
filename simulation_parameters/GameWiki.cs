@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   All wiki pages to be recreated in the Thriveopedia, grouped by type.
@@ -10,6 +10,10 @@ public class GameWiki : IRegistryType
     /// </summary>
     public string InternalName { get; set; } = null!;
 
+    public Page OrganellesRoot { get; set; } = null!;
+
+    public List<Page> Organelles { get; set; } = null!;
+
     public void ApplyTranslations()
     {
     }
@@ -17,10 +21,6 @@ public class GameWiki : IRegistryType
     public void Check(string name)
     {
     }
-
-    public Page OrganellesRoot { get; set; } = null!;
-
-    public List<Page> Organelles { get; set; } = null!;
 
     public class Page
     {

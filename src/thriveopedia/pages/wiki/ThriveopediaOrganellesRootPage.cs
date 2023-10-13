@@ -1,24 +1,26 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
-///   Parent page for organelle pages in the Thriveopedia. Content comes from the organelle category in the online wiki. Also contains a grid of buttons linking to all organelle pages.
+///   Parent page for organelle pages in the Thriveopedia. Content comes from the organelle category in the online
+///   wiki. Also contains a grid of buttons linking to all organelle pages.
 /// </summary>
 public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 {
     [Export]
-    public NodePath OrganelleListContainerPath = null!;
+    public NodePath? OrganelleListContainerPath;
 
+#pragma warning disable CA2213
+    private PackedScene linkButtonScene = null!;
     private GridContainer organelleListContainer = null!;
+#pragma warning restore CA2213
 
     public override string PageName => "OrganellesRoot";
 
     public override string TranslatedPageName => TranslationServer.Translate("ORGANELLES");
 
-    public override string? ParentPageName => "WikiRoot";
+    public override string ParentPageName => "WikiRoot";
 
     public override bool StartsCollapsed => true;
-
-    private PackedScene linkButtonScene = null!;
 
     public override void _Ready()
     {
@@ -41,5 +43,15 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
             button.OpenLink = () => ChangePage(organelle.InternalName);
             organelleListContainer.AddChild(button);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            OrganelleListContainerPath?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 }

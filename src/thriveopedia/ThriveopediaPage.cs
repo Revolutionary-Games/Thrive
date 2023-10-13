@@ -26,7 +26,8 @@ public abstract class ThriveopediaPage : PanelContainer
     public Action<string> ChangePage { get; set; } = null!;
 
     /// <summary>
-    ///   The internal name of this page. If this page is the only instance of a specific Godot scene, must be PascalCase to open the scene correctly.
+    ///   The internal name of this page. If this page is the only instance of a specific Godot scene, must be
+    ///   PascalCase to open the scene correctly.
     /// </summary>
     public abstract string PageName { get; }
 

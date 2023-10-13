@@ -155,7 +155,7 @@ public class Thriveopedia : ControlWithInput
         AddPage("Museum");
         AddPage("WikiRoot");
 
-        foreach(var page in ThriveopediaWikiPage.GenerateAllWikiPages())
+        foreach (var page in ThriveopediaWikiPage.GenerateAllWikiPages())
         {
             AddPage(page.Name, page);
         }
@@ -243,6 +243,7 @@ public class Thriveopedia : ControlWithInput
                 PageTitlePath.Dispose();
                 PageTreePath.Dispose();
                 HomePagePath.Dispose();
+                ViewOnlineButtonPath.Dispose();
             }
         }
 
@@ -283,7 +284,9 @@ public class Thriveopedia : ControlWithInput
     ///   Adds a page to the Thriveopedia
     /// </summary>
     /// <param name="name">The name of the page</param>
-    /// <param name="page">Pre-configured page if scene filename does not match the page name or the page needs extra adjustment</param>
+    /// <param name="page">
+    ///   Pre-configured page if scene filename does not match the page name or the page needs extra adjustment
+    /// </param>
     private void AddPage(string name, ThriveopediaPage? page = null)
     {
         if (allPages.Keys.Any(p => p.PageName == name))
@@ -305,7 +308,7 @@ public class Thriveopedia : ControlWithInput
         var treeItem = CreateTreeItem(page, page.ParentPageName);
         treeItem.Collapsed = page.StartsCollapsed;
         allPages.Add(page, treeItem);
- 
+
         page.Hide();
     }
 
@@ -384,7 +387,7 @@ public class Thriveopedia : ControlWithInput
 
         if (parent.Key == null)
             return;
-        
+
         parent.Value.Collapsed = false;
         ExpandParents(parent.Key);
     }
@@ -454,12 +457,13 @@ public class Thriveopedia : ControlWithInput
     /// </summary>
     private List<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
     {
-        var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName);
+        var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName).ToList();
 
-        if (directChildren.Count() < 1)
-            return new();
+        if (directChildren.Count < 1)
+            return new List<ThriveopediaPage>();
 
-        return directChildren.Concat(directChildren.SelectMany(child => GetAllChildren(child))).ToList();
+        var indirectChildren = directChildren.SelectMany(GetAllChildren).ToList();
+        return directChildren.Concat(indirectChildren).ToList();
     }
 
     private void OnViewOnlinePressed()

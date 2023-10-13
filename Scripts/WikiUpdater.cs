@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,7 +20,8 @@ public static class WikiUpdater
     /// <summary>
     ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
     /// </summary>
-    private static readonly string[] customBbcodeCompounds = {
+    private static readonly string[] CustomBbcodeCompounds =
+    {
         "ATP",
         "Ammonia",
         "Carbon Dioxide",
@@ -33,11 +34,12 @@ public static class WikiUpdater
         "OxyToxy",
         "Phosphates",
         "Sunlight",
-        "Temperature"
-        };
+        "Temperature",
+    };
 
     /// <summary>
-    ///   Inserts selected content from the online wiki into the game files. See https://wiki.revolutionarygamesstudio.com/wiki/Thriveopedia for instructions.
+    ///   Inserts selected content from the online wiki into the game files. See
+    ///   https://wiki.revolutionarygamesstudio.com/wiki/Thriveopedia for instructions.
     /// </summary>
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
@@ -54,7 +56,7 @@ public static class WikiUpdater
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
 
-        var localizationUpdater = new LocalizationUpdate(new LocalizationOptionsBase() { Quiet = true });
+        var localizationUpdater = new LocalizationUpdate(new LocalizationOptionsBase { Quiet = true });
         if (!localizationUpdater.Run(cancellationToken).Result)
             return false;
 
@@ -71,24 +73,32 @@ public static class WikiUpdater
 
     private static async Task<TranslationPair> FetchOrganellesRootPage(CancellationToken cancellationToken)
     {
-        ColourConsole.WriteSuccessLine($"Fetching organelles root page");
+        ColourConsole.WriteSuccessLine("Fetching organelles root page");
 
         var body = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
 
         var sections = GetMainBodySections(body);
         var untranslatedSections = sections.Select(section => UntranslateSection(section, "ORGANELLES_ROOT")).ToList();
 
-        var untranslatedPage = new Wiki.Page("WIKI_PAGE_ORGANELLES_ROOT", "OrganellesRoot", ORGANELLE_CATEGORY, untranslatedSections);
-        var translatedPage = new Wiki.Page("Organelles", "OrganellesRoot", ORGANELLE_CATEGORY, sections);
+        var untranslatedPage = new Wiki.Page(
+            "WIKI_PAGE_ORGANELLES_ROOT",
+            "OrganellesRoot",
+            ORGANELLE_CATEGORY,
+            untranslatedSections);
+        var translatedPage = new Wiki.Page(
+            "Organelles",
+            "OrganellesRoot",
+            ORGANELLE_CATEGORY,
+            sections);
 
-        ColourConsole.WriteSuccessLine($"Populated content for organelle root page");
+        ColourConsole.WriteSuccessLine("Populated content for organelle root page");
 
-        return new(untranslatedPage, translatedPage);
+        return new TranslationPair(untranslatedPage, translatedPage);
     }
 
     private static async Task<List<TranslationPair>> FetchOrganellePages(CancellationToken cancellationToken)
     {
-        ColourConsole.WriteSuccessLine($"Fetching organelle pages");
+        ColourConsole.WriteSuccessLine("Fetching organelle pages");
 
         // Get the list of organelles from the category page on the wiki
         var categoryBody = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
@@ -106,16 +116,26 @@ public static class WikiUpdater
             ColourConsole.WriteSuccessLine($"Found organelle {name}");
 
             var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
-            
+
             // Get the internal name for cross-referencing against in-game data for the organelle
             var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
 
             var sections = GetMainBodySections(body);
-            var untranslatedSections = sections.Select(section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
+            var untranslatedSections = sections.Select(
+                section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
 
-            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}", internalName, url, untranslatedSections);
-            var translatedPage = new Wiki.Page(name, internalName, url, sections);
-            organellePages.Add(new(untranslatedPage, translatedPage));
+            var untranslatedPage = new Wiki.Page(
+                $"WIKI_PAGE_{untranslatedOrganelleName}",
+                internalName,
+                url,
+                untranslatedSections);
+            var translatedPage = new Wiki.Page(
+                name,
+                internalName,
+                url,
+                sections);
+
+            organellePages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
             ColourConsole.WriteSuccessLine($"Populated content for organelle with internal name {internalName}");
         }
@@ -124,12 +144,13 @@ public static class WikiUpdater
     }
 
     /// <summary>
-    ///   Extracts page sections from the main article body and converts to BBCode. Sections are delineated by h2 tags, which are taken as the headings (or null for the first section).
+    ///   Extracts page sections from the main article body and converts to BBCode. Sections are delineated by h2 tags,
+    ///   which are taken as the headings (or null for the first section).
     /// </summary>
     /// <param name="body">Body content of the whole page</param>
     private static List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
     {
-        var sections = new List<Wiki.Page.Section>() { new(null, "") };
+        var sections = new List<Wiki.Page.Section> { new(null, string.Empty) };
 
         var children = body.QuerySelector(".mw-parser-output")!.Children;
         foreach (var child in children)
@@ -137,22 +158,23 @@ public static class WikiUpdater
             if (child.TagName == "H2")
             {
                 // Complete the previous section and start a new one with this heading
-                sections.Add(new(child.TextContent, ""));
+                sections.Add(new Wiki.Page.Section(child.TextContent, string.Empty));
                 continue;
             }
 
-            var text = "";
+            string text;
             switch (child.TagName)
             {
                 case "P":
                     text = ConvertTextToBbcode(child.InnerHtml) + "\n\n";
                     break;
                 case "UL":
+
+                    // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
-                            .Where(c => c.TagName == "LI")
-                            // Godot 3 does not support lists in BBCode, so use custom formatting
-                            .Select(li => $"[indent]•   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
-                            .Aggregate((a, b) => a + "\n" + b) + "\n\n";
+                        .Where(c => c.TagName == "LI")
+                        .Select(li => $"[indent]•   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
+                        .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 default:
                     // Ignore all other tag types
@@ -160,14 +182,15 @@ public static class WikiUpdater
             }
 
             // Concatenate this tag with the rest of the section so far
-            sections[^1] = new(sections[^1].SectionHeading, sections[^1].SectionBody + text);
+            sections[^1] = new Wiki.Page.Section(sections[^1].SectionHeading, sections[^1].SectionBody + text);
         }
 
         return sections.Select(s => new Wiki.Page.Section(s.SectionHeading, s.SectionBody.Trim())).ToList();
     }
 
     /// <summary>
-    ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate translation keys.
+    ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate
+    ///   translation keys.
     /// </summary>
     private static Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
     {
@@ -175,7 +198,7 @@ public static class WikiUpdater
         var heading = sectionName != null ? $"WIKI_HEADING_{sectionName}" : null;
         var body = sectionName != null ? $"WIKI_{pageName}_{sectionName}" : $"WIKI_{pageName}_INTRO";
 
-        return new(heading, body);
+        return new Wiki.Page.Section(heading, body);
     }
 
     /// <summary>
@@ -184,15 +207,16 @@ public static class WikiUpdater
     private static string ConvertTextToBbcode(string paragraph)
     {
         // Process our custom BBCode first
-        foreach (var compound in customBbcodeCompounds)
+        foreach (var compound in CustomBbcodeCompounds)
         {
+            var compoundText = compound.ToLowerInvariant().Replace(" ", string.Empty);
             paragraph = paragraph.Replace(
                 $"<b>{compound}</b>",
-                $"[thrive:compound type=\"{compound.ToLowerInvariant().Replace(" ", "")}\"][/thrive:compound]");
+                $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
         }
 
         return paragraph
-            .Replace("\n", "")
+            .Replace("\n", string.Empty)
             .Replace("<b>", "[b]")
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
@@ -203,9 +227,11 @@ public static class WikiUpdater
     /// <summary>
     ///   Inserts into en.po the English translations for all the translation keys in a list of wiki pages.
     /// </summary>
-    private static async Task InsertTranslatedPageContent(List<TranslationPair> pages, CancellationToken cancellationToken)
+    private static async Task InsertTranslatedPageContent(List<TranslationPair> pages,
+        CancellationToken cancellationToken)
     {
-        var lines = new List<string>(await File.ReadAllLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken));
+        var lines = new List<string>(
+            await File.ReadAllLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken));
 
         foreach (var page in pages)
         {
@@ -215,7 +241,7 @@ public static class WikiUpdater
             // Translate page names
             ReplaceTranslationValue(untranslatedPage.Name, translatedPage.Name, lines);
 
-            for (var j = 0; j < untranslatedPage.Sections.Count(); j++)
+            for (var j = 0; j < untranslatedPage.Sections.Count; j++)
             {
                 var untranslatedSection = untranslatedPage.Sections[j];
                 var translatedSection = translatedPage.Sections[j];
@@ -226,14 +252,15 @@ public static class WikiUpdater
                 if (untranslatedSection.SectionHeading != null && translatedSection.SectionHeading != null)
                 {
                     // Translate headings if present
-                    ReplaceTranslationValue(untranslatedSection.SectionHeading, translatedSection.SectionHeading, lines);
+                    ReplaceTranslationValue(
+                        untranslatedSection.SectionHeading, translatedSection.SectionHeading, lines);
                 }
             }
         }
 
         await File.WriteAllLinesAsync(ENGLISH_TRANSLATION_FILE, lines, new UTF8Encoding(false), cancellationToken);
     }
-    
+
     /// <summary>
     ///   Replaces the value of a key in the lines of a translation file.
     /// </summary>
@@ -250,12 +277,12 @@ public static class WikiUpdater
         var i = keyIndex + 1;
 
         // Remove all lines of the existing value if present
-        while (lines[i] != "")
+        while (lines[i] != string.Empty)
             lines.RemoveAt(i);
 
         var linesToInsert = content.Split("\n");
 
-        if (linesToInsert.Count() == 1)
+        if (linesToInsert.Length == 1)
         {
             // Add a single line
             lines.Insert(keyIndex + 1, $"msgstr \"{linesToInsert[0]}\"");
@@ -263,11 +290,11 @@ public static class WikiUpdater
         else
         {
             // Split the content over multiple lines with correct formatting
-            lines.Insert(keyIndex + 1, $"msgstr \"\"");
-            for (var j = 0; j < linesToInsert.Count(); j++)
+            lines.Insert(keyIndex + 1, "msgstr \"\"");
+            for (var j = 0; j < linesToInsert.Length; j++)
             {
                 var line = linesToInsert[j];
-                var textToInsert = j == linesToInsert.Count() - 1 ? $"\"{line}\"" : $"\"{line}\\n\"";
+                var textToInsert = j == linesToInsert.Length - 1 ? $"\"{line}\"" : $"\"{line}\\n\"";
                 lines.Insert(keyIndex + 2 + j, textToInsert);
             }
         }

@@ -16,7 +16,8 @@ public class Program
         var result = CommandLineHelpers.CreateParser()
             .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
                 PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions, GodotProjectValidMakerOptions>(args)
+                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions,
+                GodotProjectValidMakerOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
                 (TestOptions options) => RunTests(options),
@@ -351,7 +352,7 @@ public class Program
     }
 
     [Verb("wiki", HelpText = "Updates the Thriveopedia with content from the online wiki")]
-    public class WikiOptions: ScriptOptionsBase
+    public class WikiOptions : ScriptOptionsBase
     {
     }
 

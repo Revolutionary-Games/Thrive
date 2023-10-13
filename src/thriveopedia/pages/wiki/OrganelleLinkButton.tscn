@@ -10,6 +10,8 @@ margin_bottom = 195.0
 rect_min_size = Vector2( 0, 195 )
 theme = ExtResource( 3 )
 script = ExtResource( 1 )
+ButtonPath = NodePath("Button")
+LabelPath = NodePath("Label")
 
 [node name="Button" type="Button" parent="."]
 margin_right = 150.0

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 
 /// <summary>
@@ -6,8 +6,16 @@ using Godot;
 /// </summary>
 public class OrganelleLinkButton : VBoxContainer
 {
+    [Export]
+    public NodePath? ButtonPath;
+
+    [Export]
+    public NodePath LabelPath = null!;
+
+#pragma warning disable CA2213
     private Button button = null!;
     private Label label = null!;
+#pragma warning restore CA2213
 
     public OrganelleDefinition Organelle { get; set; } = null!;
 
@@ -17,12 +25,29 @@ public class OrganelleLinkButton : VBoxContainer
     {
         base._Ready();
 
-        button = GetNode<Button>("Button");
-        label = GetNode<Label>("Label");
+        button = GetNode<Button>(ButtonPath);
+        label = GetNode<Label>(LabelPath);
 
         button.Icon = GD.Load<Texture>(Organelle.IconPath);
         label.Text = Organelle.Name;
     }
 
-    public void OnPressed() => OpenLink();
+    public void OnPressed()
+    {
+        OpenLink();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (ButtonPath != null)
+            {
+                ButtonPath.Dispose();
+                LabelPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
 }
