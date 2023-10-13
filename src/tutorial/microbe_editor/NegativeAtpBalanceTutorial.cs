@@ -21,15 +21,17 @@
             {
                 case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
                 {
-                    var energyBalanceEventArgs = args as EnergyBalanceEventArgs;
-                    var energyBalanceInfo = energyBalanceEventArgs?.EnergyBalanceInfo;
-                    bool isNegativeAtpBalance =
-                        energyBalanceInfo?.TotalProduction < energyBalanceInfo?.TotalConsumption;
-
-                    if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
+                    if (args is EnergyBalanceEventArgs energyBalanceEventArgs)
                     {
-                        Show();
-                        return true;
+                        var energyBalanceInfo = energyBalanceEventArgs.EnergyBalanceInfo;
+                        bool isNegativeAtpBalance =
+                            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
+
+                        if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
+                        {
+                            Show();
+                            return true;
+                        }
                     }
 
                     break;
