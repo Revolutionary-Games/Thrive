@@ -142,4 +142,9 @@ public enum TutorialEventType
     ///   The "Become multicellular" button is available to be clicked
     /// </summary>
     MicrobeBecomeMulticellularAvailable,
+
+    /// <summary>
+    ///   Player energy balance has been changed
+    /// </summary>
+    MicrobeEditorPlayerEnergyBalanceChanged,
 }
