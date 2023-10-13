@@ -447,14 +447,13 @@ public static class SpawnHelpers
 
         if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
         {
-            entity.Set(new EarlyMulticellularSpeciesMember
-            {
-                Species = earlyMulticellularSpecies,
-            });
+            CellType resolvedCellType;
 
             if (multicellularCellType != null)
             {
                 // Non-first cell in an early multicellular colony
+
+                resolvedCellType = multicellularCellType;
 
                 usedCellProperties = multicellularCellType;
                 var properties = new CellProperties(multicellularCellType);
@@ -463,16 +462,17 @@ public static class SpawnHelpers
             }
             else
             {
-                usedCellProperties = earlyMulticellularSpecies.Cells[0];
+                resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
+
+                usedCellProperties = resolvedCellType;
                 var properties = new CellProperties(usedCellProperties);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                // TODO: should other cells also get this component to allow them to start regrowing after a colony
-                // is split apart?
-                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies.Cells[0].CellType,
-                    earlyMulticellularSpecies));
+                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
             }
+
+            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType));
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {

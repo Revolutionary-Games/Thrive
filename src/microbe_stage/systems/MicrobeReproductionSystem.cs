@@ -23,6 +23,7 @@ namespace Systems
     [With(typeof(MicrobeSpeciesMember))]
     [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
+    [Without(typeof(MulticellularGrowth))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -132,18 +133,6 @@ namespace Systems
             status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
 
             bool isInColony = entity.Has<MicrobeColony>();
-
-            // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
-            // TODO: move this to a separate system for code clarity (and stop running those here with
-            // WithoutAttribute)? Would result in a tiny bit of code duplication regarding the dead check etc.
-            // This already only runs on entities that are only a microbe species members
-            if (isInColony && entity.Has<EarlyMulticellularSpeciesMember>())
-            {
-                throw new NotImplementedException();
-
-                // HandleMulticellularReproduction();
-                return;
-            }
 
             if (isInColony)
             {

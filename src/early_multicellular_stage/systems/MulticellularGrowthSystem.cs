@@ -1,91 +1,141 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
+    using Godot;
+    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles growth in multicellular cell colonies
     /// </summary>
     [With(typeof(EarlyMulticellularSpeciesMember))]
     [With(typeof(MulticellularGrowth))]
+    [With(typeof(CompoundStorage))]
+    [With(typeof(MicrobeStatus))]
+    [With(typeof(OrganelleContainer))]
+    [With(typeof(Health))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
+        private GameWorld? gameWorld;
+
         public MulticellularGrowthSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 
+        public void SetWorld(GameWorld world)
+        {
+            gameWorld = world;
+        }
+
+        protected override void PreUpdate(float delta)
+        {
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
+
+            base.PreUpdate(delta);
+        }
+
         protected override void Update(float delta, in Entity entity)
         {
-            // TODO: implement
+            ref var health = ref entity.Get<Health>();
+
+            // Dead multicellular colonies can't reproduce
+            if (health.Dead)
+                return;
+
+            ref var growth = ref entity.Get<MulticellularGrowth>();
+            HandleMulticellularReproduction(ref growth, entity, delta);
 
             // TODO: when spawning a new cell to add to colony it needs to be ensured that its membrane is ready before
             // attach to calculate the attach position
         }
 
-        private void HandleMulticellularReproduction(float elapsedSinceLastUpdate)
+        private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
+            float elapsedSinceLastUpdate)
         {
-            compoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
+            ref var speciesData = ref entity.Get<EarlyMulticellularSpeciesMember>();
+
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+
+            ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+
+            multicellularGrowth.CompoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
             var (remainingAllowedCompoundUse, remainingFreeCompounds) =
-                CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
+                MicrobeReproductionSystem.CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings,
+                    organelleContainer.HexCount, false, elapsedSinceLastUpdate);
 
-            if (compoundsNeededForNextCell == null)
+            if (multicellularGrowth.CompoundsNeededForNextCell == null)
             {
                 // Regrow lost cells
-                if (lostPartsOfBodyPlan is { Count: > 0 })
+                if (multicellularGrowth.LostPartsOfBodyPlan is { Count: > 0 })
                 {
                     // Store where we will resume from
-                    resumeBodyPlanAfterReplacingLost ??= nextBodyPlanCellToGrowIndex;
+                    multicellularGrowth.ResumeBodyPlanAfterReplacingLost ??=
+                        multicellularGrowth.NextBodyPlanCellToGrowIndex;
 
                     // Grow from the first cell to grow back, in the body plan grow order
-                    nextBodyPlanCellToGrowIndex = lostPartsOfBodyPlan.Min();
-                    lostPartsOfBodyPlan.Remove(nextBodyPlanCellToGrowIndex);
+                    multicellularGrowth.NextBodyPlanCellToGrowIndex = multicellularGrowth.LostPartsOfBodyPlan.Min();
+                    multicellularGrowth.LostPartsOfBodyPlan.Remove(multicellularGrowth.NextBodyPlanCellToGrowIndex);
                 }
-                else if (resumeBodyPlanAfterReplacingLost != null)
+                else if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
                 {
                     // Done regrowing, resume where we were
-                    nextBodyPlanCellToGrowIndex = resumeBodyPlanAfterReplacingLost.Value;
-                    resumeBodyPlanAfterReplacingLost = null;
+                    multicellularGrowth.NextBodyPlanCellToGrowIndex =
+                        multicellularGrowth.ResumeBodyPlanAfterReplacingLost.Value;
+                    multicellularGrowth.ResumeBodyPlanAfterReplacingLost = null;
                 }
 
                 // Need to setup the next cell to be grown in our body plan
-                if (IsFullyGrownMulticellular)
+                if (multicellularGrowth.IsFullyGrownMulticellular)
                 {
                     // We have completed our body plan and can (once enough resources) reproduce
-                    if (enoughResourcesForBudding)
+                    if (multicellularGrowth.EnoughResourcesForBudding)
                     {
-                        ReadyToReproduce();
+                        throw new NotImplementedException();
+
+                        // ReadyToReproduce();
                     }
                     else
                     {
                         // Apply the base reproduction cost at this point after growing the full layout
-                        if (!ProcessBaseReproductionCost(ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
-                                compoundsUsedForMulticellularGrowth))
-                        {
-                            // Not ready yet for budding
-                            return;
-                        }
+                        throw new NotImplementedException();
+
+                        // if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(ref remainingAllowedCompoundUse,
+                        //         ref remainingFreeCompounds,
+                        //         multicellularGrowth.CompoundsUsedForMulticellularGrowth))
+                        // {
+                        //     // Not ready yet for budding
+                        //     return;
+                        // }
 
                         // Budding cost is after the base reproduction cost has been overcome
-                        compoundsNeededForNextCell = GetCompoundsNeededForNextCell();
+                        multicellularGrowth.CompoundsNeededForNextCell =
+                            multicellularGrowth.GetCompoundsNeededForNextCell(speciesData.Species);
                     }
 
                     return;
                 }
 
-                compoundsNeededForNextCell = GetCompoundsNeededForNextCell();
+                multicellularGrowth.CompoundsNeededForNextCell =
+                    multicellularGrowth.GetCompoundsNeededForNextCell(speciesData.Species);
             }
 
             bool stillNeedsSomething = false;
 
+            ref var microbeStatus = ref entity.Get<MicrobeStatus>();
+            microbeStatus.ConsumeReproductionCompoundsReverse = !microbeStatus.ConsumeReproductionCompoundsReverse;
+
             // Consume some compounds for the next cell in the layout
             // Similar logic for "growing" more cells than in PlacedOrganelle growth
-            foreach (var entry in consumeReproductionCompoundsReverse ?
-                         compoundsNeededForNextCell.Reverse() :
-                         compoundsNeededForNextCell)
+            foreach (var entry in microbeStatus.ConsumeReproductionCompoundsReverse ?
+                         multicellularGrowth.CompoundsNeededForNextCell.Reverse() :
+                         multicellularGrowth.CompoundsNeededForNextCell)
             {
                 var amountNeeded = entry.Value;
 
@@ -104,7 +154,7 @@
 
                 stillNeedsSomething = true;
 
-                var amountAvailable = Compounds.GetCompoundAmount(entry.Key) -
+                var amountAvailable = compounds.GetCompoundAmount(entry.Key) -
                     Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
 
                 if (amountAvailable > MathUtils.EPSILON)
@@ -112,23 +162,23 @@
                     // We can take some
                     var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
 
-                    usedAmount += Compounds.TakeCompound(entry.Key, amountToTake);
+                    usedAmount += compounds.TakeCompound(entry.Key, amountToTake);
                 }
 
                 var left = amountNeeded - usedAmount;
 
                 if (left < 0.0001f)
                 {
-                    compoundsNeededForNextCell.Remove(entry.Key);
+                    multicellularGrowth.CompoundsNeededForNextCell.Remove(entry.Key);
                 }
                 else
                 {
-                    compoundsNeededForNextCell[entry.Key] = left;
+                    multicellularGrowth.CompoundsNeededForNextCell[entry.Key] = left;
                 }
 
-                compoundsUsedForMulticellularGrowth.TryGetValue(entry.Key, out float alreadyUsed);
+                multicellularGrowth.CompoundsUsedForMulticellularGrowth.TryGetValue(entry.Key, out float alreadyUsed);
 
-                compoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + usedAmount;
+                multicellularGrowth.CompoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + usedAmount;
 
                 // As we modify the list, we are content just consuming one type of compound per frame
                 break;
@@ -138,15 +188,15 @@
             {
                 // The current cell to grow is now ready to be added
                 // Except in the case that we were just getting resources for budding, skip in that case
-                if (!IsFullyGrownMulticellular)
+                if (!multicellularGrowth.IsFullyGrownMulticellular)
                 {
-                    AddMulticellularGrowthCell();
+                    multicellularGrowth.AddMulticellularGrowthCell();
                 }
                 else
                 {
                     // Has collected enough resources to spawn the first cell type as budding type reproduction
-                    enoughResourcesForBudding = true;
-                    compoundsNeededForNextCell = null;
+                    multicellularGrowth.EnoughResourcesForBudding = true;
+                    multicellularGrowth.CompoundsNeededForNextCell = null;
                 }
             }
         }
