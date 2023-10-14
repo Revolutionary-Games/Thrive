@@ -37,7 +37,7 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
-    private readonly List<RegionLinkGroup> connections = new();
+    private readonly List<RegionLink> connections = new();
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
@@ -338,8 +338,11 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void ClearObjects()
     {
-        foreach (var group in connections)
-            group.FreeLines();
+        foreach (var child in GetChildren())
+        {
+            if (child is Line2D line)
+                line.Free();
+        }
 
         connections.Clear();
     }
@@ -434,28 +437,19 @@ public class PatchMapDrawer : Control
                     continue;
 
                 createdLinkIds.Add(connectionKey);
-                createdLinkIds.Add(reverseConnectionKey);
 
                 var connectionTuples = region.ConnectingPatches[adjacent.ID];
-                var linkGroup = new RegionLinkGroup(connectionKey, new RegionLink[connectionTuples.Count]);
 
-                var first = true;
                 for (int i = 0; i < connectionTuples.Count; i++)
                 {
                     var (to, from) = connectionTuples[i];
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
                     var line = CreateLink(pathToAdjacent, DefaultConnectionColor);
-                    var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from)
-                    {
-                        Render = first,
-                    };
+                    var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from);
 
-                    first = false;
-
-                    linkGroup.Links[i] = regionLink;
+                    connections.Add(regionLink);
+                    break;
                 }
-
-                connections.Add(linkGroup);
             }
         }
 
@@ -622,11 +616,8 @@ public class PatchMapDrawer : Control
     {
         const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
-        var updatedRegionIds = new HashSet<int>();
-        foreach (var group in connections)
-        {
-            group.AdjustEndpoints();
-        }
+        foreach (var link in connections)
+            link.AdjustEndpoints();
 
         foreach (var region in Map!.Regions)
         {
@@ -637,29 +628,21 @@ public class PatchMapDrawer : Control
             for (int i = 0; i < 4; ++i)
             {
                 var direction = (Direction)i;
-                var groupsToDirection = connectionsFromRegion
-                    .Where(g => g.StartDirection == direction)
+                var connectionsToDirection = connectionsFromRegion
+                    .Where(l => l.StartDirection == direction)
                     .ToList();
 
-                groupsToDirection.AddRange(connectionsToRegion.Where(g => g.EndDirection == direction));
-
-                var connectionsToDirection = groupsToDirection
-                    .Select(g => g.Links)
-                    .SelectMany(x => x)
-                    .Where(l => l.Render)
-                    .ToArray();
-
-                GD.Print(connectionsToDirection.Length);
+                connectionsToDirection.AddRange(connectionsToRegion.Where(l => l.EndDirection == direction));
 
                 // Only when we have more than 1 connections do we need to offset them
-                if (connectionsToDirection.Length <= 1)
+                if (connectionsToDirection.Count <= 1)
                     continue;
 
                 GD.Print($"Separating connections in region {region.Value.Name} ({direction})");
 
                 if (direction is Direction.Up or Direction.Down)
                 {
-                    float right = (connectionsToDirection.Length - 1) / 2.0f;
+                    float right = (connectionsToDirection.Count - 1) / 2.0f;
                     float left = -right;
 
                     foreach (var link in connectionsToDirection.OrderBy(l => l.Distance))
@@ -687,7 +670,7 @@ public class PatchMapDrawer : Control
                 }
                 else
                 {
-                    float down = (connectionsToDirection.Length - 1) / 2.0f;
+                    float down = (connectionsToDirection.Count - 1) / 2.0f;
                     float up = -down;
 
                     foreach (var link in connectionsToDirection.OrderBy(t => t.Distance))
@@ -748,68 +731,66 @@ public class PatchMapDrawer : Control
         }
 
         // Calculate line-to-line intersections
-        foreach (var group in connections)
+
+        foreach (var link in connections)
         {
-            foreach (var link in group.Links)
+            var target = link.Points;
+
+            for (int i = 1; i < path.Length; ++i)
             {
-                var target = link.Points;
+                var startPoint = path[i - 1];
+                var endPoint = path[i];
 
-                for (int i = 1; i < path.Length; ++i)
+                for (int j = 1; j < target.Length; ++j)
                 {
-                    var startPoint = path[i - 1];
-                    var endPoint = path[i];
-
-                    for (int j = 1; j < target.Length; ++j)
-                    {
-                        if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
-                            ++pathIntersectionCount;
-                    }
+                    if (SegmentSegmentIntersects(startPoint, endPoint, target[j - 1], target[j]))
+                        ++pathIntersectionCount;
                 }
+            }
 
-                // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
-                if (path[0] == target[0])
+            // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
+            if (path[0] == target[0])
+            {
+                --pathIntersectionCount;
+
+                // And if they goes the same direction, the second segment intersects but it actually isn't either.
+                if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
-
-                    // And if they goes the same direction, the second segment intersects but it actually isn't either.
-                    if (Math.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < MathUtils.EPSILON)
-                    {
-                        --pathIntersectionCount;
-                        ++startPointOverlapCount;
-                    }
+                    ++startPointOverlapCount;
                 }
-                else if (path[0] == target[target.Length - 1])
+            }
+            else if (path[0] == target[target.Length - 1])
+            {
+                --pathIntersectionCount;
+
+                if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
+                    < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
-
-                    if (Math.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
-                        < MathUtils.EPSILON)
-                    {
-                        --pathIntersectionCount;
-                        ++startPointOverlapCount;
-                    }
+                    ++startPointOverlapCount;
                 }
-                else if (path[path.Length - 1] == target[0])
+            }
+            else if (path[path.Length - 1] == target[0])
+            {
+                --pathIntersectionCount;
+
+                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
+                    < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
-
-                    if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
-                        < MathUtils.EPSILON)
-                    {
-                        --pathIntersectionCount;
-                        ++startPointOverlapCount;
-                    }
+                    ++startPointOverlapCount;
                 }
-                else if (path[path.Length - 1] == target[target.Length - 1])
+            }
+            else if (path[path.Length - 1] == target[target.Length - 1])
+            {
+                --pathIntersectionCount;
+
+                if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
+                        target[target.Length - 1])) < MathUtils.EPSILON)
                 {
                     --pathIntersectionCount;
-
-                    if (Math.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
-                            target[target.Length - 1])) < MathUtils.EPSILON)
-                    {
-                        --pathIntersectionCount;
-                        ++startPointOverlapCount;
-                    }
+                    ++startPointOverlapCount;
                 }
             }
         }
@@ -820,47 +801,44 @@ public class PatchMapDrawer : Control
 
     private void UpdateRegionLinks()
     {
-        foreach (var group in connections)
+        foreach (var entry in connections)
         {
-            foreach (var entry in group.Links)
+            var start = map.Regions[entry.ID.x];
+            var end = map.Regions[entry.ID.y];
+
+            // If both regions are unexplored, don't render the line
+            if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
             {
-                var start = map.Regions[entry.GroupID.x];
-                var end = map.Regions[entry.GroupID.y];
+                entry.Line.Visible = false;
+                continue;
+            }
 
-                // If both regions are unexplored, don't render the line
-                if (!start.Explored && !end.Explored && !IgnoreFogOfWar)
+            entry.Line.Visible = true;
+
+            // Set the color of the line if highlighted
+            if (CheckHighlightedAdjacency(start, end))
+            {
+                entry.Line.DefaultColor = HighlightedConnectionColor;
+            }
+            else
+            {
+                entry.Line.DefaultColor = DefaultConnectionColor;
+            }
+
+            if (!IgnoreFogOfWar)
+            {
+                // Add a fade to the line if it's ending at an unexplored region
+                if (start.VisibilityState == MapElementVisibility.Undiscovered)
                 {
-                    entry.Line.Visible = false;
-                    continue;
+                    AddFadeToLine(entry.Line, true);
                 }
-
-                entry.Line.Visible = true;
-
-                // Set the color of the line if highlighted
-                if (CheckHighlightedAdjacency(start, end))
+                else if (end.VisibilityState == MapElementVisibility.Undiscovered)
                 {
-                    entry.Line.DefaultColor = HighlightedConnectionColor;
+                    AddFadeToLine(entry.Line, false);
                 }
                 else
                 {
-                    entry.Line.DefaultColor = DefaultConnectionColor;
-                }
-
-                if (!IgnoreFogOfWar)
-                {
-                    // Add a fade to the line if it's ending at an unexplored region
-                    if (start.VisibilityState == MapElementVisibility.Undiscovered)
-                    {
-                        AddFadeToLine(entry.Line, true);
-                    }
-                    else if (end.VisibilityState == MapElementVisibility.Undiscovered)
-                    {
-                        AddFadeToLine(entry.Line, false);
-                    }
-                    else
-                    {
-                        entry.Line.Gradient = null;
-                    }
+                    entry.Line.Gradient = null;
                 }
             }
         }
@@ -1015,57 +993,20 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   A group of <see cref="RegionLink"/>s connecting the same two regions.
-    /// </summary>
-    private class RegionLinkGroup
-    {
-        public RegionLink[] Links;
-        public Int2 Id;
-
-        public Direction StartDirection;
-        public Direction EndDirection;
-
-        public PatchRegion From => Links[0].From.Region;
-        public PatchRegion To => Links[0].To.Region;
-
-        public RegionLinkGroup(Int2 id, RegionLink[] links)
-        {
-            Id = id;
-            Links = links;
-        }
-
-        public void AdjustEndpoints()
-        {
-            foreach (var link in Links)
-            {
-                // Adjust start endpoint
-                StartDirection = link.AdjustEndpoint(true);
-
-                // Adjust end endpoint
-                EndDirection = link.AdjustEndpoint(false);
-            }
-        }
-
-        public void FreeLines()
-        {
-            foreach (var link in Links)
-                link.Line.Free();
-        }
-    }
-
-    /// <summary>
     ///   A link between two <see cref="PatchRegion"/>s
     /// </summary>
     private class RegionLink
     {
-        public Int2 GroupID;
+        public Int2 ID;
         public Vector2[] Points;
         public Line2D Line;
 
         public Patch To;
         public Patch From;
 
-        public bool Render = true;
+        public Direction StartDirection;
+        public Direction EndDirection;
+
         public float Distance;
 
         private readonly Vector2 patchSize = new(Constants.PATCH_NODE_TEXTURE_RECT_LENGTH,
@@ -1074,13 +1015,19 @@ public class PatchMapDrawer : Control
         private readonly Vector2 borderVector = new Vector2(Constants.PATCH_REGION_BORDER_WIDTH,
             Constants.PATCH_REGION_BORDER_WIDTH);
 
-        public RegionLink(Int2 groupID, Vector2[] points, Line2D line, Patch to, Patch from)
+        public RegionLink(Int2 id, Vector2[] points, Line2D line, Patch to, Patch from)
         {
-            GroupID = groupID;
+            ID = id;
             Points = points;
             Line = line;
             To = to;
             From = from;
+        }
+
+        public void AdjustEndpoints()
+        {
+            StartDirection = AdjustEndpoint(true);
+            EndDirection = AdjustEndpoint(false);
         }
 
         public Direction AdjustEndpoint(bool start)
@@ -1118,7 +1065,6 @@ public class PatchMapDrawer : Control
         public void UpdateGraphics()
         {
             Line.Points = Points;
-            Line.Visible = Render;
         }
 
         private void ShiftPoint(int index, Vector2 size, Direction direction)
