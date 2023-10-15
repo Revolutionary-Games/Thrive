@@ -119,9 +119,10 @@ public class Jukebox : Node
     ///   Starts playing tracks from the provided category
     /// </summary>
     /// <param name="category">category from music_tracks.json</param>
+    /// <param name="contexts">list of contexts to select only specific tracks</param>
     public void PlayCategory(string category, MusicContext[]? contexts = null)
     {
-        activeContexts = contexts ?? new MusicContext[] { MusicContext.General };
+        activeContexts = contexts ?? new[] { MusicContext.General };
         PlayingCategory = category;
         Resume();
     }
@@ -549,7 +550,8 @@ public class Jukebox : Node
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.GetTracksForContexts(activeContexts).Length;
 
-            PlayTrack(getPlayer(playerToUse), list.GetTracksForContexts(activeContexts)[list.LastPlayedIndex], list.TrackBus);
+            PlayTrack(getPlayer(playerToUse),
+                list.GetTracksForContexts(activeContexts)[list.LastPlayedIndex], list.TrackBus);
         }
         else
         {

@@ -281,7 +281,7 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
 
-        var context = new MusicContext[] { MusicContext.General };
+        var context = new[] { MusicContext.General };
 
         if (biome.InternalName == "aavolcanic_vent")
             context[0] = MusicContext.PatchVents;

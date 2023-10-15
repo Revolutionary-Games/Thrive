@@ -126,7 +126,8 @@ public class TrackList
 
     public Track[] GetTracksForContexts(MusicContext[] contexts)
     {
-        return Tracks.Where(t => t.ExclusiveToContexts == null || t.ExclusiveToContexts.Any(ctx => contexts.Contains(ctx))).ToArray();
+        return Tracks.Where(t => t.ExclusiveToContexts == null ||
+            t.ExclusiveToContexts.Any(contexts.Contains)).ToArray();
     }
 
     /// <summary>
@@ -141,7 +142,7 @@ public class TrackList
 
         public string ResourcePath { get; set; } = null!;
 
-        public MusicContext[] ExclusiveToContexts { get; set; } = null!;
+        public MusicContext[]? ExclusiveToContexts { get; set; } = null;
 
         [JsonIgnore]
         public bool WasPlaying { get; set; } = false;
