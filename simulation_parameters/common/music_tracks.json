@@ -69,6 +69,18 @@
           {
             "Volume": 0.6,
             "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience-3.ogg"
+          },
+          {
+            "ResourcePath": "res://assets/sounds/soundeffects/ice-groans-ambience.ogg",
+            "ExclusiveToContexts": [
+              "PatchIceShelf"
+            ]
+          },
+          {
+            "ResourcePath": "res://assets/sounds/soundeffects/underwater-explosions-ambience.ogg",
+            "ExclusiveToContexts": [
+              "PatchVents"
+            ]
           }
         ]
       }

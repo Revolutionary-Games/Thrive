@@ -66,6 +66,15 @@ public class Jukebox : Node
                 throw new ArgumentException("Playing category can't be set to null");
 
             GD.Print("Jukebox now playing from: ", value);
+            GD.Print("Active Music Contexts: ");
+
+            var contexts = string.Empty;
+
+            foreach (var ctx in activeContexts)
+                contexts += ctx.ToString() + ", ";
+
+            GD.Print(contexts);
+
             playingCategory = value;
             OnCategoryChanged();
         }
