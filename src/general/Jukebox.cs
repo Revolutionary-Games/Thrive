@@ -71,7 +71,7 @@ public class Jukebox : Node
             var contexts = string.Empty;
 
             foreach (var ctx in activeContexts)
-                contexts += ctx.ToString() + ", ";
+                contexts += ctx + ", ";
 
             GD.Print(contexts);
 
