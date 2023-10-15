@@ -478,7 +478,7 @@ public class Jukebox : Node
         {
             foreach (var list in target.TrackLists)
             {
-                foreach (var track in list.Tracks)
+                foreach (var track in list.GetTracksForContexts(activeContexts))
                 {
                     // Resume track (but only one per list)
                     if (track.WasPlaying)
@@ -503,7 +503,7 @@ public class Jukebox : Node
 
         foreach (var list in target.TrackLists)
         {
-            var trackResources = list.Tracks.Select(track => track.ResourcePath);
+            var trackResources = list.GetTracksForContexts(activeContexts).Select(track => track.ResourcePath);
             if (activeTracks.Any(track => trackResources.Contains(track)))
                 continue;
 
@@ -514,7 +514,7 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
-            if (!list.Repeat && list.Tracks.All(track => track.PlayedOnce))
+            if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(track => track.PlayedOnce))
                 continue;
 
             PlayNextTrackFromList(list, index =>
@@ -538,9 +538,9 @@ public class Jukebox : Node
 
         if (mode == TrackList.Order.Sequential)
         {
-            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
+            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.GetTracksForContexts(activeContexts).Length;
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex], list.TrackBus);
+            PlayTrack(getPlayer(playerToUse), list.GetTracksForContexts(activeContexts)[list.LastPlayedIndex], list.TrackBus);
         }
         else
         {
@@ -552,20 +552,20 @@ public class Jukebox : Node
                 // Make sure same random track is not played twice in a row
                 do
                 {
-                    nextIndex = random.Next(0, list.Tracks.Count);
+                    nextIndex = random.Next(0, list.GetTracksForContexts(activeContexts).Length);
                 }
-                while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+                while (nextIndex == list.LastPlayedIndex && list.GetTracksForContexts(activeContexts).Length > 1);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
-                nextIndex = random.Next(0, list.Tracks.Count);
+                nextIndex = random.Next(0, list.GetTracksForContexts(activeContexts).Length);
             }
             else
             {
                 throw new InvalidOperationException("Unknown track list order type");
             }
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex], list.TrackBus);
+            PlayTrack(getPlayer(playerToUse), list.GetTracksForContexts(activeContexts)[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
         }
     }
@@ -579,7 +579,7 @@ public class Jukebox : Node
             // Reset PlayedOnce flag in all tracks
             foreach (var list in category.TrackLists)
             {
-                foreach (var track in list.Tracks)
+                foreach (var track in list.GetTracksForContexts(activeContexts))
                 {
                     track.PlayedOnce = false;
                 }
@@ -595,7 +595,7 @@ public class Jukebox : Node
 
             foreach (var list in category.TrackLists)
             {
-                foreach (var track in list.Tracks)
+                foreach (var track in list.GetTracksForContexts(activeContexts))
                 {
                     if (activeTracks.Contains(track.ResourcePath))
                     {

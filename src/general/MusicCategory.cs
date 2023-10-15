@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -108,10 +109,11 @@ public class TrackList
     /// </summary>
     public bool Repeat { get; set; } = true;
 
-    public List<Track> Tracks { get; set; } = null!;
-
     [JsonIgnore]
     public int LastPlayedIndex { get; set; } = -1;
+
+    [JsonProperty]
+    private List<Track> Tracks { get; set; } = null!;
 
     public void Check()
     {
@@ -120,6 +122,11 @@ public class TrackList
 
         foreach (var track in Tracks)
             track.Check();
+    }
+
+    public Track[] GetTracksForContexts(MusicContext[] contexts)
+    {
+        return Tracks.Where(t => t.ExclusiveToContexts == null || t.ExclusiveToContexts.Any(ctx => contexts.Contains(ctx))).ToArray();
     }
 
     /// <summary>
