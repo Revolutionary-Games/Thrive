@@ -81,7 +81,6 @@ public class CustomPopupMenu : TopLevelContainer
     {
         RectSize = CalculateSize();
 
-        GD.Print($"Rect size on open of popup {RectSize}");
         CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
