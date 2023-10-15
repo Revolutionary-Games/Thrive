@@ -134,6 +134,8 @@ public class TrackList
 
         public string ResourcePath { get; set; } = null!;
 
+        public MusicContext[] ExclusiveToContexts { get; set; } = null!;
+
         [JsonIgnore]
         public bool WasPlaying { get; set; } = false;
 

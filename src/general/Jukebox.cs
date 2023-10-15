@@ -38,6 +38,8 @@ public class Jukebox : Node
     /// </summary>
     private MusicCategory? previouslyPlayedCategory;
 
+    private MusicContext[] activeContexts = null!;
+
     /// <summary>
     ///   Loads the music categories and prepares to play them
     /// </summary>
@@ -108,8 +110,9 @@ public class Jukebox : Node
     ///   Starts playing tracks from the provided category
     /// </summary>
     /// <param name="category">category from music_tracks.json</param>
-    public void PlayCategory(string category)
+    public void PlayCategory(string category, MusicContext[]? contexts = null)
     {
+        activeContexts = contexts ?? new MusicContext[] { MusicContext.General };
         PlayingCategory = category;
         Resume();
     }
