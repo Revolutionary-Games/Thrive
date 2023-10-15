@@ -443,6 +443,13 @@ public class PatchMapDrawer : Control
                 for (int i = 0; i < connectionTuples.Count; i++)
                 {
                     var (to, from) = connectionTuples[i];
+
+                    if (!to.Discovered)
+                    {
+                        if (adjacent.VisibilityState != MapElementVisibility.Undiscovered)
+                            continue;
+                    }
+
                     var pathToAdjacent = GetLeastIntersectingPath(region, adjacent, i);
                     var line = CreateLink(pathToAdjacent, DefaultConnectionColor);
                     var regionLink = new RegionLink(connectionKey, pathToAdjacent, line, to, from);
@@ -542,7 +549,7 @@ public class PatchMapDrawer : Control
         // Discard all paths intersecting patches in partially discovered regions
         var pathsToDiscard = new List<Vector2[]>();
 
-        if (!start.Explored && start.DiscoveredPatches > 1)
+        if (!start.Explored && start.DiscoveredPatches >= 1)
         {
             foreach (var entry in probablePaths)
             {
@@ -552,7 +559,10 @@ public class PatchMapDrawer : Control
                 foreach (var patch in start.Patches)
                 {
                     if (patch.VisibilityState == MapElementVisibility.Undiscovered)
-                        continue;
+                    {
+                        if (end.ConnectingPatches[start.ID].Where(t => t.To.ID == patch.ID).Count() == 0)
+                            continue;
+                    }
 
                     if (patch == startPatch)
                         continue;
@@ -569,7 +579,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        if (!end.Explored && end.DiscoveredPatches > 1)
+        if (!end.Explored && end.DiscoveredPatches >= 1)
         {
             foreach (var entry in probablePaths)
             {
@@ -580,7 +590,10 @@ public class PatchMapDrawer : Control
                 foreach (var patch in end.Patches)
                 {
                     if (patch.VisibilityState == MapElementVisibility.Undiscovered)
-                        continue;
+                    {
+                        if (start.ConnectingPatches[end.ID].Where(t => t.To.ID == patch.ID).Count() == 0)
+                            continue;
+                    }
 
                     if (patch == endPatch)
                         continue;
@@ -824,6 +837,8 @@ public class PatchMapDrawer : Control
             {
                 entry.Line.DefaultColor = DefaultConnectionColor;
             }
+
+            continue;
 
             if (!IgnoreFogOfWar)
             {
