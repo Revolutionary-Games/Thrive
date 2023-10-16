@@ -57,7 +57,7 @@ public static class WikiUpdater
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
 
         var localizationUpdater = new LocalizationUpdate(new LocalizationOptionsBase { Quiet = true });
-        if (!localizationUpdater.Run(cancellationToken).Result)
+        if (!await localizationUpdater.Run(cancellationToken))
             return false;
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
@@ -73,7 +73,7 @@ public static class WikiUpdater
 
     private static async Task<TranslationPair> FetchOrganellesRootPage(CancellationToken cancellationToken)
     {
-        ColourConsole.WriteSuccessLine("Fetching organelles root page");
+        ColourConsole.WriteInfoLine("Fetching organelles root page");
 
         var body = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
 
@@ -98,7 +98,7 @@ public static class WikiUpdater
 
     private static async Task<List<TranslationPair>> FetchOrganellePages(CancellationToken cancellationToken)
     {
-        ColourConsole.WriteSuccessLine("Fetching organelle pages");
+        ColourConsole.WriteInfoLine("Fetching organelle pages");
 
         // Get the list of organelles from the category page on the wiki
         var categoryBody = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
@@ -113,7 +113,7 @@ public static class WikiUpdater
 
             var untranslatedOrganelleName = name.ToUpperInvariant().Replace(" ", "_");
 
-            ColourConsole.WriteSuccessLine($"Found organelle {name}");
+            ColourConsole.WriteInfoLine($"Found organelle {name}");
 
             var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
 

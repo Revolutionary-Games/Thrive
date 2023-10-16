@@ -11,7 +11,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
 #pragma warning disable CA2213
     private PackedScene linkButtonScene = null!;
-    private GridContainer organelleListContainer = null!;
+    private HFlowContainer organelleListContainer = null!;
 #pragma warning restore CA2213
 
     public override string PageName => "OrganellesRoot";
@@ -26,7 +26,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
     {
         base._Ready();
 
-        organelleListContainer = GetNode<GridContainer>(OrganelleListContainerPath);
+        organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
         linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/OrganelleLinkButton.tscn");
     }
 

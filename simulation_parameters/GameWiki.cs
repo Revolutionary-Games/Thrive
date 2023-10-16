@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   All wiki pages to be recreated in the Thriveopedia, grouped by type.
@@ -20,6 +21,8 @@ public class GameWiki : IRegistryType
 
     public void Check(string name)
     {
+        OrganellesRoot.Check(name);
+        Organelles.ForEach(page => page.Check(name));
     }
 
     public class Page
@@ -37,6 +40,29 @@ public class GameWiki : IRegistryType
             public string? SectionHeading { get; set; }
 
             public string SectionBody { get; set; } = null!;
+        }
+
+        public void Check(string name)
+        {
+            if (string.IsNullOrEmpty(InternalName))
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Page has no internal name");
+
+            if (string.IsNullOrEmpty(Name))
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no name");
+
+            if (string.IsNullOrEmpty(Url))
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no URL");
+
+            if (Sections.Count < 1)
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no sections");
+
+            if (Sections.Any(s => string.IsNullOrEmpty(s.SectionBody)))
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has an empty section");
         }
     }
 }

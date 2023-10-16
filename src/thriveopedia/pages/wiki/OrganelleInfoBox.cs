@@ -118,6 +118,7 @@ public class OrganelleInfoBox : PanelContainer
         internalNameLabel = GetNode<Label>(InternalNameLabelPath);
 
         modelLoadingTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/IconGenerating.png");
+        UpdateModelImage();
     }
 
     public override void _Process(float delta)
