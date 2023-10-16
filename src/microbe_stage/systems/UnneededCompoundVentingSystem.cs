@@ -50,6 +50,8 @@ namespace Systems
             // Cloud types are ones that can be vented
             foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
             {
+                var capacity = compounds.GetCapacityForCompound(type);
+
                 // Vent if not useful, or if overflowed the capacity
                 // The multiply by threshold is here to be more kind to cells that have just divided and make it
                 // much less likely the player often sees their cell venting away their precious compounds
@@ -59,10 +61,10 @@ namespace Systems
                         cellProperties.EjectCompound(ref position, compounds, compoundCloudSystem, type, amountToVent,
                             Vector3.Back);
                 }
-                else if (compounds.GetCompoundAmount(type) > venter.VentThreshold * compounds.Capacity)
+                else if (compounds.GetCompoundAmount(type) > venter.VentThreshold * capacity)
                 {
                     // Vent the part that went over
-                    float toVent = compounds.GetCompoundAmount(type) - (venter.VentThreshold * compounds.Capacity);
+                    float toVent = compounds.GetCompoundAmount(type) - venter.VentThreshold * capacity;
 
                     amountToVent -= cellProperties.EjectCompound(ref position, compounds, compoundCloudSystem, type,
                         Math.Min(toVent, amountToVent), Vector3.Back);

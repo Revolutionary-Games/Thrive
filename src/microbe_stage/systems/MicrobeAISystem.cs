@@ -273,7 +273,7 @@
 
             if (ai.ATPThreshold > 0.0f)
             {
-                if (compounds.GetCompoundAmount(atp) < compounds.Capacity * ai.ATPThreshold
+                if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold
                     && compounds.Any(compound => IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f))
                 {
                     control.SetMoveSpeed(0.0f);
@@ -379,8 +379,8 @@
             }
 
             // If there are no chunks, look for living prey to hunt
-            var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref ourSpecies, ref engulfer, compounds,
-                speciesFocus, speciesAggression, speciesOpportunism);
+            var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
             if (possiblePrey != default && possiblePrey.IsAlive)
             {
                 Vector3 prey;
@@ -511,9 +511,10 @@
         ///   Gets the nearest prey item. And builds the prey list
         /// </summary>
         /// <returns>The nearest prey item.</returns>
-        private Entity GetNearestPreyItem(ref MicrobeAI ai, ref WorldPosition position, ref SpeciesMember ourSpecies,
+        private Entity GetNearestPreyItem(ref MicrobeAI ai, ref WorldPosition position,
+            ref OrganelleContainer organelles, ref SpeciesMember ourSpecies,
             ref Engulfer engulfer, CompoundBag ourCompounds, float speciesFocus, float speciesAggression,
-            float speciesOpportunism)
+            float speciesOpportunism, Random random)
         {
             if (ai.FocusedPrey != default && ai.FocusedPrey.IsAlive)
             {
@@ -568,9 +569,9 @@
                         continue;
                     }
 
-                    if (CanTryToEatMicrobe(ref ourSpecies, ref engulfer, ourCompounds,
+                    if (CanTryToEatMicrobe(ref ourSpecies, ref engulfer, ref organelles, ourCompounds,
                             ref otherMicrobeInfo.Entity.Get<Engulfable>(),
-                            ref otherMicrobeInfo.Entity.Get<SpeciesMember>(), speciesOpportunism, speciesFocus))
+                            ref otherMicrobeInfo.Entity.Get<SpeciesMember>(), speciesOpportunism, speciesFocus, random))
                     {
                         if (chosenPrey == null)
                         {
@@ -877,9 +878,9 @@
             IEnumerable<Compound> usefulCompounds = storedCompounds.Compounds.Keys;
 
             // If this microbe lacks vital compounds don't bother with ammonia and phosphate
-            if (usefulCompounds.Any(
-                    compound => IsVitalCompound(compound, storedCompounds) &&
-                        storedCompounds.GetCompoundAmount(compound) < 0.5f * storedCompounds.Capacity))
+            if (usefulCompounds.Any(c =>
+                    IsVitalCompound(c, storedCompounds) && storedCompounds.GetCompoundAmount(c) <
+                    0.5f * storedCompounds.GetCapacityForCompound(c)))
             {
                 usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
             }
@@ -897,7 +898,8 @@
             {
                 // The priority of a compound is inversely proportional to its availability
                 // Should be tweaked with consumption
-                var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) / storedCompounds.Capacity;
+                var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) /
+                    storedCompounds.GetCapacityForCompound(compound);
 
                 ai.CompoundsSearchWeights.Add(compound, compoundPriority);
             }
@@ -963,15 +965,25 @@
             }
         }
 
-        private bool CanTryToEatMicrobe(ref SpeciesMember ourSpecies, ref Engulfer engulfer, CompoundBag ourCompounds,
-            ref Engulfable targetMicrobe, ref SpeciesMember targetSpecies, float speciesOpportunism, float speciesFocus)
+        private bool CanTryToEatMicrobe(ref SpeciesMember ourSpecies, ref Engulfer engulfer,
+            ref OrganelleContainer organelles, CompoundBag ourCompounds,
+            ref Engulfable targetMicrobe, ref SpeciesMember targetSpecies, float speciesOpportunism, float speciesFocus,
+            Random random)
         {
             var sizeRatio = engulfer.EngulfingSize / targetMicrobe.EffectiveEngulfSize();
 
-            return targetSpecies.ID != ourSpecies.ID && (
-                (speciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f &&
-                    CanShootToxin(ourCompounds, speciesFocus))
-                || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+            // Sometimes the AI will randomly decide to try in vain to eat something
+            var choosingToEngulf = organelles.CanDigestObject(ref targetMicrobe) == DigestCheckResult.Ok ||
+                random.NextDouble() <
+                Constants.AI_BAD_ENGULF_CHANCE * speciesOpportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+
+            var choosingToAttackWithToxin = speciesOpportunism
+                > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin(ourCompounds, speciesFocus);
+
+            return choosingToEngulf &&
+                targetSpecies.ID != ourSpecies.ID && (
+                    choosingToAttackWithToxin
+                    || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
         }
 
         private bool CanShootToxin(CompoundBag compounds, float speciesFocus)

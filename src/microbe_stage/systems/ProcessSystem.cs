@@ -579,7 +579,7 @@
                     continue;
 
                 // If no space we can't do the process, if we can't adjust the space constraint modifier enough
-                var remainingSpace = bag.Capacity - bag.GetCompoundAmount(entry.Key);
+                var remainingSpace = bag.GetCapacityForCompound(entry.Key) - bag.GetCompoundAmount(entry.Key);
                 if (outputAdded > remainingSpace)
                 {
                     bool canRun = false;

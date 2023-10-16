@@ -229,7 +229,7 @@
 
             // Copying the capacity should be fine like this as the original cell should be reset to the normal
             // capacity already so
-            var copyEntityCompounds = new CompoundBag(originalCompounds.Capacity);
+            var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
 
             var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
