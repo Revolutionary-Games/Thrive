@@ -46,7 +46,7 @@ public class CustomPopupMenu : TopLevelContainer
     }
 
     /// <summary>
-    ///   Calculates the size the pop should be taking into account minimum
+    ///   Calculates the size the popup should be taking into account minimum
     ///   height needed by content
     /// </summary>
     /// <returns>Returns what should be the size of popup considering content height</returns>
