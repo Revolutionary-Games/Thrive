@@ -38,7 +38,7 @@ public class Jukebox : Node
     /// </summary>
     private MusicCategory? previouslyPlayedCategory;
 
-    private MusicContext[]? activeContexts = null!;
+    private MusicContext[]? activeContexts;
 
     /// <summary>
     ///   Loads the music categories and prepares to play them

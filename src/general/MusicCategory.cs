@@ -155,9 +155,9 @@ public class TrackList
 
         public string ResourcePath { get; set; } = null!;
 
-        public MusicContext[]? ExclusiveToContexts { get; set; } = null;
+        public MusicContext[]? ExclusiveToContexts { get; set; }
 
-        public MusicContext[]? DisallowInContexts { get; set; } = null!;
+        public MusicContext[]? DisallowInContexts { get; set; }
 
         public bool PlayOnlyWithoutContext { get; set; } = false;
 
