@@ -120,7 +120,8 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     public override void _EnterTree()
     {
-        normalFont = GetFont("normal", "Fonts");
+        normalFont = GetFont("font", "Label");
+        normalFont = normalFont == null ? GetFont("normal", "Fonts") : normalFont;
         InputManager.RegisterReceiver(this);
         base._EnterTree();
     }
