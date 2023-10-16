@@ -367,6 +367,12 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             return;
         }
 
+        // Log becoming multicellular in the timeline
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_PLAYER_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            true, "multicellularTimelineMembtouch.png");
+        GameWorld.Map.CurrentPatch!.LogEvent(new LocalizedString("TIMELINE_PLAYER_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            true, "multicellularTimelineMembtouch.png");
+
         GD.Print("Disbanding colony and becoming multicellular");
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
