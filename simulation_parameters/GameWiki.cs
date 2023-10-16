@@ -35,34 +35,44 @@ public class GameWiki : IRegistryType
 
         public List<Section> Sections { get; set; } = null!;
 
+        public void Check(string name)
+        {
+            if (string.IsNullOrEmpty(InternalName))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Page has no internal name");
+            }
+
+            if (string.IsNullOrEmpty(Name))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no name");
+            }
+
+            if (string.IsNullOrEmpty(Url))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no URL");
+            }
+
+            if (Sections.Count < 1)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has no sections");
+            }
+
+            if (Sections.Any(s => string.IsNullOrEmpty(s.SectionBody)))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    $"Page {InternalName} has an empty section");
+            }
+        }
+
         public class Section
         {
             public string? SectionHeading { get; set; }
 
             public string SectionBody { get; set; } = null!;
-        }
-
-        public void Check(string name)
-        {
-            if (string.IsNullOrEmpty(InternalName))
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Page has no internal name");
-
-            if (string.IsNullOrEmpty(Name))
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Page {InternalName} has no name");
-
-            if (string.IsNullOrEmpty(Url))
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Page {InternalName} has no URL");
-
-            if (Sections.Count < 1)
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Page {InternalName} has no sections");
-
-            if (Sections.Any(s => string.IsNullOrEmpty(s.SectionBody)))
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Page {InternalName} has an empty section");
         }
     }
 }
