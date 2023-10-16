@@ -124,10 +124,23 @@ public class TrackList
             track.Check();
     }
 
-    public Track[] GetTracksForContexts(MusicContext[] contexts)
+    public IEnumerable<Track> GetTracksForContexts(MusicContext[]? contexts)
     {
-        return Tracks.Where(t => t.ExclusiveToContexts == null ||
-            t.ExclusiveToContexts.Any(contexts.Contains)).ToArray();
+        return Tracks.Where(t => CheckIfTrackValidInContext(t, contexts));
+    }
+
+    private bool CheckIfTrackValidInContext(Track track, MusicContext[]? contexts)
+    {
+        if (track.PlayOnlyWithoutContext)
+            return contexts == null;
+
+        if (track.ExclusiveToContexts != null)
+            return track.ExclusiveToContexts.Any(contexts.Contains);
+
+        if (track.DisallowInContexts != null)
+            return !track.DisallowInContexts.Any(contexts.Contains);
+
+        return true;
     }
 
     /// <summary>
@@ -143,6 +156,10 @@ public class TrackList
         public string ResourcePath { get; set; } = null!;
 
         public MusicContext[]? ExclusiveToContexts { get; set; } = null;
+
+        public MusicContext[]? DisallowInContexts { get; set; } = null!;
+
+        public bool PlayOnlyWithoutContext { get; set; } = false;
 
         [JsonIgnore]
         public bool WasPlaying { get; set; } = false;

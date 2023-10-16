@@ -281,17 +281,9 @@ public class MicrobeStage : CreatureStageBase<Microbe>
     {
         var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
 
-        var context = new[] { MusicContext.General };
-
-        if (biome.InternalName == "aavolcanic_vent")
-            context[0] = MusicContext.PatchVents;
-
-        if (biome.InternalName == "ice_shelf")
-            context[0] = MusicContext.PatchIceShelf;
-
         Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
             "EarlyMulticellularStage" :
-            "MicrobeStage", context);
+            "MicrobeStage", biome.ActiveMusicContexts);
     }
 
     [RunOnKeyDown("g_pause")]

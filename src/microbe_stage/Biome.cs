@@ -30,6 +30,8 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
+    public MusicContext[]? ActiveMusicContexts = null;
+
     [JsonIgnore]
     public Texture? LoadedIcon;
 

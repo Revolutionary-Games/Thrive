@@ -38,7 +38,7 @@ public class Jukebox : Node
     /// </summary>
     private MusicCategory? previouslyPlayedCategory;
 
-    private MusicContext[] activeContexts = null!;
+    private MusicContext[]? activeContexts = null!;
 
     /// <summary>
     ///   Loads the music categories and prepares to play them
@@ -66,14 +66,6 @@ public class Jukebox : Node
                 throw new ArgumentException("Playing category can't be set to null");
 
             GD.Print("Jukebox now playing from: ", value);
-            GD.Print("Active Music Contexts: ");
-
-            var contexts = string.Empty;
-
-            foreach (var ctx in activeContexts)
-                contexts += ctx + ", ";
-
-            GD.Print(contexts);
 
             playingCategory = value;
             OnCategoryChanged();
@@ -122,7 +114,7 @@ public class Jukebox : Node
     /// <param name="contexts">list of contexts to select only specific tracks</param>
     public void PlayCategory(string category, MusicContext[]? contexts = null)
     {
-        activeContexts = contexts ?? new[] { MusicContext.General };
+        activeContexts = contexts;
         PlayingCategory = category;
         Resume();
     }
@@ -545,13 +537,19 @@ public class Jukebox : Node
     private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
     {
         var mode = list.TrackOrder;
+        var tracks = list.GetTracksForContexts(activeContexts).ToArray();
+
+        if (tracks.Length == 0)
+        {
+            Pause();
+            return;
+        }
 
         if (mode == TrackList.Order.Sequential)
         {
-            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.GetTracksForContexts(activeContexts).Length;
+            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % tracks.Length;
 
-            PlayTrack(getPlayer(playerToUse),
-                list.GetTracksForContexts(activeContexts)[list.LastPlayedIndex], list.TrackBus);
+            PlayTrack(getPlayer(playerToUse), tracks[list.LastPlayedIndex], list.TrackBus);
         }
         else
         {
@@ -563,20 +561,20 @@ public class Jukebox : Node
                 // Make sure same random track is not played twice in a row
                 do
                 {
-                    nextIndex = random.Next(0, list.GetTracksForContexts(activeContexts).Length);
+                    nextIndex = random.Next(0, tracks.Length);
                 }
-                while (nextIndex == list.LastPlayedIndex && list.GetTracksForContexts(activeContexts).Length > 1);
+                while (nextIndex == list.LastPlayedIndex && tracks.Length > 1);
             }
             else if (mode == TrackList.Order.EntirelyRandom)
             {
-                nextIndex = random.Next(0, list.GetTracksForContexts(activeContexts).Length);
+                nextIndex = random.Next(0, tracks.Length);
             }
             else
             {
                 throw new InvalidOperationException("Unknown track list order type");
             }
 
-            PlayTrack(getPlayer(playerToUse), list.GetTracksForContexts(activeContexts)[nextIndex], list.TrackBus);
+            PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
         }
     }
