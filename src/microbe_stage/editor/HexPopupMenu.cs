@@ -185,12 +185,8 @@ public abstract class HexPopupMenu : CustomPopupMenu
             // Reset size of label to update it otherwise rect height doesn't update to new value soon enough
             titleLabel.SetSize(Vector2.Zero);
 
-            size = new Vector2(size.x,
-                size.y +
-                Mathf.Abs(
-                    (titleLabel.GetVisibleLineCount() *
-                        normalFont.GetHeight()) -
-                    titleLabel.RectSize.y));
+            size = new Vector2(size.x, size.y +
+                Mathf.Abs((titleLabel.GetVisibleLineCount() * normalFont.GetHeight()) - titleLabel.RectSize.y));
 
             // Fix the margins because resetting the size sets them to absurd values that are not visible on screen
             container.Visible = false;
