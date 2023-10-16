@@ -156,6 +156,11 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
     }
 
+    private void CountHexes()
+    {
+        throw new NotImplementedException();
+    }
+
     [JsonIgnore]
     public float Radius
     {
@@ -189,6 +194,11 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
 
             return CheckHasSignalingAgent();
         }
+    }
+
+    private bool CheckHasSignalingAgent()
+    {
+        throw new NotImplementedException();
     }
 
     [JsonIgnore]
@@ -229,13 +239,15 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
             var weight = organelles?.Count * Constants.ORGANELLE_ENTITY_WEIGHT ??
                 throw new InvalidOperationException("Organelles not initialised on microbe spawn");
 
-            if (Colony != null)
-            {
-                // Only colony lead cells have the extra entity weight from the colony added
-                // As the colony reads this property on the other members, we do not throw here
-                if (Colony.Master == this)
-                    weight += Colony.EntityWeight;
-            }
+            throw new NotImplementedException();
+
+            // if (Colony != null)
+            // {
+            //     // Only colony lead cells have the extra entity weight from the colony added
+            //     // As the colony reads this property on the other members, we do not throw here
+            //     if (Colony.Master == this)
+            //         weight += Colony.EntityWeight;
+            // }
 
             return weight;
         }
@@ -267,6 +279,11 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
     }
 
+    private void ApplyRenderPriority()
+    {
+        throw new NotImplementedException();
+    }
+
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
     {
@@ -278,6 +295,11 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
     }
 
+    private void RefreshProcesses()
+    {
+        throw new NotImplementedException();
+    }
+
     [JsonIgnore]
     public Dictionary<Enzyme, int> Enzymes
     {
@@ -287,6 +309,11 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
                 RefreshEnzymes();
             return enzymes;
         }
+    }
+
+    private void RefreshEnzymes()
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -344,13 +371,10 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         if (onReadyCalled)
             return;
 
-        Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
 
         if (IsForPreviewOnly)
         {
-            // Disable our physics to not cause issues with multiple preview cells bumping into each other
-            Mode = ModeEnum.Kinematic;
             return;
         }
 
@@ -374,32 +398,6 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         // to the audio player while the latter is more convenient for dynamic and various short one-time sound effects
         // in expense of lesser audio player control.
 
-        if (IsPlayerMicrobe)
-        {
-            // Creates and activates the audio listener for the player microbe. Positional sound will be
-            // received by it instead of the main camera.
-            listener = new Listener();
-            AddChild(listener);
-            listener.MakeCurrent();
-
-            // Setup tracking running processes
-            ProcessStatistics = new ProcessStatistics();
-
-            GD.Print("Player Microbe spawned");
-        }
-
-        // pseudopodTarget = GetNode<MeshInstance>("PseudopodTarget");
-        // var pseudopodRange = GetNode<Area>("PseudopodRange");
-        // pseudopodRangeSphereShape = (SphereShape)pseudopodRange.GetNode<CollisionShape>("SphereShape").Shape;
-
-        // pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
-        // pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
-
-        // Setup physics callback stuff
-        ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-        Connect("body_shape_entered", this, nameof(OnContactBegin));
-        Connect("body_shape_exited", this, nameof(OnContactEnd));
-
         Mass = Constants.MICROBE_BASE_MASS;
 
         if (IsLoadedFromSave)
@@ -407,7 +405,8 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
             if (organelles == null)
                 throw new JsonException($"Loaded microbe is missing {nameof(organelles)} property");
 
-            // Fix base reproduction cost if we we were loaded from an older save
+            throw new NotImplementedException();
+            /*// Fix base reproduction cost if we we were loaded from an older save
             if (requiredCompoundsForBaseReproduction.Count < 1)
                 SetupRequiredBaseReproductionCompounds();
 
@@ -466,7 +465,7 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
                     // that IEngulfable is not yet inside the tree. - Kasterisk
                     Invoke.Instance.Queue(() => engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value));
                 }
-            }
+            }*/
         }
 
         ApplyRenderPriority();
@@ -490,39 +489,6 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
     }
 
-    /// <summary>
-    ///   Must be called when spawned to provide access to the needed systems
-    /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
-        bool isPlayer)
-    {
-        this.cloudSystem = cloudSystem;
-        this.spawnSystem = spawnSystem;
-        CurrentGame = currentGame;
-        IsPlayerMicrobe = isPlayer;
-
-        if (!isPlayer)
-        {
-            // TODO: the spawner should set the AI component
-            throw new NotImplementedException();
-        }
-
-        // Needed for immediately applying the species
-        _Ready();
-    }
-
-    public override void _Process(float delta)
-    {
-        if (usesExternalProcess)
-        {
-            GD.PrintErr("_Process was called for microbe that uses external processing");
-            return;
-        }
-
-        ProcessEarlyAsync(delta);
-        ProcessSync(delta);
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
@@ -534,7 +500,9 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
         else
         {
-            Colony?.Master.AddMovementForce(queuedMovementForce);
+            throw new NotImplementedException();
+
+            // Colony?.Master.AddMovementForce(queuedMovementForce);
         }
 
         lastLinearVelocity = LinearVelocity;
@@ -545,10 +513,6 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
     {
         if (ColonyParent != null)
             return;
-
-        // TODO: should movement also be applied here?
-
-        physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
 
         // Reset total sum from previous collisions
         collisionForce = 0.0f;
@@ -596,37 +560,12 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
 
         if (!IsForPreviewOnly)
         {
-            SetupRequiredBaseReproductionCompounds();
+            throw new NotImplementedException();
+
+            // SetupRequiredBaseReproductionCompounds();
         }
 
         FinishSpeciesSetup();
-    }
-
-    /// <summary>
-    ///   Gets the actually hit microbe (potentially in a colony)
-    /// </summary>
-    /// <param name="bodyShape">The shape that was hit</param>
-    /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
-    public Microbe? GetMicrobeFromShape(int bodyShape)
-    {
-        if (Colony == null)
-            return this;
-
-        var touchedOwnerId = ShapeFindOwner(bodyShape);
-
-        // Not found
-        if (touchedOwnerId == uint.MaxValue)
-            return null;
-
-        return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
-    }
-
-    /// <summary>
-    ///   Called from movement organelles to add movement force
-    /// </summary>
-    public void AddMovementForce(Vector3 force)
-    {
-        queuedMovementForce += force;
     }
 
     public void ReportActiveCompoundChemoreceptor(Compound compound, float range, float minAmount, Color colour)
@@ -713,82 +652,23 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
     /// </remarks>
     public void ProcessEarlyAsync(float delta)
     {
-        if (membraneOrganellePositionsAreDirty)
-        {
-            // Redo the cell membrane.
-            SendOrganellePositionsToMembrane();
-
-            membraneOrganellesWereUpdatedThisFrame = true;
-        }
-        else
-        {
-            membraneOrganellesWereUpdatedThisFrame = false;
-        }
-
-        // The code below starting from here is not needed for a display-only cell
-        if (IsForPreviewOnly)
-            return;
-
         // Movement factor is reset here. HandleEngulfing will set the right value
         MovementFactor = 1.0f;
         queuedMovementForce = new Vector3(0, 0, 0);
 
-        // Reduce agent emission cooldown
-        AgentEmissionCooldown -= delta;
-        if (AgentEmissionCooldown < 0)
-            AgentEmissionCooldown = 0;
+        throw new NotImplementedException();
 
-        slimeSecretionCooldown -= delta;
-        if (slimeSecretionCooldown < 0)
-            slimeSecretionCooldown = 0;
-
-        lastCheckedATPDamage += delta;
-
-        if (!Membrane.Dirty)
-        {
-            HandleCompoundAbsorbing(delta);
-        }
-        else
-        {
-            absorptionSkippedEarly = true;
-        }
-
-        // Colony members have their movement update before organelle update,
-        // so that the movement organelles see the direction
-        // The colony master should be already updated as the movement direction is either set by the player input or
-        // microbe AI, neither of which will happen concurrently, so this should always get the up to date value
-        if (Colony != null && Colony.Master != this)
-            MovementDirection = Colony.Master.MovementDirection;
-
-        // Let organelles do stuff (this for example gets the movement force from flagella)
-        foreach (var organelle in organelles!.Organelles)
-        {
-            organelle.UpdateAsync(delta);
-        }
-
-        HandleHitpointsRegeneration(delta);
-
-        HandleInvulnerabilityDecay(delta);
-
-        HandleOsmoregulation(delta);
-
-        if (!Membrane.Dirty)
-            HandleCompoundVenting(delta);
+        // // Let organelles do stuff (this for example gets the movement force from flagella)
+        // foreach (var organelle in organelles!.Organelles)
+        // {
+        //     organelle.UpdateAsync(delta);
+        // }
+        //
+        // HandleInvulnerabilityDecay(delta);
     }
 
     public void ProcessSync(float delta)
     {
-        // Updates the listener if this is the player owned microbe.
-        if (listener != null)
-        {
-            // Listener is directional and since it is a child of the microbe it will have the same forward
-            // vector as the parent. Since we want sound to come from the side of the screen relative to the
-            // camera rather than the microbe we need to force the listener to face up every frame.
-            Transform transform = GlobalTransform;
-            transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
-            listener.GlobalTransform = transform;
-        }
-
         if (membraneOrganellesWereUpdatedThisFrame && IsForPreviewOnly)
         {
             if (organelles == null)
@@ -797,8 +677,10 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
             // Update once for the positioning of external organelles
             foreach (var organelle in organelles.Organelles)
             {
-                organelle.UpdateAsync(delta);
-                organelle.UpdateSync();
+                throw new NotImplementedException();
+
+                // organelle.UpdateAsync(delta);
+                // organelle.UpdateSync();
             }
         }
 
@@ -806,16 +688,9 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         if (IsForPreviewOnly)
             return;
 
-        CheckEngulfShape();
+        throw new NotImplementedException();
 
-        // Fire queued agents
-        if (queuedToxinToEmit != null)
-        {
-            EmitToxin(queuedToxinToEmit);
-            queuedToxinToEmit = null;
-        }
-
-        HandleSlimeSecretion(delta);
+        /*CheckEngulfShape();
 
         // If we didn't have our membrane ready yet in the async process we need to do these now
         if (absorptionSkippedEarly)
@@ -825,51 +700,19 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
             absorptionSkippedEarly = false;
         }
 
-        HandleFlashing(delta);
-
-        HandleReproduction(delta);
-
-        // Handles engulfing related stuff as well as modifies the movement factor.
-        // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.
-        HandleEngulfing(delta);
-
-        HandleDigestion(delta);
-
-        // Handles binding related stuff
-        HandleBinding(delta);
-        HandleUnbinding();
-
         // Let organelles do stuff (this for example gets the movement force from flagella)
         foreach (var organelle in organelles!.Organelles)
         {
             organelle.UpdateSync();
         }
 
-        if (QueuedSignalingCommand != null)
-        {
-            command = QueuedSignalingCommand.Value;
-            QueuedSignalingCommand = null;
-        }
-
         // Rotation is applied in the physics force callback as that's the place where the body rotation
         // can be directly set without problems
 
-        HandleChemoreceptorLines(delta);
-
-        if (Colony != null && Colony.Master == this)
-            Colony.Process(delta);
-
-        while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
-        {
-            lastCheckedATPDamage -= Constants.ATP_DAMAGE_CHECK_INTERVAL;
-            ApplyATPDamage();
-        }
-
-        Membrane.HealthFraction = Hitpoints / MaxHitpoints;
+        HandleChemoreceptorLines(delta);*/
 
         if (Hitpoints <= 0 || Dead)
         {
-            HandleDeath(delta);
         }
         else
         {
@@ -881,209 +724,15 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
     }
 
-    /// <summary>
-    ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
-    ///   microbe can smell; only the best candidate of each compound type.
-    /// </summary>
-    /// <param name="clouds">CompoundCloudSystem to scan</param>
-    /// <returns>
-    ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be drawn),
-    ///   and the location where the compound is located.
-    /// </returns>
-    public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
-    {
-        HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> collectedUniqueCompoundDetections;
-
-        // Colony lead cell uses all the chemoreceptors in the colony to make them all work
-        if (Colony != null && Colony.Master == this)
-        {
-            collectedUniqueCompoundDetections =
-                new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
-
-            foreach (var colonyMicrobe in Colony.ColonyMembers)
-            {
-                collectedUniqueCompoundDetections.UnionWith(colonyMicrobe.activeCompoundDetections);
-            }
-        }
-        else
-        {
-            collectedUniqueCompoundDetections = activeCompoundDetections;
-        }
-
-        var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
-        var position = GlobalTranslation;
-
-        foreach (var (compound, range, minAmount, colour) in collectedUniqueCompoundDetections)
-        {
-            var detectedCompound = clouds.FindCompoundNearPoint(position, compound, range, minAmount);
-
-            if (detectedCompound != null)
-            {
-                detections.Add((compound, colour, detectedCompound.Value));
-            }
-        }
-
-        return detections;
-    }
-
-    /// <summary>
-    ///   Returns a list of tuples, representing all possible microbe targets. These are not all the
-    ///   other microbes that the microbe can smell; only the best candidate of each species.
-    /// </summary>
-    /// <param name="microbeSystem">MicrobeSystem to scan</param>
-    /// <returns>
-    ///   A list of tuples. Each tuple contains the type of species, the color of the line (if any needs to be drawn),
-    ///   and the location where the microbe is located.
-    /// </returns>
-    public List<(Microbe Microbe, Color Colour, Vector3 Target)> GetDetectedSpecies(MicrobeSystem microbeSystem)
-    {
-        HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;
-
-        // Colony lead cell uses all the chemoreceptors in the colony to make them all work
-        if (Colony != null && Colony.Master == this)
-        {
-            collectedUniqueSpeciesDetections =
-                new HashSet<(Species Species, float Range, Color Colour)>();
-
-            foreach (var colonyMicrobe in Colony.ColonyMembers)
-            {
-                collectedUniqueSpeciesDetections.UnionWith(colonyMicrobe.activeSpeciesDetections);
-            }
-        }
-        else
-        {
-            collectedUniqueSpeciesDetections = activeSpeciesDetections;
-        }
-
-        var detections = new List<(Microbe Microbe, Color Colour, Vector3 Target)>();
-        var position = GlobalTranslation;
-
-        foreach (var (species, range, colour) in collectedUniqueSpeciesDetections)
-        {
-            var tuple = microbeSystem.FindSpeciesNearPoint(position, species, range);
-
-            if (tuple != null)
-            {
-                detections.Add((tuple.Value.Microbe, colour, tuple.Value.Position));
-            }
-        }
-
-        return detections;
-    }
-
-    /// <summary>
-    ///   Tries to find an engulfable entity as close to this microbe as possible.
-    /// </summary>
-    /// <param name="engulfables">List of all engulfable entities in the world</param>
-    /// <param name="searchRadius">How wide to search around the point</param>
-    /// <returns>The nearest found point for the engulfable entity or null</returns>
-    public Vector3? FindNearestEngulfable(List<IEngulfable> engulfables, float searchRadius = 200)
-    {
-        if (searchRadius < 1)
-            throw new ArgumentException("searchRadius must be >= 1");
-
-        // If the microbe cannot absorb, no need for this
-        if (!CanEngulf)
-            return null;
-
-        Vector3? nearestPoint = null;
-        float nearestDistanceSquared = float.MaxValue;
-        var searchRadiusSquared = searchRadius * searchRadius;
-
-        // Retrieve nearest potential entities
-        foreach (var entity in engulfables)
-        {
-            if (entity.Compounds.Compounds.Count <= 0 || entity.PhagocytosisStep != PhagocytosisPhase.None)
-                continue;
-
-            var spatial = entity.EntityNode;
-
-            // Skip entities that are out of range
-            if ((spatial.Translation - Translation).LengthSquared() > searchRadiusSquared)
-                continue;
-
-            // Skip non-engulfable entities
-            if (CanEngulfObject(entity) != EngulfCheckResult.Ok)
-                continue;
-
-            // Skip entities that have no useful compounds
-            if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))
-                continue;
-
-            var distance = (spatial.Translation - Translation).LengthSquared();
-
-            if (nearestPoint == null || distance < nearestDistanceSquared)
-            {
-                nearestPoint = spatial.Translation;
-                nearestDistanceSquared = distance;
-            }
-        }
-
-        return nearestPoint;
-    }
-
+    // TODO: this is needed for a purely visual microbe handling world
     public void OverrideScaleForPreview(float scale)
     {
         if (!IsForPreviewOnly)
             throw new InvalidOperationException("Scale can only be overridden for preview microbes");
 
-        ApplyScale(new Vector3(scale, scale, scale));
-    }
+        throw new NotImplementedException();
 
-    /// <summary>
-    ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
-    ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
-    ///     Visual explanation
-    ///   </a>
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Storing the old global translation and rotation, re-parenting and then reapplying the stored values is
-    ///     worse than this code because this code utilizes GetVectorTowardsNearestPointOfMembrane. This reduces the
-    ///     visual gap between the microbes in a colony.
-    ///   </para>
-    /// </remarks>
-    /// <returns>Returns relative translation and rotation</returns>
-    private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform()
-    {
-        if (ColonyParent == null)
-            throw new InvalidOperationException("This microbe doesn't have colony parent set");
-
-        // Gets the global rotation of the parent
-        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
-
-        // A vector from the parent to me
-        var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
-
-        // A vector from me to the parent
-        var vectorToParent = -vectorFromParent;
-
-        // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
-        // This vector represents the vectorToParent as if I had no rotation.
-        // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
-        // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
-        var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-
-        // This vector represents the vectorFromParent as if the parent had no rotation.
-        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
-
-        // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
-        // This gets added to the vector calculated one call before.
-        var correctedVectorFromParent = ColonyParent.Membrane
-            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
-                vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
-
-        // Calculates the vector from my center to my membrane towards the parent.
-        // This vector gets rotated back to cancel out the rotation applied two calls above.
-        // -= to negate the vector, so that the two membrane vectors amplify
-        correctedVectorFromParent -= Membrane
-            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.z)
-            .Rotated(Vector3.Up, Rotation.y);
-
-        // Rotated because the rotational scope is different.
-        var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
-
-        return (newTranslation, Rotation - globalParentRotation);
+        // ApplyScale(new Vector3(scale, scale, scale));
     }
 
     private void FinishSpeciesSetup()
@@ -1091,11 +740,12 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         if (CellTypeProperties.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
-        SetScaleFromSpecies();
+        // SetScaleFromSpecies();
 
         ResetOrganelleLayout();
 
-        SetMembraneFromSpecies();
+        throw new NotImplementedException();
+        // SetMembraneFromSpecies();
 
         if (!CanEngulf)
         {
@@ -1105,237 +755,5 @@ public partial class Microbe : RigidBody, ISaveLoadedTracked, IEngulfable
         }
 
         SetupMicrobeHitpoints();
-    }
-
-    private void SetScaleFromSpecies()
-    {
-        var scale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        // Bacteria are 50% the size of other cells
-        if (CellTypeProperties.IsBacteria)
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        ApplyScale(scale);
-    }
-
-    private void ApplyScale(Vector3 scale)
-    {
-        // Scale only the graphics parts to not have physics affected
-        Membrane.Scale = scale;
-        OrganelleParent.Scale = scale;
-    }
-
-    private void ApplyRenderPriority()
-    {
-        var material = Membrane.MaterialToEdit;
-
-        if (material != null)
-            material.RenderPriority = RenderPriority;
-    }
-
-    private Node GetStageAsParent()
-    {
-        if (HostileEngulfer.Value != null)
-            return HostileEngulfer.Value.GetStageAsParent();
-
-        if (Colony == null)
-            return GetParent();
-
-        // If the colony leader is engulfed, the colony children, when the colony is disbanded, need to access the
-        // stage through the engulfer. Because at that point the colony leader is already re-parented to the engulfer,
-        // so its parent is no longer the stage here.
-        if (Colony.Master.HostileEngulfer.Value != null)
-            return Colony.Master.HostileEngulfer.Value.GetStageAsParent();
-
-        return Colony.Master.GetParent();
-    }
-
-    private Vector3 DoBaseMovementForce(float delta)
-    {
-        var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
-
-        var got = Compounds.TakeCompound(atp, cost);
-
-        float force = Constants.CELL_BASE_THRUST;
-        float appliedFactor = MovementFactor;
-        if (Colony != null && Colony.Master == this)
-        {
-            // Multiplies the movement factor as if the colony has the normal microbe speed
-            // Then it subtracts movement speed from 100% up to 75%(soft cap),
-            // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
-            // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-            appliedFactor *= Colony.ColonyMembers.Count;
-            var seriesValue = 1 - 1 / (float)Math.Pow(2, Colony.ColonyMembers.Count - 1);
-            appliedFactor -= (appliedFactor * 0.15f) * seriesValue;
-        }
-
-        // Halve speed if out of ATP
-        if (got < cost)
-        {
-            // Not enough ATP to move at full speed
-            force *= 0.5f;
-        }
-
-        if (slowedBySlime)
-            force /= Constants.MUCILAGE_IMPEDE_FACTOR;
-
-        if (IsPlayerMicrobe && CheatManager.Speed > 1)
-            force *= Mass * CheatManager.Speed;
-
-        return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
-            (CellTypeProperties.MembraneType.MovementFactor -
-                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER));
-    }
-
-    private void ApplyMovementImpulse(Vector3 movement, float delta)
-    {
-        if (movement.x == 0.0f && movement.z == 0.0f)
-            return;
-
-        // Scale movement by delta time (not by framerate). We aren't Fallout 4
-        // TODO: it seems that at low framerate (below 20 or so) cells get a speed boost for some reason
-        ApplyCentralImpulse(movement * delta);
-    }
-
-    /// <summary>
-    ///   Just slerps towards the target point with the amount being defined by the cell rotation speed.
-    ///   For now, eventually we want to use physics forces to turn
-    /// </summary>
-    private Transform GetNewPhysicsRotation(Transform transform)
-    {
-        var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
-
-        float speed = RotationSpeed;
-
-        if (IsPlayerMicrobe && CheatManager.Speed > 1)
-            speed *= CheatManager.Speed;
-
-        var ownRotation = RotationSpeed;
-
-        if (Colony != null && ColonyParent == null)
-        {
-            // Calculate help and extra inertia caused by the colony member cells
-            if (cachedColonyRotationMultiplier == null)
-            {
-                // TODO: move this to MicrobeInternalCalculations once this is needed to be shown in the multicellular
-                // editor
-                float colonyInertia = 0.1f;
-                float colonyRotationHelp = 0;
-
-                foreach (var colonyMember in Colony.ColonyMembers)
-                {
-                    if (colonyMember == this)
-                        continue;
-
-                    var distance = colonyMember.Transform.origin.LengthSquared();
-
-                    if (distance < MathUtils.EPSILON)
-                        continue;
-
-                    colonyInertia += distance * colonyMember.MassFromOrganelles *
-                        Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
-
-                    // TODO: should this use the member rotation speed (which is dependent on its size and how many
-                    // cilia there are that far away) or just a count of cilia and the distance
-                    colonyRotationHelp += colonyMember.RotationSpeed *
-                        Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distance);
-                }
-
-                var multiplier = colonyRotationHelp / colonyInertia;
-
-                cachedColonyRotationMultiplier = Mathf.Clamp(multiplier, Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
-                    Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
-            }
-
-            speed *= cachedColonyRotationMultiplier.Value;
-
-            speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
-                Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));
-        }
-
-        // Need to manually normalize everything, otherwise the slerp fails
-        // Delta is not used here as the physics frames occur at a fixed number of times per second
-        Quat slerped = transform.basis.Quat().Normalized().Slerp(target.basis.Quat().Normalized(), speed);
-
-        return new Transform(new Basis(slerped), transform.origin);
-    }
-
-    /// <summary>
-    ///   Updates the list of processes organelles do
-    /// </summary>
-    private void RefreshProcesses()
-    {
-        processes.Clear();
-
-        if (organelles == null)
-            return;
-
-        foreach (var entry in organelles.Organelles)
-        {
-            // Duplicate processes need to be combined into a single TweakedProcess
-            foreach (var process in entry.Definition.RunnableProcesses)
-            {
-                bool found = false;
-
-                foreach (var existing in processes)
-                {
-                    if (existing.Process == process.Process)
-                    {
-                        existing.Rate += process.Rate;
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                {
-                    // Because we modify the process, we must duplicate the object for each microbe
-                    processes.Add((TweakedProcess)process.Clone());
-                }
-            }
-        }
-
-        processesDirty = false;
-    }
-
-    private void RefreshEnzymes()
-    {
-        enzymes.Clear();
-
-        if (organelles == null)
-            return;
-
-        // Cells have a minimum of at least one unit of lipase enzyme
-        enzymes[lipase] = 1;
-
-        foreach (var organelle in organelles.Organelles)
-        {
-            foreach (var enzyme in organelle.StoredEnzymes)
-            {
-                // Filter out invalid enzyme values
-                if (enzyme.Value <= 0)
-                    continue;
-
-                enzymes.TryGetValue(enzyme.Key, out int existing);
-                enzymes[enzyme.Key] = existing + enzyme.Value;
-            }
-        }
-
-        enzymesDirty = false;
-    }
-
-    private void CountHexes()
-    {
-        cachedHexCount = 0;
-
-        if (organelles == null)
-            return;
-
-        foreach (var entry in organelles.Organelles)
-        {
-            cachedHexCount += entry.Definition.Hexes.Count;
-        }
-
-        cachedHexCountDirty = false;
     }
 }

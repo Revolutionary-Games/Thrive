@@ -223,9 +223,12 @@ public partial class CellEditorComponent
 
         if (previewMicrobe != null)
         {
+            throw new NotImplementedException();
+
             previewMicrobe.Membrane.Type = membrane;
             previewMicrobe.Membrane.Dirty = true;
-            previewMicrobe.ApplyMembraneWigglyness();
+
+            // previewMicrobe.ApplyMembraneWigglyness();
         }
     }
 
@@ -244,9 +247,11 @@ public partial class CellEditorComponent
 
         if (previewMicrobe != null)
         {
+            throw new NotImplementedException();
+
             previewMicrobe.Membrane.Type = Membrane;
             previewMicrobe.Membrane.Dirty = true;
-            previewMicrobe.ApplyMembraneWigglyness();
+            // previewMicrobe.ApplyMembraneWigglyness();
         }
     }
 

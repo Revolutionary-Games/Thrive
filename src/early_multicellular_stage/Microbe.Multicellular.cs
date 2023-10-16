@@ -59,7 +59,9 @@ public partial class Microbe
 
         // We have to force our membrane to be setup here so that the attach logic will have valid membrane data
         // to work with
-        SendOrganellePositionsToMembrane();
+        throw new NotImplementedException();
+
+        // SendOrganellePositionsToMembrane();
     }
 
     /// <summary>
@@ -67,13 +69,15 @@ public partial class Microbe
     /// </summary>
     public void AddMulticellularGrowthCell(bool keepCompounds = false)
     {
-        if (Colony == null)
-        {
-            MicrobeColony.CreateColonyForMicrobe(this);
+        throw new NotImplementedException();
 
-            if (Colony == null)
-                throw new Exception("An issue occured during colony creation!");
-        }
+        // if (Colony == null)
+        // {
+        //     MicrobeColony.CreateColonyForMicrobe(this);
+        //
+        //     if (Colony == null)
+        //         throw new Exception("An issue occured during colony creation!");
+        // }
 
         var template = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex];
 
@@ -103,7 +107,9 @@ public partial class Microbe
         var parent = this;
         var currentDistanceSquared = (newCellPosition - ourTransform.origin).LengthSquared();
 
-        foreach (var colonyMember in Colony.ColonyMembers)
+        throw new NotImplementedException();
+
+        /*foreach (var colonyMember in Colony.ColonyMembers)
         {
             if (colonyMember == this)
                 continue;
@@ -117,7 +123,7 @@ public partial class Microbe
             }
         }
 
-        Colony.AddToColony(cell, parent);
+        Colony.AddToColony(cell, parent);*/
 
         ++nextBodyPlanCellToGrowIndex;
         compoundsNeededForNextCell = null;
@@ -135,7 +141,9 @@ public partial class Microbe
     {
         compoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
-        var (remainingAllowedCompoundUse, remainingFreeCompounds) =
+        throw new NotImplementedException();
+
+        /*var (remainingAllowedCompoundUse, remainingFreeCompounds) =
             CalculateFreeCompoundsAndLimits(elapsedSinceLastUpdate);
 
         if (compoundsNeededForNextCell == null)
@@ -254,7 +262,7 @@ public partial class Microbe
                 enoughResourcesForBudding = true;
                 compoundsNeededForNextCell = null;
             }
-        }
+        }*/
     }
 
     private Dictionary<Compound, float> GetCompoundsNeededForNextCell()
@@ -277,7 +285,9 @@ public partial class Microbe
         totalNeededForMulticellularGrowth = null;
 
         // Delete the cells in our colony currently
-        if (Colony != null)
+        throw new NotImplementedException();
+
+        /*if (Colony != null)
         {
             GD.Print("Resetting growth in a multicellular colony");
             var cellsToDestroy = Colony.ColonyMembers.Where(m => m != this).ToList();
@@ -288,7 +298,7 @@ public partial class Microbe
             {
                 microbe.DetachAndQueueFree();
             }
-        }
+        }*/
     }
 
     private Microbe CreateMulticellularColonyMemberCell(CellType cellType, bool keepCompounds)
@@ -313,109 +323,28 @@ public partial class Microbe
         return newCell;
     }
 
-    private void OnMulticellularColonyCellLost(Microbe cell)
+    public void OnDestroyed()
     {
-        // Don't bother if this cell is being destroyed
-        if (destroyed)
-            return;
-
-        // We need to reset our growth towards the next cell and instead replace the cell we just lost
-        lostPartsOfBodyPlan ??= new List<int>();
-
-        // TODO: figure out why these duplicate calls come from colonies, we ignore them for now
-        if (lostPartsOfBodyPlan.Contains(cell.MulticellularBodyPlanPartIndex))
-            return;
-
-        lostPartsOfBodyPlan.Add(cell.MulticellularBodyPlanPartIndex);
-        allOrganellesDivided = false;
-
-        if (resumeBodyPlanAfterReplacingLost != null)
-        {
-            // We are already regrowing something, so we need to remember that by adding it back to the list
-            lostPartsOfBodyPlan.Add(nextBodyPlanCellToGrowIndex);
-        }
-
-        var usedForProgress = new Dictionary<Compound, float>();
-
-        if (compoundsNeededForNextCell != null)
-        {
-            var totalNeededForCurrentlyGrowingCell = GetCompoundsNeededForNextCell();
-
-            foreach (var entry in totalNeededForCurrentlyGrowingCell)
-            {
-                var compound = entry.Key;
-                var neededAmount = entry.Value;
-
-                if (compoundsNeededForNextCell.TryGetValue(compound, out var left))
-                {
-                    var alreadyUsed = neededAmount - left;
-
-                    if (alreadyUsed > 0)
-                        usedForProgress.Add(compound, alreadyUsed);
-                }
-            }
-
-            compoundsNeededForNextCell = null;
-        }
-        else if (enoughResourcesForBudding)
-        {
-            // Refund the budding cost
-            usedForProgress = GetCompoundsNeededForNextCell();
-        }
-
-        enoughResourcesForBudding = false;
-
-        // TODO: maybe we should use a separate store for the used compounds for the next cell progress, for now
-        // just add those to our storage (even with the risk of us losing some compounds due to too little storage)
-        foreach (var entry in usedForProgress)
-        {
-            if (entry.Value > MathUtils.EPSILON)
-                Compounds.AddCompound(entry.Key, entry.Value);
-        }
-
-        // Adjust the already used compound amount to lose the progress we made for the current cell and also towards
-        // the lost cell, this we the total progress bar should be correct
-        if (compoundsUsedForMulticellularGrowth != null)
-        {
-            var totalNeededForLostCell = CastedMulticellularSpecies.Cells[cell.MulticellularBodyPlanPartIndex].CellType
-                .CalculateTotalComposition();
-
-            foreach (var compound in compoundsUsedForMulticellularGrowth.Keys.ToArray())
-            {
-                var totalUsed = compoundsUsedForMulticellularGrowth[compound];
-
-                if (usedForProgress.TryGetValue(compound, out var wasted))
-                {
-                    totalUsed -= wasted;
-                }
-
-                if (totalNeededForLostCell.TryGetValue(compound, out wasted))
-                {
-                    totalUsed -= wasted;
-                }
-
-                if (totalUsed < 0)
-                    totalUsed = 0;
-
-                compoundsUsedForMulticellularGrowth[compound] = totalUsed;
-            }
-        }
+        throw new NotImplementedException();
     }
 
-    private Dictionary<Compound, float> CalculateTotalBodyPlanCompounds()
+    public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds()
     {
-        if (totalNeededForMulticellularGrowth == null)
-        {
-            totalNeededForMulticellularGrowth = new Dictionary<Compound, float>();
+        throw new NotImplementedException();
+    }
 
-            foreach (var cell in CastedMulticellularSpecies.Cells)
-            {
-                totalNeededForMulticellularGrowth.Merge(cell.CellType.CalculateTotalComposition());
-            }
+    public void OnAttemptedToBeEngulfed()
+    {
+        throw new NotImplementedException();
+    }
 
-            totalNeededForMulticellularGrowth.Merge(Species.BaseReproductionCost);
-        }
+    public void OnIngestedFromEngulfment()
+    {
+        throw new NotImplementedException();
+    }
 
-        return totalNeededForMulticellularGrowth;
+    public void OnExpelledFromEngulfment()
+    {
+        throw new NotImplementedException();
     }
 }

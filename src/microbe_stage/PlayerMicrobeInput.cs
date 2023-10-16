@@ -310,13 +310,15 @@ public class PlayerMicrobeInput : NodeWithInput
 
     private void RemoveCellFromColony(Microbe target)
     {
-        if (target.Colony == null)
-        {
-            GD.PrintErr("Target microbe is not a part of colony");
-            return;
-        }
+        throw new NotImplementedException();
 
-        target.Colony.RemoveFromColony(target);
+        // if (target.Colony == null)
+        // {
+        //     GD.PrintErr("Target microbe is not a part of colony");
+        //     return;
+        // }
+        //
+        // target.Colony.RemoveFromColony(target);
     }
 
     private void SpawnCheatCloud(string name, float delta)

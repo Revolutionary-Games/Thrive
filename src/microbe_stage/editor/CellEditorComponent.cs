@@ -343,8 +343,11 @@ public partial class CellEditorComponent :
 
             if (previewMicrobeSpecies != null)
             {
+                throw new NotImplementedException();
+
                 previewMicrobeSpecies.MembraneRigidity = value;
-                previewMicrobe!.ApplyMembraneWigglyness();
+
+                // previewMicrobe!.ApplyMembraneWigglyness();
             }
         }
     }
