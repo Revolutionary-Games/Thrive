@@ -135,17 +135,12 @@
             // Damage reduction is only wanted for non-starving damage
             bool canApplyDamageReduction = true;
 
-            if (damageSource is "toxin" or "oxytoxy")
+            if (damageSource is "toxin" or "oxytoxy" or "injectisome")
             {
                 // Divide damage by toxin resistance
                 damage /= cellProperties.MembraneType.ToxinResistance;
             }
-            else if (damageSource == "pilus")
-            {
-                // Divide damage by physical resistance
-                damage /= cellProperties.MembraneType.PhysicalResistance;
-            }
-            else if (damageSource == "chunk")
+            else if (damageSource is "pilus" or "chunk" or "ice")
             {
                 // Divide damage by physical resistance
                 damage /= cellProperties.MembraneType.PhysicalResistance;
@@ -153,11 +148,6 @@
             else if (damageSource == "atpDamage")
             {
                 canApplyDamageReduction = false;
-            }
-            else if (damageSource == "ice")
-            {
-                // Divide damage by physical resistance
-                damage /= cellProperties.MembraneType.PhysicalResistance;
             }
 
             if (!cellProperties.IsBacteria && canApplyDamageReduction)

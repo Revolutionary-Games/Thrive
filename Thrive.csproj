@@ -138,6 +138,7 @@
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
     <Compile Include="src\engine\common_components\ColourAnimation.cs" />
     <Compile Include="src\engine\common_components\CountLimited.cs" />
+    <Compile Include="src\engine\common_components\DamageCooldown.cs" />
     <Compile Include="src\engine\common_components\DamageOnTouch.cs" />
     <Compile Include="src\engine\common_components\EntityMaterial.cs" />
     <Compile Include="src\engine\common_components\EntityRadiusInfo.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="src\engine\common_systems\CameraFollowSystem.cs" />
     <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />
     <Compile Include="src\engine\common_systems\CountLimitedDespawnSystem.cs" />
+    <Compile Include="src\engine\common_systems\DamageCooldownSystem.cs" />
     <Compile Include="src\engine\common_systems\DamageOnTouchSystem.cs" />
     <Compile Include="src\engine\common_systems\DisallowPlayerBodySleepSystem.cs" />
     <Compile Include="src\engine\common_systems\EntityMaterialFetchSystem.cs" />
@@ -586,6 +588,7 @@
     <Compile Include="src\microbe_stage\MicrobeState.cs" />
     <Compile Include="src\microbe_stage\MicrobeWorldSimulation.cs" />
     <Compile Include="src\microbe_stage\OrganelleFeatureTag.cs" />
+    <Compile Include="src\microbe_stage\OrganelleUpgradeHelpers.cs" />
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />

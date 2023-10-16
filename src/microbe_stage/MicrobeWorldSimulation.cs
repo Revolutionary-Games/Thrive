@@ -18,6 +18,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
     private ColourAnimationSystem colourAnimationSystem = null!;
     private CountLimitedDespawnSystem countLimitedDespawnSystem = null!;
+    private DamageCooldownSystem damageCooldownSystem = null!;
     private DamageOnTouchSystem damageOnTouchSystem = null!;
     private DisallowPlayerBodySleepSystem disallowPlayerBodySleepSystem = null!;
     private EntityMaterialFetchSystem entityMaterialFetchSystem = null!;
@@ -114,6 +115,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, parallelRunner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem, parallelRunner);
+        damageCooldownSystem = new DamageCooldownSystem(EntitySystem, parallelRunner);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem, nonParallelRunner);
@@ -280,6 +282,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         compoundAbsorptionSystem.Update(delta);
         entitySignalingSystem.Update(delta);
 
+        damageCooldownSystem.Update(delta);
         toxinCollisionSystem.Update(delta);
         damageOnTouchSystem.Update(delta);
         pilusDamageSystem.Update(delta);
@@ -348,6 +351,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             attachedEntityPositionSystem.Dispose();
             colourAnimationSystem.Dispose();
             countLimitedDespawnSystem.Dispose();
+            damageCooldownSystem.Dispose();
             damageOnTouchSystem.Dispose();
             disallowPlayerBodySleepSystem.Dispose();
             entityMaterialFetchSystem.Dispose();

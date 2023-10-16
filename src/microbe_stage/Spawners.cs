@@ -579,6 +579,9 @@ public static class SpawnHelpers
 
         entity.Set<MicrobePhysicsExtraData>();
 
+        // Used in certain damage types to apply a cooldown
+        entity.Set<DamageCooldown>();
+
         entity.Set(new CollisionManagement
         {
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,

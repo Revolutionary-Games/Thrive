@@ -25,6 +25,12 @@ namespace Components
         ///   are no pili.
         /// </summary>
         public int PilusCount;
+
+        /// <summary>
+        ///   How many of the last <see cref="PilusCount"/> shapes are injectisomes. If 0 then all pili are normal
+        ///   pili.
+        /// </summary>
+        public int PilusInjectisomeCount;
     }
 
     public static class MicrobePhysicsExtraDataHelpers
@@ -34,6 +40,19 @@ namespace Components
             // Index needs to be higher than all the microbes index but lower than the number of pili above that
             return subShape >= physicsExtraData.MicrobeShapesCount &&
                 subShape < physicsExtraData.MicrobeShapesCount + physicsExtraData.PilusCount;
+        }
+
+        /// <summary>
+        ///   After <see cref="IsSubShapePilus"/> returns true this can be used to check if a pilus is an injectisome
+        ///   or normal pilus.
+        /// </summary>
+        /// <returns>True if injectisome</returns>
+        public static bool IsSubShapeInjectisomeIfIsPilus(this ref MicrobePhysicsExtraData physicsExtraData,
+            uint subShape)
+        {
+            var pilusIndex = subShape - physicsExtraData.MicrobeShapesCount;
+
+            return pilusIndex >= physicsExtraData.PilusCount - physicsExtraData.PilusInjectisomeCount;
         }
 
         public static bool MicrobeIndexFromSubShape(this ref MicrobePhysicsExtraData physicsExtraData, uint subShape,

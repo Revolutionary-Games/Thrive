@@ -51,30 +51,46 @@ namespace Systems
                     continue;
                 }
 
-                if (otherIsPilus || oursIsPilus)
+                if (!oursIsPilus)
+                    continue;
+
+                // Us attacking the other microbe. In the case the other entity is attacking us it will be
+                // detected by that entity's physics callback
+
+                // Disallow cannibalism
+                if (ourSpecies.ID == collision.SecondEntity.Get<SpeciesMember>().ID)
+                    return;
+
+                ref var targetHealth = ref collision.SecondEntity.Get<Health>();
+
+                if (ourExtraData.IsSubShapeInjectisomeIfIsPilus(collision.FirstSubShapeData))
                 {
-                    // Us attacking the other microbe, or it is attacking us
+                    // Injectisome attack, this deals non-physics force based damage, so this uses a cooldown
+                    ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
 
-                    // Disallow cannibalism
-                    if (ourSpecies.ID == collision.SecondEntity.Get<SpeciesMember>().ID)
-                        return;
-
-                    ref var targetHealth = ref collision.SecondEntity.Get<Health>();
-
-                    // TODO: readjust the pilus damage now that this takes penetration depth into account
-                    float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
-
-                    // TODO: as this will be done differently ensure game balance still works
-                    // // Give immunity to prevent massive damage at some angles
-                    // // https://github.com/Revolutionary-Games/Thrive/issues/3267
-                    // MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
-
-                    // Skip too small damage
-                    if (damage < 0.0001f)
+                    if (cooldown.IsInCooldown())
                         continue;
 
-                    targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus");
+                    targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(),
+                        Constants.INJECTISOME_BASE_DAMAGE, "injectisome");
+
+                    cooldown.StartInjectisomeCooldown();
+                    continue;
                 }
+
+                // TODO: readjust the pilus damage now that this takes penetration depth into account
+                float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
+
+                // TODO: as this will be done differently ensure game balance still works
+                // // Give immunity to prevent massive damage at some angles
+                // // https://github.com/Revolutionary-Games/Thrive/issues/3267
+                // MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
+
+                // Skip too small damage
+                if (damage < 0.0001f)
+                    continue;
+
+                targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus");
             }
         }
     }

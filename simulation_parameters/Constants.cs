@@ -322,11 +322,6 @@ public static class Constants
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
-    /// <summary>
-    ///   How long a toxin projectile can fly for before despawning if it doesn't hit anything before that
-    /// </summary>
-    public const float TOXIN_PROJECTILE_TIME_TO_LIVE = 3;
-
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
@@ -342,6 +337,9 @@ public static class Constants
 
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 
+    /// <summary>
+    ///   How long a toxin projectile can fly for before despawning if it doesn't hit anything before that
+    /// </summary>
     public const float EMITTED_AGENT_LIFETIME = 5.0f;
 
     public const int MAX_EMITTED_AGENTS_ON_DEATH = 5;
@@ -671,16 +669,18 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.7f;
 
-    // TODO: remove
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
     public const float INJECTISOME_BASE_DAMAGE = 20.0f;
 
+    public const string PILUS_INJECTISOME_UPGRADE_NAME = "injectisome";
+
     /// <summary>
-    ///   How much time (in seconds) a pilus applies invulnerability upon damage.
+    ///   How much time (in seconds) an injectisome applies invulnerability upon damage. Note the invulnerability is
+    ///   not against all other damage types.
     /// </summary>
-    public const float PILUS_INVULNERABLE_TIME = 0.25f;
+    public const float PILUS_INVULNERABLE_TIME = 0.35f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex

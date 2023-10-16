@@ -35,7 +35,9 @@ namespace Systems
                 foreach (var damageEventNotice in receivedDamage)
                 {
                     var damageSource = damageEventNotice.DamageSource;
-                    if (damageSource is "toxin" or "oxytoxy")
+
+                    // TODO: different injectisome sound effect?
+                    if (damageSource is "toxin" or "oxytoxy" or "injectisome")
                     {
                         // Play the toxin sound
                         soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");

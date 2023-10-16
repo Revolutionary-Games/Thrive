@@ -106,11 +106,32 @@
 
                 // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
                 // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
+                // And to detect between the pilus variants, first normal pili are created and only then injectisomes
+                bool hasInjectisomes = false;
+
                 foreach (var organelle in organelles.Organelles)
                 {
                     if (organelle.Definition.HasPilusComponent)
                     {
+                        if (organelle.Upgrades.HasInjectisomeUpgrade())
+                        {
+                            hasInjectisomes = true;
+                            continue;
+                        }
+
                         CreatePilusShape(ref extraData);
+                    }
+                }
+
+                if (hasInjectisomes)
+                {
+                    foreach (var organelle in organelles.Organelles)
+                    {
+                        if (organelle.Definition.HasPilusComponent && organelle.Upgrades.HasInjectisomeUpgrade())
+                        {
+                            CreatePilusShape(ref extraData);
+                            ++extraData.PilusInjectisomeCount;
+                        }
                     }
                 }
 
