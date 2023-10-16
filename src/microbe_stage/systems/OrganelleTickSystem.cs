@@ -44,6 +44,7 @@
 
             // Clear state that needs to be rebuilt each frame
             organelleContainer.ActiveCompoundDetections?.Clear();
+            organelleContainer.ActiveSpeciesDetections?.Clear();
 
             foreach (var organelle in organelleContainer.Organelles.Organelles)
             {

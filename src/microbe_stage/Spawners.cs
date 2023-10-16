@@ -598,7 +598,7 @@ public static class SpawnHelpers
         // Other cell features
         entity.Set(new MicrobeStatus
         {
-            TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL,
+            TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL,
         });
 
         entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellProperties.MembraneType,

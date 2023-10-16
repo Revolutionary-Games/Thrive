@@ -29,10 +29,11 @@
         public Action<Entity, bool>? OnReproductionStatus;
 
         /// <summary>
-        ///   Called periodically to report the chemoreception settings of the microbe
+        ///   Called periodically to report the chemoreception settings of the microbe. Reports both compound and
+        ///   species detections.
         /// </summary>
-        public Action<Entity, List<(Compound Compound, Color Colour, Vector3 Target)>>?
-            OnCompoundChemoreceptionInfo;
+        public Action<Entity, List<(Compound Compound, Color Colour, Vector3 Target)>?,
+            List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>?>? OnChemoreceptionInfo;
     }
 
     public static class MicrobeEventCallbackHelpers

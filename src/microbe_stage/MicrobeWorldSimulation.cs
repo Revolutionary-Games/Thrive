@@ -155,7 +155,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
 
-        microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeEventCallbackSystem =
+            new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem, parallelRunner);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, parallelRunner);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);

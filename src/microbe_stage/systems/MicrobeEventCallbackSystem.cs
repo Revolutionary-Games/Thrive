@@ -17,14 +17,19 @@ namespace Systems
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
     [RunsBefore(typeof(DamageSoundSystem))]
+    [RunsAfter(typeof(OrganelleTickSystem))]
+    [RunsAfter(typeof(MicrobeAISystem))]
     public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>
     {
         private readonly IReadonlyCompoundClouds compoundClouds;
+        private readonly ISpeciesMemberLocationData microbeLocationData;
 
-        public MicrobeEventCallbackSystem(IReadonlyCompoundClouds compoundClouds, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public MicrobeEventCallbackSystem(IReadonlyCompoundClouds compoundClouds,
+            ISpeciesMemberLocationData microbeLocationData, World world, IParallelRunner parallelRunner) :
+            base(world, parallelRunner)
         {
             this.compoundClouds = compoundClouds;
+            this.microbeLocationData = microbeLocationData;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -51,7 +56,7 @@ namespace Systems
         private void HandleChemoreceptorLines(in Entity entity, ref MicrobeStatus status,
             ref MicrobeEventCallbacks callbacks, float delta)
         {
-            if (callbacks.OnCompoundChemoreceptionInfo == null)
+            if (callbacks.OnChemoreceptionInfo == null)
                 return;
 
             status.TimeUntilChemoreceptionUpdate -= delta;
@@ -59,7 +64,7 @@ namespace Systems
             if (status.TimeUntilChemoreceptionUpdate > 0)
                 return;
 
-            status.TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+            status.TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL;
 
             if (!entity.Has<OrganelleContainer>())
             {
@@ -67,9 +72,12 @@ namespace Systems
                 return;
             }
 
-            callbacks.OnCompoundChemoreceptionInfo.Invoke(entity,
-                entity.Get<OrganelleContainer>()
-                    .PerformCompoundDetection(entity, entity.Get<WorldPosition>().Position, compoundClouds));
+            ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+            var position = entity.Get<WorldPosition>().Position;
+
+            callbacks.OnChemoreceptionInfo.Invoke(entity,
+                organelleContainer.PerformCompoundDetection(entity, position, compoundClouds),
+                organelleContainer.PerformMicrobeDetections(entity, position, microbeLocationData));
         }
 
         private void ProcessDamageEvents(in Entity entity, ref MicrobeEventCallbacks callbacks,

@@ -39,7 +39,7 @@
         public List<MovementComponent>? ThrustComponents;
 
         /// <summary>
-        ///   Cilia components that need t obe animated when the cell is rotating fast
+        ///   Cilia components that need to be animated when the cell is rotating fast
         /// </summary>
         [JsonIgnore]
         public List<CiliaComponent>? RotationComponents;
@@ -49,6 +49,12 @@
         /// </summary>
         [JsonIgnore]
         public HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>? ActiveCompoundDetections;
+
+        /// <summary>
+        ///   Compound detections set by chemoreceptor organelles.
+        /// </summary>
+        [JsonIgnore]
+        public HashSet<(Species TargetSpecies, float Range, Color Colour)>? ActiveSpeciesDetections;
 
         /// <summary>
         ///   The number of agent vacuoles. Determines the time between toxin shots.
@@ -280,7 +286,7 @@
         ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be drawn),
         ///   and the location where the compound is located.
         /// </returns>
-        public static List<(Compound Compound, Color Colour, Vector3 Target)> PerformCompoundDetection(
+        public static List<(Compound Compound, Color Colour, Vector3 Target)>? PerformCompoundDetection(
             this ref OrganelleContainer container, in Entity entity, Vector3 position,
             IReadonlyCompoundClouds clouds)
         {
@@ -295,7 +301,7 @@
             else
             {
                 if (container.ActiveCompoundDetections == null)
-                    return new List<(Compound Compound, Color Colour, Vector3 Target)>();
+                    return null;
 
                 collectedUniqueCompoundDetections = container.ActiveCompoundDetections;
             }
@@ -309,6 +315,38 @@
                 if (detectedCompound != null)
                 {
                     detections.Add((compound, colour, detectedCompound.Value));
+                }
+            }
+
+            return detections;
+        }
+
+        public static List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? PerformMicrobeDetections(
+            this ref OrganelleContainer container, in Entity entity, Vector3 position,
+            ISpeciesMemberLocationData microbePositionData)
+        {
+            HashSet<(Species Species, float Range, Color Colour)> collectedUniqueSpeciesDetections;
+
+            if (entity.Has<MicrobeColony>())
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                if (container.ActiveSpeciesDetections == null)
+                    return null;
+
+                collectedUniqueSpeciesDetections = container.ActiveSpeciesDetections;
+            }
+
+            var detections = new List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>();
+
+            foreach (var (species, range, colour) in collectedUniqueSpeciesDetections)
+            {
+                if (microbePositionData.FindSpeciesNearPoint(position, species, range, out var foundEntity,
+                        out var foundPosition))
+                {
+                    detections.Add((species, foundEntity, colour, foundPosition));
                 }
             }
 

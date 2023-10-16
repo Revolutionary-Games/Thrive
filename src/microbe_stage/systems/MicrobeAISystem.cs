@@ -30,7 +30,7 @@
     [With(typeof(CellProperties))]
     [With(typeof(Engulfer))]
     [Without(typeof(AttachedToEntity))]
-    public sealed class MicrobeAISystem : AEntitySetSystem<float>
+    public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
     {
         private readonly Compound atp;
         private readonly Compound glucose;
@@ -114,6 +114,17 @@
         public void ReportPotentialPlayerPosition(Vector3? playerPosition)
         {
             potentiallyKnownPlayerPosition = playerPosition;
+        }
+
+        public IReadOnlyList<(Entity Entity, Vector3 Position, float EngulfSize)>? GetSpeciesMembers(Species species)
+        {
+            BuildMicrobesCache();
+            var id = species.ID;
+
+            if (microbesBySpecies.TryGetValue(id, out var result))
+                return result;
+
+            return null;
         }
 
         public override void Dispose()
@@ -1040,7 +1051,8 @@
 
                     ref var microbeSpecies = ref microbe.Get<SpeciesMember>();
 
-                    // TODO: determine if it is a good idea to resolve this data here immediately
+                    // TODO: determine if it is a good idea to resolve this data here immediately (at least position
+                    // should be fine as it is needed by other systems as well, see ISpeciesMemberLocationData)
                     ref var position = ref microbe.Get<WorldPosition>();
                     ref var engulfer = ref microbe.Get<Engulfer>();
 

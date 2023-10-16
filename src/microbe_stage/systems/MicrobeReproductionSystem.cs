@@ -91,15 +91,7 @@ namespace Systems
 
             base.PreUpdate(delta);
 
-            // Limit how big progress spikes lag can cause
-            if (delta > Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME)
-            {
-                reproductionDelta = Constants.MICROBE_REPRODUCTION_MAX_DELTA_FRAME;
-            }
-            else
-            {
-                reproductionDelta = delta;
-            }
+            reproductionDelta = delta;
 
             // TODO: rate limit how often reproduction update is allowed to run?
             // // Limit how often the reproduction logic is ran

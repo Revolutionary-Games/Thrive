@@ -17,7 +17,8 @@
 
         public float LastCheckedOxytoxyDigestionDamage;
 
-        public float LastCheckedReproduction;
+        // TODO: remove if rate limited reproduction is not needed
+        // public float LastCheckedReproduction;
 
         public float TimeUntilChemoreceptionUpdate;
 
