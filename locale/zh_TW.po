@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2023-02-17 07:30+0000\n"
 "Last-Translator: Sam <samkondori@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -6137,7 +6137,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敵人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -6746,18 +6746,18 @@ msgstr "顯示本地事件"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
+#: ../src/auto-evo/RunResults.cs:968
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
+
 #: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
 #, fuzzy
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 "通過在葡萄糖上移動來收集葡萄糖（白雲）。\n"
 "你的細胞需要葡萄糖，以產生能量來維持生命。\n"
 "跟隨著從你的細胞到附近葡萄糖的線。"
-
-#: ../src/auto-evo/RunResults.cs:968
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"

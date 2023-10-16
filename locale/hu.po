@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -6060,7 +6060,7 @@ msgstr "Ammónia létrehozása"
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
@@ -6672,18 +6672,18 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től, hogy betöltsön egy ökológiai niche-t"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
+#: ../src/auto-evo/RunResults.cs:968
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
+
 #: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
 #, fuzzy
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 "Gyűjts glükózt úgy, hogy áthaladsz a fehér felhőkön.\n"
 "A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
-
-#: ../src/auto-evo/RunResults.cs:968
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"

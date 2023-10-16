@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
-"PO-Revision-Date: 2023-10-16 20:25+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
+"PO-Revision-Date: 2023-10-16 21:54+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -5880,7 +5880,7 @@ msgstr "Spawn ammonia"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
@@ -6484,14 +6484,14 @@ msgstr "Show local events"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
-#: ../src/microbe_stage/MicrobeStage.cs:372
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
-msgstr "[b][u]{0}[/u][/b] became multicellular"
-
 #: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
+
+#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr "[b][u]{0}[/u][/b] became multicellular"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"

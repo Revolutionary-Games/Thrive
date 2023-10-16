@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2023-06-26 06:04+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -5947,7 +5947,7 @@ msgstr "Gerar amônia"
 msgid "SPAWN_ENEMY"
 msgstr "Gerar Inimigo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
@@ -6557,20 +6557,20 @@ msgstr "Mostrar eventos locais"
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Nova espécie: [b][u]{0}[/u][/b] ramificou-se de [b][u]{1}[/u][/b] para preencher um nicho"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
+#: ../src/auto-evo/RunResults.cs:968
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "A nova espécie, [b][u]{0}[/u][/b], ramificou-se de [b][u]{1}[/u][/b] devido a diferentes pressões seletivas"
+
 #: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
 #, fuzzy
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 "Colete glicose (nuvens brancas) movendo-se na direção delas.\n"
 "\n"
 "Sua célula precisa de glicose para produzir energia e sobreviver.\n"
 "\n"
 "Siga a linha da sua célula até a glicose."
-
-#: ../src/auto-evo/RunResults.cs:968
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "A nova espécie, [b][u]{0}[/u][/b], ramificou-se de [b][u]{1}[/u][/b] devido a diferentes pressões seletivas"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -6080,7 +6080,7 @@ msgstr "Spawna ammoniak"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6692,10 +6692,14 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
+#: ../src/auto-evo/RunResults.cs:968
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
+
 #: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
 #, fuzzy
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 "[b]Stadie[/b]\n"
 "  Mikrob\n"
@@ -6709,10 +6713,6 @@ msgstr ""
 "  {3}\n"
 "[b]Grundhexstorlek[/b]\n"
 "  {4}"
-
-#: ../src/auto-evo/RunResults.cs:968
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"

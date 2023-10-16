@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 20:19+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -6011,7 +6011,7 @@ msgstr "แอมโมเนียวางไข่"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:797
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6608,10 +6608,15 @@ msgstr ""
 msgid "TIMELINE_NICHE_FILL"
 msgstr "รหัสยีน:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:371
-#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/auto-evo/RunResults.cs:968
 #, fuzzy
-msgid "TIMELINE_PLAYER_BECAME_MULTICELLULAR"
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "แพร่กระจายไปยังแพทช์:"
+
+#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
 "\n"
@@ -6626,11 +6631,6 @@ msgstr ""
 "Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
 "\n"
 "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
-
-#: ../src/auto-evo/RunResults.cs:968
-#, fuzzy
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "แพร่กระจายไปยังแพทช์:"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
