@@ -182,8 +182,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
         var size = base.CalculateSize();
         if (titleLabel != null && normalFont != null)
         {
-            // reset size of label to update it
-            // otherwise rect height doesn't update to new value soon enough
+            // Reset size of label to update it otherwise rect height doesn't update to new value soon enough
             titleLabel.SetSize(Vector2.Zero);
 
             size = new Vector2(size.x,
@@ -193,9 +192,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
                         normalFont.GetHeight()) -
                     titleLabel.RectSize.y));
 
-            // make the container visible because for whatever
-            // reason resetting size of text makes it invisible
-            // I don't know why this works, but it just works
+            // Fix the margins because resetting the size sets them to absurd values that are not visible on screen
             container.Visible = false;
             container.Visible = true;
         }
