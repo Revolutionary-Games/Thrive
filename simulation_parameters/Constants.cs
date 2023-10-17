@@ -591,6 +591,11 @@ public static class Constants
     public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
+    ///   How much the capacity of a specialized vacuole should be multiplied
+    /// </summary>
+    public const float VACUOLE_SPECIALIZED_MULTIPLIER = 2.0f;
+
+    /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
@@ -878,6 +883,7 @@ public static class Constants
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
     public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
+    public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;

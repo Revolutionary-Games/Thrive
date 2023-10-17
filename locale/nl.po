@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-17 20:55+0200\n"
-"PO-Revision-Date: 2023-06-22 05:54+0000\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
+"PO-Revision-Date: 2023-10-12 12:42+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -60,9 +60,9 @@ msgstr "Ontwaak ({0:F1} / {1:F1})"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Ga door naar de Ontwaakfase. Beschikbaar wanneer je genoeg breinkracht hebt (weefseltype met axonen)."
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:427
+#: ../src/general/base_stage/EditorBase.cs:703
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:473
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Actie geblokkeerd terwijl een andere actie bezig is"
@@ -72,7 +72,6 @@ msgid "ACTION_DELETE"
 msgstr "Verwijder"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Verdubbel Bevolking"
 
@@ -96,7 +95,7 @@ msgstr "Actief"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Huidige threads:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Actieve microben zullen veel bewegen wanneer niets interessants gebeurt.\n"
@@ -106,7 +105,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Extra controles hebben een probleem ontdekt: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Voeg toetskoppeling toe"
 
@@ -135,7 +134,7 @@ msgstr "Stoffen:"
 msgid "AGENT_NAME"
 msgstr "{0} Stof"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Aggressieve microben zullen prooi op lange afstand jagen\n"
@@ -289,7 +288,7 @@ msgstr "Mod assemble is vereist wanneer auto harmony is aangezet"
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Veronderstel dat de CPU hyperthreading aan heeft staan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Het kon niet worden vastgesteld of hyperthreading aan staat.\n"
@@ -310,12 +309,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP-balans"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION"
 msgstr "ATP Productie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTIE TE LAAG!"
 
@@ -375,9 +374,9 @@ msgstr "Auto-Evo"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Onderzoeksgereedschap"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:264
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
@@ -386,9 +385,9 @@ msgstr "Auto-evo mislukt"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo-resultaten:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:265
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "uitvoeringsstatus:"
 
@@ -440,17 +439,17 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
 msgid "BASE_MOBILITY"
 msgstr "Basismobiliteit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:432
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
@@ -478,17 +477,17 @@ msgstr "Bass Harder"
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Wordt Macrosopisch ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:509
+#: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Wordt Meercellig ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thrive"
 
@@ -561,15 +560,15 @@ msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mld"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "Bindings-middel"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Druk op [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodus aan of uit te zetten. In verbindingsmodus kun je andere cellen van je soort aan je kolonie binden door tegen ze aan te bewegen. Om de kolonie te verlaten druk je op [thrive:input]g_unbind_all[/thrive:input]. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie."
 
@@ -594,7 +593,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversiteit vergroot soort mutaties tijdens creatie"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
 
@@ -641,11 +640,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Door Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "CALCIUM_CARBONATE"
 msgstr "Calciumcarbonaat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke schelp gemaakt van calcium carbonaat. Het raakt niet snel beschadigd en heeft weinig energie nodig om niet te vervormen. Het nadeel van zulks een zware schelp is dat de cel veel trager is en niet snel grondstoffen kan absorberen."
 
@@ -671,7 +670,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULEER ACTIE"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:82
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Annuleer huidige actie"
 
@@ -685,10 +684,10 @@ msgstr "Een celtype dat momenteel gebruikt wordt in je lichaamsplan kan niet ver
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kan Gebruikte Celtype Niet Verwijderen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
 msgid "CANNOT_ENGULF"
 msgstr "Kan niet verzwelgen"
 
@@ -767,11 +766,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Cellulase maakt het mogelijk voor een cel om membranen van cellulose af te breken. Elke toevoeging verhoogt de effectiviteit."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "CELLULOSE"
 msgstr "Cellulose"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. [b]Cellulase kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
 
@@ -783,7 +782,7 @@ msgstr "Celtypenaam"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Verandernotities zijn te lang"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander symmetrie"
 
@@ -806,41 +805,41 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg celprocessen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] om in [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen informatie over hun omgeving verkrijgen. Het toevoegen van dit organel zorgt voor een beter afgestelde chemoroceptie. Het betere zicht in de celfase wordt vertegenwoordigd door een lijn die naar stoffen buiten het zichtbare scherm wijst."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "De chemoroceptor maakt het mogelijk om stoffen van verder te detecteren. Eenmaal geplaatst kan de gedetecteerde stoftype en bijbehorende lijnkleur worden gekozen."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetiserende eiwitten"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Chemosynthetizerende eiwitten zijn kleine clusters van eiwitten in het cytoplasma die het mogelijk maken om [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om te zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Aangezien de chemosynthetizerende eiwitten direct in het cytoplasma hangen, zorgen de omringende vloeistoffen voor enige [b]glycolyse[/b]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] om in [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zet ook [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -850,7 +849,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosynthese"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
 msgid "CHITIN"
 msgstr "Chitine"
 
@@ -862,20 +861,20 @@ msgstr "Chitinase"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Chitinase maakt het mogelijk voor de cel om chitinemembranen af te breken. Elke toevoeging verhoogt de effectiviteit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. Ook is de cel langzamer. [b]Chitinaze kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -887,7 +886,7 @@ msgstr "De gekozen bestandsnaam({0}) is al in gebruik. Overschrijven?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:486
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -896,15 +895,15 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "Cilia"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
 msgid "CILIA_DESCRIPTION"
 msgstr "Trilhaartjes lijken op flagellen maar in plaats van stuwkracht in een bepaalde richting zorgen ze voor rotatiekracht waardoor de cel beter kan draaien."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Verhoogt de draaisnelheid van grote cellen."
 
@@ -928,7 +927,7 @@ msgstr "Oude Opslagbestanden Opschonen"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "CLOSE"
 msgstr "Sluiten"
 
@@ -1144,9 +1143,13 @@ msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
 msgstr "Doorgaan naar Ruimtefase?"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "Door een fabriek te plaatsen zal je naar de industriële fase gaan. Wil je doorgaan naar de volgende fase?"
+msgstr ""
+"Je kunt nu doorgaan naar de Ruimte fase door je eerste ruimteschip te lanceren.\n"
+"\n"
+"Het is in de prototypen nog niet mogelijk om naar je planeet terug te keren. Uiteindelijk is het de bedoeling dat je gemakkelijk naar planeten in en uit kunt zoomen.\n"
+"\n"
+"Je kunt de lancering annuleren, hiermee zal ook je ruimteschap vernietigd worden. Wil je het ruimteschip lanceren?"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1158,15 +1161,14 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Sommige instellingen zijn ongeldig"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanopie (Blauw-Geel)"
+msgstr "Eenheid: {0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshopinhoud zal geupload worden uit de map: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:419
 msgid "CONTINUE_THRIVING"
 msgstr "Ga door met Thrive"
 
@@ -1297,7 +1299,7 @@ msgstr "Gemaakt op:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Gemaakt op Platform:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Maak een nieuwe microbe"
 
@@ -1394,11 +1396,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
@@ -1406,7 +1408,7 @@ msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Cytoplasma Glycolyse"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -1480,9 +1482,8 @@ msgstr ""
 " - {2} Backup opslagbestand(en)"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Het verwijderen van dit fossiel kan niet ongedaan worden gemaakt. Weet je zeker dat je het permanent wilt verwijderen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1513,19 +1514,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Neerdalen"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Het verwijderen van dit opslagbestand kan niet ongedaan worden gemaakt, weet je zeker dat je dit bestand permanent wil verwijderen?"
+msgstr "Weetje zeker dat je wil neerdalen?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Fossilizeer deze soort en sla het op in het museum. Je kunt het museum vanuit de Thriveopedia bezoeken. Je kunt de gefossilizeerde soort ook openen in de vrije bouwmodusbewerker."
+msgstr ""
+"Neerdalen zal je verheven status verwijderen en je terug naar de Microbenfase brengen. Je kunt dan in je huidige opslagbestand het spel opnieuw spelen.\n"
+"\n"
+"Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
+"\n"
+"Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1628,7 +1631,7 @@ msgstr "Moeilijk"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normaal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verteringsefficiëntie"
 
@@ -1636,7 +1639,7 @@ msgstr "Verteringsefficiëntie"
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Verteringsefficiëntie:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 msgid "DIGESTION_SPEED"
 msgstr "Verteringssnelheid"
 
@@ -1644,7 +1647,7 @@ msgstr "Verteringssnelheid"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Verteringssnelheid:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1759,7 +1762,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
 msgid "DOUBLE"
 msgstr "Dubbele"
 
@@ -1767,7 +1770,7 @@ msgstr "Dubbele"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dubbelklikken om in volledige schermweergave te zien"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, waardoor het beter beschermd is tegen schade en minder energie kost om zijn vorm te houden. Echter wordt de cel wel langzamer en grondstoffen worden iets minder snel opgenomen."
 
@@ -1913,7 +1916,7 @@ msgstr "Editor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Open bewerker en bewerk je soort"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:47
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welkom bij de Microbenbewerker.\n"
@@ -1944,23 +1947,23 @@ msgstr "Schakel de editor in"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:443
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} voor {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_SOURCES"
 msgstr "Energy Bronnen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Totale opgehaalde energie is {0} met een individuele kostenpost van {1}. Het resultaat is een niet bijgestelde bevolking van {2}"
 
@@ -2074,9 +2077,8 @@ msgstr "Er heeft zich een uitzondering voorgedaan tijdens het laden van opgeslag
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:64
 #: ../src/space_stage/gui/PlanetScreen.tscn:65
-#, fuzzy
 msgid "EXISTING_BUILDINGS"
-msgstr "Vul Bestaande ID In"
+msgstr "Gebouwen"
 
 #: ../src/general/PauseMenu.tscn:239
 msgid "EXIT"
@@ -2149,27 +2151,22 @@ msgid "FAILED"
 msgstr "Mislukt"
 
 #: ../src/saving/SaveManagerGUI.tscn:209
-#, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr "Mijn Geweldige Mod"
+msgstr "Fout: Het verwijderen van een of meer opslagbestanden is niet gelukt."
 
 #: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
-#, fuzzy
 msgid "FAILED_SAVE_DELETION"
-msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
+msgstr "Fout: Verwijderen opslagbestand mislukt"
 
 #: ../src/saving/SaveList.tscn:139
-#, fuzzy
 msgid "FAILED_SAVE_DELETION_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het opslagbestand kan niet worden verwijderd."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
 msgstr "Angstig"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "Angstige microben zullen over grotere afstanden vluchten\n"
@@ -2219,7 +2216,7 @@ msgstr "Vind Huidig Gebied"
 msgid "FINISHED_DOT"
 msgstr "Afgerond."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Klaar met bewerken en terug naar gebied"
 
@@ -2233,32 +2230,30 @@ msgstr "Voltooi {0} Generaties"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1995
+#: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "Schiet toxine"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "Flagellum"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de bewegingssnelheid van de cel te vergroten."
 
 #: ../src/space_stage/SpaceFleet.cs:86
-#, fuzzy
 msgid "FLEET_NAME_FROM_PLACE"
-msgstr "stierf uit op de planeet"
+msgstr "{0} Vloot"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Vlooteenheden"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "FLOATING_CHUNKS_COLON"
@@ -2290,7 +2285,7 @@ msgstr "Vloeibaarheid / Stijfheid"
 msgid "FOCUSED"
 msgstr "Gefocust"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "Gefocuste microben zullen over grotere afstanden brokstukken en prooi zoeken\n"
@@ -2301,7 +2296,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Voedselketen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitheid: {2}) totale hoeveelheid energie {3} (totale fitheid: {4})"
 
@@ -2326,16 +2321,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilizeer deze soort en sla het op in het museum. Je kunt het museum vanuit de Thriveopedia bezoeken. Je kunt de gefossilizeerde soort ook openen in de vrije bouwmodusbewerker."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Fossilizeer deze soort"
+msgstr "Fossilizeren Mislukt"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het fossielbestand kon niet worden geschreven"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:221
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2352,16 +2343,12 @@ msgid "FOSSILISE"
 msgstr "Fosillizeren"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:172
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED"
-msgstr "Aanmaken Mod Mislukt"
+msgstr "Verwijderen van Fossiel Mislukt"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:174
-#, fuzzy
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
-msgstr ""
-"Steam clientbibliotheekinitializatie is mislukt. Steam functies zullen niet beschikbaar zijn.\n"
-"Controleer of Steam actief is en of je ingelogd bent met het juiste account. Start het spel op vanuit de Steam client als deze fout niet verdwijnt."
+msgstr "Het fossielbestand kon niet worden verwijderd"
 
 #: ../src/general/OptionsMenu.tscn:337
 msgid "FOUR_TIMES"
@@ -2470,9 +2457,8 @@ msgid "GODMODE"
 msgstr "Godmodus"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.tscn:16
-#, fuzzy
 msgid "GOD_TOOLS_TITLE"
-msgstr "Word lid van onze gemeenschapsdiscordserver"
+msgstr "Goddelijke Hulpmiddelen"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
 #: ../simulation_parameters/microbe_stage/biomes.json:350
@@ -2488,7 +2474,8 @@ msgstr "Word lid van onze gemeenschapsdiscordserver"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly oog cel"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:164
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:288
 msgid "GOT_IT"
 msgstr "Ik snap het"
 
@@ -2512,7 +2499,7 @@ msgstr "Grafisch Team"
 msgid "GUI"
 msgstr "GGI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Zet lichtflitsende effecten in de GGIs aan (zoals het flitsen van de bewerkerknop).\n"
@@ -2528,13 +2515,13 @@ msgstr "UI Tabblad Navigatie"
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
 msgid "HEALTH"
 msgstr "Sterkte"
 
@@ -2571,9 +2558,8 @@ msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Houdt [thrive:input]g_free_cursor[/thrive:input] ingedrukt voor muisaanwijzer"
 
 #: ../src/ascension_stage/AscensionCeremony.tscn:231
-#, fuzzy
 msgid "HOLD_TO_SKIP_CREDITS"
-msgstr "Houdt ingedrukt om de muisaanwijzer weer te geven"
+msgstr "Ingedrukt houden om over te slaan"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:252
 msgid "HOME"
@@ -2684,14 +2670,12 @@ msgid "INSPECTOR"
 msgstr "Inspecteerder"
 
 #: ../src/awakening_stage/InteractionType.cs:32
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Oogst"
+msgstr "Verheffingspoort Activeren"
 
 #: ../src/space_stage/structure_components/AscensionComponent.cs:33
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Oogst"
+msgstr "Verheffingspoort Activeren (NIET GENOEG ENERGIE)"
 
 #: ../src/awakening_stage/InteractionType.cs:17
 msgid "INTERACTION_CONSTRUCT"
@@ -2714,9 +2698,8 @@ msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Deponeer Materialen (geen geschikte items worden gedragen)"
 
 #: ../src/awakening_stage/InteractionType.cs:20
-#, fuzzy
 msgid "INTERACTION_DESTROY"
-msgstr "Oogst"
+msgstr "Vernietig"
 
 #: ../src/awakening_stage/InteractionType.cs:26
 msgid "INTERACTION_FOUND_SETTLEMENT"
@@ -2735,7 +2718,6 @@ msgid "INTERACTION_PICK_UP"
 msgstr "Oppakken"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:416
-#, fuzzy
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Oppakken (VOL)"
 
@@ -3042,7 +3024,7 @@ msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1347
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Kan laatste organel niet verwijderen"
 
@@ -3346,7 +3328,7 @@ msgstr "Vroege Multicellulaire bewerker laden"
 msgid "LOADING_GAME"
 msgstr "Spel Wordt Geladen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
@@ -3406,40 +3388,40 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:123
-#, fuzzy
 msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr "Zet dag/nacht cyclus aan"
+msgstr "Zet dag/nacht cyclus vast"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:566
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
 
-#: ../src/general/MainMenu.tscn:1019
-#, fuzzy
+#: ../src/general/MainMenu.tscn:1009
 msgid "LOW_MENU_PERFORMANCE"
-msgstr "Prestatie"
+msgstr "Lage Prestaties Gedetecteerd"
 
-#: ../src/general/MainMenu.tscn:1021
-#, fuzzy
+#: ../src/general/MainMenu.tscn:1011
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
-msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
+msgstr ""
+"Je gemiddelde venstervernieuwing is erg laag.\n"
+"3D menu achtergronden zijn aangezet, dit kan veel systeembronnen gebruiken. Het uitzetten van deze optie kan de prestaties veel verbeteren.\n"
+"Wil je dit nu doen?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "LYSOSOME"
 msgstr "Lysozoom"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Stel Handmatig Tijd In"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -3516,7 +3498,7 @@ msgstr "Mjr"
 msgid "MEMBRANE"
 msgstr "Membraan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membraan-stevigheid"
 
@@ -3533,15 +3515,15 @@ msgid "MESOPELAGIC"
 msgstr "Mesopelagisch"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:263
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:384
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "Metabolosomen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. De snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -3678,7 +3660,7 @@ msgstr "Microbe vrij bouwen bewerker"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:227
+#: ../src/microbe_stage/MicrobeSpecies.cs:222
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fase[/b]\n"
@@ -3700,7 +3682,14 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
+msgstr ""
+"Je hebt de mogelijkheid om multicellulair te worden verkregen. Dit is de volgende stap in je tocht.\n"
+"\n"
+"Om verder te gaan, klik op de \"Wordt Meercellig\" knop."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Verzamel glucoze (witte wolken) door er overheen te bewegen.\n"
@@ -3709,7 +3698,7 @@ msgstr ""
 "\n"
 "Volg de lijn van je cel naar glucose in de buurt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Om je cel te controleren gebruik je de knoppen die in de buurt van je cel (midden van het scherm) worden weergegeven. De richting van de cel controleer je met de muis.\n"
@@ -3718,14 +3707,14 @@ msgstr ""
 "\n"
 "Probeer alle knoppen voor enkele seconden om verder te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:150
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
 "Gebruik de besturingsknoppen die rond je cel worden weergegeven om je cel te controleren. Gebruik de andere knuppel om richting te geven aan de cel.\n"
 "WAARSCHUWING: invoer vanuit een spelbesturingsapparaat is experimenteel en niet geheel bruikbaar (zonder een touchpad). Er zijn waarschijnlijk bug.\n"
 "Probeer alle richtingen voor enkele seconden om verder te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "Kijk uit voor verlagingen in de zonlichtmeter op het omgevingspaneel.\n"
@@ -3734,7 +3723,7 @@ msgstr ""
 "Fotosynthese werkt niet tijdens de nacht.\n"
 "Zorg ervoor dat je genoeg opgeslagen hebt om de nacht te overleven."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Houdt de gezondheidsbalk naast de ATP-balk in de gaten (rechtsonder).\n"
@@ -3821,7 +3810,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"][/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
@@ -3867,9 +3856,8 @@ msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Diversen 3D Fase"
 
 #: ../src/general/OptionsMenu.tscn:1917
-#, fuzzy
 msgid "MISC_FUN"
-msgstr "Overig"
+msgstr "Diverse Lol"
 
 #: ../src/modding/ModUploader.cs:345
 msgid "MISSING_DESCRIPTION"
@@ -3884,19 +3872,19 @@ msgid "MISSING_TITLE"
 msgstr "Titel mist"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "Mitochondrion"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. De snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Gemixt..."
 
@@ -4261,19 +4249,17 @@ msgid "NAME"
 msgstr "Naam:"
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
-#, fuzzy
 msgid "NAME_LABEL_CITY"
-msgstr "Bioom: {0}"
+msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
-#, fuzzy
 msgid "NAME_LABEL_FLEET"
-msgstr "Bioom: {0}"
+msgstr "{0} (KRT: {1})"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (U)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4337,7 +4323,7 @@ msgstr "Nieuwe naam:"
 msgid "NEXT_CAPITAL"
 msgstr "VOLGENDE"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:92
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
 msgid "NEXT_EDITOR_TAB"
 msgstr "Ga naar het volgende bewerkertabblad"
 
@@ -4347,28 +4333,28 @@ msgid "NITROGEN"
 msgstr "Stikstof"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "Stikstofase"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:782
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Stikstofbindende plastide"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4377,11 +4363,11 @@ msgid "NONE"
 msgstr "Geen"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 msgid "NORMAL"
 msgstr "Normaal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Het meest eenvoudige type membraan. Het biedt weinig bescherming tegen schade en heeft ook meer energie nodig om zijn vorm te behouden. Het voordeel is dat deze cel snel kan bewegen en makkelijk voedingsstoffen kan absorberen."
 
@@ -4434,7 +4420,7 @@ msgid "NO_AI"
 msgstr "Geen AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
 msgid "NO_DATA_TO_SHOW"
 msgstr "Geen Data om Weer te Geven"
 
@@ -4450,7 +4436,7 @@ msgstr "Geen fossielenmap gevonden"
 msgid "NO_MODS_ENABLED"
 msgstr "Geen Mods Aangezet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Geen processen"
@@ -4472,21 +4458,21 @@ msgid "NO_SELECTED_MOD"
 msgstr "Geen Mod Geselecteerd"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:668
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "Kern"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1330
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1345
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Kan de nucleus niet verwijderen aangezien dit een onomkeerbare evolutie is.\n"
 "Echter, als het in de huidige sessie is geplaatst kan het nog wel ongedaan worden gemaakt en opnieuw worden gedaan."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "De kenmerkende eigenschap van eukaryotische cellen. De nucleus bevat ook het endoplasmatisch reticulum en het golgicomplex. Het is een evolutie van de prokaryotische cellen waarbij het interne membranen ontwikkelt. Dit wordt gedaan door een andere prokaryoot in zichzelf op te nemen. Dit maakt het mogelijk om de verschillende processen in een cel te scheiden en compartmentalizeren zodat ze elkaar niet in de weg zitten. In tegenstelling tot organellen die vrij in het cytoplasma vloeien, kunnen er zo meer complexe, efficiënte, en gespecializeerde organellen aan het membraan kunnen worden verbonden. Echter zorgt dit er ook voor dat de cel veel groter is en veel meer energie nodig heeft om te overleven."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Staat de evolutie van meer complexe organellen toe die gebonden zijn aan het membraan. Het verminderd ook schade met 50%. Kost veel ATP om te onderhouden. Deze evolutie kan niet ongedaan worden gemaakt."
 
@@ -4498,8 +4484,8 @@ msgstr "Numlock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2279
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2309
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4556,11 +4542,10 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
-#, fuzzy
 msgid "OPEN_GOD_TOOLS"
-msgstr "Open Info URL"
+msgstr "Goddelijke Hulpmiddelen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:56
 msgid "OPEN_HELP_SCREEN"
 msgstr "Open het hulpscherm"
 
@@ -4596,7 +4581,7 @@ msgstr "Open wetenschapsmenu"
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:50
 msgid "OPEN_THE_MENU"
 msgstr "Open het menu"
 
@@ -4608,7 +4593,7 @@ msgstr "Help met vertalen"
 msgid "OPERATION_PAUSED_DOT"
 msgstr "Gepauzeert."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Opportunistische microben zullen met rivalen concurreren over brokstukken\n"
@@ -4632,11 +4617,11 @@ msgid "ORGANELLES"
 msgstr "Organellen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:918
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 msgid "ORGANELLE_AXON"
 msgstr "Axon"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
 
@@ -4645,24 +4630,24 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulair"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:960
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibril"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Maakt het mogelijk spiercellen te maken. Doet op dit moment niets in het prototype."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
 msgid "ORGANELLE_PILUS"
 msgstr "Jagende Pilus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "Pili (enkelvoud: pilus) zijn te vinden op het oppervlak van veel microorganismen en lijken op dunne haartjes. Het oppervlak van een microorganisme kan tienduizenden pili bevatten. Ze dienen meerdere rollen, waaronder predatie. Ziekmakende microorganisme gebruiken pili om te binden aan de weefsels van de gastheer, of om door het buitenste membraan te prikken om toegang tot het cytoplasma te krijgen. Verschillende soortgelijke pili bestaan maar deze zijn niet evolutionair aan elkaar gerelateerd. In plaats daarvan zijn ze ontstaan als een effect van convergerende evolutie. Een enkel organisme kan de mogelijkheid hebben om verschillende soorten pili tot uiting te brengen, en de pili op hun oppervlak zijn continu aan verandering of verplaatsing onderhevig."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Kan worden gebruikt om andere cellen te steken of te verdedigen tegen gifstoffen."
 
@@ -4670,40 +4655,40 @@ msgstr "Kan worden gebruikt om andere cellen te steken of te verdedigen tegen gi
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:426
 msgid "OSMOREGULATION"
 msgstr "Osmoregulatie"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:445
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:644
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulatiekosten"
 
@@ -4747,15 +4732,15 @@ msgid "OXYGEN"
 msgstr "Zuurstof"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:200
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoom"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:881
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
 msgid "OXYTOXISOME_DESC"
 msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
@@ -4836,7 +4821,7 @@ msgstr "UITGESTORVEN IN GEBIED"
 msgid "PATCH_MAP"
 msgstr "Gebiedenkaart"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Klik, sleep, en zoom om rond te bewegen"
 
@@ -4911,8 +4896,8 @@ msgstr "Vreedzaam"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:253
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -4951,9 +4936,9 @@ msgstr "Fotosynthese"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fysieke Omstandigheden"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fysieke Weerstand"
 
@@ -5061,7 +5046,7 @@ msgstr "populatie:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "bevolking in gebieden:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2270
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5161,7 +5146,7 @@ msgstr ""
 "Weet je zeker dat je het spel wil verlaten?\n"
 "Je zult voortgang die niet is opgeslagen verliezen."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Maak willekeurige soortnaam"
 
@@ -5200,7 +5185,7 @@ msgstr "Bezoek onze subreddit"
 msgid "REDO"
 msgstr "Opnieuw Doen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
 msgid "REDO_THE_LAST_ACTION"
 msgstr "De laatste actie opnieuw doen"
 
@@ -5281,8 +5266,8 @@ msgstr "Standaard"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Weerstaat basale verzwelging"
 
@@ -5290,12 +5275,12 @@ msgstr "Weerstaat basale verzwelging"
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Absorptiesnelheid Grondstoffen"
 
@@ -5305,9 +5290,8 @@ msgid "RESOURCE_AMOUNT_SHORT"
 msgstr "{0}: {1}"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:18
-#, fuzzy
 msgid "RESOURCE_ENERGY"
-msgstr "Steen"
+msgstr "Energie"
 
 #: ../simulation_parameters/awakening_stage/world_resources.json:13
 msgid "RESOURCE_FOOD"
@@ -5374,7 +5358,7 @@ msgstr "Rechtermuisknop"
 msgid "RIGID"
 msgstr "Rigide"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
 
@@ -5432,16 +5416,16 @@ msgstr "Voer een zekere hoeveelheid werelden uit. De hoeveelheid generaties voor
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:684
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:686
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5479,12 +5463,11 @@ msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gema
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Wanneer je een fout met het opslaan rapporteert, voeg dan [color=#3796e1][url={0}]{1}[/url][/color] van de [color=#3796e1][url={2}]logbestandenmap[/url][/color] toe. Deze bevat kritieke informatie voor Thrive ontwikkelaars op te kunnen onderzoeken wat het probleem met het opslaan was. Zonder dit bestand is het extreem moeilijk om het probleem te diagnostiseren en op te lossen."
 
 #: ../src/saving/SaveStatusOverlay.cs:182
-#, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON debug modus:"
+msgstr "Zorg er voor dat JSON debug modus niet uit staat voordat je deze fout met opslaan rapporteert. De automatische JSON debug modus zou een extra bestand genaamd {0} in de [color=#3796e1][url={1}]logbestandenmap[/url][/color] hebben moeten maken. Dit bestand bevat kritieke informatie die de Thrive ontwikkelaars nodig hebben om de fout met het opslaan te onderzoeken."
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5585,28 +5568,24 @@ msgid "SCALING_ON_INVERSE"
 msgstr "Omgekeerd geschaald"
 
 #: ../src/general/OptionsMenu.tscn:1928
-#, fuzzy
 msgid "SCREEN_EFFECT"
-msgstr "Effecten van Buiten:"
+msgstr "Schermeffect"
 
 #: ../simulation_parameters/common/screen_effects.json:13
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr "Effecten van Buiten:"
+msgstr "GB Palet"
 
 #: ../simulation_parameters/common/screen_effects.json:18
-#, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr "Effecten van Buiten:"
+msgstr "GB Grafische Kleuren"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Grijstinten"
 
 #: ../simulation_parameters/common/screen_effects.json:3
-#, fuzzy
 msgid "SCREEN_EFFECT_NONE"
-msgstr "Er wordt niets onderzocht"
+msgstr "Geen"
 
 #: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
 #: ../src/general/OptionsMenu.tscn:1520
@@ -5623,7 +5602,7 @@ msgstr "Zoeken..."
 
 #: ../src/thriveopedia/Thriveopedia.tscn:353
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Zoek..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -5635,7 +5614,7 @@ msgstr "Zeebodem"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2040
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "Slijm vrijlaten"
 
@@ -5700,9 +5679,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Selecteer Voorbeeld Plaatje"
 
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:20
-#, fuzzy
 msgid "SELECT_SPACE_STRUCTURE_TITLE"
-msgstr "Selecteer Constructie om te Plaatsen"
+msgstr "Selecteer Structuur om te Bouwen"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
@@ -5713,9 +5691,8 @@ msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Selecteer een weefseltype om hier te bewerken vanuit het tabblad in de bewerker"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:41
-#, fuzzy
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
-msgstr "Geselecteerd:"
+msgstr "Selecteer stof die door vacuole opgeslagen zal worden:"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "SEPTEMBER"
@@ -5725,7 +5702,7 @@ msgstr "September"
 msgid "SESSILE"
 msgstr "Zittend"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Deze waarde wordt alleen toegepast op nieuwe spellen die gestart worden na het wijzigen van deze optie"
 
@@ -5749,7 +5726,7 @@ msgstr "Toon nieuwe patchnotities automatisch"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Toon patchnotities van nieuwe Thrive uitgaven automatisch in het hoofdmenu"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
 msgid "SHOW_TUTORIALS"
 msgstr "Toon instructies"
 
@@ -5765,7 +5742,7 @@ msgstr "Toon instructies (in nieuwe spellen)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Toon waarschuwing voor niet opgeslagen voortgang"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Zet het waarschuwingsvenster voor niet opgeslagen voortgang bij het sluiten van het spel aan of uit."
 
@@ -5774,15 +5751,15 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Toon Thrive nieuwsfeed (wordt van het internet gedownload)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "Signaalgever"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Signaalgevers maken het mogelijk voor cellen om chemicaliën te maken waar andere cellen op reageren. Signaalchemicaliën kunnen gebruikt wordet om andere cellen aan te trekken of om ze te waarschuwen voor gevaar en te laten vluchten."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Houdt [thrive:input]g_pack_commands[/thrive:input] ingedrukt om een menu te openen waarmee je bevelen naar andere leden van je soort kan sturen."
 
@@ -5811,11 +5788,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Signaal om te Sturen"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
 msgid "SILICA"
 msgstr "Siliciumdioxide"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een sterke celmuur van silica. Het kan zeer goed tegen schade en is zeer resistent voor fysieke schade. Het heeft ook minder energie nodig om zijn vorm te behouden. Echter, het vertraagt de cel ernstig en de cel kan grondstoffen minder snel opnemen."
 
@@ -5833,15 +5810,15 @@ msgid "SLIDESHOW"
 msgstr "Diavoorstelling"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr "Slijmstraal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "Veel organismen produceren slijmachtige substanties van polysachariden. Slijmstof is zulks een polysacharide. Veel soorten gebruiken slijm om voort te bewegen. Sommige soorten bacteriën spuiten deze stoffen met hoge druk achter hun uit. Deze slijmstralen werken als rakketmotoren en duwen de cel met enorme snelheid vooruit. Slijm kan ook gebruikt worden om roofdieren te belemmeren door ze in een stof te vangen die alleen organismen met slijmstralen kunnen navigeren."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"mucilage\"][/thrive:compound]. Druk op [thrive:input]g_secrete_slime[/thrive:input] om opgeslagen [thrive:compound type=\"mucilage\"][/thrive:compound] vrij te laten. De cel wordt hierdoor sneller en prooidieren worden vertraagd."
 
@@ -5888,19 +5865,16 @@ msgid "SPACE_STAGE"
 msgstr "Ruimtefase"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:69
-#, fuzzy
 msgid "SPACE_STRUCTURE_HAS_RESOURCES"
-msgstr "Benodigde materialen voor constructie gedeponeerd"
+msgstr "Bouw van structuur wacht op constructievloot"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:65
-#, fuzzy
 msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
-msgstr "Bouwen: {0}"
+msgstr "Geen extra informatie beschikbaar"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
-#, fuzzy
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr "Bouwen: {0}"
+msgstr "Structuur wacht op constructievloot en grondstoffen: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -5910,7 +5884,7 @@ msgstr "Plaats ammoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Plaats Vijand"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Kan de plaats vijand cheat niet gebruiken omdat dit gebied geen vijandige soorten bevat"
 
@@ -5988,15 +5962,14 @@ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr "Minimale populatie fractie van een soort om splitsing bij mutaties toe te staan"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:48
-#, fuzzy
 msgid "SPECIES_TO_FIND"
-msgstr "Soorten:"
+msgstr "Soorten om te Vinden:"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} met bevolking: {1}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
 msgid "SPEED"
 msgstr "Snelheid"
 
@@ -6116,27 +6089,27 @@ msgstr "Stam"
 msgid "STOP"
 msgstr "Stop"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:407
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:606
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:703
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1958
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2343
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2477
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
 msgid "STORAGE"
 msgstr "Opslag"
 
@@ -6167,14 +6140,12 @@ msgid "STRUCTURE"
 msgstr "Structuur"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
-#, fuzzy
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr "Gemeenschapscentrum"
+msgstr "Verheffingspoort"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
-#, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
-msgstr "Gemeenschapscentrum"
+msgstr "Dysonzwerm"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
@@ -6228,7 +6199,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Verga meteen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6288,58 +6259,48 @@ msgid "TAKE_SCREENSHOT"
 msgstr "Maak een screenshot"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:26
-#, fuzzy
 msgid "TARGET_TYPE_COLON"
-msgstr "Type:"
+msgstr "Doelwittype:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
-#, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Verheffing"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr "Jagen-Verzamelen"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Geavanceerde Ruimte"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Industrieel"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Voor-Maatschappelijk"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr "Technologie ontgrendeld: {0}"
+msgstr "Primitief"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr "Simpele Stenen Werktuigen"
+msgstr "Sci-fi"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
-#, fuzzy
 msgid "TECHNOLOGY_LEVEL_SPACE_AGE"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Ruimtetijdperk"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
-#, fuzzy
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Benodigd technologieniveau: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
-#, fuzzy
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr "Gemeenschapscentrum Wordt Gebouwd"
+msgstr "Rakketwetenschap"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
@@ -6359,7 +6320,7 @@ msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Technologie ontgrendeld: {0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6400,28 +6361,28 @@ msgid "THEORY_TEAM"
 msgstr "Theorieteam"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:811
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] aan de hand van temperatuurverschillen. Snelheid schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:330
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het aan hitte wordt blootgesteld vouwt het zichzelf op en bindt het aan ADP. Wanneer het weer afkoelt ontvouwt het zichzelf en vormt het [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:978
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] door middel van temperatuurverschillen. Snelheid schaalt met [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -6495,7 +6456,7 @@ msgstr "Gebiedenkaart"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
 msgid "THYLAKOID"
 msgstr "Thu"
 
@@ -6503,7 +6464,7 @@ msgstr "Thu"
 msgid "THYLAKOIDS"
 msgstr "thylakoïden"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
@@ -6530,6 +6491,15 @@ msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe so
 #: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
+
+#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr ""
+"Je hebt de mogelijkheid om multicellulair te worden verkregen. Dit is de volgende stap in je tocht.\n"
+"\n"
+"Om verder te gaan, klik op de \"Wordt Meercellig\" knop."
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6561,14 +6531,14 @@ msgstr "Gepasseerde tijd: {0:#,#} jaren"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Tijd"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
 msgstr "Titel:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2006
+#: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "Binden aan/uit"
 
@@ -6579,7 +6549,7 @@ msgstr "Open/Sluit debugpaneel"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
+#: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "Zet verzwelgen aan/uit"
 
@@ -6631,28 +6601,28 @@ msgstr "Totale Bevolking:"
 msgid "TOTAL_SAVES"
 msgstr "Totale hoeveelheid opslagbestanden:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 msgid "TOXIN_RESISTANCE"
 msgstr "Weerstand tegen Gifstoffen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
 "Vacuole"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Wordt Nog Geimplementeerd."
 
@@ -6685,14 +6655,15 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Maak een screenshot!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "TUTORIAL"
 msgstr "Instructie"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:396
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Welkom bij de Vroege Meercellige Fase!\n"
@@ -6705,7 +6676,7 @@ msgstr ""
 "\n"
 "Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dit paneel toont een voorspelling van je toekomstige bevolking. Deze getallen komen uit de bevolkingssimulatie van auto-evo.\n"
@@ -6716,7 +6687,7 @@ msgstr ""
 "\n"
 "Je kunt meer gedetailleerde informatie over de voorspelling inzien door op de vraagtekenknop in het paneel te drukken. Druk hier op om door te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:74
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Dit is de celbewerker waar je je soort kunt evolueren door mutatiepunten (MP) uit te geven. Iedere generatie heb je altijd precies 100 MP, dus doe geen moeite om ze op te sparen.\n"
@@ -6725,7 +6696,7 @@ msgstr ""
 "\n"
 "Selecteer een onderdeel uit het linkerpaneel om verder te gaan. Plaats het onderdeel door naast het hex met de linkermuisknop te klikken. Je kunt delen roteren met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:128
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Dit is de basis van het bewerken van je soort. Om het helemaal af te maken, kun je je soort een andere naam geven door linksonder op de naam te klikken en de tekst aan te passen.\n"
@@ -6736,7 +6707,19 @@ msgstr ""
 "\n"
 "Succes!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+msgstr ""
+"Dit is de gebiedenkaart.\n"
+"\n"
+"Elk icoon representeert een unieke omgeving die je kan bewonen. Het paneel aan de rechterkant beschrijft de omstandigheden van het geselecteerde gebied.\n"
+"\n"
+"Als je een gebied selecteert wat verbonden is met het gebied waar je je nu in bevindt, weergegeven door een knipperende groene rand, dan kun je met de \"Ga naar Dit Gebied\" aan de rechterkant naar dat gebied migreren. \n"
+"\n"
+"Selecteer een gebied om verder te gaan."
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Dit is de gebiedenkaart.\n"
@@ -6747,7 +6730,7 @@ msgstr ""
 "\n"
 "Selecteer een gebied om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organellen verwijderen kost ook MP aangezien het een mutatie van je soort is. Dit is niet het geval als ze in de huidige bewerksessie zijn geplaatst.\n"
@@ -6758,7 +6741,7 @@ msgstr ""
 "\n"
 "Klik op de ongedaan maken knop om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:107
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Let goed op de hulpmiddelentips die verschijnen wanneer je onderdelen in het menu selecteert. Deze tips geven aan wat de onderdelen doen. Onderdelen kunnen meer schade aanrichten dan dat ze waard zijn als je hun functie niet goed overweegt.\n"
@@ -6767,7 +6750,7 @@ msgstr ""
 "\n"
 "Klik op de opnieuw doen knop (naast de ongedaan maken knop) om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Om te overleven kun je je het beste richten op specializatie van een of twee energiebronnen. Met teveel energiebronnen heb je namelijk te veel grondstoffen nodig.\n"
@@ -6776,7 +6759,7 @@ msgstr ""
 "\n"
 "Een mogelijke strategie is om een enkele hex van cytoplasma te blijven en eerst naar oppervlaktegebieden te migreren. Eenmaal bij de oppervlaktegebieden kun je dan de fotosyntheseorganellen evolueren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Je cel heeft het lang genoeg overleefd om zichzelf voort te planten.\n"
@@ -6785,21 +6768,21 @@ msgstr ""
 "\n"
 "Om de bewerker te openen klik op je de grote knipperende knop rechtsonder."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Je cel is verzwolgen en wordt verteerd. De voortgang kun je zien op je gezondheidsbalk. Je cel zal dood zijn wanneer het verteren is afgerond of een maximumtijdslimiet is bereikt.\n"
 "\n"
 "Je kunt de verga meteen knop gebruiken om dit over te slaan en meteen opnieuw geplaatst te worden. Houdt er echter rekening mee dat er altijd een kans is dat je onstsnapt!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Je cel heeft een beperkte capaciteit voor objecten die tegelijk verzwolgen kunnen zijn. Deze limiet is gebaseerd op formaat; kleinere cellen hebben minder capaciteit.\n"
 "\n"
 "Wanneer een cel vol is kan het geen nieuwe dingen meer verzwelgen. Om weer te kunnen verzwelgen zul je moeten wachten tot er genoeg verzwolgen objecten volledig verteerd zijn."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Verzwelg objecten door over ze heen te bewegen terwijl de verzwelgmodus aanstaat. Zet verzwelgmodus aan door [thrive:input]g_toggle_engulf[/thrive:input] in te drukken.\n"
@@ -6808,14 +6791,14 @@ msgstr ""
 "\n"
 "Volg de lijn van je cel naar een verzwelgbaar object in de buurt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Lukt het niet? Kijk dan in het helpmenu. Je kunt dit openen door linksonder op de vraagtekenknop te drukken.\n"
 "\n"
 "Nog een tip, je kunt in- en uitzoomen met je rolwiel."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:386
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Je zit vol met [thrive:compound type=\"ammonia\"][/thrive:compound] en [thrive:compound type=\"phosphates\"][/thrive:compound]. Echter, als niet-meercellige kolonie maak je geen voortgang met voortplanting.\n"
@@ -6823,21 +6806,21 @@ msgstr ""
 "Als je niet meercellig wenst te worden, zul je de kolonie moeten verlaten om de bewerker te kunnen openen.\n"
 "Verlaat de kolonie om weer te kunnen groeien door [thrive:input]g_unbind_all[/thrive:input] in te drukken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Om jezelf voort te planten, moet je organellen dupliceren. Dit gebeurt geleidelijk als je overleeft maar je kunt dit proces versnellen door ammonia en fosfaat te verzamelen.\n"
 "\n"
 "Je balken rechtsonder tonen je voortgang. Ze worden wit wanneer je klaar bent om jezelf voort te planten."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Je hebt de ontbindingsmodus aangezet. In deze modus kun je op kolonieleden klikken om ze te ontkoppelen.\n"
 "\n"
 "Om de kolonie geheel te verlaten klik je op je eigen cel of druk je de knop [thrive:input]g_unbind_all[/thrive:input] in."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:339
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
 
@@ -6862,7 +6845,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Je moet je veranderingen toepassen om mods te laden of ontladen."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2018
+#: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "Ontbind al"
 
@@ -6882,23 +6865,21 @@ msgstr "Onderwatergrot"
 msgid "UNDO"
 msgstr "Ongedaan Maken"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Laatste actie ongedaan maken"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:123
-#, fuzzy
 msgid "UNIT_ACTION_CONSTRUCT"
-msgstr "Maak Constructie Af"
+msgstr "Bouw"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:112
-#, fuzzy
 msgid "UNIT_ACTION_MOVE"
-msgstr "Oogst"
+msgstr "Beweeg"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Simpele Rakket"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -6953,14 +6934,12 @@ msgid "UPGRADE_NAME_NONE"
 msgstr "Geen upgrade"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:34
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
-msgstr "Wanneer je in de verzwelgmodus ([thrive:input]g_toggle_engulf[/thrive:input]) zit zal dit type cilia draaikolken in het water maken om objecten in de buurt naar binnen te trekken. Dit is nuttig voor het vangen van prooi."
+msgstr "Injectisoom Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:35
-#, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
-msgstr "Wanneer je in de verzwelgmodus ([thrive:input]g_toggle_engulf[/thrive:input]) zit zal dit type cilia draaikolken in het water maken om objecten in de buurt naar binnen te trekken. Dit is nuttig voor het vangen van prooi."
+msgstr "Vorm de pilus om in een injectisoom. Deze kan gifschade kan aanrichten wanneer het andere cellen doorboort"
 
 #: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -7011,31 +6990,29 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Gebruik virtueel vensterformaat"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "Vacuole"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Dit vacuool is een intern membraanachtig organel dat de cel gebruikt voor opslag. Ze worden gevormd door verschillende vesikelen. Dit zijn kleinere membraanachtige structuren die veel gebruikt worden in cellen voor opslag. In het vacuool zijn deze vesikelen aan elkaar gefuseerd. Ze zijn gevuld met water waar moleculen, enzymen, vaste materie, en andere stoffen in worden bewaard. Hun vorm kan variëren per cel."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Gespecializeerd Vacuole"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
-#, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr "Verhoogt de opslagcapaciteit van de cel."
+msgstr "Het vacuole zal {0} eenheden van alle stoffen opslaan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Verhoogt de opslagcapaciteit van de cel."
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
-#, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr "Verhoogt de opslagcapaciteit van de cel."
+msgstr "Het vacuole zal {0} eenheden van de geselecteerde stof opslaan"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:617
 #: ../src/gui_common/CompoundAmount.cs:173
@@ -7117,7 +7094,7 @@ msgstr "Geluid Harder"
 msgid "VSYNC"
 msgstr "vSync"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:258
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten op auto-evo:"
 
@@ -7149,7 +7126,7 @@ msgstr "Scroll naar rechts"
 msgid "WHEEL_UP"
 msgstr "Scroll omhoog"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:69
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"
 msgstr "Zul jij overleven?"
 

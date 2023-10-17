@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-17 20:55+0200\n"
+"POT-Creation-Date: 2023-10-16 21:54+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -62,9 +62,9 @@ msgstr "מודע"
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "מודע"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
-#: ../src/general/base_stage/EditorBase.cs:681
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:427
+#: ../src/general/base_stage/EditorBase.cs:703
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:473
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "פעולה זו חסומה בזמן שפעולה אחרת בתהליך"
@@ -102,7 +102,7 @@ msgstr "פעיל"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "נושאים נוכחים:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "דרכי אימות נוספים זיהו בעיה: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4090
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "הוסף מקשר חדש"
 
@@ -143,7 +143,7 @@ msgstr "מצב:"
 msgid "AGENT_NAME"
 msgstr "{0} {1}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
@@ -280,7 +280,7 @@ msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה Harmony מ
 msgid "ASSUME_HYPERTHREADING"
 msgstr "נניח שלמעבד יכול להפעיל מרבה-נושאים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4108
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "זה לא ניתן להציג אם מרבה-נושאים פועל או לא.\n"
@@ -301,12 +301,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "מאזן ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:334
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
@@ -366,9 +366,9 @@ msgstr "מפתח - אוטומטי"
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "כלים חקר של מפתח-אוטומטי"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:247
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:198
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:264
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
@@ -377,9 +377,9 @@ msgstr "המפתח האוטומטי נכשל"
 msgid "AUTO_EVO_RESULTS"
 msgstr "תוצאות מפתח אוטומטי:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:199
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:265
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -433,17 +433,17 @@ msgstr "לוכסן שמאלי"
 msgid "BACKSPACE"
 msgstr "חזור"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2755
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
 msgid "BASE_MOBILITY"
 msgstr "ניידות בסיסית"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:432
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
@@ -471,17 +471,17 @@ msgstr "מקש Bass Up"
 msgid "BATHYPELAGIC"
 msgstr "בתיפלגיים"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:552
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:509
+#: ../src/microbe_stage/MicrobeHUD.cs:516
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:132
 msgid "BEGIN_THRIVING"
 msgstr "התחל לשגשג"
 
@@ -555,15 +555,15 @@ msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "מקשר"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1486
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "לחץ על [thrive:input]g_toggle_binding[/thrive:input] על מנת להחליף למצב קישור. בזמן מצב קישור אתה יכול להיצמד לתאים אחרים מאותו בני מינך על מנת ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ [thrive:input]g_unbind_all[/thrive:input]."
 
@@ -588,7 +588,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2422
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "חלולית של ביולומינסנציה"
 
@@ -638,11 +638,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "עלי ידי Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "CALCIUM_CARBONATE"
 msgstr "סידן פחמתי"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני נזק ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא גורמת לתא לנוע באטיות הרבה יותר וגם לוקח יותר זמן לספוג משאבים."
 
@@ -668,7 +668,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "בטל פעולה"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:82
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "בטל פעולה נוכחית"
 
@@ -682,10 +682,10 @@ msgstr "לא ניתן למחוק סוג תא הנמצא כרגע בשימוש כ
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "לא ניתן למחוק סוג תא זה אשר בשימוש"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
 msgid "CANNOT_ENGULF"
 msgstr "לא יכול לבלוע"
 
@@ -764,11 +764,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "צילולאז מאפשרים לתא לפרק ממברנות העשויות מתאית. כל תוספת מגדילה את יעילותו."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2892
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "CELLULOSE"
 msgstr "תאית"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
@@ -780,7 +780,7 @@ msgstr "שם סוג תא"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "הערות שינוי ארוכות מידי"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
 
@@ -803,41 +803,41 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "כימופלסט"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר [thrive:compound type=\"hydrogensulfide\"][/thrive:compound],[thrive:compound type=\"carbondioxide\"][/thrive:compound] ומים ל[thrive:compound type=\"glucose\"][/thrive:compound] בתהליך הנקרא [b]כימוסינתזה מימן גופרי[/b]. קצב ייצור ה[thrive:compound type=\"glucose\"][/thrive:compound] שלו משתנה עם ריכוז [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compoundtype=\"carbondioxide\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1377
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "כימורצפטור"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "הכימוריצפטור מאפשר לך לאתר תרכובות מרחוק. שנה ברגע שמיקמת בשביל לשנות את סוג התרכובת ואת צבע הקו מכוון."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "חלבונים כימוסינתזיים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], גזים [thrive:compound type=\"carbondioxide\"][/thrive:compound] ומים ל[thrive:compound type=\"glucose\"][/thrive:compound] בתהליך הנקרא [b]כימוסינתזה של מימן גופרתי[/b]. קצב ייצור ה[thrive:compound type=\"glucose\"][/thrive:compound] מתאזן עם ריכוז ה[thrive:compound type=\"carbondioxide\"][/thrive:compound]. מכיוון שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקוליזה[/b] ברמה מסוימת."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -847,7 +847,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "כימוסינתזה"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
 msgid "CHITIN"
 msgstr "כיטין"
 
@@ -859,20 +859,20 @@ msgstr "כיטינאז"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "כיטינאז מאפשרים לתא לפרק ממברנות העשויות מכיטין. כל תוספת מגבירה את יעילותו."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה מרעלנים. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b]כיטינאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "כלורופלסט"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים בשקיות קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. הפיגמנטים בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר [thrive:compound type=\"glucose\"][/thrive:compound] ממים ו[thrive:compound type=\"carbondioxide\"][/thrive:compound] בתהליך הנקרא [b]פוטוסינתזה[/b]. הפיגמנטים הללו הם גם מה שמעניקים לו את הצבע ייחודי. קצב ייצור ה[thrive:compound type=\"glucose\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת ה[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "מייצר[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל עוצמת ה[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -884,7 +884,7 @@ msgstr "שם הקובץ הנבחר ({0}) כבר קיים. לשכתב מחדש?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "סטייה כרומטית:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:486
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת ה[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -893,15 +893,15 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} צריכה"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "ריס"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
 msgid "CILIA_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "מגדיל את מהירות הסיבוב של תאים גדולים."
 
@@ -926,7 +926,7 @@ msgstr "נקה שמירות ישנות"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1165,7 +1165,7 @@ msgstr "טריטנופ (כחול - צהוב)"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "תוכן הWorkshop יעלו מהתיקייה: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:407
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:419
 msgid "CONTINUE_THRIVING"
 msgstr "המשך לשגשג"
 
@@ -1303,7 +1303,7 @@ msgstr "נוצר ב:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "נוצר בפלטפורמה:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "צור מיקרוב חדש"
 
@@ -1385,11 +1385,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:285
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "ציטופלזמה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע הוא [b]גליקליזה[/b], המרת ה[thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. לתאים שחסרים האברונים למטבוליזם מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון מולקולות בתא ולגדילתו."
 
@@ -1397,7 +1397,7 @@ msgstr "הקרביים הדביקים של התא. הציטופלזמה היא �
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "גליקוליזה של הציטופלזמה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -1613,7 +1613,7 @@ msgstr "קשה"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "רגיל"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 msgid "DIGESTION_EFFICIENCY"
 msgstr "יעילות עיכול"
 
@@ -1621,7 +1621,7 @@ msgstr "יעילות עיכול"
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "יעילות עיכול:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2460
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 msgid "DIGESTION_SPEED"
 msgstr "מהירות עיכול"
 
@@ -1629,7 +1629,7 @@ msgstr "מהירות עיכול"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "מהירות עיכול:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:184
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0} לשנייה"
 
@@ -1748,7 +1748,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
 msgid "DOUBLE"
 msgstr "כפול"
 
@@ -1756,7 +1756,7 @@ msgstr "כפול"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "לחץ פעמיים בשביל להציג במסך מלא"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מפני נזק ולוקח פחות אנרגיה על מנת שלא להתעוות. יחד עם זאת, זה מאט את התא במעט ומוריד את הקצב שבו הוא ספוג משאבים מהסביבה."
 
@@ -1904,7 +1904,7 @@ msgstr "עורך"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:46
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:47
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
@@ -1935,23 +1935,23 @@ msgstr "הפעל את העורך"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:443
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2400
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -2161,7 +2161,7 @@ msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה 
 msgid "FEARFUL"
 msgstr "פחדן"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "מיקרובים פחדנים יברחו למרחקים\n"
@@ -2232,7 +2232,7 @@ msgstr "מצא את האזור הנוכחי"
 msgid "FINISHED_DOT"
 msgstr "נגמר."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "סיים עריכה וחזור לסביבה"
 
@@ -2246,20 +2246,20 @@ msgstr "סיים {0} דורות"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1995
+#: ../src/microbe_stage/MicrobeStage.tscn:1996
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "שוטון"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר משתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסוים. מקומו של השוטון קובע את כיוונו שממנו מספק דחף לתנועת התא. כיוון הדחף מנוגד לכיוון שהשוטון פונה, למשל שוטון שמונח בכיוון השמאל של התא יספק דחף לימין."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1103
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] על מנת להגביר את מהירותו של התא."
 
@@ -2304,7 +2304,7 @@ msgstr "נזילות / קשיחות"
 msgid "FOCUSED"
 msgstr "ממוקד"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
@@ -2315,7 +2315,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2406
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2505,7 +2505,8 @@ msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 msgid "GOOGLY_EYE_CELL"
 msgstr "עיניי תא מרשרשות"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:163
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:164
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:288
 msgid "GOT_IT"
 msgstr "הבנתי"
 
@@ -2529,7 +2530,7 @@ msgstr "צוות גרפיקה"
 msgid "GUI"
 msgstr "ממשק משתמש"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "אפשר את אפקט הבהוב אורות על ממשק משתמש (למשל הבהוב כפתור העורך)\n"
@@ -2546,13 +2547,13 @@ msgstr "{0} אלפים"
 msgid "GUI_VOLUME"
 msgstr "עוצמת ממשק עזרים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3517
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
 msgid "HEALTH"
 msgstr "חיים"
 
@@ -3071,7 +3072,7 @@ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1347
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3379,7 +3380,7 @@ msgstr "טוען עורך הקדם רב-תאי"
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -3457,15 +3458,15 @@ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "LYSOSOME"
 msgstr "ליזוזום"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא [b]אוטופגיה[/b]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
@@ -3548,7 +3549,7 @@ msgstr "מיליון שנה"
 msgid "MEMBRANE"
 msgstr "קרום"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
 msgid "MEMBRANE_RIGIDITY"
 msgstr "קשיחות הקרום"
 
@@ -3565,15 +3566,15 @@ msgid "MESOPELAGIC"
 msgstr "מזופלגיים"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:263
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:384
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "מטבולוזומים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוז של [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -3712,7 +3713,7 @@ msgstr "עורך ארגז חול המיקרובי"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:227
+#: ../src/microbe_stage/MicrobeSpecies.cs:222
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]שלב[/b]\n"
@@ -3734,7 +3735,17 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "שלב המיקרובי"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:208
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#, fuzzy
+msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
+msgstr ""
+"את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
+"\n"
+"התא שלך זקוק לגלוקוז על מנת ליצור אנרגיה שתשאיר אותך חיי.\n"
+"\n"
+"עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
@@ -3743,14 +3754,14 @@ msgstr ""
 "\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "בשביל לשלוט בתא שלך, השתמש במקשים המוצגים סביבו (במרכז המסך) ובעכבר על מנת לשלוט בכיוון התנועה שלו.\n"
 "\n"
 "נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:149
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:150
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3758,7 +3769,7 @@ msgstr ""
 "\n"
 "נסה את כל המקשים למשך מספר שניות על מנת להמשיך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:220
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3767,7 +3778,7 @@ msgstr ""
 "ואתה מתרפא כל עוד יש לך ATP.\n"
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "עקוב אחרי מד החיים שלך שליד מד הATP (בימין התחתון).\n"
@@ -3854,7 +3865,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound type=\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן להמיר [thrive:compound type=\"iron\"][/thrive:compound] באמצעות רוסטיציאנין ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, החלה לצוץ תופעה חדשה ביקום:\n"
@@ -3917,19 +3928,19 @@ msgid "MISSING_TITLE"
 msgstr "חסרה כותרת"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "מיטוכונדריון"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "תחנת הכוח של התא. המיטוכונדריון (ברבים: מיטוכונדריה) הוא אברון בעל קרום כפול שמלא בחלבונים ואנזימים. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. הוא מסוגל להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] ביעילות גבוהה בהרבה ממה שניתן לעשות בציטופלזמה בתהליך הנקרא [b]נשימה אירובית[/b]. עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:197
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4371,7 +4382,7 @@ msgstr "שם חדש:"
 msgid "NEXT_CAPITAL"
 msgstr "הבא"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:92
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
 msgid "NEXT_EDITOR_TAB"
 msgstr "לך לכרטיסיית העורך הבאה"
 
@@ -4381,28 +4392,28 @@ msgid "NITROGEN"
 msgstr "חנקן"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "ניטרוגנאז"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:782
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "פלסטיד מקבע חנקן"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2030
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2029
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -4411,11 +4422,11 @@ msgid "NONE"
 msgstr "ריק"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 msgid "NORMAL"
 msgstr "רגיל"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה יותר."
 
@@ -4468,7 +4479,7 @@ msgid "NO_AI"
 msgstr "מצב בודד"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4485,7 +4496,7 @@ msgstr "לא נמצאה ספריית שמירות"
 msgid "NO_MODS_ENABLED"
 msgstr "אין מודים מופעלים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "אין תהליכים"
@@ -4507,21 +4518,21 @@ msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:668
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1568
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1330
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1345
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
 "אך אם זה הונח במצג הנוכחי, ביטול או עשיה מחדש עדין מותרים."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "המאפיין המגדיר של תאים אוקריוטים. הגרעין כולל גם את הרטיקולום האנדופלזמי ואת גוף הגולגי. זוהי התפתחות של תאים פרוקריוטיים לפתח מערכת של קרומים פנימיים, הנעשית על ידי הטמעת פרוקריוט נוסף בתוכם. זה מאפשר להם למלא או להדוף את התהליכים השונים שקורים בתוך התא ולמנוע מהם לחפוף בינם. זה מאפשר לאברונים החדשים שבעלי קרום להיות הרבה יותר מורכבים, יעילים ומתמחים מאשר אם היו צפים חופשיים בציטופלזמה.יחד עם זאת, זה כרוך במחיר של הפיכת התא להרבה יותר גדול ולדרישה רבה יותר אנרגיה להחזקתו."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "מאפשר התפתחות מורכבת יותר של אברונים בעלי קרום. זהו עולה הרבה ATP על מנת לתחזק. זהו בלתי הפיך לאחר התפתחותו."
 
@@ -4533,8 +4544,8 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2279
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2289
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2309
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4595,7 +4606,7 @@ msgstr ""
 msgid "OPEN_GOD_TOOLS"
 msgstr "פתח כתובת מידע"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:56
 msgid "OPEN_HELP_SCREEN"
 msgstr "פתח את מסך העזרה"
 
@@ -4634,7 +4645,7 @@ msgstr "פתח את התפריט"
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "פתח תיקיית צילומי מסך"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:50
 msgid "OPEN_THE_MENU"
 msgstr "פתח את התפריט"
 
@@ -4646,7 +4657,7 @@ msgstr "עזור לתרגם את המשחק"
 msgid "OPERATION_PAUSED_DOT"
 msgstr "הושהה."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "מיקרובים אופורטוניסטיים יתחרו עם יריבים על גושים\n"
@@ -4670,12 +4681,12 @@ msgid "ORGANELLES"
 msgstr "אברונים"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:918
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "אברונים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
@@ -4686,26 +4697,26 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:960
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2526
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "פילוס טורף"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
 msgid "ORGANELLE_PILUS"
 msgstr "פילוס טורף"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1319
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1318
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
@@ -4713,40 +4724,40 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:426
 msgid "OSMOREGULATION"
 msgstr "אוסמורגולציה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:445
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:644
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:741
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1337
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2086
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2957
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3204
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3449
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
 msgid "OSMOREGULATION_COST"
 msgstr "עלות אוסמורגולציה"
 
@@ -4789,15 +4800,15 @@ msgid "OXYGEN"
 msgstr "חמצן"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:200
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "אוקסיטוקסיזום"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:881
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
 msgid "OXYTOXISOME_DESC"
 msgstr "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט\"."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -4881,7 +4892,7 @@ msgstr "הכחדת אזור"
 msgid "PATCH_MAP"
 msgstr "מפת האזורים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "לחץ, גרור או זום בשביל לנוע סביב"
 
@@ -4961,8 +4972,8 @@ msgstr "שלוו"
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:218
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:253
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
@@ -5001,9 +5012,9 @@ msgstr "פוטוסינתזה"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "מצב פיזי"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "PHYSICAL_RESISTANCE"
 msgstr "עמידות מפגיעה פיזית"
 
@@ -5109,7 +5120,7 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2270
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5209,7 +5220,7 @@ msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
 "אתה עלול לאבד כל פעולה לא שמורה."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "שם מין אקראי"
 
@@ -5248,7 +5259,7 @@ msgstr "ראו בתת-נושא הרדייט שלנו"
 msgid "REDO"
 msgstr "עשה מחדש"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
 msgid "REDO_THE_LAST_ACTION"
 msgstr "בצע מחדש פעולה אחרונה"
 
@@ -5331,8 +5342,8 @@ msgstr "ברירת מחדל"
 msgid "RESET_TO_DEFAULTS"
 msgstr "איפוס לברירת מחדל?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3372
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "עמידות לבליעה בסיסית"
 
@@ -5340,12 +5351,12 @@ msgstr "עמידות לבליעה בסיסית"
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2991
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3238
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3483
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "מהירות ספיגת משאבים"
 
@@ -5428,7 +5439,7 @@ msgstr "לחצן עכבר הימני"
 msgid "RIGID"
 msgstr "קשיח"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "קרום נוקשה עמיד יותר בפני נזקים, אך מקשה על התא לנוע."
 
@@ -5487,16 +5498,16 @@ msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:684
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "רוסטיצינין"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:686
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "רוסטיצינין הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"carbondioxide\"][/thrive:compound] וב[thrive:compound type=\"oxygen\"][/thrive:compound] בכדי לחמצן ברזל ממצב כימי אחד למשנהו. תהליך זה, הנקרא [b]נשימת ברזל[/b], משחרר אנרגיה שהתא מסוגל לקצור."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזם של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ו[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5689,7 +5700,7 @@ msgstr "קרקעית הים"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2040
+#: ../src/microbe_stage/MicrobeStage.tscn:2041
 msgid "SECRETE_SLIME"
 msgstr "הפרש ריר"
 
@@ -5780,7 +5791,7 @@ msgstr "ספטמבר"
 msgid "SESSILE"
 msgstr "נייח"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4096
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ערך זה חל רק על שמירות חדשות לאחר שינויו"
 
@@ -5806,7 +5817,7 @@ msgstr "{0} {1}"
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
 msgid "SHOW_TUTORIALS"
 msgstr "הצג מדריכים"
 
@@ -5822,7 +5833,7 @@ msgstr "הצג מדריכים (בשמירות חדשות)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "הראה אזהרת התקדמות ללא שמירה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "הפעל / השבת את חלון אזהרת התקדמות הלא שמורה בזמן שהשחק מנסה לצאת מהמשחק."
 
@@ -5831,15 +5842,15 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2323
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "חומר מאותת"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "חומרי איתות מאפשרים לתא ליצור כימיקלים שתאים אחרים מגיבים לו. חומרי איתות אלו משומשים בשביל למשוך תאים אחרים או להזהיר אותם מסכנה ולגרום להם לברוח."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפתוח את התפריט שמאפשר להנפיק פקודות לפריטים אחרים מהמין שלך."
 
@@ -5868,11 +5879,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "איתות לפליטה"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
 msgid "SILICA"
 msgstr "צורן"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3659
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
 
@@ -5890,15 +5901,15 @@ msgid "SLIDESHOW"
 msgstr "מצגת"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr "סילון ריר"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרים דמויי רפש, וריר היא אחד מאותם רב סוכרים אלו. אומנם רבים מהמינים משתמשים ברפש בשביל תנועה, סוגים מסוימים של חיידקים מפרישים חומרים אלו בלחץ גבוהה. אלו סילוני רפש מתנהגים כמו מנועי טילים, דוחפים את התאים קדימה במהירות גבוהה. רפש משומש בנוסף בשביל לעקב טורפים, הנתקעים בתוך החומר שרק מחזיקים בסילונים מסוגלים לנווט בהם."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"mucilage\"][/thrive:compound]. לחץ על [thrive:input]g_secrete_slime[/thrive:input] בשביל לשחרר את [thrive:compound type=\"mucilage\"][/thrive:compound] המאוחסן, מאיץ את מהירות התא ומאט טורפים."
 
@@ -5968,7 +5979,7 @@ msgstr "זמן אמוניה"
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
@@ -6054,7 +6065,7 @@ msgstr "מינים:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} עם אכלוסיה: {1}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
 msgid "SPEED"
 msgstr "מהירות"
 
@@ -6176,27 +6187,27 @@ msgstr "גזע"
 msgid "STOP"
 msgstr "עצור"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:407
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:606
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:703
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:800
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:898
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1765
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1958
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2048
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2147
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2343
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2477
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
 msgid "STORAGE"
 msgstr "אחסון"
 
@@ -6288,7 +6299,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6412,7 +6423,7 @@ msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6453,28 +6464,28 @@ msgid "THEORY_TEAM"
 msgstr "צוות תיאוריה"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:811
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1835
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "תרמופלסט"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1837
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:330
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:977
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 msgid "THERMOSYNTHASE"
 msgstr "תרמוסינטאז"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "תרמוסינטאז הוא חלבון שמשתמש בהסעה תרמית כדי לשנות את צורתו, מאפשר לו להתקפל ולקשר לADP מתי שחשוף לחום, ולאחר מכן ומתקפל חזר וממוחזר ל[thrive:compound type=\"atp\"][/thrive:compound] כשהוא נחשף טמפרטורה יותר נמוכה בתהליך הנקרא [b]תרמוסינתזה[/b]. קצב יצורם של ה[thrive:compound type=\"atp\"][/thrive:compound] משתנה בהתאם ל[thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:978
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעזרת שינויים בטמפרטורה. בהתאם לריכוזם של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -6539,7 +6550,7 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "רישיונות Thrive"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
 msgid "THYLAKOID"
 msgstr "תילקואיד"
 
@@ -6547,7 +6558,7 @@ msgstr "תילקואיד"
 msgid "THYLAKOIDS"
 msgstr "תילקואידים"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים להשתמש באנרגיית ה[thrive:compound type=\"sunlight\"][/thrive:compound] כדי לייצר [thrive:compound type=\"glucose\"][/thrive:compound] ממים ו[thrive:compound type=\"carbondioxide\"][/thrive:compound] במצב צבירה גזי בתהליך שנקרא [b]פוטוסינתזה[/b]. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב ייצור ה[thrive:compound type=\"glucose\"][/thrive:compound] מתרחש בהתאם לריכוז thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת ה[thrive:compound type=\"sunlight\"][/thrive:compound]. מכיוון שהתילקואידים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
 
@@ -6574,6 +6585,17 @@ msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשב�
 #: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
+
+#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr ""
+"את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
+"\n"
+"התא שלך זקוק לגלוקוז על מנת ליצור אנרגיה שתשאיר אותך חיי.\n"
+"\n"
+"עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6612,7 +6634,7 @@ msgid "TITLE_COLON"
 msgstr "כותרת:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2006
+#: ../src/microbe_stage/MicrobeStage.tscn:2007
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -6623,7 +6645,7 @@ msgstr "החלף חלונית דיבאג"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
+#: ../src/microbe_stage/MicrobeStage.tscn:1983
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
@@ -6676,28 +6698,28 @@ msgstr "כלל האוכלוסיה:"
 msgid "TOTAL_SAVES"
 msgstr "נשמר בסך הכל:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3859
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 msgid "TOXIN_RESISTANCE"
 msgstr "עמידות לרעלים"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "חלולית\n"
 " רעלן"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על [thrive:input]g_fire_toxin[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
 msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."
 
@@ -6731,14 +6753,15 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "נסה לצלם כמה צילומי מסך!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:64
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:290
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:384
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:396
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
@@ -6751,7 +6774,7 @@ msgstr ""
 "\n"
 "אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
@@ -6762,7 +6785,7 @@ msgstr ""
 "\n"
 "אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:74
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
@@ -6771,7 +6794,7 @@ msgstr ""
 "\n"
 "בשביל להמשיך, בחר חלק מהכרטיסייה השמאלית. לאחר מיכן לחץ על הלחצן השמאלי בתוך המשושה הרצוי בשביל להניח אותו. אתה יכול לסובב חלקים על ידי [thrive:input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:128
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "אלו כל הדברים הבסיסים על עריכת המין שלך. ולסיום, אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם בצד שמאל למטה ועריכת הטקסט.\n"
@@ -6782,7 +6805,19 @@ msgstr ""
 "\n"
 "בהצלחה!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+msgstr ""
+"זהו מפת האזורים.\n"
+"\n"
+"על כל אייקון מייצג סביבה ייחודית שאתה יכול להתיישב, עם כרטיסייה בצד ימין שמתאר את התנאים באזור הנבחר.\n"
+"\n"
+"אם תא בוחר אזור שליד האחד שבו אתה נמצא, שהוא מסומן בגבול ירוק מהבהב, אתה יכול ללחוץ על הכפתור \"תעבור לאזור זה\" בשביל לנדוד לשם.\n"
+"\n"
+"נסה לבחור אזור בשביל להמשיך."
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -6793,7 +6828,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:88
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:89
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
@@ -6804,7 +6839,7 @@ msgstr ""
 "\n"
 "לחץ על הכפתור בטל בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:107
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "כשאתה בוחר חלקים בתפריט, הסתכל קרוב לתיבת המידע שצץ בשביל להבין מה הם עושים. חלקים יכולים לעשות יותר נזק מתועלת אם אתה מתעלם מתפקידם.\n"
@@ -6813,7 +6848,7 @@ msgstr ""
 "\n"
 "לחץ על כפתור עשה מחדש (זה שליד כפתור בטל) על מנת להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "כדאי לך להתמקד בהתמחות על מנת לשרוד על מקור אנרגיה אחד או שניים, כך שלא תזדקק למשאבים רבים ושונים בבת אחת כדי לקיים את עצמך.\n"
@@ -6822,7 +6857,7 @@ msgstr ""
 "\n"
 "אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:262
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "אתה שרדת מספיק זמן בשביל לגרום לתא שלך להתרבות.\n"
@@ -6831,21 +6866,21 @@ msgstr ""
 "\n"
 "בשביל להיכנס לעורך, לחץ על הכפתור הגדול המהבהב בימין תחתון."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "התא שלך נבלע ומתחיל להתעכל. תהליך מוצג על מד החיים. התא שלך יוגדר כמת ברגע שהתהליך יסתיים או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "אתה יכול להשתמש בכפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:338
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "לתא שלך מוגבל עד כמה אובייקטים מסוגלים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא; תא קטן מכיל פחות מקום.\n"
 "\n"
 "כאשר שתא שלך מלא, הוא לא מסוגל לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעוכלו לחלוטין אובייקט אחד או יותר."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע אובייקטים על ידי תנועה עליהם בזמן שמצב בליעה פועל. את מצב הבליעה מופעל על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input].\n"
@@ -6854,14 +6889,14 @@ msgstr ""
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:291
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:303
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
 "\n"
 "טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:386
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "אתה מלא בthrive:compound type=\"ammonia\"][/thrive:compound] ו[thrive:compound type=\"phosphates\"][/thrive:compound]. אך מכיוון שאתה במושבה שאינה רב תאים, אתה לא יכול להתרבות.\n"
@@ -6869,21 +6904,21 @@ msgstr ""
 "אתה חייב לעזוב את המושבה בשביל להיכנס לעורך אלו אם אתה מתכנן להפוך לרב תאים.\n"
 "צא מהמושבה בשביל להמשיך לגדול על ידי לחיצה על [thrive:input]נתק הכל[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לשרוד מספיק זמן. אסוף אמונה ופוספט על מנת להאיץ את תהליך הרבייה.\n"
 "\n"
 "תסתכל על האינדיקטור העגלגל שבצד השמאלית התחתונה בשביל לראות עד כמה התקדמת. האינדיקטור הופך ללבן מתי שהוא מוכן."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:339
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
@@ -6908,7 +6943,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "עליך להחיל שינויים בכדי לטעון או לפרוק כל מוד כלשהו."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2018
+#: ../src/microbe_stage/MicrobeStage.tscn:2019
 msgid "UNBIND_ALL"
 msgstr "שחרר הכל"
 
@@ -6928,7 +6963,7 @@ msgstr "מערה תת-מימית"
 msgid "UNDO"
 msgstr "בטל"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "בטל פעולה אחרונה"
 
@@ -7059,11 +7094,11 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "השתמש בגודל חלון וירטואלי"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "חלולית"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
 msgid "VACUOLE_DESCRIPTION"
 msgstr "החלולית היא אברון קרום פנימי המשמש לאחסון בתא. הם מורכבים מכמה שלפוחיות, מבנים קרומים קטנים יותר שנמצאים בשימוש נרחב בתאים לאחסון, שהתמזגו יחד. היא מלאה במים המסוגלים להכיל מולקולות, אנזימים, מוצקים וחומרים אחרים. צורתם נוזלית ויכולה להשתנות בין התאים."
 
@@ -7076,7 +7111,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "מגדיל את שטח האחסון של התא."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "מגדיל את שטח האחסון של התא."
 
@@ -7168,7 +7203,7 @@ msgstr "מקש הגבר קול"
 msgid "VSYNC"
 msgstr "סנכרון אנכי"
 
-#: ../src/general/base_stage/EditorBase.cs:250
+#: ../src/general/base_stage/EditorBase.cs:258
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
@@ -7200,7 +7235,7 @@ msgstr "גלגל ימינה"
 msgid "WHEEL_UP"
 msgstr "גלגל קדימה"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:69
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"
 msgstr "האם אתה תשגשג (Thrive)?"
 

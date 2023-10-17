@@ -565,7 +565,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         */
     }
 
-    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove}.OnHexEditorMouseEntered"/>
+    // LineLengthCheckDisable is needed here as our XML indent check doesn't support splitting tags on multiple lines
+    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove,TContext}.OnHexEditorMouseEntered"/>
     protected void OnMetaballEditorMouseEntered()
     {
         if (!Visible)
@@ -575,14 +576,14 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         UpdateMutationPointsBar();
     }
 
-    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove}.OnHexEditorMouseExited"/>
+    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove,TContext}.OnHexEditorMouseExited"/>
     protected void OnMetaballEditorMouseExited()
     {
         Editor.ShowHover = false;
         UpdateMutationPointsBar();
     }
 
-    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove}.OnHexEditorGuiInput"/>
+    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove,TContext}.OnHexEditorGuiInput"/>
     protected void OnMetaballEditorGuiInput(InputEvent inputEvent)
     {
         if (!Editor.ShowHover)
@@ -590,6 +591,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         InputManager.ForwardInput(inputEvent);
     }
+
+    // LineLengthCheckEnable
 
     /// <summary>
     ///   Returns the world position the mouse is pointing at (and if any) the hit metaball

@@ -36,13 +36,81 @@ public static class MicrobeInternalCalculations
         return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
+    public static float GetTotalNominalCapacity(IEnumerable<OrganelleTemplate> organelles)
+    {
+        return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
+    }
+
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(ICollection<OrganelleTemplate> organelles)
+    {
+        var totalNominalCap = 0.0f;
+
+        foreach (var organelle in organelles)
+        {
+            totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+        }
+
+        var capacities = new Dictionary<Compound, float>();
+
+        foreach (var organelle in organelles)
+        {
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (specificCapacity.Compound == null)
+                continue;
+
+            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
+            {
+                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
+            }
+            else
+            {
+                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
+            }
+        }
+
+        return capacities;
+    }
+
+    public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+    {
+        if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.SpecializedFor != null)
+        {
+            return 0;
+        }
+
+        if (definition.Components.Storage == null)
+            return 0;
+
+        return definition.Components.Storage!.Capacity;
+    }
+
+    public static (Compound? Compound, float Capacity)
+        GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
+    {
+        if (definition.Components.Storage == null)
+            return (null, 0);
+
+        if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
+            storage.SpecializedFor != null)
+        {
+            var specialization = storage.SpecializedFor;
+            var capacity = definition.Components.Storage!.Capacity;
+            var extraCapacity = capacity * Constants.VACUOLE_SPECIALIZED_MULTIPLIER;
+            return (specialization, extraCapacity);
+        }
+
+        return (null, 0);
+    }
+
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
     {
         return organelles.Where(
             o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
-    public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
+    public static float CalculateSpeed(ICollection<OrganelleTemplate> organelles, MembraneType membraneType,
         float membraneRigidity)
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
@@ -61,9 +129,7 @@ public static class MicrobeInternalCalculations
         float rightDirectionFactor;
         float leftDirectionFactor;
 
-        var organellesList = organelles.ToList();
-
-        foreach (var organelle in organellesList)
+        foreach (var organelle in organelles)
         {
             microbeMass += organelle.Definition.Mass;
 
@@ -89,7 +155,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        var maximumMovementDirection = MaximumSpeedDirection(organellesList);
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
         // Maximum-force direction is not normalized so we need to normalize it here
         maximumMovementDirection = maximumMovementDirection.Normalized();

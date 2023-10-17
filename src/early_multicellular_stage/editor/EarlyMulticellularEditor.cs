@@ -112,25 +112,18 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        return history.WhatWouldActionsCost(actions);
-    }
-
-    public override bool EnqueueAction(EditorAction action)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
     {
         // If a cell type is being edited, add its type to each action data
         // so we can use it for undoing and redoing later
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
         {
-            foreach (var actionData in action.Data)
+            foreach (var actionData in actions)
             {
-                if (actionData is EditorCombinableActionData<CellType> cellTypeData)
+                if (actionData is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                     cellTypeData.Context = selectedCellTypeToEdit;
             }
         }
-
-        return base.EnqueueAction(action);
     }
 
     public override bool CancelCurrentAction()
@@ -222,6 +215,14 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         }
 
         patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
+    }
+
+    protected override void OnEnterEditor()
+    {
+        base.OnEnterEditor();
+
+        if (!IsLoadedFromSave)
+            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularEditor, EventArgs.Empty, this);
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
@@ -418,12 +419,21 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         reportTab.UpdatePatchDetails(patch, patch);
     }
 
-    private void OnStartEditingCellType(string name)
+    private void OnStartEditingCellType(string? name, bool switchTab)
     {
         if (CanCancelAction)
         {
             ToolTipManager.Instance.ShowPopup(
                 TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            return;
+        }
+
+        // If there is a null name, that means there is no selected cell,
+        // so clear the selectedCellTypeToEdit and return early
+        if (name == null)
+        {
+            selectedCellTypeToEdit = null;
+            GD.Print("Cleared editing cell type");
             return;
         }
 
@@ -440,7 +450,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
         }
 
-        SetEditorTab(EditorTab.CellTypeEditor);
+        if (switchTab)
+            SetEditorTab(EditorTab.CellTypeEditor);
     }
 
     private void CheckAndApplyCellTypeEdit()
@@ -499,7 +510,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (affectedACell)
         {
             GD.Print("Undone / redone action affected cell types");
-            cellEditorTab.OnFinishEditing();
+            cellEditorTab.OnFinishEditing(false);
 
             // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
             bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
@@ -517,7 +528,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         // or not
         var oldName = selectedCellTypeToEdit.TypeName;
 
-        cellEditorTab.OnFinishEditing();
+        cellEditorTab.OnFinishEditing(false);
 
         // Revert to old name if the name is a duplicate
         if (EditedSpecies.CellTypes.Any(c =>

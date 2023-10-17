@@ -485,7 +485,14 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
         else
         {
-            multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+            bool canBecomeMulticellular = newColonySize >= Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+            multicellularButton.Disabled = !canBecomeMulticellular;
+
+            if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
+            {
+                stage.CurrentGame.TutorialState.SendEvent(
+                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+            }
         }
 
         UpdateColonySize(newColonySize);

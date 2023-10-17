@@ -41,10 +41,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
 
-    [JsonIgnore]
-    public TutorialState TutorialState => CurrentGame.TutorialState ??
-        throw new InvalidOperationException("Editor doesn't have current game set yet");
-
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
     [JsonIgnore]
@@ -106,9 +102,9 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
     {
-        return history.WhatWouldActionsCost(actions);
+        // Microbe editor doesn't require any context data in actions
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

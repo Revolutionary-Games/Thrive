@@ -84,6 +84,11 @@ public enum TutorialEventType
     EnteredEarlyMulticellularStage,
 
     /// <summary>
+    ///   Player entered the early multicellular editor
+    /// </summary>
+    EnteredEarlyMulticellularEditor,
+
+    /// <summary>
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorTabChanged,
@@ -132,4 +137,14 @@ public enum TutorialEventType
     ///   Player enters a patch with more than 0 sunlight at noon
     /// </summary>
     MicrobePlayerEnterSunlightPatch,
+
+    /// <summary>
+    ///   The "Become multicellular" button is available to be clicked
+    /// </summary>
+    MicrobeBecomeMulticellularAvailable,
+
+    /// <summary>
+    ///   Player energy balance has been changed
+    /// </summary>
+    MicrobeEditorPlayerEnergyBalanceChanged,
 }

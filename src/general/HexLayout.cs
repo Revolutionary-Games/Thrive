@@ -187,6 +187,9 @@ public abstract class HexLayout<T> : ICollection<T>
         return existingHexes.Contains(item);
     }
 
+    // TODO: remove this bit of boxing here. https://nede.dev/blog/preventing-unnecessary-allocation-in-net-collections
+    // Need to switch this from ICollection to just IEnumerable<T> (which hopefully doesn't break saving or can be
+    // worked around with a custom converter) and directly return a list typed enumerator.
     public IEnumerator<T> GetEnumerator()
     {
         return existingHexes.GetEnumerator();

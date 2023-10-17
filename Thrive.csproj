@@ -109,6 +109,7 @@
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellMoveActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellPlacementActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellRemoveActionData.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\action_data\DuplicateDeleteCellTypeData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.Callbacks.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellPopupMenu.cs" />
@@ -741,9 +742,11 @@
     <Compile Include="src\tutorial\microbe_editor\EditorUndoTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorWelcome.cs" />
     <Compile Include="src\tutorial\microbe_editor\MicrobeEditorTutorialGUI.cs" />
+    <Compile Include="src\tutorial\microbe_editor\NegativeAtpBalanceTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
+    <Compile Include="src\tutorial\microbe_stage\BecomeMulticellularTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\DayNightTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\LeaveColonyTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfedExplanation.cs" />
@@ -776,7 +779,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AngleSharp">
-      <Version>1.0.4</Version>
+      <Version>1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
@@ -797,7 +800,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.4.0</Version>
+      <Version>13.7.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

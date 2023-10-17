@@ -669,6 +669,8 @@ public partial class CellEditorComponent :
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
+
+        ApplySymmetryForCurrentOrganelle();
     }
 
     public override void _Process(float delta)
@@ -723,6 +725,9 @@ public partial class CellEditorComponent :
             if (shownOrganelle != null)
             {
                 HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
+                if (!componentBottomLeftButtons.SymmetryEnabled)
+                    effectiveSymmetry = HexEditorSymmetry.None;
 
                 RunWithSymmetry(q, r,
                     (finalQ, finalR, rotation) =>
@@ -782,6 +787,11 @@ public partial class CellEditorComponent :
 
     public override void OnFinishEditing()
     {
+        OnFinishEditing(true);
+    }
+
+    public void OnFinishEditing(bool shouldUpdatePosition)
+    {
         var editedSpecies = Editor.EditedBaseSpecies;
         var editedProperties = Editor.EditedCellProperties;
 
@@ -801,8 +811,8 @@ public partial class CellEditorComponent :
             editedProperties.Organelles.Add(organelleToAdd);
         }
 
-        editedProperties.RepositionToOrigin();
-        editedProperties.CalculateRotationSpeed();
+        if (shouldUpdatePosition)
+            editedProperties.RepositionToOrigin();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
@@ -1037,9 +1047,14 @@ public partial class CellEditorComponent :
         return maxHitpoints;
     }
 
-    public float CalculateStorage()
+    public float GetNominalCapacity()
     {
-        return MicrobeInternalCalculations.CalculateCapacity(editedMicrobeOrganelles);
+        return MicrobeInternalCalculations.GetTotalNominalCapacity(editedMicrobeOrganelles);
+    }
+
+    public Dictionary<Compound, float> GetAdditionalCapacities()
+    {
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -1615,6 +1630,9 @@ public partial class CellEditorComponent :
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
 
+        HexEditorSymmetry? overrideSymmetry =
+            componentBottomLeftButtons.SymmetryEnabled ? null : HexEditorSymmetry.None;
+
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
@@ -1643,7 +1661,7 @@ public partial class CellEditorComponent :
                         usedHexes.Add(hex);
                     }
                 }
-            });
+            }, overrideSymmetry);
 
         if (placementActions.Count < 1)
             return false;
@@ -1777,7 +1795,7 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(CalculateStorage());
+        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }
@@ -1799,6 +1817,8 @@ public partial class CellEditorComponent :
             return;
 
         ActiveActionName = organelle;
+
+        ApplySymmetryForCurrentOrganelle();
         UpdateOrganelleButtons(organelle);
     }
 
@@ -2424,6 +2444,15 @@ public partial class CellEditorComponent :
     private OrganelleDefinition GetOrganelleDefinition(string name)
     {
         return SimulationParameters.Instance.GetOrganelleType(name);
+    }
+
+    private void ApplySymmetryForCurrentOrganelle()
+    {
+        if (ActiveActionName == null)
+            return;
+
+        var organelle = GetOrganelleDefinition(ActiveActionName);
+        componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
     }
 
     private class PendingAutoEvoPrediction

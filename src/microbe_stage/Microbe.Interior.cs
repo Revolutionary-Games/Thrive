@@ -1363,17 +1363,17 @@ public partial class Microbe
     {
         int sign = negative ? -1 : 1;
 
-        if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializedFor != null)
-        {
-            Compound specialization = storage.SpecializedFor;
-            additionalCompoundCapacities.TryGetValue(specialization, out var existing);
-            additionalCompoundCapacities[specialization] = existing + organelle.StorageCapacity * 2 * sign;
-        }
-        else
-        {
-            organellesCapacity += organelle.StorageCapacity * sign;
-        }
+        organellesCapacity += MicrobeInternalCalculations
+            .GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades) * sign;
+
+        var capacityTuple = MicrobeInternalCalculations
+            .GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+        if (capacityTuple.Compound == null)
+            return;
+
+        additionalCompoundCapacities.TryGetValue(capacityTuple.Compound, out var existing);
+        additionalCompoundCapacities[capacityTuple.Compound] = existing + capacityTuple.Capacity * sign;
     }
 
     /// <summary>
