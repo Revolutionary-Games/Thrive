@@ -190,8 +190,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
                 Mathf.Abs((titleLabel.GetVisibleLineCount() * normalFont.GetHeight()) - titleLabel.RectSize.y));
 
             // Fix the margins because resetting the size sets them to absurd values that are not visible on screen
-            container.Visible = false;
-            container.Visible = true;
+            ContainerSizeProblemWorkaround();
         }
 
         return size;

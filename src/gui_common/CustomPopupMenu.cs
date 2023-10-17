@@ -13,8 +13,8 @@ public class CustomPopupMenu : TopLevelContainer
     public NodePath ContainerPath = null!;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
-    protected Container container = null!;
     private Panel panel = null!;
+    private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
     private Vector2 cachedMinSize;
@@ -75,6 +75,15 @@ public class CustomPopupMenu : TopLevelContainer
             Mathf.Max(contentSize.y, cachedMinSize.y));
 
         return minSize;
+    }
+
+    /// <summary>
+    /// Not entirely sure why this works, but it is suspected to force an update to the size (at the time of writing).
+    /// </summary>
+    protected void ContainerSizeProblemWorkaround()
+    {
+        container.Hide();
+        container.Show();
     }
 
     protected override void OnOpen()
