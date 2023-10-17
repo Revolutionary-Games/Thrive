@@ -10,7 +10,7 @@ public class CustomPopupMenu : TopLevelContainer
     public NodePath? PanelPath;
 
     [Export]
-    public NodePath? ClipControlPath;
+    public NodePath ClipControlPath = null!;
 
     [Export]
     public NodePath ContainerPath = null!;
@@ -115,6 +115,7 @@ public class CustomPopupMenu : TopLevelContainer
             if (PanelPath != null)
             {
                 PanelPath.Dispose();
+                ClipControlPath.Dispose();
                 ContainerPath.Dispose();
             }
         }
