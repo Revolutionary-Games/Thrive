@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-28 13:34+0300\n"
+"POT-Creation-Date: 2023-10-17 20:55+0200\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -256,7 +256,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Картина от {0}"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:531
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
@@ -370,7 +370,7 @@ msgstr "Автосохранение во время игры"
 msgid "AUTO_EVO"
 msgstr "Авто-Эво"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Инструмент изучения Авто-Эво"
 
@@ -421,8 +421,8 @@ msgid "AWARE_STAGE"
 msgstr "Стадия Сознания"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -521,7 +521,7 @@ msgstr "Оппортунизм"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:445
 msgid "BENCHMARKS"
 msgstr "Тестирование производительности"
 
@@ -601,7 +601,7 @@ msgstr "Биолюминесцентная вакуоль"
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
 
@@ -1024,19 +1024,19 @@ msgstr "Общие способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr "Общий Редактор и Стадии Стратегии"
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:686
 msgid "COMMUNITY_FORUM"
 msgstr "Форум сообщества"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:681
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Присоединитесь к сообществу Thrive или на наш форум"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:728
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki Сообщества"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:723
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Зайти на нашу Wiki"
 
@@ -1339,7 +1339,7 @@ msgstr "Создание..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Создание объектов из сохранения"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Титры"
 
@@ -1561,11 +1561,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчики"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:700
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум Разработчиков"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:695
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Посмотреть новости с полей разработки на нашем форуме Разработчиков"
 
@@ -1573,11 +1573,11 @@ msgstr "Посмотреть новости с полей разработки �
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:714
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki Разработчиков"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:709
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Зайти на WIKI разработчиков"
 
@@ -1705,7 +1705,7 @@ msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
 "Пожалуйста соедините все размещённые органеллы с другими или отмените свои действия."
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:872
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
 
@@ -2084,7 +2084,7 @@ msgstr "Постройки"
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Выйти в лаунчер"
 
@@ -2134,7 +2134,7 @@ msgstr "Вымерли в биоме"
 msgid "EXTINCT_SPECIES"
 msgstr "Вымершие Виды"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Дополнительное"
 
@@ -2142,7 +2142,7 @@ msgstr "Дополнительное"
 msgid "EXTRA_OPTIONS"
 msgstr "Дополнительные Настройки"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:884
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Посетить нашу страницу на Facebook"
 
@@ -2412,7 +2412,7 @@ msgstr "Поколения"
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:836
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
 
@@ -2420,11 +2420,11 @@ msgstr "Посетить наш Github-репозиторий"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:968
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:970
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
@@ -2808,7 +2808,7 @@ msgstr "Железо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Железная хемолитоавтотрофия"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:812
 msgid "ITCH_TOOLTIP"
 msgstr "Посетить нашу страницу на itch.io"
 
@@ -3184,7 +3184,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Левая кнопка мыши"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:541
 msgid "LICENSES"
 msgstr "Лицензии"
 
@@ -3347,12 +3347,12 @@ msgstr "Нажмите кнопку отмены в редакторе для и
 msgid "LOAD_FINISHED"
 msgstr "Загрузка завершена"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Загрузить сохраненные игры"
 
@@ -3398,12 +3398,12 @@ msgstr "Включить цикл день/ночь"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Считать биомы с таким или меньшим количеством видов биомами с низким биоразнообразием"
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1019
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Производительность"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1021
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
@@ -3570,7 +3570,7 @@ msgid "MICROBES_COUNT"
 msgstr "Количество микробов:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:600
 msgid "MICROBE_BENCHMARK"
 msgstr "Тест производительности на Микробах"
 
@@ -3653,7 +3653,7 @@ msgstr "В каждом поколении у вас есть 100 очков м�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы можете изменить свой вида (добавляя, передвигая или удаляя органеллы), чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной Фазе представляет [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов лет эволюции."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Свободный микробный редактор"
 
@@ -3904,11 +3904,11 @@ msgstr "Модифицировать Органеллу"
 msgid "MODIFY_TYPE"
 msgstr "Изменить Вид"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:518
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:982
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Установленные моды были обнаружены, но нет включенных модов.\n"
@@ -3997,11 +3997,11 @@ msgstr "Внутреннее имя (Папки):"
 msgid "MOD_LICENSE"
 msgstr "Лицензия мода:"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS"
 msgstr "Ошибки при загрузке модов"
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:997
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Возникли ошибки при загрузке одного или нескольких модов. Журналы могут содержать дополнительную информацию."
 
@@ -4176,6 +4176,11 @@ msgstr "Синтез слизи"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Многоклеточный редактор"
 
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Многоклеточный редактор"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
@@ -4279,11 +4284,11 @@ msgstr "НОВОСТИ"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Начальная популяция увеличивающих биоразнообразие видов"
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Новая игра"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Начать новую игру"
 
@@ -4422,7 +4427,7 @@ msgstr "Никаких событий не зафиксировано"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Не найдена дирректория окаменелостей"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:980
 msgid "NO_MODS_ENABLED"
 msgstr "Отсутствуют включенные моды"
 
@@ -4493,11 +4498,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Октябрь"
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:672
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официальный сайт"
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:663
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Зайти на официальный сайт Revolutionary Games"
 
@@ -4594,11 +4599,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Рисковый"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Сменить настройки"
 
@@ -4845,7 +4850,7 @@ msgstr "Изменения:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Просмотреть полный список изменений этого обновления на [color=#3796e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:824
 msgid "PATREON_TOOLTIP"
 msgstr "Зайти на нашу страницу на Patreon"
 
@@ -5121,11 +5126,11 @@ msgstr "Быстрая загрузка"
 msgid "QUICK_SAVE"
 msgstr "Быстрое сохранение"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Выйти из игры"
@@ -5167,7 +5172,7 @@ msgstr "Готово"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Рекомендуемая версия Thrive:"
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:860
 msgid "REDDIT_TOOLTIP"
 msgstr "Посетить наш саб-реддит"
 
@@ -5192,7 +5197,7 @@ msgstr "Возврат миграций в случае вымирания в в
 msgid "REPORT"
 msgstr "Отчёт"
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Сообщить о баге"
 
@@ -5332,7 +5337,7 @@ msgstr ""
 "Вы действительно хотите вернуться в главное меню?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:787
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Посетить официальный сайт Revolutionary Games"
 
@@ -5419,7 +5424,7 @@ msgstr "Рустицианин - это белок, способный испо�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:992
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive запущен в безопасном режиме из-за предыдущей ошибки запуска.\n"
@@ -5431,7 +5436,7 @@ msgstr ""
 "\n"
 "Если вы не устраните проблему, вызывающую сбой при запуске, вам потребуется перезапустить Thrive несколько раз, чтобы вернуться в безопасный режим."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:990
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущен в безопасном режиме"
 
@@ -6058,17 +6063,17 @@ msgstr "Steam в настоящее время недоступен, пожал�
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Произошла неизвестная ошибка Steam"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1013
 msgid "STEAM_INIT_FAILED"
 msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1015
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Не удалось инициализировать клиентскую библиотеку Steam. Функции Steam будут недоступны.\n"
 "Убедитесь что у вас запущен стим со входом в необходимый аккаунт. Пожалуйста, запустите игру напрямую, через свойства>показать локальные файлы, коль ошибка не уходит со временем."
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:800
 msgid "STEAM_TOOLTIP"
 msgstr "Посетить нашу страницу в Steam"
 
@@ -6108,7 +6113,7 @@ msgstr "Хранилище"
 msgid "STORAGE_COLON"
 msgstr "Вместимость соединений в клетке:"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:671
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
@@ -6327,7 +6332,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда Тестирования"
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:274 ../src/general/MainMenu.tscn:1005
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим вас за поддержку развития Thrive, купив эту копию Thrive!\n"
@@ -6343,7 +6348,7 @@ msgstr ""
 "\n"
 "Если вам понравилась игра, расскажите о нас своим друзьям."
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1003
 msgid "THANK_YOU_TITLE"
 msgstr "Спасибо"
 
@@ -6402,7 +6407,7 @@ msgstr "Этот мод загружен из Мастерской Steam"
 msgid "THREADS"
 msgstr "Потоки:"
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедия"
 
@@ -6567,7 +6572,7 @@ msgstr "Пауза"
 msgid "TOGGLE_UNBINDING"
 msgstr "Переключить развязку"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Инструменты"
 
@@ -6793,7 +6798,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Обучение"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:896
 msgid "TWITTER_TOOLTIP"
 msgstr "Посетите нашу ленту в Twitter"
 
@@ -7027,7 +7032,7 @@ msgstr "Просмотреть Заметки Обновления"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Просмотреть последние или все заметки обновлений Thrive"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Открыть исходный код"
 
@@ -7039,7 +7044,7 @@ msgstr "VIP-Спонсоры"
 msgid "VISIBLE"
 msgstr "Видимый"
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложить идею"
 
@@ -7194,7 +7199,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "лет"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:848
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Зайти на наш Ютуб Канал"
 

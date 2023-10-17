@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-28 13:34+0300\n"
+"POT-Creation-Date: 2023-10-17 20:55+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -252,7 +252,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Vytvoril {0}"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:531
 msgid "ART_GALLERY"
 msgstr "Galéria"
 
@@ -358,7 +358,7 @@ msgstr "Automatické ukladanie počas hry"
 msgid "AUTO_EVO"
 msgstr "Automatická evolúcia"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj prieskumu Auto-Evo"
 
@@ -412,8 +412,8 @@ msgid "AWARE_STAGE"
 msgstr "Fáza Mikróbov"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -520,7 +520,7 @@ msgstr "Správanie"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod hladinou mora"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:445
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr "Bioluminiscenčná vakuola"
 msgid "BIOME_LABEL"
 msgstr "Bióm: {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -1031,21 +1031,21 @@ msgstr "Schopnosti"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:686
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:681
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:728
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "naša Wiki"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:723
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
@@ -1348,7 +1348,7 @@ msgstr "Vytváranie..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Poďakovanie"
 
@@ -1548,12 +1548,12 @@ msgstr "Devbuilds podporovatelia"
 msgid "DEVELOPERS"
 msgstr "Vývojári"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:700
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:695
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
@@ -1562,12 +1562,12 @@ msgstr "Vstúpte do editora a upravte svoj druh"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:714
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Vývojári"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:709
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Ako hrať hru"
@@ -1682,7 +1682,7 @@ msgstr "Odpojené organely"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
@@ -2066,7 +2066,7 @@ msgstr "Zadajte existujúce ID"
 msgid "EXIT"
 msgstr "Odísť"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustiť E"
@@ -2119,7 +2119,7 @@ msgstr "vyhynul v tejto oblasti"
 msgid "EXTINCT_SPECIES"
 msgstr "Vyhynuté druhy"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Extra"
 
@@ -2127,7 +2127,7 @@ msgstr "Extra"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra nastavenia"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -2420,7 +2420,7 @@ msgstr "Generácia"
 msgid "GENERATION_COLON"
 msgstr "Generácia:"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
@@ -2429,11 +2429,11 @@ msgstr "Opustiť hru"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:968
 msgid "GLES2_MODE_WARNING"
 msgstr "Varovanie režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:970
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
@@ -2826,7 +2826,7 @@ msgstr "Železo"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Chemolitoautotrofia železa"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opustiť hru"
@@ -3206,7 +3206,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Ľavé tlačidlo myši"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:541
 msgid "LICENSES"
 msgstr "Licencie"
 
@@ -3376,12 +3376,12 @@ msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 msgid "LOAD_FINISHED"
 msgstr "Načítanie dokončené"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Načítať hru"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Načítať predošlé uložené hry"
 
@@ -3417,12 +3417,12 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1019
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Výkon"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1021
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Používa [thrive:compound type=\"atp\"][/thrive:compound] na zvýšenie rýchlosti pohybu bunky."
@@ -3593,7 +3593,7 @@ msgid "MICROBES_COUNT"
 msgstr "Fáza Mikróbov"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:600
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor Mikróbov"
@@ -3676,7 +3676,7 @@ msgstr "Každú generáciu máš k dispozícii 100 bodov mutácie (BM) a každá
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Vždy keď zahájiš reprodukciu vstúpiš do editora mikróbov, kde môžeš vykonávať zmeny tvojmu druhu (pridávaním, priemiestňovaním alebo odoberaním organel) k zvýšeniu úspešnosti. Každá návšteva editora vo fáze mikróbov reprezentuje [thrive:constant] EDITOR_TIME_JUMP_MILLION_YEARS [/thrive:constant] miliónov rokov evolúcie."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Neobmedzený editor mikróbov"
 
@@ -3893,11 +3893,11 @@ msgstr "Upraviť organelu"
 msgid "MODIFY_TYPE"
 msgstr "Upraviť typ"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:518
 msgid "MODS"
 msgstr "Módy"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:982
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3986,11 +3986,11 @@ msgstr "Interný názov (priečinku):"
 msgid "MOD_LICENSE"
 msgstr "Licencia módu:"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyba načítania režimu"
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:997
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Pri načítaní jedného alebo viac režimov došlo k chybám. Protokoly môžu obsahovať ďalšie informácie."
 
@@ -4162,6 +4162,11 @@ msgstr "Chemosyntéza"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Mnohobunkovcov"
 
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Editor Mnohobunkovcov"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
@@ -4262,11 +4267,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Nová hra"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začať novú hru"
 
@@ -4409,7 +4414,7 @@ msgstr "Žiadne zaznamenané udalosti"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuté"
@@ -4481,11 +4486,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Október"
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:672
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:663
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Samovražda"
@@ -4581,11 +4586,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Oportunistický"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Možnosti"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmeniť nastavenia"
 
@@ -4843,7 +4848,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -5122,11 +5127,11 @@ msgstr "Rýchle načítanie"
 msgid "QUICK_SAVE"
 msgstr "Rýchle uloženie"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Ukončiť"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
@@ -5169,7 +5174,7 @@ msgstr "Pripravené"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Odporúčaná verzia Thrive:"
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
@@ -5195,7 +5200,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5343,7 +5348,7 @@ msgstr ""
 "Naozaj chceš odísť do hlavného menu?\n"
 "Všetok neuložený postup bude stratený."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:787
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Od Revolutionary Games Studio"
@@ -5434,12 +5439,12 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"carbondioxide\"]oxidu uhličitého[/thrive:compound] a [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "(začiatočná poloha)"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:990
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstrániť lokálne údaje"
@@ -6081,17 +6086,17 @@ msgstr "Steam je momentálne nedostupný, prosím skúste to znova"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznáma chyba služby Steam"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1013
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steamu sa nepodarilo získať UGC lock"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1015
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -6132,7 +6137,7 @@ msgstr "Úložný priestor"
 msgid "STORAGE_COLON"
 msgstr "Úložný priestor:"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:671
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prihlásený ako: {0}"
 
@@ -6356,7 +6361,7 @@ msgstr "Teplota."
 msgid "TESTING_TEAM"
 msgstr "Testeri"
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:274 ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6371,7 +6376,7 @@ msgstr ""
 "\n"
 "Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "Odstrániť lokálne údaje"
@@ -6431,7 +6436,7 @@ msgstr ""
 msgid "THREADS"
 msgstr "Vlákna:"
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6589,7 +6594,7 @@ msgstr "Pauza"
 msgid "TOGGLE_UNBINDING"
 msgstr "Prepnúť rozpájanie"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Nástroje"
 
@@ -6736,7 +6741,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
@@ -6986,7 +6991,7 @@ msgstr "{0} {1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobraziť zdrojový kód"
 
@@ -6998,7 +7003,7 @@ msgstr "VIP podporovatelia"
 msgid "VISIBLE"
 msgstr "Viditeľné"
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7156,7 +7161,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Pozastaviť hru"
