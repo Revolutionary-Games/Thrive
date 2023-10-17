@@ -80,7 +80,7 @@ public class CustomPopupMenu : TopLevelContainer
     }
 
     /// <summary>
-    /// Not entirely sure why this works, but it is suspected to force an update to the size (at the time of writing).
+    ///   Not entirely sure why this works, but it is suspected to force an update to the size (at the time of writing).
     /// </summary>
     protected void ContainerSizeProblemWorkaround()
     {
