@@ -135,10 +135,10 @@ public class TrackList
             return contexts == null;
 
         if (track.ExclusiveToContexts != null)
-            return track.ExclusiveToContexts.Any(contexts.Contains);
+            return contexts != null && track.ExclusiveToContexts.Any(contexts.Contains);
 
         if (track.DisallowInContexts != null)
-            return !track.DisallowInContexts.Any(contexts.Contains);
+            return contexts == null || !track.DisallowInContexts.Any(contexts.Contains);
 
         return true;
     }
@@ -155,10 +155,19 @@ public class TrackList
 
         public string ResourcePath { get; set; } = null!;
 
+        /// <summary>
+        ///   If set, the track will only play if at least one of these contexts is active
+        /// </summary>
         public MusicContext[]? ExclusiveToContexts { get; set; }
 
+        /// <summary>
+        ///   Contexts in which this track is forbidden from playing
+        /// </summary>
         public MusicContext[]? DisallowInContexts { get; set; }
 
+        /// <summary>
+        ///   If true, the track will only play if no context is active
+        /// </summary>
         public bool PlayOnlyWithoutContext { get; set; } = false;
 
         [JsonIgnore]

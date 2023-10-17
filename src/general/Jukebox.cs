@@ -540,10 +540,7 @@ public class Jukebox : Node
         var tracks = list.GetTracksForContexts(activeContexts).ToArray();
 
         if (tracks.Length == 0)
-        {
-            Pause();
             return;
-        }
 
         if (mode == TrackList.Order.Sequential)
         {
