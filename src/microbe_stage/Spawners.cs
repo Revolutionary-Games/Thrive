@@ -494,7 +494,6 @@ public static class SpawnHelpers
             throw new NotImplementedException("Unknown species type to spawn a microbe from");
         }
 
-        float storageCapacity;
         int organelleCount;
         float engulfSize;
 
@@ -505,10 +504,24 @@ public static class SpawnHelpers
             container.CreateOrganelleLayout(usedCellProperties);
 
             organelleCount = container.Organelles!.Count;
-            storageCapacity = container.OrganellesCapacity;
             engulfSize = container.HexCount;
 
+            // Compound storage
+            var compounds = new CompoundBag(container.OrganellesCapacity);
+            var storage = new CompoundStorage
+            {
+                Compounds = compounds,
+            };
+
+            // Run the storage update logic for the first time (to ensure consistency with later updates)
+            // This has to be called as CreateOrganelleLayout doesn't do this automatically
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage);
+
+            // Finish setting up these two components
             entity.Set(container);
+
+            compounds.AddInitialCompounds(species.InitialCompounds);
+            entity.Set(storage);
         }
 
         entity.Set(new ReproductionStatus
@@ -533,15 +546,6 @@ public static class SpawnHelpers
         });
 
         entity.Set<MicrobeShaderParameters>();
-
-        // Compounds
-        var compounds = new CompoundBag(storageCapacity);
-        compounds.AddInitialCompounds(species.InitialCompounds);
-
-        entity.Set(new CompoundStorage
-        {
-            Compounds = compounds,
-        });
 
         entity.Set(new BioProcesses
         {

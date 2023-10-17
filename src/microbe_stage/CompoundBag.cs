@@ -52,10 +52,32 @@ public class CompoundBag : ICompoundStorage
         return NominalCapacity;
     }
 
-    public void SetCapacityForCompound(Compound compound, float capacity)
+    /// <summary>
+    ///   Adds specialized capacity for a compound. <see cref="NominalCapacity"/> must be set before calling this.
+    ///   To reset this value call <see cref="ClearSpecificCapacities"/> to restart filling this info.
+    /// </summary>
+    /// <param name="compound">The compound type</param>
+    /// <param name="capacityToAdd">Capacity to add for this compound</param>
+    /// <remarks>
+    ///   <para>
+    ///     This now adds capacity (and starts capacities from the nominal capacity) instead of setting the value
+    ///     directly. This is to allow the <see cref="MicrobeInternalCalculations"/> method that updates this to avoid
+    ///     memory allocations.
+    ///   </para>
+    /// </remarks>
+    public void AddSpecificCapacityForCompound(Compound compound, float capacityToAdd)
     {
         compoundCapacities ??= new Dictionary<Compound, float>();
-        compoundCapacities[compound] = capacity;
+
+        if (!compoundCapacities.TryGetValue(compound, out var existing))
+        {
+            // Add nominal capacity as the base amount here when the first specific capacity value is added
+            compoundCapacities[compound] = capacityToAdd + NominalCapacity;
+        }
+        else
+        {
+            compoundCapacities[compound] = existing + capacityToAdd;
+        }
     }
 
     public float GetCompoundAmount(Compound compound)

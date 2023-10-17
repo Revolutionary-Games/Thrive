@@ -53,6 +53,7 @@ public static class MicrobeInternalCalculations
 
         var capacities = new Dictionary<Compound, float>();
 
+        // Update the variant of this logic in UpdateSpecificCapacities if changes are made
         foreach (var organelle in organelles)
         {
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
@@ -60,6 +61,7 @@ public static class MicrobeInternalCalculations
             if (specificCapacity.Compound == null)
                 continue;
 
+            // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
             if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
             {
                 capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
@@ -71,6 +73,27 @@ public static class MicrobeInternalCalculations
         }
 
         return capacities;
+    }
+
+    /// <summary>
+    ///   Variant of <see cref="GetTotalSpecificCapacity"/> to update spawned microbe stats. The used
+    ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
+    /// </summary>
+    /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
+    /// <param name="organelles">Organelles to find specific capacity from</param>
+    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IEnumerable<PlacedOrganelle> organelles)
+    {
+        compoundBag.ClearSpecificCapacities();
+
+        foreach (var organelle in organelles)
+        {
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (specificCapacity.Compound == null)
+                continue;
+
+            compoundBag.AddSpecificCapacityForCompound(specificCapacity.Compound, specificCapacity.Capacity);
+        }
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)

@@ -188,7 +188,8 @@ namespace Systems
                 CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings, organelles.HexCount, false,
                     reproductionDelta);
 
-            var compounds = entity.Get<CompoundStorage>().Compounds;
+            ref var storage = ref entity.Get<CompoundStorage>();
+            var compounds = storage.Compounds;
 
             ref var baseReproduction = ref entity.Get<ReproductionStatus>();
 
@@ -267,7 +268,7 @@ namespace Systems
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
-                    organelles.OnOrganellesChanged();
+                    organelles.OnOrganellesChanged(ref storage);
                 }
             }
 
@@ -493,7 +494,7 @@ namespace Systems
                 ref var cellProperties = ref entity.Get<CellProperties>();
 
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
-                organelles.ResetOrganelleLayout(entity, species, species);
+                organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), entity, species, species);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
 

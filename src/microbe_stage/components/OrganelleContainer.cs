@@ -224,8 +224,9 @@
         ///   Resets a created layout of organelles on an existing microbe. This variant exists as this can perform
         ///   some extra operations not yet valid when initially creating a layout.
         /// </summary>
-        public static void ResetOrganelleLayout(this ref OrganelleContainer container, in Entity entity,
-            ICellProperties cellProperties, Species baseReproductionCostFrom)
+        public static void ResetOrganelleLayout(this ref OrganelleContainer container,
+            ref CompoundStorage storageToUpdate, in Entity entity, ICellProperties cellProperties,
+            Species baseReproductionCostFrom)
         {
             container.CreateOrganelleLayout(cellProperties);
 
@@ -255,12 +256,14 @@
 
                 // ResetMulticellularProgress();
             }
+
+            container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
         }
 
         /// <summary>
         ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
         /// </summary>
-        public static void OnOrganellesChanged(this ref OrganelleContainer container)
+        public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage)
         {
             container.OrganelleVisualsCreated = false;
             container.OrganelleComponentsCached = false;
@@ -268,6 +271,7 @@
             // TODO: should there be a specific system that refreshes this data?
             // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage);
         }
 
         /// <summary>
@@ -414,7 +418,9 @@
                 if (organelle.Definition.HasBindingFeature)
                     container.HasBindingAgent = true;
 
-                container.OrganellesCapacity = organelle.StorageCapacity;
+                container.OrganellesCapacity =
+                    MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelle.Definition,
+                        organelle.Upgrades);
 
                 var enzymes = organelle.GetEnzymes();
 
@@ -438,6 +444,24 @@
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///   Updates the <see cref="CompoundBag"/> of a microbe to account for changes in organelles.
+        /// </summary>
+        /// <param name="container">Organelle data</param>
+        /// <param name="compoundStorage">Target compound storage to update</param>
+        public static void UpdateCompoundBagStorageFromOrganelles(this ref OrganelleContainer container,
+            ref CompoundStorage compoundStorage)
+        {
+            if (container.Organelles == null)
+                throw new InvalidOperationException("Organelle list needs to be initialized first");
+
+            var compounds = compoundStorage.Compounds;
+
+            compounds.NominalCapacity = container.OrganellesCapacity;
+
+            MicrobeInternalCalculations.UpdateSpecificCapacities(compounds, container.Organelles);
         }
 
         /// <summary>
