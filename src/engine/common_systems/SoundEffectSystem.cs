@@ -13,6 +13,7 @@
     /// </summary>
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
+    [RunsOnMainThread]
     public sealed class SoundEffectSystem : AEntitySetSystem<float>
     {
         private const string AudioBus = "SFX";
@@ -83,11 +84,13 @@
                     usedPositionalPlayers.RemoveWithoutPreservingOrder(i);
                     --positionalCount;
 
-                    if (i + 1 > positionalCount)
-                        break;
-
                     // Need to go back two spaces as this current slot may have something swapped into it now
                     i -= 2;
+
+                    // Next loop increments i by one so invalid values are -2 and below as that + 1 won't be a valid
+                    // index
+                    if (i < -1)
+                        break;
                 }
             }
 
@@ -112,20 +115,16 @@
                     used2DPlayers.RemoveWithoutPreservingOrder(i);
                     --nonPositionalCount;
 
-                    if (i + 1 > nonPositionalCount)
-                        break;
-
                     i -= 2;
+
+                    if (i < -1)
+                        break;
                 }
             }
         }
 
         protected override void Update(float delta, ReadOnlySpan<Entity> entities)
         {
-            // If we are already over the sound count, we can't play anything this update
-            if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS)
-                return;
-
             // Collect sound playing entities that need processing
             foreach (ref readonly var entity in entities)
             {
@@ -139,6 +138,7 @@
                 var distance = position.Position.DistanceSquaredTo(playerPosition);
 
                 // Skip so far away players that they shouldn't be handled at all
+                // TODO: maybe still stop these from playing?
                 if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
                     distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
                 {
@@ -239,6 +239,8 @@
                 // This is intentionally left unlocked as if sound effects are modified while this system runs it would
                 // lead to sometimes unexpected results
 
+                bool skippedSomething = false;
+
                 int slotCount = slots.Length;
 
                 for (int i = 0; i < slotCount; ++i)
@@ -295,6 +297,15 @@
 
                         if (startNew && !string.IsNullOrEmpty(slot.SoundFile))
                         {
+                            // Only start playing if can
+                            if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS)
+                            {
+                                // This leaves SoundsApplied false so that this entity can keep trying until there are
+                                // empty sound playing slots
+                                skippedSomething = true;
+                                continue;
+                            }
+
                             // New sound start requested
                             slot.InternalPlayingState = NextSoundIdentifier();
 
@@ -308,15 +319,11 @@
                     }
 
                     slot.InternalAppliedState = true;
-
-                    // Stop processing if we are playing too many sounds (this leaves SoundsApplied false so that this
-                    // entity can keep trying until there are empty sound playing slots)
-
-                    if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS)
-                        return;
                 }
 
-                soundEffectPlayer.SoundsApplied = true;
+                // Only mark as applied if we had room to start all sounds that should be played
+                if (!skippedSomething)
+                    soundEffectPlayer.SoundsApplied = true;
             }
         }
 

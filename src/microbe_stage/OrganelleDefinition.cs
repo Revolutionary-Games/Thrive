@@ -117,8 +117,7 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int EditorButtonOrder;
 
-    [JsonRequired]
-    public OrganelleComponentFactoryInfo Components = null!;
+    public OrganelleComponentFactoryInfo Components = new();
 
     /// <summary>
     ///   Lightweight feature tags that this organelle has. This is used for simple features that don't need the full
@@ -360,17 +359,9 @@ public class OrganelleDefinition : IRegistryType
         if (Unimplemented)
             return;
 
-        if (Components == null)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
-        }
-
         Components.Check(name);
 
-        if (Components.Count < 1)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
-        }
+        // Components list is now allowed to be empty as some organelles do not need any components
 
         if (Mass <= 0.0f)
         {
@@ -468,7 +459,6 @@ public class OrganelleDefinition : IRegistryType
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
         }
-
 
         if (!string.IsNullOrEmpty(IconPath))
         {

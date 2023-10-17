@@ -159,10 +159,6 @@
 
             ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
 
-            // To simplify the logic this audio is now played non-looping
-            // TODO: if this sounds too bad with the sound volume no longer fading then this will need to change
-            soundPlayer.PlaySoundEffectIfNotPlayingAlready(Constants.MICROBE_BINDING_MODE_SOUND, 0.6f);
-
             // Play sound
             if (actuallyEngulfing)
             {

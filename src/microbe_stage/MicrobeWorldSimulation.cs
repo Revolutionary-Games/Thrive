@@ -163,7 +163,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, parallelRunner);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
-        microbeVisualsSystem = new MicrobeVisualsSystem(visualDisplayRoot, EntitySystem);
+        microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, parallelRunner);
         organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, parallelRunner);

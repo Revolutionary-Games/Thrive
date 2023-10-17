@@ -11,17 +11,17 @@
     using World = DefaultEcs.World;
 
     /// <summary>
-    ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics.
+    ///   Generates the visuals needed for microbes. Handles the membrane and organelle graphics. Attaching to the
+    ///   Godot scene tree is handled by <see cref="SpatialAttachSystem"/>
     /// </summary>
     [With(typeof(OrganelleContainer))]
     [With(typeof(CellProperties))]
     [With(typeof(SpatialInstance))]
     [With(typeof(EntityMaterial))]
+    [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
-        private readonly Node visualsParent;
-
         private readonly Lazy<PackedScene> membraneScene =
             new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
 
@@ -40,9 +40,8 @@
 
         private uint membraneGenerationRequestNumber;
 
-        public MicrobeVisualsSystem(Node visualsParent, World world) : base(world, null)
+        public MicrobeVisualsSystem(World world) : base(world, null)
         {
-            this.visualsParent = visualsParent;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -66,11 +65,7 @@
             ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
             // Create graphics top level node if missing for entity
-            if (spatialInstance.GraphicalInstance == null)
-            {
-                spatialInstance.GraphicalInstance = new Spatial();
-                visualsParent.AddChild(spatialInstance.GraphicalInstance);
-            }
+            spatialInstance.GraphicalInstance ??= new Spatial();
 
             // Bacteria is 50% of the scale of other microbes
             spatialInstance.GraphicalInstance.Scale =

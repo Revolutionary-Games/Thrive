@@ -69,7 +69,7 @@
                 entry.Component.UpdateSync(entry.Entity, delta);
             }
 
-            if (queuedSyncRuns.IsEmpty)
+            if (!queuedSyncRuns.IsEmpty)
                 GD.PrintErr("Queued sync runs for organelle updates is not empty after processing");
         }
     }
