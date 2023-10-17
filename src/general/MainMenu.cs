@@ -210,8 +210,7 @@ public class MainMenu : NodeWithInput
 
             SafeModeStartupHandler.ReportBeforeVideoPlaying();
             TransitionManager.Instance.AddSequence(
-                TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/intro.ogv"), OnIntroEnded);
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv"), OnIntroEnded);
         }
         else
         {
@@ -260,18 +259,14 @@ public class MainMenu : NodeWithInput
             if (canShowThanks)
             {
                 if (!IsReturningToMenu &&
-                !Settings.Instance.IsNoticePermanentlyDismissed(
-                    DismissibleNotice.ThanksForBuying)
-                && !SteamFailed())
+                    !Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.ThanksForBuying)
+                    && !SteamFailed())
                 {
-                    GD.Print(
-                    "We are most likely a store version of Thrive, showing the thanks dialog");
+                    GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
-                    // The text has a store link template,
-                    // so we need to update the right links into it
+                    // The text has a store link template, so we need to update the right links into it
                     thanksDialog.DialogText =
-                        TranslationServer.Translate(
-                            "THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+                        TranslationServer.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
 
                     thanksDialog.PopupCenteredShrink();
                 }
@@ -300,11 +295,9 @@ public class MainMenu : NodeWithInput
             // if 3D backgrounds have been disabled, if the popup has been shown but not dismissed
             // on this menu session, or if the max framerate is set to 30
             // In addition, tracking only begins after one second in the menu
-            if (!Settings.Instance.IsNoticePermanentlyDismissed(
-                DismissibleNotice.LowPerformanceWarning)
+            if (!Settings.Instance.IsNoticePermanentlyDismissed(DismissibleNotice.LowPerformanceWarning)
                 && Settings.Instance.Menu3DBackgroundEnabled && canShowLowPerformanceWarning
-                && (Settings.Instance.MaxFramesPerSecond > 30
-                || Settings.Instance.MaxFramesPerSecond == 0))
+                && (Settings.Instance.MaxFramesPerSecond > 30 || Settings.Instance.MaxFramesPerSecond == 0))
             {
                 secondsInMenu += delta;
 
@@ -314,7 +307,7 @@ public class MainMenu : NodeWithInput
 
                     WarnAboutLowPerformance();
                 }
-               }
+            }
         }
     }
 
@@ -599,8 +592,7 @@ public class MainMenu : NodeWithInput
         if (menuArray.Count <= 0)
             throw new InvalidOperationException("Main menu has no menus");
 
-        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>(
-            (int)CurrentMenuIndex);
+        return CurrentMenuIndex == uint.MaxValue ? null : menus.GetChild<Control>((int)CurrentMenuIndex);
     }
 
     private void OnMenuBackgroundTypeChanged(bool value)
@@ -668,7 +660,7 @@ public class MainMenu : NodeWithInput
 
     private void UpdateSteamLoginText()
     {
-            storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
+        storeLoggedInDisplay.Text = TranslationServer.Translate("STORE_LOGGED_IN_AS")
             .FormatSafe(SteamHandler.Instance.DisplayName);
     }
 
@@ -837,10 +829,8 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private bool AreAnyMenuPopupsOpen()
     {
-        return gles2Popup.Visible || modLoadFailures.Visible
-            || steamFailedPopup.Visible || safeModeWarning.Visible
-            || modsInstalledButNotEnabledWarning.Visible
-            || thanksDialog.Visible || lowPerformanceWarning.Visible;
+        return gles2Popup.Visible || modLoadFailures.Visible || steamFailedPopup.Visible || safeModeWarning.Visible
+            || modsInstalledButNotEnabledWarning.Visible || thanksDialog.Visible || lowPerformanceWarning.Visible;
     }
 
     private void NewGamePressed()
@@ -880,8 +870,7 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(
-                .MicrobeEditor).Instance();
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
