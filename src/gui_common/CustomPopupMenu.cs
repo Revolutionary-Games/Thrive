@@ -63,6 +63,10 @@ public class CustomPopupMenu : TopLevelContainer
                 Mathf.Abs(clipControl.MarginBottom);
         }
 
+        // Apply the margins to base size to get parent size. It uses the absolute value of the margins because when
+        // however many units of negative margin is removed from a size those so many units are added to the parent
+        // nodes size. Given we're calculating the size of the parent-most node, adding the absolute of all the
+        // childrens margins will give the appropriate size.
         var contentSize = new Vector2(
             RectSize.x,
             container.RectSize.y +
