@@ -10,10 +10,14 @@ public class CustomPopupMenu : TopLevelContainer
     public NodePath? PanelPath;
 
     [Export]
+    public NodePath? ClipControlPath;
+
+    [Export]
     public NodePath ContainerPath = null!;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private Panel panel = null!;
+    private Control clipControl = null!;
     private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
@@ -22,6 +26,7 @@ public class CustomPopupMenu : TopLevelContainer
     public override void _Ready()
     {
         panel = GetNode<Panel>(PanelPath);
+        clipControl = GetNode<Control>(ClipControlPath);
         container = GetNode<Container>(ContainerPath);
 
         cachedMinSize = RectMinSize;
@@ -54,14 +59,7 @@ public class CustomPopupMenu : TopLevelContainer
     {
         RectSize = cachedMinSize;
 
-        var clipControl = GetNodeOrNull<Control>("Panel/Control");
-        var clipControlHeightMargin = 0.0f;
-        if (clipControl != null)
-        {
-            clipControlHeightMargin =
-                Mathf.Abs(clipControl.MarginTop) +
-                Mathf.Abs(clipControl.MarginBottom);
-        }
+        var clipControlHeightMargin = Mathf.Abs(clipControl.MarginTop) + Mathf.Abs(clipControl.MarginBottom);
 
         // Apply the margins to base size to get parent size. It uses the absolute value of the margins because when
         // however many units of negative margin is removed from a size those so many units are added to the parent
