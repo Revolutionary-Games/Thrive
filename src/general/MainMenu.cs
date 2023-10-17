@@ -606,8 +606,7 @@ public class MainMenu : NodeWithInput
         {
             if (!string.IsNullOrEmpty(LaunchOptions.StoreVersionName))
             {
-                GD.Print(
-                $"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
+                GD.Print($"Launcher tells us that we are store version: {LaunchOptions.StoreVersionName}");
             }
         }
 
