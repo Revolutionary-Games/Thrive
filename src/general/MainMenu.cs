@@ -134,7 +134,7 @@ public class MainMenu : NodeWithInput
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
-    private Button multicellularfreebuildButton = null!;
+    private Button multicellularFreebuildButton = null!;
     private Button autoEvoExploringButton = null!;
     private Button microbeBenchmarkButton = null!;
 
@@ -445,7 +445,7 @@ public class MainMenu : NodeWithInput
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
-        multicellularfreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
+        multicellularFreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
         microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
         exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
@@ -878,7 +878,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Disable the button to prevent it being executed again.
-        multicellularfreebuildButton.Disabled = true;
+        multicellularFreebuildButton.Disabled = true;
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
