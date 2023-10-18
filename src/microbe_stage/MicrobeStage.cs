@@ -370,11 +370,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
         // Log becoming multicellular in the timeline
         GameWorld.LogEvent(
             new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
-            true, "multicellularTimelineMembtouch.png");
+            true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
             new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
-            true, "multicellularTimelineMembtouch.png");
+            true, "multicellularTimelineMembraneTouch.png");
 
         GD.Print("Disbanding colony and becoming multicellular");
 
