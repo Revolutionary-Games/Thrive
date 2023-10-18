@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
@@ -217,15 +217,13 @@ public class MainMenu : NodeWithInput
             OnIntroEnded();
         }
 
-        // Let all suppressed deletions happen
-        // (if we came back directly from the editor that was loaded from a save)
+        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
         CheckModFailures();
 
         // Start this early here to make sure this is ready as soon as possible
-        // In the case where patch notes take up the news feed,
-        // this is still not a complete waste as if the player
+        // In the case where patch notes take up the news feed, this is still not a complete waste as if the player
         // exits to the menu after playing a bit they'll see the news feed
         if (Settings.Instance.ThriveNewsFeedEnabled)
         {
@@ -251,8 +249,7 @@ public class MainMenu : NodeWithInput
     {
         base._Process(delta);
 
-        // Do startup success only after the intro video is played
-        // or skipped (and this is the first time in this run
+        // Do startup success only after the intro video is played or skipped (and this is the first time in this run
         // that we are in the menu)
         if (introVideoPassed && !IsReturningToMenu)
         {
@@ -344,8 +341,7 @@ public class MainMenu : NodeWithInput
         if (menuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
 
-        // Hide the website button container whenever anything else is pressed,
-        // and only display the social media icons
+        // Hide the website button container whenever anything else is pressed, and only display the social media icons
         // if a menu is visible
         websiteButtonsContainer.Visible = false;
         socialMediaContainer.Visible = index != uint.MaxValue;
@@ -562,8 +558,7 @@ public class MainMenu : NodeWithInput
             return;
         }
 
-        // We can get by waiting one frame before the
-        // missing background is visible, this slightly reduces the lag
+        // We can get by waiting one frame before the missing background is visible, this slightly reduces the lag
         // lag spike when loading the main menu
         Invoke.Instance.Queue(() =>
         {
@@ -734,8 +729,7 @@ public class MainMenu : NodeWithInput
         // Display menu buttons that were hidden to prevent them grabbing focus during intro video
         GetCurrentMenu()?.Show();
 
-        // Load the menu background only here as the
-        // 3D ones are performance intensive so they aren't very nice to
+        // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
         // consume power unnecessarily while showing the video
         RandomizeBackground();
     }
@@ -1081,8 +1075,7 @@ public class MainMenu : NodeWithInput
 
         if (created3DBackground != null)
         {
-            // Hide the 3D background while in the gallery as it is a
-            // fullscreen popup and rendering the expensive 3D
+            // Hide the 3D background while in the gallery as it is a fullscreen popup and rendering the expensive 3D
             // scene underneath it is not the best
             created3DBackground.Visible = false;
         }
@@ -1142,8 +1135,7 @@ public class MainMenu : NodeWithInput
     {
         if (created3DBackground != null)
         {
-            // Hide the background again when playing a video as the
-            // 3D backgrounds are performance intensive
+            // Hide the background again when playing a video as the 3D backgrounds are performance intensive
             created3DBackground.Visible = false;
         }
     }
