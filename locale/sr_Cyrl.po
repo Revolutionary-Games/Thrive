@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 14:08-0700\n"
+"POT-Creation-Date: 2023-10-17 21:21+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -65,9 +65,9 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:434
-#: ../src/general/base_stage/EditorBase.cs:688
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:480
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:427
+#: ../src/general/base_stage/EditorBase.cs:703
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:473
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -106,7 +106,7 @@ msgstr ""
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Сачувај и настави"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4098
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
@@ -147,7 +147,7 @@ msgstr "Врсте:"
 msgid "AGENT_NAME"
 msgstr "Пећина"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:531
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -369,13 +369,13 @@ msgstr "Аутоматско чување током игре"
 msgid "AUTO_EVO"
 msgstr "Аутоматска-Еволуција"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:432
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус покретања:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:264
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:194
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
@@ -385,8 +385,8 @@ msgstr "Аутоматска-еволуција није успела"
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати аутоматске-еволуције:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:256
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:265
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
@@ -431,8 +431,8 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -451,18 +451,18 @@ msgstr "Назад"
 msgid "BACKSPACE"
 msgstr "Назад"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2592
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2763
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2930
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3422
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3696
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Мобилност"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:432
 msgid "BASE_MOVEMENT"
 msgstr "Подразумевано Кретање"
 
@@ -541,7 +541,7 @@ msgstr "Понашање"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м испод нивоа мора"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:445
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -582,19 +582,19 @@ msgid "BILLION_ABBREVIATION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:531
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
 "Постоји сукоб са {0}.\n"
 "Да ли желите да уклоните унос из {1}?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
@@ -620,7 +620,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:776
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминисцентна Вакуола"
 
@@ -628,7 +628,7 @@ msgstr "Биолуминисцентна Вакуола"
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -670,11 +670,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3394
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "CALCIUM_CARBONATE"
 msgstr "Калцијум Карбонат"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има јаку љуску направљену од калцијум-карбоната. Може се лако одупрети оштећењима и захтева мање енергије да се не деформише. Мане овако тешке љуске су у томе што је ћелија много спорија и потребно јој је неко време да апсорбује ресурсе."
 
@@ -701,7 +701,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ПОТВРДИ"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:82
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Откажи претходну акцију"
 
@@ -715,10 +715,10 @@ msgstr ""
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3101
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3627
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
 msgid "CANNOT_ENGULF"
 msgstr "Не може да гута"
 
@@ -802,15 +802,15 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "CELLULOSE"
 msgstr "Целулоза"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2901
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има зид, што резултира бољом заштитом од укупних оштећења, а посебно од физичких оштећења. Такође кошта мање енергије да би задржао облик, али не може брзо да апсорбује ресурсе и спорији је."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:651
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -819,7 +819,7 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Опис:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Промените симетрију"
 
@@ -843,44 +843,44 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1953
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1952
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:694
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:164
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтетски Протеини"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини хемосинтезе суспендовани директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини хемосинтезе суспендовани директно у цитоплазми, околна течност врши ферментацију."
@@ -891,7 +891,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Хемосинтеза"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3147
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
 msgid "CHITIN"
 msgstr "Хитин"
 
@@ -905,20 +905,20 @@ msgstr "Хитин"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3148
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има зид, што значи да има бољу заштиту од укупних оштећења, посебно од оштећења токсинима. Такође задржава мање енергије да би задржао облик, али је спорији и не може брзо да апсорбује ресурсе."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:570
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1758
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Хлоропласт је двострука мембранска структура која садржи фотосензибилне пигменте сложене заједно у опнене врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у хлоропласту су способни да користе енергију светлости за производњу глукозе из воде и гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су такође оно што му даје препознатљиву боју. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и интензитетом светлости."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Хлоропласт је двострука мембранска структура која садржи фотосензибилне пигменте сложене заједно у опнене врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у хлоропласту су способни да користе енергију светлости за производњу глукозе из воде и гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су такође оно што му даје препознатљиву боју. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и интензитетом светлости."
@@ -932,7 +932,7 @@ msgstr "Изабрано име датотеке ({0}) већ постоји. П
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматске аберације:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:494
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Хемосинтетизујући протеини су мале групе протеина у цитоплазми које су у стању да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида. Пошто су протеини хемосинтезе суспендовани директно у цитоплазми, околна течност врши ферментацију."
@@ -943,16 +943,16 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "Облак једињења"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:842
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "Цилија"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
@@ -978,7 +978,7 @@ msgstr "Очистите Старе Чување"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:297
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "CLOSE"
 msgstr "Затвори"
 
@@ -1079,20 +1079,20 @@ msgstr "Способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:686
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:681
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:728
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:723
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1361,7 +1361,7 @@ msgstr "Направљено у:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Направљено на Платформи:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Направите нови микроб"
 
@@ -1408,7 +1408,7 @@ msgstr "Тражи..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Креирање објеката из саве"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Кредити"
 
@@ -1449,11 +1449,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "Корисничко име:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:601
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:293
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:295
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
@@ -1461,7 +1461,7 @@ msgstr "Лепљива унутрашњост ћелије. Цитоплазма
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Гликолиза цитоплазме"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:294
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
@@ -1618,11 +1618,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:700
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:695
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1631,11 +1631,11 @@ msgstr "Додајте ново везивање тастера"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:714
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:709
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1680,7 +1680,7 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1689,7 +1689,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Опис:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "Брзина Апсорпције Брзине"
@@ -1764,7 +1764,7 @@ msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1825,7 +1825,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2733
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
 msgid "DOUBLE"
 msgstr "Дупли"
 
@@ -1833,7 +1833,7 @@ msgstr "Дупли"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана са два слоја, има бољу заштиту од оштећења и узима мање енергије да се не деформише. Међутим, то успорава ћелију и смањује брзину којом може да апсорбује ресурсе."
 
@@ -2019,23 +2019,23 @@ msgstr "Омогућите уређивач"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Спољни ефекти:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:443
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2404
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2415
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2408
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2166,7 +2166,7 @@ msgstr "Препиши постојеће чување:"
 msgid "EXIT"
 msgstr "Изаћи"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2221,7 +2221,7 @@ msgstr "Изаберите зону да бисте овде приказали 
 msgid "EXTINCT_SPECIES"
 msgstr "ИЗУМИРАЊЕ"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Додатне"
 
@@ -2229,7 +2229,7 @@ msgstr "Додатне"
 msgid "EXTRA_OPTIONS"
 msgstr "Додатне Опције"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2258,7 +2258,7 @@ msgstr "Вакуола је унутрашња мембранска органе
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
@@ -2308,7 +2308,7 @@ msgstr "Откажи претходну акцију"
 msgid "FINISHED_DOT"
 msgstr "Готов."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:87
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Завршите уређивање и вратите се у окружење"
 
@@ -2329,15 +2329,15 @@ msgid "FIRE_TOXIN"
 msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "Бич"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Бич (множина: бичеви) је сноп протеинских влакана који се протеже од ћелијске мембране која може да користи ATP да би се поваљао и покренуо ћелију у правцу."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Бич (множина: бичеви) је сноп протеинских влакана који се протеже од ћелијске мембране која може да користи ATP да би се поваљао и покренуо ћелију у правцу."
@@ -2382,7 +2382,7 @@ msgstr "Течност / Ригидност"
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
@@ -2390,7 +2390,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Ланац Исхране"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2421
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2515,7 +2515,7 @@ msgstr "Генерација:"
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2524,11 +2524,11 @@ msgstr "Додајте ново везивање тастера"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:968
 msgid "GLES2_MODE_WARNING"
 msgstr "Упозорење у режиму GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:970
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / или присилите АМД или Нвидиа графику да се користи за покретање програма Thrive."
 
@@ -2584,7 +2584,7 @@ msgid "GOOGLY_EYE_CELL"
 msgstr "играч је умро"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:164
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:288
 msgid "GOT_IT"
 msgstr "Схватио сам"
 
@@ -2610,7 +2610,7 @@ msgstr "Графика"
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
@@ -2623,13 +2623,13 @@ msgstr ""
 msgid "GUI_VOLUME"
 msgstr "Тон интерфејса"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2695
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2863
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3033
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3280
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3525
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3799
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
 msgid "HEALTH"
 msgstr "Здравље"
 
@@ -2931,7 +2931,7 @@ msgstr "Гвожђе"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Хемолитоаутотрофија гвожђа"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3157,7 +3157,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1343
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1347
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3318,7 +3318,7 @@ msgstr "Леви миш"
 msgid "LEFT_MOUSE"
 msgstr "Леви миш"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:541
 msgid "LICENSES"
 msgstr ""
 
@@ -3494,12 +3494,12 @@ msgstr "Притисните дугме поништи у уређивачу д�
 msgid "LOAD_FINISHED"
 msgstr "Учитавање завршено"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Учитајте Игру"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3546,28 +3546,28 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1019
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Перформансе"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1021
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "ОксиТоксизом"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
@@ -3657,7 +3657,7 @@ msgstr "ма"
 msgid "MEMBRANE"
 msgstr "Врсте Мембрана"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Ригидност Мембране"
 
@@ -3674,15 +3674,15 @@ msgid "MESOPELAGIC"
 msgstr "Месопелагик"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:263
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "Метаболосоми"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:394
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:393
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
@@ -3728,7 +3728,7 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:600
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Учитавање Уређивача Микроба"
@@ -3813,7 +3813,7 @@ msgstr "Свака генерација имаш 100 мутациски поен
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да измените врсту (додавањем, премештањем или уклањањем органела) да бисте повећали успех своје врсте. Свака посета уреднику на сцени микроба представља 100 милиона година еволуције."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Слободна-Градња Уређивач Микроба"
 
@@ -4043,15 +4043,15 @@ msgid "MISSING_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "Митохондрија"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1674
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
@@ -4083,11 +4083,11 @@ msgstr "Макните органелу"
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:518
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:982
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4178,11 +4178,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:997
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -4358,6 +4358,11 @@ msgstr "Хемосинтеза"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Учитавање Уређивача Микроба"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 #, fuzzy
@@ -4465,11 +4470,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4503,7 +4508,7 @@ msgstr "Брзина:"
 msgid "NEXT_CAPITAL"
 msgstr "СЛЕДЕЋИ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:92
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
 #, fuzzy
 msgid "NEXT_EDITOR_TAB"
 msgstr "Омогућите уређивач"
@@ -4514,29 +4519,29 @@ msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "Нитрогеназа"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:790
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2036
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Пластид за Фиксирање Азота"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Пластид за фиксирање азота је протеин који може да користи гасовити азот и кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна фиксација азота."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Пластид за фиксирање азота је протеин који може да користи гасовити азот и кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна фиксација азота."
@@ -4546,11 +4551,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 msgid "NORMAL"
 msgstr "Нормално"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2563
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Најосновнији облик мембране, има малу заштиту од оштећења. Такође му је потребно више енергије да се не би деформисао. Предност је у томе што омогућава ћелији да се брзо креће и апсорбује хранљиве материје."
 
@@ -4606,7 +4611,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4619,12 +4624,12 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Укључи тастери за варања"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1862
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
@@ -4650,19 +4655,19 @@ msgid "NO_SELECTED_MOD"
 msgstr "Одабрано:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:668
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1576
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "Ћелијско Језгро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1341
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1345
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Дефинитивна карактеристика еукариотских ћелија. Језгро такође укључује ендоплазматски ретикулум и тело голгија. Еволуција прокарионтских ћелија је развити систем унутрашњих мембрана, урађен асимилацијом другог прокариота у себи. То им омогућава да раздвоје или одбаце различите процесе који се дешавају унутар ћелије и спречава их да се преклапају. То омогућава да њихови нови мембрански органели буду много сложенији, ефикаснији и специјализованији него да слободно лебде у цитоплазми. Међутим, ово долази по цену да ћелија буде много већа и да јој треба пуно енергије за одржавање."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Омогућава еволуцију сложенијих,\n"
@@ -4678,8 +4683,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2304
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2309
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 #, fuzzy
@@ -4699,11 +4704,11 @@ msgstr "Десни миш"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:672
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:663
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4740,7 +4745,7 @@ msgstr ""
 msgid "OPEN_GOD_TOOLS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:56
 msgid "OPEN_HELP_SCREEN"
 msgstr "Отворите екран помоћи"
 
@@ -4779,7 +4784,7 @@ msgstr "Отворите мени"
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:50
 msgid "OPEN_THE_MENU"
 msgstr "Отворите мени"
 
@@ -4792,7 +4797,7 @@ msgstr ""
 msgid "OPERATION_PAUSED_DOT"
 msgstr "Прекинуто."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
@@ -4800,11 +4805,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Опције"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4814,12 +4819,12 @@ msgid "ORGANELLES"
 msgstr "Органеле"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:918
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "Органеле"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2511
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
@@ -4830,26 +4835,26 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Поставите органелу"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:960
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Грабежљива Коса"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
 msgid "ORGANELLE_PILUS"
 msgstr "Грабежљива Коса"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
 #, fuzzy
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
@@ -4858,40 +4863,40 @@ msgstr "Избодите друге ћелије са ово."
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:426
 msgid "OSMOREGULATION"
 msgstr "Осморегулација"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:350
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:550
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:749
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:846
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:944
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1056
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1293
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1345
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1460
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1544
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1811
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1911
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2004
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2094
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2193
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2291
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2389
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2495
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2627
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2797
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2965
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3212
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3457
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
 msgid "OSMOREGULATION_COST"
 msgstr "Цена осморегулације"
 
@@ -4937,15 +4942,15 @@ msgid "OXYGEN"
 msgstr "Кисеоник"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:200
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "ОксиТоксизом"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
 msgid "OXYTOXISOME_DESC"
 msgstr "Модификовани метаболосом одговоран за производњу примитивног облика токсичног агенса ОксиТокси НТ."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
@@ -5033,7 +5038,7 @@ msgstr "ИЗУМИРАЊЕ"
 msgid "PATCH_MAP"
 msgstr "Карта Зоне"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5072,7 +5077,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5157,9 +5162,9 @@ msgstr "Фотосинтеза"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физички Услови"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3067
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3559
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Физички Отпор"
 
@@ -5267,7 +5272,7 @@ msgstr "популација:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2285
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
@@ -5356,11 +5361,11 @@ msgstr "Учитајте брзу копију"
 msgid "QUICK_SAVE"
 msgstr "Брза копија"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Одустати"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
@@ -5371,7 +5376,7 @@ msgstr "Додајте ново везивање тастера"
 msgid "QUIT_GAME_WARNING"
 msgstr "Упозорење у режиму GLES2"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
@@ -5404,7 +5409,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Наставити"
@@ -5413,7 +5418,7 @@ msgstr "Наставити"
 msgid "REDO"
 msgstr "Понови"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Понови последњу акцију"
 
@@ -5430,7 +5435,7 @@ msgstr ""
 msgid "REPORT"
 msgstr "Извештај"
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Извештај"
@@ -5504,8 +5509,8 @@ msgstr "Подразумеване вредности"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ресетуј до почетног?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5513,12 +5518,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "Резолуција:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2661
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2830
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2999
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3246
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3491
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Брзина Апсорпције Брзине"
 
@@ -5586,7 +5591,7 @@ msgstr "Вратите се у Мени"
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Вратите се у Мени"
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:787
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5604,7 +5609,7 @@ msgstr "Десни миш"
 msgid "RIGID"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Чвршћа мембрана је отпорнија на оштећења, али ће исто отежати кретање за ћелију."
 
@@ -5666,26 +5671,26 @@ msgstr "Додајте ново везивање тастера"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:68
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "Рустицијанин"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:694
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:990
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -5971,7 +5976,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6016,7 +6021,7 @@ msgstr ""
 "Имате несачуване промене које ће бити одбачене.\n"
 "Да ли желите да наставите?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
@@ -6028,19 +6033,19 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:753
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr ""
 "Постоји сукоб са {0}.\n"
 "Да ли желите да уклоните унос из {1}?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
@@ -6076,11 +6081,11 @@ msgstr ""
 "Да ли желите да уклоните унос из {1}?"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3666
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
 msgid "SILICA"
 msgstr "Силицијум-Диоксид"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3667
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има јак зид од силицијум диоксида. Може се добро одупрети укупној штети и врло је отпоран на физичка оштећења. Такође захтева мање енергије за одржавање форме. Међутим, успорава ћелију великим фактором и ћелија апсорбује ресурсе смањеном брзином."
 
@@ -6098,16 +6103,16 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1247
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
@@ -6193,7 +6198,7 @@ msgstr "Поставите амонијак"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6275,7 +6280,7 @@ msgstr "Врсте:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Врсте:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
 msgid "SPEED"
 msgstr "Брзина"
 
@@ -6378,17 +6383,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1013
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Чување није успело! Догоди се изузетак"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1015
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Наставити"
@@ -6402,27 +6407,27 @@ msgstr "Корисничко име:"
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:312
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:415
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:512
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:614
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:711
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:808
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:906
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1018
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1257
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1595
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1688
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1773
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1873
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1966
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2056
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2155
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2253
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2351
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
 msgid "STORAGE"
 msgstr "Складиште"
 
@@ -6431,7 +6436,7 @@ msgstr "Складиште"
 msgid "STORAGE_COLON"
 msgstr "Складиште"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:663
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6523,7 +6528,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6647,7 +6652,7 @@ msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:4131
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6663,7 +6668,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:269 ../src/general/MainMenu.tscn:1005
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6671,7 +6676,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -6681,31 +6686,31 @@ msgid "THEORY_TEAM"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:811
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопласт је двострука мембранска структура која садржи термосензибилне пигменте сложене заједно у мембранске врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу који се назива термосинтеза. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и температуром."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Термопласт је двострука мембранска структура која садржи термосензибилне пигменте сложене заједно у мембранске врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу који се назива термосинтеза. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и температуром."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:330
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 #, fuzzy
 msgid "THERMOSYNTHASE"
 msgstr "Хемосинтеза"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Термопласт је двострука мембранска структура која садржи термосензибилне пигменте сложене заједно у мембранске врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу који се назива термосинтеза. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и температуром."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Термопласт је двострука мембранска структура која садржи термосензибилне пигменте сложене заједно у мембранске врећице. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. Пигменти у термопласту могу да користе енергију топлотних разлика у околини за производњу глукозе из воде и гасовитог угљен-диоксида у процесу који се назива термосинтеза. Стопа његове производње глукозе скалира се са концентрацијом угљен-диоксида и температуром."
@@ -6736,7 +6741,7 @@ msgstr ""
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6772,7 +6777,7 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
 msgid "THYLAKOID"
 msgstr "Тхилакоид"
 
@@ -6780,7 +6785,7 @@ msgstr "Тхилакоид"
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:495
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Тилакоиди су грозди протеина и фотосензибилних пигмената. Пигменти су у стању да користе енергију светлости за производњу глукозе из воде и гасовитог угљен-диоксида у процесу названом Фотосинтеза. Ови пигменти су такође оно што им даје препознатљиву боју. Стопа њихове производње глукозе скалира се са концентрацијом угљен-диоксида и интензитетом светлости. Пошто су тилакоиди суспендовани директно у цитоплазми, околна течност врши ферментацију."
 
@@ -6809,6 +6814,15 @@ msgstr "генетски код:"
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "се проширила на зоне:"
+
+#: ../src/microbe_stage/MicrobeStage.cs:372
+#: ../src/microbe_stage/MicrobeStage.cs:376
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr ""
+"Сакупљајте глукозу (бели облаци) премештањем преко њих.\n"
+"Вашој ћелији је потребна глукоза да би произвела енергију да би остала жива.\n"
+"Пратите линију од ћелије до оближње глукозе."
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6901,7 +6915,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Укључи одвајање"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Алати"
 
@@ -6918,29 +6932,29 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "TOTAL_SAVES"
 msgstr "Укупно сачување:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3593
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3867
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 msgid "TOXIN_RESISTANCE"
 msgstr "Отпорност на токсине"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2233
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Отровна\n"
 "Вацуоле"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2234
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Да се имплементира."
 
@@ -6978,7 +6992,7 @@ msgstr "Направите снимак екрана"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:127
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:65
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "TUTORIAL"
@@ -7025,7 +7039,7 @@ msgstr ""
 "\n"
 "Срећно!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -7148,7 +7162,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Погледај сад"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -7195,7 +7209,7 @@ msgstr "Подводна Пећина"
 msgid "UNDO"
 msgstr "Поништи"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Опозови последњу акцију"
 
@@ -7337,11 +7351,11 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2135
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "Вацуоле"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
@@ -7354,7 +7368,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
@@ -7413,7 +7427,7 @@ msgstr "Пећина"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"
 
@@ -7425,7 +7439,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7452,7 +7466,7 @@ msgstr "Том од звучних ефеката"
 msgid "VSYNC"
 msgstr "В-синц"
 
-#: ../src/general/base_stage/EditorBase.cs:257
+#: ../src/general/base_stage/EditorBase.cs:258
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
@@ -7484,7 +7498,7 @@ msgstr "Померите се удесно"
 msgid "WHEEL_UP"
 msgstr "Померање нагоре"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:69
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"
 msgstr "Хоћете ли просперирати?"
 
@@ -7589,7 +7603,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "године"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Наставити"
