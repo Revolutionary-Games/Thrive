@@ -35,6 +35,8 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected bool runningMultithreaded;
 
+    private readonly List<Entity> entitiesToNotSave = new();
+
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
@@ -179,6 +181,11 @@ public abstract class WorldSimulation : IWorldSimulation
         }
 
         queuedForDelete.Clear();
+    }
+
+    public void ReportEntityDyingSoon(in Entity entity)
+    {
+        entitiesToNotSave.Add(entity);
     }
 
     /// <summary>
@@ -330,6 +337,9 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected void PerformEntityDestroy(Entity entity)
     {
+        entitiesToNotSave.Remove(entity);
+
+        // Destroy the entity from the ECS system
         entity.Dispose();
     }
 

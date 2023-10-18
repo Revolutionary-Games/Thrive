@@ -73,9 +73,7 @@
                 {
                     // Disable saving for this entity as fade out states are not programmed to resume well after loading
                     // a save
-                    throw new NotImplementedException();
-
-                    // entityContainer.ReportEntityDyingSoon(entity);
+                    entityContainer.ReportEntityDyingSoon(entity);
                 }
             }
         }

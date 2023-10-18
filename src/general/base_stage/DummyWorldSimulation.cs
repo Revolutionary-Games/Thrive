@@ -30,6 +30,10 @@ public class DummyWorldSimulation : IWorldSimulation
         throw new NotImplementedException();
     }
 
+    public void ReportEntityDyingSoon(in Entity entity)
+    {
+    }
+
     public bool IsEntityInWorld(Entity entity)
     {
         return false;

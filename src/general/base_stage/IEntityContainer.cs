@@ -23,4 +23,11 @@ public interface IEntityContainer
     /// </summary>
     /// <param name="skip">An optional entity to skip deleting</param>
     public void DestroyAllEntities(Entity? skip = null);
+
+    /// <summary>
+    ///   Reports that an entity will die soon and it should not be saved and loaded if the game is loaded before
+    ///   <see cref="DestroyEntity"/> gets called
+    /// </summary>
+    /// <param name="entity">The entity that will die very soon</param>
+    public void ReportEntityDyingSoon(in Entity entity);
 }

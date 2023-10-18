@@ -23,7 +23,7 @@ namespace Systems
     [With(typeof(MicrobeSpeciesMember))]
     [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
-    [Without(typeof(MulticellularGrowth))]
+    [Without(typeof(EarlyMulticellularSpeciesMember))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

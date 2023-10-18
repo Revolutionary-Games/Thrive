@@ -276,7 +276,7 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
-    public const float MICROBE_SOUND_MAX_DISTANCE = 100;
+    public const float MICROBE_SOUND_MAX_DISTANCE = 300;
     public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
 
     public const int MAX_CONCURRENT_SOUNDS = 100;
@@ -326,8 +326,8 @@ public static class Constants
 
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
 
-    public const float CHUNK_PHYSICS_DAMPING = 0.1f;
-    public const float MICROBE_PHYSICS_DAMPING = 0.95f;
+    public const float CHUNK_PHYSICS_DAMPING = 0.2f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.97f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -424,9 +424,10 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to despawn immediately
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
+    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 50;
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 

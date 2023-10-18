@@ -6,17 +6,12 @@ using Godot;
 /// </summary>
 public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimulationWithPhysics
 {
-    protected readonly PhysicalWorld physics;
+    protected readonly PhysicalWorld physics = PhysicalWorld.Create();
 
     /// <summary>
     ///   All created physics bodies. Must be tracked to correctly destroy them all
     /// </summary>
     protected readonly List<NativePhysicsBody> createdBodies = new();
-
-    protected WorldSimulationWithPhysics()
-    {
-        physics = PhysicalWorld.Create();
-    }
 
     ~WorldSimulationWithPhysics()
     {

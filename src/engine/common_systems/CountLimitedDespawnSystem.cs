@@ -53,6 +53,10 @@
                         group.Limit = Constants.FLOATING_CHUNK_MAX_COUNT;
                         break;
 
+                    case LimitGroup.ChunkSpawned:
+                        group.Limit = Constants.FLOATING_CHUNK_MAX_COUNT;
+                        break;
+
                     default:
                         GD.PrintErr("Unknown entity limit for group: ", countLimited.Group);
                         break;

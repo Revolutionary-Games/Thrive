@@ -794,14 +794,14 @@
 
             var weights = ai.CompoundsSearchWeights!;
 
-            var detections = organelles.PerformCompoundDetection(in entity, position.Position, clouds)
-                .OrderBy(detection => weights.TryGetValue(detection.Compound, out var weight) ?
-                    weight :
-                    0).ToList();
+            var detections = organelles.PerformCompoundDetection(in entity, position.Position, clouds);
 
-            if (detections.Count > 0)
+            if (detections is { Count: > 0 })
             {
-                ai.LastSmelledCompoundPosition = detections[0].Target;
+                ai.LastSmelledCompoundPosition = detections.OrderBy(detection =>
+                    weights.TryGetValue(detection.Compound, out var weight) ?
+                        weight :
+                        0).First().Target;
                 ai.PursuitThreshold = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value)
                     * (1 + (speciesFocus / Constants.MAX_SPECIES_FOCUS));
             }

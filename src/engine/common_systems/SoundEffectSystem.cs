@@ -480,6 +480,12 @@
         ///   This and derived classes include extra info that is needed on a currently playing audio player for this
         ///   system
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: reuse instances of this class as well to reduce memory allocation (instead of just reusing the
+        ///     underlying player objects)
+        ///   </para>
+        /// </remarks>
         private abstract class CurrentlyPlayingBase
         {
             public readonly Entity Entity;

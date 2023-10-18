@@ -162,9 +162,6 @@
             if (!IsEnabled)
                 return;
 
-            // TODO: re-enable this system
-            return;
-
             elapsed += delta;
             despawnElapsed += delta;
 

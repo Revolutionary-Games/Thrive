@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using System;
+    using System.Runtime.CompilerServices;
     using Godot;
     using Newtonsoft.Json;
 
@@ -62,6 +63,9 @@
 
     public static class SoundEffectPlayerHelpers
     {
+
+
+
         /// <summary>
         ///   Starts playing a new sound effect
         /// </summary>
@@ -89,7 +93,7 @@
                 {
                     ref var slot = ref slots[i];
 
-                    if (slot.Play)
+                    if (!IsSlotReadyForReUse(ref slot))
                         continue;
 
                     // Found an empty slot to play in
@@ -179,6 +183,7 @@
                     }
 
                     slot.InternalAppliedState = false;
+                    soundEffectPlayer.SoundsApplied = false;
                     return true;
                 }
             }
@@ -233,7 +238,7 @@
                         return true;
                     }
 
-                    if (!slot.Play && emptySlot == -1)
+                    if (IsSlotReadyForReUse(ref slot) && emptySlot == -1)
                     {
                         emptySlot = i;
                     }
@@ -284,6 +289,7 @@
 
                     slot.Loop = false;
                     slot.InternalAppliedState = false;
+                    soundEffectPlayer.SoundsApplied = false;
 
                     var targetVolume = slot.Volume - changeSpeed;
 
@@ -341,7 +347,7 @@
                         return true;
                     }
 
-                    if (!slot.Play && emptySlot == -1)
+                    if (IsSlotReadyForReUse(ref slot) && emptySlot == -1)
                     {
                         emptySlot = i;
                     }
@@ -364,6 +370,19 @@
             }
 
             return false;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool IsSlotReadyForReUse(ref SoundEffectSlot slot)
+        {
+            // The Play variable is used to both control the playback and to detect when it has ended, as such a slot
+            // with Play false is not necessarily ready for re-use yet, so we kind of naughtily check the internal
+            // state to detect when the slot is truly free
+            return !slot.Play && slot.InternalPlayingState == 0;
+
+            // TODO: would it be better to adjust the sound slot reuse logic when the slot is still playing?
+            // There's currently an error print in HandleSoundEntityStateApply that triggers if a slot is reused
+            // before its internal player is reset
         }
     }
 }
