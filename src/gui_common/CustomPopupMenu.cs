@@ -7,29 +7,20 @@
 public class CustomPopupMenu : TopLevelContainer
 {
     [Export]
-    public NodePath? PanelPath;
-
-    [Export]
-    public NodePath ClipControlPath = null!;
+    public NodePath? PanelContainerPath;
 
     [Export]
     public NodePath ContainerPath = null!;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
-    private Panel panel = null!;
-    private Control clipControl = null!;
+    private PanelContainer panelContainer = null!;
     private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Vector2 cachedMinSize;
-
     public override void _Ready()
     {
-        panel = GetNode<Panel>(PanelPath);
-        clipControl = GetNode<Control>(ClipControlPath);
+        panelContainer = GetNode<PanelContainer>(PanelContainerPath);
         container = GetNode<Container>(ContainerPath);
-
-        cachedMinSize = RectMinSize;
 
         ResolveNodeReferences();
         RemapDynamicChildren();
@@ -39,7 +30,7 @@ public class CustomPopupMenu : TopLevelContainer
     {
         foreach (Control child in GetChildren())
         {
-            if (child.Equals(panel))
+            if (child.Equals(panelContainer))
                 continue;
 
             child.ReParent(container);
@@ -50,47 +41,9 @@ public class CustomPopupMenu : TopLevelContainer
     {
     }
 
-    /// <summary>
-    ///   Calculates the size the popup should be taking into account minimum
-    ///   height needed by content
-    /// </summary>
-    /// <returns>Returns what should be the size of popup considering content height</returns>
-    protected virtual Vector2 CalculateSize()
-    {
-        RectSize = cachedMinSize;
-
-        var clipControlHeightMargin = Mathf.Abs(clipControl.MarginTop) + Mathf.Abs(clipControl.MarginBottom);
-
-        // Apply the margins to base size to get parent size. It uses the absolute value of the margins because when
-        // however many units of negative margin is removed from a size those so many units are added to the parent
-        // nodes size. Given we're calculating the size of the parent-most node, adding the absolute of all the
-        // childrens margins will give the appropriate size.
-        var contentSize = new Vector2(
-            RectSize.x,
-            container.RectSize.y +
-            Mathf.Abs(container.MarginTop) +
-            Mathf.Abs(container.MarginBottom) +
-            clipControlHeightMargin);
-
-        var minSize = new Vector2(
-            Mathf.Max(contentSize.x, cachedMinSize.x),
-            Mathf.Max(contentSize.y, cachedMinSize.y));
-
-        return minSize;
-    }
-
-    /// <summary>
-    ///   Not entirely sure why this works, but it is suspected to force an update to the size (at the time of writing).
-    /// </summary>
-    protected void ContainerSizeProblemWorkaround()
-    {
-        container.Hide();
-        container.Show();
-    }
-
     protected override void OnOpen()
     {
-        RectSize = CalculateSize();
+        // RectSize = CalculateSize();
 
         CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
             .From(Vector2.Zero)
@@ -112,10 +65,9 @@ public class CustomPopupMenu : TopLevelContainer
     {
         if (disposing)
         {
-            if (PanelPath != null)
+            if (PanelContainerPath != null)
             {
-                PanelPath.Dispose();
-                ClipControlPath.Dispose();
+                PanelContainerPath.Dispose();
                 ContainerPath.Dispose();
             }
         }

@@ -20,7 +20,6 @@ public abstract class HexPopupMenu : CustomPopupMenu
     public NodePath ModifyButtonPath = null!;
 
 #pragma warning disable CA2213
-    protected Font? normalFont;
     protected Label? titleLabel;
     protected Button? deleteButton;
     protected Button? moveButton;
@@ -120,8 +119,6 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     public override void _EnterTree()
     {
-        normalFont = GetFont("font", "Label");
-        normalFont = normalFont == null ? GetFont("normal", "Fonts") : normalFont;
         InputManager.RegisterReceiver(this);
         base._EnterTree();
     }
@@ -177,24 +174,6 @@ public abstract class HexPopupMenu : CustomPopupMenu
     protected abstract void UpdateDeleteButton();
 
     protected abstract void UpdateMoveButton();
-
-    protected override Vector2 CalculateSize()
-    {
-        var size = base.CalculateSize();
-        if (titleLabel != null && normalFont != null)
-        {
-            // Reset size of label to update it otherwise rect height doesn't update to new value soon enough
-            titleLabel.SetSize(Vector2.Zero);
-
-            size = new Vector2(size.x, size.y +
-                Mathf.Abs((titleLabel.GetVisibleLineCount() * normalFont.GetHeight()) - titleLabel.RectSize.y));
-
-            // Fix the margins because resetting the size sets them to absurd values that are not visible on screen
-            ContainerSizeProblemWorkaround();
-        }
-
-        return size;
-    }
 
     protected override void Dispose(bool disposing)
     {
