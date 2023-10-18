@@ -60,8 +60,6 @@
 
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            cellProperties.CreatedMembrane = null;
-
             ref var spatialInstance = ref entity.Get<SpatialInstance>();
 
             // Create graphics top level node if missing for entity
