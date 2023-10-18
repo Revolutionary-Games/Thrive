@@ -365,7 +365,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
         out Dictionary<Compound, float> totalNeededCompounds)
     {
-        stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(ref stage.Player.Get<SpeciesMember>(),
+        stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(
+            ref stage.Player.Get<ReproductionStatus>(), ref stage.Player.Get<SpeciesMember>(),
             stage.Player, stage.Player.Get<CompoundStorage>().Compounds, stage.GameWorld.WorldSettings,
             out gatheredCompounds, out totalNeededCompounds);
     }

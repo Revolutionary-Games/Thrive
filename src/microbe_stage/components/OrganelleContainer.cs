@@ -508,8 +508,8 @@
         /// </summary>
         /// <returns>The total reproduction progress</returns>
         public static float CalculateReproductionProgress(this ref OrganelleContainer organelleContainer,
-            ref SpeciesMember speciesMember, in Entity entity, CompoundBag storedCompounds,
-            WorldGenerationSettings worldSettings,
+            ref ReproductionStatus reproductionStatus, ref SpeciesMember speciesMember, in Entity entity,
+            CompoundBag storedCompounds, WorldGenerationSettings worldSettings,
             out Dictionary<Compound, float> gatheredCompounds, out Dictionary<Compound, float> totalCompounds)
         {
             // Calculate total compounds needed to split all organelles
@@ -631,19 +631,7 @@
             else
             {
                 // For single microbes the base reproduction cost needs to be calculated here
-                // TODO: can we make this more efficient somehow
-                foreach (var entry in species.BaseReproductionCost)
-                {
-                    float remaining = 0;
-
-                    baseReproductionInfo.MissingCompoundsForBaseReproduction?.TryGetValue(entry.Key, out remaining);
-
-                    var used = entry.Value - remaining;
-
-                    result.TryGetValue(entry.Key, out var alreadyUsed);
-
-                    result[entry.Key] = alreadyUsed + used;
-                }
+                baseReproductionInfo.CalculateAlreadyUsedBaseReproductionCompounds(species, result);
             }
 
             return result;

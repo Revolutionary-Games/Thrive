@@ -524,10 +524,7 @@ public static class SpawnHelpers
             entity.Set(storage);
         }
 
-        entity.Set(new ReproductionStatus
-        {
-            MissingCompoundsForBaseReproduction = species.BaseReproductionCost,
-        });
+        entity.Set(new ReproductionStatus(species.BaseReproductionCost));
 
         // Visuals
         var scale = usedCellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
