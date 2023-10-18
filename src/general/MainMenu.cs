@@ -29,6 +29,9 @@ public class MainMenu : NodeWithInput
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
+    public NodePath MulticellularFreebuildButtonPath = null!;
+
+    [Export]
     public NodePath AutoEvoExploringButtonPath = null!;
 
     [Export]
@@ -131,6 +134,7 @@ public class MainMenu : NodeWithInput
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
+    private Button multicellularFreebuildButton = null!;
     private Button autoEvoExploringButton = null!;
     private Button microbeBenchmarkButton = null!;
 
@@ -397,6 +401,7 @@ public class MainMenu : NodeWithInput
             {
                 ThriveLogoPath.Dispose();
                 FreebuildButtonPath.Dispose();
+                MulticellularFreebuildButtonPath.Dispose();
                 AutoEvoExploringButtonPath.Dispose();
                 MicrobeBenchmarkButtonPath.Dispose();
                 ExitToLauncherButtonPath.Dispose();
@@ -440,6 +445,7 @@ public class MainMenu : NodeWithInput
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        multicellularFreebuildButton = GetNode<Button>(MulticellularFreebuildButtonPath);
         autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
         microbeBenchmarkButton = GetNode<Button>(MicrobeBenchmarkButtonPath);
         exitToLauncherButton = GetNode<Button>(ExitToLauncherButtonPath);
@@ -861,6 +867,30 @@ public class MainMenu : NodeWithInput
 
             // Start freebuild game
             editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
+
+            // Switch to the editor scene
+            SceneManager.Instance.SwitchToScene(editor);
+        }, false);
+    }
+
+    private void MulticellularFreebuildEditorPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Disable the button to prevent it being executed again.
+        multicellularFreebuildButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
+        {
+            OnEnteringGame();
+
+            // Instantiate a new editor scene
+            var editor = (EarlyMulticellularEditor)SceneManager.Instance.LoadScene(
+                MainGameState.EarlyMulticellularEditor).Instance();
+
+            // Start freebuild game
+            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(
+                new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

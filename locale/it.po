@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-16 21:54+0200\n"
+"POT-Creation-Date: 2023-10-17 21:21+0200\n"
 "PO-Revision-Date: 2023-03-10 13:55+0000\n"
 "Last-Translator: Sora <galaxydragon9@yahoo.it>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -253,7 +253,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Autore: {0}"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:531
 msgid "ART_GALLERY"
 msgstr "Galleria"
 
@@ -361,7 +361,7 @@ msgstr "Salvataggio automatico durante il gioco"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:432
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Strumento di esplorazione Auto-Evo"
 
@@ -414,8 +414,8 @@ msgid "AWARE_STAGE"
 msgstr "Fase Microbica"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
+#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -514,7 +514,7 @@ msgstr "Opportunismo"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sotto il livello del mare"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:445
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgstr "Vacuolo bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -1023,21 +1023,21 @@ msgstr "Abilità"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:686
 msgid "COMMUNITY_FORUM"
 msgstr "Forum della comunità"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:681
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Apri l'editor e modifica la tua specie"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:728
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "nostra Wiki"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:723
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Esci dal gioco"
@@ -1343,7 +1343,7 @@ msgstr "Creazione..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creazione oggetti da salvataggio"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Ringraziamenti"
 
@@ -1553,12 +1553,12 @@ msgstr "Sostenitori Devbuilds"
 msgid "DEVELOPERS"
 msgstr "Sviluppatori"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:700
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Sviluppo sostenuto da Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:695
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Apri l'editor e modifica la tua specie"
@@ -1567,12 +1567,12 @@ msgstr "Apri l'editor e modifica la tua specie"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Sviluppo sostenuto da Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:714
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Sviluppatori"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:709
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Come giocare"
@@ -1692,7 +1692,7 @@ msgstr ""
 "Ci sono organuli non connessi al resto della cellula.\n"
 "Connetti tutti gli organuli alla cellula o annulla i cambiamenti effettuati."
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:872
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
@@ -2081,7 +2081,7 @@ msgstr "Inserisci ID esistente"
 msgid "EXIT"
 msgstr "Esci"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E"
@@ -2134,7 +2134,7 @@ msgstr "estinto nella zona"
 msgid "EXTINCT_SPECIES"
 msgstr "Specie estinte"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Extra"
 
@@ -2142,7 +2142,7 @@ msgstr "Extra"
 msgid "EXTRA_OPTIONS"
 msgstr "Opzioni Extra"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:884
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Metti in pausa il gioco"
@@ -2448,7 +2448,7 @@ msgstr "Generazioni"
 msgid "GENERATION_COLON"
 msgstr "Generazione:"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:836
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Esci dal gioco"
@@ -2457,11 +2457,11 @@ msgstr "Esci dal gioco"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:968
 msgid "GLES2_MODE_WARNING"
 msgstr "Avvertimento Modalità GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:970
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
@@ -2865,7 +2865,7 @@ msgstr "Ferro"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Chemiolitoautotrofia del ferro"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:812
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Esci dal gioco"
@@ -3243,7 +3243,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Clic sinistro"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:541
 msgid "LICENSES"
 msgstr "Licenze"
 
@@ -3410,12 +3410,12 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "LOAD_FINISHED"
 msgstr "Caricamento completato"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carica partita"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Carica partite salvate precedentemente"
 
@@ -3460,12 +3460,12 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1019
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Prestazioni"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1021
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegliere quale. Gli enzimi velocizzano la digestione e la rendono più efficiente."
@@ -3634,7 +3634,7 @@ msgid "MICROBES_COUNT"
 msgstr "Fase Microbica"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:600
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor Microbico"
@@ -3716,7 +3716,7 @@ msgstr "Ogni generazione possiedi 100 punti mutazione (PM) da spendere, e ogni m
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Ogni volta che ti riproduci farai ingresso nell'Editor Microbico, dove potrai fare modifiche alla tua specie (aggiungere, spostare o rimuovere organuli) per aumentarne il successo. Ogni visita all'editor nella Fase Microbica rappresenta [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milioni di anni di evoluzione."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
 
@@ -3980,11 +3980,11 @@ msgstr "Modifica organulo"
 msgid "MODIFY_TYPE"
 msgstr "Modifica tipo"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:518
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:982
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4070,11 +4070,11 @@ msgstr "Nome interno (della cartella):"
 msgid "MOD_LICENSE"
 msgstr "Licenza:"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errori di caricamento mod"
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:997
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log potrebbero contenere informazioni ulteriori."
 
@@ -4275,6 +4275,11 @@ msgstr "Sintesi della mucillagine"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicellulare"
 
+#: ../src/general/MainMenu.tscn:421
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Editor Multicellulare"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
@@ -4377,11 +4382,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Popolazione iniziale delle specie aumenta-biodiversità"
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Nuova partita"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Avvia una nuova partita"
 
@@ -4521,7 +4526,7 @@ msgstr "Nessun evento registrato"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nessuna cartella dei salvataggi trovata"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:980
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Disattivato"
@@ -4594,11 +4599,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Ottobre"
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:672
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:663
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Autodistruzione"
@@ -4699,11 +4704,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunista"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Opzioni"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Modifica le impostazioni di gioco"
 
@@ -4963,7 +4968,7 @@ msgstr ""
 "La tua specie si è estinta in questa zona.\n"
 "Ma non è ancora finita: puoi selezionare una nuova zona in cui giocare!"
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:824
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Metti in pausa il gioco"
@@ -5238,11 +5243,11 @@ msgstr "Caricamento rapido"
 msgid "QUICK_SAVE"
 msgstr "Salvataggio rapido"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Chiudi"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Esci dal gioco"
@@ -5285,7 +5290,7 @@ msgstr "Pronto"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Versione consigliata di Thrive:"
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:860
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Riprendi il gioco"
@@ -5312,7 +5317,7 @@ msgstr "Rimborsa le migrazioni nelle estinzioni"
 msgid "REPORT"
 msgstr "Riepilogo"
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Riepilogo"
@@ -5461,7 +5466,7 @@ msgstr ""
 "Sicuro di voler chiudere e andare al menù principale?\n"
 "Perderai tutti i progressi non salvati."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:787
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Di Revolutionary Games Studio"
@@ -5550,7 +5555,7 @@ msgstr "La rusticianina è una proteina che usa il [thrive:compound type=\"carbo
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Trasforma il [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:992
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5559,7 +5564,7 @@ msgstr ""
 "I microbi coraggiosi non sono spaventati dai predatori vicini\n"
 "e sono più disposti a contrattaccare."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:990
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Rimuovi Dati Locali"
@@ -6208,17 +6213,17 @@ msgstr "Steam è momentaneamente non disponibile, riprova"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Steam: si è verificato un errore sconosciuto"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1013
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Inizializzazione della libreria client Steam fallita"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1015
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "L'aggiornamento del salvataggio specificato non è riuscito a causa del seguente errore:"
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:800
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Metti in pausa il gioco"
@@ -6259,7 +6264,7 @@ msgstr "Spazio di stoccaggio"
 msgid "STORAGE_COLON"
 msgstr "Spazio di stoccaggio:"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:663
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Hai effettuato l'accesso come: {0}"
 
@@ -6483,7 +6488,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Squadra Collaudatori"
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:269 ../src/general/MainMenu.tscn:1005
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6498,7 +6503,7 @@ msgstr ""
 "\n"
 "Se il gioco ti è piaciuto, parlane anche ai tuoi amici."
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1003
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "HAI PROSPERATO!"
@@ -6558,7 +6563,7 @@ msgstr "Questa mod è stata scaricata dal Workshop di Steam"
 msgid "THREADS"
 msgstr "Thread:"
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6726,7 +6731,7 @@ msgstr "Metti in pausa"
 msgid "TOGGLE_UNBINDING"
 msgstr "Attiva la modalità di slegatura"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Strumenti"
 
@@ -6959,7 +6964,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vedi ora"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:896
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
@@ -7212,7 +7217,7 @@ msgstr "{1} {0}o/a"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{1} {0}o/a"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Vedi codice sorgente"
 
@@ -7224,7 +7229,7 @@ msgstr "Sostenitori VIP"
 msgid "VISIBLE"
 msgstr "Visibile"
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -7380,7 +7385,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "anni"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:848
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Metti in pausa il gioco"
