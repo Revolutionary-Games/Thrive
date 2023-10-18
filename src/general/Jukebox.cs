@@ -505,7 +505,10 @@ public class Jukebox : Node
 
         foreach (var list in target.TrackLists)
         {
-            var trackResources = list.GetTracksForContexts(activeContexts).Select(track => track.ResourcePath);
+            // Detecting playing tracks doesn't take context restrictions into account to allow context to change but
+            // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
+            // force tracks to end
+            var trackResources = list.GetAllTracks().Select(track => track.ResourcePath);
             if (activeTracks.Any(track => trackResources.Contains(track)))
                 continue;
 
@@ -585,7 +588,7 @@ public class Jukebox : Node
             // Reset PlayedOnce flag in all tracks
             foreach (var list in category.TrackLists)
             {
-                foreach (var track in list.GetTracksForContexts(activeContexts))
+                foreach (var track in list.GetAllTracks())
                 {
                     track.PlayedOnce = false;
                 }
@@ -601,7 +604,10 @@ public class Jukebox : Node
 
             foreach (var list in category.TrackLists)
             {
-                foreach (var track in list.GetTracksForContexts(activeContexts))
+                // This doesn't restrict tracks to ones that can be played according to the context. This is done to
+                // ensure that in the future if context can be changed while playing a category without immediately
+                // stopping tracks, this will work correctly.
+                foreach (var track in list.GetAllTracks())
                 {
                     if (activeTracks.Contains(track.ResourcePath))
                     {

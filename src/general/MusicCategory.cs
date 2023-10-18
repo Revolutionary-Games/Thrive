@@ -59,7 +59,9 @@ public class MusicCategory : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "missing track lists");
 
         foreach (var list in TrackLists)
+        {
             list.Check();
+        }
     }
 
     public void ApplyTranslations()
@@ -121,7 +123,9 @@ public class TrackList
             throw new InvalidRegistryDataException("track list", GetType().Name, "missing Tracks");
 
         foreach (var track in Tracks)
+        {
             track.Check();
+        }
     }
 
     public IEnumerable<Track> GetTracksForContexts(MusicContext[]? contexts)
@@ -129,16 +133,35 @@ public class TrackList
         return Tracks.Where(t => CheckIfTrackValidInContext(t, contexts));
     }
 
+    /// <summary>
+    ///   Accesses all tracks for operations that need to bypass context restrictions
+    /// </summary>
+    /// <returns>Enumerable for all of the tracks</returns>
+    public IEnumerable<Track> GetAllTracks()
+    {
+        return Tracks;
+    }
+
     private bool CheckIfTrackValidInContext(Track track, MusicContext[]? contexts)
     {
         if (track.PlayOnlyWithoutContext)
             return contexts == null;
 
-        if (track.ExclusiveToContexts != null)
-            return contexts != null && track.ExclusiveToContexts.Any(contexts.Contains);
-
+        // Check disallowed contexts first to allow disallowed list to act as an exception to the allowed list
         if (track.DisallowInContexts != null)
-            return contexts == null || !track.DisallowInContexts.Any(contexts.Contains);
+        {
+            if (contexts != null && track.DisallowInContexts.Any(contexts.Contains))
+                return false;
+        }
+
+        if (track.ExclusiveToContexts != null)
+        {
+            if (contexts == null)
+                return false;
+
+            if (!track.ExclusiveToContexts.Any(contexts.Contains))
+                return false;
+        }
 
         return true;
     }
@@ -171,19 +194,37 @@ public class TrackList
         public bool PlayOnlyWithoutContext { get; set; } = false;
 
         [JsonIgnore]
-        public bool WasPlaying { get; set; } = false;
+        public bool WasPlaying { get; set; }
 
         [JsonIgnore]
-        public float PreviousPlayedPosition { get; set; } = 0;
+        public float PreviousPlayedPosition { get; set; }
 
         [JsonIgnore]
-        public bool PlayedOnce { get; set; } = false;
+        public bool PlayedOnce { get; set; }
 
         public void Check()
         {
             if (string.IsNullOrEmpty(ResourcePath))
             {
                 throw new InvalidRegistryDataException("track", GetType().Name, "ResourcePath missing for track");
+            }
+
+            if (DisallowInContexts != null && DisallowInContexts.Length < 1)
+            {
+                throw new InvalidRegistryDataException("track", GetType().Name,
+                    "If disallowed context is defined the list should not be empty");
+            }
+
+            if (ExclusiveToContexts != null && ExclusiveToContexts.Length < 1)
+            {
+                throw new InvalidRegistryDataException("track", GetType().Name,
+                    "If exclusive to contexts is defined the list should not be empty");
+            }
+
+            if (PlayOnlyWithoutContext && ExclusiveToContexts != null)
+            {
+                throw new InvalidRegistryDataException("track", GetType().Name,
+                    "Exclusive to context shouldn't be set if play only without context is set");
             }
         }
     }
