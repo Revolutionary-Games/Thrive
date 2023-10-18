@@ -279,9 +279,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
     public override void StartMusic()
     {
+        var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
+
         Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
             "EarlyMulticellularStage" :
-            "MicrobeStage");
+            "MicrobeStage", biome.ActiveMusicContexts);
     }
 
     [RunOnKeyDown("g_pause")]
