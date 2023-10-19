@@ -64,6 +64,11 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </summary>
     public PhysicsCollision[]? ActiveCollisions => activeCollisions;
 
+    /// <summary>
+    ///   C# side tracking for physics bodies with microbe control being enabled
+    /// </summary>
+    public bool MicrobeControlEnabled { get; set; }
+
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
         return Equals(left, right);

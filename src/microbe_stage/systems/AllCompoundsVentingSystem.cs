@@ -23,8 +23,7 @@
         private readonly List<Compound> processedCompoundKeys = new();
 
         public AllCompoundsVentingSystem(CompoundCloudSystem compoundClouds, WorldSimulation worldSimulation,
-            World world, IParallelRunner runner) :
-            base(world, runner)
+            World world, IParallelRunner runner) : base(world, runner)
         {
             compoundCloudSystem = compoundClouds;
             this.worldSimulation = worldSimulation;
@@ -84,8 +83,17 @@
 
             if (venter.UsesMicrobialDissolveEffect)
             {
-                // TODO: do this effect
-                throw new NotImplementedException();
+                // Disable physics to stop collisions
+                if (entity.Has<Physics>())
+                {
+                    ref var physics = ref entity.Get<Physics>();
+                    physics.BodyDisabled = true;
+                }
+
+                var duration = entity.StartDissolveAnimation(worldSimulation, true, true);
+
+                // This entity is no longer important to save
+                worldSimulation.ReportEntityDyingSoon(entity);
             }
             else if (venter.DestroyOnEmpty)
             {

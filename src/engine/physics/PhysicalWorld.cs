@@ -215,13 +215,23 @@ public class PhysicalWorld : IDisposable
         if (rotationSpeedDivisor < 0.01f)
             rotationSpeedDivisor = 0.01f;
 
+        body.MicrobeControlEnabled = true;
+
         NativeMethods.SetBodyControl(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(movementImpulse), new JQuat(lookDirection), rotationSpeedDivisor);
     }
 
     public void DisableMicrobeBodyControl(NativePhysicsBody body)
     {
+        if (!body.MicrobeControlEnabled)
+        {
+            // Skip trying to disable if already disabled, this is done to not need an extra variable in places trying
+            // to disable this to check first
+            return;
+        }
+
         NativeMethods.DisableBodyControl(AccessWorldInternal(), body.AccessBodyInternal());
+        body.MicrobeControlEnabled = false;
     }
 
     public void SetBodyPosition(NativePhysicsBody body, Vector3 position)

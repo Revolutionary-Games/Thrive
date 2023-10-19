@@ -164,5 +164,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         ///   Need to be set to true on particle type visuals as those need special handling
         /// </summary>
         public bool IsParticles;
+
+        /// <summary>
+        ///   If true animations won't be stopped on this scene when this is spawned as a chunk
+        /// </summary>
+        public bool PlayAnimation;
     }
 }

@@ -19,14 +19,15 @@ namespace Systems
     [RunsBefore(typeof(DamageSoundSystem))]
     [RunsAfter(typeof(OrganelleTickSystem))]
     [RunsAfter(typeof(MicrobeAISystem))]
+    [RunsOnMainThread]
     public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>
     {
         private readonly IReadonlyCompoundClouds compoundClouds;
         private readonly ISpeciesMemberLocationData microbeLocationData;
 
         public MicrobeEventCallbackSystem(IReadonlyCompoundClouds compoundClouds,
-            ISpeciesMemberLocationData microbeLocationData, World world, IParallelRunner parallelRunner) :
-            base(world, parallelRunner)
+            ISpeciesMemberLocationData microbeLocationData, World world) :
+            base(world, null)
         {
             this.compoundClouds = compoundClouds;
             this.microbeLocationData = microbeLocationData;
@@ -36,12 +37,15 @@ namespace Systems
         {
             ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
             ref var status = ref entity.Get<MicrobeStatus>();
+            ref var health = ref entity.Get<Health>();
+
+            // Don't run callbacks for dead cells
+            if (health.Dead)
+                return;
 
             HandleChemoreceptorLines(entity, ref status, ref callbacks, delta);
 
             // Damage callbacks
-            ref var health = ref entity.Get<Health>();
-
             var damage = health.RecentDamageReceived;
 
             if (damage != null)

@@ -121,7 +121,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem, nonParallelRunner);
-        fadeOutActionSystem = new FadeOutActionSystem(EntitySystem, parallelRunner);
+        fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, parallelRunner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, parallelRunner);
         physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, null, EntitySystem, nonParallelRunner);
@@ -159,8 +159,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
 
-        microbeEventCallbackSystem =
-            new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem, parallelRunner);
+        microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, parallelRunner);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);

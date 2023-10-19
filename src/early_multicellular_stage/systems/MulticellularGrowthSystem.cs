@@ -97,9 +97,7 @@
                     // We have completed our body plan and can (once enough resources) reproduce
                     if (multicellularGrowth.EnoughResourcesForBudding)
                     {
-                        throw new NotImplementedException();
-
-                        // ReadyToReproduce();
+                        ReadyToReproduce(ref organelleContainer, entity);
                     }
                     else
                     {
@@ -198,6 +196,40 @@
                     multicellularGrowth.EnoughResourcesForBudding = true;
                     multicellularGrowth.CompoundsNeededForNextCell = null;
                 }
+            }
+        }
+
+        private void ReadyToReproduce(ref OrganelleContainer organelles, in Entity entity)
+        {
+            Action<Entity, bool>? reproductionCallback;
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+                reproductionCallback = callbacks.OnReproductionStatus;
+            }
+            else
+            {
+                reproductionCallback = null;
+            }
+
+            // Entities with a reproduction callback don't divide automatically
+            if (reproductionCallback != null)
+            {
+                // The player doesn't split automatically
+                organelles.AllOrganellesDivided = true;
+
+                reproductionCallback.Invoke(entity, true);
+            }
+            else
+            {
+                throw new NotImplementedException();
+
+                // enoughResourcesForBudding = false;
+                //
+                // // Let's require the base reproduction cost to be fulfilled again as well, to keep down the
+                // colony
+                // // spam, and for consistency with non-multicellular microbes
+                // SetupRequiredBaseReproductionCompounds();
             }
         }
     }

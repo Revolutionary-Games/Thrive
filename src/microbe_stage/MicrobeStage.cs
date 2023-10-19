@@ -686,7 +686,11 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         Player = worldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
 
-        // We despawn everything here as either the player just spawned for the first time or
+        if (!IsPlayerAlive())
+            throw new InvalidOperationException("Player spawn didn't create player entity correctly");
+
+        // We despawn everything here as either the player just spawned for the first time or died and is being spawned
+        // at a different location
         worldSimulation.SpawnSystem.DespawnAll();
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
@@ -865,10 +869,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
     {
-        // TODO: reimplement
-        throw new NotImplementedException();
-
-        // spawner.DespawnAll();
+        worldSimulation.SpawnSystem.DespawnAll();
     }
 
     /// <summary>
@@ -890,7 +891,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (!engulfed)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
-        Player = default;
+        // Don't clear the player object here as we want to wait until the player entity is deleted before creating
+        // a new one to avoid having two player entities existing at the same time
     }
 
     [DeserializedCallbackAllowed]

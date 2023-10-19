@@ -24,6 +24,7 @@ namespace Systems
     [With(typeof(MicrobeControl))]
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(SoundEffectPlayer))]
+    [With(typeof(CompoundAbsorber))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(EngulfingSystem))]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
@@ -171,10 +172,18 @@ namespace Systems
 
                 chunkType.Meshes.Add(sceneToUse);
 
+                var position = basePosition + positionAdded;
+                Vector3 velocity = Vector3.Zero;
+
+                if (customizeCallback != null)
+                {
+                    velocity = customizeCallback.Invoke(ref position);
+                }
+
                 // Finally spawn a chunk with the settings
 
                 var chunk = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType,
-                    basePosition + positionAdded, random, true);
+                    position, random, true, velocity);
 
                 // Add to the spawn system to make these chunks limit possible number of entities
                 spawnSystem.NotifyExternalEntitySpawned(chunk,
@@ -220,6 +229,9 @@ namespace Systems
 
             if (health.CurrentHealth <= 0 || health.Dead)
             {
+                // Ensure dead flag is always set, as otherwise this will cause "zombies"
+                health.Dead = true;
+
                 if (HandleMicrobeDeath(ref cellProperties, entity))
                     health.DeathProcessed = true;
             }
@@ -229,7 +241,6 @@ namespace Systems
         {
             if (entity.Has<AttachedToEntity>())
             {
-                // TODO: handle either dying in engulfment or in a cell colony
                 // When in a colony needs to detach
                 if (entity.Has<MicrobeColonyMember>())
                 {
@@ -238,6 +249,8 @@ namespace Systems
 
                 // Else, being engulfed handling is in OnKilled and OnExpelledFromEngulfment
                 // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+                // TODO: check that this is setup correctly
+                return true;
             }
 
             if (entity.Has<MicrobeColony>())
@@ -246,23 +259,23 @@ namespace Systems
                 throw new NotImplementedException();
             }
 
-            // TODO: release all engulfed objects (unless this is being currently engulfed in which case our engulfer
-            // should take them)
+            if (OnKilled(ref cellProperties, entity))
+            {
+                // TODO: engulfed death doesn't trigger this mod interface...
+                ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
+                return true;
+            }
 
-            ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
-
-            // TODO: the kill method used to return the list of dropped corpse chunks, not sure if that is still
-            // needed by anything
-            return OnKilled(ref cellProperties, entity);
+            return false;
         }
 
         /// <summary>
         ///   Operations that should be done when this cell is killed
         /// </summary>
         /// <returns>
-        ///   The dropped corpse chunks.
+        ///   True when the death could be processed, false if the entity isn't ready to process the death
         /// </returns>
-        private bool /*IEnumerable<Entity>*/ OnKilled(ref CellProperties cellProperties, in Entity entity)
+        private bool OnKilled(ref CellProperties cellProperties, in Entity entity)
         {
             ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -279,6 +292,11 @@ namespace Systems
             control.State = MicrobeState.Normal;
             control.MovementDirection = new Vector3(0, 0, 0);
             organelleContainer.AllOrganellesDivided = false;
+
+            // Stop compound absorbing
+            ref var absorber = ref entity.Get<CompoundAbsorber>();
+            absorber.AbsorbSpeed = -1;
+            absorber.AbsorbRadius = -1;
 
             // Disable collisions
             physics.SetCollisionDisableState(true);
@@ -348,6 +366,9 @@ namespace Systems
             soundPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
+
+            // TODO: if we have problems with dead microbes behaving weirdly in loaded saves, uncomment the next line
+            // worldSimulation.ReportEntityDyingSoon(entity);
 
             return true;
         }

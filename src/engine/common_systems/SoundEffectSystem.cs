@@ -58,7 +58,6 @@
 
             timeCounter += delta;
 
-            entitiesThatNeedProcessing.Clear();
             playingSoundCount = 0;
 
             // First check the status of any sound players to detect when some end playing, and handle looping
@@ -138,11 +137,12 @@
                 var distance = position.Position.DistanceSquaredTo(playerPosition);
 
                 // Skip so far away players that they shouldn't be handled at all
-                // TODO: maybe still stop these from playing?
+                // TODO: maybe still stop sounds in these from playing? (for example if some code wanted to stop a
+                // sound on an entity that doesn't get processed due to distance, that sound playing won't stop)
                 if (soundEffectPlayer.AbsoluteMaxDistanceSquared > 0 &&
                     distance > soundEffectPlayer.AbsoluteMaxDistanceSquared)
                 {
-                    return;
+                    continue;
                 }
 
                 entitiesThatNeedProcessing.Add((entity, distance));
@@ -153,6 +153,8 @@
             entitiesThatNeedProcessing.Sort((x, y) => (int)(x.Distance - y.Distance));
 
             HandleSoundEntityStateApply();
+
+            entitiesThatNeedProcessing.Clear();
         }
 
         protected override void PostUpdate(float delta)
@@ -236,10 +238,10 @@
 
                 bool play2D = soundEffectPlayer.AutoDetectPlayer && entity.Has<SoundListener>();
 
-                // This is intentionally left unlocked as if sound effects are modified while this system runs it would
-                // lead to sometimes unexpected results
-
                 bool skippedSomething = false;
+
+                // The slots are intentionally left unlocked as if sound effects are modified while this system runs
+                // it would lead to sometimes unexpected results
 
                 int slotCount = slots.Length;
 
@@ -298,6 +300,7 @@
                         if (startNew && !string.IsNullOrEmpty(slot.SoundFile))
                         {
                             // Only start playing if can
+                            // TODO: don't apply this limit to the player
                             if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS)
                             {
                                 // This leaves SoundsApplied false so that this entity can keep trying until there are
@@ -322,8 +325,10 @@
                 }
 
                 // Only mark as applied if we had room to start all sounds that should be played
-                if (!skippedSomething)
-                    soundEffectPlayer.SoundsApplied = true;
+                if (skippedSomething)
+                    continue;
+
+                soundEffectPlayer.SoundsApplied = true;
             }
         }
 

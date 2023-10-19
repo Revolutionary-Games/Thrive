@@ -17,8 +17,10 @@
     [With(typeof(CompoundStorage))]
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
+    [With(typeof(Health))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(Health))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -38,6 +40,15 @@
 
             if (physics.BodyDisabled || physics.Body == null)
                 return;
+
+            // Skip dead microbes being allowed to move, this is now needed as the death system keeps the physics body
+            // alive so velocity still moves microbes for a bit even after death
+            if (entity.Get<Health>().Dead)
+            {
+                // Disable control to not have the dead microbes maintain rotation or anything like that
+                physicalWorld.DisableMicrobeBodyControl(physics.Body);
+                return;
+            }
 
             ref var organelles = ref entity.Get<OrganelleContainer>();
             ref var control = ref entity.Get<MicrobeControl>();

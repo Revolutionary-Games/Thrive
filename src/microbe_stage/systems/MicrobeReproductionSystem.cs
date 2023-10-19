@@ -497,19 +497,6 @@ namespace Systems
                 organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), entity, species, species);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
-
-                // TODO: move this to a separate system (multicellular reproduction)
-                // Multicellular reproduction
-                // cellProperties.Divide(entity, null);
-
-                throw new NotImplementedException();
-
-                // enoughResourcesForBudding = false;
-                //
-                // // Let's require the base reproduction cost to be fulfilled again as well, to keep down the
-                // colony
-                // // spam, and for consistency with non-multicellular microbes
-                // SetupRequiredBaseReproductionCompounds();
             }
         }
     }

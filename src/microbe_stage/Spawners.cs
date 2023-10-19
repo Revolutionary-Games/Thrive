@@ -187,13 +187,14 @@ public static class SpawnHelpers
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
 
-        entity = SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType, location, random, microbeDrop);
+        entity = SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType, location, random, microbeDrop,
+            Vector3.Zero);
         return recorder;
     }
 
     public static EntityRecord SpawnChunkWithoutFinalizing(IWorldSimulation worldSimulation,
         EntityCommandRecorder commandRecorder, ChunkConfiguration chunkType, Vector3 location, Random random,
-        bool microbeDrop)
+        bool microbeDrop, Vector3 initialVelocity)
     {
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
@@ -241,12 +242,16 @@ public static class SpawnHelpers
 
         if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
         {
-            // Stop any animations from playing on this organelle when it is dropped as a chunk
-            entity.Set(new AnimationControl
+            // Stop any animations from playing on this organelle when it is dropped as a chunk. Some chunk types do
+            // want to keep playing an animation so there's this extra if
+            if (!selectedMesh.PlayAnimation)
             {
-                AnimationPlayerPath = selectedMesh.SceneAnimationPath,
-                StopPlaying = true,
-            });
+                entity.Set(new AnimationControl
+                {
+                    AnimationPlayerPath = selectedMesh.SceneAnimationPath,
+                    StopPlaying = true,
+                });
+            }
         }
 
         // Setup compounds to vent
@@ -300,6 +305,7 @@ public static class SpawnHelpers
         {
             AxisLock = Physics.AxisLockType.YAxis,
             LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
+            Velocity = initialVelocity,
         });
         entity.Set(new PhysicsShapeHolder
         {

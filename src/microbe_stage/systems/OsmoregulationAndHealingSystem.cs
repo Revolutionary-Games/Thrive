@@ -19,6 +19,10 @@ namespace Systems
     [With(typeof(Engulfable))]
     [With(typeof(SpeciesMember))]
     [With(typeof(Health))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(Engulfable))]
+    [ReadsComponent(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(Health))]
     public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;
@@ -51,6 +55,10 @@ namespace Systems
             ref var health = ref entity.Get<Health>();
             ref var cellProperties = ref entity.Get<CellProperties>();
 
+            // Dead cells may not regenerate health
+            if (health.Dead || health.CurrentHealth <= 0)
+                return;
+
             var compounds = entity.Get<CompoundStorage>().Compounds;
 
             HandleHitpointsRegeneration(ref health, compounds, delta);
@@ -62,13 +70,18 @@ namespace Systems
             // Take extra ATP if in engulf mode (and disable engulf mode if out of ATP)
             if (control.State == MicrobeState.Engulf)
             {
-                throw new NotImplementedException();
+                var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
+
+                if (compounds.TakeCompound(atp, cost) < cost)
+                {
+                    // Ran out of ATP, disable engulf
+                    control.State = MicrobeState.Normal;
+                }
             }
         }
 
         private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,
-            ref CellProperties cellProperties,
-            CompoundBag compounds, float delta)
+            ref CellProperties cellProperties, CompoundBag compounds, float delta)
         {
             status.LastCheckedATPDamage += delta;
 

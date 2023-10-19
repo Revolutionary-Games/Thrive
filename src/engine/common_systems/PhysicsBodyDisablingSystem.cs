@@ -22,6 +22,7 @@
             this.physicalWorld = physicalWorld;
         }
 
+        // TODO: figure out where this would need to be called
         /// <summary>
         ///   Needs to be called when a body is deleted so that state tracking for body disabling can remove it
         /// </summary>
@@ -31,6 +32,12 @@
             // TODO: if needed for deletion this could reattach the body here?
 
             disabledBodies.Remove(body);
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
         }
 
         protected override void Update(float state, Span<Physics> components)
@@ -70,6 +77,18 @@
                     {
                         GD.PrintErr("Body that was to be disabled was already disabled somehow");
                     }
+                }
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // TODO: would this be needed?
+                foreach (var disabledBody in disabledBodies)
+                {
+                    physicalWorld.DestroyBody(disabledBody);
                 }
             }
         }

@@ -65,12 +65,12 @@
                 ref var physics = ref entity.Get<Physics>();
 
                 // Disable *further* collisions (any active collisions will stay)
-                physics.DisableCollisionState = Physics.CollisionState.DisableCollisions;
+                physics.SetCollisionDisableState(true);
 
                 if (damageTouch.UsesMicrobialDissolveEffect)
                 {
                     // We assume that damage on touch is always done by chunks
-                    entity.StartDissolveAnimation(true);
+                    entity.StartDissolveAnimation(worldSimulation, true, true);
                 }
                 else
                 {

@@ -1,6 +1,7 @@
 ﻿namespace Components
 {
     using DefaultEcs;
+    using DefaultEcs.Command;
 
     /// <summary>
     ///   Allows control over the few (animation) shader parameters available in the microbe stage for some entities.
@@ -33,12 +34,20 @@
 
     public static class MicrobeShaderParametersHelpers
     {
-        public static void StartDissolveAnimation(this Entity entity, bool useChunkSpeed)
+        /// <summary>
+        ///   Starts a dissolve animation on an entity. If <see cref="addTimedLifeIfMissing"/> this also adds a timed
+        ///   life component (when missing on the entity) to delete the entity once the animation is complete
+        /// </summary>
+        /// <returns>The time in seconds the animation is expected to take</returns>
+        public static float StartDissolveAnimation(this Entity entity, IWorldSimulation newComponentCreator,
+            bool useChunkSpeed, bool addTimedLifeIfMissing)
         {
             float speed = 1;
 
             if (useChunkSpeed)
                 speed = Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
+
+            EntityCommandRecorder? recorder = null;
 
             if (entity.Has<MicrobeShaderParameters>())
             {
@@ -49,12 +58,38 @@
             }
             else
             {
-                entity.Set(new MicrobeShaderParameters
+                recorder = newComponentCreator.StartRecordingEntityCommands();
+
+                var record = recorder.Record(entity);
+
+                record.Set(new MicrobeShaderParameters
                 {
                     DissolveAnimationSpeed = speed,
                     PlayAnimations = true,
                 });
             }
+
+            // Add a tiny bit of extra time to ensure the animation is finished by the time is elapsed (for example
+            // despawning with a delay purposes)
+            var duration = 1 / speed + 0.0001f;
+
+            if (addTimedLifeIfMissing && !entity.Has<TimedLife>())
+            {
+                // Add a timed life component as the dissolve animation doesn't despawn the entity
+
+                recorder ??= newComponentCreator.StartRecordingEntityCommands();
+                var record = recorder.Record(entity);
+
+                record.Set(new TimedLife
+                {
+                    TimeToLiveRemaining = duration,
+                });
+            }
+
+            if (recorder != null)
+                newComponentCreator.FinishRecordingEntityCommands(recorder);
+
+            return duration;
         }
     }
 }

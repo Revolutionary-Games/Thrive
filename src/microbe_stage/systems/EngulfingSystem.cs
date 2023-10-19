@@ -707,8 +707,7 @@
         ///   Expels an ingested object from this microbe out into the environment.
         /// </summary>
         private void EjectEngulfable(ref Engulfer engulfer, ref CellProperties engulferCellProperties, in Entity entity,
-            bool engulferDead,
-            ref Engulfable engulfable, in Entity engulfedObject, float animationSpeed = 2.0f)
+            bool engulferDead, ref Engulfable engulfable, in Entity engulfedObject, float animationSpeed = 2.0f)
         {
             // If entity itself is engulfed, then it can't expel things. Except when dead as that overrides things
             if (entity.Has<Engulfable>() && entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None &&

@@ -15,8 +15,12 @@
     [With(typeof(TimedLife))]
     public sealed class FadeOutActionSystem : AEntitySetSystem<float>
     {
-        public FadeOutActionSystem(World world, IParallelRunner runner) : base(world, runner)
+        private readonly IWorldSimulation worldSimulation;
+
+        public FadeOutActionSystem(IWorldSimulation worldSimulation, World world, IParallelRunner runner) :
+            base(world, runner)
         {
+            this.worldSimulation = worldSimulation;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -64,7 +68,7 @@
 
                 if (actions.UsesMicrobialDissolveEffect)
                 {
-                    entity.StartDissolveAnimation(true);
+                    entity.StartDissolveAnimation(worldSimulation, true, false);
                 }
 
                 if (actions.VentCompounds)
