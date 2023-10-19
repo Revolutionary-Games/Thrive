@@ -132,6 +132,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\common_components\AnimationControl.cs" />
     <Compile Include="src\engine\common_components\AttachedChildren.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CameraFollowTarget.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="src\engine\common_components\SpeciesMember.cs" />
     <Compile Include="src\engine\common_components\TimedLife.cs" />
     <Compile Include="src\engine\common_components\WorldPosition.cs" />
+    <Compile Include="src\engine\common_systems\AnimationControlSystem.cs" />
     <Compile Include="src\engine\common_systems\AttachedEntityPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\CameraFollowSystem.cs" />
     <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />

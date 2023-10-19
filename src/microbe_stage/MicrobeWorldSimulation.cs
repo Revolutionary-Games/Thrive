@@ -15,6 +15,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private GameProperties gameProperties = null!;
 
     // Base systems
+    private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
     private ColourAnimationSystem colourAnimationSystem = null!;
     private CountLimitedDespawnSystem countLimitedDespawnSystem = null!;
@@ -112,6 +113,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         var parallelRunner = new DefaultParallelRunner(1);
 
         // Systems stored in fields
+        animationControlSystem = new AnimationControlSystem(EntitySystem);
         attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, parallelRunner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem, parallelRunner);
@@ -257,6 +259,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         pathBasedSceneLoader.Update(delta);
         predefinedVisualLoaderSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
+        animationControlSystem.Update(delta);
 
         microbePhysicsCreationAndSizeSystem.Update(delta);
         physicsBodyCreationSystem.Update(delta);
@@ -348,6 +351,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             nonParallelRunner.Dispose();
 
+            animationControlSystem.Dispose();
             attachedEntityPositionSystem.Dispose();
             colourAnimationSystem.Dispose();
             countLimitedDespawnSystem.Dispose();

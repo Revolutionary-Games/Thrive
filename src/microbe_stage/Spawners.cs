@@ -241,8 +241,12 @@ public static class SpawnHelpers
 
         if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
         {
-            // TODO: stop the animation somehow for a dropped chunk (as that's the old behaviour if I remember right)
-            throw new NotImplementedException();
+            // Stop any animations from playing on this organelle when it is dropped as a chunk
+            entity.Set(new AnimationControl
+            {
+                AnimationPlayerPath = selectedMesh.SceneAnimationPath,
+                StopPlaying = true,
+            });
         }
 
         // Setup compounds to vent
