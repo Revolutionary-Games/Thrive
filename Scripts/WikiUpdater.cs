@@ -22,6 +22,7 @@ public static class WikiUpdater
     /// </summary>
     private static readonly string[] CustomBbcodeCompounds =
     {
+        // TODO: get these values from English translations of the names in organelles.json
         "ATP",
         "Ammonia",
         "Carbon Dioxide",
@@ -173,7 +174,7 @@ public static class WikiUpdater
                     // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
                         .Where(c => c.TagName == "LI")
-                        .Select(li => $"[indent]•   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
+                        .Select(li => $"[indent]—   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 default:

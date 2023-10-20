@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-13 20:30+0100\n"
+"POT-Creation-Date: 2023-10-20 18:18+0100\n"
 "PO-Revision-Date: 2023-10-13 11:04+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -2638,47 +2638,47 @@ msgstr "Infinite Compounds"
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:96
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
 msgid "INFO_BOX_COST"
 msgstr "Base Cost (MP)"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:188
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:187
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzymes"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:403
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:399
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Internal Name"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:219
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:218
 msgid "INFO_BOX_MASS"
 msgstr "Mass"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:280
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:279
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:157
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:156
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processes"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:126
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Requires Nucleus"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:250
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:249
 msgid "INFO_BOX_SIZE"
 msgstr "Size (Hexes)"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:311
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:310
 msgid "INFO_BOX_STORAGE"
 msgstr "Storage"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:342
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:341
 msgid "INFO_BOX_UNIQUE"
 msgstr "Unique"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:373
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:369
 msgid "INFO_BOX_UPGRADES"
 msgstr "Upgrades"
 
@@ -4403,9 +4403,9 @@ msgid "NO"
 msgstr "No"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:194
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:203
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:212
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:195
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:204
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:213
 msgid "NONE"
 msgstr "None"
 
@@ -7727,8 +7727,8 @@ msgstr ""
 "\n"
 "Alongside its general stats, each lysosome contributes:\n"
 "\n"
-"[indent]•   [b]+0.05[/b] digestion speed. Engulfed matter will be digested more quickly.[/indent]\n"
-"[indent]•   [b]+4.5%[/b] digestion efficiency for the chosen enzyme. Engulfed cells with the enzyme's target membrane will yield more compounds when digested.[/indent]"
+"[indent]—   [b]+0.05[/b] digestion speed. Engulfed matter will be digested more quickly.[/indent]\n"
+"[indent]—   [b]+4.5%[/b] digestion efficiency for the chosen enzyme. Engulfed cells with the enzyme's target membrane will yield more compounds when digested.[/indent]"
 
 #: ../simulation_parameters/common/wiki.json:411
 msgid "WIKI_LYSOSOME_INTRO"
