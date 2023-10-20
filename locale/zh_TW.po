@@ -68,29 +68,24 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "正在進行其他行動"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "確認退出"
+msgstr "刪除"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
-#, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "物種人口"
+msgstr "種群數量翻倍"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
-#, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "確認退出"
+msgstr "複製單元"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
-#, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} 人口： {1}"
+msgstr "種群數量減半"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "確認退出"
+msgstr "傳送"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
@@ -132,14 +127,12 @@ msgid "AGENTS"
 msgstr "劑"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
-#, fuzzy
 msgid "AGENTS_COLON"
-msgstr "物種："
+msgstr "作用劑："
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} 洞穴"
+msgstr "{0} 作用劑"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
@@ -179,26 +172,25 @@ msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全世界的生物統計"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1004
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
-"1[b]當前代：[/b]\n"
-"{0} \n"
-"[b]總物種數：[/b] \n"
-"平均值 {1}，方差 {2} \n"
-"[b]現存物種數：[/b] \n"
-"平均值 {3}，方差 {4}\n"
-" [b]區域平均物種數：[/b] \n"
-"平均值 {5}，方差 {6} \n"
-"[b]區域平均種群數量：[/b] \n"
-"平均值 {7}，方差 {8} \n"
-"[b]單細胞生物大小：[/b] \n"
-"平均值 {9}，方差 {10} \n"
+"[b]世代：[/b]\n"
+"{0}\n"
+"[b]總物種數：[/b]\n"
+"平均值 {1}；標準差 {2}\n"
+"[b]現存物種數：[/b]\n"
+"平均值 {3}；標準差 {4}\n"
+"[b]區域平均物種數：[/b]\n"
+"平均值 {5}；標準差 {6}\n"
+"[b]區域平均種群數量：[/b]\n"
+"平均值 {7}；標準差 {8}\n"
+"[b]微生物生物大小：[/b]\n"
+"平均值 {9}；標準差 {10}\n"
 "[b]基本細胞器資訊：[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "你已經飛升了"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
@@ -269,23 +261,28 @@ msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "物種人口"
+msgstr "恭喜！"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"您已經飛升並完成了遊戲。恭喜您到達遊戲終點！\n"
+"\n"
+"您可以繼續在太空階段中使用解鎖的上帝工具在沙盒中遊玩。\n"
+"\n"
+"您也可以下凡並在本存檔中回到微生物階段，並在額外的加成下再次遊玩遊戲。\n"
+"\n"
+"本存檔中飛升的總次數：{0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "當指定裝配時，需要Mod裝配類"
 
 #: ../src/modding/ModManager.cs:336
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "當指定裝配時，需要Mod裝配類"
+msgstr "啟用自動 Harmony 時需要模組的 assembly"
 
 #: ../src/general/OptionsMenu.tscn:1121
 msgid "ASSUME_HYPERTHREADING"
@@ -409,7 +406,7 @@ msgstr "自動（{0}x{1}）"
 #: ../src/industrial_stage/gui/CityScreen.tscn:41
 #: ../src/space_stage/gui/PlanetScreen.tscn:38
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "可用的建造項目"
 
 #: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
@@ -417,12 +414,11 @@ msgstr "可用的MOD"
 
 #: ../simulation_parameters/common/gallery.json:430
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "覺醒階段"
 
 #: ../simulation_parameters/common/gallery.json:419
-#, fuzzy
 msgid "AWARE_STAGE"
-msgstr "微生物階段"
+msgstr "意識階段"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
@@ -622,21 +618,18 @@ msgid "BROWSE_WORKSHOP"
 msgstr "瀏覽工作坊"
 
 #: ../src/industrial_stage/gui/IndustrialHUD.tscn:15
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "結構"
+msgstr "建造城市"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:88
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "結構"
+msgstr "建造佇列"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
-#, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "結構"
+msgstr "建造結構"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -918,9 +911,8 @@ msgstr "增加大體型細胞的轉向速度。"
 #: ../src/industrial_stage/gui/CityScreen.tscn:104
 #: ../src/space_stage/gui/PlanetScreen.cs:118
 #: ../src/space_stage/gui/PlanetScreen.tscn:115
-#, fuzzy
 msgid "CITY_SHORT_STATISTICS"
-msgstr "生物統計"
+msgstr "人口：{0} 食物：{1} 科學：{2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:79
 msgid "CLEAN_UP_OLD_SAVES"
@@ -1025,13 +1017,12 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，決定明亮度"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "能力"
+msgstr "共同能力"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "通用編輯器和策略階段"
 
 #: ../src/general/MainMenu.tscn:686
 msgid "COMMUNITY_FORUM"
@@ -1113,9 +1104,8 @@ msgid "CONFIRM_CAPITAL"
 msgstr "確認"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:163
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "確認退出"
+msgstr "確認刪除"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
@@ -1128,33 +1118,38 @@ msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "確認改寫"
 
 #: ../src/space_stage/SpaceStage.tscn:220
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "（人工智能物種突變的速度）"
+msgstr "進入飛升階段？"
 
 #: ../src/space_stage/SpaceStage.tscn:221
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
-msgstr "（人工智能物種突變的速度）"
+msgstr ""
+"您現在可以透過啟動飛升之門來飛升並進入飛升階段。\n"
+"\n"
+"這將以一些新的上帝工具的形式解鎖無盡的力量，並能在本存檔中使用。\n"
+"\n"
+"飛升也同樣意味著您通關了遊戲，但您可以繼續遊玩。確定飛升？"
 
 #: ../src/society_stage/SocietyStage.tscn:85
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "進入工業階段？"
 
 #: ../src/society_stage/SocietyStage.tscn:86
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr "（人工智能物種突變的速度）"
+msgstr "透過建造工廠，您將進入工業階段。繼續進入下一階段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:75
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr "（人工智能物種突變的速度）"
+msgstr "進入太空階段？"
 
 #: ../src/industrial_stage/IndustrialStage.tscn:76
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
-msgstr "（人工智能物種突變的速度）"
+msgstr ""
+"您現在可以透過發射您的第一艘太空船進入太空階段。\n"
+"\n"
+"目前在原型中您無法返回您的星球，但最終的計劃是允許在太空階段順利地放大和縮小行星。\n"
+"\n"
+"取消發射將摧毀太空船單位。發射太空船？"
 
 #: ../src/general/NewGameSettings.cs:404
 #: ../src/general/NewGameSettings.tscn:1198
@@ -1166,9 +1161,8 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "部分設置無效"
 
 #: ../src/industrial_stage/UnitType.cs:79
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "蓝黄色盲"
+msgstr "單位：{0}"
 
 #: ../src/modding/ModUploader.cs:308 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -1201,9 +1195,10 @@ msgid "CONTROLLER_DEADZONES"
 msgstr "控制器死區"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
-msgstr "此工具允許配置控制器軸死區。 死區大小控制在檢測到移動之前控制桿（或類比按鈕）需要移動多少。 在開始校準之前，請移動所有控制器搖桿並鬆開它們，同時按下並鬆開控制器上的任何模擬按鈕（例如觸發器）。"
+msgstr ""
+"此工具允許設定控制器軸死區。 死區大小控制在檢測到移動之前搖桿（或類比按鈕）需要移動多少。\n"
+"在開始校準之前，請移開所有控制器搖桿並鬆開它們，並且按下和鬆開控制器上的任何類比按鈕（例如觸發器）。"
 
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:85
 #: ../src/engine/input/ControllerAxisVisualizer.tscn:146
@@ -1235,9 +1230,8 @@ msgid "CORRECTION_TRITANOPE"
 msgstr "蓝黄色盲"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:249
-#, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr "清除选中的材料"
+msgstr "清除選中的輸入"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1158
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
@@ -1269,18 +1263,16 @@ msgstr "沒有足夠空間以存放所有的合成產物"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Auto-evo自動模擬 結果："
+msgstr "{0}（{1}）"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "石製手斧"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:280
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Auto-evo自動模擬 結果："
+msgstr "結果"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:215
@@ -1288,14 +1280,12 @@ msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr "選擇一個合成配方或是添加要過濾的物品"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:293
-#, fuzzy
 msgid "CRAFTING_TAKE_ALL"
 msgstr "拿走全部"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:170
-#, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "缺少標題"
+msgstr "製作"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -1318,14 +1308,12 @@ msgid "CREATE_NEW"
 msgstr "創建新的Mod"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:728
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "建立新存檔"
+msgstr "建立新細胞類型"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:744
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "我極好的Mod"
+msgstr "您可以透過複製現有細胞類型並為其指定新名稱來建立新的細胞類型。可以修改細胞類型以使其專門用於不同的職責。修改細胞類型時，所有該類型的已放置的細胞都會被更新。"
 
 #: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
@@ -1336,14 +1324,12 @@ msgid "CREATE_NEW_SAVE"
 msgstr "建立新存檔"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:847
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "建立新存檔"
+msgstr "建立新組織類型"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "我極好的Mod"
+msgstr "您可以透過複製現有組織類型並為其指定新名稱來建立新的組織類型。可以使用細胞編輯器修改組織類型，使它們用於不同的職責。"
 
 #: ../src/modding/ModUploader.cs:493
 msgid "CREATING_DOT_DOT_DOT"
@@ -1371,24 +1357,39 @@ msgstr "當前位置"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "顯示能力界面"
+msgstr "未研究任何內容"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "打開幫助界面"
+msgstr "目前正在研究：{0}（{1}）"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
-#, fuzzy
 msgid "CURRENT_WORLD"
-msgstr "當前開發人員"
+msgstr "目前世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:962
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "生物統計"
+msgstr ""
+"[b]世代：[/b]\n"
+"  {0}\n"
+"[b]區域數：[/b]\n"
+"  {1}\n"
+"[b]自動進化運行時間：[/b]\n"
+"  {2}\n"
+"[b]總物種數：[/b]\n"
+"  {3}\n"
+"[b]現存物種數：[/b]\n"
+"  {4}\n"
+"[b]區域物種數：[/b]\n"
+"  平均值 {5}；標準差 {6}\n"
+"[b]總族群數：[/b]\n"
+"  {7}\n"
+"[b]優勢物種：[/b]\n"
+"  {8}\n"
+"[b]基本微生物物種資訊：[/b]\n"
+"  平均大小：{9}\n"
+"[b]基本細胞器資訊：[/b]"
 
 #: ../src/general/OptionsMenu.tscn:1781
 msgid "CUSTOM_USERNAME"
@@ -1416,41 +1417,32 @@ msgid "DAY_LENGTH"
 msgstr "日長"
 
 #: ../src/general/NewGameSettings.tscn:988
-#, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
-msgstr ""
-"膽小型微生物會逃到更遠的地方，\n"
-"並且總體上更有可能逃離掠食者。\n"
-"勇敢型微生物則不會被靠近的掠食者嚇到\n"
-"而且更有可能反擊。"
+msgstr "（遊戲內一天在現實中對應的秒數）"
 
 #: ../src/general/NewGameSettings.tscn:916
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "啟動晝夜循環"
 
 #: ../src/general/NewGameSettings.tscn:925
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
-msgstr "（提示：光合作用會被削弱）"
+msgstr "（警告：光合作用會被削弱）"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:217
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
-msgstr "額外驗證檢測到了一個問題：{0}"
+msgstr "死區校準完成。新的死區顯示在軸值顯示器的下方。"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:182
-#, fuzzy
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
-msgstr "此語言已翻譯完成 {0}%"
+msgstr "死區校準正在進行中。請不要觸摸控制器上的任何按鈕或搖桿並等待數秒。"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.cs:203
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "死區已重置"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
-#, fuzzy
 msgid "DEADZONE_CONFIGURATION"
-msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
+msgstr "死區設定"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:984
 msgid "DEATH"
@@ -1482,22 +1474,20 @@ msgid "DELETE"
 msgstr "刪除"
 
 #: ../src/saving/SaveManagerGUI.cs:264
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "刪除所有自動和快速存檔將無法撤消，確定要永久刪除這些存檔嗎？\n"
-"- {0} 個自動存檔\n"
-"- {1} 個快速存檔"
+" - {0} 個自動存檔\n"
+" - {1} 個快速存檔\n"
+" - {2} 個備份存檔"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
+msgstr "刪除此化石將無法撤消，確定要永久刪除嗎？"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr "刪除舊存檔嗎？"
+msgstr "刪除舊存檔？"
 
 #: ../simulation_parameters/common/input_options.json:155
 msgid "DELETE_ORGANELLE"
@@ -1512,37 +1502,33 @@ msgid "DELETE_SELECTED"
 msgstr "刪除選取的"
 
 #: ../src/saving/SaveManagerGUI.tscn:183
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "刪除被選取的存檔嗎？"
+msgstr "刪除選取的存檔？"
 
 #: ../src/saving/SaveManagerGUI.cs:254
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "刪除被選取的這些存檔將無法撤消，確定要永久刪除這{0}個存檔嗎？"
 
 #: ../src/saving/SaveList.tscn:71 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr "刪除這個存檔嗎?"
+msgstr "刪除此存檔?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
+msgstr "下凡"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
+msgstr "您確定要下凡嗎？"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
-"激進型微生物會在更遠的距離追捕獵物，\n"
-"並且在受到攻擊時更有可能與捕食者作鬥爭。\n"
-"和平型微生物不會在意更遠距離的其它微生物，\n"
-"並且不太可能使用毒素來對付捕食者。"
+"下凡會結束您已飛升的狀態並讓您回到微生物階段。從那裡您可以在本存檔中再次從頭開始玩一遍遊戲。\n"
+"\n"
+"您在新的遊玩過程中會獲得一項下凡的加成。在未來版本中您將可以自己選擇一項加成，但現在它將固定為滲透調節消耗 -20％。\n"
+"\n"
+"一旦您確定要下凡，您可以編輯遊戲設定，比如說選擇一個新的世界種子來在一張新的地圖上游玩或禁用 \"僅限已知生命\" 選項等等。"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1557,46 +1543,43 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "描述太長"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:111
-#, fuzzy
 msgid "DESPAWN_ENTITIES"
-msgstr "生成敵人"
+msgstr "刪除所有實體"
 
 #: ../src/general/OptionsMenu.tscn:1090
 msgid "DETECTED_CPU_COUNT"
 msgstr "檢測到的CPU數量："
 
 #: ../src/gui_common/VersionNumber.cs:38
-#, fuzzy
 msgid "DEVBUILD_VERSION_INFO"
-msgstr "Devbuilds 支持者"
+msgstr ""
+"開發構建 {0}\n"
+"在 {2} 上的分支 {1}\n"
+"{3}"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
 msgstr "開發者"
 
 #: ../src/general/MainMenu.tscn:700
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
-msgstr "由Revolutionary Games Studio ry支持的開發"
+msgstr "開發論壇"
 
 #: ../src/general/MainMenu.tscn:695
-#, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "添加新的綁定鍵位"
+msgstr "在我們的開發論壇上查看開發更新"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "由Revolutionary Games Studio ry支持的開發"
 
 #: ../src/general/MainMenu.tscn:714
-#, fuzzy
 msgid "DEVELOPMENT_WIKI"
-msgstr "開發者"
+msgstr "開發者 Wiki"
 
 #: ../src/general/MainMenu.tscn:709
-#, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "幫助"
+msgstr "查看我們的開發者 wiki"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:246
 msgid "DEVOURED"
@@ -1657,14 +1640,12 @@ msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
-#, fuzzy
 msgid "DIGESTION_SPEED"
-msgstr "資源吸收速度"
+msgstr "消化速度"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1068
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "速度："
+msgstr "消化速度："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:219
 msgid "DIGESTION_SPEED_VALUE"
@@ -1695,21 +1676,18 @@ msgid "DISCARD_CHANGES"
 msgstr "放棄變更"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:714
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "未連接的細胞器"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:716
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"有一些细胞器没有连接到其它细胞器上。\n"
-"请把所有细胞器连接起来，或者删掉未连接的细胞器。"
+"有一些細胞器沒有連接到其它細胞器上。\n"
+"請把所有細胞器連接起來以繼續。"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "未連接的細胞器"
+msgstr "未連接的元球"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:833
 #, fuzzy
