@@ -208,30 +208,31 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     public override void ShowFossilisationButtons()
     {
-        throw new NotImplementedException();
-
-        /*var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
-        foreach (var microbe in microbes)
+
+        foreach (var entity in stage!.WorldSimulation.EntitySystem)
         {
-            if (microbe.Species is not MicrobeSpecies)
+            // TODO: buttons to fossilize early multicellular species
+            if (!entity.Has<MicrobeSpeciesMember>())
                 continue;
 
+            var species = entity.Get<SpeciesMember>().Species;
+
             var button = FossilisationButtonScene.Instance<FossilisationButton>();
-            button.AttachedEntity = microbe;
+            button.AttachedEntity = entity;
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
             // Display a faded button with a different hint if the species has been fossilised.
             var alreadyFossilised =
-                FossilisedSpecies.IsSpeciesAlreadyFossilised(microbe.Species.FormattedName, fossils);
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
             button.AlreadyFossilised = alreadyFossilised;
             button.HintTooltip = alreadyFossilised ?
                 TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
                 TranslationServer.Translate("FOSSILISATION_HINT");
 
             fossilisationButtonLayer.AddChild(button);
-        }*/
+        }
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHealth)

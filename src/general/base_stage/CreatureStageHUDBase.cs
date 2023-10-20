@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -673,9 +674,15 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (button.AttachedEntity is Microbe microbe)
+        if (!button.AttachedEntity.IsAlive)
         {
-            fossilisationDialog.SelectedSpecies = microbe.Species;
+            GD.PrintErr("Tried to show fossilization dialog for a dead entity");
+            return;
+        }
+
+        if (button.AttachedEntity.Has<MicrobeSpeciesMember>())
+        {
+            fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MicrobeSpeciesMember>().Species;
             fossilisationDialog.PopupCenteredShrink();
         }
         else

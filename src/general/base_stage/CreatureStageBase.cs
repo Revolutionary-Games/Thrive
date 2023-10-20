@@ -19,9 +19,6 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected DirectionalLight worldLight = null!;
 #pragma warning restore CA2213
 
-    [AssignOnlyChildItemsOnDeserialize]
-    protected TSimulation worldSimulation = new();
-
     /// <summary>
     ///   Used to differentiate between spawning the player the first time and respawning
     /// </summary>
@@ -46,6 +43,10 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
     [JsonIgnore]
     public abstract bool HasPlayer { get; }
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public TSimulation WorldSimulation { get; private set; } = new();
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -182,7 +183,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in worldSimulation.EntitySystem)
+            foreach (var entity in WorldSimulation.EntitySystem)
             {
                 if (!entity.Has<Spawned>())
                     continue;

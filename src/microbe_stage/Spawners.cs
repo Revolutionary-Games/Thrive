@@ -585,6 +585,7 @@ public static class SpawnHelpers
         {
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
             LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
+            AngularDamping = Constants.MICROBE_PHYSICS_DAMPING_ANGULAR,
             TrackVelocity = true,
         });
 

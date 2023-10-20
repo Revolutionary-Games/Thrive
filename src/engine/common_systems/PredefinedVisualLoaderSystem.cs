@@ -5,12 +5,12 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
     [With(typeof(PredefinedVisuals))]
     [With(typeof(SpatialInstance))]
+    [RunsOnMainThread]
     public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
     {
         /// <summary>
@@ -26,16 +26,14 @@
         private SimulationParameters simulationParameters = null!;
 #pragma warning restore CA2213
 
-        public PredefinedVisualLoaderSystem(World world, IParallelRunner runner) : base(world, runner)
+        public PredefinedVisualLoaderSystem(World world) : base(world, null)
         {
             // TODO: will we be able to at some point load Godot scenes in parallel without issues?
             // Also a proper resource manager would basically remove the need for that
-            if (runner.DegreeOfParallelism > 1)
-                throw new ArgumentException("This system cannot be ran in parallel");
         }
 
         // TODO: this will need a callback for when graphics visual level is updated and this needs to redo all of the
-        // loaded graphics
+        // loaded graphics (if we add a quality level graphics option)
 
         public override void Dispose()
         {

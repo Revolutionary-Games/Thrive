@@ -41,6 +41,20 @@ public abstract class WorldSimulation : IWorldSimulation
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
+    /// <summary>
+    ///   Access to this world's entity system directly.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that any component modification operations may not be   done while this simulation is currently doing
+    ///     a simulation run.
+    ///   </para>
+    ///   <para>
+    ///     Also looping all entities to find relevant ones is only allowed for one-off operations that don't occur
+    ///     very often (for example each frame). Systems must be implemented for per-frame operations that act on
+    ///     entities having specific components.
+    ///   </para>
+    /// </remarks>
     [JsonIgnore]
     public World EntitySystem => entities;
 

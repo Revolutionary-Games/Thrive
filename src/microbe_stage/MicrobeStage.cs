@@ -122,20 +122,21 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         // Initialise the simulation on a basic level first to make sure right system objects are available. This used
         // to be in SetupStage before base init, but this is now required here
-        worldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
 
         // Hook up the simulation to some of the other systems
-        worldSimulation.CameraFollowSystem.Camera = Camera;
-        HoverInfo.PhysicalWorld = worldSimulation.PhysicalWorld;
+        WorldSimulation.CameraFollowSystem.Camera = Camera;
+        HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
-        patchManager = new PatchManager(worldSimulation.SpawnSystem, worldSimulation.ProcessSystem, Clouds,
-            worldSimulation.TimedLifeSystem, worldLight);
+        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
+            WorldSimulation.TimedLifeSystem, worldLight);
     }
 
     public override void _EnterTree()
     {
         base._EnterTree();
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        CheatManager.OnPlayerDuplicationCheatUsed += OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed += OnDespawnAllEntitiesCheatUsed;
     }
 
@@ -143,6 +144,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         base._ExitTree();
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        CheatManager.OnPlayerDuplicationCheatUsed -= OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
     }
 
@@ -158,7 +160,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             {
                 // Intentional copy here to simplify the later block that also wants to use the player position
                 playerPosition = Player.Get<WorldPosition>();
-                worldSimulation.ReportPlayerPosition(playerPosition.Position);
+                WorldSimulation.ReportPlayerPosition(playerPosition.Position);
                 DebugOverlays.Instance.ReportPositionCoordinates(playerPosition.Position);
             }
             catch (Exception e)
@@ -169,7 +171,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         bool playerAlive = IsPlayerAlive();
 
-        worldSimulation.ProcessAll(delta);
+        WorldSimulation.ProcessAll(delta);
 
         if (gameOver || playerExtinctInCurrentPatch)
             return;
@@ -225,7 +227,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     // themselves
                     throw new NotImplementedException();
 
-                    // var engulfables = worldSimulation.Entities.OfType<ISpawned>().Where(s => !s.DisallowDespawning)
+                    // var engulfables = WorldSimulation.Entities.OfType<ISpawned>().Where(s => !s.DisallowDespawning)
                     //     .OfType<IEngulfable>().ToList();
 
                     // TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
@@ -614,7 +616,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         base.SetupStage();
 
-        worldSimulation.InitForCurrentGame(CurrentGame!);
+        WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);
@@ -656,10 +658,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
-            worldSimulation.ClearPlayerLocationDependentCaches();
+            WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
-        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, GameWorld.PlayerSpecies,
+        var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, GameWorld.PlayerSpecies,
             spawnLocation, false, null, out var entityRecord);
 
         entityRecord.Set(new MicrobeEventCallbacks
@@ -681,17 +683,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         entityRecord.Set<CameraFollowTarget>();
 
         // Spawn and grab the player
-        SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
-        worldSimulation.ProcessDelaySpawnedEntitiesImmediately();
+        SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
+        WorldSimulation.ProcessDelaySpawnedEntitiesImmediately();
 
-        Player = worldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
+        Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
 
         if (!IsPlayerAlive())
             throw new InvalidOperationException("Player spawn didn't create player entity correctly");
 
         // We despawn everything here as either the player just spawned for the first time or died and is being spawned
         // at a different location
-        worldSimulation.SpawnSystem.DespawnAll();
+        WorldSimulation.SpawnSystem.DespawnAll();
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
 
@@ -857,19 +859,41 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         var randomSpecies = species.Random(random);
 
-        throw new NotImplementedException();
+        var playerPosition = Player.Get<WorldPosition>().Position;
 
-        // var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Position + Vector3.Forward * 20,
-        //     rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds, spawner,
-        //     CurrentGame!);
+        var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, randomSpecies,
+            playerPosition + Vector3.Forward * 20, true, null, out var entity);
 
         // Make the cell despawn like normal
-        // spawner.NotifyExternalEntitySpawned(copyEntity);
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity,
+            Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+
+        SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
+    }
+
+    private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
+    {
+        if (!IsPlayerAlive())
+        {
+            GD.PrintErr("Can't use duplicate player cheat as player is dead");
+            return;
+        }
+
+        // If this were allowed to happen during editor entry there would probably be some bugs
+        if (MovingToEditor)
+            return;
+
+        ref var cellProperties = ref Player.Get<CellProperties>();
+        ref var organelles = ref Player.Get<OrganelleContainer>();
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+
+        cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, WorldSimulation.SpawnSystem,
+            null);
     }
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)
     {
-        worldSimulation.SpawnSystem.DespawnAll();
+        WorldSimulation.SpawnSystem.DespawnAll();
     }
 
     /// <summary>

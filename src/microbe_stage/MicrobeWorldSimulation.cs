@@ -128,7 +128,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
         physicsCollisionManagementSystem = new PhysicsCollisionManagementSystem(physics, EntitySystem, parallelRunner);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, parallelRunner);
-        predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem, nonParallelRunner);
+        predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
         // TODO: different root for sounds?
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);

@@ -20,7 +20,6 @@
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
         private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        // private readonly IWorldSimulation worldSimulation;
         private BiomeConditions? biome;
 
         /// <summary>

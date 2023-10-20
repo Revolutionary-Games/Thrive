@@ -24,9 +24,9 @@ public static class Constants
     public const int DEFAULT_DAY_LENGTH = 180;
 
     /// <summary>
-    ///   How long the player stays dead before respawning
+    ///   How long the player stays dead before respawning (this is after the animation of dying ends)
     /// </summary>
-    public const float PLAYER_RESPAWN_TIME = 5.0f;
+    public const float PLAYER_RESPAWN_TIME = 2.0f;
 
     /// <summary>
     ///   How long the initial compounds should last (in seconds)
@@ -328,6 +328,11 @@ public static class Constants
 
     public const float CHUNK_PHYSICS_DAMPING = 0.2f;
     public const float MICROBE_PHYSICS_DAMPING = 0.97f;
+
+    /// <summary>
+    ///   This only really matters when cells are dead
+    /// </summary>
+    public const float MICROBE_PHYSICS_DAMPING_ANGULAR = 0.9f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
