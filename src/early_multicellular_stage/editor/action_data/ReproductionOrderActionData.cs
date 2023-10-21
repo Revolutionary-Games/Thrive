@@ -17,6 +17,10 @@ public class ReproductionOrderActionData : EditorCombinableActionData<EarlyMulti
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
+        // TODO if an MP cost is ever added to reproduction order actions, we'll have to come up with some way to
+        // combine them. Unfortunately, because each reproduction order change affects two hexes (the hex at the old
+        // index and the hex at the new index), coming up with a good way to combine them isn't easy. The best approach
+        // might be to just combine all reproduction order actions regardless of which hexes they affect.
         return ActionInterferenceMode.NoInterference;
     }
 

@@ -565,7 +565,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         */
     }
 
-    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombined,TAction,THexMove,TContext}.OnHexEditorMouseEntered"/>
+    /// <inheritdoc cref="HexEditorComponentBase{TEditor,TCombinedAction,TAction,THexMove}.OnHexEditorMouseEntered"/>
     protected void OnMetaballEditorMouseEntered()
     {
         if (!Visible)
