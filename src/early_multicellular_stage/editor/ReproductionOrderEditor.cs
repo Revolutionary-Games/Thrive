@@ -31,7 +31,11 @@ public class ReproductionOrderEditor<THex, TEditor, TCombinedAction, TAction, TH
 
     private VBoxContainer reproductionOrderList = null!;
 
+#pragma warning disable CA2213
+
     private PackedScene reproductionOrderEntryScene = null!;
+
+#pragma warning restore CA2213
 
     public override void _Ready()
     {
@@ -143,7 +147,6 @@ public class ReproductionOrderEditor<THex, TEditor, TCombinedAction, TAction, TH
         {
             ReproductionOrderListPath.Dispose();
             reproductionOrderList.Dispose();
-            reproductionOrderEntryScene.Dispose();
         }
 
         base.Dispose(disposing);

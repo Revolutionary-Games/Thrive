@@ -1,20 +1,22 @@
 ﻿using Godot;
 
 /// <summary>
-///   Handles showing and changing the order in which cells in an early multicellular creature will divide.
+///   Handles showing and changing the order in which hexes in a hex-based creature will be created.
 /// </summary>
 public class ReproductionOrderEntry : MarginContainer
 {
-#pragma warning disable CA2213
     [Export]
-    public NodePath IndexPath = null!;
+    public NodePath? IndexPath;
 
     [Export]
     public NodePath DescriptionPath = null!;
 
+#pragma warning disable CA2213
+
     private Label? indexLabel;
 
     private Label? descriptionLabel;
+
 #pragma warning restore CA2213
 
     private string index = "Error: unset";
@@ -85,6 +87,20 @@ public class ReproductionOrderEntry : MarginContainer
         GUICommon.Instance.PlayButtonPressSound();
 
         EmitSignal(nameof(OnDown), GetParsedIndex());
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (IndexPath != null)
+            {
+                IndexPath.Dispose();
+                DescriptionPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UpdateIndex()
