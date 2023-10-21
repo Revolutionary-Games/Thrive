@@ -177,7 +177,7 @@ public abstract class HexLayout<T> : ICollection<T>
     /// </summary>
     /// <param name="index1">The index of one of the items that should be swapped.</param>
     /// <param name="index2">The index of the other item that should be swapped.</param>
-    public void SwapIndexes(int index1, int index2)
+    public void SwapIndices(int index1, int index2)
     {
         (existingHexes[index1], existingHexes[index2]) = (existingHexes[index2], existingHexes[index1]);
     }
@@ -235,7 +235,7 @@ public abstract class HexLayout<T> : ICollection<T>
         var hexesWithNeighbours = new List<Hex> { initHex };
 
         // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = ComputeHexCache();
+        var shouldBeVisited = ComputeHexCache(cutoff);
 
         CheckmarkNeighbors(hexesWithNeighbours, cutoff);
 

@@ -32,6 +32,11 @@ public abstract class
     public NodePath IslandErrorPath = null!;
 
     /// <summary>
+    ///   The <see cref="MicrobeCamera"/> used by this editor.
+    /// </summary>
+    public MicrobeCamera? Camera;
+
+    /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
     protected readonly List<MeshInstance> hoverHexes = new();
@@ -62,8 +67,6 @@ public abstract class
     ///   Object camera is over. Used to move the camera around
     /// </summary>
     protected Spatial cameraFollow = null!;
-
-    protected MicrobeCamera? camera;
 
     [JsonIgnore]
     protected MeshInstance editorArrow = null!;
@@ -186,6 +189,12 @@ public abstract class
     [JsonIgnore]
     public abstract bool HasIslands { get; }
 
+    /// <summary>
+    ///   Whether or not numbers should be shown over hexes to tell the player the order the hexes will be created in.
+    /// </summary>
+    [JsonIgnore]
+    public abstract bool DisplayOrderNumbers { get; }
+
     public bool IsLoadedFromSave { get; set; }
 
     protected abstract bool ForceHideHover { get; }
@@ -214,25 +223,25 @@ public abstract class
             return;
         }
 
-        camera = GetNode<MicrobeCamera>(CameraPath);
+        Camera = GetNode<MicrobeCamera>(CameraPath);
         editorArrow = GetNode<MeshInstance>(EditorArrowPath);
         editorGrid = GetNode<MeshInstance>(EditorGridPath);
         cameraFollow = GetNode<Spatial>(CameraFollowPath);
 
-        camera.Connect(nameof(MicrobeCamera.OnZoomChanged), this, nameof(OnZoomChanged));
+        Camera.Connect(nameof(MicrobeCamera.OnZoomChanged), this, nameof(OnZoomChanged));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
 
-        if (camera == null)
+        if (Camera == null)
         {
             throw new InvalidOperationException(
                 "This editor component was loaded from a save and is not fully functional");
         }
 
-        camera.ObjectToFollow = cameraFollow;
+        Camera.ObjectToFollow = cameraFollow;
 
         if (fresh)
         {
@@ -302,7 +311,7 @@ public abstract class
         if (!Visible)
             return;
 
-        editorGrid.Translation = camera!.CursorWorldPos;
+        editorGrid.Translation = Camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
 
@@ -352,10 +361,10 @@ public abstract class
 
     public void UpdateCamera()
     {
-        if (camera == null)
+        if (Camera == null)
             return;
 
-        camera.CameraHeight = CameraHeight;
+        Camera.CameraHeight = CameraHeight;
         cameraFollow.Translation = CameraPosition;
     }
 
@@ -365,7 +374,7 @@ public abstract class
     public void UpdateBackgroundImage(Biome biomeToUseBackgroundFrom)
     {
         // TODO: make this be loaded in a background thread to avoid a lag spike
-        camera!.SetBackground(SimulationParameters.Instance.GetBackground(biomeToUseBackgroundFrom.Background));
+        Camera!.SetBackground(SimulationParameters.Instance.GetBackground(biomeToUseBackgroundFrom.Background));
     }
 
     [RunOnKeyDown("e_primary")]
@@ -416,11 +425,11 @@ public abstract class
 
         if (mousePanningStart == null)
         {
-            mousePanningStart = camera!.CursorWorldPos;
+            mousePanningStart = Camera!.CursorWorldPos;
         }
         else
         {
-            var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
+            var mousePanDirection = mousePanningStart.Value - Camera!.CursorWorldPos;
             MoveCamera(mousePanDirection * delta * 10);
         }
 
@@ -443,7 +452,7 @@ public abstract class
         if (!Visible)
             return false;
 
-        if (camera == null)
+        if (Camera == null)
         {
             GD.PrintErr("Editor camera isn't set");
             return false;
@@ -452,7 +461,7 @@ public abstract class
         CameraPosition = new Vector3(0, 0, 0);
         UpdateCamera();
 
-        camera.ResetHeight();
+        Camera.ResetHeight();
         return true;
     }
 
@@ -651,7 +660,7 @@ public abstract class
     public virtual void OnPropertiesLoaded()
     {
         // A bit of a hack to make sure our camera doesn't lose its zoom level
-        camera!.IsLoadedFromSave = true;
+        Camera!.IsLoadedFromSave = true;
     }
 
     /// <summary>
@@ -678,6 +687,11 @@ public abstract class
             editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
     }
+
+    /// <summary>
+    ///   Marks the editor's hex data as dirty so it can be updated during the next <see cref="_Process"/>.
+    /// </summary>
+    public abstract void MarkDirty();
 
     protected MeshInstance CreateEditorHex()
     {
@@ -805,7 +819,7 @@ public abstract class
     protected void GetMouseHex(out int q, out int r)
     {
         // Get the position of the cursor in the plane that the microbes is floating in
-        var cursorPos = camera!.CursorWorldPos;
+        var cursorPos = Camera!.CursorWorldPos;
 
         // Convert to the hex the cursor is currently located over.
         var hex = Hex.CartesianToAxial(cursorPos);
@@ -1071,6 +1085,7 @@ public abstract class
                 EditorGridPath.Dispose();
                 CameraFollowPath.Dispose();
                 IslandErrorPath.Dispose();
+                Camera?.Dispose();
             }
         }
 

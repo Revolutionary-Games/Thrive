@@ -420,6 +420,10 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
 
+    // TODO once organelle reproduction order can be changed, this should not be hardcoded to false
+    [JsonIgnore]
+    public override bool DisplayOrderNumbers => false;
+
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
@@ -1068,12 +1072,12 @@ public partial class CellEditorComponent :
         // is non-zero too.
         if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
         {
-            camera!.LightLevel = dayLightFraction;
+            Camera!.LightLevel = dayLightFraction;
         }
         else
         {
             // Don't change lighting for patches without day/night effects
-            camera!.LightLevel = 1.0f;
+            Camera!.LightLevel = 1.0f;
         }
 
         CalculateOrganelleEffectivenessInCurrentPatch();
@@ -1087,6 +1091,11 @@ public partial class CellEditorComponent :
         return EnqueueAction(new CombinedEditorAction(
             new SingleEditorAction<OrganelleUpgradeActionData>(DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
                 actionData)));
+    }
+
+    public override void MarkDirty()
+    {
+        organelleDataDirty = true;
     }
 
     protected override int CalculateCurrentActionCost()

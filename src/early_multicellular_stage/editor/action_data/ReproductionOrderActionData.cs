@@ -4,12 +4,12 @@
 ///   Stores information needed to change the reproduction order of cells in an <see cref="EarlyMulticellularSpecies"/>.
 /// </summary>
 [JSONAlwaysDynamicType]
-public class CellReproductionOrderActionData : EditorCombinableActionData<EarlyMulticellularSpecies>
+public class ReproductionOrderActionData : EditorCombinableActionData<EarlyMulticellularSpecies>
 {
     public readonly int OldIndex;
     public readonly int NewIndex;
 
-    public CellReproductionOrderActionData(int oldIndex, int newIndex)
+    public ReproductionOrderActionData(int oldIndex, int newIndex)
     {
         OldIndex = oldIndex;
         NewIndex = newIndex;

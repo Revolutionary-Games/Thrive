@@ -109,13 +109,15 @@
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellMoveActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellPlacementActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\action_data\CellRemoveActionData.cs" />
-    <Compile Include="src\early_multicellular_stage\editor\action_data\CellReproductionOrderActionData.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\action_data\ReproductionOrderActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.Callbacks.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellPopupMenu.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellTypeSelection.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
-    <Compile Include="src\early_multicellular_stage\editor\ReproductionOrder.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularReproductionOrderEditor.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\ReproductionOrderEntry.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\ReproductionOrderEditor.cs" />
     <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
     <Compile Include="src\early_multicellular_stage\Microbe.Multicellular.cs" />
     <Compile Include="src\engine\CheatManager.cs" />

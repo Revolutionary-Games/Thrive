@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/ExpandUpIcon.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/ExpandDownIcon.png" type="Texture" id=2]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/early_multicellular_stage/editor/ReproductionOrder.cs" type="Script" id=4]
+[ext_resource path="res://src/early_multicellular_stage/editor/ReproductionOrderEntry.cs" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -55,14 +55,14 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="ButtonGroup" id=5]
 
-[node name="ReproductionOrder" type="MarginContainer"]
+[node name="ReproductionOrderEntry" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1150.0
 margin_bottom = -700.0
 script = ExtResource( 4 )
 IndexPath = NodePath("HBoxContainer/Index")
-CellDescriptionPath = NodePath("HBoxContainer/CellDescription")
+DescriptionPath = NodePath("HBoxContainer/Description")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 130.0
@@ -77,7 +77,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="CellDescription" type="Label" parent="HBoxContainer"]
+[node name="Description" type="Label" parent="HBoxContainer"]
 margin_left = 14.0
 margin_right = 102.0
 margin_bottom = 20.0

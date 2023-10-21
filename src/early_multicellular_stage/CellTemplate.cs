@@ -80,4 +80,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
             Orientation = Orientation,
         };
     }
+
+    public override string ToString()
+    {
+        return FormattedName;
+    }
 }

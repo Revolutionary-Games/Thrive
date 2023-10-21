@@ -31,6 +31,9 @@ public partial class CellBodyPlanEditorComponent :
     public NodePath ReproductionTabPath = null!;
 
     [Export]
+    public NodePath ReproductionOrderEditorPath = null!;
+
+    [Export]
     public NodePath BehaviourTabPath = null!;
 
     [Export]
@@ -56,9 +59,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     public NodePath CellPopupMenuPath = null!;
-
-    [Export]
-    public NodePath ReproductionOrderListPath = null!;
 
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
@@ -100,9 +100,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private CellPopupMenu cellPopupMenu = null!;
 
-    private VBoxContainer reproductionOrderList = null!;
-
-    private PackedScene reproductionOrderScene = null!;
+    private ReproductionOrderEditor<CellTemplate, EarlyMulticellularEditor, CombinedEditorAction, EditorAction,
+        HexWithData<CellTemplate>, EarlyMulticellularSpecies> reproductionOrderEditor = null!;
 #pragma warning restore CA2213
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
@@ -116,14 +115,10 @@ public partial class CellBodyPlanEditorComponent :
     [JsonProperty]
     private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
-    private List<Label> orderNumberLabels = new();
-
     /// <summary>
     ///   True when visuals of already placed things need to be updated
     /// </summary>
     private bool cellDataDirty = true;
-
-    private bool hasOrderedIslands;
 
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
@@ -141,7 +136,12 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     [JsonIgnore]
-    public override bool HasIslands => editedMicrobeCells.GetIslandHexes().Count > 0 || hasOrderedIslands;
+    public override bool HasIslands => editedMicrobeCells.GetIslandHexes().Count > 0 ||
+        reproductionOrderEditor.HasOrderedIslands;
+
+    [JsonIgnore]
+    public override bool DisplayOrderNumbers =>
+        selectedSelectionMenuTab == SelectionMenuTab.Reproduction;
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -156,9 +156,6 @@ public partial class CellBodyPlanEditorComponent :
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
-
-        reproductionOrderScene =
-            GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/ReproductionOrder.tscn");
 
         ApplySelectionMenuTab();
 
@@ -205,7 +202,9 @@ public partial class CellBodyPlanEditorComponent :
 
         cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
 
-        reproductionOrderList = GetNode<VBoxContainer>(ReproductionOrderListPath);
+        reproductionOrderEditor = GetNode<ReproductionOrderEditor<CellTemplate, EarlyMulticellularEditor,
+            CombinedEditorAction, EditorAction, HexWithData<CellTemplate>, EarlyMulticellularSpecies>>(
+            ReproductionOrderEditorPath);
     }
 
     public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
@@ -240,6 +239,8 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print("Loaded body plan editor with no cell to edit set");
             }
         }
+
+        reproductionOrderEditor.Initialize(editedMicrobeCells, this, Editor);
 
         UpdateCancelButtonVisibility();
     }
@@ -316,7 +317,7 @@ public partial class CellBodyPlanEditorComponent :
                 effectiveSymmetry);
         }
 
-        UpdateReproductionOrderLabels();
+        reproductionOrderEditor.UpdateReproductionOrderLabels();
 
         forceUpdateCellGraphics = false;
     }
@@ -474,6 +475,11 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    public override void MarkDirty()
+    {
+        cellDataDirty = true;
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
@@ -615,7 +621,7 @@ public partial class CellBodyPlanEditorComponent :
                 DuplicateCellTypeDialogPath.Dispose();
                 DuplicateCellTypeNamePath.Dispose();
                 CellPopupMenuPath.Dispose();
-                ReproductionOrderListPath.Dispose();
+                ReproductionOrderEditorPath.Dispose();
             }
         }
 
@@ -934,96 +940,6 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
     }
 
-    private void UpdateReproductionOrderList()
-    {
-        // Clear the existing list using QueueFree because a simple Free will cause problems when MoveCellUp and
-        // MoveCellDown call this method
-        reproductionOrderList.QueueFreeChildren();
-
-        hasOrderedIslands = false;
-
-        for (var index = 0; index < editedMicrobeCells.Count; index++)
-        {
-            var control = (ReproductionOrder)reproductionOrderScene.Instance();
-
-            control.Index = $"{index + 1}.";
-            var cell = editedMicrobeCells[index];
-            control.CellDescription = $"{cell.Data?.FormattedName} ({cell.Position.Q},{cell.Position.R})";
-
-            control.IsIsland = editedMicrobeCells.GetIslandHexes(index).Contains(cell.Position);
-            hasOrderedIslands |= control.IsIsland;
-
-            control.Connect(nameof(ReproductionOrder.OnCellUp), this, nameof(MoveCellUp));
-            control.Connect(nameof(ReproductionOrder.OnCellDown), this, nameof(MoveCellDown));
-
-            reproductionOrderList.AddChild(control);
-        }
-    }
-
-    private void MoveCellUp(int index)
-    {
-        if (index <= 0)
-            return;
-
-        var data = new CellReproductionOrderActionData(index, index - 1);
-
-        var action = new SingleEditorAction<CellReproductionOrderActionData>(DoCellReproductionOrderAction,
-            UndoCellReproductionOrderAction, data);
-
-        EnqueueAction(new CombinedEditorAction(action));
-    }
-
-    private void MoveCellDown(int index)
-    {
-        if (index >= editedMicrobeCells.Count - 1)
-            return;
-
-        var data = new CellReproductionOrderActionData(index, index + 1);
-
-        var action = new SingleEditorAction<CellReproductionOrderActionData>(DoCellReproductionOrderAction,
-            UndoCellReproductionOrderAction, data);
-
-        EnqueueAction(new CombinedEditorAction(action));
-    }
-
-    private void UpdateReproductionOrderLabels()
-    {
-        foreach (var label in orderNumberLabels)
-        {
-            label.DetachAndQueueFree();
-        }
-
-        orderNumberLabels.Clear();
-
-        if (selectedSelectionMenuTab != SelectionMenuTab.Reproduction || camera == null)
-            return;
-
-        var font = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
-
-        for (var index = 0; index < reproductionOrderList.GetChildCount(); index++)
-        {
-            var control = (ReproductionOrder)reproductionOrderList.GetChild(index);
-            var cell = editedMicrobeCells[index];
-
-            var label = new Label();
-            label.Text = (index + 1).ToString();
-            label.Modulate = control.IsIsland ? Colors.Red : Colors.White;
-
-            var cellPosition = Hex.AxialToCartesian(cell.Position);
-            label.RectPosition = camera.UnprojectPosition(cellPosition);
-
-            label.AddFontOverride("font", font);
-            label.RectScale = new Vector2(camera.DefaultCameraHeight / camera.CameraHeight, camera.DefaultCameraHeight /
-                camera.CameraHeight);
-
-            Editor.RootOfDynamicallySpawned.AddChild(label);
-            label.SetAnchorsPreset(LayoutPreset.Center);
-            orderNumberLabels.Add(label);
-
-            label.Visible = true;
-        }
-    }
-
     private void OnCurrentActionChanged()
     {
         // Enable the duplicate, delete, edit buttons for the cell type
@@ -1064,6 +980,8 @@ public partial class CellBodyPlanEditorComponent :
     private void OnCellsChanged()
     {
         UpdateAlreadyPlacedVisuals();
+
+        reproductionOrderEditor.UpdateReproductionOrderList();
 
         UpdateArrow();
     }

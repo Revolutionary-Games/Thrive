@@ -3,32 +3,32 @@
 /// <summary>
 ///   Handles showing and changing the order in which cells in an early multicellular creature will divide.
 /// </summary>
-public class ReproductionOrder : MarginContainer
+public class ReproductionOrderEntry : MarginContainer
 {
 #pragma warning disable CA2213
     [Export]
     public NodePath IndexPath = null!;
 
     [Export]
-    public NodePath CellDescriptionPath = null!;
+    public NodePath DescriptionPath = null!;
 
     private Label? indexLabel;
 
-    private Label? cellDescriptionLabel;
+    private Label? descriptionLabel;
 #pragma warning restore CA2213
 
     private string index = "Error: unset";
-    private string cellDescription = "Error: unset";
+    private string description = "Error: unset";
     private bool isIsland;
 
     [Signal]
-    public delegate void OnCellUp(int index);
+    public delegate void OnUp(int index);
 
     [Signal]
-    public delegate void OnCellDown(int index);
+    public delegate void OnDown(int index);
 
     /// <summary>
-    ///   When this cell will be created. 1 is the starting cell.
+    ///   When this hex will be created. 1 is the starting hex.
     /// </summary>
     public string Index
     {
@@ -41,15 +41,15 @@ public class ReproductionOrder : MarginContainer
     }
 
     /// <summary>
-    ///   The name and location of this cell.
+    ///   The name and location of this hex.
     /// </summary>
-    public string CellDescription
+    public string Description
     {
-        get => cellDescription;
+        get => description;
         set
         {
-            cellDescription = value;
-            UpdateCellDescription();
+            description = value;
+            UpdateDescription();
         }
     }
 
@@ -66,10 +66,10 @@ public class ReproductionOrder : MarginContainer
     public override void _Ready()
     {
         indexLabel = GetNode<Label>(IndexPath);
-        cellDescriptionLabel = GetNode<Label>(CellDescriptionPath);
+        descriptionLabel = GetNode<Label>(DescriptionPath);
 
         UpdateIndex();
-        UpdateCellDescription();
+        UpdateDescription();
         UpdateColor();
     }
 
@@ -77,14 +77,14 @@ public class ReproductionOrder : MarginContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellUp), GetParsedIndex());
+        EmitSignal(nameof(OnUp), GetParsedIndex());
     }
 
     public void OnDownPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnCellDown), GetParsedIndex());
+        EmitSignal(nameof(OnDown), GetParsedIndex());
     }
 
     private void UpdateIndex()
@@ -93,10 +93,10 @@ public class ReproductionOrder : MarginContainer
             indexLabel.Text = index;
     }
 
-    private void UpdateCellDescription()
+    private void UpdateDescription()
     {
-        if (cellDescriptionLabel != null)
-            cellDescriptionLabel.Text = cellDescription;
+        if (descriptionLabel != null)
+            descriptionLabel.Text = description;
     }
 
     private void UpdateColor()
@@ -104,8 +104,8 @@ public class ReproductionOrder : MarginContainer
         if (indexLabel != null)
             indexLabel.SelfModulate = IsIsland ? Colors.Red : Colors.White;
 
-        if (cellDescriptionLabel != null)
-            cellDescriptionLabel.SelfModulate = IsIsland ? Colors.Red : Colors.White;
+        if (descriptionLabel != null)
+            descriptionLabel.SelfModulate = IsIsland ? Colors.Red : Colors.White;
     }
 
     private int GetParsedIndex()
