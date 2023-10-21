@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-07 12:07-0400\n"
+"POT-Creation-Date: 2023-10-21 13:24-0400\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -92,7 +92,7 @@ msgstr "Fél populáció"
 msgid "ACTION_TELEPORT"
 msgstr "Teleportálás"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Aktív"
 
@@ -149,7 +149,7 @@ msgstr ""
 "A békés sejtek nem kergetnek más prédákat,\n"
 "és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
 msgstr "Agresszív"
 
@@ -602,7 +602,7 @@ msgstr "Biom: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
 msgstr "Bátor"
 
@@ -663,7 +663,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Mégse"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:672
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -674,12 +674,12 @@ msgstr "AKCIÓ VISSZAVONÁSA"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Jelenlegi akció visszavonása"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:737
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Az a sejttípus ami része a testnek nem törölhető"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:735
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "A használt sejttípust nem lehet törölni"
@@ -746,7 +746,7 @@ msgstr "közepes mennyiség"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
 msgid "CAUTIOUS"
 msgstr "Gyanakvó"
 
@@ -755,7 +755,7 @@ msgstr "Gyanakvó"
 msgid "CELL"
 msgstr "Cellulóz"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:525
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Sejtek"
@@ -778,16 +778,16 @@ msgstr "Cellulóz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+#: ../src/early_multicellular_stage/editor/OrderMarginContainer.tscn:24
 msgid "CELL_GROWTH_ORDER_COLON"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#: ../src/early_multicellular_stage/editor/OrderMarginContainer.tscn:21
 #, fuzzy
 msgid "CELL_GROWTH_ORDER_TOOLTIP"
 msgstr "Segítség"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:654
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
 
@@ -1329,11 +1329,11 @@ msgstr "Új mikroorganizmus létrehozása"
 msgid "CREATE_NEW"
 msgstr "Új létrehozása"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:741
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Új sejttípus létrehozása"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Új sejttípusokat hozhatsz létre úgy, hogy az eddigieket duplikálod, és új nevet adsz nekik. A sejttípusokat külön szerkesztheted különböző feladatok ellátására. Ha egy sejttípust szerkesztesz, akkor az eddig lerakott ugyanazon sejttípusból származó sejtek frissülni fognak."
 
@@ -1478,7 +1478,7 @@ msgstr "December"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:556
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1684,11 +1684,11 @@ msgstr "Elvet és folytatás"
 msgid "DISCARD_CHANGES"
 msgstr "Változtatások elvetése"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:727
 msgid "DISCONNECTED_CELLS"
 msgstr "Levált sejtek"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:729
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Vannak olyan sejtek, melyek nem kötődnek egymáshoz.\n"
@@ -1794,7 +1794,7 @@ msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülés
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:564
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Típus megkettőzése"
@@ -1974,15 +1974,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2394
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SOURCES"
 msgstr "Energia forrásai:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2199,7 +2199,7 @@ msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
 "{0}"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
 msgstr "Félénk"
 
@@ -2343,7 +2343,7 @@ msgstr ""
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Hajlékonyság / Merevség"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
 msgid "FOCUSED"
 msgstr "Fókuszált"
 
@@ -2357,7 +2357,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Tápláléklánc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2411
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3115,7 +3115,7 @@ msgstr "A játéknak erre a nyelvre való lefordítása még mindig készülőbe
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, hogy segíts nekünk ez ügyben te is!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3988,7 +3988,7 @@ msgstr "Módosít"
 msgid "MODIFY_ORGANELLE"
 msgstr "Sejtalkotó szerkesztése"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Típus módosítása"
@@ -4416,17 +4416,17 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Az én király modom"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:778
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Új név"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:771
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Új név:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:686
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4532,7 +4532,7 @@ msgid "NO_AI"
 msgstr "Nincs MI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nincs adat"
 
@@ -4576,7 +4576,7 @@ msgstr "Egy mod sincs kijelölve"
 msgid "NUCLEUS"
 msgstr "Sejtmag"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4597,8 +4597,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2293
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2303
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4719,7 +4719,7 @@ msgstr ""
 "és más sejteket is levadásznak mérgek segítségével, ha nem tudják elnyelni őket.\n"
 "A gyanakvó sejtek nem nagyon teszik ki magukat veszélynek nyersanyagokért."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
 msgid "OPPORTUNISTIC"
 msgstr "Opportunista"
 
@@ -5022,7 +5022,7 @@ msgstr "pck fájl ({0}) betöltése sikertelen"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "pck fájl ({0}) betöltése sikertelen"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
 msgstr "Békés"
 
@@ -5179,7 +5179,7 @@ msgstr "Populáció:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Populáció a patch-ekben:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2275
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5457,7 +5457,7 @@ msgstr "A forráskód megtekintése"
 msgid "RESPIRATION"
 msgstr "Aerob légzés"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
 msgid "RESPONSIVE"
 msgstr "Reszponzív"
 
@@ -5863,7 +5863,7 @@ msgstr "Kijelölve:"
 msgid "SEPTEMBER"
 msgstr "Szeptember"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
 msgid "SESSILE"
 msgstr "Rögzült"
 

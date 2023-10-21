@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-07 12:07-0400\n"
+"POT-Creation-Date: 2023-10-21 13:24-0400\n"
 "PO-Revision-Date: 2023-09-07 15:18+0000\n"
 "Last-Translator: Daniel Heslop <daniel@heslop.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -87,7 +87,7 @@ msgstr "Halbiere Population"
 msgid "ACTION_TELEPORT"
 msgstr "Teleportieren"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:244
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
 msgstr "Aktiv"
 
@@ -143,7 +143,7 @@ msgstr ""
 "Friedliche Mikroben greifen andere nicht über größere Entfernungen an\n"
 "und setzen seltener Giftstoffe gegen Angreifer ein."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:84
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
 msgstr "Aggressiv"
 
@@ -602,7 +602,7 @@ msgstr "Biom: {0}"
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:174
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
 msgid "BRAVE"
 msgstr "Mutig"
 
@@ -663,7 +663,7 @@ msgstr "Kamera"
 msgid "CANCEL"
 msgstr "Abbrechen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:694
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:672
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
@@ -674,12 +674,12 @@ msgstr "AKTION ABBRECHEN"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Vorgang abbrechen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:759
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:737
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Ein Zelltyp, der derzeit in deinem Körperplan verwendet wird, kann nicht gelöscht werden"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:735
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Verwendete Zellen nicht löschbar"
@@ -744,7 +744,7 @@ msgstr "etwas"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:120
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
 msgid "CAUTIOUS"
 msgstr "Vorsichtig"
 
@@ -752,7 +752,7 @@ msgstr "Vorsichtig"
 msgid "CELL"
 msgstr "Zelle"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:526
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:525
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:592
 msgid "CELLS"
 msgstr "Zellen"
@@ -774,16 +774,16 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:650
+#: ../src/early_multicellular_stage/editor/OrderMarginContainer.tscn:24
 msgid "CELL_GROWTH_ORDER_COLON"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:647
+#: ../src/early_multicellular_stage/editor/OrderMarginContainer.tscn:21
 #, fuzzy
 msgid "CELL_GROWTH_ORDER_TOOLTIP"
 msgstr "Exportiere die Daten aller Welten i CSV-Format (comma-separated values)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:654
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
@@ -1321,11 +1321,11 @@ msgstr "Eine neue Mikrobe erstellen"
 msgid "CREATE_NEW"
 msgstr "Neu erstellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:763
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:741
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Neuen Zellentyp erstellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:779
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:757
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
@@ -1463,7 +1463,7 @@ msgstr "Dezember"
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:556
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
@@ -1670,11 +1670,11 @@ msgstr "Verwerfen und fortfahren"
 msgid "DISCARD_CHANGES"
 msgstr "Verwerfen und fortfahren"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:749
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:727
 msgid "DISCONNECTED_CELLS"
 msgstr "Getrennte Zellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:751
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:729
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
@@ -1776,7 +1776,7 @@ msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigunge
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree ausgeben"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:564
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:631
 msgid "DUPLICATE_TYPE"
 msgstr "Typ duplizieren"
@@ -1954,15 +1954,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2394
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2403
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2414
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2407
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
@@ -2169,7 +2169,7 @@ msgstr ""
 "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
 "Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:191
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
 msgid "FEARFUL"
 msgstr "Furchtsam"
 
@@ -2310,7 +2310,7 @@ msgstr "flüssig"
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flüssigkeit / Steifigkeit"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:297
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
 msgid "FOCUSED"
 msgstr "Fokussiert"
 
@@ -2325,7 +2325,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2411
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -3077,7 +3077,7 @@ msgstr "Diese Übersetzung ist noch in Arbeit ({0}% vollständig)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Diese Übersetzung ist sehr unvollständig ({0}% fertig). Bitte helfe uns dabei!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1337
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Letztes Organell kann nicht gelöscht werden"
 
@@ -3941,7 +3941,7 @@ msgstr "Verändern"
 msgid "MODIFY_ORGANELLE"
 msgstr "Organelle modifizieren"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:609
 msgid "MODIFY_TYPE"
 msgstr "Typ modifizieren"
@@ -4342,17 +4342,17 @@ msgstr "Hinweis: Sie können leistungsbezogene Optionen jederzeit im [color=#379
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Mein fantastischer Mod"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:800
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:778
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
 msgid "NEW_NAME"
 msgstr "Neuer Name"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:793
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:771
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
 msgid "NEW_NAME_COLON"
 msgstr "Neuer Name:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:708
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:686
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
@@ -4457,7 +4457,7 @@ msgid "NO_AI"
 msgstr "Keine KI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -4499,7 +4499,7 @@ msgstr "Kein Mod ausgewählt"
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1344
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Der Zellkern kann nicht gelöscht werden, da es sich um eine irreversible Evolution handelt.\n"
@@ -4521,8 +4521,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2294
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2293
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2303
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4641,7 +4641,7 @@ msgstr ""
 "und werden versuchen, ihre Beute mit Giften zu erlegen, wenn sie sie nicht verschlingen können.\n"
 "Vorsichtige Mikroben setzen sich wegen Brocken möglicherweise nicht in Gefahr."
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:138
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
@@ -4938,7 +4938,7 @@ msgstr "Laden der pck-Datei ({0}) fehlgeschlagen"
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
 msgstr "Laden der pck-Datei ({0}) fehlgeschlagen weil die Datei nicht existiert"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:67
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
 msgid "PEACEFUL"
 msgstr "Friedlich"
 
@@ -5099,7 +5099,7 @@ msgstr "Gesamtbevölkerung:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Bevölkerung in Gebieten:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2275
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2284
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5370,7 +5370,7 @@ msgstr "Quellcode anschauen"
 msgid "RESPIRATION"
 msgstr "Aerobe Atmung"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:280
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
 msgid "RESPONSIVE"
 msgstr "Responsiv"
 
@@ -5771,7 +5771,7 @@ msgstr "Ausgewählt:"
 msgid "SEPTEMBER"
 msgstr "September"
 
-#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:227
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
 msgid "SESSILE"
 msgstr "Sessil"
 
