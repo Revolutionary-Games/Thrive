@@ -86,6 +86,9 @@ public class TutorialState : ITutorialInput
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public ChemoreceptorPlacementTutorial ChemoreceptorPlacementTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public NegativeAtpBalanceTutorial NegativeAtpBalanceTutorial { get; private set; } = new();
 
     [JsonProperty]
@@ -382,6 +385,7 @@ public class TutorialState : ITutorialInput
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,
+            ChemoreceptorPlacementTutorial,
             NegativeAtpBalanceTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
