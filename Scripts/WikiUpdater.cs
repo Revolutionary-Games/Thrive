@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +15,7 @@ public static class WikiUpdater
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
+    private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
 
     /// <summary>
     ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
@@ -231,8 +231,8 @@ public static class WikiUpdater
     private static async Task InsertTranslatedPageContent(List<TranslationPair> pages,
         CancellationToken cancellationToken)
     {
-        var lines = new List<string>(
-            await File.ReadAllLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken));
+        // Create the whole list of values to replace first, then replace asynchronously based on read lines
+        var translationPairs = new Dictionary<string, string>();
 
         foreach (var page in pages)
         {
@@ -240,7 +240,7 @@ public static class WikiUpdater
             var translatedPage = page.TranslatedPage;
 
             // Translate page names
-            ReplaceTranslationValue(untranslatedPage.Name, translatedPage.Name, lines);
+            translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
 
             for (var j = 0; j < untranslatedPage.Sections.Count; j++)
             {
@@ -248,61 +248,96 @@ public static class WikiUpdater
                 var translatedSection = translatedPage.Sections[j];
 
                 // Translate body sections
-                ReplaceTranslationValue(untranslatedSection.SectionBody, translatedSection.SectionBody, lines);
+                translationPairs.Add(untranslatedSection.SectionBody, translatedSection.SectionBody);
 
                 if (untranslatedSection.SectionHeading != null && translatedSection.SectionHeading != null)
                 {
-                    // Translate headings if present
-                    ReplaceTranslationValue(
-                        untranslatedSection.SectionHeading, translatedSection.SectionHeading, lines);
+                    // Translate headings if present and not already in the list to translate
+                    translationPairs.TryAdd(untranslatedSection.SectionHeading, translatedSection.SectionHeading);
                 }
             }
         }
 
-        await File.WriteAllLinesAsync(ENGLISH_TRANSLATION_FILE, lines, new UTF8Encoding(false), cancellationToken);
-    }
+        var reader = File.ReadLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken);
+        var writer = new StreamWriter(File.Create(TEMP_TRANSLATION_FILE), new UTF8Encoding(false));
 
-    /// <summary>
-    ///   Replaces the value of a key in the lines of a translation file.
-    /// </summary>
-    /// <param name="key">Translation key to replace</param>
-    /// <param name="content">Value to be inserted</param>
-    /// <param name="lines">All lines of the translation file</param>
-    private static void ReplaceTranslationValue(string key, string content, List<string> lines)
-    {
-        var keyIndex = lines.FindIndex(l => l.Contains(key));
-
-        if (keyIndex == -1)
-            throw new Exception($"Key {key} was not found in English translations file");
-
-        var i = keyIndex + 1;
-
-        // Remove all lines of the existing value if present
-        while (lines[i] != string.Empty)
-            lines.RemoveAt(i);
-
-        var linesToInsert = content.Split("\n");
-
-        if (linesToInsert.Length == 1)
+        var isReplacingValue = false;
+        var isFuzzyValue = false;
+        await foreach (var line in reader)
         {
-            // Add a single line
-            lines.Insert(keyIndex + 1, $"msgstr \"{linesToInsert[0]}\"");
-        }
-        else
-        {
-            // Split the content over multiple lines with correct formatting
-            lines.Insert(keyIndex + 1, "msgstr \"\"");
-            for (var j = 0; j < linesToInsert.Length; j++)
+            if (line == string.Empty)
             {
-                var line = linesToInsert[j];
-                var textToInsert = j == linesToInsert.Length - 1 ? $"\"{line}\"" : $"\"{line}\\n\"";
-                lines.Insert(keyIndex + 2 + j, textToInsert);
+                // Blank lines mark the end of a value we might be replacing, so stop replacing
+                isReplacingValue = false;
+                await writer.WriteLineAsync(line);
+                continue;
+            }
+
+            if (isReplacingValue)
+            {
+                // Skip lines for values we're replacing
+                continue;
+            }
+
+            if (line == "#, fuzzy")
+            {
+                // Defer adding fuzzy labels so we can include/exclude them based on the next line
+                isFuzzyValue = true;
+                continue;
+            }
+
+            if (!line.Contains("msgid \""))
+            {
+                // Copy existing lines that we don't want to replace
+                await writer.WriteLineAsync(line);
+                continue;
+            }
+
+            var key = line.Split("\"")[1];
+            if (translationPairs.TryGetValue(key, out var value))
+            {
+                // Skip fuzzy labels if present, since we know this value
+                isFuzzyValue = false;
+                isReplacingValue = true;
+
+                // Add the key line
+                await writer.WriteLineAsync(line);
+
+                // Add the value line(s)
+                var linesToInsert = value.Split("\n");
+                if (linesToInsert.Length == 1)
+                {
+                    await writer.WriteLineAsync($"msgstr \"{value}\"");
+                }
+                else
+                {
+                    await writer.WriteLineAsync("msgstr \"\"");
+
+                    // Split the content over multiple lines with correct formatting
+                    for (var j = 0; j < linesToInsert.Length; j++)
+                    {
+                        var lineToInsert = linesToInsert[j];
+                        var isLastLine = j == linesToInsert.Length - 1;
+                        await writer.WriteLineAsync(isLastLine ? $"\"{lineToInsert}\"" : $"\"{lineToInsert}\\n\"");
+                    }
+                }
+            }
+            else
+            {
+                if (isFuzzyValue)
+                {
+                    // Re-insert the fuzzy label, since it's not a value we know from the wiki
+                    await writer.WriteLineAsync("#, fuzzy");
+                    isFuzzyValue = false;
+                }
+
+                await writer.WriteLineAsync(line);
             }
         }
 
-        // Remove fuzzy labels if present
-        if (lines[keyIndex - 1] == "#, fuzzy")
-            lines.RemoveAt(keyIndex - 1);
+        writer.Dispose();
+        File.Copy(TEMP_TRANSLATION_FILE, ENGLISH_TRANSLATION_FILE, true);
+        File.Delete(TEMP_TRANSLATION_FILE);
     }
 
     /// <summary>
