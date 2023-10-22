@@ -153,4 +153,9 @@ public enum TutorialEventType
     ///   Player energy balance has been changed
     /// </summary>
     MicrobeEditorPlayerEnergyBalanceChanged,
+
+    /// <summary>
+    ///   Triggers when the first non-cytoplasm organelle divided
+    /// </summary>
+    MicrobeNonCytoplasmOrganelleDivided,
 }

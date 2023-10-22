@@ -108,6 +108,9 @@ public class TutorialState : ITutorialInput
     public DayNightTutorial DayNightTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public OrganelleDivisionTutorial OrganelleDivisionTutorial { get; private set; } = new();
+
+    [JsonProperty]
     public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set;  } = new();
 
     // End of tutorial state variables
@@ -395,6 +398,7 @@ public class TutorialState : ITutorialInput
             EarlyMulticellularWelcome,
             DayNightTutorial,
             MadeNoChangesTutorial,
+            OrganelleDivisionTutorial,
         };
     }
 }

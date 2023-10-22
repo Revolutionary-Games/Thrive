@@ -37,6 +37,7 @@ UnbindTutorialPath = NodePath("UnbindTutorial")
 LeaveColonyTutorialPath = NodePath("LeaveColonyTutorial")
 EarlyMulticellularWelcomePath = NodePath("EarlyMulticellularWelcome")
 DayNightTutorialPath = NodePath("DayNightTutorial")
+OrganelleDivisionTutorialPath = NodePath("OrganelleDivisionTutorial")
 BecomeMulticellularTutorialPath = NodePath("BecomeMulticellularTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
@@ -218,6 +219,17 @@ margin_top = -179.0
 margin_right = 0.0
 margin_bottom = 61.0
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
+
+[node name="OrganelleDivisionTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
 
 [node name="BecomeMulticellularTutorial" parent="." instance=ExtResource( 10 )]
 anchor_left = 1.0
@@ -424,6 +436,7 @@ text = "CONTINUE_THRIVING"
 [connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="hide" from="DayNightTutorial" to="." method="OnSpecificCloseClicked" binds= [ "DayNightTutorial" ]]
+[connection signal="hide" from="OrganelleDivisionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "OrganelleDivisionTutorial" ]]
 [connection signal="hide" from="BecomeMulticellularTutorial" to="." method="OnSpecificCloseClicked" binds= [ "BecomeMulticellularTutorial" ]]
 [connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]

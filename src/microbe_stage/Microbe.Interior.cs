@@ -897,6 +897,8 @@ public partial class Microbe
                 // any compounds left to give them (that are probably useful)?
             }
 
+            var firstNonCytoplasm = true;
+
             // Splitting the queued organelles.
             foreach (var organelle in organellesToAdd)
             {
@@ -909,6 +911,16 @@ public partial class Microbe
                 organelle2.WasSplit = true;
                 organelle2.IsDuplicate = true;
                 organelle2.SisterOrganelle = organelle;
+
+                if (organelle.Definition.InternalName != "cytoplasm" && IsPlayerMicrobe && firstNonCytoplasm)
+                {
+                    if (CurrentGame.TutorialState.Enabled)
+                    {
+                        CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this);
+                    }
+
+                    firstNonCytoplasm = false;
+                }
             }
         }
 
