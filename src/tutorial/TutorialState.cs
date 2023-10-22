@@ -113,6 +113,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set;  } = new();
 
+    [JsonProperty]
+    public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -399,6 +402,7 @@ public class TutorialState : ITutorialInput
             DayNightTutorial,
             MadeNoChangesTutorial,
             OrganelleDivisionTutorial,
+            FlagellumPlacementTutorial,
         };
     }
 }

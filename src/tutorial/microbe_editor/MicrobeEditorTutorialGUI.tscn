@@ -32,6 +32,7 @@ StaySmallTutorialPath = NodePath("StaySmall")
 ChemoreceptorPlacementTutorialPath = NodePath("ChemoreceptorPlacementTutorial")
 NegativeAtpBalanceTutorialPath = NodePath("NegativeAtpBalanceTutorial")
 MadeNoChangesTutorialPath = NodePath("MadeNoChangesTutorial")
+FlagellumPlacementTutorialPath = NodePath("FlagellumPlacementTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
@@ -183,6 +184,60 @@ ShowCloseButton = false
 Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
 
+[node name="FlagellumPlacementTutorial" parent="." instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -177.5
+margin_top = -142.5
+margin_right = 197.5
+margin_bottom = 242.5
+rect_min_size = Vector2( 375, 385 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+WindowTitle = "TUTORIAL"
+Description = "TUTORIAL_MICROBE_EDITOR_FLAGELLUM_TUTORIAL"
+DescriptionForController = ""
+ShowDelay = 0.7
+LabelPath = NodePath("../StaySmall/ScrollContainer/VBoxContainer/CustomRichTextLabel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="FlagellumPlacementTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FlagellumPlacementTutorial/ScrollContainer"]
+margin_right = 375.0
+margin_bottom = 385.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_right = 375.0
+margin_bottom = 24.0
+custom_fonts/normal_font = ExtResource( 4 )
+ExtendedBbcode = ""
+
+[node name="Control" type="Control" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 375.0
+margin_bottom = 349.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer"]
+margin_left = 132.0
+margin_top = 353.0
+margin_right = 242.0
+margin_bottom = 385.0
+rect_min_size = Vector2( 110, 0 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
+text = "CLOSE"
+
 [node name="ChemoreceptorPlacementTutorial" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -198,7 +253,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 WindowTitle = "TUTORIAL"
-Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
+Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR_TUTORIAL"
 DescriptionForController = ""
 ShowDelay = 0.7
 LabelPath = NodePath("../StaySmall/ScrollContainer/VBoxContainer/CustomRichTextLabel")
@@ -405,6 +460,8 @@ text = "GOT_IT"
 [connection signal="hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
+[connection signal="hide" from="FlagellumPlacementTutorial" to="." method="OnSpecificCloseClicked" binds= [ "FlagellumPlacementTutorial" ]]
+[connection signal="pressed" from="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "FlagellumPlacingTutorial" ]]
 [connection signal="hide" from="ChemoreceptorPlacementTutorial" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacementTutorial" ]]
 [connection signal="pressed" from="ChemoreceptorPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacingTutorial" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]

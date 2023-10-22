@@ -1679,6 +1679,15 @@ public partial class CellEditorComponent :
         if (placementActions.Count < 1)
             return false;
 
+        if (organelleType == "flagellum")
+        {
+            if (Editor.CurrentGame.TutorialState.Enabled)
+            {
+                Editor.CurrentGame.TutorialState.
+                    SendEvent(TutorialEventType.MicrobeFlagellumPlaced, EventArgs.Empty, this);
+            }
+        }
+
         var multiAction = new CombinedEditorAction(placementActions);
 
         return EnqueueAction(multiAction);

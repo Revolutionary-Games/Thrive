@@ -47,6 +47,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath MadeNoChangesTutorialPath = null!;
 
+    [Export]
+    public NodePath FlagellumPlacementTutorialPath = null!;
+
 #pragma warning disable CA2213
     private CustomWindow editorEntryReport = null!;
     private CustomWindow patchMap = null!;
@@ -59,6 +62,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow negativeAtpBalanceTutorial = null!;
     private CustomWindow chemoreceptorPlacementTutorial = null!;
     private CustomWindow madeNoChangesTutorial = null!;
+    private CustomWindow flagellumPlacementTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -282,6 +286,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool FlagellumPlacementTutorialVisible
+    {
+        get => flagellumPlacementTutorial.Visible;
+        set
+        {
+            if (value == flagellumPlacementTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                flagellumPlacementTutorial.Show();
+            }
+            else
+            {
+                flagellumPlacementTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -295,6 +318,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         chemoreceptorPlacementTutorial = GetNode<CustomWindow>(ChemoreceptorPlacementTutorialPath);
         negativeAtpBalanceTutorial = GetNode<CustomWindow>(NegativeAtpBalanceTutorialPath);
         madeNoChangesTutorial = GetNode<CustomWindow>(MadeNoChangesTutorialPath);
+        flagellumPlacementTutorial = GetNode<CustomWindow>(FlagellumPlacementTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
@@ -343,6 +367,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
                 ChemoreceptorPlacementTutorialPath.Dispose();
                 NegativeAtpBalanceTutorialPath.Dispose();
                 MadeNoChangesTutorialPath.Dispose();
+                FlagellumPlacementTutorialPath.Dispose();
             }
         }
 
