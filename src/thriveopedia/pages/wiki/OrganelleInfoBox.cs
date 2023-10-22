@@ -20,7 +20,7 @@ public class OrganelleInfoBox : PanelContainer
     public NodePath CostLabelPath = null!;
 
     [Export]
-    public NodePath RequiresNucleusLabelPath = null!;
+    public NodePath RequiresNucleusIconPath = null!;
 
     [Export]
     public NodePath ProcessesLabelPath = null!;
@@ -41,7 +41,7 @@ public class OrganelleInfoBox : PanelContainer
     public NodePath StorageLabelPath = null!;
 
     [Export]
-    public NodePath UniqueLabelPath = null!;
+    public NodePath UniqueIconPath = null!;
 
     [Export]
     public NodePath UpgradesLabelPath = null!;
@@ -56,14 +56,14 @@ public class OrganelleInfoBox : PanelContainer
     private TextureRect icon = null!;
     private TextureRect? model;
     private Label costLabel = null!;
-    private CustomRichTextLabel requiresNucleusLabel = null!;
+    private TextureRect requiresNucleusIcon = null!;
     private Label processesLabel = null!;
     private Label enzymesLabel = null!;
     private Label massLabel = null!;
     private Label sizeLabel = null!;
     private Label osmoregulationCostLabel = null!;
     private Label storageLabel = null!;
-    private CustomRichTextLabel uniqueLabel = null!;
+    private TextureRect uniqueIcon = null!;
     private Label upgradesLabel = null!;
     private Label internalNameLabel = null!;
 
@@ -106,14 +106,14 @@ public class OrganelleInfoBox : PanelContainer
         icon = GetNode<TextureRect>(IconPath);
         model = GetNode<TextureRect>(ModelPath);
         costLabel = GetNode<Label>(CostLabelPath);
-        requiresNucleusLabel = GetNode<CustomRichTextLabel>(RequiresNucleusLabelPath);
+        requiresNucleusIcon = GetNode<TextureRect>(RequiresNucleusIconPath);
         processesLabel = GetNode<Label>(ProcessesLabelPath);
         enzymesLabel = GetNode<Label>(EnzymesLabelPath);
         massLabel = GetNode<Label>(MassLabelPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         osmoregulationCostLabel = GetNode<Label>(OsmoregulationCostLabelPath);
         storageLabel = GetNode<Label>(StorageLabelPath);
-        uniqueLabel = GetNode<CustomRichTextLabel>(UniqueLabelPath);
+        uniqueIcon = GetNode<TextureRect>(UniqueIconPath);
         upgradesLabel = GetNode<Label>(UpgradesLabelPath);
         internalNameLabel = GetNode<Label>(InternalNameLabelPath);
 
@@ -157,14 +157,14 @@ public class OrganelleInfoBox : PanelContainer
                 IconPath.Dispose();
                 ModelPath.Dispose();
                 CostLabelPath.Dispose();
-                RequiresNucleusLabelPath.Dispose();
+                RequiresNucleusIconPath.Dispose();
                 ProcessesLabelPath.Dispose();
                 EnzymesLabelPath.Dispose();
                 MassLabelPath.Dispose();
                 SizeLabelPath.Dispose();
                 OsmoregulationCostLabelPath.Dispose();
                 StorageLabelPath.Dispose();
-                UniqueLabelPath.Dispose();
+                UniqueIconPath.Dispose();
                 UpgradesLabelPath.Dispose();
                 InternalNameLabelPath.Dispose();
             }
@@ -214,13 +214,14 @@ public class OrganelleInfoBox : PanelContainer
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);
-        requiresNucleusLabel.ExtendedBbcode = GUICommon.RequirementFulfillmentIconRichText(organelle.RequiresNucleus);
         massLabel.Text = organelle.Mass.ToString(CultureInfo.CurrentCulture);
         sizeLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         osmoregulationCostLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         storageLabel.Text = (organelle.Components.Storage?.Capacity ?? 0).ToString(CultureInfo.CurrentCulture);
-        uniqueLabel.ExtendedBbcode = GUICommon.RequirementFulfillmentIconRichText(organelle.Unique);
         internalNameLabel.Text = organelle.InternalName;
+
+        requiresNucleusIcon.Texture = GUICommon.Instance.GetRequirementFulfillmentIcon(organelle.RequiresNucleus);
+        uniqueIcon.Texture = GUICommon.Instance.GetRequirementFulfillmentIcon(organelle.Unique);
     }
 
     private void UpdateModelImage()
