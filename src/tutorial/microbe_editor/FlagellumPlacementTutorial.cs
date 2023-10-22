@@ -11,7 +11,8 @@
             gui.FlagellumPlacementTutorialVisible = ShownCurrently;
         }
 
-        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args, object sender)
+        public override bool CheckEvent(TutorialState overallState,
+            TutorialEventType eventType, EventArgs args, object sender)
         {
             switch (eventType)
             {

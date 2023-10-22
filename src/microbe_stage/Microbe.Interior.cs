@@ -916,7 +916,8 @@ public partial class Microbe
                 {
                     if (CurrentGame.TutorialState.Enabled)
                     {
-                        CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this);
+                        CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided,
+                            EventArgs.Empty, this);
                     }
 
                     firstNonCytoplasm = false;
