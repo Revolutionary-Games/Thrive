@@ -81,11 +81,6 @@ public static class TranslationHelper
             TranslationServer.Translate("FEATURE_DISABLED");
     }
 
-    public static string TranslateBoolean(bool value)
-    {
-        return value ? TranslationServer.Translate("YES") : TranslationServer.Translate("NO");
-    }
-
     private static string GetTranslatedText(Type type, object instance, object[] translateAttributes)
     {
         var data = (TranslateFromAttribute)translateAttributes[0];

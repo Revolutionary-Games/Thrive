@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=4]
@@ -127,14 +128,12 @@ text = "INFO_BOX_REQUIRES_NUCLEUS"
 align = 1
 autowrap = true
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/RequiresNucleus"]
+[node name="Value" parent="MarginContainer/VBoxContainer/RequiresNucleus" instance=ExtResource( 1 )]
 margin_left = 164.0
-margin_top = 10.0
 margin_right = 308.0
-margin_bottom = 27.0
+margin_bottom = 37.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-autowrap = true
+ExtendedBbcode = ""
 
 [node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )
@@ -343,14 +342,11 @@ text = "INFO_BOX_UNIQUE"
 align = 1
 autowrap = true
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Unique"]
+[node name="Value" parent="MarginContainer/VBoxContainer/Unique" instance=ExtResource( 1 )]
 margin_left = 164.0
-margin_top = 4.0
 margin_right = 308.0
-margin_bottom = 21.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-autowrap = true
 
 [node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0.25098 )

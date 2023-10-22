@@ -56,14 +56,14 @@ public class OrganelleInfoBox : PanelContainer
     private TextureRect icon = null!;
     private TextureRect? model;
     private Label costLabel = null!;
-    private Label requiresNucleusLabel = null!;
+    private CustomRichTextLabel requiresNucleusLabel = null!;
     private Label processesLabel = null!;
     private Label enzymesLabel = null!;
     private Label massLabel = null!;
     private Label sizeLabel = null!;
     private Label osmoregulationCostLabel = null!;
     private Label storageLabel = null!;
-    private Label uniqueLabel = null!;
+    private CustomRichTextLabel uniqueLabel = null!;
     private Label upgradesLabel = null!;
     private Label internalNameLabel = null!;
 
@@ -106,14 +106,14 @@ public class OrganelleInfoBox : PanelContainer
         icon = GetNode<TextureRect>(IconPath);
         model = GetNode<TextureRect>(ModelPath);
         costLabel = GetNode<Label>(CostLabelPath);
-        requiresNucleusLabel = GetNode<Label>(RequiresNucleusLabelPath);
+        requiresNucleusLabel = GetNode<CustomRichTextLabel>(RequiresNucleusLabelPath);
         processesLabel = GetNode<Label>(ProcessesLabelPath);
         enzymesLabel = GetNode<Label>(EnzymesLabelPath);
         massLabel = GetNode<Label>(MassLabelPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         osmoregulationCostLabel = GetNode<Label>(OsmoregulationCostLabelPath);
         storageLabel = GetNode<Label>(StorageLabelPath);
-        uniqueLabel = GetNode<Label>(UniqueLabelPath);
+        uniqueLabel = GetNode<CustomRichTextLabel>(UniqueLabelPath);
         upgradesLabel = GetNode<Label>(UpgradesLabelPath);
         internalNameLabel = GetNode<Label>(InternalNameLabelPath);
 
@@ -214,12 +214,12 @@ public class OrganelleInfoBox : PanelContainer
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);
-        requiresNucleusLabel.Text = TranslationHelper.TranslateBoolean(organelle.RequiresNucleus);
+        requiresNucleusLabel.ExtendedBbcode = GUICommon.RequirementFulfillmentIconRichText(organelle.RequiresNucleus);
         massLabel.Text = organelle.Mass.ToString(CultureInfo.CurrentCulture);
         sizeLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         osmoregulationCostLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         storageLabel.Text = (organelle.Components.Storage?.Capacity ?? 0).ToString(CultureInfo.CurrentCulture);
-        uniqueLabel.Text = TranslationHelper.TranslateBoolean(organelle.Unique);
+        uniqueLabel.ExtendedBbcode = GUICommon.RequirementFulfillmentIconRichText(organelle.Unique);
         internalNameLabel.Text = organelle.InternalName;
     }
 
