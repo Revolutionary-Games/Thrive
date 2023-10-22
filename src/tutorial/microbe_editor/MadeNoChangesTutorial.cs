@@ -1,8 +1,6 @@
 ﻿namespace Tutorial
 {
     using System;
-    using Godot;
-    using Newtonsoft.Json;
 
     /// <summary>
     ///   Redo tutorial in the cell editor

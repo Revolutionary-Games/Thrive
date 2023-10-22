@@ -111,7 +111,7 @@ public class TutorialState : ITutorialInput
     public OrganelleDivisionTutorial OrganelleDivisionTutorial { get; private set; } = new();
 
     [JsonProperty]
-    public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set;  } = new();
+    public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set; } = new();
 
     [JsonProperty]
     public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
