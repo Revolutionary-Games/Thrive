@@ -134,9 +134,8 @@ msgid "AGENTS_COLON"
 msgstr "状态："
 
 #: ../src/microbe_stage/AgentProperties.cs:20
-#, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0}{1}"
+msgstr "{0} 试剂"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
@@ -5842,9 +5841,11 @@ msgstr ""
 "题将变得非常困难。"
 
 #: ../src/saving/SaveStatusOverlay.cs:182
-#, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "JSON调试模式："
+msgstr ""
+"在报告此保存错误之前，请确保JSON调试模式未被禁用。自动JSON调试模式应该在"
+"[color=#3796e1][url={1}]日志文件夹[/url][/color]中创建了一个名为{0}的额外文"
+"件。该文件包含Thrive开发人员了解保存错误的关键信息。"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5947,17 +5948,17 @@ msgstr "成反比"
 #: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "SCREEN_EFFECT"
-msgstr "外部影响："
+msgstr "外部影响"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY"
-msgstr "外部影响："
+msgstr "GB 调色板"
 
 #: ../simulation_parameters/common/screen_effects.json:18
 #, fuzzy
 msgid "SCREEN_EFFECT_GAMEBOY_COLOR"
-msgstr "外部影响："
+msgstr "GB 色彩图像"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 #, fuzzy
@@ -6939,7 +6940,7 @@ msgstr ""
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
-"你现在已经有能力向多细胞生物进化，这会是进化之旅的下一步。\n"
+"[b][u]{0}[/u][/b] 现在已经有能力向多细胞生物进化，这会是进化之旅的下一步。\n"
 "\n"
 "按下“成为多细胞”按钮以继续。"
 
@@ -7166,18 +7167,15 @@ msgstr ""
 "祝你好运！"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"这里是地区图。\n"
+"你的ATP平衡为负。\n"
 "\n"
-"每个图标代表一个你可以居住的独特环境，你右边的面板描述了当前选定的地区的状"
-"态。\n"
+"当运行所有进程并移动时，你的生物将耗尽能量并死亡。\n"
 "\n"
-"如果你选择了一个与你所占据的地区相连的地区，该地区会用薄薄的青色边框突出显"
-"示，你可以按下右边的 \"移动到这个地区 \"按钮来迁移到那里。\n"
+"你可以添加产生ATP的细胞器，使细胞能够不断移动。\n"
 "\n"
-"选择一个地区来继续。"
+"或者，您可以添加储存，以创建一个只能突发移动的细胞。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
