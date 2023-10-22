@@ -237,6 +237,7 @@
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\IInspectableEntity.cs" />
     <Compile Include="src\general\IPlayerReadableName.cs" />
+    <Compile Include="src\general\MusicContext.cs" />
     <Compile Include="src\general\PlayerInspectInfo.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\general\utils\ColorUtils.cs" />
@@ -808,7 +809,7 @@
       <Version>2.2.2</Version>
     </PackageReference>
     <PackageReference Include="YamlDotNet">
-      <Version>13.7.0</Version>
+      <Version>13.7.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

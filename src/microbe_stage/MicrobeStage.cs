@@ -279,9 +279,11 @@ public class MicrobeStage : CreatureStageBase<Microbe>
 
     public override void StartMusic()
     {
+        var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
+
         Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
             "EarlyMulticellularStage" :
-            "MicrobeStage");
+            "MicrobeStage", biome.ActiveMusicContexts);
     }
 
     [RunOnKeyDown("g_pause")]
@@ -366,6 +368,15 @@ public class MicrobeStage : CreatureStageBase<Microbe>
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
             return;
         }
+
+        // Log becoming multicellular in the timeline
+        GameWorld.LogEvent(
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            true, "multicellularTimelineMembraneTouch.png");
+
+        GameWorld.Map.CurrentPatch!.LogEvent(
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            true, "multicellularTimelineMembraneTouch.png");
 
         GD.Print("Disbanding colony and becoming multicellular");
 

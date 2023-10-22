@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-20 18:18+0100\n"
+"POT-Creation-Date: 2023-10-22 17:32+0100\n"
 "PO-Revision-Date: 2023-09-21 09:24+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -47,7 +47,7 @@ msgstr "Abandon"
 msgid "ABORTED_DOT"
 msgstr "Abandonné."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:829
+#: ../simulation_parameters/microbe_stage/biomes.json:832
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopélagique"
 
@@ -256,7 +256,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Œuvre de {0}"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:530
 msgid "ART_GALLERY"
 msgstr "Galerie d'art"
 
@@ -372,7 +372,7 @@ msgstr "Sauvegarde automatique en jeu"
 msgid "AUTO_EVO"
 msgstr "Auto-Évo"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:430
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Outil d'exploration Auto-Évo"
 
@@ -423,8 +423,8 @@ msgid "AWARE_STAGE"
 msgstr "Phase Consciente"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
+#: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -475,7 +475,7 @@ msgstr "Basse vers le bas"
 msgid "BASSUP"
 msgstr "Basse vers le haut"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:583
+#: ../simulation_parameters/microbe_stage/biomes.json:586
 msgid "BATHYPELAGIC"
 msgstr "Bathypélagique"
 
@@ -523,7 +523,7 @@ msgstr "Opportunisme"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sous la mer"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:444
 #, fuzzy
 msgid "BENCHMARKS"
 msgstr "Critères"
@@ -545,16 +545,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Meilleure parcelle :"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:326
-#: ../simulation_parameters/microbe_stage/biomes.json:493
-#: ../simulation_parameters/microbe_stage/biomes.json:659
-#: ../simulation_parameters/microbe_stage/biomes.json:905
-#: ../simulation_parameters/microbe_stage/biomes.json:1151
-#: ../simulation_parameters/microbe_stage/biomes.json:1398
-#: ../simulation_parameters/microbe_stage/biomes.json:1564
-#: ../simulation_parameters/microbe_stage/biomes.json:1750
-#: ../simulation_parameters/microbe_stage/biomes.json:1917
-#: ../simulation_parameters/microbe_stage/biomes.json:2083
+#: ../simulation_parameters/microbe_stage/biomes.json:329
+#: ../simulation_parameters/microbe_stage/biomes.json:496
+#: ../simulation_parameters/microbe_stage/biomes.json:662
+#: ../simulation_parameters/microbe_stage/biomes.json:908
+#: ../simulation_parameters/microbe_stage/biomes.json:1154
+#: ../simulation_parameters/microbe_stage/biomes.json:1401
+#: ../simulation_parameters/microbe_stage/biomes.json:1567
+#: ../simulation_parameters/microbe_stage/biomes.json:1756
+#: ../simulation_parameters/microbe_stage/biomes.json:1923
+#: ../simulation_parameters/microbe_stage/biomes.json:2089
 msgid "BIG_IRON_CHUNK"
 msgstr "Gros morceau de fer"
 
@@ -604,7 +604,7 @@ msgstr "Vacuole bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
 
@@ -946,7 +946,7 @@ msgstr "Diviseur de résolution des nuages :"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalle minimal de simulation des nuages :"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1321
+#: ../simulation_parameters/microbe_stage/biomes.json:1324
 msgid "COASTAL"
 msgstr "Côtier"
 
@@ -1028,19 +1028,19 @@ msgstr "Capacités"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_FORUM"
 msgstr "Forum de la communauté"
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:680
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Rejoignez la communauté Thrive sur notre forum communautaire"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:727
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki de la communauté"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:722
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Visitez le wiki de la communauté"
 
@@ -1342,7 +1342,7 @@ msgstr "En train de créer..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Création des objets à partir de la sauvegarde"
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Crédits"
 
@@ -1565,11 +1565,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Développeurs"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_FORUM"
 msgstr "Forum de développement"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:694
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Consultez les mises à jour du développement sur notre forum de développement"
 
@@ -1577,11 +1577,11 @@ msgstr "Consultez les mises à jour du développement sur notre forum de dévelo
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Développé avec le soutien de Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:713
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki de développement"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:708
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visitez notre wiki de développement"
 
@@ -1709,7 +1709,7 @@ msgstr ""
 "Il y a des organites placées qui ne sont pas connectés au reste.\n"
 "Veuillez connecter toutes les organites placées avec les autres ou annulez vos changements."
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:871
 msgid "DISCORD_TOOLTIP"
 msgstr "Rejoint notre serveur Discord de la communauté"
 
@@ -2049,7 +2049,7 @@ msgstr "Échap"
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1840
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
 msgid "ESTUARY"
 msgstr "Estuaire"
 
@@ -2090,7 +2090,7 @@ msgstr "Constructions"
 msgid "EXIT"
 msgstr "Quitter"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Revenir au lanceur"
 
@@ -2140,7 +2140,7 @@ msgstr "a disparu du secteur"
 msgid "EXTINCT_SPECIES"
 msgstr "Espèces éteintes"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Extras"
 
@@ -2148,7 +2148,7 @@ msgstr "Extras"
 msgid "EXTRA_OPTIONS"
 msgstr "Autres Options"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:883
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Visitez notre page Facebook"
 
@@ -2270,16 +2270,16 @@ msgid "FLOATING_CHUNKS_COLON"
 msgstr "Morceaux flottants :"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:192
-#: ../simulation_parameters/microbe_stage/biomes.json:439
-#: ../simulation_parameters/microbe_stage/biomes.json:605
-#: ../simulation_parameters/microbe_stage/biomes.json:851
-#: ../simulation_parameters/microbe_stage/biomes.json:1097
-#: ../simulation_parameters/microbe_stage/biomes.json:1344
-#: ../simulation_parameters/microbe_stage/biomes.json:1510
-#: ../simulation_parameters/microbe_stage/biomes.json:1677
-#: ../simulation_parameters/microbe_stage/biomes.json:1863
-#: ../simulation_parameters/microbe_stage/biomes.json:2029
+#: ../simulation_parameters/microbe_stage/biomes.json:195
+#: ../simulation_parameters/microbe_stage/biomes.json:442
+#: ../simulation_parameters/microbe_stage/biomes.json:608
+#: ../simulation_parameters/microbe_stage/biomes.json:854
+#: ../simulation_parameters/microbe_stage/biomes.json:1100
+#: ../simulation_parameters/microbe_stage/biomes.json:1347
+#: ../simulation_parameters/microbe_stage/biomes.json:1513
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1869
+#: ../simulation_parameters/microbe_stage/biomes.json:2035
 msgid "FLOATING_HAZARD"
 msgstr "Danger flottant"
 
@@ -2419,7 +2419,7 @@ msgstr "Générations"
 msgid "GENERATION_COLON"
 msgstr "Génération :"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:835
 msgid "GITHUB_TOOLTIP"
 msgstr "Visitez notre repository Github"
 
@@ -2427,11 +2427,11 @@ msgstr "Visitez notre repository Github"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:967
 msgid "GLES2_MODE_WARNING"
 msgstr "Alerte Mode GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:969
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
@@ -2471,16 +2471,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Outils divins"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:350
-#: ../simulation_parameters/microbe_stage/biomes.json:517
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:1009
-#: ../simulation_parameters/microbe_stage/biomes.json:1255
-#: ../simulation_parameters/microbe_stage/biomes.json:1422
-#: ../simulation_parameters/microbe_stage/biomes.json:1588
-#: ../simulation_parameters/microbe_stage/biomes.json:1774
-#: ../simulation_parameters/microbe_stage/biomes.json:1941
-#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#: ../simulation_parameters/microbe_stage/biomes.json:353
+#: ../simulation_parameters/microbe_stage/biomes.json:520
+#: ../simulation_parameters/microbe_stage/biomes.json:766
+#: ../simulation_parameters/microbe_stage/biomes.json:1012
+#: ../simulation_parameters/microbe_stage/biomes.json:1258
+#: ../simulation_parameters/microbe_stage/biomes.json:1425
+#: ../simulation_parameters/microbe_stage/biomes.json:1591
+#: ../simulation_parameters/microbe_stage/biomes.json:1780
+#: ../simulation_parameters/microbe_stage/biomes.json:1947
+#: ../simulation_parameters/microbe_stage/biomes.json:2193
 msgid "GOOGLY_EYE_CELL"
 msgstr "Cellule à œil écarquillé"
 
@@ -2531,7 +2531,6 @@ msgstr "Volume de l'interface"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
 msgid "HEALTH"
 msgstr "Santé"
@@ -2613,11 +2612,11 @@ msgstr "Hyper Gauche"
 msgid "HYPERR"
 msgstr "Hyper Droite"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1731
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
 msgid "ICESHARD"
 msgstr "Éclat de glace"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1654
+#: ../simulation_parameters/microbe_stage/biomes.json:1657
 msgid "ICESHELF"
 msgstr "Plaque de glace"
 
@@ -2654,25 +2653,25 @@ msgstr "MP illimités"
 msgid "INFO_BOX_COST"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:187
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:399
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Nom de dossier interne :"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:218
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:279
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:156
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
 msgstr "Aucune action"
@@ -2682,22 +2681,22 @@ msgstr "Aucune action"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Nécessite un noyau"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:249
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
 #, fuzzy
 msgid "INFO_BOX_SIZE"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:310
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:341
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
 #, fuzzy
 msgid "INFO_BOX_UNIQUE"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:369
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -2870,7 +2869,7 @@ msgstr "Fer"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Chimiolithoautotrophe Ferrique"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:811
 msgid "ITCH_TOOLTIP"
 msgstr "Visitez notre page Itch.io"
 
@@ -3246,7 +3245,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Clic gauche"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:540
 msgid "LICENSES"
 msgstr "Licences"
 
@@ -3410,12 +3409,12 @@ msgstr "Appuyez sur le bouton Revenir en Arrière dans l'éditeur pour corriger 
 msgid "LOAD_FINISHED"
 msgstr "Chargement terminé"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Charger une partie"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Charger les sauvegardes précédentes"
 
@@ -3460,12 +3459,12 @@ msgstr "Activer le cycle jour/nuit"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Considérer que les parcelles contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1018
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1020
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
@@ -3495,11 +3494,11 @@ msgstr "Carte"
 msgid "MARCH"
 msgstr "Mars"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:246
-#: ../simulation_parameters/microbe_stage/biomes.json:683
-#: ../simulation_parameters/microbe_stage/biomes.json:929
-#: ../simulation_parameters/microbe_stage/biomes.json:1175
-#: ../simulation_parameters/microbe_stage/biomes.json:2107
+#: ../simulation_parameters/microbe_stage/biomes.json:249
+#: ../simulation_parameters/microbe_stage/biomes.json:686
+#: ../simulation_parameters/microbe_stage/biomes.json:932
+#: ../simulation_parameters/microbe_stage/biomes.json:1178
+#: ../simulation_parameters/microbe_stage/biomes.json:2113
 msgid "MARINE_SNOW"
 msgstr "Neige marine"
 
@@ -3574,7 +3573,7 @@ msgstr "Types de Membranes"
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1078
 msgid "MESOPELAGIC"
 msgstr "Mésopélagique"
 
@@ -3632,7 +3631,7 @@ msgid "MICROBES_COUNT"
 msgstr "Nombre de microbes :"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Éditeur de microbes"
@@ -3716,7 +3715,7 @@ msgstr "À chaque génération, vous avez 100 points de mutation (PM) à dépens
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de Microbes, où vous pouvez modifier votre espèce (en ajoutant, pivotant ou retirant des organites) pour augmenter ses chances de réussite. Chaque passage dans l'éditeur du stade Microbe représente [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millions d'années d'évolution."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
@@ -3979,11 +3978,11 @@ msgstr "Modifier l'organite"
 msgid "MODIFY_TYPE"
 msgstr "Modifier le type"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:517
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:981
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Des mods installés ont été détectés, mais aucun mod n'a été activé.\n"
@@ -4076,11 +4075,11 @@ msgstr "Nom de dossier interne :"
 msgid "MOD_LICENSE"
 msgstr "Licence :"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:995
 msgid "MOD_LOAD_ERRORS"
 msgstr "Erreurs liées au chargement de mods"
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les logs pourraient contenir des informations supplémentaires."
 
@@ -4258,6 +4257,11 @@ msgstr "Synthèse de mucilage"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Éditeur multicellulaire"
 
+#: ../src/general/MainMenu.tscn:419
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Éditeur multicellulaire"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
@@ -4361,11 +4365,11 @@ msgstr "NOUVEAUTÉS"
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Population initiale pour les espèces augmentant la biodiversité"
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Nouvelle partie"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Commencer une nouvelle partie"
 
@@ -4513,7 +4517,7 @@ msgstr "Aucun évènement enregistré"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:979
 msgid "NO_MODS_ENABLED"
 msgstr "Pas de mods activés"
 
@@ -4584,11 +4588,11 @@ msgstr "{0} fois"
 msgid "OCTOBER"
 msgstr "Octobre"
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:671
 msgid "OFFICIAL_WEBSITE"
 msgstr "Site web officiel"
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Visitez le site officiel de Revolutionary Games"
 
@@ -4694,11 +4698,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportuniste"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Modifier les paramètres"
 
@@ -4949,7 +4953,7 @@ msgstr "Modifications :"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Voir touts les détails de cette mise à jour sur [color=#3296e1][url={0}]Github[/url][/color]"
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:823
 msgid "PATREON_TOOLTIP"
 msgstr "Visitez notre page Patreon"
 
@@ -5225,11 +5229,11 @@ msgstr "Chargement rapide"
 msgid "QUICK_SAVE"
 msgstr "Sauvegarde rapide"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Quitter"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Quitter le jeu"
@@ -5271,7 +5275,7 @@ msgstr "Prêt"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Version de Thrive recommandée :"
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:859
 msgid "REDDIT_TOOLTIP"
 msgstr "Visitez notre subreddit"
 
@@ -5296,7 +5300,7 @@ msgstr "Rembourser les migrations en cas d'extinction dans le secteur cible"
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:740 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Rapporter un bogue"
 
@@ -5436,7 +5440,7 @@ msgstr ""
 "Voulez-vous vraiment retourner au menu principal ?\n"
 "Vous perdrez toute progression non sauvegardée."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Visitez les sites officiels de Revolutionary Games"
 
@@ -5523,7 +5527,7 @@ msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:991
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive a démarré en mode sans échec en raison d'un échec de démarrage antérieur.\n"
@@ -5535,7 +5539,7 @@ msgstr ""
 "\n"
 "Si vous ne résolvez pas le problème à l'origine de l'échec du démarrage, vous devrez redémarrer et faire planter Thrive plusieurs fois pour revenir en mode sans échec."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:989
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive a démarré en mode sans échec"
 
@@ -5706,7 +5710,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "Rayon de recherche :"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:2013
 msgid "SEA_FLOOR"
 msgstr "Fond marin"
 
@@ -5926,16 +5930,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stockés, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:210
-#: ../simulation_parameters/microbe_stage/biomes.json:457
-#: ../simulation_parameters/microbe_stage/biomes.json:623
-#: ../simulation_parameters/microbe_stage/biomes.json:869
-#: ../simulation_parameters/microbe_stage/biomes.json:1115
-#: ../simulation_parameters/microbe_stage/biomes.json:1362
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
-#: ../simulation_parameters/microbe_stage/biomes.json:1695
-#: ../simulation_parameters/microbe_stage/biomes.json:1881
-#: ../simulation_parameters/microbe_stage/biomes.json:2047
+#: ../simulation_parameters/microbe_stage/biomes.json:213
+#: ../simulation_parameters/microbe_stage/biomes.json:460
+#: ../simulation_parameters/microbe_stage/biomes.json:626
+#: ../simulation_parameters/microbe_stage/biomes.json:872
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1365
+#: ../simulation_parameters/microbe_stage/biomes.json:1531
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2053
 msgid "SMALL_IRON_CHUNK"
 msgstr "Petit morceau de fer"
 
@@ -5987,7 +5991,7 @@ msgstr "Créer de l'ammoniaque"
 msgid "SPAWN_ENEMY"
 msgstr "Invoquer un ennemi"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:804
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossible d'invoquer une espèce ennemie, car ce secteur ne contient pas d'espèces ennemies"
 
@@ -6171,17 +6175,17 @@ msgstr "Steam est indisponible pour le moment, veuillez réessayer ultérieureme
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Une erreur Steam inconnue vient de se produire"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1012
 msgid "STEAM_INIT_FAILED"
 msgstr "L'initialisation de Steam a échoué"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1014
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "L'initialisation de la librairie du client Steam a échoué. Les fonctionnalités Steam seront Indisponibles.\n"
 "Veuillez vous assurer que Steam fonctionne et que vous êtes connecté au bon compte. Veuillez lancer le jeu depuis le client Steam si cette erreur ne part pas autrement."
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:799
 msgid "STEAM_TOOLTIP"
 msgstr "Visitez notre page Steam"
 
@@ -6221,7 +6225,7 @@ msgstr "Stockage"
 msgid "STORAGE_COLON"
 msgstr "Stockage :"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:657
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
@@ -6449,7 +6453,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Équipe de test"
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
@@ -6465,7 +6469,7 @@ msgstr ""
 "\n"
 "Si vous avez aimé le jeu, n'hésitez pas à en parler à vos amis."
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1002
 msgid "THANK_YOU_TITLE"
 msgstr "Merci"
 
@@ -6524,7 +6528,7 @@ msgstr "Cette modification a été téléchargée depuis l'atelier Steam"
 msgid "THREADS"
 msgstr "Threads :"
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:504 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopédia"
 
@@ -6581,7 +6585,7 @@ msgstr "Thylacoïdes"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:416
+#: ../simulation_parameters/microbe_stage/biomes.json:419
 msgid "TIDEPOOL"
 msgstr "Flaque"
 
@@ -6606,6 +6610,17 @@ msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvel
 #: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
+
+#: ../src/microbe_stage/MicrobeStage.cs:374
+#: ../src/microbe_stage/MicrobeStage.cs:378
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr ""
+"Collectez du glucose (nuages blanc) en vous déplaçant dessus.\n"
+"\n"
+"Votre cellule a besoin de glucose afin de produire de l'énergie et rester en vie.\n"
+"\n"
+"Suivez la ligne entre votre cellule et le glucose le plus proche."
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6692,7 +6707,7 @@ msgstr "Pause"
 msgid "TOGGLE_UNBINDING"
 msgstr "Activer/désactiver la liaison"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Outils"
 
@@ -6709,6 +6724,7 @@ msgid "TOTAL_SAVES"
 msgstr "Nombre de sauvegardes :"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 msgid "TOXIN_RESISTANCE"
 msgstr "Résistance aux toxines"
@@ -6936,7 +6952,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriel"
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:895
 msgid "TWITTER_TOOLTIP"
 msgstr "Visite notre flux Twitter"
 
@@ -6971,7 +6987,7 @@ msgstr "Mode de Délier"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Il s'agit d'une version de debug où les informations ci-dessous ne sont probablement pas à jour"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1488
+#: ../simulation_parameters/microbe_stage/biomes.json:1491
 msgid "UNDERWATERCAVE"
 msgstr "Grotte sous-marine"
 
@@ -7191,7 +7207,7 @@ msgstr "Voir les notes de correctif"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Voir tous ou les dernières notes de correctif maintenant"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Voir le code source"
 
@@ -7203,7 +7219,7 @@ msgstr "Soutiens VIP"
 msgid "VISIBLE"
 msgstr "Visible"
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:553 ../src/general/MainMenu.tscn:758
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Proposer une fonctionnalité"
 
@@ -8801,7 +8817,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "années"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:847
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visitez notre chaîne YouTube"
 

@@ -97,9 +97,12 @@ public class GameProperties
     ///   <para>
     ///     TODO: add some other species as well to the world to make it not as empty as starting a new microbe game
     ///     this way
-    ///   </para>
+    ///     TODO: add a setting to trigger if in freebuild the colony stars off as a single cell or as the full
+    ///     colony
+    ///   </para>s
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings)
+    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings,
+        bool freebuild = false)
     {
         var game = new GameProperties(settings);
 
@@ -109,6 +112,14 @@ public class GameProperties
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 
         game.EnterPrototypes();
+
+        // TODO: generate multicellular species for freebuild
+        if (freebuild)
+        {
+            game.EnterFreeBuild();
+            game.GameWorld.GenerateRandomSpeciesForFreeBuild();
+            game.TutorialState.Enabled = false;
+        }
 
         return game;
     }

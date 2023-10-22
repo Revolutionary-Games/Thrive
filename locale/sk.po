@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-20 18:18+0100\n"
+"POT-Creation-Date: 2023-10-22 17:32+0100\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -48,7 +48,7 @@ msgstr "Prerušené."
 msgid "ABORTED_DOT"
 msgstr "Prerušené."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:829
+#: ../simulation_parameters/microbe_stage/biomes.json:832
 msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál"
 
@@ -252,7 +252,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Vytvoril {0}"
 
-#: ../src/general/MainMenu.tscn:521
+#: ../src/general/MainMenu.tscn:530
 msgid "ART_GALLERY"
 msgstr "Galéria"
 
@@ -358,7 +358,7 @@ msgstr "Automatické ukladanie počas hry"
 msgid "AUTO_EVO"
 msgstr "Automatická evolúcia"
 
-#: ../src/general/MainMenu.tscn:419
+#: ../src/general/MainMenu.tscn:430
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj prieskumu Auto-Evo"
 
@@ -412,8 +412,8 @@ msgid "AWARE_STAGE"
 msgstr "Fáza Mikróbov"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:464 ../src/general/MainMenu.tscn:560
-#: ../src/general/MainMenu.tscn:616 ../src/general/MainMenu.tscn:939
+#: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
+#: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -464,7 +464,7 @@ msgstr "Zoslabiť basy"
 msgid "BASSUP"
 msgstr "Zosilniť basy"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:583
+#: ../simulation_parameters/microbe_stage/biomes.json:586
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál"
 
@@ -520,7 +520,7 @@ msgstr "Správanie"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod hladinou mora"
 
-#: ../src/general/MainMenu.tscn:433
+#: ../src/general/MainMenu.tscn:444
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -543,16 +543,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Najlepšia oblasť:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:326
-#: ../simulation_parameters/microbe_stage/biomes.json:493
-#: ../simulation_parameters/microbe_stage/biomes.json:659
-#: ../simulation_parameters/microbe_stage/biomes.json:905
-#: ../simulation_parameters/microbe_stage/biomes.json:1151
-#: ../simulation_parameters/microbe_stage/biomes.json:1398
-#: ../simulation_parameters/microbe_stage/biomes.json:1564
-#: ../simulation_parameters/microbe_stage/biomes.json:1750
-#: ../simulation_parameters/microbe_stage/biomes.json:1917
-#: ../simulation_parameters/microbe_stage/biomes.json:2083
+#: ../simulation_parameters/microbe_stage/biomes.json:329
+#: ../simulation_parameters/microbe_stage/biomes.json:496
+#: ../simulation_parameters/microbe_stage/biomes.json:662
+#: ../simulation_parameters/microbe_stage/biomes.json:908
+#: ../simulation_parameters/microbe_stage/biomes.json:1154
+#: ../simulation_parameters/microbe_stage/biomes.json:1401
+#: ../simulation_parameters/microbe_stage/biomes.json:1567
+#: ../simulation_parameters/microbe_stage/biomes.json:1756
+#: ../simulation_parameters/microbe_stage/biomes.json:1923
+#: ../simulation_parameters/microbe_stage/biomes.json:2089
 msgid "BIG_IRON_CHUNK"
 msgstr "Veľký kus železa"
 
@@ -602,7 +602,7 @@ msgstr "Bioluminiscenčná vakuola"
 msgid "BIOME_LABEL"
 msgstr "Bióm: {0}"
 
-#: ../src/general/GameProperties.cs:148
+#: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -949,7 +949,7 @@ msgstr "Oddeľovač rozlíšenia oblakov:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimálny interval simulácie oblakov:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1321
+#: ../simulation_parameters/microbe_stage/biomes.json:1324
 msgid "COASTAL"
 msgstr "Pobrežie"
 
@@ -1031,21 +1031,21 @@ msgstr "Schopnosti"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:676
+#: ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:671
+#: ../src/general/MainMenu.tscn:680
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
 
-#: ../src/general/MainMenu.tscn:718
+#: ../src/general/MainMenu.tscn:727
 #, fuzzy
 msgid "COMMUNITY_WIKI"
 msgstr "naša Wiki"
 
-#: ../src/general/MainMenu.tscn:713
+#: ../src/general/MainMenu.tscn:722
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
@@ -1348,7 +1348,7 @@ msgstr "Vytváranie..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:357
+#: ../src/general/MainMenu.tscn:358
 msgid "CREDITS"
 msgstr "Poďakovanie"
 
@@ -1548,12 +1548,12 @@ msgstr "Devbuilds podporovatelia"
 msgid "DEVELOPERS"
 msgstr "Vývojári"
 
-#: ../src/general/MainMenu.tscn:690
+#: ../src/general/MainMenu.tscn:699
 #, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:685
+#: ../src/general/MainMenu.tscn:694
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
@@ -1562,12 +1562,12 @@ msgstr "Vstúpte do editora a upravte svoj druh"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:704
+#: ../src/general/MainMenu.tscn:713
 #, fuzzy
 msgid "DEVELOPMENT_WIKI"
 msgstr "Vývojári"
 
-#: ../src/general/MainMenu.tscn:699
+#: ../src/general/MainMenu.tscn:708
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Ako hrať hru"
@@ -1682,7 +1682,7 @@ msgstr "Odpojené organely"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:862
+#: ../src/general/MainMenu.tscn:871
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
@@ -2024,7 +2024,7 @@ msgstr "Esc"
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknúť pohlteniu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1840
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
 msgid "ESTUARY"
 msgstr "Ústie"
 
@@ -2066,7 +2066,7 @@ msgstr "Zadajte existujúce ID"
 msgid "EXIT"
 msgstr "Odísť"
 
-#: ../src/general/MainMenu.tscn:366
+#: ../src/general/MainMenu.tscn:367
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustiť E"
@@ -2119,7 +2119,7 @@ msgstr "vyhynul v tejto oblasti"
 msgid "EXTINCT_SPECIES"
 msgstr "Vyhynuté druhy"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:350
 msgid "EXTRAS"
 msgstr "Extra"
 
@@ -2127,7 +2127,7 @@ msgstr "Extra"
 msgid "EXTRA_OPTIONS"
 msgstr "Extra nastavenia"
 
-#: ../src/general/MainMenu.tscn:874
+#: ../src/general/MainMenu.tscn:883
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -2267,16 +2267,16 @@ msgid "FLOATING_CHUNKS_COLON"
 msgstr "Rotácia:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:192
-#: ../simulation_parameters/microbe_stage/biomes.json:439
-#: ../simulation_parameters/microbe_stage/biomes.json:605
-#: ../simulation_parameters/microbe_stage/biomes.json:851
-#: ../simulation_parameters/microbe_stage/biomes.json:1097
-#: ../simulation_parameters/microbe_stage/biomes.json:1344
-#: ../simulation_parameters/microbe_stage/biomes.json:1510
-#: ../simulation_parameters/microbe_stage/biomes.json:1677
-#: ../simulation_parameters/microbe_stage/biomes.json:1863
-#: ../simulation_parameters/microbe_stage/biomes.json:2029
+#: ../simulation_parameters/microbe_stage/biomes.json:195
+#: ../simulation_parameters/microbe_stage/biomes.json:442
+#: ../simulation_parameters/microbe_stage/biomes.json:608
+#: ../simulation_parameters/microbe_stage/biomes.json:854
+#: ../simulation_parameters/microbe_stage/biomes.json:1100
+#: ../simulation_parameters/microbe_stage/biomes.json:1347
+#: ../simulation_parameters/microbe_stage/biomes.json:1513
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1869
+#: ../simulation_parameters/microbe_stage/biomes.json:2035
 msgid "FLOATING_HAZARD"
 msgstr "Plávajúce nebezpečenstvo"
 
@@ -2420,7 +2420,7 @@ msgstr "Generácia"
 msgid "GENERATION_COLON"
 msgstr "Generácia:"
 
-#: ../src/general/MainMenu.tscn:826
+#: ../src/general/MainMenu.tscn:835
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
@@ -2429,11 +2429,11 @@ msgstr "Opustiť hru"
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:958
+#: ../src/general/MainMenu.tscn:967
 msgid "GLES2_MODE_WARNING"
 msgstr "Varovanie režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:969
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
@@ -2474,16 +2474,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:350
-#: ../simulation_parameters/microbe_stage/biomes.json:517
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:1009
-#: ../simulation_parameters/microbe_stage/biomes.json:1255
-#: ../simulation_parameters/microbe_stage/biomes.json:1422
-#: ../simulation_parameters/microbe_stage/biomes.json:1588
-#: ../simulation_parameters/microbe_stage/biomes.json:1774
-#: ../simulation_parameters/microbe_stage/biomes.json:1941
-#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#: ../simulation_parameters/microbe_stage/biomes.json:353
+#: ../simulation_parameters/microbe_stage/biomes.json:520
+#: ../simulation_parameters/microbe_stage/biomes.json:766
+#: ../simulation_parameters/microbe_stage/biomes.json:1012
+#: ../simulation_parameters/microbe_stage/biomes.json:1258
+#: ../simulation_parameters/microbe_stage/biomes.json:1425
+#: ../simulation_parameters/microbe_stage/biomes.json:1591
+#: ../simulation_parameters/microbe_stage/biomes.json:1780
+#: ../simulation_parameters/microbe_stage/biomes.json:1947
+#: ../simulation_parameters/microbe_stage/biomes.json:2193
 msgid "GOOGLY_EYE_CELL"
 msgstr "Bunka s pohyblivými očami"
 
@@ -2531,7 +2531,6 @@ msgstr "Hlasitosť GUI"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
 msgid "HEALTH"
 msgstr "Zdravie"
@@ -2614,11 +2613,11 @@ msgstr "Ľavý Hyper"
 msgid "HYPERR"
 msgstr "Pravý Hyper"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1731
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
 msgid "ICESHARD"
 msgstr "Ľadový črep"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1654
+#: ../simulation_parameters/microbe_stage/biomes.json:1657
 msgid "ICESHELF"
 msgstr "Šelfový ľadovec"
 
@@ -2656,25 +2655,25 @@ msgstr "Nekonečné MP"
 msgid "INFO_BOX_COST"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:187
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:399
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Interný názov (priečinku):"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:218
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:279
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Náklady na osmoreguláciu"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:156
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
 msgstr "Žiadne procesy"
@@ -2684,20 +2683,20 @@ msgstr "Žiadne procesy"
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Vyžaduje jadro"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:249
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
 msgid "INFO_BOX_SIZE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:310
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "Úložný priestor"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:341
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
 msgid "INFO_BOX_UNIQUE"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:369
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -2877,7 +2876,7 @@ msgstr "Železo"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Chemolitoautotrofia železa"
 
-#: ../src/general/MainMenu.tscn:802
+#: ../src/general/MainMenu.tscn:811
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opustiť hru"
@@ -3257,7 +3256,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Ľavé tlačidlo myši"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:540
 msgid "LICENSES"
 msgstr "Licencie"
 
@@ -3427,12 +3426,12 @@ msgstr "Chybu opravíš stlačením tlačidla Zrušiť v editore"
 msgid "LOAD_FINISHED"
 msgstr "Načítanie dokončené"
 
-#: ../src/general/MainMenu.tscn:316 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Načítať hru"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/PauseMenu.tscn:191
+#: ../src/general/MainMenu.tscn:315 ../src/general/PauseMenu.tscn:191
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Načítať predošlé uložené hry"
 
@@ -3468,12 +3467,12 @@ msgstr ""
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:1009
+#: ../src/general/MainMenu.tscn:1018
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Výkon"
 
-#: ../src/general/MainMenu.tscn:1011
+#: ../src/general/MainMenu.tscn:1020
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Používa [thrive:compound type=\"atp\"][/thrive:compound] na zvýšenie rýchlosti pohybu bunky."
@@ -3504,11 +3503,11 @@ msgstr "ATP"
 msgid "MARCH"
 msgstr "Marec"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:246
-#: ../simulation_parameters/microbe_stage/biomes.json:683
-#: ../simulation_parameters/microbe_stage/biomes.json:929
-#: ../simulation_parameters/microbe_stage/biomes.json:1175
-#: ../simulation_parameters/microbe_stage/biomes.json:2107
+#: ../simulation_parameters/microbe_stage/biomes.json:249
+#: ../simulation_parameters/microbe_stage/biomes.json:686
+#: ../simulation_parameters/microbe_stage/biomes.json:932
+#: ../simulation_parameters/microbe_stage/biomes.json:1178
+#: ../simulation_parameters/microbe_stage/biomes.json:2113
 msgid "MARINE_SNOW"
 msgstr "Morský sneh"
 
@@ -3584,7 +3583,7 @@ msgstr "Typy membrán"
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1078
 msgid "MESOPELAGIC"
 msgstr "Mezopelagiál"
 
@@ -3644,7 +3643,7 @@ msgid "MICROBES_COUNT"
 msgstr "Fáza Mikróbov"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:590
+#: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Editor Mikróbov"
@@ -3727,7 +3726,7 @@ msgstr "Každú generáciu máš k dispozícii 100 bodov mutácie (BM) a každá
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Vždy keď zahájiš reprodukciu vstúpiš do editora mikróbov, kde môžeš vykonávať zmeny tvojmu druhu (pridávaním, priemiestňovaním alebo odoberaním organel) k zvýšeniu úspešnosti. Každá návšteva editora vo fáze mikróbov reprezentuje [thrive:constant] EDITOR_TIME_JUMP_MILLION_YEARS [/thrive:constant] miliónov rokov evolúcie."
 
-#: ../src/general/MainMenu.tscn:408
+#: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Neobmedzený editor mikróbov"
 
@@ -3949,11 +3948,11 @@ msgstr "Upraviť organelu"
 msgid "MODIFY_TYPE"
 msgstr "Upraviť typ"
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:517
 msgid "MODS"
 msgstr "Módy"
 
-#: ../src/general/MainMenu.tscn:972
+#: ../src/general/MainMenu.tscn:981
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4042,11 +4041,11 @@ msgstr "Interný názov (priečinku):"
 msgid "MOD_LICENSE"
 msgstr "Licencia módu:"
 
-#: ../src/general/MainMenu.tscn:986
+#: ../src/general/MainMenu.tscn:995
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyba načítania režimu"
 
-#: ../src/general/MainMenu.tscn:987
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Pri načítaní jedného alebo viac režimov došlo k chybám. Protokoly môžu obsahovať ďalšie informácie."
 
@@ -4218,6 +4217,11 @@ msgstr "Chemosyntéza"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Mnohobunkovcov"
 
+#: ../src/general/MainMenu.tscn:419
+#, fuzzy
+msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Editor Mnohobunkovcov"
+
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
 msgid "MULTICELLULAR_STAGE"
@@ -4318,11 +4322,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:304
+#: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
 msgstr "Nová hra"
 
-#: ../src/general/MainMenu.tscn:299
+#: ../src/general/MainMenu.tscn:300
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začať novú hru"
 
@@ -4468,7 +4472,7 @@ msgstr "Žiadne zaznamenané udalosti"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:979
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Vypnuté"
@@ -4540,11 +4544,11 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Október"
 
-#: ../src/general/MainMenu.tscn:662
+#: ../src/general/MainMenu.tscn:671
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:653
+#: ../src/general/MainMenu.tscn:662
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Samovražda"
@@ -4645,11 +4649,11 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Oportunistický"
 
-#: ../src/general/MainMenu.tscn:325 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
 msgstr "Možnosti"
 
-#: ../src/general/MainMenu.tscn:323 ../src/general/PauseMenu.tscn:222
+#: ../src/general/MainMenu.tscn:324 ../src/general/PauseMenu.tscn:222
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmeniť nastavenia"
 
@@ -4909,7 +4913,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:814
+#: ../src/general/MainMenu.tscn:823
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -5188,11 +5192,11 @@ msgstr "Rýchle načítanie"
 msgid "QUICK_SAVE"
 msgstr "Rýchle uloženie"
 
-#: ../src/general/MainMenu.tscn:378
+#: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
 msgstr "Ukončiť"
 
-#: ../src/general/MainMenu.tscn:364 ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
@@ -5235,7 +5239,7 @@ msgstr "Pripravené"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Odporúčaná verzia Thrive:"
 
-#: ../src/general/MainMenu.tscn:850
+#: ../src/general/MainMenu.tscn:859
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
@@ -5261,7 +5265,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:731 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:740 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -5409,7 +5413,7 @@ msgstr ""
 "Naozaj chceš odísť do hlavného menu?\n"
 "Všetok neuložený postup bude stratený."
 
-#: ../src/general/MainMenu.tscn:777
+#: ../src/general/MainMenu.tscn:786
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Od Revolutionary Games Studio"
@@ -5500,12 +5504,12 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"carbondioxide\"]oxidu uhličitého[/thrive:compound] a [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:991
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "(začiatočná poloha)"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:989
 #, fuzzy
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstrániť lokálne údaje"
@@ -5675,7 +5679,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:2013
 msgid "SEA_FLOOR"
 msgstr "Morské dno"
 
@@ -5901,16 +5905,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:210
-#: ../simulation_parameters/microbe_stage/biomes.json:457
-#: ../simulation_parameters/microbe_stage/biomes.json:623
-#: ../simulation_parameters/microbe_stage/biomes.json:869
-#: ../simulation_parameters/microbe_stage/biomes.json:1115
-#: ../simulation_parameters/microbe_stage/biomes.json:1362
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
-#: ../simulation_parameters/microbe_stage/biomes.json:1695
-#: ../simulation_parameters/microbe_stage/biomes.json:1881
-#: ../simulation_parameters/microbe_stage/biomes.json:2047
+#: ../simulation_parameters/microbe_stage/biomes.json:213
+#: ../simulation_parameters/microbe_stage/biomes.json:460
+#: ../simulation_parameters/microbe_stage/biomes.json:626
+#: ../simulation_parameters/microbe_stage/biomes.json:872
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1365
+#: ../simulation_parameters/microbe_stage/biomes.json:1531
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2053
 msgid "SMALL_IRON_CHUNK"
 msgstr "Malý kus železa"
 
@@ -5966,7 +5970,7 @@ msgstr "Umiestniť amoniak"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:804
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6147,17 +6151,17 @@ msgstr "Steam je momentálne nedostupný, prosím skúste to znova"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznáma chyba služby Steam"
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1012
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Steamu sa nepodarilo získať UGC lock"
 
-#: ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.tscn:1014
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/general/MainMenu.tscn:790
+#: ../src/general/MainMenu.tscn:799
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Pozastaviť hru"
@@ -6198,7 +6202,7 @@ msgstr "Úložný priestor"
 msgid "STORAGE_COLON"
 msgstr "Úložný priestor:"
 
-#: ../src/general/MainMenu.cs:651
+#: ../src/general/MainMenu.cs:657
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Prihlásený ako: {0}"
 
@@ -6422,7 +6426,7 @@ msgstr "Teplota."
 msgid "TESTING_TEAM"
 msgstr "Testeri"
 
-#: ../src/general/MainMenu.cs:262 ../src/general/MainMenu.tscn:995
+#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6437,7 +6441,7 @@ msgstr ""
 "\n"
 "Ak sa ti hra páčila, nezabudni sa o nás zmieniť svojim kamarátom."
 
-#: ../src/general/MainMenu.tscn:993
+#: ../src/general/MainMenu.tscn:1002
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "Odstrániť lokálne údaje"
@@ -6497,7 +6501,7 @@ msgstr ""
 msgid "THREADS"
 msgstr "Vlákna:"
 
-#: ../src/general/MainMenu.tscn:495 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:504 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6545,7 +6549,7 @@ msgstr "Tylakoidy"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:416
+#: ../simulation_parameters/microbe_stage/biomes.json:419
 msgid "TIDEPOOL"
 msgstr "Prílivový bazén"
 
@@ -6569,6 +6573,12 @@ msgstr "[b][u]{0}[/u] sa oddelil od [b][u]{1}[/u][/b] ako nový druh, aby vyplni
 #: ../src/auto-evo/RunResults.cs:968
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] sa oddelil od [b][u]{1}[/u][/b] ako nový druh v dôsledku rôznych selekčných tlakov"
+
+#: ../src/microbe_stage/MicrobeStage.cs:374
+#: ../src/microbe_stage/MicrobeStage.cs:378
+#, fuzzy
+msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
+msgstr "Stať sa viacbunkovým ({0}/{1})"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -6655,7 +6665,7 @@ msgstr "Pauza"
 msgid "TOGGLE_UNBINDING"
 msgstr "Prepnúť rozpájanie"
 
-#: ../src/general/MainMenu.tscn:333
+#: ../src/general/MainMenu.tscn:334
 msgid "TOOLS"
 msgstr "Nástroje"
 
@@ -6672,6 +6682,7 @@ msgid "TOTAL_SAVES"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 msgid "TOXIN_RESISTANCE"
 msgstr "Odolnosť voči toxínom"
@@ -6807,7 +6818,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:886
+#: ../src/general/MainMenu.tscn:895
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
@@ -6842,7 +6853,7 @@ msgstr "Rozpojovací mód"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1488
+#: ../simulation_parameters/microbe_stage/biomes.json:1491
 msgid "UNDERWATERCAVE"
 msgstr "Podvodná jaskyňa"
 
@@ -7062,7 +7073,7 @@ msgstr "{0} {1}"
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:341
+#: ../src/general/MainMenu.tscn:342
 msgid "VIEW_SOURCE_CODE"
 msgstr "Zobraziť zdrojový kód"
 
@@ -7074,7 +7085,7 @@ msgstr "VIP podporovatelia"
 msgid "VISIBLE"
 msgstr "Viditeľné"
 
-#: ../src/general/MainMenu.tscn:544 ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:553 ../src/general/MainMenu.tscn:758
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -8632,7 +8643,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:847
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Pozastaviť hru"
