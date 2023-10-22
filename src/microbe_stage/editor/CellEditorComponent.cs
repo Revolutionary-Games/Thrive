@@ -1683,8 +1683,8 @@ public partial class CellEditorComponent :
         {
             if (Editor.CurrentGame.TutorialState.Enabled)
             {
-                Editor.CurrentGame.TutorialState.
-                    SendEvent(TutorialEventType.MicrobeFlagellumPlaced, EventArgs.Empty, this);
+                Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeFlagellumPlaced, EventArgs.Empty,
+                    this);
             }
         }
 
