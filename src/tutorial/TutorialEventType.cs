@@ -69,6 +69,12 @@ public enum TutorialEventType
     MicrobePlayerReadyToEdit,
 
     /// <summary>
+    ///   Player presses the button the exit the microbe editor but has made
+    ///   no changes
+    /// </summary>
+    MicrobeEditorNoChangesMade,
+
+    /// <summary>
     ///   Player entered the microbe stage
     /// </summary>
     EnteredMicrobeStage,

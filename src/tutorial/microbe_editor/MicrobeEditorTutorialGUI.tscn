@@ -31,6 +31,7 @@ AutoEvoPredictionHighlightPath = NodePath("AutoEvoPredictionHighlight")
 StaySmallTutorialPath = NodePath("StaySmall")
 ChemoreceptorPlacementTutorialPath = NodePath("ChemoreceptorPlacementTutorial")
 NegativeAtpBalanceTutorialPath = NodePath("NegativeAtpBalanceTutorial")
+MadeNoChangesTutorialPath = NodePath("MadeNoChangesTutorial")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
@@ -290,6 +291,60 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
+[node name="MadeNoChangesTutorial" parent="." instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -185.0
+margin_top = -180.0
+margin_right = 190.0
+margin_bottom = 205.0
+rect_min_size = Vector2( 375, 385 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+WindowTitle = "TUTORIAL"
+Description = "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
+DescriptionForController = ""
+ShowDelay = 0.7
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MadeNoChangesTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MadeNoChangesTutorial/ScrollContainer"]
+margin_right = 375.0
+margin_bottom = 385.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_right = 375.0
+margin_bottom = 24.0
+custom_fonts/normal_font = ExtResource( 4 )
+ExtendedBbcode = ""
+
+[node name="Control" type="Control" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 375.0
+margin_bottom = 349.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MadeNoChangesTutorial/ScrollContainer/VBoxContainer"]
+margin_left = 132.0
+margin_top = 353.0
+margin_right = 242.0
+margin_bottom = 385.0
+rect_min_size = Vector2( 110, 0 )
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
+text = "CLOSE"
+
 [node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
 visible = false
 anchor_left = 0.5
@@ -351,8 +406,10 @@ text = "GOT_IT"
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="ChemoreceptorPlacementTutorial" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacementTutorial" ]]
-[connection signal="pressed" from="ChemoreceptorPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
+[connection signal="pressed" from="ChemoreceptorPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacingTutorial" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
+[connection signal="hide" from="MadeNoChangesTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MadeNoChangesTutorial" ]]
+[connection signal="pressed" from="MadeNoChangesTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "MadeNoChangesTutorial" ]]
 [connection signal="hide" from="NegativeAtpBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]
 [connection signal="pressed" from="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]

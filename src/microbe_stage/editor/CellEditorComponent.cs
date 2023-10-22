@@ -865,6 +865,19 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        // This is triggered when no changes have been made
+        if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
+        {
+            TutorialState tutorialState = Editor.CurrentGame.TutorialState;
+
+            if (tutorialState.Enabled && !tutorialState.MadeNoChangesTutorial.HasBeenShown)
+            {
+                tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
+
+                return false;
+            }
+        }
+
         return true;
     }
 

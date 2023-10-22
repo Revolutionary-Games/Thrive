@@ -44,6 +44,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath NegativeAtpBalanceTutorialPath = null!;
 
+    [Export]
+    public NodePath MadeNoChangesTutorialPath = null!;
+
 #pragma warning disable CA2213
     private CustomWindow editorEntryReport = null!;
     private CustomWindow patchMap = null!;
@@ -55,6 +58,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow staySmallTutorial = null!;
     private CustomWindow negativeAtpBalanceTutorial = null!;
     private CustomWindow chemoreceptorPlacementTutorial = null!;
+    private CustomWindow madeNoChangesTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -259,6 +263,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool MadeNoChangesTutorialVisible
+    {
+        get => madeNoChangesTutorial.Visible;
+        set
+        {
+            if (value == madeNoChangesTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                madeNoChangesTutorial.Show();
+            }
+            else
+            {
+                madeNoChangesTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -271,6 +294,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         staySmallTutorial = GetNode<CustomWindow>(StaySmallTutorialPath);
         chemoreceptorPlacementTutorial = GetNode<CustomWindow>(ChemoreceptorPlacementTutorialPath);
         negativeAtpBalanceTutorial = GetNode<CustomWindow>(NegativeAtpBalanceTutorialPath);
+        madeNoChangesTutorial = GetNode<CustomWindow>(MadeNoChangesTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
@@ -318,6 +342,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
                 StaySmallTutorialPath.Dispose();
                 ChemoreceptorPlacementTutorialPath.Dispose();
                 NegativeAtpBalanceTutorialPath.Dispose();
+                MadeNoChangesTutorialPath.Dispose();
             }
         }
 
