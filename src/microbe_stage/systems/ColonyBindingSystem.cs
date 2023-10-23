@@ -96,7 +96,8 @@ namespace Systems
             // an exact check meaning the actual bind method can still fail later even if this check passes)
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            if (cellProperties.CreatedMembrane == null || cellProperties.CreatedMembrane.Dirty)
+            // TODO: should this require an up to date membrane data?
+            if (cellProperties.CreatedMembrane == null /*|| cellProperties.CreatedMembrane.IsChangingShape*/)
                 return;
 
             ref var extraPhysicsData = ref entity.Get<MicrobePhysicsExtraData>();

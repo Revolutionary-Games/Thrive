@@ -18,6 +18,12 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
+    ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
+    ///   tasks.
+    /// </summary>
+    public const int MEMBRANE_TASKS_LEAVE_EMPTY_THREADS = 2;
+
+    /// <summary>
     ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
     ///   NewGameSettings.tscn should also be changed.
     /// </summary>
@@ -138,7 +144,7 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 75.7f;
+    public const float FLAGELLA_BASE_FORCE = 750.7f;
 
     public const float BASE_MOVEMENT_FORCE = 910.0f;
 
@@ -356,12 +362,6 @@ public static class Constants
     public const float COMPOUND_MAKEUP_RELEASE_FRACTION = 0.9f;
 
     public const float COMPOUND_RELEASE_FRACTION = 0.9f;
-
-    // TODO: delete after the conversion to custom physics
-    /// <summary>
-    ///   Base mass all microbes have on top of their organelle masses
-    /// </summary>
-    public const float MICROBE_BASE_MASS = 0.7f;
 
     public const float PHYSICS_ALLOWED_Y_AXIS_DRIFT = 0.1f;
 
@@ -1057,6 +1057,7 @@ public static class Constants
 
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
+    public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
     public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
 
     // TODO: convert prototypes over to an ECS system as well

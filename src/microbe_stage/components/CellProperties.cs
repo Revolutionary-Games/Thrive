@@ -114,7 +114,7 @@
             if (cellProperties.CreatedMembrane == null)
                 return false;
 
-            return !cellProperties.CreatedMembrane.Dirty;
+            return !cellProperties.CreatedMembrane.IsChangingShape;
         }
 
         /// <summary>
@@ -322,9 +322,9 @@
             if (amountToEject <= MathUtils.EPSILON)
                 return true;
 
-            if (!cellProperties.IsMembraneReady())
+            if (cellProperties.CreatedMembrane == null)
             {
-                GD.PrintErr($"{nameof(SpawnEjectedCompound)} called before membrane is ready, ignoring eject");
+                GD.PrintErr($"{nameof(SpawnEjectedCompound)} called before membrane is created, ignoring eject");
                 return false;
             }
 

@@ -20,8 +20,6 @@
     [WritesToComponent(typeof(CompoundAbsorber))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
-        private JVecF3[] temporaryBuffer = new JVecF3[50];
-
         public MicrobePhysicsCreationAndSizeSystem(World world, IParallelRunner parallelRunner) : base(world,
             parallelRunner)
         {
@@ -43,7 +41,7 @@
 
             var membrane = cellProperties.CreatedMembrane;
 
-            // Wait until membrane is created
+            // Wait until membrane is created (and no longer being updated)
             if (!cellProperties.IsMembraneReady())
                 return;
 
@@ -53,38 +51,29 @@
             // disposed if a microbe was deleted before it got a physics body initialized for it)
             try
             {
-                var rawData = membrane!.Computed2DVertices;
+                var rawData = membrane!.MembraneData.Vertices2D;
+                var count = membrane.MembraneData.VertexCount;
 
-                if (rawData.Count < 1)
+                if (count < 1)
+                {
+                    GD.PrintErr("Generated membrane data has no vertices, can't create collision shape");
                     return;
+                }
 
                 UpdateNonPhysicsSizeData(entity, membrane.EncompassingCircleRadius, ref cellProperties);
 
                 // TODO: shape creation could be postponed for colony members until they are detached (right now
-                // their bodies won't get created as they are disabled)
+                // their bodies won't get created as they are disabled, so make sure that works and then remove this
+                // TODO comment)
 
                 extraData.MicrobeShapesCount = 0;
                 extraData.TotalShapeCount = 0;
                 extraData.PilusCount = 0;
 
-                // TODO: caching for the shape based on a hash of the vertices2D points
-
                 // TODO: background thread shape creation to not take up main thread time
+                shapeHolder.Shape = PhysicsShape.GetOrCreateMicrobeShape(rawData, count,
+                    MicrobeInternalCalculations.MicrobeDensity(), cellProperties.IsBacteria);
 
-                // TODO: find out if a more performant way can be done to copy this data
-                if (temporaryBuffer.Length < rawData.Count)
-                    temporaryBuffer = new JVecF3[rawData.Count];
-
-                var buffer = temporaryBuffer;
-
-                for (int i = 0; i < rawData.Count; ++i)
-                {
-                    buffer[i] = new JVecF3(rawData[i].x, 0, rawData[i].y);
-                }
-
-                // TODO: overall density
-                shapeHolder.Shape = PhysicsShape.CreateMicrobeShape(new ReadOnlySpan<JVecF3>(buffer, 0, rawData.Count),
-                    1000, cellProperties.IsBacteria);
                 ++extraData.MicrobeShapesCount;
                 ++extraData.TotalShapeCount;
 

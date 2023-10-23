@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using Godot;
 
 // This file has all of the interop structs
@@ -49,7 +50,7 @@ public struct JQuat
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public struct JVecF3
+public struct JVecF3 : IEquatable<JVecF3>
 {
     public float X;
     public float Y;
@@ -72,6 +73,42 @@ public struct JVecF3
     public static implicit operator Vector3(JVecF3 d)
     {
         return new Vector3(d.X, d.Y, d.Z);
+    }
+
+    public static bool operator ==(JVecF3 left, JVecF3 right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(JVecF3 left, JVecF3 right)
+    {
+        return !left.Equals(right);
+    }
+
+    public static int GetCompatibleHashCode(float x, float y, float z)
+    {
+        unchecked
+        {
+            var hashCode = x.GetHashCode();
+            hashCode = (hashCode * 397) ^ y.GetHashCode();
+            hashCode = (hashCode * 401) ^ z.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    public bool Equals(JVecF3 other)
+    {
+        return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is JVecF3 other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return GetCompatibleHashCode(X, Y, Z);
     }
 }
 

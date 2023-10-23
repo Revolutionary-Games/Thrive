@@ -134,13 +134,18 @@ public static class MicrobeInternalCalculations
             o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
-    public static float CalculateSpeed(ICollection<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity)
+    // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
+    public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        float membraneRigidity, bool isBacteria)
     {
-        // TODO: reimplement, this is now really complicated with the physics engine change and not using a mass...
-        throw new NotImplementedException();
+        // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
+        // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
+        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
-        /*float microbeMass = Constants.MICROBE_BASE_MASS;
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+            MicrobeDensity(), isBacteria);
+
+        var microbeMass = shape.GetMass();
 
         float organelleMovementForce = 0;
 
@@ -155,6 +160,8 @@ public static class MicrobeInternalCalculations
         float backwardDirectionFactor;
         float rightDirectionFactor;
         float leftDirectionFactor;
+
+        // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
         foreach (var organelle in organelles)
         {
@@ -199,12 +206,12 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce = Constants.CELL_BASE_THRUST *
+        float baseMovementForce = Constants.BASE_MOVEMENT_FORCE *
             (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
-        return finalSpeed;*/
+        return finalSpeed;
     }
 
     /// <summary>
@@ -267,6 +274,12 @@ public static class MicrobeInternalCalculations
     public static float RotationSpeedToUserReadableNumber(float rawSpeed)
     {
         return rawSpeed * 500;
+    }
+
+    public static float MicrobeDensity()
+    {
+        // TODO: overall density calculation
+        return 1000;
     }
 
     public static float CalculateDigestionSpeed(int enzymeCount)

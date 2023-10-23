@@ -282,6 +282,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         base.OnReturnFromEditor();
 
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MulticellularStage);
+
         // TODO:
         // // Spawn free food if difficulty settings call for it
         // if (GameWorld.WorldSettings.FreeGlucoseCloud)
@@ -642,6 +644,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         // if (!IsLoadedFromSave)
         //     spawner.Init();
+
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MulticellularStage);
 
         CurrentGame!.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
 

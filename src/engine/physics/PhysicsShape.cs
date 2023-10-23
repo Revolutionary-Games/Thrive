@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Godot;
@@ -35,6 +36,50 @@ public class PhysicsShape : IDisposable
     public static PhysicsShape CreateSphere(float radius, float density = 1000)
     {
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius, density));
+    }
+
+    /// <summary>
+    ///   Creates a microbe shape or returns from one from the cache
+    /// </summary>
+    /// <returns>The shape made from a convex body for the microbe</returns>
+    public static PhysicsShape GetOrCreateMicrobeShape(IReadOnlyList<Vector2> membranePoints, int pointCount,
+        float overallDensity, bool scaleAsBacteria)
+    {
+        var cache = ProceduralDataCache.Instance;
+
+        var hash = MembraneCollisionShape.ComputeMicrobeShapeCacheHash(membranePoints, pointCount,
+            overallDensity, scaleAsBacteria);
+
+        var result = cache.ReadMembraneCollisionShape(hash);
+
+        if (result != null)
+        {
+            if (result.MatchesCacheParameters(membranePoints, pointCount, overallDensity, scaleAsBacteria))
+            {
+                return result.Shape;
+            }
+
+            CacheableDataExtensions.OnCacheHashCollision<MembraneCollisionShape>(hash);
+        }
+
+        // Need to convert the data to call the method that uses the native side to create the body
+        // TODO: find out if a more performant way can be done to copy this data or not (luckily only needed when cache
+        // is missing data for this membrane)
+        var convertedData = ArrayPool<JVecF3>.Shared.Rent(membranePoints.Count);
+
+        for (int i = 0; i < pointCount; ++i)
+        {
+            convertedData[i] = new JVecF3(membranePoints[i].x, 0, membranePoints[i].y);
+        }
+
+        // The rented array from the pool will be returned when the cache entry is disposed
+        result = new MembraneCollisionShape(
+            CreateMicrobeShape(new ReadOnlySpan<JVecF3>(convertedData, 0, pointCount), overallDensity, scaleAsBacteria),
+            convertedData, pointCount, overallDensity, scaleAsBacteria);
+
+        cache.WriteMembraneCollisionShape(result);
+
+        return result.Shape;
     }
 
     // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes

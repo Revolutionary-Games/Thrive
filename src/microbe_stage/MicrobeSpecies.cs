@@ -61,15 +61,17 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
     // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
     [JsonIgnore]
-    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+    public float BaseSpeed =>
+        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
     [JsonProperty]
     public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
-    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.EngulfSize"/> and the math
-    ///   should always match between these two.
+    ///   they haven't duplicated any organelles. This is related to <see cref="Components.Engulfer.EngulfingSize"/>
+    ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
+    ///   match between these two.
     /// </summary>
     [JsonIgnore]
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)

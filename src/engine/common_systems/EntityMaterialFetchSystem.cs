@@ -4,7 +4,6 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
@@ -12,9 +11,11 @@
     ///   Fetches the materials for <see cref="EntityMaterial"/> that have auto fetch on
     /// </summary>
     [With(typeof(EntityMaterial))]
+    [RunsOnMainThread]
     public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
     {
-        public EntityMaterialFetchSystem(World world, IParallelRunner runner) : base(world, runner)
+        // TODO: determine if it is thread safe to fetch Godot materials
+        public EntityMaterialFetchSystem(World world) : base(world, null)
         {
         }
 

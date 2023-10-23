@@ -519,6 +519,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         base.OnReturnFromEditor();
 
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
+
         // Add a cloud of glucose if difficulty settings call for it
         if (GameWorld.WorldSettings.FreeGlucoseCloud)
         {
@@ -615,6 +617,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     protected override void SetupStage()
     {
         base.SetupStage();
+
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
