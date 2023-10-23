@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Tells the player about the day and night cycle
+    ///   Tells the player about organelle division
     /// </summary>
     public class OrganelleDivisionTutorial : TutorialPhase
     {
@@ -32,6 +32,14 @@
             }
 
             return false;
+        }
+
+        protected override void OnProcess(TutorialState overallState, float delta)
+        {
+            if (Time > Constants.HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER)
+            {
+                Hide();
+            }
         }
     }
 }

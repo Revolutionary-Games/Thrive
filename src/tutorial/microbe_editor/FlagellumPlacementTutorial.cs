@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    ///   Informs the player where to place flagella and how they work
+    /// </summary>
     public class FlagellumPlacementTutorial : TutorialPhase
     {
         public override string ClosedByName => "FlagellumPlacementTutorial";

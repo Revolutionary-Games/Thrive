@@ -228,6 +228,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
+    private OrganelleDefinition flagellum = null!;
 
     private Compound sunlight = null!;
 
@@ -525,6 +526,7 @@ public partial class CellEditorComponent :
         protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
+        flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
 
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
@@ -1679,7 +1681,7 @@ public partial class CellEditorComponent :
         if (placementActions.Count < 1)
             return false;
 
-        if (organelleType == "flagellum")
+        if (organelleType == flagellum.InternalName)
         {
             if (Editor.CurrentGame.TutorialState.Enabled)
             {

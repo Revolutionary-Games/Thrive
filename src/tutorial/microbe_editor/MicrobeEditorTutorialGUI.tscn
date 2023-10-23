@@ -202,7 +202,7 @@ WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 DescriptionForController = ""
 ShowDelay = 0.7
-LabelPath = NodePath("../StaySmall/ScrollContainer/VBoxContainer/CustomRichTextLabel")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="FlagellumPlacementTutorial"]
 anchor_right = 1.0
@@ -256,7 +256,7 @@ WindowTitle = "TUTORIAL"
 Description = "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 DescriptionForController = ""
 ShowDelay = 0.7
-LabelPath = NodePath("../StaySmall/ScrollContainer/VBoxContainer/CustomRichTextLabel")
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ChemoreceptorPlacementTutorial"]
 anchor_right = 1.0
@@ -461,9 +461,9 @@ text = "GOT_IT"
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="FlagellumPlacementTutorial" to="." method="OnSpecificCloseClicked" binds= [ "FlagellumPlacementTutorial" ]]
-[connection signal="pressed" from="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "FlagellumPlacingTutorial" ]]
+[connection signal="pressed" from="FlagellumPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "FlagellumPlacementTutorial" ]]
 [connection signal="hide" from="ChemoreceptorPlacementTutorial" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacementTutorial" ]]
-[connection signal="pressed" from="ChemoreceptorPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacingTutorial" ]]
+[connection signal="pressed" from="ChemoreceptorPlacementTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "ChemoreceptorPlacementTutorial" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="hide" from="MadeNoChangesTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MadeNoChangesTutorial" ]]

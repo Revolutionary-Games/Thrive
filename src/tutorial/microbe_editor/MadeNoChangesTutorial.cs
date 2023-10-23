@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    ///   Redo tutorial in the cell editor
+    ///   Notifies the player when they do not modify their cell
     /// </summary>
     public class MadeNoChangesTutorial : TutorialPhase
     {

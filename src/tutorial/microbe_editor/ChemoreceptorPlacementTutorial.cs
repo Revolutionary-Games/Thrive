@@ -1,5 +1,8 @@
 ﻿namespace Tutorial
 {
+    /// <summary>
+    ///   Notifies the player about the chemoreceptor
+    /// </summary>
     public class ChemoreceptorPlacementTutorial : EditorEntryCountingTutorial
     {
         public ChemoreceptorPlacementTutorial()
