@@ -96,14 +96,13 @@ ShowDelay = 0.3
 visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 8 )]
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -455.0
-margin_top = -150.0
-margin_right = -95.0
-margin_bottom = 225.0
+margin_left = -206.0
+margin_top = -213.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 360, 375 )
 PreventsMouseCaptureWhileOpen = true
 ShowCloseButton = false
