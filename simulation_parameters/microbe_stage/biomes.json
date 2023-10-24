@@ -1,2258 +1,2258 @@
 ﻿{
-  "default": {
-    "name": "EPIPELAGIC",
-    "background": "ocean",
-    "icon": "res://assets/textures/gui/bevel/epipelagic.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 1,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
+    "default": {
+        "Name": "EPIPELAGIC",
+        "Background": "ocean",
+        "Icon": "res://assets/textures/gui/bevel/epipelagic.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "Energy": 1,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
+        "CompoundCloudBrightness": 1.3,
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 0,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 0,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 1
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 8
+                }
+            }
+        }
     },
-    "compoundCloudBrightness": 1.3,
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "aavolcanic_vent": {
+        "Name": "VOLCANIC_VENT",
+        "Background": "vent",
+        "Icon": "res://assets/textures/gui/bevel/vents.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 0.972,
+                "g": 0.788,
+                "b": 0.788,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Energy": 0.8,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
+        "ActiveMusicContexts": [
+            "PatchVents"
+        ],
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "MarineSnow": {
+                    "Name": "MARINE_SNOW",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+                            "SceneModelPath": "Armature001/Skeleton/flagella"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+                        }
+                    ],
+                    "Density": 0,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 2,
+                    "Damages": 0,
+                    "VentAmount": 2,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Ammonia": {
+                            "Amount": 50
+                        },
+                        "Phosphates": {
+                            "Amount": 50
+                        },
+                        "Glucose": {
+                            "Amount": 100
+                        }
+                    }
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 8e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 250000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 250000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 98
+                }
             }
-          ],
-          "density": 0,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 1
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 8
-        }
-      }
-    }
-  },
-  "aavolcanic_vent": {
-    "name": "VOLCANIC_VENT",
-    "background": "vent",
-    "icon": "res://assets/textures/gui/bevel/vents.png",
-    "sunlight": {
-      "colour": {
-        "r": 0.972,
-        "g": 0.788,
-        "b": 0.788,
-        "a": 1
-      },
-      "energy": 0.8,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "activeMusicContexts": [
-      "PatchVents"
-    ],
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+    "tidepool": {
+        "Name": "TIDEPOOL",
+        "Background": "tidepool",
+        "Icon": "res://assets/textures/gui/bevel/tidepool.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 0.972,
+                "g": 0.96,
+                "b": 0.788,
+                "a": 1
+            },
+            "Energy": 1,
+            "Specular": 0.6,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
         },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+        "CompoundCloudBrightness": 2,
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 6e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 4e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 1
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 23
+                }
             }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "marineSnow": {
-          "name": "MARINE_SNOW",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "convexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "sceneModelPath": "Armature001/Skeleton/flagella"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "convexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "convexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "convexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "convexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "convexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "density": 0,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 2,
-          "damages": 0,
-          "ventAmount": 2,
-          "deleteOnTouch": false,
-          "compounds": {
-            "ammonia": {
-              "amount": 50
-            },
-            "phosphates": {
-              "amount": 50
-            },
-            "glucose": {
-              "amount": 100
-            }
-          }
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0.00008,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 250000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 250000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 98
-        }
-      }
-    }
-  },
-  "tidepool": {
-    "name": "TIDEPOOL",
-    "background": "tidepool",
-    "icon": "res://assets/textures/gui/bevel/tidepool.png",
-    "sunlight": {
-      "colour": {
-        "r": 0.972,
-        "g": 0.96,
-        "b": 0.788,
-        "a": 1
-      },
-      "energy": 1,
-      "specular": 0.6,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "compoundCloudBrightness": 2,
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "bathypelagic": {
+        "Name": "BATHYPELAGIC",
+        "Background": "bathypelagic",
+        "Icon": "res://assets/textures/gui/bevel/bathy.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Energy": 0.2,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.00006,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 7e-05,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 6e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 3e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "MarineSnow": {
+                    "Name": "MARINE_SNOW",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+                            "SceneModelPath": "Armature001/Skeleton/flagella"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 2,
+                    "Damages": 0,
+                    "VentAmount": 2,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Ammonia": {
+                            "Amount": 50
+                        },
+                        "Phosphates": {
+                            "Amount": 50
+                        },
+                        "Glucose": {
+                            "Amount": 100
+                        }
+                    }
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 4
+                }
             }
-          ],
-          "density": 0.00004,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 1
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 23
-        }
-      }
-    }
-  },
-  "bathypelagic": {
-    "name": "BATHYPELAGIC",
-    "background": "bathypelagic",
-    "icon": "res://assets/textures/gui/bevel/bathy.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.2,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+    "abyssopelagic": {
+        "Name": "ABYSSOPELAGIC",
+        "Background": "abyssopelagic",
+        "Icon": "res://assets/textures/gui/bevel/abyss.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "Energy": 0.01,
+            "Specular": 0.45,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.00007,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
         },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 0,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 0,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "MarineSnow": {
+                    "Name": "MARINE_SNOW",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+                            "SceneModelPath": "Armature001/Skeleton/flagella"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+                        }
+                    ],
+                    "Density": 6e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 2,
+                    "Damages": 0,
+                    "VentAmount": 2,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Ammonia": {
+                            "Amount": 50
+                        },
+                        "Phosphates": {
+                            "Amount": 50
+                        },
+                        "Glucose": {
+                            "Amount": 100
+                        }
+                    }
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 5e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 2
+                }
             }
-          ],
-          "density": 0.00006,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0.00003,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "marineSnow": {
-          "name": "MARINE_SNOW",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "convexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "sceneModelPath": "Armature001/Skeleton/flagella"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "convexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "convexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "convexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "convexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "convexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 2,
-          "damages": 0,
-          "ventAmount": 2,
-          "deleteOnTouch": false,
-          "compounds": {
-            "ammonia": {
-              "amount": 50
-            },
-            "phosphates": {
-              "amount": 50
-            },
-            "glucose": {
-              "amount": 100
-            }
-          }
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 4
-        }
-      }
-    }
-  },
-  "abyssopelagic": {
-    "name": "ABYSSOPELAGIC",
-    "background": "abyssopelagic",
-    "icon": "res://assets/textures/gui/bevel/abyss.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.01,
-      "specular": 0.45,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+    "mesopelagic": {
+        "Name": "MESOPELAGIC",
+        "Background": "mesopelagic",
+        "Icon": "res://assets/textures/gui/bevel/mesopelagic.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "Energy": 0.3,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
         },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 8e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "MarineSnow": {
+                    "Name": "MARINE_SNOW",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+                            "SceneModelPath": "Armature001/Skeleton/flagella"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+                        }
+                    ],
+                    "Density": 4e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 2,
+                    "Damages": 0,
+                    "VentAmount": 2,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Ammonia": {
+                            "Amount": 50
+                        },
+                        "Phosphates": {
+                            "Amount": 50
+                        },
+                        "Glucose": {
+                            "Amount": 100
+                        }
+                    }
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.01
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 2
+                }
             }
-          ],
-          "density": 0,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "marineSnow": {
-          "name": "MARINE_SNOW",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "convexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "sceneModelPath": "Armature001/Skeleton/flagella"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "convexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "convexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "convexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "convexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "convexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "density": 0.00006,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 2,
-          "damages": 0,
-          "ventAmount": 2,
-          "deleteOnTouch": false,
-          "compounds": {
-            "ammonia": {
-              "amount": 50
-            },
-            "phosphates": {
-              "amount": 50
-            },
-            "glucose": {
-              "amount": 100
-            }
-          }
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00005,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 2
-        }
-      }
-    }
-  },
-  "mesopelagic": {
-    "name": "MESOPELAGIC",
-    "background": "mesopelagic",
-    "icon": "res://assets/textures/gui/bevel/mesopelagic.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.3,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+    "coastal": {
+        "Name": "COASTAL",
+        "Background": "coastal",
+        "Icon": "res://assets/textures/gui/bevel/shallow.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 0.992,
+                "b": 0.819,
+                "a": 1
+            },
+            "Energy": 1,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
         },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+        "CompoundCloudBrightness": 2.5,
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 8e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 1
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 17
+                }
             }
-          ],
-          "density": 0.00008,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "marineSnow": {
-          "name": "MARINE_SNOW",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "convexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "sceneModelPath": "Armature001/Skeleton/flagella"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "convexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "convexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "convexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "convexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "convexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "density": 0.00004,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 2,
-          "damages": 0,
-          "ventAmount": 2,
-          "deleteOnTouch": false,
-          "compounds": {
-            "ammonia": {
-              "amount": 50
-            },
-            "phosphates": {
-              "amount": 50
-            },
-            "glucose": {
-              "amount": 100
-            }
-          }
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.01
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 2
-        }
-      }
-    }
-  },
-  "coastal": {
-    "name": "COASTAL",
-    "background": "coastal",
-    "icon": "res://assets/textures/gui/bevel/shallow.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 0.992,
-        "b": 0.819,
-        "a": 1
-      },
-      "energy": 1,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "compoundCloudBrightness": 2.5,
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "underwater_cave": {
+        "Name": "UNDERWATERCAVE",
+        "Background": "cave",
+        "Icon": "res://assets/textures/gui/bevel/cave.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Energy": 0.4,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.00008,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 8e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 200000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 23
+                }
             }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 1
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 17
-        }
-      }
-    }
-  },
-  "underwater_cave": {
-    "name": "UNDERWATERCAVE",
-    "background": "cave",
-    "icon": "res://assets/textures/gui/bevel/cave.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.4,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "ice_shelf": {
+        "Name": "ICESHELF",
+        "Background": "iceshelf",
+        "Icon": "res://assets/textures/gui/bevel/iceshelf.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Energy": 0.4,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.0001,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
+        "CompoundCloudBrightness": 1.1,
+        "ActiveMusicContexts": [
+            "PatchIceShelf"
+        ],
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IceShard": {
+                    "Name": "ICESHARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iceshard1.tscn",
+                            "ConvexShapePath": "res://assets/models/Iceshard1.shape"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 10,
+                    "Size": 1000,
+                    "Damages": 10,
+                    "DeleteOnTouch": false,
+                    "Compounds": {},
+                    "DamageType": "ice"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 2e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.5
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": -1
+                }
             }
-          ],
-          "density": 0.0001,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00008,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 200000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 23
-        }
-      }
-    }
-  },
-  "ice_shelf": {
-    "name": "ICESHELF",
-    "background": "iceshelf",
-    "icon": "res://assets/textures/gui/bevel/iceshelf.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.4,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "compoundCloudBrightness": 1.1,
-    "activeMusicContexts": [
-      "PatchIceShelf"
-    ],
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.00005,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "estuary": {
+        "Name": "ESTUARY",
+        "Background": "estuary",
+        "Icon": "res://assets/textures/gui/bevel/estuary.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 0.882,
+                "g": 0.552,
+                "b": 0.298,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
+            "Energy": 1,
+            "Specular": 0.5,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
+        "CompoundCloudBrightness": 2.5,
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 6e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
             },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 1
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 17
+                }
             }
-          ],
-          "density": 0.0001,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "iceShard": {
-          "name": "ICESHARD",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iceshard1.tscn",
-              "convexShapePath": "res://assets/models/Iceshard1.shape"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 10,
-          "size": 1000,
-          "damages": 10,
-          "deleteOnTouch": false,
-          "compounds": {},
-          "damageType": "ice"
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0.00002,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.5
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": -1
-        }
-      }
-    }
-  },
-  "estuary": {
-    "name": "ESTUARY",
-    "background": "estuary",
-    "icon": "res://assets/textures/gui/bevel/estuary.png",
-    "sunlight": {
-      "colour": {
-        "r": 0.882,
-        "g": 0.552,
-        "b": 0.298,
-        "a": 1
-      },
-      "energy": 1,
-      "specular": 0.5,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
     },
-    "compoundCloudBrightness": 2.5,
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
+    "seafloor": {
+        "Name": "SEA_FLOOR",
+        "Background": "seafloor",
+        "Icon": "res://assets/textures/gui/bevel/bathyFloor.png",
+        "Sunlight": {
+            "Colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
             },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
+            "Energy": 0.05,
+            "Specular": 0.4,
+            "Shadows": true,
+            "Direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
             }
-          ],
-          "density": 0.00006,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
         },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
+        "Conditions": {
+            "Chunks": {
+                "FloatingToxin": {
+                    "Name": "FLOATING_HAZARD",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                        }
+                    ],
+                    "Density": 0.0001,
+                    "Dissolves": false,
+                    "Radius": 2,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 10000,
+                    "Damages": 10,
+                    "DeleteOnTouch": true,
+                    "Compounds": {},
+                    "DamageType": "toxin"
+                },
+                "IronSmallChunk": {
+                    "Name": "SMALL_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/IronRock1.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock1.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/IronRock2.tscn",
+                            "ConvexShapePath": "res://assets/models/IronRock2.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron3.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron3.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/Iron4.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron4.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 5,
+                    "Size": 3,
+                    "VentAmount": 0.1,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 15
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "IronBigChunk": {
+                    "Name": "BIG_IRON_CHUNK",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/Iron5.tscn",
+                            "ConvexShapePath": "res://assets/models/Iron5.shape"
+                        }
+                    ],
+                    "Density": 5e-05,
+                    "Dissolves": true,
+                    "Radius": 10,
+                    "ChunkScale": 1,
+                    "Mass": 100,
+                    "Size": 100,
+                    "VentAmount": 20,
+                    "Damages": 0,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Iron": {
+                            "Amount": 60000
+                        }
+                    },
+                    "DissolverEnzyme": "rusticyanin"
+                },
+                "MarineSnow": {
+                    "Name": "MARINE_SNOW",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
+                            "SceneModelPath": "Armature001/Skeleton/flagella"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
+                        },
+                        {
+                            "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                            "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+                        }
+                    ],
+                    "Density": 4e-05,
+                    "Dissolves": true,
+                    "Radius": 1,
+                    "ChunkScale": 1,
+                    "Mass": 7,
+                    "Size": 2,
+                    "Damages": 0,
+                    "VentAmount": 2,
+                    "DeleteOnTouch": false,
+                    "Compounds": {
+                        "Ammonia": {
+                            "Amount": 50
+                        },
+                        "Phosphates": {
+                            "Amount": 50
+                        },
+                        "Glucose": {
+                            "Amount": 100
+                        }
+                    }
+                },
+                "GooglyEyeCell": {
+                    "Name": "GOOGLY_EYE_CELL",
+                    "Meshes": [
+                        {
+                            "ScenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
+                            "SceneModelPath": "Armature/Skeleton/Cube",
+                            "SceneAnimationPath": "AnimationPlayer"
+                        }
+                    ],
+                    "Density": 1e-07,
+                    "ChunkScale": 1,
+                    "Size": 10,
+                    "Mass": 1,
+                    "Radius": 2,
+                    "EasterEgg": true
+                }
+            },
+            "Compounds": {
+                "Ammonia": {
+                    "Amount": 200000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Glucose": {
+                    "Amount": 125000,
+                    "Density": 4e-05,
+                    "Ambient": 0
+                },
+                "Phosphates": {
+                    "Amount": 250000,
+                    "Density": 6e-05,
+                    "Ambient": 0
+                },
+                "Hydrogensulfide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Oxygen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.21
+                },
+                "Carbondioxide": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.09
+                },
+                "Nitrogen": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0.7
+                },
+                "Sunlight": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 0
+                },
+                "Temperature": {
+                    "Amount": 0,
+                    "Density": 0,
+                    "Ambient": 4
+                }
             }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
         }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 1
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 17
-        }
-      }
     }
-  },
-  "seafloor": {
-    "name": "SEA_FLOOR",
-    "background": "seafloor",
-    "icon": "res://assets/textures/gui/bevel/bathyFloor.png",
-    "sunlight": {
-      "colour": {
-        "r": 1,
-        "g": 1,
-        "b": 1,
-        "a": 1
-      },
-      "energy": 0.05,
-      "specular": 0.4,
-      "shadows": true,
-      "direction": {
-        "x": 0.25,
-        "y": -0.3,
-        "z": 0.75
-      }
-    },
-    "conditions": {
-      "chunks": {
-        "floatingToxin": {
-          "name": "FLOATING_HAZARD",
-          "meshes": [
-            {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
-            }
-          ],
-          "density": 0.0001,
-          "dissolves": false,
-          "radius": 2,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 10000,
-          "damages": 10,
-          "deleteOnTouch": true,
-          "compounds": {},
-          "damageType": "toxin"
-        },
-        "ironSmallChunk": {
-          "name": "SMALL_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/IronRock1.tscn",
-              "convexShapePath": "res://assets/models/IronRock1.shape"
-            },
-            {
-              "scenePath": "res://assets/models/IronRock2.tscn",
-              "convexShapePath": "res://assets/models/IronRock2.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron3.tscn",
-              "convexShapePath": "res://assets/models/Iron3.shape"
-            },
-            {
-              "scenePath": "res://assets/models/Iron4.tscn",
-              "convexShapePath": "res://assets/models/Iron4.shape"
-            }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 5,
-          "size": 3,
-          "ventAmount": 0.1,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 15
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "ironBigChunk": {
-          "name": "BIG_IRON_CHUNK",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/Iron5.tscn",
-              "convexShapePath": "res://assets/models/Iron5.shape"
-            }
-          ],
-          "density": 0.00005,
-          "dissolves": true,
-          "radius": 10,
-          "chunkScale": 1,
-          "mass": 100,
-          "size": 100,
-          "ventAmount": 20,
-          "damages": 0,
-          "deleteOnTouch": false,
-          "compounds": {
-            "iron": {
-              "amount": 60000
-            }
-          },
-          "dissolverEnzyme": "rusticyanin"
-        },
-        "marineSnow": {
-          "name": "MARINE_SNOW",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "convexShapePath": "res://assets/models/organelles/Oxytoxy.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "sceneModelPath": "Armature001/Skeleton/flagella"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "convexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "convexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "convexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "convexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "convexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "convexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "convexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "scenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "convexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "density": 0.00004,
-          "dissolves": true,
-          "radius": 1,
-          "chunkScale": 1,
-          "mass": 7,
-          "size": 2,
-          "damages": 0,
-          "ventAmount": 2,
-          "deleteOnTouch": false,
-          "compounds": {
-            "ammonia": {
-              "amount": 50
-            },
-            "phosphates": {
-              "amount": 50
-            },
-            "glucose": {
-              "amount": 100
-            }
-          }
-        },
-        "googlyEyeCell": {
-          "name": "GOOGLY_EYE_CELL",
-          "meshes": [
-            {
-              "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
-              "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
-            }
-          ],
-          "density": 1e-7,
-          "chunkScale": 1,
-          "size": 10,
-          "mass": 1,
-          "radius": 2,
-          "easterEgg": true
-        }
-      },
-      "compounds": {
-        "ammonia": {
-          "amount": 200000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "glucose": {
-          "amount": 125000,
-          "density": 0.00004,
-          "ambient": 0
-        },
-        "phosphates": {
-          "amount": 250000,
-          "density": 0.00006,
-          "ambient": 0
-        },
-        "hydrogensulfide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "oxygen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.21
-        },
-        "carbondioxide": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.09
-        },
-        "nitrogen": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0.7
-        },
-        "sunlight": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 0
-        },
-        "temperature": {
-          "amount": 0,
-          "density": 0,
-          "ambient": 4
-        }
-      }
-    }
-  }
 }

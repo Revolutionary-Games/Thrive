@@ -1,159 +1,159 @@
 ﻿{
-  "respiration": {
-    "name": "RESPIRATION",
-    "inputs": {
-      "oxygen": 1,
-      "glucose": 0.16
+    "respiration": {
+        "Name": "RESPIRATION",
+        "Inputs": {
+            "Oxygen": 1,
+            "Glucose": 0.16
+        },
+        "Outputs": {
+            "Atp": 87
+        }
     },
-    "outputs": {
-      "atp": 87
-    }
-  },
-  "glycolysis": {
-    "name": "GLYCOLYSIS",
-    "inputs": {
-      "glucose": 0.006
+    "glycolysis": {
+        "Name": "GLYCOLYSIS",
+        "Inputs": {
+            "Glucose": 0.006
+        },
+        "Outputs": {
+            "Atp": 2
+        }
     },
-    "outputs": {
-      "atp": 2
-    }
-  },
-  "glycolysis_cytoplasm": {
-    "name": "CYTOPLASM_GLYCOLYSIS",
-    "inputs": {
-      "glucose": 0.009
+    "glycolysis_cytoplasm": {
+        "Name": "CYTOPLASM_GLYCOLYSIS",
+        "Inputs": {
+            "Glucose": 0.009
+        },
+        "Outputs": {
+            "Atp": 3
+        }
     },
-    "outputs": {
-      "atp": 3
-    }
-  },
-  "photosynthesis": {
-    "name": "PHOTOSYNTHESIS",
-    "inputs": {
-      "carbondioxide": 0.09,
-      "sunlight": 1
+    "photosynthesis": {
+        "Name": "PHOTOSYNTHESIS",
+        "Inputs": {
+            "CarbonDioxide": 0.09,
+            "Sunlight": 1
+        },
+        "Outputs": {
+            "Glucose": 0.04
+        }
     },
-    "outputs": {
-      "glucose": 0.04
-    }
-  },
-  "oxytoxySynthesis": {
-    "name": "OXYTOXY_SYNTHESIS",
-    "inputs": {
-      "oxygen": 1,
-      "atp": 8
+    "oxytoxySynthesis": {
+        "Name": "OXYTOXY_SYNTHESIS",
+        "Inputs": {
+            "Oxygen": 1,
+            "Atp": 8
+        },
+        "Outputs": {
+            "Oxytoxy": 1.5
+        }
     },
-    "outputs": {
-      "oxytoxy": 1.5
-    }
-  },
-  "bacterial_oxytoxySynthesis": {
-    "name": "OXYTOXY_SYNTHESIS",
-    "inputs": {
-      "oxygen": 0.21,
-      "atp": 5
+    "bacterial_oxytoxySynthesis": {
+        "Name": "OXYTOXY_SYNTHESIS",
+        "Inputs": {
+            "Oxygen": 0.21,
+            "Atp": 5
+        },
+        "Outputs": {
+            "Oxytoxy": 0.15
+        }
     },
-    "outputs": {
-      "oxytoxy": 0.15
-    }
-  },
-  "mucilage_synthesis": {
-    "name": "MUCILAGE_SYNTHESIS",
-    "inputs": {
-      "glucose": 0.002
+    "mucilage_synthesis": {
+        "Name": "MUCILAGE_SYNTHESIS",
+        "Inputs": {
+            "Glucose": 0.002
+        },
+        "Outputs": {
+            "Mucilage": 0.2
+        }
     },
-    "outputs": {
-      "mucilage": 0.2
-    }
-  },
-  "chemoSynthesis": {
-    "name": "CHEMO_SYNTHESIS",
-    "inputs": {
-      "carbondioxide": 0.09,
-      "hydrogensulfide": 0.12
+    "chemoSynthesis": {
+        "Name": "CHEMO_SYNTHESIS",
+        "Inputs": {
+            "CarbonDioxide": 0.09,
+            "HydrogenSulfide": 0.12
+        },
+        "Outputs": {
+            "Glucose": 0.1
+        }
     },
-    "outputs": {
-      "glucose": 0.1
-    }
-  },
-  "bacterial_ChemoSynthesis": {
-    "name": "CHEMO_SYNTHESIS",
-    "inputs": {
-      "carbondioxide": 0.09,
-      "hydrogensulfide": 0.06
+    "bacterial_ChemoSynthesis": {
+        "Name": "CHEMO_SYNTHESIS",
+        "Inputs": {
+            "CarbonDioxide": 0.09,
+            "HydrogenSulfide": 0.06
+        },
+        "Outputs": {
+            "Glucose": 0.04
+        }
     },
-    "outputs": {
-      "glucose": 0.04
-    }
-  },
-  "nitrogenFixing": {
-    "name": "AEROBIC_NITROGEN_FIXING",
-    "inputs": {
-      "oxygen": 0.21,
-      "nitrogen": 1,
-      "atp": 2.5
+    "nitrogenFixing": {
+        "Name": "AEROBIC_NITROGEN_FIXING",
+        "Inputs": {
+            "Oxygen": 0.21,
+            "Nitrogen": 1,
+            "Atp": 2.5
+        },
+        "Outputs": {
+            "Ammonia": 0.16
+        }
     },
-    "outputs": {
-      "ammonia": 0.16
-    }
-  },
-  "nitrogenaseReaction": {
-    "name": "ANAEROBIC_NITROGEN_FIXATION",
-    "inputs": {
-      "nitrogen": 1,
-      "atp": 2.5
+    "nitrogenaseReaction": {
+        "Name": "ANAEROBIC_NITROGEN_FIXATION",
+        "Inputs": {
+            "Nitrogen": 1,
+            "Atp": 2.5
+        },
+        "Outputs": {
+            "Ammonia": 0.08
+        }
     },
-    "outputs": {
-      "ammonia": 0.08
-    }
-  },
-  "protein_respiration": {
-    "name": "RESPIRATION",
-    "inputs": {
-      "oxygen": 1,
-      "glucose": 0.1
+    "protein_respiration": {
+        "Name": "RESPIRATION",
+        "Inputs": {
+            "Oxygen": 1,
+            "Glucose": 0.1
+        },
+        "Outputs": {
+            "Atp": 38
+        }
     },
-    "outputs": {
-      "atp": 38
-    }
-  },
-  "chromatophore_photosynthesis": {
-    "name": "PHOTOSYNTHESIS",
-    "inputs": {
-      "carbondioxide": 0.09,
-      "sunlight": 1
+    "chromatophore_photosynthesis": {
+        "Name": "PHOTOSYNTHESIS",
+        "Inputs": {
+            "CarbonDioxide": 0.09,
+            "Sunlight": 1
+        },
+        "Outputs": {
+            "Glucose": 0.012
+        }
     },
-    "outputs": {
-      "glucose": 0.012
-    }
-  },
-  "iron_chemolithoautotrophy": {
-    "name": "IRON_CHEMOLITHOAUTOTROPHY",
-    "inputs": {
-      "carbondioxide": 0.09,
-      "oxygen": 0.21,
-      "iron": 0.02
+    "iron_chemolithoautotrophy": {
+        "Name": "IRON_CHEMOLITHOAUTOTROPHY",
+        "Inputs": {
+            "CarbonDioxide": 0.09,
+            "Oxygen": 0.21,
+            "Iron": 0.02
+        },
+        "Outputs": {
+            "Atp": 5
+        }
     },
-    "outputs": {
-      "atp": 5
-    }
-  },
-  "thermosynthesis": {
-    "name": "THERMOSYNTHESIS",
-    "inputs": {
-      "temperature": 1
+    "thermosynthesis": {
+        "Name": "THERMOSYNTHESIS",
+        "Inputs": {
+            "Temperature": 1
+        },
+        "Outputs": {
+            "Atp": 11
+        }
     },
-    "outputs": {
-      "atp": 11
+    "bacterial_thermosynthesis": {
+        "Name": "THERMOSYNTHESIS",
+        "Inputs": {
+            "Temperature": 1
+        },
+        "Outputs": {
+            "Atp": 4
+        }
     }
-  },
-  "bacterial_thermosynthesis": {
-    "name": "THERMOSYNTHESIS",
-    "inputs": {
-      "temperature": 1
-    },
-    "outputs": {
-      "atp": 4
-    }
-  }
 }
