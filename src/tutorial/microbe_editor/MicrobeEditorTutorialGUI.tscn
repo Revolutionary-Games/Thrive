@@ -403,9 +403,9 @@ text = "CLOSE"
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -220.0
+margin_left = -160.0
 margin_top = 91.0
-margin_right = 220.0
+margin_right = 160.0
 margin_bottom = 435.0
 rect_min_size = Vector2( 260, 240 )
 theme = ExtResource( 2 )
@@ -425,27 +425,27 @@ rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalanceTutorial/ScrollContainer"]
-margin_right = 440.0
+margin_right = 320.0
 margin_bottom = 344.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_right = 440.0
+margin_right = 320.0
 margin_bottom = 24.0
 custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
-margin_right = 440.0
+margin_right = 320.0
 margin_bottom = 305.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
-margin_left = 165.0
+margin_left = 105.0
 margin_top = 309.0
-margin_right = 275.0
+margin_right = 215.0
 margin_bottom = 344.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
