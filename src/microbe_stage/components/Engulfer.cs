@@ -219,6 +219,24 @@
         }
 
         /// <summary>
+        ///   Immediately deletes all engulfed objects. Should only be used in special cases.
+        /// </summary>
+        public static void DeleteEngulfedObjects(this ref Engulfer engulfer, IWorldSimulation worldSimulation)
+        {
+            if (engulfer.EngulfedObjects != null)
+            {
+                foreach (var engulfedObject in engulfer.EngulfedObjects)
+                {
+                    worldSimulation.DestroyEntity(engulfedObject);
+                }
+
+                engulfer.UsedIngestionCapacity = 0;
+            }
+
+            engulfer.ExpelledObjects?.Clear();
+        }
+
+        /// <summary>
         ///   Moves all engulfables from <see cref="engulfer"/> to <see cref="targetEngulfer"/>
         /// </summary>
         public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,

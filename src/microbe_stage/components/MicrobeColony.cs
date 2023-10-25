@@ -23,7 +23,8 @@
 
         /// <summary>
         ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are attached
-        ///   to it with <see cref="AttachedToEntity"/> components.
+        ///   to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the same as the
+        ///   entity that has this <see cref="MicrobeColony"/> component on it.
         /// </summary>
         public Entity Leader;
 
@@ -114,10 +115,11 @@
 
     public static class MicrobeColonyHelpers
     {
-        // TODO: implement this
+        // TODO: implement this (will need to swap all users of the member list to also read a new count variable
+        // from the colony class)
         // public static readonly ArrayPool<Entity> MicrobeColonyMemberListPool = ArrayPool<Entity>.Create(100, 50);
 
-        private static readonly List<Entity> dependentMembersToRemove = new();
+        private static readonly List<Entity> DependentMembersToRemove = new();
 
         public static ColonyCompoundBag GetCompounds(this ref MicrobeColony colony)
         {
@@ -403,20 +405,20 @@
             foreach (var entry in colony.ColonyStructure)
             {
                 if (entry.Value == removedMember)
-                    dependentMembersToRemove.Add(entry.Key);
+                    DependentMembersToRemove.Add(entry.Key);
             }
 
-            while (dependentMembersToRemove.Count > 0)
+            while (DependentMembersToRemove.Count > 0)
             {
-                var next = dependentMembersToRemove[dependentMembersToRemove.Count - 1];
+                var next = DependentMembersToRemove[DependentMembersToRemove.Count - 1];
 
                 // This is this way around to support recursive calls also adding things here
-                dependentMembersToRemove.RemoveAt(dependentMembersToRemove.Count - 1);
+                DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
 
                 if (!colony.RemoveFromColony(colonyEntity, next, recorder))
                 {
                     // Colony is entirely disbanded, doesn't make sense to continue removing things
-                    dependentMembersToRemove.Clear();
+                    DependentMembersToRemove.Clear();
                     return false;
                 }
             }

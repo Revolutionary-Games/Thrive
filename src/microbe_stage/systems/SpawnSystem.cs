@@ -223,15 +223,15 @@
         ///   Ensures that the entity limit is not overfilled by a lot after player reproduction by force despawning
         ///   things
         /// </summary>
-        public void EnsureEntityLimitAfterPlayerReproduction(Entity? doNotDespawn)
+        public void EnsureEntityLimitAfterPlayerReproduction(Vector3 keepEntitiesNear, Entity doNotDespawn)
         {
             float extra = 0;
 
-            if (doNotDespawn != null && doNotDespawn.Value.Has<Spawned>())
+            if (doNotDespawn != default && doNotDespawn.Has<Spawned>())
             {
                 // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate won't
                 // likely include it yet
-                extra = doNotDespawn.Value.Get<Spawned>().EntityWeight;
+                extra = doNotDespawn.Get<Spawned>().EntityWeight;
             }
 
             var entityLimit = Settings.Instance.MaxSpawnedEntities.Value;
@@ -262,7 +262,7 @@
 
                 playerReproductionWeight += spawned.EntityWeight;
 
-                if (doNotDespawn == null || entity != doNotDespawn.Value)
+                if (doNotDespawn == default || entity != doNotDespawn)
                 {
                     ref var position = ref entity.Get<WorldPosition>();
 
@@ -275,7 +275,7 @@
                 playerReproducedEntities.Count > 0)
             {
                 var despawn = playerReproducedEntities
-                    .OrderByDescending(s => s.Position.DistanceSquaredTo(playerPosition)).First();
+                    .OrderByDescending(s => s.Position.DistanceSquaredTo(keepEntitiesNear)).First();
 
                 estimateEntityCount -= despawn.Weight;
                 limitExcess -= despawn.Weight;
@@ -299,7 +299,7 @@
                         Position)?;
                 })
                 .OrderByDescending(t =>
-                    Math.Log(t!.Value.Position.DistanceSquaredTo(playerPosition)) + Math.Log(t.Value.EntityWeight))
+                    Math.Log(t!.Value.Position.DistanceSquaredTo(keepEntitiesNear)) + Math.Log(t.Value.EntityWeight))
                 .GetEnumerator();
 
             // Then try to despawn enough stuff for us to get under the limit
@@ -310,7 +310,7 @@
                 if (deSpawnableEntities.MoveNext() && deSpawnableEntities.Current != null)
                     bestCandidate = deSpawnableEntities.Current;
 
-                if (doNotDespawn != null && bestCandidate?.Entity == doNotDespawn.Value)
+                if (doNotDespawn != default && bestCandidate?.Entity == doNotDespawn)
                     continue;
 
                 if (bestCandidate != null && world.IsQueuedForDeletion(bestCandidate.Value.Entity))

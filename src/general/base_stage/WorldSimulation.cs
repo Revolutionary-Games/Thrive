@@ -37,6 +37,8 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private readonly List<Entity> entitiesToNotSave = new();
 
+    private readonly Queue<Action> queuedInvokes = new();
+
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
@@ -134,6 +136,14 @@ public abstract class WorldSimulation : IWorldSimulation
         ApplyRecordedCommands();
 
         ProcessDestroyQueue();
+
+        lock (queuedInvokes)
+        {
+            while (queuedInvokes.Count > 0)
+            {
+                queuedInvokes.Dequeue().Invoke();
+            }
+        }
 
         OnProcessPhysics(accumulatedLogicTime);
 
@@ -259,6 +269,18 @@ public abstract class WorldSimulation : IWorldSimulation
     {
         PlayerPosition = position;
         reportedPlayerPosition = position;
+    }
+
+    /// <summary>
+    ///   Queue a function to run after the next world logic update cycle
+    /// </summary>
+    /// <param name="action">Callable to invoke</param>
+    public void Invoke(Action action)
+    {
+        lock (queuedInvokes)
+        {
+            queuedInvokes.Enqueue(action);
+        }
     }
 
     /// <summary>
@@ -396,6 +418,10 @@ public abstract class WorldSimulation : IWorldSimulation
         {
             GD.PrintErr("Not all world entity command recorders were returned, some has leaked a recorder (",
                 availableRecorders.Count, " != ", totalCreatedRecorders, " expected)");
+
+#if DEBUG
+            throw new Exception("Leaked command recorder detected");
+#endif
         }
 
         foreach (var recorder in nonEmptyRecorders)
@@ -408,6 +434,10 @@ public abstract class WorldSimulation : IWorldSimulation
             {
                 GD.PrintErr("Deferred entity command applying caused an exception: ", e);
                 recorder.Clear();
+
+#if DEBUG
+                throw;
+#endif
             }
         }
 

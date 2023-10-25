@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Components;
 using DefaultEcs;
+using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -45,6 +47,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     [JsonProperty]
     private bool wonOnce;
+
+    /// <summary>
+    ///   Used to give increasing numbers to player offspring to know which is the latest
+    /// </summary>
+    [JsonProperty]
+    private int playerOffspringTotalCount;
 
     private float maxLightLevel;
 
@@ -203,9 +211,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // info be sent
             if (Player.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
-                /*TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                    new MicrobeColonyEventArgs(Player.Colony), this);*/
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
+                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
             }
 
             elapsedSinceEntityPositionCheck += delta;
@@ -225,13 +232,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 {
                     // Filter to spawned engulfables that can be despawned (this likely just filters out the player
                     // themselves
-                    throw new NotImplementedException();
+                    ref var engulfer = ref Player.Get<Engulfer>();
 
-                    // var engulfables = WorldSimulation.Entities.OfType<ISpawned>().Where(s => !s.DisallowDespawning)
-                    //     .OfType<IEngulfable>().ToList();
+                    var position = engulfer.FindNearestEngulfableSlow(ref Player.Get<CellProperties>(),
+                        ref Player.Get<OrganelleContainer>(), ref Player.Get<WorldPosition>(),
+                        Player.Get<CompoundStorage>().Compounds, Player, Player.Get<SpeciesMember>().ID,
+                        WorldSimulation);
 
-                    // TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
-                    //     new EntityPositionEventArgs(Player.FindNearestEngulfableSlow(engulfables)), this);
+                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                        new EntityPositionEventArgs(position), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -433,10 +442,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         GameWorld.NotifySpeciesChangedStages();
 
         // Make sure no queued player species can spawn with the old species
-        // TODO: expose operation from world simulation
-        throw new NotImplementedException();
-
-        // spawner.ClearSpawnQueue();
+        WorldSimulation.SpawnSystem.ClearSpawnQueue();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -536,54 +542,83 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             wonOnce = true;
         }
 
+        var playerSpecies = Player.Get<SpeciesMember>().Species;
+
         // Update the player's cell
-        throw new NotImplementedException();
+        ref var cellProperties = ref Player.Get<CellProperties>();
 
-        // Player!.ApplySpecies(Player.Species);
-        //
-        // // Reset all the duplicates organelles of the player
-        // Player.ResetOrganelleLayout();
-        //
-        // var playerPosition = Player.GlobalTransform.origin;
-        //
-        // // Spawn another cell from the player species
-        // // This needs to be done after updating the player so that multicellular organisms are accurately separated
-        // var daughter = Player.Divide();
+        bool playerIsMulticellular = Player.Has<EarlyMulticellularSpeciesMember>();
 
-        // TODO: switch to adding the player reproduced component
-        throw new NotImplementedException();
-
-        // daughter.AddToGroup(Constants.PLAYER_REPRODUCED_GROUP);
-
-        // If multicellular, we want that other cell colony to be fully grown to show budding in action
-        if (Player.Has<EarlyMulticellularSpeciesMember>())
+        if (playerIsMulticellular)
         {
-            throw new NotImplementedException();
+            ref var earlySpeciesType = ref Player.Get<EarlyMulticellularSpeciesMember>();
 
-            /*daughter.BecomeFullyGrownMulticellularColony();
+            // Allow updating the first cell type to reproduce (reproduction order changed)
+            earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
-            if (daughter.Colony != null)
-            {
-                // Add more extra offset between the player and the divided cell
-                var daughterPosition = daughter.GlobalTransform.origin;
-                var direction = (playerPosition - daughterPosition).Normalized();
-
-                var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
-
-                float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
-
-                daughter.Translation += -direction * distance;
-            }*/
+            cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
+                earlySpeciesType.Species);
+        }
+        else
+        {
+            ref var species = ref Player.Get<MicrobeSpeciesMember>();
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species);
         }
 
-        // This is queued to run to reduce the massive lag spike that anyway happens on this frame
-        // The dynamically spawned is used here as the object to detect if the entire stage is getting disposed this
-        // frame and won't be available on the next one
-        // TODO: switch to calling to the simulation / exposing the spawn system from there
-        throw new NotImplementedException();
+        var playerPosition = Player.Get<WorldPosition>().Position;
 
-        // Invoke.Instance.QueueForObject(() => spawner.EnsureEntityLimitAfterPlayerReproduction(playerPosition, daughter),
-        //     rootOfDynamicallySpawned);
+        // Spawn another cell from the player species
+        // This needs to be done after updating the player so that multicellular organisms are accurately separated
+        cellProperties.Divide(ref Player.Get<OrganelleContainer>(), Player, playerSpecies, WorldSimulation,
+            WorldSimulation.SpawnSystem, (ref EntityRecord daughter) =>
+            {
+                // Mark as player reproduced entity
+                daughter.Set(new PlayerOffspring
+                {
+                    OffspringOrderNumber = ++playerOffspringTotalCount,
+                });
+
+                // If multicellular, we want that other cell colony to be fully grown to show budding in action
+                if (Player.Has<EarlyMulticellularSpeciesMember>())
+                {
+                    throw new NotImplementedException();
+
+                    /*daughter.BecomeFullyGrownMulticellularColony();
+
+                    if (daughter.Colony != null)
+                    {
+                        // Add more extra offset between the player and the divided cell
+                        var daughterPosition = daughter.GlobalTransform.origin;
+                        var direction = (playerPosition - daughterPosition).Normalized();
+
+                        var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
+
+                        float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
+
+                        daughter.Translation += -direction * distance;
+                    }*/
+                }
+            });
+
+        // This is queued to run on the world after the next update as that's when the duplicate entity will spawn
+        // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
+        // switching from the editor back to the stage scene
+        WorldSimulation.Invoke(() =>
+        {
+            // We need to find the entity reference of the offspring that was spawned last frame
+            var doNotDespawn = PlayerOffspringHelpers.FindLatestSpawnedOffspring(WorldSimulation.EntitySystem);
+
+#if DEBUG
+            if (doNotDespawn.IsAlive && !doNotDespawn.Has<Spawned>())
+            {
+                throw new Exception(
+                    "Spawned player offspring has no spawned component, microbe reproduction method is" +
+                    "working incorrectly");
+            }
+#endif
+
+            WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
+        });
 
         if (!CurrentGame.TutorialState.Enabled)
         {
@@ -753,9 +788,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             if (HasPlayer)
             {
-                throw new NotImplementedException();
+                ref var engulfer = ref Player.Get<Engulfer>();
 
-                // Player.ClearEngulfedObjects();
+                engulfer.DeleteEngulfedObjects(WorldSimulation);
             }
         }
 

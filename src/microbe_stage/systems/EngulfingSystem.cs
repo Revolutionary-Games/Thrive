@@ -67,6 +67,17 @@
         private readonly List<KeyValuePair<Entity, Entity>> engulfedObjectsToDelete = new();
 
         /// <summary>
+        ///   Used to avoid a temporary list allocation
+        /// </summary>
+        private readonly List<Entity> tempEntitiesToEject = new();
+
+        /// <summary>
+        ///   Used to keep track of entities that just began to be engulfed. Transport animation and other operations
+        ///   are skipped on these for one update to avoid a problem where the attached component is not created yet.
+        /// </summary>
+        private readonly HashSet<Entity> beginningEngulfedObjects = new();
+
+        /// <summary>
         ///   Cache to re-use bulk transport animation objects
         /// </summary>
         private readonly Queue<Engulfable.BulkTransportAnimation> unusedTransportAnimations = new();
@@ -192,6 +203,10 @@
 
                 usedEngulfedObjects.Add(new KeyValuePair<Entity, Entity>(entity, engulfedEntity));
 
+                // Entities that were just engulfed need one extra update to materialize their new components
+                if (beginningEngulfedObjects.Contains(engulfedEntity))
+                    continue;
+
                 ref var engulfable = ref engulfedEntity.Get<Engulfable>();
 
                 var transportData = engulfable.BulkTransport;
@@ -275,6 +290,8 @@
         protected override void PostUpdate(float state)
         {
             base.PostUpdate(state);
+
+            beginningEngulfedObjects.Clear();
 
             // Delete unused endosome graphics. First mark unused things
             foreach (var entry in entityEngulfingEndosomeGraphics)
@@ -376,9 +393,13 @@
             if (engulfer.EngulfedObjects == null)
                 return;
 
+            // A copy of the list is needed as in some situations EjectEngulfable immediately removes an object
+            // and modifies the engulfed list
+            tempEntitiesToEject.AddRange(engulfer.EngulfedObjects);
+
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            foreach (var engulfedObject in engulfer.EngulfedObjects)
+            foreach (var engulfedObject in tempEntitiesToEject)
             {
                 // In case here, the engulfer being dead, we check to make sure the engulfed objects aren't incorrect
                 if (!engulfedObject.IsAlive || !engulfedObject.Has<Engulfable>())
@@ -390,6 +411,8 @@
                 EjectEngulfable(ref engulfer, ref cellProperties, entity, true, ref engulfedObject.Get<Engulfable>(),
                     engulfedObject);
             }
+
+            tempEntitiesToEject.Clear();
 
             // Should be fine to clear this list object like this as a dead entity should get deleted entirely
             // soon
@@ -685,6 +708,12 @@
             // target.RenderPriority += OrganelleMaxRenderPriority + 1;
 
             engulfable.OnBecomeEngulfed(targetEntity);
+
+            // Skip updating this engulfable during this update as the attached component will only be created when
+            // the command recorder is executed. And for consistency in the case that the component existed we still
+            // do this as there should be no harm in this delay.
+            beginningEngulfedObjects.Add(targetEntity);
+
             return true;
         }
 
@@ -706,6 +735,11 @@
         /// <summary>
         ///   Expels an ingested object from this microbe out into the environment.
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///      Doesn't set <see cref="Engulfer.EngulfedObjects"/> to null even if empty
+        ///   </para>
+        /// </remarks>
         private void EjectEngulfable(ref Engulfer engulfer, ref CellProperties engulferCellProperties, in Entity entity,
             bool engulferDead, ref Engulfable engulfable, in Entity engulfedObject, float animationSpeed = 2.0f)
         {
@@ -1076,6 +1110,13 @@
                 // Some code didn't initialize the animation data
                 GD.PrintErr($"{nameof(AnimateBulkTransport)} cannot run because bulk animation data is null");
                 return true;
+            }
+
+            // Safety check in case the animation started too soon (component not created yet)
+            if (!engulfedObject.Has<AttachedToEntity>())
+            {
+                GD.PrintErr("Engulfed object doesn't have attached to component set when doing bulk animation");
+                return false;
             }
 
             var phagosome = GetEndosomeIfExists(entity, engulfedObject);

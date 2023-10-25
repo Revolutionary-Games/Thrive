@@ -288,6 +288,8 @@
                 Compounds = copyEntityCompounds,
             });
 
+            customizeCallback?.Invoke(ref copyEntity);
+
             SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
             if (entity.Has<SoundEffectPlayer>())
