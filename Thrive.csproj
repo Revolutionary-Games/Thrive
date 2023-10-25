@@ -121,7 +121,6 @@
     <Compile Include="src\early_multicellular_stage\editor\CellTypeSelection.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
     <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
-    <Compile Include="src\early_multicellular_stage\Microbe.Multicellular.cs" />
     <Compile Include="src\early_multicellular_stage\systems\MulticellularGrowthSystem.cs" />
     <Compile Include="src\engine\attributes\ReadsComponentAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsAfterAttribute.cs" />
@@ -573,7 +572,6 @@
     <Compile Include="src\microbe_stage\gui\PatchDetailsPanel.cs" />
     <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
-    <Compile Include="src\microbe_stage\IEngulfable.cs" />
     <Compile Include="src\microbe_stage\IReadonlyCompoundClouds.cs" />
     <Compile Include="src\microbe_stage\ISpawnSystem.cs" />
     <Compile Include="src\microbe_stage\ISpeciesMemberLocationData.cs" />
@@ -587,6 +585,7 @@
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\MicrobeInspectInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeState.cs" />
+    <Compile Include="src\microbe_stage\MicrobeVisualOnlySimulation.cs" />
     <Compile Include="src\microbe_stage\MicrobeWorldSimulation.cs" />
     <Compile Include="src\microbe_stage\OrganelleFeatureTag.cs" />
     <Compile Include="src\microbe_stage\OrganelleUpgradeHelpers.cs" />
@@ -605,7 +604,6 @@
     <Compile Include="src\microbe_stage\BiomeCompoundProperties.cs" />
     <Compile Include="src\microbe_stage\IProcessDisplayInfo.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
-    <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
@@ -774,7 +772,6 @@
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
-    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
     <Compile Include="src\saving\serializers\InProgressObjectDeserialization.cs" />

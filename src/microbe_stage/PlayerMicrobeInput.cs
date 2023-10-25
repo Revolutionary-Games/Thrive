@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -308,7 +309,7 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void RemoveCellFromColony(Microbe target)
+    private void RemoveCellFromColony(Entity target)
     {
         throw new NotImplementedException();
 

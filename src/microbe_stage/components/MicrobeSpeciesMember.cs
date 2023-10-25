@@ -7,11 +7,5 @@
     public struct MicrobeSpeciesMember
     {
         public MicrobeSpecies Species;
-
-        /// <summary>
-        ///   Set to false if the species is changed and this entity needs fresh new initialization from the species
-        ///   data
-        /// </summary>
-        public bool SpeciesApplied;
     }
 }

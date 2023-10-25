@@ -17,7 +17,7 @@ public static class Spawners
     public static MicrobeSpawner MakeMicrobeSpawner(Species species,
         CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
-        return new MicrobeSpawner(species, cloudSystem, currentGame);
+        return new MicrobeSpawner(species);
     }
 
     public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
@@ -365,36 +365,6 @@ public static class SpawnHelpers
         return entity;
     }
 
-    // TODO: remove this old variant
-    public static Microbe SpawnMicrobe(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
-        CellType? multicellularCellType = null)
-    {
-        throw new NotImplementedException();
-
-        var microbe = (Microbe)microbeScene.Instance();
-
-        // The second parameter is (isPlayer), and we assume that if the
-        // cell is not AI controlled it is the player's cell
-        // microbe.Init(cloudSystem, spawnSystem, currentGame, !aiControlled);
-
-        worldRoot.AddChild(microbe);
-        microbe.Translation = location;
-
-        if (multicellularCellType != null)
-        {
-            microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
-        }
-        else
-        {
-            microbe.ApplySpecies(species);
-        }
-
-        // microbe.SetInitialCompounds();
-        return microbe;
-    }
-
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
         bool aiControlled, CellType? multicellularCellType = null)
     {
@@ -408,6 +378,9 @@ public static class SpawnHelpers
         IWorldSimulation worldSimulation, Species species,
         Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity)
     {
+        // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
+        // MicrobeVisualOnlySimulation microbe update methods are also up to date
+
         var recorder = worldSimulation.StartRecordingEntityCommands();
         var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
@@ -501,8 +474,13 @@ public static class SpawnHelpers
         }
         else
         {
-            throw new NotImplementedException("Unknown species type to spawn a microbe from");
+            throw new NotSupportedException("Unknown species type to spawn a microbe from");
         }
+
+        var bioProcesses = new BioProcesses
+        {
+            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
+        };
 
         int organelleCount;
         float engulfSize;
@@ -512,6 +490,7 @@ public static class SpawnHelpers
             var container = default(OrganelleContainer);
 
             container.CreateOrganelleLayout(usedCellProperties);
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;
             engulfSize = container.HexCount;
@@ -534,6 +513,8 @@ public static class SpawnHelpers
             entity.Set(storage);
         }
 
+        entity.Set(bioProcesses);
+
         entity.Set(new ReproductionStatus(species.BaseReproductionCost));
 
         // Visuals
@@ -553,12 +534,6 @@ public static class SpawnHelpers
         });
 
         entity.Set<MicrobeShaderParameters>();
-
-        entity.Set(new BioProcesses
-        {
-            ActiveProcesses = ProcessSystem.ComputeActiveProcessList(usedCellProperties.Organelles),
-            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
-        });
 
         entity.Set(new CompoundAbsorber
         {
@@ -653,9 +628,11 @@ public static class SpawnHelpers
     /// <param name="microbe">The multicellular microbe</param>
     /// <param name="random">Random to use for the randomness</param>
     /// <exception cref="ArgumentException">If the microbe is not multicellular</exception>
-    public static void GiveFullyGrownChanceForMulticellular(Microbe microbe, Random random)
+    public static void GiveFullyGrownChanceForMulticellular(Entity microbe, Random random)
     {
-        if (!microbe.IsMulticellular)
+        throw new NotImplementedException();
+
+        /*if (!microbe.IsMulticellular)
             throw new ArgumentException("must be multicellular");
 
         // Chance to spawn fully grown or partially grown
@@ -676,10 +653,10 @@ public static class SpawnHelpers
                 if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
                     break;
             }
-        }
+        }*/
 
         // TODO: need to adjust entity weight in the spawned entity
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     /// <summary>
@@ -709,11 +686,6 @@ public static class SpawnHelpers
         Vector3 location, out EntityRecord entity)
     {
         return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, null, out entity);
-    }
-
-    public static PackedScene LoadMicrobeScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
@@ -963,18 +935,11 @@ public static class SpawnHelpers
 /// </summary>
 public class MicrobeSpawner : Spawner
 {
-    private readonly PackedScene microbeScene;
-    private readonly CompoundCloudSystem cloudSystem;
-    private readonly GameProperties currentGame;
     private readonly Random random = new();
 
-    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
+    public MicrobeSpawner(Species species)
     {
         Species = species ?? throw new ArgumentException("species is null");
-
-        microbeScene = SpawnHelpers.LoadMicrobeScene();
-        this.cloudSystem = cloudSystem;
-        this.currentGame = currentGame;
     }
 
     public override bool SpawnsEntities => true;

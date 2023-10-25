@@ -430,6 +430,55 @@
             return membraneCoords;
         }
 
+        /// <summary>
+        ///   Applies settings from the cell properties (of a species) again to a spawned entity (and resets
+        ///   reproduction progress). This is needed if species properties need to be applied to an already spawned
+        ///   cell (for example the player).
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This is basically the new version of ApplySpecies. This must be kept up to date in regards to the
+        ///     spawn microbe method.
+        ///   </para>
+        /// </remarks>
+        /// <param name="cellProperties">The cell to apply new settings to</param>
+        /// <param name="entity">Entity of the cell, needed to apply new state to other components</param>
+        /// <param name="newProperties">The new properties to apply</param>
+        /// <param name="baseReproductionCostFrom">
+        ///   Where to get base reproduction cost from. Other species properties are not used
+        ///   (<see cref="newProperties"/> applies instead). Note if species object instance changes from what it
+        ///   was before, the code calling this method must do that adjustment manually.
+        /// </param>
+        public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
+            ICellProperties newProperties, Species baseReproductionCostFrom)
+        {
+            // Copy new cell type properties
+            cellProperties.MembraneType = newProperties.MembraneType;
+            cellProperties.IsBacteria = newProperties.IsBacteria;
+            cellProperties.Colour = newProperties.Colour;
+            cellProperties.MembraneRigidity = newProperties.MembraneRigidity;
+
+            ref var spatial = ref entity.Get<SpatialInstance>();
+
+            spatial.VisualScale = cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+
+            ref var organelleContainer = ref entity.Get<OrganelleContainer>();
+
+            // Reset all the duplicates organelles / reproduction progress of the entity
+            // This also resets multicellular creature's reproduction progress
+            organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
+                entity, newProperties, baseReproductionCostFrom);
+
+            // Reset runtime colour
+            if (entity.Has<ColourAnimation>())
+            {
+                ref var colourAnimation = ref entity.Get<ColourAnimation>();
+                colourAnimation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(newProperties.Colour);
+
+                colourAnimation.UpdateAnimationForNewDefaultColour();
+            }
+        }
+
         public static void ApplyMembraneWigglyness(this ref CellProperties cellProperties, Membrane targetMembrane)
         {
             targetMembrane.WigglyNess = cellProperties.MembraneType.BaseWigglyness -

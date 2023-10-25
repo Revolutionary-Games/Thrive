@@ -11,9 +11,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
     private readonly IParallelRunner nonParallelRunner = new DefaultParallelRunner(1);
 
-    // TODO: remove if this doesn't turn out to be useful
-    private GameProperties gameProperties = null!;
-
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -120,7 +117,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, parallelRunner);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
-        entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem, nonParallelRunner);
+        entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
         fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, parallelRunner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, parallelRunner);
@@ -200,11 +197,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// <param name="currentGame">Currently started game</param>
     public void InitForCurrentGame(GameProperties currentGame)
     {
-        gameProperties = currentGame;
-
-        osmoregulationAndHealingSystem.SetWorld(gameProperties.GameWorld);
-        microbeReproductionSystem.SetWorld(gameProperties.GameWorld);
-        microbeDeathSystem.SetWorld(gameProperties.GameWorld);
+        osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
+        microbeReproductionSystem.SetWorld(currentGame.GameWorld);
+        microbeDeathSystem.SetWorld(currentGame.GameWorld);
     }
 
     public override void ProcessFrameLogic(float delta)

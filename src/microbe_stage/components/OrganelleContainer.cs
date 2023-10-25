@@ -218,6 +218,9 @@
             container.CalculateOrganelleLayoutStatistics();
 
             container.AllOrganellesDivided = false;
+
+            // Reset this to notify the visuals system that it needs to check the new changed organelles
+            container.OrganelleVisualsCreated = false;
         }
 
         /// <summary>
@@ -225,8 +228,8 @@
         ///   some extra operations not yet valid when initially creating a layout.
         /// </summary>
         public static void ResetOrganelleLayout(this ref OrganelleContainer container,
-            ref CompoundStorage storageToUpdate, in Entity entity, ICellProperties cellProperties,
-            Species baseReproductionCostFrom)
+            ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
+            ICellProperties cellProperties, Species baseReproductionCostFrom)
         {
             container.CreateOrganelleLayout(cellProperties);
 
@@ -258,12 +261,15 @@
             }
 
             container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
+
+            container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
         }
 
         /// <summary>
         ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
         /// </summary>
-        public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage)
+        public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
+            ref BioProcesses bioProcesses)
         {
             container.OrganelleVisualsCreated = false;
             container.OrganelleComponentsCached = false;
@@ -272,6 +278,15 @@
             // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
+
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
+        }
+
+        public static void RecalculateOrganelleBioProcesses(this ref OrganelleContainer container,
+            ref BioProcesses bioProcesses)
+        {
+            if (container.Organelles != null)
+                bioProcesses.ActiveProcesses = ProcessSystem.ComputeActiveProcessList(container.Organelles);
         }
 
         /// <summary>

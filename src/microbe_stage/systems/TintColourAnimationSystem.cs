@@ -31,18 +31,20 @@
 
             var materials = entityMaterial.Materials;
 
+            var currentColour = animation.CurrentColour;
+
             if (animation.AnimateOnlyFirstMaterial)
             {
                 if (materials.Length > 0)
                 {
-                    materials[0].SetShaderParam("tint", animation.CurrentColour);
+                    materials[0].SetShaderParam("tint", currentColour);
                 }
             }
             else
             {
                 foreach (var material in materials)
                 {
-                    material.SetShaderParam("tint", animation.CurrentColour);
+                    material.SetShaderParam("tint", currentColour);
                 }
             }
 

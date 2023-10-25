@@ -117,12 +117,31 @@
         }
 
         /// <summary>
-        ///   Stops animations and resets to default colour
+        ///   Stops animations and resets to default colour (and forces a colour update to happen)
         /// </summary>
         public static void ResetColour(this ref ColourAnimation animation)
         {
-            animation.Animating = false;
             animation.AnimationTargetColour = animation.DefaultColour;
+
+            animation.Animating = false;
+            animation.ColourApplied = false;
+        }
+
+        /// <summary>
+        ///   Updates current animation to work with a changed <see cref="ColourAnimation.DefaultColour"/> value
+        /// </summary>
+        public static void UpdateAnimationForNewDefaultColour(this ref ColourAnimation animation)
+        {
+            if (!animation.Animating)
+                return;
+
+            // Replace current animation with one going to the new base colour
+            animation.AutoReverseAnimation = false;
+
+            animation.AnimationStartColour = animation.CurrentColour;
+            animation.AnimationTargetColour = animation.DefaultColour;
+            animation.AnimationElapsed = 0;
+            animation.AnimationUserInfo = 0;
         }
     }
 }

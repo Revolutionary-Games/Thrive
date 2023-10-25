@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -171,7 +172,17 @@ public static class NodeHelpers
             geometry = node.GetNode<GeometryInstance>(modelPath);
         }
 
-        return (ShaderMaterial)geometry.MaterialOverride;
+        try
+        {
+            return (ShaderMaterial)geometry.MaterialOverride;
+        }
+        catch (InvalidCastException)
+        {
+            GD.PrintErr("Converting material to ShaderMaterial failed, on node: " + node.GetPath(), " relative path: ",
+                modelPath);
+
+            throw;
+        }
     }
 
     /// <summary>

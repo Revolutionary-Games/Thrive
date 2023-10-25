@@ -294,6 +294,8 @@
 
                     extraLayer.AddChild(visualsInstance);
                     parentNode.AddChild(extraLayer);
+
+                    organelleContainer.CreatedOrganelleVisuals.Add(placedOrganelle, visualsInstance);
                 }
 
                 // Visuals already exist

@@ -226,6 +226,8 @@ public static class MicrobeInternalCalculations
     /// </remarks>
     public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
     {
+        // TODO: this needs to be hooked up to the new rotation system
+
         float inertia = 1;
 
         int ciliaCount = 0;
