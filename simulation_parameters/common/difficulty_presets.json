@@ -1,45 +1,45 @@
 ﻿{
-    "easy": {
-        "Name": "DIFFICULTY_PRESET_EASY",
-        "Index": 0,
-        "MpMultiplier": 0.8,
-        "AiMutationMultiplier": 1,
-        "CompoundDensity": 1.5,
-        "PlayerDeathPopulationPenalty": 1,
-        "GlucoseDecay": 0.9,
-        "OsmoregulationMultiplier": 0.8,
-        "FreeGlucoseCloud": true,
-        "PassiveReproduction": true,
-        "LimitGrowthRate": false
-    },
-    "normal": {
-        "Name": "DIFFICULTY_PRESET_NORMAL",
-        "Index": 1,
-        "MpMultiplier": 1,
-        "AiMutationMultiplier": 2,
-        "CompoundDensity": 1,
-        "PlayerDeathPopulationPenalty": 1,
-        "GlucoseDecay": 0.8,
-        "OsmoregulationMultiplier": 1,
-        "FreeGlucoseCloud": true,
-        "PassiveReproduction": true,
-        "LimitGrowthRate": true
-    },
-    "hard": {
-        "Name": "DIFFICULTY_PRESET_HARD",
-        "Index": 2,
-        "MpMultiplier": 1.2,
-        "AiMutationMultiplier": 3,
-        "CompoundDensity": 0.7,
-        "PlayerDeathPopulationPenalty": 2,
-        "GlucoseDecay": 0.5,
-        "OsmoregulationMultiplier": 1.2,
-        "FreeGlucoseCloud": false,
-        "PassiveReproduction": true,
-        "LimitGrowthRate": true
-    },
-    "custom": {
-        "Name": "DIFFICULTY_PRESET_CUSTOM",
-        "Index": 3
-    }
+  "easy": {
+    "Name": "DIFFICULTY_PRESET_EASY",
+    "Index": 0,
+    "MpMultiplier": 0.8,
+    "AiMutationMultiplier": 1,
+    "CompoundDensity": 1.5,
+    "PlayerDeathPopulationPenalty": 1,
+    "GlucoseDecay": 0.9,
+    "OsmoregulationMultiplier": 0.8,
+    "FreeGlucoseCloud": true,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": false
+  },
+  "normal": {
+    "Name": "DIFFICULTY_PRESET_NORMAL",
+    "Index": 1,
+    "MpMultiplier": 1,
+    "AiMutationMultiplier": 2,
+    "CompoundDensity": 1,
+    "PlayerDeathPopulationPenalty": 1,
+    "GlucoseDecay": 0.8,
+    "OsmoregulationMultiplier": 1,
+    "FreeGlucoseCloud": true,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": true
+  },
+  "hard": {
+    "Name": "DIFFICULTY_PRESET_HARD",
+    "Index": 2,
+    "MpMultiplier": 1.2,
+    "AiMutationMultiplier": 3,
+    "CompoundDensity": 0.7,
+    "PlayerDeathPopulationPenalty": 2,
+    "GlucoseDecay": 0.5,
+    "OsmoregulationMultiplier": 1.2,
+    "FreeGlucoseCloud": false,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": true
+  },
+  "custom": {
+    "Name": "DIFFICULTY_PRESET_CUSTOM",
+    "Index": 3
+  }
 }
