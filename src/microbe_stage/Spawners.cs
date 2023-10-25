@@ -496,10 +496,10 @@ public static class SpawnHelpers
             engulfSize = container.HexCount;
 
             // Compound storage
-            var compounds = new CompoundBag(container.OrganellesCapacity);
             var storage = new CompoundStorage
             {
-                Compounds = compounds,
+                // 0 is used here as this is updated before adding the component anyway
+                Compounds = new CompoundBag(0),
             };
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
@@ -509,7 +509,7 @@ public static class SpawnHelpers
             // Finish setting up these two components
             entity.Set(container);
 
-            compounds.AddInitialCompounds(species.InitialCompounds);
+            storage.Compounds.AddInitialCompounds(species.InitialCompounds);
             entity.Set(storage);
         }
 

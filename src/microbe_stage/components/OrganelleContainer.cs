@@ -433,7 +433,7 @@
                 if (organelle.Definition.HasBindingFeature)
                     container.HasBindingAgent = true;
 
-                container.OrganellesCapacity =
+                container.OrganellesCapacity +=
                     MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelle.Definition,
                         organelle.Upgrades);
 
