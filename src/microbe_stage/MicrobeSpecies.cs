@@ -168,19 +168,23 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
+        throw new NotImplementedException("need to reimplement photographing cells");
 
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        microbe.ApplySpecies(this);
+        // var microbe = (Microbe)instancedScene;
+        // microbe.IsForPreviewOnly = true;
+        //
+        // // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
+        // microbe._Ready();
+        //
+        // microbe.ApplySpecies(this);
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        throw new NotImplementedException();
+
+        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 
     public override object Clone()
