@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Html.Dom;
@@ -254,6 +255,8 @@ public static class WikiUpdater
         var reader = File.ReadLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken);
         var writer = new StreamWriter(File.Create(TEMP_TRANSLATION_FILE), new UTF8Encoding(false));
 
+        var keyLinePattern = new Regex(@"^msgid ""(.*?)""$");
+
         var isReplacingValue = false;
         var isFuzzyValue = false;
         await foreach (var line in reader)
@@ -279,14 +282,15 @@ public static class WikiUpdater
                 continue;
             }
 
-            if (!line.Contains("msgid \""))
+            var keyLineMatch = keyLinePattern.Match(line);
+            if (!keyLineMatch.Success)
             {
                 // Copy existing lines that we don't want to replace
                 await writer.WriteLineAsync(line);
                 continue;
             }
 
-            var key = line.Split("\"")[1];
+            var key = keyLineMatch.Groups[1].Value;
             if (translationPairs.TryGetValue(key, out var value))
             {
                 // Skip fuzzy labels if present, since we know this value
