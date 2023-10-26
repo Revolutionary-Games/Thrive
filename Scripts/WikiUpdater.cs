@@ -255,7 +255,7 @@ public static class WikiUpdater
         var reader = File.ReadLinesAsync(ENGLISH_TRANSLATION_FILE, Encoding.UTF8, cancellationToken);
         var writer = new StreamWriter(File.Create(TEMP_TRANSLATION_FILE), new UTF8Encoding(false));
 
-        var keyLinePattern = new Regex(@"^msgid ""(.*?)""$");
+        var keyLinePattern = new Regex(@"^msgid ""(.*)""$");
 
         var isReplacingValue = false;
         var isFuzzyValue = false;
