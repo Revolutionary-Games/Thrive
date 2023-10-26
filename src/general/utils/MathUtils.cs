@@ -59,15 +59,6 @@ public static class MathUtils
     }
 
     /// <summary>
-    ///   Rotation for the pilus physics cone
-    /// </summary>
-    public static Quat CreateRotationForPhysicsOrganelle(float angle)
-    {
-        return new Quat(new Vector3(-1, 0, 0), 90 * DEGREES_TO_RADIANS) *
-            new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
-    }
-
-    /// <summary>
     ///   Returns a Lerped value, and snaps to the target value if current and target
     ///   value is approximately equal by the specified tolerance value.
     /// </summary>

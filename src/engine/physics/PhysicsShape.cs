@@ -38,6 +38,11 @@ public class PhysicsShape : IDisposable
         return new PhysicsShape(NativeMethods.CreateSphereShape(radius, density));
     }
 
+    public static PhysicsShape CreateCylinder(float halfHeight, float radius, float density = 1000)
+    {
+        return new PhysicsShape(NativeMethods.CreateCylinderShape(halfHeight, radius, density));
+    }
+
     /// <summary>
     ///   Creates a microbe shape or returns from one from the cache
     /// </summary>
@@ -98,6 +103,34 @@ public class PhysicsShape : IDisposable
             (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
     }
 
+    public static PhysicsShape CreateCombinedShapeStatic(
+        IReadOnlyList<(PhysicsShape Shape, Vector3 Position, Quat Rotation)> subShapes)
+    {
+        var pool = ArrayPool<SubShapeDefinition>.Shared;
+
+        // Need some temporary memory to hold the sub-shapes in
+        var count = subShapes.Count;
+        var buffer = pool.Rent(count);
+
+        try
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                var data = subShapes[i];
+                buffer[i] = new SubShapeDefinition(data.Position, data.Rotation, data.Shape.AccessShapeInternal());
+            }
+
+            // TODO: does this need to fix the buffer memory?
+            return new PhysicsShape(NativeMethods.CreateStaticCompoundShape(buffer[0], (uint)count));
+
+            // return new PhysicsShape(NativeMethods.CreateStaticCompoundShape(pin.AddrOfPinnedObject(), (uint)count));
+        }
+        finally
+        {
+            pool.Return(buffer);
+        }
+    }
+
     /// <summary>
     ///   Loads a physics shape from a Godot resource
     /// </summary>
@@ -143,6 +176,7 @@ public class PhysicsShape : IDisposable
             buffer[i] = new JVecF3(dataSource[i]);
         }
 
+        // TODO: does this need to fix the buffer memory?
         cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density));
 
         cache.WriteLoadedShape(path, density, cached);
@@ -160,6 +194,11 @@ public class PhysicsShape : IDisposable
     public float GetMass()
     {
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
+    }
+
+    public Vector3 GetInertiaAngles()
+    {
+        return NativeMethods.ShapeGetRotationalInertiaAngles(AccessShapeInternal());
     }
 
     public void Dispose()
@@ -211,6 +250,9 @@ internal static partial class NativeMethods
     internal static extern IntPtr CreateSphereShape(float radius, float density);
 
     [DllImport("thrive_native")]
+    internal static extern IntPtr CreateCylinderShape(float halfHeight, float radius, float density);
+
+    [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
         float scale);
 
@@ -222,8 +264,14 @@ internal static partial class NativeMethods
     internal static extern IntPtr CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density);
 
     [DllImport("thrive_native")]
+    internal static extern IntPtr CreateStaticCompoundShape(in SubShapeDefinition subShapes, uint shapeCount);
+
+    [DllImport("thrive_native")]
     internal static extern void ReleaseShape(IntPtr shape);
 
     [DllImport("thrive_native")]
     internal static extern float ShapeGetMass(IntPtr shape);
+
+    [DllImport("thrive_native")]
+    internal static extern JVecF3 ShapeGetRotationalInertiaAngles(IntPtr shape);
 }

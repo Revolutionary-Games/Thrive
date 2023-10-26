@@ -53,12 +53,6 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    /// <summary>
-    ///   Total mass of all the organelles in this cell type
-    /// </summary>
-    [JsonIgnore]
-    public float TotalMass => Organelles.Sum(o => o.Definition.Mass);
-
     [JsonIgnore]
     public string FormattedName => TypeName;
 
@@ -150,6 +144,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed =
+            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
     }
 }

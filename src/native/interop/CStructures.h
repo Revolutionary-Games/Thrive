@@ -40,6 +40,14 @@ extern "C"
         char RayData[PHYSICS_RAY_DATA_SIZE];
     } PhysicsRayWithUserData;
 
+    typedef struct __attribute__((packed)) SubShapeDefinition
+    {
+        JQuat Rotation;
+        JVecF3 Position;
+        uint32_t UserData;
+        PhysicsShape* Shape;
+    } SubShapeDefinition;
+
     static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
 }
 

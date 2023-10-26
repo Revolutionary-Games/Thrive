@@ -43,7 +43,7 @@ public:
     // Without packed attribute there are 3 bytes of extra padding here
 };
 
-static_assert(sizeof (PhysicsCollision) == PHYSICS_COLLISION_DATA_SIZE);
+static_assert(sizeof(PhysicsCollision) == PHYSICS_COLLISION_DATA_SIZE);
 
 using CollisionRecordListType = PhysicsCollision*;
 

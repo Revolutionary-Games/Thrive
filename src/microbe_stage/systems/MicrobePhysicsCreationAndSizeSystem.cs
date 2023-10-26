@@ -1,6 +1,9 @@
 ﻿namespace Systems
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -20,9 +23,31 @@
     [WritesToComponent(typeof(CompoundAbsorber))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
+        private readonly float pilusDensity;
+
+        private readonly ThreadLocal<List<(PhysicsShape Shape, Vector3 Position, Quat Rotation)>>
+            temporaryCombinedShapeData = new(() => new List<(PhysicsShape Shape, Vector3 Position, Quat Rotation)>());
+
+        private readonly Lazy<PhysicsShape> eukaryoticPilus;
+
+        /// <summary>
+        ///   Scaled down pilus size for bacteria
+        /// </summary>
+        private readonly Lazy<PhysicsShape> prokaryoticPilus;
+
         public MicrobePhysicsCreationAndSizeSystem(World world, IParallelRunner parallelRunner) : base(world,
             parallelRunner)
         {
+            pilusDensity = SimulationParameters.Instance.GetOrganelleType("pilus").Density;
+
+            eukaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE));
+            prokaryoticPilus = new Lazy<PhysicsShape>(() => CreatePilusShape(Constants.PILUS_PHYSICS_SIZE * 0.5f));
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -62,21 +87,6 @@
 
                 UpdateNonPhysicsSizeData(entity, membrane.EncompassingCircleRadius, ref cellProperties);
 
-                // TODO: shape creation could be postponed for colony members until they are detached (right now
-                // their bodies won't get created as they are disabled, so make sure that works and then remove this
-                // TODO comment)
-
-                extraData.MicrobeShapesCount = 0;
-                extraData.TotalShapeCount = 0;
-                extraData.PilusCount = 0;
-
-                // TODO: background thread shape creation to not take up main thread time
-                shapeHolder.Shape = PhysicsShape.GetOrCreateMicrobeShape(rawData, count,
-                    MicrobeInternalCalculations.MicrobeDensity(), cellProperties.IsBacteria);
-
-                ++extraData.MicrobeShapesCount;
-                ++extraData.TotalShapeCount;
-
                 ref var organelles = ref entity.Get<OrganelleContainer>();
 
                 if (organelles.Organelles == null)
@@ -85,43 +95,42 @@
                         "Organelles need to be initialized before membrane is generated for shape creation");
                 }
 
+                // TODO: shape creation could be postponed for colony members until they are detached (right now
+                // their bodies won't get created as they are disabled, so make sure that works and then remove this
+                // TODO comment)
+
+                // If there are no pili or colony members then a single shape is enough for this microbe
+                bool requiresCompoundShape = false;
+
                 if (entity.Has<MicrobeColony>())
                 {
-                    // TODO: cell colony physics (and colony member pili), the bodies need to be added colony member
-                    // list order
+                    requiresCompoundShape = true;
+
+                    // TODO: skip creating shape if some colony member isn't ready yet
 
                     throw new NotImplementedException();
                 }
-
-                // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
-                // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
-                // And to detect between the pilus variants, first normal pili are created and only then injectisomes
-                bool hasInjectisomes = false;
-
-                foreach (var organelle in organelles.Organelles)
+                else if (organelles.Organelles.Any(o => o.Definition.HasPilusComponent))
                 {
-                    if (organelle.Definition.HasPilusComponent)
-                    {
-                        if (organelle.Upgrades.HasInjectisomeUpgrade())
-                        {
-                            hasInjectisomes = true;
-                            continue;
-                        }
-
-                        CreatePilusShape(ref extraData);
-                    }
+                    requiresCompoundShape = true;
                 }
 
-                if (hasInjectisomes)
+                extraData.MicrobeShapesCount = 0;
+                extraData.TotalShapeCount = 0;
+                extraData.PilusCount = 0;
+
+                // TODO: background thread shape creation to not take up main thread time (or maybe at least the
+                // density calculation?)
+
+                if (!requiresCompoundShape)
                 {
-                    foreach (var organelle in organelles.Organelles)
-                    {
-                        if (organelle.Definition.HasPilusComponent && organelle.Upgrades.HasInjectisomeUpgrade())
-                        {
-                            CreatePilusShape(ref extraData);
-                            ++extraData.PilusInjectisomeCount;
-                        }
-                    }
+                    shapeHolder.Shape = CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties,
+                        rawData, count);
+                }
+                else
+                {
+                    shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles, ref cellProperties,
+                        entity, rawData, count);
                 }
 
                 // Ensure physics body is recreated if the shape changed
@@ -134,39 +143,130 @@
             }
         }
 
-        private void CreatePilusShape(ref MicrobePhysicsExtraData extraData)
+        private PhysicsShape CreateSimpleMicrobeShape(ref MicrobePhysicsExtraData extraData,
+            ref OrganelleContainer organelles, ref CellProperties cellProperties,
+            Vector2[] membraneVertices, int vertexCount)
         {
-            throw new NotImplementedException();
+            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
+                MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
+                cellProperties.IsBacteria);
 
-            // TODO: does this still need:
-            // var rotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+            UpdateRotationRate(shape, ref organelles);
 
-            // TODO: does this need some special positioning like in the old version:
-            // membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
+            ++extraData.MicrobeShapesCount;
+            ++extraData.TotalShapeCount;
 
-            // if (organelle.ParentMicrobe!.CellTypeProperties.IsBacteria)
-            // {
-            //     membraneCoords *= 0.5f;
-            // }
-            //
-            // var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+            // Simple shape can't have pili in it
 
-            // TODO: cache two variants of the pilus shape: one for bacteria and one for eukaryotes
-            /*float pilusSize = Constants.PILUS_PHYSICS_SIZE;
+            return shape;
+        }
 
-            // Scale the size down for bacteria
-            if (organelle!.ParentMicrobe!.CellTypeProperties.IsBacteria)
+        private PhysicsShape CreateCompoundMicrobeShape(ref MicrobePhysicsExtraData extraData,
+            ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
+            Vector2[] membraneVertices, int vertexCount)
+        {
+            var combinedData = temporaryCombinedShapeData.Value;
+
+            // Base microbe shape is always first
+            combinedData.Add((
+                CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
+                    vertexCount), Vector3.Zero, Quat.Identity));
+
+            UpdateRotationRate(combinedData[combinedData.Count - 1].Shape, ref organelles);
+
+            // Then the (potential) colony members
+            if (entity.Has<MicrobeColony>())
             {
-                pilusSize *= 0.5f;
+                // TODO: cell colony physics (and colony member pili), the bodies need to be added colony member
+                // list order (should skip until all colony members are initialized)
+                // Add to shape count first
+
+                // TODO: colony rotation rate update / calculation
+
+                throw new NotImplementedException();
             }
 
-            // Turns out cones are really hated by physics engines, so we'll need to permanently make do with a cylinder
-            var shape = new CylinderShape();
-            shape.Radius = pilusSize / 10.0f;
-            shape.Height = pilusSize;*/
+            // Pili are after the microbe shapes, otherwise pilus collision detection can't be done as we just
+            // compare the sub-shape index to the number of microbe collisions to determine if something is a pilus
+            // And to detect between the pilus variants, first normal pili are created and only then injectisomes
+            bool hasInjectisomes = false;
+
+            foreach (var organelle in organelles.Organelles!)
+            {
+                if (organelle.Definition.HasPilusComponent)
+                {
+                    if (organelle.Upgrades.HasInjectisomeUpgrade())
+                    {
+                        hasInjectisomes = true;
+                        continue;
+                    }
+
+                    combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle));
+                }
+            }
+
+            if (hasInjectisomes)
+            {
+                foreach (var organelle in organelles.Organelles)
+                {
+                    if (organelle.Definition.HasPilusComponent && organelle.Upgrades.HasInjectisomeUpgrade())
+                    {
+                        combinedData.Add(CreatePilusShape(ref extraData, ref cellProperties, organelle));
+                        ++extraData.PilusInjectisomeCount;
+                    }
+                }
+            }
+
+            if (extraData.TotalShapeCount != combinedData.Count)
+                throw new Exception("Incorrect total shape count result in microbe physics creation");
+
+            // Create the final shape
+            // This uses a static combined shape as the shapes are fully re-created each time
+            // TODO: investigate if modifiable combined shape would be a better fit for the game
+            var combinedShape = PhysicsShape.CreateCombinedShapeStatic(combinedData);
+
+            combinedData.Clear();
+
+            return combinedShape;
+        }
+
+        private (PhysicsShape Shape, Vector3 Position, Quat Rotation) CreatePilusShape(
+            ref MicrobePhysicsExtraData extraData, ref CellProperties cellProperties,
+            PlacedOrganelle placedOrganelle)
+        {
+            var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
+                placedOrganelle.Orientation, out var rotation);
+
+            var (position, orientation) = placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation);
 
             ++extraData.PilusCount;
             ++extraData.TotalShapeCount;
+
+            return (cellProperties.IsBacteria ? prokaryoticPilus.Value : eukaryoticPilus.Value, position, orientation);
+        }
+
+        /// <summary>
+        ///   Updates the microbe movement's used rotation rate. This is here as it is more efficient to calculate this
+        ///   when the physics shape is also done.
+        /// </summary>
+        private void UpdateRotationRate(PhysicsShape baseShape, ref OrganelleContainer organelleContainer)
+        {
+            if (organelleContainer.Organelles == null)
+            {
+                throw new InvalidOperationException(
+                    "Can't calculate rotation rate for organelle container with no organelles");
+            }
+
+            organelleContainer.RotationSpeed =
+                MicrobeInternalCalculations.CalculateRotationSpeed(baseShape, organelleContainer.Organelles);
+        }
+
+        private PhysicsShape CreatePilusShape(float size)
+        {
+            var radius = size / 9.0f;
+
+            // Jolt physics also doesn't support cones so, cylinder is now the permanent pilus shape
+            return PhysicsShape.CreateCylinder(size * 0.5f, radius, pilusDensity);
         }
 
         private void UpdateNonPhysicsSizeData(in Entity entity, float membraneRadius, ref CellProperties cellProperties)
@@ -178,6 +278,14 @@
                 // Max here buffs compound absorbing for the smallest cells
                 entity.Get<CompoundAbsorber>().AbsorbRadius =
                     Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                temporaryCombinedShapeData.Dispose();
             }
         }
     }

@@ -148,12 +148,19 @@ public static class Constants
 
     public const float BASE_MOVEMENT_FORCE = 910.0f;
 
+    /// <summary>
+    ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
+    ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
+    ///   base density has as much impact on the average density as 4 organelles.
+    /// </summary>
+    public const float BASE_CELL_DENSITY_VOLUME = 4;
+
+    public const float BASE_CELL_DENSITY = 1000;
+
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const float CELL_BASE_ROTATION = 0.2f;
-    public const float CELL_MAX_ROTATION = 0.40f;
-    public const float CELL_MIN_ROTATION = 0.005f;
-    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.5f;
+    public const float CELL_MAX_ROTATION = 3.0f;
+    public const float CELL_MIN_ROTATION = 0.05f;
     public const float CILIA_ROTATION_FACTOR = 0.008f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
 
@@ -673,7 +680,7 @@ public static class Constants
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 20.0f;
 
-    public const float PILUS_PHYSICS_SIZE = 4.7f;
+    public const float PILUS_PHYSICS_SIZE = 4.4f;
 
     /// <summary>
     ///   Damage a single injectisome stab does

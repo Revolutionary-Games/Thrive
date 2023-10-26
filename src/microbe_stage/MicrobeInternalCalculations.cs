@@ -143,9 +143,7 @@ public static class MicrobeInternalCalculations
         var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
         var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-            MicrobeDensity(), isBacteria);
-
-        var microbeMass = shape.GetMass();
+            CalculateAverageDensity(organelles), isBacteria);
 
         float organelleMovementForce = 0;
 
@@ -165,8 +163,6 @@ public static class MicrobeInternalCalculations
 
         foreach (var organelle in organelles)
         {
-            microbeMass += organelle.Definition.Mass;
-
             if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
@@ -209,7 +205,7 @@ public static class MicrobeInternalCalculations
         float baseMovementForce = Constants.BASE_MOVEMENT_FORCE *
             (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
 
         return finalSpeed;
     }

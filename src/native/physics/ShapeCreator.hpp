@@ -12,6 +12,16 @@ class IndexedTriangle;
 namespace Thrive::Physics
 {
 
+class ShapeWrapper;
+
+struct __attribute__((packed)) SubShapeDefinition
+{
+    JQuat Rotation;
+    JVecF3 Position;
+    uint32_t UserData;
+    ShapeWrapper* Shape;
+};
+
 /// \brief More advanced shape creation helper class than SimpleShapes
 class ShapeCreator
 {
@@ -32,10 +42,12 @@ public:
     /// \todo Figure out how to use physics materials here
     static JPH::RefConst<JPH::Shape> CreateStaticCompound(
         const std::vector<std::tuple<JPH::RefConst<JPH::Shape>, JPH::Vec3, JPH::Quat, uint32_t>>& subShapes);
+    static JPH::RefConst<JPH::Shape> CreateStaticCompound(SubShapeDefinition* subShapes, size_t count);
 
     /// \brief Variant of the compound shape that is allowed to be modified (but has lower performance than static)
     static JPH::RefConst<JPH::Shape> CreateMutableCompound(
         const std::vector<std::tuple<JPH::RefConst<JPH::Shape>, JPH::Vec3, JPH::Quat, uint32_t>>& subShapes);
+    static JPH::RefConst<JPH::Shape> CreateMutableCompound(SubShapeDefinition* subShapes, size_t count);
 
     /// \brief Creates a mesh collision (note that the performance is worse and this can't collide with everything even
     /// when movable)
@@ -57,3 +69,6 @@ public:
 };
 
 } // namespace Thrive::Physics
+
+static_assert(
+    sizeof(SubShapeDefinition) == sizeof(Thrive::Physics::SubShapeDefinition), "sub-shape creation data size mismatch");

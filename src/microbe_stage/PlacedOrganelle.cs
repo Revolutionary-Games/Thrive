@@ -372,6 +372,21 @@ public class PlacedOrganelle : IPositionedOrganelle
             externalPosition + orientation.Xform(Definition.ModelOffset));
     }
 
+    public (Vector3 Position, Quat Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,
+        Quat orientation)
+    {
+        // The shape needs to be rotated 90 degrees to point forward for (so that the pilus is not a vertical column
+        // but is instead a stabby thing)
+        var extraRotation = new Quat(new Vector3(1, 0, 0), Mathf.Pi * 0.5f);
+
+        // TODO: this doesn't seem to work correctly for eukaryotes
+        // Maybe should have a variable for physics shape offset if different organelles need different things
+        // The y-offset is needed to not have the shapes be really low down below
+        var offset = new Vector3(0, 0.08f, 1.0f);
+
+        return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
+    }
+
     private float CalculateTransformScale()
     {
         float growth;

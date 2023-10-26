@@ -47,6 +47,10 @@ public static class NativeInterop
             GD.PrintErr("Failed to initialize potential for debug drawing: ", e);
             debugDrawIsPossible = false;
         }
+
+#if DEBUG
+        CheckSizesOfInteropTypes();
+#endif
     }
 
     /// <summary>
@@ -142,6 +146,27 @@ public static class NativeInterop
     private static void ForwardTriangleDraw(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour)
     {
         OnTriangleDrawHandler?.Invoke(vertex1, vertex2, vertex3, colour);
+    }
+
+    private static void CheckSizesOfInteropTypes()
+    {
+        CheckSizeOfType<JVec3>(3 * 8);
+        CheckSizeOfType<JVecF3>(3 * 4);
+        CheckSizeOfType<JQuat>(4 * 4);
+        CheckSizeOfType<JColour>(4 * 4);
+
+        CheckSizeOfType<PhysicsCollision>(48);
+        CheckSizeOfType<SubShapeDefinition>(40);
+    }
+
+    private static void CheckSizeOfType<T>(int expected)
+    {
+        var size = Marshal.SizeOf<T>();
+        if (size != expected)
+        {
+            throw new Exception(
+                $"Unexpected size for type {typeof(T).FullName}, expected size to be: {expected} but it is {size}");
+        }
     }
 }
 

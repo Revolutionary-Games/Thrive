@@ -141,3 +141,26 @@ public struct JColour
         return new Color(d.R, d.G, d.B, d.A);
     }
 }
+
+/// <summary>
+///   Sub-shape data for the native side methods
+/// </summary>
+[StructLayout(LayoutKind.Sequential)]
+public struct SubShapeDefinition
+{
+    public JQuat Rotation;
+
+    public JVecF3 Position;
+
+    public uint UserData;
+
+    public IntPtr ShapeNativePtr;
+
+    public SubShapeDefinition(Vector3 position, Quat rotation, IntPtr shapePtr, uint userData = 0)
+    {
+        Position = new JVecF3(position);
+        Rotation = new JQuat(rotation);
+        ShapeNativePtr = shapePtr;
+        UserData = userData;
+    }
+}

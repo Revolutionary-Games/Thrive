@@ -65,7 +65,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
     [JsonProperty]
-    public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;
+    public float BaseRotationSpeed { get; set; }
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
@@ -236,6 +236,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed =
+            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
     }
 }

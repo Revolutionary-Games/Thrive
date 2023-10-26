@@ -17,34 +17,6 @@ using Newtonsoft.Json;
 /// </remarks>
 public class OrganelleDefinition : IRegistryType
 {
-    // TODO: split the following comment to the actual properties in this class:
-    /*
-    Organelle attributes:
-    mass:   How heavy an organelle is. Affects speed, mostly.
-
-    mpCost: The cost (in mutation points) an organelle costs in the
-    microbe editor.
-
-    mesh:   The name of the mesh file of the organelle.
-    It has to be in the models folder.
-
-    texture: The name of the texture file to use
-
-    hexes:  A table of the hexes that the organelle occupies.
-
-    chanceToCreate: The (relative) chance this organelle will appear in a
-    randomly generated or mutated microbe (to do roulette selection).
-
-    prokaryoteChance: The (relative) chance this organelle will appear in a
-    randomly generated or mutated prokaryotes (to do roulette selection).
-
-    processes:  A table with all the processes this organelle does,
-    and the capacity of the process
-
-    upgradeGUI:  path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not
-    modifiable
-    */
-
     /// <summary>
     ///   User readable name
     /// </summary>
@@ -89,15 +61,30 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public Texture? LoadedIcon;
 
-    public float Mass;
+    // TODO: switch this out for a density value and start using this in the physics body creation
 
     /// <summary>
-    ///   The chance this organelle is placed in an eukaryote when applying mutations
+    ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
+    ///   microbe collision shapes can be reused more widely
+    /// </summary>
+    public float Density = 1000;
+
+    /// <summary>
+    ///   How much the density of this organelle contributes. Should be set to 0 for pilus and other organelles that
+    ///   have separate physics shapes created for them. Bigger organelles should have larger values to make them
+    ///   impact the overall physics mass more. Similarly to <see cref="Density"/> this should also have only a few
+    ///   used values among all organelles to make shape caching more effective (as the cache depends on density).
+    /// </summary>
+    public float RelativeDensityVolume = 1;
+
+    /// <summary>
+    ///   The (relative) chance this organelle is placed in an eukaryote when applying mutations or generating random
+    ///   species (to do roulette selection).
     /// </summary>
     public float ChanceToCreate;
 
     /// <summary>
-    ///   Same as ChanceToCreate but for prokaryotes (bacteria)
+    ///   Same as <see cref="ChanceToCreate"/> but for prokaryotes (bacteria)
     /// </summary>
     public float ProkaryoteChance;
 
@@ -164,7 +151,7 @@ public class OrganelleDefinition : IRegistryType
     public string? IconPath;
 
     /// <summary>
-    ///   Cost of placing this organelle in the editor
+    ///   Cost of placing this organelle in the editor (in mutation points)
     /// </summary>
     public int MPCost;
 
@@ -189,7 +176,7 @@ public class OrganelleDefinition : IRegistryType
     public bool LAWK = true;
 
     /// <summary>
-    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
+    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable.
     /// </summary>
     public string? UpgradeGUI;
 
@@ -363,9 +350,9 @@ public class OrganelleDefinition : IRegistryType
 
         // Components list is now allowed to be empty as some organelles do not need any components
 
-        if (Mass <= 0.0f)
+        if (Density < 100)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
+            throw new InvalidRegistryDataException(name, GetType().Name, "Density is unset or unrealistically low");
         }
 
         if (ProkaryoteChance != 0 && RequiresNucleus)

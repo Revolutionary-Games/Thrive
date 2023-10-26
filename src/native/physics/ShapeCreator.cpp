@@ -8,6 +8,9 @@
 #include "Jolt/Physics/Collision/Shape/StaticCompoundShape.h"
 
 #include "core/Logger.hpp"
+#include "interop/JoltTypeConversions.hpp"
+
+#include "ShapeWrapper.hpp"
 
 // ------------------------------------ //
 namespace Thrive::Physics
@@ -49,9 +52,30 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateStaticCompound(
 {
     JPH::StaticCompoundShapeSettings settings;
 
+    settings.mSubShapes.reserve(subShapes.size());
+
     for (const auto& shape : subShapes)
     {
         settings.AddShape(std::get<1>(shape), std::get<2>(shape), std::get<0>(shape), std::get<3>(shape));
+    }
+
+    return settings.Create().Get();
+}
+
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateStaticCompound(SubShapeDefinition* subShapes, size_t count)
+{
+    JPH::StaticCompoundShapeSettings settings;
+
+    settings.mSubShapes.reserve(count);
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        const auto& shape = subShapes[i];
+
+        JPH_ASSERT(shape.Shape);
+
+        settings.AddShape(
+            Vec3FromCAPI(shape.Position), QuatFromCAPI(shape.Rotation), shape.Shape->GetShape(), shape.UserData);
     }
 
     return settings.Create().Get();
@@ -62,9 +86,30 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMutableCompound(
 {
     JPH::MutableCompoundShapeSettings settings;
 
+    settings.mSubShapes.reserve(subShapes.size());
+
     for (const auto& shape : subShapes)
     {
         settings.AddShape(std::get<1>(shape), std::get<2>(shape), std::get<0>(shape), std::get<3>(shape));
+    }
+
+    return settings.Create().Get();
+}
+
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateMutableCompound(SubShapeDefinition* subShapes, size_t count)
+{
+    JPH::MutableCompoundShapeSettings settings;
+
+    settings.mSubShapes.reserve(count);
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        const auto& shape = subShapes[i];
+
+        JPH_ASSERT(shape.Shape);
+
+        settings.AddShape(
+            Vec3FromCAPI(shape.Position), QuatFromCAPI(shape.Rotation), shape.Shape->GetShape(), shape.UserData);
     }
 
     return settings.Create().Get();

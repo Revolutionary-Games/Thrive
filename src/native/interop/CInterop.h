@@ -171,6 +171,8 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateBoxShapeWithDimensions(
         JVecF3 halfDimensions, float density = 1000);
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateSphereShape(float radius, float density = 1000);
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateCylinderShape(
+        float halfHeight, float radius, float density = 1000);
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeConvex(
         JVecF3* points, uint32_t pointCount, float density, float scale);
@@ -179,6 +181,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateConvexShape(
         JVecF3* points, uint32_t pointCount, float density);
+
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateStaticCompoundShape(
+        SubShapeDefinition* subShapes, uint32_t shapeCount);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 

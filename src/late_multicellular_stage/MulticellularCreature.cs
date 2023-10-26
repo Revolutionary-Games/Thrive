@@ -244,7 +244,9 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
         compounds.NominalCapacity = 100;
 
         // TODO: better mass calculation
-        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+        // TotalMass is no longer available due to microbe stage physics refactor
+        // Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * 30);
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
