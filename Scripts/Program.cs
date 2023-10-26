@@ -289,6 +289,11 @@ public class Program
             Check,
 
             /// <summary>
+            ///   Check if libraries are present for distribution
+            /// </summary>
+            CheckDistributable,
+
+            /// <summary>
             ///   Installs a library to work with Godot editor
             /// </summary>
             Install,
@@ -385,6 +390,10 @@ public class Program
         [Option('d', "dehydrated", Default = false,
             HelpText = "Make dehydrated builds by separating out big files. For use with DevBuilds")]
         public bool Dehydrated { get; set; }
+
+        [Option("fallback-native-local-only", Default = false,
+            HelpText = "Fallback to using native library only meant for local play (not recommended for release)")]
+        public bool FallbackToLocalNative { get; set; }
 
         public override bool Compress => CompressRaw == true;
     }

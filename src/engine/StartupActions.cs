@@ -34,7 +34,24 @@ public class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        NativeInterop.Load();
+        bool skipNative = false;
+
+        try
+        {
+            NativeInterop.Load();
+        }
+        catch (DllNotFoundException)
+        {
+            if (Engine.EditorHint)
+            {
+                skipNative = true;
+                GD.Print("Skipping native library load in editor as it is not available");
+            }
+            else
+            {
+                throw;
+            }
+        }
 
         // Load settings here, to make sure locales etc. are applied to the main loaded and autoloaded scenes
         try
@@ -48,6 +65,7 @@ public class StartupActions : Node
             GD.PrintErr("Failed to initialize settings: ", e);
         }
 
-        NativeInterop.Init(Settings.Instance);
+        if (!skipNative)
+            NativeInterop.Init(Settings.Instance);
     }
 }

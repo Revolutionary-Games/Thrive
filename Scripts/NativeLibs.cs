@@ -17,7 +17,9 @@ using SharedBase.Utilities;
 public class NativeLibs
 {
     private const string LibraryFolder = "native_libs";
+    private const string DistributableFolderName = "distributable";
     private const string GodotEditorLibraryFolder = ".mono/temp/bin/Debug";
+    private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
 
     private readonly Program.NativeLibOptions options;
 
@@ -92,27 +94,53 @@ public class NativeLibs
 
         foreach (var operation in options.Operations)
         {
-            ColourConsole.WriteNormalLine($"Performing operation {operation}");
-
-            switch (operation)
-            {
-                case Program.NativeLibOptions.OperationMode.Check:
-                    return await OperateOnAllLibraries(CheckLibrary, cancellationToken);
-                case Program.NativeLibOptions.OperationMode.Install:
-                    return await OperateOnAllLibraries(InstallLibraryForEditor, cancellationToken);
-                case Program.NativeLibOptions.OperationMode.Fetch:
-                    throw new NotImplementedException("TODO: implement downloading");
-                case Program.NativeLibOptions.OperationMode.Build:
-                    return await OperateOnAllLibraries(BuildLocally, cancellationToken);
-                case Program.NativeLibOptions.OperationMode.Package:
-                    throw new NotImplementedException("TODO: implement packaging");
-                case Program.NativeLibOptions.OperationMode.Upload:
-                    throw new NotImplementedException("TODO: implement uploading (and package / symbol extract)");
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            if (!await RunOperation(operation, cancellationToken))
+                return false;
         }
 
+        return true;
+    }
+
+    /// <summary>
+    ///   Copies required native library files to a Thrive release
+    /// </summary>
+    /// <param name="releaseFolder">The root of the release folder (with Thrive.pck and other files)</param>
+    /// <param name="platform">The platform this release is for</param>
+    /// <param name="useDistributableLibraries">
+    ///   If true then only distributable libraries (with symbols extracted and stripped) are used. Otherwise normally
+    ///   built local libraries can be used.
+    /// </param>
+    public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
+    {
+        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+
+        if (!Directory.Exists(releaseFolder))
+        {
+            ColourConsole.WriteErrorLine($"Release folder to install native library in doesn't exist: {releaseFolder}");
+            ColourConsole.WriteErrorLine("Will not create / attempt to copy anyway as the release would likely " +
+                "be broken due to file structure changing to what this script doesn't expect");
+
+            return false;
+        }
+
+        // Godot doesn't by default put anything in the mono folder so we need to create it
+        var targetFolder = Path.Join(releaseFolder, GodotReleaseLibraryFolder);
+        Directory.CreateDirectory(targetFolder);
+
+        foreach (var library in libraries)
+        {
+            ColourConsole.WriteDebugLine($"Copying native library: {library} to {targetFolder}");
+
+            if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder))
+            {
+                ColourConsole.WriteErrorLine($"Error copying library {library}");
+                return false;
+            }
+
+            ColourConsole.WriteNormalLine($"Copied library {library}");
+        }
+
+        ColourConsole.WriteSuccessLine($"Native libraries for {platform} copied to {releaseFolder}");
         return true;
     }
 
@@ -151,6 +179,37 @@ public class NativeLibs
         }
     }
 
+    private async Task<bool> RunOperation(Program.NativeLibOptions.OperationMode operation,
+        CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteNormalLine($"Performing operation {operation}");
+
+        switch (operation)
+        {
+            case Program.NativeLibOptions.OperationMode.Check:
+                return await OperateOnAllLibraries(
+                    (library, platform, token) => CheckLibrary(library, platform, false, token),
+                    cancellationToken);
+            case Program.NativeLibOptions.OperationMode.CheckDistributable:
+                return await OperateOnAllLibraries(
+                    (library, platform, token) => CheckLibrary(library, platform, true, token),
+                    cancellationToken);
+
+            case Program.NativeLibOptions.OperationMode.Install:
+                return await OperateOnAllLibraries(InstallLibraryForEditor, cancellationToken);
+            case Program.NativeLibOptions.OperationMode.Fetch:
+                throw new NotImplementedException("TODO: implement downloading");
+            case Program.NativeLibOptions.OperationMode.Build:
+                return await OperateOnAllLibraries(BuildLocally, cancellationToken);
+            case Program.NativeLibOptions.OperationMode.Package:
+                throw new NotImplementedException("TODO: implement packaging");
+            case Program.NativeLibOptions.OperationMode.Upload:
+                throw new NotImplementedException("TODO: implement uploading (and package / symbol extract)");
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
     private async Task<bool> OperateOnAllLibraries(
         Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation,
         CancellationToken cancellationToken)
@@ -179,9 +238,10 @@ public class NativeLibs
         return true;
     }
 
-    private Task<bool> CheckLibrary(Library library, PackagePlatform platform, CancellationToken cancellationToken)
+    private Task<bool> CheckLibrary(Library library, PackagePlatform platform, bool distributableVersion,
+        CancellationToken cancellationToken)
     {
-        var file = GetPathToLibraryDll(library, platform, GetLibraryVersion(library));
+        var file = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), distributableVersion);
 
         if (File.Exists(file))
         {
@@ -208,13 +268,21 @@ public class NativeLibs
             Directory.CreateDirectory(target);
         }
 
-        var linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library));
+        var linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), false);
+        var originalLinkTo = linkTo;
 
         if (!File.Exists(linkTo))
         {
-            ColourConsole.WriteErrorLine(
-                $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {linkTo}");
-            return Task.FromResult(false);
+            // Fall back to distributable version
+            linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), true);
+
+            if (!File.Exists(linkTo))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {originalLinkTo}");
+                ColourConsole.WriteNormalLine("Distributable version also didn't exist");
+                return Task.FromResult(false);
+            }
         }
 
         var linkFile = Path.Join(target, GetLibraryDllName(library, platform));
@@ -235,6 +303,28 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine($"Successfully linked {library} on {platform}");
         return Task.FromResult(true);
+    }
+
+    private bool CopyLibraryFiles(Library library, PackagePlatform platform, bool useDistributableLibraries,
+        string target)
+    {
+        // TODO: other files?
+        var file = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), useDistributableLibraries);
+
+        if (!File.Exists(file))
+        {
+            ColourConsole.WriteErrorLine($"Expected file doesn't exist at: {file}");
+            ColourConsole.WriteNormalLine("Have the native libraries been built / downloaded?");
+            return false;
+        }
+
+        var targetFile = Path.Join(target, Path.GetFileName(file));
+
+        File.Copy(file, targetFile, true);
+
+        ColourConsole.WriteNormalLine($"Copied {file} -> {targetFile} for {platform}");
+
+        return true;
     }
 
     private async Task<bool> BuildLocally(Library library, PackagePlatform platform,
@@ -341,8 +431,15 @@ public class NativeLibs
     /// <summary>
     ///   Path to the library's root where all version specific folders are added
     /// </summary>
-    private string GetPathToLibrary(Library library, PackagePlatform platform, string version)
+    private string GetPathToLibrary(Library library, PackagePlatform platform, string version,
+        bool distributableVersion)
     {
+        if (distributableVersion)
+        {
+            return Path.Combine(LibraryFolder, DistributableFolderName, platform.ToString().ToLowerInvariant(),
+                library.ToString(), version, options.DebugLibrary ? "debug" : "release");
+        }
+
         // TODO: should the paths for the libraries include the library name? (cmake is used to compile all at once)
 
         // The paths are a bit convoluted to easily be able to install with cmake to the target
@@ -355,9 +452,10 @@ public class NativeLibs
         return Path.Combine(LibraryFolder, platform.ToString().ToLowerInvariant(), version);
     }
 
-    private string GetPathToLibraryDll(Library library, PackagePlatform platform, string version)
+    private string GetPathToLibraryDll(Library library, PackagePlatform platform, string version,
+        bool distributableVersion)
     {
-        var basePath = GetPathToLibrary(library, platform, version);
+        var basePath = GetPathToLibrary(library, platform, version, distributableVersion);
 
         return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
     }
