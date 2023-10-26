@@ -81,16 +81,9 @@ public static class WikiUpdater
         var sections = GetMainBodySections(body);
         var untranslatedSections = sections.Select(section => UntranslateSection(section, "ORGANELLES_ROOT")).ToList();
 
-        var untranslatedPage = new Wiki.Page(
-            "WIKI_PAGE_ORGANELLES_ROOT",
-            "OrganellesRoot",
-            ORGANELLE_CATEGORY,
+        var untranslatedPage = new Wiki.Page("WIKI_PAGE_ORGANELLES_ROOT", "OrganellesRoot", ORGANELLE_CATEGORY,
             untranslatedSections);
-        var translatedPage = new Wiki.Page(
-            "Organelles",
-            "OrganellesRoot",
-            ORGANELLE_CATEGORY,
-            sections);
+        var translatedPage = new Wiki.Page("Organelles", "OrganellesRoot", ORGANELLE_CATEGORY, sections);
 
         ColourConsole.WriteSuccessLine("Populated content for organelle root page");
 
@@ -242,10 +235,10 @@ public static class WikiUpdater
             // Translate page names
             translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
 
-            for (var j = 0; j < untranslatedPage.Sections.Count; j++)
+            for (var i = 0; i < untranslatedPage.Sections.Count; ++i)
             {
-                var untranslatedSection = untranslatedPage.Sections[j];
-                var translatedSection = translatedPage.Sections[j];
+                var untranslatedSection = untranslatedPage.Sections[i];
+                var translatedSection = translatedPage.Sections[i];
 
                 // Translate body sections
                 translationPairs.Add(untranslatedSection.SectionBody, translatedSection.SectionBody);
@@ -265,7 +258,7 @@ public static class WikiUpdater
         var isFuzzyValue = false;
         await foreach (var line in reader)
         {
-            if (line == string.Empty)
+            if (string.IsNullOrEmpty(line))
             {
                 // Blank lines mark the end of a value we might be replacing, so stop replacing
                 isReplacingValue = false;
@@ -314,10 +307,10 @@ public static class WikiUpdater
                     await writer.WriteLineAsync("msgstr \"\"");
 
                     // Split the content over multiple lines with correct formatting
-                    for (var j = 0; j < linesToInsert.Length; j++)
+                    for (var i = 0; i < linesToInsert.Length; ++i)
                     {
-                        var lineToInsert = linesToInsert[j];
-                        var isLastLine = j == linesToInsert.Length - 1;
+                        var lineToInsert = linesToInsert[i];
+                        var isLastLine = i == linesToInsert.Length - 1;
                         await writer.WriteLineAsync(isLastLine ? $"\"{lineToInsert}\"" : $"\"{lineToInsert}\\n\"");
                     }
                 }
@@ -336,8 +329,7 @@ public static class WikiUpdater
         }
 
         writer.Dispose();
-        File.Copy(TEMP_TRANSLATION_FILE, ENGLISH_TRANSLATION_FILE, true);
-        File.Delete(TEMP_TRANSLATION_FILE);
+        File.Move(TEMP_TRANSLATION_FILE, ENGLISH_TRANSLATION_FILE, true);
     }
 
     /// <summary>

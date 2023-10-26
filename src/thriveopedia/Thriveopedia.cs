@@ -79,6 +79,11 @@ public class Thriveopedia : ControlWithInput
     /// </summary>
     private Stack<ThriveopediaPage> pageFuture = new();
 
+    /// <summary>
+    ///   Flag indicating whether the Thriveopedia has created all wiki pages, since we need to generate them if not.
+    /// </summary>
+    private bool hasGeneratedWiki;
+
     [Signal]
     public delegate void OnThriveopediaClosed();
 
@@ -153,12 +158,6 @@ public class Thriveopedia : ControlWithInput
 
         // Add all pages not associated with a game in progress
         AddPage("Museum");
-        AddPage("WikiRoot");
-
-        foreach (var page in ThriveopediaWikiPage.GenerateAllWikiPages())
-        {
-            AddPage(page.Name, page);
-        }
 
         pageHistory.Push(homePage);
         SelectedPage = homePage;
@@ -170,6 +169,15 @@ public class Thriveopedia : ControlWithInput
 
         if (what == NotificationVisibilityChanged && Visible)
         {
+            if (!hasGeneratedWiki)
+            {
+                AddPage("WikiRoot");
+                foreach (var page in ThriveopediaWikiPage.GenerateAllWikiPages())
+                    AddPage(page.Name, page);
+
+                hasGeneratedWiki = true;
+            }
+
             foreach (var page in allPages.Keys)
                 page.OnThriveopediaOpened();
         }
@@ -453,17 +461,21 @@ public class Thriveopedia : ControlWithInput
     }
 
     /// <summary>
-    ///   Recursively gets all descendents of this page in the page tree.
+    ///   Recursively gets all descendants of this page in the page tree.
     /// </summary>
-    private List<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
+    private IEnumerable<ThriveopediaPage> GetAllChildren(ThriveopediaPage page)
     {
-        var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName).ToList();
+        var directChildren = allPages.Keys.Where(p => p.ParentPageName == page.PageName);
 
-        if (directChildren.Count < 1)
-            return new List<ThriveopediaPage>();
+        foreach (var directChild in directChildren)
+        {
+            yield return directChild;
 
-        var indirectChildren = directChildren.SelectMany(GetAllChildren).ToList();
-        return directChildren.Concat(indirectChildren).ToList();
+            foreach (var descendant in GetAllChildren(directChild))
+            {
+                yield return descendant;
+            }
+        }
     }
 
     private void OnViewOnlinePressed()
