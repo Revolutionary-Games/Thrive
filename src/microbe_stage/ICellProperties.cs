@@ -11,6 +11,10 @@ public interface ICellProperties
     public float MembraneRigidity { get; set; }
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
+
+    // TODO: this is a bit expensive property now as this uses MicrobeInternalCalculations.CalculateRotationSpeed which
+    // now needs to generate the full physics shape to calculate inertia. Maybe the users of this could be switched
+    // to a lazy method to ensure that species generation and modification is faster?
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>

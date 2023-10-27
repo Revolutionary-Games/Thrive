@@ -196,9 +196,15 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
     }
 
-    public Vector3 GetInertiaAngles()
+    /// <summary>
+    ///   Calculates how much angular velocity this shape would get given the torque (based on this shapes rotational
+    ///   inertia)
+    /// </summary>
+    /// <param name="torque">The raw torque to apply</param>
+    /// <returns>Resulting angular velocities around the same axes as the torque was given in</returns>
+    public Vector3 CalculateResultingTorqueFromInertia(Vector3 torque)
     {
-        return NativeMethods.ShapeGetRotationalInertiaAngles(AccessShapeInternal());
+        return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
     }
 
     public void Dispose()
@@ -273,5 +279,6 @@ internal static partial class NativeMethods
     internal static extern float ShapeGetMass(IntPtr shape);
 
     [DllImport("thrive_native")]
-    internal static extern JVecF3 ShapeGetRotationalInertiaAngles(IntPtr shape);
+    internal static extern JVecF3 ShapeCalculateResultingAngularVelocity(IntPtr shape, JVecF3 appliedTorque,
+        float deltaTime = 1);
 }

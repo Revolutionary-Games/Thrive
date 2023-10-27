@@ -562,62 +562,27 @@ float ShapeGetMass(PhysicsShape* shape)
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
-
-JVecF3 ShapeGetRotationalInertiaAngles(PhysicsShape* shape)
+JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime)
 {
-    JPH::Mat44 rotation;
-    JPH::Vec3 diagonal;
+    // This approach is created by combining MotionProperties::ApplyForceTorqueAndDragInternal and
+    // MultiplyWorldSpaceInverseInertiaByVector
 
-    if (!reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)
-             ->GetShape()
-             ->GetMassProperties()
-             .DecomposePrincipalMomentsOfInertia(rotation, diagonal))
-    {
-        LOG_ERROR("Mass properties matrix decompose failed for inertia calculation");
-        return {0, 0, 0};
-    }
+    const auto& massProperties =
+        reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties();
 
-    // Math from https://nghiaho.com/?page_id=846
-    float x = std::atan2(rotation.GetColumn4(1)[2], rotation.GetColumn4(2)[2]);
-    float y = std::atan2(-rotation.GetColumn4(0)[2],
-        std::sqrt(rotation.GetColumn4(1)[2] * rotation.GetColumn4(1)[2] +
-            rotation.GetColumn4(2)[2] * rotation.GetColumn4(2)[2]));
-    float z = std::atan2(rotation.GetColumn4(0)[1], rotation.GetColumn4(0)[0]);
+    const auto inverseRotationInertia = massProperties.mInertia.Inversed().GetRotation();
 
-    return {x, y, z};
+    const auto mInvInertiaDiagonal = inverseRotationInertia.GetDiagonal3();
+    const auto mInertiaRotation = inverseRotationInertia.GetQuaternion().Normalized();
 
-    /*
-    // Math is from https://learnopencv.com/rotation-matrix-to-euler-angles/
-    // "Decomposing and composing a 3×3 rotation matrix" at https://nghiaho.com/?page_id=846 also talks about this
-    const auto rotationMatrix =
-        reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mInertia.GetRotation();
+    const auto accumulatedTorque = Thrive::Vec3FromCAPI(appliedTorque);
+    const auto assumedBodyRotation = JPH::Quat::sIdentity();
 
-    float sy = std::sqrt(rotationMatrix.GetColumn4(0)[0] * rotationMatrix.GetColumn4(0)[0] +
-        rotationMatrix.GetColumn4(1)[0] * rotationMatrix.GetColumn4(1)[0]);
+    JPH::Mat44 rotation = JPH::Mat44::sRotation(assumedBodyRotation * mInertiaRotation);
+    auto result = rotation.Multiply3x3(mInvInertiaDiagonal * rotation.Multiply3x3Transposed(accumulatedTorque));
 
-    bool singular = sy < 1e-6;
-
-    float x, y, z;
-    if (!singular)
-    {
-        x = std::atan2(rotationMatrix.GetColumn4(2)[1], rotationMatrix.GetColumn4(2)[2]);
-        y = std::atan2(-rotationMatrix.GetColumn4(2)[0], sy);
-        z = std::atan2(rotationMatrix.GetColumn4(1)[0], rotationMatrix.GetColumn4(0)[0]);
-    }
-    else
-    {
-        x = std::atan2(-rotationMatrix.GetColumn4(1)[2], rotationMatrix.GetColumn4(1)[1]);
-        y = std::atan2(-rotationMatrix.GetColumn4(2)[0], sy);
-        z = 0;
-    }
-
-    return {x, y, z};
-     */
+    return Thrive::Vec3ToCAPI(deltaTime * result);
 }
-
-#pragma clang diagnostic pop
 
 // ------------------------------------ //
 bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)

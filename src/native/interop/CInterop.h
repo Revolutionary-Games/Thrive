@@ -192,7 +192,8 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API float ShapeGetMass(PhysicsShape* shape);
 
-    [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeGetRotationalInertiaAngles(PhysicsShape* shape);
+    [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeCalculateResultingAngularVelocity(
+        PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime = 1);
 
     // ------------------------------------ //
     // Misc
