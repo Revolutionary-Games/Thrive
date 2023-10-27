@@ -1,45 +1,45 @@
 ﻿{
   "easy": {
-    "name": "DIFFICULTY_PRESET_EASY",
-    "index": 0,
-    "mpMultiplier": 0.8,
-    "aiMutationMultiplier": 1,
-    "compoundDensity": 1.5,
-    "playerDeathPopulationPenalty": 1,
-    "glucoseDecay": 0.9,
-    "osmoregulationMultiplier": 0.8,
-    "freeGlucoseCloud": true,
-    "passiveReproduction": true,
-    "limitGrowthRate": false
+    "Name": "DIFFICULTY_PRESET_EASY",
+    "Index": 0,
+    "MpMultiplier": 0.8,
+    "AiMutationMultiplier": 1,
+    "CompoundDensity": 1.5,
+    "PlayerDeathPopulationPenalty": 1,
+    "GlucoseDecay": 0.9,
+    "OsmoregulationMultiplier": 0.8,
+    "FreeGlucoseCloud": true,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": false
   },
   "normal": {
-    "name": "DIFFICULTY_PRESET_NORMAL",
-    "index": 1,
-    "mpMultiplier": 1,
-    "aiMutationMultiplier": 2,
-    "compoundDensity": 1,
-    "playerDeathPopulationPenalty": 1,
-    "glucoseDecay": 0.8,
-    "osmoregulationMultiplier": 1,
-    "freeGlucoseCloud": true,
-    "passiveReproduction": true,
-    "limitGrowthRate": true
+    "Name": "DIFFICULTY_PRESET_NORMAL",
+    "Index": 1,
+    "MpMultiplier": 1,
+    "AiMutationMultiplier": 2,
+    "CompoundDensity": 1,
+    "PlayerDeathPopulationPenalty": 1,
+    "GlucoseDecay": 0.8,
+    "OsmoregulationMultiplier": 1,
+    "FreeGlucoseCloud": true,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": true
   },
   "hard": {
-    "name": "DIFFICULTY_PRESET_HARD",
-    "index": 2,
-    "mpMultiplier": 1.2,
-    "aiMutationMultiplier": 3,
-    "compoundDensity": 0.7,
-    "playerDeathPopulationPenalty": 2,
-    "glucoseDecay": 0.5,
-    "osmoregulationMultiplier": 1.2,
-    "freeGlucoseCloud": false,
-    "passiveReproduction": true,
-    "limitGrowthRate": true
+    "Name": "DIFFICULTY_PRESET_HARD",
+    "Index": 2,
+    "MpMultiplier": 1.2,
+    "AiMutationMultiplier": 3,
+    "CompoundDensity": 0.7,
+    "PlayerDeathPopulationPenalty": 2,
+    "GlucoseDecay": 0.5,
+    "OsmoregulationMultiplier": 1.2,
+    "FreeGlucoseCloud": false,
+    "PassiveReproduction": true,
+    "LimitGrowthRate": true
   },
   "custom": {
-    "name": "DIFFICULTY_PRESET_CUSTOM",
-    "index": 3
+    "Name": "DIFFICULTY_PRESET_CUSTOM",
+    "Index": 3
   }
 }
