@@ -351,6 +351,22 @@ public class Program
         [Option('p', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
         public IList<PackagePlatform>? Platforms { get; set; } = new List<PackagePlatform>();
+
+        [Option('c', "compiler", Required = false, Default = null, MetaValue = "COMPILER",
+            HelpText = "Manually specify compiler to use")]
+        public string? Compiler { get; set; }
+
+        [Option("c-compiler", Required = false, Default = null, MetaValue = "COMPILER",
+            HelpText = "Manually specify C compiler to use")]
+        public string? CCompiler { get; set; }
+
+        [Option('g', "generator", Required = false, Default = null, MetaValue = "GENERATOR",
+            HelpText = "Manually specify which CMake generator to use")]
+        public string? CmakeGenerator { get; set; }
+
+        [Option('s', "symbolic-links", Required = false, Default = false,
+            HelpText = "If specified prefer to use symlinks even on Windows")]
+        public bool UseSymlinks { get; set; }
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]

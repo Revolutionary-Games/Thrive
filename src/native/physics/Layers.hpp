@@ -55,14 +55,14 @@ static constexpr JPH::BroadPhaseLayer MOVING(1);
 static constexpr JPH::BroadPhaseLayer DEBRIS(2);
 static constexpr JPH::BroadPhaseLayer SENSOR(3);
 static constexpr JPH::BroadPhaseLayer PROJECTILE(4);
-static constexpr uint NUM_LAYERS(5);
+static constexpr unsigned int NUM_LAYERS(5);
 }; // namespace BroadPhaseLayers
 
 /// \brief Broadphase layer handling, converts object layers to broadphase layers
 class BroadPhaseLayerInterface final : public JPH::BroadPhaseLayerInterface
 {
 public:
-    [[nodiscard]] uint GetNumBroadPhaseLayers() const override
+    [[nodiscard]] unsigned int GetNumBroadPhaseLayers() const override
     {
         return BroadPhaseLayers::NUM_LAYERS;
     }

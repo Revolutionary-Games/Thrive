@@ -143,6 +143,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!File.Exists(ignoreFile))
         {
+            ColourConsole.WriteDebugLine($"Creating .gdignore file in folder: {folder}");
             await using var writer = File.Create(ignoreFile);
         }
     }

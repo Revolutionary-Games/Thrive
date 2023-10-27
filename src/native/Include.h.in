@@ -39,7 +39,17 @@
 #ifdef WIN32
 #define FORCE_INLINE __forceinline
 #else
-#define FORCE_INLINE __attribute__((always_inline))
+#define FORCE_INLINE __attribute__((always_inline)) inline
+#endif
+
+#ifdef _MSC_VER
+#define PACKED_STRUCT
+#define BEGIN_PACKED_STRUCT __pragma( pack(push, 1) )
+#define END_PACKED_STRUCT __pragma( pack(pop))
+#else
+#define PACKED_STRUCT __attribute__((packed))
+#define BEGIN_PACKED_STRUCT
+#define END_PACKED_STRUCT
 #endif
 
 #if _MSC_VER
@@ -67,7 +77,7 @@
 
 namespace Thrive
 {
-constexpr float PI = 3.14159265;
+constexpr float PI = 3.14159265f;
 constexpr double PI_DOUBLE = 3.1415926535897932;
 
 /// Always zero bytes in pointers that stuff extra info in them thanks to alignment requirements

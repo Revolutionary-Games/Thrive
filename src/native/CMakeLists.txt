@@ -61,8 +61,15 @@ target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
 
 set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 20
-  CXX_EXTENSIONS OFF
-  INTERPROCEDURAL_OPTIMIZATION ON)
+  CXX_EXTENSIONS OFF)
+  
+if(UNIX OR CMAKE_GENERATOR MATCHES "Visual Studio")
+  # This seems to fail native Windows builds (when trying to use msys2)
+  set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+else()
+  message(STATUS "Not enabling interprocedural optimization (lto) "
+    "as it is probably not working on this platform")
+endif()
 
 message(STATUS "TODO: static standard lib for easier distributing (make sure it is the clang one)")
 # # Static standard lib
@@ -73,10 +80,16 @@ message(STATUS "TODO: static standard lib for easier distributing (make sure it 
 #   target_link_libraries(thrive_native PRIVATE -static)
 # endif()
 
+# if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+#   set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=lld")
+# elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+#   set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=gold")
+# endif()
+
 if(NOT WIN32)
   set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=gold")
 else()
-  set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "")
+  # set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "")
 endif()
 
 install(TARGETS thrive_native)

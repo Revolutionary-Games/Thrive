@@ -14,13 +14,17 @@ namespace Thrive::Physics
 
 class ShapeWrapper;
 
-struct __attribute__((packed)) SubShapeDefinition
+BEGIN_PACKED_STRUCT;
+
+struct PACKED_STRUCT SubShapeDefinition
 {
     JQuat Rotation;
     JVecF3 Position;
     uint32_t UserData;
     ShapeWrapper* Shape;
 };
+
+END_PACKED_STRUCT;
 
 /// \brief More advanced shape creation helper class than SimpleShapes
 class ShapeCreator

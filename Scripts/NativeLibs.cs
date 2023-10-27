@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Utilities;
@@ -92,6 +93,8 @@ public class NativeLibs
         // Make sure this base folder exists
         Directory.CreateDirectory(LibraryFolder);
 
+        await PackageTool.EnsureGodotIgnoreFileExistsInFolder(LibraryFolder);
+
         foreach (var operation in options.Operations)
         {
             if (!await RunOperation(operation, cancellationToken))
@@ -165,7 +168,7 @@ public class NativeLibs
                     case PackagePlatform.Linux:
                         return "libthrive_native.so";
                     case PackagePlatform.Windows:
-                        throw new NotImplementedException("TODO: name for this");
+                        return "libthrive_native.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
@@ -290,13 +293,7 @@ public class NativeLibs
 
         var linkFile = Path.Join(target, GetLibraryDllName(library, platform));
 
-        if (File.Exists(linkFile))
-        {
-            ColourConsole.WriteDebugLine($"Removing existing library file: {linkFile}");
-            File.Delete(linkFile);
-        }
-
-        File.CreateSymbolicLink(linkFile, Path.GetFullPath(linkTo));
+        CreateLinkTo(linkFile, linkTo);
 
         if (platform != PlatformUtilities.GetCurrentPlatform())
         {
@@ -348,6 +345,9 @@ public class NativeLibs
         // TODO: flag for clean builds
         Directory.CreateDirectory(buildFolder);
 
+        // Ensure Godot doesn't try to import anything funny from the build folder
+        await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
+
         var installPath = Path.GetFullPath(GetLocalCMakeInstallTarget(platform, GetLibraryVersion(library)));
 
         var startInfo = new ProcessStartInfo("cmake")
@@ -367,11 +367,48 @@ public class NativeLibs
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=RelWithDebInfo");
         }
 
-        if (OperatingSystem.IsLinux())
+        if (!string.IsNullOrEmpty(options.Compiler) || !string.IsNullOrEmpty(options.CCompiler))
         {
-            startInfo.ArgumentList.Add("-DCMAKE_CXX_COMPILER=clang++");
-            startInfo.ArgumentList.Add("-DCMAKE_C_COMPILER=clang");
+            ColourConsole.WriteNormalLine(
+                $"Using custom specified compiler: CXX: {options.Compiler}, C: {options.CCompiler}");
+
+            if (!string.IsNullOrEmpty(options.Compiler))
+            {
+                startInfo.ArgumentList.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
+            }
+
+            if (!string.IsNullOrEmpty(options.CCompiler))
+            {
+                startInfo.ArgumentList.Add($"-DCMAKE_C_COMPILER={options.CCompiler}");
+            }
         }
+        else
+        {
+            if (OperatingSystem.IsLinux())
+            {
+                // Use clang by default
+                startInfo.ArgumentList.Add("-DCMAKE_CXX_COMPILER=clang++");
+                startInfo.ArgumentList.Add("-DCMAKE_C_COMPILER=clang");
+            }
+        }
+
+        if (!string.IsNullOrEmpty(options.CmakeGenerator))
+        {
+            startInfo.ArgumentList.Add("-G");
+            startInfo.ArgumentList.Add(options.CmakeGenerator);
+        }
+
+        // TODO: add support for non-visual studio builds on windows
+        // When not using visual studio using ninja would be needed to avoid a dependency on it
+        // if (string.IsNullOrEmpty(ExecutableFinder.Which("ninja")))
+        // {
+        //     ColourConsole.WriteErrorLine(
+        //         "Could not find ninja executable, generating probably will fail. Please install it " +
+        //         "and add to PATH or specify another generator system");
+        // }
+        //
+        // startInfo.ArgumentList.Add("-G");
+        // startInfo.ArgumentList.Add("Ninja");
 
         startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={installPath}");
 
@@ -402,7 +439,17 @@ public class NativeLibs
         startInfo.ArgumentList.Add(".");
         startInfo.ArgumentList.Add("--config");
 
-        startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "RelWithDebInfo");
+        if (OperatingSystem.IsWindows())
+        {
+            ColourConsole.WriteWarningLine("TODO: Windows Jolt build with MSVC only supports Release mode, " +
+                "building Thrive in release mode as well, there won't be debug symbols");
+
+            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "Release");
+        }
+        else
+        {
+            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "RelWithDebInfo");
+        }
 
         startInfo.ArgumentList.Add("--target");
         startInfo.ArgumentList.Add("install");
@@ -461,7 +508,59 @@ public class NativeLibs
     {
         var basePath = GetPathToLibrary(library, platform, version, distributableVersion);
 
+        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
+        }
+
+        // This is for Linux
         return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+    }
+
+    private void CreateLinkTo(string linkFile, string linkTo)
+    {
+        if (File.Exists(linkFile))
+        {
+            ColourConsole.WriteDebugLine($"Removing existing library file: {linkFile}");
+            File.Delete(linkFile);
+        }
+
+        if (!OperatingSystem.IsWindows() || options.UseSymlinks)
+        {
+            File.CreateSymbolicLink(linkFile, Path.GetFullPath(linkTo));
+        }
+        else
+        {
+            bool fallback = true;
+
+            if (OperatingSystem.IsWindows())
+            {
+                ColourConsole.WriteWarningLine("Not using symbolic link to install for editor. Any newly " +
+                    "compiled library versions may not be visible to the editor without re-running " +
+                    "this install command");
+                ColourConsole.WriteNormalLine("Symbolic links can be specifically enabled but require " +
+                    "administrator privileges on Windows");
+
+                try
+                {
+                    if (NativeMethods.CreateHardLink(linkFile, Path.GetFullPath(linkTo), IntPtr.Zero))
+                    {
+                        fallback = false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    ColourConsole.WriteWarningLine($"Failed to call hardlink creation: {e}");
+                }
+            }
+
+            if (fallback)
+            {
+                ColourConsole.WriteWarningLine("Copying library instead of linking. The library won't update " +
+                    "without re-running this tool!");
+                File.Copy(linkTo, linkFile);
+            }
+        }
     }
 
     private string GetNativeBuildFolder()
@@ -470,5 +569,12 @@ public class NativeLibs
             return "build-debug";
 
         return "build";
+    }
+
+    private static class NativeMethods
+    {
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        public static extern bool CreateHardLink(string lpFileName, string lpExistingFileName,
+            IntPtr lpSecurityAttributes);
     }
 }

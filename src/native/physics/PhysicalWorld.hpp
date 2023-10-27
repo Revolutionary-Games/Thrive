@@ -270,13 +270,13 @@ private:
 
     // Settings that only apply when creating a new physics system
 
-    const uint maxBodies = 10240;
+    const unsigned int maxBodies = 10240;
 
     /// \details Jolt documentation says that 0 means automatic
-    const uint maxBodyMutexes = 0;
+    const unsigned int maxBodyMutexes = 0;
 
-    const uint maxBodyPairs = 65536;
-    const uint maxContactConstraints = 20480;
+    const unsigned int maxBodyPairs = 65536;
+    const unsigned int maxContactConstraints = 20480;
 
     // This is last to make sure resources held by this are deleted last
     std::unique_ptr<Pimpl> pimpl;

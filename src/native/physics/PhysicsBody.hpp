@@ -155,7 +155,7 @@ public:
         callbackBasedFilter = nullptr;
     }
 
-    FORCE_INLINE inline CollisionFilterCallback GetCollisionFilter() const noexcept
+    FORCE_INLINE CollisionFilterCallback GetCollisionFilter() const noexcept
     {
         return callbackBasedFilter;
     }
@@ -439,7 +439,7 @@ protected:
     /// \brief Clears recorded collision data
     ///
     /// This is used by the PhysicalWorld to prepare collision recording for the next frame
-    FORCE_INLINE inline void ClearRecordedData()
+    FORCE_INLINE void ClearRecordedData()
     {
         activeRecordedCollisionCount = 0;
 
@@ -481,7 +481,7 @@ private:
     std::atomic<int32_t> activeRecordedCollisionCount{0};
 
     /// Used to detect when a new batch of collisions begins and old ones should be cleared
-    std::atomic<uint32_t> lastRecordedPhysicsStep = -1;
+    std::atomic<uint32_t> lastRecordedPhysicsStep{std::numeric_limits<uint32_t>::max()};
 #else
     /// A pointer to this is passed out for users of the collision recording array
     int32_t activeRecordedCollisionCount = 0;

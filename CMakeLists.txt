@@ -24,6 +24,11 @@ option(NULL_HAS_UNUSUAL_REPRESENTATION
 
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
 
+# Also use a lib prefix on windows for consistency
+if(WIN32)
+  set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
+endif()
+
 # static building
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)

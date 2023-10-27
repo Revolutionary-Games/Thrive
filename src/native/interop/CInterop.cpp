@@ -34,7 +34,7 @@ using ShapePool = boost::singleton_pool<Thrive::Physics::ShapeWrapper, sizeof(Th
 #endif
 
 #ifdef JPH_ENABLE_ASSERTS
-bool PhysicsAssert(const char* expression, const char* message, const char* file, uint line);
+bool PhysicsAssert(const char* expression, const char* message, const char* file, unsigned int line);
 #endif
 
 int32_t CheckAPIVersion()
@@ -641,7 +641,7 @@ void PhysicsTrace(const char* fmt, ...)
 }
 
 #ifdef JPH_ENABLE_ASSERTS
-bool PhysicsAssert(const char* expression, const char* message, const char* file, uint line)
+bool PhysicsAssert(const char* expression, const char* message, const char* file, unsigned int line)
 {
     LOG_ERROR(std::string("Jolt assert failed in ") + file + ":" + std::to_string(line) + " (" + expression + ") " +
         (message ? message : ""));

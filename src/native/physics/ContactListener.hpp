@@ -67,7 +67,7 @@ private:
     // TODO: remove the chained listener feature if nothing is going to use it
     JPH::ContactListener* chainedListener = nullptr;
 
-    uint32_t physicsStep = -1;
+    uint32_t physicsStep = std::numeric_limits<uint32_t>::max();
 
 #ifdef JPH_DEBUG_RENDERER
     JPH::DebugRenderer* debugDrawer = nullptr;
