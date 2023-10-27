@@ -4,7 +4,6 @@ namespace Systems
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
@@ -52,7 +51,7 @@ namespace Systems
             {
                 lock (damage)
                 {
-                    ProcessDamageEvents(entity, ref callbacks, damage);
+                    ProcessDamageEvents(entity, damage);
                 }
             }
         }
@@ -84,8 +83,7 @@ namespace Systems
                 organelleContainer.PerformMicrobeDetections(entity, position, microbeLocationData));
         }
 
-        private void ProcessDamageEvents(in Entity entity, ref MicrobeEventCallbacks callbacks,
-            List<DamageEventNotice> damageEvents)
+        private void ProcessDamageEvents(in Entity entity, List<DamageEventNotice> damageEvents)
         {
             foreach (var damageEvent in damageEvents)
             {

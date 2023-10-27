@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Components;
 using DefaultEcs;
 using Godot;
@@ -295,7 +294,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override Func<Compound, bool> GetIsUsefulCheck()
     {
-        if (!stage!.Player.Has<Components.MicrobeColony>())
+        if (!stage!.Player.Has<MicrobeColony>())
         {
             var compounds = stage.Player.Get<CompoundStorage>().Compounds;
             return compound => compounds.IsUseful(compound);
@@ -319,7 +318,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override bool ShouldShowAgentsPanel()
     {
-        if (!stage!.Player.Has<Components.MicrobeColony>())
+        if (!stage!.Player.Has<MicrobeColony>())
         {
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
@@ -332,7 +331,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     protected override ICompoundStorage GetPlayerStorage()
     {
-        if (!stage!.Player.Has<Components.MicrobeColony>())
+        if (!stage!.Player.Has<MicrobeColony>())
         {
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
@@ -346,7 +345,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         base.UpdateCompoundBars(delta);
 
-        if (stage!.Player.Has<Components.MicrobeColony>())
+        if (stage!.Player.Has<MicrobeColony>())
         {
             // TODO: calculate total engulf size (probably don't need to cache this as only the GUI needs this
             // currently)
@@ -385,7 +384,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showSlime;
 
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
-        if (player.Has<Components.MicrobeColony>())
+        if (player.Has<MicrobeColony>())
         {
             throw new NotImplementedException();
 
@@ -515,7 +514,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private float GetPlayerUsedIngestionCapacity()
     {
-        if (stage!.Player.Has<Components.MicrobeColony>())
+        if (stage!.Player.Has<MicrobeColony>())
         {
             // TODO: calculate total used ingestion capacity
             throw new NotImplementedException();
@@ -531,7 +530,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             throw new InvalidOperationException("Can't update multicellular button without stage set");
 
-        if (!player.Has<Components.MicrobeColony>())
+        if (!player.Has<MicrobeColony>())
         {
             multicellularButton.Visible = false;
             return;
@@ -546,11 +545,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = true;
 
-        ref var colony = ref player.Get<Components.MicrobeColony>();
+        ref var colony = ref player.Get<MicrobeColony>();
 
-        throw new NotImplementedException();
-
-        /*var newColonySize = player.Colony.ColonyMembers.Count;
+        var newColonySize = colony.ColonyMembers.Length;
 
         if (stage.MovingToEditor)
         {
@@ -568,7 +565,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             }
         }
 
-        UpdateColonySize(newColonySize);*/
+        UpdateColonySize(newColonySize);
     }
 
     private void UpdateColonySize(int newColonySize)
@@ -595,7 +592,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (stage == null)
             throw new InvalidOperationException("Can't update macroscopic button without stage set");
 
-        if (!player.Has<Components.MicrobeColony>())
+        if (!player.Has<MicrobeColony>())
         {
             macroscopicButton.Visible = false;
             return;
@@ -609,11 +606,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         macroscopicButton.Visible = true;
 
-        ref var colony = ref player.Get<Components.MicrobeColony>();
+        ref var colony = ref player.Get<MicrobeColony>();
 
-        throw new NotImplementedException();
-
-        /*var newColonySize = colony.ColonyMembers.Count;
+        var newColonySize = colony.ColonyMembers.Length;
 
         if (stage.MovingToEditor)
         {
@@ -624,7 +619,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             macroscopicButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC;
         }
 
-        UpdateColonySize(newColonySize);*/
+        UpdateColonySize(newColonySize);
     }
 
     private void UpdateColonySizeForMacroscopic()

@@ -14,15 +14,13 @@
     public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstance>
     {
         private readonly Node godotWorldRoot;
-        private readonly World world;
 
         private readonly Dictionary<Spatial, AttachedInfo> attachedSpatialInstances = new();
         private readonly List<Spatial> instancesToDelete = new();
 
-        public SpatialAttachSystem(Node godotWorldRoot, World world) : base(world)
+        public SpatialAttachSystem(Node godotWorldRoot, World world) : base(world, null)
         {
             this.godotWorldRoot = godotWorldRoot;
-            this.world = world;
         }
 
         protected override void PreUpdate(float state)

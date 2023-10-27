@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using DefaultEcs;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Spawner that can be added to a SpawnSystem to be used for spawning things

@@ -287,8 +287,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             GetParent(), SpawnHelpers.LoadMulticellularScene(), true, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        throw new NotImplementedException();
-
+        // TODO: reimplement spawn system for the multicellular stage
         // spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
 
         // TODO: some kind of resource splitting for the offspring?

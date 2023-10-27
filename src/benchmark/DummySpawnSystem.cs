@@ -1,6 +1,4 @@
-﻿using System;
-using DefaultEcs;
-using DefaultEcs.Command;
+﻿using DefaultEcs.Command;
 using Godot;
 
 /// <summary>

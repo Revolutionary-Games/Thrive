@@ -1,6 +1,5 @@
 ﻿namespace Components
 {
-    using System;
     using System.Runtime.CompilerServices;
     using Godot;
     using Newtonsoft.Json;
@@ -63,9 +62,6 @@
 
     public static class SoundEffectPlayerHelpers
     {
-
-
-
         /// <summary>
         ///   Starts playing a new sound effect
         /// </summary>

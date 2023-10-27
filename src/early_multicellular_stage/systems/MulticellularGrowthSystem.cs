@@ -174,7 +174,7 @@
                     multicellularGrowth.CompoundsNeededForNextCell[entry.Key] = left;
                 }
 
-                multicellularGrowth.CompoundsUsedForMulticellularGrowth.TryGetValue(entry.Key, out float alreadyUsed);
+                multicellularGrowth.CompoundsUsedForMulticellularGrowth!.TryGetValue(entry.Key, out float alreadyUsed);
 
                 multicellularGrowth.CompoundsUsedForMulticellularGrowth[entry.Key] = alreadyUsed + usedAmount;
 

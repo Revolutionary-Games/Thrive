@@ -1,5 +1,4 @@
-﻿using System;
-using Components;
+﻿using Components;
 using DefaultEcs;
 using Godot;
 
@@ -14,13 +13,13 @@ public class MovementComponent : IOrganelleComponent
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    private PlacedOrganelle parentOrganelle = null!;
+
     private float animationSpeed = 0.25f;
     private bool animationDirty = true;
 
     private bool lastUsed;
     private Vector3 force;
-
-    private AnimationPlayer animation = null!;
 
     public MovementComponent(float momentum)
     {
@@ -31,8 +30,9 @@ public class MovementComponent : IOrganelleComponent
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        animation = organelle.OrganelleAnimation ??
-            throw new InvalidOperationException("Flagellum requires animation player on organelle");
+        // No longer can check for animation here as the organelle graphics are created later than this is attached to
+        // a cell
+        parentOrganelle = organelle;
 
         force = CalculateForce(organelle.Position, Momentum);
     }
@@ -57,8 +57,12 @@ public class MovementComponent : IOrganelleComponent
 
     public void UpdateSync(in Entity microbeEntity, float delta)
     {
-        animation.PlaybackSpeed = animationSpeed;
-        animationDirty = false;
+        // Skip applying speed if this happens before the organelle graphics are loaded
+        if (parentOrganelle.OrganelleAnimation != null)
+        {
+            parentOrganelle.OrganelleAnimation.PlaybackSpeed = animationSpeed;
+            animationDirty = false;
+        }
     }
 
     public float UseForMovement(Vector3 wantedMovementDirection, CompoundBag compounds, Quat extraColonyRotation,

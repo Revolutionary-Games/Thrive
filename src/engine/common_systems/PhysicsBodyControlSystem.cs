@@ -47,7 +47,7 @@
                 {
                     control.RemoveVelocity = false;
                     control.RemoveAngularVelocity = false;
-                    physicalWorld!.SetBodyVelocity(body, Vector3.Zero, Vector3.Zero);
+                    physicalWorld.SetBodyVelocity(body, Vector3.Zero, Vector3.Zero);
                 }
                 else if (control.RemoveVelocity)
                 {

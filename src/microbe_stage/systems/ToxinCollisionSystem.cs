@@ -1,7 +1,6 @@
 ﻿namespace Systems
 {
     using System;
-    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;

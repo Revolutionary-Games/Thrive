@@ -3,7 +3,6 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 

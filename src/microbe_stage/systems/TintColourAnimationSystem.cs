@@ -3,7 +3,6 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
 
     /// <summary>
     ///   Handles applying the shader "tint" parameter based on <see cref="ColourAnimation"/> to an

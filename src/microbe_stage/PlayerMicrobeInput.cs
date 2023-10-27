@@ -187,7 +187,7 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.HUD.HintText = string.Empty;
             control.State = MicrobeState.Normal;
         }
-        else if (stage.Player.Has<Components.MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
+        else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             control.State = MicrobeState.Unbinding;
@@ -200,7 +200,7 @@ public class PlayerMicrobeInput : NodeWithInput
         if (!stage.HasPlayer)
             return;
 
-        if (stage.Player.Has<Components.MicrobeColony>())
+        if (stage.Player.Has<MicrobeColony>())
         {
             throw new NotImplementedException();
 
@@ -229,7 +229,7 @@ public class PlayerMicrobeInput : NodeWithInput
             return false;
 
         // If didn't hit a cell colony, can't do anything
-        if (!target.Has<Components.MicrobeColony>())
+        if (!target.Has<MicrobeColony>())
             return false;
 
         if (!stage.HoverInfo.GetRaycastData(target, out var raycastData))

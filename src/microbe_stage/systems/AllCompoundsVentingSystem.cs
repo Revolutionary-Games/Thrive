@@ -90,7 +90,7 @@
                     physics.BodyDisabled = true;
                 }
 
-                var duration = entity.StartDissolveAnimation(worldSimulation, true, true);
+                entity.StartDissolveAnimation(worldSimulation, true, true);
 
                 // This entity is no longer important to save
                 worldSimulation.ReportEntityDyingSoon(entity);

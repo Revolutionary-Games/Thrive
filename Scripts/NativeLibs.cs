@@ -249,6 +249,9 @@ public class NativeLibs
             return Task.FromResult(true);
         }
 
+        // TODO: more library files per library?
+        cancellationToken.ThrowIfCancellationRequested();
+
         ColourConsole.WriteErrorLine($"Library does not exist: {file}");
         return Task.FromResult(false);
     }

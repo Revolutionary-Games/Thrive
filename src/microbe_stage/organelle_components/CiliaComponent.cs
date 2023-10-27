@@ -9,6 +9,8 @@ public class CiliaComponent : IOrganelleComponent
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    private PlacedOrganelle parentOrganelle = null!;
+
     private float currentSpeed = 1.0f;
     private float targetSpeed;
     private bool animationDirty = true;
@@ -16,14 +18,11 @@ public class CiliaComponent : IOrganelleComponent
     private float timeSinceRotationSample;
     private Quat? previousCellRotation;
 
-    private AnimationPlayer animation = null!;
-
     public bool UsesSyncProcess => animationDirty;
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        animation = organelle.OrganelleAnimation ??
-            throw new InvalidOperationException("Cilia requires animation player on organelle");
+        parentOrganelle = organelle;
 
         SetSpeedFactor(Constants.CILIA_DEFAULT_ANIMATION_SPEED);
 
@@ -136,8 +135,12 @@ public class CiliaComponent : IOrganelleComponent
 
     public void UpdateSync(in Entity microbeEntity, float delta)
     {
-        animation.PlaybackSpeed = currentSpeed;
-        animationDirty = false;
+        // Skip applying speed if this happens before the organelle graphics are loaded
+        if (parentOrganelle.OrganelleAnimation != null)
+        {
+            parentOrganelle.OrganelleAnimation.PlaybackSpeed = currentSpeed;
+            animationDirty = false;
+        }
 
         // TODO: pull upgrade handling (note this might need to set animation dirty every now and then to make sure
         // this gets re-run). Also if this needs access to different organelle data, this needs to mark those in the

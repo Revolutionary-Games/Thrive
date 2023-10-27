@@ -186,7 +186,7 @@
 
             float currentFraction = health.CurrentHealth / health.MaxHealth;
 
-            health.MaxHealth = health.CurrentHealth;
+            health.MaxHealth = newMaxHealth;
 
             health.CurrentHealth = health.MaxHealth * currentFraction;
         }

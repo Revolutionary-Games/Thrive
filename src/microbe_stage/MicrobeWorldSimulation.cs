@@ -67,6 +67,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
+    private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
 #pragma warning disable CA2213
     private Node visualsParent = null!;
@@ -171,6 +172,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, parallelRunner);
+        unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
 
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
@@ -276,6 +278,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         spatialPositionSystem.Update(delta);
 
         allCompoundsVentingSystem.Update(delta);
+        unneededCompoundVentingSystem.Update(delta);
         compoundAbsorptionSystem.Update(delta);
         entitySignalingSystem.Update(delta);
 
@@ -396,6 +399,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeReproductionSystem.Dispose();
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();
+            unneededCompoundVentingSystem.Dispose();
 
             CameraFollowSystem.Dispose();
             ProcessSystem.Dispose();

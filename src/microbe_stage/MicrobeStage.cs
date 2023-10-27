@@ -6,7 +6,6 @@ using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Main class for managing the microbe stage

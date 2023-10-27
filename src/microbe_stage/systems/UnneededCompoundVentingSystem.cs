@@ -48,7 +48,7 @@ namespace Systems
             float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
 
             // Cloud types are ones that can be vented
-            foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
+            foreach (var type in ventableCompounds)
             {
                 var capacity = compounds.GetCapacityForCompound(type);
 

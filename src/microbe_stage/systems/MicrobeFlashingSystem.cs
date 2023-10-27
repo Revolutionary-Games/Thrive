@@ -1,6 +1,5 @@
 namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;

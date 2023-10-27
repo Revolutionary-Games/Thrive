@@ -1,7 +1,6 @@
 ﻿namespace Components
 {
     using System;
-    using System.Buffers;
     using System.Collections.Generic;
     using System.Linq;
     using DefaultEcs;
@@ -181,7 +180,7 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     This unfortunately is not cached as <see cref="Microbe.UsedIngestionCapacity"/> can change
+        ///     This unfortunately is not cached as <see cref="Engulfer.UsedIngestionCapacity"/> can change
         ///     every frame. And this is relatively expensive to calculate as this needs to read a lot of entities.
         ///   </para>
         /// </remarks>
@@ -315,11 +314,6 @@
             memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
 
             OnColonyMemberAdded(newMember);
-
-            // TODO: remove this if not needed
-            throw new NotImplementedException();
-
-            // ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
             return true;
         }
 
@@ -429,12 +423,6 @@
             colony.MarkMembersChanged();
 
             QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
-
-            // TODO: remove this if not needed
-            throw new NotImplementedException();
-
-            // foreach (var colonyMember in ColonyMembers)
-            //     colonyMember.OnColonyMemberRemoved(microbe);
 
             return true;
         }

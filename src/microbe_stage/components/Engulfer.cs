@@ -271,7 +271,8 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     This has to be called with <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/> already locked
+        ///     This has to be called with <see cref="AttachedToEntityHelpers.EntityAttachRelationshipModifyLock"/>
+        ///     already locked
         ///   </para>
         /// </remarks>
         private static void TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
@@ -283,8 +284,9 @@
 
             engulfer.EngulfedObjects.Add(engulfableEntity);
 
-            // TODO: modify the attached to component to point to the new parent
+            // TODO: Modify the attached to component to point to the new parent
             // TODO: adjust position relative position
+
             throw new NotImplementedException();
         }
     }

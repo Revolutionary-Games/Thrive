@@ -61,7 +61,6 @@
                 resultReceiver.TryGetValue(totalCost.Key, out var alreadyAbsorbed);
                 resultReceiver[totalCost.Key] = alreadyAbsorbed + absorbed;
             }
-
         }
     }
 }

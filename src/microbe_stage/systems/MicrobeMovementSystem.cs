@@ -93,7 +93,7 @@
             var compounds = entity.Get<CompoundStorage>().Compounds;
             ref var cellProperties = ref entity.Get<CellProperties>();
 
-            var rotationSpeed = CalculateRotationSpeed(entity, ref organelles, compounds);
+            var rotationSpeed = CalculateRotationSpeed(entity, ref organelles);
 
             var movementImpulse =
                 CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
@@ -102,8 +102,7 @@
             physicalWorld.ApplyBodyMicrobeControl(physics.Body, movementImpulse, wantedRotation, rotationSpeed);
         }
 
-        private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles,
-            CompoundBag compounds)
+        private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
         {
             float rotationSpeed = organelles.RotationSpeed;
 
@@ -209,7 +208,7 @@
 
             if (control.MovementDirection != Vector3.Zero && entity.Has<MicrobeColony>())
             {
-                CalculateColonyImpactOnMovementForce(ref force, delta);
+                CalculateColonyImpactOnMovementForce(ref force);
             }
 
             if (control.SlowedBySlime)
@@ -257,7 +256,7 @@
             return position.Rotation.Xform(movementVector);
         }
 
-        private void CalculateColonyImpactOnMovementForce(ref float force, float delta)
+        private void CalculateColonyImpactOnMovementForce(ref float force)
         {
             // TODO: movement from colony member organelles
             // // Colony members have their movement update before organelle update,
@@ -273,13 +272,13 @@
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-            int memberCount;
+            // int memberCount;
 
             throw new NotImplementedException();
 
-            force *= memberCount;
-            var seriesValue = 1 - 1 / (float)Math.Pow(2, memberCount - 1);
-            force -= (force * 0.15f) * seriesValue;
+            // force *= memberCount;
+            // var seriesValue = 1 - 1 / (float)Math.Pow(2, memberCount - 1);
+            // force -= (force * 0.15f) * seriesValue;
 
             // // Flagella in colony members
             // if (colonyMemberOrganelles.ThrustComponents != null)

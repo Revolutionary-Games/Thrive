@@ -5,7 +5,6 @@
     using System.Linq;
     using DefaultEcs;
     using DefaultEcs.Command;
-    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -212,7 +211,7 @@
                     var compound = entry.Key;
                     var neededAmount = entry.Value;
 
-                    if (multicellularGrowth.CompoundsNeededForNextCell.TryGetValue(compound, out var left))
+                    if (multicellularGrowth.CompoundsNeededForNextCell!.TryGetValue(compound, out var left))
                     {
                         var alreadyUsed = neededAmount - left;
 
