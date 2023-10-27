@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using Components;
+using DefaultEcs;
+using Godot;
 
 /// <summary>
 ///   Button shown above organisms in pause mode to fossilise (save) them.
@@ -13,7 +15,7 @@ public class FossilisationButton : TextureButton
     /// <summary>
     ///   The entity (organism) this button is attached to.
     /// </summary>
-    public IEntity AttachedEntity = null!;
+    public Entity AttachedEntity;
 
     /// <summary>
     ///   Whether this species has already been fossilised.
@@ -62,13 +64,13 @@ public class FossilisationButton : TextureButton
             camera = GetViewport().GetCamera();
 
         // If the entity is removed (e.g. forcefully despawned)
-        if (AttachedEntity.AliveMarker.Alive == false)
+        if (!AttachedEntity.IsAlive || !AttachedEntity.Has<WorldPosition>())
         {
             this.DetachAndQueueFree();
             return;
         }
 
-        RectGlobalPosition = camera.UnprojectPosition(AttachedEntity.EntityNode.GlobalTransform.origin);
+        RectGlobalPosition = camera.UnprojectPosition(AttachedEntity.Get<WorldPosition>().Position);
     }
 
     private void OnPressed()

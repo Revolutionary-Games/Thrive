@@ -6,19 +6,23 @@
 /// </summary>
 public static class FeatureInformation
 {
+    public const string PlatformWindows = "Windows";
+    public const string PlatformLinux = "Linux";
+    public const string PlatformMac = "OSX";
+
     private static readonly string[] SimpleFeaturePlatforms =
     {
         "Android",
         "HTML5",
-        "Windows",
-        "OSX",
+        PlatformWindows,
+        PlatformMac,
         "iOS",
     };
 
     public static string GetOS()
     {
         if (OS.HasFeature("X11"))
-            return "Linux";
+            return PlatformLinux;
 
         foreach (var feature in SimpleFeaturePlatforms)
         {

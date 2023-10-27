@@ -46,5 +46,10 @@ public class PostShutdownActions : Node
         {
             GD.PrintErr("Some tooltips have not been unregistered on game shutdown");
         }
+
+        GD.Print("Shutting down native library");
+        NativeInterop.Shutdown();
+
+        GD.Print("Shutdown actions complete");
     }
 }

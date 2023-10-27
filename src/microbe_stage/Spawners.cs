@@ -3,6 +3,9 @@
 
 using System;
 using System.Collections.Generic;
+using Components;
+using DefaultEcs;
+using DefaultEcs.Command;
 using Godot;
 
 /// <summary>
@@ -13,17 +16,11 @@ public static class Spawners
     public static MicrobeSpawner MakeMicrobeSpawner(Species species,
         CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
-        return new MicrobeSpawner(species, cloudSystem, currentGame);
+        return new MicrobeSpawner(species);
     }
 
     public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
     {
-        foreach (var mesh in chunkType.Meshes)
-        {
-            if (mesh.LoadedScene == null)
-                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
-        }
-
         return new ChunkSpawner(chunkType);
     }
 
@@ -39,38 +36,589 @@ public static class Spawners
 /// </summary>
 public static class SpawnHelpers
 {
-    public static Microbe SpawnMicrobe(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem, GameProperties currentGame,
-        CellType? multicellularCellType = null)
+    /// <summary>
+    ///   Call this when using the "WithoutFinalizing" variants of spawn methods that allow additional entity
+    ///   customization. This is not mandatory to call when other operations are to be batched with the same recorder.
+    ///   In which case the recorder should be just directly submitted to
+    ///   <see cref="IWorldSimulation.FinishRecordingEntityCommands"/>.
+    /// </summary>
+    /// <param name="entityRecorder">The entityRecorder returned from the without finalize method</param>
+    /// <param name="worldSimulation">The world simulation used to start the entity spawn</param>
+    public static void FinalizeEntitySpawn(EntityCommandRecorder entityRecorder, IWorldSimulation worldSimulation)
     {
-        var microbe = (Microbe)microbeScene.Instance();
+        worldSimulation.FinishRecordingEntityCommands(entityRecorder);
+    }
 
-        // The second parameter is (isPlayer), and we assume that if the
-        // cell is not AI controlled it is the player's cell
-        microbe.Init(cloudSystem, spawnSystem, currentGame, !aiControlled);
+    public static void SpawnCellBurstEffect(IWorldSimulation worldSimulation, Vector3 location, float radius)
+    {
+        // Support spawning this at any time during an update cycle
+        var recorder = worldSimulation.StartRecordingEntityCommands();
 
-        worldRoot.AddChild(microbe);
-        microbe.Translation = location;
+        SpawnCellBurstEffectWithoutFinalizing(recorder, worldSimulation, location, radius);
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+    }
 
-        microbe.AddToGroup(Constants.AI_TAG_MICROBE);
-        microbe.AddToGroup(Constants.PROCESS_GROUP);
-        microbe.AddToGroup(Constants.RUNNABLE_MICROBE_GROUP);
+    public static void SpawnCellBurstEffectWithoutFinalizing(EntityCommandRecorder entityRecorder,
+        IWorldSimulation worldSimulation, Vector3 location, float radius)
+    {
+        // Support spawning this at any time during an update cycle
+        var entityCreator = worldSimulation.GetRecorderWorld(entityRecorder);
 
-        if (aiControlled)
-            microbe.AddToGroup(Constants.AI_GROUP);
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
-        if (multicellularCellType != null)
+        entity.Set(new WorldPosition(location));
+
+        entity.Set<SpatialInstance>();
+        entity.Set(new PredefinedVisuals
         {
-            microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
+            VisualIdentifier = VisualResourceIdentifier.CellBurstEffect,
+        });
+
+        // The cell burst effect component initialization by its system configures this
+        entity.Set<TimedLife>();
+        entity.Set(new CellBurstEffect(radius));
+    }
+
+    /// <summary>
+    ///   Spawns an agent projectile
+    /// </summary>
+    public static EntityRecord SpawnAgentProjectile(IWorldSimulation worldSimulation, AgentProperties properties,
+        float amount, float lifetime, Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
+        var recorder = SpawnAgentProjectileWithoutFinalizing(worldSimulation, properties,
+            amount, lifetime, location, direction, scale, emitter, out var entity);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+
+        return entity;
+    }
+
+    public static EntityCommandRecorder SpawnAgentProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
+        AgentProperties properties, float amount, float lifetime, Vector3 location, Vector3 direction, float scale,
+        Entity emitter, out EntityRecord entity)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        entity = SpawnAgentProjectileWithoutFinalizing(worldSimulation, recorder, properties, amount, lifetime,
+            location, direction, scale, emitter);
+
+        worldSimulation.FinishRecordingEntityCommands(recorder);
+
+        return recorder;
+    }
+
+    public static EntityRecord SpawnAgentProjectileWithoutFinalizing(IWorldSimulation worldSimulation,
+        EntityCommandRecorder commandRecorder, AgentProperties properties, float amount, float lifetime,
+        Vector3 location, Vector3 direction, float scale, Entity emitter)
+    {
+        var normalizedDirection = direction.Normalized();
+
+        var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location + direction * 1.5f));
+
+        entity.Set(new PredefinedVisuals
+        {
+            VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+        });
+
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = new Vector3(scale, scale, scale),
+            ApplyVisualScale = Math.Abs(scale - 1) > MathUtils.EPSILON,
+        });
+
+        entity.Set(new TimedLife
+        {
+            TimeToLiveRemaining = lifetime,
+        });
+        entity.Set(new FadeOutActions
+        {
+            FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+            DisableCollisions = true,
+            RemoveVelocity = true,
+            DisableParticles = true,
+        });
+
+        entity.Set(new ToxinDamageSource
+        {
+            ToxinAmount = amount,
+            ToxinProperties = properties,
+        });
+
+        entity.Set(new Physics
+        {
+            Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
+            AxisLock = Physics.AxisLockType.YAxis,
+        });
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+                Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY),
+        });
+        entity.Set(new CollisionManagement
+        {
+            IgnoredCollisionsWith = new List<Entity> { emitter },
+
+            // Callbacks are initialized by ToxinCollisionSystem
+        });
+
+        entity.Set(new ReadableName(properties.Name));
+
+        return entity;
+    }
+
+    /// <summary>
+    ///   Spawn a floating chunk (cell parts floating around, rocks, hazards)
+    /// </summary>
+    public static void SpawnChunk(IWorldSimulation worldSimulation, ChunkConfiguration chunkType, Vector3 location,
+        Random random, bool microbeDrop)
+    {
+        var recorder = SpawnChunkWithoutFinalizing(worldSimulation, chunkType, location, random, microbeDrop, out _);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+    }
+
+    public static EntityCommandRecorder SpawnChunkWithoutFinalizing(IWorldSimulation worldSimulation,
+        ChunkConfiguration chunkType, Vector3 location, Random random, bool microbeDrop, out EntityRecord entity)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+        entity = SpawnChunkWithoutFinalizing(worldSimulation, recorder, chunkType, location, random, microbeDrop,
+            Vector3.Zero);
+        return recorder;
+    }
+
+    public static EntityRecord SpawnChunkWithoutFinalizing(IWorldSimulation worldSimulation,
+        EntityCommandRecorder commandRecorder, ChunkConfiguration chunkType, Vector3 location, Random random,
+        bool microbeDrop, Vector3 initialVelocity)
+    {
+        // Resolve the final chunk settings as the chunk configuration is a group of potential things
+        var selectedMesh = chunkType.Meshes.Random(random);
+
+        // TODO: do something with these properties:
+        // selectedMesh.SceneModelPath,
+
+        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
+        var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
+
+        var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
+
+        var entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        entity.Set(new WorldPosition(location, new Quat(
+            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+
+        // TODO: redo chunk visuals with the loadable visual definitions
+        // entity.Set(new PredefinedVisuals
+        // {
+        //     VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
+        // });
+        entity.Set(new PathLoadedSceneVisuals
+        {
+            ScenePath = selectedMesh.ScenePath,
+        });
+
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale, chunkType.ChunkScale),
+            ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
+        });
+
+        // This needs to be skipped for particle type chunks (as they don't have materials)
+        if (!selectedMesh.IsParticles)
+        {
+            entity.Set(new EntityMaterial
+            {
+                AutoRetrieveFromSpatial = true,
+                AutoRetrieveModelPath = selectedMesh.SceneModelPath,
+            });
+
+            entity.Set<MicrobeShaderParameters>();
+        }
+
+        if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
+        {
+            // Stop any animations from playing on this organelle when it is dropped as a chunk. Some chunk types do
+            // want to keep playing an animation so there's this extra if
+            if (!selectedMesh.PlayAnimation)
+            {
+                entity.Set(new AnimationControl
+                {
+                    AnimationPlayerPath = selectedMesh.SceneAnimationPath,
+                    StopPlaying = true,
+                });
+            }
+        }
+
+        // Setup compounds to vent
+        // TODO: do something about this variable (I can't remember anymore why I added this -hhyyrylainen)
+        bool hasCompounds = false;
+        if (chunkType.Compounds?.Count > 0)
+        {
+            hasCompounds = true;
+
+            // Capacity is 0 to disallow adding any more compounds to the compound bag
+            var compounds = new CompoundBag(0);
+
+            foreach (var entry in chunkType.Compounds)
+            {
+                // Directly write compounds to avoid the capacity limit
+                compounds.Compounds.Add(entry.Key, entry.Value.Amount);
+            }
+
+            entity.Set(new CompoundStorage
+            {
+                Compounds = compounds,
+            });
+
+            entity.Set(new CompoundVenter
+            {
+                VentEachCompoundPerSecond = chunkType.VentAmount,
+                DestroyOnEmpty = chunkType.Dissolves,
+                UsesMicrobialDissolveEffect = true,
+            });
+        }
+
+        // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
+        if (!chunkType.Dissolves)
+        {
+            entity.Set(new TimedLife
+            {
+                TimeToLiveRemaining = Constants.DESPAWNING_CHUNK_LIFETIME,
+            });
+            entity.Set(new FadeOutActions
+            {
+                FadeTime = Constants.EMITTER_DESPAWN_DELAY,
+                DisableCollisions = true,
+                RemoveVelocity = true,
+                DisableParticles = true,
+                UsesMicrobialDissolveEffect = true,
+                VentCompounds = true,
+            });
+        }
+
+        entity.Set(new Physics
+        {
+            AxisLock = Physics.AxisLockType.YAxis,
+            LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
+            Velocity = initialVelocity,
+        });
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = selectedMesh.ConvexShapePath != null ?
+                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity) :
+                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
+        });
+
+        // See the remarks comment on EntityRadiusInfo
+        entity.Set(new EntityRadiusInfo(chunkType.Radius));
+
+        entity.Set<CollisionManagement>();
+
+        if (chunkType.Damages > 0)
+        {
+            entity.Set(new DamageOnTouch
+            {
+                DamageAmount = chunkType.Damages,
+                DestroyOnTouch = chunkType.DeleteOnTouch,
+                DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType,
+            });
+        }
+        else if (chunkType.DeleteOnTouch)
+        {
+            // No damage but deletes on touch
+            entity.Set(new DamageOnTouch
+            {
+                DamageAmount = 0,
+                DestroyOnTouch = chunkType.DeleteOnTouch,
+            });
+        }
+
+        // TODO: rename Size to EngulfSize after making sure it isn't used for other purposes
+        if (chunkType.Size > 0)
+        {
+            entity.Set(new Engulfable
+            {
+                BaseEngulfSize = chunkType.Size,
+                RequisiteEnzymeToDigest = !string.IsNullOrEmpty(chunkType.DissolverEnzyme) ?
+                    SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme) :
+                    null,
+                DestroyIfPartiallyDigested = true,
+            });
+        }
+
+        entity.Set<CurrentAffected>();
+        entity.Set<ManualPhysicsControl>();
+
+        // Despawn chunks when there are too many
+        entity.Set(new CountLimited
+        {
+            Group = microbeDrop ? LimitGroup.Chunk : LimitGroup.ChunkSpawned,
+        });
+
+        entity.Set(new ReadableName(new LocalizedString(chunkType.Name)));
+
+        return entity;
+    }
+
+    public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
+        bool aiControlled, CellType? multicellularCellType = null)
+    {
+        var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
+            multicellularCellType, out _);
+
+        FinalizeEntitySpawn(recorder, worldSimulation);
+    }
+
+    public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
+        IWorldSimulation worldSimulation, Species species,
+        Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity)
+    {
+        // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
+        // MicrobeVisualOnlySimulation microbe update methods are also up to date
+
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        var entityCreator = worldSimulation.GetRecorderWorld(recorder);
+
+        entity = worldSimulation.CreateEntityDeferred(entityCreator);
+
+        // Position
+        entity.Set(new WorldPosition(location, Quat.Identity));
+
+        entity.Set(new SpeciesMember(species));
+
+        // Player vs. AI controlled microbe components
+        if (aiControlled)
+        {
+            entity.Set<MicrobeAI>();
+
+            // Darwinian evolution statistic tracking (these are the external effects that are passed to auto-evo)
+            entity.Set<SurvivalStatistics>();
+
+            entity.Set(new SoundEffectPlayer
+            {
+                AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+            });
         }
         else
         {
-            microbe.ApplySpecies(species);
+            // We assume that if the cell is not AI controlled it is the player's cell
+            entity.Set<PlayerMarker>();
+
+            // The player's "ears" are placed at the player microbe
+            entity.Set(new SoundListener
+            {
+                UseTopDownRotation = true,
+            });
+
+            entity.Set(new SoundEffectPlayer
+            {
+                AbsoluteMaxDistanceSquared = Constants.MICROBE_SOUND_MAX_DISTANCE_SQUARED,
+
+                // As this takes a bit of extra performance this is just set for the player
+                AutoDetectPlayer = true,
+            });
         }
 
-        microbe.SetInitialCompounds();
-        return microbe;
+        // Base species-based data initialization
+        ICellProperties usedCellProperties;
+        MembraneType membraneType;
+
+        if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        {
+            CellType resolvedCellType;
+
+            if (multicellularCellType != null)
+            {
+                // Non-first cell in an early multicellular colony
+
+                resolvedCellType = multicellularCellType;
+
+                usedCellProperties = multicellularCellType;
+                var properties = new CellProperties(multicellularCellType);
+                membraneType = properties.MembraneType;
+                entity.Set(properties);
+            }
+            else
+            {
+                resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
+
+                usedCellProperties = resolvedCellType;
+                var properties = new CellProperties(usedCellProperties);
+                membraneType = properties.MembraneType;
+                entity.Set(properties);
+
+                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
+            }
+
+            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType));
+        }
+        else if (species is MicrobeSpecies microbeSpecies)
+        {
+            entity.Set(new MicrobeSpeciesMember
+            {
+                Species = microbeSpecies,
+            });
+
+            usedCellProperties = microbeSpecies;
+            var properties = new CellProperties(microbeSpecies);
+            membraneType = properties.MembraneType;
+            entity.Set(properties);
+
+            if (multicellularCellType != null)
+                GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
+        }
+        else
+        {
+            throw new NotSupportedException("Unknown species type to spawn a microbe from");
+        }
+
+        var bioProcesses = new BioProcesses
+        {
+            ProcessStatistics = aiControlled ? null : new ProcessStatistics(),
+        };
+
+        int organelleCount;
+        float engulfSize;
+
+        // Initialize organelles for the cell type
+        {
+            var container = default(OrganelleContainer);
+
+            container.CreateOrganelleLayout(usedCellProperties);
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
+
+            organelleCount = container.Organelles!.Count;
+            engulfSize = container.HexCount;
+
+            // Compound storage
+            var storage = new CompoundStorage
+            {
+                // 0 is used here as this is updated before adding the component anyway
+                Compounds = new CompoundBag(0),
+            };
+
+            // Run the storage update logic for the first time (to ensure consistency with later updates)
+            // This has to be called as CreateOrganelleLayout doesn't do this automatically
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage);
+
+            // Finish setting up these two components
+            entity.Set(container);
+
+            storage.Compounds.AddInitialCompounds(species.InitialCompounds);
+            entity.Set(storage);
+        }
+
+        entity.Set(bioProcesses);
+
+        entity.Set(new ReproductionStatus(species.BaseReproductionCost));
+
+        // Visuals
+        var scale = usedCellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);
+
+        entity.Set(new SpatialInstance
+        {
+            VisualScale = scale,
+            ApplyVisualScale = true,
+        });
+
+        entity.Set<EntityMaterial>();
+
+        entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour))
+        {
+            AnimateOnlyFirstMaterial = true,
+        });
+
+        entity.Set<MicrobeShaderParameters>();
+
+        entity.Set(new CompoundAbsorber
+        {
+            // This gets set properly later once the membrane is ready by MicrobePhysicsCreationAndSizeSystem
+            AbsorbRadius = Constants.MICROBE_MIN_ABSORB_RADIUS,
+
+            // Microbes only want to grab stuff they want
+            OnlyAbsorbUseful = true,
+
+            AbsorptionRatio = usedCellProperties.MembraneType.ResourceAbsorptionFactor,
+
+            // AI requires this, player doesn't (or at least I can't remember right now that it would -hhyyrylainen)
+            // but it isn't too big a problem to also specify this for the player
+            TotalAbsorbedCompounds = new Dictionary<Compound, float>(),
+        });
+
+        entity.Set(new UnneededCompoundVenter
+        {
+            VentThreshold = Constants.DEFAULT_MICROBE_VENT_THRESHOLD,
+        });
+
+        // Physics
+        entity.Set(new Physics
+        {
+            AxisLock = Physics.AxisLockType.YAxisWithRotation,
+            LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
+            AngularDamping = Constants.MICROBE_PHYSICS_DAMPING_ANGULAR,
+            TrackVelocity = true,
+        });
+
+        entity.Set<MicrobePhysicsExtraData>();
+
+        // Used in certain damage types to apply a cooldown
+        entity.Set<DamageCooldown>();
+
+        entity.Set(new CollisionManagement
+        {
+            RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
+        });
+
+        // The shape is created in the background to reduce lag when something spawns
+        entity.Set(new PhysicsShapeHolder
+        {
+            Shape = null,
+        });
+
+        // Movement
+        // TODO: calculate rotation rate
+        entity.Set(new MicrobeControl(location));
+        entity.Set<ManualPhysicsControl>();
+
+        // Other cell features
+        entity.Set(new MicrobeStatus
+        {
+            TimeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL,
+        });
+
+        entity.Set(new Health(HealthHelpers.CalculateMicrobeHealth(usedCellProperties.MembraneType,
+            usedCellProperties.MembraneRigidity)));
+
+        entity.Set(new CommandSignaler
+        {
+            SignalingChannel = species.ID,
+        });
+
+        entity.Set(new Engulfable
+        {
+            BaseEngulfSize = engulfSize,
+            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+        });
+
+        entity.Set(new Engulfer
+        {
+            EngulfingSize = engulfSize,
+            EngulfStorageSize = engulfSize,
+        });
+
+        // Microbes are not affected by currents before they are visualized
+        // entity.Set<CurrentAffected>();
+
+        // Selecting is used to throw out specific colony members
+        entity.Set<Selectable>();
+
+        entity.Set(new ReadableName(new LocalizedString(species.FormattedName)));
+
+        return (recorder, OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount));
     }
 
     /// <summary>
@@ -79,94 +627,68 @@ public static class SpawnHelpers
     /// <param name="microbe">The multicellular microbe</param>
     /// <param name="random">Random to use for the randomness</param>
     /// <exception cref="ArgumentException">If the microbe is not multicellular</exception>
-    public static void GiveFullyGrownChanceForMulticellular(Microbe microbe, Random random)
+    public static void GiveFullyGrownChanceForMulticellular(Entity microbe, Random random)
     {
-        if (!microbe.IsMulticellular)
+        throw new NotImplementedException();
+
+        /*if (!microbe.IsMulticellular)
             throw new ArgumentException("must be multicellular");
 
         // Chance to spawn fully grown or partially grown
         if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
         {
-            microbe.BecomeFullyGrownMulticellularColony();
+            throw new NotImplementedException();
+
+            // microbe.BecomeFullyGrownMulticellularColony();
         }
         else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
         {
             while (!microbe.IsFullyGrownMulticellular)
             {
-                microbe.AddMulticellularGrowthCell(true);
+                throw new NotImplementedException();
+
+                // microbe.AddMulticellularGrowthCell(true);
 
                 if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
                     break;
             }
-        }
+        }*/
+
+        // TODO: need to adjust entity weight in the spawned entity
+        // throw new NotImplementedException();
     }
 
-    // TODO: this is likely a huge cause of lag. Would be nice to be able
-    // to spawn these so that only one per tick is spawned.
-    public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, ISpawnSystem spawnSystem,
-        GameProperties currentGame, Random random)
+    /// <summary>
+    ///   Calculates spaced out positions to spawn a bacteria swarm (to avoid them all overlapping)
+    /// </summary>
+    public static List<Vector3> CalculateBacteriaSwarmPositions(Vector3 initialLocation, Random random)
     {
-        var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+        var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
             Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+
+        var result = new List<Vector3>(clumpSize);
+
         for (int i = 0; i < clumpSize; i++)
         {
-            // Dont spawn them on top of each other because it
-            // causes them to bounce around and lag
-            yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                cloudSystem, spawnSystem, currentGame);
+            result.Add(initialLocation + currentPoint);
 
-            curSpawn += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
+            currentPoint += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
         }
+
+        return result;
     }
 
-    public static PackedScene LoadMicrobeScene()
+    public static (EntityCommandRecorder Recorder, float Weight) SpawnBacteriaSwarmMember(
+        IWorldSimulation worldSimulation, Species species,
+        Vector3 location, out EntityRecord entity)
     {
-        return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, null, out entity);
     }
 
-    public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
-        Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
-    {
-        var chunk = (FloatingChunk)chunkScene.Instance();
-
-        // Settings need to be applied before adding it to the scene
-        var selectedMesh = chunkType.Meshes.Random(random);
-        chunk.GraphicsScene = selectedMesh.LoadedScene ??
-            throw new Exception("Chunk scene has not been loaded even though it should be loaded here");
-        chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
-
-        if (chunk.GraphicsScene == null)
-            throw new ArgumentException("couldn't find a graphics scene for a chunk");
-
-        // Pass on the chunk data
-        chunk.Init(chunkType, selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath);
-        chunk.UsesDespawnTimer = !chunkType.Dissolves;
-
-        worldNode.AddChild(chunk);
-
-        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
-        var rotationAxis = chunk.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
-        chunk.Transform = new Transform(new Quat(
-            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()), location);
-
-        chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
-            chunkType.ChunkScale);
-
-        chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
-        chunk.AddToGroup(Constants.AI_TAG_CHUNK);
-        return chunk;
-    }
-
-    public static PackedScene LoadChunkScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
-    }
-
-    public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
-        Compound compound, float amount, Random random)
+    public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
+        Random random)
     {
         int resolution = Settings.Instance.CloudResolution;
 
@@ -179,38 +701,6 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
-    }
-
-    /// <summary>
-    ///   Spawns an agent projectile
-    /// </summary>
-    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
-        float lifetime, Vector3 location, Vector3 direction,
-        Node worldRoot, PackedScene agentScene, IEntity emitter)
-    {
-        var normalizedDirection = direction.Normalized();
-
-        var agent = (AgentProjectile)agentScene.Instance();
-        agent.Properties = properties;
-        agent.Amount = amount;
-        agent.TimeToLiveRemaining = lifetime;
-        agent.Emitter = new EntityReference<IEntity>(emitter);
-
-        worldRoot.AddChild(agent);
-        agent.Translation = location + (direction * 1.5f);
-        var scaleValue = amount / Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
-        agent.Scale = new Vector3(scaleValue, scaleValue, scaleValue);
-
-        agent.ApplyCentralImpulse(normalizedDirection *
-            Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
-
-        agent.AddToGroup(Constants.TIMED_GROUP);
-        return agent;
-    }
-
-    public static PackedScene LoadAgentScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
 
     public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
@@ -227,11 +717,12 @@ public static class SpawnHelpers
         creature.Translation = location;
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
-        creature.AddToGroup(Constants.PROCESS_GROUP);
         creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
 
         if (aiControlled)
-            creature.AddToGroup(Constants.AI_GROUP);
+        {
+            // TODO: AI
+        }
 
         creature.ApplySpecies(species);
         creature.ApplyMovementModeFromSpecies();
@@ -443,54 +934,71 @@ public static class SpawnHelpers
 /// </summary>
 public class MicrobeSpawner : Spawner
 {
-    private readonly PackedScene microbeScene;
-    private readonly CompoundCloudSystem cloudSystem;
-    private readonly GameProperties currentGame;
     private readonly Random random = new();
 
-    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
+    public MicrobeSpawner(Species species)
     {
         Species = species ?? throw new ArgumentException("species is null");
-
-        microbeScene = SpawnHelpers.LoadMicrobeScene();
-        this.cloudSystem = cloudSystem;
-        this.currentGame = currentGame;
     }
 
     public override bool SpawnsEntities => true;
 
     public Species Species { get; }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
         // This should no longer happen, but let's keep this print here to keep track of the situation
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
 
-        // The true here is that this is AI controlled
-        var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
-            spawnSystem, currentGame);
+        bool bacteria = false;
 
-        if (first.IsMulticellular)
+        if (Species is MicrobeSpecies microbeSpecies)
         {
-            SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
+            bacteria = microbeSpecies.IsBacteria;
         }
 
-        yield return first;
-
-        ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
-
-        // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
-        if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
+        var firstSpawn = new SingleItemSpawnQueue((out EntityRecord entity) =>
         {
-            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, worldNode,
-                         microbeScene, cloudSystem, spawnSystem, currentGame, random))
+            // The true here is that this is AI controlled
+            var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, Species,
+                location, true, null, out entity);
+
+            if (Species is EarlyMulticellularSpecies)
             {
-                yield return colonyMember;
+                throw new NotImplementedException();
 
-                ModLoader.ModInterface.TriggerOnMicrobeSpawned(colonyMember);
+                // SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
+                // TODO: weight needs to be adjusted for the created colony
             }
+
+            ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);
+
+            return (recorder, weight);
+        }, this);
+
+        if (!bacteria)
+        {
+            // Simple case of just spawning a single microbe
+            return firstSpawn;
         }
+
+        // More complex, first need to do a normal spawn, and then continue onto bacteria swarm ones so we use a
+        // combined queue specifically written for this use case
+
+        var stateData = SpawnHelpers.CalculateBacteriaSwarmPositions(location, random);
+
+        var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((List<Vector3> positions, out EntityRecord entity) =>
+        {
+            var (recorder, weight) = SpawnHelpers.SpawnBacteriaSwarmMember(worldSimulation, Species,
+                positions[0], out entity);
+
+            positions.RemoveAt(0);
+
+            return (recorder, weight, positions.Count < 1);
+        }, stateData, SpawnQueue.PruneSpawnListPositions, this);
+
+        return new CombinedSpawnQueue(firstSpawn, swarmQueue);
     }
 
     public override string ToString()
@@ -518,7 +1026,7 @@ public class CompoundCloudSpawner : Spawner
 
     public override bool SpawnsEntities => false;
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override SpawnQueue? Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
@@ -537,26 +1045,27 @@ public class CompoundCloudSpawner : Spawner
 /// </summary>
 public class ChunkSpawner : Spawner
 {
-    private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
 
     public ChunkSpawner(ChunkConfiguration chunkType)
     {
         this.chunkType = chunkType;
-        chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
     public override bool SpawnsEntities => true;
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem)
+    public override SpawnQueue Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem)
     {
-        var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
-            random);
+        return new SingleItemSpawnQueue((out EntityRecord entity) =>
+        {
+            var recorder = SpawnHelpers.SpawnChunkWithoutFinalizing(worldSimulation,
+                chunkType, location, random, false, out entity);
 
-        yield return chunk;
+            ModLoader.ModInterface.TriggerOnChunkSpawned(entity, true);
 
-        ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
+            return (recorder, Constants.FLOATING_CHUNK_ENTITY_WEIGHT);
+        }, this);
     }
 
     public override string ToString()

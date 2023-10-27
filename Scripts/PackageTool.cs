@@ -143,6 +143,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (!File.Exists(ignoreFile))
         {
+            ColourConsole.WriteDebugLine($"Creating .gdignore file in folder: {folder}");
             await using var writer = File.Create(ignoreFile);
         }
     }
@@ -368,6 +369,38 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
                 File.Delete(potentialCache);
             }
         }
+
+        // Copy needed native libraries
+        var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
+        {
+            DebugLibrary = false,
+            DisableColour = options.DisableColour,
+            Verbose = options.Verbose,
+        });
+
+        ColourConsole.WriteNormalLine("Copying native libraries (hopefully they were downloaded / compiled already)");
+
+        if (!nativeLibraryTool.CopyToThriveRelease(folder, platform, true))
+        {
+            bool success = false;
+
+            if (options.FallbackToLocalNative)
+            {
+                ColourConsole.WriteWarningLine("Falling back to native library versions only meant for local use");
+                ColourConsole.WriteNormalLine("Releases made like this are not the best and may not work on " +
+                    "all target systems due to system version differences");
+
+                success = nativeLibraryTool.CopyToThriveRelease(folder, platform, false);
+            }
+
+            if (!success)
+            {
+                ColourConsole.WriteErrorLine("Could not copy native libraries for release, this release won't work");
+                return false;
+            }
+        }
+
+        ColourConsole.WriteSuccessLine("Native library operations succeeded");
 
         return true;
     }

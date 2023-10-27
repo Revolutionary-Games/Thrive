@@ -52,4 +52,30 @@ public static class ListUtils
 
         return -1;
     }
+
+    /// <summary>
+    ///   Removes an item from a list at index without preserving the list order, this should be faster than normal
+    ///   list remove that preserves order
+    /// </summary>
+    /// <param name="list">The list to modify</param>
+    /// <param name="indexToRemove">Index in the list to remove an item at</param>
+    /// <typeparam name="T">Type of items in the list</typeparam>
+    public static void RemoveWithoutPreservingOrder<T>(this IList<T> list, int indexToRemove)
+    {
+        var itemCount = list.Count;
+
+        if (indexToRemove + 1 == itemCount)
+        {
+            // Already last
+        }
+        else
+        {
+            // Need to swap the last item to the indexToRemove to preserve it
+            var temp = list[itemCount - 1];
+
+            list[indexToRemove] = temp;
+        }
+
+        list.RemoveAt(itemCount - 1);
+    }
 }

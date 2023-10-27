@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -15,7 +14,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public List<ChunkScene> Meshes;
 
+    /// <summary>
+    ///   This is the spawn density of the chunk
+    /// </summary>
     public float Density;
+
     public bool Dissolves;
     public float Radius;
     public float ChunkScale;
@@ -50,6 +53,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
     public string DissolverEnzyme;
+
+    // TODO: convert the JSON data to directly specify the physics density
+    [JsonIgnore]
+    public float PhysicsDensity => Mass * 1000;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
@@ -133,7 +140,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// <summary>
     ///   Don't modify instances of this class
     /// </summary>
-    public class ChunkScene : ISaveLoadable
+    public class ChunkScene
     {
         public string ScenePath = null!;
 
@@ -152,26 +159,14 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// </summary>
         public string? SceneAnimationPath;
 
-        [JsonIgnore]
-        public PackedScene? LoadedScene;
+        /// <summary>
+        ///   Need to be set to true on particle type visuals as those need special handling
+        /// </summary>
+        public bool IsParticles;
 
-        [JsonIgnore]
-        public ConvexPolygonShape? LoadedConvexShape;
-
-        public void LoadScene()
-        {
-            if (string.IsNullOrEmpty(ScenePath))
-                throw new InvalidOperationException($"{nameof(ScenePath)} is required for a ChunkScene");
-
-            LoadedScene = GD.Load<PackedScene>(ScenePath);
-
-            if (!string.IsNullOrEmpty(ConvexShapePath))
-                LoadedConvexShape = GD.Load<ConvexPolygonShape>(ConvexShapePath);
-        }
-
-        public void FinishLoading(ISaveContext? context)
-        {
-            LoadScene();
-        }
+        /// <summary>
+        ///   If true animations won't be stopped on this scene when this is spawned as a chunk
+        /// </summary>
+        public bool PlayAnimation;
     }
 }

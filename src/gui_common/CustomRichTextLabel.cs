@@ -565,7 +565,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                     case "ConditionFulfilled":
                     {
-                        output = GetResizedImage(GUICommon.Instance.RequirementFullfilledIconPath, 20, 0, 3);
+                        output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0, 3);
                         break;
                     }
 

@@ -71,7 +71,7 @@ public class GameWorld : ISaveLoadable
             startingSpecies.OnEdited();
 
             // Need to update the species ID in case it was different in a previous game
-            startingSpecies.OnBecomePartOfWorld(++speciesIdCounter);
+            startingSpecies.OnBecomePartOfWorld(GetNextSpeciesID());
             worldSpecies[startingSpecies.ID] = startingSpecies;
 
             PlayerSpecies = startingSpecies;
@@ -221,7 +221,7 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public MicrobeSpecies NewMicrobeSpecies(string genus, string epithet)
     {
-        var species = new MicrobeSpecies(++speciesIdCounter, genus, epithet);
+        var species = new MicrobeSpecies(GetNextSpeciesID(), genus, epithet);
 
         worldSpecies[species.ID] = species;
         return species;
@@ -295,7 +295,8 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Registers a species created by auto-evo in this world. Updates the ID
+    ///   Registers a species created by auto-evo in this world. Updates the ID to ensure it is unique and valid for
+    ///   this world.
     /// </summary>
     /// <param name="species">The species to register</param>
     public void RegisterAutoEvoCreatedSpecies(Species species)
@@ -303,7 +304,7 @@ public class GameWorld : ISaveLoadable
         if (worldSpecies.Any(p => p.Value == species))
             throw new ArgumentException("Species is already in this world");
 
-        species.OnBecomePartOfWorld(++speciesIdCounter);
+        species.OnBecomePartOfWorld(GetNextSpeciesID());
         worldSpecies[species.ID] = species;
     }
 
@@ -683,6 +684,22 @@ public class GameWorld : ISaveLoadable
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+    }
+
+    private uint GetNextSpeciesID()
+    {
+        var speciesId = ++speciesIdCounter;
+
+        // Guard against running out of IDs
+        if (speciesId == uint.MaxValue)
+        {
+            // TODO: implement species ID sequence reset (need to find unused ranges of species ID numbers for this
+            // world
+            throw new NotImplementedException(
+                "World ran out of species ID numbers and restarting sequence is not implemented");
+        }
+
+        return speciesId;
     }
 
     private void SwitchSpecies(Species old, Species newSpecies)

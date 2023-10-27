@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using DefaultEcs;
+using DefaultEcs.Command;
+using Godot;
 
 /// <summary>
 ///   Implementation of the default <see cref="IModInterface"/>
@@ -11,6 +13,7 @@ public class ModInterface : IModInterface
     }
 
     public event IModInterface.OnSceneChangedHandler? OnSceneChanged;
+
     public event IModInterface.OnDamageReceivedHandler? OnDamageReceived;
     public event IModInterface.OnPlayerMicrobeSpawnedHandler? OnPlayerMicrobeSpawned;
     public event IModInterface.OnMicrobeSpawnedHandler? OnMicrobeSpawned;
@@ -27,32 +30,32 @@ public class ModInterface : IModInterface
         OnSceneChanged?.Invoke(newScene);
     }
 
-    public void TriggerOnDamageReceived(Node damageReceiver, float amount, bool isPlayer)
+    public void TriggerOnDamageReceived(Entity damageReceiver, float amount, bool isPlayer)
     {
         OnDamageReceived?.Invoke(damageReceiver, amount, isPlayer);
     }
 
-    public void TriggerOnPlayerMicrobeSpawned(Microbe player)
+    public void TriggerOnPlayerMicrobeSpawned(Entity player)
     {
         OnPlayerMicrobeSpawned?.Invoke(player);
     }
 
-    public void TriggerOnMicrobeSpawned(Microbe microbe)
+    public void TriggerOnMicrobeSpawned(EntityRecord microbe)
     {
         OnMicrobeSpawned?.Invoke(microbe);
     }
 
-    public void TriggerOnChunkSpawned(FloatingChunk chunk, bool environmental)
+    public void TriggerOnChunkSpawned(EntityRecord chunk, bool environmental)
     {
         OnChunkSpawned?.Invoke(chunk, environmental);
     }
 
-    public void TriggerOnToxinEmitted(AgentProjectile toxin)
+    public void TriggerOnToxinEmitted(EntityRecord toxin)
     {
         OnToxinEmitted?.Invoke(toxin);
     }
 
-    public void TriggerOnMicrobeDied(Microbe microbe, bool isPlayer)
+    public void TriggerOnMicrobeDied(Entity microbe, bool isPlayer)
     {
         OnMicrobeDied?.Invoke(microbe, isPlayer);
     }

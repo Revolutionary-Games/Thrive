@@ -338,13 +338,44 @@ Compiling
 ---------
 
 Now you should be able to return to the Godot editor and hit the build
-button in the top right corner. If that succeeds then you should be
-good to go.
+button in the top right corner. If that succeeds then the C# side of
+things should be working.
 
-You can also compile from your development
-environment (and not the Godot editor) to see warnings and get
-highlighting of errors in the source code. However running the game
-from Visual Studio is a bit complicated.
+## Native Libraries
+
+Thrive depends on some native libraries which must be present before
+the game can be ran.
+
+In the future it will be possible to download compatible libraries
+with a script:
+```sh
+dotnet run --project Scripts -- native Fetch Install
+```
+
+You can compile these libraries locally after installing C++
+development tools: cmake, and a compiler. On Linux clang is
+recommended. On Windows Visual Studio probably works best, but
+technically clang should work (please send us a PR if you can tweak it
+to work). On Mac Xcode (or at least the command line tools for it)
+should be used.
+
+You can compile and install the native libraries for the Godot Editor
+in the Thrive folder with the following script:
+```sh
+dotnet run --project Scripts -- native Build Install
+```
+
+Debug versions for easier native code development / more robust error
+condition checking can be built and installed by adding `-d` to the
+end of the previous command to specify debug versions of the
+libraries to be used.
+
+## Using Development Environments
+
+You can also compile from your development environment (and not the
+Godot editor) to see warnings and get highlighting of errors in the
+source code. However running the game from Visual Studio is a bit
+complicated.
 
 If the compile fails with a bunch of `Godot.something` or `Node` not
 found, undefined references, you need to compile the game from the
@@ -377,7 +408,8 @@ configuration editor.
 Done
 ----
 
-If the build in Godot editor succeeded, you should be now good to go.
+If the build in Godot editor succeeded and the native library install
+step succeeded without errors, you should be now good to go.
 
 You can run the game by pressing the play button in the top right of
 the Godot editor or by pressing F5. Additionally if you open different

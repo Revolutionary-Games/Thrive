@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Spawner that can be added to a SpawnSystem to be used for spawning things
@@ -43,9 +42,12 @@ public abstract class Spawner
     /// <summary>
     ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
     /// </summary>
-    /// <param name="worldNode">The parent node of spawned entities</param>
+    /// <param name="worldSimulation">The simulation to create the entity in</param>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
     /// <param name="spawnSystem">The spawn system that is requesting the spawn to happen</param>
-    /// <returns>An enumerator that on each next call spawns one thing</returns>
-    public abstract IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, ISpawnSystem spawnSystem);
+    /// <returns>
+    ///   A spawn queue that on each next call spawns one thing. Null if this spawner doesn't spawn entities,
+    ///   for example compound clouds.
+    /// </returns>
+    public abstract SpawnQueue? Spawn(IWorldSimulation worldSimulation, Vector3 location, ISpawnSystem spawnSystem);
 }

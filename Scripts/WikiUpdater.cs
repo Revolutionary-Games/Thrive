@@ -33,6 +33,8 @@ public static class WikiUpdater
         "Mucilage",
         "Nitrogen",
         "Oxygen",
+
+        // ReSharper disable once StringLiteralTypo
         "OxyToxy",
         "Phosphates",
         "Sunlight",

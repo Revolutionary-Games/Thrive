@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -53,12 +52,6 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    /// <summary>
-    ///   Total mass of all the organelles in this cell type
-    /// </summary>
-    [JsonIgnore]
-    public float TotalMass => Organelles.Sum(o => o.Definition.Mass);
-
     [JsonIgnore]
     public string FormattedName => TypeName;
 
@@ -90,7 +83,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     {
         foreach (var organelle in Organelles)
         {
-            if (organelle.Definition.HasComponentFactory<AxonComponentFactory>())
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Axon))
             {
                 return true;
             }
@@ -107,8 +100,10 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        throw new NotImplementedException();
+
+        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 
     public object Clone()
@@ -148,6 +143,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed =
+            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
     }
 }

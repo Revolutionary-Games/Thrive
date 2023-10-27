@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Represents an early multicellular species that is composed of multiple cells
