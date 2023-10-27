@@ -680,7 +680,7 @@ public static class Constants
     /// </summary>
     public const float PILUS_BASE_DAMAGE = 20.0f;
 
-    public const float PILUS_PHYSICS_SIZE = 4.4f;
+    public const float PILUS_PHYSICS_SIZE = 4.6f;
 
     /// <summary>
     ///   Damage a single injectisome stab does

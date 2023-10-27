@@ -275,6 +275,12 @@ public class PhysicalWorld : IDisposable
         return NativeMethods.FixBodyYCoordinateToZero(AccessWorldInternal(), body.AccessBodyInternal());
     }
 
+    public void ChangeBodyShape(NativePhysicsBody body, PhysicsShape shape, bool activate = true)
+    {
+        NativeMethods.ChangeBodyShape(AccessWorldInternal(), body.AccessBodyInternal(),
+            shape.AccessShapeInternal(), activate);
+    }
+
     /// <summary>
     ///   Makes this body unable to move on the given axis. Used to make microbes move only in a 2D plane. Call after
     ///   the body is added to the world.
@@ -581,6 +587,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern bool FixBodyYCoordinateToZero(IntPtr world, IntPtr body);
+
+    [DllImport("thrive_native")]
+    internal static extern void ChangeBodyShape(IntPtr world, IntPtr body, IntPtr shape, bool activate);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr PhysicsBodyAddAxisLock(IntPtr physicalWorld, IntPtr body, JVecF3 axis,

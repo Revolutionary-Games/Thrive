@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
 
-    // TODO: need to actually use this data somewhere
     /// <summary>
     ///   General info about the reproduction status of a creature
     /// </summary>

@@ -59,8 +59,8 @@
 
             ref var shapeHolder = ref entity.Get<PhysicsShapeHolder>();
 
-            if (shapeHolder.Shape != null)
-                return;
+            // We don't skip creating a shape if there is already one as microbes can change shape, so we re-apply
+            // the shape if there is a previous one
 
             // Create a shape for an entity missing it
 
@@ -122,6 +122,8 @@
                 // TODO: background thread shape creation to not take up main thread time (or maybe at least the
                 // density calculation?)
 
+                var oldShape = shapeHolder.Shape;
+
                 if (!requiresCompoundShape)
                 {
                     shapeHolder.Shape = CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties,
@@ -129,12 +131,18 @@
                 }
                 else
                 {
+                    // TODO: caching of compound shapes to make the old shape detection work
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles, ref cellProperties,
                         entity, rawData, count);
                 }
 
-                // Ensure physics body is recreated if the shape changed
-                shapeHolder.UpdateBodyShapeIfCreated = true;
+                // Skip updating the physics body shape if we got the same cached shape as we had before
+                if (!ReferenceEquals(oldShape, shapeHolder.Shape))
+                {
+                    // Ensure physics body is recreated if the shape changed
+                    shapeHolder.UpdateBodyShapeIfCreated = true;
+                }
+
                 cellProperties.ShapeCreated = true;
             }
             catch (Exception e)
@@ -237,7 +245,9 @@
             var externalPosition = cellProperties.CalculateExternalOrganellePosition(placedOrganelle.Position,
                 placedOrganelle.Orientation, out var rotation);
 
-            var (position, orientation) = placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation);
+            var (position, orientation) =
+                placedOrganelle.CalculatePhysicsExternalTransform(externalPosition, rotation,
+                    cellProperties.IsBacteria);
 
             ++extraData.PilusCount;
             ++extraData.TotalShapeCount;

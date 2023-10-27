@@ -254,7 +254,7 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeConvex(in JVecF3 microbePoints, uint pointCount, float density,
-        float scale);
+        float scale, float thickness = 1);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateMicrobeShapeSpheres(in JVecF3 microbePoints, uint pointCount, float density,

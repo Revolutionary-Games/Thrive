@@ -104,6 +104,8 @@ public:
     /// \returns True if the body's position changed, false if no fix was needed
     bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);
 
+    void ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
+
     // ------------------------------------ //
     // Collisions
 

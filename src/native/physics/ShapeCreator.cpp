@@ -140,6 +140,8 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeConvex(JVecF3* points,
         return nullptr;
     }
 
+    const auto halfThickness = thickness * 0.5f;
+
     // We don't use any of the explicit constructors as we want to do any needed type and scale conversions when
     // actually copying data to the array in the settings
     auto settings = JPH::ConvexHullShapeSettings();
@@ -158,8 +160,8 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeConvex(JVecF3* points,
             const auto scaledY = sourcePoint.Y * scale;
             const auto scaledZ = sourcePoint.Z * scale;
 
-            pointTarget.emplace_back(scaledX, scaledY, scaledZ);
-            pointTarget.emplace_back(scaledX, scaledY + thickness, scaledZ);
+            pointTarget.emplace_back(scaledX, scaledY - halfThickness, scaledZ);
+            pointTarget.emplace_back(scaledX, scaledY + halfThickness, scaledZ);
         }
     }
     else
@@ -168,8 +170,8 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateMicrobeShapeConvex(JVecF3* points,
         {
             const auto& sourcePoint = points[i];
 
-            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y, sourcePoint.Z);
-            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y + thickness, sourcePoint.Z);
+            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y - halfThickness, sourcePoint.Z);
+            pointTarget.emplace_back(sourcePoint.X, sourcePoint.Y + halfThickness, sourcePoint.Z);
         }
     }
 

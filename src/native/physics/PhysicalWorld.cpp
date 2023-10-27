@@ -687,6 +687,13 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
     return false;
 }
 
+void PhysicalWorld::ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate)
+{
+    // For now this always recalculates mass and inertia
+    physicsSystem->GetBodyInterface().SetShape(
+        bodyId, shape, true, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
+}
+
 // ------------------------------------ //
 const int32_t* PhysicalWorld::EnableCollisionRecording(
     PhysicsBody& body, CollisionRecordListType collisionRecordingTarget, int maxRecordedCollisions)

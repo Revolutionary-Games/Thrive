@@ -316,6 +316,13 @@ bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
         ->FixBodyYCoordinateToZero(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId());
 }
 
+void ChangeBodyShape(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsShape* shape, bool activate)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->ChangeBodyShape(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(), activate);
+}
+
 void PhysicsBodyAddAxisLock(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
@@ -510,13 +517,13 @@ PhysicsShape* CreateCylinderShape(float halfHeight, float radius, float density)
         CreateShapeWrapper(Thrive::Physics::SimpleShapes::CreateCylinder(halfHeight, radius, density)));
 }
 
-PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density, float scale)
+PhysicsShape* CreateMicrobeShapeConvex(JVecF3* points, uint32_t pointCount, float density, float scale, float thickness)
 {
     // We don't want to do any extra data copies here (as the C# marshalling already copies stuff) so this API takes
     // in the JVecF3 pointer
 
     return reinterpret_cast<PhysicsShape*>(CreateShapeWrapper(
-        Thrive::Physics::ShapeCreator::CreateMicrobeShapeConvex(points, pointCount, density, scale)));
+        Thrive::Physics::ShapeCreator::CreateMicrobeShapeConvex(points, pointCount, density, scale, thickness)));
 }
 
 PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, float density, float scale)
@@ -554,6 +561,63 @@ float ShapeGetMass(PhysicsShape* shape)
 {
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
+
+JVecF3 ShapeGetRotationalInertiaAngles(PhysicsShape* shape)
+{
+    JPH::Mat44 rotation;
+    JPH::Vec3 diagonal;
+
+    if (!reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)
+             ->GetShape()
+             ->GetMassProperties()
+             .DecomposePrincipalMomentsOfInertia(rotation, diagonal))
+    {
+        LOG_ERROR("Mass properties matrix decompose failed for inertia calculation");
+        return {0, 0, 0};
+    }
+
+    // Math from https://nghiaho.com/?page_id=846
+    float x = std::atan2(rotation.GetColumn4(1)[2], rotation.GetColumn4(2)[2]);
+    float y = std::atan2(-rotation.GetColumn4(0)[2],
+        std::sqrt(rotation.GetColumn4(1)[2] * rotation.GetColumn4(1)[2] +
+            rotation.GetColumn4(2)[2] * rotation.GetColumn4(2)[2]));
+    float z = std::atan2(rotation.GetColumn4(0)[1], rotation.GetColumn4(0)[0]);
+
+    return {x, y, z};
+
+    /*
+    // Math is from https://learnopencv.com/rotation-matrix-to-euler-angles/
+    // "Decomposing and composing a 3×3 rotation matrix" at https://nghiaho.com/?page_id=846 also talks about this
+    const auto rotationMatrix =
+        reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mInertia.GetRotation();
+
+    float sy = std::sqrt(rotationMatrix.GetColumn4(0)[0] * rotationMatrix.GetColumn4(0)[0] +
+        rotationMatrix.GetColumn4(1)[0] * rotationMatrix.GetColumn4(1)[0]);
+
+    bool singular = sy < 1e-6;
+
+    float x, y, z;
+    if (!singular)
+    {
+        x = std::atan2(rotationMatrix.GetColumn4(2)[1], rotationMatrix.GetColumn4(2)[2]);
+        y = std::atan2(-rotationMatrix.GetColumn4(2)[0], sy);
+        z = std::atan2(rotationMatrix.GetColumn4(1)[0], rotationMatrix.GetColumn4(0)[0]);
+    }
+    else
+    {
+        x = std::atan2(-rotationMatrix.GetColumn4(1)[2], rotationMatrix.GetColumn4(1)[1]);
+        y = std::atan2(-rotationMatrix.GetColumn4(2)[0], sy);
+        z = 0;
+    }
+
+    return {x, y, z};
+     */
+}
+
+#pragma clang diagnostic pop
 
 // ------------------------------------ //
 bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)

@@ -102,6 +102,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ChangeBodyShape(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsShape* shape, bool activate);
+
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodyAddAxisLock(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 axis, bool lockRotation);
 
@@ -175,7 +178,7 @@ extern "C"
         float halfHeight, float radius, float density = 1000);
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeConvex(
-        JVecF3* points, uint32_t pointCount, float density, float scale);
+        JVecF3* points, uint32_t pointCount, float density, float scale, float thickness);
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateMicrobeShapeSpheres(
         JVecF3* points, uint32_t pointCount, float density, float scale);
 
@@ -188,6 +191,8 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void ReleaseShape(PhysicsShape* shape);
 
     [[maybe_unused]] THRIVE_NATIVE_API float ShapeGetMass(PhysicsShape* shape);
+
+    [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeGetRotationalInertiaAngles(PhysicsShape* shape);
 
     // ------------------------------------ //
     // Misc

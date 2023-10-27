@@ -67,10 +67,19 @@
 
             if (body != null && shapeHolder.UpdateBodyShapeIfCreated)
             {
-                // TODO: we should actually just change the shape of the body, not recreate it entirely, to preserve
-                // things like velocity etc.
-                throw new NotImplementedException();
+                // Change the shape of the body
+                var physicalWorld = worldSimulationWithPhysics.PhysicalWorld;
+                physicalWorld.ChangeBodyShape(body, shapeHolder.Shape);
+                shapeHolder.UpdateBodyShapeIfCreated = false;
+
+                // TODO: apply changing shapeHolder.BodyIsStatic variable if that needs to ever work (probably
+                // should just fallback to the normal creation logic, as switching from static to moving doesn't need
+                // to preserve velocity)
+
+                return;
             }
+
+            // Create a new body
 
             ref var position = ref entity.Get<WorldPosition>();
 
