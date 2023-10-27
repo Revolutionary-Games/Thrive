@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-17 21:21+0200\n"
+"POT-Creation-Date: 2023-10-26 19:42+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -47,7 +47,7 @@ msgstr "Przerwij"
 msgid "ABORTED_DOT"
 msgstr "Przerwano."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:829
+#: ../simulation_parameters/microbe_stage/biomes.json:832
 msgid "ABYSSOPELAGIC"
 msgstr "Abysal"
 
@@ -261,7 +261,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Autor: {0}"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:530
 msgid "ART_GALLERY"
 msgstr "Galeria"
 
@@ -369,7 +369,7 @@ msgstr "Autozapis w trakcie gry"
 msgid "AUTO_EVO"
 msgstr "Auto-Ewolucja"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:430
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Narzędzie Eksploracji Auto-Ewo"
 
@@ -420,8 +420,8 @@ msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
-#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
+#: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
+#: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -472,7 +472,7 @@ msgstr "Zmniejsz Basy"
 msgid "BASSUP"
 msgstr "Zwiększ Basy"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:583
+#: ../simulation_parameters/microbe_stage/biomes.json:586
 msgid "BATHYPELAGIC"
 msgstr "Batypelagial"
 
@@ -520,7 +520,7 @@ msgstr "Oportunizm"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m poniżej poziomu morza"
 
-#: ../src/general/MainMenu.tscn:445
+#: ../src/general/MainMenu.tscn:444
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -542,16 +542,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Najlepiej radzi sobie w:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:326
-#: ../simulation_parameters/microbe_stage/biomes.json:493
-#: ../simulation_parameters/microbe_stage/biomes.json:659
-#: ../simulation_parameters/microbe_stage/biomes.json:905
-#: ../simulation_parameters/microbe_stage/biomes.json:1151
-#: ../simulation_parameters/microbe_stage/biomes.json:1398
-#: ../simulation_parameters/microbe_stage/biomes.json:1564
-#: ../simulation_parameters/microbe_stage/biomes.json:1750
-#: ../simulation_parameters/microbe_stage/biomes.json:1917
-#: ../simulation_parameters/microbe_stage/biomes.json:2083
+#: ../simulation_parameters/microbe_stage/biomes.json:329
+#: ../simulation_parameters/microbe_stage/biomes.json:496
+#: ../simulation_parameters/microbe_stage/biomes.json:662
+#: ../simulation_parameters/microbe_stage/biomes.json:908
+#: ../simulation_parameters/microbe_stage/biomes.json:1154
+#: ../simulation_parameters/microbe_stage/biomes.json:1401
+#: ../simulation_parameters/microbe_stage/biomes.json:1567
+#: ../simulation_parameters/microbe_stage/biomes.json:1756
+#: ../simulation_parameters/microbe_stage/biomes.json:1923
+#: ../simulation_parameters/microbe_stage/biomes.json:2089
 msgid "BIG_IRON_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
@@ -601,7 +601,7 @@ msgstr "Świecąca Wakuola"
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/general/GameProperties.cs:158
+#: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
@@ -947,7 +947,7 @@ msgstr "Usuń stare zapisy"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -964,7 +964,7 @@ msgstr "Dzielnik rozdzielczości chmur:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1321
+#: ../simulation_parameters/microbe_stage/biomes.json:1324
 msgid "COASTAL"
 msgstr "Przybrzeże"
 
@@ -1045,19 +1045,19 @@ msgstr "Pospolite Umiejętności"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:686
+#: ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_FORUM"
 msgstr "Forum Społeczności"
 
-#: ../src/general/MainMenu.tscn:681
+#: ../src/general/MainMenu.tscn:680
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Dołącz do społeczności Thrive na naszym forum"
 
-#: ../src/general/MainMenu.tscn:728
+#: ../src/general/MainMenu.tscn:727
 msgid "COMMUNITY_WIKI"
 msgstr "Wiki Społeczności"
 
-#: ../src/general/MainMenu.tscn:723
+#: ../src/general/MainMenu.tscn:722
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Odwiedź naszą wiki społeczności"
 
@@ -1577,11 +1577,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Developerzy"
 
-#: ../src/general/MainMenu.tscn:700
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_FORUM"
 msgstr "Forum Developerskie"
 
-#: ../src/general/MainMenu.tscn:695
+#: ../src/general/MainMenu.tscn:694
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Zobacz aktualności na naszym forum developerskim"
 
@@ -1589,11 +1589,11 @@ msgstr "Zobacz aktualności na naszym forum developerskim"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Rozwój Wspierany Przez Revolutionary Games Studio"
 
-#: ../src/general/MainMenu.tscn:714
+#: ../src/general/MainMenu.tscn:713
 msgid "DEVELOPMENT_WIKI"
 msgstr "Wiki Developerskie"
 
-#: ../src/general/MainMenu.tscn:709
+#: ../src/general/MainMenu.tscn:708
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Odwiedź nasze wiki developerskie"
 
@@ -1721,7 +1721,7 @@ msgstr ""
 "Są organelle które nie są połączone do reszty komórki.\n"
 "Proszę połączyć wszystkie organelle albo cofnij zmiany."
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:871
 msgid "DISCORD_TOOLTIP"
 msgstr "Dołącz do naszego serwera Discord"
 
@@ -2058,7 +2058,7 @@ msgstr "Esc"
 msgid "ESCAPE_ENGULFING"
 msgstr "Uniknij fagocytozy"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1840
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
 msgid "ESTUARY"
 msgstr "Eustarium"
 
@@ -2154,7 +2154,7 @@ msgstr "Dodatki"
 msgid "EXTRA_OPTIONS"
 msgstr "Dodatkowe Opcje"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:883
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Odwiedź naszą stronę na Facebook"
 
@@ -2279,16 +2279,16 @@ msgid "FLOATING_CHUNKS_COLON"
 msgstr "Dryfujące Odłamki:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:192
-#: ../simulation_parameters/microbe_stage/biomes.json:439
-#: ../simulation_parameters/microbe_stage/biomes.json:605
-#: ../simulation_parameters/microbe_stage/biomes.json:851
-#: ../simulation_parameters/microbe_stage/biomes.json:1097
-#: ../simulation_parameters/microbe_stage/biomes.json:1344
-#: ../simulation_parameters/microbe_stage/biomes.json:1510
-#: ../simulation_parameters/microbe_stage/biomes.json:1677
-#: ../simulation_parameters/microbe_stage/biomes.json:1863
-#: ../simulation_parameters/microbe_stage/biomes.json:2029
+#: ../simulation_parameters/microbe_stage/biomes.json:195
+#: ../simulation_parameters/microbe_stage/biomes.json:442
+#: ../simulation_parameters/microbe_stage/biomes.json:608
+#: ../simulation_parameters/microbe_stage/biomes.json:854
+#: ../simulation_parameters/microbe_stage/biomes.json:1100
+#: ../simulation_parameters/microbe_stage/biomes.json:1347
+#: ../simulation_parameters/microbe_stage/biomes.json:1513
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1869
+#: ../simulation_parameters/microbe_stage/biomes.json:2035
 msgid "FLOATING_HAZARD"
 msgstr "Pływające Zagrożenie"
 
@@ -2436,7 +2436,7 @@ msgstr "Pokolenia"
 msgid "GENERATION_COLON"
 msgstr "Generacja:"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:835
 msgid "GITHUB_TOOLTIP"
 msgstr "Odwiedź naszą stronę GitHub"
 
@@ -2444,11 +2444,11 @@ msgstr "Odwiedź naszą stronę GitHub"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:967
 msgid "GLES2_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:969
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie grafiki AMD lub Nvidia do uruchamiania Trive."
 
@@ -2489,16 +2489,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Dołącz do naszego serwera Discord"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:350
-#: ../simulation_parameters/microbe_stage/biomes.json:517
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:1009
-#: ../simulation_parameters/microbe_stage/biomes.json:1255
-#: ../simulation_parameters/microbe_stage/biomes.json:1422
-#: ../simulation_parameters/microbe_stage/biomes.json:1588
-#: ../simulation_parameters/microbe_stage/biomes.json:1774
-#: ../simulation_parameters/microbe_stage/biomes.json:1941
-#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#: ../simulation_parameters/microbe_stage/biomes.json:353
+#: ../simulation_parameters/microbe_stage/biomes.json:520
+#: ../simulation_parameters/microbe_stage/biomes.json:766
+#: ../simulation_parameters/microbe_stage/biomes.json:1012
+#: ../simulation_parameters/microbe_stage/biomes.json:1258
+#: ../simulation_parameters/microbe_stage/biomes.json:1425
+#: ../simulation_parameters/microbe_stage/biomes.json:1591
+#: ../simulation_parameters/microbe_stage/biomes.json:1780
+#: ../simulation_parameters/microbe_stage/biomes.json:1947
+#: ../simulation_parameters/microbe_stage/biomes.json:2193
 msgid "GOOGLY_EYE_CELL"
 msgstr "Komórka oczka"
 
@@ -2590,7 +2590,7 @@ msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Przytrzymaj [thrive:input]g_free_cursor[/thrive:input] dla kursora"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 #, fuzzy
 msgid "HOME"
 msgstr "Dom"
@@ -2631,11 +2631,11 @@ msgstr "Hiper Lewo"
 msgid "HYPERR"
 msgstr "Hiper Prawo"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1731
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
 msgid "ICESHARD"
 msgstr "Odłamy Lodu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1654
+#: ../simulation_parameters/microbe_stage/biomes.json:1657
 msgid "ICESHELF"
 msgstr "Lodowiec Szelfowy"
 
@@ -2666,6 +2666,58 @@ msgstr "Nieskończone Związki"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Nieskończone Punkty Mutacji"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "PRZETRWAŁEŚ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "Nazwa wewnętrzna (pliku):"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "Koszt Osmoregulacji"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "Brak procesów"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "Wymaga Jądra"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "PRZETRWAŁEŚ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "PRZETRWAŁEŚ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "PRZETRWAŁEŚ!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
+msgid "INFO_BOX_UPGRADES"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -2839,7 +2891,7 @@ msgstr "Żelazo (Fe²⁺)"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Utlenianie Żelaza"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:811
 msgid "ITCH_TOOLTIP"
 msgstr "Odwiedź naszą stronę Itch.io"
 
@@ -3216,7 +3268,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Lewy przycisk myszy"
 
-#: ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "LICENSES"
 msgstr "Licencje"
 
@@ -3432,12 +3484,12 @@ msgstr "Włącz cykl dnia i nocy"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
 
-#: ../src/general/MainMenu.tscn:1019
+#: ../src/general/MainMenu.tscn:1018
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Wydajność"
 
-#: ../src/general/MainMenu.tscn:1021
+#: ../src/general/MainMenu.tscn:1020
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
@@ -3467,11 +3519,11 @@ msgstr "Mapa"
 msgid "MARCH"
 msgstr "Marzec"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:246
-#: ../simulation_parameters/microbe_stage/biomes.json:683
-#: ../simulation_parameters/microbe_stage/biomes.json:929
-#: ../simulation_parameters/microbe_stage/biomes.json:1175
-#: ../simulation_parameters/microbe_stage/biomes.json:2107
+#: ../simulation_parameters/microbe_stage/biomes.json:249
+#: ../simulation_parameters/microbe_stage/biomes.json:686
+#: ../simulation_parameters/microbe_stage/biomes.json:932
+#: ../simulation_parameters/microbe_stage/biomes.json:1178
+#: ../simulation_parameters/microbe_stage/biomes.json:2113
 msgid "MARINE_SNOW"
 msgstr "Śnieg morski"
 
@@ -3546,7 +3598,7 @@ msgstr "Rodzaje błony lub ściany komórkowej"
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1078
 msgid "MESOPELAGIC"
 msgstr "Mezopelagial"
 
@@ -3605,7 +3657,7 @@ msgid "MICROBES_COUNT"
 msgstr "Ilość mikrobów:"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:600
+#: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Edytor Mikroba"
@@ -3952,11 +4004,11 @@ msgstr "Modyfikuj Organellę"
 msgid "MODIFY_TYPE"
 msgstr "Modyfikuj Typ"
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:517
 msgid "MODS"
 msgstr "Modyfikacje"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:981
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Zainstalowane mody zostały wykryte, ale żaden mod nie jest włączony.\n"
@@ -4045,11 +4097,11 @@ msgstr "Nazwa wewnętrzna (pliku):"
 msgid "MOD_LICENSE"
 msgstr "Licencja Moda:"
 
-#: ../src/general/MainMenu.tscn:996
+#: ../src/general/MainMenu.tscn:995
 msgid "MOD_LOAD_ERRORS"
 msgstr "Błędy przy ładowaniu modów"
 
-#: ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Doszło do błędu podczas ładowania jednego lub więcej modów. Rejestry mogą zawierać dodatkowe informacje."
 
@@ -4225,7 +4277,7 @@ msgstr "Synteza śluzu"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Edytor Wielokomórkowca"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:419
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Edytor Wielokomórkowca"
@@ -4405,6 +4457,9 @@ msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
 msgid "NONE"
 msgstr "Brak"
 
@@ -4479,7 +4534,7 @@ msgstr "Nie zanotowano wydarzeń"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Nie znaleziono katalogu zapisów"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:979
 msgid "NO_MODS_ENABLED"
 msgstr "Brak Włączonych Modów"
 
@@ -4550,11 +4605,11 @@ msgstr "x{0}"
 msgid "OCTOBER"
 msgstr "Październik"
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:671
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:663
+#: ../src/general/MainMenu.tscn:662
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Samobójstwo"
@@ -4583,7 +4638,7 @@ msgstr "Otwórz Folder"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 
@@ -4609,6 +4664,11 @@ msgstr "Otwórz Folder z Logami"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "Otwórz URL Informacji"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Otwórz menu organelli"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
@@ -4664,6 +4724,8 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmień swoje ustawienia"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Organella komórkowe"
 
@@ -4814,15 +4876,15 @@ msgstr "Przesuń w dół"
 msgid "PAGEUP"
 msgstr "Przesuń w górę"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 msgid "PAGE_BACK"
 msgstr "Tył"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 msgid "PAGE_FORWARD"
 msgstr "Przód"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 msgid "PAGE_TITLE"
 msgstr "Tytuł Strony"
 
@@ -4907,7 +4969,7 @@ msgstr "Zmiany:"
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:823
 msgid "PATREON_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
 
@@ -5224,7 +5286,7 @@ msgstr "Gotowy"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Zalecana Wersja Gry:"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:859
 msgid "REDDIT_TOOLTIP"
 msgstr "Odwiedź nasz subreddit"
 
@@ -5249,7 +5311,7 @@ msgstr "Zwracaj migracje w przypadku wymarcia w docelowym obszarze"
 msgid "REPORT"
 msgstr "Raport"
 
-#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:740 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Zgłoś Buga"
 
@@ -5394,7 +5456,7 @@ msgstr ""
 "Czy na pewno chcesz wyjść do menu głównego?\n"
 "Utracisz cały niezapisany postęp."
 
-#: ../src/general/MainMenu.tscn:787
+#: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Odwiedź oficjalne strony Revolutionary Games"
 
@@ -5481,11 +5543,11 @@ msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:991
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:989
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive Uruchomiło Się W Trybie Bezpiecznym"
 
@@ -5651,7 +5713,7 @@ msgstr "Scroll Lock"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Wyszukiwanie..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -5659,7 +5721,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "Zasięg Wyszukiwania:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:2013
 msgid "SEA_FLOOR"
 msgstr "Dno Morza"
 
@@ -5877,16 +5939,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:210
-#: ../simulation_parameters/microbe_stage/biomes.json:457
-#: ../simulation_parameters/microbe_stage/biomes.json:623
-#: ../simulation_parameters/microbe_stage/biomes.json:869
-#: ../simulation_parameters/microbe_stage/biomes.json:1115
-#: ../simulation_parameters/microbe_stage/biomes.json:1362
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
-#: ../simulation_parameters/microbe_stage/biomes.json:1695
-#: ../simulation_parameters/microbe_stage/biomes.json:1881
-#: ../simulation_parameters/microbe_stage/biomes.json:2047
+#: ../simulation_parameters/microbe_stage/biomes.json:213
+#: ../simulation_parameters/microbe_stage/biomes.json:460
+#: ../simulation_parameters/microbe_stage/biomes.json:626
+#: ../simulation_parameters/microbe_stage/biomes.json:872
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1365
+#: ../simulation_parameters/microbe_stage/biomes.json:1531
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2053
 msgid "SMALL_IRON_CHUNK"
 msgstr "Mały Kawałek Żelaza"
 
@@ -5942,7 +6004,7 @@ msgstr "Stwórz amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Przywołaj Przeciwnika"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:804
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
@@ -6128,18 +6190,18 @@ msgstr "Steam jest obecnie niedostępny, spróbuj ponownie"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nieznany błąd Steama"
 
-#: ../src/general/MainMenu.tscn:1013
+#: ../src/general/MainMenu.tscn:1012
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
-#: ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1014
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Inicjalizacja biblioteki klienckiej Steam nie powiodła się. Funkcje Steam będą niedostępne.\n"
 "Upewnij się że Steam jest uruchomiony oraz jesteś zalogowany na odpowiednim koncie. Uruchom grę przez bibliotekę Steam jeśli problem będzie dalej się pojawiał."
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:799
 msgid "STEAM_TOOLTIP"
 msgstr "Odwiedź naszą stronę Steam"
 
@@ -6179,7 +6241,7 @@ msgstr "Magazyn"
 msgid "STORAGE_COLON"
 msgstr "Magazyn:"
 
-#: ../src/general/MainMenu.cs:663
+#: ../src/general/MainMenu.cs:657
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Zalogowano jako: {0}"
 
@@ -6403,7 +6465,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Testerzy"
 
-#: ../src/general/MainMenu.cs:269 ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Dziękujemy za wspieranie twórców Thrive przez kupowanie tej kopii gry!\n"
@@ -6419,7 +6481,7 @@ msgstr ""
 "\n"
 "Jeżeli Ci się spodobało, opowiedz o nas swoim znajomym."
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1002
 msgid "THANK_YOU_TITLE"
 msgstr "Dziękujemy"
 
@@ -6478,7 +6540,7 @@ msgstr "Ten mod jest pobrany z Warsztatu Steam"
 msgid "THREADS"
 msgstr "Wątki:"
 
-#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:504 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Thrivopedia"
 
@@ -6526,7 +6588,7 @@ msgstr "Tylakoidy"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:416
+#: ../simulation_parameters/microbe_stage/biomes.json:419
 msgid "TIDEPOOL"
 msgstr "Basen pływowy"
 
@@ -6550,8 +6612,8 @@ msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
-#: ../src/microbe_stage/MicrobeStage.cs:372
-#: ../src/microbe_stage/MicrobeStage.cs:376
+#: ../src/microbe_stage/MicrobeStage.cs:374
+#: ../src/microbe_stage/MicrobeStage.cs:378
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6634,7 +6696,7 @@ msgstr "Przełączenie wiązania"
 msgid "TOGGLE_METRICS"
 msgstr "Przełącz wyświetlacz Metryki"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Włącz drzewko nawigacji"
 
@@ -6885,7 +6947,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:895
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -6918,7 +6980,7 @@ msgstr "Tryb rozdzielenia"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1488
+#: ../simulation_parameters/microbe_stage/biomes.json:1491
 msgid "UNDERWATERCAVE"
 msgstr "Podwodna Jaskinia"
 
@@ -7118,6 +7180,11 @@ msgstr "Przeglądarka"
 msgid "VIEW_ALL"
 msgstr "Wyłącz wszystko"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "Wyłącz wszystko"
+
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
 msgstr "Przeczytaj Notki Aktualizacji"
@@ -7138,7 +7205,7 @@ msgstr "VIP Wspierający"
 msgid "VISIBLE"
 msgstr "Widoczne"
 
-#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
+#: ../src/general/MainMenu.tscn:553 ../src/general/MainMenu.tscn:758
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Zasugeruj Funkcję"
 
@@ -7193,6 +7260,1442 @@ msgstr "Koło w prawo"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Koło w górę"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "Nasza strona Wiki"
+
+#: ../simulation_parameters/common/wiki.json:37
+#, fuzzy
+msgid "WIKI_AXON_EFFECTS"
+msgstr "Zewnętrzne efekty:"
+
+#: ../simulation_parameters/common/wiki.json:21
+msgid "WIKI_AXON_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:33
+msgid "WIKI_AXON_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:29
+#, fuzzy
+msgid "WIKI_AXON_PROCESSES"
+msgstr "Brak procesów"
+
+#: ../simulation_parameters/common/wiki.json:25
+msgid "WIKI_AXON_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:49
+msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:45
+msgid "WIKI_AXON_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:41
+msgid "WIKI_AXON_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:76
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_EFFECTS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:60
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_INTRO"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:72
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:68
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_PROCESSES"
+msgstr "Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączyć tryb wiązania. W trybie wiązania możesz dołączać inne komórki twojego gatunku do swojej kolonii wpływając w nie. Aby opuścić kolonię naciśnij [thrive:input]g_unbind_all[/thrive:input]."
+
+#: ../simulation_parameters/common/wiki.json:64
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:88
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:84
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_STRATEGY"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:80
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_UPGRADES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:115
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:99
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:111
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:107
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:103
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:127
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:123
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:119
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:154
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_EFFECTS"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:138
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_INTRO"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:150
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:146
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_PROCESSES"
+msgstr "Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:142
+msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:166
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:162
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_STRATEGY"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:158
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_UPGRADES"
+msgstr "Chemoplast to otoczona dwiema błonami struktura zawierająca białka mogące przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], wodę i gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie zwanym [b]Chemosyntezą Siarkowodorową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:193
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_EFFECTS"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:177
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_INTRO"
+msgstr "Chemoreceptor"
+
+#: ../simulation_parameters/common/wiki.json:189
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:185
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_PROCESSES"
+msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
+
+#: ../simulation_parameters/common/wiki.json:181
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:205
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:201
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_STRATEGY"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:197
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_UPGRADES"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
+
+#: ../simulation_parameters/common/wiki.json:232
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
+msgstr "Białka Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:216
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
+msgstr "Białka Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:228
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
+msgstr "Białka chemosyntezujące są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:224
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
+msgstr "Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:220
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
+msgstr ""
+"Proteiny\n"
+"Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:244
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
+msgstr "Białka chemosyntezujące są małymi białkowymi strukturami, które umieją przekształcać [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gazowy [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wodę w [thrive:compound type=\"glucose\"][/thrive:compound] w procesie nazywającym się [b]chemosyntezą siarkową[/b]. Tempo produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się z koncentracją [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Jako iż białka chemosyntezujące są zawieszone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:240
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
+msgstr "Białka Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:236
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
+msgstr "Białka Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:271
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_EFFECTS"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:255
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_INTRO"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:267
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:263
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_PROCESSES"
+msgstr "Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:259
+msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:283
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:279
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_STRATEGY"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:275
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_UPGRADES"
+msgstr "Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w chloroplaście mogą używać energii światła do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i wody w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty dają mu też wyróżniający się kolor. Tempo produkci [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:310
+msgid "WIKI_CILIA_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:294
+msgid "WIKI_CILIA_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:306
+msgid "WIKI_CILIA_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:302
+#, fuzzy
+msgid "WIKI_CILIA_PROCESSES"
+msgstr "Zwiększa prędkość obrotu większych komórek."
+
+#: ../simulation_parameters/common/wiki.json:298
+msgid "WIKI_CILIA_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:322
+msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:318
+msgid "WIKI_CILIA_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:314
+msgid "WIKI_CILIA_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:349
+#, fuzzy
+msgid "WIKI_CYTOPLASM_EFFECTS"
+msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+
+#: ../simulation_parameters/common/wiki.json:333
+#, fuzzy
+msgid "WIKI_CYTOPLASM_INTRO"
+msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+
+#: ../simulation_parameters/common/wiki.json:345
+#, fuzzy
+msgid "WIKI_CYTOPLASM_MODIFICATIONS"
+msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest [b]glikoliza[/b] - przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+
+#: ../simulation_parameters/common/wiki.json:341
+#, fuzzy
+msgid "WIKI_CYTOPLASM_PROCESSES"
+msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:337
+msgid "WIKI_CYTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:361
+msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:357
+msgid "WIKI_CYTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:353
+msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:388
+#, fuzzy
+msgid "WIKI_FLAGELLUM_EFFECTS"
+msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+
+#: ../simulation_parameters/common/wiki.json:372
+#, fuzzy
+msgid "WIKI_FLAGELLUM_INTRO"
+msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+
+#: ../simulation_parameters/common/wiki.json:384
+#, fuzzy
+msgid "WIKI_FLAGELLUM_MODIFICATIONS"
+msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
+
+#: ../simulation_parameters/common/wiki.json:380
+#, fuzzy
+msgid "WIKI_FLAGELLUM_PROCESSES"
+msgstr "Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia prędkości poruszania się komórki."
+
+#: ../simulation_parameters/common/wiki.json:376
+msgid "WIKI_FLAGELLUM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:400
+msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:396
+msgid "WIKI_FLAGELLUM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:392
+msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:36
+#: ../simulation_parameters/common/wiki.json:75
+#: ../simulation_parameters/common/wiki.json:114
+#: ../simulation_parameters/common/wiki.json:153
+#: ../simulation_parameters/common/wiki.json:192
+#: ../simulation_parameters/common/wiki.json:231
+#: ../simulation_parameters/common/wiki.json:270
+#: ../simulation_parameters/common/wiki.json:309
+#: ../simulation_parameters/common/wiki.json:348
+#: ../simulation_parameters/common/wiki.json:387
+#: ../simulation_parameters/common/wiki.json:426
+#: ../simulation_parameters/common/wiki.json:465
+#: ../simulation_parameters/common/wiki.json:504
+#: ../simulation_parameters/common/wiki.json:543
+#: ../simulation_parameters/common/wiki.json:582
+#: ../simulation_parameters/common/wiki.json:621
+#: ../simulation_parameters/common/wiki.json:660
+#: ../simulation_parameters/common/wiki.json:699
+#: ../simulation_parameters/common/wiki.json:738
+#: ../simulation_parameters/common/wiki.json:777
+#: ../simulation_parameters/common/wiki.json:816
+#: ../simulation_parameters/common/wiki.json:855
+#: ../simulation_parameters/common/wiki.json:894
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:972
+#: ../simulation_parameters/common/wiki.json:1011
+#: ../simulation_parameters/common/wiki.json:1050
+#: ../simulation_parameters/common/wiki.json:1089
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:188
+#: ../simulation_parameters/common/wiki.json:227
+#: ../simulation_parameters/common/wiki.json:266
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:344
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:422
+#: ../simulation_parameters/common/wiki.json:461
+#: ../simulation_parameters/common/wiki.json:500
+#: ../simulation_parameters/common/wiki.json:539
+#: ../simulation_parameters/common/wiki.json:578
+#: ../simulation_parameters/common/wiki.json:617
+#: ../simulation_parameters/common/wiki.json:656
+#: ../simulation_parameters/common/wiki.json:695
+#: ../simulation_parameters/common/wiki.json:734
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:812
+#: ../simulation_parameters/common/wiki.json:851
+#: ../simulation_parameters/common/wiki.json:890
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:968
+#: ../simulation_parameters/common/wiki.json:1007
+#: ../simulation_parameters/common/wiki.json:1046
+#: ../simulation_parameters/common/wiki.json:1085
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:184
+#: ../simulation_parameters/common/wiki.json:223
+#: ../simulation_parameters/common/wiki.json:262
+#: ../simulation_parameters/common/wiki.json:301
+#: ../simulation_parameters/common/wiki.json:340
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:457
+#: ../simulation_parameters/common/wiki.json:496
+#: ../simulation_parameters/common/wiki.json:535
+#: ../simulation_parameters/common/wiki.json:574
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:652
+#: ../simulation_parameters/common/wiki.json:691
+#: ../simulation_parameters/common/wiki.json:730
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:808
+#: ../simulation_parameters/common/wiki.json:847
+#: ../simulation_parameters/common/wiki.json:886
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:964
+#: ../simulation_parameters/common/wiki.json:1003
+#: ../simulation_parameters/common/wiki.json:1042
+#: ../simulation_parameters/common/wiki.json:1081
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:141
+#: ../simulation_parameters/common/wiki.json:180
+#: ../simulation_parameters/common/wiki.json:219
+#: ../simulation_parameters/common/wiki.json:258
+#: ../simulation_parameters/common/wiki.json:297
+#: ../simulation_parameters/common/wiki.json:336
+#: ../simulation_parameters/common/wiki.json:375
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:492
+#: ../simulation_parameters/common/wiki.json:531
+#: ../simulation_parameters/common/wiki.json:570
+#: ../simulation_parameters/common/wiki.json:609
+#: ../simulation_parameters/common/wiki.json:648
+#: ../simulation_parameters/common/wiki.json:687
+#: ../simulation_parameters/common/wiki.json:726
+#: ../simulation_parameters/common/wiki.json:765
+#: ../simulation_parameters/common/wiki.json:804
+#: ../simulation_parameters/common/wiki.json:843
+#: ../simulation_parameters/common/wiki.json:882
+#: ../simulation_parameters/common/wiki.json:921
+#: ../simulation_parameters/common/wiki.json:960
+#: ../simulation_parameters/common/wiki.json:999
+#: ../simulation_parameters/common/wiki.json:1038
+#: ../simulation_parameters/common/wiki.json:1077
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+#: ../simulation_parameters/common/wiki.json:126
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:204
+#: ../simulation_parameters/common/wiki.json:243
+#: ../simulation_parameters/common/wiki.json:282
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:360
+#: ../simulation_parameters/common/wiki.json:399
+#: ../simulation_parameters/common/wiki.json:438
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:516
+#: ../simulation_parameters/common/wiki.json:555
+#: ../simulation_parameters/common/wiki.json:594
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:672
+#: ../simulation_parameters/common/wiki.json:711
+#: ../simulation_parameters/common/wiki.json:750
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:828
+#: ../simulation_parameters/common/wiki.json:867
+#: ../simulation_parameters/common/wiki.json:906
+#: ../simulation_parameters/common/wiki.json:945
+#: ../simulation_parameters/common/wiki.json:984
+#: ../simulation_parameters/common/wiki.json:1023
+#: ../simulation_parameters/common/wiki.json:1062
+#: ../simulation_parameters/common/wiki.json:1101
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:200
+#: ../simulation_parameters/common/wiki.json:239
+#: ../simulation_parameters/common/wiki.json:278
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:356
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:434
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:512
+#: ../simulation_parameters/common/wiki.json:551
+#: ../simulation_parameters/common/wiki.json:590
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:668
+#: ../simulation_parameters/common/wiki.json:707
+#: ../simulation_parameters/common/wiki.json:746
+#: ../simulation_parameters/common/wiki.json:785
+#: ../simulation_parameters/common/wiki.json:824
+#: ../simulation_parameters/common/wiki.json:863
+#: ../simulation_parameters/common/wiki.json:902
+#: ../simulation_parameters/common/wiki.json:941
+#: ../simulation_parameters/common/wiki.json:980
+#: ../simulation_parameters/common/wiki.json:1019
+#: ../simulation_parameters/common/wiki.json:1058
+#: ../simulation_parameters/common/wiki.json:1097
+msgid "WIKI_HEADING_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:196
+#: ../simulation_parameters/common/wiki.json:235
+#: ../simulation_parameters/common/wiki.json:274
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:352
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:508
+#: ../simulation_parameters/common/wiki.json:547
+#: ../simulation_parameters/common/wiki.json:586
+#: ../simulation_parameters/common/wiki.json:625
+#: ../simulation_parameters/common/wiki.json:664
+#: ../simulation_parameters/common/wiki.json:703
+#: ../simulation_parameters/common/wiki.json:742
+#: ../simulation_parameters/common/wiki.json:781
+#: ../simulation_parameters/common/wiki.json:820
+#: ../simulation_parameters/common/wiki.json:859
+#: ../simulation_parameters/common/wiki.json:898
+#: ../simulation_parameters/common/wiki.json:937
+#: ../simulation_parameters/common/wiki.json:976
+#: ../simulation_parameters/common/wiki.json:1015
+#: ../simulation_parameters/common/wiki.json:1054
+#: ../simulation_parameters/common/wiki.json:1093
+msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:427
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:411
+#, fuzzy
+msgid "WIKI_LYSOSOME_INTRO"
+msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
+
+#: ../simulation_parameters/common/wiki.json:423
+#, fuzzy
+msgid "WIKI_LYSOSOME_MODIFICATIONS"
+msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
+
+#: ../simulation_parameters/common/wiki.json:419
+#, fuzzy
+msgid "WIKI_LYSOSOME_PROCESSES"
+msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
+
+#: ../simulation_parameters/common/wiki.json:415
+msgid "WIKI_LYSOSOME_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:439
+msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:435
+msgid "WIKI_LYSOSOME_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:431
+msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:466
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_EFFECTS"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:450
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_INTRO"
+msgstr "Metabolosomy"
+
+#: ../simulation_parameters/common/wiki.json:462
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:458
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_PROCESSES"
+msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:454
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:478
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:474
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_STRATEGY"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:470
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_UPGRADES"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:505
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_EFFECTS"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:489
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_INTRO"
+msgstr "Mitochondrium"
+
+#: ../simulation_parameters/common/wiki.json:501
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:497
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_PROCESSES"
+msgstr "Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:493
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:517
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:513
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_STRATEGY"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:509
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_UPGRADES"
+msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:544
+msgid "WIKI_MYOFIBRIL_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:528
+msgid "WIKI_MYOFIBRIL_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:540
+msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:536
+#, fuzzy
+msgid "WIKI_MYOFIBRIL_PROCESSES"
+msgstr "Brak procesów"
+
+#: ../simulation_parameters/common/wiki.json:532
+msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:556
+msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:552
+msgid "WIKI_MYOFIBRIL_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:548
+msgid "WIKI_MYOFIBRIL_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:622
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:606
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:618
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+#: ../simulation_parameters/common/wiki.json:614
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
+msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:610
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:634
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+#: ../simulation_parameters/common/wiki.json:630
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:626
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:583
+#, fuzzy
+msgid "WIKI_NITROGENASE_EFFECTS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:567
+#, fuzzy
+msgid "WIKI_NITROGENASE_INTRO"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:579
+#, fuzzy
+msgid "WIKI_NITROGENASE_MODIFICATIONS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:575
+#, fuzzy
+msgid "WIKI_NITROGENASE_PROCESSES"
+msgstr "Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:571
+msgid "WIKI_NITROGENASE_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:595
+#, fuzzy
+msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:591
+#, fuzzy
+msgid "WIKI_NITROGENASE_STRATEGY"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:587
+#, fuzzy
+msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:661
+msgid "WIKI_NUCLEUS_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:645
+msgid "WIKI_NUCLEUS_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:657
+#, fuzzy
+msgid "WIKI_NUCLEUS_MODIFICATIONS"
+msgstr "Cecha definiująca komórki eukariotyczne. Jądro zawiera w pakiecie siatkę endoplazmatyczną i aparat Golgiego. Wykształcenie systemu wewnętrznych membran jest ewolucją prokariotycznych komórek, dokonaną przez wchłonięcie innego prokariota. To pozwala im na oddzielanie, lub zatrzymywanie, różnych procesów dziejących się w środku komórki i zapobiec przed ich nakładaniem się na siebie. To pozwala ich nowym organellom membranowym na większą złożoność, efektywność i wyspecjalizowanie niż gdyby pływały bezpośrednio w cytozolu. Jednakże ma to swoją cenę - bardzo powiększa komórkę i wymaga dużo energii do utrzymania."
+
+#: ../simulation_parameters/common/wiki.json:653
+#, fuzzy
+msgid "WIKI_NUCLEUS_PROCESSES"
+msgstr "Brak procesów"
+
+#: ../simulation_parameters/common/wiki.json:649
+msgid "WIKI_NUCLEUS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:673
+msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:669
+msgid "WIKI_NUCLEUS_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:665
+msgid "WIKI_NUCLEUS_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:9
+#, fuzzy
+msgid "WIKI_ORGANELLES_ROOT_INTRO"
+msgstr "Akson"
+
+#: ../simulation_parameters/common/wiki.json:700
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_EFFECTS"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#: ../simulation_parameters/common/wiki.json:684
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_INTRO"
+msgstr "Oxytoksysoma"
+
+#: ../simulation_parameters/common/wiki.json:696
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#: ../simulation_parameters/common/wiki.json:692
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_PROCESSES"
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny naciskając [thrive:input]g_fire_toxin[/thrive:input]."
+
+#: ../simulation_parameters/common/wiki.json:688
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#: ../simulation_parameters/common/wiki.json:712
+msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:708
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_STRATEGY"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#: ../simulation_parameters/common/wiki.json:704
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_UPGRADES"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#: ../simulation_parameters/common/wiki.json:15
+msgid "WIKI_PAGE_AXON"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:54
+#, fuzzy
+msgid "WIKI_PAGE_BINDING_AGENT"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:93
+#, fuzzy
+msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
+msgstr "Świecąca Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:132
+#, fuzzy
+msgid "WIKI_PAGE_CHEMOPLAST"
+msgstr "Chemoplast"
+
+#: ../simulation_parameters/common/wiki.json:171
+#, fuzzy
+msgid "WIKI_PAGE_CHEMORECEPTOR"
+msgstr "Chemoreceptor"
+
+#: ../simulation_parameters/common/wiki.json:210
+#, fuzzy
+msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
+msgstr "Białka Chemosyntezujące"
+
+#: ../simulation_parameters/common/wiki.json:249
+#, fuzzy
+msgid "WIKI_PAGE_CHLOROPLAST"
+msgstr "Chloroplast"
+
+#: ../simulation_parameters/common/wiki.json:288
+msgid "WIKI_PAGE_CILIA"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:327
+#, fuzzy
+msgid "WIKI_PAGE_CYTOPLASM"
+msgstr "Cytozol"
+
+#: ../simulation_parameters/common/wiki.json:366
+#, fuzzy
+msgid "WIKI_PAGE_FLAGELLUM"
+msgstr "Wić"
+
+#: ../simulation_parameters/common/wiki.json:405
+#, fuzzy
+msgid "WIKI_PAGE_LYSOSOME"
+msgstr "Lizosom"
+
+#: ../simulation_parameters/common/wiki.json:444
+#, fuzzy
+msgid "WIKI_PAGE_METABOLOSOMES"
+msgstr "Metabolosomy"
+
+#: ../simulation_parameters/common/wiki.json:483
+#, fuzzy
+msgid "WIKI_PAGE_MITOCHONDRION"
+msgstr "Mitochondrium"
+
+#: ../simulation_parameters/common/wiki.json:522
+#, fuzzy
+msgid "WIKI_PAGE_MYOFIBRIL"
+msgstr "Miofibryle"
+
+#: ../simulation_parameters/common/wiki.json:600
+#, fuzzy
+msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
+msgstr "Plastyd Wiążący Azot"
+
+#: ../simulation_parameters/common/wiki.json:561
+#, fuzzy
+msgid "WIKI_PAGE_NITROGENASE"
+msgstr "Nitrogenaza"
+
+#: ../simulation_parameters/common/wiki.json:639
+#, fuzzy
+msgid "WIKI_PAGE_NUCLEUS"
+msgstr "Wymaga Jądra"
+
+#: ../simulation_parameters/common/wiki.json:3
+#, fuzzy
+msgid "WIKI_PAGE_ORGANELLES_ROOT"
+msgstr "Dodaj organellę"
+
+#: ../simulation_parameters/common/wiki.json:678
+#, fuzzy
+msgid "WIKI_PAGE_OXYTOXISOME"
+msgstr "Oxytoksysoma"
+
+#: ../simulation_parameters/common/wiki.json:717
+msgid "WIKI_PAGE_PERFORATOR_PILUS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:756
+#, fuzzy
+msgid "WIKI_PAGE_PROTOPLASM"
+msgstr "Protoplazma"
+
+#: ../simulation_parameters/common/wiki.json:795
+#, fuzzy
+msgid "WIKI_PAGE_RUSTICYANIN"
+msgstr "Rusticyjanina"
+
+#: ../simulation_parameters/common/wiki.json:834
+#, fuzzy
+msgid "WIKI_PAGE_SIGNALING_AGENT"
+msgstr "Czynnik Komunikacyjny"
+
+#: ../simulation_parameters/common/wiki.json:873
+#, fuzzy
+msgid "WIKI_PAGE_SLIME_JET"
+msgstr "Gruczoł Śluzowy"
+
+#: ../simulation_parameters/common/wiki.json:912
+#, fuzzy
+msgid "WIKI_PAGE_THERMOPLAST"
+msgstr "Termoplast"
+
+#: ../simulation_parameters/common/wiki.json:951
+#, fuzzy
+msgid "WIKI_PAGE_THERMOSYNTHASE"
+msgstr "Termosyntaza"
+
+#: ../simulation_parameters/common/wiki.json:990
+#, fuzzy
+msgid "WIKI_PAGE_THYLAKOIDS"
+msgstr "Tylakoidy"
+
+#: ../simulation_parameters/common/wiki.json:1029
+#, fuzzy
+msgid "WIKI_PAGE_TOXIN_VACUOLE"
+msgstr ""
+"Toksyczna\n"
+"Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:1068
+#, fuzzy
+msgid "WIKI_PAGE_VACUOLE"
+msgstr ""
+"Toksyczna\n"
+"Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:739
+msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:723
+msgid "WIKI_PERFORATOR_PILUS_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:735
+msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:731
+msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:727
+msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:751
+msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:747
+msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:743
+msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:778
+#, fuzzy
+msgid "WIKI_PROTOPLASM_EFFECTS"
+msgstr "Protoplazma"
+
+#: ../simulation_parameters/common/wiki.json:762
+#, fuzzy
+msgid "WIKI_PROTOPLASM_INTRO"
+msgstr "Protoplazma"
+
+#: ../simulation_parameters/common/wiki.json:774
+msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:770
+#, fuzzy
+msgid "WIKI_PROTOPLASM_PROCESSES"
+msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:766
+msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:790
+msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:786
+msgid "WIKI_PROTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:782
+msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
+msgid "WIKI_ROOT_BODY"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "WIKI_ROOT_HEADING"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:817
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_EFFECTS"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:801
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_INTRO"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:813
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:809
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_PROCESSES"
+msgstr "Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:805
+msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:829
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:825
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_STRATEGY"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:821
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_UPGRADES"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:856
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_EFFECTS"
+msgstr "Czynnik Komunikacyjny"
+
+#: ../simulation_parameters/common/wiki.json:840
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_INTRO"
+msgstr "Czynnik Komunikacyjny"
+
+#: ../simulation_parameters/common/wiki.json:852
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
+msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
+
+#: ../simulation_parameters/common/wiki.json:848
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_PROCESSES"
+msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć menu komunikacji z innymi przedstawicielami swojego gatunku."
+
+#: ../simulation_parameters/common/wiki.json:844
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
+msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
+
+#: ../simulation_parameters/common/wiki.json:868
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
+msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemicznych odpowiedzialnych za komunikację między nimi. Substancje sygnalizacyjne pozwalają na zwabianie innych komórek (swojego gatunku) lub na ostrzeganie ich przed niebezpieczeństwem i zachęcanie ich do ucieczki."
+
+#: ../simulation_parameters/common/wiki.json:864
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_STRATEGY"
+msgstr "Czynnik Komunikacyjny"
+
+#: ../simulation_parameters/common/wiki.json:860
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_UPGRADES"
+msgstr "Czynnik Komunikacyjny"
+
+#: ../simulation_parameters/common/wiki.json:895
+#, fuzzy
+msgid "WIKI_SLIME_JET_EFFECTS"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#: ../simulation_parameters/common/wiki.json:879
+#, fuzzy
+msgid "WIKI_SLIME_JET_INTRO"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#: ../simulation_parameters/common/wiki.json:891
+#, fuzzy
+msgid "WIKI_SLIME_JET_MODIFICATIONS"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#: ../simulation_parameters/common/wiki.json:887
+#, fuzzy
+msgid "WIKI_SLIME_JET_PROCESSES"
+msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
+
+#: ../simulation_parameters/common/wiki.json:883
+msgid "WIKI_SLIME_JET_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:907
+msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:903
+msgid "WIKI_SLIME_JET_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:899
+msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:934
+#, fuzzy
+msgid "WIKI_THERMOPLAST_EFFECTS"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:918
+#, fuzzy
+msgid "WIKI_THERMOPLAST_INTRO"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:930
+#, fuzzy
+msgid "WIKI_THERMOPLAST_MODIFICATIONS"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:926
+#, fuzzy
+msgid "WIKI_THERMOPLAST_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:922
+msgid "WIKI_THERMOPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:946
+#, fuzzy
+msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:942
+#, fuzzy
+msgid "WIKI_THERMOPLAST_STRATEGY"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:938
+#, fuzzy
+msgid "WIKI_THERMOPLAST_UPGRADES"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:973
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_EFFECTS"
+msgstr "Termosyntaza"
+
+#: ../simulation_parameters/common/wiki.json:957
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_INTRO"
+msgstr "Termosyntaza"
+
+#: ../simulation_parameters/common/wiki.json:969
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:965
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:961
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:985
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:981
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_STRATEGY"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:977
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_UPGRADES"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:1012
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_EFFECTS"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:996
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_INTRO"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1008
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1004
+msgid "WIKI_THYLAKOIDS_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1000
+msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1024
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1020
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_STRATEGY"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1016
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_UPGRADES"
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1051
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1035
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_INTRO"
+msgstr ""
+"Toksyczna\n"
+"Wakuola"
+
+#: ../simulation_parameters/common/wiki.json:1047
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1043
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]."
+
+#: ../simulation_parameters/common/wiki.json:1039
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1063
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1059
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1055
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1090
+msgid "WIKI_VACUOLE_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1074
+#, fuzzy
+msgid "WIKI_VACUOLE_INTRO"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1086
+#, fuzzy
+msgid "WIKI_VACUOLE_MODIFICATIONS"
+msgstr "Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli zwiększa tempo z którym można wypuszczać toksyny."
+
+#: ../simulation_parameters/common/wiki.json:1082
+#, fuzzy
+msgid "WIKI_VACUOLE_PROCESSES"
+msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]."
+
+#: ../simulation_parameters/common/wiki.json:1078
+msgid "WIKI_VACUOLE_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1102
+msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1098
+msgid "WIKI_VACUOLE_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1094
+msgid "WIKI_VACUOLE_UPGRADES"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"
@@ -7292,7 +8795,7 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "lata"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:847
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Odwiedź nasz kanał Youtube"
 
@@ -7576,11 +9079,6 @@ msgstr "Oddal"
 
 #~ msgid "RATE"
 #~ msgstr "Tempo"
-
-#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-#~ msgstr ""
-#~ "Proteiny\n"
-#~ "Chemosyntezujące"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

@@ -116,6 +116,8 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "GroupName",
         "Message",
         "Name",
+        "SectionHeading",
+        "SectionBody",
     };
 
     // This constructor is needed for checks to be able to run this

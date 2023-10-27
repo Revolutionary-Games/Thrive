@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
 using DevCenterCommunication.Models;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
@@ -181,7 +179,7 @@ public static class CreditsUpdater
 
     private static async Task<Credits.GameDevelopers> FetchWikiDevelopers(CancellationToken cancellationToken)
     {
-        var document = await RetrieveHtmlDocument(DEVELOPERS_PAGE, cancellationToken);
+        var document = await HtmlReader.RetrieveHtmlDocument(DEVELOPERS_PAGE, cancellationToken);
 
         var result = new Credits.GameDevelopers();
 
@@ -247,7 +245,7 @@ public static class CreditsUpdater
     private static async Task<Dictionary<int, Dictionary<string, List<string>>>> FetchWikiDonations(
         CancellationToken cancellationToken)
     {
-        var document = await RetrieveHtmlDocument(DONATIONS_PAGE, cancellationToken);
+        var document = await HtmlReader.RetrieveHtmlDocument(DONATIONS_PAGE, cancellationToken);
 
         var result = new Dictionary<int, Dictionary<string, List<string>>>();
 
@@ -309,24 +307,6 @@ public static class CreditsUpdater
         }
 
         return result;
-    }
-
-    private static async Task<IHtmlDocument> RetrieveHtmlDocument(string url, CancellationToken cancellationToken)
-    {
-        using var client = new HttpClient();
-
-        var response = await client.GetAsync(url, cancellationToken);
-
-        response.EnsureSuccessStatusCode();
-
-        var parser = new HtmlParser();
-
-        var document = await parser.ParseDocumentAsync(await response.Content.ReadAsStreamAsync(cancellationToken));
-
-        if (document.Body == null)
-            throw new Exception("Parsed document has no body");
-
-        return document;
     }
 
     /// <summary>

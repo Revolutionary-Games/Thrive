@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-17 21:21+0200\n"
+"POT-Creation-Date: 2023-10-26 19:42+0100\n"
 "PO-Revision-Date: 2023-08-30 08:51+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -47,7 +47,7 @@ msgstr "Прекратяване"
 msgid "ABORTED_DOT"
 msgstr "Прекратена."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:829
+#: ../simulation_parameters/microbe_stage/biomes.json:832
 msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
 
@@ -263,7 +263,7 @@ msgstr "„{0}“ — {1}"
 msgid "ART_BY"
 msgstr "От: {0}"
 
-#: ../src/general/MainMenu.tscn:531
+#: ../src/general/MainMenu.tscn:530
 msgid "ART_GALLERY"
 msgstr "Галерия"
 
@@ -370,7 +370,7 @@ msgstr "Автоматичен запис по време на игра"
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#: ../src/general/MainMenu.tscn:432
+#: ../src/general/MainMenu.tscn:430
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Еволюционен редактор"
 
@@ -421,8 +421,8 @@ msgid "AWARE_STAGE"
 msgstr "Осъзнаване"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:474 ../src/general/MainMenu.tscn:570
-#: ../src/general/MainMenu.tscn:626 ../src/general/MainMenu.tscn:949
+#: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
+#: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1145
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
@@ -473,7 +473,7 @@ msgstr "Клавиш „Bass Down“"
 msgid "BASSUP"
 msgstr "Клавиш „Bass Up“"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:583
+#: ../simulation_parameters/microbe_stage/biomes.json:586
 msgid "BATHYPELAGIC"
 msgstr "Батиал"
 
@@ -521,7 +521,7 @@ msgstr "Самонадеяност"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/general/MainMenu.tscn:445
+#: ../src/general/MainMenu.tscn:444
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -543,16 +543,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Процъфтява:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:326
-#: ../simulation_parameters/microbe_stage/biomes.json:493
-#: ../simulation_parameters/microbe_stage/biomes.json:659
-#: ../simulation_parameters/microbe_stage/biomes.json:905
-#: ../simulation_parameters/microbe_stage/biomes.json:1151
-#: ../simulation_parameters/microbe_stage/biomes.json:1398
-#: ../simulation_parameters/microbe_stage/biomes.json:1564
-#: ../simulation_parameters/microbe_stage/biomes.json:1750
-#: ../simulation_parameters/microbe_stage/biomes.json:1917
-#: ../simulation_parameters/microbe_stage/biomes.json:2083
+#: ../simulation_parameters/microbe_stage/biomes.json:329
+#: ../simulation_parameters/microbe_stage/biomes.json:496
+#: ../simulation_parameters/microbe_stage/biomes.json:662
+#: ../simulation_parameters/microbe_stage/biomes.json:908
+#: ../simulation_parameters/microbe_stage/biomes.json:1154
+#: ../simulation_parameters/microbe_stage/biomes.json:1401
+#: ../simulation_parameters/microbe_stage/biomes.json:1567
+#: ../simulation_parameters/microbe_stage/biomes.json:1756
+#: ../simulation_parameters/microbe_stage/biomes.json:1923
+#: ../simulation_parameters/microbe_stage/biomes.json:2089
 msgid "BIG_IRON_CHUNK"
 msgstr "Голям железен фрагмент"
 
@@ -602,7 +602,7 @@ msgstr "Биолуминесцентна вакуола"
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/general/GameProperties.cs:158
+#: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Неврон"
 
@@ -950,7 +950,7 @@ msgstr "Изтриване на старите записи"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
-#: ../src/thriveopedia/Thriveopedia.tscn:297
+#: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -967,7 +967,7 @@ msgstr "Делител на облачната резолюция:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Минимален интервал на облачната симулация:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1321
+#: ../simulation_parameters/microbe_stage/biomes.json:1324
 msgid "COASTAL"
 msgstr "Крайбрежие"
 
@@ -1049,19 +1049,19 @@ msgstr "Способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:686
+#: ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_FORUM"
 msgstr "Обществен форум"
 
-#: ../src/general/MainMenu.tscn:681
+#: ../src/general/MainMenu.tscn:680
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществения форум на „Thrive“"
 
-#: ../src/general/MainMenu.tscn:728
+#: ../src/general/MainMenu.tscn:727
 msgid "COMMUNITY_WIKI"
 msgstr "Обществена Уикипедия"
 
-#: ../src/general/MainMenu.tscn:723
+#: ../src/general/MainMenu.tscn:722
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на обществената Уикипедия на „Thrive“"
 
@@ -1586,11 +1586,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчици"
 
-#: ../src/general/MainMenu.tscn:700
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_FORUM"
 msgstr "Частен форум"
 
-#: ../src/general/MainMenu.tscn:695
+#: ../src/general/MainMenu.tscn:694
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Отваряне на частния форум на „Thrive“"
 
@@ -1598,11 +1598,11 @@ msgstr "Отваряне на частния форум на „Thrive“"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Разработката се поддържа от „Revolutionary Games Studio“ ry"
 
-#: ../src/general/MainMenu.tscn:714
+#: ../src/general/MainMenu.tscn:713
 msgid "DEVELOPMENT_WIKI"
 msgstr "Частна Уикипедия"
 
-#: ../src/general/MainMenu.tscn:709
+#: ../src/general/MainMenu.tscn:708
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Отваряне на частната Уикипедия на „Thrive“"
 
@@ -1730,7 +1730,7 @@ msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.tscn:871
 msgid "DISCORD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
@@ -2075,7 +2075,7 @@ msgstr "Клавиш „Esc“"
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1840
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
 msgid "ESTUARY"
 msgstr "Естуар"
 
@@ -2174,7 +2174,7 @@ msgstr "Екстри"
 msgid "EXTRA_OPTIONS"
 msgstr "Допълнителни опции"
 
-#: ../src/general/MainMenu.tscn:884
+#: ../src/general/MainMenu.tscn:883
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Отваряне на страницата ни във „Facebook“"
 
@@ -2298,16 +2298,16 @@ msgid "FLOATING_CHUNKS_COLON"
 msgstr "Завъртане:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:192
-#: ../simulation_parameters/microbe_stage/biomes.json:439
-#: ../simulation_parameters/microbe_stage/biomes.json:605
-#: ../simulation_parameters/microbe_stage/biomes.json:851
-#: ../simulation_parameters/microbe_stage/biomes.json:1097
-#: ../simulation_parameters/microbe_stage/biomes.json:1344
-#: ../simulation_parameters/microbe_stage/biomes.json:1510
-#: ../simulation_parameters/microbe_stage/biomes.json:1677
-#: ../simulation_parameters/microbe_stage/biomes.json:1863
-#: ../simulation_parameters/microbe_stage/biomes.json:2029
+#: ../simulation_parameters/microbe_stage/biomes.json:195
+#: ../simulation_parameters/microbe_stage/biomes.json:442
+#: ../simulation_parameters/microbe_stage/biomes.json:608
+#: ../simulation_parameters/microbe_stage/biomes.json:854
+#: ../simulation_parameters/microbe_stage/biomes.json:1100
+#: ../simulation_parameters/microbe_stage/biomes.json:1347
+#: ../simulation_parameters/microbe_stage/biomes.json:1513
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1869
+#: ../simulation_parameters/microbe_stage/biomes.json:2035
 msgid "FLOATING_HAZARD"
 msgstr "Опасен обект"
 
@@ -2451,7 +2451,7 @@ msgstr "Поколение"
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/general/MainMenu.tscn:836
+#: ../src/general/MainMenu.tscn:835
 msgid "GITHUB_TOOLTIP"
 msgstr "Отваряне на хранилището ни в „GitHub“"
 
@@ -2459,11 +2459,11 @@ msgstr "Отваряне на хранилището ни в „GitHub“"
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:967
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за GLES2"
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:969
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "В момента „Thrive“ се изпълнява с GLES2. Това не е препоръчително и може да доведе до проблеми. Моля, обновете Вашите графични драйвери или използвайте графичните карти на „AMD“ или „Nvidia“."
 
@@ -2504,16 +2504,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Отваряне на сървъра ни в „Discord“"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:350
-#: ../simulation_parameters/microbe_stage/biomes.json:517
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:1009
-#: ../simulation_parameters/microbe_stage/biomes.json:1255
-#: ../simulation_parameters/microbe_stage/biomes.json:1422
-#: ../simulation_parameters/microbe_stage/biomes.json:1588
-#: ../simulation_parameters/microbe_stage/biomes.json:1774
-#: ../simulation_parameters/microbe_stage/biomes.json:1941
-#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#: ../simulation_parameters/microbe_stage/biomes.json:353
+#: ../simulation_parameters/microbe_stage/biomes.json:520
+#: ../simulation_parameters/microbe_stage/biomes.json:766
+#: ../simulation_parameters/microbe_stage/biomes.json:1012
+#: ../simulation_parameters/microbe_stage/biomes.json:1258
+#: ../simulation_parameters/microbe_stage/biomes.json:1425
+#: ../simulation_parameters/microbe_stage/biomes.json:1591
+#: ../simulation_parameters/microbe_stage/biomes.json:1780
+#: ../simulation_parameters/microbe_stage/biomes.json:1947
+#: ../simulation_parameters/microbe_stage/biomes.json:2193
 msgid "GOOGLY_EYE_CELL"
 msgstr "Клетка с изпъкнали очи"
 
@@ -2605,7 +2605,7 @@ msgstr "Задръжте [thrive:input]g_free_cursor[/thrive:input] за пок�
 msgid "HOLD_TO_SKIP_CREDITS"
 msgstr "Показване на курсора чрез задържане"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:252
+#: ../src/thriveopedia/Thriveopedia.tscn:253
 msgid "HOME"
 msgstr "Начало"
 
@@ -2645,11 +2645,11 @@ msgstr "Клавиш „Hyper Left“"
 msgid "HYPERR"
 msgstr "Клавиш „Hyper Right“"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1731
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
 msgid "ICESHARD"
 msgstr "Леден къс"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1654
+#: ../simulation_parameters/microbe_stage/biomes.json:1657
 msgid "ICESHELF"
 msgstr "Шелфов ледник"
 
@@ -2680,6 +2680,58 @@ msgstr "Пиршество"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
+#, fuzzy
+msgid "INFO_BOX_COST"
+msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
+msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
+#, fuzzy
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "Наименование на папката:"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
+msgid "INFO_BOX_MASS"
+msgstr ""
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
+#, fuzzy
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "Осморегулационен разход"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
+#, fuzzy
+msgid "INFO_BOX_PROCESSES"
+msgstr "Не се осъществяват клетъчни процеси"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
+#, fuzzy
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "Нуждае се от ядро"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
+#, fuzzy
+msgid "INFO_BOX_SIZE"
+msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
+#, fuzzy
+msgid "INFO_BOX_STORAGE"
+msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
+#, fuzzy
+msgid "INFO_BOX_UNIQUE"
+msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
+msgid "INFO_BOX_UPGRADES"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -2861,7 +2913,7 @@ msgstr "Желязо"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Желязна хемолитоавтотрофия"
 
-#: ../src/general/MainMenu.tscn:812
+#: ../src/general/MainMenu.tscn:811
 msgid "ITCH_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Itch.io“"
 
@@ -3237,7 +3289,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Ляв бутон"
 
-#: ../src/general/MainMenu.tscn:541
+#: ../src/general/MainMenu.tscn:540
 msgid "LICENSES"
 msgstr "Лицензи"
 
@@ -3452,12 +3504,12 @@ msgstr "Денонощен цикъл"
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
 
-#: ../src/general/MainMenu.tscn:1019
+#: ../src/general/MainMenu.tscn:1018
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Производителност"
 
-#: ../src/general/MainMenu.tscn:1021
+#: ../src/general/MainMenu.tscn:1020
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
@@ -3487,11 +3539,11 @@ msgstr "Карта"
 msgid "MARCH"
 msgstr "Март"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:246
-#: ../simulation_parameters/microbe_stage/biomes.json:683
-#: ../simulation_parameters/microbe_stage/biomes.json:929
-#: ../simulation_parameters/microbe_stage/biomes.json:1175
-#: ../simulation_parameters/microbe_stage/biomes.json:2107
+#: ../simulation_parameters/microbe_stage/biomes.json:249
+#: ../simulation_parameters/microbe_stage/biomes.json:686
+#: ../simulation_parameters/microbe_stage/biomes.json:932
+#: ../simulation_parameters/microbe_stage/biomes.json:1178
+#: ../simulation_parameters/microbe_stage/biomes.json:2113
 msgid "MARINE_SNOW"
 msgstr "Морски сняг"
 
@@ -3566,7 +3618,7 @@ msgstr "Видове"
 msgid "MENU"
 msgstr "Меню"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1078
 msgid "MESOPELAGIC"
 msgstr "Мезопелагиал"
 
@@ -3625,7 +3677,7 @@ msgid "MICROBES_COUNT"
 msgstr "Микроб"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:600
+#: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Микробен редактор"
@@ -3972,11 +4024,11 @@ msgstr "Свойства на органела"
 msgid "MODIFY_TYPE"
 msgstr "Свойства"
 
-#: ../src/general/MainMenu.tscn:518
+#: ../src/general/MainMenu.tscn:517
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.tscn:981
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Налични са инсталирани модификации, които не са включени.\n"
@@ -4065,11 +4117,11 @@ msgstr "Наименование на папката:"
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/general/MainMenu.tscn:996
+#: ../src/general/MainMenu.tscn:995
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:997
+#: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
@@ -4246,7 +4298,7 @@ msgstr "Секреция"
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Многоклетъчен редактор"
 
-#: ../src/general/MainMenu.tscn:421
+#: ../src/general/MainMenu.tscn:419
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Многоклетъчен редактор"
@@ -4426,6 +4478,9 @@ msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
+#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
 msgid "NONE"
 msgstr "Няма"
 
@@ -4499,7 +4554,7 @@ msgstr "Няма записани събития"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Папката с вкаменелости не съществува"
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:979
 msgid "NO_MODS_ENABLED"
 msgstr "Няма включени модификации"
 
@@ -4570,11 +4625,11 @@ msgstr "{0} пъти"
 msgid "OCTOBER"
 msgstr "Октомври"
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:671
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официален сайт"
 
-#: ../src/general/MainMenu.tscn:663
+#: ../src/general/MainMenu.tscn:662
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Отваряне на официалния сайт на „Revolutionary Games“"
 
@@ -4601,7 +4656,7 @@ msgstr "Местоположение"
 msgid "OPEN_FOSSIL_FOLDER"
 msgstr "Местоположение на вкаменелостите"
 
-#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:146
+#: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да започнете нова игра с избраните създания?\n"
@@ -4628,6 +4683,11 @@ msgstr "Местоположение на дневниците"
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
 msgstr "Хранилище"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
+#, fuzzy
+msgid "OPEN_ORGANELLES_PAGE"
+msgstr "Отваряне на контекстното меню"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
@@ -4683,6 +4743,8 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на настройките"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
+#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Органели"
 
@@ -4836,15 +4898,15 @@ msgstr "Клавиш „Page Down“"
 msgid "PAGEUP"
 msgstr "Клавиш „Page Up“"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:214
+#: ../src/thriveopedia/Thriveopedia.tscn:215
 msgid "PAGE_BACK"
 msgstr "Назад"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:233
+#: ../src/thriveopedia/Thriveopedia.tscn:234
 msgid "PAGE_FORWARD"
 msgstr "Напред"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:276
+#: ../src/thriveopedia/Thriveopedia.tscn:277
 msgid "PAGE_TITLE"
 msgstr "Заглавие на страницата"
 
@@ -4932,7 +4994,7 @@ msgstr ""
 "Вашите създания изчезнаха от тази зона.\n"
 "Но това не е краят, може да изберете друга зона за да продължите!"
 
-#: ../src/general/MainMenu.tscn:824
+#: ../src/general/MainMenu.tscn:823
 msgid "PATREON_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Patreon“"
 
@@ -5256,7 +5318,7 @@ msgstr "Готова"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Препоръчителна:"
 
-#: ../src/general/MainMenu.tscn:860
+#: ../src/general/MainMenu.tscn:859
 msgid "REDDIT_TOOLTIP"
 msgstr "Отваряне на общността ни в „Reddit“"
 
@@ -5281,7 +5343,7 @@ msgstr "Възстановяване на преселената популац�
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/general/MainMenu.tscn:741 ../src/general/PauseMenu.tscn:215
+#: ../src/general/MainMenu.tscn:740 ../src/general/PauseMenu.tscn:215
 msgid "REPORT_BUG"
 msgstr "Неизправности"
 
@@ -5423,7 +5485,7 @@ msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
-#: ../src/general/MainMenu.tscn:787
+#: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Отваряне на официалните сайтове на „Revolutionary Games“"
 
@@ -5510,7 +5572,7 @@ msgstr "Рустицианинът е протеин, който използв�
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/general/MainMenu.tscn:992
+#: ../src/general/MainMenu.tscn:991
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "„Thrive“ е в безопасен режим поради предишно неуспешно стартиране.\n"
@@ -5522,7 +5584,7 @@ msgstr ""
 "\n"
 "Ако проблемът продължи, ще трябва да рестартирате и да причините срив на играта няколко пъти, за да се върнете в безопасен режим."
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:989
 msgid "SAFE_MODE_TITLE"
 msgstr "Играта е стартирана в безопасен режим"
 
@@ -5688,7 +5750,7 @@ msgstr "Клавиш „Scroll Lock“"
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Търсене..."
 
-#: ../src/thriveopedia/Thriveopedia.tscn:353
+#: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
 msgstr ""
 
@@ -5696,7 +5758,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "Обхват на търсенето:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:2013
 msgid "SEA_FLOOR"
 msgstr "Морско дъно"
 
@@ -5915,16 +5977,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"mucilage\"]слуз[/thrive:compound]. Освобождава съхранената [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] с натискане на [thrive:input]g_secrete_slime[/thrive:input], което увеличава скоростта на клетката и забавя нейните преследвачи."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:210
-#: ../simulation_parameters/microbe_stage/biomes.json:457
-#: ../simulation_parameters/microbe_stage/biomes.json:623
-#: ../simulation_parameters/microbe_stage/biomes.json:869
-#: ../simulation_parameters/microbe_stage/biomes.json:1115
-#: ../simulation_parameters/microbe_stage/biomes.json:1362
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
-#: ../simulation_parameters/microbe_stage/biomes.json:1695
-#: ../simulation_parameters/microbe_stage/biomes.json:1881
-#: ../simulation_parameters/microbe_stage/biomes.json:2047
+#: ../simulation_parameters/microbe_stage/biomes.json:213
+#: ../simulation_parameters/microbe_stage/biomes.json:460
+#: ../simulation_parameters/microbe_stage/biomes.json:626
+#: ../simulation_parameters/microbe_stage/biomes.json:872
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1365
+#: ../simulation_parameters/microbe_stage/biomes.json:1531
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2053
 msgid "SMALL_IRON_CHUNK"
 msgstr "Малък железен фрагмент"
 
@@ -5978,7 +6040,7 @@ msgstr "Създаване на амоняк"
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:804
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
@@ -6164,16 +6226,16 @@ msgstr "„Steam“ не е достъпен в момента, моля, опи
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
-#: ../src/general/MainMenu.tscn:1013
+#: ../src/general/MainMenu.tscn:1012
 msgid "STEAM_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/general/MainMenu.tscn:1015
+#: ../src/general/MainMenu.tscn:1014
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
-#: ../src/general/MainMenu.tscn:800
+#: ../src/general/MainMenu.tscn:799
 msgid "STEAM_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Steam“"
 
@@ -6213,7 +6275,7 @@ msgstr "Съхранение"
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
 
-#: ../src/general/MainMenu.cs:663
+#: ../src/general/MainMenu.cs:657
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
@@ -6436,7 +6498,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Изпитатели"
 
-#: ../src/general/MainMenu.cs:269 ../src/general/MainMenu.tscn:1005
+#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Благодарим Ви за покупката на „Thrive“!\n"
@@ -6452,7 +6514,7 @@ msgstr ""
 "\n"
 "Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
 
-#: ../src/general/MainMenu.tscn:1003
+#: ../src/general/MainMenu.tscn:1002
 msgid "THANK_YOU_TITLE"
 msgstr "Благодарим Ви"
 
@@ -6511,7 +6573,7 @@ msgstr "Тази модификация е изтеглена от „Steam Work
 msgid "THREADS"
 msgstr "Нишки:"
 
-#: ../src/general/MainMenu.tscn:505 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:504 ../src/general/PauseMenu.tscn:200
 msgid "THRIVEOPEDIA"
 msgstr "Трайвопедия"
 
@@ -6568,7 +6630,7 @@ msgstr "Тилакоиди"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:416
+#: ../simulation_parameters/microbe_stage/biomes.json:419
 msgid "TIDEPOOL"
 msgstr "Приливен басейн"
 
@@ -6592,8 +6654,8 @@ msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] за да
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] поради селекционен натиск"
 
-#: ../src/microbe_stage/MicrobeStage.cs:372
-#: ../src/microbe_stage/MicrobeStage.cs:376
+#: ../src/microbe_stage/MicrobeStage.cs:374
+#: ../src/microbe_stage/MicrobeStage.cs:378
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6676,7 +6738,7 @@ msgstr "Свързване"
 msgid "TOGGLE_METRICS"
 msgstr "Превключване на показателите за производителност"
 
-#: ../src/thriveopedia/Thriveopedia.tscn:194
+#: ../src/thriveopedia/Thriveopedia.tscn:195
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Превключване на навигацията"
 
@@ -6927,7 +6989,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
-#: ../src/general/MainMenu.tscn:896
+#: ../src/general/MainMenu.tscn:895
 msgid "TWITTER_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Twitter“"
 
@@ -6960,7 +7022,7 @@ msgstr "Режим на отделяне"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Версия за отстраняване на грешки"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1488
+#: ../simulation_parameters/microbe_stage/biomes.json:1491
 msgid "UNDERWATERCAVE"
 msgstr "Подводна пещера"
 
@@ -7161,6 +7223,11 @@ msgstr "Преглед"
 msgid "VIEW_ALL"
 msgstr "Всички версии"
 
+#: ../src/thriveopedia/Thriveopedia.tscn:292
+#, fuzzy
+msgid "VIEW_ONLINE"
+msgstr "Всички версии"
+
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
 msgstr "Бележки към изданието"
@@ -7182,7 +7249,7 @@ msgstr "Значими поддръжници"
 msgid "VISIBLE"
 msgstr "Видима"
 
-#: ../src/general/MainMenu.tscn:554 ../src/general/MainMenu.tscn:759
+#: ../src/general/MainMenu.tscn:553 ../src/general/MainMenu.tscn:758
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложения"
 
@@ -7237,6 +7304,1443 @@ msgstr "Колелце надясно"
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:247
 msgid "WHEEL_UP"
 msgstr "Колелце нагоре"
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
+#, fuzzy
+msgid "WIKI"
+msgstr "нашата Уикипедия"
+
+#: ../simulation_parameters/common/wiki.json:37
+#, fuzzy
+msgid "WIKI_AXON_EFFECTS"
+msgstr "Странични ефекти:"
+
+#: ../simulation_parameters/common/wiki.json:21
+msgid "WIKI_AXON_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:33
+msgid "WIKI_AXON_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:29
+#, fuzzy
+msgid "WIKI_AXON_PROCESSES"
+msgstr "Не се осъществяват клетъчни процеси"
+
+#: ../simulation_parameters/common/wiki.json:25
+msgid "WIKI_AXON_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:49
+msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:45
+msgid "WIKI_AXON_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:41
+msgid "WIKI_AXON_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:76
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_EFFECTS"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:60
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_INTRO"
+msgstr "Свързващ агент"
+
+#: ../simulation_parameters/common/wiki.json:72
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:68
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_PROCESSES"
+msgstr "Свързването е възможно само с индивиди от Вашите създания чрез доближаване до тях. Режимът на свързване се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Клетъчната колония може да се разпадне с натискане на [thrive:input]g_unbind_all[/thrive:input]. Докато сте част от нея, възпроизвеждането не е възможно."
+
+#: ../simulation_parameters/common/wiki.json:64
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:88
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:84
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_STRATEGY"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:80
+#, fuzzy
+msgid "WIKI_BINDING_AGENT_UPGRADES"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#: ../simulation_parameters/common/wiki.json:115
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:99
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:111
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:107
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:103
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:127
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:123
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:119
+#, fuzzy
+msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:154
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_EFFECTS"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:138
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_INTRO"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:150
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:146
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:142
+msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:166
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:162
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_STRATEGY"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:158
+#, fuzzy
+msgid "WIKI_CHEMOPLAST_UPGRADES"
+msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:193
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_EFFECTS"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:177
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_INTRO"
+msgstr "Хеморецептор"
+
+#: ../simulation_parameters/common/wiki.json:189
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:185
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_PROCESSES"
+msgstr "Осигурява напътствия за откриването на химичните съединения. Неговите свойства определят вида на търсеното химично съединение и цвета на линията."
+
+#: ../simulation_parameters/common/wiki.json:181
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:205
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:201
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_STRATEGY"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:197
+#, fuzzy
+msgid "WIKI_CHEMORECEPTOR_UPGRADES"
+msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
+
+#: ../simulation_parameters/common/wiki.json:232
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
+msgstr "Хемосинтезиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:216
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
+msgstr "Хемосинтезиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:228
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
+msgstr "Хемосинтезиращите протеини са малки струпвания в цитоплазмата, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]. Понеже хемосинтезиращите протеини са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:224
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
+msgstr "Превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда. Също така, превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:220
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
+msgstr ""
+"Хемосинте-\n"
+"зиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:244
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
+msgstr "Хемосинтезиращите протеини са малки струпвания в цитоплазмата, които превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound], газообразния [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и водата в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в процес, който се нарича [b]сероводородна хемосинтеза[/b]. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound]. Понеже хемосинтезиращите протеини са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:240
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
+msgstr "Хемосинтезиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:236
+#, fuzzy
+msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
+msgstr "Хемосинтезиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:271
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_EFFECTS"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:255
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_INTRO"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:267
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:263
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_PROCESSES"
+msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"sunlight\"]слънчева светлина[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:259
+msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:283
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:279
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_STRATEGY"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:275
+#, fuzzy
+msgid "WIKI_CHLOROPLAST_UPGRADES"
+msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и вода в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:310
+msgid "WIKI_CILIA_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:294
+msgid "WIKI_CILIA_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:306
+msgid "WIKI_CILIA_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:302
+#, fuzzy
+msgid "WIKI_CILIA_PROCESSES"
+msgstr "Увеличават скоростта на завъртане на клетките."
+
+#: ../simulation_parameters/common/wiki.json:298
+msgid "WIKI_CILIA_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:322
+msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:318
+msgid "WIKI_CILIA_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:314
+msgid "WIKI_CILIA_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:349
+#, fuzzy
+msgid "WIKI_CYTOPLASM_EFFECTS"
+msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+
+#: ../simulation_parameters/common/wiki.json:333
+#, fuzzy
+msgid "WIKI_CYTOPLASM_INTRO"
+msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+
+#: ../simulation_parameters/common/wiki.json:345
+#, fuzzy
+msgid "WIKI_CYTOPLASM_MODIFICATIONS"
+msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+
+#: ../simulation_parameters/common/wiki.json:341
+#, fuzzy
+msgid "WIKI_CYTOPLASM_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:337
+msgid "WIKI_CYTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:361
+msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:357
+msgid "WIKI_CYTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:353
+msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:388
+#, fuzzy
+msgid "WIKI_FLAGELLUM_EFFECTS"
+msgstr "Камшичето е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да придвижва клетката, чрез вълнообразни движения. Позицията на камшичето определя посоката, в която то осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на камшичето (например, ако е поставено от лявата страна на клетката, камшичето ще осигурява тласък за движение надясно)."
+
+#: ../simulation_parameters/common/wiki.json:372
+#, fuzzy
+msgid "WIKI_FLAGELLUM_INTRO"
+msgstr "Камшичето е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да придвижва клетката, чрез вълнообразни движения. Позицията на камшичето определя посоката, в която то осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на камшичето (например, ако е поставено от лявата страна на клетката, камшичето ще осигурява тласък за движение надясно)."
+
+#: ../simulation_parameters/common/wiki.json:384
+#, fuzzy
+msgid "WIKI_FLAGELLUM_MODIFICATIONS"
+msgstr "Камшичето е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да придвижва клетката, чрез вълнообразни движения. Позицията на камшичето определя посоката, в която то осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на камшичето (например, ако е поставено от лявата страна на клетката, камшичето ще осигурява тласък за движение надясно)."
+
+#: ../simulation_parameters/common/wiki.json:380
+#, fuzzy
+msgid "WIKI_FLAGELLUM_PROCESSES"
+msgstr "Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да увеличи скоростта на движение на клетката."
+
+#: ../simulation_parameters/common/wiki.json:376
+msgid "WIKI_FLAGELLUM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:400
+msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:396
+msgid "WIKI_FLAGELLUM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:392
+msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:36
+#: ../simulation_parameters/common/wiki.json:75
+#: ../simulation_parameters/common/wiki.json:114
+#: ../simulation_parameters/common/wiki.json:153
+#: ../simulation_parameters/common/wiki.json:192
+#: ../simulation_parameters/common/wiki.json:231
+#: ../simulation_parameters/common/wiki.json:270
+#: ../simulation_parameters/common/wiki.json:309
+#: ../simulation_parameters/common/wiki.json:348
+#: ../simulation_parameters/common/wiki.json:387
+#: ../simulation_parameters/common/wiki.json:426
+#: ../simulation_parameters/common/wiki.json:465
+#: ../simulation_parameters/common/wiki.json:504
+#: ../simulation_parameters/common/wiki.json:543
+#: ../simulation_parameters/common/wiki.json:582
+#: ../simulation_parameters/common/wiki.json:621
+#: ../simulation_parameters/common/wiki.json:660
+#: ../simulation_parameters/common/wiki.json:699
+#: ../simulation_parameters/common/wiki.json:738
+#: ../simulation_parameters/common/wiki.json:777
+#: ../simulation_parameters/common/wiki.json:816
+#: ../simulation_parameters/common/wiki.json:855
+#: ../simulation_parameters/common/wiki.json:894
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:972
+#: ../simulation_parameters/common/wiki.json:1011
+#: ../simulation_parameters/common/wiki.json:1050
+#: ../simulation_parameters/common/wiki.json:1089
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:188
+#: ../simulation_parameters/common/wiki.json:227
+#: ../simulation_parameters/common/wiki.json:266
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:344
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:422
+#: ../simulation_parameters/common/wiki.json:461
+#: ../simulation_parameters/common/wiki.json:500
+#: ../simulation_parameters/common/wiki.json:539
+#: ../simulation_parameters/common/wiki.json:578
+#: ../simulation_parameters/common/wiki.json:617
+#: ../simulation_parameters/common/wiki.json:656
+#: ../simulation_parameters/common/wiki.json:695
+#: ../simulation_parameters/common/wiki.json:734
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:812
+#: ../simulation_parameters/common/wiki.json:851
+#: ../simulation_parameters/common/wiki.json:890
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:968
+#: ../simulation_parameters/common/wiki.json:1007
+#: ../simulation_parameters/common/wiki.json:1046
+#: ../simulation_parameters/common/wiki.json:1085
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:184
+#: ../simulation_parameters/common/wiki.json:223
+#: ../simulation_parameters/common/wiki.json:262
+#: ../simulation_parameters/common/wiki.json:301
+#: ../simulation_parameters/common/wiki.json:340
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:457
+#: ../simulation_parameters/common/wiki.json:496
+#: ../simulation_parameters/common/wiki.json:535
+#: ../simulation_parameters/common/wiki.json:574
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:652
+#: ../simulation_parameters/common/wiki.json:691
+#: ../simulation_parameters/common/wiki.json:730
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:808
+#: ../simulation_parameters/common/wiki.json:847
+#: ../simulation_parameters/common/wiki.json:886
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:964
+#: ../simulation_parameters/common/wiki.json:1003
+#: ../simulation_parameters/common/wiki.json:1042
+#: ../simulation_parameters/common/wiki.json:1081
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:141
+#: ../simulation_parameters/common/wiki.json:180
+#: ../simulation_parameters/common/wiki.json:219
+#: ../simulation_parameters/common/wiki.json:258
+#: ../simulation_parameters/common/wiki.json:297
+#: ../simulation_parameters/common/wiki.json:336
+#: ../simulation_parameters/common/wiki.json:375
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:492
+#: ../simulation_parameters/common/wiki.json:531
+#: ../simulation_parameters/common/wiki.json:570
+#: ../simulation_parameters/common/wiki.json:609
+#: ../simulation_parameters/common/wiki.json:648
+#: ../simulation_parameters/common/wiki.json:687
+#: ../simulation_parameters/common/wiki.json:726
+#: ../simulation_parameters/common/wiki.json:765
+#: ../simulation_parameters/common/wiki.json:804
+#: ../simulation_parameters/common/wiki.json:843
+#: ../simulation_parameters/common/wiki.json:882
+#: ../simulation_parameters/common/wiki.json:921
+#: ../simulation_parameters/common/wiki.json:960
+#: ../simulation_parameters/common/wiki.json:999
+#: ../simulation_parameters/common/wiki.json:1038
+#: ../simulation_parameters/common/wiki.json:1077
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+#: ../simulation_parameters/common/wiki.json:126
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:204
+#: ../simulation_parameters/common/wiki.json:243
+#: ../simulation_parameters/common/wiki.json:282
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:360
+#: ../simulation_parameters/common/wiki.json:399
+#: ../simulation_parameters/common/wiki.json:438
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:516
+#: ../simulation_parameters/common/wiki.json:555
+#: ../simulation_parameters/common/wiki.json:594
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:672
+#: ../simulation_parameters/common/wiki.json:711
+#: ../simulation_parameters/common/wiki.json:750
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:828
+#: ../simulation_parameters/common/wiki.json:867
+#: ../simulation_parameters/common/wiki.json:906
+#: ../simulation_parameters/common/wiki.json:945
+#: ../simulation_parameters/common/wiki.json:984
+#: ../simulation_parameters/common/wiki.json:1023
+#: ../simulation_parameters/common/wiki.json:1062
+#: ../simulation_parameters/common/wiki.json:1101
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:200
+#: ../simulation_parameters/common/wiki.json:239
+#: ../simulation_parameters/common/wiki.json:278
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:356
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:434
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:512
+#: ../simulation_parameters/common/wiki.json:551
+#: ../simulation_parameters/common/wiki.json:590
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:668
+#: ../simulation_parameters/common/wiki.json:707
+#: ../simulation_parameters/common/wiki.json:746
+#: ../simulation_parameters/common/wiki.json:785
+#: ../simulation_parameters/common/wiki.json:824
+#: ../simulation_parameters/common/wiki.json:863
+#: ../simulation_parameters/common/wiki.json:902
+#: ../simulation_parameters/common/wiki.json:941
+#: ../simulation_parameters/common/wiki.json:980
+#: ../simulation_parameters/common/wiki.json:1019
+#: ../simulation_parameters/common/wiki.json:1058
+#: ../simulation_parameters/common/wiki.json:1097
+#, fuzzy
+msgid "WIKI_HEADING_STRATEGY"
+msgstr "Пробуждане"
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:196
+#: ../simulation_parameters/common/wiki.json:235
+#: ../simulation_parameters/common/wiki.json:274
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:352
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:508
+#: ../simulation_parameters/common/wiki.json:547
+#: ../simulation_parameters/common/wiki.json:586
+#: ../simulation_parameters/common/wiki.json:625
+#: ../simulation_parameters/common/wiki.json:664
+#: ../simulation_parameters/common/wiki.json:703
+#: ../simulation_parameters/common/wiki.json:742
+#: ../simulation_parameters/common/wiki.json:781
+#: ../simulation_parameters/common/wiki.json:820
+#: ../simulation_parameters/common/wiki.json:859
+#: ../simulation_parameters/common/wiki.json:898
+#: ../simulation_parameters/common/wiki.json:937
+#: ../simulation_parameters/common/wiki.json:976
+#: ../simulation_parameters/common/wiki.json:1015
+#: ../simulation_parameters/common/wiki.json:1054
+#: ../simulation_parameters/common/wiki.json:1093
+msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:427
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:411
+#, fuzzy
+msgid "WIKI_LYSOSOME_INTRO"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
+
+#: ../simulation_parameters/common/wiki.json:423
+#, fuzzy
+msgid "WIKI_LYSOSOME_MODIFICATIONS"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
+
+#: ../simulation_parameters/common/wiki.json:419
+#, fuzzy
+msgid "WIKI_LYSOSOME_PROCESSES"
+msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
+
+#: ../simulation_parameters/common/wiki.json:415
+msgid "WIKI_LYSOSOME_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:439
+msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:435
+msgid "WIKI_LYSOSOME_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:431
+msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:466
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_EFFECTS"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:450
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_INTRO"
+msgstr "Метаболозоми"
+
+#: ../simulation_parameters/common/wiki.json:462
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:458
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_PROCESSES"
+msgstr "Превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:454
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:478
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:474
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_STRATEGY"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:470
+#, fuzzy
+msgid "WIKI_METABOLOSOMES_UPGRADES"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:505
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_EFFECTS"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:489
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_INTRO"
+msgstr "Митохондрия"
+
+#: ../simulation_parameters/common/wiki.json:501
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:497
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:493
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:517
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:513
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_STRATEGY"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:509
+#, fuzzy
+msgid "WIKI_MITOCHONDRION_UPGRADES"
+msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#: ../simulation_parameters/common/wiki.json:544
+msgid "WIKI_MYOFIBRIL_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:528
+msgid "WIKI_MYOFIBRIL_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:540
+msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:536
+#, fuzzy
+msgid "WIKI_MYOFIBRIL_PROCESSES"
+msgstr "Не се осъществяват клетъчни процеси"
+
+#: ../simulation_parameters/common/wiki.json:532
+msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:556
+msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:552
+msgid "WIKI_MYOFIBRIL_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:548
+msgid "WIKI_MYOFIBRIL_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:622
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:606
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:618
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
+msgstr "Пластидът за азотна фиксация е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], както и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]аеробна азотна фиксация[/b]."
+
+#: ../simulation_parameters/common/wiki.json:614
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:610
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:634
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
+msgstr "Пластидът за азотна фиксация е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], както и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]аеробна азотна фиксация[/b]."
+
+#: ../simulation_parameters/common/wiki.json:630
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:626
+#, fuzzy
+msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:583
+#, fuzzy
+msgid "WIKI_NITROGENASE_EFFECTS"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:567
+#, fuzzy
+msgid "WIKI_NITROGENASE_INTRO"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:579
+#, fuzzy
+msgid "WIKI_NITROGENASE_MODIFICATIONS"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:575
+#, fuzzy
+msgid "WIKI_NITROGENASE_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:571
+msgid "WIKI_NITROGENASE_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:595
+#, fuzzy
+msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:591
+#, fuzzy
+msgid "WIKI_NITROGENASE_STRATEGY"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:587
+#, fuzzy
+msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Нитрогеназата е протеин, който използва газообразен [thrive:compound type=\"nitrogen\"]въглероден диоксид[/thrive:compound] и клетъчна енергия под формата на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да произвежда [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], който е ключов за растежа на клетките. Този процес се нарича [b]анаеробна азотна фиксация[/b]. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:661
+msgid "WIKI_NUCLEUS_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:645
+msgid "WIKI_NUCLEUS_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:657
+#, fuzzy
+msgid "WIKI_NUCLEUS_MODIFICATIONS"
+msgstr "Това е определящата структура на еукариотните клетки. Ядрото включва в себе си ендоплазмен ретикулум и апарата на Голджи. То е еволюция на прокариотните клетки, която им позволява да развият система от вътрешни мембрани, чрез асимилиране на друг прокариот в самите тях. Ядрото разделя различните клетъчни процеси и не им позволява да се припокриват. Освен това, позволява на вътрешните органели да са много по-сложни, ефикасни и специализирани. За сметка на това, ядрото увеличава размера на клетката и изисква голямо количество енергия."
+
+#: ../simulation_parameters/common/wiki.json:653
+#, fuzzy
+msgid "WIKI_NUCLEUS_PROCESSES"
+msgstr "Не се осъществяват клетъчни процеси"
+
+#: ../simulation_parameters/common/wiki.json:649
+msgid "WIKI_NUCLEUS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:673
+msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:669
+msgid "WIKI_NUCLEUS_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:665
+msgid "WIKI_NUCLEUS_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:9
+#, fuzzy
+msgid "WIKI_ORGANELLES_ROOT_INTRO"
+msgstr "Аксон"
+
+#: ../simulation_parameters/common/wiki.json:700
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_EFFECTS"
+msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:684
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_INTRO"
+msgstr "Окситоксизома"
+
+#: ../simulation_parameters/common/wiki.json:696
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
+msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:692
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
+#: ../simulation_parameters/common/wiki.json:688
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
+msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:712
+msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:708
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_STRATEGY"
+msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:704
+#, fuzzy
+msgid "WIKI_OXYTOXISOME_UPGRADES"
+msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:15
+msgid "WIKI_PAGE_AXON"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:54
+#, fuzzy
+msgid "WIKI_PAGE_BINDING_AGENT"
+msgstr "Свързващ агент"
+
+#: ../simulation_parameters/common/wiki.json:93
+#, fuzzy
+msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
+msgstr "Биолуминесцентна вакуола"
+
+#: ../simulation_parameters/common/wiki.json:132
+#, fuzzy
+msgid "WIKI_PAGE_CHEMOPLAST"
+msgstr "Хемопласт"
+
+#: ../simulation_parameters/common/wiki.json:171
+#, fuzzy
+msgid "WIKI_PAGE_CHEMORECEPTOR"
+msgstr "Хеморецептор"
+
+#: ../simulation_parameters/common/wiki.json:210
+#, fuzzy
+msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
+msgstr "Хемосинтезиращи протеини"
+
+#: ../simulation_parameters/common/wiki.json:249
+#, fuzzy
+msgid "WIKI_PAGE_CHLOROPLAST"
+msgstr "Хлоропласт"
+
+#: ../simulation_parameters/common/wiki.json:288
+msgid "WIKI_PAGE_CILIA"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:327
+#, fuzzy
+msgid "WIKI_PAGE_CYTOPLASM"
+msgstr "Цитоплазма"
+
+#: ../simulation_parameters/common/wiki.json:366
+#, fuzzy
+msgid "WIKI_PAGE_FLAGELLUM"
+msgstr "Камшиче"
+
+#: ../simulation_parameters/common/wiki.json:405
+#, fuzzy
+msgid "WIKI_PAGE_LYSOSOME"
+msgstr "Лизозома"
+
+#: ../simulation_parameters/common/wiki.json:444
+#, fuzzy
+msgid "WIKI_PAGE_METABOLOSOMES"
+msgstr "Метаболозоми"
+
+#: ../simulation_parameters/common/wiki.json:483
+#, fuzzy
+msgid "WIKI_PAGE_MITOCHONDRION"
+msgstr "Митохондрия"
+
+#: ../simulation_parameters/common/wiki.json:522
+#, fuzzy
+msgid "WIKI_PAGE_MYOFIBRIL"
+msgstr "Миофибрила"
+
+#: ../simulation_parameters/common/wiki.json:600
+#, fuzzy
+msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
+msgstr "Пластид за азотна фиксация"
+
+#: ../simulation_parameters/common/wiki.json:561
+#, fuzzy
+msgid "WIKI_PAGE_NITROGENASE"
+msgstr "Нитрогеназа"
+
+#: ../simulation_parameters/common/wiki.json:639
+#, fuzzy
+msgid "WIKI_PAGE_NUCLEUS"
+msgstr "Нуждае се от ядро"
+
+#: ../simulation_parameters/common/wiki.json:3
+#, fuzzy
+msgid "WIKI_PAGE_ORGANELLES_ROOT"
+msgstr "Добавяне на органел или друг обект"
+
+#: ../simulation_parameters/common/wiki.json:678
+#, fuzzy
+msgid "WIKI_PAGE_OXYTOXISOME"
+msgstr "Окситоксизома"
+
+#: ../simulation_parameters/common/wiki.json:717
+msgid "WIKI_PAGE_PERFORATOR_PILUS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:756
+#, fuzzy
+msgid "WIKI_PAGE_PROTOPLASM"
+msgstr "Протоплазма"
+
+#: ../simulation_parameters/common/wiki.json:795
+#, fuzzy
+msgid "WIKI_PAGE_RUSTICYANIN"
+msgstr "Рустицианин"
+
+#: ../simulation_parameters/common/wiki.json:834
+#, fuzzy
+msgid "WIKI_PAGE_SIGNALING_AGENT"
+msgstr "Сигнализиращ агент"
+
+#: ../simulation_parameters/common/wiki.json:873
+#, fuzzy
+msgid "WIKI_PAGE_SLIME_JET"
+msgstr "Порозома"
+
+#: ../simulation_parameters/common/wiki.json:912
+#, fuzzy
+msgid "WIKI_PAGE_THERMOPLAST"
+msgstr "Термопласт"
+
+#: ../simulation_parameters/common/wiki.json:951
+#, fuzzy
+msgid "WIKI_PAGE_THERMOSYNTHASE"
+msgstr "Термосинтаза"
+
+#: ../simulation_parameters/common/wiki.json:990
+#, fuzzy
+msgid "WIKI_PAGE_THYLAKOIDS"
+msgstr "Тилакоиди"
+
+#: ../simulation_parameters/common/wiki.json:1029
+#, fuzzy
+msgid "WIKI_PAGE_TOXIN_VACUOLE"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#: ../simulation_parameters/common/wiki.json:1068
+#, fuzzy
+msgid "WIKI_PAGE_VACUOLE"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#: ../simulation_parameters/common/wiki.json:739
+msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:723
+msgid "WIKI_PERFORATOR_PILUS_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:735
+msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:731
+msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:727
+msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:751
+msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:747
+msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:743
+msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:778
+#, fuzzy
+msgid "WIKI_PROTOPLASM_EFFECTS"
+msgstr "Протоплазма"
+
+#: ../simulation_parameters/common/wiki.json:762
+#, fuzzy
+msgid "WIKI_PROTOPLASM_INTRO"
+msgstr "Протоплазма"
+
+#: ../simulation_parameters/common/wiki.json:774
+msgid "WIKI_PROTOPLASM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:770
+#, fuzzy
+msgid "WIKI_PROTOPLASM_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:766
+msgid "WIKI_PROTOPLASM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:790
+msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:786
+msgid "WIKI_PROTOPLASM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:782
+msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
+msgid "WIKI_ROOT_BODY"
+msgstr ""
+
+#: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
+msgid "WIKI_ROOT_HEADING"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:817
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_EFFECTS"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:801
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_INTRO"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:813
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:809
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:805
+msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:829
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:825
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_STRATEGY"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:821
+#, fuzzy
+msgid "WIKI_RUSTICYANIN_UPGRADES"
+msgstr "Рустицианинът е протеин, който използва [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] за да окислява [thrive:compound type=\"iron\"]желязото[/thrive:compound] в процес, който се нарича [b]оксидиране[/b]. В резултат на този процес се освобождава енергия, която клетката може да използва."
+
+#: ../simulation_parameters/common/wiki.json:856
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_EFFECTS"
+msgstr "Сигнализиращ агент"
+
+#: ../simulation_parameters/common/wiki.json:840
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_INTRO"
+msgstr "Сигнализиращ агент"
+
+#: ../simulation_parameters/common/wiki.json:852
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
+msgstr "Сигнализиращият агент се използва от клетките за отделяне на вещества, благодарение на които те могат да излъчват различни видове сигнали помежду си."
+
+#: ../simulation_parameters/common/wiki.json:848
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_PROCESSES"
+msgstr "Излъчва различни видове сигнали чрез командното меню, с задържане на [thrive:input]g_pack_commands[/thrive:input]."
+
+#: ../simulation_parameters/common/wiki.json:844
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
+msgstr "Сигнализиращият агент се използва от клетките за отделяне на вещества, благодарение на които те могат да излъчват различни видове сигнали помежду си."
+
+#: ../simulation_parameters/common/wiki.json:868
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
+msgstr "Сигнализиращият агент се използва от клетките за отделяне на вещества, благодарение на които те могат да излъчват различни видове сигнали помежду си."
+
+#: ../simulation_parameters/common/wiki.json:864
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_STRATEGY"
+msgstr "Сигнализиращ агент"
+
+#: ../simulation_parameters/common/wiki.json:860
+#, fuzzy
+msgid "WIKI_SIGNALING_AGENT_UPGRADES"
+msgstr "Сигнализиращ агент"
+
+#: ../simulation_parameters/common/wiki.json:895
+#, fuzzy
+msgid "WIKI_SLIME_JET_EFFECTS"
+msgstr "Порозомата произвежда полизахаридни вещества, подобни на слуз. Повечето клетки използват слузта за придвижване, но някои от тях освобождават тези вещества под високо налягане след себе си. Тези слузести струи увеличават тяхната скорост и забавят преследвачите, които нямат порозоми."
+
+#: ../simulation_parameters/common/wiki.json:879
+#, fuzzy
+msgid "WIKI_SLIME_JET_INTRO"
+msgstr "Порозомата произвежда полизахаридни вещества, подобни на слуз. Повечето клетки използват слузта за придвижване, но някои от тях освобождават тези вещества под високо налягане след себе си. Тези слузести струи увеличават тяхната скорост и забавят преследвачите, които нямат порозоми."
+
+#: ../simulation_parameters/common/wiki.json:891
+#, fuzzy
+msgid "WIKI_SLIME_JET_MODIFICATIONS"
+msgstr "Порозомата произвежда полизахаридни вещества, подобни на слуз. Повечето клетки използват слузта за придвижване, но някои от тях освобождават тези вещества под високо налягане след себе си. Тези слузести струи увеличават тяхната скорост и забавят преследвачите, които нямат порозоми."
+
+#: ../simulation_parameters/common/wiki.json:887
+#, fuzzy
+msgid "WIKI_SLIME_JET_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"mucilage\"]слуз[/thrive:compound]. Освобождава съхранената [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] с натискане на [thrive:input]g_secrete_slime[/thrive:input], което увеличава скоростта на клетката и забавя нейните преследвачи."
+
+#: ../simulation_parameters/common/wiki.json:883
+msgid "WIKI_SLIME_JET_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:907
+msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:903
+msgid "WIKI_SLIME_JET_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:899
+msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:934
+#, fuzzy
+msgid "WIKI_THERMOPLAST_EFFECTS"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:918
+#, fuzzy
+msgid "WIKI_THERMOPLAST_INTRO"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:930
+#, fuzzy
+msgid "WIKI_THERMOPLAST_MODIFICATIONS"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:926
+#, fuzzy
+msgid "WIKI_THERMOPLAST_PROCESSES"
+msgstr "Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти. Количеството зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:922
+msgid "WIKI_THERMOPLAST_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:946
+#, fuzzy
+msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:942
+#, fuzzy
+msgid "WIKI_THERMOPLAST_STRATEGY"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:938
+#, fuzzy
+msgid "WIKI_THERMOPLAST_UPGRADES"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината в околната среда за да произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от вода в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:973
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_EFFECTS"
+msgstr "Термосинтаза"
+
+#: ../simulation_parameters/common/wiki.json:957
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_INTRO"
+msgstr "Термосинтаза"
+
+#: ../simulation_parameters/common/wiki.json:969
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
+msgstr "Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или се разгъва и го превръща в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] при охлаждане, благодарение на топлинната конвекция в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:965
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_PROCESSES"
+msgstr "Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти. Количеството зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound] в околната среда."
+
+#: ../simulation_parameters/common/wiki.json:961
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
+msgstr "Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или се разгъва и го превръща в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] при охлаждане, благодарение на топлинната конвекция в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:985
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
+msgstr "Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или се разгъва и го превръща в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] при охлаждане, благодарение на топлинната конвекция в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:981
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_STRATEGY"
+msgstr "Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или се разгъва и го превръща в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] при охлаждане, благодарение на топлинната конвекция в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:977
+#, fuzzy
+msgid "WIKI_THERMOSYNTHASE_UPGRADES"
+msgstr "Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или се разгъва и го превръща в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] при охлаждане, благодарение на топлинната конвекция в процес, който се нарича [b]термосинтеза[/b]. Количеството на произведения [thrive:compound type=\"atp\"]АТФ[/thrive:compound] зависи от [thrive:compound type=\"temperature\"]температурата[/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:1012
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_EFFECTS"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:996
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_INTRO"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1008
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1004
+msgid "WIKI_THYLAKOIDS_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1000
+msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1024
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1020
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_STRATEGY"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1016
+#, fuzzy
+msgid "WIKI_THYLAKOIDS_UPGRADES"
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1051
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1035
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_INTRO"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#: ../simulation_parameters/common/wiki.json:1047
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1043
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
+#: ../simulation_parameters/common/wiki.json:1039
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1063
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1059
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1055
+#, fuzzy
+msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1090
+msgid "WIKI_VACUOLE_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1074
+#, fuzzy
+msgid "WIKI_VACUOLE_INTRO"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1086
+#, fuzzy
+msgid "WIKI_VACUOLE_MODIFICATIONS"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#: ../simulation_parameters/common/wiki.json:1082
+#, fuzzy
+msgid "WIKI_VACUOLE_PROCESSES"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
+#: ../simulation_parameters/common/wiki.json:1078
+msgid "WIKI_VACUOLE_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1102
+msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1098
+msgid "WIKI_VACUOLE_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1094
+msgid "WIKI_VACUOLE_UPGRADES"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"
@@ -7338,7 +8842,7 @@ msgstr "„Xbox Series X“"
 msgid "YEARS"
 msgstr "години"
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:847
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Отваряне на канала ни в „YouTube“"
 
@@ -7641,11 +9145,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "RATE"
 #~ msgstr "Количеството"
-
-#~ msgid "CHEMOSYNTHESIZING_PROTEINS_TWO_LINES"
-#~ msgstr ""
-#~ "Хемосинте-\n"
-#~ "зиращи протеини"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

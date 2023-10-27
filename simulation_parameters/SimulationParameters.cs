@@ -33,6 +33,7 @@ public class SimulationParameters : Node
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
+    private GameWiki gameWiki = null!;
     private DayNightConfiguration lightCycle = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
     private Dictionary<string, ScreenEffect> screenEffects = null!;
@@ -121,6 +122,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        gameWiki =
+            LoadDirectObject<GameWiki>("res://simulation_parameters/common/wiki.json");
 
         lightCycle =
             LoadDirectObject<DayNightConfiguration>("res://simulation_parameters/common/day_night_cycle.json");
@@ -326,6 +330,11 @@ public class SimulationParameters : Node
     public GameCredits GetCredits()
     {
         return gameCredits;
+    }
+
+    public GameWiki GetWiki()
+    {
+        return gameWiki;
     }
 
     public DayNightConfiguration GetDayNightCycleConfiguration()
@@ -659,6 +668,7 @@ public class SimulationParameters : Node
         autoEvoConfiguration.InternalName = AUTO_EVO_CONFIGURATION_NAME;
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
+        gameWiki.Check(string.Empty);
         lightCycle.Check(string.Empty);
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);

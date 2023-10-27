@@ -558,14 +558,14 @@ public class CustomRichTextLabel : RichTextLabel
                 {
                     case "ConditionInsufficient":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementInsufficient.png", 20, 0,
+                        output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0,
                             3);
                         break;
                     }
 
                     case "ConditionFulfilled":
                     {
-                        output = GetResizedImage("res://assets/textures/gui/bevel/RequirementFulfilled.png", 20, 0, 3);
+                        output = GetResizedImage(GUICommon.Instance.RequirementFullfilledIconPath, 20, 0, 3);
                         break;
                     }
 
