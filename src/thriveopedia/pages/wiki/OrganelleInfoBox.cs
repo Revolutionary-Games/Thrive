@@ -196,12 +196,12 @@ public class OrganelleInfoBox : PanelContainer
                 .Aggregate((a, b) => a + "\n" + b) :
             TranslationServer.Translate("NONE");
 
-        var hasEnzymes = organelle.Enzymes != null && organelle.Enzymes.Count > 0;
+        var hasEnzymes = organelle.Enzymes.Count > 0;
         enzymesLabel.Modulate = hasEnzymes ? opaque : translucent;
         enzymesLabel.Text = hasEnzymes ?
-            organelle.Enzymes!
+            organelle.Enzymes
                 .Where(e => e.Value > 0)
-                .Select(e => SimulationParameters.Instance.GetEnzyme(e.Key).Name)
+                .Select(e => e.Key.Name)
                 .Aggregate((a, b) => a + "\n" + b) :
             TranslationServer.Translate("NONE");
 
@@ -216,7 +216,17 @@ public class OrganelleInfoBox : PanelContainer
 
         nameLabel.Text = organelle.Name;
         costLabel.Text = organelle.MPCost.ToString(CultureInfo.CurrentCulture);
-        massLabel.Text = organelle.Mass.ToString(CultureInfo.CurrentCulture);
+
+        // TODO: make this make more sense now that we only have physics density to use
+        if (organelle.RelativeDensityVolume > 0)
+        {
+            massLabel.Text = (organelle.Density * organelle.RelativeDensityVolume).ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            massLabel.Text = organelle.Density.ToString(CultureInfo.CurrentCulture);
+        }
+
         sizeLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         osmoregulationCostLabel.Text = organelle.HexCount.ToString(CultureInfo.CurrentCulture);
         storageLabel.Text = (organelle.Components.Storage?.Capacity ?? 0).ToString(CultureInfo.CurrentCulture);

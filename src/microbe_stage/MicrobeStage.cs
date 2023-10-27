@@ -386,13 +386,18 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             return;
         }
 
+        ref var entitySpecies = ref Player.Get<SpeciesMember>();
+
+        var previousSpecies = entitySpecies.Species;
+        previousSpecies.Obsolete = true;
+
         // Log becoming multicellular in the timeline
         GameWorld.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", Player.Species.FormattedName),
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
         GD.Print("Disbanding colony and becoming multicellular");
@@ -415,11 +420,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // Also apply species here to other members of the player's previous species
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
-
-        ref var entitySpecies = ref Player.Get<SpeciesMember>();
-
-        var previousSpecies = entitySpecies.Species;
-        previousSpecies.Obsolete = true;
 
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)

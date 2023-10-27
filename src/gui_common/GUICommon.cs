@@ -43,7 +43,7 @@ public class GUICommon : Node
     /// <summary>
     ///   Path for the generic icon representing a condition fulfilled.
     /// </summary>
-    public string RequirementFullfilledIconPath => "res://assets/textures/gui/bevel/RequirementFulfilled.png";
+    public string RequirementFulfilledIconPath => "res://assets/textures/gui/bevel/RequirementFulfilled.png";
 
     /// <summary>
     ///   Path for the generic icon representing a condition unfulfilled.
@@ -238,7 +238,7 @@ public class GUICommon : Node
     {
         if (fulfilled)
         {
-            return requirementFulfilledIcon ??= GD.Load<Texture>(RequirementFullfilledIconPath);
+            return requirementFulfilledIcon ??= GD.Load<Texture>(RequirementFulfilledIconPath);
         }
 
         return requirementInsufficientIcon ??= GD.Load<Texture>(RequirementInsufficientIconPath);
