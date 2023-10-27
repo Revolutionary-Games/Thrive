@@ -975,8 +975,8 @@ rect_min_size = Vector2( 550, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-WindowTitle = "NO_MODS_ENABLED"
 Exclusive = false
+WindowTitle = "NO_MODS_ENABLED"
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
 CenterText = false
@@ -1061,6 +1061,15 @@ PermanentDismissType = 1
 [connection signal="pressed" from="MenuContainers/SocialMedia/DiscordButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://discordapp.com/invite/ECR9E8x" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/FacebookButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://www.facebook.com/Thrive-182887991751358/" ]]
 [connection signal="pressed" from="MenuContainers/SocialMedia/TwitterButton" to="." method="OnSocialMediaButtonPressed" binds= [ "https://twitter.com/Thrive_Game" ]]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
+[connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
+[connection signal="OnNewGameVideoStarted" from="NewGameSettings" to="." method="OnNewGameIntroVideoStarted"]
+[connection signal="OnWantToSwitchToOptionsMenu" from="NewGameSettings" to="." method="OnRedirectedToOptionsMenuFromNewGameSettings"]
+[connection signal="OnThriveopediaClosed" from="Thriveopedia" to="." method="OnReturnFromThriveopedia"]
 [connection signal="hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
+[connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
+[connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]
+[connection signal="Confirmed" from="LowPerformanceDialog" to="." method="OnLowPerformanceDialogConfirmed"]
