@@ -10,7 +10,7 @@
         public EarlyMulticellularSpecies Species;
 
         /// <summary>
-        ///  For each part of a multicellular species, the cell type they are must be known
+        ///   For each part of a multicellular species, the cell type they are must be known
         /// </summary>
         public CellType MulticellularCellType;
 

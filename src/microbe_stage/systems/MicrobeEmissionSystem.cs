@@ -1,4 +1,4 @@
-namespace Systems
+﻿namespace Systems
 {
     using System;
     using System.Linq;
@@ -145,7 +145,8 @@ namespace Systems
                 ejectionDistance *= 0.5f;
 
             // Find the direction the microbe is facing
-            // (actual rotation, not LookAtPoint, also takes colony membership into account and uses the parent rotation)
+            // (actual rotation, not LookAtPoint, also takes colony membership into account and uses the
+            // parent rotation)
             var direction = FacingDirection(entity, ref position);
 
             var emissionPosition = position.Position + (direction * ejectionDistance);

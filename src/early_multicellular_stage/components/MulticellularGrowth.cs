@@ -238,8 +238,8 @@
                     compoundRefundLocation.AddCompound(entry.Key, entry.Value);
             }
 
-            // Adjust the already used compound amount to lose the progress we made for the current cell and also towards
-            // the lost cell, this we the total progress bar should be correct
+            // Adjust the already used compound amount to lose the progress we made for the current cell and also
+            // towards the lost cell, this we the total progress bar should be correct
             if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
             {
                 var totalNeededForLostCell = species.Cells[lostPartIndex]

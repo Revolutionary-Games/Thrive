@@ -126,12 +126,12 @@
         /// </summary>
         /// <param name="engulfer">The engulfer that wants to engulf something</param>
         /// <param name="cellProperties">
-        ///     Cell properties to determine if this engulfer can even engulf things in the first place
+        ///   Cell properties to determine if this engulfer can even engulf things in the first place
         /// </param>
         /// <param name="organelles">Organelles the engulfer has, used to determine what it can eat or digest</param>
         /// <param name="position">Location of the engulfer to search nearby positions for</param>
         /// <param name="usefulCompoundSource">
-        ///     Used to filter engulfables to only ones this bag considers useful
+        ///   Used to filter engulfables to only ones this bag considers useful
         /// </param>
         /// <param name="engulferEntity">Entity of the engulfer, used to skip self engulfment check</param>
         /// <param name="engulferSpeciesID">Engulfer species ID to use in engulfability checks</param>

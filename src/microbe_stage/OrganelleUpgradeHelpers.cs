@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 ///   Easy access to often required upgrade data checks
 /// </summary>
 public static class OrganelleUpgradeHelpers

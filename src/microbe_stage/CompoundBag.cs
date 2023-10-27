@@ -128,11 +128,6 @@ public class CompoundBag : ICompoundStorage
         return Compounds.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
     public void ClearCompounds()
     {
         Compounds.Clear();
@@ -237,5 +232,10 @@ public class CompoundBag : ICompoundStorage
             // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
             Compounds[entry.Key] = 0;
         }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

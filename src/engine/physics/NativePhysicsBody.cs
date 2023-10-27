@@ -33,7 +33,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
     /// <summary>
     ///   Storage variable for collision recording, when this is active the pin handle is used to pin down this
-    ///    piece of memory to ensure the native code size can directly write here with pointers
+    ///   piece of memory to ensure the native code size can directly write here with pointers
     /// </summary>
     private PhysicsCollision[]? activeCollisions;
 
@@ -108,15 +108,15 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
         return Equals((NativePhysicsBody)obj);
     }
 
-    public override int GetHashCode()
-    {
-        return nativeInstance.GetHashCode();
-    }
-
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    public override int GetHashCode()
+    {
+        return nativeInstance.GetHashCode();
     }
 
     internal (PhysicsCollision[] CollisionsArray, IntPtr ArrayAddress)

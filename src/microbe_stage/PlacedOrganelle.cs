@@ -385,6 +385,21 @@ public class PlacedOrganelle : IPositionedOrganelle
         return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
     }
 
+    private void InitializeComponents()
+    {
+        foreach (var factory in Definition.ComponentFactories)
+        {
+            var component = factory.Create();
+
+            if (component == null)
+                throw new Exception("PlacedOrganelle component factory returned null");
+
+            component.OnAttachToCell(this);
+
+            Components.Add(component);
+        }
+    }
+
     private float CalculateTransformScale()
     {
         float growth;
@@ -400,21 +415,6 @@ public class PlacedOrganelle : IPositionedOrganelle
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
         return Constants.DEFAULT_HEX_SIZE + growth;
-    }
-
-    private void InitializeComponents()
-    {
-        foreach (var factory in Definition.ComponentFactories)
-        {
-            var component = factory.Create();
-
-            if (component == null)
-                throw new Exception("PlacedOrganelle component factory returned null");
-
-            component.OnAttachToCell(this);
-
-            Components.Add(component);
-        }
     }
 
     private void RecalculateGrowthValue()

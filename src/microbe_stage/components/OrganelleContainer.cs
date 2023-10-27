@@ -302,8 +302,8 @@
         /// <param name="position">The position the smelling entity is at</param>
         /// <param name="clouds">CompoundCloudSystem to scan</param>
         /// <returns>
-        ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be drawn),
-        ///   and the location where the compound is located.
+        ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be
+        ///   drawn), and the location where the compound is located.
         /// </returns>
         public static List<(Compound Compound, Color Colour, Vector3 Target)>? PerformCompoundDetection(
             this ref OrganelleContainer container, in Entity entity, Vector3 position,
@@ -519,7 +519,8 @@
         }
 
         /// <summary>
-        ///   Calculates the reproduction progress for a cell, used to show how close the player is getting to the editor.
+        ///   Calculates the reproduction progress for a cell, used to show how close the player is getting to
+        ///   the editor.
         /// </summary>
         /// <returns>The total reproduction progress</returns>
         public static float CalculateReproductionProgress(this ref OrganelleContainer organelleContainer,

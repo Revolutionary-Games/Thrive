@@ -77,6 +77,46 @@
 
         public bool IsEnabled { get; set; } = true;
 
+        public void Update(float delta)
+        {
+            if (!IsEnabled)
+                return;
+
+            elapsed += delta;
+            despawnElapsed += delta;
+
+            float spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+
+            // If we have queued spawns to do spawn those
+            HandleQueuedSpawns(ref spawnsLeftThisFrame);
+
+            if (spawnsLeftThisFrame <= 0)
+                return;
+
+            // This is now an if to make sure that the spawn system is
+            // only ran once per frame to avoid spawning a bunch of stuff
+            // all at once after a lag spike
+            // NOTE: that as QueueFree is used it's not safe to just switch this to a loop
+            if (elapsed >= interval)
+            {
+                elapsed -= interval;
+
+                estimateEntityCount = DespawnEntities();
+
+                spawnTypes.RemoveAll(entity => entity.DestroyQueued);
+
+                SpawnAllTypes(ref spawnsLeftThisFrame);
+            }
+            else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+            {
+                despawnElapsed = 0;
+
+                DespawnEntities();
+            }
+
+            spawnedEntitiesSet.Complete();
+        }
+
         /// <summary>
         ///   Adds a new spawner. Sets up the spawn radius, this radius squared,
         ///   and frequency fields based on the parameters of this
@@ -157,46 +197,6 @@
             playerPosition.y = 0;
         }
 
-        public void Update(float delta)
-        {
-            if (!IsEnabled)
-                return;
-
-            elapsed += delta;
-            despawnElapsed += delta;
-
-            float spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
-
-            // If we have queued spawns to do spawn those
-            HandleQueuedSpawns(ref spawnsLeftThisFrame);
-
-            if (spawnsLeftThisFrame <= 0)
-                return;
-
-            // This is now an if to make sure that the spawn system is
-            // only ran once per frame to avoid spawning a bunch of stuff
-            // all at once after a lag spike
-            // NOTE: that as QueueFree is used it's not safe to just switch this to a loop
-            if (elapsed >= interval)
-            {
-                elapsed -= interval;
-
-                estimateEntityCount = DespawnEntities();
-
-                spawnTypes.RemoveAll(entity => entity.DestroyQueued);
-
-                SpawnAllTypes(ref spawnsLeftThisFrame);
-            }
-            else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
-            {
-                despawnElapsed = 0;
-
-                DespawnEntities();
-            }
-
-            spawnedEntitiesSet.Complete();
-        }
-
         public void NotifyExternalEntitySpawned(in EntityRecord entity, float despawnRadiusSquared, float entityWeight)
         {
             if (entityWeight <= 0)
@@ -229,8 +229,8 @@
 
             if (doNotDespawn != default && doNotDespawn.Has<Spawned>())
             {
-                // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate won't
-                // likely include it yet
+                // Take the just spawned thing we shouldn't despawn into account in the entity count as our estimate
+                // won't likely include it yet
                 extra = doNotDespawn.Get<Spawned>().EntityWeight;
             }
 

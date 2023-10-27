@@ -65,8 +65,8 @@
     {
         /// <summary>
         ///   The default visual position if the organelle is on the microbe's center
-        ///   TODO: this should be made organelle type specific, chemoreceptors and pilus should point backward (in Godot
-        ///   coordinates to point forwards by default, and flagella should keep this current default value).
+        ///   TODO: this should be made organelle type specific, chemoreceptors and pilus should point backward
+        ///   (in Godot coordinates to point forwards by default, and flagella should keep this current default value).
         ///   Actually latest issue describing how this could be solved is:
         ///   https://github.com/Revolutionary-Games/Thrive/issues/3620 and
         ///   https://github.com/Revolutionary-Games/Thrive/issues/3109

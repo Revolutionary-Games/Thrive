@@ -21,6 +21,10 @@ public class DummySpawnSystem : ISpawnSystem
     {
     }
 
+    public void Update(float delta)
+    {
+    }
+
     public void Clear()
     {
     }
@@ -30,10 +34,6 @@ public class DummySpawnSystem : ISpawnSystem
     }
 
     public void ReportPlayerPosition(Vector3 position)
-    {
-    }
-
-    public void Update(float delta)
     {
     }
 

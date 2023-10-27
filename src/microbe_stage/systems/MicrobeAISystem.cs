@@ -836,8 +836,8 @@
             float gradientValue = 0.0f;
             foreach (var compoundWeight in ai.CompoundsSearchWeights!)
             {
-                // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the clouds.
-                // Gradient computation is therefore cell-centered, and might be different for different cells.
+                // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the
+                // clouds. Gradient computation is therefore cell-centered, and might be different for different cells.
                 float compoundDifference = 0.0f;
 
                 absorber.TotalAbsorbedCompounds!.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);

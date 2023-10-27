@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 /// <summary>
 ///   Marks a system as needing to run on the main thread where it is allowed to do any Godot engine operations

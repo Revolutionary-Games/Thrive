@@ -37,8 +37,8 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///      Note that the AI assumes this is the same as the same entity's engulfing size (in
-        ///      <see cref="Engulfer"/>) is the same as this to save a bit of memory when storing things.
+        ///     Note that the AI assumes this is the same as the same entity's engulfing size (in
+        ///     <see cref="Engulfer"/>) is the same as this to save a bit of memory when storing things.
         ///   </para>
         /// </remarks>
         public float BaseEngulfSize;

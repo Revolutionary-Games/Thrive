@@ -16,9 +16,11 @@ public class AgentProperties
     public string AgentType { get; set; } = "oxytoxy";
     public Compound Compound { get; set; }
 
+    // This has to be used like this to ensure the translation extractor sees this
+    // ReSharper disable once ArrangeObjectCreationWhenTypeEvident
     [JsonIgnore]
     public LocalizedString Name =>
-        new("AGENT_NAME", new LocalizedString(Compound.GetUntranslatedName()));
+        new LocalizedString("AGENT_NAME", new LocalizedString(Compound.GetUntranslatedName()));
 
     public void DealDamage(ref Health health, ref CellProperties hitCellProperties, float toxinAmount)
     {

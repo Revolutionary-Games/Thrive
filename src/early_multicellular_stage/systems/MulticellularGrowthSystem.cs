@@ -147,7 +147,8 @@
                     usedAmount += usedFreeCompounds;
                     allowedUseAmount -= usedFreeCompounds;
 
-                    // As we loop just once we don't need to update the free compounds or allowed use compounds variables
+                    // As we loop just once we don't need to update the free compounds or allowed use compounds
+                    // variables
                 }
 
                 stillNeedsSomething = true;

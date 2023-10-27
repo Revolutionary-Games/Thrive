@@ -9,8 +9,8 @@
     using Newtonsoft.Json;
 
     /// <summary>
-    ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info about
-    ///   the cell colony or early multicellular creature.
+    ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
+    ///   about the cell colony or early multicellular creature.
     /// </summary>
     public struct MicrobeColony
     {
@@ -21,9 +21,9 @@
         public Entity[] ColonyMembers;
 
         /// <summary>
-        ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are attached
-        ///   to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the same as the
-        ///   entity that has this <see cref="MicrobeColony"/> component on it.
+        ///   Lead cell of the colony. This is the newMember that exists separately in the world, all others are
+        ///   attached to it with <see cref="AttachedToEntity"/> components. Note this is always assumed to be the
+        ///   same as the entity that has this <see cref="MicrobeColony"/> component on it.
         /// </summary>
         public Entity Leader;
 
@@ -610,7 +610,8 @@
             // A vector from me to the parent
             var vectorToParent = -vectorFromParent;
 
-            // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
+            // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right
+            // would be nice
             // This vector represents the vectorToParent as if I had no rotation.
             // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
             // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes

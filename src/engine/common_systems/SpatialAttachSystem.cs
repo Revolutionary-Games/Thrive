@@ -32,24 +32,6 @@
             }
         }
 
-        protected override void PostUpdate(float state)
-        {
-            // Delete unmarked
-            foreach (var pair in attachedSpatialInstances)
-            {
-                if (!pair.Value.Marked)
-                    instancesToDelete.Add(pair.Key);
-            }
-
-            foreach (var spatial in instancesToDelete)
-            {
-                attachedSpatialInstances.Remove(spatial);
-                spatial.QueueFree();
-            }
-
-            instancesToDelete.Clear();
-        }
-
         protected override void Update(float state, Span<SpatialInstance> components)
         {
             foreach (ref SpatialInstance spatial in components)
@@ -71,6 +53,24 @@
                     info.Marked = true;
                 }
             }
+        }
+
+        protected override void PostUpdate(float state)
+        {
+            // Delete unmarked
+            foreach (var pair in attachedSpatialInstances)
+            {
+                if (!pair.Value.Marked)
+                    instancesToDelete.Add(pair.Key);
+            }
+
+            foreach (var spatial in instancesToDelete)
+            {
+                attachedSpatialInstances.Remove(spatial);
+                spatial.QueueFree();
+            }
+
+            instancesToDelete.Clear();
         }
 
         /// <summary>

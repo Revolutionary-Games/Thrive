@@ -737,7 +737,7 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///      Doesn't set <see cref="Engulfer.EngulfedObjects"/> to null even if empty
+        ///     Doesn't set <see cref="Engulfer.EngulfedObjects"/> to null even if empty
         ///   </para>
         /// </remarks>
         private void EjectEngulfable(ref Engulfer engulfer, ref CellProperties engulferCellProperties, in Entity entity,

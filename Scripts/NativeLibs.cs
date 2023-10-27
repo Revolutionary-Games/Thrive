@@ -383,7 +383,8 @@ public class NativeLibs
         if (result.ExitCode != 0)
         {
             ColourConsole.WriteErrorLine(
-                $"CMake configuration failed (exit: {result.ExitCode}). Do you have the required build tools installed?");
+                $"CMake configuration failed (exit: {result.ExitCode}). " +
+                "Do you have the required build tools installed?");
 
             return false;
         }

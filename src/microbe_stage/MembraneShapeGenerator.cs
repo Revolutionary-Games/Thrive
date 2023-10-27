@@ -14,7 +14,8 @@ public class MembraneShapeGenerator
         new(() => new MembraneShapeGenerator());
 
     /// <summary>
-    ///   Amount of segments on one side of the above described square. The amount of points on the side of the membrane.
+    ///   Amount of segments on one side of the above described square. The amount of points on the side of
+    ///   the membrane.
     /// </summary>
     private static readonly int MembraneResolution = Constants.MEMBRANE_RESOLUTION;
 
@@ -132,6 +133,44 @@ public class MembraneShapeGenerator
         return (mesh, surfaceIndex);
     }
 
+    private static int InitializeCorrectMembrane(Vector2[] vertices2D, int vertexCount, int writeIndex,
+        Vector3[] vertices, Vector2[] uvs, MembraneType membraneType)
+    {
+        // common variables
+        float height = 0.1f;
+        float multiplier = 2.0f * Mathf.Pi;
+        var center = new Vector2(0.5f, 0.5f);
+
+        // cell walls need obvious inner/outer membranes (we can worry
+        // about chitin later)
+        if (membraneType.CellWall)
+        {
+            height = 0.05f;
+        }
+
+        vertices[writeIndex] = new Vector3(0, height / 2, 0);
+        uvs[writeIndex] = center;
+        ++writeIndex;
+
+        for (int i = 0, end = vertexCount; i < end + 1; i++)
+        {
+            // Finds the UV coordinates be projecting onto a plane and
+            // stretching to fit a circle.
+
+            float currentRadians = multiplier * i / end;
+
+            var sourceVertex = vertices2D[i % end];
+            vertices[writeIndex] = new Vector3(sourceVertex.x, height / 2, sourceVertex.y);
+
+            uvs[writeIndex] = center +
+                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
+
+            ++writeIndex;
+        }
+
+        return writeIndex;
+    }
+
     /// <summary>
     ///   Return the position of the closest organelle hex to the target point.
     /// </summary>
@@ -212,44 +251,6 @@ public class MembraneShapeGenerator
         generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
         return generatedMesh;
-    }
-
-    private static int InitializeCorrectMembrane(Vector2[] vertices2D, int vertexCount, int writeIndex,
-        Vector3[] vertices, Vector2[] uvs, MembraneType membraneType)
-    {
-        // common variables
-        float height = 0.1f;
-        float multiplier = 2.0f * Mathf.Pi;
-        var center = new Vector2(0.5f, 0.5f);
-
-        // cell walls need obvious inner/outer membranes (we can worry
-        // about chitin later)
-        if (membraneType.CellWall)
-        {
-            height = 0.05f;
-        }
-
-        vertices[writeIndex] = new Vector3(0, height / 2, 0);
-        uvs[writeIndex] = center;
-        ++writeIndex;
-
-        for (int i = 0, end = vertexCount; i < end + 1; i++)
-        {
-            // Finds the UV coordinates be projecting onto a plane and
-            // stretching to fit a circle.
-
-            float currentRadians = multiplier * i / end;
-
-            var sourceVertex = vertices2D[i % end];
-            vertices[writeIndex] = new Vector3(sourceVertex.x, height / 2, sourceVertex.y);
-
-            uvs[writeIndex] = center +
-                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
-
-            ++writeIndex;
-        }
-
-        return writeIndex;
     }
 
     private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType)

@@ -1,4 +1,4 @@
-namespace Components
+﻿namespace Components
 {
     /// <summary>
     ///   Entity is roughly circular and this provides easy access to that entity's radius

@@ -592,7 +592,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
                         var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
 
-                        float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition, colonyMembers);
+                        float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition,
+                            colonyMembers);
 
                         daughter.Translation += -direction * distance;
                     }*/
@@ -1119,5 +1120,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             GD.PrintErr("Couldn't read player health: " + e);
             return false;
         }
+    }
+
+    private void TranslationsForFeaturesToReimplement()
+    {
+        // TODO: reimplement the microbe features that depend on these translations
+        TranslationServer.Translate("SUCCESSFUL_KILL");
+        TranslationServer.Translate("SUCCESSFUL_SCAVENGE");
+        TranslationServer.Translate("ESCAPE_ENGULFING");
     }
 }
