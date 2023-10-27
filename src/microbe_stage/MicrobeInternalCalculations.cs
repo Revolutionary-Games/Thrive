@@ -258,9 +258,8 @@ public static class MicrobeInternalCalculations
         var speedFraction = velocities.y / torqueToTest.y;
         speedFraction *= 1000;
 
-        GD.Print("Speed fraction: ", speedFraction);
-
         // TODO: a good non-linear function here
+        // GD.Print("Speed fraction: ", speedFraction);
 
         // if (speedFraction < 0.5284f)
         // {
@@ -275,12 +274,8 @@ public static class MicrobeInternalCalculations
         // should be used to get better small cell scaling)
         speedFraction = Mathf.Clamp(Mathf.Pow(speedFraction, 1.0f / 4.0f), 0, 1);
 
-        GD.Print("Func result: ", speedFraction);
-
         var speed = Constants.CELL_MAX_ROTATION -
             ((Constants.CELL_MAX_ROTATION - Constants.CELL_MIN_ROTATION) * speedFraction);
-
-        GD.Print("Calculated speed: ", speed);
 
         int ciliaCount = 0;
 
