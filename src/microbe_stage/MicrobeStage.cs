@@ -153,6 +153,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
         CheatManager.OnPlayerDuplicationCheatUsed -= OnDuplicatePlayerCheatUsed;
         CheatManager.OnDespawnAllEntitiesCheatUsed -= OnDespawnAllEntitiesCheatUsed;
+
+        DebugOverlays.Instance.OnWorldDisabled(WorldSimulation);
     }
 
     public override void _Process(float delta)
@@ -178,7 +180,11 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         bool playerAlive = IsPlayerAlive();
 
-        WorldSimulation.ProcessAll(delta);
+        if (WorldSimulation.ProcessAll(delta))
+        {
+            // If game logic didn't run, the debug labels don't need to update
+            DebugOverlays.Instance.UpdateActiveEntities(WorldSimulation);
+        }
 
         if (gameOver || playerExtinctInCurrentPatch)
             return;
