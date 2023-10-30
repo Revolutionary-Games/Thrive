@@ -85,6 +85,94 @@
             gameWorld = world;
         }
 
+        /// <summary>
+        ///   Processes the base cost of reproduction (i.e. non-organelle or placed cell related cost). This is
+        ///   internal to allow <see cref="MulticellularGrowthSystem"/> to access this.
+        /// </summary>
+        /// <returns>True when this stage of reproduction is done</returns>
+        internal static bool ProcessBaseReproductionCost(
+            Dictionary<Compound, float>? requiredCompoundsForBaseReproduction,
+            CompoundBag compounds, ref float remainingAllowedCompoundUse,
+            ref float remainingFreeCompounds, bool consumeInReverseOrder,
+            Dictionary<Compound, float>? trackCompoundUse = null)
+        {
+            // If no info created yet we don't know if we are done
+            if (requiredCompoundsForBaseReproduction == null)
+                return false;
+
+            if (remainingAllowedCompoundUse <= 0)
+            {
+                return false;
+            }
+
+            bool reproductionStageComplete = true;
+
+            foreach (var key in consumeInReverseOrder ?
+                         requiredCompoundsForBaseReproduction.Keys.Reverse() :
+                         requiredCompoundsForBaseReproduction.Keys)
+            {
+                var amountNeeded = requiredCompoundsForBaseReproduction[key];
+
+                if (amountNeeded <= 0.0f)
+                    continue;
+
+                // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
+                float usedAmount = 0;
+
+                float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+                if (remainingFreeCompounds > 0)
+                {
+                    var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                    usedAmount += usedFreeCompounds;
+                    allowedUseAmount -= usedFreeCompounds;
+                    remainingFreeCompounds -= usedFreeCompounds;
+                }
+
+                // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+                // organelle growth
+                var amountAvailable =
+                    compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+                if (amountAvailable > MathUtils.EPSILON)
+                {
+                    // We can take some
+                    var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                    usedAmount += compounds.TakeCompound(key, amountToTake);
+                }
+
+                if (usedAmount < MathUtils.EPSILON)
+                    continue;
+
+                remainingAllowedCompoundUse -= usedAmount;
+
+                if (trackCompoundUse != null)
+                {
+                    trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
+                    trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
+                }
+
+                var left = amountNeeded - usedAmount;
+
+                if (left < 0.0001f)
+                {
+                    // We don't remove these values even when empty as we rely on detecting this being empty for earlier
+                    // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
+                    left = 0;
+                }
+
+                requiredCompoundsForBaseReproduction[key] = left;
+
+                // As we don't make duplicate lists, we can only process a single type per call
+                // So we can't know here if we are fully ready
+                reproductionStageComplete = false;
+                break;
+            }
+
+            return reproductionStageComplete;
+        }
+
         protected override void PreUpdate(float delta)
         {
             if (gameWorld == null)
@@ -313,88 +401,6 @@
                 // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
                 ReadyToReproduce(entity, ref organelles);
             }
-        }
-
-        private bool ProcessBaseReproductionCost(Dictionary<Compound, float>? requiredCompoundsForBaseReproduction,
-            CompoundBag compounds, ref float remainingAllowedCompoundUse,
-            ref float remainingFreeCompounds, bool consumeInReverseOrder,
-            Dictionary<Compound, float>? trackCompoundUse = null)
-        {
-            // If no info created yet we don't know if we are done
-            if (requiredCompoundsForBaseReproduction == null)
-                return false;
-
-            if (remainingAllowedCompoundUse <= 0)
-            {
-                return false;
-            }
-
-            bool reproductionStageComplete = true;
-
-            foreach (var key in consumeInReverseOrder ?
-                         requiredCompoundsForBaseReproduction.Keys.Reverse() :
-                         requiredCompoundsForBaseReproduction.Keys)
-            {
-                var amountNeeded = requiredCompoundsForBaseReproduction[key];
-
-                if (amountNeeded <= 0.0f)
-                    continue;
-
-                // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
-                float usedAmount = 0;
-
-                float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
-
-                if (remainingFreeCompounds > 0)
-                {
-                    var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
-                    usedAmount += usedFreeCompounds;
-                    allowedUseAmount -= usedFreeCompounds;
-                    remainingFreeCompounds -= usedFreeCompounds;
-                }
-
-                // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
-                // organelle growth
-                var amountAvailable =
-                    compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
-
-                if (amountAvailable > MathUtils.EPSILON)
-                {
-                    // We can take some
-                    var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
-
-                    usedAmount += compounds.TakeCompound(key, amountToTake);
-                }
-
-                if (usedAmount < MathUtils.EPSILON)
-                    continue;
-
-                remainingAllowedCompoundUse -= usedAmount;
-
-                if (trackCompoundUse != null)
-                {
-                    trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
-                    trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
-                }
-
-                var left = amountNeeded - usedAmount;
-
-                if (left < 0.0001f)
-                {
-                    // We don't remove these values even when empty as we rely on detecting this being empty for earlier
-                    // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
-                    left = 0;
-                }
-
-                requiredCompoundsForBaseReproduction[key] = left;
-
-                // As we don't make duplicate lists, we can only process a single type per call
-                // So we can't know here if we are fully ready
-                reproductionStageComplete = false;
-                break;
-            }
-
-            return reproductionStageComplete;
         }
 
         private PlacedOrganelle SplitOrganelle(OrganelleLayout<PlacedOrganelle> organelles, PlacedOrganelle organelle)

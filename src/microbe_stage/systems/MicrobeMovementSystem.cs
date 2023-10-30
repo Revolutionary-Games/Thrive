@@ -208,7 +208,8 @@
 
             if (control.MovementDirection != Vector3.Zero && entity.Has<MicrobeColony>())
             {
-                CalculateColonyImpactOnMovementForce(ref force);
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection, delta,
+                    ref force);
             }
 
             if (control.SlowedBySlime)
@@ -256,38 +257,46 @@
             return position.Rotation.Xform(movementVector);
         }
 
-        private void CalculateColonyImpactOnMovementForce(ref float force)
+        private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
+            float delta,
+            ref float force)
         {
-            // TODO: movement from colony member organelles
-            // // Colony members have their movement update before organelle update,
-            // // so that the movement organelles see the direction
-            // // The colony master should be already updated as the movement direction is either set by the
-            // // player input or
-            // // microbe AI, neither of which will happen concurrently, so this should always get the up to
-            // // date value
-            // if (Colony != null && Colony.Master != this)
-            //     MovementDirection = Colony.Master.MovementDirection;
-
             // Multiplies the movement factor as if the colony has the normal microbe speed
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
             // int memberCount;
+            force *= microbeColony.ColonyMembers.Length;
+            var seriesValue = 1 - 1 / (float)Math.Pow(2, microbeColony.ColonyMembers.Length - 1);
+            force -= (force * 0.15f) * seriesValue;
 
-            throw new NotImplementedException();
+            // Colony members have their movement update before organelle update, so that the movement organelles
+            // see the direction
+            // The colony master should be already updated as the movement direction is either set by the
+            // player input or microbe AI, neither of which will happen concurrently, so this should always get the
+            // up to date value
 
-            // force *= memberCount;
-            // var seriesValue = 1 - 1 / (float)Math.Pow(2, memberCount - 1);
-            // force -= (force * 0.15f) * seriesValue;
+            foreach (var colonyMember in microbeColony.ColonyMembers)
+            {
+                // Colony leader processes the normal movement logic so it isn't taken into account here
+                if (colonyMember == microbeColony.Leader)
+                    continue;
 
-            // // Flagella in colony members
-            // if (colonyMemberOrganelles.ThrustComponents != null)
-            // {
-            //     foreach (var flagellum in organelles.ThrustComponents)
-            //     {
-            //        force += flagellum.UseForMovement(control.MovementDirection, compounds, rotationInColony, delta);
-            //     }
-            // }
+                // Flagella in colony members
+                ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+
+                if (organelles.ThrustComponents != null)
+                {
+                    var compounds = colonyMember.Get<CompoundStorage>().Compounds;
+                    var relativeRotation = colonyMember.Get<AttachedToEntity>().RelativeRotation;
+
+                    foreach (var flagellum in organelles.ThrustComponents)
+                    {
+                        force += flagellum.UseForMovement(movementDirection, compounds,
+                            relativeRotation, delta);
+                    }
+                }
+            }
         }
     }
 }

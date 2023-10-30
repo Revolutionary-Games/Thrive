@@ -544,10 +544,9 @@ public static class SaveHelper
     {
         // TODO: reimplement saving and then remove this
         inProgress.ReportStatus(false, "Saving is not reimplemented for ECS components yet");
-        return;
 
         // Ensure prototype state flag is also in the info data for use by the save list
-        save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
+        /*save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
             throw new InvalidOperationException("Saved properties of a save to write to disk is unset");
 
         try
@@ -572,7 +571,7 @@ public static class SaveHelper
             QueueRemoveExcessAutoSaves();
 
         if (inProgress.Type == SaveInformation.SaveType.QuickSave)
-            QueueRemoveExcessQuickSaves();
+            QueueRemoveExcessQuickSaves();*/
     }
 
     /// <summary>

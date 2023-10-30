@@ -249,6 +249,8 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var microbe in thisFrameScaleApplies)
         {
+            _ = microbe;
+
             throw new NotImplementedException();
 
             // // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
@@ -991,13 +993,18 @@ public partial class CellBodyPlanEditorComponent :
     {
         modelHolder.Transform = new Transform(Quat.Identity, position);
 
-        var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
+        // var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
         // Create a new microbe if one is not already in the model holder
 
-        // TODO: reimplement with MicrobeVisualOnlySimulation
+        _ = forceUpdateCellGraphics;
+
+        // TODO: reimplement with MicrobeVisualOnlySimulation (or really with the PhotoStudio to get much more
+        // potential performance by basically billboarding the entity graphics)
         throw new NotImplementedException();
 
+        // Commented out code
+        // ReSharper disable once CommentTypo
         /*Microbe microbe;
 
         var newSpecies = new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), cell);

@@ -235,13 +235,15 @@ public class PlayerMicrobeInput : NodeWithInput
         if (!stage.HoverInfo.GetRaycastData(target, out var raycastData))
             return false;
 
-        throw new NotImplementedException();
+        ref var colony = ref target.Get<MicrobeColony>();
 
-        // var actualMicrobe = microbe.GetMicrobeFromShape(raycastData.Value.Shape);
-        // if (actualMicrobe == null)
-        //     return false;
-        //
-        // RemoveCellFromColony(actualMicrobe);
+        if (!colony.GetMicrobeFromSubShape(ref target.Get<MicrobePhysicsExtraData>(), raycastData.SubShapeData,
+                out var actualMicrobe))
+        {
+            return false;
+        }
+
+        RemoveCellFromColony(actualMicrobe);
 
         stage.HUD.HintText = string.Empty;
         return true;
@@ -311,15 +313,10 @@ public class PlayerMicrobeInput : NodeWithInput
 
     private void RemoveCellFromColony(Entity target)
     {
-        throw new NotImplementedException();
-
-        // if (target.Colony == null)
-        // {
-        //     GD.PrintErr("Target microbe is not a part of colony");
-        //     return;
-        // }
-        //
-        // target.Colony.RemoveFromColony(target);
+        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(target, stage.WorldSimulation))
+        {
+            GD.PrintErr("Target microbe failed to unbind");
+        }
     }
 
     private void SpawnCheatCloud(string name, float delta)

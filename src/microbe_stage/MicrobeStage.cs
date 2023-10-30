@@ -400,15 +400,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
+        if (WorldSimulation.Processing)
+            throw new Exception("This shouldn't be ran while world is in the middle of a simulation");
+
         GD.Print("Disbanding colony and becoming multicellular");
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
-        ref var colony = ref Player.Get<MicrobeColony>();
+        MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(Player, WorldSimulation);
 
-        throw new NotImplementedException();
-
-        // Player.UnbindAll();
+        if (Player.Has<MicrobeColony>())
+            throw new Exception("Unbind failed");
 
         GiveReproductionPopulationBonus();
 
@@ -424,15 +426,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
         {
-            throw new NotImplementedException();
+            // Direct component setting is safe as we verified above we aren't running during a simulation update
+            microbe.Remove<MicrobeSpeciesMember>();
+            microbe.Set(new SpeciesMember(multicellularSpecies));
+            microbe.Set(new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0]));
 
-            // microbe.ApplySpecies(multicellularSpecies);
+            microbe.Set(new MulticellularGrowth(multicellularSpecies));
 
-            // if (microbe == Player)
-            //     playerHandled = true;
-
-            // if (microbe.Species != multicellularSpecies)
-            //     throw new Exception("Failed to apply multicellular species");
+            if (microbe.Has<PlayerMarker>())
+                playerHandled = true;
         }
 
         if (!playerHandled)
@@ -478,13 +480,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // multicellular editor, we never return to the microbe stage. So we don't need that much setup as becoming
         // multicellular
 
-        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
-        // proceeding
-        ref var colony = ref Player.Get<MicrobeColony>();
-
-        throw new NotImplementedException();
-
-        // Player.UnbindAll();
+        // We don't really need to disband the colony here
 
         GiveReproductionPopulationBonus();
 
@@ -866,19 +862,25 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     }
 
     /// <summary>
-    ///   Helper function for transition to multicellular
+    ///   Helper function for transition to multicellular. For normal gameplay this would be not optimal as this
+    ///   uses the slow world entity fetching.
     /// </summary>
-    /// <returns>Array of all microbes of Player's species</returns>
+    /// <returns>Enumerable of all microbes of Player's species</returns>
     private IEnumerable<Entity> GetAllPlayerSpeciesMicrobes()
     {
         if (Player == null)
             throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
-        throw new NotImplementedException();
+        var species = Player.Get<SpeciesMember>().ID;
 
-        // var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+        foreach (var entity in WorldSimulation.EntitySystem)
+        {
+            if (!entity.Has<SpeciesMember>())
+                continue;
 
-        // return microbes.Where(m => m.Species == Player.Species);
+            if (entity.Get<SpeciesMember>().ID == species)
+                yield return entity;
+        }
     }
 
     private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Command;
@@ -227,6 +228,8 @@ public static class SpawnHelpers
             ApplyVisualScale = Math.Abs(chunkType.ChunkScale - 1) > MathUtils.EPSILON,
         });
 
+        bool hasMicrobeShaderParameters = false;
+
         // This needs to be skipped for particle type chunks (as they don't have materials)
         if (!selectedMesh.IsParticles)
         {
@@ -237,6 +240,7 @@ public static class SpawnHelpers
             });
 
             entity.Set<MicrobeShaderParameters>();
+            hasMicrobeShaderParameters = true;
         }
 
         if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
@@ -254,12 +258,8 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
-        // TODO: do something about this variable (I can't remember anymore why I added this -hhyyrylainen)
-        bool hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
-            hasCompounds = true;
-
             // Capacity is 0 to disallow adding any more compounds to the compound bag
             var compounds = new CompoundBag(0);
 
@@ -268,6 +268,14 @@ public static class SpawnHelpers
                 // Directly write compounds to avoid the capacity limit
                 compounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
+
+#if DEBUG
+            var toCheck = chunkType.Compounds.First();
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (compounds.GetCompoundAmount(toCheck.Key) != toCheck.Value.Amount)
+                throw new Exception("Chunk compound adding failed");
+#endif
 
             entity.Set(new CompoundStorage
             {
@@ -278,11 +286,13 @@ public static class SpawnHelpers
             {
                 VentEachCompoundPerSecond = chunkType.VentAmount,
                 DestroyOnEmpty = chunkType.Dissolves,
-                UsesMicrobialDissolveEffect = true,
+                UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
             });
         }
 
         // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
+        // TODO: should this be forced if this chunk has no compounds? (at least ice shards probably wouldn't like
+        // this)
         if (!chunkType.Dissolves)
         {
             entity.Set(new TimedLife
