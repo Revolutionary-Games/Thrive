@@ -5,6 +5,7 @@
     using System.Linq;
     using DefaultEcs;
     using Godot;
+    using Systems;
 
     /// <summary>
     ///   Entity that can engulf <see cref="Engulfable"/>s
@@ -240,7 +241,7 @@
         ///   Moves all engulfables from <see cref="engulfer"/> to <see cref="targetEngulfer"/>
         /// </summary>
         public static void TransferEngulferObjectsToAnotherEngulfer(this ref Engulfer engulfer,
-            in Entity engulferEntity, ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
+            ref Engulfer targetEngulfer, in Entity targetEngulferEntity)
         {
             lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
             {
@@ -261,13 +262,20 @@
 
                     ref var engulfed = ref ourEngulfedEntity.Get<Engulfable>();
 
-                    targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity);
+                    if (!targetEngulfer.TakeOwnershipOfEngulfed(targetEngulferEntity, ref engulfed, ourEngulfedEntity))
+                    {
+                        // Add back to original list as it can't be moved. The engulfing system will eject it
+                        // properly out of the dead entity
+                        GD.Print("Adding failed to be transferred engulfed back to us for ejecting when " +
+                            "death is processed");
+                        engulfer.EngulfedObjects.Add(ourEngulfedEntity);
+                    }
                 }
             }
         }
 
         /// <summary>
-        ///   Moves an already engulfed object to be engulfed by this engulfer
+        ///   Moves an already engulfed object to be engulfed by this object's engulfer
         /// </summary>
         /// <remarks>
         ///   <para>
@@ -275,19 +283,11 @@
         ///     already locked
         ///   </para>
         /// </remarks>
-        private static void TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
+        private static bool TakeOwnershipOfEngulfed(this ref Engulfer engulfer, in Entity engulferEntity,
             ref Engulfable engulfable, in Entity engulfableEntity)
         {
-            engulfable.HostileEngulfer = engulfableEntity;
-
-            engulfer.EngulfedObjects ??= new List<Entity>();
-
-            engulfer.EngulfedObjects.Add(engulfableEntity);
-
-            // TODO: Modify the attached to component to point to the new parent
-            // TODO: adjust position relative position
-
-            throw new NotImplementedException();
+            return EngulfingSystem.AddAlreadyEngulfedObject(ref engulfer, in engulferEntity, ref engulfable,
+                in engulfableEntity);
         }
     }
 }
