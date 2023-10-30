@@ -6,7 +6,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Vents all compounds until empty from a <see cref="CompoundStorage"/> that has a <see cref="CompoundVenter"/>.

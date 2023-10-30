@@ -7,7 +7,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using Godot;
-    using Vector3 = Godot.Vector3;
     using World = DefaultEcs.World;
 
     /// <summary>

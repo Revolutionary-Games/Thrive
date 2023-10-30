@@ -4,7 +4,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles positioning of entities attached to each other

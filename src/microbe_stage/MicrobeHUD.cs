@@ -391,7 +391,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             // showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
             // showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
         }
-        else
+
+        /* TODO: else */
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
