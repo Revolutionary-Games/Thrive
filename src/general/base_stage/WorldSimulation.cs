@@ -35,6 +35,8 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected bool runningMultithreaded;
 
+    // TODO: implement saving
+    // ReSharper disable once CollectionNeverQueried.Local
     private readonly List<Entity> entitiesToNotSave = new();
 
     private readonly Queue<Action> queuedInvokes = new();

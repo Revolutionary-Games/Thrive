@@ -38,6 +38,8 @@
         [JsonIgnore]
         public List<MovementComponent>? ThrustComponents;
 
+        // TODO: implement cilia animation speed
+        // ReSharper disable once CollectionNeverQueried.Global
         /// <summary>
         ///   Cilia components that need to be animated when the cell is rotating fast
         /// </summary>
