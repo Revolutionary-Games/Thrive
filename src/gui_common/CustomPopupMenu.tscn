@@ -4,7 +4,6 @@
 [ext_resource path="res://src/gui_common/TopLevelContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/CustomPopupMenu.cs" type="Script" id=3]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -25,21 +24,15 @@ margin_right = 220.0
 margin_bottom = 135.0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
-PanelPath = NodePath("Panel")
-ContainerPath = NodePath("Panel/Control/VBoxContainer")
+PanelContainerPath = NodePath("PanelContainer")
+ContainerPath = NodePath("PanelContainer/VBoxContainer")
 
-[node name="Panel" type="Panel" parent="." index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="." index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="Control" type="Control" parent="Panel" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -3.0
-rect_clip_content = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Control" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0

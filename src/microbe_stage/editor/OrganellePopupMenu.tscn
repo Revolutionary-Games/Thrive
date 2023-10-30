@@ -116,34 +116,38 @@ corner_radius_bottom_left = 3
 margin_bottom = 139.0
 rect_min_size = Vector2( 220, 139 )
 script = ExtResource( 8 )
-TitleLabelPath = NodePath("Panel/Control/VBoxContainer/MarginContainer/SelectedOrganelleName")
-DeleteButtonPath = NodePath("Panel/Control/VBoxContainer/Delete")
-MoveButtonPath = NodePath("Panel/Control/VBoxContainer/Move")
-ModifyButtonPath = NodePath("Panel/Control/VBoxContainer/Modify")
+TitleLabelPath = NodePath("PanelContainer/VBoxContainer/MarginContainer/SelectedOrganelleName")
+DeleteButtonPath = NodePath("PanelContainer/VBoxContainer/Delete")
+MoveButtonPath = NodePath("PanelContainer/VBoxContainer/Move")
+ModifyButtonPath = NodePath("PanelContainer/VBoxContainer/Modify")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Control/VBoxContainer" index="0"]
-margin_right = 210.0
-margin_bottom = 25.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" index="0"]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 205.0
+margin_bottom = 20.0
 custom_constants/margin_right = 10
 custom_constants/margin_left = 5
 
-[node name="SelectedOrganelleName" type="Label" parent="Panel/Control/VBoxContainer/MarginContainer" index="0"]
+[node name="SelectedOrganelleName" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer" index="0"]
 margin_left = 5.0
 margin_right = 200.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 10 )
 autowrap = true
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Control/VBoxContainer" index="1"]
-margin_top = 29.0
-margin_right = 210.0
-margin_bottom = 33.0
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" index="1"]
+margin_left = -5.0
+margin_top = 24.0
+margin_right = 205.0
+margin_bottom = 28.0
 custom_styles/separator = SubResource( 2 )
 
-[node name="Delete" type="Button" parent="Panel/Control/VBoxContainer" index="2"]
-margin_top = 37.0
-margin_right = 210.0
-margin_bottom = 65.0
+[node name="Delete" type="Button" parent="PanelContainer/VBoxContainer" index="2"]
+margin_left = -5.0
+margin_top = 32.0
+margin_right = 205.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 0, 28 )
 focus_mode = 0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -153,7 +157,7 @@ custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Control/VBoxContainer/Delete" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Delete" index="0"]
 margin_right = 210.0
 margin_bottom = 28.0
 mouse_filter = 2
@@ -162,7 +166,7 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control/VBoxContainer/Delete/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Delete/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 205.0
@@ -173,7 +177,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="Panel/Control/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0"]
+[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="0"]
 margin_top = 2.0
 margin_right = 16.0
 margin_bottom = 18.0
@@ -183,14 +187,14 @@ size_flags_vertical = 4
 texture = ExtResource( 4 )
 expand = true
 
-[node name="Name" type="Label" parent="Panel/Control/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="1"]
+[node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="1"]
 margin_left = 23.0
 margin_right = 78.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
 text = "DELETE"
 
-[node name="MpCost" type="Label" parent="Panel/Control/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="2"]
+[node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Delete/MarginContainer/HBoxContainer" index="2"]
 margin_left = 85.0
 margin_top = 1.0
 margin_right = 195.0
@@ -203,10 +207,11 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Move" type="Button" parent="Panel/Control/VBoxContainer" index="3"]
-margin_top = 69.0
-margin_right = 210.0
-margin_bottom = 97.0
+[node name="Move" type="Button" parent="PanelContainer/VBoxContainer" index="3"]
+margin_left = -5.0
+margin_top = 64.0
+margin_right = 205.0
+margin_bottom = 92.0
 rect_min_size = Vector2( 0, 28 )
 focus_mode = 0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -216,7 +221,7 @@ custom_styles/disabled = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Control/VBoxContainer/Move" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Move" index="0"]
 margin_right = 210.0
 margin_bottom = 28.0
 mouse_filter = 2
@@ -228,7 +233,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control/VBoxContainer/Move/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Move/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 205.0
@@ -239,7 +244,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="Panel/Control/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0"]
+[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="0"]
 margin_top = 2.0
 margin_right = 16.0
 margin_bottom = 18.0
@@ -249,14 +254,14 @@ size_flags_vertical = 4
 texture = ExtResource( 5 )
 expand = true
 
-[node name="Name" type="Label" parent="Panel/Control/VBoxContainer/Move/MarginContainer/HBoxContainer" index="1"]
+[node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="1"]
 margin_left = 23.0
 margin_right = 66.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
 text = "MOVE"
 
-[node name="MpCost" type="Label" parent="Panel/Control/VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
+[node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
 margin_left = 73.0
 margin_top = 1.0
 margin_right = 195.0
@@ -269,10 +274,11 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Modify" type="Button" parent="Panel/Control/VBoxContainer" index="4"]
-margin_top = 101.0
-margin_right = 210.0
-margin_bottom = 129.0
+[node name="Modify" type="Button" parent="PanelContainer/VBoxContainer" index="4"]
+margin_left = -5.0
+margin_top = 96.0
+margin_right = 205.0
+margin_bottom = 124.0
 rect_min_size = Vector2( 0, 28 )
 focus_mode = 0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -283,7 +289,7 @@ custom_styles/normal = SubResource( 10 )
 disabled = true
 keep_pressed_outside = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Control/VBoxContainer/Modify" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Modify" index="0"]
 margin_right = 210.0
 margin_bottom = 28.0
 mouse_filter = 2
@@ -295,7 +301,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Control/VBoxContainer/Modify/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Modify/MarginContainer" index="0"]
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 205.0
@@ -306,7 +312,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="Panel/Control/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0"]
+[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="0"]
 margin_top = 2.0
 margin_right = 16.0
 margin_bottom = 18.0
@@ -316,14 +322,14 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 expand = true
 
-[node name="Name" type="Label" parent="Panel/Control/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="1"]
+[node name="Name" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="1"]
 margin_left = 23.0
 margin_right = 79.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
 text = "MODIFY"
 
-[node name="MpCost" type="Label" parent="Panel/Control/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="2"]
+[node name="MpCost" type="Label" parent="PanelContainer/VBoxContainer/Modify/MarginContainer/HBoxContainer" index="2"]
 margin_left = 86.0
 margin_top = 1.0
 margin_right = 195.0
@@ -335,10 +341,10 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[connection signal="button_down" from="Panel/Control/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", true ]]
-[connection signal="button_up" from="Panel/Control/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", false ]]
-[connection signal="pressed" from="Panel/Control/VBoxContainer/Delete" to="." method="OnDeletePressed"]
-[connection signal="button_down" from="Panel/Control/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", true ]]
-[connection signal="button_up" from="Panel/Control/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", false ]]
-[connection signal="pressed" from="Panel/Control/VBoxContainer/Move" to="." method="OnMovePressed"]
-[connection signal="pressed" from="Panel/Control/VBoxContainer/Modify" to="." method="OnModifyPressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", true ]]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/Delete" to="." method="UpdateButtonContentsColour" binds= [ "Delete", false ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Delete" to="." method="OnDeletePressed"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", true ]]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/Move" to="." method="UpdateButtonContentsColour" binds= [ "Move", false ]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Move" to="." method="OnMovePressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Modify" to="." method="OnModifyPressed"]
