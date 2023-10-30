@@ -543,7 +543,11 @@ public static class SaveHelper
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
         // TODO: reimplement saving and then remove this
+        _ = save;
         inProgress.ReportStatus(false, "Saving is not reimplemented for ECS components yet");
+
+        // Temporary code to keep translations active in the translation files
+        _ = TranslationServer.Translate("SAVING_SUCCEEDED");
 
         // Ensure prototype state flag is also in the info data for use by the save list
         /*save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
