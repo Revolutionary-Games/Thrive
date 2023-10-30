@@ -102,9 +102,9 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
     {
-        return history.WhatWouldActionsCost(actions);
+        // Microbe editor doesn't require any context data in actions
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -137,6 +137,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
             reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
+
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
 

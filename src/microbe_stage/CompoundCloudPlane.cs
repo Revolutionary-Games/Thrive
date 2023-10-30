@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 
@@ -37,9 +38,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     // JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
-    private Image image = null!;
+    private Image? image;
     private ImageTexture texture = null!;
-    private FluidSystem? fluidSystem;
+    private FluidCurrentsSystem? fluidSystem;
 
     private Vector4 decayRates;
 
@@ -82,10 +83,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, int renderPriority, Compound cloud1, Compound? cloud2,
+    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
-        this.fluidSystem = fluidSystem;
+        fluidSystem = turbulenceSource;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
@@ -347,7 +348,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        image.Lock();
+        image!.Lock();
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
@@ -366,7 +367,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void UpdateTexture()
     {
-        image.Unlock();
+        image!.Unlock();
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
     }
 
@@ -506,7 +507,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-        Dictionary<Compound, float> totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         if (rate < 0)
             throw new ArgumentException("Rate can't be negative");
@@ -549,9 +550,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
             storage.AddCompound(compound, taken);
 
-            // Keep track of total compounds absorbed for the cell
-            totals.TryGetValue(compound, out var existingValue);
-            totals[compound] = existingValue + taken;
+            if (totals != null)
+            {
+                // Keep track of total compounds absorbed for the cell
+                totals.TryGetValue(compound, out var existingValue);
+                totals[compound] = existingValue + taken;
+            }
         }
     }
 
@@ -577,8 +581,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         if (disposing)
         {
-            texture.Dispose();
-            image.Dispose();
+            if (image != null)
+            {
+                image.Dispose();
+                texture.Dispose();
+            }
         }
 
         base.Dispose(disposing);
@@ -724,7 +731,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             for (int y = y0; y < y0 + height; y++)
             {
                 var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
-                image.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
+                image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
             }
         }
     }

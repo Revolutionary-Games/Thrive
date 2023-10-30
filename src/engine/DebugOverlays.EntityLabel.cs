@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -38,7 +39,8 @@ public partial class DebugOverlays
 
     private void UpdateLabelColour(IEntity entity, Label label)
     {
-        var node = entity.EntityNode;
+        throw new NotImplementedException();
+        /*var node = entity.EntityNode;
 
         if (!entity.AliveMarker.Alive)
         {
@@ -79,7 +81,7 @@ public partial class DebugOverlays
 
                 break;
             }
-        }
+        }*/
     }
 
     private void UpdateEntityLabels()
@@ -90,7 +92,9 @@ public partial class DebugOverlays
         if (activeCamera == null)
             return;
 
-        foreach (var pair in entityLabels)
+        throw new NotImplementedException();
+
+        /*foreach (var pair in entityLabels)
         {
             var entity = pair.Key;
             var node = entity.EntityNode;
@@ -129,7 +133,7 @@ public partial class DebugOverlays
                     break;
                 }
             }
-        }
+        }*/
     }
 
     private void OnNodeAdded(Node node)
@@ -141,16 +145,19 @@ public partial class DebugOverlays
         labelsLayer.AddChild(label);
         entityLabels.Add(entity, label);
 
-        switch (entity)
-        {
-            case FloatingChunk:
-            case AgentProjectile:
-            {
-                // To reduce the labels overlapping each other
-                label.AddFontOverride("font", smallerFont);
-                break;
-            }
-        }
+        // TODO: reimplement
+        throw new NotImplementedException();
+
+        // switch (entity)
+        // {
+        //     case FloatingChunk:
+        //     case AgentProjectile:
+        //     {
+        //         // To reduce the labels overlapping each other
+        //         label.AddFontOverride("font", smallerFont);
+        //         break;
+        //     }
+        // }
     }
 
     private void OnNodeRemoved(Node node)

@@ -3,14 +3,12 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   This does nothing (for now) and only exist so saving could work.
+///   Visuals of engulfing something and encasing it in a "membrane" bubble
 /// </summary>
-[JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/Endosome.tscn", UsesEarlyResolve = false)]
 public class Endosome : Spatial, IEntity
 {
     [JsonProperty]
-    private Color tint;
+    private Color tint = Colors.White;
 
     [JsonProperty]
     private int renderPriority;
@@ -24,6 +22,11 @@ public class Endosome : Spatial, IEntity
         get => tint;
         set
         {
+            // EngulfingSystem always updates the property values so we skip applying this to the shader if the value
+            // didn't change
+            if (tint == value)
+                return;
+
             tint = value;
             ApplyTint();
         }

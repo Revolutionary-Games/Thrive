@@ -120,7 +120,8 @@ __meta__ = {
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
 Menu3DBackgroundScenes = [ "res://assets/models/menu_backgrounds/MainMenuScene1.tscn", "res://assets/models/menu_backgrounds/MainMenuScene2.tscn", "res://assets/models/menu_backgrounds/MainMenuScene3.tscn" ]
-FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildEditor")
+FreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildMicrobeEditor")
+MulticellularFreebuildButtonPath = NodePath("MenuContainers/Menus/Tools/FreebuildMulticellularEditor")
 AutoEvoExploringButtonPath = NodePath("MenuContainers/Menus/Tools/AutoEvoExploring")
 MicrobeBenchmarkButtonPath = NodePath("MenuContainers/Menus/Benchmarks/MicrobeBenchmark")
 ExitToLauncherButtonPath = NodePath("MenuContainers/Menus/MainMenu/Launcher")
@@ -385,21 +386,22 @@ NodeToGiveFocusTo = NodePath("../NewGame")
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
-margin_left = 496.0
-margin_top = 113.0
-margin_right = 784.0
-margin_bottom = 373.0
+margin_left = 460.0
+margin_top = 88.0
+margin_right = 820.0
+margin_bottom = 398.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Control" parent="MenuContainers/Menus/Tools"]
-margin_right = 250.0
+margin_right = 360.0
 
-[node name="FreebuildEditor" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_right = 288.0
-margin_bottom = 40.0
+[node name="FreebuildMicrobeEditor" type="Button" parent="MenuContainers/Menus/Tools"]
+margin_top = 10.0
+margin_right = 360.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
@@ -407,13 +409,22 @@ mouse_filter = 1
 size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
-[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_top = 50.0
-margin_right = 288.0
-margin_bottom = 90.0
+[node name="FreebuildMulticellularEditor" type="Button" parent="MenuContainers/Menus/Tools"]
+margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 250, 40 )
-focus_neighbour_bottom = NodePath("../Back")
-focus_next = NodePath("../Back")
+mouse_filter = 1
+size_flags_vertical = 0
+text = "MULTICELLULAR_FREEBUILD_EDITOR"
+
+[node name="AutoEvoExploring" type="Button" parent="MenuContainers/Menus/Tools"]
+margin_top = 110.0
+margin_right = 360.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 250, 40 )
+focus_neighbour_bottom = NodePath("../Benchmarks")
+focus_next = NodePath("../Benchmarks")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "AUTO_EVO_EXPLORING_TOOL"
@@ -422,12 +433,12 @@ __meta__ = {
 }
 
 [node name="Benchmarks" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 100.0
-margin_right = 269.0
-margin_bottom = 140.0
+margin_top = 160.0
+margin_right = 360.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
+focus_neighbour_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "BENCHMARKS"
@@ -436,10 +447,9 @@ __meta__ = {
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 150.0
-margin_right = 269.0
-margin_bottom = 190.0
+margin_top = 210.0
+margin_right = 360.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
@@ -451,23 +461,22 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/Tools"]
-margin_left = 19.0
-margin_top = 200.0
-margin_right = 269.0
-margin_bottom = 240.0
+margin_top = 260.0
+margin_right = 360.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_left = NodePath("../../../SocialMedia/TwitterButton")
-focus_neighbour_top = NodePath("../AutoEvoExploring")
-focus_previous = NodePath("../AutoEvoExploring")
+focus_neighbour_top = NodePath("../Benchmarks")
+focus_previous = NodePath("../Benchmarks")
 mouse_filter = 1
 size_flags_vertical = 0
 text = "BACK"
 
 [node name="FocusGrabber" parent="MenuContainers/Menus/Tools" instance=ExtResource( 56 )]
-margin_top = 460.0
-margin_right = 250.0
-margin_bottom = 460.0
-NodeToGiveFocusTo = NodePath("../FreebuildEditor")
+margin_top = 310.0
+margin_right = 360.0
+margin_bottom = 310.0
+NodeToGiveFocusTo = NodePath("../FreebuildMicrobeEditor")
 
 [node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus" groups=["MenuItem"]]
 visible = false
@@ -1022,7 +1031,8 @@ PermanentDismissType = 1
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/Credits" to="." method="CreditsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/Launcher" to="." method="QuitToLauncherPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MainMenu/Quit" to="." method="QuitPressed"]
-[connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildMicrobeEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/Tools/FreebuildMulticellularEditor" to="." method="MulticellularFreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/AutoEvoExploring" to="." method="OnAutoEvoExploringPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/Benchmarks" to="." method="BenchmarksPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/Tools/Back" to="." method="BackFromToolsPressed"]

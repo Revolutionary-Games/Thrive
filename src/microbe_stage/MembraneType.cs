@@ -53,6 +53,9 @@ public class MembraneType : IRegistryType
     [JsonIgnore]
     public string UntranslatedName { get; private set; } = null!;
 
+    [JsonIgnore]
+    public bool CanEngulf => !CellWall;
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(IconPath))

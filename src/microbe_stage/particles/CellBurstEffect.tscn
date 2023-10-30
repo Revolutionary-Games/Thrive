@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/textures/snowflake2.png" type="Texture" id=1]
-[ext_resource path="res://src/microbe_stage/particles/CellBurstEffect.cs" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.576577, 1 )
@@ -55,10 +54,7 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=9]
 material = SubResource( 8 )
 
-[node name="CellBurstEffect" type="Spatial"]
-script = ExtResource( 2 )
-
-[node name="Particles" type="Particles" parent="."]
+[node name="CellBurstEffect" type="Particles"]
 amount = 300
 lifetime = 5.0
 explosiveness = 1.0

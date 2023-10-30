@@ -51,7 +51,7 @@ public static class BarHelper
                     case "baseMovement":
                         return GD.Load<Texture>("res://assets/textures/gui/bevel/baseMovementIcon.png");
                     case "osmoregulation":
-                        return GD.Load<Texture>("res://assets/textures/gui/bevel/osmoIcon.png");
+                        return GD.Load<Texture>("res://assets/textures/gui/bevel/osmoregulationIcon.png");
                 }
 
                 foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.960784, 0.266667, 1, 1 )
+
+[node name="ErrorModel" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+material = SubResource( 1 )

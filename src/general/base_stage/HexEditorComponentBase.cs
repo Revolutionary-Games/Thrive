@@ -232,8 +232,6 @@ public abstract class
                 "This editor component was loaded from a save and is not fully functional");
         }
 
-        camera.ObjectToFollow = cameraFollow;
-
         if (fresh)
         {
             placementRotation = 0;
@@ -304,6 +302,8 @@ public abstract class
 
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+
+        camera.UpdateCameraPosition(delta, cameraFollow.GlobalTranslation);
     }
 
     public void ResetSymmetryButton()

@@ -51,6 +51,7 @@ ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
 PauseManager="*res://src/engine/PauseManager.cs"
 GUIFocusSetter="*res://src/engine/GUIFocusSetter.cs"
+DebugDrawer="*res://src/engine/DebugDrawer.tscn"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
@@ -465,6 +466,11 @@ g_science={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+d_physics_debug={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777250,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -497,4 +503,5 @@ project/assembly_name="Thrive"
 [rendering]
 
 quality/driver/fallback_to_gles2=true
+limits/buffers/immediate_buffer_size_kb=8096
 environment/default_environment="res://default_env.tres"

@@ -73,8 +73,8 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This used to have an internal set (<see cref="CreatureStageBase{TPlayer}.MovingToEditor"/> had that as
-    ///     well) but with the needed <see cref="ICreatureStage"/> that seems no longer possible
+    ///     This used to have an internal set (<see cref="CreatureStageBase{TPlayer,TSimulation}.MovingToEditor"/>
+    ///     had that as well) but with the needed <see cref="ICreatureStage"/> that seems no longer possible
     ///   </para>
     /// </remarks>
     [JsonIgnore]

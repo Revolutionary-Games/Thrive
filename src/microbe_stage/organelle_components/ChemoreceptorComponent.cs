@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
 ///   Adds radar capability to a cell
 /// </summary>
-public class ChemoreceptorComponent : ExternallyPositionedComponent
+public class ChemoreceptorComponent : IOrganelleComponent
 {
     // Either target compound or species should be null
     private Compound? targetCompound;
@@ -13,27 +16,10 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchAmount;
     private Color lineColour = Colors.White;
 
-    public override void UpdateAsync(float delta)
+    public bool UsesSyncProcess => false;
+
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        base.UpdateAsync(delta);
-
-        if (targetCompound != null)
-        {
-            organelle!.ParentMicrobe!.ReportActiveCompoundChemoreceptor(
-                targetCompound, searchRange, searchAmount, lineColour);
-        }
-        else if (targetSpecies != null)
-        {
-            organelle!.ParentMicrobe!.ReportActiveSpeciesChemoreceptor(
-                targetSpecies, searchRange, searchAmount, lineColour);
-        }
-    }
-
-    protected override void CustomAttach()
-    {
-        if (organelle?.OrganelleGraphics == null)
-            throw new InvalidOperationException("Chemoreceptor needs parent organelle to have graphics");
-
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
         // Use default values if not configured
@@ -44,17 +30,32 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
         }
 
         SetConfiguration((ChemoreceptorUpgrades)configuration);
+
+        if (targetCompound == null && targetSpecies == null)
+            GD.PrintErr("Chemoreceptor has no target compound or species, invalid configuration");
     }
 
-    protected override bool NeedsUpdateAnyway()
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
     {
-        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2906
-        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
+        if (targetCompound != null)
+        {
+            organelleContainer.ActiveCompoundDetections ??=
+                new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
+
+            organelleContainer.ActiveCompoundDetections.Add((targetCompound, searchRange, searchAmount, lineColour));
+        }
+        else if (targetSpecies != null)
+        {
+            organelleContainer.ActiveSpeciesDetections ??=
+                new HashSet<(Species TargetSpecies, float Range, Color Colour)>();
+
+            organelleContainer.ActiveSpeciesDetections.Add((targetSpecies, searchRange, lineColour));
+        }
     }
 
-    protected override void OnPositionChanged(Quat rotation, float angle, Vector3 membraneCoords)
+    public void UpdateSync(in Entity microbeEntity, float delta)
     {
-        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
+        throw new NotSupportedException();
     }
 
     private void SetConfiguration(ChemoreceptorUpgrades configuration)

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using CommandLine;
+using CommandLine.Text;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
+using SharedBase.Models;
 using SharedBase.Utilities;
 
 public class Program
@@ -14,11 +17,14 @@ public class Program
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
         var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, TestOptions, ChangesOptions, LocalizationOptions, CleanupOptions,
+            .ParseArguments<CheckOptions, NativeLibOptions, TestOptions, ChangesOptions, LocalizationOptions,
+                CleanupOptions,
                 PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions, GeneratorOptions, GodotProjectValidMakerOptions>(args)
+                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions,
+                GodotProjectValidMakerOptions>(args)
             .MapResult(
                 (CheckOptions options) => RunChecks(options),
+                (NativeLibOptions options) => RunNativeLibsTool(options),
                 (TestOptions options) => RunTests(options),
                 (ChangesOptions options) => RunChangesFinding(options),
                 (LocalizationOptions options) => RunLocalization(options),
@@ -30,6 +36,7 @@ public class Program
                 (GodotTemplateOptions options) => RunTemplateInstall(options),
                 (TranslationProgressOptions options) => RunTranslationProgress(options),
                 (CreditsOptions options) => RunCreditsUpdate(options),
+                (WikiOptions options) => RunWikiUpdate(options),
                 (GeneratorOptions options) => RunFileGenerator(options),
                 (GodotProjectValidMakerOptions options) => RunProjectValidMaker(options),
                 CommandLineHelpers.PrintCommandLineErrors);
@@ -54,6 +61,19 @@ public class Program
         });
 
         return checker.Run().Result;
+    }
+
+    private static int RunNativeLibsTool(NativeLibOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running native library handling tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        var tool = new NativeLibs(options);
+
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunTests(TestOptions options)
@@ -217,6 +237,17 @@ public class Program
         return CreditsUpdater.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
+    private static int RunWikiUpdate(WikiOptions options)
+    {
+        CommandLineHelpers.HandleDefaultOptions(options);
+
+        ColourConsole.WriteDebugLine("Running wiki updating tool");
+
+        var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
+
+        return WikiUpdater.Run(tokenSource.Token).Result ? 0 : 1;
+    }
+
     private static int RunFileGenerator(GeneratorOptions options)
     {
         CommandLineHelpers.HandleDefaultOptions(options);
@@ -245,6 +276,97 @@ public class Program
 
     public class CheckOptions : CheckOptionsBase
     {
+    }
+
+    [Verb("native", HelpText = "Handling for native libraries needed by Thrive")]
+    public class NativeLibOptions : ScriptOptionsBase
+    {
+        public enum OperationMode
+        {
+            /// <summary>
+            ///   Check if libraries are present
+            /// </summary>
+            Check,
+
+            /// <summary>
+            ///   Check if libraries are present for distribution
+            /// </summary>
+            CheckDistributable,
+
+            /// <summary>
+            ///   Installs a library to work with Godot editor
+            /// </summary>
+            Install,
+
+            /// <summary>
+            ///   Downloads required libraries (if available)
+            /// </summary>
+            Fetch,
+
+            /// <summary>
+            ///   Build a locally working version with native tools
+            /// </summary>
+            Build,
+
+            // TODO: add a command to clean old library versions
+
+            /// <summary>
+            ///   Build libraries for distribution or uploading using podman
+            /// </summary>
+            Package,
+
+            /// <summary>
+            ///   Upload packaged libraries missing from the server
+            /// </summary>
+            Upload,
+        }
+
+        [Usage(ApplicationAlias = "dotnet run --project Scripts --")]
+        public static IEnumerable<Example> Examples
+        {
+            get
+            {
+                yield return new Example("download all available libraries",
+                    new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
+                yield return new Example("install library locally to make Godot Editor debugging work",
+                    new NativeLibOptions { Operations = new[] { OperationMode.Install } });
+                yield return new Example("compile libraries locally",
+                    new NativeLibOptions { Operations = new[] { OperationMode.Build } });
+                yield return new Example("prepare library versions for distribution or uploading with podman",
+                    new NativeLibOptions { Operations = new[] { OperationMode.Package } });
+            }
+        }
+
+        [Value(0, MetaName = "OPERATIONS", Required = false, HelpText = "What native operation(s) to do")]
+        public IList<OperationMode> Operations { get; set; } = new List<OperationMode> { OperationMode.Check };
+
+        [Option('l', "library", Required = false, Default = null, MetaValue = "LIBRARIES",
+            HelpText = "Libraries to work on, default is all.")]
+        public IList<NativeLibs.Library>? Libraries { get; set; } = new List<NativeLibs.Library>();
+
+        [Option('d', "debug", Required = false, Default = false,
+            HelpText = "Set to work on debug versions of the libraries")]
+        public bool DebugLibrary { get; set; }
+
+        [Option('p', "platform", Required = false, Default = null,
+            HelpText = "Use to override detected platforms for selected operation")]
+        public IList<PackagePlatform>? Platforms { get; set; } = new List<PackagePlatform>();
+
+        [Option('c', "compiler", Required = false, Default = null, MetaValue = "COMPILER",
+            HelpText = "Manually specify compiler to use")]
+        public string? Compiler { get; set; }
+
+        [Option("c-compiler", Required = false, Default = null, MetaValue = "COMPILER",
+            HelpText = "Manually specify C compiler to use")]
+        public string? CCompiler { get; set; }
+
+        [Option('g', "generator", Required = false, Default = null, MetaValue = "GENERATOR",
+            HelpText = "Manually specify which CMake generator to use")]
+        public string? CmakeGenerator { get; set; }
+
+        [Option('s', "symbolic-links", Required = false, Default = false,
+            HelpText = "If specified prefer to use symlinks even on Windows")]
+        public bool UseSymlinks { get; set; }
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]
@@ -284,6 +406,10 @@ public class Program
         [Option('d', "dehydrated", Default = false,
             HelpText = "Make dehydrated builds by separating out big files. For use with DevBuilds")]
         public bool Dehydrated { get; set; }
+
+        [Option("fallback-native-local-only", Default = false,
+            HelpText = "Fallback to using native library only meant for local play (not recommended for release)")]
+        public bool FallbackToLocalNative { get; set; }
 
         public override bool Compress => CompressRaw == true;
     }
@@ -335,6 +461,11 @@ public class Program
 
     [Verb("credits", HelpText = "Updates credits with some automatically (and some needing manual) retrieved files")]
     public class CreditsOptions : ScriptOptionsBase
+    {
+    }
+
+    [Verb("wiki", HelpText = "Updates the Thriveopedia with content from the online wiki")]
+    public class WikiOptions : ScriptOptionsBase
     {
     }
 

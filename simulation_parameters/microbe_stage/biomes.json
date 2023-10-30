@@ -26,7 +26,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -88,7 +89,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -106,7 +107,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -186,13 +188,17 @@
         "z": 0.75
       }
     },
+    "activeMusicContexts": [
+      "PatchVents"
+    ],
     "conditions": {
       "chunks": {
         "floatingToxin": {
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -334,7 +340,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -352,7 +358,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -439,7 +446,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -501,7 +509,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -519,7 +527,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -605,7 +614,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.00007,
@@ -667,7 +677,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -765,7 +775,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -851,7 +862,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -913,7 +925,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1011,7 +1023,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -1097,7 +1110,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -1159,7 +1173,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1257,7 +1271,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -1344,7 +1359,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -1406,7 +1422,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1424,7 +1440,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -1510,7 +1527,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -1572,7 +1590,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1590,7 +1608,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -1671,13 +1690,17 @@
       }
     },
     "compoundCloudBrightness": 1.1,
+    "activeMusicContexts": [
+      "PatchIceShelf"
+    ],
     "conditions": {
       "chunks": {
         "floatingToxin": {
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.00005,
@@ -1758,7 +1781,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1776,7 +1799,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -1863,7 +1887,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -1925,7 +1950,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -1943,7 +1968,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,
@@ -2029,7 +2055,8 @@
           "name": "FLOATING_HAZARD",
           "meshes": [
             {
-              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+              "scenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "isParticles": true
             }
           ],
           "density": 0.0001,
@@ -2091,7 +2118,7 @@
           "dissolves": true,
           "radius": 10,
           "chunkScale": 1,
-          "mass": 100,
+          "mass": 10,
           "size": 100,
           "ventAmount": 20,
           "damages": 0,
@@ -2189,7 +2216,8 @@
             {
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
-              "sceneAnimationPath": "AnimationPlayer"
+              "sceneAnimationPath": "AnimationPlayer",
+              "playAnimation": true
             }
           ],
           "density": 1e-7,

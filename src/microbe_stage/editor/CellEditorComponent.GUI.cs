@@ -386,6 +386,9 @@ public partial class CellEditorComponent
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
+        TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+            new EnergyBalanceEventArgs(energyBalance), this);
+
         UpdateEnergyBalanceToolTips(energyBalance);
     }
 

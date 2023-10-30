@@ -1,0 +1,96 @@
+#pragma once
+
+//
+// File configured by CMake do not edit Include.h (you can edit Include.h.in)
+//
+
+#ifdef __cplusplus
+#include <cstddef>
+#include <cstdint>
+#include <limits>
+#endif
+
+// clang-format off
+#define THRIVE_LIBRARY_VERSION @NATIVE_LIBRARY_VERSION@
+// clang-format on
+
+#ifdef THRIVE_NATIVE_BUILD
+#ifdef WIN32
+#define THRIVE_NATIVE_API __declspec(dllexport)
+#else
+#define THRIVE_NATIVE_API __attribute__((visibility("default")))
+#endif // WIN32
+#else
+#ifdef WIN32
+#define THRIVE_NATIVE_API __declspec(dllimport)
+#else
+#define THRIVE_NATIVE_API __attribute__((visibility("default")))
+#endif // WIN32
+#endif // THRIVE_NATIVE_BUILD
+
+#cmakedefine USE_OBJECT_POOLS
+
+#cmakedefine NULL_HAS_UNUSUAL_REPRESENTATION
+
+#cmakedefine USE_SMALL_VECTOR_POOLS
+
+#cmakedefine LOCK_FREE_COLLISION_RECORDING
+
+#ifdef WIN32
+#define FORCE_INLINE __forceinline
+#else
+#define FORCE_INLINE __attribute__((always_inline)) inline
+#endif
+
+#ifdef _MSC_VER
+#define PACKED_STRUCT
+#define BEGIN_PACKED_STRUCT __pragma( pack(push, 1) )
+#define END_PACKED_STRUCT __pragma( pack(pop))
+#else
+#define PACKED_STRUCT __attribute__((packed))
+#define BEGIN_PACKED_STRUCT
+#define END_PACKED_STRUCT
+#endif
+
+#if _MSC_VER
+#define HYPER_THREAD_YIELD _mm_pause()
+#else
+#define HYPER_THREAD_YIELD __builtin_ia32_pause()
+#endif
+
+// 64-bit pointers. TODO: support for 32-bit compiling?
+#define POINTER_SIZE 8
+
+#define UNUSED(x) (void)x
+
+// Size in bytes that physics body user data is (used for collision callbacks). Has to be a macro to work in C.
+#define PHYSICS_USER_DATA_SIZE 8
+
+// Note this only works in 64-bit mode right now. The extra +3 at the end is to account for padding
+#define PHYSICS_COLLISION_DATA_SIZE (PHYSICS_USER_DATA_SIZE * 2 + POINTER_SIZE * 2 + 13 + 3)
+
+// The second + 4 is padding here
+#define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4)
+
+// This is needed to allow including this in the C interop header
+#ifdef __cplusplus
+
+namespace Thrive
+{
+constexpr float PI = 3.14159265f;
+constexpr double PI_DOUBLE = 3.1415926535897932;
+
+/// Always zero bytes in pointers that stuff extra info in them thanks to alignment requirements
+constexpr size_t UNUSED_POINTER_BITS = 3;
+
+constexpr size_t STUFFED_POINTER_ALIGNMENT = 8;
+
+constexpr uint64_t STUFFED_POINTER_DATA_MASK = 0x7;
+
+constexpr uint64_t STUFFED_POINTER_POINTER_MASK = ~STUFFED_POINTER_DATA_MASK;
+
+constexpr uint32_t COLLISION_UNKNOWN_SUB_SHAPE = std::numeric_limits<uint32_t>::max();
+
+} // namespace Thrive
+
+#endif

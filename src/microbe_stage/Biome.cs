@@ -30,6 +30,8 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
+    public MusicContext[]? ActiveMusicContexts = null;
+
     [JsonIgnore]
     public Texture? LoadedIcon;
 
@@ -83,8 +85,6 @@ public class Biome : IRegistryType
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
-        Conditions.Resolve(parameters);
-
         LoadedIcon = GD.Load<Texture>(Icon);
     }
 

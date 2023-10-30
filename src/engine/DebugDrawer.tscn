@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/engine/DebugDrawer.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+render_priority = 127
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+vertex_color_use_as_albedo = true
+params_depth_draw_mode = 2
+
+[sub_resource type="SpatialMaterial" id=2]
+render_priority = 126
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+vertex_color_use_as_albedo = true
+params_depth_draw_mode = 2
+
+[node name="DebugDrawer" type="Control"]
+pause_mode = 2
+process_priority = 10000
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="LineDrawer" type="ImmediateGeometry" parent="."]
+portal_mode = 3
+material_override = SubResource( 1 )
+cast_shadow = 0
+
+[node name="TriangleDrawer" type="ImmediateGeometry" parent="."]
+portal_mode = 3
+material_override = SubResource( 2 )
+cast_shadow = 0
