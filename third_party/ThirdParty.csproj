@@ -20,4 +20,19 @@
     <OutputPath>../.mono/temp/lib/$(Configuration)/</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="boost\**" />
+    <Compile Remove="JoltPhysics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="boost\**" />
+    <EmbeddedResource Remove="JoltPhysics\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="boost\**" />
+    <None Remove="JoltPhysics\**" />
+  </ItemGroup>
+
 </Project>

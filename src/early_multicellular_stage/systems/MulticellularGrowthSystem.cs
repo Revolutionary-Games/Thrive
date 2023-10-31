@@ -64,6 +64,12 @@
 
             ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
+            ref var status = ref entity.Get<MicrobeStatus>();
+
+            status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
+
+            ref var baseReproduction = ref entity.Get<ReproductionStatus>();
+
             multicellularGrowth.CompoundsUsedForMulticellularGrowth ??= new Dictionary<Compound, float>();
 
             var (remainingAllowedCompoundUse, remainingFreeCompounds) =
@@ -102,15 +108,16 @@
                     else
                     {
                         // Apply the base reproduction cost at this point after growing the full layout
-                        throw new NotImplementedException();
 
-                        // if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(ref remainingAllowedCompoundUse,
-                        //         ref remainingFreeCompounds,
-                        //         multicellularGrowth.CompoundsUsedForMulticellularGrowth))
-                        // {
-                        //     // Not ready yet for budding
-                        //     return;
-                        // }
+                        if (!MicrobeReproductionSystem.ProcessBaseReproductionCost(
+                                baseReproduction.MissingCompoundsForBaseReproduction, compounds,
+                                ref remainingAllowedCompoundUse,
+                                ref remainingFreeCompounds, status.ConsumeReproductionCompoundsReverse,
+                                multicellularGrowth.CompoundsUsedForMulticellularGrowth))
+                        {
+                            // Not ready yet for budding
+                            return;
+                        }
 
                         // Budding cost is after the base reproduction cost has been overcome
                         multicellularGrowth.CompoundsNeededForNextCell =
@@ -231,6 +238,7 @@
                 // colony
                 // // spam, and for consistency with non-multicellular microbes
                 // SetupRequiredBaseReproductionCompounds();
+                // baseReproduction.MissingCompoundsForBaseReproduction
             }
         }
     }

@@ -46,7 +46,9 @@
             {
                 throw new NotImplementedException();
             }
-            else if (control.State == MicrobeState.Binding)
+
+            /*TODO: else */
+            if (control.State == MicrobeState.Binding)
             {
                 HandleBindingMode(ref control, entity, delta);
             }

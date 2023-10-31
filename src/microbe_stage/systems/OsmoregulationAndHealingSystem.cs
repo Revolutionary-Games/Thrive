@@ -5,7 +5,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using MicrobeColony = Components.MicrobeColony;
 
     /// <summary>
     ///   Handles taking energy from microbes for osmoregulation (staying alive) cost and dealing damage if there's not

@@ -38,6 +38,8 @@
         [JsonIgnore]
         public List<MovementComponent>? ThrustComponents;
 
+        // TODO: implement cilia animation speed
+        // ReSharper disable once CollectionNeverQueried.Global
         /// <summary>
         ///   Cilia components that need to be animated when the cell is rotating fast
         /// </summary>
@@ -317,7 +319,8 @@
                 // TODO: reimplement recursive colony smell settings collection
                 throw new NotImplementedException("colony smelling not reimplemented yet");
             }
-            else
+
+            /* TODO: else */
             {
                 if (container.ActiveCompoundDetections == null)
                     return null;
@@ -350,7 +353,8 @@
             {
                 throw new NotImplementedException();
             }
-            else
+
+            /* TODO: else */
             {
                 if (container.ActiveSpeciesDetections == null)
                     return null;
@@ -644,7 +648,8 @@
 
                 // result.Merge(compoundsUsedForMulticellularGrowth);
             }
-            else
+
+            /* TODO: else */
             {
                 // For single microbes the base reproduction cost needs to be calculated here
                 baseReproductionInfo.CalculateAlreadyUsedBaseReproductionCompounds(species, result);

@@ -435,7 +435,8 @@
         ///     If this is the colony leader, this disbands the whole colony
         ///   </para>
         /// </remarks>
-        public static void UnbindAll(in Entity entity, EntityCommandRecorder entityCommandRecorder)
+        /// <returns>True if unbind happened</returns>
+        public static bool UnbindAll(in Entity entity, EntityCommandRecorder entityCommandRecorder)
         {
             ref var control = ref entity.Get<MicrobeControl>();
 
@@ -445,7 +446,7 @@
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
             if (!organelles.CanUnbind(ref entity.Get<SpeciesMember>(), entity))
-                return;
+                return false;
 
             lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
             {
@@ -473,7 +474,7 @@
                     if (!member.ColonyLeader.Has<MicrobeColony>())
                     {
                         GD.PrintErr("Microbe colony lead newMember is invalid for unbind");
-                        return;
+                        return false;
                     }
 
                     ref var colony = ref member.ColonyLeader.Get<MicrobeColony>();
@@ -488,12 +489,14 @@
                     }
                 }
             }
+
+            return true;
         }
 
         /// <summary>
         ///   Variant of unbind allowed to be called *only* outside the game update loop
         /// </summary>
-        public static void UnbindAllOutsideGameUpdate(in Entity entity, IWorldSimulation entityWorld)
+        public static bool UnbindAllOutsideGameUpdate(in Entity entity, IWorldSimulation entityWorld)
         {
             if (entityWorld.Processing)
             {
@@ -502,10 +505,13 @@
             }
 
             var recorder = entityWorld.StartRecordingEntityCommands();
-            UnbindAll(entity, recorder);
+            var result = UnbindAll(entity, recorder);
+
+            // TODO: should this skip applying the recorder if the operation failed
 
             recorder.Execute();
             entityWorld.FinishRecordingEntityCommands(recorder);
+            return result;
         }
 
         /// <summary>
@@ -579,7 +585,10 @@
         {
             throw new NotImplementedException();
 
-            colony.ColonyRotationMultiplierCalculated = true;
+            // TODO: reimplement the colony rotation multiplier. The code for this is probably commented out currently
+            // in the movement system, but calculating it should be moved here and uncommented + fixed
+
+            // colony.ColonyRotationMultiplierCalculated = true;
         }
 
         /// <summary>

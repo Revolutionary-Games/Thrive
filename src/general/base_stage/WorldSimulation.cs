@@ -35,6 +35,8 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected bool runningMultithreaded;
 
+    // TODO: implement saving
+    // ReSharper disable once CollectionNeverQueried.Local
     private readonly List<Entity> entitiesToNotSave = new();
 
     private readonly Queue<Action> queuedInvokes = new();
@@ -94,10 +96,13 @@ public abstract class WorldSimulation : IWorldSimulation
     ///     This is an alternative to calling <see cref="ProcessLogic"/> and <see cref="ProcessFrameLogic"/> separately
     ///   </para>
     /// </remarks>
-    public void ProcessAll(float delta)
+    /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
+    public bool ProcessAll(float delta)
     {
-        ProcessLogic(delta);
+        bool processed = ProcessLogic(delta);
         ProcessFrameLogic(delta);
+
+        return processed;
     }
 
     /// <summary>
@@ -106,7 +111,8 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <param name="delta">
     ///   Time since previous call, used to determine when it is actually time to do something
     /// </param>
-    public virtual void ProcessLogic(float delta)
+    /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
+    public virtual bool ProcessLogic(float delta)
     {
         ThrowIfNotInitialized();
 
@@ -115,7 +121,7 @@ public abstract class WorldSimulation : IWorldSimulation
         // TODO: is it a good idea to rate limit physics to not be able to run on update frames when the logic
         // wasn't ran?
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
-            return;
+            return false;
 
         if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
         {
@@ -152,6 +158,8 @@ public abstract class WorldSimulation : IWorldSimulation
 
         // TODO: periodically run
         // EntitySystem.Optimize() and maybe TrimExcess
+
+        return true;
     }
 
     /// <summary>

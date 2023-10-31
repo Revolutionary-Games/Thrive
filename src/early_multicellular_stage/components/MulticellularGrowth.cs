@@ -12,7 +12,8 @@
     /// </summary>
     public struct MulticellularGrowth
     {
-        public Dictionary<CellType, Entity>? GrownCells;
+        // TODO: remove if this doesn't end up a useful variable
+        // public Dictionary<CellType, Entity>? GrownCells;
 
         /// <summary>
         ///   List of cells that need to be regrown after being lost in
@@ -49,7 +50,6 @@
         {
             NextBodyPlanCellToGrowIndex = -1;
 
-            GrownCells = null;
             LostPartsOfBodyPlan = null;
             CompoundsNeededForNextCell = null;
             CompoundsUsedForMulticellularGrowth = null;
@@ -77,6 +77,8 @@
         {
             throw new NotImplementedException();
 
+            // Commented out code
+            // ReSharper disable once CommentTypo
             /*if (Colony == null)
             {
                 MicrobeColony.CreateColonyForMicrobe(this);
@@ -128,10 +130,10 @@
                 }
             }
 
-            Colony.AddToColony(cell, parent);*/
+            Colony.AddToColony(cell, parent);
 
             ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
-            multicellularGrowth.CompoundsNeededForNextCell = null;
+            multicellularGrowth.CompoundsNeededForNextCell = null;*/
         }
 
         public static void BecomeFullyGrownMulticellularColony(this ref MulticellularGrowth multicellularGrowth)

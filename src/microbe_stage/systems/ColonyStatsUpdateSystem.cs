@@ -4,7 +4,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using MicrobeColony = Components.MicrobeColony;
 
     /// <summary>
     ///   Handles updating the statistics values (and applying the ones that apply to other components, for example

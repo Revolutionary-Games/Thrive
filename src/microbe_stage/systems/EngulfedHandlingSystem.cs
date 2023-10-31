@@ -128,7 +128,7 @@
 
             // Transfer ownership of all the objects we engulfed to our engulfer (otherwise we'd spill them out
             // when we are processed as dead)
-            engulfer.TransferEngulferObjectsToAnotherEngulfer(entity, ref hostileEngulfer, hostile);
+            engulfer.TransferEngulferObjectsToAnotherEngulfer(ref hostileEngulfer, hostile);
         }
     }
 }

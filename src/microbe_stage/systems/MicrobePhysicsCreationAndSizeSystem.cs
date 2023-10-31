@@ -104,13 +104,16 @@
 
                 if (entity.Has<MicrobeColony>())
                 {
-                    requiresCompoundShape = true;
+                    // TODO: put this line back once no longer complains about unused value (and also the else below)
+                    // requiresCompoundShape = true;
 
                     // TODO: skip creating shape if some colony member isn't ready yet
 
                     throw new NotImplementedException();
                 }
-                else if (organelles.Organelles.Any(o => o.Definition.HasPilusComponent))
+
+                /*TODO (see above): else*/
+                if (organelles.Organelles.Any(o => o.Definition.HasPilusComponent))
                 {
                     requiresCompoundShape = true;
                 }

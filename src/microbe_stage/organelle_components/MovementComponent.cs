@@ -111,7 +111,9 @@ public class MovementComponent : IOrganelleComponent
     {
         // Real force the flagella applied to the colony (considering rotation)
         var realForce = extraColonyRotation.Xform(force);
-        var forceMagnitude = realForce.Dot(wantedMovementDirection);
+
+        // TODO: does the direction need to be rotated for the colony member offset here to make sense?
+        var forceMagnitude = realForce.Dot(extraColonyRotation.Xform(wantedMovementDirection));
 
         if (forceMagnitude <= 0 || wantedMovementDirection.LengthSquared() < MathUtils.EPSILON ||
             realForce.LengthSquared() < MathUtils.EPSILON)
