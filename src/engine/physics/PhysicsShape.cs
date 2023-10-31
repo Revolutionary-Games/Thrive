@@ -184,7 +184,8 @@ public class PhysicsShape : IDisposable
         float convexRadius = godotData.Margin > 0 ? godotData.Margin : 0.01f;
 
         // TODO: does this need to fix the buffer memory?
-        cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density, scale, convexRadius));
+        cached = new PhysicsShape(
+            NativeMethods.CreateConvexShape(buffer[0], (uint)points, density, scale, convexRadius));
 
         cache.WriteLoadedShape(path, density, cached);
 
