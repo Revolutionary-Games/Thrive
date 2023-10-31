@@ -18,5 +18,12 @@
         /// </summary>
         [JsonIgnore]
         public string? LastLoadedScene;
+
+        /// <summary>
+        ///   If true then the loaded scene is directly attached to a <see cref="SpatialInstance"/>. When this is done
+        ///   the scene's root scale or transform does not work. So only scenes that work fine with this should set
+        ///   this to true.
+        /// </summary>
+        public bool AttachDirectlyToScene;
     }
 }
