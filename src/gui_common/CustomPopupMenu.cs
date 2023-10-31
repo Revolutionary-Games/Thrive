@@ -43,8 +43,6 @@ public class CustomPopupMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
-        // RectSize = CalculateSize();
-
         CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
