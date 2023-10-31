@@ -183,7 +183,7 @@ extern "C"
         JVecF3* points, uint32_t pointCount, float density, float scale);
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateConvexShape(
-        JVecF3* points, uint32_t pointCount, float density);
+        JVecF3* points, uint32_t pointCount, float density, float scale = 1, float convexRadius = 0.01f);
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsShape* CreateStaticCompoundShape(
         SubShapeDefinition* subShapes, uint32_t shapeCount);

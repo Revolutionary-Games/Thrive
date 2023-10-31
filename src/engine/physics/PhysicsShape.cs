@@ -176,8 +176,15 @@ public class PhysicsShape : IDisposable
             buffer[i] = new JVecF3(dataSource[i]);
         }
 
+        // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
+        // caused by different real scales of the meshes used for collisions)
+        float scale = 90;
+
+        // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
+        float convexRadius = godotData.Margin > 0 ? godotData.Margin : 0.01f;
+
         // TODO: does this need to fix the buffer memory?
-        cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density));
+        cached = new PhysicsShape(NativeMethods.CreateConvexShape(buffer[0], (uint)points, density, scale, convexRadius));
 
         cache.WriteLoadedShape(path, density, cached);
 
@@ -267,7 +274,8 @@ internal static partial class NativeMethods
         float scale);
 
     [DllImport("thrive_native")]
-    internal static extern IntPtr CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density);
+    internal static extern IntPtr CreateConvexShape(in JVecF3 convexPoints, uint pointCount, float density,
+        float scale = 1, float convexRadius = 0.01f);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr CreateStaticCompoundShape(in SubShapeDefinition subShapes, uint shapeCount);
