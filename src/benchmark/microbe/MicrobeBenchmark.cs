@@ -40,6 +40,9 @@ public class MicrobeBenchmark : Node
     [Export]
     public NodePath DynamicRootPath = null!;
 
+    [Export]
+    public NodePath BenchmarkCameraPath = null!;
+
     // Benchmark configuration, should only be changed if there's really important reasons as then older benchmark
     // results are no longer comparable
     private const int FIRST_PHASE_CELL_COUNT = 150;
@@ -94,6 +97,8 @@ public class MicrobeBenchmark : Node
 
     private Node worldRoot = null!;
     private Node dynamicRoot = null!;
+
+    private MicrobeCamera benchmarkCamera = null!;
 
     private CompoundCloudSystem? cloudSystem;
 #pragma warning restore CA2213
@@ -152,6 +157,7 @@ public class MicrobeBenchmark : Node
 
         worldRoot = GetNode<Node>(WorldRootPath);
         dynamicRoot = GetNode<Node>(DynamicRootPath);
+        benchmarkCamera = GetNode<MicrobeCamera>(BenchmarkCameraPath);
 
         guiContainer.Visible = true;
         benchmarkFinishedText.Visible = false;
@@ -177,6 +183,8 @@ public class MicrobeBenchmark : Node
     {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
+
+        benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
 
         timer += delta;
         timeSinceSpawn += delta;
@@ -407,6 +415,7 @@ public class MicrobeBenchmark : Node
                 CopyResultsButtonPath.Dispose();
                 WorldRootPath.Dispose();
                 DynamicRootPath.Dispose();
+                BenchmarkCameraPath.Dispose();
             }
         }
 

@@ -33,13 +33,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
+LineMaterial = SubResource( 1 )
+TriangleMaterial = SubResource( 2 )
 
-[node name="LineDrawer" type="ImmediateGeometry" parent="."]
-portal_mode = 3
-material_override = SubResource( 1 )
+[node name="LineDrawer" type="MeshInstance" parent="."]
+portal_mode = 4
+include_in_bound = false
+allow_merging = false
 cast_shadow = 0
+generate_lightmap = false
+skeleton = NodePath("")
+software_skinning_transform_normals = false
 
-[node name="TriangleDrawer" type="ImmediateGeometry" parent="."]
-portal_mode = 3
-material_override = SubResource( 2 )
+[node name="TriangleDrawer" type="MeshInstance" parent="."]
+portal_mode = 4
+include_in_bound = false
+allow_merging = false
 cast_shadow = 0
+generate_lightmap = false
+skeleton = NodePath("")
+software_skinning_transform_normals = false

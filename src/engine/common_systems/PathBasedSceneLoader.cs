@@ -88,7 +88,20 @@
 
             try
             {
-                spatial.GraphicalInstance = scene.Instance<Spatial>();
+                var instancedScene = scene.Instance<Spatial>();
+
+                if (sceneVisuals.AttachDirectlyToScene)
+                {
+                    spatial.GraphicalInstance = instancedScene;
+                }
+                else
+                {
+                    // Many scenes require a parent node where scale can be used
+                    var parent = new Spatial();
+                    parent.AddChild(instancedScene);
+
+                    spatial.GraphicalInstance = parent;
+                }
             }
             catch (Exception e)
             {

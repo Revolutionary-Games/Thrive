@@ -162,14 +162,24 @@ public static class NodeHelpers
     {
         GeometryInstance geometry;
 
-        // Fetch the actual model from the scene
-        if (modelPath == null || modelPath.IsEmpty())
+        try
         {
-            geometry = (GeometryInstance)node;
+            // Fetch the actual model from the scene
+            if (modelPath == null || modelPath.IsEmpty())
+            {
+                geometry = (GeometryInstance)node;
+            }
+            else
+            {
+                geometry = node.GetNode<GeometryInstance>(modelPath);
+            }
         }
-        else
+        catch (InvalidCastException)
         {
-            geometry = node.GetNode<GeometryInstance>(modelPath);
+            GD.PrintErr("Converting node to GeometryInstance for getting material failed, on node: ", node.GetPath(),
+                " relative path: ",
+                modelPath);
+            throw;
         }
 
         try
@@ -178,7 +188,8 @@ public static class NodeHelpers
         }
         catch (InvalidCastException)
         {
-            GD.PrintErr("Converting material to ShaderMaterial failed, on node: " + node.GetPath(), " relative path: ",
+            GD.PrintErr($"Converting material to {nameof(ShaderMaterial)} failed, on node: ", node.GetPath(),
+                " relative path: ",
                 modelPath);
 
             throw;

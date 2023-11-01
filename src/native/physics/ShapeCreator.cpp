@@ -25,8 +25,8 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JPH::Array<JPH::Vec3>
     return settings.Create().Get();
 }
 
-JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(
-    const JVecF3* points, size_t pointCount, float density, float convexRadius, const JPH::PhysicsMaterial* material)
+JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(const JVecF3* points, size_t pointCount, float density,
+    float scale, float convexRadius, const JPH::PhysicsMaterial* material)
 {
     // We need to convert the data, so we pass empty data for the points here
     auto settings = JPH::ConvexHullShapeSettings(nullptr, 0, convexRadius, material);
@@ -35,11 +35,23 @@ JPH::RefConst<JPH::Shape> ShapeCreator::CreateConvex(
 
     pointTarget.reserve(pointCount);
 
-    for (size_t i = 0; i < pointCount; ++i)
+    if (scale == 1)
     {
-        const auto& point = points[i];
+        for (size_t i = 0; i < pointCount; ++i)
+        {
+            const auto& point = points[i];
 
-        pointTarget.emplace_back(point.X, point.Y, point.Z);
+            pointTarget.emplace_back(point.X, point.Y, point.Z);
+        }
+    }
+    else
+    {
+        for (size_t i = 0; i < pointCount; ++i)
+        {
+            const auto& point = points[i];
+
+            pointTarget.emplace_back(point.X * scale, point.Y * scale, point.Z * scale);
+        }
     }
 
     settings.SetDensity(density);

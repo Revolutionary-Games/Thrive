@@ -152,7 +152,7 @@ public static class SpawnHelpers
         entity.Set(new Physics
         {
             Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
-            AxisLock = Physics.AxisLockType.YAxis,
+            AxisLock = Physics.AxisLockType.YAxisWithRotation,
         });
         entity.Set(new PhysicsShapeHolder
         {
@@ -312,7 +312,8 @@ public static class SpawnHelpers
 
         entity.Set(new Physics
         {
-            AxisLock = Physics.AxisLockType.YAxis,
+            // Particles lock rotation to make sure they don't rotate on hit
+            AxisLock = selectedMesh.IsParticles ? Physics.AxisLockType.YAxisWithRotation : Physics.AxisLockType.YAxis,
             LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
             Velocity = initialVelocity,
         });
@@ -320,6 +321,8 @@ public static class SpawnHelpers
         {
             Shape = selectedMesh.ConvexShapePath != null ?
                 PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity) :
+
+                // TODO: cache this as most chunks will use the same radius
                 PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
         });
 
