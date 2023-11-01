@@ -106,9 +106,8 @@
         {
             float rotationSpeed = organelles.RotationSpeed;
 
-            // Note that cilia rotation taking ATP is in CiliaComponent class
-            // TODO: especially as there's a comment in there about slowing down rotation when there isn't enough ATP
-            // for the cilia
+            // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
+            // only
 
             // Lower value is faster rotation
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
