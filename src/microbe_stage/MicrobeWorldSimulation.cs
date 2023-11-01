@@ -1,4 +1,5 @@
-﻿using DefaultEcs.Threading;
+﻿using DefaultEcs;
+using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -122,7 +123,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, parallelRunner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, parallelRunner);
-        physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, null, EntitySystem, nonParallelRunner);
+        physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, EntitySystem, nonParallelRunner);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
         physicsCollisionManagementSystem = new PhysicsCollisionManagementSystem(physics, EntitySystem, parallelRunner);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, parallelRunner);
@@ -242,6 +243,14 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem.ClearSpawnCoordinates();
     }
 
+    public override void FreeNodeResources()
+    {
+        base.FreeNodeResources();
+
+        soundEffectSystem.FreeNodeResources();
+        spatialAttachSystem.FreeNodeResources();
+    }
+
     internal void OverrideMicrobeAIRandomSeed(int seed)
     {
         microbeAI.OverrideAIRandomSeed(seed);
@@ -342,8 +351,17 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         reportedPlayerPosition = null;
     }
 
+    protected override void OnEntityDestroyed(in Entity entity)
+    {
+        base.OnEntityDestroyed(in entity);
+
+        physicsBodyCreationSystem.OnEntityDestroyed(entity);
+    }
+
     protected override void Dispose(bool disposing)
     {
+        WaitForStartedPhysicsRun();
+
         if (disposing)
         {
             nonParallelRunner.Dispose();

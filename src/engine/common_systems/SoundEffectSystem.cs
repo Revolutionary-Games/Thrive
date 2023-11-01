@@ -52,6 +52,44 @@
             playerPosition = position;
         }
 
+        public void FreeNodeResources()
+        {
+            // Free all used player nodes
+            foreach (var player in freePositionalPlayers)
+            {
+                player.QueueFree();
+            }
+
+            freePositionalPlayers.Clear();
+
+            foreach (var player in usedPositionalPlayers)
+            {
+                player.Player.QueueFree();
+            }
+
+            usedPositionalPlayers.Clear();
+
+            foreach (var player in free2DPlayers)
+            {
+                player.QueueFree();
+            }
+
+            free2DPlayers.Clear();
+
+            foreach (var player in used2DPlayers)
+            {
+                player.Player.QueueFree();
+            }
+
+            used2DPlayers.Clear();
+        }
+
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
+        }
+
         protected override void PreUpdate(float delta)
         {
             base.PreUpdate(delta);
@@ -479,6 +517,15 @@
             }
 
             soundCacheEntriesToClear.Clear();
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Free cached sounds immediately
+                soundCache.Clear();
+            }
         }
 
         /// <summary>

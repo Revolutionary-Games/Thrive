@@ -1259,6 +1259,8 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
+            previewSimulation.Dispose();
+
             if (TopPanelPath != null)
             {
                 TopPanelPath.Dispose();
@@ -1303,8 +1305,6 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
             }
-
-            previewSimulation.Dispose();
         }
 
         base.Dispose(disposing);

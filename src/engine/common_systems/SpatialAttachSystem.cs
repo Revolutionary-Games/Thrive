@@ -23,6 +23,16 @@
             this.godotWorldRoot = godotWorldRoot;
         }
 
+        public void FreeNodeResources()
+        {
+            foreach (var entry in attachedSpatialInstances)
+            {
+                entry.Key.QueueFree();
+            }
+
+            attachedSpatialInstances.Clear();
+        }
+
         protected override void PreUpdate(float state)
         {
             // Unmark all

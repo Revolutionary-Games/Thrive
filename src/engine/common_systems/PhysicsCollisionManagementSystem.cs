@@ -27,6 +27,25 @@
             this.physicalWorld = physicalWorld;
         }
 
+        /// <summary>
+        ///   Stops collision recording for a removed entity
+        /// </summary>
+        public void OnEntityDestroyed(in Entity entity)
+        {
+            if (!entity.Has<CollisionManagement>())
+                return;
+
+            ref var collisionManagement = ref entity.Get<CollisionManagement>();
+
+            if (collisionManagement.ActiveCollisions != null)
+            {
+                ref var physics = ref entity.Get<Physics>();
+
+                if (physics.Body != null)
+                    physicalWorld.BodyStopCollisionRecording(physics.Body);
+            }
+        }
+
         protected override void Update(float delta, in Entity entity)
         {
             ref var physics = ref entity.Get<Physics>();

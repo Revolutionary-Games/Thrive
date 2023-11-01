@@ -50,7 +50,15 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
             return;
         }
 
+        // Stop collision recording if it is active to make sure the memory for that is returned to the pool
+        if (body.ActiveCollisions != null)
+            physics.BodyStopCollisionRecording(body);
+
         physics.DestroyBody(body);
+
+        // Other code is not allowed to hold on to physics bodies on entities that are destroyed so we dispose this
+        // here to get the native side wrapper released as well
+        body.Dispose();
     }
 
     protected override void WaitForStartedPhysicsRun()
@@ -71,22 +79,26 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void Dispose(bool disposing)
     {
+        // Derived classes should also wait for this before destroying things
+        WaitForStartedPhysicsRun();
+
         ReleaseUnmanagedResources();
-        if (disposing)
-        {
-            physics.Dispose();
-        }
+
+        // if (disposing)
+        // {
+        //
+        // }
 
         base.Dispose(disposing);
     }
 
     private void ReleaseUnmanagedResources()
     {
-        foreach (var createdBody in createdBodies)
+        while (createdBodies.Count > 0)
         {
-            physics.DestroyBody(createdBody);
+            DestroyBody(createdBodies[createdBodies.Count - 1]);
         }
 
-        createdBodies.Clear();
+        physics.Dispose();
     }
 }
