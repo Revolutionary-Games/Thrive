@@ -1,4 +1,5 @@
-﻿using DefaultEcs.Threading;
+﻿using DefaultEcs;
+using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -52,6 +53,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeAISystem microbeAI = null!;
     private MicrobeCollisionSoundSystem microbeCollisionSoundSystem = null!;
     private MicrobeDeathSystem microbeDeathSystem = null!;
+    private MicrobeEmissionSystem microbeEmissionSystem = null!;
     private MicrobeEventCallbackSystem microbeEventCallbackSystem = null!;
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
@@ -122,7 +124,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, parallelRunner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, parallelRunner);
-        physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, null, EntitySystem, nonParallelRunner);
+        physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, EntitySystem, nonParallelRunner);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
         physicsCollisionManagementSystem = new PhysicsCollisionManagementSystem(physics, EntitySystem, parallelRunner);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, parallelRunner);
@@ -156,6 +158,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
+        microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, parallelRunner);
 
         microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, parallelRunner);
@@ -242,6 +245,14 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem.ClearSpawnCoordinates();
     }
 
+    public override void FreeNodeResources()
+    {
+        base.FreeNodeResources();
+
+        soundEffectSystem.FreeNodeResources();
+        spatialAttachSystem.FreeNodeResources();
+    }
+
     internal void OverrideMicrobeAIRandomSeed(int seed)
     {
         microbeAI.OverrideAIRandomSeed(seed);
@@ -303,6 +314,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeAI.Update(delta);
         }
 
+        microbeEmissionSystem.Update(delta);
+
         countLimitedDespawnSystem.Update(delta);
 
         SpawnSystem.Update(delta);
@@ -342,8 +355,18 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         reportedPlayerPosition = null;
     }
 
+    protected override void OnEntityDestroyed(in Entity entity)
+    {
+        base.OnEntityDestroyed(in entity);
+
+        physicsBodyDisablingSystem.OnEntityDestroyed(entity);
+        physicsBodyCreationSystem.OnEntityDestroyed(entity);
+    }
+
     protected override void Dispose(bool disposing)
     {
+        WaitForStartedPhysicsRun();
+
         if (disposing)
         {
             nonParallelRunner.Dispose();
@@ -384,6 +407,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeAI.Dispose();
             microbeCollisionSoundSystem.Dispose();
             microbeDeathSystem.Dispose();
+            microbeEmissionSystem.Dispose();
             microbeEventCallbackSystem.Dispose();
             microbeFlashingSystem.Dispose();
             microbeMovementSoundSystem.Dispose();

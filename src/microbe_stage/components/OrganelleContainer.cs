@@ -38,7 +38,8 @@
         [JsonIgnore]
         public List<MovementComponent>? ThrustComponents;
 
-        // TODO: implement cilia animation speed
+        // Note that this exists here for the potential future need that MicrobeMovementSystem will need to use cilia
+        // and reduce rotation rate if not enough ATP to rotate at full speed
         // ReSharper disable once CollectionNeverQueried.Global
         /// <summary>
         ///   Cilia components that need to be animated when the cell is rotating fast

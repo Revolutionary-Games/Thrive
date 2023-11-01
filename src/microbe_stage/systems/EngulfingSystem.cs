@@ -277,6 +277,7 @@
                             {
                                 endosome.Hide();
                                 DeleteEndosome(endosome);
+                                RemoveEndosomeFromEntity(entity, endosome);
                             }
 
                             transportData.TargetValuesToLerp = (null, transportData.OriginalScale, null);
@@ -347,6 +348,9 @@
 
                 if (container.TryGetValue(toDelete.Value, out var endosome))
                 {
+                    if (!container.Remove(toDelete.Value))
+                        GD.PrintErr("Failed to remove endosome from entity list it was just deleted from");
+
                     DeleteEndosome(endosome);
                 }
                 else
@@ -539,20 +543,40 @@
 
             boundingBoxSize = Vector3.One;
 
-            if (targetSpatial.GraphicalInstance is GeometryInstance geometryInstance)
+            if (targetSpatial.GraphicalInstance != null)
             {
-                boundingBoxSize = geometryInstance.GetAabb().Size;
+                var geometryInstance = targetSpatial.GraphicalInstance as GeometryInstance;
+
+                // TODO: should this use EntityMaterial.AutoRetrieveModelPath to find the path of the graphics instance
+                // in the node? This probably doesn't work for all kinds of chunks correctly
+
+                // Most engulfables have their graphical node as the first child of their primary node
+                if (geometryInstance == null && targetSpatial.GraphicalInstance.GetChildCount() > 0)
+                {
+                    geometryInstance = targetSpatial.GraphicalInstance.GetChild(0) as GeometryInstance;
+                }
+
+                if (geometryInstance != null)
+                {
+                    boundingBoxSize = geometryInstance.GetAabb().Size;
+                }
+                else
+                {
+                    GD.PrintErr("Engulfed something that couldn't have AABB calculated (graphical instance: ",
+                        targetSpatial.GraphicalInstance, ")");
+                }
             }
             else
             {
-                GD.PrintErr("Engulfed something that couldn't have AABB calculated (graphical instance: ",
-                    targetSpatial.GraphicalInstance, ")");
+                GD.PrintErr(
+                    "Engulfed something with no graphical instance set, can't calculate bounding box for scaling");
             }
 
             // In the case of flat mesh (like membrane) we don't want the endosome to end up completely flat
             // as it can cause unwanted visual glitch
             if (boundingBoxSize.y < Mathf.Epsilon)
                 boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
+
             return relativePosition;
         }
 
@@ -682,6 +706,23 @@
                 return endosome;
 
             return null;
+        }
+
+        private void RemoveEndosomeFromEntity(in Entity entity, Endosome endosome)
+        {
+            if (entityEngulfingEndosomeGraphics.TryGetValue(entity, out var dataContainer))
+            {
+                foreach (var entry in dataContainer)
+                {
+                    if (entry.Value == endosome)
+                    {
+                        if (dataContainer.Remove(entry.Key))
+                            return;
+                    }
+                }
+            }
+
+            GD.PrintErr("Failed to unlink endosome from engulfer that should have been using it");
         }
 
         private void EjectEverythingFromDeadEngulfer(ref Engulfer engulfer, in Entity entity)
@@ -1334,6 +1375,9 @@
                         animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
                 }
 
+                // Update endosome position in the animation
+                phagosome.Translation = relativePosition.RelativePosition;
+
                 return false;
             }
 
@@ -1392,6 +1436,11 @@
             }
         }
 
+        /// <summary>
+        ///   Performs the deletion of endosome operation. Note that contexts where the endosome may still be used
+        ///   by an entity <see cref="RemoveEndosomeFromEntity"/> needs to be called
+        /// </summary>
+        /// <param name="endosome">The endosome object that is no longer required</param>
         private void DeleteEndosome(Endosome endosome)
         {
             try

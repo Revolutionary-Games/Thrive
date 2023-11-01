@@ -103,8 +103,6 @@ public static class SpawnHelpers
         entity = SpawnAgentProjectileWithoutFinalizing(worldSimulation, recorder, properties, amount, lifetime,
             location, direction, scale, emitter);
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
-
         return recorder;
     }
 
@@ -166,6 +164,9 @@ public static class SpawnHelpers
             // Callbacks are initialized by ToxinCollisionSystem
         });
 
+        // Needed for fade actions
+        entity.Set<ManualPhysicsControl>();
+
         entity.Set(new ReadableName(properties.Name));
 
         return entity;
@@ -198,9 +199,6 @@ public static class SpawnHelpers
     {
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
-
-        // TODO: do something with these properties:
-        // selectedMesh.SceneModelPath,
 
         // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);

@@ -88,13 +88,12 @@ public class CiliaComponent : IOrganelleComponent
         if (timeSinceRotationSample < Constants.CILIA_ROTATION_SAMPLE_INTERVAL)
             return;
 
-        // ref var control = ref microbeEntity.Get<MicrobeControl>();
-
         // Calculate how fast the cell is turning for controlling the animation speed
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
         // TODO: pulling cilia reimplementation
+        // ref var control = ref microbeEntity.Get<MicrobeControl>();
         // if (control.State == MicrobeState.Engulf && attractorArea != null)
         // {
         //     // We are using cilia pulling, play animation at fixed rate
@@ -127,6 +126,7 @@ public class CiliaComponent : IOrganelleComponent
             if (availableEnergy < requiredEnergy)
             {
                 // TODO: slow down rotation when we don't have enough ATP to use our cilia
+                // Might need to move this code to MicrobeMovementSystem for this to be possible
             }
         }
 
