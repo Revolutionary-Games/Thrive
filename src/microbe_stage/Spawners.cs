@@ -103,8 +103,6 @@ public static class SpawnHelpers
         entity = SpawnAgentProjectileWithoutFinalizing(worldSimulation, recorder, properties, amount, lifetime,
             location, direction, scale, emitter);
 
-        worldSimulation.FinishRecordingEntityCommands(recorder);
-
         return recorder;
     }
 
@@ -165,6 +163,9 @@ public static class SpawnHelpers
 
             // Callbacks are initialized by ToxinCollisionSystem
         });
+
+        // Needed for fade actions
+        entity.Set<ManualPhysicsControl>();
 
         entity.Set(new ReadableName(properties.Name));
 

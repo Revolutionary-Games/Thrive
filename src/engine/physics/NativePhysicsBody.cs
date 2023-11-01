@@ -70,6 +70,8 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     /// </summary>
     public bool MicrobeControlEnabled { get; set; }
 
+    public bool IsDisposed => disposed;
+
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
         return Equals(left, right);

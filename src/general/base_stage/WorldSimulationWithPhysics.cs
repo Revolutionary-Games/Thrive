@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -96,7 +97,28 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     {
         while (createdBodies.Count > 0)
         {
-            DestroyBody(createdBodies[createdBodies.Count - 1]);
+            var body = createdBodies[createdBodies.Count - 1];
+
+            if (body.IsDisposed)
+            {
+                GD.PrintErr("World simulation body is already disposed, this body should no longer be in " +
+                    "the list of created bodies");
+
+                // TODO: figure out what causes this pretty rare error
+
+#if DEBUG
+                throw new Exception("World physics body was disposed by someone else");
+#endif
+
+#pragma warning disable CS0162 // Unreachable code detected
+
+                // ReSharper disable once HeuristicUnreachableCode
+                createdBodies.RemoveAt(createdBodies.Count - 1);
+                continue;
+#pragma warning restore CS0162 // Unreachable code detected
+            }
+
+            DestroyBody(body);
         }
 
         physics.Dispose();
