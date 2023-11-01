@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Components;
+    using DefaultEcs;
     using DefaultEcs.System;
     using Godot;
     using World = DefaultEcs.World;
@@ -20,6 +21,23 @@
         public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world)
         {
             this.physicalWorld = physicalWorld;
+        }
+
+        /// <summary>
+        ///   Forgets about a disabled body on entity. Needs to be called before
+        ///   <see cref="PhysicsBodyCreationSystem.OnEntityDestroyed"/> so that this can see the body to be destroyed
+        /// </summary>
+        public void OnEntityDestroyed(in Entity entity)
+        {
+            if (!entity.Has<Physics>())
+                return;
+
+            ref var physics = ref entity.Get<Physics>();
+
+            if (physics.Body != null)
+            {
+                disabledBodies.Remove(physics.Body);
+            }
         }
 
         // TODO: figure out where this would need to be called
@@ -85,11 +103,9 @@
         {
             if (disposing)
             {
-                // TODO: would this be needed?
-                foreach (var disabledBody in disabledBodies)
-                {
-                    physicalWorld.DestroyBody(disabledBody);
-                }
+                disabledBodies.Clear();
+
+                // The bodies are destroyed by the creation system / the world. Also see OnEntityDestroyed
             }
         }
     }

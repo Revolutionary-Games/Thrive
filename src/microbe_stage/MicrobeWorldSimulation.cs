@@ -359,6 +359,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
+        physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
     }
 
