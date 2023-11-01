@@ -11,7 +11,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     }
 
     protected override string ExportFileNameBase => "godot-ci";
-    protected override string ImagesAndConfigsFolder => "docker";
+    protected override string ImagesAndConfigsFolder => "podman";
     protected override (string BuildRelativeFolder, string? TargetToStopAt) DefaultImageToBuild => ("ci", null);
     protected override string ImageNameBase => "thrive/godot-ci";
 
