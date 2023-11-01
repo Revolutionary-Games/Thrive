@@ -133,7 +133,10 @@
                 var particles = spatial.GraphicalInstance as Particles;
 
                 if (particles == null)
-                    throw new NullReferenceException("Graphical instance casted as particles is null");
+                {
+                    throw new NullReferenceException(
+                        $"Graphical instance ({spatial.GraphicalInstance}) casted as particles is null");
+                }
 
                 particles.Emitting = false;
 

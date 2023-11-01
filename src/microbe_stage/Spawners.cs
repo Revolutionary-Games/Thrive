@@ -200,9 +200,6 @@ public static class SpawnHelpers
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
 
-        // TODO: do something with these properties:
-        // selectedMesh.SceneModelPath,
-
         // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
 
