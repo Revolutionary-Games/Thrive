@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 19:42+0100\n"
+"POT-Creation-Date: 2023-11-02 20:52+0000\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -50,7 +50,7 @@ msgstr "Katkestatud."
 msgid "ABORTED_DOT"
 msgstr "Katkestatud."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:832
+#: ../simulation_parameters/microbe_stage/biomes.json:840
 msgid "ABYSSOPELAGIC"
 msgstr "Abyss"
 
@@ -136,12 +136,12 @@ msgstr "Aeroobne lämmastiku fikseerimine"
 msgid "AGENTS"
 msgstr "ained"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:91
 #, fuzzy
 msgid "AGENTS_COLON"
 msgstr "eelmine:"
 
-#: ../src/microbe_stage/AgentProperties.cs:20
+#: ../src/microbe_stage/AgentProperties.cs:23
 #, fuzzy
 msgid "AGENT_NAME"
 msgstr "{0} {1}"
@@ -381,7 +381,7 @@ msgstr "käitamise olek:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:264
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo käivitamine ebaõnnestus"
 
@@ -392,7 +392,7 @@ msgstr "Auto-evo tulemused:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:265
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "käitamise olek:"
 
@@ -490,16 +490,16 @@ msgstr "Bass alla"
 msgid "BASSUP"
 msgstr "Bass üles"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:586
+#: ../simulation_parameters/microbe_stage/biomes.json:592
 msgid "BATHYPELAGIC"
 msgstr "Batüpelaagiline"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:552
+#: ../src/microbe_stage/MicrobeHUD.cs:631
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:516
+#: ../src/microbe_stage/MicrobeHUD.cs:587
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "Hakka mitmerakuliseks ({0}/{1})"
@@ -564,17 +564,17 @@ msgstr ""
 msgid "BEST_PATCH_COLON"
 msgstr "Parim plaaster:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:329
-#: ../simulation_parameters/microbe_stage/biomes.json:496
-#: ../simulation_parameters/microbe_stage/biomes.json:662
-#: ../simulation_parameters/microbe_stage/biomes.json:908
-#: ../simulation_parameters/microbe_stage/biomes.json:1154
-#: ../simulation_parameters/microbe_stage/biomes.json:1401
-#: ../simulation_parameters/microbe_stage/biomes.json:1567
-#: ../simulation_parameters/microbe_stage/biomes.json:1756
-#: ../simulation_parameters/microbe_stage/biomes.json:1923
-#: ../simulation_parameters/microbe_stage/biomes.json:2089
+#: ../simulation_parameters/microbe_stage/biomes.json:81
+#: ../simulation_parameters/microbe_stage/biomes.json:332
+#: ../simulation_parameters/microbe_stage/biomes.json:501
+#: ../simulation_parameters/microbe_stage/biomes.json:669
+#: ../simulation_parameters/microbe_stage/biomes.json:917
+#: ../simulation_parameters/microbe_stage/biomes.json:1165
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1582
+#: ../simulation_parameters/microbe_stage/biomes.json:1773
+#: ../simulation_parameters/microbe_stage/biomes.json:1942
+#: ../simulation_parameters/microbe_stage/biomes.json:2110
 msgid "BIG_IRON_CHUNK"
 msgstr "Suur raua tükk"
 
@@ -582,7 +582,7 @@ msgstr "Suur raua tükk"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:531
+#: ../simulation_parameters/microbe_stage/organelles.json:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "Sideaine"
@@ -615,7 +615,7 @@ msgstr ""
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:776
+#: ../simulation_parameters/microbe_stage/organelles.json:791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminestseeruv vakuool"
@@ -746,27 +746,27 @@ msgstr "caps lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Süsinikdioksiid"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "küllus"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "õiglane summa"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
 msgid "CATEGORY_LITTLE"
 msgstr "pisut"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "üsna palju"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
 msgid "CATEGORY_SOME"
 msgstr "mõni"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "väga vähe"
 
@@ -802,7 +802,7 @@ msgstr "Tselluloos"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:654
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -832,7 +832,7 @@ msgstr "Pettuste menüü"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Kuva/peida rakuprotsessid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:366
+#: ../simulation_parameters/microbe_stage/organelles.json:369
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -845,7 +845,7 @@ msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on v�
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound] tüübiks [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:694
+#: ../simulation_parameters/microbe_stage/organelles.json:707
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "Kemoretseptor"
@@ -858,7 +858,7 @@ msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoretseptor võimaldab tuvastada ühendeid kaugemalt. Ühenduse tüübi ja juhtjoone värvi valimiseks muutke, kui see on asetatud."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:164
+#: ../simulation_parameters/microbe_stage/organelles.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosünteesivad valgud"
@@ -895,7 +895,7 @@ msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudes
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tähendab, et see kaitseb paremini üldiste kahjustuste ja eriti toksiinide kahjustuste eest. Samuti kulub selle vormi säilitamiseks vähem energiat, kuid see on aeglasem ega suuda ressursse kiiresti omastada."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:570
+#: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
@@ -924,7 +924,7 @@ msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisska
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} tarbimine"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:842
+#: ../simulation_parameters/microbe_stage/organelles.json:859
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "cilia"
@@ -976,7 +976,7 @@ msgstr "Pilve eraldusvõime jagaja:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Pilve simulatsiooni minimaalne intervall:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1324
+#: ../simulation_parameters/microbe_stage/biomes.json:1336
 msgid "COASTAL"
 msgstr "Rannikuäärne"
 
@@ -1098,7 +1098,7 @@ msgstr "Ühendid"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "COMPOUNDS_COLON"
 msgstr "Ühendid:"
 
@@ -1430,7 +1430,7 @@ msgstr "Organismi statistika"
 msgid "CUSTOM_USERNAME"
 msgstr "Kohandatud kasutajanimi:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:601
+#: ../simulation_parameters/microbe_stage/organelles.json:609
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "Tsütoplasma"
@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:984
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
 msgid "DEATH"
 msgstr "surma"
 
@@ -1510,7 +1510,7 @@ msgstr "Vaikimisi väljundseade"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:195
 msgid "DELETE"
 msgstr "Kustuta"
 
@@ -1629,7 +1629,7 @@ msgstr "Arendajad"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:262
 msgid "DEVOURED"
 msgstr ""
 
@@ -2013,15 +2013,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2432
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2443
 msgid "ENERGY_SOURCES"
 msgstr "Energiaallikad:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
 
@@ -2107,11 +2107,11 @@ msgstr "Viga salvestamisel"
 msgid "ESCAPE"
 msgstr "esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1250
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "ESCAPE_ENGULFING"
 msgstr "neelamisest pääsemine"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1846
+#: ../simulation_parameters/microbe_stage/biomes.json:1864
 msgid "ESTUARY"
 msgstr "lehtersuue"
 
@@ -2198,7 +2198,7 @@ msgstr "Lapist välja surnud"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Planeedilt välja surnud"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:400
+#: ../src/general/base_stage/CreatureStageBase.cs:409
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Lapist välja surnud"
@@ -2319,7 +2319,7 @@ msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse 
 msgid "FIRE_TOXIN"
 msgstr "Tulista toksiini"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:400
+#: ../simulation_parameters/microbe_stage/organelles.json:404
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "Vibur"
@@ -2341,22 +2341,22 @@ msgstr "suri planeedilt välja"
 msgid "FLEET_UNITS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:90
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "elanikkond:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:195
-#: ../simulation_parameters/microbe_stage/biomes.json:442
-#: ../simulation_parameters/microbe_stage/biomes.json:608
-#: ../simulation_parameters/microbe_stage/biomes.json:854
-#: ../simulation_parameters/microbe_stage/biomes.json:1100
-#: ../simulation_parameters/microbe_stage/biomes.json:1347
-#: ../simulation_parameters/microbe_stage/biomes.json:1513
-#: ../simulation_parameters/microbe_stage/biomes.json:1683
-#: ../simulation_parameters/microbe_stage/biomes.json:1869
-#: ../simulation_parameters/microbe_stage/biomes.json:2035
+#: ../simulation_parameters/microbe_stage/biomes.json:197
+#: ../simulation_parameters/microbe_stage/biomes.json:446
+#: ../simulation_parameters/microbe_stage/biomes.json:614
+#: ../simulation_parameters/microbe_stage/biomes.json:862
+#: ../simulation_parameters/microbe_stage/biomes.json:1110
+#: ../simulation_parameters/microbe_stage/biomes.json:1359
+#: ../simulation_parameters/microbe_stage/biomes.json:1527
+#: ../simulation_parameters/microbe_stage/biomes.json:1699
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2055
 msgid "FLOATING_HAZARD"
 msgstr "Ujuv oht"
 
@@ -2383,7 +2383,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Toiduahel"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2449
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (fitness: {2}) kogu saadaolev energia: {3} (kogu fitness: {4})"
 
@@ -2431,12 +2431,12 @@ msgstr ""
 "Määratud salvestuse täiendamine nurjus järgmise tõrke tõttu:\n"
 "{0}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:221
+#: ../src/microbe_stage/MicrobeHUD.cs:231
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:220
+#: ../src/microbe_stage/MicrobeHUD.cs:230
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2462,7 +2462,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -2579,17 +2579,17 @@ msgstr "Jumalarežiim"
 msgid "GOD_TOOLS_TITLE"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:353
-#: ../simulation_parameters/microbe_stage/biomes.json:520
-#: ../simulation_parameters/microbe_stage/biomes.json:766
-#: ../simulation_parameters/microbe_stage/biomes.json:1012
-#: ../simulation_parameters/microbe_stage/biomes.json:1258
-#: ../simulation_parameters/microbe_stage/biomes.json:1425
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1780
-#: ../simulation_parameters/microbe_stage/biomes.json:1947
-#: ../simulation_parameters/microbe_stage/biomes.json:2193
+#: ../simulation_parameters/microbe_stage/biomes.json:105
+#: ../simulation_parameters/microbe_stage/biomes.json:356
+#: ../simulation_parameters/microbe_stage/biomes.json:525
+#: ../simulation_parameters/microbe_stage/biomes.json:773
+#: ../simulation_parameters/microbe_stage/biomes.json:1021
+#: ../simulation_parameters/microbe_stage/biomes.json:1269
+#: ../simulation_parameters/microbe_stage/biomes.json:1438
+#: ../simulation_parameters/microbe_stage/biomes.json:1606
+#: ../simulation_parameters/microbe_stage/biomes.json:1797
+#: ../simulation_parameters/microbe_stage/biomes.json:1966
+#: ../simulation_parameters/microbe_stage/biomes.json:2214
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
 msgstr "Mängija rakk"
@@ -2725,11 +2725,11 @@ msgstr "Hüper vasakpoolne"
 msgid "HYPERR"
 msgstr "Hüper paremale"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1737
+#: ../simulation_parameters/microbe_stage/biomes.json:1754
 msgid "ICESHARD"
 msgstr "jääkild"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1657
+#: ../simulation_parameters/microbe_stage/biomes.json:1673
 msgid "ICESHELF"
 msgstr "jääriiul"
 
@@ -2866,7 +2866,7 @@ msgstr "Mutatsioonipunktid"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:458
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -2880,7 +2880,7 @@ msgstr "Mutatsioonipunktid"
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:448
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -2899,7 +2899,7 @@ msgstr "Mutatsioonipunktid"
 msgid "INTERACTION_HARVEST"
 msgstr "Mutatsioonipunktid"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:434
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2907,7 +2907,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:411
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2979,7 +2979,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:540
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
@@ -3216,7 +3216,7 @@ msgstr "See keel on veel pooleli ({0}% valmis)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1347
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1393
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3621,7 +3621,7 @@ msgstr "Esitus"
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:891
+#: ../simulation_parameters/microbe_stage/organelles.json:908
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 #, fuzzy
 msgid "LYSOSOME"
@@ -3650,11 +3650,11 @@ msgstr "ATP"
 msgid "MARCH"
 msgstr "märtsil"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:249
-#: ../simulation_parameters/microbe_stage/biomes.json:686
-#: ../simulation_parameters/microbe_stage/biomes.json:932
-#: ../simulation_parameters/microbe_stage/biomes.json:1178
-#: ../simulation_parameters/microbe_stage/biomes.json:2113
+#: ../simulation_parameters/microbe_stage/biomes.json:252
+#: ../simulation_parameters/microbe_stage/biomes.json:693
+#: ../simulation_parameters/microbe_stage/biomes.json:941
+#: ../simulation_parameters/microbe_stage/biomes.json:1189
+#: ../simulation_parameters/microbe_stage/biomes.json:2134
 msgid "MARINE_SNOW"
 msgstr "Mere lumi"
 
@@ -3731,11 +3731,11 @@ msgstr "Membraani liigid"
 msgid "MENU"
 msgstr "Menüü"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1078
+#: ../simulation_parameters/microbe_stage/biomes.json:1088
 msgid "MESOPELAGIC"
 msgstr "Mesopelagi"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:263
+#: ../simulation_parameters/microbe_stage/organelles.json:265
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "Metabolosoomid"
@@ -3886,7 +3886,7 @@ msgstr "Microbe Freebuildi redaktor"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:222
+#: ../src/microbe_stage/MicrobeSpecies.cs:229
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4104,7 +4104,7 @@ msgstr "Nõutava välja vorming puudub või on kehtetu: {0}"
 msgid "MISSING_TITLE"
 msgstr "Pealkiri puudub"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:464
+#: ../simulation_parameters/microbe_stage/organelles.json:469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "Mitokondrid"
@@ -4131,7 +4131,7 @@ msgstr "Modifitseerimisjuhised on saadaval aadressil"
 msgid "MODELS"
 msgstr "Jumalarežiim"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:330
 msgid "MODIFY"
 msgstr "Muutma"
 
@@ -4306,7 +4306,7 @@ msgstr ""
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:262
 msgid "MOVE"
 msgstr "Liiguta"
 
@@ -4409,7 +4409,7 @@ msgstr ""
 "\n"
 "Kui otsustate jätkata, siis mõistke, et hilisemad etapid on prototüübid ja ärge kurtke nende ebatäielikkuse üle."
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:584
+#: ../src/late_multicellular_stage/MulticellularStage.cs:588
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
@@ -4604,7 +4604,7 @@ msgstr "Minge järgmisele redaktori vahekaardile"
 msgid "NITROGEN"
 msgstr "Lämmastik"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:100
+#: ../simulation_parameters/microbe_stage/organelles.json:102
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "Lämmastik"
@@ -4617,7 +4617,7 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:298
+#: ../simulation_parameters/microbe_stage/organelles.json:300
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Lämmastikku fikseeriv plastiid"
@@ -4650,31 +4650,31 @@ msgstr "Membraani kõige elementaarsem vorm, sellel on vähe kaitset kahjustuste
 msgid "NOTHING_HERE"
 msgstr "Siin pole midagi"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:503
+#: ../src/late_multicellular_stage/MulticellularStage.cs:507
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:388
+#: ../src/microbe_stage/systems/MicrobeEventCallbackSystem.cs:100
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1601
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:198
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1818
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1813
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:502
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4696,7 +4696,7 @@ msgid "NO_AI"
 msgstr "AI puudub"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2464
 msgid "NO_DATA_TO_SHOW"
 msgstr "Kuvatavaid andmeid pole"
 
@@ -4735,12 +4735,12 @@ msgstr "Ekraanitõmmiste kataloogi ei leitud"
 msgid "NO_SELECTED_MOD"
 msgstr "Modifikatsiooni pole valitud"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:668
+#: ../simulation_parameters/microbe_stage/organelles.json:679
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "Tuum"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1345
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1391
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4759,11 +4759,10 @@ msgstr "Numeratsioonilukk"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2309
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2322
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:380
+#: ../src/microbe_stage/MicrobeHUD.cs:429
 msgid "N_A"
 msgstr "ei ole kohaldatav"
 
@@ -4771,7 +4770,7 @@ msgstr "ei ole kohaldatav"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:428
+#: ../src/microbe_stage/MicrobeHUD.cs:483
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4906,7 +4905,7 @@ msgstr "Abi"
 msgid "ORGANELLES"
 msgstr "Organellid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:918
+#: ../simulation_parameters/microbe_stage/organelles.json:937
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4922,7 +4921,7 @@ msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenuta
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:960
+#: ../simulation_parameters/microbe_stage/organelles.json:980
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4933,7 +4932,7 @@ msgstr "Pilus"
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../simulation_parameters/microbe_stage/organelles.json:25
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:728
 msgid "ORGANELLE_PILUS"
 msgstr "Pilus"
@@ -5027,7 +5026,7 @@ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, e
 msgid "OXYGEN"
 msgstr "Hapnik"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:200
+#: ../simulation_parameters/microbe_stage/organelles.json:202
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "Oksütoksisoom"
@@ -5178,7 +5177,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Jätkake mängu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:73
+#: ../src/microbe_stage/MicrobeHUD.cs:74
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -5199,7 +5198,7 @@ msgstr "Pck-faili ({0}) laadimine ebaõnnestus"
 msgid "PEACEFUL"
 msgstr "Rahulik"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -5209,7 +5208,7 @@ msgstr "Rahulik"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/microbe_stage/MicrobeHUD.cs:268
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5273,7 +5272,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:403
+#: ../src/microbe_stage/MicrobeHUD.cs:453
 #, fuzzy
 msgid "PLAYER"
 msgstr "Mängija rakk"
@@ -5287,7 +5286,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
-#: ../src/general/base_stage/CreatureStageBase.cs:344
+#: ../src/general/base_stage/CreatureStageBase.cs:353
 msgid "PLAYER_DIED"
 msgstr "mängija suri"
 
@@ -5295,7 +5294,7 @@ msgstr "mängija suri"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dubleeri pleier"
 
-#: ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:521
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
@@ -5304,7 +5303,7 @@ msgstr "Mängija on välja surnud"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Mängija on välja surnud"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:288
+#: ../src/general/base_stage/CreatureStageBase.cs:297
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
@@ -5352,7 +5351,7 @@ msgstr "elanikkond:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populatsioon laikudena:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2313
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5421,7 +5420,7 @@ msgstr ""
 msgid "PROTEINS"
 msgstr "Valgud"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:132
+#: ../simulation_parameters/microbe_stage/organelles.json:134
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
@@ -5447,7 +5446,7 @@ msgstr "Lõpeta"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/general/PauseMenu.cs:418
+#: ../src/general/PauseMenu.cs:426
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Kas olete kindel, et soovite mängust lahkuda?\n"
@@ -5518,7 +5517,7 @@ msgstr "teade"
 msgid "REPORT_BUG"
 msgstr "teade"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1166
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "reprodutseeritud"
 
@@ -5659,7 +5658,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Tagasi menüüsse"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:399
+#: ../src/general/PauseMenu.cs:407
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Kas soovite kindlasti peamenüüst väljuda?\n"
@@ -5741,7 +5740,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
-#: ../simulation_parameters/microbe_stage/organelles.json:68
+#: ../simulation_parameters/microbe_stage/organelles.json:70
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "rustitsüaniin"
@@ -5872,15 +5871,15 @@ msgstr "Teabe salvestamine ebaõnnestus erandi tõttu: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvestamine..."
 
-#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
+#: ../src/saving/SaveHelper.cs:511
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvestamine ebaõnnestus! Juhtus erand"
 
-#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
+#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 
-#: ../src/saving/SaveHelper.cs:551
+#: ../src/saving/SaveHelper.cs:550
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 
@@ -5942,7 +5941,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "Otsingu raadius:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2013
+#: ../simulation_parameters/microbe_stage/biomes.json:2033
 msgid "SEA_FLOOR"
 msgstr "merepõhi"
 
@@ -6095,7 +6094,7 @@ msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija pr
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:768
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "Signaaliagent"
@@ -6108,27 +6107,27 @@ msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud 
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Hoidke all [thrive:input]g_pack_käske[/thrive:input], et avada menüü teistele oma liigi liikmetele käskude andmiseks."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:154
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Muutuda agressiivseks"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:146
+#: ../src/microbe_stage/MicrobeHUD.cs:153
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Põgenege"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:151
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Järgne mulle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Ei mingit käsku"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:145
+#: ../src/microbe_stage/MicrobeHUD.cs:152
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Liigu Minu juurde"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:157
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signaal väljastada"
 
@@ -6154,7 +6153,7 @@ msgstr "Suurus:"
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
+#: ../simulation_parameters/microbe_stage/organelles.json:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr ""
@@ -6169,17 +6168,17 @@ msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudes
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:213
-#: ../simulation_parameters/microbe_stage/biomes.json:460
-#: ../simulation_parameters/microbe_stage/biomes.json:626
-#: ../simulation_parameters/microbe_stage/biomes.json:872
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
-#: ../simulation_parameters/microbe_stage/biomes.json:1365
-#: ../simulation_parameters/microbe_stage/biomes.json:1531
-#: ../simulation_parameters/microbe_stage/biomes.json:1701
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2053
+#: ../simulation_parameters/microbe_stage/biomes.json:45
+#: ../simulation_parameters/microbe_stage/biomes.json:216
+#: ../simulation_parameters/microbe_stage/biomes.json:465
+#: ../simulation_parameters/microbe_stage/biomes.json:633
+#: ../simulation_parameters/microbe_stage/biomes.json:881
+#: ../simulation_parameters/microbe_stage/biomes.json:1129
+#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1546
+#: ../simulation_parameters/microbe_stage/biomes.json:1718
+#: ../simulation_parameters/microbe_stage/biomes.json:1906
+#: ../simulation_parameters/microbe_stage/biomes.json:2074
 msgid "SMALL_IRON_CHUNK"
 msgstr "Väike raua tükk"
 
@@ -6249,7 +6248,7 @@ msgstr "Kudema ammoniaaki"
 msgid "SPAWN_ENEMY"
 msgstr "Kudema vaenlane"
 
-#: ../src/microbe_stage/MicrobeStage.cs:804
+#: ../src/microbe_stage/MicrobeStage.cs:902
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
@@ -6275,7 +6274,7 @@ msgstr "Hiire eriversioon 2"
 msgid "SPECIES"
 msgstr "Liikide nimekiri"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "SPECIES_COLON"
 msgstr "Liigid:"
 
@@ -6445,7 +6444,7 @@ msgstr ""
 msgid "STEAM_TOOLTIP"
 msgstr "Peata mäng"
 
-#: ../src/early_multicellular_stage/CellType.cs:40
+#: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
 msgstr "tüvirakk"
 
@@ -6483,7 +6482,7 @@ msgstr "Varud"
 msgid "STORAGE_COLON"
 msgstr "Varud"
 
-#: ../src/general/MainMenu.cs:657
+#: ../src/general/MainMenu.cs:665
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Sisse logitud kui: {0}"
 
@@ -6557,11 +6556,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:803
+#: ../src/microbe_stage/MicrobeStage.cs:1136
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:796
+#: ../src/microbe_stage/MicrobeStage.cs:1137
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "edukas pühkimine"
 
@@ -6693,7 +6692,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:828
+#: ../src/late_multicellular_stage/MulticellularStage.cs:835
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6714,7 +6713,7 @@ msgstr "temperatuur."
 msgid "TESTING_TEAM"
 msgstr "Testimismeeskond"
 
-#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.cs:274 ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6738,7 +6737,7 @@ msgstr "SA OLED ÕIDULIKUD!"
 msgid "THEORY_TEAM"
 msgstr "Teooria meeskond"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:811
+#: ../simulation_parameters/microbe_stage/organelles.json:826
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "Termoplast"
@@ -6751,7 +6750,7 @@ msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:330
+#: ../simulation_parameters/microbe_stage/organelles.json:332
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 #, fuzzy
 msgid "THERMOSYNTHASE"
@@ -6833,7 +6832,7 @@ msgstr "Thrive litsentsid"
 msgid "THYLAKOID"
 msgstr "Tülakoid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:232
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
 
@@ -6841,7 +6840,7 @@ msgstr "Tülakoidid"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:419
+#: ../simulation_parameters/microbe_stage/biomes.json:423
 msgid "TIDEPOOL"
 msgstr "loodete bassein"
 
@@ -6865,8 +6864,8 @@ msgstr "[u]{0}[/u] eraldus niši täitmiseks uue liigina [u]{1}[/u]-st"
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] eraldus erineva valikusurve tõttu uuest liigist [u]{1}[/u]"
 
-#: ../src/microbe_stage/MicrobeStage.cs:374
-#: ../src/microbe_stage/MicrobeStage.cs:378
+#: ../src/microbe_stage/MicrobeStage.cs:402
+#: ../src/microbe_stage/MicrobeStage.cs:406
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6987,7 +6986,7 @@ msgstr "Kokkuhoid:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksiiniresistentsus"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:500
+#: ../simulation_parameters/microbe_stage/organelles.json:505
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -7224,7 +7223,7 @@ msgstr "Modifikatsioonide laadimiseks või mahalaadimiseks peate muudatused rake
 msgid "UNBIND_ALL"
 msgstr "Vabastage kõik"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:165
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
 msgid "UNBIND_HELP_TEXT"
 msgstr "Vabasta sidumisrežiim"
 
@@ -7235,7 +7234,7 @@ msgstr ""
 "See salvestamine pärineb Thrive'i uuemast versioonist ja tõenäoliselt ei ühildu.\n"
 "Kas soovite siiski proovida salvestust laadida?"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1491
+#: ../simulation_parameters/microbe_stage/biomes.json:1505
 msgid "UNDERWATERCAVE"
 msgstr "Veealune koobas"
 
@@ -7299,32 +7298,32 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "biome: {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:873
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:857
+#: ../simulation_parameters/microbe_stage/organelles.json:874
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:853
+#: ../simulation_parameters/microbe_stage/organelles.json:33
+#: ../simulation_parameters/microbe_stage/organelles.json:870
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:32
+#: ../simulation_parameters/microbe_stage/organelles.json:869
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:34
+#: ../simulation_parameters/microbe_stage/organelles.json:36
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:35
+#: ../simulation_parameters/microbe_stage/organelles.json:37
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
@@ -7379,7 +7378,7 @@ msgstr "Taustalõimede arvu käsitsi määramine"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:429
+#: ../simulation_parameters/microbe_stage/organelles.json:433
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "Vacuool"
@@ -7406,7 +7405,7 @@ msgstr "Suurendab raku salvestusruumi."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Suurendab raku salvestusruumi."
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7476,7 +7475,7 @@ msgstr "Nähtav"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:170
+#: ../simulation_parameters/microbe_stage/biomes.json:172
 msgid "VOLCANIC_VENT"
 msgstr "Vulkaaniline tuulutusava"
 

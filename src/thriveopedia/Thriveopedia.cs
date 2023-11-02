@@ -309,7 +309,6 @@ public class Thriveopedia : ControlWithInput
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.ChangePage = ChangePage;
         page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
         pageContainer.AddChild(page);
 

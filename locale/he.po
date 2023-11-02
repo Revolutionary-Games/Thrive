@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 19:42+0100\n"
+"POT-Creation-Date: 2023-11-02 20:52+0000\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -47,7 +47,7 @@ msgstr "בטל"
 msgid "ABORTED_DOT"
 msgstr "הופל."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:832
+#: ../simulation_parameters/microbe_stage/biomes.json:840
 msgid "ABYSSOPELAGIC"
 msgstr "אביסלפלגיים"
 
@@ -133,12 +133,12 @@ msgstr "קיבוע חנקן אירובי"
 msgid "AGENTS"
 msgstr "חומרים"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:91
 #, fuzzy
 msgid "AGENTS_COLON"
 msgstr "מצב:"
 
-#: ../src/microbe_stage/AgentProperties.cs:20
+#: ../src/microbe_stage/AgentProperties.cs:23
 #, fuzzy
 msgid "AGENT_NAME"
 msgstr "{0} {1}"
@@ -368,7 +368,7 @@ msgstr "כלים חקר של מפתח-אוטומטי"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:264
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:194
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
@@ -379,7 +379,7 @@ msgstr "תוצאות מפתח אוטומטי:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:265
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -467,16 +467,16 @@ msgstr "מקש Bass Down"
 msgid "BASSUP"
 msgstr "מקש Bass Up"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:586
+#: ../simulation_parameters/microbe_stage/biomes.json:592
 msgid "BATHYPELAGIC"
 msgstr "בתיפלגיים"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:552
+#: ../src/microbe_stage/MicrobeHUD.cs:631
 #: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:516
+#: ../src/microbe_stage/MicrobeHUD.cs:587
 #: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
@@ -536,17 +536,17 @@ msgstr ""
 msgid "BEST_PATCH_COLON"
 msgstr "האזור הטוב ביותר:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:329
-#: ../simulation_parameters/microbe_stage/biomes.json:496
-#: ../simulation_parameters/microbe_stage/biomes.json:662
-#: ../simulation_parameters/microbe_stage/biomes.json:908
-#: ../simulation_parameters/microbe_stage/biomes.json:1154
-#: ../simulation_parameters/microbe_stage/biomes.json:1401
-#: ../simulation_parameters/microbe_stage/biomes.json:1567
-#: ../simulation_parameters/microbe_stage/biomes.json:1756
-#: ../simulation_parameters/microbe_stage/biomes.json:1923
-#: ../simulation_parameters/microbe_stage/biomes.json:2089
+#: ../simulation_parameters/microbe_stage/biomes.json:81
+#: ../simulation_parameters/microbe_stage/biomes.json:332
+#: ../simulation_parameters/microbe_stage/biomes.json:501
+#: ../simulation_parameters/microbe_stage/biomes.json:669
+#: ../simulation_parameters/microbe_stage/biomes.json:917
+#: ../simulation_parameters/microbe_stage/biomes.json:1165
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1582
+#: ../simulation_parameters/microbe_stage/biomes.json:1773
+#: ../simulation_parameters/microbe_stage/biomes.json:1942
+#: ../simulation_parameters/microbe_stage/biomes.json:2110
 msgid "BIG_IRON_CHUNK"
 msgstr "גוש ברזל גדול"
 
@@ -554,7 +554,7 @@ msgstr "גוש ברזל גדול"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} מיליארד"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:531
+#: ../simulation_parameters/microbe_stage/organelles.json:538
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "מקשר"
@@ -587,7 +587,7 @@ msgstr "מהגדיל את מספר המינים של מגוון ביולוגי �
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "מינים המגדילים את המגוון הביולוגי עובר מוטציה עם היווצרותם"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:776
+#: ../simulation_parameters/microbe_stage/organelles.json:791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "חלולית של ביולומינסנציה"
@@ -718,27 +718,27 @@ msgstr "מקש Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "פחמן דו חמצני"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:855
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "שפע"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:859
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "כמות נכבדת"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
 msgid "CATEGORY_LITTLE"
 msgstr "קטן"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:857
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "לא מעט"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:861
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
 msgid "CATEGORY_SOME"
 msgstr "כמה"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "קטן מאוד"
 
@@ -772,7 +772,7 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:650
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:654
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -802,7 +802,7 @@ msgstr "תפריט קודים"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:366
+#: ../simulation_parameters/microbe_stage/organelles.json:369
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "כימופלסט"
@@ -815,7 +815,7 @@ msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compoundtype=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:694
+#: ../simulation_parameters/microbe_stage/organelles.json:707
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "כימורצפטור"
@@ -828,7 +828,7 @@ msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפט�
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "הכימוריצפטור מאפשר לך לאתר תרכובות מרחוק. שנה ברגע שמיקמת בשביל לשנות את סוג התרכובת ואת צבע הקו מכוון."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:164
+#: ../simulation_parameters/microbe_stage/organelles.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "חלבונים כימוסינתזיים"
@@ -863,7 +863,7 @@ msgstr "כיטינאז מאפשרים לתא לפרק ממברנות העשוי�
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה מרעלנים. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b]כיטינאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:570
+#: ../simulation_parameters/microbe_stage/organelles.json:578
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "כלורופלסט"
@@ -892,7 +892,7 @@ msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהת�
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} צריכה"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:842
+#: ../simulation_parameters/microbe_stage/organelles.json:859
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "ריס"
@@ -942,7 +942,7 @@ msgstr "מחליק רזולוציית ענן:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "מרווח מינימלי של הדמיית ענן:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1324
+#: ../simulation_parameters/microbe_stage/biomes.json:1336
 msgid "COASTAL"
 msgstr "חוף"
 
@@ -1059,7 +1059,7 @@ msgstr "תרכובות"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תרכובות"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:87
+#: ../src/microbe_stage/MicrobeHUD.cs:88
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
@@ -1384,7 +1384,7 @@ msgstr "סטטיסטיקת האורגניזם"
 msgid "CUSTOM_USERNAME"
 msgstr "שם משתמש מותאם אישית:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:601
+#: ../simulation_parameters/microbe_stage/organelles.json:609
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "ציטופלזמה"
@@ -1434,7 +1434,7 @@ msgstr "כיול שטח מת אותחל מחדש"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "תצורת שטח מת"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:984
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
 msgid "DEATH"
 msgstr "מוות"
 
@@ -1457,7 +1457,7 @@ msgstr "פלט ברירת מחדל"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:195
 msgid "DELETE"
 msgstr "מחק"
 
@@ -1572,7 +1572,7 @@ msgstr "ויקי מפתחים"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "בקרו בויקי מפתחים שלנו"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:262
 msgid "DEVOURED"
 msgstr "טרף"
 
@@ -1943,15 +1943,15 @@ msgstr "{0}: {1}- ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2409
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2432
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2443
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2413
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -2030,11 +2030,11 @@ msgstr "שומר שגיאה"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1250
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1846
+#: ../simulation_parameters/microbe_stage/biomes.json:1864
 msgid "ESTUARY"
 msgstr "שפך נהר"
 
@@ -2118,7 +2118,7 @@ msgstr "נכחד מהאזור"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "נכחד מהכוכב לכת"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:400
+#: ../src/general/base_stage/CreatureStageBase.cs:409
 msgid "EXTINCT_IN_PATCH"
 msgstr "נכחד מהאזור"
 
@@ -2250,7 +2250,7 @@ msgstr "סיים {0} דורות"
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:400
+#: ../simulation_parameters/microbe_stage/organelles.json:404
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "שוטון"
@@ -2273,22 +2273,22 @@ msgstr "נכחד מהכוכב"
 msgid "FLEET_UNITS"
 msgstr "{0} {1}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:90
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "רוטציה:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:195
-#: ../simulation_parameters/microbe_stage/biomes.json:442
-#: ../simulation_parameters/microbe_stage/biomes.json:608
-#: ../simulation_parameters/microbe_stage/biomes.json:854
-#: ../simulation_parameters/microbe_stage/biomes.json:1100
-#: ../simulation_parameters/microbe_stage/biomes.json:1347
-#: ../simulation_parameters/microbe_stage/biomes.json:1513
-#: ../simulation_parameters/microbe_stage/biomes.json:1683
-#: ../simulation_parameters/microbe_stage/biomes.json:1869
-#: ../simulation_parameters/microbe_stage/biomes.json:2035
+#: ../simulation_parameters/microbe_stage/biomes.json:197
+#: ../simulation_parameters/microbe_stage/biomes.json:446
+#: ../simulation_parameters/microbe_stage/biomes.json:614
+#: ../simulation_parameters/microbe_stage/biomes.json:862
+#: ../simulation_parameters/microbe_stage/biomes.json:1110
+#: ../simulation_parameters/microbe_stage/biomes.json:1359
+#: ../simulation_parameters/microbe_stage/biomes.json:1527
+#: ../simulation_parameters/microbe_stage/biomes.json:1699
+#: ../simulation_parameters/microbe_stage/biomes.json:1887
+#: ../simulation_parameters/microbe_stage/biomes.json:2055
 msgid "FLOATING_HAZARD"
 msgstr "מפגע צף"
 
@@ -2315,7 +2315,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2426
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2449
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2355,12 +2355,12 @@ msgstr "אוכלוסיה:"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:221
+#: ../src/microbe_stage/MicrobeHUD.cs:231
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:220
+#: ../src/microbe_stage/MicrobeHUD.cs:230
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2384,7 +2384,7 @@ msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה 
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:183
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -2491,17 +2491,17 @@ msgstr "מצב אלוהים"
 msgid "GOD_TOOLS_TITLE"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:353
-#: ../simulation_parameters/microbe_stage/biomes.json:520
-#: ../simulation_parameters/microbe_stage/biomes.json:766
-#: ../simulation_parameters/microbe_stage/biomes.json:1012
-#: ../simulation_parameters/microbe_stage/biomes.json:1258
-#: ../simulation_parameters/microbe_stage/biomes.json:1425
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1780
-#: ../simulation_parameters/microbe_stage/biomes.json:1947
-#: ../simulation_parameters/microbe_stage/biomes.json:2193
+#: ../simulation_parameters/microbe_stage/biomes.json:105
+#: ../simulation_parameters/microbe_stage/biomes.json:356
+#: ../simulation_parameters/microbe_stage/biomes.json:525
+#: ../simulation_parameters/microbe_stage/biomes.json:773
+#: ../simulation_parameters/microbe_stage/biomes.json:1021
+#: ../simulation_parameters/microbe_stage/biomes.json:1269
+#: ../simulation_parameters/microbe_stage/biomes.json:1438
+#: ../simulation_parameters/microbe_stage/biomes.json:1606
+#: ../simulation_parameters/microbe_stage/biomes.json:1797
+#: ../simulation_parameters/microbe_stage/biomes.json:1966
+#: ../simulation_parameters/microbe_stage/biomes.json:2214
 msgid "GOOGLY_EYE_CELL"
 msgstr "עיניי תא מרשרשות"
 
@@ -2635,11 +2635,11 @@ msgstr "מקש Hyper Left"
 msgid "HYPERR"
 msgstr "מקש Hyper Right"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1737
+#: ../simulation_parameters/microbe_stage/biomes.json:1754
 msgid "ICESHARD"
 msgstr "רסיסי קרח"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1657
+#: ../simulation_parameters/microbe_stage/biomes.json:1673
 msgid "ICESHELF"
 msgstr "מדף קרח"
 
@@ -2775,7 +2775,7 @@ msgstr "קצב מוטציות של AI"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "קצב מוטציות של AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:463
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:458
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -2789,7 +2789,7 @@ msgstr "קצב מוטציות של AI"
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "קצב מוטציות של AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:453
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:448
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -2808,7 +2808,7 @@ msgstr "קצב מוטציות של AI"
 msgid "INTERACTION_HARVEST"
 msgstr "קצב מוטציות של AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:439
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:434
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2816,7 +2816,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:416
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:411
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2887,7 +2887,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr "הפוך"
 
-#: ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:540
 msgid "IN_PROTOTYPE"
 msgstr ""
 "אתה משחק באבטיפוס של השלב המאוחר יותר הכלול במשחק.\n"
@@ -3124,7 +3124,7 @@ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1347
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1393
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3509,7 +3509,7 @@ msgstr "ביצועים"
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:891
+#: ../simulation_parameters/microbe_stage/organelles.json:908
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "LYSOSOME"
 msgstr "ליזוזום"
@@ -3534,11 +3534,11 @@ msgstr "מפה"
 msgid "MARCH"
 msgstr "מרץ"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:249
-#: ../simulation_parameters/microbe_stage/biomes.json:686
-#: ../simulation_parameters/microbe_stage/biomes.json:932
-#: ../simulation_parameters/microbe_stage/biomes.json:1178
-#: ../simulation_parameters/microbe_stage/biomes.json:2113
+#: ../simulation_parameters/microbe_stage/biomes.json:252
+#: ../simulation_parameters/microbe_stage/biomes.json:693
+#: ../simulation_parameters/microbe_stage/biomes.json:941
+#: ../simulation_parameters/microbe_stage/biomes.json:1189
+#: ../simulation_parameters/microbe_stage/biomes.json:2134
 msgid "MARINE_SNOW"
 msgstr "שלג ימי"
 
@@ -3613,11 +3613,11 @@ msgstr "סוגי קרום"
 msgid "MENU"
 msgstr "תפריט"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1078
+#: ../simulation_parameters/microbe_stage/biomes.json:1088
 msgid "MESOPELAGIC"
 msgstr "מזופלגיים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:263
+#: ../simulation_parameters/microbe_stage/organelles.json:265
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "מטבולוזומים"
@@ -3765,7 +3765,7 @@ msgstr "עורך ארגז חול המיקרובי"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:222
+#: ../src/microbe_stage/MicrobeSpecies.cs:229
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]שלב[/b]\n"
@@ -3979,7 +3979,7 @@ msgstr "פורמט חסר או לא חוקי של שדה חובה: {0}"
 msgid "MISSING_TITLE"
 msgstr "חסרה כותרת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:464
+#: ../simulation_parameters/microbe_stage/organelles.json:469
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "מיטוכונדריון"
@@ -4005,7 +4005,7 @@ msgstr "הוראות יצירת מוד זמינים ב-"
 msgid "MODELS"
 msgstr "מודלים"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:330
 msgid "MODIFY"
 msgstr "לשנות"
 
@@ -4180,7 +4180,7 @@ msgstr "רגישות מראה עכבר"
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "רגישות העכבר בקנה מידה עם גודל החלון"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:262
 msgid "MOVE"
 msgstr "להזיז"
 
@@ -4265,7 +4265,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "לנוע ליבשה?"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:584
+#: ../src/late_multicellular_stage/MulticellularStage.cs:588
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "לנוע ליבשה?"
@@ -4443,7 +4443,7 @@ msgstr "לך לכרטיסיית העורך הבאה"
 msgid "NITROGEN"
 msgstr "חנקן"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:100
+#: ../simulation_parameters/microbe_stage/organelles.json:102
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "ניטרוגנאז"
@@ -4456,7 +4456,7 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:298
+#: ../simulation_parameters/microbe_stage/organelles.json:300
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "פלסטיד מקבע חנקן"
@@ -4489,31 +4489,31 @@ msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט ה
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:503
+#: ../src/late_multicellular_stage/MulticellularStage.cs:507
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:388
+#: ../src/microbe_stage/systems/MicrobeEventCallbackSystem.cs:100
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1601
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:198
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1547
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1818
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1813
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:500
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:502
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4534,7 +4534,7 @@ msgid "NO_AI"
 msgstr "מצב בודד"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2464
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4572,12 +4572,12 @@ msgstr "לא נמצאה ספריית צילומי מסך"
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:668
+#: ../simulation_parameters/microbe_stage/organelles.json:679
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1345
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1391
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
@@ -4598,11 +4598,10 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2299
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2309
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2322
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:380
+#: ../src/microbe_stage/MicrobeHUD.cs:429
 msgid "N_A"
 msgstr "לא זמין"
 
@@ -4610,7 +4609,7 @@ msgstr "לא זמין"
 msgid "N_A_MP"
 msgstr "אין נקמ\"ו"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:428
+#: ../src/microbe_stage/MicrobeHUD.cs:483
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4742,7 +4741,7 @@ msgstr "שנה את ההגדרות שלך"
 msgid "ORGANELLES"
 msgstr "אברונים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:918
+#: ../simulation_parameters/microbe_stage/organelles.json:937
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4758,7 +4757,7 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:960
+#: ../simulation_parameters/microbe_stage/organelles.json:980
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4769,7 +4768,7 @@ msgstr "פילוס טורף"
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:23
+#: ../simulation_parameters/microbe_stage/organelles.json:25
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:728
 msgid "ORGANELLE_PILUS"
 msgstr "פילוס טורף"
@@ -4861,7 +4860,7 @@ msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, ה
 msgid "OXYGEN"
 msgstr "חמצן"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:200
+#: ../simulation_parameters/microbe_stage/organelles.json:202
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "אוקסיטוקסיזום"
@@ -5009,7 +5008,7 @@ msgstr "מושהה"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "לחזור אל המשחק"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:73
+#: ../src/microbe_stage/MicrobeHUD.cs:74
 msgid "PAUSE_PROMPT"
 msgstr "[center]לחץ [thrive:input]g_pause[/thrive:input] בשביל להמשיך[/center]"
 
@@ -5029,7 +5028,7 @@ msgstr "טעינת קבצי pck ({0}) נכשלה בגלל שקובץ זה לא �
 msgid "PEACEFUL"
 msgstr "שלוו"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:616
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -5039,7 +5038,7 @@ msgstr "שלוו"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:252
+#: ../src/microbe_stage/MicrobeHUD.cs:268
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5104,7 +5103,7 @@ msgstr "מייצר כוכבי לכת בקרוב!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "כוכב סייד אקראי"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:403
+#: ../src/microbe_stage/MicrobeHUD.cs:453
 #, fuzzy
 msgid "PLAYER"
 msgstr "תא השחקן"
@@ -5117,7 +5116,7 @@ msgstr "ירידה באכולוסיה במוות של שחקן"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(המקדם להפחתה של האכלוסיית השחקן על כל מוות של השחקן)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:344
+#: ../src/general/base_stage/CreatureStageBase.cs:353
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -5125,7 +5124,7 @@ msgstr "השחקן מת"
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
 
-#: ../src/saving/SaveHelper.cs:520
+#: ../src/saving/SaveHelper.cs:521
 msgid "PLAYER_EXTINCT"
 msgstr "השחקן נכחד"
 
@@ -5134,7 +5133,7 @@ msgstr "השחקן נכחד"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "השחקן נכחד"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:288
+#: ../src/general/base_stage/CreatureStageBase.cs:297
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
@@ -5182,7 +5181,7 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2290
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2313
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5251,7 +5250,7 @@ msgstr "הגן על מינים חדשים ממכסת מינים"
 msgid "PROTEINS"
 msgstr "חלבונים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:132
+#: ../simulation_parameters/microbe_stage/organelles.json:134
 msgid "PROTOPLASM"
 msgstr "פרוטופלזמה"
 
@@ -5276,7 +5275,7 @@ msgstr "יציאה"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "צא מהמשחק"
 
-#: ../src/general/PauseMenu.cs:418
+#: ../src/general/PauseMenu.cs:426
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
@@ -5343,7 +5342,7 @@ msgstr "תסקיר"
 msgid "REPORT_BUG"
 msgstr "תסקיר"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1166
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -5479,7 +5478,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "צא לתפריט הראשי"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:399
+#: ../src/general/PauseMenu.cs:407
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "האם אתה בטוח שאתה רוצה לצאת לתפריט הראשי?\n"
@@ -5559,7 +5558,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
-#: ../simulation_parameters/microbe_stage/organelles.json:68
+#: ../simulation_parameters/microbe_stage/organelles.json:70
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "רוסטיצינין"
@@ -5686,15 +5685,15 @@ msgstr "שמירת מידע נכשלה בפרט ל: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "שומר..."
 
-#: ../src/saving/SaveHelper.cs:510 ../src/saving/SaveHelper.cs:561
+#: ../src/saving/SaveHelper.cs:511
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "שמירה נכשלה! משהו חריג קרה"
 
-#: ../src/saving/SaveHelper.cs:519 ../src/saving/SaveHelper.cs:538
+#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "שמירה אינה אפשרית כרגע בשל:"
 
-#: ../src/saving/SaveHelper.cs:551
+#: ../src/saving/SaveHelper.cs:550
 msgid "SAVING_SUCCEEDED"
 msgstr "נשמר בהצלחה"
 
@@ -5756,7 +5755,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "רדיוס חיפוש:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2013
+#: ../simulation_parameters/microbe_stage/biomes.json:2033
 msgid "SEA_FLOOR"
 msgstr "קרקעית הים"
 
@@ -5903,7 +5902,7 @@ msgstr "הפעל / השבת את חלון אזהרת התקדמות הלא שמ�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../simulation_parameters/microbe_stage/organelles.json:768
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "חומר מאותת"
@@ -5916,27 +5915,27 @@ msgstr "חומרי איתות מאפשרים לתא ליצור כימיקלים 
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפתוח את התפריט שמאפשר להנפיק פקודות לפריטים אחרים מהמין שלך."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:147
+#: ../src/microbe_stage/MicrobeHUD.cs:154
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "להפוך לתוקפני"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:146
+#: ../src/microbe_stage/MicrobeHUD.cs:153
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "ברחו"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:144
+#: ../src/microbe_stage/MicrobeHUD.cs:151
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "עקוב אחרי"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:143
+#: ../src/microbe_stage/MicrobeHUD.cs:150
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "ללא פקודה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:145
+#: ../src/microbe_stage/MicrobeHUD.cs:152
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "זוזו אליי"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:157
 msgid "SIGNAL_TO_EMIT"
 msgstr "איתות לפליטה"
 
@@ -5962,7 +5961,7 @@ msgstr "גודל:"
 msgid "SLIDESHOW"
 msgstr "מצגת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
+#: ../simulation_parameters/microbe_stage/organelles.json:742
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr "סילון ריר"
@@ -5975,17 +5974,17 @@ msgstr "הרבה אורגניזמים מפיקים חומרים רב סוכרי�
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"mucilage\"][/thrive:compound]. לחץ על [thrive:input]g_secrete_slime[/thrive:input] בשביל לשחרר את [thrive:compound type=\"mucilage\"][/thrive:compound] המאוחסן, מאיץ את מהירות התא ומאט טורפים."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:213
-#: ../simulation_parameters/microbe_stage/biomes.json:460
-#: ../simulation_parameters/microbe_stage/biomes.json:626
-#: ../simulation_parameters/microbe_stage/biomes.json:872
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
-#: ../simulation_parameters/microbe_stage/biomes.json:1365
-#: ../simulation_parameters/microbe_stage/biomes.json:1531
-#: ../simulation_parameters/microbe_stage/biomes.json:1701
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2053
+#: ../simulation_parameters/microbe_stage/biomes.json:45
+#: ../simulation_parameters/microbe_stage/biomes.json:216
+#: ../simulation_parameters/microbe_stage/biomes.json:465
+#: ../simulation_parameters/microbe_stage/biomes.json:633
+#: ../simulation_parameters/microbe_stage/biomes.json:881
+#: ../simulation_parameters/microbe_stage/biomes.json:1129
+#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1546
+#: ../simulation_parameters/microbe_stage/biomes.json:1718
+#: ../simulation_parameters/microbe_stage/biomes.json:1906
+#: ../simulation_parameters/microbe_stage/biomes.json:2074
 msgid "SMALL_IRON_CHUNK"
 msgstr "גוש ברזל קטן"
 
@@ -6041,7 +6040,7 @@ msgstr "זמן אמוניה"
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeStage.cs:804
+#: ../src/microbe_stage/MicrobeStage.cs:902
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
@@ -6066,7 +6065,7 @@ msgstr "מקש עכבר ייחודי 2"
 msgid "SPECIES"
 msgstr "מינים"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
@@ -6241,7 +6240,7 @@ msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה 
 msgid "STEAM_TOOLTIP"
 msgstr "ראו את הדף הSteam שלנו"
 
-#: ../src/early_multicellular_stage/CellType.cs:40
+#: ../src/early_multicellular_stage/CellType.cs:39
 msgid "STEM_CELL_NAME"
 msgstr "גזע"
 
@@ -6277,7 +6276,7 @@ msgstr "אחסון"
 msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
-#: ../src/general/MainMenu.cs:657
+#: ../src/general/MainMenu.cs:665
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
 
@@ -6344,11 +6343,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:803
+#: ../src/microbe_stage/MicrobeStage.cs:1136
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:796
+#: ../src/microbe_stage/MicrobeStage.cs:1137
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
@@ -6480,7 +6479,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:828
+#: ../src/late_multicellular_stage/MulticellularStage.cs:835
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6501,7 +6500,7 @@ msgstr "טמפ'."
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/general/MainMenu.cs:266 ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.cs:274 ../src/general/MainMenu.tscn:1004
 #, fuzzy
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
@@ -6525,7 +6524,7 @@ msgstr "אתה שגשגת!"
 msgid "THEORY_TEAM"
 msgstr "צוות תיאוריה"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:811
+#: ../simulation_parameters/microbe_stage/organelles.json:826
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "תרמופלסט"
@@ -6538,7 +6537,7 @@ msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:330
+#: ../simulation_parameters/microbe_stage/organelles.json:332
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 msgid "THERMOSYNTHASE"
 msgstr "תרמוסינטאז"
@@ -6616,7 +6615,7 @@ msgstr "רישיונות Thrive"
 msgid "THYLAKOID"
 msgstr "תילקואיד"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:232
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "תילקואידים"
 
@@ -6624,7 +6623,7 @@ msgstr "תילקואידים"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים להשתמש באנרגיית ה[thrive:compound type=\"sunlight\"][/thrive:compound] כדי לייצר [thrive:compound type=\"glucose\"][/thrive:compound] ממים ו[thrive:compound type=\"carbondioxide\"][/thrive:compound] במצב צבירה גזי בתהליך שנקרא [b]פוטוסינתזה[/b]. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב ייצור ה[thrive:compound type=\"glucose\"][/thrive:compound] מתרחש בהתאם לריכוז thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת ה[thrive:compound type=\"sunlight\"][/thrive:compound]. מכיוון שהתילקואידים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:419
+#: ../simulation_parameters/microbe_stage/biomes.json:423
 msgid "TIDEPOOL"
 msgstr "בריכת גאות"
 
@@ -6648,8 +6647,8 @@ msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשב�
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
 
-#: ../src/microbe_stage/MicrobeStage.cs:374
-#: ../src/microbe_stage/MicrobeStage.cs:378
+#: ../src/microbe_stage/MicrobeStage.cs:402
+#: ../src/microbe_stage/MicrobeStage.cs:406
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6766,7 +6765,7 @@ msgstr "נשמר בסך הכל:"
 msgid "TOXIN_RESISTANCE"
 msgstr "עמידות לרעלים"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:500
+#: ../simulation_parameters/microbe_stage/organelles.json:505
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -7009,7 +7008,7 @@ msgstr "עליך להחיל שינויים בכדי לטעון או לפרוק �
 msgid "UNBIND_ALL"
 msgstr "שחרר הכל"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:165
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
 msgid "UNBIND_HELP_TEXT"
 msgstr "מצב שחרר"
 
@@ -7017,7 +7016,7 @@ msgstr "מצב שחרר"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "זהו בניית די-באג כאשר שהמידע מתחת ככל הנראה לא מעודכן"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1491
+#: ../simulation_parameters/microbe_stage/biomes.json:1505
 msgid "UNDERWATERCAVE"
 msgstr "מערה תת-מימית"
 
@@ -7077,32 +7076,32 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "ללא כותרת"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:856
+#: ../simulation_parameters/microbe_stage/organelles.json:873
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:857
+#: ../simulation_parameters/microbe_stage/organelles.json:874
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:31
-#: ../simulation_parameters/microbe_stage/organelles.json:853
+#: ../simulation_parameters/microbe_stage/organelles.json:33
+#: ../simulation_parameters/microbe_stage/organelles.json:870
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:30
-#: ../simulation_parameters/microbe_stage/organelles.json:852
+#: ../simulation_parameters/microbe_stage/organelles.json:32
+#: ../simulation_parameters/microbe_stage/organelles.json:869
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:34
+#: ../simulation_parameters/microbe_stage/organelles.json:36
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:35
+#: ../simulation_parameters/microbe_stage/organelles.json:37
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
@@ -7155,7 +7154,7 @@ msgstr "הגדר ידנית את מספר נושאי הרקע"
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "השתמש בגודל חלון וירטואלי"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:429
+#: ../simulation_parameters/microbe_stage/organelles.json:433
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "חלולית"
@@ -7182,7 +7181,7 @@ msgstr "מגדיל את שטח האחסון של התא."
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "מגדיל את שטח האחסון של התא."
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:617
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7250,7 +7249,7 @@ msgstr "גלוי"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "הצע רעיון"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:170
+#: ../simulation_parameters/microbe_stage/biomes.json:172
 msgid "VOLCANIC_VENT"
 msgstr "נביעה געשית"
 

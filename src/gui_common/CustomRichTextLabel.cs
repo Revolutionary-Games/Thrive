@@ -601,6 +601,11 @@ public class CustomRichTextLabel : RichTextLabel
                     GD.PrintErr("Opening the link failed");
                 }
             }
+            else if (metaString.StartsWith("thriveopedia", StringComparison.Ordinal))
+            {
+                var pageName = metaString.Split("thriveopedia:")[1];
+                ThriveopediaManager.OpenPage(pageName);
+            }
         }
     }
 }

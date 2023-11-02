@@ -219,6 +219,12 @@ public class PauseMenu : TopLevelContainer
 
         GetTree().AutoAcceptQuit = false;
 
+        ThriveopediaManager.Instance.OpenCallback = pageName =>
+        {
+            OpenThriveopediaPressed();
+            thriveopedia.ChangePage(pageName);
+        };
+
         base._EnterTree();
     }
 
@@ -230,6 +236,8 @@ public class PauseMenu : TopLevelContainer
         Paused = false;
 
         GetTree().AutoAcceptQuit = true;
+
+        ThriveopediaManager.Instance.OpenCallback = null;
     }
 
     public override void _Notification(int notification)

@@ -236,6 +236,12 @@ public class MainMenu : NodeWithInput
         base._EnterTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
+
+        ThriveopediaManager.Instance.OpenCallback = pageName =>
+        {
+            thriveopedia.OpenFromMainMenu();
+            thriveopedia.ChangePage(pageName);
+        };
     }
 
     public override void _ExitTree()
@@ -243,6 +249,8 @@ public class MainMenu : NodeWithInput
         base._ExitTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
+
+        ThriveopediaManager.Instance.OpenCallback = null;
     }
 
     public override void _Process(float delta)
