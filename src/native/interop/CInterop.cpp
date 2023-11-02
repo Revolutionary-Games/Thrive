@@ -535,10 +535,10 @@ PhysicsShape* CreateMicrobeShapeSpheres(JVecF3* points, uint32_t pointCount, flo
         Thrive::Physics::ShapeCreator::CreateMicrobeShapeSpheres(points, pointCount, density, scale)));
 }
 
-PhysicsShape* CreateConvexShape(JVecF3* points, uint32_t pointCount, float density)
+PhysicsShape* CreateConvexShape(JVecF3* points, uint32_t pointCount, float density, float scale, float convexRadius)
 {
-    return reinterpret_cast<PhysicsShape*>(
-        CreateShapeWrapper(Thrive::Physics::ShapeCreator::CreateConvex(points, pointCount, density)));
+    return reinterpret_cast<PhysicsShape*>(CreateShapeWrapper(
+        Thrive::Physics::ShapeCreator::CreateConvex(points, pointCount, density, scale, convexRadius)));
 }
 
 PhysicsShape* CreateStaticCompoundShape(SubShapeDefinition* subShapes, uint32_t shapeCount)

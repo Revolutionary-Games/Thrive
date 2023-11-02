@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-02 20:52+0000\n"
+"POT-Creation-Date: 2023-11-02 22:19+0000\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -525,15 +525,15 @@ msgstr "{0}-{1}m žemiau jūros lygio"
 msgid "BENCHMARKS"
 msgstr "Lyginamieji testai"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
 msgid "BENCHMARK_FINISHED"
 msgstr "Atliktas lyginamasis testas"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
 msgid "BENCHMARK_PHASE"
 msgstr "Lyginamasis etapas:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Rezultatai:"
 
@@ -890,6 +890,10 @@ msgstr "Chromatinė aberacija:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Gamina [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+msgid "CHUNK_CELL_CORPSE_PART"
+msgstr ""
+
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} suvartojimas"
@@ -918,7 +922,7 @@ msgstr "Pop: {0} Maistas: {1} Mokslas: {2}"
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Išvalyti Senus Išsaugojimus"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1217,7 +1221,7 @@ msgstr "Valdiklio jautrumas"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Nukopijuoti klaidą į iškarpinę"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
 msgid "COPY_RESULTS"
 msgstr "Kopijuoti Rezultatus"
 
@@ -1428,7 +1432,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:319
 msgid "DEATH"
 msgstr "mirtis"
 
@@ -2000,7 +2004,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2318,7 +2322,7 @@ msgstr "Elemento aprašymas:"
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -3555,12 +3559,12 @@ msgstr ""
 msgid "MICROBE"
 msgstr "Mikroorganizmo būsena"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr "Mikroorganizmo būsena"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
 #: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -4268,11 +4272,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -5755,7 +5759,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6046,11 +6050,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 

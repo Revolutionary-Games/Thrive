@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-02 20:52+0000\n"
+"POT-Creation-Date: 2023-11-02 22:19+0000\n"
 "PO-Revision-Date: 2023-10-07 07:19+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -525,15 +525,15 @@ msgstr "{0}-{1}м. нижче рівня моря"
 msgid "BENCHMARKS"
 msgstr "Бенчмарки"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
 msgid "BENCHMARK_FINISHED"
 msgstr "Бенчмарк завершено"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
 msgid "BENCHMARK_PHASE"
 msgstr "Фаза бенчмарку:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Результати:"
 
@@ -890,6 +890,10 @@ msgstr "Хроматична аберація:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+msgid "CHUNK_CELL_CORPSE_PART"
+msgstr ""
+
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} спожито/поглинуто"
@@ -918,7 +922,7 @@ msgstr "Населення: {0} Їжа: {1} Наука: {2}"
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистити старі збереження"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1217,7 +1221,7 @@ msgstr "Чутливість контролера"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Скопіювати помилку з до буферу обміну"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
 msgid "COPY_RESULTS"
 msgstr "Скопіювати результати"
 
@@ -1444,7 +1448,7 @@ msgstr "Калібрування ертвої зони було скинуто"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Конфігурація мертвої зони"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:319
 msgid "DEATH"
 msgstr "Смерть"
 
@@ -2040,7 +2044,7 @@ msgstr "Помилка збереження"
 msgid "ESCAPE"
 msgstr "Вийти з повноекрання"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
@@ -2354,7 +2358,7 @@ msgstr "Файл скам'янілості немодливо видалити"
 msgid "FOUR_TIMES"
 msgstr "4х"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -3615,11 +3619,11 @@ msgstr "{0} MiB"
 msgid "MICROBE"
 msgstr "Мікроб"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
 msgid "MICROBES_COUNT"
 msgstr "Кількість бактерій:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
 #: ../src/general/MainMenu.tscn:599
 msgid "MICROBE_BENCHMARK"
 msgstr "Мікробний бенчмарк"
@@ -4447,11 +4451,11 @@ msgstr "Пошкодження через токсини у поглинутій
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Немає {0} для поглинання цілі"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Поточний розмір клітини замалий для поглинання цілі"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Замало простору поглинутої матерії для поглинання цілі"
 
@@ -5947,7 +5951,7 @@ msgstr "Спавн амоніаку"
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -6245,11 +6249,11 @@ msgstr "Центр суспільства"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Фабрика на паровій тязі"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "вдале очищення"
 

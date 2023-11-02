@@ -6,6 +6,14 @@ using Godot;
 /// </summary>
 public class DebugDrawer : ControlWithInput
 {
+#pragma warning disable CA2213
+    [Export]
+    public Material LineMaterial = null!;
+
+    [Export]
+    public Material TriangleMaterial = null!;
+#pragma warning restore CA2213
+
     /// <summary>
     ///   Needs to match what's defined in PhysicalWorld.hpp
     /// </summary>
@@ -29,12 +37,22 @@ public class DebugDrawer : ControlWithInput
     // 3 vertices
     private const long SingleTriangleDrawMemoryUse = MemoryUseOfIntermediateVertex * 3 + sizeof(uint);
 
+    /// <summary>
+    ///   Hides the debug drawing after this time of inactivity. Makes sure debug draw is still visible after a while
+    ///   the game is paused, but will eventually clear up (for example if going to a part of the game that doesn't
+    ///   use debug drawing)
+    /// </summary>
+    private const float HideAfterInactiveFor = 15.0f;
+
     private static DebugDrawer? instance;
 
 #pragma warning disable CA2213
-    private ImmediateGeometry lineDrawer = null!;
-    private ImmediateGeometry triangleDrawer = null!;
+    private MeshInstance lineDrawer = null!;
+    private MeshInstance triangleDrawer = null!;
 #pragma warning restore CA2213
+
+    private CustomImmediateMesh? lineMesh;
+    private CustomImmediateMesh triangleMesh = null!;
 
     private int currentPhysicsDebugLevel;
 
@@ -42,16 +60,14 @@ public class DebugDrawer : ControlWithInput
     private bool warnedAboutNotBeingSupported;
     private bool warnedAboutHittingMemoryLimit;
 
-    // Note that only one debug draw geometry can be going on at once so drawing lines intermixed with triangles is
-    // note very efficient
-    private bool lineDrawStarted;
-    private bool triangleDrawStarted;
-
     private long usedDrawMemory;
     private long drawMemoryLimit;
     private long extraNeededDrawMemory;
 
     private bool drawnThisFrame;
+
+    // As the data is not drawn each frame, there's a delay before hiding the draw result
+    private float timeInactive;
 
     private DebugDrawer()
     {
@@ -84,30 +100,33 @@ public class DebugDrawer : ControlWithInput
 
     public override void _Ready()
     {
-        lineDrawer = GetNode<ImmediateGeometry>("LineDrawer");
-        triangleDrawer = GetNode<ImmediateGeometry>("TriangleDrawer");
+        lineDrawer = GetNode<MeshInstance>("LineDrawer");
+        triangleDrawer = GetNode<MeshInstance>("TriangleDrawer");
+
+        lineMesh = new CustomImmediateMesh(LineMaterial);
+        triangleMesh = new CustomImmediateMesh(TriangleMaterial);
+
+        // Make sure the debug stuff is always rendered
+        float halfVisibility = Constants.DEBUG_DRAW_MAX_DISTANCE_ORIGIN * 0.5f;
+
+        var quiteBigAABB = new AABB(-halfVisibility, -halfVisibility, -halfVisibility, halfVisibility * 2,
+            halfVisibility * 2, halfVisibility * 2);
+
+        lineMesh.CustomBoundingBox = quiteBigAABB;
+        triangleMesh.CustomBoundingBox = quiteBigAABB;
 
         physicsDebugSupported = NativeInterop.RegisterDebugDrawer(DrawLine, DrawTriangle);
 
-        // Make sure the debug stuff is always rendered
-        lineDrawer.SetCustomAabb(new AABB(float.MinValue, float.MinValue, float.MinValue, float.MaxValue,
-            float.MaxValue, float.MaxValue));
-        triangleDrawer.SetCustomAabb(new AABB(float.MinValue, float.MinValue, float.MinValue, float.MaxValue,
-            float.MaxValue, float.MaxValue));
+        lineDrawer.Mesh = lineMesh.Mesh;
+        lineDrawer.Visible = false;
+
+        triangleDrawer.Mesh = triangleMesh.Mesh;
+        triangleDrawer.Visible = false;
 
         // TODO: implement debug text drawing (this is a Control to support that in the future)
 
-        // Determine how much stuff we can draw before having all of the drawn stuff disappear
-        var limit = ProjectSettings.Singleton.Get("rendering/limits/buffers/immediate_buffer_size_kb");
-
-        if (limit == null)
-        {
-            GD.PrintErr("Unknown immediate geometry buffer size limit, can't draw debug lines");
-        }
-        else
-        {
-            drawMemoryLimit = (int)limit * 1024;
-        }
+        // Set a max limit to not draw way too much stuff and slow down things a ton
+        drawMemoryLimit = Constants.MEBIBYTE * 4;
 
         if (GetTree().DebugCollisionsHint)
         {
@@ -140,18 +159,11 @@ public class DebugDrawer : ControlWithInput
     {
         if (drawnThisFrame)
         {
-            // Finish the geometry
-            if (lineDrawStarted)
-            {
-                lineDrawStarted = false;
-                lineDrawer.End();
-            }
+            timeInactive = 0;
 
-            if (triangleDrawStarted)
-            {
-                triangleDrawStarted = false;
-                triangleDrawer.End();
-            }
+            // Finish the geometry
+            lineMesh!.Finish();
+            triangleMesh.Finish();
 
             lineDrawer.Visible = true;
             triangleDrawer.Visible = true;
@@ -184,8 +196,12 @@ public class DebugDrawer : ControlWithInput
 
             // This needs to reset here so that StartDrawingIfNotYetThisFrame gets called again
             usedDrawMemory = 0;
+            return;
         }
-        else if (currentPhysicsDebugLevel < 1)
+
+        timeInactive += delta;
+
+        if (currentPhysicsDebugLevel < 1 || timeInactive > HideAfterInactiveFor)
         {
             lineDrawer.Visible = false;
             triangleDrawer.Visible = false;
@@ -214,6 +230,20 @@ public class DebugDrawer : ControlWithInput
         }
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (lineMesh != null)
+            {
+                lineMesh.Dispose();
+                triangleMesh.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void DrawLine(Vector3 from, Vector3 to, Color colour)
     {
         if (usedDrawMemory + SingleLineDrawMemoryUse >= drawMemoryLimit)
@@ -226,21 +256,8 @@ public class DebugDrawer : ControlWithInput
         {
             StartDrawingIfNotYetThisFrame();
 
-            if (!lineDrawStarted)
-            {
-                if (triangleDrawStarted)
-                {
-                    triangleDrawStarted = false;
-                    triangleDrawer.End();
-                }
-
-                lineDrawStarted = true;
-                lineDrawer.Begin(Mesh.PrimitiveType.Lines);
-            }
-
-            lineDrawer.SetColor(colour);
-            lineDrawer.AddVertex(from);
-            lineDrawer.AddVertex(to);
+            lineMesh!.StartIfNeeded(Mesh.PrimitiveType.Lines);
+            lineMesh.AddLine(from, to, colour);
 
             usedDrawMemory += SingleLineDrawMemoryUse;
         }
@@ -262,23 +279,8 @@ public class DebugDrawer : ControlWithInput
         {
             StartDrawingIfNotYetThisFrame();
 
-            if (!triangleDrawStarted)
-            {
-                if (lineDrawStarted)
-                {
-                    lineDrawStarted = false;
-                    lineDrawer.End();
-                }
-
-                triangleDrawStarted = true;
-                triangleDrawer.Begin(Mesh.PrimitiveType.Triangles);
-            }
-
-            triangleDrawer.SetColor(colour);
-
-            triangleDrawer.AddVertex(vertex1);
-            triangleDrawer.AddVertex(vertex2);
-            triangleDrawer.AddVertex(vertex3);
+            triangleMesh.StartIfNeeded(Mesh.PrimitiveType.Triangles);
+            triangleMesh.AddTriangle(vertex1, vertex2, vertex3, colour);
 
             usedDrawMemory += SingleTriangleDrawMemoryUse;
         }
@@ -293,13 +295,8 @@ public class DebugDrawer : ControlWithInput
         if (drawnThisFrame)
             return;
 
-        lineDrawer.Clear();
         usedDrawMemory = 0;
         extraNeededDrawMemory = 0;
-        lineDrawStarted = false;
-
-        triangleDrawer.Clear();
-        triangleDrawStarted = false;
 
         drawnThisFrame = true;
     }

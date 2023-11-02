@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-02 20:52+0000\n"
+"POT-Creation-Date: 2023-11-02 22:19+0000\n"
 "PO-Revision-Date: 2023-10-05 20:40+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -526,15 +526,15 @@ msgstr "在海平面下方{0}-{1}米处"
 msgid "BENCHMARKS"
 msgstr "载入"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
 msgid "BENCHMARK_FINISHED"
 msgstr "基准测试完成"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
 msgid "BENCHMARK_PHASE"
 msgstr "基准测试中："
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "结果："
 
@@ -891,6 +891,10 @@ msgstr "色差："
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与[thrive:compound type=\"sunlight\"][/thrive:compound]强度成正比。"
 
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+msgid "CHUNK_CELL_CORPSE_PART"
+msgstr ""
+
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
@@ -919,7 +923,7 @@ msgstr "人口：{0} 食物：{1} 科学：{2}"
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1218,7 +1222,7 @@ msgstr "控制器灵敏度"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "将错误复制到剪贴板"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
 msgid "COPY_RESULTS"
 msgstr "复制结果"
 
@@ -1445,7 +1449,7 @@ msgstr "死区已重置"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "死区控制"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:319
 msgid "DEATH"
 msgstr "死亡数"
 
@@ -2041,7 +2045,7 @@ msgstr "存档时出错"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2355,7 +2359,7 @@ msgstr "未能删除化石文件"
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -3617,11 +3621,11 @@ msgstr "{0} MiB"
 msgid "MICROBE"
 msgstr "微生物"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
 msgid "MICROBES_COUNT"
 msgstr "微生物计数："
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
 #: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -4450,11 +4454,11 @@ msgstr "由于摄入物体中的毒素而受伤"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前细胞大小不足以吞噬目标"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
@@ -5956,7 +5960,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -6254,11 +6258,11 @@ msgstr "社会中心"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "蒸汽动力工厂"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-02 20:52+0000\n"
+"POT-Creation-Date: 2023-11-02 22:19+0000\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -522,15 +522,15 @@ msgstr "{0}-{1}m-el a tengerszint alatt"
 msgid "BENCHMARKS"
 msgstr "Teljesítmény teszt"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:155
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:156
 msgid "BENCHMARK_FINISHED"
 msgstr "Teljesítmény teszt befejezve"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:77
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:78
 msgid "BENCHMARK_PHASE"
 msgstr "Teljesítmény teszt fázis:"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:134
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:135
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Eredméynek:"
 
@@ -896,6 +896,10 @@ msgstr "Kromatikus aberráció:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
 
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+msgid "CHUNK_CELL_CORPSE_PART"
+msgstr ""
+
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
@@ -927,7 +931,7 @@ msgstr "Organizmus statisztikái"
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
 #: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1228,7 +1232,7 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Hiba másolása vágólapra"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:174
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:175
 msgid "COPY_RESULTS"
 msgstr "Eredmények másolása"
 
@@ -1448,7 +1452,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:315
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:319
 msgid "DEATH"
 msgstr ""
 
@@ -2054,7 +2058,7 @@ msgstr "Mentési hiba"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2420,7 +2424,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:178
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -3709,12 +3713,12 @@ msgstr "{0} MiB"
 msgid "MICROBE"
 msgstr "Sejtfázis"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:108
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:109
 #, fuzzy
 msgid "MICROBES_COUNT"
 msgstr "Sejtfázis"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:35
 #: ../src/general/MainMenu.tscn:599
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
@@ -4561,11 +4565,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -6125,7 +6129,7 @@ msgstr "Ammónia létrehozása"
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
@@ -6436,11 +6440,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "sikeres ölés"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 

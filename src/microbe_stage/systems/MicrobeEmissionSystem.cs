@@ -44,6 +44,7 @@
             ref var control = ref entity.Get<MicrobeControl>();
 
             // Reduce agent emission cooldown
+            // TODO: is it faster to check than to just blindly always subtract delta here?
             control.AgentEmissionCooldown -= delta;
             if (control.AgentEmissionCooldown < 0)
                 control.AgentEmissionCooldown = 0;

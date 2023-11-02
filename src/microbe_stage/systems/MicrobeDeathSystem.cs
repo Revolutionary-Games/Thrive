@@ -105,6 +105,8 @@
                     .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).CorpseChunkScene ??
                 throw new Exception("No chunk scene set on default organelle type to use");
 
+            var chunkName = TranslationServer.Translate("CHUNK_CELL_CORPSE_PART");
+
             for (int i = 0; i < chunksToSpawn; ++i)
             {
                 // Amount of compound in one chunk
@@ -117,13 +119,15 @@
                 {
                     ChunkScale = 1.0f,
                     Dissolves = true,
-                    Mass = 1.0f,
+                    PhysicsDensity = 1200.0f,
                     Radius = 1.0f,
                     Size = 3.0f,
                     VentAmount = 0.1f,
 
                     // Add compounds
                     Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
+
+                    Name = chunkName,
                 };
 
                 // They were added in order already so looping through this other thing is fine

@@ -1286,6 +1286,14 @@ public static class Constants
     public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;
 
     /// <summary>
+    ///   How far away from the world origin debug draw works. When farther away no debug drawing happens. Setting this
+    ///   too far seems to trigger a problem in Godot where a grey overlay is over all 3D content blocking everything.
+    ///   TODO: if we need bigger worlds then the <see cref="DebugDrawer"/> will need to be updated to reposition its
+    ///   meshes to get a smaller bounding box working
+    /// </summary>
+    public const float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000;
+
+    /// <summary>
     ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
     ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
     /// </summary>

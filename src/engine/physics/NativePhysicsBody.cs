@@ -33,7 +33,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
     /// <summary>
     ///   Storage variable for collision recording, when this is active the pin handle is used to pin down this
-    ///   piece of memory to ensure the native code size can directly write here with pointers
+    ///   piece of memory to ensure the native code side can directly write here with pointers
     /// </summary>
     private PhysicsCollision[]? activeCollisions;
 
@@ -60,7 +60,8 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
     /// <summary>
     ///   Active collisions for this body. Only updated if started through
-    ///   <see cref="PhysicalWorld.BodyStartCollisionRecording"/>
+    ///   <see cref="PhysicalWorld.BodyStartCollisionRecording"/>. For entities prefer
+    ///   <see cref="Components.CollisionManagementHelpers.GetActiveCollisions"/>
     /// </summary>
     public PhysicsCollision[]? ActiveCollisions => activeCollisions;
 
@@ -68,6 +69,8 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     ///   C# side tracking for physics bodies with microbe control being enabled
     /// </summary>
     public bool MicrobeControlEnabled { get; set; }
+
+    public bool IsDisposed => disposed;
 
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {

@@ -18,23 +18,41 @@
     public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
-        private readonly OnBodyDeleted? deleteCallback;
 
         private readonly List<NativePhysicsBody> createdBodies = new();
 
-        public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics,
-            OnBodyDeleted? deleteCallback, World world, IParallelRunner runner) : base(world, runner)
+        public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world,
+            IParallelRunner runner) : base(world, runner)
         {
             this.worldSimulationWithPhysics = worldSimulationWithPhysics;
-            this.deleteCallback = deleteCallback;
         }
 
-        public delegate void OnBodyDeleted(NativePhysicsBody body);
+        /// <summary>
+        ///   Destroys a body collision body immediately. This is needed to be called by the world to ensure that
+        ///   physics bodies of destroyed entities are immediately destroyed
+        /// </summary>
+        public void OnEntityDestroyed(in Entity entity)
+        {
+            if (!entity.Has<Physics>())
+                return;
+
+            ref var physics = ref entity.Get<Physics>();
+
+            if (physics.Body != null)
+            {
+                if (!createdBodies.Remove(physics.Body))
+                    GD.PrintErr("Body creation system told about a destroyed physics body it didn't create");
+
+                worldSimulationWithPhysics.DestroyBody(physics.Body);
+
+                physics.Body = null;
+            }
+        }
 
         protected override void PreUpdate(float delta)
         {
-            // TODO: would it be better to have the world take care of destroying physics bodies when the entity
-            // destruction is triggered?
+            // Immediate body destruction is handled by the world, but we still do this to detect if a physics
+            // component gets removed while things are running
             foreach (var createdBody in createdBodies)
             {
                 createdBody.Marked = false;
@@ -135,9 +153,6 @@
         {
             if (body.Marked)
                 return false;
-
-            // Notify external things about the deleted body
-            deleteCallback?.Invoke(body);
 
             // TODO: ensure this works fine if the body is currently in disabled state
             worldSimulationWithPhysics.DestroyBody(body);

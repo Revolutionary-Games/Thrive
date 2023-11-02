@@ -36,14 +36,21 @@
                     if (spatial.GraphicalInstance == null)
                         return;
 
+                    var nodeToFetchFrom = spatial.GraphicalInstance;
+
+                    if (!materialComponent.AutoRetrieveAssumesNodeIsDirectlyAttached)
+                    {
+                        nodeToFetchFrom = nodeToFetchFrom.GetChild<Spatial>(0);
+                    }
+
                     if (string.IsNullOrEmpty(materialComponent.AutoRetrieveModelPath))
                     {
-                        materialComponent.Materials = new[] { spatial.GraphicalInstance.GetMaterial() };
+                        materialComponent.Materials = new[] { nodeToFetchFrom.GetMaterial() };
                     }
                     else
                     {
                         using var nodePath = new NodePath(materialComponent.AutoRetrieveModelPath);
-                        materialComponent.Materials = new[] { spatial.GraphicalInstance.GetMaterial(nodePath) };
+                        materialComponent.Materials = new[] { nodeToFetchFrom.GetMaterial(nodePath) };
                     }
 
                     if (materialComponent.Materials is not { Length: > 0 } || materialComponent.Materials[0] == null)

@@ -24,6 +24,13 @@
         public bool AutoRetrieveFromSpatial;
 
         /// <summary>
+        ///   If set to true then the <see cref="AutoRetrieveFromSpatial"/> takes the scene attached node directly.
+        ///   If false then this skips one parent level and gets the first child of the attached node and looks up the
+        ///   material from there.
+        /// </summary>
+        public bool AutoRetrieveAssumesNodeIsDirectlyAttached;
+
+        /// <summary>
         ///   Internal flag, don't modify
         /// </summary>
         [JsonIgnore]

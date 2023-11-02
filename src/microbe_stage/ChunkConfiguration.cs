@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   See FloatingChunk for what many of the fields here do
@@ -22,7 +21,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public bool Dissolves;
     public float Radius;
     public float ChunkScale;
-    public float Mass;
+    public float PhysicsDensity;
     public float Size;
 
     /// <summary>
@@ -53,10 +52,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
     public string DissolverEnzyme;
-
-    // TODO: convert the JSON data to directly specify the physics density
-    [JsonIgnore]
-    public float PhysicsDensity => Mass * 1000;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
@@ -90,7 +85,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Dissolves == other.Dissolves &&
             Radius == other.Radius &&
             ChunkScale == other.ChunkScale &&
-            Mass == other.Mass &&
+            PhysicsDensity == other.PhysicsDensity &&
             Size == other.Size &&
             VentAmount == other.VentAmount &&
             Damages == other.Damages &&

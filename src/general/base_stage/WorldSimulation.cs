@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
@@ -29,11 +30,6 @@ public abstract class WorldSimulation : IWorldSimulation
     protected float minimumTimeBetweenLogicUpdates = 1 / 60.0f;
 
     protected float accumulatedLogicTime;
-
-    /// <summary>
-    ///   True when multithreaded system updates are running
-    /// </summary>
-    protected bool runningMultithreaded;
 
     // TODO: implement saving
     // ReSharper disable once CollectionNeverQueried.Local
@@ -172,10 +168,10 @@ public abstract class WorldSimulation : IWorldSimulation
     public Entity CreateEmptyEntity()
     {
         // Ensure thread unsafe operation doesn't happen
-        if (runningMultithreaded)
+        if (Processing)
         {
             throw new InvalidOperationException(
-                "Can't use thread unsafe create entity at this time, use deferred create");
+                "Can't use entity create at this time, use deferred create");
         }
 
         return entities.CreateEntity();
@@ -202,12 +198,11 @@ public abstract class WorldSimulation : IWorldSimulation
     {
         ProcessDestroyQueue();
 
-        foreach (var entity in entities)
+        // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
+        foreach (var entity in entities.ToList())
         {
             if (entity == skip)
                 continue;
-
-            // TODO: check that this destroy while looping entities doesn't cause an issue
 
             PerformEntityDestroy(entity);
         }
@@ -330,6 +325,14 @@ public abstract class WorldSimulation : IWorldSimulation
         minimumTimeBetweenLogicUpdates = 1 / logicFPS;
     }
 
+    public virtual void FreeNodeResources()
+    {
+    }
+
+    /// <summary>
+    ///   Note that often when this is disposed, the Nodes are already disposed so this has to skip releasing them.
+    ///   If that is not the case it is required to call <see cref="FreeNodeResources"/> before calling Dispose.
+    /// </summary>
     public void Dispose()
     {
         Dispose(true);
@@ -383,8 +386,24 @@ public abstract class WorldSimulation : IWorldSimulation
     {
         entitiesToNotSave.Remove(entity);
 
+        OnEntityDestroyed(entity);
+
         // Destroy the entity from the ECS system
         entity.Dispose();
+    }
+
+    /// <summary>
+    ///   Called when an entity is being destroyed (but before it is). Used by derived worlds to for example delete
+    ///   physics data.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that when the entire world is disposed this is not called for each entity.
+    ///   </para>
+    /// </remarks>
+    /// <param name="entity">The entity that is being destroyed</param>
+    protected virtual void OnEntityDestroyed(in Entity entity)
+    {
     }
 
     protected void ThrowIfNotInitialized()
@@ -395,7 +414,10 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected virtual void Dispose(bool disposing)
     {
-        DestroyAllEntities();
+        // TODO: decide if destroying all entities on world destroy is needed. It seems that disposing systems can
+        // release their allocated resources so this all can just be let to go for memory to be garbage collected later
+        // for faster world destroy
+        // DestroyAllEntities();
 
         if (disposing)
         {
