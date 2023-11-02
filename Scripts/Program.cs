@@ -440,6 +440,8 @@ public class Program
 
     public class ContainerOptions : ContainerOptionsBase
     {
+        [Option('i', "image", Default = ImageType.CI, HelpText = "The image to build")]
+        public ImageType Image { get; set; } = ImageType.CI;
     }
 
     [Verb("steam", HelpText = "Control Steam build variant building")]
