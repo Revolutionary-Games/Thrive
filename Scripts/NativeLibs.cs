@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Utilities;
@@ -21,6 +22,9 @@ public class NativeLibs
     private const string DistributableFolderName = "distributable";
     private const string GodotEditorLibraryFolder = ".mono/temp/bin/Debug";
     private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
+
+    private const string BuilderImageName = "localhost/thrive/native-builder:latest";
+    private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
     private readonly Program.NativeLibOptions options;
 
@@ -205,7 +209,15 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Build:
                 return await OperateOnAllLibraries(BuildLocally, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Package:
-                throw new NotImplementedException("TODO: implement packaging");
+                if (!OperatingSystem.IsMacOS())
+                {
+                    ColourConsole.WriteInfoLine("Making distributable package and symbols for Linux and Windows");
+
+                    return await OperateOnAllPlatform(BuildPackageWithPodman, cancellationToken);
+                }
+
+                throw new NotImplementedException("Creating release packages for mac is not done");
+
             case Program.NativeLibOptions.OperationMode.Upload:
                 throw new NotImplementedException("TODO: implement uploading (and package / symbol extract)");
             default:
@@ -223,19 +235,49 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine($"Operating on library: {library}");
 
-            foreach (var platform in platforms)
+            if (!await OperateOnAllPlatform(library, operation, cancellationToken))
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
-
-                if (!await operation.Invoke(library, platform, cancellationToken))
-                {
-                    ColourConsole.WriteErrorLine($"Operation failed on: {library} for platform: {platform}");
-                    return false;
-                }
+                ColourConsole.WriteErrorLine($"Operation failed for {library}");
+                return false;
             }
 
             ColourConsole.WriteSuccessLine($"Successfully performed operation on library: {library}");
+        }
+
+        return true;
+    }
+
+    private async Task<bool> OperateOnAllPlatform(Library library,
+        Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation, CancellationToken cancellationToken)
+    {
+        foreach (var platform in platforms)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+
+            if (!await operation.Invoke(library, platform, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Operation failed on library: {library} for platform: {platform}");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private async Task<bool> OperateOnAllPlatform(Func<PackagePlatform, CancellationToken, Task<bool>> operation,
+        CancellationToken cancellationToken)
+    {
+        foreach (var platform in platforms)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+
+            if (!await operation.Invoke(platform, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Operation failed for platform: {platform}");
+                return false;
+            }
         }
 
         return true;
@@ -339,6 +381,14 @@ public class NativeLibs
         ColourConsole.WriteInfoLine(
             $"Building {library} for local use ({platform}) with CMake (hopefully all native dependencies " +
             "are installed)");
+
+        // Give a nicer error message with missing cmake
+        if (string.IsNullOrEmpty(ExecutableFinder.Which("cmake")))
+        {
+            ColourConsole.WriteErrorLine("cmake not found. CMake is required for this build to work. " +
+                "Make sure it is installed and added to PATH before trying again.");
+            return false;
+        }
 
         var buildFolder = GetNativeBuildFolder();
 
@@ -477,6 +527,141 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
         return true;
+    }
+
+    private async Task<bool> BuildPackageWithPodman(PackagePlatform platform, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteNormalLine($"Using builder image: {BuilderImageName} hopefully it has been built");
+
+        Directory.CreateDirectory(FolderToWriteDistributableBuildIn);
+
+        var startInfo = new ProcessStartInfo("podman");
+
+        startInfo.ArgumentList.Add("run");
+        startInfo.ArgumentList.Add("--rm");
+        startInfo.ArgumentList.Add("-t");
+
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
+        startInfo.ArgumentList.Add(
+            $"--volume={Path.GetFullPath(FolderToWriteDistributableBuildIn)}:/install-target:rw,z");
+
+        if (options.Verbose)
+        {
+            startInfo.ArgumentList.Add("-e=VERBOSE=1");
+        }
+
+        startInfo.ArgumentList.Add(BuilderImageName);
+
+        startInfo.ArgumentList.Add("sh");
+        startInfo.ArgumentList.Add("-c");
+
+        var shCommandBuilder = new StringBuilder();
+
+        shCommandBuilder.Append("mkdir /build && cd build && ");
+
+        // Cmake configure inside the container
+        shCommandBuilder.Append("cmake /thrive ");
+
+        // ReSharper disable StringLiteralTypo
+        var buildType = "Distribution";
+
+        if (options.DebugLibrary)
+        {
+            ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
+            buildType = "Debug";
+        }
+
+        shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
+
+        shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
+        shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
+        shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
+
+        string target;
+
+        switch (platform)
+        {
+            case PackagePlatform.Linux:
+                // Linux is all setup by default to use clang
+                // But we need to ensure the runtime is set correctly (the default podman image should have this but
+                // better be safe here)
+                target = "x86_64-unknown-linux-llvm";
+                break;
+            case PackagePlatform.Windows:
+                // Cross compiling to windows
+                target = "x86_64-unknown-windows-llvm";
+                break;
+
+            case PackagePlatform.Windows32:
+                throw new NotSupportedException("32-bit builds are not currently set");
+            case PackagePlatform.Mac:
+                throw new NotSupportedException("Mac builds must be made natively on a mac");
+            case PackagePlatform.Web:
+                throw new NotImplementedException("This is not done yet");
+            default:
+                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+        }
+
+        // Switching to using the clang standard library here as well as setting the target
+        shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} -fuse-ld=lld' ");
+        shCommandBuilder.Append($"-DCMAKE_CXX_FLAGS='-target {target} -fuse-ld=lld' ");
+
+        shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
+        shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
+
+        // ReSharper restore StringLiteralTypo
+
+        // Cmake build inside the container
+        shCommandBuilder.Append("&& cmake ");
+        shCommandBuilder.Append("--build ");
+        shCommandBuilder.Append(". ");
+        shCommandBuilder.Append("--config ");
+
+        shCommandBuilder.Append(buildType);
+
+        shCommandBuilder.Append(" --target ");
+        shCommandBuilder.Append("install ");
+
+        shCommandBuilder.Append("-j ");
+
+        // TODO: add option to not use all cores
+        shCommandBuilder.Append(Environment.ProcessorCount.ToString());
+
+        startInfo.ArgumentList.Add(shCommandBuilder.ToString());
+
+        ColourConsole.WriteNormalLine("Compiling inside the container...");
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Failed to run compile in container (exit: {result.ExitCode}). " +
+                "Is the container built and available or did an unexpected error happen inside the container?");
+
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Build inside container succeeded");
+
+        if (!options.DebugLibrary)
+        {
+            ColourConsole.WriteInfoLine(
+                "Extracting symbols (requires compiled Breakpad on the host) and stripping binaries");
+
+            throw new NotImplementedException("TODO: post-process the the build output");
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("Skipping symbol extraction for debug build");
+        }
+
+        ColourConsole.WriteInfoLine("Copying built libraries to the right folder");
+
+        throw new NotImplementedException("copy native lib");
+
+        // ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
+        //
+        // return true;
     }
 
     /// <summary>
