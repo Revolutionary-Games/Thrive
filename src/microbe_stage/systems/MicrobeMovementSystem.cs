@@ -114,48 +114,7 @@
                 rotationSpeed /= CheatManager.Speed;
 
             if (entity.Has<MicrobeColony>())
-            {
-                throw new NotImplementedException();
-
-                /*// Calculate help and extra inertia caused by the colony member cells
-                if (cachedColonyRotationMultiplier == null)
-                {
-                    // TODO: move this to MicrobeInternalCalculations once this is needed to be shown in
-                    // the multicellular editor
-                    float colonyInertia = 0.1f;
-                    float colonyRotationHelp = 0;
-
-                    foreach (var colonyMember in Colony.ColonyMembers)
-                    {
-                        if (colonyMember == this)
-                            continue;
-
-                        var distance = colonyMember.Transform.origin.LengthSquared();
-
-                        if (distance < MathUtils.EPSILON)
-                            continue;
-
-                        colonyInertia += distance * colonyMember.MassFromOrganelles *
-                            Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
-
-                        // TODO: should this use the member rotation speed (which is dependent on its size and
-                        // how many cilia there are that far away) or just a count of cilia and the distance
-                        colonyRotationHelp += colonyMember.RotationSpeed *
-                            Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distance);
-                    }
-
-                    var multiplier = colonyRotationHelp / colonyInertia;
-
-                    cachedColonyRotationMultiplier = Mathf.Clamp(multiplier,
-                        Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
-                        Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
-                }
-
-                speed *= cachedColonyRotationMultiplier.Value;
-
-                speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
-                    Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));*/
-            }
+                rotationSpeed *= entity.Get<MicrobeColony>().ColonyRotationMultiplier;
 
             return rotationSpeed;
         }
