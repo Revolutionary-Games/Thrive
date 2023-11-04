@@ -12,7 +12,7 @@ ENV NINJA_BUILD_VERSION "1.11.1"
 # 64 GB system)
 ENV PARALLEL_LINK_JOBS "4"
 
-# install ninja build
+# Install ninja build
 RUN curl -L https://github.com/ninja-build/ninja/releases/download/v${NINJA_BUILD_VERSION}/ninja-linux.zip \
     -o /ninja.zip && unzip /ninja.zip -d /usr/bin/ && rm -f /ninja.zip && \
     chmod +x /usr/bin/ninja
@@ -23,7 +23,7 @@ RUN git clone https://github.com/llvm/llvm-project.git --depth 1 \
 
 RUN mkdir /llvm-binaries
 
-# bootstrap build for clang that uses the llvm standard library in the second compilation stage
+# Bootstrap build for clang that uses the llvm standard library in the second compilation stage
 RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTRAP=ON \
     # libdir suffix to match what redhat does \
     -DCMAKE_BUILD_TYPE=Release -DLLVM_LIBDIR_SUFFIX=64 \
@@ -40,6 +40,7 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     -DLIBCXXABI_USE_LLVM_UNWINDER=ON -DLIBCXX_USE_COMPILER_RT=ON \
     # trying to remove dependency on atomic lib \
     -DCOMPILER_RT_BUILD_BUILTINS=ON \
+    # this causes build failures if turned on \
     # -DCOMPILER_RT_BUILD_STANDALONE_LIBATOMIC=ON \
     # build fails due to non-relocatable .a files without this \
     -DLLVM_ENABLE_PIC=ON \
@@ -79,6 +80,60 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     (echo "build failed / libllvmlibc was not installed"; exit 1) && \
     rm -rf /build
 
+# pe-util tool builder
+FROM almalinux:9 as pe-tools
+
+RUN dnf install -y --setopt=deltarpm=false \
+    git unzip xz gcc-c++ cmake && dnf clean all
+
+RUN git clone https://github.com/gsauthof/pe-util.git /pe-util
+RUN cd /pe-util && git submodule update --init && mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release && make
+
+
+# Cross compiler image
+FROM almalinux:9 as llvm-cross
+
+RUN dnf install -y --setopt=deltarpm=false \
+    git unzip xz && dnf clean all
+
+ENV CMAKE_VERSION "3.27.7"
+ENV NINJA_BUILD_VERSION "1.11.1"
+
+# llvm-mingw 20231031 with LLVM 17.0.4
+ENV LLVM_MINGW_VERSION "20231031"
+
+# This probably controls what runtime is used
+# ucrt is much newer but only installed by default on Windows 10
+# ENV LLVM_MINGW_TYPE "ucrt"
+
+# msvcrt is older with fewer features but also runs by default on Windows 7
+ENV LLVM_MINGW_TYPE "msvcrt"
+
+# Install cmake without installing gcc as a dependency
+RUN curl -L \
+    https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz \
+    -o /cmake.tar.gz && tar xf /cmake.tar.gz && \
+    cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/bin /usr/ && \
+    cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/share /usr/ && rm -rf /cmake.tar.gz /cmake-*
+
+# Install ninja build (for consistency with the non-cross build image)
+RUN curl -L https://github.com/ninja-build/ninja/releases/download/v${NINJA_BUILD_VERSION}/ninja-linux.zip \
+    -o /ninja.zip && unzip /ninja.zip -d /usr/bin/ && rm -f /ninja.zip && \
+    chmod +x /usr/bin/ninja
+
+# Use a binary release of LLVM-MINGW
+RUN curl -L \
+    https://github.com/mstorsjo/llvm-mingw/releases/download/${LLVM_MINGW_VERSION}/llvm-mingw-${LLVM_MINGW_VERSION}-${LLVM_MINGW_TYPE}-ubuntu-20.04-x86_64.tar.xz \
+    -o /llvm-mingw.tar.gz && tar xf /llvm-mingw.tar.gz && \
+    cp -R /llvm-mingw-${LLVM_MINGW_VERSION}-${LLVM_MINGW_TYPE}-ubuntu-20.04-x86_64/* /usr/ && \
+    rm -rf /llvm-mingw.tar.gz /llvm-mingw-*
+
+# RUN echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/opt_bin.sh
+
+# Copies last as these always re-run even with cache on
+COPY --from=pe-tools /pe-util/build/peldd /usr/bin/
+
 # Final build image without temporary build artifacts and extra tools
 FROM almalinux:9
 
@@ -94,6 +149,8 @@ RUN curl -L \
     -o /cmake.tar.gz && tar xf /cmake.tar.gz && \
     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/bin /usr/ && \
     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/share /usr/ && rm -rf /cmake.tar.gz /cmake-*
+
+COPY --from=llvm-builder /usr/bin/ninja /usr/bin/ninja
 
 COPY --from=llvm-builder /llvm-binaries/usr/include /usr/include/
 COPY --from=llvm-builder /llvm-binaries/include /include/

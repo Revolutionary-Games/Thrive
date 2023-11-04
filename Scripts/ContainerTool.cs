@@ -13,7 +13,16 @@ using SharedBase.Utilities;
 
 public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 {
+    public const string CrossCompilerClangName = "x86_64-w64-mingw32-clang";
+
     private readonly Regex clangVersionRegex = new(@"clang version ([\d\.]+\s*\(.+\))$\s*target:\s*([\w-]+)$",
+        RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+    /// <summary>
+    ///   Tries to match references to gcc but not matching packages needed to be installed for wine
+    /// </summary>
+    private readonly Regex gccReferenceButNoWineFalsePositive = new(
+        @"[^(mingw64)-b]+-?(lib)?gcc(?![\d-\.]+el\d+\.alma)(?!\s+i686)",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
     private readonly string programPrintedText = "this is a really random string";
@@ -37,6 +46,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     {
         ImageType.CI => "godot-ci",
         ImageType.NativeBuilder => "native-builder",
+        ImageType.NativeBuilderCross => "native-builder-cross",
         _ => throw new InvalidOperationException("Unknown image type"),
     };
 
@@ -46,12 +56,14 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     {
         ImageType.CI => ("ci", null),
         ImageType.NativeBuilder => ("native_builder", null),
+        ImageType.NativeBuilderCross => ("native_builder", "llvm-cross"),
         _ => throw new InvalidOperationException("Unknown image type"),
     };
 
     protected override string ImageNameBase => $"thrive/{ExportFileNameBase}";
 
-    protected override bool SaveByDefault => options.Image != ImageType.NativeBuilder;
+    protected override bool SaveByDefault =>
+        options.Image is not (ImageType.NativeBuilder or ImageType.NativeBuilderCross);
 
     protected override async Task<ProcessRunHelpers.ProcessResult> RunImageBuild(ProcessStartInfo startInfo,
         bool capture, CancellationToken cancellationToken)
@@ -110,12 +122,17 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             return CheckClangProducesCleanExecutables(tagOrId);
         }
 
+        if (options.Image == ImageType.NativeBuilderCross)
+        {
+            return CheckClangCanCrossCompileToWindows(tagOrId);
+        }
+
         return CheckDotnetSdkWasInstalled(tagOrId);
     }
 
     protected override IEnumerable<string> ImagesToPullIfTheyAreOld()
     {
-        if (options.Image == ImageType.NativeBuilder)
+        if (options.Image is ImageType.NativeBuilder or ImageType.NativeBuilderCross)
         {
             // To update the image the relevant Dockerfile must also be updated
             // ReSharper disable once StringLiteralTypo
@@ -226,6 +243,107 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         ColourConsole.WriteInfoLine(
             $"Verified image has clang ({installedVersion}) that can compile executables without gcc lib pollution");
+        return true;
+    }
+
+    private async Task<bool> CheckClangCanCrossCompileToWindows(string tagOrId, bool testExecute = true)
+    {
+        var startInfo = new ProcessStartInfo("podman");
+        startInfo.ArgumentList.Add("run");
+        startInfo.ArgumentList.Add("--rm");
+        startInfo.ArgumentList.Add(tagOrId);
+        startInfo.ArgumentList.Add("bash");
+        startInfo.ArgumentList.Add("-c");
+
+        var command = new StringBuilder();
+
+        command.Append("echo '");
+        command.Append(simpleMainSourceCode);
+        command.Append("' > /main.cpp && ");
+
+        // Target windows
+        command.Append(CrossCompilerClangName);
+
+        // command.Append(" -fuse-ld=lld ");
+
+        // Link statically, and need to mention the standard libraries (unwind is automatically specified)
+        command.Append(" -static -lc++ -lc++abi  ");
+
+        command.Append("-std=c++20 -v /main.cpp -o /out.exe && ");
+
+        // This is a simple tool to list windows dependencies: https://github.com/gsauthof/pe-util
+        // -a parameter fails when not statically linking (and when trying to resolve the whitelist skipped libraries with error:
+        // No such file or directory [/usr/x86_64-w64-mingw32/sys-root/mingw/bin])
+        // ReSharper disable StringLiteralTypo
+        command.Append("echo 'peldd:' && peldd --no-wlist /out.exe && echo 'peldd ended' ");
+
+        // ReSharper restore StringLiteralTypo
+
+        if (testExecute)
+        {
+            // A bit silly to install wine just to test this, but the other option would be to not test this at all...
+            // This is just about 250MB download, so it is relatively fine.
+
+            // Default repos don't have wine so need to enable EPEL first
+            command.Append(" && dnf install yum-utils -y && dnf config-manager --set-enabled crb && ");
+            command.Append("dnf install epel-release -y && ");
+
+            command.Append("dnf install wine -y && ");
+
+            command.Append("wine /out.exe");
+
+            ColourConsole.WriteInfoLine("Will install wine to test that generated executable works, " +
+                "this might take a bit of time to download...");
+        }
+
+        ColourConsole.WriteDebugLine("In container check command (cross compile):");
+        ColourConsole.WriteDebugLine(command.ToString());
+
+        startInfo.ArgumentList.Add(command.ToString());
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, CancellationToken.None, true);
+
+        ColourConsole.WriteNormalLine("Check commands in container finished running");
+
+        var fullOutput = result.FullOutput;
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Failed to run podman command to check cross compilation works:\n{fullOutput}");
+            return false;
+        }
+
+        ColourConsole.WriteDebugLine("Cross compilation check output:");
+        ColourConsole.WriteDebugLine(fullOutput);
+
+        // Detect bad stuff in the output (of the ldd equivalent, presumably)
+        // Using plain "gcc" fails as that's output by dnf when installing wine
+        var match = gccReferenceButNoWineFalsePositive.Match(fullOutput);
+        if (match.Success)
+        {
+            ColourConsole.WriteNormalLine($"Detected text: {match.Value} (start index: {match.Index})");
+
+            ColourConsole.WriteErrorLine(
+                $"Cross compiled executable has references to gcc (libraries), output:\n{fullOutput}");
+            return false;
+        }
+
+        if (testExecute)
+        {
+            // Just in case the program compiled but could not run
+            if (!fullOutput.Contains(programPrintedText))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected test program didn't run with wine, full output:\n{fullOutput}");
+                return false;
+            }
+        }
+        else
+        {
+            ColourConsole.WriteWarningLine("Not testing if the resulting executable can run with wine");
+        }
+
+        ColourConsole.WriteInfoLine("Verified image has clang that can cross compile to windows");
         return true;
     }
 }

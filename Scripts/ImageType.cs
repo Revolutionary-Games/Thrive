@@ -1,4 +1,4 @@
-namespace Scripts;
+﻿namespace Scripts;
 
 /// <summary>
 ///   Podman image type
@@ -14,4 +14,9 @@ public enum ImageType
     ///   Container where native dependencies are built for distribution
     /// </summary>
     NativeBuilder,
+
+    /// <summary>
+    ///   Container where native dependencies are built for distribution on Windows
+    /// </summary>
+    NativeBuilderCross,
 }
