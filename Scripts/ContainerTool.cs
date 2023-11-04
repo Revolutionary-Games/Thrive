@@ -164,14 +164,19 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         command.Append(simpleMainSourceCode);
         command.Append("' > /main.cpp && ");
 
-        // use lld, the libc++, and compiler_rt flags are mandatory for this to work
-        // and the link specific lib flags are also mandatory
+        // Use lld, the libc++, and compiler_rt flags are mandatory for this to work
         command.Append("clang -fuse-ld=lld -stdlib=libc++ --rtlib=compiler-rt ");
-        command.Append("-lc++ -lc++abi -lunwind -L/usr/lib64/x86_64-unknown-linux-gnu ");
+
+        // Link statically to the standard libraries to produce an executable free of any references to gcc_s
+        command.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a " +
+            "/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a /usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
 
         // Standard compile stuff and testing to see if the executable runs
-        command.Append("-std=c++20  /main.cpp -o /out && /out && ");
+        command.Append("-std=c++20 -v /main.cpp -o /out && /out && ");
         command.Append("ldd -v /out");
+
+        ColourConsole.WriteDebugLine("In container check command:");
+        ColourConsole.WriteDebugLine(command.ToString());
 
         startInfo.ArgumentList.Add(command.ToString());
 
@@ -206,6 +211,9 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             return false;
         }
 
+        // TODO: is there a way to verify the static libraries in /usr/lib64/x86_64-unknown-linux-gnu/ do not contain
+        // any gcc symbols that might end up in the created executables / libraries?
+
         // Just in case the program compiled but could not run
         if (!fullOutput.Contains(programPrintedText))
         {
@@ -217,7 +225,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         var installedVersion = $"{match.Groups[1].Value} ({match.Groups[2].Value})";
 
         ColourConsole.WriteInfoLine(
-            $"Verified image has clang ({installedVersion}) that can compile executables without gcc pollution");
+            $"Verified image has clang ({installedVersion}) that can compile executables without gcc lib pollution");
         return true;
     }
 }

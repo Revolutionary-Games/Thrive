@@ -34,20 +34,27 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     -DLLVM_ENABLE_RUNTIMES=all \
     -DLLVM_TARGETS_TO_BUILD="X86" \
     -DCOMPILER_RT_BUILD_CRT=ON -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_TESTS=OFF \
+    # make files made by the first stage compiler use compiler-rt \
+    -DCLANG_DEFAULT_RTLIB=compiler-rt \
+    # try to make sure that the built libc++ doesn't depend on gcc \
+    -DLIBCXXABI_USE_LLVM_UNWINDER=ON -DLIBCXX_USE_COMPILER_RT=ON \
+    # trying to remove dependency on atomic lib \
+    -DCOMPILER_RT_BUILD_BUILTINS=ON \
+    # -DCOMPILER_RT_BUILD_STANDALONE_LIBATOMIC=ON \
     # build fails due to non-relocatable .a files without this \
     -DLLVM_ENABLE_PIC=ON \
     # first stage must be installed system-wide for it to work \
     -DCMAKE_INSTALL_PREFIX=/ \
-    -DCLANG_BOOTSTRAP_PASSTHROUGH="CMAKE_BUILD_TYPE;LLVM_PARALLEL_LINK_JOBS;LLVM_ENABLE_LLD;LLVM_LIBDIR_SUFFIX;COMPILER_RT_BUILD_CRT;LLVM_INCLUDE_TESTS;LLVM_BUILD_TESTS;LLVM_ENABLE_PIC;CMAKE_INSTALL_PREFIX" \
+    -DCLANG_BOOTSTRAP_PASSTHROUGH="CMAKE_BUILD_TYPE;LLVM_PARALLEL_LINK_JOBS;LLVM_ENABLE_LLD;LLVM_LIBDIR_SUFFIX;COMPILER_RT_BUILD_CRT;LLVM_INCLUDE_TESTS;LLVM_BUILD_TESTS;CLANG_DEFAULT_RTLIB;LIBCXXABI_USE_LLVM_UNWINDER;LIBCXX_USE_COMPILER_RT;COMPILER_RT_BUILD_BUILTINS;COMPILER_RT_BUILD_STANDALONE_LIBATOMIC;LLVM_ENABLE_PIC;CMAKE_INSTALL_PREFIX" \
     -DBOOTSTRAP_LLVM_ENABLE_PROJECTS="clang;clang-tools-extra;libc;compiler-rt;lld;polly;pstl" \
     -DBOOTSTRAP_LLVM_ENABLE_RUNTIMES=all \
     -DBOOTSTRAP_LLVM_TARGETS_TO_BUILD="X86;WebAssembly" \
     # build now with the freshly built llvm libc runtime from the previous step \
     -DBOOTSTRAP_LLVM_ENABLE_LLVM_LIBC=ON -DBOOTSTRAP_LLVM_ENABLE_LIBCXX=ON \
-    -DBOOTSTRAP_LIBCXX_USE_COMPILER_RT=ON -DBOOTSTRAP_LIBCXXABI_USE_LLVM_UNWINDER=ON \
+    # try to force linking against gcc_s off
+    -DBOOTSTRAP_LIBCXX_HAS_GCC_S_LIB=OFF -DBOOTSTRAP_LIBCXX_HAS_ATOMIC_LIB=OFF \
     # make this clang compile using the clang libs by default (sadly these don't seem to work) \
-    -DBOOTSTRAP_CLANG_DEFAULT_CXX_STDLIB=libc++ -DBOOTSTRAP_CLANG_DEFAULT_RTLIB=compiler-rt \
-    -DBOOTSTRAP_CLANG_DEFAULT_LINKER=lld \
+    -DBOOTSTRAP_CLANG_DEFAULT_CXX_STDLIB=libc++ -DBOOTSTRAP_CLANG_DEFAULT_LINKER=lld \
     # -DBOOTSTRAP_LLVM_DEFAULT_TARGET_TRIPLE=x86_64-unknown-linux-llvm && \
     # force on the llvm runtime use and fPIC as LLVM_ENABLE_PIC is not enough for some reason \
     # also need to specify the library path to load things from \
@@ -55,7 +62,7 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     -DBOOTSTRAP_CMAKE_C_FLAGS='--rtlib=compiler-rt -fPIC' \
     -DBOOTSTRAP_CMAKE_SHARED_LINKER_FLAGS='-L/lib64/x86_64-unknown-linux-gnu' \
     # static libs don't use linker flags so don't specify those \
-    -DBOOTSTRAP_CMAKE_EXE_LINKER_FLAGS='-L/lib64/x86_64-unknown-linux-gnu' && \
+    -DBOOTSTRAP_CMAKE_EXE_LINKER_FLAGS='--rtlib=compiler-rt -stdlib=libc++ -L/lib64/x86_64-unknown-linux-gnu' && \
     ninja install && \
     # need to make the system aware of the just installed new compiler \
     echo "/lib64/x86_64-unknown-linux-gnu" > /etc/ld.so.conf.d/clang.conf && ldconfig && \
@@ -72,73 +79,8 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     (echo "build failed / libllvmlibc was not installed"; exit 1) && \
     rm -rf /build
 
-# # Second stage of the build, this time without any GCC parts to make
-# # the final clang build that has a clean runtime library
-# # This is really the third stage as the first container does 2 stages of clang building
-# FROM almalinux:9 as llvm-stage2
-
-# RUN dnf install -y --setopt=deltarpm=false \
-#     git zlib-devel libxml2-devel libedit-devel ncurses-devel && dnf clean all
-
-# ENV PARALLEL_LINK_JOBS "2"
-# ENV CMAKE_VERSION "3.27.7"
-
-# # Install cmake without installing gcc as a dependency
-# RUN curl -L \
-#     https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz \
-#     -o /cmake.tar.gz && tar xf /cmake.tar.gz && \
-#     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/bin /usr/ && \
-#     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/share /usr/ && rm -rf /cmake.tar.gz /cmake-*
-
-# COPY --from=llvm-stage1 /llvm-project /llvm-project
-
-# COPY --from=llvm-stage1 /usr/bin/ninja /usr/bin/ninja
-
-# COPY --from=llvm-stage1 /llvm-binaries/include /usr/local/include/
-# COPY --from=llvm-stage1 /llvm-binaries/lib64 /usr/local/lib64/
-# COPY --from=llvm-stage1 /llvm-binaries/bin /usr/local/bin/
-# COPY --from=llvm-stage1 /llvm-binaries/share /usr/local/share/
-# COPY --from=llvm-stage1 /llvm-binaries/libexec /usr/local/libexec/
-
-# RUN echo "/usr/local/lib64/x86_64-unknown-linux-gnu" > /etc/ld.so.conf.d/clang.conf
-# RUN ldconfig
-
-# RUN mkdir /llvm-binaries
-
-# # Last step of the bootstrap process
-# # bootstrap build for clang that uses the llvm standard library
-# RUN mkdir /build && cd /build && cmake /llvm-project/llvm \
-#     -DCMAKE_BUILD_TYPE=Release -DLLVM_LIBDIR_SUFFIX=64 \
-#     -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang \
-#     -G "Ninja" -DLLVM_PARALLEL_LINK_JOBS=${PARALLEL_LINK_JOBS} -DLLVM_ENABLE_LLD=ON \
-#     -DLLVM_ENABLE_RUNTIMES=all \
-#     -DCOMPILER_RT_BUILD_CRT=ON -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_TESTS=OFF \
-#     -DLIBCXX_USE_COMPILER_RT=ON \
-#     -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;libc;compiler-rt;lld;polly;pstl" \
-#     -DLLVM_TARGETS_TO_BUILD="X86;WebAssembly" \
-#     -DLLVM_ENABLE_LLVM_LIBC=ON -DLLVM_ENABLE_LIBCXX=ON \
-#     -DCMAKE_INSTALL_PREFIX=/llvm-binaries && \
-#     # -DLLVM_DEFAULT_TARGET_TRIPLE=x86_64-unknown-linux-llvm && \
-#     # -DBOOTSTRAP_CMAKE_CXX_FLAGS='--rtlib=compiler-rt' -DBOOTSTRAP_CMAKE_C_FLAGS='--rtlib=compiler-rt' && \
-#     ninja install && \
-#     rm -rf /build
-
 # Final build image without temporary build artifacts and extra tools
 FROM almalinux:9
-
-# Apparently it is not possible to make a clang installation that
-# doesn't require the following files from glibc-devel:
-# Scrt1.o: No such file or directory
-# crti.o: No such file or directory
-# crtn.o: No such file or directory
-# And the following files from gcc:
-# crtbeginS.o: No such file or directory
-# ld.lld: error: unable to find library -lgcc
-# ld.lld: error: unable to find library -lgcc_s
-# ld.lld: error: unable to find library -lc
-# ld.lld: error: unable to find library -lgcc
-# ld.lld: error: unable to find library -lgcc_s
-# crtendS.o: No such file or directory
 
 # glibc-headers would almost be enough but it is missing stubs-64.h
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
@@ -153,14 +95,6 @@ RUN curl -L \
     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/bin /usr/ && \
     cp -R /cmake-${CMAKE_VERSION}-linux-x86_64/share /usr/ && rm -rf /cmake.tar.gz /cmake-*
 
-# Copy everything clang wants to install from the earlier build container
-# COPY --from=llvm-builder /llvm-binaries/usr/include /usr/include/
-# COPY --from=llvm-builder /llvm-binaries/include /include/
-# COPY --from=llvm-builder /llvm-binaries/lib64 /usr/local/lib64/
-# COPY --from=llvm-builder /llvm-binaries/usr/bin /usr/local/bin/
-# COPY --from=llvm-builder /llvm-binaries/bin /usr/local/bin/
-# COPY --from=llvm-builder /llvm-binaries/share /usr/local/share/
-# COPY --from=llvm-builder /llvm-binaries/libexec /usr/local/libexec/
 COPY --from=llvm-builder /llvm-binaries/usr/include /usr/include/
 COPY --from=llvm-builder /llvm-binaries/include /include/
 COPY --from=llvm-builder /llvm-binaries/lib64 /lib64/
