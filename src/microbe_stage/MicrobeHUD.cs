@@ -301,18 +301,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
         else
         {
-            var colonyMembers = stage.Player.Get<MicrobeColony>().ColonyMembers;
-
-            return compound =>
-            {
-                foreach (var colonyMember in colonyMembers)
-                {
-                    if (colonyMember.Get<CompoundStorage>().Compounds.IsUseful(compound))
-                        return true;
-                }
-
-                return false;
-            };
+            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
+            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
         }
     }
 
@@ -335,13 +325,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
         else
         {
-            foreach (var colonyMember in stage.Player.Get<MicrobeColony>().ColonyMembers)
-            {
-                if (colonyMember.Get<CompoundStorage>().Compounds.AreAnySpecificallySetUseful(allAgents))
-                    return true;
-            }
-
-            return false;
+            return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
         }
     }
 
@@ -351,10 +335,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
-
-        throw new NotImplementedException();
-
-        // return stage!.Player!.Colony?.ColonyCompounds;
+        else
+        {
+            return stage.Player.Get<MicrobeColony>().GetCompounds();
+        }
     }
 
     protected override void UpdateCompoundBars(float delta)
