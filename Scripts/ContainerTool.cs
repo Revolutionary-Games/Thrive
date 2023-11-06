@@ -14,6 +14,7 @@ using SharedBase.Utilities;
 public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 {
     public const string CrossCompilerClangName = "x86_64-w64-mingw32-clang";
+    public const string CrossCompilerClangName32Bit = "i686-w64-mingw32-clang";
 
     private readonly Regex clangVersionRegex = new(@"clang version ([\d\.]+\s*\(.+\))$\s*target:\s*([\w-]+)$",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
@@ -272,7 +273,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         command.Append("-std=c++20 -v /main.cpp -o /out.exe && ");
 
         // This is a simple tool to list windows dependencies: https://github.com/gsauthof/pe-util
-        // -a parameter fails when not statically linking (and when trying to resolve the whitelist skipped libraries with error:
+        // -a parameter fails when not statically linking (and when trying to resolve the whitelist skipped libraries
+        // with error:
         // No such file or directory [/usr/x86_64-w64-mingw32/sys-root/mingw/bin])
         // ReSharper disable StringLiteralTypo
         command.Append("echo 'peldd:' && peldd --no-wlist /out.exe && echo 'peldd ended' ");

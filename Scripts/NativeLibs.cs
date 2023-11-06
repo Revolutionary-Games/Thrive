@@ -24,11 +24,14 @@ public class NativeLibs
     private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
 
     private const string BuilderImageName = "localhost/thrive/native-builder:latest";
+    private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
     private readonly Program.NativeLibOptions options;
 
     private readonly IList<PackagePlatform> platforms;
+
+    private readonly SymbolHandler symbolHandler = new(null, null);
 
     public NativeLibs(Program.NativeLibOptions options)
     {
@@ -213,7 +216,7 @@ public class NativeLibs
                 {
                     ColourConsole.WriteInfoLine("Making distributable package and symbols for Linux and Windows");
 
-                    return await OperateOnAllPlatform(BuildPackageWithPodman, cancellationToken);
+                    return await OperateOnAllPlatforms(BuildPackageWithPodman, cancellationToken);
                 }
 
                 throw new NotImplementedException("Creating release packages for mac is not done");
@@ -235,7 +238,7 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine($"Operating on library: {library}");
 
-            if (!await OperateOnAllPlatform(library, operation, cancellationToken))
+            if (!await OperateOnAllPlatforms(library, operation, cancellationToken))
             {
                 ColourConsole.WriteErrorLine($"Operation failed for {library}");
                 return false;
@@ -247,7 +250,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> OperateOnAllPlatform(Library library,
+    private async Task<bool> OperateOnAllPlatforms(Library library,
         Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation, CancellationToken cancellationToken)
     {
         foreach (var platform in platforms)
@@ -265,7 +268,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> OperateOnAllPlatform(Func<PackagePlatform, CancellationToken, Task<bool>> operation,
+    private async Task<bool> OperateOnAllPlatforms(Func<PackagePlatform, CancellationToken, Task<bool>> operation,
         CancellationToken cancellationToken)
     {
         foreach (var platform in platforms)
@@ -531,9 +534,15 @@ public class NativeLibs
 
     private async Task<bool> BuildPackageWithPodman(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        ColourConsole.WriteNormalLine($"Using builder image: {BuilderImageName} hopefully it has been built");
+        var image = platform is PackagePlatform.Windows or PackagePlatform.Windows32 ?
+            BuilderImageNameCross :
+            BuilderImageName;
 
-        Directory.CreateDirectory(FolderToWriteDistributableBuildIn);
+        ColourConsole.WriteNormalLine($"Using builder image: {image} hopefully it has been built");
+
+        var compileInstallFolder = GetDistributableBuildFolderBase(platform);
+
+        Directory.CreateDirectory(compileInstallFolder);
 
         var startInfo = new ProcessStartInfo("podman");
 
@@ -543,14 +552,14 @@ public class NativeLibs
 
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
         startInfo.ArgumentList.Add(
-            $"--volume={Path.GetFullPath(FolderToWriteDistributableBuildIn)}:/install-target:rw,z");
+            $"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
 
         if (options.Verbose)
         {
             startInfo.ArgumentList.Add("-e=VERBOSE=1");
         }
 
-        startInfo.ArgumentList.Add(BuilderImageName);
+        startInfo.ArgumentList.Add(image);
 
         startInfo.ArgumentList.Add("sh");
         startInfo.ArgumentList.Add("-c");
@@ -561,6 +570,7 @@ public class NativeLibs
 
         // Cmake configure inside the container
         shCommandBuilder.Append("cmake /thrive ");
+        shCommandBuilder.Append("-G Ninja ");
 
         // ReSharper disable StringLiteralTypo
         var buildType = "Distribution";
@@ -573,27 +583,90 @@ public class NativeLibs
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
-        shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
-        shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
-        shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
+        // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
+        // of flags
+        // TODO: figure out how to get the Jolt interprocedural check to work (now fails with trying to link the wrong
+        // standard library)
+        shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=OFF ");
 
-        string target;
+        shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
 
         switch (platform)
         {
             case PackagePlatform.Linux:
+            {
                 // Linux is all setup by default to use clang
                 // But we need to ensure the runtime is set correctly (the default podman image should have this but
                 // better be safe here)
-                target = "x86_64-unknown-linux-llvm";
+                // var target = "x86_64-unknown-linux-llvm";
+
+                var target = "x86_64-unknown-linux-gnu";
+
+                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
+                shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
+
+                // ReSharper disable once CommentTypo
+                // -flto=thin specified here reduces the binary size a bit, not sure what's up with that other than
+                // maybe the cmake default LTO is slightly more conservative option
+                shCommandBuilder.Append(
+                    $"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt' ");
+                shCommandBuilder.Append(
+                    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libc++' ");
+
+                shCommandBuilder.Append("-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu' ");
+
+                // Need to specify the standard library like this to prevent linker errors
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu  ");
+
+                // Suppress normal standard library includes as they seem to end up being wrong
+                shCommandBuilder.Append("-nostdlib ");
+
+                // These aren't necessary for the compile to succeed but maybe specifying these before libc++ makes
+                // it prefer symbols from these?
+
+                // This first one requires a PIC linked llvm libc otherwise this will fail to link (which doesn't seem
+                // to just stick with any argument flags in the Dockerfile)
+                // ReSharper disable once CommentTypo
+                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libllvmlibc.a ");
+
+                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
+                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a ");
+
+                // This is necessary to compile
+                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a");
+                shCommandBuilder.Append("' ");
+
                 break;
+            }
+
             case PackagePlatform.Windows:
+            {
                 // Cross compiling to windows
-                target = "x86_64-unknown-windows-llvm";
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_NAME=Windows ");
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_PROCESSOR=x86 ");
+
+                shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName} ");
+                shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName} ");
+
+                shCommandBuilder.Append("-DCMAKE_C_FLAGS='' ");
+                shCommandBuilder.Append("-DCMAKE_CXX_FLAGS='' ");
+
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
+
                 break;
+            }
 
             case PackagePlatform.Windows32:
-                throw new NotSupportedException("32-bit builds are not currently set");
+            {
+                // TODO: it's not really tested but it should work the same (with slightly tweaked tool names as the
+                // 64-bit version)
+                shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
+                shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
+
+                throw new NotImplementedException(
+                    "TODO: implement the rest of this based on the 64-bit windows version");
+            }
+
             case PackagePlatform.Mac:
                 throw new NotSupportedException("Mac builds must be made natively on a mac");
             case PackagePlatform.Web:
@@ -603,8 +676,6 @@ public class NativeLibs
         }
 
         // Switching to using the clang standard library here as well as setting the target
-        shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} -fuse-ld=lld' ");
-        shCommandBuilder.Append($"-DCMAKE_CXX_FLAGS='-target {target} -fuse-ld=lld' ");
 
         shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
         shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
@@ -642,13 +713,29 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
+        var libraries = options.Libraries ?? Enum.GetValues<Library>();
 
         if (!options.DebugLibrary)
         {
             ColourConsole.WriteInfoLine(
                 "Extracting symbols (requires compiled Breakpad on the host) and stripping binaries");
 
-            throw new NotImplementedException("TODO: post-process the the build output");
+            foreach (var library in libraries)
+            {
+                var source = GetPathToDistributableTempDll(library, platform);
+
+                ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
+
+                if (!await symbolHandler.ExtractSymbols(source, "./",
+                        platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+                {
+                    ColourConsole.WriteErrorLine(
+                        "Symbol extraction failed. Are breakpad tools installed at the expected path? " +
+                        "And is the 'strip' tool available in PATH?");
+
+                    return false;
+                }
+            }
         }
         else
         {
@@ -657,11 +744,41 @@ public class NativeLibs
 
         ColourConsole.WriteInfoLine("Copying built libraries to the right folder");
 
-        throw new NotImplementedException("copy native lib");
+        foreach (var library in libraries)
+        {
+            var version = GetLibraryVersion(library);
 
-        // ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
-        //
-        // return true;
+            var source = GetPathToDistributableTempDll(library, platform);
+            var target = GetPathToLibraryDll(library, platform, version, true);
+
+            var targetFolder = Path.GetDirectoryName(target);
+
+            if (string.IsNullOrEmpty(targetFolder))
+                throw new Exception("Couldn't get folder from library install path");
+
+            Directory.CreateDirectory(targetFolder);
+
+            File.Copy(source, target, true);
+
+            ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
+
+            if (!options.DebugLibrary)
+            {
+                await BinaryHelpers.Strip(target, cancellationToken);
+
+                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+            }
+            else
+            {
+                ColourConsole.WriteDebugLine("Not stripping a debug library");
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
+
+        return true;
     }
 
     /// <summary>
@@ -700,6 +817,25 @@ public class NativeLibs
 
         // This is for Linux
         return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+    }
+
+    private string GetPathToDistributableTempDll(Library library, PackagePlatform platform)
+    {
+        var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
+            options.DebugLibrary ? "debug" : "release");
+
+        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
+        }
+
+        // This is for Linux
+        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+    }
+
+    private string GetDistributableBuildFolderBase(PackagePlatform platform)
+    {
+        return Path.Join(FolderToWriteDistributableBuildIn, platform.ToString().ToLowerInvariant());
     }
 
     private void CreateLinkTo(string linkFile, string linkTo)

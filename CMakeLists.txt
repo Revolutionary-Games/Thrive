@@ -7,6 +7,8 @@ project(Thrive)
 # "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 
 # Options
+option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
+
 option(USE_OBJECT_POOLS
   "Use object pools instead of direct memory allocation (can be turned off for memory debugging)"
   ON)
@@ -33,6 +35,9 @@ endif()
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)
 
+# Jolt requires a "Distribution" build type
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution")
+
 # Common options
 if(CMAKE_BUILD_TYPE STREQUAL "")
   set(CMAKE_BUILD_TYPE Release CACHE STRING
@@ -52,6 +57,44 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 else()
   set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/release")
 endif()
+
+# Standard library and other linking flags
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+
+  set(CLANG_DEFAULT_CXX_STDLIB libc++)
+  set(CLANG_DEFAULT_RTLIB compiler-rt)
+
+  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+  # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -stdlib=libc++")
+  ### apparently lld can't be specified here as llvm-ar will complain
+  # set(CMAKE_STATIC_LINKER_FLAGS
+  #   "${CMAKE_STATIC_LINKER_FLAGS}  -lc++abi -static-libstdc++ -fuse-ld=lld")
+  #set(CMAKE_STATIC_LINKER_FLAGS
+  #  "${CMAKE_STATIC_LINKER_FLAGS} -static -lc++abi -pthread -fuse-ld=lld")
+  #set(CMAKE_SHARED_LINKER_FLAGS
+  #  "${CMAKE_SHARED_LINKER_FLAGS} -static -lc++abi -pthread -fuse-ld=lld")
+
+  # set(CMAKE_EXE_LINKER_FLAGS )
+
+  # static can't specify a linker, seems to use llvm-ar thankfully
+  # set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} -fuse-ld=lld")
+  set(CMAKE_SHARED_LINKER_FLAGS
+    "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
+
+  # fully static standard lib, seems to fail as libc is not relocatable code
+  # set(CMAKE_SHARED_LINKER_FLAGS
+  #   "${CMAKE_SHARED_LINKER_FLAGS} -static")
+  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+  # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static")
+
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} -fuse-ld=gold")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=gold")
+else()
+endif()
+
+set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+set(CMAKE_INSTALL_RPATH "$ORIGIN")
 
 # Detect library version
 file(READ "src/native/NativeConstants.cs" versionFile)

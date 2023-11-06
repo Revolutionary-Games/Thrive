@@ -141,6 +141,9 @@ FROM almalinux:9
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
     make git binutils bash glibc-devel && dnf clean all
 
+# binutils is removed so that the default linker doesn't exist
+RUN dnf remove binutils -y
+
 ENV CMAKE_VERSION "3.27.7"
 
 # Install cmake without installing gcc as a dependency
@@ -168,6 +171,8 @@ RUN ldconfig
 # When copied properly this exists thanks to the copy from the builder image
 RUN [ -f /usr/bin/ld.lld ] && \
     echo "ld.lld created properly" || (echo "ld.lld was not installed"; exit 1)
+
+RUN ln -s /usr/bin/ld.lld /usr/bin/ld
 
 # RUN echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/local_bin.sh
 

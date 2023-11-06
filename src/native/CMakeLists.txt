@@ -42,6 +42,14 @@ else()
   endif()
 endif()
 
+if(UNIX)
+  target_compile_options(thrive_native PRIVATE $<$<CONFIG:Release>:-g -O3>
+    $<$<CONFIG:Distribution>:-g -O3>)
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  # TODO: restore debug symbols for Release configuration and add them for
+  # distribution
+endif()
+
 
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
@@ -62,34 +70,15 @@ target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
 set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 20
   CXX_EXTENSIONS OFF)
-  
-if(UNIX OR CMAKE_GENERATOR MATCHES "Visual Studio")
-  # This seems to fail native Windows builds (when trying to use msys2)
-  set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-else()
-  message(STATUS "Not enabling interprocedural optimization (lto) "
-    "as it is probably not working on this platform")
-endif()
 
-message(STATUS "TODO: static standard lib for easier distributing (make sure it is the clang one)")
-# # Static standard lib
-# target_link_libraries(thrive_native PRIVATE -static-libgcc -static-libstdc++)
-
-# # Fully static executable
-# if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-#   target_link_libraries(thrive_native PRIVATE -static)
-# endif()
-
-# if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-#   set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=lld")
-# elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-#   set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=gold")
-# endif()
-
-if(NOT WIN32)
-  set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "-fuse-ld=gold")
-else()
-  # set_target_properties(thrive_native PROPERTIES LINK_FLAGS_RELEASE "")
+if(THRIVE_LTO)
+  if(UNIX OR CMAKE_GENERATOR MATCHES "Visual Studio")
+    # This seems to fail native Windows builds (when trying to use msys2)
+    set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+  else()
+    message(STATUS "Not enabling interprocedural optimization (lto) "
+      "as it is probably not working on this platform")
+  endif()
 endif()
 
 install(TARGETS thrive_native)
