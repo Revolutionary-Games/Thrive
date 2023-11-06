@@ -1,34 +1,41 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Components;
+using DefaultEcs;
 
+/// <summary>
+///   Adds extra digestion enzymes to an organelle
+/// </summary>
 public class LysosomeComponent : IOrganelleComponent
 {
+    public bool UsesSyncProcess { get; set; }
+
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
-        var upgrades = configuration as LysosomeUpgrades;
+        var enzyme = configuration is LysosomeUpgrades upgrades ?
+            upgrades.Enzyme :
+            SimulationParameters.Instance.GetEnzyme("lipase");
 
-        var enzyme = upgrades == null ? SimulationParameters.Instance.GetEnzyme("lipase") : upgrades.Enzyme;
-
-        organelle.StoredEnzymes.Clear();
-        organelle.StoredEnzymes[enzyme] = 1;
+        // TODO: avoid allocating memory like this for each lysosome component
+        // Could most likely refactor the PlacedOrganelle.GetEnzymes to take in the container.AvailableEnzymes
+        // dictionary and write updated values to that
+        organelle.OverriddenEnzymes = new Dictionary<Enzyme, int>
+        {
+            { enzyme, 1 },
+        };
     }
 
-    public void OnDetachFromCell(PlacedOrganelle organelle)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
     {
+        // TODO: Animate lysosomes sticking onto phagosomes (if possible). This probably should happen in the
+        // engulfing system (this at least can't happen here as Godot data update needs to happen in sync update)
     }
 
-    public void UpdateAsync(float delta)
+    public void UpdateSync(in Entity microbeEntity, float delta)
     {
-        // TODO: Animate lysosomes sticking onto phagosomes (if possible)
-    }
-
-    public void UpdateSync()
-    {
-    }
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
+        throw new NotSupportedException();
     }
 }
 

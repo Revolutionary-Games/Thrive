@@ -89,10 +89,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
     }
 
-    public override void UpdateCurrentWorldDetails()
-    {
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)

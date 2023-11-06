@@ -49,7 +49,7 @@ public static class DictionaryUtils
     /// <param name="items">Items to add things to. As well as the result</param>
     /// <param name="valuesToAdd">Values to add to items.</param>
     public static void Merge<T>(this Dictionary<T, float> items,
-        Dictionary<T, float> valuesToAdd)
+        IReadOnlyDictionary<T, float> valuesToAdd)
     {
         foreach (var entry in valuesToAdd)
         {

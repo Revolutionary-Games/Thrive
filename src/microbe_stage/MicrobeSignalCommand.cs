@@ -3,7 +3,7 @@
     /// <summary>
     ///   No command specified
     /// </summary>
-    None,
+    None = 0,
 
     /// <summary>
     ///   Wants other cells to move very close (swarm around) the emitting cell

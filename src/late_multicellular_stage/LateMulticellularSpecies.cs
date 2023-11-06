@@ -181,7 +181,9 @@ public class LateMulticellularSpecies : Species
         {
             if (metaball.CellType.IsBrainTissueType())
             {
-                result += metaball.Volume * scale;
+                // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
+                // Maybe we would actually just want to multiply by the scale number to buff small species' brain?
+                result += metaball.GetVolume(scale);
             }
         }
 

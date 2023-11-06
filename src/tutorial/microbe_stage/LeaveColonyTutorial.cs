@@ -34,7 +34,7 @@
                         var data = (MicrobeColonyEventArgs)args;
 
                         // Give advice if player is in a colony, but not big enough to get to the next stage
-                        hasColony = data.HasColony && data.Colony!.ColonyMembers.Count <
+                        hasColony = data.HasColony && data.MemberCount <
                             Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
                     }
 

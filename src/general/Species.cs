@@ -40,7 +40,7 @@ public abstract class Species : ICloneable
     ///   The base compounds needed to reproduce an individual of this species. Do not modify the returned value.
     /// </summary>
     [JsonIgnore]
-    public Dictionary<Compound, float> BaseReproductionCost =>
+    public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
     public string Genus { get; set; }

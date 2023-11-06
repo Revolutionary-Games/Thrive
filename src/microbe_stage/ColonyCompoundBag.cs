@@ -1,21 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
+using DefaultEcs;
 using Godot;
-using Newtonsoft.Json;
 
-[UseThriveSerializer]
+/// <summary>
+///   Access to a microbe colony's compounds through a unified interface. Instances of this class should not be stored
+///   and only be accessed with <see cref="Components.MicrobeColonyHelpers.GetCompounds"/>
+/// </summary>
 public class ColonyCompoundBag : ICompoundStorage
 {
+    private readonly object refreshListLock = new();
+
+    private List<CompoundBag> colonyBags = new();
+    private List<CompoundBag> bagBuilder = new();
+
     private bool nanIssueReported;
 
-    public ColonyCompoundBag(MicrobeColony colony)
+    public ColonyCompoundBag(Entity[] colonyMembers)
     {
-        Colony = colony;
+        // This +4 is here basically for fun to give a reasonable initial size (as colonies start mostly with 2
+        // members)
+        bagBuilder.Capacity = colonyMembers.Length + 4;
+        UpdateColonyMembers(colonyMembers);
     }
-
-    [JsonProperty]
-    private MicrobeColony Colony { get; }
 
     public float GetCapacityForCompound(Compound compound)
     {
@@ -23,11 +32,41 @@ public class ColonyCompoundBag : ICompoundStorage
     }
 
     /// <summary>
+    ///   Updates the colony members of this bag. Should only be called from the colony helper methods for adding and
+    ///   removing members
+    /// </summary>
+    /// <param name="colonyMembers">The new colony member entities</param>
+    public void UpdateColonyMembers(Entity[] colonyMembers)
+    {
+        lock (refreshListLock)
+        {
+            bagBuilder.Clear();
+
+            // Initialize capacity to something that probably fits
+            if (bagBuilder.Capacity < 1)
+                bagBuilder.Capacity = colonyBags.Capacity + 2;
+
+            foreach (var colonyMember in colonyMembers)
+            {
+                if (!colonyMember.Has<CompoundStorage>())
+                {
+                    GD.PrintErr("Colony compound bag member entity has no compound storage");
+                    continue;
+                }
+
+                bagBuilder.Add(colonyMember.Get<CompoundStorage>().Compounds);
+            }
+
+            (colonyBags, bagBuilder) = (bagBuilder, colonyBags);
+        }
+    }
+
+    /// <summary>
     ///   Evenly spreads out the compounds among all microbes
     /// </summary>
     public void DistributeCompoundSurplus()
     {
-        var bags = GetCompoundBags().ToList();
+        var bags = GetCompoundBags();
 
         foreach (var currentPair in this)
         {
@@ -142,9 +181,9 @@ public class ColonyCompoundBag : ICompoundStorage
         return compoundBags.Any(p => p.IsUseful(compound));
     }
 
-    private IEnumerable<CompoundBag> GetCompoundBags()
+    private ICollection<CompoundBag> GetCompoundBags()
     {
-        return Colony.ColonyMembers.Select(p => p.Compounds);
+        return colonyBags;
     }
 
     private bool IsUsefulInAnyCompoundBag(Compound compound)

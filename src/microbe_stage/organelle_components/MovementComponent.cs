@@ -1,86 +1,80 @@
-﻿using System;
+﻿using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
-///   Flagellum for making cells move faster
+///   Flagellum for making cells move faster. TODO: rename this to FlagellumComponent (this is named like this due to
+///   only it being initially being named like this)
 /// </summary>
-public class MovementComponent : ExternallyPositionedComponent
+public class MovementComponent : IOrganelleComponent
 {
-    public float Momentum;
-    public float Torque;
+    // TODO: set this private
+    public readonly float Momentum;
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private bool movingTail;
+    private PlacedOrganelle parentOrganelle = null!;
+
+    private float animationSpeed = 0.25f;
+    private bool animationDirty = true;
+
+    private bool lastUsed;
     private Vector3 force;
 
-    private AnimationPlayer? animation;
-
-    public MovementComponent(float momentum, float torque)
+    public MovementComponent(float momentum)
     {
         Momentum = momentum;
-        Torque = torque;
     }
 
-    public override void UpdateAsync(float delta)
+    public bool UsesSyncProcess => animationDirty;
+
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        // Visual positioning code
-        base.UpdateAsync(delta);
+        // No longer can check for animation here as the organelle graphics are created later than this is attached to
+        // a cell
+        parentOrganelle = organelle;
 
-        // Movement force
-        var microbe = organelle!.ParentMicrobe!;
+        force = CalculateForce(organelle.Position, Momentum);
+    }
 
-        if (microbe.PhagocytosisStep != PhagocytosisPhase.None)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
+    {
+        // Stop animating when being engulfed
+        if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
         {
             SetSpeedFactor(0);
             return;
         }
 
-        var movement = CalculateMovementForce(microbe, delta);
-
-        if (movement != new Vector3(0, 0, 0))
-            microbe.AddMovementForce(movement);
-    }
-
-    protected override void CustomAttach()
-    {
-        if (organelle?.OrganelleGraphics == null)
-            throw new InvalidOperationException("Flagellum needs parent organelle to have graphics");
-
-        force = CalculateForce(organelle!.Position, Momentum);
-
-        animation = organelle.OrganelleAnimation;
-
-        if (animation == null)
+        // Slow down animation when not used for movement
+        if (!lastUsed)
         {
-            GD.PrintErr("MovementComponent's organelle has no animation player set");
+            SetSpeedFactor(0.25f);
         }
 
-        SetSpeedFactor(0.25f);
+        lastUsed = false;
     }
 
-    protected override bool NeedsUpdateAnyway()
+    public void UpdateSync(in Entity microbeEntity, float delta)
     {
-        // The basis of the transform represents the rotation, as long as the rotation is not modified,
-        // the organelle needs to be updated.
-        // TODO: Calculated rotations should never equal the identity,
-        // it should be kept an eye on if it does. The engine for some reason doesnt update THIS basis
-        // unless checked with some condition (if or return)
-        // SEE: https://github.com/Revolutionary-Games/Thrive/issues/2906
-        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
+        // Skip applying speed if this happens before the organelle graphics are loaded
+        if (parentOrganelle.OrganelleAnimation != null)
+        {
+            parentOrganelle.OrganelleAnimation.PlaybackSpeed = animationSpeed;
+            animationDirty = false;
+        }
     }
 
-    protected override void OnPositionChanged(Quat rotation, float angle,
-        Vector3 membraneCoords)
+    public float UseForMovement(Vector3 wantedMovementDirection, CompoundBag compounds, Quat extraColonyRotation,
+        float delta)
     {
-        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
+        return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, delta);
     }
 
     /// <summary>
-    ///   Calculate the momentum of the movement organelle based on
-    ///   angle towards middle of cell
-    ///   If the flagella is placed in the microbe's center, hence delta equals 0,
-    ///   consider defaultPos as the organelle's "false" position.
+    ///   Calculate the momentum of the movement organelle based on angle towards middle of cell.
+    ///   If the flagella is placed in the microbe's center, hence delta equals 0, consider defaultPos as the
+    ///   organelle's "false" position.
     /// </summary>
     private static Vector3 CalculateForce(Hex pos, float momentum)
     {
@@ -88,51 +82,52 @@ public class MovementComponent : ExternallyPositionedComponent
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
-            delta = DefaultVisualPos;
+            delta = Components.CellPropertiesHelpers.DefaultVisualPos;
         return delta.Normalized() * momentum;
     }
 
     private void SetSpeedFactor(float speed)
     {
-        if (animation != null)
-        {
-            animation.PlaybackSpeed = speed;
-        }
+        // We use exact values set in the code
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (animationSpeed == speed)
+            return;
+
+        animationSpeed = speed;
+        animationDirty = true;
     }
 
     /// <summary>
-    ///   The final calculated force is multiplied by elapsed before
-    ///   applying. So we don't have to do that. But we need to take
-    ///   the right amount of atp.
+    ///   The final calculated force is multiplied by elapsed before applying. So we don't have to do that.
+    ///   But we need to take the right amount of atp.
     /// </summary>
-    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed)
+    /// <remarks>
+    ///   <para>
+    ///     The movementDirection is the player or AI input. It is in non-rotated cell oriented coordinates
+    ///   </para>
+    /// </remarks>
+    private float CalculateMovementForce(CompoundBag compounds, Vector3 wantedMovementDirection,
+        Quat extraColonyRotation, float elapsed)
     {
-        // The movementDirection is the player or AI input
-        Vector3 direction = microbe.MovementDirection;
-
         // Real force the flagella applied to the colony (considering rotation)
-        var realForce = organelle!.RotatedPositionInsideColony(force);
-        var forceMagnitude = realForce.Dot(direction);
+        var realForce = extraColonyRotation.Xform(force);
 
-        if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
+        // TODO: does the direction need to be rotated for the colony member offset here to make sense?
+        var forceMagnitude = realForce.Dot(extraColonyRotation.Xform(wantedMovementDirection));
+
+        if (forceMagnitude <= 0 || wantedMovementDirection.LengthSquared() < MathUtils.EPSILON ||
             realForce.LengthSquared() < MathUtils.EPSILON)
         {
-            if (movingTail)
-            {
-                movingTail = false;
-
-                SetSpeedFactor(0.25f);
-            }
-
-            return new Vector3(0, 0, 0);
+            SetSpeedFactor(0.25f);
+            return 0;
         }
 
-        var animationSpeed = 2.3f;
-        movingTail = true;
+        var newAnimationSpeed = 2.3f;
+        lastUsed = true;
 
         var requiredEnergy = Constants.FLAGELLA_ENERGY_COST * elapsed;
 
-        var availableEnergy = microbe.Compounds.TakeCompound(atp, requiredEnergy);
+        var availableEnergy = compounds.TakeCompound(atp, requiredEnergy);
 
         if (availableEnergy < requiredEnergy)
         {
@@ -141,36 +136,23 @@ public class MovementComponent : ExternallyPositionedComponent
 
             forceMagnitude *= fraction;
 
-            animationSpeed = 0.25f + (animationSpeed - 0.25f) * fraction;
+            newAnimationSpeed = 0.25f + (newAnimationSpeed - 0.25f) * fraction;
         }
 
-        float impulseMagnitude = Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
-            forceMagnitude / 100.0f;
+        SetSpeedFactor(newAnimationSpeed);
 
-        // Rotate the 'thrust' based on our orientation
-        if (microbe.Colony?.Master == null)
-        {
-            direction = microbe.Transform.basis.Xform(direction);
-        }
-        else
-        {
-            direction = microbe.Colony.Master.Transform.basis.Xform(direction);
-        }
-
-        SetSpeedFactor(animationSpeed);
-
-        return direction * impulseMagnitude;
+        // TODO: adjust the flagella force for the new physics engine
+        return Constants.FLAGELLA_BASE_FORCE * forceMagnitude;
     }
 }
 
 public class MovementComponentFactory : IOrganelleComponentFactory
 {
     public float Momentum;
-    public float Torque;
 
     public IOrganelleComponent Create()
     {
-        return new MovementComponent(Momentum, Torque);
+        return new MovementComponent(Momentum);
     }
 
     public void Check(string name)
@@ -179,12 +161,6 @@ public class MovementComponentFactory : IOrganelleComponentFactory
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Momentum needs to be > 0.0f");
-        }
-
-        if (Torque <= 0.0f)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Torque needs to be > 0.0f");
         }
     }
 }

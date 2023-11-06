@@ -138,6 +138,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
             reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
+
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
 
         // Make tutorials run

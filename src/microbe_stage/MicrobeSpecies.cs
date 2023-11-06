@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
@@ -60,15 +61,17 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
     // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
     [JsonIgnore]
-    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+    public float BaseSpeed =>
+        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
     [JsonProperty]
-    public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;
+    public float BaseRotationSpeed { get; set; }
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
-    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.EngulfSize"/> and the math
-    ///   should always match between these two.
+    ///   they haven't duplicated any organelles. This is related to <see cref="Components.Engulfer.EngulfingSize"/>
+    ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
+    ///   match between these two.
     /// </summary>
     [JsonIgnore]
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
@@ -165,19 +168,23 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     public void ApplySceneParameters(Spatial instancedScene)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
+        throw new NotImplementedException("need to reimplement photographing cells");
 
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        microbe.ApplySpecies(this);
+        // var microbe = (Microbe)instancedScene;
+        // microbe.IsForPreviewOnly = true;
+        //
+        // // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
+        // microbe._Ready();
+        //
+        // microbe.ApplySpecies(this);
     }
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        throw new NotImplementedException();
+
+        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 
     public override object Clone()
@@ -229,6 +236,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed =
+            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
     }
 }

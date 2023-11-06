@@ -33,6 +33,7 @@ public class SimulationParameters : Node
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
+    private GameWiki gameWiki = null!;
     private DayNightConfiguration lightCycle = null!;
     private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
     private Dictionary<string, ScreenEffect> screenEffects = null!;
@@ -46,6 +47,8 @@ public class SimulationParameters : Node
     private Dictionary<string, UnitType> unitTypes = null!;
     private Dictionary<string, SpaceStructureDefinition> spaceStructures = null!;
     private Dictionary<string, Technology> technologies = null!;
+    private Dictionary<string, VisualResourceData> visualResources = null!;
+    private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -122,6 +125,9 @@ public class SimulationParameters : Node
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
 
+        gameWiki =
+            LoadDirectObject<GameWiki>("res://simulation_parameters/common/wiki.json");
+
         lightCycle =
             LoadDirectObject<DayNightConfiguration>("res://simulation_parameters/common/day_night_cycle.json");
 
@@ -165,6 +171,9 @@ public class SimulationParameters : Node
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
+
+        visualResources =
+            LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
 
         // Build info is only loaded if the file is present
         using var directory = new Directory();
@@ -328,6 +337,11 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
+    public GameWiki GetWiki()
+    {
+        return gameWiki;
+    }
+
     public DayNightConfiguration GetDayNightCycleConfiguration()
     {
         return lightCycle;
@@ -481,6 +495,29 @@ public class SimulationParameters : Node
         return technologies.Values;
     }
 
+    public VisualResourceData GetVisualResource(VisualResourceIdentifier identifier)
+    {
+        if (visualResourceByIdentifier.TryGetValue(identifier, out var result))
+            return result;
+
+        GD.PrintErr("Visual resource doesn't exist: ", (long)identifier);
+        return GetErrorVisual();
+    }
+
+    public VisualResourceData GetVisualResource(string internalName)
+    {
+        if (visualResources.TryGetValue(internalName, out var result))
+            return result;
+
+        GD.PrintErr("Visual resource internal name doesn't exist: ", internalName);
+        return GetErrorVisual();
+    }
+
+    public VisualResourceData GetErrorVisual()
+    {
+        return visualResourceByIdentifier[VisualResourceIdentifier.Error];
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -508,6 +545,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(unitTypes);
         ApplyRegistryObjectTranslations(spaceStructures);
         ApplyRegistryObjectTranslations(technologies);
+        ApplyRegistryObjectTranslations(visualResources);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -652,6 +690,7 @@ public class SimulationParameters : Node
         CheckRegistryType(unitTypes);
         CheckRegistryType(spaceStructures);
         CheckRegistryType(technologies);
+        CheckRegistryType(visualResources);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -659,6 +698,7 @@ public class SimulationParameters : Node
         autoEvoConfiguration.InternalName = AUTO_EVO_CONFIGURATION_NAME;
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
+        gameWiki.Check(string.Empty);
         lightCycle.Check(string.Empty);
         lightCycle.InternalName = DAY_NIGHT_CYCLE_NAME;
         buildInfo?.Check(string.Empty);
@@ -727,6 +767,8 @@ public class SimulationParameters : Node
         BuildOrganelleChances();
 
         // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
+
+        visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
     }
 
     private void BuildOrganelleChances()

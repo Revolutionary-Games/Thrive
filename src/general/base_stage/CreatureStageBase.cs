@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 
@@ -8,10 +9,11 @@ using Newtonsoft.Json;
 ///   Base stage for the stages where the player controls a single creature
 /// </summary>
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
+/// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
-    where TPlayer : class
+public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
+    where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
     protected DirectionalLight worldLight = null!;
@@ -32,15 +34,19 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    // TODO: eventually convert this just to a Entity without having any generic type configurability here
     /// <summary>
     ///   The current player or null.
-    ///   TODO: check: Due to references on save load this needs to be after the systems
     /// </summary>
     [JsonProperty]
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
-    public bool HasPlayer => Player != null;
+    public abstract bool HasPlayer { get; }
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public TSimulation WorldSimulation { get; private set; } = new();
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -177,9 +183,12 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
+            foreach (var entity in WorldSimulation.EntitySystem)
             {
-                totalEntityWeight += entity.EntityWeight;
+                if (!entity.Has<Spawned>())
+                    continue;
+
+                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
                 ++totalEntityCount;
             }
 

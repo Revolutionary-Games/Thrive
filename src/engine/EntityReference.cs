@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
+// TODO: delete this class as with ECS this shouldn't be necessary anywhere
 /// <summary>
 ///   Allows safely keeping references to game entities across multiple frames. Needs to be used instead of raw
 ///   references as those can't clear themselves when the entity is disposed
@@ -11,6 +12,8 @@ public class EntityReference<T>
 {
     // TODO: should this be somehow set to null when we detect that the alive marker is no longer alive
     // Currently set to clear on fetch
+    // TODO: should this be a weak reference to allow garbage collection to happen faster? This is probably good enough
+    // for most current use as when trying to retrieve a dead entity this gets set to null
     private T? currentInstance;
     private AliveMarker? currentAliveMarker;
 

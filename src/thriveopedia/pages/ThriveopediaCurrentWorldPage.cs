@@ -35,10 +35,6 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         UpdateCurrentWorldDetails();
     }
 
-    public override void OnThriveopediaOpened()
-    {
-    }
-
     public override void UpdateCurrentWorldDetails()
     {
         if (CurrentGame == null)
@@ -50,10 +46,6 @@ public class ThriveopediaCurrentWorldPage : ThriveopediaPage
         difficultyDetails.Text = settings.GetTranslatedDifficultyString();
         planetDetails.Text = settings.GetTranslatedPlanetString();
         miscDetails.Text = settings.GetTranslatedMiscString();
-    }
-
-    public override void OnNavigationPanelSizeChanged(bool collapsed)
-    {
     }
 
     public override void OnTranslationChanged()

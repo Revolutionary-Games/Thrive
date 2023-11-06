@@ -9,16 +9,4 @@ public class ThriveopediaHomePage : ThriveopediaPage
     public override string TranslatedPageName => TranslationServer.Translate("THRIVEOPEDIA_HOME_PAGE_TITLE");
 
     public override string? ParentPageName => null;
-
-    public override void OnThriveopediaOpened()
-    {
-    }
-
-    public override void UpdateCurrentWorldDetails()
-    {
-    }
-
-    public override void OnNavigationPanelSizeChanged(bool collapsed)
-    {
-    }
 }

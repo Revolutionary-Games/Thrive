@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoadedTracked, ICharacterInventory,
+public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterInventory,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
@@ -142,14 +142,6 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonIgnore]
     public Spatial EntityNode => this;
 
-    public int DespawnRadiusSquared { get; set; }
-
-    /// <summary>
-    ///   TODO: adjust entity weight once fleshed out
-    /// </summary>
-    [JsonIgnore]
-    public float EntityWeight => 1.0f;
-
     [JsonIgnore]
     public bool IsLoadedFromSave { get; set; }
 
@@ -252,7 +244,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         compounds.NominalCapacity = 100;
 
         // TODO: better mass calculation
-        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+        // TotalMass is no longer available due to microbe stage physics refactor
+        // Mass = lateSpecies.BodyLayout.Sum(m => m.Size * m.CellType.TotalMass);
+        Mass = lateSpecies.BodyLayout.Sum(m => m.Size * 30);
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
@@ -293,7 +287,8 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             GetParent(), SpawnHelpers.LoadMulticellularScene(), true, spawnSystem!, CurrentGame);
 
         // Make it despawn like normal
-        spawnSystem!.AddEntityToTrack(copyEntity);
+        // TODO: reimplement spawn system for the multicellular stage
+        // spawnSystem!.NotifyExternalEntitySpawned(copyEntity);
 
         // TODO: some kind of resource splitting for the offspring?
 

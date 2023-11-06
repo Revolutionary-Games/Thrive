@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -11,17 +12,17 @@ public class TutorialEventArgs : EventArgs
 
 public class MicrobeEventArgs : TutorialEventArgs
 {
-    public MicrobeEventArgs(Microbe microbe)
+    public MicrobeEventArgs(Entity microbe)
     {
         Microbe = microbe;
     }
 
-    public Microbe Microbe { get; }
+    public Entity Microbe { get; }
 }
 
 public class RotationEventArgs : TutorialEventArgs
 {
-    public RotationEventArgs(Basis rotation, Vector3 rotationInDegrees)
+    public RotationEventArgs(Quat rotation, Vector3 rotationInDegrees)
     {
         Rotation = rotation;
         RotationInDegrees = rotationInDegrees;
@@ -30,7 +31,7 @@ public class RotationEventArgs : TutorialEventArgs
     /// <summary>
     ///   Quaternion of the rotation
     /// </summary>
-    public Basis Rotation { get; }
+    public Quat Rotation { get; }
 
     /// <summary>
     ///   Axis-wise degree rotations
@@ -114,14 +115,14 @@ public class CallbackEventArgs : TutorialEventArgs
 
 public class MicrobeColonyEventArgs : TutorialEventArgs
 {
-    public MicrobeColonyEventArgs(MicrobeColony? colony)
+    public MicrobeColonyEventArgs(bool hasColony, int memberCount)
     {
-        Colony = colony;
+        HasColony = hasColony;
+        MemberCount = memberCount;
     }
 
-    public MicrobeColony? Colony { get; }
-
-    public bool HasColony => Colony != null;
+    public bool HasColony { get; }
+    public int MemberCount { get; }
 }
 
 public class EnergyBalanceEventArgs : TutorialEventArgs

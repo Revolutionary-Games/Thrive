@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using AutoEvo;
+using DefaultEcs;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
@@ -222,7 +224,7 @@ public partial class CellEditorComponent :
 
     private PackedScene organelleSelectionButtonScene = null!;
 
-    private PackedScene microbeScene = null!;
+    private Spatial? cellPreviewVisualsRoot;
 #pragma warning restore CA2213
 
     private OrganelleDefinition protoplasm = null!;
@@ -269,16 +271,14 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private string newName = "unset";
 
-#pragma warning disable CA2213
-
     /// <summary>
-    ///   We're taking advantage of the available membrane and organelle system already present in
-    ///   the microbe class for the cell preview.
+    ///   We're taking advantage of the available membrane and organelle system already present in the microbe stage
+    ///   for the membrane preview.
     /// </summary>
-    private Microbe? previewMicrobe;
-#pragma warning restore CA2213
+    private MicrobeVisualOnlySimulation previewSimulation = new();
 
     private MicrobeSpecies? previewMicrobeSpecies;
+    private Entity previewMicrobe;
 
     [JsonProperty]
     private Color colour;
@@ -311,7 +311,7 @@ public partial class CellEditorComponent :
     ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild everytime when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
-    private bool membraneOrganellePositionsAreDirty = true;
+    private bool microbeVisualizationOrganellePositionsAreDirty = true;
 
     private bool microbePreviewMode;
 
@@ -341,11 +341,13 @@ public partial class CellEditorComponent :
         {
             rigidity = value;
 
-            if (previewMicrobeSpecies != null)
-            {
-                previewMicrobeSpecies.MembraneRigidity = value;
-                previewMicrobe!.ApplyMembraneWigglyness();
-            }
+            if (previewMicrobeSpecies == null)
+                return;
+
+            previewMicrobeSpecies.MembraneRigidity = value;
+
+            if (previewMicrobe.IsAlive)
+                previewSimulation.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
 
@@ -366,12 +368,13 @@ public partial class CellEditorComponent :
         {
             colour = value;
 
-            if (previewMicrobe?.Species != null)
-            {
-                previewMicrobe.Species.Colour = value;
-                previewMicrobe.Membrane.Tint = value;
-                previewMicrobe.ApplyPreviewOrganelleColours();
-            }
+            if (previewMicrobeSpecies == null)
+                return;
+
+            previewMicrobeSpecies.Colour = value;
+
+            if (previewMicrobe.IsAlive)
+                previewSimulation.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
         }
     }
 
@@ -405,10 +408,11 @@ public partial class CellEditorComponent :
         {
             microbePreviewMode = value;
 
-            UpdateCellVisualization();
+            if (cellPreviewVisualsRoot != null)
+                cellPreviewVisualsRoot.Visible = value;
 
-            if (previewMicrobe != null)
-                previewMicrobe.Visible = value;
+            // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
+            UpdateCellVisualization();
 
             placedHexes.ForEach(entry => entry.Visible = !MicrobePreviewMode);
             placedModels.ForEach(entry => entry.Visible = !MicrobePreviewMode);
@@ -627,7 +631,7 @@ public partial class CellEditorComponent :
             if (Editor.EditedCellProperties != null)
             {
                 UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
-                SetupPreviewMicrobe();
+                CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
             }
             else
@@ -673,10 +677,22 @@ public partial class CellEditorComponent :
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
 
         ApplySymmetryForCurrentOrganelle();
+
+        cellPreviewVisualsRoot = new Spatial
+        {
+            Name = "CellPreviewVisuals",
+        };
+
+        Editor.RootOfDynamicallySpawned.AddChild(cellPreviewVisualsRoot);
+
+        previewSimulation.Init(cellPreviewVisualsRoot);
     }
 
     public override void _Process(float delta)
     {
+        if (cellPreviewVisualsRoot == null)
+            throw new InvalidOperationException("This editor component is not initialized");
+
         base._Process(delta);
 
         if (!Visible)
@@ -697,6 +713,10 @@ public partial class CellEditorComponent :
             OnOrganellesChanged();
             organelleDataDirty = false;
         }
+
+        // Process microbe visuals preview when it is visible
+        if (cellPreviewVisualsRoot.Visible)
+            previewSimulation.ProcessAll(delta);
 
         // Show the organelle that is about to be placed
         if (Editor.ShowHover && !MicrobePreviewMode)
@@ -782,7 +802,7 @@ public partial class CellEditorComponent :
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
 
         // Setup the display cell
-        SetupPreviewMicrobe();
+        CreatePreviewMicrobeIfNeeded();
 
         UpdateArrow(false);
     }
@@ -842,12 +862,12 @@ public partial class CellEditorComponent :
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
     {
+        if (cellPreviewVisualsRoot == null)
+            throw new InvalidOperationException("This component is not initialized yet");
+
         base.SetEditorWorldTabSpecificObjectVisibility(shown && !MicrobePreviewMode);
 
-        if (previewMicrobe != null)
-        {
-            previewMicrobe.Visible = shown && MicrobePreviewMode;
-        }
+        cellPreviewVisualsRoot.Visible = shown && MicrobePreviewMode;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -1010,6 +1030,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Show options for the organelle under the cursor
     /// </summary>
+    /// <returns>True when this was able to do something and consume the keypress</returns>
     [RunOnKeyDown("e_secondary")]
     public bool ShowOrganelleOptions()
     {
@@ -1046,12 +1067,14 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
-        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
+        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
+            !HasNucleus);
     }
 
     public float CalculateRotationSpeed()
     {
-        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles);
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, Membrane,
+            !HasNucleus);
     }
 
     public float CalculateHitpoints()
@@ -1146,13 +1169,6 @@ public partial class CellEditorComponent :
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
-    }
-
-    protected override void LoadScenes()
-    {
-        base.LoadScenes();
-
-        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
     protected override void PerformActiveAction()
@@ -1258,6 +1274,8 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
+            previewSimulation.Dispose();
+
             if (TopPanelPath != null)
             {
                 TopPanelPath.Dispose();
@@ -1307,25 +1325,53 @@ public partial class CellEditorComponent :
         base.Dispose(disposing);
     }
 
-    private void SetupPreviewMicrobe()
+    private bool CreatePreviewMicrobeIfNeeded()
     {
-        if (previewMicrobe != null)
+        if (previewMicrobe.IsAlive && previewMicrobeSpecies != null)
+            return false;
+
+        if (cellPreviewVisualsRoot == null)
         {
-            GD.Print("Preview microbe already setup");
-            previewMicrobe.Visible = MicrobePreviewMode;
-            return;
+            throw new InvalidOperationException("Editor component not initialized yet (cell visuals root missing)");
         }
 
-        previewMicrobe = (Microbe)microbeScene.Instance();
-        previewMicrobe.IsForPreviewOnly = true;
-        Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
         previewMicrobeSpecies = new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
-            throw new InvalidOperationException("can't setup preview before cell properties are known"));
-        previewMicrobe.ApplySpecies(previewMicrobeSpecies);
+            throw new InvalidOperationException("can't setup preview before cell properties are known"))
+        {
+            // Force large normal size (instead of showing bacteria as smaller scale than the editor hexes)
+            IsBacteria = false,
+        };
+
+        previewMicrobe = previewSimulation.CreateVisualisationMicrobe(previewMicrobeSpecies);
 
         // Set its initial visibility
-        previewMicrobe.Visible = MicrobePreviewMode;
+        cellPreviewVisualsRoot.Visible = MicrobePreviewMode;
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Updates the membrane and organelle placement of the preview cell.
+    /// </summary>
+    private void UpdateCellVisualization()
+    {
+        if (previewMicrobeSpecies == null)
+            return;
+
+        // Don't redo the preview cell when not in the preview mode to avoid unnecessary lags
+        if (!MicrobePreviewMode || !microbeVisualizationOrganellePositionsAreDirty)
+            return;
+
+        CopyEditedPropertiesToSpecies(previewMicrobeSpecies);
+
+        // Intentionally force it to not be bacteria to show it at full size
+        previewMicrobeSpecies.IsBacteria = false;
+
+        // This is now just for applying changes in the species to the preview cell
+        previewSimulation.ApplyNewVisualisationMicrobeSpecies(previewMicrobe, previewMicrobeSpecies);
+
+        microbeVisualizationOrganellePositionsAreDirty = false;
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1596,7 +1642,7 @@ public partial class CellEditorComponent :
 
             organelleModel.Transform = new Transform(
                 MathUtils.CreateRotationForOrganelle(rotation),
-                cartesianPosition + shownOrganelle.CalculateModelOffset());
+                cartesianPosition + shownOrganelle.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
                 Constants.DEFAULT_HEX_SIZE);
@@ -1606,29 +1652,6 @@ public partial class CellEditorComponent :
             UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene!,
                 shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
         }
-    }
-
-    /// <summary>
-    ///   Updates the membrane and organelle placement of the preview cell.
-    /// </summary>
-    private void UpdateCellVisualization()
-    {
-        if (previewMicrobe == null)
-            return;
-
-        // Don't redo the preview cell when not in the preview mode to avoid unnecessary lags
-        if (!MicrobePreviewMode || !membraneOrganellePositionsAreDirty)
-            return;
-
-        CopyEditedPropertiesToSpecies(previewMicrobeSpecies!);
-
-        // Intentionally force it to not be bacteria to show it at full size
-        previewMicrobeSpecies!.IsBacteria = false;
-
-        // This is now just for applying changes in the species to the preview cell
-        previewMicrobe.ApplySpecies(previewMicrobeSpecies);
-
-        membraneOrganellePositionsAreDirty = false;
     }
 
     /// <summary>

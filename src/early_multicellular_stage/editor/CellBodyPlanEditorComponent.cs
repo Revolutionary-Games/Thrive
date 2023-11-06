@@ -93,15 +93,13 @@ public partial class CellBodyPlanEditorComponent :
 
     private ButtonGroup cellTypeButtonGroup = new();
 
-    private PackedScene microbeScene = null!;
-
     private CellPopupMenu cellPopupMenu = null!;
 #pragma warning restore CA2213
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
-    private List<Microbe> pendingScaleApplies = new();
-    private List<Microbe> nextFrameScaleApplies = new();
-    private List<Microbe> thisFrameScaleApplies = new();
+    private List<object> pendingScaleApplies = new();
+    private List<object> nextFrameScaleApplies = new();
+    private List<object> thisFrameScaleApplies = new();
 
     [JsonProperty]
     private string newName = "unset";
@@ -251,14 +249,18 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var microbe in thisFrameScaleApplies)
         {
-            // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
-            if (!IsInstanceValid(microbe))
-                continue;
+            _ = microbe;
 
-            // Scale is computed so that all the cells are the size of 1 hex when placed
-            // TODO: figure out why the extra multiplier to make things smaller is needed
-            microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
-                Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
+            throw new NotImplementedException();
+
+            // // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
+            // if (!IsInstanceValid(microbe))
+            //     continue;
+            //
+            // // Scale is computed so that all the cells are the size of 1 hex when placed
+            // // TODO: figure out why the extra multiplier to make things smaller is needed
+            // microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
+            //     Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
         }
 
         thisFrameScaleApplies.Clear();
@@ -495,13 +497,6 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
-    }
-
-    protected override void LoadScenes()
-    {
-        base.LoadScenes();
-
-        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
     protected override void PerformActiveAction()
@@ -998,10 +993,19 @@ public partial class CellBodyPlanEditorComponent :
     {
         modelHolder.Transform = new Transform(Quat.Identity, position);
 
-        var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
+        // var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
         // Create a new microbe if one is not already in the model holder
-        Microbe microbe;
+
+        _ = forceUpdateCellGraphics;
+
+        // TODO: reimplement with MicrobeVisualOnlySimulation (or really with the PhotoStudio to get much more
+        // potential performance by basically billboarding the entity graphics)
+        throw new NotImplementedException();
+
+        // Commented out code
+        // ReSharper disable once CommentTypo
+        /*Microbe microbe;
 
         var newSpecies = new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), cell);
 
@@ -1044,9 +1048,11 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Scale needs to be applied some frames later so that organelle positions are sent
-        pendingScaleApplies.Add(microbe);
+        pendingScaleApplies.Add(microbe);*/
 
         // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
+        // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be
+        // fine?
     }
 
     private void OnSpeciesNameChanged(string newText)

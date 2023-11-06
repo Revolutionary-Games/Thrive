@@ -130,6 +130,11 @@ public class Compound : IRegistryType
         TranslationHelper.ApplyTranslations(this);
     }
 
+    public string GetUntranslatedName()
+    {
+        return untranslatedName ?? "error";
+    }
+
     public override string ToString()
     {
         return Name;

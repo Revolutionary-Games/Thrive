@@ -4,11 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
-public class CompoundCloudSystem : Node, ISaveLoadedTracked
+public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
     [JsonProperty]
     private int neededCloudsAtOnePosition;
@@ -50,7 +51,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Resets the cloud contents and positions as well as the compound types they store
     /// </summary>
-    public void Init(FluidSystem fluidSystem)
+    public void Init(FluidCurrentsSystem fluidSystem)
     {
         var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
@@ -213,9 +214,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         return 0;
     }
 
-    /// <summary>
-    ///   Returns the total amount of all compounds at position
-    /// </summary>
     public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
     {
         foreach (var cloud in clouds)
@@ -231,7 +229,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     ///   Absorbs compounds from clouds into a bag
     /// </summary>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<Compound, float> totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         // It might be fine to remove this check but this was in the old code
         if (radius < 1.0f)
@@ -297,14 +295,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         }
     }
 
-    /// <summary>
-    ///   Tries to find specified compound as close to the point as possible.
-    /// </summary>
-    /// <param name="position">Position to search around</param>
-    /// <param name="compound">What compound to search for</param>
-    /// <param name="searchRadius">How wide to search around the point</param>
-    /// <param name="minConcentration">Limits search to only find concentrations higher than this</param>
-    /// <returns>The nearest found point for the compound or null</returns>
     public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200,
         float minConcentration = 120)
     {
