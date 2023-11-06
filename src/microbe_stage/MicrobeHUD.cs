@@ -299,10 +299,21 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var compounds = stage.Player.Get<CompoundStorage>().Compounds;
             return compound => compounds.IsUseful(compound);
         }
+        else
+        {
+            var colonyMembers = stage.Player.Get<MicrobeColony>().ColonyMembers;
 
-        throw new NotImplementedException();
+            return compound =>
+            {
+                foreach (var colonyMember in colonyMembers)
+                {
+                    if (colonyMember.Get<CompoundStorage>().Compounds.IsUseful(compound))
+                        return true;
+                }
 
-        // return compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound));
+                return false;
+            };
+        }
     }
 
     protected override bool SpecialHandleBar(ProgressBar bar)
