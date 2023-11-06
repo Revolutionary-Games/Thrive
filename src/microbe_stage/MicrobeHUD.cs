@@ -516,12 +516,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-        {
-            // TODO: calculate total used ingestion capacity
-            throw new NotImplementedException();
-
-            // return ?
-        }
+            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
 
         return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
     }
