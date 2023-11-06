@@ -333,11 +333,16 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
+        else
+        {
+            foreach (var colonyMember in stage.Player.Get<MicrobeColony>().ColonyMembers)
+            {
+                if (colonyMember.Get<CompoundStorage>().Compounds.AreAnySpecificallySetUseful(allAgents))
+                    return true;
+            }
 
-        throw new NotImplementedException();
-
-        // return colony.ColonyMembers.Any(
-        //     c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
+            return false;
+        }
     }
 
     protected override ICompoundStorage GetPlayerStorage()
