@@ -118,7 +118,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
-    [Export]
     public float OsmoregulationCost
     {
         get => osmoregulationCost;

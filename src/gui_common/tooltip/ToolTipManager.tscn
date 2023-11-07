@@ -341,6 +341,77 @@ margin_top = 210.0
 margin_right = 468.0
 margin_bottom = 232.0
 
+[node name="ruBisCo" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+margin_right = 500.0
+margin_bottom = 2.0
+DisplayName = "RUBISCO"
+ProcessesDescription = "RUBISCO_PROCESSES_DESCRIPTION"
+Description = "RUBISCO_DESCRIPTION"
+MutationPointCost = 45
+
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/ruBisCo" index="0"]
+margin_right = 499.0
+margin_bottom = 263.0
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer" index="0"]
+margin_right = 483.0
+margin_bottom = 247.0
+
+[node name="Header" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="0"]
+margin_right = 468.0
+
+[node name="MP" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer/Header" index="0"]
+margin_right = 119.0
+
+[node name="Title" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer/Header" index="1"]
+margin_left = 129.0
+margin_right = 339.0
+rect_min_size = Vector2( 210, 0 )
+
+[node name="Spacer" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer/Header" index="2"]
+margin_left = 349.0
+margin_right = 468.0
+
+[node name="RequiresNucleus" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="1"]
+margin_right = 468.0
+
+[node name="ProcessesDescription" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="2"]
+margin_right = 468.0
+
+[node name="ProcessList" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="3"]
+margin_right = 468.0
+
+[node name="ModifierList" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="4"]
+margin_right = 468.0
+margin_bottom = 176.0
+
+[node name="storage" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
+margin_right = 468.0
+DisplayName = "STORAGE"
+ModifierValue = "+0.5"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 9 )
+
+[node name="osmoregulationCost" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 468.0
+margin_bottom = 44.0
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+ModifierIcon = ExtResource( 6 )
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="5"]
+margin_top = 191.0
+margin_right = 468.0
+margin_bottom = 195.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/ruBisCo/MarginContainer/VBoxContainer" index="6"]
+margin_top = 210.0
+margin_right = 468.0
+margin_bottom = 232.0
+
 [node name="chromatophore" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "THYLAKOID"
@@ -1723,6 +1794,12 @@ DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 
+[node name="ruBisCo" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 DisplayDelay = 0.0
@@ -1921,6 +1998,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/organelleSelection/cytoplasm"]
 [editable path="GroupHolder/organelleSelection/metabolosome"]
+[editable path="GroupHolder/organelleSelection/ruBisCo"]
 [editable path="GroupHolder/organelleSelection/chromatophore"]
 [editable path="GroupHolder/organelleSelection/chemoSynthesizingProteins"]
 [editable path="GroupHolder/organelleSelection/rusticyanin"]
