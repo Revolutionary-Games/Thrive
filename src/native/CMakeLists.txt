@@ -33,6 +33,9 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE /WX)
   endif()
+
+  # TODO debug symbols in release for MSVC (and Distribution mode)
+
 else()
   target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Werror
     -Wno-unknown-pragmas)
@@ -40,16 +43,10 @@ else()
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)
   endif()
-endif()
 
-if(UNIX)
   target_compile_options(thrive_native PRIVATE $<$<CONFIG:Release>:-g -O3>
     $<$<CONFIG:Distribution>:-g -O3>)
-elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  # TODO: restore debug symbols for Release configuration and add them for
-  # distribution
 endif()
-
 
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
@@ -58,8 +55,6 @@ target_link_libraries(thrive_native PUBLIC Boost::intrusive
   Boost::circular_buffer Boost::pool)
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
-
-# target_include_directories(thrive_native PUBLIC "../../third_party/JoltPhysics/")
 
 # TODO: the one private precompiled header will probably cause issues with
 # other libraries linking to this
@@ -72,13 +67,9 @@ set_target_properties(thrive_native PROPERTIES
   CXX_EXTENSIONS OFF)
 
 if(THRIVE_LTO)
-  if(UNIX OR CMAKE_GENERATOR MATCHES "Visual Studio")
-    # This seems to fail native Windows builds (when trying to use msys2)
-    set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-  else()
-    message(STATUS "Not enabling interprocedural optimization (lto) "
-      "as it is probably not working on this platform")
-  endif()
+  # TODO: figure out why msys2 fails with this or disable this by default there
+  set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+  message(STATUS "LTO is on for Thrive")
 endif()
 
 install(TARGETS thrive_native)
