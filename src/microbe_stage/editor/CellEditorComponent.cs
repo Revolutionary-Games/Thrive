@@ -892,11 +892,12 @@ public partial class CellEditorComponent :
         {
             TutorialState tutorialState = Editor.CurrentGame.TutorialState;
 
-            if (tutorialState.Enabled && !tutorialState.MadeNoChangesTutorial.HasBeenShown)
+            if (tutorialState.Enabled)
             {
                 tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
 
-                return false;
+                if (tutorialState.TutorialActive())
+                    return false;
             }
         }
 
@@ -1176,7 +1177,8 @@ public partial class CellEditorComponent :
         if (AddOrganelle(ActiveActionName!))
         {
             // Only trigger tutorial if an organelle was really placed
-            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced,
+                new OrganellePlacedEventArgs(GetOrganelleDefinition(ActiveActionName!)), this);
         }
     }
 

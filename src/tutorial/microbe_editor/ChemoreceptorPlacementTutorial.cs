@@ -12,7 +12,7 @@
 
         public override string ClosedByName => "ChemoreceptorPlacementTutorial";
 
-        protected override int TriggersOnNthEditorSession => 3;
+        protected override int TriggersOnNthEditorSession => 4;
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

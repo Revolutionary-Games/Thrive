@@ -114,6 +114,11 @@ public enum TutorialEventType
     MicrobeEditorOrganellePlaced,
 
     /// <summary>
+    ///   Player modified an organelle
+    /// </summary>
+    MicrobeEditorOrganelleModified,
+
+    /// <summary>
     ///   Player undid an action in the editor
     /// </summary>
     MicrobeEditorUndo,

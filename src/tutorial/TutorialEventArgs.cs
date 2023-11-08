@@ -134,3 +134,13 @@ public class EnergyBalanceEventArgs : TutorialEventArgs
 
     public EnergyBalanceInfo EnergyBalanceInfo { get; }
 }
+
+public class OrganellePlacedEventArgs : TutorialEventArgs
+{
+    public OrganellePlacedEventArgs(OrganelleDefinition definition)
+    {
+        Definition = definition;
+    }
+
+    public OrganelleDefinition Definition { get; }
+}

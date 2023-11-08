@@ -973,6 +973,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         OnCanEditStatusChanged(ready &&
             (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
+
+        if (player.Has<OrganelleContainer>() &&
+            player.Get<OrganelleContainer>().Organelles.Any(o => o.Definition.InternalName != "cytoplasm"))
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this);
+        }
     }
 
     [DeserializedCallbackAllowed]

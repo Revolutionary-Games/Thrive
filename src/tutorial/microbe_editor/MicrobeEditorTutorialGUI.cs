@@ -50,6 +50,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath FlagellumPlacementTutorialPath = null!;
 
+    [Export]
+    public NodePath ModifyOrganelleTutorialPath = null!;
+
 #pragma warning disable CA2213
     private CustomWindow editorEntryReport = null!;
     private CustomWindow patchMap = null!;
@@ -63,6 +66,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow chemoreceptorPlacementTutorial = null!;
     private CustomWindow madeNoChangesTutorial = null!;
     private CustomWindow flagellumPlacementTutorial = null!;
+    private CustomWindow modifyOrganelleTutorial = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -305,6 +309,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool ModifyOrganelleTutorialVisible
+    {
+        get => modifyOrganelleTutorial.Visible;
+        set
+        {
+            if (value == modifyOrganelleTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                modifyOrganelleTutorial.Show();
+            }
+            else
+            {
+                modifyOrganelleTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -319,6 +342,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         negativeAtpBalanceTutorial = GetNode<CustomWindow>(NegativeAtpBalanceTutorialPath);
         madeNoChangesTutorial = GetNode<CustomWindow>(MadeNoChangesTutorialPath);
         flagellumPlacementTutorial = GetNode<CustomWindow>(FlagellumPlacementTutorialPath);
+        modifyOrganelleTutorial = GetNode<CustomWindow>(ModifyOrganelleTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
@@ -368,6 +392,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
                 NegativeAtpBalanceTutorialPath.Dispose();
                 MadeNoChangesTutorialPath.Dispose();
                 FlagellumPlacementTutorialPath.Dispose();
+                ModifyOrganelleTutorialPath.Dispose();
             }
         }
 
