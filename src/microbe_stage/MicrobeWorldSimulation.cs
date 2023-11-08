@@ -58,6 +58,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
+    private MicrobeProcessManagerSystem microbeProcessManagerSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
@@ -157,6 +158,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
+        microbeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, parallelRunner);
 
@@ -298,6 +300,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageOnTouchSystem.Update(delta);
         pilusDamageSystem.Update(delta);
 
+        microbeProcessManagerSystem.Update(delta);
+
         ProcessSystem.Update(delta);
 
         colonyCompoundDistributionSystem.Update(delta);
@@ -412,6 +416,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeFlashingSystem.Dispose();
             microbeMovementSoundSystem.Dispose();
             microbeMovementSystem.Dispose();
+            microbeProcessManagerSystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
             organelleComponentFetchSystem.Dispose();

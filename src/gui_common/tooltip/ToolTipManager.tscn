@@ -1798,7 +1798,7 @@ DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginCo
 visible = false
 DisplayDelay = 0.0
 Positioning = 1
-DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+DescriptionLabelPath = NodePath("../../processesProduction/ruBisCo/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
@@ -1900,6 +1900,12 @@ visible = false
 DisplayDelay = 0.0
 Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
+
+[node name="ruBisCo" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/ruBisCo/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
