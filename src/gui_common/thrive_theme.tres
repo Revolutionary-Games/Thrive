@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=76 format=2]
+[gd_resource type="Theme" load_steps=77 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
@@ -162,6 +163,7 @@ border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 429, 1 )
 expand_margin_left = 10.0
 expand_margin_right = 10.0

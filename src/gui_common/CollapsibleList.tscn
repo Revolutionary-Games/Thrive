@@ -18,6 +18,9 @@ anchor_bottom = 1.0
 margin_right = -1225.0
 margin_bottom = -744.0
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 TitleLabelPath = NodePath("HBoxContainer/Title")
 CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
 ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
@@ -26,7 +29,7 @@ ItemContainerPath = NodePath("Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 155.0
+margin_right = 144.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="HBoxContainer"]
@@ -61,8 +64,9 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="HBoxContainer"]
 margin_left = 24.0
-margin_right = 148.0
-margin_bottom = 20.0
+margin_top = 1.0
+margin_right = 137.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 6 )
 text = "Insert Title Here"
 valign = 1
@@ -71,8 +75,8 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
-margin_left = 152.0
-margin_right = 155.0
+margin_left = 141.0
+margin_right = 144.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -80,17 +84,16 @@ custom_styles/separator = SubResource( 1 )
 
 [node name="Clip" type="MarginContainer" parent="."]
 margin_top = 24.0
-margin_right = 155.0
+margin_right = 144.0
 margin_bottom = 24.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="GridContainer" type="GridContainer" parent="Clip"]
-margin_right = 155.0
+margin_right = 144.0
 mouse_filter = 2
 
 [node name="Tween" type="Tween" parent="."]
-
 [connection signal="pressed" from="HBoxContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
 [connection signal="pressed" from="HBoxContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]
