@@ -5,16 +5,14 @@
 [ext_resource path="res://assets/textures/rusticyanin.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
 
+
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
-shader_param/fresnelValue = 1.0
-shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
 shader_param/growColor = Color( 0.180392, 0.176471, 0.168627, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
-shader_param/jiggleAmount = 0.0005
 shader_param/texture = ExtResource( 3 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
@@ -22,3 +20,4 @@ shader_param/dissolveTexture = ExtResource( 4 )
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )
+material/0 = null
