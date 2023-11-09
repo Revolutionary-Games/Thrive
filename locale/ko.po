@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-31 16:13+0200\n"
+"POT-Creation-Date: 2023-11-09 19:05+0100\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -790,7 +790,7 @@ msgstr "섬유소"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:654
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:656
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -961,7 +961,10 @@ msgstr "이전 저장 정리"
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:364
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:418
 msgid "CLOSE"
 msgstr "닫기"
 
@@ -1967,7 +1970,7 @@ msgstr "편집기"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:50
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:51
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -2010,15 +2013,15 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2432
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2463
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2443
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2474
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2436
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2101,7 +2104,7 @@ msgstr "저장 오류"
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1146
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -2366,7 +2369,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2480
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2556,8 +2559,8 @@ msgstr "새로운 키 배치 추가"
 msgid "GOOGLY_EYE_CELL"
 msgstr "만화 눈 세포"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:167
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:453
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:470
 msgid "GOT_IT"
 msgstr "알겠습니다"
 
@@ -3185,7 +3188,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1410
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4580,11 +4583,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4611,7 +4614,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2464
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2495
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4659,7 +4662,7 @@ msgstr "선택됨:"
 msgid "NUCLEUS"
 msgstr "핵"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1391
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1408
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4681,8 +4684,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2322
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2332
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2353
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:429
 #, fuzzy
@@ -5276,7 +5279,7 @@ msgstr "개체수:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "지역 내 개체수:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2313
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2344
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
@@ -6191,7 +6194,7 @@ msgstr "암모니아 배치"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6495,11 +6498,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1144
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1145
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
@@ -6970,11 +6973,11 @@ msgstr "스크린샷 촬영"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:130
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:201
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:255
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:309
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:363
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:418
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:218
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:272
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:380
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:435
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 #, fuzzy
@@ -6986,7 +6989,7 @@ msgstr "튜토리얼"
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "미생물 편집기 불러오는 중"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:184
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:185
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "이 패널은 예상되는 당신의 미래 개체수를 보여줍니다. 이 숫자들은 Auto-Evo의 개체수 시뮬레이션 결과에 따른 것입니다.\n"
@@ -6997,7 +7000,7 @@ msgstr ""
 "\n"
 "이 패널에 있는 물음표 버튼을 눌러 예측의 이유에 대해 더 자세한 정보를 볼 수 있습니다. 계속하려면 해당 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:77
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:78
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -7008,7 +7011,7 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:273
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
@@ -7032,7 +7035,7 @@ msgstr ""
 "\n"
 "행운을 빕니다!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
@@ -7043,7 +7046,18 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:419
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:201
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
+msgstr ""
+"세포 기관 제거 또한 종의 변이이므로 MP를 소모합니다. 마우스 오른쪽 클릭으로 세포 기관을 제거할 수 있습니다.\n"
+"편집기에선 실수로 제거하더라도, 변경을 취소할 수 있습니다.\n"
+"\n"
+"메모: 현재 편집기 세션에서 배치된 세포 기관을 제거하는 것은 무료입니다.\n"
+"\n"
+"되돌리기 버튼을 눌러 진행하세요."
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:436
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -7054,7 +7068,7 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:364
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:381
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
@@ -7066,7 +7080,7 @@ msgstr ""
 "\n"
 "행운을 빕니다!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -7077,7 +7091,7 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:92
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:93
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -7100,7 +7114,7 @@ msgstr ""
 "\n"
 "다시 실행 버튼(되돌리기 버튼 근처)을 눌러 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""

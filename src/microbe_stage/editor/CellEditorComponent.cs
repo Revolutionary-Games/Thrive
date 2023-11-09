@@ -2020,6 +2020,11 @@ public partial class CellEditorComponent :
             return;
         }
 
+        if (TutorialState!.Enabled)
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganelleModified, EventArgs.Empty, this);
+        }
+
         organelleUpgradeGUI.OpenForOrganelle(
             targetOrganelle, upgradeGUI ?? string.Empty, this, Editor, CostMultiplier, Editor.CurrentGame);
     }
