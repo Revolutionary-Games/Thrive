@@ -115,7 +115,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         animationControlSystem = new AnimationControlSystem(EntitySystem);
         attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, parallelRunner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, parallelRunner);
-        countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem, parallelRunner);
+        countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, parallelRunner);
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, parallelRunner);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
