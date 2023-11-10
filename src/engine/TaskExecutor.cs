@@ -399,7 +399,14 @@ public class TaskExecutor : IParallelRunner
             // but now some places actually want to handle the task exceptions themselves, so this should
             // be removed after making sure no places ignore the exceptions
             if (command.Task.Exception != null)
+            {
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
                 GD.Print("Background task caused an exception: ", command.Task.Exception);
+            }
         }
         else if (command.CommandType == ThreadCommand.Type.ParallelRunnable)
         {
@@ -409,6 +416,11 @@ public class TaskExecutor : IParallelRunner
             }
             catch (Exception exception)
             {
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
                 // TODO: should this quit the game immediately due to the exception (or pass it to the main thread
                 // for example with a field that Run would check after running the tasks)?
 
