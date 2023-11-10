@@ -346,8 +346,7 @@ things should be working.
 Thrive depends on some native libraries which must be present before
 the game can be ran.
 
-In the future it will be possible to download compatible libraries
-with a script:
+The easiest way to get these is to download precompiled ones by running:
 ```sh
 dotnet run --project Scripts -- native Fetch Install
 ```
@@ -367,8 +366,16 @@ dotnet run --project Scripts -- native Build Install
 
 Debug versions for easier native code development / more robust error
 condition checking can be built and installed by adding `-d` to the
-end of the previous command to specify debug versions of the
-libraries to be used.
+end of the previous command to specify debug versions of the libraries
+to be used. Sometimes debug versions of the libraries are available
+for download and in those cases `-d` can be added to the end of the
+`Fetch` command as well.
+
+Note that for release making you need the native libraries for all
+platforms:
+```sh
+dotnet run --project Scripts -- native Fetch
+```
 
 ## Using Development Environments
 
