@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using DefaultEcs.Threading;
@@ -17,7 +19,9 @@ public class TaskExecutor : IParallelRunner
 {
     private static readonly TaskExecutor SingletonInstance = new();
 
-    private readonly BlockingCollection<ThreadCommand> queuedTasks = new();
+    private readonly object threadNotifySync = new();
+
+    private readonly ConcurrentQueue<ThreadCommand> queuedTasks = new();
 
     private readonly List<Task> mainThreadTaskStorage = new();
 
@@ -117,12 +121,16 @@ public class TaskExecutor : IParallelRunner
         return targetTaskCount;
     }
 
+    // TODO: add a variant that allows adding multiple tasks at once
     /// <summary>
     ///   Sends a new task to be executed
     /// </summary>
-    public void AddTask(Task task)
+    public void AddTask(Task task, bool wakeWorkerThread = true)
     {
-        queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Task, task));
+        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Task, task));
+
+        if (wakeWorkerThread)
+            NotifyNewTasksAdded(1);
     }
 
     /// <summary>
@@ -137,8 +145,10 @@ public class TaskExecutor : IParallelRunner
 
         for (int i = 0; i < maxIndex; ++i)
         {
-            queuedTasks.Add(new ThreadCommand(runnable, i, maxIndex));
+            queuedTasks.Enqueue(new ThreadCommand(runnable, i, maxIndex));
         }
+
+        NotifyNewTasksAdded(maxIndex);
 
         // Main thread runs at the max index
         runnable.Run(maxIndex, maxIndex);
@@ -179,7 +189,7 @@ public class TaskExecutor : IParallelRunner
         {
             if (firstTask != null)
             {
-                AddTask(task);
+                AddTask(task, false);
             }
             else
             {
@@ -195,6 +205,10 @@ public class TaskExecutor : IParallelRunner
             return;
         }
 
+        // Should be fine to wake up all the threads as main thread is going to also be busy so this is purely to be
+        // able to run things at full speed
+        NotifyAllNewTasksAdded();
+
         // Run the first task on this thread
         firstTask.RunSynchronously();
 
@@ -207,12 +221,12 @@ public class TaskExecutor : IParallelRunner
 
             // This should be the non-blocking variant so the current thread won't wait for more tasks,
             // just immediately exits the loop if there are no tasks to run
-            while (queuedTasks.TryTake(out ThreadCommand command))
+            while (queuedTasks.TryDequeue(out ThreadCommand command))
             {
                 // If we take out a quit command here, we need to put it back for the actual threads to get and break
                 if (command.CommandType == ThreadCommand.Type.Quit)
                 {
-                    queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Quit, null));
+                    queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit, null));
                     break;
                 }
 
@@ -265,7 +279,6 @@ public class TaskExecutor : IParallelRunner
     {
         if (disposing)
         {
-            queuedTasks.Dispose();
         }
     }
 
@@ -285,16 +298,69 @@ public class TaskExecutor : IParallelRunner
         if (currentThreadCount <= 0)
             return;
 
-        queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Quit, null));
+        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit, null));
+        NotifyNewTasksAdded(1);
 
         --currentThreadCount;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void NotifyAllNewTasksAdded()
+    {
+        lock (threadNotifySync)
+        {
+            Monitor.PulseAll(threadNotifySync);
+        }
+    }
+
+    private void NotifyNewTasksAdded(int count)
+    {
+        if (count < 0)
+        {
+            GD.PrintErr($"Too low count passed to {nameof(NotifyNewTasksAdded)}");
+            return;
+        }
+
+        if (count == 1)
+        {
+            lock (threadNotifySync)
+            {
+                Monitor.Pulse(threadNotifySync);
+            }
+
+            return;
+        }
+
+        // If count is more than threads, don't bother sending that many
+        if (count > currentThreadCount)
+            count = currentThreadCount;
+
+        lock (threadNotifySync)
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                Monitor.Pulse(threadNotifySync);
+            }
+        }
+    }
+
     private void RunExecutorThread()
     {
+        // This is used to sleep only when no new work is arriving to allow this thread to sleep only sometimes
+        int noWorkCounter = 0;
+
         while (running)
         {
-            if (queuedTasks.TryTake(out ThreadCommand command, 30000))
+            // Wait a bit before going to sleep
+            if (noWorkCounter > 1000)
+            {
+                lock (threadNotifySync)
+                {
+                    Monitor.Wait(threadNotifySync, 5);
+                }
+            }
+
+            if (queuedTasks.TryDequeue(out ThreadCommand command))
             {
                 if (command.CommandType == ThreadCommand.Type.Quit)
                 {
@@ -303,6 +369,12 @@ public class TaskExecutor : IParallelRunner
 
                 if (ProcessNormalCommand(command))
                     return;
+
+                noWorkCounter = 0;
+            }
+            else
+            {
+                ++noWorkCounter;
             }
         }
     }
