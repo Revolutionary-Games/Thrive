@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using DefaultEcs.Threading;
 using Godot;
 using Environment = System.Environment;
 using Thread = System.Threading.Thread;
@@ -11,15 +12,19 @@ using Thread = System.Threading.Thread;
 ///   Manages running a reasonable number of parallel tasks at once
 /// </summary>
 #pragma warning disable CA1001 // singleton anyway
-public class TaskExecutor
+public class TaskExecutor : IParallelRunner
 #pragma warning restore CA1001
 {
     private static readonly TaskExecutor SingletonInstance = new();
 
     private readonly BlockingCollection<ThreadCommand> queuedTasks = new();
 
+    private readonly List<Task> mainThreadTaskStorage = new();
+
     private bool running = true;
     private int currentThreadCount;
+
+    private int queuedParallelRunnableCount;
 
     /// <summary>
     ///   For naming the created threads.
@@ -73,6 +78,16 @@ public class TaskExecutor
     }
 
     /// <summary>
+    ///   How many tasks are used by ECS operations. +1 is here as the main thread also is used
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: should this be limited for some systems where there would be very few entities per thread?
+    ///   </para>
+    /// </remarks>
+    public int DegreeOfParallelism => currentThreadCount + 1;
+
+    /// <summary>
     ///   Computes how many threads there should be by default
     /// </summary>
     /// <param name="hyperthreading">
@@ -111,6 +126,44 @@ public class TaskExecutor
     }
 
     /// <summary>
+    ///   Runs an ECS library runnable on the main thread and the available executors
+    /// </summary>
+    public void Run(IParallelRunnable runnable)
+    {
+        int maxIndex = DegreeOfParallelism - 1;
+
+        if (Interlocked.Exchange(ref queuedParallelRunnableCount, maxIndex) != 0)
+            throw new Exception("TaskExecutor got into an inconsistent state while running ParallelRunnable tasks");
+
+        for (int i = 0; i < maxIndex; ++i)
+        {
+            queuedTasks.Add(new ThreadCommand(runnable, i, maxIndex));
+
+            // runnable.Run(i, maxIndex);
+        }
+
+        // Main thread runs at the max index
+        runnable.Run(maxIndex, maxIndex);
+
+        Interlocked.MemoryBarrier();
+
+        // queuedParallelRunnableCount = 0;
+
+        while (queuedParallelRunnableCount > 0)
+        {
+            Interlocked.MemoryBarrier();
+
+            // TODO: add this when we can to reduce hyperthreading resource use while waiting
+            // System.Runtime.Intrinsics.X86.X86Base.Pause();
+        }
+
+#if DEBUG
+        if (queuedParallelRunnableCount != 0)
+            throw new Exception("After waiting for parallel runnables count got out of sync");
+#endif
+    }
+
+    /// <summary>
     ///   Runs a list of tasks and waits for them to complete. The
     ///   first task is ran on the calling thread before waiting.
     /// </summary>
@@ -121,25 +174,12 @@ public class TaskExecutor
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this should be optimized to run as many tasks on the main thread as the other threads will run
-    ///   </para>
-    /// </remarks>
     public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
         Task? firstTask = null;
 
-        var enumerated = tasks.ToList();
-
-        if (enumerated.Count < 1)
-        {
-            // No tasks given to execute. Should we throw here?
-            return;
-        }
-
-        foreach (var task in enumerated)
+        foreach (var task in tasks)
         {
             if (firstTask != null)
             {
@@ -149,12 +189,18 @@ public class TaskExecutor
             {
                 firstTask = task;
             }
+
+            mainThreadTaskStorage.Add(task);
+        }
+
+        if (firstTask == null)
+        {
+            // No tasks given to execute. Should we throw here?
+            return;
         }
 
         // Run the first task on this thread
-        // This should always be non-null given the check above, but I don't feel like changing this now to not
-        // have to test this extensively
-        firstTask?.RunSynchronously();
+        firstTask.RunSynchronously();
 
         // TODO: it should be plausible to make it so that only tasks in "tasks" are ran on the calling thread
         // but due to implementation difficulty that is not currently done, instead this parameter is used
@@ -183,16 +229,25 @@ public class TaskExecutor
         // tasks
 
         // Wait for all given tasks to complete
-        foreach (var task in enumerated)
+        foreach (var task in mainThreadTaskStorage)
         {
             task.Wait();
         }
+
+        mainThreadTaskStorage.Clear();
     }
 
+    // TODO: maybe remove this given the comment in RunTasks?
     public void Quit()
     {
         running = false;
         ParallelTasks = 0;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
     public void ReApplyThreadCount()
@@ -210,11 +265,21 @@ public class TaskExecutor
         }
     }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            queuedTasks.Dispose();
+        }
+    }
+
     private void SpawnThread()
     {
-        var thread = new Thread(RunExecutorThread);
-        thread.IsBackground = true;
-        thread.Name = $"TaskThread_{++threadCounter}";
+        var thread = new Thread(RunExecutorThread)
+        {
+            IsBackground = true,
+            Name = $"TaskThread_{++threadCounter}",
+        };
         thread.Start();
         ++currentThreadCount;
     }
@@ -268,6 +333,25 @@ public class TaskExecutor
             if (command.Task.Exception != null)
                 GD.Print("Background task caused an exception: ", command.Task.Exception);
         }
+        else if (command.CommandType == ThreadCommand.Type.ParallelRunnable)
+        {
+            try
+            {
+                command.ParallelRunnable!.Run(command.ParallelIndex, command.MaxIndex);
+            }
+            catch (Exception exception)
+            {
+                // TODO: should this quit the game immediately due to the exception (or pass it to the main thread
+                // for example with a field that Run would check after running the tasks)?
+
+                GD.Print("Background ParallelRunnable failed due to: ", exception);
+                return true;
+            }
+            finally
+            {
+                Interlocked.Decrement(ref queuedParallelRunnableCount);
+            }
+        }
         else
         {
             throw new Exception("invalid task type");
@@ -278,18 +362,37 @@ public class TaskExecutor
 
     private struct ThreadCommand
     {
-        public Type CommandType;
-        public Task? Task;
+        public readonly Task? Task;
+        public readonly IParallelRunnable? ParallelRunnable;
+
+        public readonly Type CommandType;
+        public readonly int ParallelIndex;
+        public readonly int MaxIndex;
 
         public ThreadCommand(Type commandType, Task? task)
         {
             CommandType = commandType;
             Task = task;
+
+            ParallelRunnable = null;
+            ParallelIndex = 0;
+            MaxIndex = 0;
+        }
+
+        public ThreadCommand(IParallelRunnable parallelRunnable, int index, int maxIndex)
+        {
+            CommandType = Type.ParallelRunnable;
+            ParallelRunnable = parallelRunnable;
+            ParallelIndex = index;
+            MaxIndex = maxIndex;
+
+            Task = null;
         }
 
         public enum Type
         {
             Task,
+            ParallelRunnable,
             Quit,
         }
     }

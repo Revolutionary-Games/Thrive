@@ -84,7 +84,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [JsonIgnore]
     public CameraFollowSystem CameraFollowSystem { get; private set; } = null!;
 
-    // TODO: check that
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public SpawnSystem SpawnSystem { get; private set; } = null!;
@@ -109,8 +108,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         visualsParent = visualDisplayRoot;
 
-        // TODO: add threading
-        var parallelRunner = new DefaultParallelRunner(1);
+        // Threading using our task system
+        var parallelRunner = TaskExecutor.Instance;
 
         // Systems stored in fields
         animationControlSystem = new AnimationControlSystem(EntitySystem);
@@ -136,7 +135,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
         spatialPositionSystem = new SpatialPositionSystem(EntitySystem, parallelRunner);
 
-        allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem, parallelRunner);
+        allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
         colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
@@ -155,7 +154,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
-        // TODO: this definitely needs to be (along with the process system) the first systems to be multithreaded
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, parallelRunner);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, parallelRunner);

@@ -184,18 +184,25 @@ public abstract class WorldSimulation : IWorldSimulation
 
     public bool DestroyEntity(Entity entity)
     {
-        if (queuedForDelete.Contains(entity))
+        lock (queuedForDelete)
         {
-            // Already queued for delete
-            return true;
+            if (queuedForDelete.Contains(entity))
+            {
+                // Already queued for delete
+                return true;
+            }
+
+            queuedForDelete.Add(entity);
         }
 
-        queuedForDelete.Add(entity);
         return true;
     }
 
     public void DestroyAllEntities(Entity? skip = null)
     {
+        if (Processing)
+            throw new InvalidOperationException("Cannot destroy all entities while processing");
+
         ProcessDestroyQueue();
 
         // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
@@ -207,12 +214,18 @@ public abstract class WorldSimulation : IWorldSimulation
             PerformEntityDestroy(entity);
         }
 
-        queuedForDelete.Clear();
+        lock (queuedForDelete)
+        {
+            queuedForDelete.Clear();
+        }
     }
 
     public void ReportEntityDyingSoon(in Entity entity)
     {
-        entitiesToNotSave.Add(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Add(entity);
+        }
     }
 
     /// <summary>
@@ -220,7 +233,10 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     public bool IsQueuedForDeletion(Entity entity)
     {
-        return queuedForDelete.Contains(entity);
+        lock (queuedForDelete)
+        {
+            return queuedForDelete.Contains(entity);
+        }
     }
 
     public EntityCommandRecorder StartRecordingEntityCommands()
@@ -265,7 +281,15 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <returns>True when the entity is in this world and is not queued for deletion</returns>
     public bool IsEntityInWorld(Entity entity)
     {
-        return entity.IsAlive && !queuedForDelete.Contains(entity);
+        // TODO: check WorldId first somehow to ensure this doesn't access things out of bounds in the list of worlds?
+
+        if (!entity.IsAlive)
+            return false;
+
+        lock (queuedForDelete)
+        {
+            return !queuedForDelete.Contains(entity);
+        }
     }
 
     public virtual void ReportPlayerPosition(Vector3 position)
@@ -384,7 +408,10 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected void PerformEntityDestroy(Entity entity)
     {
-        entitiesToNotSave.Remove(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Remove(entity);
+        }
 
         OnEntityDestroyed(entity);
 
@@ -427,14 +454,19 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private void ProcessDestroyQueue()
     {
-        foreach (var entity in queuedForDelete)
+        // We ensure that no processing operation can be in progress while this is called so this should be completely
+        // fine to use without a lock here
+        lock (queuedForDelete)
         {
-            PerformEntityDestroy(entity);
+            foreach (var entity in queuedForDelete)
+            {
+                PerformEntityDestroy(entity);
+            }
+
+            // TODO: would it make sense to switch entity count reporting to this class?
+
+            queuedForDelete.Clear();
         }
-
-        // TODO: would it make sense to switch entity count reporting to this class?
-
-        queuedForDelete.Clear();
     }
 
     private void ApplyRecordedCommands()
