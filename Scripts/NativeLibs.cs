@@ -65,8 +65,8 @@ public class NativeLibs
 
         if (options.DebugLibrary)
         {
-            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not available " +
-                "for download usually)");
+            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not always " +
+                "available for download)");
         }
 
         // Explicitly selected platforms override defaults
@@ -220,7 +220,7 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Install:
                 return await OperateOnAllLibraries(InstallLibraryForEditor, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Fetch:
-                throw new NotImplementedException("TODO: implement downloading");
+                return await OperateOnAllLibraries(DownloadLibraryIfMissing, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Build:
                 return await OperateOnAllLibraries(BuildLocally, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Package:
@@ -887,7 +887,6 @@ public class NativeLibs
 
         bool debug = options.DebugLibrary;
 
-        // Check if the library already exists
         if (string.IsNullOrEmpty(options.Key))
         {
             ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
@@ -915,6 +914,7 @@ public class NativeLibs
             Tags = tags,
         };
 
+        // Check if the library already exists
         ColourConsole.WriteDebugLine($"Checking if should upload, requesting: {checkUrl}");
         var response = await httpClient.PostAsJsonAsync(checkUrl, precompiledInitialData, cancellationToken);
 
@@ -1040,7 +1040,10 @@ public class NativeLibs
             if (i > 0)
             {
                 ColourConsole.WriteNormalLine("Will retry upload in 15 seconds...");
-                Thread.Sleep(TimeSpan.FromSeconds(i * 15));
+
+                // Again, don't want to pass cancellation token to not cancel out of the retry
+                // ReSharper disable once MethodSupportsCancellation
+                await Task.Delay(TimeSpan.FromSeconds(i * 15));
             }
 
             // We have created the item already, do not cancel
@@ -1135,6 +1138,109 @@ public class NativeLibs
         var uploader = new SymbolUploader(options, "./");
 
         return uploader.Run(cancellationToken);
+    }
+
+    private async Task<bool> DownloadLibraryIfMissing(Library library, PackagePlatform platform,
+        CancellationToken cancellationToken)
+    {
+        var version = GetLibraryVersion(library);
+        var file = GetPathToLibraryDll(library, platform, version, true);
+
+        if (File.Exists(file))
+        {
+            ColourConsole.WriteNormalLine($"Library already exists, skipping download of: {file}");
+            return true;
+        }
+
+        var directory = Path.GetDirectoryName(file);
+
+        if (string.IsNullOrEmpty(directory))
+            throw new Exception("Failed to determine the folder the library should be in");
+
+        Directory.CreateDirectory(directory);
+
+        bool debug = options.DebugLibrary;
+
+        PrecompiledTag tags = 0;
+
+        if (debug)
+        {
+            ColourConsole.WriteNormalLine("Will try to download a debug version of the library");
+            tags = PrecompiledTag.Debug;
+        }
+
+        using var httpClient = GetDevCenterClient();
+
+        ColourConsole.WriteNormalLine(
+            $"Checking if the precompiled object {library}:{version}:{platform}:{tags} is available");
+
+        // Use the link endpoint to not get auto redirect
+        var fetchUrl = new Uri(await GetBaseRemoteUrlForLibrary(library),
+            $"{version}/{(int)platform}/{(int)tags}/link");
+
+        var response = await httpClient.GetAsync(fetchUrl, cancellationToken);
+
+        var content = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Library is not available for download, or a server error occurred, response: {content}");
+            return false;
+        }
+
+        var downloadUrl = content;
+
+        ColourConsole.WriteInfoLine($"Downloading {downloadUrl}");
+
+        // Download the file without sending the authentication headers used for the DevCenter
+        using var normalClient = new HttpClient();
+
+        // Retry a few times in case the storage is not available
+        for (int i = 0; i < 10; ++i)
+        {
+            if (i > 0)
+            {
+                ColourConsole.WriteNormalLine("Will retry download in 15 seconds...");
+                await Task.Delay(TimeSpan.FromSeconds(i * 15), cancellationToken);
+            }
+
+            try
+            {
+                using var download = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead,
+                    cancellationToken);
+
+                download.EnsureSuccessStatusCode();
+
+                // Write asynchronously while downloading data to not need to store the entire thing in memory
+                await using var writer = File.Create(file);
+
+                await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
+
+                // And also compress while downloading as a compressed form of the data is not needed on disk for
+                // anything so it would just take up unnecessary space
+                await using var decompressor = new BrotliStream(readStream, CompressionMode.Decompress);
+
+                await decompressor.CopyToAsync(writer, cancellationToken);
+
+                await writer.FlushAsync(cancellationToken);
+
+                var size = new FileInfo(file).Length;
+                if (size < 1)
+                    throw new Exception("Downloaded file is empty");
+
+                ColourConsole.WriteSuccessLine(
+                    $"Successfully downloaded and decompressed the file (size: {size.BytesToMiB()})");
+                return true;
+            }
+            catch (Exception e)
+            {
+                ColourConsole.WriteErrorLine($"Error downloading, will retry a few times: {e}");
+            }
+        }
+
+        ColourConsole.WriteErrorLine("Ran out of download retries");
+        return false;
     }
 
     /// <summary>
@@ -1258,7 +1364,10 @@ public class NativeLibs
             Timeout = TimeSpan.FromMinutes(1),
         };
 
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", options.Key);
+        if (!string.IsNullOrEmpty(options.Key))
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", options.Key);
+        }
 
         return client;
     }
