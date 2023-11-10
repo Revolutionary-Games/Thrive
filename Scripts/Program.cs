@@ -279,7 +279,7 @@ public class Program
     }
 
     [Verb("native", HelpText = "Handling for native libraries needed by Thrive")]
-    public class NativeLibOptions : ScriptOptionsBase
+    public class NativeLibOptions : SymbolUploadOptionsBase
     {
         public enum OperationMode
         {
@@ -319,6 +319,11 @@ public class Program
             ///   Upload packaged libraries missing from the server
             /// </summary>
             Upload,
+
+            /// <summary>
+            ///   Just upload only symbols that exist locally but are missing from the server
+            /// </summary>
+            Symbols,
         }
 
         [Usage(ApplicationAlias = "dotnet run --project Scripts --")]
