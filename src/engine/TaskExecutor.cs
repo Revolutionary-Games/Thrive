@@ -138,16 +138,12 @@ public class TaskExecutor : IParallelRunner
         for (int i = 0; i < maxIndex; ++i)
         {
             queuedTasks.Add(new ThreadCommand(runnable, i, maxIndex));
-
-            // runnable.Run(i, maxIndex);
         }
 
         // Main thread runs at the max index
         runnable.Run(maxIndex, maxIndex);
 
         Interlocked.MemoryBarrier();
-
-        // queuedParallelRunnableCount = 0;
 
         while (queuedParallelRunnableCount > 0)
         {

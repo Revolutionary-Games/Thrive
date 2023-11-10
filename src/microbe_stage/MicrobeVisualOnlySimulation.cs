@@ -60,7 +60,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
-        spatialPositionSystem = new SpatialPositionSystem(EntitySystem, runner);
+        spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
 
         // For previewing early multicellular some colony operations will be needed

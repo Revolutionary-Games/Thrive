@@ -133,7 +133,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
         soundListenerSystem = new SoundListenerSystem(visualsParent, EntitySystem, parallelRunner);
         spatialAttachSystem = new SpatialAttachSystem(visualsParent, EntitySystem);
-        spatialPositionSystem = new SpatialPositionSystem(EntitySystem, parallelRunner);
+        spatialPositionSystem = new SpatialPositionSystem(EntitySystem);
 
         allCompoundsVentingSystem = new AllCompoundsVentingSystem(cloudSystem, this, EntitySystem);
         cellBurstEffectSystem = new CellBurstEffectSystem(EntitySystem);
