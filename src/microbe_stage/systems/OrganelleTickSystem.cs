@@ -31,7 +31,7 @@
     {
         private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
-        public OrganelleTickSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public OrganelleTickSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
         }
 

@@ -242,6 +242,11 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         microbeFlashingSystem.Update(delta);
     }
 
+    protected override void ApplyECSThreadCount(int ecsThreadsToUse)
+    {
+        // This system doesn't use threading
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

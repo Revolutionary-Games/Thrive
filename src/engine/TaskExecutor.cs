@@ -30,6 +30,8 @@ public class TaskExecutor : IParallelRunner
 
     private int queuedParallelRunnableCount;
 
+    private int ecsThrottling = 4;
+
     /// <summary>
     ///   For naming the created threads.
     /// </summary>
@@ -82,14 +84,30 @@ public class TaskExecutor : IParallelRunner
     }
 
     /// <summary>
+    ///   Set to a value lower than <see cref="ParallelTasks"/> to throttle how many threads the ECS system is allowed
+    ///   to use. This is because the ECS runner always uses all threads even if each thread would only have a couple
+    ///   of entities to process.
+    /// </summary>
+    public int ECSThrottling
+    {
+        get => ecsThrottling;
+        set
+        {
+            if (value > 0)
+            {
+                ecsThrottling = value;
+            }
+            else
+            {
+                ecsThrottling = 1;
+            }
+        }
+    }
+
+    /// <summary>
     ///   How many tasks are used by ECS operations. +1 is here as the main thread also is used
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: should this be limited for some systems where there would be very few entities per thread?
-    ///   </para>
-    /// </remarks>
-    public int DegreeOfParallelism => currentThreadCount + 1;
+    public int DegreeOfParallelism => Math.Min(currentThreadCount + 1, ECSThrottling);
 
     /// <summary>
     ///   Computes how many threads there should be by default
@@ -254,12 +272,6 @@ public class TaskExecutor : IParallelRunner
         ParallelTasks = 0;
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
     public void ReApplyThreadCount()
     {
         var settings = Settings.Instance;
@@ -273,6 +285,12 @@ public class TaskExecutor : IParallelRunner
             ParallelTasks = GetWantedThreadCount(settings.AssumeCPUHasHyperthreading.Value,
                 settings.RunAutoEvoDuringGamePlay.Value);
         }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
     protected virtual void Dispose(bool disposing)

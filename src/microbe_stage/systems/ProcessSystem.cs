@@ -27,7 +27,8 @@
         /// </summary>
         private float inverseDelta;
 
-        public ProcessSystem(World world, IParallelRunner runner) : base(world, runner)
+        public ProcessSystem(World world, IParallelRunner runner) : base(world, runner,
+            Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
         {
         }
 

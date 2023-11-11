@@ -41,6 +41,9 @@ public abstract class WorldSimulation : IWorldSimulation
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
+    private float timeSinceLastEntityEstimate = 1;
+    private int ecsThreadsToUse = 1;
+
     /// <summary>
     ///   Access to this world's entity system directly.
     /// </summary>
@@ -119,6 +122,9 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return false;
 
+        // Allow this time to actually reflect realtime
+        timeSinceLastEntityEstimate += accumulatedLogicTime;
+
         if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
         {
             // Prevent lag spikes from messing with game logic too bad. The downside here is that at extremely low
@@ -132,6 +138,14 @@ public abstract class WorldSimulation : IWorldSimulation
 
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
+
+        if (timeSinceLastEntityEstimate > Constants.SIMULATION_OPTIMIZE_THREADS_INTERVAL)
+        {
+            timeSinceLastEntityEstimate = 0;
+            ecsThreadsToUse = EstimateThreadsUtilizedBySystems();
+        }
+
+        ApplyECSThreadCount(ecsThreadsToUse);
 
         OnProcessFixedLogic(accumulatedLogicTime);
 
@@ -405,6 +419,35 @@ public abstract class WorldSimulation : IWorldSimulation
     protected abstract bool RunPhysicsIfBehind();
 
     protected abstract void OnProcessFixedLogic(float delta);
+
+    /// <summary>
+    ///   Provides an estimate based on the number of entities (that are the most prevalent type) how many threads the
+    ///   ECS system should use when processing entities. This needs to be a bit lower than what maximally would give
+    ///   more performance to ensure systems with more thread switching overhead don't suffer from lowered performance.
+    /// </summary>
+    /// <returns>The number of simultaneous single entity system tasks there should be processed</returns>
+    protected virtual int EstimateThreadsUtilizedBySystems()
+    {
+        // By default no multithreading, just use main thread
+        return 1;
+    }
+
+    /// <summary>
+    ///   Sets the number of ECS threads to use by <see cref="TaskExecutor"/>. It's not the best to have this be
+    ///   a global property in the executor, but this works well enough with the worlds setting the number of threads
+    ///   to use just before running.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is overridable so that simulations that don't use threading can skip this operation to not mess with
+    ///     simulations that do use this (for example pure visuals simulations don't use threading).
+    ///   </para>
+    /// </remarks>
+    /// <param name="ecsThreadsToUse">Number of threads to use</param>
+    protected virtual void ApplyECSThreadCount(int ecsThreadsToUse)
+    {
+        TaskExecutor.Instance.ECSThrottling = ecsThreadsToUse;
+    }
 
     protected void PerformEntityDestroy(Entity entity)
     {
