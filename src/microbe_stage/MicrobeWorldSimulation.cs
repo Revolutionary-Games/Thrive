@@ -132,7 +132,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, couldParallelize);
         physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, EntitySystem, nonParallelRunner);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
-        physicsCollisionManagementSystem = new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
+        physicsCollisionManagementSystem =
+            new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
@@ -153,7 +154,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
-        engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, couldParallelize);
+        engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, couldParallelize);
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, couldParallelize);
 
