@@ -594,6 +594,11 @@ example
 or other csproj or .cs files missing), first try initializing and
 updating git submodules and building again.
 
+If you get errors from any files in the Scripts folder, for example
+`Thrive\Scripts\Program.cs`, then you likely have an outdated version
+of the submodules. Running the above submodule update command should
+fix these kind of errors as well.
+
 ### Troubleshooting regarding Godot automatically breaking
 
 Godot sometimes likes to break your files for no reason. If you keep
