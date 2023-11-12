@@ -1,11 +1,9 @@
 ﻿namespace Systems
 {
-    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
 
     /// <summary>
     ///   Vents all compounds until empty from a <see cref="CompoundStorage"/> that has a <see cref="CompoundVenter"/>.
@@ -19,16 +17,14 @@
         private readonly CompoundCloudSystem compoundCloudSystem;
         private readonly WorldSimulation worldSimulation;
 
+        // This list makes this not able to be run in parallel (would need a thread local list or something like that)
         private readonly List<Compound> processedCompoundKeys = new();
 
         public AllCompoundsVentingSystem(CompoundCloudSystem compoundClouds, WorldSimulation worldSimulation,
-            World world, IParallelRunner runner) : base(world, runner)
+            World world) : base(world, null)
         {
             compoundCloudSystem = compoundClouds;
             this.worldSimulation = worldSimulation;
-
-            if (runner.DegreeOfParallelism > 1)
-                throw new InvalidOperationException("This system can't run in parallel");
         }
 
         protected override void Update(float delta, in Entity entity)
