@@ -187,7 +187,7 @@ _C#_, _Mono Debug_, and _C# Tools for Godot_.
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
-MSBuild (VS Build Tools).
+dotnet CLI.
 
 If you want to setup live debugging with Godot follow the instructions here:
 https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
