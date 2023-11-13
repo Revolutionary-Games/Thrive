@@ -17,10 +17,6 @@ public class ThriveJsonConverter : IDisposable
 {
     private static readonly ThriveJsonConverter InstanceValue = new(new SaveContext(SimulationParameters.Instance));
 
-    // ReSharper disable once NotAccessedField.Local
-    /// <summary>
-    ///   This variable is kept just in case accessing the context after the constructor is useful
-    /// </summary>
     private readonly SaveContext context;
 
     private readonly JsonConverter[] thriveConverters;
@@ -206,6 +202,9 @@ public class ThriveJsonConverter : IDisposable
         {
             settings = CreateSettings();
             currentJsonSettings.Value = settings;
+
+            // Reset context as a new JSON serialize operation has been started
+            context.Reset();
         }
 
         try

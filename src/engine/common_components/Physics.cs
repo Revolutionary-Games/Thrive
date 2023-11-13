@@ -7,6 +7,7 @@
     /// <summary>
     ///   Physics body for an entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Physics
     {
         /// <summary>

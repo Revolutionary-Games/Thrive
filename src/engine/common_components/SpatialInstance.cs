@@ -6,6 +6,7 @@
     /// <summary>
     ///   Displays a single <see cref="Spatial"/> as this entity's graphics in Godot
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct SpatialInstance
     {
         [JsonIgnore]

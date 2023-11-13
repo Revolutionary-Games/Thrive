@@ -657,6 +657,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
+        // Init the simulation and finish setting up the systems (for example cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
@@ -864,9 +865,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         SaveHelper.Save(name, this);
     }
 
-    // TODO: remove if no new use is found for this
     private void OnFinishLoading()
     {
+        // TODO: re-read the player entity from the simulation as it is not currently saved
+        throw new NotImplementedException();
     }
 
     /// <summary>

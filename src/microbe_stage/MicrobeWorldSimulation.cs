@@ -197,7 +197,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         CloudSystem = cloudSystem;
-        cloudSystem.Init(fluidCurrentsSystem);
 
         cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
 
@@ -205,7 +204,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     }
 
     /// <summary>
-    ///   Second phase initialization that requires access to the current game info
+    ///   Second phase initialization that requires access to the current game info. Must also be performed, otherwise
+    ///   this class won't function correctly.
     /// </summary>
     /// <param name="currentGame">Currently started game</param>
     public void InitForCurrentGame(GameProperties currentGame)
@@ -213,6 +213,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
+
+        CloudSystem.Init(fluidCurrentsSystem);
     }
 
     public override void ProcessFrameLogic(float delta)

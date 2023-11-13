@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class EntityReferenceConverter : JsonConverter<Entity>
 {
     private const string AlwaysRemovedPart = "Entity ";
-    private static readonly string DefaultEntityStr = default(Entity).ToString();
+    private static readonly string DefaultEntityStr = default(Entity).ToString().Substring(AlwaysRemovedPart.Length);
 
     private readonly SaveContext context;
 
@@ -18,7 +18,7 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         this.context = context;
 
 #if DEBUG
-        if (!DefaultEntityStr.Contains(AlwaysRemovedPart))
+        if (DefaultEntityStr != "0:0.0")
             throw new Exception("Text format for Entity ToString has changed");
 #endif
     }
@@ -34,14 +34,17 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         if (context.ProcessedEntityWorld == null)
             throw new JsonException("Cannot load an entity reference without a currently being loaded entity world");
 
-        var old = reader.ReadAsString() ??
-            throw new Exception("Entity reference is null (should be default instead of null always)");
+        var old = reader.Value as string ??
+            throw new Exception("Entity reference is null, or not string (should be default instead of null always)");
 
         // Need to remove the "Entity " part of the string
 #if DEBUG
         if (!old.Contains(AlwaysRemovedPart))
             throw new Exception("Unexpected entity reference string format");
 #endif
+
+        // Move past the read string
+        reader.Read();
 
         // Remove extra quotes automatically
         if (old.StartsWith("\""))
