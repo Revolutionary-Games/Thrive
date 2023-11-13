@@ -18,6 +18,12 @@
         /// <summary>
         ///   Needs to be set false whenever anything is changed here, otherwise the physics state is not applied
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     This is actually saved (unlike many applied state variables) as the velocities applied to the physics
+        ///     object are persistent state as they have already affected the physics object properties.
+        ///   </para>
+        /// </remarks>
         public bool PhysicsApplied;
     }
 }

@@ -15,6 +15,7 @@ using World = DefaultEcs.World;
 /// </summary>
 public abstract class WorldSimulation : IWorldSimulation
 {
+    [JsonProperty]
     protected readonly World entities = new();
 
     // TODO: did these protected property loading work? Loading / saving for the entities

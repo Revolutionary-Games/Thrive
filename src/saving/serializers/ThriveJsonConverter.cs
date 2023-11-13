@@ -40,6 +40,7 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
+            new GodotQuatConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
@@ -55,6 +56,9 @@ public class ThriveJsonConverter : IDisposable
             // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
             // to not use this
             new BaseNodeConverter(context),
+
+            new EntityReferenceConverter(context),
+            new EntityWorldConverter(context),
 
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
@@ -300,7 +304,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<FieldInfo> FieldsOf(object value, bool handleClassJSONSettings = true)
     {
-        return FieldsOf(value.GetType());
+        return FieldsOf(value.GetType(), handleClassJSONSettings);
     }
 
     public static IEnumerable<FieldInfo> FieldsOf(Type type, bool handleClassJSONSettings = true)

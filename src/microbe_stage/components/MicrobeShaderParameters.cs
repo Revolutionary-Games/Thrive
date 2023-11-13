@@ -2,6 +2,7 @@
 {
     using DefaultEcs;
     using DefaultEcs.Command;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   Allows control over the few (animation) shader parameters available in the microbe stage for some entities.
@@ -29,6 +30,7 @@
         /// <summary>
         ///   Always reset this to false after changing something to have the changes apply
         /// </summary>
+        [JsonIgnore]
         public bool ParametersApplied;
     }
 

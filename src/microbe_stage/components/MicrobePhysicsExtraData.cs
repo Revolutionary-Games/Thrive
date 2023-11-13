@@ -6,6 +6,12 @@
     ///   Extra data about microbe physics bodies. Stores info on colony members and pili for special physics handling
     ///   when certain sub-shapes collide
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: should everything here be marked as not JSON properties for saves? This is all transient information
+    ///     that shouldn't be used before the new shape is generated and this is updated after loading.
+    ///   </para>
+    /// </remarks>
     public struct MicrobePhysicsExtraData
     {
         /// <summary>

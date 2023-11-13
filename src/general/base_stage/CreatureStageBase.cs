@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Components;
 using Godot;
@@ -38,14 +37,19 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     /// <summary>
     ///   The current player or null.
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     This is JSON ignored as the entity reference can't be loaded currently, see why here:
+    ///     <see cref="SaveContext.OldToNewEntityMapping"/>
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
     public abstract bool HasPlayer { get; }
 
     [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public TSimulation WorldSimulation { get; private set; } = new();
 
     /// <summary>
@@ -54,64 +58,6 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
-
-    /// <summary>
-    ///   List access to the dynamic entities in the stage. This is used for saving and loading
-    /// </summary>
-    public List<Node> DynamicEntities
-    {
-        get
-        {
-            var results = new HashSet<Node>();
-
-            foreach (var node in rootOfDynamicallySpawned.GetChildren())
-            {
-                bool disposed = false;
-
-                var casted = (Spatial)node;
-
-                // Objects that cause disposed exceptions. Seems still pretty important to protect saving against
-                // very rare issues
-                try
-                {
-                    // Skip objects that will be deleted. This might help with Microbe saving as it might be that
-                    // the contained organelles are already disposed whereas the Microbe is just only queued for
-                    // deletion
-                    if (casted.IsQueuedForDeletion())
-                    {
-                        disposed = true;
-                    }
-                    else
-                    {
-                        if (casted.Transform.origin == Vector3.Zero)
-                        {
-                        }
-                    }
-                }
-                catch (ObjectDisposedException e)
-                {
-                    disposed = true;
-
-                    // TODO: remove the disposed checks entirely once we confirm this never happens anymore
-                    GD.PrintErr("Detected a disposed object to be saved: ", e);
-                }
-
-                if (!disposed)
-                    results.Add(casted);
-            }
-
-            return results.ToList();
-        }
-        set
-        {
-            rootOfDynamicallySpawned.FreeChildren();
-
-            foreach (var entity in value)
-            {
-                rootOfDynamicallySpawned.AddChild(entity);
-            }
-        }
-    }
 
     [JsonIgnore]
     protected abstract ICreatureStageHUD BaseHUD { get; }
