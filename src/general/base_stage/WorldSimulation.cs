@@ -407,6 +407,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     }
 
     /// <summary>
+    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
+    ///   to have save properties applied to them.
+    /// </summary>
+    protected abstract void InitSystemsEarly();
+
+    /// <summary>
     ///   Checks that previously started (on previous update) physics runs are complete before running this update.
     ///   Also if the physics simulation is behind by too much then this steps the simulation extra times.
     /// </summary>
@@ -438,12 +444,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         Initialized = true;
     }
-
-    /// <summary>
-    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
-    ///   to have save properties applied to them.
-    /// </summary>
-    protected abstract void InitSystemsEarly();
 
     protected abstract void WaitForStartedPhysicsRun();
     protected abstract void OnStartPhysicsRunIfTime(float delta);

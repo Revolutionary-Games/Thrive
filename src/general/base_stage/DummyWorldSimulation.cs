@@ -10,13 +10,13 @@ public class DummyWorldSimulation : IWorldSimulation
     public World EntitySystem { get; } = new();
     public bool Processing { get; set; }
 
+    public void ResolveNodeReferences()
+    {
+    }
+
     public Entity CreateEmptyEntity()
     {
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");
-    }
-
-    public void ResolveNodeReferences()
-    {
     }
 
     public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
