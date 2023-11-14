@@ -1225,22 +1225,29 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
         // Not currently at the rotation target
         auto differenceAngles = difference.GetEulerAngles();
 
+        // Old rotation angles are needed here so that they can also be preprocessed like differenceAngles
+        const auto oldDifference = controlState->previousRotation * inversedTargetRotation;
+        auto oldAngles = oldDifference.GetEulerAngles();
+
         // Things break a lot if we add rotation on an axis where rotation is not allowed due to DOF
         if ((degreesOfFreedom & JPH::AllRotationAllowed) != JPH::AllRotationAllowed)
         {
             if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationX)) == 0)
             {
                 differenceAngles.SetX(0);
+                oldAngles.SetX(0);
             }
 
             if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationY)) == 0)
             {
                 differenceAngles.SetY(0);
+                oldAngles.SetY(0);
             }
 
             if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationZ)) == 0)
             {
                 differenceAngles.SetZ(0);
+                oldAngles.SetZ(0);
             }
         }
 
@@ -1252,9 +1259,6 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
             // Compare the current rotation state with the previous one to detect if we are now on different side of
             // the target rotation than the previous rotation was
-            const auto oldDifference = controlState->previousRotation * inversedTargetRotation;
-            const auto oldAngles = oldDifference.GetEulerAngles();
-
             const auto angleDifference = oldAngles - differenceAngles;
 
             bool potentiallyOvershot = std::signbit(oldAngles.GetX()) != std::signbit(differenceAngles.GetX()) ||

@@ -37,7 +37,7 @@
         private float reproductionDelta;
 
         public MicrobeReproductionSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+            IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             this.worldSimulation = worldSimulation;
             this.spawnSystem = spawnSystem;

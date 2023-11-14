@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-31 16:13+0200\n"
+"POT-Creation-Date: 2023-11-10 14:22+0200\n"
 "PO-Revision-Date: 2023-10-05 20:40+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -2045,7 +2045,7 @@ msgstr "存档时出错"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -2643,47 +2643,40 @@ msgid "INFINITE_MP"
 msgstr "无限变异点"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "你已发展繁荣（Thrived）！"
+msgstr "基础（变异点数）消耗"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "酶"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
-#, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "内部（文件夹）名称："
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "质量"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "渗透调节消耗"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
-#, fuzzy
 msgid "INFO_BOX_PROCESSES"
-msgstr "不参与细胞过程"
+msgstr "代谢过程"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
-#, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "需要细胞核"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "你已发展繁荣（Thrived）！"
+msgstr "大小（六边形数量）"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "你已发展繁荣（Thrived）！"
+msgstr "储存空间"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
 #, fuzzy
@@ -2692,7 +2685,7 @@ msgstr "你已发展繁荣（Thrived）！"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "升级"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -4240,9 +4233,8 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr "多细胞编辑器"
 
 #: ../src/general/MainMenu.tscn:419
-#, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
-msgstr "多细胞编辑器"
+msgstr "多细胞生物自由编辑器"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
@@ -4454,11 +4446,11 @@ msgstr "由于摄入物体中的毒素而受伤"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前细胞大小不足以吞噬目标"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
@@ -5960,7 +5952,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -6258,11 +6250,11 @@ msgstr "社会中心"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "蒸汽动力工厂"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
@@ -6570,12 +6562,8 @@ msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个�
 
 #: ../src/microbe_stage/MicrobeStage.cs:402
 #: ../src/microbe_stage/MicrobeStage.cs:406
-#, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
-msgstr ""
-"[b][u]{0}[/u][/b] 现在已经有能力向多细胞生物进化，这会是进化之旅的下一步。\n"
-"\n"
-"按下“成为多细胞”按钮以继续。"
+msgstr "[b][u]{0}[/u][/b]成为多细胞生物"
 
 #: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT"
@@ -7124,9 +7112,8 @@ msgid "VIEW_ALL"
 msgstr "查看所有"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:292
-#, fuzzy
 msgid "VIEW_ONLINE"
-msgstr "查看所有"
+msgstr "在互联网上查看"
 
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
@@ -7205,9 +7192,8 @@ msgid "WHEEL_UP"
 msgstr "向上滚轮"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
-#, fuzzy
 msgid "WIKI"
-msgstr "我们的Wiki"
+msgstr "Wiki"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy
@@ -7518,28 +7504,30 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:349
-#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+msgstr "任何其他细胞器在取代细胞质时不会消耗额外的变异点数（仅消耗细胞器本身所需要的变异点数）。"
 
 #: ../simulation_parameters/common/wiki.json:333
-#, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
-msgstr "细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+msgstr ""
+"细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。\n"
+"\n"
+"它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
 
 #: ../simulation_parameters/common/wiki.json:345
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+msgstr "无可用修改。"
 
 #: ../simulation_parameters/common/wiki.json:341
-#, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
-msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
+msgstr ""
+"[b]Cytoplasm Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"细胞质糖酵解是游戏中最先解锁的能量生产方式。它在代谢葡萄糖时比其他细胞器（如代谢体）更为低效，但它只需要一个稳定的葡萄糖来源，并且效率不会因环境因素改变而受影响。"
 
 #: ../simulation_parameters/common/wiki.json:337
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
 #: ../simulation_parameters/common/wiki.json:361
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
@@ -7618,7 +7606,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "影响与效果"
 
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
@@ -7649,7 +7637,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1085
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "修改选项"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7680,7 +7668,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1042
 #: ../simulation_parameters/common/wiki.json:1081
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "代谢过程"
 
 #: ../simulation_parameters/common/wiki.json:24
 #: ../simulation_parameters/common/wiki.json:63
@@ -7711,7 +7699,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1038
 #: ../simulation_parameters/common/wiki.json:1077
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "解锁条件"
 
 #: ../simulation_parameters/common/wiki.json:48
 #: ../simulation_parameters/common/wiki.json:87
@@ -7742,7 +7730,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1062
 #: ../simulation_parameters/common/wiki.json:1101
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "科学背景"
 
 #: ../simulation_parameters/common/wiki.json:44
 #: ../simulation_parameters/common/wiki.json:83
@@ -7772,9 +7760,8 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1019
 #: ../simulation_parameters/common/wiki.json:1058
 #: ../simulation_parameters/common/wiki.json:1097
-#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
-msgstr "多功能编辑器和策略规划阶段"
+msgstr "游戏策略"
 
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
@@ -7805,30 +7792,39 @@ msgstr "多功能编辑器和策略规划阶段"
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "可用升级"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
+"包含[b]几丁质酶[/b]或[b]纤维素酶[/b]的溶酶体可以让细胞获得消化拥有几丁质或纤维素细胞壁的细胞的能力。如果细胞没有含有对应水解酶的溶酶体，它就不能消化有着几丁质或纤维素细胞壁的其他细胞。\n"
+"\n"
+"除了它们的基本属性，每一个溶酶体还可以：\n"
+"\n"
+"[indent]—   [b]+0.05[/b]消化速度。被吞噬的物质会被更快地消化。[/indent]\n"
+"[indent]—   [b]+4.5%[/b]对应物质的消化效率。吞噬拥有对应细胞壁的细胞可以获得更多的化合物。[/indent]"
 
 #: ../simulation_parameters/common/wiki.json:411
-#, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
-msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+msgstr ""
+"包含消化酶。可以被修改以改变其包含酶的类型。每个溶酶体只能包含一种酶。酶使得消化过程更加快速高效。\n"
+"\n"
+"溶酶体是一种有膜细胞器，包含有可以分解多种有机分子的水解酶。它帮助细胞消化通过胞吞获得的物质，并通过名为[b]自噬[/b]的生理过程清理细胞内的废物。"
 
 #: ../simulation_parameters/common/wiki.json:423
-#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
-msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+msgstr ""
+"修改溶酶体所包含的酶的类型。默认情况下，溶酶体含有[b]脂酶[/b]，帮助消化单层或双层的细胞膜。\n"
+"\n"
+"溶酶体也可以包含[b]几丁质酶[/b]或[b]纤维素酶[/b]以消化几丁质和纤维素构成的细胞壁。"
 
 #: ../simulation_parameters/common/wiki.json:419
-#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
+msgstr "无代谢过程。"
 
 #: ../simulation_parameters/common/wiki.json:415
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "一个细胞必须拥有细胞核才能进化出溶酶体。"
 
 #: ../simulation_parameters/common/wiki.json:439
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
@@ -8069,9 +8065,15 @@ msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:9
-#, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
-msgstr "轴突"
+msgstr ""
+"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
+"\n"
+"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
+"\n"
+"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
+"\n"
+"在下方列表中选择一个细胞器以了解更多。"
 
 #: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
@@ -8114,145 +8116,119 @@ msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化
 
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "轴突"
 
 #: ../simulation_parameters/common/wiki.json:54
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "连接器"
 
 #: ../simulation_parameters/common/wiki.json:93
-#, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
 
 #: ../simulation_parameters/common/wiki.json:132
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "化学质体"
 
 #: ../simulation_parameters/common/wiki.json:171
-#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "化学感受器"
 
 #: ../simulation_parameters/common/wiki.json:210
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
 
 #: ../simulation_parameters/common/wiki.json:249
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "叶绿体"
 
 #: ../simulation_parameters/common/wiki.json:288
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "纤毛"
 
 #: ../simulation_parameters/common/wiki.json:327
-#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "细胞质"
 
 #: ../simulation_parameters/common/wiki.json:366
-#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
 #: ../simulation_parameters/common/wiki.json:405
-#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
 
 #: ../simulation_parameters/common/wiki.json:444
-#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代谢体"
 
 #: ../simulation_parameters/common/wiki.json:483
-#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "线粒体"
 
 #: ../simulation_parameters/common/wiki.json:522
-#, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纤维"
 
 #: ../simulation_parameters/common/wiki.json:600
-#, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "固氮质体"
 
 #: ../simulation_parameters/common/wiki.json:561
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"
 
 #: ../simulation_parameters/common/wiki.json:639
-#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr "需要细胞核"
+msgstr "细胞核"
 
 #: ../simulation_parameters/common/wiki.json:3
-#, fuzzy
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
-msgstr "放置细胞器"
+msgstr "细胞器"
 
 #: ../simulation_parameters/common/wiki.json:678
-#, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "毒素体"
 
 #: ../simulation_parameters/common/wiki.json:717
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/common/wiki.json:756
-#, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "原生质"
 
 #: ../simulation_parameters/common/wiki.json:795
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
 #: ../simulation_parameters/common/wiki.json:834
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "信号剂"
 
 #: ../simulation_parameters/common/wiki.json:873
-#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "黏液喷嘴"
 
 #: ../simulation_parameters/common/wiki.json:912
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "热能体"
 
 #: ../simulation_parameters/common/wiki.json:951
-#, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "热合成酶"
 
 #: ../simulation_parameters/common/wiki.json:990
-#, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "类囊体"
 
 #: ../simulation_parameters/common/wiki.json:1029
-#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 #: ../simulation_parameters/common/wiki.json:1068
-#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr "毒素液泡"
+msgstr "液泡"
 
 #: ../simulation_parameters/common/wiki.json:739
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
@@ -8324,10 +8300,15 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
 msgid "WIKI_ROOT_BODY"
 msgstr ""
+"欢迎来到游戏内Thrive百科。你可以在这里找到关于游戏概念的详细信息，包括攻略和构成游戏机制的科学理论。\n"
+"\n"
+"这个部分内的大部分内容都由[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online development wiki[/url][/color]上的英语内容自动生成，并由社区翻译。如果您想帮忙撰写并维护wiki中的内容，请考虑[color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]加入团队[/url][/color]。\n"
+"\n"
+"看看下面的链接以了解部分游戏内容。"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
 msgid "WIKI_ROOT_HEADING"
-msgstr ""
+msgstr "游戏内Thrive百科"
 
 #: ../simulation_parameters/common/wiki.json:817
 #, fuzzy

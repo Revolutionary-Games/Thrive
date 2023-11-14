@@ -12,6 +12,7 @@ jobs:
         .git/lfs: v5-lfs
         .import: v8-import
         builds: v4-builds
+        native_libs: v1-native
       system:
         /root/.nuget: v4-nuget
     steps:
@@ -23,6 +24,9 @@ jobs:
       - run:
           name: Build with warnings
           command: dotnet run --project Scripts -- check compile
+      - run:
+          name: Download native libraries
+          command: dotnet run --project Scripts -- native Fetch
       - run:
           name: Create builds
           command: dotnet run --project Scripts -- package --dehydrated

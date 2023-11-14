@@ -203,9 +203,9 @@ public class SaveManagerGUI : Control
         getBackupCountTask =
             new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.BackupRegex));
 
-        TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
-        TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
-        TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
+        TaskExecutor.Instance.AddTask(getTotalSaveCountTask, false);
+        TaskExecutor.Instance.AddTask(getAutoSaveCountTask, false);
+        TaskExecutor.Instance.AddTask(getQuickSaveCountTask, false);
         TaskExecutor.Instance.AddTask(getBackupCountTask);
     }
 

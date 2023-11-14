@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-31 16:13+0200\n"
-"PO-Revision-Date: 2023-10-18 15:14+0000\n"
+"POT-Creation-Date: 2023-11-10 14:22+0200\n"
+"PO-Revision-Date: 2023-11-01 12:41+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.1.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -892,7 +892,7 @@ msgstr "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thr
 
 #: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Ölü Hücre Parçası"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
@@ -2044,7 +2044,7 @@ msgstr "Kaydetme Hatası"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2642,56 +2642,48 @@ msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "BAŞARDIN!"
+msgstr "Taban Fiyatı (MP)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzimler"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
-#, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
-msgstr "İç (Klasör) Ad:"
+msgstr "İç Adı"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "Kütle"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Ozmoregülasyon Maliyeti"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
-#, fuzzy
 msgid "INFO_BOX_PROCESSES"
-msgstr "İşlem yok"
+msgstr "İşlemler"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
-#, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
-msgstr "Hücre çekirdeği gerektirir"
+msgstr "Hücre Çekirdeği Gerektirir"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "BAŞARDIN!"
+msgstr "Büyüklük (Altıgenler)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "BAŞARDIN!"
+msgstr "Depo"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
-#, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "BAŞARDIN!"
+msgstr "Özgün"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Geliştirmeler"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -3655,7 +3647,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Yutma eylemi tamamlandığında, yutulan herhangi bir nesne sindirilmek üzere hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılır. Bu yüzden önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğunuzdan emin olun. Enzimler sindirime yardımcı olur ve lizozom tarafından sağlanır; sindirimi çok daha verimli bir hale getirmek için bu organeli geliştirin."
+msgstr "Yutma eylemi tamamlandığında, yutulan herhangi bir nesne sindirilmek üzere hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılır. Bu yüzden önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğunuzdan emin olun. Enzimler sindirime yardımcı olur ve lizozom tarafından sağlanır; sindirimi çok daha verimli bir hale getirmek için bu organeli evrimleştirin."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -3677,7 +3669,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Zarlı Organeller\n"
 "\n"
-"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır ve hasarı %50'ye indirir. (Yalnızca bir kez evrimleşilir)\n"
+"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır ve hasarı %50'ye indirir. (Yalnızca bir kez evrimleştirilir)\n"
 "\n"
 "Bağlayıcı Ajan: Diğer hücrelerle bağ kurmaya izin verir. Çok Hücreli Evresi'ne ilerlemek için gereklidir.\n"
 "\n"
@@ -3841,7 +3833,7 @@ msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Düzenleyicide; çok çeşitli oyun stillerine imkan veren, türünüzü geliştirmeniz için birçok organel vardır."
+msgstr "Düzenleyicide; çok çeşitli oyun stillerine imkan veren, türünüzü evrimleştirmeniz için birçok organel vardır."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -4449,11 +4441,11 @@ msgstr "İçeri alınan maddedeki toksinler yüzünden hasar alınıyor"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Hedefi yutmak için gerekli olan {0} eksik"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "İçeri alınan maddelere ait depoda, hedefi yutmak için yeterli alan yok"
 
@@ -4619,9 +4611,8 @@ msgid "OPEN_MOD_URL"
 msgstr "Bilgi URL'sini Aç"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#, fuzzy
 msgid "OPEN_ORGANELLES_PAGE"
-msgstr "Organel menüsünü aç"
+msgstr "Organeller sayfasını aç"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
@@ -4766,7 +4757,7 @@ msgstr "(oyuncu türünün ozmoregülasyon maliyeti)"
 
 #: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
-msgstr "Wiki'miz"
+msgstr "Vikimiz"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "OUTREACH_TEAM"
@@ -5949,7 +5940,7 @@ msgstr "Amonyak oluştur"
 msgid "SPAWN_ENEMY"
 msgstr "Düşman Oluştur"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermemekte"
 
@@ -6247,11 +6238,11 @@ msgstr "Topluluk Merkezi"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Buharla Çalışan Fabrika"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
@@ -7111,9 +7102,8 @@ msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:292
-#, fuzzy
 msgid "VIEW_ONLINE"
-msgstr "Tümünü Görüntüle"
+msgstr "Online Olarak Görüntüle"
 
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
@@ -7192,9 +7182,8 @@ msgid "WHEEL_UP"
 msgstr "Fare tekeri yukarı"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
-#, fuzzy
 msgid "WIKI"
-msgstr "Wiki'miz"
+msgstr "Viki"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy
@@ -7505,28 +7494,30 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:349
-#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur. Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan sitoplazmanın yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
 
 #: ../simulation_parameters/common/wiki.json:333
-#, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
-msgstr "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur. Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+msgstr ""
+"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
+"\n"
+"Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
 #: ../simulation_parameters/common/wiki.json:345
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur. Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+msgstr "Değişiklikler yok."
 
 #: ../simulation_parameters/common/wiki.json:341
-#, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+msgstr ""
+"[b]Sitoplazma Glikolizi[/b]: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"Sitoplazma glikolizi, oyunda mevcut olan ilk enerji üretim yöntemidir. Diğer organellerdeki glikolizden daha az verimlidir (örn. metabolozomlar). Bu yöntem, yalnızca düzenli bir glukoz akışı gerektirir ve çevresel faktörlere göre hızı değişmez."
 
 #: ../simulation_parameters/common/wiki.json:337
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok."
 
 #: ../simulation_parameters/common/wiki.json:361
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
@@ -7538,7 +7529,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:353
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:388
 #, fuzzy
@@ -7605,7 +7596,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Etkiler"
 
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
@@ -7636,7 +7627,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1085
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Değişiklikler"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7667,7 +7658,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1042
 #: ../simulation_parameters/common/wiki.json:1081
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "İşlemler"
 
 #: ../simulation_parameters/common/wiki.json:24
 #: ../simulation_parameters/common/wiki.json:63
@@ -7698,7 +7689,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1038
 #: ../simulation_parameters/common/wiki.json:1077
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler"
 
 #: ../simulation_parameters/common/wiki.json:48
 #: ../simulation_parameters/common/wiki.json:87
@@ -7729,7 +7720,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1062
 #: ../simulation_parameters/common/wiki.json:1101
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Bilimsel Geçmiş"
 
 #: ../simulation_parameters/common/wiki.json:44
 #: ../simulation_parameters/common/wiki.json:83
@@ -7759,9 +7750,8 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1019
 #: ../simulation_parameters/common/wiki.json:1058
 #: ../simulation_parameters/common/wiki.json:1097
-#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
-msgstr "Ortak Editör ve Strateji Evreleri"
+msgstr "Strateji"
 
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
@@ -7792,30 +7782,39 @@ msgstr "Ortak Editör ve Strateji Evreleri"
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Geliştirmeler"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
+"[b]Kitinaz[/b] veya [b]selülaza[/b] sahip bir lizozom almak, hücrenin sırasıyla kitin veya selüloza sahip hücre zarı olan hücreleri sindirmesini sağlar. Eğer bir hücrede kitinaz veya selülaz ile donatılmış bir lizozom yoksa, hücre bu hücre zarına sahip diğer hücreleri sindiremez.\n"
+"\n"
+"Genel istatistiklerin yanı sıra, her lizozom bunlara da katkıda bulunur:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] sindirim hızı. Yutulan madde daha çabuk sindirilir.[/indent]\n"
+"[indent]—   Seçili enzim için [b]+%4.5[/b] sindirim verimliliği. Enzimin hedeflediği hücre zarına sahip olan yutulan hücreler, sindirildiklerinde daha fazla bileşik verirler. [/indent]"
 
 #: ../simulation_parameters/common/wiki.json:411
-#, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
-msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+msgstr ""
+"Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir.\n"
+"\n"
+"Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
 
 #: ../simulation_parameters/common/wiki.json:423
-#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
-msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+msgstr ""
+"İçerdiği enzimi seçmek için lizozomu modifiye edin. Varsayılan olarak, lizozomlar tek ve çift katlı hücre zarlarını hedefleyen [b]lipaz[/b] enzimini içerir.\n"
+"\n"
+"Bir lizozom, kitini olan bir hücre zarını hedefleyen [b]kitinaz[/b] veya selülozu olan bir hücre zarını hedefleyen [b]selülaz[/b] içerebilir."
 
 #: ../simulation_parameters/common/wiki.json:419
-#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
+msgstr "İşlemler yok."
 
 #: ../simulation_parameters/common/wiki.json:415
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Bir hücre, lizozomları evrimleştirmek için çekirdek gerektirir."
 
 #: ../simulation_parameters/common/wiki.json:439
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
@@ -7827,7 +7826,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:431
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:466
 #, fuzzy
@@ -8056,9 +8055,15 @@ msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:9
-#, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
-msgstr "Akson"
+msgstr ""
+"Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
+"\n"
+"Her çoğaldığınızda, mikrop editörünü kullanarak hücrenizin içine organeller ekleyebilir, organelleri taşıyabilir veya kaldırabilirsiniz. Bu eylemlerin neredeyse tümü mutasyon puanına mal olur. Organeller, hücre zarına sarılmış bir şekilde altıgen bir ızgarada düzenlenir ve her organelin belirgin bir altıgen izi vardır. Dış organeller hücre zarının dışına tutunurlar. Bu yüzden birçoğu için yerleştirme yönü önemlidir.\n"
+"\n"
+"Hücrenizi düzenlerken, diğer türler de organel düzenlerini değiştirirler. Onların da aynı güçlere ve yeteneklere erişimi vardır.\n"
+"\n"
+"Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
 #: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
@@ -8101,149 +8106,119 @@ msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik 
 
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Akson"
 
 #: ../simulation_parameters/common/wiki.json:54
-#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Bağlayıcı Ajan"
 
 #: ../simulation_parameters/common/wiki.json:93
-#, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "Biyolüminesant Koful"
 
 #: ../simulation_parameters/common/wiki.json:132
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Kemoplast"
 
 #: ../simulation_parameters/common/wiki.json:171
-#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Kemoreseptör"
 
 #: ../simulation_parameters/common/wiki.json:210
-#, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosentez Yapan Proteinler"
 
 #: ../simulation_parameters/common/wiki.json:249
-#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Kloroplast"
 
 #: ../simulation_parameters/common/wiki.json:288
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Sil"
 
 #: ../simulation_parameters/common/wiki.json:327
-#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Sitoplazma"
 
 #: ../simulation_parameters/common/wiki.json:366
-#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
 
 #: ../simulation_parameters/common/wiki.json:405
-#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizozom"
 
 #: ../simulation_parameters/common/wiki.json:444
-#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomlar"
 
 #: ../simulation_parameters/common/wiki.json:483
-#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondri"
 
 #: ../simulation_parameters/common/wiki.json:522
-#, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miyofibril"
 
 #: ../simulation_parameters/common/wiki.json:600
-#, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Azot Fiksasyon Plastidi"
 
 #: ../simulation_parameters/common/wiki.json:561
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrojenaz"
 
 #: ../simulation_parameters/common/wiki.json:639
-#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr "Hücre çekirdeği gerektirir"
+msgstr "Çekirdek"
 
 #: ../simulation_parameters/common/wiki.json:3
-#, fuzzy
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
-msgstr "Organel yerleştir (veya başka yerleştirilen şey)"
+msgstr "Organeller"
 
 #: ../simulation_parameters/common/wiki.json:678
-#, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oksitoksizom"
 
 #: ../simulation_parameters/common/wiki.json:717
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Delici Pilus"
 
 #: ../simulation_parameters/common/wiki.json:756
-#, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
 #: ../simulation_parameters/common/wiki.json:795
-#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rustisiyanin"
 
 #: ../simulation_parameters/common/wiki.json:834
-#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Sinyal Verici Ajan"
 
 #: ../simulation_parameters/common/wiki.json:873
-#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Balçık Fışkırtıcı"
 
 #: ../simulation_parameters/common/wiki.json:912
-#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../simulation_parameters/common/wiki.json:951
-#, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termosentaz"
 
 #: ../simulation_parameters/common/wiki.json:990
-#, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tilakoidler"
 
 #: ../simulation_parameters/common/wiki.json:1029
-#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
-msgstr ""
-"Toksin\n"
-"Kofulu"
+msgstr "Toksin Kofulu"
 
 #: ../simulation_parameters/common/wiki.json:1068
-#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr ""
-"Toksin\n"
-"Kofulu"
+msgstr "Koful"
 
 #: ../simulation_parameters/common/wiki.json:739
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
@@ -8315,10 +8290,15 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
 msgid "WIKI_ROOT_BODY"
 msgstr ""
+"Oyun içi Thrive vikisine hoşgeldiniz. Burada, strateji rehberlerinden oyun mekaniklerini destekleyen bilimsel teoriye kadar, oyun kavramları hakkında ayrıntılı bilgi bulabilirsiniz.\n"
+"\n"
+"Bu bölümdeki sayfaların çoğu, [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online geliştirici vikisindeki[/url][/color]  İngilizce içerik kullanılarak otomatik olarak oluşturulmuş ve topluluk tarafından çevrilmiştir. Eğer viki içeriğini yazmaya ve güncel tutmaya yardımcı olmak isterseniz, lütfen [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]ekibimize katılmayı[/url][/color] düşünün.\n"
+"\n"
+"Ana oyun kavramlarından bazıları için aşağıdaki bağlantıları inceleyin."
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
 msgid "WIKI_ROOT_HEADING"
-msgstr ""
+msgstr "Thrive Oyun İçi Vikisi"
 
 #: ../simulation_parameters/common/wiki.json:817
 #, fuzzy

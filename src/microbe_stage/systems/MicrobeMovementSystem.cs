@@ -27,7 +27,7 @@
         private readonly Compound atp;
 
         public MicrobeMovementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(world,
-            runner)
+            runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
         {
             this.physicalWorld = physicalWorld;
 
@@ -257,8 +257,7 @@
         }
 
         private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-            float delta,
-            ref float force)
+            float delta, ref float force)
         {
             // Multiplies the movement factor as if the colony has the normal microbe speed
             // Then it subtracts movement speed from 100% up to 75%(soft cap),

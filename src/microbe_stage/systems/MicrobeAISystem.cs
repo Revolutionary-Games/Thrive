@@ -76,7 +76,7 @@
         private bool skipAI;
 
         public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, World world, IParallelRunner runner) :
-            base(world, runner)
+            base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             clouds = cloudSystem;
 

@@ -3,15 +3,18 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
+    /// <summary>
+    ///   Updates visual positions of entities for rendering by Godot
+    /// </summary>
     [With(typeof(WorldPosition))]
     [With(typeof(SpatialInstance))]
+    [RunsOnMainThread]
     public sealed class SpatialPositionSystem : AEntitySetSystem<float>
     {
-        public SpatialPositionSystem(World world, IParallelRunner runner) : base(world, runner)
+        public SpatialPositionSystem(World world) : base(world, null)
         {
         }
 

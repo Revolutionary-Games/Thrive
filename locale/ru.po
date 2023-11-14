@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-31 16:13+0200\n"
+"POT-Creation-Date: 2023-11-10 14:22+0200\n"
 "PO-Revision-Date: 2023-10-09 05:18+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2044,7 +2044,7 @@ msgstr "Ошибка Сохранения"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1138
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
@@ -2642,56 +2642,48 @@ msgid "INFINITE_MP"
 msgstr "Бесконечные MP"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Базовая цена (ОМ)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Энзимы"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
-#, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
-msgstr "Внутреннее имя (Папки):"
+msgstr "Внутреннее Имя"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "Масса"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
-#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Стоимость Осморегуляции"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
-#, fuzzy
 msgid "INFO_BOX_PROCESSES"
-msgstr "Клеточные процессы не происходят"
+msgstr "Процессы"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
-#, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Требуется ядро"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
-#, fuzzy
 msgid "INFO_BOX_SIZE"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Размер (В ячейках)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
-#, fuzzy
 msgid "INFO_BOX_STORAGE"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Вместимость"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
-#, fuzzy
 msgid "INFO_BOX_UNIQUE"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Уникальный"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Улучшения"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1404
 msgid "INGESTED_MATTER"
@@ -4449,11 +4441,11 @@ msgstr "Вы теряете здоровье из-за токсинов в по�
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Не хватает {0} для поглощения организма"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:807
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:848
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Нынешний размер клетки слишком мал для поглощения объекта"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:799
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:840
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Недостаточно вместимости поглощенной материи для поглощения данного объекта"
 
@@ -4619,9 +4611,8 @@ msgid "OPEN_MOD_URL"
 msgstr "Открыть информационный URL-адрес"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
-#, fuzzy
 msgid "OPEN_ORGANELLES_PAGE"
-msgstr "Открыть меню органеллы"
+msgstr "Открыть страницу органелл"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
@@ -5949,7 +5940,7 @@ msgstr "Создать аммиак"
 msgid "SPAWN_ENEMY"
 msgstr "Создать Противника"
 
-#: ../src/microbe_stage/MicrobeStage.cs:902
+#: ../src/microbe_stage/MicrobeStage.cs:904
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
@@ -6247,11 +6238,11 @@ msgstr "Центр Общества"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Фабрика на основе пара"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1136
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1137
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешное ограбление"
 
@@ -7111,9 +7102,8 @@ msgid "VIEW_ALL"
 msgstr "Просмотреть всё"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:292
-#, fuzzy
 msgid "VIEW_ONLINE"
-msgstr "Просмотреть всё"
+msgstr "Просмотреть онлайн"
 
 #: ../src/general/OptionsMenu.tscn:1842
 msgid "VIEW_PATCH_NOTES"
@@ -7192,387 +7182,334 @@ msgid "WHEEL_UP"
 msgstr "Колёсико вверх"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
-#, fuzzy
 msgid "WIKI"
 msgstr "наша Wiki"
 
 #: ../simulation_parameters/common/wiki.json:37
-#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
-msgstr "Внешние Эффекты:"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:21
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:33
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:29
-#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
-msgstr "Клеточные процессы не происходят"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:25
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:49
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:45
-#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr "Общий Редактор и Стадии Стратегии"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:41
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:76
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:60
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr "Связующее вещество"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:72
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:68
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
-msgstr "Нажмите [thrive:input]g_toggle_binding[/thrive:input] чтобы включить режим связывания. В режиме связывания вы можете присоединить другие клетки вашего вида к вашей колонии касаясь их. Чтобы покинуть колонию нажмите [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:64
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:88
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:84
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:80
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Позволяет связываться с другими клетками. Это первый шаг к многоклеточности. Когда ваша клетка является частью колонии, соединения распределяются между всеми клетками. Вы не можете войти в редактор, будучи частью колонии, поэтому, когда соберёте достаточно соединений разорвите связь."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:115
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:99
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:111
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:107
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:103
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:127
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:123
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:119
-#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
-msgstr "Биолюминесцентная вакуоль"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:154
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:138
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:150
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:146
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:142
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:166
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:162
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:158
-#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr "Хемопласт — двумембранная структура, содержащая белки, способные превращать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], воду и [thrive:compound type=\"carbondioxide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе [b]сероводородного хемосинтеза[/b]. Скорость производства [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:193
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:177
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "Хеморецептор"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:189
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:185
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr "Хеморецептор позволяет обнаруживать соединения на большем расстоянии. Модифицируйте после размещения, чтобы выбрать тип соединения и цвет линии направления."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:181
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:205
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:201
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:197
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:232
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr "Хемосинтезирующие белки"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:216
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr "Хемосинтезирующие белки"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:228
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr "Хемосинтезирующие белки - небольшие скопления белков внутри цитоплазмы, что могут преобразовывать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] , газообразный [thrive:compound type=\"carbondioxide\"][/thrive:compound], да воду в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе что именуется [b]Сероводородном хемосинтезе[/b]. Скорость переработки [thrive:compound type=\"glucose\"][/thrive:compound] умножается с концентрацией [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Поскольку хемосинтезирующие белки находятся непосредственно в цитоплазме, от чего и происходит [b]гликолиз[/b]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:224
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] в [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Также превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:220
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
-msgstr "Хемосинтезирующие белки"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:244
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
-msgstr "Хемосинтезирующие белки - небольшие скопления белков внутри цитоплазмы, что могут преобразовывать [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] , газообразный [thrive:compound type=\"carbondioxide\"][/thrive:compound], да воду в [thrive:compound type=\"glucose\"][/thrive:compound] в процессе что именуется [b]Сероводородном хемосинтезе[/b]. Скорость переработки [thrive:compound type=\"glucose\"][/thrive:compound] умножается с концентрацией [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Поскольку хемосинтезирующие белки находятся непосредственно в цитоплазме, от чего и происходит [b]гликолиз[/b]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:240
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
-msgstr "Хемосинтезирующие белки"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:236
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Хемосинтезирующие белки"
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:271
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:255
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:267
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:263
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
-msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:259
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:283
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:279
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:275
-#, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
-msgstr "Хлоропласт — двумембранная органелла, содержащая светочувствительные пигменты, сложенные вместе в мембранных мешочках. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Пигменты в хлоропласте способны использовать энергию света для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]фотосинтез[/b]. Эти пигменты также придают ей особый цвет. Скорость выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] в атмсофере и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:310
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:294
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:306
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:302
-#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
-msgstr "Повышает скорость поворота клеток."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:298
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:322
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:318
 msgid "WIKI_CILIA_STRATEGY"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:314
 msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:349
-#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
+msgstr "Любая органелла может заменить цитоплазму без затраты дополнительных очков мутаций (Исключение - цена самой органеллы)."
 
 #: ../simulation_parameters/common/wiki.json:333
-#, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
-msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
+msgstr ""
+"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
+"\n"
+"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
 
 #: ../simulation_parameters/common/wiki.json:345
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "Липкие внутренности клетки. Цитоплазма - это полужидкое содержимое клетки из смеси ионов, белков и других веществ, которые заполняют внутреннюю часть клетки. Одна из функций, которую она (цитоплазма) выполняет, это [b]гликолиз[/b], преобразование [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. У клеток, в которых отсутствуют органеллы для более продвинутого метаболизма, цитоплазма является основным источником энергии. Она также используется для хранения молекул в клетке и увеличения размера клетки."
+msgstr "Модификации отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:341
-#, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[b]Цитоплазменный Гликолиз[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Цитоплазменный Гликолиз - первый метод производства энергии в игре. Этот вид гликолиза хуже, чем, например, гликолиз в других органеллах аль белках (пример - метаболосомы и митохондрии), цитоплазменный гликолиз требует лишь небольшое количество глюкозы и не изменяет скорость в соответствии с факторами внешней среды."
 
 #: ../simulation_parameters/common/wiki.json:337
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Требования отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:361
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:357
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:353
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Улучшения отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:388
-#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
-msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:372
-#, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:384
-#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:380
-#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:376
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:400
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:396
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:392
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Не готово"
 
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
@@ -7603,7 +7540,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Эффекты"
 
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
@@ -7634,7 +7571,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1085
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Модификации"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7665,7 +7602,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1042
 #: ../simulation_parameters/common/wiki.json:1081
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Процессы"
 
 #: ../simulation_parameters/common/wiki.json:24
 #: ../simulation_parameters/common/wiki.json:63
@@ -7696,7 +7633,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1038
 #: ../simulation_parameters/common/wiki.json:1077
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Требования"
 
 #: ../simulation_parameters/common/wiki.json:48
 #: ../simulation_parameters/common/wiki.json:87
@@ -7727,7 +7664,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1062
 #: ../simulation_parameters/common/wiki.json:1101
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Научное описание"
 
 #: ../simulation_parameters/common/wiki.json:44
 #: ../simulation_parameters/common/wiki.json:83
@@ -7757,9 +7694,8 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1019
 #: ../simulation_parameters/common/wiki.json:1058
 #: ../simulation_parameters/common/wiki.json:1097
-#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
-msgstr "Общий Редактор и Стадии Стратегии"
+msgstr "Стратегия"
 
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
@@ -7790,11 +7726,17 @@ msgstr "Общий Редактор и Стадии Стратегии"
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Улучшения"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
+"Оснащение лизосомы [b]хитиназой[/b] или [b]целлюлазой[/b] позволяет клетке растворять другие клетки с хитиновой или целлюлозной мембраной. Если у клетки отсутствуют лизосомы, производящие хитиназу аль целлюлазу, то оно не сможет растворить те клетки, к коим относятся эти 2 фермента.\n"
+"\n"
+"Помимо данной способности каждая лизосома даёт следующий эффект:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] скорости растворения. Поглощенная материя будет растворяться немного быстрее..[/indent]\n"
+"[indent]—   [b]+4.5%[/b] эффективности растворения для выбранного фермента. Поглощенные клетки с мембраной, что является целью фермента дают их проглотившему большее количество соединений.[/indent]"
 
 #: ../simulation_parameters/common/wiki.json:411
 #, fuzzy

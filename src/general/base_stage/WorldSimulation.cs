@@ -41,6 +41,9 @@ public abstract class WorldSimulation : IWorldSimulation
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
 
+    private float timeSinceLastEntityEstimate = 1;
+    private int ecsThreadsToUse = 1;
+
     /// <summary>
     ///   Access to this world's entity system directly.
     /// </summary>
@@ -119,6 +122,9 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return false;
 
+        // Allow this time to actually reflect realtime
+        timeSinceLastEntityEstimate += accumulatedLogicTime;
+
         if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
         {
             // Prevent lag spikes from messing with game logic too bad. The downside here is that at extremely low
@@ -132,6 +138,14 @@ public abstract class WorldSimulation : IWorldSimulation
 
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
+
+        if (timeSinceLastEntityEstimate > Constants.SIMULATION_OPTIMIZE_THREADS_INTERVAL)
+        {
+            timeSinceLastEntityEstimate = 0;
+            ecsThreadsToUse = EstimateThreadsUtilizedBySystems();
+        }
+
+        ApplyECSThreadCount(ecsThreadsToUse);
 
         OnProcessFixedLogic(accumulatedLogicTime);
 
@@ -184,18 +198,25 @@ public abstract class WorldSimulation : IWorldSimulation
 
     public bool DestroyEntity(Entity entity)
     {
-        if (queuedForDelete.Contains(entity))
+        lock (queuedForDelete)
         {
-            // Already queued for delete
-            return true;
+            if (queuedForDelete.Contains(entity))
+            {
+                // Already queued for delete
+                return true;
+            }
+
+            queuedForDelete.Add(entity);
         }
 
-        queuedForDelete.Add(entity);
         return true;
     }
 
     public void DestroyAllEntities(Entity? skip = null)
     {
+        if (Processing)
+            throw new InvalidOperationException("Cannot destroy all entities while processing");
+
         ProcessDestroyQueue();
 
         // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
@@ -207,12 +228,18 @@ public abstract class WorldSimulation : IWorldSimulation
             PerformEntityDestroy(entity);
         }
 
-        queuedForDelete.Clear();
+        lock (queuedForDelete)
+        {
+            queuedForDelete.Clear();
+        }
     }
 
     public void ReportEntityDyingSoon(in Entity entity)
     {
-        entitiesToNotSave.Add(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Add(entity);
+        }
     }
 
     /// <summary>
@@ -220,7 +247,10 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     public bool IsQueuedForDeletion(Entity entity)
     {
-        return queuedForDelete.Contains(entity);
+        lock (queuedForDelete)
+        {
+            return queuedForDelete.Contains(entity);
+        }
     }
 
     public EntityCommandRecorder StartRecordingEntityCommands()
@@ -265,7 +295,15 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <returns>True when the entity is in this world and is not queued for deletion</returns>
     public bool IsEntityInWorld(Entity entity)
     {
-        return entity.IsAlive && !queuedForDelete.Contains(entity);
+        // TODO: check WorldId first somehow to ensure this doesn't access things out of bounds in the list of worlds?
+
+        if (!entity.IsAlive)
+            return false;
+
+        lock (queuedForDelete)
+        {
+            return !queuedForDelete.Contains(entity);
+        }
     }
 
     public virtual void ReportPlayerPosition(Vector3 position)
@@ -382,9 +420,41 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected abstract void OnProcessFixedLogic(float delta);
 
+    /// <summary>
+    ///   Provides an estimate based on the number of entities (that are the most prevalent type) how many threads the
+    ///   ECS system should use when processing entities. This needs to be a bit lower than what maximally would give
+    ///   more performance to ensure systems with more thread switching overhead don't suffer from lowered performance.
+    /// </summary>
+    /// <returns>The number of simultaneous single entity system tasks there should be processed</returns>
+    protected virtual int EstimateThreadsUtilizedBySystems()
+    {
+        // By default no multithreading, just use main thread
+        return 1;
+    }
+
+    /// <summary>
+    ///   Sets the number of ECS threads to use by <see cref="TaskExecutor"/>. It's not the best to have this be
+    ///   a global property in the executor, but this works well enough with the worlds setting the number of threads
+    ///   to use just before running.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is overridable so that simulations that don't use threading can skip this operation to not mess with
+    ///     simulations that do use this (for example pure visuals simulations don't use threading).
+    ///   </para>
+    /// </remarks>
+    /// <param name="ecsThreadsToUse">Number of threads to use</param>
+    protected virtual void ApplyECSThreadCount(int ecsThreadsToUse)
+    {
+        TaskExecutor.Instance.ECSThrottling = ecsThreadsToUse;
+    }
+
     protected void PerformEntityDestroy(Entity entity)
     {
-        entitiesToNotSave.Remove(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Remove(entity);
+        }
 
         OnEntityDestroyed(entity);
 
@@ -427,14 +497,19 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private void ProcessDestroyQueue()
     {
-        foreach (var entity in queuedForDelete)
+        // We ensure that no processing operation can be in progress while this is called so this should be completely
+        // fine to use without a lock here
+        lock (queuedForDelete)
         {
-            PerformEntityDestroy(entity);
+            foreach (var entity in queuedForDelete)
+            {
+                PerformEntityDestroy(entity);
+            }
+
+            // TODO: would it make sense to switch entity count reporting to this class?
+
+            queuedForDelete.Clear();
         }
-
-        // TODO: would it make sense to switch entity count reporting to this class?
-
-        queuedForDelete.Clear();
     }
 
     private void ApplyRecordedCommands()
