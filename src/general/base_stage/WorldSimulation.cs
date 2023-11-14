@@ -15,8 +15,15 @@ using World = DefaultEcs.World;
 /// </summary>
 public abstract class WorldSimulation : IWorldSimulation
 {
+    /// <summary>
+    ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
+    ///   to work correctly.
+    /// </summary>
     [JsonProperty]
-    protected readonly World entities = new();
+    protected readonly UnsavedEntities entitiesToNotSave = new();
+
+    [JsonProperty]
+    protected readonly World entities;
 
     // TODO: did these protected property loading work? Loading / saving for the entities
     protected readonly List<Entity> queuedForDelete = new();
@@ -32,10 +39,7 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected float accumulatedLogicTime;
 
-    // TODO: implement saving
-    // ReSharper disable once CollectionNeverQueried.Local
-    private readonly List<Entity> entitiesToNotSave = new();
-
+    // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
 
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
