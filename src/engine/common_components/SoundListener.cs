@@ -3,6 +3,7 @@
     /// <summary>
     ///   Places a <see cref="Godot.Listener"/> at this entity. Requires a <see cref="WorldPosition"/> to function.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct SoundListener
     {
         /// <summary>

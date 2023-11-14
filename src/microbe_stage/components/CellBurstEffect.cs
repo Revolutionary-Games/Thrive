@@ -1,5 +1,6 @@
 ﻿namespace Components
 {
+    [JSONDynamicTypeAllowed]
     public struct CellBurstEffect
     {
         /// <summary>

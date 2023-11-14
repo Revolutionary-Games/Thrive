@@ -6,6 +6,7 @@
     /// <summary>
     ///   Entity data regarding being attached to another entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct AttachedToEntity
     {
         /// <summary>

@@ -8,6 +8,7 @@
     ///   Allows control over the few (animation) shader parameters available in the microbe stage for some entities.
     ///   Requires <see cref="EntityMaterial"/> to apply.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeShaderParameters
     {
         /// <summary>

@@ -3,6 +3,7 @@
     /// <summary>
     ///   Entity keeps track of damage cooldown
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct DamageCooldown
     {
         public float CooldownRemaining;

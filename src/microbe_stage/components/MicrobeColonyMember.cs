@@ -6,6 +6,7 @@
     ///   Marker for microbes that are in a cell colony. The cell colony leader has <see cref="MicrobeColony"/>
     ///   component on it.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeColonyMember
     {
         /// <summary>

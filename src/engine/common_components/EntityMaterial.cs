@@ -6,6 +6,7 @@
     /// <summary>
     ///   Access to a material defined on an entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct EntityMaterial
     {
         [JsonIgnore]

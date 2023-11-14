@@ -5,6 +5,7 @@
     /// <summary>
     ///   Allows manual physics control over physical entities
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ManualPhysicsControl
     {
         // Note: to allow multiple places in the code to use this this should have values added with += instead of

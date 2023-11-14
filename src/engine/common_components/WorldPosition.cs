@@ -6,6 +6,7 @@
     ///   World-space coordinates of an entity. Note a constructor must be used to get <see cref="Rotation"/>
     ///   initialized correctly
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct WorldPosition
     {
         public Vector3 Position;

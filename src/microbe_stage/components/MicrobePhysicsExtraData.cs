@@ -12,6 +12,7 @@
     ///     that shouldn't be used before the new shape is generated and this is updated after loading.
     ///   </para>
     /// </remarks>
+    [JSONDynamicTypeAllowed]
     public struct MicrobePhysicsExtraData
     {
         /// <summary>
