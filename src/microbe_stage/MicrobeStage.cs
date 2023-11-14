@@ -96,20 +96,14 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     public Patch? SavedPatchManagerPatch
     {
         get => patchManager.ReadPreviousPatchForSave();
-        set
-        {
-            tempPatchManagerCurrentPatch = value;
-        }
+        set => tempPatchManagerCurrentPatch = value;
     }
 
     [JsonProperty]
     public float SavedPatchManagerBrightness
     {
         get => patchManager.ReadBrightnessForSave();
-        set
-        {
-            tempPatchManagerBrightness = value;
-        }
+        set => tempPatchManagerBrightness = value;
     }
 
     protected override ICreatureStageHUD BaseHUD => HUD;
