@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   Handles populating
+///   Handles populating <see cref="SaveContext.UnsavedEntities"/> when saving objects of <see cref="UnsavedEntities"/>
+///   type for later being ignored in <see cref="EntityReferenceConverter"/> and <see cref="EntityWorldConverter"/>.
 /// </summary>
 public class UnsavedEntitiesConverter : JsonConverter
 {
