@@ -25,6 +25,16 @@ public class EntityReferenceConverter : JsonConverter<Entity>
 
     public override void WriteJson(JsonWriter writer, Entity value, JsonSerializer serializer)
     {
+        if (value == default)
+        {
+            writer.WriteValue(value.ToString());
+            return;
+        }
+
+        // Don't write non-alive entities or entities that no longer want to be saved
+        if (context.SkipSavingEntity(value) || !value.IsAlive)
+            value = default;
+
         writer.WriteValue(value.ToString());
     }
 
@@ -42,9 +52,6 @@ public class EntityReferenceConverter : JsonConverter<Entity>
         if (!old.Contains(AlwaysRemovedPart))
             throw new Exception("Unexpected entity reference string format");
 #endif
-
-        // Move past the read string
-        reader.Read();
 
         // Remove extra quotes automatically
         if (old.StartsWith("\""))

@@ -52,6 +52,10 @@ public class EntityWorldConverter : JsonConverter
 
         foreach (var entity in world)
         {
+            // Skip entities that should not be saved
+            if (context.SkipSavingEntity(entity))
+                continue;
+
             writer.WritePropertyName(entity.ToString());
 
             writer.WriteStartArray();
@@ -96,13 +100,14 @@ public class EntityWorldConverter : JsonConverter
             if (reader.TokenType != JsonToken.StartObject)
                 throw new JsonException("Expected object start");
 
+            reader.Read();
+
             // Processing the entities
-            while (reader.Read() && reader.TokenType != JsonToken.EndObject)
+            while (reader.TokenType != JsonToken.EndObject)
             {
                 var entity = serializer.Deserialize<Entity>(reader);
 
-                // Above deserialize reads the end of that
-                // reader.Read();
+                reader.Read();
 
                 if (reader.TokenType != JsonToken.StartArray)
                     throw new JsonException("Expected array start");
@@ -121,22 +126,24 @@ public class EntityWorldConverter : JsonConverter
                         throw new JsonException("Expected to see end of component array before end of data");
                 }
 
-                // Move past the end array
-                reader.Read();
-                if (reader.TokenType != JsonToken.EndObject)
-                    throw new JsonException("Expected end of object");
+                // Move past the end of the array
+                if (!reader.Read())
+                    throw new JsonException("Ran out of data when looking for end of entity world");
             }
-
-            // Read the end array
-            // TODO: should this be done
-            reader.Read();
         }
         else
         {
             throw new JsonException("Unexpected property in World");
         }
 
+        // Read past the end of the world data to allow the next serializer to work
+        reader.Read();
+
         context.ProcessedEntityWorld = null;
+
+        // Entities referencing each other should all work at this point as when converting the strings to entity
+        // references the new entities must have been created
+        // TODO: should entities that are just referenced but don't have component be deleted?
 
         // See the TODO comment on this property
         context.OldToNewEntityMapping.Clear();
