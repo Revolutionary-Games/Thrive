@@ -303,6 +303,8 @@
                 {
                     case MicrobeSignalCommand.MoveToMe:
                     {
+                        // TODO: should these use signaling.ReceivedCommandSource ? As that's where the chemical signal
+                        // was smelled from
                         if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
                         {
                             ai.MoveToLocation(signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position,

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
 using Systems;
 
 /// <summary>
@@ -22,10 +21,8 @@ public class PatchManager : IChildPropertiesLoadCallback
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
 
-    [JsonProperty]
     private Patch? previousPatch;
 
-    [JsonProperty]
     private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
@@ -137,6 +134,22 @@ public class PatchManager : IChildPropertiesLoadCallback
         var multiplier = gameWorld.LightCycle.DayLightFraction;
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         gameWorld.UpdateGlobalLightLevels();
+    }
+
+    public void ApplySaveState(Patch? patch, float brightness)
+    {
+        previousPatch = patch;
+        compoundCloudBrightness = brightness;
+    }
+
+    public Patch? ReadPreviousPatchForSave()
+    {
+        return previousPatch;
+    }
+
+    public float ReadBrightnessForSave()
+    {
+        return compoundCloudBrightness;
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

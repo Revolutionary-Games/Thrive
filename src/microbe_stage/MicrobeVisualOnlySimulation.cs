@@ -43,6 +43,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
     {
+        ResolveNodeReferences();
+
         visualsParent = visualDisplayRoot;
 
         // This is not used for intensive use, and even is used in the background of normal gameplay so this should use
@@ -199,6 +201,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         ref var organelleContainer = ref microbe.Get<OrganelleContainer>();
 
         organelleContainer.OrganelleVisualsCreated = false;
+    }
+
+    protected override void InitSystemsEarly()
+    {
     }
 
     // This world doesn't use physics

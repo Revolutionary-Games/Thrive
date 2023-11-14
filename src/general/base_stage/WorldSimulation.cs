@@ -13,7 +13,8 @@ using World = DefaultEcs.World;
 ///   types implementing this interface are in charge of running the gameplay simulation side of things. For example
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
-public abstract class WorldSimulation : IWorldSimulation
+[UseThriveSerializer]
+public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 {
     /// <summary>
     ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
@@ -48,6 +49,17 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private float timeSinceLastEntityEstimate = 1;
     private int ecsThreadsToUse = 1;
+
+    public WorldSimulation()
+    {
+        entities = new World();
+    }
+
+    [JsonConstructor]
+    public WorldSimulation(World entities)
+    {
+        this.entities = entities;
+    }
 
     /// <summary>
     ///   Access to this world's entity system directly.
@@ -90,6 +102,18 @@ public abstract class WorldSimulation : IWorldSimulation
 
     [JsonIgnore]
     public bool Processing { get; private set; }
+
+    [JsonIgnore]
+    public bool NodeReferencesResolved { get; private set; }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+        InitSystemsEarly();
+    }
 
     /// <summary>
     ///   Process everything that needs to be done in a neat single method call
@@ -406,11 +430,20 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected void OnInitialized()
     {
+        if (!NodeReferencesResolved)
+            throw new InvalidOperationException("Node reference resolve as not called");
+
         if (Initialized)
             throw new InvalidOperationException("This simulation was already initialized");
 
         Initialized = true;
     }
+
+    /// <summary>
+    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
+    ///   to have save properties applied to them.
+    /// </summary>
+    protected abstract void InitSystemsEarly();
 
     protected abstract void WaitForStartedPhysicsRun();
     protected abstract void OnStartPhysicsRunIfTime(float delta);

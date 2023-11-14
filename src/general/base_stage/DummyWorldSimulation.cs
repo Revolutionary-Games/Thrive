@@ -15,6 +15,10 @@ public class DummyWorldSimulation : IWorldSimulation
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");
     }
 
+    public void ResolveNodeReferences()
+    {
+    }
+
     public EntityRecord CreateEntityDeferred(WorldRecord activeRecording)
     {
         throw new NotSupportedException("Dummy simulation doesn't support adding entities");

@@ -22,9 +22,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private Compound glucose = null!;
     private Compound phosphate = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
+    // This is no longer saved with child properties as it gets really complicated trying to load data into this from
+    // a save
     private PatchManager patchManager = null!;
+
+    private Patch? tempPatchManagerCurrentPatch;
+    private float tempPatchManagerBrightness;
 
 #pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
@@ -57,6 +60,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private float templateMaxLightLevel;
 
+    // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
+    // from being created
+    // [JsonConstructor]
+    // public MicrobeStage(MicrobeWorldSimulation worldSimulation) : base(worldSimulation)
+    // {
+    // }
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
@@ -81,6 +91,26 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive;
+
+    [JsonProperty]
+    public Patch? SavedPatchManagerPatch
+    {
+        get => patchManager.ReadPreviousPatchForSave();
+        set
+        {
+            tempPatchManagerCurrentPatch = value;
+        }
+    }
+
+    [JsonProperty]
+    public float SavedPatchManagerBrightness
+    {
+        get => patchManager.ReadBrightnessForSave();
+        set
+        {
+            tempPatchManagerBrightness = value;
+        }
+    }
 
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -124,19 +154,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
-
-        // These need to be created here as well for child property save load to work
-
-        // Initialise the simulation on a basic level first to make sure right system objects are available. This used
-        // to be in SetupStage before base init, but this is now required here
-        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
-
-        // Hook up the simulation to some of the other systems
-        WorldSimulation.CameraFollowSystem.Camera = Camera;
-        HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
-
-        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
-            WorldSimulation.TimedLifeSystem, worldLight);
     }
 
     public override void _EnterTree()
@@ -653,15 +670,33 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void SetupStage()
     {
+        EnsureWorldSimulationIsCreated();
+
+        // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
+        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+
+        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
+            WorldSimulation.TimedLifeSystem, worldLight);
+
+        if (IsLoadedFromSave)
+        {
+            patchManager.ApplySaveState(tempPatchManagerCurrentPatch, tempPatchManagerBrightness);
+            tempPatchManagerCurrentPatch = null;
+        }
+
         base.SetupStage();
 
-        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
+        // Hook up the simulation to some of the other systems
+        WorldSimulation.CameraFollowSystem.Camera = Camera;
+        HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
         // Init the simulation and finish setting up the systems (for example cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);
+
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
@@ -867,8 +902,14 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private void OnFinishLoading()
     {
-        // TODO: re-read the player entity from the simulation as it is not currently saved
-        throw new NotImplementedException();
+        // TODO: re-read the player entity from the simulation as it is not currently saved (there should be a TODO
+        // in somewhere like the entity reference converter about making this possible)
+        Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
+
+        if (!HasPlayer)
+        {
+            GD.Print("Loaded game doesn't have a currently alive player");
+        }
     }
 
     /// <summary>

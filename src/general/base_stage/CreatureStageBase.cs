@@ -33,6 +33,16 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    public CreatureStageBase()
+    {
+    }
+
+    [JsonConstructor]
+    public CreatureStageBase(TSimulation worldSimulation)
+    {
+        WorldSimulation = worldSimulation;
+    }
+
     // TODO: eventually convert this just to a Entity without having any generic type configurability here
     /// <summary>
     ///   The current player or null.
@@ -50,7 +60,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     public abstract bool HasPlayer { get; }
 
     [JsonProperty]
-    public TSimulation WorldSimulation { get; private set; } = new();
+    public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -223,6 +233,23 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         UpdatePatchSettings();
         PatchExtinctionResolved();
         SpawnPlayer();
+    }
+
+    protected override void SetupStage()
+    {
+        EnsureWorldSimulationIsCreated();
+
+        base.SetupStage();
+    }
+
+    protected void EnsureWorldSimulationIsCreated()
+    {
+        // When loading a save the world simulation is loaded from the save, otherwise it needs to be created
+        if (WorldSimulation == null!)
+        {
+            WorldSimulation = new TSimulation();
+            WorldSimulation.ResolveNodeReferences();
+        }
     }
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
