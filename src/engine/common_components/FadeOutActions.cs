@@ -3,6 +3,7 @@
     /// <summary>
     ///   Special actions to perform on time to live expiring and fading out
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct FadeOutActions
     {
         public float FadeTime;

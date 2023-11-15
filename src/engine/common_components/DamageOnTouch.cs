@@ -5,6 +5,7 @@
     /// <summary>
     ///   Damages any entities touched by this entity. Requires <see cref="CollisionManagement"/>
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct DamageOnTouch
     {
         /// <summary>

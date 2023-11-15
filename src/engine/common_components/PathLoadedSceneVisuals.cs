@@ -6,6 +6,7 @@
     ///   Specifies an exact scene path to load <see cref="SpatialInstance"/> from. Using
     ///   <see cref="PredefinedVisuals"/> should be preferred for all cases where that is usable for the situation.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct PathLoadedSceneVisuals
     {
         /// <summary>

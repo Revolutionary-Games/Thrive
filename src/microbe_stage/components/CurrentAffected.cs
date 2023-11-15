@@ -8,6 +8,7 @@
     ///   This exists as currents need to be skipped for microbes for now as we don't have visualizations for the
     ///   currents.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CurrentAffected
     {
     }

@@ -305,6 +305,7 @@
     <Compile Include="src\general\base_stage\IStrategyStageHUD.cs" />
     <Compile Include="src\general\base_stage\IWorldSimulation.cs" />
     <Compile Include="src\general\base_stage\IWorldSimulationWithPhysics.cs" />
+    <Compile Include="src\general\base_stage\UnsavedEntities.cs" />
     <Compile Include="src\general\base_stage\WorldSimulation.cs" />
     <Compile Include="src\general\base_stage\StageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageBase.cs" />
@@ -772,8 +773,11 @@
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityWorldConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
+    <Compile Include="src\saving\serializers\GodotQuatConverter.cs" />
     <Compile Include="src\saving\serializers\InProgressObjectDeserialization.cs" />
     <Compile Include="src\saving\serializers\LocalizedStringTypeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
@@ -790,6 +794,7 @@
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\UnsavedEntitiesConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\society_stage\CitizenMovingSystem.cs" />

@@ -10,6 +10,7 @@
     /// <summary>
     ///   Something that can be engulfed by a microbe
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Engulfable
     {
         /// <summary>

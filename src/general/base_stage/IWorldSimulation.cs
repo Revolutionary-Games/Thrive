@@ -18,6 +18,8 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     public bool Processing { get; }
 
+    public void ResolveNodeReferences();
+
     /// <summary>
     ///   Thread safe variant of <see cref="IEntityContainer.CreateEmptyEntity"/>
     /// </summary>

@@ -6,6 +6,7 @@
     /// <summary>
     ///   Specifies simple colour changing animations
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ColourAnimation
     {
         /// <summary>

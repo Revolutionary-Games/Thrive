@@ -4,6 +4,7 @@ using DefaultEcs.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
+using World = DefaultEcs.World;
 
 /// <summary>
 ///   Contains all the parts needed to simulate a microbial world. Separate from (but used by) the
@@ -78,6 +79,15 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private Node visualsParent = null!;
 #pragma warning restore CA2213
 
+    public MicrobeWorldSimulation()
+    {
+    }
+
+    [JsonConstructor]
+    public MicrobeWorldSimulation(World entities) : base(entities)
+    {
+    }
+
     // External system references
 
     [JsonIgnore]
@@ -109,6 +119,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// </param>
     public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem)
     {
+        ResolveNodeReferences();
+
         visualsParent = visualDisplayRoot;
 
         // Threading using our task system
@@ -190,14 +202,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, couldParallelize);
 
-        SpawnSystem = new SpawnSystem(this);
-
         microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
         CloudSystem = cloudSystem;
-        cloudSystem.Init(fluidCurrentsSystem);
 
         cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
 
@@ -205,7 +214,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     }
 
     /// <summary>
-    ///   Second phase initialization that requires access to the current game info
+    ///   Second phase initialization that requires access to the current game info. Must also be performed, otherwise
+    ///   this class won't function correctly.
     /// </summary>
     /// <param name="currentGame">Currently started game</param>
     public void InitForCurrentGame(GameProperties currentGame)
@@ -213,6 +223,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
+
+        CloudSystem.Init(fluidCurrentsSystem);
     }
 
     public override void ProcessFrameLogic(float delta)
@@ -264,6 +276,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     internal void OverrideMicrobeAIRandomSeed(int seed)
     {
         microbeAI.OverrideAIRandomSeed(seed);
+    }
+
+    protected override void InitSystemsEarly()
+    {
+        SpawnSystem = new SpawnSystem(this);
     }
 
     protected override void OnProcessFixedLogic(float delta)

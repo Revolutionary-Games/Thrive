@@ -3,6 +3,7 @@
     /// <summary>
     ///   Entity that has been spawned by a spawn system and can be automatically despawned
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Spawned
     {
         /// <summary>

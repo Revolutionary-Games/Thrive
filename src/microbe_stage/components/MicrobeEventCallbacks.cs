@@ -9,6 +9,7 @@
     ///   Entity that triggers various microbe event callbacks when things happens to it. This is mostly used for
     ///   connecting the player cell to the GUI and game stage.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeEventCallbacks
     {
         public Action<Entity>? OnUnbindEnabled;

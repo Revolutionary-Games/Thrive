@@ -5,6 +5,7 @@
     /// <summary>
     ///   Entity has bio processes to run by the <see cref="Systems.ProcessSystem"/>
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct BioProcesses
     {
         /// <summary>

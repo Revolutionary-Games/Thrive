@@ -7,6 +7,7 @@
     ///   Sends and receivers command signals (signaling agent). Requires a <see cref="WorldPosition"/> to function
     ///   as the origin of the signaling command.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CommandSignaler
     {
         /// <summary>

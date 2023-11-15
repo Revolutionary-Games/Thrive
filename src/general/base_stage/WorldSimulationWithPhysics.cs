@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
+using World = DefaultEcs.World;
 
 /// <summary>
 ///   World simulation that uses the external physics engine in the native code module
@@ -13,6 +15,15 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     ///   All created physics bodies. Must be tracked to correctly destroy them all
     /// </summary>
     protected readonly List<NativePhysicsBody> createdBodies = new();
+
+    public WorldSimulationWithPhysics()
+    {
+    }
+
+    [JsonConstructor]
+    public WorldSimulationWithPhysics(World entities) : base(entities)
+    {
+    }
 
     ~WorldSimulationWithPhysics()
     {
@@ -61,6 +72,8 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         // here to get the native side wrapper released as well
         body.Dispose();
     }
+
+    protected abstract override void InitSystemsEarly();
 
     protected override void WaitForStartedPhysicsRun()
     {

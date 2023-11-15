@@ -17,10 +17,6 @@ public class ThriveJsonConverter : IDisposable
 {
     private static readonly ThriveJsonConverter InstanceValue = new(new SaveContext(SimulationParameters.Instance));
 
-    // ReSharper disable once NotAccessedField.Local
-    /// <summary>
-    ///   This variable is kept just in case accessing the context after the constructor is useful
-    /// </summary>
     private readonly SaveContext context;
 
     private readonly JsonConverter[] thriveConverters;
@@ -40,6 +36,7 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
+            new GodotQuatConverter(),
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
             new RandomConverter(),
@@ -55,6 +52,10 @@ public class ThriveJsonConverter : IDisposable
             // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
             // to not use this
             new BaseNodeConverter(context),
+
+            new EntityReferenceConverter(context),
+            new UnsavedEntitiesConverter(context),
+            new EntityWorldConverter(context),
 
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
@@ -202,6 +203,9 @@ public class ThriveJsonConverter : IDisposable
         {
             settings = CreateSettings();
             currentJsonSettings.Value = settings;
+
+            // Reset context as a new JSON serialize operation has been started
+            context.Reset();
         }
 
         try
@@ -300,7 +304,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<FieldInfo> FieldsOf(object value, bool handleClassJSONSettings = true)
     {
-        return FieldsOf(value.GetType());
+        return FieldsOf(value.GetType(), handleClassJSONSettings);
     }
 
     public static IEnumerable<FieldInfo> FieldsOf(Type type, bool handleClassJSONSettings = true)
