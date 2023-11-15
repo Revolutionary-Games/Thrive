@@ -1464,7 +1464,7 @@
                 // return;
             }
 
-            // TODO: caching for endosomes
+            // TODO: caching for endosomes (need to detach from the old parent)
         }
 
         private void CalculateAdditionalCompoundsInNewlyEngulfedObject(ref Engulfable engulfable,
