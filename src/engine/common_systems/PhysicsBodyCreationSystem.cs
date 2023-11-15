@@ -5,7 +5,6 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
@@ -15,16 +14,20 @@
     [With(typeof(Physics))]
     [With(typeof(PhysicsShapeHolder))]
     [With(typeof(WorldPosition))]
+    [RunsOnMainThread]
     public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
+        private readonly PhysicsBodyDisablingSystem disablingSystem;
 
         private readonly List<NativePhysicsBody> createdBodies = new();
 
-        public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world,
-            IParallelRunner runner) : base(world, runner)
+        // This is not parallel as we don't use the parallel body add method of Jolt
+        public PhysicsBodyCreationSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics,
+            PhysicsBodyDisablingSystem disablingSystem, World world) : base(world, null)
         {
             this.worldSimulationWithPhysics = worldSimulationWithPhysics;
+            this.disablingSystem = disablingSystem;
         }
 
         /// <summary>
@@ -154,7 +157,8 @@
             if (body.Marked)
                 return false;
 
-            // TODO: ensure this works fine if the body is currently in disabled state
+            disablingSystem.OnBodyDeleted(body);
+
             worldSimulationWithPhysics.DestroyBody(body);
 
             return true;

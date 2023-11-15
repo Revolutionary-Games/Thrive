@@ -44,6 +44,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "")
     "Set the build type, usually Debug or Distribution" FORCE)
 endif()
 
+# Make sure the distribution mode has some flags set as a workaround on some
+# systems
+set(CMAKE_SHARED_LINKER_FLAGS_DISTRIBUTION ${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO})
+
 # A bit unneeded Jolt hack
 # # This and the following hack is required due to Jolt being very debug-y in
 # # release mode

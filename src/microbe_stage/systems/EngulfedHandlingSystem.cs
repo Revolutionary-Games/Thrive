@@ -46,7 +46,15 @@
             // Handle logic if the cell that's being/has been digested is us
             if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
             {
-                if (engulfable.DigestedAmount > 0 && engulfable.DigestedAmount < Constants.PARTIALLY_DIGESTED_THRESHOLD)
+                if (engulfable.DigestedAmount >= 1 || (engulfable.DestroyIfPartiallyDigested &&
+                        engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD))
+                {
+                    // Too digested to live anymore
+                    // Note that the microbe equivalent of this is handled in OnExpelledFromEngulfment
+                    ref var health = ref entity.Get<Health>();
+                    KillEngulfed(entity, ref health, ref engulfable);
+                }
+                else if (engulfable.DigestedAmount > 0)
                 {
                     // Cell is not too damaged, can heal itself in open environment and continue living
                     engulfable.DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
@@ -62,14 +70,15 @@
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.Ingested && entity.Has<PlayerMarker>())
                     playerEngulfedDeathTimer += delta;
 
-                if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD || (playerEngulfedDeathTimer >=
-                        Constants.PLAYER_ENGULFED_DEATH_DELAY_MAX && entity.Has<PlayerMarker>()))
+                // TODO: the old system probably used to have:
+                // engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD here which is now gone to stop
+                // things being destroyed too soon when being digested
+                if (playerEngulfedDeathTimer >= Constants.PLAYER_ENGULFED_DEATH_DELAY_MAX && entity.Has<PlayerMarker>())
                 {
                     // Microbe is beyond repair, might as well consider it as dead
                     ref var health = ref entity.Get<Health>();
 
                     if (!health.Dead)
-
                         KillEngulfed(entity, ref health, ref engulfable);
                 }
 
