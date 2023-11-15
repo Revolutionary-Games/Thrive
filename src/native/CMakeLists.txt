@@ -4,6 +4,7 @@ add_library(thrive_native SHARED
   interop/CInterop.cpp interop/CInterop.h
   interop/CStructures.h interop/JoltTypeConversions.hpp
   core/Logger.cpp core/Logger.hpp
+  core/Math.hpp
   core/Mutex.hpp
   core/NonCopyable.hpp core/Reference.hpp
   core/RefCounted.hpp
