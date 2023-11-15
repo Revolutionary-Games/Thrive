@@ -12,13 +12,15 @@
     ///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
     ///   world at all)
     /// </summary>
+    [WritesToComponent(typeof(Physics))]
+    [RunsOnMainThread]
     public sealed class PhysicsBodyDisablingSystem : AComponentSystem<float, Physics>
     {
         private readonly PhysicalWorld physicalWorld;
 
         private readonly HashSet<NativePhysicsBody> disabledBodies = new();
 
-        public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world)
+        public PhysicsBodyDisablingSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
         {
             this.physicalWorld = physicalWorld;
         }
@@ -40,15 +42,12 @@
             }
         }
 
-        // TODO: figure out where this would need to be called
         /// <summary>
         ///   Needs to be called when a body is deleted so that state tracking for body disabling can remove it
         /// </summary>
         /// <param name="body">The deleted body</param>
         public void OnBodyDeleted(NativePhysicsBody body)
         {
-            // TODO: if needed for deletion this could reattach the body here?
-
             disabledBodies.Remove(body);
         }
 

@@ -142,8 +142,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, couldParallelize);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, couldParallelize);
-        physicsBodyCreationSystem = new PhysicsBodyCreationSystem(this, EntitySystem, nonParallelRunner);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
+        physicsBodyCreationSystem =
+            new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
