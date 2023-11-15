@@ -622,7 +622,8 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    public const float ENGULF_EJECTION_VELOCITY = 20.0f;
+    // TODO: unify the following two variables
+    public const float ENGULF_EJECTION_VELOCITY = 5.0f;
 
     public const float ENGULF_EJECTION_FORCE = 20.0f;
 
