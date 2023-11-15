@@ -19,6 +19,7 @@
 
 // #include "core/TaskSystem.hpp"
 
+#include "core/Math.hpp"
 #include "core/Mutex.hpp"
 #include "core/Spinlock.hpp"
 #include "core/Time.hpp"
@@ -36,9 +37,6 @@
 #endif
 
 JPH_SUPPRESS_WARNINGS
-
-// Enables slower turning in ApplyBodyControl when close to the target rotation
-// #define USE_SLOW_TURN_NEAR_TARGET
 
 // ------------------------------------ //
 namespace Thrive::Physics
@@ -595,10 +593,6 @@ void PhysicalWorld::SetVelocityAndAngularVelocity(
 void PhysicalWorld::SetBodyControl(
     PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate)
 {
-    // Used to detect when the target has changed enough to warrant logic change in the control apply. This needs
-    // to be relatively large to avoid oscillation
-    constexpr auto newRotationTargetAfter = 0.01f;
-
     if (rotationRate <= 0) [[unlikely]]
     {
         LOG_ERROR("Invalid rotationRate variable for controlling a body, needs to be positive");
@@ -620,23 +614,9 @@ void PhysicalWorld::SetBodyControl(
     if (justEnabled) [[unlikely]]
     {
         pimpl->AddPerStepControlBody(bodyWrapper);
-
-        state->previousTarget = targetRotation;
-        state->targetRotation = targetRotation;
-        state->targetChanged = true;
-        state->justStarted = true;
-    }
-    else
-    {
-        state->targetRotation = targetRotation;
-
-        if (!targetRotation.IsClose(state->previousTarget, newRotationTargetAfter))
-        {
-            state->targetChanged = true;
-            state->previousTarget = state->targetRotation;
-        }
     }
 
+    state->targetRotation = targetRotation;
     state->movement = movementImpulse;
     state->rotationRate = rotationRate;
 }
@@ -1189,13 +1169,6 @@ void PhysicalWorld::UpdateBodyUserPointer(const PhysicsBody& body)
 // ------------------------------------ //
 void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 {
-    constexpr auto allowedRotationDifference = 0.0001f;
-    constexpr auto overshootDetectWhenAllAnglesLessThan = PI * 0.025f;
-
-#ifdef USE_SLOW_TURN_NEAR_TARGET
-    constexpr auto closeToTargetThreshold = 0.20f;
-#endif
-
     // Normalize delta to 60Hz update rate to make gameplay logic not depend on the physics framerate
     float normalizedDelta = delta / (1 / 60.0f);
 
@@ -1212,105 +1185,25 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     }
 
     JPH::Body& body = lock.GetBody();
-    const auto degreesOfFreedom = body.GetMotionProperties()->GetAllowedDOFs();
 
     if (controlState->movement.LengthSq() > 0.000001f)
         body.AddImpulse(controlState->movement * normalizedDelta);
 
+    // A really simple rotation matching based on JPH::Body::MoveKinematic approach. Now this doesn't seem to need
+    // to have any rotation value being close to target threshold or overshoot detection.
     const auto& currentRotation = body.GetRotation();
 
-    const auto inversedTargetRotation = controlState->targetRotation.Inversed();
-    const auto difference = currentRotation * inversedTargetRotation;
+    // Can use conjugated here as the rotation is always a unit rotation
+    const auto difference = controlState->targetRotation * currentRotation.Conjugated();
 
-    if (difference.IsClose(JPH::Quat::sIdentity(), allowedRotationDifference))
-    {
-        // At rotation target, stop rotation
-        // TODO: we could allow small velocities to allow external objects to force our rotation off a bit after which
-        // this would correct itself
-        body.SetAngularVelocity({0, 0, 0});
-    }
-    else
-    {
-        // Not currently at the rotation target
-        auto differenceAngles = difference.GetEulerAngles();
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
+    JPH::Vec3 axis;
+#pragma clang diagnostic pop
 
-        // Old rotation angles are needed here so that they can also be preprocessed like differenceAngles
-        const auto oldDifference = controlState->previousRotation * inversedTargetRotation;
-        auto oldAngles = oldDifference.GetEulerAngles();
-
-        // Things break a lot if we add rotation on an axis where rotation is not allowed due to DOF
-        if ((degreesOfFreedom & JPH::AllRotationAllowed) != JPH::AllRotationAllowed)
-        {
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationX)) == 0)
-            {
-                differenceAngles.SetX(0);
-                oldAngles.SetX(0);
-            }
-
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationY)) == 0)
-            {
-                differenceAngles.SetY(0);
-                oldAngles.SetY(0);
-            }
-
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationZ)) == 0)
-            {
-                differenceAngles.SetZ(0);
-                oldAngles.SetZ(0);
-            }
-        }
-
-        bool setNormalVelocity = true;
-
-        if (!controlState->justStarted && !controlState->targetChanged)
-        {
-            // Check if we overshot the target and should stop to avoid oscillating
-
-            // Compare the current rotation state with the previous one to detect if we are now on different side of
-            // the target rotation than the previous rotation was
-            const auto angleDifference = oldAngles - differenceAngles;
-
-            bool potentiallyOvershot = std::signbit(oldAngles.GetX()) != std::signbit(differenceAngles.GetX()) ||
-                std::signbit(oldAngles.GetY()) != std::signbit(differenceAngles.GetY()) ||
-                std::signbit(oldAngles.GetZ()) != std::signbit(differenceAngles.GetZ());
-
-            // If the signs are different and the angles are close enough (to make sure if we overshoot a ton we
-            // correct) then detect an overshoot
-            if (potentiallyOvershot && std::abs(angleDifference.GetX()) < overshootDetectWhenAllAnglesLessThan &&
-                std::abs(angleDifference.GetY()) < overshootDetectWhenAllAnglesLessThan &&
-                std::abs(angleDifference.GetZ()) < overshootDetectWhenAllAnglesLessThan)
-            {
-                // Overshot and we are within angle limits, reset velocity to 0 to prevent oscillation
-                body.SetAngularVelocity({0, 0, 0});
-                setNormalVelocity = false;
-            }
-        }
-
-        if (setNormalVelocity)
-        {
-#ifdef USE_SLOW_TURN_NEAR_TARGET
-            // When near the target slow down rotation
-            const bool nearTarget = difference.IsClose(JPH::Quat::sIdentity(), closeToTargetThreshold);
-
-            // It seems as these angles are the distance left, these are hopefully fine to be as-is without any kind
-            // of delta adjustment
-            if (nearTarget)
-            {
-                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate * 0.5f);
-            }
-            else
-            {
-                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
-            }
-#else
-            body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
-#endif // USE_SLOW_TURN_NEAR_TARGET
-        }
-    }
-
-    controlState->previousRotation = currentRotation;
-    controlState->justStarted = false;
-    controlState->targetChanged = false;
+    float angle;
+    difference.GetAxisAngle(axis, angle);
+    body.SetAngularVelocityClamped(axis * (angle / controlState->rotationRate * normalizedDelta));
 }
 
 #pragma clang diagnostic push
