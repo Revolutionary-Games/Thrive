@@ -178,12 +178,12 @@
                     indexOfMemberToBindTo = 0;
                 }
 
-                var colony = new MicrobeColony(primaryEntity, control.State, other);
+                var colony = new MicrobeColony(primaryEntity, control.State, new[] { primaryEntity, other });
+                success = true;
 
-                MicrobeColonyHelpers.OnColonyMemberAdded(primaryEntity);
+                MicrobeColonyHelpers.OnColonyMemberAdded(other);
 
-                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
-
+                // Add the colony component to the lead cell
                 recorder.Record(primaryEntity).Set(colony);
             }
             else

@@ -553,10 +553,6 @@
             {
                 control.State = MicrobeState.Normal;
             }
-
-            throw new NotImplementedException();
-
-            // UnreadyToReproduce();
         }
 
         /// <summary>
@@ -582,14 +578,55 @@
             return true;
         }
 
+        /// <summary>
+        ///   Calculates the help and extra inertia caused by the colony member cells  
+        /// </summary>
         public static void CalculateRotationMultiplier(this ref MicrobeColony colony)
         {
-            throw new NotImplementedException();
+            float colonyInertia = 0.1f;
+            float colonyRotationHelp = 0;
+            ref var leaderPosition = ref colony.Leader.Get<WorldPosition>();
 
-            // TODO: reimplement the colony rotation multiplier. The code for this is probably commented out currently
-            // in the movement system, but calculating it should be moved here and uncommented + fixed
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                if (colonyMember == colony.Leader)
+                    continue;
 
-            // colony.ColonyRotationMultiplierCalculated = true;
+                ref var memberPosition = ref colonyMember.Get<WorldPosition>();
+
+                var distanceSquared = memberPosition.Position.DistanceSquaredTo(leaderPosition.Position);
+
+                if (distanceSquared < MathUtils.EPSILON)
+                    continue;
+
+                float mass = 1000;
+
+                // TODO: should we use another mass for the microbe?
+                // This will not work if the microbe does not have an associated physics object
+                if (colonyMember.Has<PhysicsShapeHolder>())
+                    colonyMember.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
+
+                colonyInertia += distanceSquared * mass *
+                    Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
+
+                // TODO: should this use the member rotation speed (which is dependent on its size and
+                // how many cilia there are that far away) or just count of cilia and the distance
+                colonyRotationHelp += colonyMember.Get<OrganelleContainer>().RotationSpeed *
+                    Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distanceSquared);
+            }
+
+            var multiplier = colonyRotationHelp / colonyInertia;
+
+            colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
+                Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
+                Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
+
+            // TODO: why are these checks here and not in the movement system?
+            // speed *= cachedColonyRotationMultiplier.Value;
+            // speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
+            //     Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));*/
+
+            colony.ColonyRotationMultiplierCalculated = true;
         }
 
         /// <summary>

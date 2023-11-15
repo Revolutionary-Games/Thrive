@@ -176,6 +176,16 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClampNegativeCompoundAmounts();
     }
 
+    public bool IsUsefulInAnyCompoundBag(Compound compound)
+    {
+        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
+    }
+
+    public bool AnyIsUsefulInAnyCompoundBag(IEnumerable<Compound> compounds)
+    {
+        return compounds.Any(c => IsUsefulInAnyCompoundBag(c));
+    }
+
     private static bool IsUsefulInAnyCompoundBag(Compound compound, IEnumerable<CompoundBag> compoundBags)
     {
         return compoundBags.Any(p => p.IsUseful(compound));
@@ -184,10 +194,5 @@ public class ColonyCompoundBag : ICompoundStorage
     private ICollection<CompoundBag> GetCompoundBags()
     {
         return colonyBags;
-    }
-
-    private bool IsUsefulInAnyCompoundBag(Compound compound)
-    {
-        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
     }
 }

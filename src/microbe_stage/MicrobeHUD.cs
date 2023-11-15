@@ -299,10 +299,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var compounds = stage.Player.Get<CompoundStorage>().Compounds;
             return compound => compounds.IsUseful(compound);
         }
-
-        throw new NotImplementedException();
-
-        // return compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound));
+        else
+        {
+            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
+            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
+        }
     }
 
     protected override bool SpecialHandleBar(ProgressBar bar)
@@ -322,11 +323,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
-
-        throw new NotImplementedException();
-
-        // return colony.ColonyMembers.Any(
-        //     c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
+        else
+        {
+            return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
+        }
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -335,10 +335,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
-
-        throw new NotImplementedException();
-
-        // return stage!.Player!.Colony?.ColonyCompounds;
+        else
+        {
+            return stage.Player.Get<MicrobeColony>().GetCompounds();
+        }
     }
 
     protected override void UpdateCompoundBars(float delta)
@@ -516,12 +516,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-        {
-            // TODO: calculate total used ingestion capacity
-            throw new NotImplementedException();
-
-            // return ?
-        }
+            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
 
         return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
     }
