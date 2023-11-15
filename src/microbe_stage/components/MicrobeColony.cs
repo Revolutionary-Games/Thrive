@@ -248,7 +248,7 @@
             Entity newMember, EntityCommandRecorder recorder)
         {
             if (newMember.Has<MicrobeColonyMember>())
-                throw new ArgumentException("Microbe or master null or microbe already is in a colony");
+                throw new ArgumentException("Microbe already is in a colony");
 
 #if DEBUG
             if (colony.ColonyMembers.Contains(newMember))
@@ -548,10 +548,30 @@
         {
             ref var control = ref addedEntity.Get<MicrobeControl>();
 
+            // TODO: should this apply the colony's overall state
             // Multicellular creature can stay in engulf mode when growing things
             if (!addedEntity.Has<EarlyMulticellularSpeciesMember>() || control.State != MicrobeState.Engulf)
             {
                 control.State = MicrobeState.Normal;
+            }
+
+            if (addedEntity.Has<OrganelleContainer>())
+            {
+                ref var organelles = ref addedEntity.Get<OrganelleContainer>();
+
+                organelles.AllOrganellesDivided = false;
+            }
+
+            ReportReproductionStatusOnAddToColony(addedEntity);
+        }
+
+        public static void ReportReproductionStatusOnAddToColony(in Entity entity)
+        {
+            if (entity.Has<MicrobeEventCallbacks>() && !entity.Has<EarlyMulticellularSpeciesMember>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnReproductionStatus?.Invoke(entity, false);
             }
         }
 
@@ -620,11 +640,6 @@
             colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
                 Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
                 Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
-
-            // TODO: why are these checks here and not in the movement system?
-            // speed *= cachedColonyRotationMultiplier.Value;
-            // speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
-            //     Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));*/
 
             colony.ColonyRotationMultiplierCalculated = true;
         }

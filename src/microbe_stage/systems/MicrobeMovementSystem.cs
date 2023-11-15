@@ -116,7 +116,11 @@
                 rotationSpeed /= CheatManager.Speed;
 
             if (entity.Has<MicrobeColony>())
-                rotationSpeed *= entity.Get<MicrobeColony>().ColonyRotationMultiplier;
+            {
+                rotationSpeed = Mathf.Clamp(rotationSpeed * entity.Get<MicrobeColony>().ColonyRotationMultiplier,
+                    Constants.CELL_MIN_ROTATION,
+                    Math.Min(rotationSpeed * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));
+            }
 
             return rotationSpeed;
         }

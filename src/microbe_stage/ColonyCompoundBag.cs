@@ -183,7 +183,19 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public bool AnyIsUsefulInAnyCompoundBag(IEnumerable<Compound> compounds)
     {
-        return compounds.Any(c => IsUsefulInAnyCompoundBag(c));
+        // Just in case the compound bag method gets turned back into an iterator, this is fetched just once
+        var bags = GetCompoundBags();
+
+        foreach (var compound in compounds)
+        {
+            foreach (var bag in bags)
+            {
+                if (bag.IsUseful(compound))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private static bool IsUsefulInAnyCompoundBag(Compound compound, IEnumerable<CompoundBag> compoundBags)
