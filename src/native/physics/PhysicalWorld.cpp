@@ -380,8 +380,10 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
         return;
     }
 
-    if (body.IsInSpecificWorld(this))
+    if (!body.IsInSpecificWorld(this))
     {
+        // This constraint can probably be relaxed quite easily but for now this has not been required so this is not
+        // done
         LOG_ERROR("Physics body can only be added back to the world it was created for");
         return;
     }
@@ -392,7 +394,14 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
         if (!constraint->IsCreatedInWorld())
         {
             // TODO: constraint creation has to be skipped if the other body the constraint is on is currently
-            //  detached
+            // detached and created later
+            if ((constraint->optionalSecondBody != nullptr && constraint->optionalSecondBody.get() != &body &&
+                    constraint->optionalSecondBody->IsDetached()) ||
+                (constraint->firstBody.get() != &body && constraint->firstBody->IsDetached()))
+            {
+                LOG_ERROR("Not implemented handling for deferring constraint creation for detached body");
+                continue;
+            }
 
             physicsSystem->AddConstraint(constraint->GetConstraint().GetPtr());
             constraint->OnRegisteredToWorld(*this);
