@@ -11,6 +11,7 @@
     ///   AI for a single Microbe (enables the <see cref="MicrobeAISystem"/>. to run on this). And also the memory for
     ///   the AI.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeAI
     {
         public float TimeUntilNextThink;

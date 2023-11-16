@@ -20,7 +20,6 @@ public class PlacedOrganelle : IPositionedOrganelle
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
-    [JsonConstructor]
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation, OrganelleUpgrades? upgrades)
     {
         Definition = definition;

@@ -13,9 +13,18 @@ using World = DefaultEcs.World;
 ///   types implementing this interface are in charge of running the gameplay simulation side of things. For example
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
-public abstract class WorldSimulation : IWorldSimulation
+[UseThriveSerializer]
+public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 {
-    protected readonly World entities = new();
+    /// <summary>
+    ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
+    ///   to work correctly.
+    /// </summary>
+    [JsonProperty]
+    protected readonly UnsavedEntities entitiesToNotSave = new();
+
+    [JsonProperty]
+    protected readonly World entities;
 
     // TODO: did these protected property loading work? Loading / saving for the entities
     protected readonly List<Entity> queuedForDelete = new();
@@ -31,10 +40,7 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected float accumulatedLogicTime;
 
-    // TODO: implement saving
-    // ReSharper disable once CollectionNeverQueried.Local
-    private readonly List<Entity> entitiesToNotSave = new();
-
+    // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
 
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
@@ -43,6 +49,17 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private float timeSinceLastEntityEstimate = 1;
     private int ecsThreadsToUse = 1;
+
+    public WorldSimulation()
+    {
+        entities = new World();
+    }
+
+    [JsonConstructor]
+    public WorldSimulation(World entities)
+    {
+        this.entities = entities;
+    }
 
     /// <summary>
     ///   Access to this world's entity system directly.
@@ -85,6 +102,18 @@ public abstract class WorldSimulation : IWorldSimulation
 
     [JsonIgnore]
     public bool Processing { get; private set; }
+
+    [JsonIgnore]
+    public bool NodeReferencesResolved { get; private set; }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+        InitSystemsEarly();
+    }
 
     /// <summary>
     ///   Process everything that needs to be done in a neat single method call
@@ -378,6 +407,12 @@ public abstract class WorldSimulation : IWorldSimulation
     }
 
     /// <summary>
+    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
+    ///   to have save properties applied to them.
+    /// </summary>
+    protected abstract void InitSystemsEarly();
+
+    /// <summary>
     ///   Checks that previously started (on previous update) physics runs are complete before running this update.
     ///   Also if the physics simulation is behind by too much then this steps the simulation extra times.
     /// </summary>
@@ -401,6 +436,9 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected void OnInitialized()
     {
+        if (!NodeReferencesResolved)
+            throw new InvalidOperationException("Node reference resolve as not called");
+
         if (Initialized)
             throw new InvalidOperationException("This simulation was already initialized");
 

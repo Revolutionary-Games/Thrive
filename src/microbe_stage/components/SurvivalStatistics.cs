@@ -4,6 +4,7 @@
     ///   Collects information to give population bonuses and penalties to species based on how well they do in the
     ///   stage interacting with each other and the player for real
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct SurvivalStatistics
     {
         public float EscapeInterval;

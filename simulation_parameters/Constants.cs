@@ -332,7 +332,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 10.0f;
+    public const float AGENT_EMISSION_VELOCITY = 13.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -622,9 +622,10 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    public const float ENGULF_EJECTION_VELOCITY = 20.0f;
+    // TODO: unify the following two variables
+    public const float ENGULF_EJECTION_VELOCITY = 5.0f;
 
-    public const float ENGULF_EJECTION_FORCE = 20.0f;
+    public const float ENGULF_EJECTION_FORCE = 10.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.

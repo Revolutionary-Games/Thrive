@@ -12,6 +12,7 @@
     ///   Base properties of a microbe (separate from the species info as early multicellular species object couldn't
     ///   work there)
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CellProperties
     {
         /// <summary>

@@ -7,6 +7,7 @@
     /// <summary>
     ///   Things that have a health and can be damaged
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Health
     {
         public List<DamageEventNotice>? RecentDamageReceived;

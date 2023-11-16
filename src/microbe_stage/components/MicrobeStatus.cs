@@ -6,6 +6,7 @@
     ///   A collection place for various microbe status flags and variables that don't have more sensible components
     ///   to put them in
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeStatus
     {
         // Variables related to movement sound playing

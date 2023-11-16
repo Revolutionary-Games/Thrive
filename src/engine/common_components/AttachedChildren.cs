@@ -9,6 +9,7 @@
     ///   Added to the parent entity when <see cref="AttachedToEntity"/> is added to the child entity. This tracks all
     ///   of the entities that are attached to this entity to allow easily finding them for required operations.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct AttachedChildren
     {
         public List<Entity> Children;

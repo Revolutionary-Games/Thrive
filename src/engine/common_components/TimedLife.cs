@@ -6,6 +6,7 @@
     /// <summary>
     ///   Entities that despawn after a certain amount of time
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct TimedLife
     {
         /// <summary>

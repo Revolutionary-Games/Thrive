@@ -226,7 +226,7 @@ public partial class CellEditorComponent
             previewMicrobeSpecies.MembraneType = membrane;
 
             if (previewMicrobe.IsAlive)
-                previewSimulation.ApplyMicrobeMembraneType(previewMicrobe, membrane);
+                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
         }
     }
 
@@ -248,7 +248,7 @@ public partial class CellEditorComponent
             previewMicrobeSpecies.MembraneType = Membrane;
 
             if (previewMicrobe.IsAlive)
-                previewSimulation.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
+                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
         }
     }
 

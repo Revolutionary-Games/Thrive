@@ -10,6 +10,7 @@
     /// <summary>
     ///   Entity that can engulf <see cref="Engulfable"/>s
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Engulfer
     {
         /// <summary>

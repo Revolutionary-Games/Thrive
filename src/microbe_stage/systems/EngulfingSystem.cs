@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -243,7 +244,7 @@
                         currentEndosomeScale = endosome.Scale;
 
                     transportData.TargetValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
-                    StartBulkTransport(ref engulfable, engulfedEntity, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
+                    StartBulkTransport(ref engulfable, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
                         currentEndosomeScale, false);
                 }
 
@@ -280,8 +281,8 @@
                                 RemoveEndosomeFromEntity(entity, endosome);
                             }
 
-                            transportData.TargetValuesToLerp = (null, transportData.OriginalScale, null);
-                            StartBulkTransport(ref engulfable, engulfedEntity,
+                            transportData.TargetValuesToLerp = (null, engulfable.OriginalScale, null);
+                            StartBulkTransport(ref engulfable,
                                 ref engulfedEntity.Get<AttachedToEntity>(), 1.0f,
                                 Vector3.One);
                             engulfable.PhagocytosisStep = PhagocytosisPhase.Ejection;
@@ -428,18 +429,19 @@
 
             Vector3 originalScale;
 
-            if (engulfable.BulkTransport != null)
+            if (engulfable.OriginalScale != Vector3.Zero)
             {
-                originalScale = engulfable.BulkTransport.OriginalScale;
-
-                // TODO: original render priority
-                // originalRenderPriority = bulkTransport.OriginalRenderPriority
+                originalScale = engulfable.OriginalScale;
             }
             else
             {
-                GD.PrintErr(
-                    "Engulfable moved between engulfers has no transport animation, some original parameters " +
-                    "are unknown");
+                GD.PrintErr("Engulfable moved between engulfers has no original scale stored");
+
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
                 originalScale = Vector3.One;
             }
 
@@ -452,7 +454,7 @@
             var attached = AdjustExistingAttachedComponentForEngulfed(engulferEntity, ref targetEntityPosition,
                 targetEntity, relativePosition);
 
-            StartBulkTransport(ref engulfable, targetEntity, ref attached, animationSpeed, initialEndosomeScale);
+            StartBulkTransport(ref engulfable, ref attached, animationSpeed, initialEndosomeScale);
 
             // TODO: render priority
             // We want the ingested material to be always visible over the organelles
@@ -584,20 +586,21 @@
             Vector3 originalScale, Vector3 boundingBoxSize)
         {
             // Phagosome is now created when needed to be updated by the transport method instead of here immediately
+            var bulkTransport = GetNewTransportAnimation();
 
-            Engulfable.BulkTransportAnimation bulkTransport;
+            bulkTransport.TargetValuesToLerp = (ingestionPoint, originalScale / 2, boundingBoxSize);
 
+            engulfable.BulkTransport = bulkTransport;
+        }
+
+        private static Engulfable.BulkTransportAnimation GetNewTransportAnimation()
+        {
             lock (UnusedTransportAnimations)
             {
-                bulkTransport = UnusedTransportAnimations.Count > 0 ?
+                return UnusedTransportAnimations.Count > 0 ?
                     UnusedTransportAnimations.Dequeue() :
                     new Engulfable.BulkTransportAnimation();
             }
-
-            bulkTransport.TargetValuesToLerp = (ingestionPoint, originalScale / 2, boundingBoxSize);
-            bulkTransport.OriginalScale = originalScale;
-
-            engulfable.BulkTransport = bulkTransport;
         }
 
         private static Vector3 CalculateInitialEndosomeScale()
@@ -622,34 +625,51 @@
         ///   Begins phagocytosis related lerp animation. Note that
         ///   <see cref="Engulfable.BulkTransportAnimation.TargetValuesToLerp"/> must be set before calling this.
         /// </summary>
-        private static void StartBulkTransport(ref Engulfable engulfable, in Entity engulfedObject,
-            ref AttachedToEntity initialRelativePositionInfo, float duration,
-            Vector3 currentEndosomeScale, bool resetElapsedTime = true)
+        private static void StartBulkTransport(ref Engulfable engulfable,
+            ref AttachedToEntity initialRelativePositionInfo, float duration, Vector3 currentEndosomeScale,
+            bool resetElapsedTime = true)
         {
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+            {
+                GD.PrintErr("Started bulk transport animation on not engulfed thing");
+            }
+
             var transportData = engulfable.BulkTransport;
 
             // Only need to recreate the animation data when one doesn't exist, we can reuse existing data in other
             // cases
             if (transportData == null)
             {
-                transportData = new Engulfable.BulkTransportAnimation();
+                transportData = GetNewTransportAnimation();
                 engulfable.BulkTransport = transportData;
 
-                // TODO: this is kind of bad to assume the scale is right like this
-                transportData.OriginalScale = Vector3.One;
                 GD.PrintErr("New backup engulf animation data was created, this should be avoided " +
                     "(data should be created before bulk transport starts)");
+
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
             }
 
             if (resetElapsedTime)
                 transportData.AnimationTimeElapsed = 0;
 
-            Vector3 scale = Vector3.One;
+            var scale = Vector3.One;
 
-            ref var spatial = ref engulfedObject.Get<SpatialInstance>();
+            if (engulfable.OriginalScale.LengthSquared() < MathUtils.EPSILON)
+            {
+                GD.PrintErr("Started transport animation original scale is not set");
 
-            if (spatial.ApplyVisualScale)
-                scale = spatial.VisualScale;
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+            }
+            else
+            {
+                scale = engulfable.OriginalScale;
+            }
 
             transportData.InitialValuesToLerp =
                 (initialRelativePositionInfo.RelativePosition, scale, currentEndosomeScale);
@@ -920,17 +940,12 @@
                 radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random, out var ingestionPoint,
                 out var boundingBoxSize);
 
-            var originalScale = Vector3.One;
+            engulfable.OnBecomeEngulfed(targetEntity);
 
-            if (targetSpatial.ApplyVisualScale)
-                originalScale = targetSpatial.VisualScale;
-
-            // TODO: store original render priority?
-            // bulkTransport.OriginalRenderPriority = target.RenderPriority,
+            // This is setup in OnBecomeEngulfed so this code must be after that
+            var originalScale = engulfable.OriginalScale;
 
             CreateEngulfableTransport(ref engulfable, ingestionPoint, originalScale, boundingBoxSize);
-
-            var initialEndosomeScale = CalculateInitialEndosomeScale();
 
             // If the other body is already attached this needs to handle that correctly
             if (targetEntity.Has<AttachedToEntity>())
@@ -938,7 +953,8 @@
                 var attached = AdjustExistingAttachedComponentForEngulfed(engulferEntity, ref targetEntityPosition,
                     targetEntity, relativePosition);
 
-                StartBulkTransport(ref engulfable, targetEntity, ref attached, animationSpeed, initialEndosomeScale);
+                StartBulkTransport(ref engulfable, ref attached, animationSpeed,
+                    CalculateInitialEndosomeScale());
             }
             else
             {
@@ -949,7 +965,8 @@
                 var attached = new AttachedToEntity(engulferEntity, relativePosition,
                     targetEntityPosition.Rotation.Inverse());
 
-                StartBulkTransport(ref engulfable, targetEntity, ref attached, animationSpeed, initialEndosomeScale);
+                StartBulkTransport(ref engulfable, ref attached, animationSpeed,
+                    CalculateInitialEndosomeScale());
 
                 targetRecord.Set(attached);
 
@@ -963,8 +980,6 @@
             // Disable physics for the engulfed entity
             ref var physics = ref targetEntity.Get<Physics>();
             physics.BodyDisabled = true;
-
-            engulfable.OnBecomeEngulfed(targetEntity);
 
             // Skip updating this engulfable during this update as the attached component will only be created when
             // the command recorder is executed. And for consistency in the case that the component existed we still
@@ -1042,8 +1057,14 @@
 
             if (animation == null || engulfedObject.Has<AttachedToEntity>())
             {
-                GD.Print("Immediately ejecting engulfable that has no animation properties (or missing " +
-                    "attached component)");
+                if (!engulfedObject.Has<AttachedToEntity>())
+                {
+                    GD.Print($"Immediately ejecting engulfable that has no {nameof(AttachedToEntity)} component");
+                }
+                else
+                {
+                    GD.Print("Immediately ejecting engulfable that has no animation properties");
+                }
 
                 CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
 
@@ -1081,17 +1102,20 @@
             // Animate object move to the nearest point of the membrane
             var targetEndosomeScale = Vector3.One * Mathf.Epsilon;
 
-            var currentEndosomeScale = targetEndosomeScale;
-
             var endosome = GetEndosomeIfExists(entity, engulfedObject);
 
+            var currentEndosomeScale = targetEndosomeScale;
             if (endosome != null)
             {
                 currentEndosomeScale = endosome.Scale;
             }
+            else
+            {
+                GD.PrintErr("Cannot properly animate endosome for ejection (current scale unknown)");
+            }
 
             animation.TargetValuesToLerp = (nearestPointOfMembraneToTarget, null, targetEndosomeScale);
-            StartBulkTransport(ref engulfable, engulfedObject, ref attached, animationSpeed, currentEndosomeScale);
+            StartBulkTransport(ref engulfable, ref attached, animationSpeed, currentEndosomeScale);
 
             // The rest of the operation is done in CompleteEjection
         }
@@ -1188,31 +1212,6 @@
             ref var manualPhysicsControl = ref engulfableObject.Get<ManualPhysicsControl>();
             manualPhysicsControl.ImpulseToGive += impulse + engulferVelocity;
             manualPhysicsControl.PhysicsApplied = false;
-
-            var animation = engulfable.BulkTransport;
-
-            // For now assume that if the animation is missing then no property modifications were done, so this is
-            // perfectly fine to skip
-            if (animation != null)
-            {
-                // Reset render priority
-                // TODO: render priority
-                // engulfable.RenderPriority = animation.OriginalRenderPriority;
-
-                // Restore scale
-                if (engulfableObject.Has<SpatialInstance>())
-                {
-                    ref var spatial = ref engulfableObject.Get<SpatialInstance>();
-                    spatial.VisualScale = animation.OriginalScale;
-
-#if DEBUG
-                    if (animation.OriginalScale.Length() < MathUtils.EPSILON)
-                    {
-                        GD.PrintErr("Ejected engulfable with zero original scale");
-                    }
-#endif
-                }
-            }
 
             // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
             // the hostile engulfer entity)
@@ -1362,7 +1361,10 @@
                         animation.TargetValuesToLerp.Translation.Value, fraction);
                 }
 
-                if (animation.TargetValuesToLerp.Scale.HasValue)
+                // There's an extra safety check here about the scale animation to not accidentally override things
+                // if the object has already restored its real scale (this shouldn't be necessary but I added this here
+                // anyway when trying to debug a visual scale flickering problem related to engulfing -hhyyrylainen)
+                if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)
                 {
                     spatial.VisualScale = animation.InitialValuesToLerp.Scale.LinearInterpolate(
                         animation.TargetValuesToLerp.Scale.Value, fraction);
@@ -1385,7 +1387,8 @@
             if (animation.TargetValuesToLerp.Translation.HasValue)
                 relativePosition.RelativePosition = animation.TargetValuesToLerp.Translation.Value;
 
-            if (animation.TargetValuesToLerp.Scale.HasValue)
+            // See the comment above where Interpolate is also referenced as to why it is here as well
+            if (animation.TargetValuesToLerp.Scale.HasValue && animation.Interpolate)
             {
                 spatial.VisualScale = animation.TargetValuesToLerp.Scale.Value;
                 spatial.ApplyVisualScale = true;
@@ -1461,7 +1464,7 @@
                 // return;
             }
 
-            // TODO: caching for endosomes
+            // TODO: caching for endosomes (need to detach from the old parent)
         }
 
         private void CalculateAdditionalCompoundsInNewlyEngulfedObject(ref Engulfable engulfable,

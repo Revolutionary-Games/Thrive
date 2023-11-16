@@ -6,6 +6,7 @@
     /// <summary>
     ///   Entity has storage space for compounds
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CompoundStorage
     {
         public CompoundBag Compounds;

@@ -50,7 +50,7 @@ public class SerializationBinder : DefaultSerializationBinder
 ///   When a class has this attribute this type is allowed to be dynamically de-serialized from json,
 ///   as well as the type is written if something is a subclass of a type with this attribute
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct)]
 public class JSONDynamicTypeAllowedAttribute : Attribute
 {
 }

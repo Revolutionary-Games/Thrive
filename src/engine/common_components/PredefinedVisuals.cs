@@ -3,6 +3,7 @@
     /// <summary>
     ///   Entity uses a predefined visual
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct PredefinedVisuals
     {
         /// <summary>

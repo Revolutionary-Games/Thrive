@@ -7,6 +7,12 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: determine if this is now actually used in multiple places in saves or not (as this is marked as having
+///     an ID)
+///   </para>
+/// </remarks>
 [UseThriveSerializer]
 [JsonObject(IsReference = true)]
 public class CompoundBag : ICompoundStorage

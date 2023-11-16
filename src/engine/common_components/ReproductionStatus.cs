@@ -5,6 +5,7 @@
     /// <summary>
     ///   General info about the reproduction status of a creature
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ReproductionStatus
     {
         public Dictionary<Compound, float>? MissingCompoundsForBaseReproduction;

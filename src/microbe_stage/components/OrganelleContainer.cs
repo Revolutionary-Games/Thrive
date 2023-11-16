@@ -11,6 +11,7 @@
     /// <summary>
     ///   Entity that contains <see cref="PlacedOrganelle"/>
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct OrganelleContainer
     {
         /// <summary>

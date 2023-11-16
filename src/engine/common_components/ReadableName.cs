@@ -3,6 +3,7 @@
     /// <summary>
     ///   Player readable name for an entity. Must be set on init so always use the constructor.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ReadableName
     {
         public LocalizedString Name;

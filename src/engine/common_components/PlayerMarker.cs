@@ -3,6 +3,7 @@
     /// <summary>
     ///   Marks entity as the player's controlled character
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct PlayerMarker
     {
         /// <summary>
