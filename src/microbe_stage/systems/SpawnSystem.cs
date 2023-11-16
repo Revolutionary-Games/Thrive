@@ -11,11 +11,10 @@
     using Newtonsoft.Json;
     using Nito.Collections;
 
-    // TODO: need to reimplement saving of the properties here
     /// <summary>
     ///   Spawns AI cells and other environmental things as the player moves around
     /// </summary>
-    [JsonObject(IsReference = true)]
+    [JsonObject(MemberSerialization.OptIn, IsReference = true)]
     public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         private readonly EntitySet spawnedEntitiesSet;

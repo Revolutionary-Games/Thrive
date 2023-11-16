@@ -78,12 +78,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     [JsonIgnore]
     public World EntitySystem => entities;
 
-    /// <summary>
-    ///   Count of entities (with simulation heaviness weight) in the simulation.
-    ///   Spawning can be limited when over some limit to ensure performance doesn't degrade too much.
-    /// </summary>
-    [JsonProperty]
-    public float EntityCount { get; protected set; }
+    // TODO: if required add a property that exposes the spawn system total entity weight here
 
     /// <summary>
     ///   When set to false disables AI running
@@ -335,10 +330,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         }
     }
 
-    public virtual void ReportPlayerPosition(Vector3 position)
+    public void ReportPlayerPosition(Vector3 position)
     {
         PlayerPosition = position;
         reportedPlayerPosition = position;
+
+        OnPlayerPositionSet(PlayerPosition);
     }
 
     /// <summary>
@@ -443,6 +440,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             throw new InvalidOperationException("This simulation was already initialized");
 
         Initialized = true;
+
+        // This is only really needed on load, but doesn't hurt to be here always
+        OnPlayerPositionSet(PlayerPosition);
     }
 
     protected abstract void WaitForStartedPhysicsRun();
@@ -457,6 +457,10 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     protected abstract bool RunPhysicsIfBehind();
 
     protected abstract void OnProcessFixedLogic(float delta);
+
+    protected virtual void OnPlayerPositionSet(Vector3 playerPosition)
+    {
+    }
 
     /// <summary>
     ///   Provides an estimate based on the number of entities (that are the most prevalent type) how many threads the

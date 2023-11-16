@@ -1086,8 +1086,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private void OnPlayerNoticeMessage(Entity player, IHUDMessage message)
     {
         Invoke.Instance.QueueForObject(() => HUD.HUDMessages.ShowMessage(message), this);
-
-        ;
     }
 
     /// <summary>

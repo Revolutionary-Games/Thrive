@@ -36,6 +36,7 @@ public static class Constants
     public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
     public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
     public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
+    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
