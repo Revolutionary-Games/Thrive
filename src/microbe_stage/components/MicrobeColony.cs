@@ -607,6 +607,10 @@
         /// </summary>
         public static void OnColonyMemberRemoved(in Entity removedEntity)
         {
+            // Restore physics
+            ref var physics = ref removedEntity.Get<Physics>();
+            physics.BodyDisabled = false;
+
             if (removedEntity.Has<MicrobeEventCallbacks>())
             {
                 ref var callbacks = ref removedEntity.Get<MicrobeEventCallbacks>();
@@ -629,10 +633,13 @@
         }
 
         /// <summary>
-        ///   Called for each newMember that is added to a cell colony
+        ///   Called for each newMember that is added to a cell colony. Not called for the lead cell.
         /// </summary>
         public static void OnColonyMemberAdded(in Entity addedEntity)
         {
+            ref var physics = ref addedEntity.Get<Physics>();
+            physics.BodyDisabled = true;
+
             ref var control = ref addedEntity.Get<MicrobeControl>();
 
             // TODO: should this apply the colony's overall state
@@ -709,6 +716,8 @@
                 float mass = 1000;
 
                 // TODO: should we use another mass for the microbe?
+                // TODO: yes, the colony members don't have physics setup on them and RotationSpeed is not calculated
+                // TODO: should be moved to MicrobePhysicsCreationAndSizeSystem
                 // This will not work if the microbe does not have an associated physics object
                 if (colonyMember.Has<PhysicsShapeHolder>())
                     colonyMember.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
