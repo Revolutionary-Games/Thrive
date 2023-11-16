@@ -246,11 +246,7 @@
                 }
                 else
                 {
-                    // TODO: handle this somehow... (probably caching the position and rotation from last call in
-                    // the visuals system?)
-                    throw new NotImplementedException();
-
-                    // nodeToScale.Transform = organelle.CalculateVisualsTransformExternal();
+                    nodeToScale.Transform = organelle.CalculateVisualsTransformExternalCached();
                 }
             }
         }
@@ -345,6 +341,7 @@
                 {
                     // Mark this organelle as done and return to its normal size.
                     organelle.ResetGrowth();
+                    organellesNeedingScaleUpdate.Push(organelle);
 
                     // This doesn't need to update individual scales as a full organelles change is queued below for
                     // a different system to handle
