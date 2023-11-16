@@ -130,7 +130,15 @@
             ref OrganelleContainer organelles, CompoundBag compounds, float delta)
         {
             if (control.MovementDirection == Vector3.Zero)
-                return Vector3.Zero;
+            {
+                // Slime jets work even when not holding down any movement keys
+                var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
+
+                if (jetMovement == Vector3.Zero)
+                    return Vector3.Zero;
+
+                return position.Rotation.Xform(jetMovement);
+            }
 
             // Ensure no cells attempt to move on the y-axis
             control.MovementDirection.y = 0;
@@ -202,6 +210,17 @@
 
             // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
             // by the transform)
+            movementVector += CalculateMovementFromSlimeJets(ref organelles);
+
+            // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
+            // vector to work correctly
+            return position.Rotation.Xform(movementVector);
+        }
+
+        private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
+        {
+            var movementVector = Vector3.Zero;
+
             if (organelles.SlimeJets is { Count: > 0 })
             {
                 foreach (var jet in organelles.SlimeJets)
@@ -216,9 +235,7 @@
                 }
             }
 
-            // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
-            // vector to work correctly
-            return position.Rotation.Xform(movementVector);
+            return movementVector;
         }
 
         private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,

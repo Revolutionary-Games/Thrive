@@ -8,10 +8,9 @@ using Godot;
 /// </summary>
 public class MovementComponent : IOrganelleComponent
 {
-    // TODO: set this private
-    public readonly float Momentum;
-
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
+    private readonly float momentum;
 
     private PlacedOrganelle parentOrganelle = null!;
 
@@ -23,7 +22,7 @@ public class MovementComponent : IOrganelleComponent
 
     public MovementComponent(float momentum)
     {
-        Momentum = momentum;
+        this.momentum = momentum;
     }
 
     public bool UsesSyncProcess => animationDirty;
@@ -34,7 +33,7 @@ public class MovementComponent : IOrganelleComponent
         // a cell
         parentOrganelle = organelle;
 
-        force = CalculateForce(organelle.Position, Momentum);
+        force = CalculateForce(organelle.Position, momentum);
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
