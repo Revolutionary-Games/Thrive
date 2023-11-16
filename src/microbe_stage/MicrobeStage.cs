@@ -866,8 +866,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (disposing)
         {
-            WorldSimulation.Dispose();
-
             GuidanceLinePath?.Dispose();
         }
 
