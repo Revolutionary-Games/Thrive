@@ -211,6 +211,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
 
+        physics.RemoveGravity();
+
         OnInitialized();
     }
 
