@@ -60,6 +60,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private float templateMaxLightLevel;
 
+    [JsonProperty]
+    private bool appliedPlayerGodMode;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -271,6 +274,25 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            // Apply player god mode
+            ref var playerHealth = ref Player.Get<Health>();
+
+            if (playerHealth.Invulnerable != CheatManager.GodMode)
+            {
+                // Only reset invulnerability if set by god mode
+                if (playerHealth.Invulnerable && appliedPlayerGodMode)
+                {
+                    playerHealth.Invulnerable = false;
+                    appliedPlayerGodMode = false;
+                }
+                else if (!playerHealth.Invulnerable)
+                {
+                    GD.Print("Enabling microbe god mode");
+                    playerHealth.Invulnerable = true;
+                    appliedPlayerGodMode = true;
+                }
             }
         }
         else
