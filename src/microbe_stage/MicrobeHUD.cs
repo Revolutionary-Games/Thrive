@@ -323,10 +323,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
-        else
-        {
-            return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
-        }
+
+        return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -335,10 +333,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
-        else
-        {
-            return stage.Player.Get<MicrobeColony>().GetCompounds();
-        }
+
+        return stage.Player.Get<MicrobeColony>().GetCompounds();
     }
 
     protected override void UpdateCompoundBars(float delta)
