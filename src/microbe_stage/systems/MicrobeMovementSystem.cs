@@ -80,7 +80,9 @@
 
             var up = Vector3.Up;
 
-            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra
+            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra operation
+            // For some reason this results in an inverse quaternion, so for simplicity this is just flipped
+            lookVector *= -1;
             var column0 = up.Cross(lookVector);
             var column1 = lookVector.Cross(column0);
             var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), lookVector).Quat();
