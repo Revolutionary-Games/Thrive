@@ -341,14 +341,17 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         base.UpdateCompoundBars(delta);
 
+        float maxSize;
         if (stage!.Player.Has<MicrobeColony>())
         {
-            // TODO: calculate total engulf size (probably don't need to cache this as only the GUI needs this
-            // currently)
-            throw new NotImplementedException();
+            maxSize = stage.Player.Get<MicrobeColony>().CalculateTotalEngulfStorageSize();
+        }
+        else
+        {
+            maxSize = stage.Player.Get<Engulfer>().EngulfStorageSize;
         }
 
-        ingestedMatterBar.MaxValue = stage.Player.Get<Engulfer>().EngulfStorageSize;
+        ingestedMatterBar.MaxValue = maxSize;
         GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
@@ -382,13 +385,15 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
-            throw new NotImplementedException();
+            ref var colony = ref player.Get<MicrobeColony>();
 
-            // showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
-            // showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
+            // TODO: does this need a variant that just returns a bool and has an early exit?
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+
+            showToxin = vacuoles > 0;
+            showSlime = slimeJets > 0;
         }
-
-        /* TODO: else */
+        else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };

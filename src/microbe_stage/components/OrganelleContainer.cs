@@ -318,11 +318,15 @@
             // Colony lead cell uses all the chemoreceptors in the colony to make them all work
             if (entity.Has<MicrobeColony>())
             {
-                // TODO: reimplement recursive colony smell settings collection
-                throw new NotImplementedException("colony smelling not reimplemented yet");
-            }
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var collected = colony.CollectUniqueCompoundDetections();
 
-            /* TODO: else */
+                if (collected == null)
+                    return null;
+
+                collectedUniqueCompoundDetections = collected;
+            }
+            else
             {
                 if (container.ActiveCompoundDetections == null)
                     return null;
@@ -353,10 +357,15 @@
 
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
-            }
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var collected = colony.CollectUniqueSpeciesDetections();
 
-            /* TODO: else */
+                if (collected == null)
+                    return null;
+
+                collectedUniqueSpeciesDetections = collected;
+            }
+            else
             {
                 if (container.ActiveSpeciesDetections == null)
                     return null;
@@ -583,7 +592,9 @@
         public static Dictionary<Compound, float> CalculateTotalReproductionCompounds(
             this ref OrganelleContainer organelleContainer, in Entity entity, Species species)
         {
-            if (entity.Has<MicrobeColony>())
+            // Multicellular species need to show their total body plan compounds. Other cells and even colonies just
+            // use the normal progress calculation for a single cell.
+            if (entity.Has<EarlyMulticellularSpeciesMember>())
             {
                 throw new NotImplementedException();
 
@@ -644,14 +655,14 @@
                 organelle.CalculateAbsorbedCompounds(result);
             }
 
-            if (entity.Has<MicrobeColony>())
+            if (entity.Has<MulticellularGrowth>())
             {
-                throw new NotImplementedException();
+                ref var multicellularGrowth = ref entity.Get<MulticellularGrowth>();
 
-                // result.Merge(compoundsUsedForMulticellularGrowth);
+                if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
+                    result.Merge(multicellularGrowth.CompoundsUsedForMulticellularGrowth);
             }
-
-            /* TODO: else */
+            else
             {
                 // For single microbes the base reproduction cost needs to be calculated here
                 baseReproductionInfo.CalculateAlreadyUsedBaseReproductionCompounds(species, result);
