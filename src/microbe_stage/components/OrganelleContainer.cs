@@ -204,7 +204,8 @@
         public static bool CanUnbind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species,
             in Entity entity)
         {
-            return species.Species is MicrobeSpecies && entity.Has<MicrobeColony>();
+            return species.Species is MicrobeSpecies &&
+                (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>());
         }
 
         public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)

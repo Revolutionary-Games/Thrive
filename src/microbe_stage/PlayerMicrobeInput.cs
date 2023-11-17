@@ -202,9 +202,10 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (stage.Player.Has<MicrobeColony>())
         {
-            throw new NotImplementedException();
-
-            // stage.Player?.UnbindAll();
+            if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(stage.Player, stage.WorldSimulation))
+            {
+                GD.PrintErr("Failed to unbind the player");
+            }
         }
     }
 

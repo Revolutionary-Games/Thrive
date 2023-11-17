@@ -186,6 +186,10 @@
         /// </remarks>
         public static float CalculateUsedIngestionCapacity(this ref MicrobeColony colony)
         {
+#if DEBUG
+            colony.DebugCheckColonyHasNoDeadEntities();
+#endif
+
             float usedCapacity = 0;
 
             foreach (var colonyMember in colony.ColonyMembers)
@@ -414,7 +418,8 @@
                 // OnMulticellularColonyCellLost(microbe);
             }
 
-            if (!removedMember.Has<MicrobeColonyMember>())
+            // Colony members or leader can be removed by this method
+            if (!removedMember.Has<MicrobeColonyMember>() && !removedMember.Has<MicrobeColony>())
                 throw new ArgumentException("Microbe not a member of a colony");
 
             if (!colony.ColonyMembers.Contains(removedMember))
@@ -614,7 +619,7 @@
             if (removedEntity.Has<MicrobeAI>())
             {
                 ref var ai = ref removedEntity.Get<MicrobeAI>();
-                ai.ResetAI();
+                ai.ResetAI(removedEntity);
             }
 
             ref var control = ref removedEntity.Get<MicrobeControl>();
@@ -789,6 +794,15 @@
             // TODO: this used to just negate the euler angles here, check that multiplying by inverse rotation is
             // correct
             return (newTranslation, cellPosition.Rotation * globalParentRotation.Inverse());
+        }
+
+        public static void DebugCheckColonyHasNoDeadEntities(this ref MicrobeColony colony)
+        {
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                if (!colonyMember.IsAlive)
+                    throw new Exception("Colony has a non-alive member");
+            }
         }
 
         /// <summary>
