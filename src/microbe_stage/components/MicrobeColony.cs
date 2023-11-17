@@ -693,7 +693,7 @@
             var speedFraction = entireColonyShape.TestYRotationInertiaFactor();
 
             // TODO: a better function (should also update MicrobeInternalCalculations.CalculateRotationSpeed)
-            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2f);
+            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2.0f);
 
             float colonyRotationHelp = 0;
 
