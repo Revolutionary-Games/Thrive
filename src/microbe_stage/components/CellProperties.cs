@@ -182,13 +182,47 @@
             {
                 // Bigger separation for cell colonies
 
-                throw new NotImplementedException();
+                // TODO: (check after resolving the above TODO) there is still a problem with colonies being able to
+                // spawn inside each other
 
-                // TODO: there is still a problem with colonies being able to spawn inside each other
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var members = colony.ColonyMembers;
+
+                foreach (var member in members)
+                {
+                    // Lead cell is already handled by the non-colony logic
+                    if (member == colony.Leader)
+                        continue;
+
+                    ref var memberOrganelles = ref member.Get<OrganelleContainer>();
+
+                    if (memberOrganelles.Organelles == null)
+                    {
+                        GD.PrintErr(
+                            "Can't use microbe colony member organelle positions for divide separation " +
+                            "calculation as they aren't available");
+                        continue;
+                    }
+
+                    ref var memberPosition = ref member.Get<AttachedToEntity>();
+
+                    // TODO: before switching to the membrane based, check is it fine to just check one direction here?
+                    // For now this multiplies the distance by 1.5 to account it being halved below
+                    // Using negative relative position is done here as the organelle calculations happen as if they
+                    // are around 0,0 but that isn't the case in colony members as they are offset from the center.
+                    var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
+                        -memberPosition.RelativePosition,
+                        memberOrganelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
+
+                    if (distance > distanceRight)
+                    {
+                        distanceRight = distance;
+                    }
+                }
 
                 // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
                 //
-                // distanceRight += MathUtils.GetMaximumDistanceInDirection(direction, currentPosition, colonyMembers);
+                // distanceRight += ;
             }
 
             float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;

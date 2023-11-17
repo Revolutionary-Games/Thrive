@@ -24,6 +24,7 @@
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [RunsAfter(typeof(MicrobeMovementSystem))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>

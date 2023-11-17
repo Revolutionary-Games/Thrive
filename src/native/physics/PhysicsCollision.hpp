@@ -29,7 +29,9 @@ public:
     const PhysicsBody* SecondBody;
 
     // Sub shape data for detecting which specific parts of the objects collided. Note that in CollisionFilterCallback
-    // these are unknown and are set to COLLISION_UNKNOWN_SUB_SHAPE
+    // these are unknown and are set to COLLISION_UNKNOWN_SUB_SHAPE. If AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX is not
+    // defined these are the raw values that need decoding before use. If that macro is defined then this is
+    // automatically resolved to the first sub-shape of the collided shape.
     uint32_t FirstSubShapeData;
 
     uint32_t SecondSubShapeData;

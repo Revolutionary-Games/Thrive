@@ -186,11 +186,11 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 0.08f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
 
+    // These speed values are also reversed like the above
     public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
     public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
-    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 1.0f;
+    public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;

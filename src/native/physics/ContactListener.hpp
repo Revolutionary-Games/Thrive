@@ -4,15 +4,20 @@
 
 #include "core/Mutex.hpp"
 
-#ifdef JPH_DEBUG_RENDERER
 namespace JPH
 {
+#ifdef JPH_DEBUG_RENDERER
 class DebugRenderer;
-} // namespace JPH
 #endif
+
+class Shape;
+} // namespace JPH
 
 namespace Thrive::Physics
 {
+uint32_t ResolveTopLevelSubShapeId(const JPH::Body* body, JPH::SubShapeID subShapeId);
+uint32_t ResolveSubShapeId(const JPH::Shape* shape, JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder);
+
 /// \brief Contact listener implementation
 class ContactListener : public JPH::ContactListener
 {

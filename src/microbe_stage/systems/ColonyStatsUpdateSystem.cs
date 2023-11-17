@@ -26,9 +26,6 @@
 
             colony.CanEngulf();
 
-            if (!colony.ColonyRotationMultiplierCalculated)
-                colony.CalculateRotationMultiplier();
-
             if (!colony.EntityWeightApplied)
             {
                 if (entity.Has<Spawned>())

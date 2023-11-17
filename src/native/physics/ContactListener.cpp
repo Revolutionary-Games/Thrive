@@ -3,6 +3,8 @@
 
 #include "Jolt/Physics/Body/Body.h"
 #include "Jolt/Physics/Collision/CollideShape.h"
+#include "Jolt/Physics/Collision/Shape/CompoundShape.h"
+#include "Jolt/Physics/Collision/Shape/SubShapeID.h"
 
 #include "DebugDrawForwarder.hpp"
 #include "PhysicsBody.hpp"
@@ -53,8 +55,15 @@ inline void ClearUnknownDataForCollisionFilter(PhysicsCollision& collision)
     collision.PenetrationAmount = -1;
 }
 
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
+    const JPH::Body& joltBody1, const PhysicsBody* body2, const JPH::Body& joltBody2,
+    const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
+#else
 inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
     const PhysicsBody* body2, const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
+#endif
+
 {
     if (swapOrder)
     {
@@ -65,6 +74,18 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
         PrepareBasicCollisionInfo(collision, body1, body2);
     }
 
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+    if (swapOrder)
+    {
+        collision.SecondSubShapeData = ResolveTopLevelSubShapeId(&joltBody1, manifold.mSubShapeID1);
+        collision.FirstSubShapeData = ResolveTopLevelSubShapeId(&joltBody2, manifold.mSubShapeID2);
+    }
+    else
+    {
+        collision.FirstSubShapeData = ResolveTopLevelSubShapeId(&joltBody1, manifold.mSubShapeID1);
+        collision.SecondSubShapeData = ResolveTopLevelSubShapeId(&joltBody2, manifold.mSubShapeID2);
+    }
+#else
     if (swapOrder)
     {
         collision.SecondSubShapeData = manifold.mSubShapeID1.GetValue();
@@ -75,6 +96,7 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
         collision.FirstSubShapeData = manifold.mSubShapeID1.GetValue();
         collision.SecondSubShapeData = manifold.mSubShapeID2.GetValue();
     }
+#endif
 
     collision.PenetrationAmount = manifold.mPenetrationDepth;
 
@@ -237,8 +259,13 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
         // slots there are
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, body1Object, body1, PhysicsBody::FromJoltBody(userData2), body2, manifold, true, false);
+#else
             PrepareCollisionInfoFromManifold(
                 *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, true, false);
+#endif
         }
     }
 
@@ -250,8 +277,13 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, PhysicsBody::FromJoltBody(userData1), body1, body2Object, body2, manifold, true, true);
+#else
             PrepareCollisionInfoFromManifold(
                 *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, true, true);
+#endif
         }
     }
 
@@ -302,8 +334,14 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, body1Object, body1, PhysicsBody::FromJoltBody(userData2), body2, manifold, false, false);
+#else
+
             PrepareCollisionInfoFromManifold(
                 *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, false, false);
+#endif
         }
     }
 
@@ -315,8 +353,13 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+            PrepareCollisionInfoFromManifold(
+                *writeTarget, PhysicsBody::FromJoltBody(userData1), body1, body2Object, body2, manifold, false, true);
+#else
             PrepareCollisionInfoFromManifold(
                 *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, false, true);
+#endif
         }
     }
 
@@ -363,4 +406,33 @@ void ContactListener::DrawActiveContacts(JPH::DebugRenderer& debugRenderer)
     }
 }
 #endif
+
+// ------------------------------------ //
+uint32_t ResolveTopLevelSubShapeId(const JPH::Body* body, JPH::SubShapeID subShapeId)
+{
+    JPH::SubShapeID unusedRemainder;
+    return ResolveSubShapeId(body->GetShape(), subShapeId, unusedRemainder);
+}
+
+uint32_t ResolveSubShapeId(const JPH::Shape* shape, JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder)
+{
+    switch (shape->GetType())
+    {
+        case JPH::EShapeType::Compound:
+            return static_cast<const JPH::CompoundShape*>(shape)->GetSubShapeIndexFromID(subShapeId, remainder);
+        // Could add the following in the future
+        /*case JPH::EShapeType::Decorated:
+            break;
+        case JPH::EShapeType::Mesh:
+            break;
+        case JPH::EShapeType::HeightField:
+            break;
+        case JPH::EShapeType::SoftBody:
+            break;*/
+        default:
+            // Type that doesn't have sub-shapes
+            return 0;
+    }
+}
+
 } // namespace Thrive::Physics

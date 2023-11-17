@@ -305,8 +305,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem.Update(delta);
         engulfedHandlingSystem.Update(delta);
 
-        colonyBindingSystem.Update(delta);
-
         spatialAttachSystem.Update(delta);
         spatialPositionSystem.Update(delta);
 
@@ -358,6 +356,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         fadeOutActionSystem.Update(delta);
         physicsBodyControlSystem.Update(delta);
+
+        colonyBindingSystem.Update(delta);
 
         // renderOrderSystem.Update(delta);
 

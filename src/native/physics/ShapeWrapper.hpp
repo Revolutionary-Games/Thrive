@@ -20,7 +20,9 @@ public:
     explicit ShapeWrapper(JPH::RefConst<JPH::Shape>&& wrappedShape);
 #endif
 
-    const inline JPH::RefConst<JPH::Shape>& GetShape() const
+    uint32_t GetSubShapeFromID(JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder) const;
+
+    inline const JPH::RefConst<JPH::Shape>& GetShape() const
     {
         return shape;
     }
