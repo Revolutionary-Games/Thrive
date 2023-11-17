@@ -398,7 +398,6 @@
     <Compile Include="src\general\HexWithData.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
-    <Compile Include="src\general\IGraphicalEntity.cs" />
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
     <Compile Include="src\general\ActionInterferenceMode.cs" />
@@ -797,6 +796,7 @@
     <Compile Include="src\saving\serializers\UnsavedEntitiesConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
+    <Compile Include="src\saving\TemporarySystemHelper.cs" />
     <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
     <Compile Include="src\society_stage\gui\ResearchScreen.cs" />
     <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />

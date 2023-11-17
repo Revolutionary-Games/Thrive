@@ -36,6 +36,7 @@ public static class Constants
     public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
     public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
     public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
+    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -189,6 +190,7 @@ public static class Constants
     public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
     public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
     public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 1.0f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -332,7 +334,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 13.0f;
+    public const float AGENT_EMISSION_VELOCITY = 14.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -344,7 +346,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 600.0f;
+    public const float MUCILAGE_JET_FACTOR = 10000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting

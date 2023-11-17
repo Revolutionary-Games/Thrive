@@ -84,15 +84,7 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
 JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, const JPH::Body& body2,
     JPH::RVec3Arg baseOffset, const JPH::CollideShapeResult& collisionResult)
 {
-    JPH::ValidateResult result;
-    if (chainedListener != nullptr)
-    {
-        result = chainedListener->OnContactValidate(body1, body2, baseOffset, collisionResult);
-    }
-    else
-    {
-        result = JPH::ContactListener::OnContactValidate(body1, body2, baseOffset, collisionResult);
-    }
+    JPH::ValidateResult result = JPH::ContactListener::OnContactValidate(body1, body2, baseOffset, collisionResult);
 
     // Body-specific filtering. Likely is used here as the base method always allows contact, and we don't use chained
     // listeners
@@ -214,16 +206,16 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
     const JPH::ContactManifold& manifold, JPH::ContactSettings& settings)
 {
     // Note the bodies are sorted (`body1.GetID() < body2.GetID()`)
+    UNUSED(settings);
 
+#ifdef JPH_DEBUG_RENDERER
     // Add the new collision
     {
         Lock lock(currentCollisionsMutex);
         JPH::SubShapeIDPair key(body1.GetID(), manifold.mSubShapeID1, body2.GetID(), manifold.mSubShapeID2);
         currentCollisions[key] = CollisionPair(manifold.mBaseOffset, manifold.mRelativeContactPointsOn1);
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactAdded(body1, body2, manifold, settings);
+#endif
 
     // TODO: should relative velocities be stored somehow here? The Jolt documentation mentions that can be used to
     // determine how hard the collision is
@@ -279,6 +271,9 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
 void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body& body2,
     const JPH::ContactManifold& manifold, JPH::ContactSettings& settings)
 {
+    UNUSED(settings);
+
+#ifdef JPH_DEBUG_RENDERER
     // Update existing collision info
     {
         Lock lock(currentCollisionsMutex);
@@ -291,9 +286,7 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
             iter->second = CollisionPair(manifold.mBaseOffset, manifold.mRelativeContactPointsOn1);
         }
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactPersisted(body1, body2, manifold, settings);
+#endif
 
     // Contact recording
     const auto userData1 = body1.GetUserData();
@@ -342,6 +335,7 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
 
 void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
 {
+#ifdef JPH_DEBUG_RENDERER
     // Remove the contact
     {
         Lock lock(currentCollisionsMutex);
@@ -350,9 +344,9 @@ void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
         if (iter != currentCollisions.end())
             currentCollisions.erase(iter);
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactRemoved(subShapePair);
+#else
+    UNUSED(subShapePair);
+#endif
 }
 
 // ------------------------------------ //

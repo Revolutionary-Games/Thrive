@@ -403,6 +403,7 @@ GuidanceLinePath = NodePath("World/GuidanceLine")
 
 [node name="PrimaryCamera" parent="World" instance=ExtResource( 2 )]
 pause_mode = 2
+AutoProcessWhilePaused = true
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 

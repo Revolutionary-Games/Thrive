@@ -60,6 +60,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private float templateMaxLightLevel;
 
+    [JsonProperty]
+    private bool appliedPlayerGodMode;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -271,6 +274,25 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            // Apply player god mode
+            ref var playerHealth = ref Player.Get<Health>();
+
+            if (playerHealth.Invulnerable != CheatManager.GodMode)
+            {
+                // Only reset invulnerability if set by god mode
+                if (playerHealth.Invulnerable && appliedPlayerGodMode)
+                {
+                    playerHealth.Invulnerable = false;
+                    appliedPlayerGodMode = false;
+                }
+                else if (!playerHealth.Invulnerable)
+                {
+                    GD.Print("Enabling microbe god mode");
+                    playerHealth.Invulnerable = true;
+                    appliedPlayerGodMode = true;
+                }
             }
         }
         else
@@ -866,8 +888,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (disposing)
         {
-            WorldSimulation.Dispose();
-
             GuidanceLinePath?.Dispose();
         }
 
@@ -1005,63 +1025,71 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // a new one to avoid having two player entities existing at the same time
     }
 
+    // These need to use invoke as during gameplay code these can be called in a multithreaded way
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
-        OnCanEditStatusChanged(ready &&
-            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
+        Invoke.Instance.QueueForObject(() => OnCanEditStatusChanged(ready &&
+            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerUnbindEnabled(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerUnbound(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerIngesting(Entity player, Entity ingested)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Entity player, Entity hostile)
     {
-        try
+        Invoke.Instance.QueueForObject(() =>
         {
-            ref var hostileCell = ref hostile.Get<OrganelleContainer>();
+            try
+            {
+                ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
-            ref var engulfable = ref player.Get<Engulfable>();
+                ref var engulfable = ref player.Get<Engulfable>();
 
-            if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
-                TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
-        }
+                if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
+            }
+        }, this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfmentLimitReached(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerNoticeMessage(Entity player, IHUDMessage message)
     {
-        HUD.HUDMessages.ShowMessage(message);
+        Invoke.Instance.QueueForObject(() => HUD.HUDMessages.ShowMessage(message), this);
     }
 
     /// <summary>
-    ///   Updates the chemoreception lines
+    ///   Updates the chemoreception lines. Not called in a multithreaded way
     /// </summary>
     [DeserializedCallbackAllowed]
     private void HandlePlayerChemoreception(Entity microbe,

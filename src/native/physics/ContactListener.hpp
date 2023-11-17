@@ -32,11 +32,6 @@ public:
 
     void OnContactRemoved(const JPH::SubShapeIDPair& subShapePair) override;
 
-    inline void SetNextListener(JPH::ContactListener* listener) noexcept
-    {
-        chainedListener = listener;
-    }
-
     inline void ReportStepNumber(uint32_t step) noexcept
     {
         physicsStep = step;
@@ -61,11 +56,11 @@ public:
 private:
     Mutex currentCollisionsMutex;
 
+    // This is currently only necessary when debug drawing
+#ifdef JPH_DEBUG_RENDERER
     // TODO: JPH seems to use a custom allocator here so we might need to do so as well (for performance)
     std::unordered_map<JPH::SubShapeIDPair, CollisionPair> currentCollisions;
-
-    // TODO: remove the chained listener feature if nothing is going to use it
-    JPH::ContactListener* chainedListener = nullptr;
+#endif
 
     uint32_t physicsStep = std::numeric_limits<uint32_t>::max();
 

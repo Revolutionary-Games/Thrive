@@ -370,6 +370,18 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         BaseHUD.ShowPatchExtinctionBox();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            // Guard against uninitialized stage object created temporarily in Godot from crashing
+            if (WorldSimulation != null!)
+                WorldSimulation.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void PatchExtinctionResolved()
     {
         playerExtinctInCurrentPatch = false;

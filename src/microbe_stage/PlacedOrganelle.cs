@@ -20,6 +20,9 @@ public class PlacedOrganelle : IPositionedOrganelle
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
+    private Quat cachedExternalOrientation = Quat.Identity;
+    private Vector3 cachedExternalPosition = Vector3.Zero;
+
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation, OrganelleUpgrades? upgrades)
     {
         Definition = definition;
@@ -366,9 +369,28 @@ public class PlacedOrganelle : IPositionedOrganelle
     {
         var scale = CalculateTransformScale();
 
-        // TODO: check that the rotation of ModelOffset works correctly here
+        cachedExternalOrientation = orientation;
+        cachedExternalPosition = externalPosition;
+
+        // TODO: check that the rotation of ModelOffset works correctly here (also in
+        // CalculateVisualsTransformExternalCached)
         return new Transform(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
             externalPosition + orientation.Xform(Definition.ModelOffset));
+    }
+
+    /// <summary>
+    ///   Variant of <see cref="CalculateVisualsTransformExternal"/> that uses cached external position values. This is
+    ///   required as the <see cref="MicrobeReproductionSystem"/> must re-apply scale (and it would massively
+    ///   complicate things there if it needed to re-calculate this information)
+    /// </summary>
+    /// <returns>The organelle transform</returns>
+    public Transform CalculateVisualsTransformExternalCached()
+    {
+        var scale = CalculateTransformScale();
+
+        // TODO: check that the rotation of ModelOffset works correctly here
+        return new Transform(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scale)),
+            cachedExternalPosition + cachedExternalOrientation.Xform(Definition.ModelOffset));
     }
 
     public (Vector3 Position, Quat Rotation) CalculatePhysicsExternalTransform(Vector3 externalPosition,

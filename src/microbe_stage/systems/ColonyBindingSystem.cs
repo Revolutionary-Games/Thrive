@@ -170,21 +170,40 @@
             // Create a colony if there isn't one yet
             if (!primaryEntity.Has<MicrobeColony>())
             {
-                if (indexOfMemberToBindTo != 0)
+                if (!primaryEntity.Has<MicrobeColonyMember>())
                 {
-                    // This should never happen as the colony is not yet created, the parent cell is by itself so the
-                    // index should always be 0
-                    GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
-                    indexOfMemberToBindTo = 0;
+                    if (indexOfMemberToBindTo != 0)
+                    {
+                        // This should never happen as the colony is not yet created, the parent cell is by itself so
+                        // the index should always be 0
+                        GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
+                        indexOfMemberToBindTo = 0;
+                    }
+
+                    var colony = new MicrobeColony(primaryEntity, control.State, primaryEntity, other);
+
+                    if (!colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
+                    {
+                        GD.PrintErr("Setting up data of initial colony member failed, canceling colony creation");
+                        success = false;
+                    }
+                    else
+                    {
+                        // Add the colony component to the lead cell
+                        recorder.Record(primaryEntity).Set(colony);
+
+                        // Report not being able to reproduce by the lead cell
+                        MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);
+
+                        success = true;
+                    }
                 }
-
-                var colony = new MicrobeColony(primaryEntity, control.State, other);
-
-                MicrobeColonyHelpers.OnColonyMemberAdded(primaryEntity);
-
-                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
-
-                recorder.Record(primaryEntity).Set(colony);
+                else
+                {
+                    // This shouldn't happen as colony members shouldn't be able to collide
+                    GD.PrintErr("Entity that is part of another microbe colony can't become a colony leader");
+                    success = false;
+                }
             }
             else
             {

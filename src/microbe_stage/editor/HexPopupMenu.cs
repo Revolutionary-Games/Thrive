@@ -201,7 +201,7 @@ public abstract class HexPopupMenu : CustomPopupMenu
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
     {
-        var prefix = "Panel/Control/VBoxContainer/";
+        var prefix = "PanelContainer/VBoxContainer/";
         var icon = GetNode<TextureRect>(prefix + optionName + "/MarginContainer/HBoxContainer/Icon");
         var nameLabel = GetNode<Label>(prefix + optionName + "/MarginContainer/HBoxContainer/Name");
         var mpLabel = GetNode<Label>(prefix + optionName + "/MarginContainer/HBoxContainer/MpCost");

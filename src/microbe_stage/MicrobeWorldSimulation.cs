@@ -50,8 +50,15 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private EngulfedDigestionSystem engulfedDigestionSystem = null!;
     private EngulfedHandlingSystem engulfedHandlingSystem = null!;
     private EngulfingSystem engulfingSystem = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private EntitySignalingSystem entitySignalingSystem = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private FluidCurrentsSystem fluidCurrentsSystem = null!;
+
     private MicrobeAISystem microbeAI = null!;
     private MicrobeCollisionSoundSystem microbeCollisionSoundSystem = null!;
     private MicrobeDeathSystem microbeDeathSystem = null!;
@@ -169,9 +176,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, couldParallelize);
-        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, couldParallelize);
-
-        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, couldParallelize);
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
@@ -211,6 +215,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
 
+        physics.RemoveGravity();
+
         OnInitialized();
     }
 
@@ -242,21 +248,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         ProcessSystem.SetBiome(biomeConditions);
     }
 
-    public override void ReportPlayerPosition(Vector3 position)
-    {
-        // TODO: reporting the player position to all systems on game load
-
-        base.ReportPlayerPosition(position);
-
-        // Immediately report to some systems
-        countLimitedDespawnSystem.ReportPlayerPosition(position);
-        soundEffectSystem.ReportPlayerPosition(position);
-        SpawnSystem.ReportPlayerPosition(position);
-
-        // Report to the kind of external clouds system as this simplifies code using the simulation
-        CloudSystem.ReportPlayerPosition(position);
-    }
-
     /// <summary>
     ///   Clears system data that has been stored based on the player location. Call this when the player changes
     ///   locations a lot by respawning or by moving patches
@@ -281,6 +272,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
+        var taskExecutor = TaskExecutor.Instance;
+
+        entitySignalingSystem = new EntitySignalingSystem(EntitySystem, taskExecutor);
+        fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
+
         SpawnSystem = new SpawnSystem(this);
     }
 
@@ -389,6 +385,17 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
+    }
+
+    protected override void OnPlayerPositionSet(Vector3 playerPosition)
+    {
+        // Immediately report to some systems
+        countLimitedDespawnSystem.ReportPlayerPosition(playerPosition);
+        soundEffectSystem.ReportPlayerPosition(playerPosition);
+        SpawnSystem.ReportPlayerPosition(playerPosition);
+
+        // Report to the kind of external clouds system as this simplifies code using the simulation
+        CloudSystem.ReportPlayerPosition(playerPosition);
     }
 
     protected override int EstimateThreadsUtilizedBySystems()
