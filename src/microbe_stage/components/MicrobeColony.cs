@@ -814,7 +814,7 @@
                     offsetToColonyLeader += parentsAttachOffset.RelativePosition;
 
                     // TODO: check that the multiply order is right here
-                    rotationToLeader = parentsAttachOffset.RelativeRotation * rotationToLeader;
+                    rotationToLeader = (parentsAttachOffset.RelativeRotation * rotationToLeader).Normalized();
                 }
             }
             catch (Exception e)
