@@ -15,8 +15,8 @@ class Shape;
 
 namespace Thrive::Physics
 {
-uint ResolveTopLevelSubShapeId(const JPH::Body* body, JPH::SubShapeID subShapeId);
-uint ResolveSubShapeId(const JPH::Shape* shape, JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder);
+uint32_t ResolveTopLevelSubShapeId(const JPH::Body* body, JPH::SubShapeID subShapeId);
+uint32_t ResolveSubShapeId(const JPH::Shape* shape, JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder);
 
 /// \brief Contact listener implementation
 class ContactListener : public JPH::ContactListener
