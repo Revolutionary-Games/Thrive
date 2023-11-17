@@ -215,6 +215,27 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
     }
 
+    // TODO: check if this is used sensibly by the rotation rate calculations
+    /// <summary>
+    ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
+    /// </summary>
+    /// <returns>A speed factor that is roughly around 0-1 range but doesn't follow any hard limits</returns>
+    public float TestYRotationInertiaFactor()
+    {
+        // We give torque vector to apply to the shape and then compare
+        // the resulting angular velocities to see how fast the shape can turn
+        // We use a multiplier here to ensure the float values don't get very low very fast
+        var torqueToTest = Vector3.Up * 1000;
+
+        var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
+
+        // Detect how much torque was preserved
+        var speedFraction = velocities.y / torqueToTest.y;
+        speedFraction *= 1000;
+
+        return speedFraction;
+    }
+
     public void Dispose()
     {
         Dispose(true);

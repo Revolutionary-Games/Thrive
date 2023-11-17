@@ -67,12 +67,6 @@
         public bool EntityWeightApplied;
 
         /// <summary>
-        ///   Internal variable, don't touch
-        /// </summary>
-        [JsonIgnore]
-        public bool ColonyRotationMultiplierCalculated;
-
-        /// <summary>
         ///   Creates a new colony with a leader and cells attached to it. Assumes a flat hierarchy where all members
         ///   are directly attached to the leader
         /// </summary>
@@ -109,7 +103,6 @@
             }
 
             ColonyRotationMultiplier = 1;
-            ColonyRotationMultiplierCalculated = false;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -695,49 +688,46 @@
         /// <summary>
         ///   Calculates the help and extra inertia caused by the colony member cells
         /// </summary>
-        public static void CalculateRotationMultiplier(this ref MicrobeColony colony)
+        public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
         {
-            float colonyInertia = 0.1f;
+            var speedFraction = entireColonyShape.TestYRotationInertiaFactor();
+
+            // TODO: a better function (should also update MicrobeInternalCalculations.CalculateRotationSpeed)
+            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2f);
+
             float colonyRotationHelp = 0;
-            ref var leaderPosition = ref colony.Leader.Get<WorldPosition>();
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
+                // Leader uses its own rotation value as the base on top which this rotation multiplier is applied so
+                // this needs to be skipped here
                 if (colonyMember == colony.Leader)
                     continue;
 
-                ref var memberPosition = ref colonyMember.Get<WorldPosition>();
+                ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
-                var distanceSquared = memberPosition.Position.DistanceSquaredTo(leaderPosition.Position);
+                var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
                 if (distanceSquared < MathUtils.EPSILON)
                     continue;
 
-                float mass = 1000;
-
-                // TODO: should we use another mass for the microbe?
-                // TODO: yes, the colony members don't have physics setup on them and RotationSpeed is not calculated
-                // TODO: should be moved to MicrobePhysicsCreationAndSizeSystem
-                // This will not work if the microbe does not have an associated physics object
-                if (colonyMember.Has<PhysicsShapeHolder>())
-                    colonyMember.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
-
-                colonyInertia += distanceSquared * mass *
-                    Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
-
                 // TODO: should this use the member rotation speed (which is dependent on its size and
-                // how many cilia there are that far away) or just count of cilia and the distance
-                colonyRotationHelp += colonyMember.Get<OrganelleContainer>().RotationSpeed *
-                    Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distanceSquared);
+                // how many cilia there are that far away, this is the currently used math) or just count of cilia and
+                // the distance
+                // Convert rotation speed from value that when higher reduces rotation speed to one that increases as
+                // rotation is faster
+                var memberRotation = 1 / colonyMember.Get<OrganelleContainer>().RotationSpeed;
+
+                // TODO: tweak the constant here (and probably also adjust the rotation hindering formula)
+                colonyRotationHelp += memberRotation * Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER *
+                    Mathf.Sqrt(distanceSquared);
             }
 
-            var multiplier = colonyRotationHelp / colonyInertia;
+            var multiplier = rotationHindering / colonyRotationHelp;
 
             colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
                 Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
                 Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
-
-            colony.ColonyRotationMultiplierCalculated = true;
         }
 
         /// <summary>
@@ -864,7 +854,6 @@
         {
             colony.DerivedStatisticsCalculated = false;
             colony.EntityWeightApplied = false;
-            colony.ColonyRotationMultiplierCalculated = false;
 
             // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
             colony.GetCompounds().UpdateColonyMembers(colony.ColonyMembers);

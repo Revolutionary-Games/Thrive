@@ -175,6 +175,13 @@
                     shapeHolder.Shape = CreateCompoundMicrobeShape(ref extraData, ref organelles, ref cellProperties,
                         entity, rawData, count, colonyMembranes);
 
+                    if (colonyMembranes != null)
+                    {
+                        // Update full colony rotation properties now with the physics shape
+                        ref var colony = ref entity.Get<MicrobeColony>();
+                        colony.CalculateRotationMultiplier(shapeHolder.Shape);
+                    }
+
                     // TODO: colony rotation rate update is elsewhere but it would make quite a bit of sense to move
                     // that logic here so that it can take advantage of the real physics shape
                 }
