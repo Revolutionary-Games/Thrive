@@ -353,7 +353,7 @@ public class Program
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
 
-        [Option('p', "platform", Required = false, Default = null,
+        [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
         public IList<PackagePlatform>? Platforms { get; set; } = new List<PackagePlatform>();
 
