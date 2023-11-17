@@ -195,6 +195,11 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeCalculateResultingAngularVelocity(
         PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime = 1);
 
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeFromIndex(PhysicsShape* shape, uint32_t subShapeData);
+
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeFromIndexWithRemainder(
+        PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder);
+
     // ------------------------------------ //
     // Misc
     [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);

@@ -204,6 +204,11 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
     }
 
+    public uint GetSubShapeFromIndex(uint subShapeData)
+    {
+        return NativeMethods.ShapeGetSubShapeFromIndex(AccessShapeInternal(), subShapeData);
+    }
+
     /// <summary>
     ///   Calculates how much angular velocity this shape would get given the torque (based on this shapes rotational
     ///   inertia)
@@ -307,6 +312,13 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float ShapeGetMass(IntPtr shape);
+
+    [DllImport("thrive_native")]
+    internal static extern uint ShapeGetSubShapeFromIndex(IntPtr shape, uint subShapeData);
+
+    [DllImport("thrive_native")]
+    internal static extern uint ShapeGetSubShapeFromIndexWithRemainder(IntPtr shape, uint subShapeData,
+        out uint remainder);
 
     [DllImport("thrive_native")]
     internal static extern JVecF3 ShapeCalculateResultingAngularVelocity(IntPtr shape, JVecF3 appliedTorque,
