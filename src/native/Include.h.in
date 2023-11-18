@@ -72,6 +72,9 @@
 // The second + 4 is padding here
 #define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4)
 
+// When defined the collision listener will automatically resolve sub-shape indexes on the first level
+#define AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
 

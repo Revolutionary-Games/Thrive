@@ -244,21 +244,21 @@ public static class MicrobeInternalCalculations
     /// <summary>
     ///   Variant of speed calculation that uses already made shape
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Microbe colonies help or hinder rotation. That calculation is in
+    ///     <see cref="Components.MicrobeColonyHelpers.CalculateRotationMultiplier"/>
+    ///   </para>
+    /// </remarks>
     /// <returns>The rotation speed</returns>
     public static float CalculateRotationSpeed(PhysicsShape shape, IEnumerable<IPositionedOrganelle> organelles)
     {
-        // Calculate rotation speed based on the inertia. We give torque vector to apply to the shape and then compare
-        // the resulting angular velocities to see how fast the shape can turn
-        // We use a multiplier here to ensure the float values don't get very low very fast
-        var torqueToTest = Vector3.Up * 1000;
-
-        var velocities = shape.CalculateResultingTorqueFromInertia(torqueToTest);
-
-        // Detect how much torque was preserved and use that as the basis to calculate the cell rotation value
-        var speedFraction = velocities.y / torqueToTest.y;
-        speedFraction *= 1000;
+        // Calculate rotation speed based on the inertia.
+        var speedFraction = shape.TestYRotationInertiaFactor();
 
         // TODO: a good non-linear function here
+        // TODO: also should update MicrobeColonyHelpers.CalculateRotationMultiplier as that uses the same approach as
+        // here right now
         // GD.Print("Speed fraction: ", speedFraction);
 
         // if (speedFraction < 0.5284f)

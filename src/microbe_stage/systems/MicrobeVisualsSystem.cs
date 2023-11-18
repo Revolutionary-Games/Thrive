@@ -233,10 +233,14 @@
         private void SetMembraneDisplayData(Membrane membrane, MembranePointData cacheData,
             ref CellProperties cellProperties)
         {
+#if DEBUG
+            var oldData = membrane.MembraneData;
+#endif
+
             membrane.MembraneData = cacheData;
 
 #if DEBUG
-            if (membrane.IsChangingShape)
+            if (membrane.IsChangingShape && !ReferenceEquals(oldData, cacheData))
                 throw new Exception("This field should have been reset automatically");
 #endif
 

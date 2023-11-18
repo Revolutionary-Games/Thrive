@@ -67,15 +67,15 @@
         public bool EntityWeightApplied;
 
         /// <summary>
-        ///   Internal variable, don't touch
-        /// </summary>
-        [JsonIgnore]
-        public bool ColonyRotationMultiplierCalculated;
-
-        /// <summary>
         ///   Creates a new colony with a leader and cells attached to it. Assumes a flat hierarchy where all members
         ///   are directly attached to the leader
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     It is mandatory to call <see cref="MicrobeColonyHelpers.AddInitialColonyMember"/> on each of the
+        ///     members *after* the leader to setup the state for the entities correctly.
+        ///   </para>
+        /// </remarks>
         public MicrobeColony(in Entity leader, MicrobeState initialState, params Entity[] allMembers)
         {
             if (allMembers.Length < 2)
@@ -103,7 +103,6 @@
             }
 
             ColonyRotationMultiplier = 1;
-            ColonyRotationMultiplierCalculated = false;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -199,6 +198,87 @@
         }
 
         /// <summary>
+        ///   Calculates the total ingest capacity of all members of a colony
+        /// </summary>
+        /// <returns>The ingestion storage size</returns>
+        public static float CalculateTotalEngulfStorageSize(this ref MicrobeColony colony)
+        {
+            float capacity = 0;
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                ref var engulfer = ref colonyMember.Get<Engulfer>();
+                capacity += engulfer.EngulfStorageSize;
+            }
+
+            return capacity;
+        }
+
+        /// <summary>
+        ///   Calculates the total counts of special organelles in a colony
+        /// </summary>
+        public static void CalculateColonySpecialOrganelles(this ref MicrobeColony colony, out int agentVacuoles,
+            out int slimeJets)
+        {
+            agentVacuoles = 0;
+            slimeJets = 0;
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+
+                agentVacuoles += organelles.AgentVacuoleCount;
+                slimeJets += organelles.SlimeJets?.Count ?? 0;
+            }
+        }
+
+        public static HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>?
+            CollectUniqueCompoundDetections(this ref MicrobeColony colony)
+        {
+            HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>? result = null;
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+
+                if (organelles.ActiveCompoundDetections != null)
+                {
+                    result ??= new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
+
+                    foreach (var entry in organelles.ActiveCompoundDetections)
+                    {
+                        result.Add(entry);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static HashSet<(Species TargetSpecies, float Range, Color Colour)>?
+            CollectUniqueSpeciesDetections(this ref MicrobeColony colony)
+        {
+            HashSet<(Species TargetSpecies, float Range, Color Colour)>? result = null;
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+
+                if (organelles.ActiveSpeciesDetections != null)
+                {
+                    result ??= new HashSet<(Species TargetSpecies, float Range, Color Colour)>();
+
+                    foreach (var entry in organelles.ActiveSpeciesDetections)
+                    {
+                        result.Add(entry);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
         /// </summary>
         public static void PerformForOtherColonyMembersThanLeader(this ref MicrobeColony colony, Action<Entity> action,
@@ -248,7 +328,7 @@
             Entity newMember, EntityCommandRecorder recorder)
         {
             if (newMember.Has<MicrobeColonyMember>())
-                throw new ArgumentException("Microbe or master null or microbe already is in a colony");
+                throw new ArgumentException("Microbe already is in a colony");
 
 #if DEBUG
             if (colony.ColonyMembers.Contains(newMember))
@@ -257,37 +337,14 @@
             }
 #endif
 
-            ref var cellProperties = ref colonyEntity.Get<CellProperties>();
-
             ref var newMemberPosition = ref newMember.Get<WorldPosition>();
             ref var newMemberProperties = ref newMember.Get<CellProperties>();
 
             var parentMicrobe = colony.ColonyMembers[parentIndex];
 
-            // Calculate the attach position
-            Vector3 offsetToColonyLeader;
-            Quat rotationToLeader;
-
-            try
+            if (!CalculateColonyMemberAttachPosition(parentIndex, parentMicrobe, newMemberPosition, newMemberProperties,
+                    out var offsetToColonyLeader, out var rotationToLeader))
             {
-                (offsetToColonyLeader, rotationToLeader) = GetNewRelativeTransform(
-                    ref parentMicrobe.Get<WorldPosition>(),
-                    ref parentMicrobe.Get<CellProperties>(), ref newMemberPosition, ref newMemberProperties);
-
-                if (parentIndex != 0)
-                {
-                    // Not attaching directly to the colony leader, need to combine the offsets
-                    ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
-
-                    offsetToColonyLeader += parentsAttachOffset.RelativePosition;
-
-                    // TODO: check that the multiply order is right here
-                    rotationToLeader = parentsAttachOffset.RelativeRotation * rotationToLeader;
-                }
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Microbe colony related data not initialized enough to add colony member: ", e);
                 return false;
             }
 
@@ -305,16 +362,39 @@
 
             colony.MarkMembersChanged();
 
-            // Need to recreate the physics body for this colony
-            cellProperties.ShapeCreated = false;
+            SetupColonyMemberData(ref colony, colonyEntity, parentIndex, newMember, offsetToColonyLeader,
+                rotationToLeader, recorder);
+            return true;
+        }
 
-            colony.ColonyStructure[newMember] = parentMicrobe;
+        /// <summary>
+        ///   Sets up an initial colony member that is added in the <see cref="MicrobeColony"/> constructor. Variant
+        ///   of <see cref="AddToColony"/> that works a bit specially
+        /// </summary>
+        public static bool AddInitialColonyMember(this ref MicrobeColony colony, in Entity colonyEntity,
+            int parentIndex, in Entity addedColonyMember, EntityCommandRecorder recorder)
+        {
+            if (addedColonyMember.Has<MicrobeColonyMember>())
+                throw new ArgumentException("Microbe already is in a colony");
 
-            var memberRecord = recorder.Record(newMember);
-            memberRecord.Set(new MicrobeColonyMember(colonyEntity));
-            memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
+            if (!colony.ColonyMembers.Contains(addedColonyMember))
+                throw new InvalidOperationException("This can only be called on a microbe already in the colony");
 
-            OnColonyMemberAdded(newMember);
+            ref var newMemberPosition = ref addedColonyMember.Get<WorldPosition>();
+            ref var newMemberProperties = ref addedColonyMember.Get<CellProperties>();
+
+            var parentMicrobe = colony.ColonyMembers[parentIndex];
+
+            // Calculate the attach position
+            // TODO: this probably needs to be changed when we have multicellular growth happening
+            if (!CalculateColonyMemberAttachPosition(parentIndex, parentMicrobe, newMemberPosition, newMemberProperties,
+                    out var offsetToColonyLeader, out var rotationToLeader))
+            {
+                return false;
+            }
+
+            SetupColonyMemberData(ref colony, colonyEntity, parentIndex, addedColonyMember, offsetToColonyLeader,
+                rotationToLeader, recorder);
             return true;
         }
 
@@ -520,6 +600,10 @@
         /// </summary>
         public static void OnColonyMemberRemoved(in Entity removedEntity)
         {
+            // Restore physics
+            ref var physics = ref removedEntity.Get<Physics>();
+            physics.BodyDisabled = false;
+
             if (removedEntity.Has<MicrobeEventCallbacks>())
             {
                 ref var callbacks = ref removedEntity.Get<MicrobeEventCallbacks>();
@@ -542,21 +626,40 @@
         }
 
         /// <summary>
-        ///   Called for each newMember that is added to a cell colony
+        ///   Called for each newMember that is added to a cell colony. Not called for the lead cell.
         /// </summary>
         public static void OnColonyMemberAdded(in Entity addedEntity)
         {
+            ref var physics = ref addedEntity.Get<Physics>();
+            physics.BodyDisabled = true;
+
             ref var control = ref addedEntity.Get<MicrobeControl>();
 
+            // TODO: should this apply the colony's overall state
             // Multicellular creature can stay in engulf mode when growing things
             if (!addedEntity.Has<EarlyMulticellularSpeciesMember>() || control.State != MicrobeState.Engulf)
             {
                 control.State = MicrobeState.Normal;
             }
 
-            throw new NotImplementedException();
+            if (addedEntity.Has<OrganelleContainer>())
+            {
+                ref var organelles = ref addedEntity.Get<OrganelleContainer>();
 
-            // UnreadyToReproduce();
+                organelles.AllOrganellesDivided = false;
+            }
+
+            ReportReproductionStatusOnAddToColony(addedEntity);
+        }
+
+        public static void ReportReproductionStatusOnAddToColony(in Entity entity)
+        {
+            if (entity.Has<MicrobeEventCallbacks>() && !entity.Has<EarlyMulticellularSpeciesMember>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnReproductionStatus?.Invoke(entity, false);
+            }
         }
 
         /// <summary>
@@ -582,14 +685,49 @@
             return true;
         }
 
-        public static void CalculateRotationMultiplier(this ref MicrobeColony colony)
+        /// <summary>
+        ///   Calculates the help and extra inertia caused by the colony member cells
+        /// </summary>
+        public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
         {
-            throw new NotImplementedException();
+            var speedFraction = entireColonyShape.TestYRotationInertiaFactor();
 
-            // TODO: reimplement the colony rotation multiplier. The code for this is probably commented out currently
-            // in the movement system, but calculating it should be moved here and uncommented + fixed
+            // TODO: a better function (should also update MicrobeInternalCalculations.CalculateRotationSpeed)
+            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2.0f);
 
-            // colony.ColonyRotationMultiplierCalculated = true;
+            float colonyRotationHelp = 0;
+
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                // Leader uses its own rotation value as the base on top which this rotation multiplier is applied so
+                // this needs to be skipped here
+                if (colonyMember == colony.Leader)
+                    continue;
+
+                ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
+
+                var distanceSquared = memberPosition.RelativePosition.LengthSquared();
+
+                if (distanceSquared < MathUtils.EPSILON)
+                    continue;
+
+                // TODO: should this use the member rotation speed (which is dependent on its size and
+                // how many cilia there are that far away, this is the currently used math) or just count of cilia and
+                // the distance
+                // Convert rotation speed from value that when higher reduces rotation speed to one that increases as
+                // rotation is faster
+                var memberRotation = 1 / colonyMember.Get<OrganelleContainer>().RotationSpeed;
+
+                // TODO: tweak the constant here (and probably also adjust the rotation hindering formula)
+                colonyRotationHelp += memberRotation * Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER *
+                    Mathf.Sqrt(distanceSquared);
+            }
+
+            var multiplier = rotationHindering / colonyRotationHelp;
+
+            colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
+                Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
+                Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
         }
 
         /// <summary>
@@ -653,11 +791,69 @@
             return (newTranslation, cellPosition.Rotation * globalParentRotation.Inverse());
         }
 
+        /// <summary>
+        ///   Calculate the position of a new microbe to attach to a colony. Requires membrane data to be generated to
+        ///   calculate an accurate position
+        /// </summary>
+        /// <returns>True on success, false if data not ready for calculation yet</returns>
+        private static bool CalculateColonyMemberAttachPosition(int parentIndex, Entity parentMicrobe,
+            WorldPosition newMemberPosition, CellProperties newMemberProperties, out Vector3 offsetToColonyLeader,
+            out Quat rotationToLeader)
+        {
+            try
+            {
+                (offsetToColonyLeader, rotationToLeader) = GetNewRelativeTransform(
+                    ref parentMicrobe.Get<WorldPosition>(),
+                    ref parentMicrobe.Get<CellProperties>(), ref newMemberPosition, ref newMemberProperties);
+
+                if (parentIndex != 0)
+                {
+                    // Not attaching directly to the colony leader, need to combine the offsets
+                    ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
+
+                    offsetToColonyLeader += parentsAttachOffset.RelativePosition;
+
+                    // TODO: check that the multiply order is right here
+                    rotationToLeader = (parentsAttachOffset.RelativeRotation * rotationToLeader).Normalized();
+                }
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Microbe colony related data not initialized enough to add colony member: ", e);
+                offsetToColonyLeader = Vector3.Zero;
+                rotationToLeader = Quat.Identity;
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Common code for new colony member setup
+        /// </summary>
+        private static void SetupColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
+            in Entity newMember, Vector3 offsetToColonyLeader, Quat rotationToLeader, EntityCommandRecorder recorder)
+        {
+            ref var cellProperties = ref colonyEntity.Get<CellProperties>();
+
+            // Need to recreate the physics body for this colony
+            cellProperties.ShapeCreated = false;
+
+            var parentMicrobe = colony.ColonyMembers[parentIndex];
+
+            colony.ColonyStructure[newMember] = parentMicrobe;
+
+            var memberRecord = recorder.Record(newMember);
+            memberRecord.Set(new MicrobeColonyMember(colonyEntity));
+            memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
+
+            OnColonyMemberAdded(newMember);
+        }
+
         private static void MarkMembersChanged(this ref MicrobeColony colony)
         {
             colony.DerivedStatisticsCalculated = false;
             colony.EntityWeightApplied = false;
-            colony.ColonyRotationMultiplierCalculated = false;
 
             // TODO: maybe in some situations creating the compound bag could be entirely safely skipped here
             colony.GetCompounds().UpdateColonyMembers(colony.ColonyMembers);

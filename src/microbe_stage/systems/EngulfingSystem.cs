@@ -1305,7 +1305,7 @@
         private bool AnimateBulkTransport(in Entity entity, ref Engulfable engulfable, in Entity engulfedObject,
             float delta)
         {
-            ref var spatial = ref entity.Get<SpatialInstance>();
+            ref var spatial = ref engulfedObject.Get<SpatialInstance>();
 
             if (spatial.GraphicalInstance == null)
             {

@@ -243,32 +243,49 @@
 
         private bool HandleMicrobeDeath(ref CellProperties cellProperties, in Entity entity)
         {
+            EntityCommandRecorder? commandRecorder = null;
+
             if (entity.Has<AttachedToEntity>())
             {
                 // When in a colony needs to detach
                 if (entity.Has<MicrobeColonyMember>())
                 {
-                    throw new NotImplementedException();
+                    commandRecorder = worldSimulation.StartRecordingEntityCommands();
+
+                    if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder))
+                    {
+                        GD.PrintErr("Failed to unbind microbe from colony on death");
+                    }
                 }
 
-                // Else, being engulfed handling is in OnKilled and OnExpelledFromEngulfment
+                // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
                 // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
-                // TODO: check that this is setup correctly
-                return true;
             }
 
             if (entity.Has<MicrobeColony>())
             {
-                // TODO: handle colony lead cell dying (disband the colony)
-                throw new NotImplementedException();
+                // Handle colony lead cell dying (disband the colony)
+                commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
+
+                if (!MicrobeColonyHelpers.UnbindAll(entity, commandRecorder))
+                {
+                    GD.PrintErr("Failed to unbind colony of a dying lead cell");
+                }
             }
 
-            if (OnKilled(ref cellProperties, entity))
+            if (OnKilled(ref cellProperties, entity, ref commandRecorder))
             {
                 // TODO: engulfed death doesn't trigger this mod interface...
                 ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
+
+                if (commandRecorder != null)
+                    worldSimulation.FinishRecordingEntityCommands(commandRecorder);
+
                 return true;
             }
+
+            if (commandRecorder != null)
+                worldSimulation.FinishRecordingEntityCommands(commandRecorder);
 
             return false;
         }
@@ -279,7 +296,8 @@
         /// <returns>
         ///   True when the death could be processed, false if the entity isn't ready to process the death
         /// </returns>
-        private bool OnKilled(ref CellProperties cellProperties, in Entity entity)
+        private bool OnKilled(ref CellProperties cellProperties, in Entity entity,
+            ref EntityCommandRecorder? commandRecorder)
         {
             ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
@@ -331,11 +349,11 @@
             var compounds = entity.Get<CompoundStorage>().Compounds;
             ref var position = ref entity.Get<WorldPosition>();
 
-            var recorder = worldSimulation.StartRecordingEntityCommands();
+            commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
 
-            ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, recorder);
+            ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, commandRecorder);
 
-            var entityRecord = recorder.Record(entity);
+            var entityRecord = commandRecorder.Record(entity);
 
             // Add a timed life component to make sure the entity will despawn after the death animation
             entityRecord.Set(new TimedLife
@@ -349,11 +367,11 @@
 
             if (organelleContainer.AgentVacuoleCount > 0)
             {
-                ReleaseAllAgents(ref position, entity, compounds, species, recorder);
+                ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
             }
 
             // Eject compounds and build costs as corpse chunks of the cell
-            SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, recorder,
+            SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
                 position.Position, random, null, glucose);
 
             if (entity.Has<MicrobeEventCallbacks>())
@@ -368,8 +386,6 @@
             ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
 
             soundPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
-
-            worldSimulation.FinishRecordingEntityCommands(recorder);
 
             // TODO: if we have problems with dead microbes behaving weirdly in loaded saves, uncomment the next line
             // worldSimulation.ReportEntityDyingSoon(entity);

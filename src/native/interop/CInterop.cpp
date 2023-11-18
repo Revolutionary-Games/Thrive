@@ -562,6 +562,23 @@ float ShapeGetMass(PhysicsShape* shape)
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
 
+uint32_t ShapeGetSubShapeFromIndex(PhysicsShape* shape, uint32_t subShapeData)
+{
+    JPH::SubShapeID unusedRemainder;
+
+    return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetSubShapeFromID(
+        std::bit_cast<JPH::SubShapeID>(subShapeData), unusedRemainder);
+}
+
+uint32_t ShapeGetSubShapeFromIndexWithRemainder(PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder)
+{
+    static_assert(sizeof(remainder) == sizeof(JPH::SubShapeID));
+
+    return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetSubShapeFromID(
+        std::bit_cast<JPH::SubShapeID>(subShapeData), reinterpret_cast<JPH::SubShapeID&>(remainder));
+}
+
+// ------------------------------------ //
 JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime)
 {
     // This approach is created by combining MotionProperties::ApplyForceTorqueAndDragInternal and

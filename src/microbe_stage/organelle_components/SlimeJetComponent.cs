@@ -1,5 +1,4 @@
-﻿using System;
-using Components;
+﻿using Components;
 using DefaultEcs;
 using Godot;
 
@@ -11,7 +10,7 @@ public class SlimeJetComponent : IOrganelleComponent
     private bool animationActive;
     private bool animationDirty = true;
 
-    private AnimationPlayer animation = null!;
+    private PlacedOrganelle parentOrganelle = null!;
 
     private Vector3 organellePosition;
     private Vector3 queuedForce = Vector3.Zero;
@@ -36,8 +35,8 @@ public class SlimeJetComponent : IOrganelleComponent
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        animation = organelle.OrganelleAnimation ??
-            throw new InvalidOperationException("Slime jet requires animation player on organelle");
+        // See comment in MovementComponent.OnAttachToCell
+        parentOrganelle = organelle;
 
         organellePosition = Hex.AxialToCartesian(organelle.Position);
     }
@@ -50,8 +49,11 @@ public class SlimeJetComponent : IOrganelleComponent
 
     public void UpdateSync(in Entity microbeEntity, float delta)
     {
+        if (parentOrganelle.OrganelleAnimation == null)
+            return;
+
         // Play the animation if active, and vice versa
-        animation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
+        parentOrganelle.OrganelleAnimation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
         animationDirty = false;
     }
 

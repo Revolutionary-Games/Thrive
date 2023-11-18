@@ -973,7 +973,16 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         // Types with out custom attribute are supported
-        return objectType.CustomAttributes.Any(
-            attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute);
+        if (objectType.CustomAttributes.Any(
+                attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
+        {
+            return true;
+        }
+
+        // Serializer attribute in parent type also applies it to child types
+        if (objectType.GetCustomAttribute(UseSerializerAttribute, true) != null)
+            return true;
+
+        return false;
     }
 }

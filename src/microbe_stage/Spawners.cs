@@ -152,6 +152,8 @@ public static class SpawnHelpers
             Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
         });
+
+        // TODO: need to add saving support here. Maybe a new component like SimpleShapeCreator?
         entity.Set(new PhysicsShapeHolder
         {
             Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
@@ -315,6 +317,8 @@ public static class SpawnHelpers
             LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
             Velocity = initialVelocity,
         });
+
+        // TODO: need to add saving support here. Maybe a new component like CollisionShapeLoader?
         entity.Set(new PhysicsShapeHolder
         {
             Shape = selectedMesh.ConvexShapePath != null ?
@@ -584,7 +588,8 @@ public static class SpawnHelpers
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
         });
 
-        // The shape is created in the background to reduce lag when something spawns
+        // The shape is created in the background (by MicrobePhysicsCreationAndSizeSystem) to reduce lag when
+        // something spawns
         entity.Set(new PhysicsShapeHolder
         {
             Shape = null,
