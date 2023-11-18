@@ -60,7 +60,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
-    private MicrobeProcessManagerSystem microbeProcessManagerSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
@@ -104,6 +103,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; } = null!;
+
+    [JsonIgnore]
+    public MicrobeProcessManagerSystem MicrobeProcessManagerSystem { get; private set; } = null!;
 
     // TODO: could replace this reference in PatchManager by it just calling ClearPlayerLocationDependentCaches
     [JsonIgnore]
@@ -177,7 +179,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
         microbeAI = new MicrobeAISystem(cloudSystem, EntitySystem, parallelRunner);
-        microbeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, couldParallelize);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, couldParallelize);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, couldParallelize);
 
@@ -200,6 +201,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
+
+        MicrobeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, couldParallelize);
 
         ProcessSystem = new ProcessSystem(EntitySystem, parallelRunner);
 
@@ -242,6 +245,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public void SetSimulationBiome(BiomeConditions biomeConditions)
     {
         ProcessSystem.SetBiome(biomeConditions);
+        MicrobeProcessManagerSystem.SetBiome(biomeConditions);
     }
 
     public override void ReportPlayerPosition(Vector3 position)
@@ -326,7 +330,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageOnTouchSystem.Update(delta);
         pilusDamageSystem.Update(delta);
 
-        microbeProcessManagerSystem.Update(delta);
+        MicrobeProcessManagerSystem.Update(delta);
 
         ProcessSystem.Update(delta);
 
@@ -451,7 +455,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             microbeFlashingSystem.Dispose();
             microbeMovementSoundSystem.Dispose();
             microbeMovementSystem.Dispose();
-            microbeProcessManagerSystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
             organelleComponentFetchSystem.Dispose();
@@ -466,7 +469,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             unneededCompoundVentingSystem.Dispose();
 
             CameraFollowSystem.Dispose();
-            ProcessSystem.Dispose();
+            ProcessSystem.Dispose();            
+            MicrobeProcessManagerSystem.Dispose();
             TimedLifeSystem.Dispose();
             SpawnSystem.Dispose();
 

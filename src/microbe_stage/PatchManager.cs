@@ -17,6 +17,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
+    private MicrobeProcessManagerSystem microbeProcessManagerSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
@@ -31,10 +32,12 @@ public class PatchManager : IChildPropertiesLoadCallback
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
+        MicrobeProcessManagerSystem microbeProcessManagerSystem, CompoundCloudSystem compoundCloudSystem, 
+        TimedLifeSystem timedLife, DirectionalLight worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
+        this.microbeProcessManagerSystem = microbeProcessManagerSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
@@ -94,6 +97,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
+        microbeProcessManagerSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
         UnmarkAllSpawners();
@@ -119,6 +123,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     {
         // Update environment for the process system
         processSystem.SetBiome(currentPatch.Biome);
+        microbeProcessManagerSystem.SetBiome(currentPatch.Biome);
     }
 
     public void UpdateAllPatchLightLevels()

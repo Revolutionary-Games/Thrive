@@ -244,4 +244,13 @@ public class CompoundBag : ICompoundStorage
     {
         return GetEnumerator();
     }
+
+    public CompoundBag Clone()
+    {
+        var bag = new CompoundBag(NominalCapacity);
+    
+        bag.AddInitialCompounds(Compounds);
+
+        return bag;
+    }
 }
