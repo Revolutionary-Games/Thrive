@@ -418,9 +418,17 @@
                 // OnMulticellularColonyCellLost(microbe);
             }
 
+            bool removedMemberIsLeader = false;
+
             // Colony members or leader can be removed by this method
-            if (!removedMember.Has<MicrobeColonyMember>() && !removedMember.Has<MicrobeColony>())
+            if (removedMember.Has<MicrobeColony>())
+            {
+                removedMemberIsLeader = true;
+            }
+            else if (!removedMember.Has<MicrobeColonyMember>())
+            {
                 throw new ArgumentException("Microbe not a member of a colony");
+            }
 
             if (!colony.ColonyMembers.Contains(removedMember))
                 throw new ArgumentException("Cannot remove a colony member who isn't actually a member");
@@ -443,14 +451,18 @@
                 // Call the remove callback on the members
                 for (int i = 0; i < colony.ColonyMembers.Length; ++i)
                 {
-                    if (colony.ColonyMembers[i] != colonyEntity)
+                    bool leader = true;
+
+                    var currentMember = colony.ColonyMembers[i];
+                    if (currentMember != colonyEntity)
                     {
                         // Handle the normal cleanup here for the non-leader cells (we already queued delete of the
                         // entire colony component above)
-                        QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
+                        QueueRemoveFormerColonyMemberComponents(currentMember, recorder);
+                        leader = false;
                     }
 
-                    OnColonyMemberRemoved(colony.ColonyMembers[i]);
+                    OnColonyMemberRemoved(currentMember, leader);
                 }
 
                 return false;
@@ -479,7 +491,7 @@
 
             colony.ColonyMembers = newMembers;
 
-            OnColonyMemberRemoved(removedMember);
+            OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
             // Remove colony members that depend on the removed member
             foreach (var entry in colony.ColonyStructure)
@@ -590,6 +602,18 @@
                     "Cannot unbind all with this method while running a world simulation");
             }
 
+            // Extra debugs checks to ensure the unbind function doesn't have serious bugs with incorrect component
+            // handling
+#if DEBUG
+            Entity[]? members = null;
+
+            if (entity.Has<MicrobeColony>())
+            {
+                ref var colony = ref entity.Get<MicrobeColony>();
+                members = colony.ColonyMembers;
+            }
+#endif
+
             var recorder = entityWorld.StartRecordingEntityCommands();
             var result = UnbindAll(entity, recorder);
 
@@ -597,13 +621,34 @@
 
             recorder.Execute();
             entityWorld.FinishRecordingEntityCommands(recorder);
+
+#if DEBUG
+            if (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>())
+            {
+                throw new Exception("Microbe colony unbind didn't delete components correctly");
+            }
+
+            if (members != null)
+            {
+                foreach (var member in members)
+                {
+                    if (member.Has<MicrobeColonyMember>() || member.Has<AttachedToEntity>())
+                    {
+                        throw new Exception("Microbe colony unbind didn't delete components correctly");
+                    }
+                }
+            }
+#endif
+
             return result;
         }
 
         /// <summary>
-        ///   Called for each newMember that is removed from a cell colony
+        ///   Called for each newMember that is removed from a cell colony. Also called for the colony lead cell when
+        ///   colony is disbanding. Note that is in contrast to <see cref="OnColonyMemberAdded"/> which is not called
+        ///   on the lead cell.
         /// </summary>
-        public static void OnColonyMemberRemoved(in Entity removedEntity)
+        public static void OnColonyMemberRemoved(in Entity removedEntity, bool wasLeader)
         {
             // Restore physics
             ref var physics = ref removedEntity.Get<Physics>();
@@ -615,6 +660,10 @@
 
                 callbacks.OnUnbound?.Invoke(removedEntity);
             }
+
+            // For the lead cell when disbanding the colony we don't want to reset all stuff
+            if (wasLeader)
+                return;
 
             if (removedEntity.Has<MicrobeAI>())
             {
