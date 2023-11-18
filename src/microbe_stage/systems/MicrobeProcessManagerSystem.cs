@@ -55,8 +55,9 @@ namespace Systems
             }
 
             // Lower priorities get to run first, so start at bottom
+            // It is important non-ATP-producers run first
             // Different levels of priority "coarseness" are stored in different place values
-            var priority = 9999.0f;
+            var priority = 0.0f;
 
             var inputAmount = 0.0f;
             foreach (var entry in process.Inputs)
@@ -111,32 +112,27 @@ namespace Systems
             {
                 var processData = process.Process;
 
+                // This is used for any other changes to the rate
                 var speedModifier = 1.0f;
+
                 var environmentModifier = 1.0f;
                 var storageConstraintModifier = 1.0f;
 
-                if(processData.InternalName == "calvin_cycle" && glucoseConsuming)
-                {
-                    speedModifier = 0;
-                }
-                else
-                {
-                    // First check the environmental compounds so that we can build the right environment modifier for accurate
-                    // check of normal compound input amounts
-                    environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
+                // First check the environmental compounds so that we can build the right environment modifier for accurate
+                // check of normal compound input amounts
+                environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
 
-                    // Constrains the speed of the process to not exceed or overuse storage
-                    storageConstraintModifier = ProcessSystem.CalculateStorageConstraintModifier(
-                        processData, 
-                        null,
-                        environmentModifier,
-                        delta,
-                        bag
-                    );
-                }
-
-                var rate = storageConstraintModifier * speedModifier;
-                var totalModifier = rate * environmentModifier;
+                // Constrains the speed of the process to not exceed or overuse storage
+                storageConstraintModifier = ProcessSystem.CalculateStorageConstraintModifier(
+                    processData, 
+                    null,
+                    environmentModifier,
+                    delta,
+                    bag
+                );
+            
+                var rate = speedModifier;
+                var totalModifier = rate * environmentModifier * storageConstraintModifier;
 
                 // Set process rate if above minimum
                 process.Rate = totalModifier < Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION ? 0 : rate;
@@ -152,9 +148,9 @@ namespace Systems
                     if (entry.Key.IsEnvironmental)
                         continue;
 
-                    if(glucoseConsuming)
+                    if(entry.Key == Glucose && totalModifier >= MathUtils.EPSILON)
                     {
-
+                        glucoseConsuming = true;
                     }
 
                     var inputRemoved = entry.Value * totalModifier;
@@ -173,6 +169,18 @@ namespace Systems
 
                 bag.ClampNegativeCompoundAmounts();
                 bag.FixNaNCompounds();
+            }
+            
+            if(glucoseConsuming)
+            {
+                var RuBisCo = processPriority.SingleOrDefault(
+                    p => p.Process.InternalName == "calvin_cycle"
+                );
+
+                if(RuBisCo != null)
+                {
+                    RuBisCo.Rate = 0;
+                }
             }
         }
     }
