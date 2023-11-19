@@ -476,7 +476,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             unneededCompoundVentingSystem.Dispose();
 
             CameraFollowSystem.Dispose();
-            ProcessSystem.Dispose();            
+            ProcessSystem.Dispose();
             MicrobeProcessManagerSystem.Dispose();
             TimedLifeSystem.Dispose();
             SpawnSystem.Dispose();

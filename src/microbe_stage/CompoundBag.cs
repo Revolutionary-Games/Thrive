@@ -248,7 +248,7 @@ public class CompoundBag : ICompoundStorage
     public CompoundBag Clone()
     {
         var bag = new CompoundBag(NominalCapacity);
-    
+
         bag.AddInitialCompounds(Compounds);
 
         return bag;

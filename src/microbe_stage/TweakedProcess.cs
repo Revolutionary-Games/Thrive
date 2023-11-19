@@ -5,12 +5,14 @@
 /// </summary>
 public class TweakedProcess : ICloneable
 {
+    public float Count;
     public float Rate;
 
-    public TweakedProcess(BioProcess process, float rate = 1.0f)
+    public TweakedProcess(BioProcess process, float count = 1.0f, float rate = 1.0f)
     {
-        Rate = rate;
+        Count = count;
         Process = process;
+        Rate = rate;
     }
 
     public BioProcess Process { get; }
@@ -43,6 +45,7 @@ public class TweakedProcess : ICloneable
     private bool Equals(TweakedProcess other)
     {
         // ReSharper disable once CompareOfFloatsByEqualityOperator
-        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
+        return Rate == other.Rate && Count == other.Count &&
+            ReferenceEquals(Process, other.Process);
     }
 }

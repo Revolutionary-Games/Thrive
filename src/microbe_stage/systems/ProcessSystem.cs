@@ -41,7 +41,7 @@
             // The old approach just uses a linear scan of the already handled process types and adds to their existing
             // rate
             return organelles.Select(o => o.Definition).SelectMany(o => o.RunnableProcesses).GroupBy(p => p.Process)
-                .Select(g => new TweakedProcess(g.Key, g.Sum(p => p.Rate))).ToList();
+                .Select(g => new TweakedProcess(g.Key, g.Sum(p => p.Count))).ToList();
         }
 
         /// <summary>
@@ -352,7 +352,7 @@
 
             result.Efficiency = efficiency;
 
-            speedFactor *= process.Rate;
+            speedFactor *= process.Rate * process.Count;
 
             // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
 
@@ -380,33 +380,6 @@
             result.CurrentSpeed = speedFactor;
 
             return result;
-        }
-
-        /// <summary>
-        ///   Sets the biome whose environmental values affect processes
-        /// </summary>
-        public void SetBiome(BiomeConditions newBiome)
-        {
-            biome = newBiome;
-        }
-
-        /// <summary>
-        ///   Get the current amount of environmental compound
-        /// </summary>
-        public float GetAmbient(Compound compound, CompoundAmountType amountType)
-        {
-            if (biome == null)
-                throw new InvalidOperationException("Biome needs to be set before getting ambient compounds");
-
-            return GetAmbientInBiome(compound, biome, amountType);
-        }
-
-        private static float GetAmbientInBiome(Compound compound, BiomeConditions biome, CompoundAmountType amountType)
-        {
-            if (!biome.TryGetCompound(compound, amountType, out var environmentalCompoundProperties))
-                return 0;
-
-            return environmentalCompoundProperties.Ambient;
         }
 
         public static float CalculateEnvironmentModifier(BioProcess processData, SingleProcessStatistics? currentProcessStatistics,
@@ -437,12 +410,19 @@
             return environmentModifier;
         }
 
-        public static float CalculateStorageConstraintModifier(BioProcess processData, SingleProcessStatistics? currentProcessStatistics,
+        public static float CalculateStorageModifier(TweakedProcess process, SingleProcessStatistics? currentProcessStatistics,
             float environmentModifier, float delta, CompoundBag bag)
         {
+            // Can the cell do the process
             bool canDoProcess = true;
 
-            float storageConstraintModifier = 1.0f;
+            // This modifies the process overall speed to allow really fast processes to run, for example if there are
+            // a ton of one organelle it might consume 100 glucose per go, which might be unlikely for the cell to have
+            // so if there is *some* but not enough space for results (and also inputs) this can run the process as
+            // fraction of the speed to allow the cell to still function well
+            float storageModifier = 1.0f;
+
+            var processData = process.Process;
 
             foreach (var entry in processData.Inputs)
             {
@@ -451,16 +431,16 @@
                 if (entry.Key.IsEnvironmental)
                     continue;
 
-                var inputRemoved = entry.Value * environmentModifier;
+                var inputRemoved = entry.Value * environmentModifier * process.Rate * process.Count;
 
                 // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
                 // We don't multiply by delta here because we report the per-second values anyway. In the actual
                 // process output numbers (computed after testing the speed), we need to multiply by inverse delta
                 currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
 
-                inputRemoved *= delta;
+                inputRemoved *= delta * storageModifier;
 
-                // If not enough we can't run the process unless we can lower storageConstraintModifier enough
+                // If not enough we can't run the process unless we can lower storageModifier enough
                 var availableAmount = bag.GetCompoundAmount(entry.Key);
                 if (availableAmount < inputRemoved)
                 {
@@ -470,7 +450,7 @@
                     {
                         // Due to rounding errors there can be very small disparity here between the amount
                         // available and what we will take with the modifiers.
-                        storageConstraintModifier = Math.Min(neededModifier, storageConstraintModifier);
+                        storageModifier = neededModifier;
                     }
                     else
                     {
@@ -485,12 +465,12 @@
                 // For now lets assume compounds we produce are also useful
                 bag.SetUseful(entry.Key);
 
-                var outputAdded = entry.Value * environmentModifier;
+                var outputAdded = entry.Value * environmentModifier * process.Rate * process.Count;
 
                 // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
                 currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
 
-                outputAdded *= delta;
+                outputAdded *= delta * storageModifier;
 
                 // if environmental right now this isn't released anywhere
                 if (entry.Key.IsEnvironmental)
@@ -506,7 +486,7 @@
                     {
                         // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
                         // errors
-                        storageConstraintModifier = Math.Min(neededModifier, storageConstraintModifier);
+                        storageModifier = neededModifier;
                     }
                     else
                     {
@@ -519,18 +499,26 @@
             if (!canDoProcess)
                 return 0;
 
-            return storageConstraintModifier;
+            return storageModifier;
         }
 
         /// <summary>
-        ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
-        ///   is liable to be updated in the future to use alternative effect models.
+        ///   Sets the biome whose environmental values affect processes
         /// </summary>
-        public static float CalculateTemperatureEffect(float temperature)
+        public void SetBiome(BiomeConditions newBiome)
         {
-            // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
-            var optimal = 100;
-            return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+            biome = newBiome;
+        }
+
+        /// <summary>
+        ///   Get the current amount of environmental compound
+        /// </summary>
+        public float GetAmbient(Compound compound, CompoundAmountType amountType)
+        {
+            if (biome == null)
+                throw new InvalidOperationException("Biome needs to be set before getting ambient compounds");
+
+            return GetAmbientInBiome(compound, biome, amountType);
         }
 
         protected override void PreUpdate(float delta)
@@ -551,6 +539,25 @@
             ProcessNode(ref processes, ref storage, delta);
         }
 
+        /// <summary>
+        ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
+        ///   is liable to be updated in the future to use alternative effect models.
+        /// </summary>
+        private static float CalculateTemperatureEffect(float temperature)
+        {
+            // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
+            var optimal = 100;
+            return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+        }
+
+        private static float GetAmbientInBiome(Compound compound, BiomeConditions biome, CompoundAmountType amountType)
+        {
+            if (!biome.TryGetCompound(compound, amountType, out var environmentalCompoundProperties))
+                return 0;
+
+            return environmentalCompoundProperties.Ambient;
+        }
+
         private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta)
         {
             var bag = storage.Compounds;
@@ -566,21 +573,10 @@
             {
                 foreach (var process in processor.ActiveProcesses)
                 {
-                    // If rate is 0 dont do it
-                    // The rate specifies how fast fraction of the specified process numbers this cell can do
-                    // TODO: would be nice still to report these to process statistics
-                    // NOTE: Don't we need to set the speed of these processes to 0 still?
-                    //if (process.Rate <= 0.0f)
-                    //    continue;
-
-                    // TODO: reporting duplicate process types would be nice in debug mode here
-
-                    var processData = process.Process;
-
                     var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
                     currentProcessStatistics?.BeginFrame(delta);
 
-                    RunProcess(delta, processData, bag, process, currentProcessStatistics);
+                    RunProcess(delta, process, bag, currentProcessStatistics);
                 }
             }
 
@@ -590,69 +586,56 @@
             processStatistics?.RemoveUnused();
         }
 
-        private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
+        private void RunProcess(float delta, TweakedProcess process, CompoundBag bag,
             SingleProcessStatistics? currentProcessStatistics)
         {
+            if (biome == null)
+                throw new NullReferenceException("Biome needs to be set");
+
+            var processData = process.Process;
+
             // First check the environmental compounds so that we can build the right environment modifier for accurate
             // check of normal compound input amounts
             float environmentModifier = CalculateEnvironmentModifier(processData, null, biome);
 
-            float storageModifier = CalculateStorageConstraintModifier(processData, currentProcessStatistics, 
+            float storageModifier = CalculateStorageModifier(process, currentProcessStatistics,
                 environmentModifier, delta, bag);
 
-            float totalModifier = process.Rate * delta * environmentModifier * storageModifier;
+            float totalModifier = process.Rate * process.Count * delta * environmentModifier * storageModifier;
 
-            if(totalModifier > MathUtils.EPSILON)
+            if (currentProcessStatistics != null)
+                currentProcessStatistics.CurrentSpeed = process.Rate * process.Count * environmentModifier * storageModifier;
+
+            if (totalModifier <= MathUtils.EPSILON)
+                return;
+
+            // Consume inputs
+            foreach (var entry in processData.Inputs)
             {
-                // Consume inputs
-                foreach (var entry in processData.Inputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
+                if (entry.Key.IsEnvironmental)
+                    continue;
 
-                        var inputRemoved = entry.Value * totalModifier;
+                var inputRemoved = entry.Value * totalModifier;
 
-                        currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+                currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
 
-                        // This should always succeed (due to the earlier check) so it is always assumed here that this
-                        // succeeded
-                        bag.TakeCompound(entry.Key, inputRemoved);
-                }
-
-                // Add outputs
-                foreach (var entry in processData.Outputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
-
-                    var outputGenerated = entry.Value * totalModifier;
-
-                    currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
-
-                    bag.AddCompound(entry.Key, outputGenerated);
-                }
-            }
-            else
-            {
-                foreach (var entry in processData.Inputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
-
-                    currentProcessStatistics?.AddInputAmount(entry.Key, 0);
-                }
-
-                foreach (var entry in processData.Outputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
-
-                    currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-                }
+                // This should always succeed (due to the earlier check) so it is always assumed here that this
+                // succeeded
+                bag.TakeCompound(entry.Key, inputRemoved);
             }
 
-            if(currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier;
+            // Add outputs
+            foreach (var entry in processData.Outputs)
+            {
+                if (entry.Key.IsEnvironmental)
+                    continue;
+
+                var outputGenerated = entry.Value * totalModifier;
+
+                currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
+
+                bag.AddCompound(entry.Key, outputGenerated);
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ public class PatchManager : IChildPropertiesLoadCallback
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        MicrobeProcessManagerSystem microbeProcessManagerSystem, CompoundCloudSystem compoundCloudSystem, 
+        MicrobeProcessManagerSystem microbeProcessManagerSystem, CompoundCloudSystem compoundCloudSystem,
         TimedLifeSystem timedLife, DirectionalLight worldLight)
     {
         this.spawnSystem = spawnSystem;
