@@ -136,9 +136,6 @@
                 // Set process rate if above minimum
                 process.Rate = totalModifier < Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION ? 0 : rate;
 
-                if (process.Rate == 0)
-                    continue;
-
                 totalModifier *= delta * process.Count;
 
                 // Consume inputs from dummy bag
