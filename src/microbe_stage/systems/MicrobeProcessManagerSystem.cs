@@ -7,7 +7,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using Godot;
     using World = DefaultEcs.World;
 
     /// <summary>
@@ -83,7 +82,7 @@
             }
 
             // Penalize Glucose consumers to allow RuBisCo to work
-            if (process.Inputs.TryGetValue(Glucose, out var glucoseIn))
+            if (process.Inputs.ContainsKey(Glucose))
             {
                 priority += 100;
             }
@@ -125,13 +124,10 @@
                 // This is used for any other changes to the rate
                 var speedModifier = 1.0f;
 
-                var environmentModifier = 1.0f;
-                var storageConstraintModifier = 1.0f;
-
-                environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
+                var environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
 
                 // Constrains the speed of the process to not exceed or overuse storage
-                storageConstraintModifier = ProcessSystem.CalculateStorageModifier(process, null, environmentModifier,
+                var storageConstraintModifier = ProcessSystem.CalculateStorageModifier(process, null, environmentModifier,
                     delta, bag);
 
                 var rate = speedModifier;
