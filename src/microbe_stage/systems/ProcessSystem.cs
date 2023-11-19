@@ -605,8 +605,10 @@
             float totalModifier = process.Rate * process.Count * delta * environmentModifier * storageModifier;
 
             if (currentProcessStatistics != null)
+            {
                 currentProcessStatistics.CurrentSpeed = process.Rate * process.Count * environmentModifier *
                     storageModifier;
+            }
 
             if (totalModifier <= MathUtils.EPSILON)
                 return;
