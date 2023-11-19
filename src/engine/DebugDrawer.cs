@@ -216,7 +216,8 @@ public class DebugDrawer : ControlWithInput
             if (!warnedAboutNotBeingSupported)
             {
                 GD.PrintErr("The version of the loaded native Thrive library doesn't support physics " +
-                    "debug drawing, debug drawing will not be attempted");
+                    "debug drawing, because it is not the debug version of the library, " +
+                    "debug drawing will not be attempted");
                 warnedAboutNotBeingSupported = true;
             }
         }
