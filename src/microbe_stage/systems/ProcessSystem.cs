@@ -382,8 +382,8 @@
             return result;
         }
 
-        public static float CalculateEnvironmentModifier(BioProcess processData, SingleProcessStatistics? currentProcessStatistics,
-            BiomeConditions biome)
+        public static float CalculateEnvironmentModifier(BioProcess processData,
+            SingleProcessStatistics? currentProcessStatistics, BiomeConditions biome)
         {
             float environmentModifier = 1.0f;
 
@@ -410,8 +410,8 @@
             return environmentModifier;
         }
 
-        public static float CalculateStorageModifier(TweakedProcess process, SingleProcessStatistics? currentProcessStatistics,
-            float environmentModifier, float delta, CompoundBag bag)
+        public static float CalculateStorageModifier(TweakedProcess process,
+            SingleProcessStatistics? currentProcessStatistics, float environmentModifier, float delta, CompoundBag bag)
         {
             // Can the cell do the process
             bool canDoProcess = true;
@@ -476,7 +476,8 @@
                 if (entry.Key.IsEnvironmental)
                     continue;
 
-                // If no space is left and we can't adjust the space constraint modifier enough, we can't do the process.
+                // If there no space is left and we can't adjust the space constraint modifier enough,
+                // we can't run the process.
                 var remainingSpace = bag.GetCapacityForCompound(entry.Key) - bag.GetCompoundAmount(entry.Key);
                 if (outputAdded > remainingSpace)
                 {
@@ -604,7 +605,8 @@
             float totalModifier = process.Rate * process.Count * delta * environmentModifier * storageModifier;
 
             if (currentProcessStatistics != null)
-                currentProcessStatistics.CurrentSpeed = process.Rate * process.Count * environmentModifier * storageModifier;
+                currentProcessStatistics.CurrentSpeed = process.Rate * process.Count * environmentModifier *
+                    storageModifier;
 
             if (totalModifier <= MathUtils.EPSILON)
                 return;

@@ -128,8 +128,6 @@ namespace Systems
                 var environmentModifier = 1.0f;
                 var storageConstraintModifier = 1.0f;
 
-                // First check the environmental compounds so that we can build the right environment modifier for accurate
-                // check of normal compound input amounts
                 environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
 
                 // Constrains the speed of the process to not exceed or overuse storage
