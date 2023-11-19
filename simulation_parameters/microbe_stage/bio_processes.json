@@ -30,10 +30,11 @@
   "calvin_cycle": {
     "name": "CALVIN_CYCLE",
     "inputs": {
-      "atp": 2
+      "carbondioxide": 0.09,
+      "atp": 3
     },
     "outputs": {
-      "glucose": 0.003
+      "glucose": 0.005
     }
   },
   "photosynthesis": {

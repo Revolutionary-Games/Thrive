@@ -8,6 +8,7 @@
     using DefaultEcs.System;
     using DefaultEcs.Threading;
     using World = DefaultEcs.World;
+    using Godot;
 
     /// <summary>
     ///   Controls the speed of biological processes on a microbe
@@ -100,7 +101,8 @@
             if (biome == null)
                 throw new NullReferenceException("Biome needs to be set");
 
-            var glucoseConsuming = false;
+            // Track ATP generated from gluscose for RuBisCo
+            var glucoseATP = 0.0f;
 
             // Create dummy compound bag
             var bag = storage.Compounds.Clone();
@@ -131,12 +133,14 @@
                     delta, bag);
 
                 var rate = speedModifier;
-                var totalModifier = rate * environmentModifier * storageConstraintModifier;
+                var totalModifier = rate * process.Count * environmentModifier * storageConstraintModifier;
 
                 // Set process rate if above minimum
                 process.Rate = totalModifier < Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION ? 0 : rate;
 
-                totalModifier *= delta * process.Count;
+                totalModifier *= delta;
+
+                bool glucoseConsumer = false;
 
                 // Consume inputs from dummy bag
                 foreach (var entry in processData.Inputs)
@@ -146,7 +150,7 @@
 
                     if (entry.Key == Glucose && totalModifier >= MathUtils.EPSILON)
                     {
-                        glucoseConsuming = true;
+                        glucoseConsumer = true;
                     }
 
                     var inputRemoved = entry.Value * totalModifier;
@@ -160,6 +164,12 @@
                         continue;
 
                     var outputGenerated = entry.Value * totalModifier;
+
+                    if(entry.Key == ATP && glucoseConsumer)
+                    {
+                        glucoseATP += outputGenerated;
+                    }
+
                     bag.AddCompound(entry.Key, outputGenerated);
                 }
 
@@ -167,14 +177,26 @@
                 bag.FixNaNCompounds();
             }
 
-            if (glucoseConsuming)
-            {
-                var ruBisCo = processor.ActiveProcesses.SingleOrDefault(
-                    p => p.Process.InternalName == "calvin_cycle");
+            var ruBisCo = processor.ActiveProcesses.SingleOrDefault(
+                p => p.Process.InternalName == "calvin_cycle");
 
-                if (ruBisCo != null)
+            if (ruBisCo != null && ruBisCo.Process.Inputs.TryGetValue(ATP, out var atpIn))
+            {
+                var environmentModifier = ProcessSystem.CalculateEnvironmentModifier(ruBisCo.Process, null,
+                    biome);
+
+                var maxATP = atpIn * environmentModifier * delta;
+
+                if(glucoseATP < maxATP)
+                {
+                    ruBisCo.Rate = glucoseATP / maxATP;
+                }
+                else
+                {
                     ruBisCo.Rate = 0;
+                }
             }
+
         }
     }
 }
