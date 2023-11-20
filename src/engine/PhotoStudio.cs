@@ -9,7 +9,8 @@ using Godot;
 /// <remarks>
 ///   <para>
 ///     TODO: implement a persistent resource cache class that can store these created images (it should be cleared
-///     if game version changes to avoid bugs and size limited to not take too many gigabytes of space)
+///     if game version changes to avoid bugs and size limited to not take too many gigabytes of space, and also
+///     delete old resources after like 30 days)
 ///   </para>
 /// </remarks>
 public class PhotoStudio : Viewport
@@ -21,25 +22,27 @@ public class PhotoStudio : Viewport
     public NodePath RenderedObjectHolderPath = null!;
 
     [Export]
+    public NodePath SimulationWorldsParentPath = null!;
+
+    [Export]
     public bool UseBackgroundSceneLoad;
 
     [Export]
     public bool UseBackgroundSceneInstance;
 
+    [Export]
+    public float SimulationWorldTimeAdvanceStep = 1 / 30.0f;
+
     private static PhotoStudio? instance;
+
+    private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
+    private readonly Dictionary<IWorldSimulation, Spatial> simulationWorldRoots = new();
 
     private readonly Queue<ImageTask> tasks = new();
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
 
     private bool waitingForBackgroundOperation;
-
-#pragma warning disable CA2213
-    private PackedScene? taskScene;
-#pragma warning restore CA2213
-
-    private string? loadedTaskScene;
-    private bool previousSceneWasCorrect;
 
 #pragma warning disable CA2213
 
@@ -54,7 +57,16 @@ public class PhotoStudio : Viewport
     private Camera camera = null!;
     private Spatial renderedObjectHolder = null!;
 
+    private Node simulationWorldsParent = null!;
+
+    private PackedScene? taskScene;
+
+    // This is not disposed as this is contained in a list, the contents of which are disposed
+    private IWorldSimulation? previouslyUsedWorldSimulation;
 #pragma warning restore CA2213
+
+    private string? loadedTaskScene;
+    private bool previousSceneWasCorrect;
 
     private PhotoStudio() { }
 
@@ -70,9 +82,12 @@ public class PhotoStudio : Viewport
         Render,
         CaptureImage,
         Save,
+        Cleanup,
     }
 
     public static PhotoStudio Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    private bool TaskUsesWorldSimulation => currentTask?.SimulationPhotographable != null;
 
     /// <summary>
     ///   Calculates a good camera distance from the radius of an object that is photographed
@@ -99,6 +114,7 @@ public class PhotoStudio : Viewport
 
         camera = GetNode<Camera>(CameraPath);
         renderedObjectHolder = GetNode<Spatial>(RenderedObjectHolderPath);
+        simulationWorldsParent = GetNode(SimulationWorldsParentPath);
 
         // We manually trigger rendering when we want
         RenderTargetUpdateMode = UpdateMode.Disabled;
@@ -127,7 +143,11 @@ public class PhotoStudio : Viewport
                 break;
             case Step.LoadScene:
             {
-                if (UseBackgroundSceneLoad)
+                if (TaskUsesWorldSimulation)
+                {
+                    LoadCurrentTaskWorldSimulation();
+                }
+                else if (UseBackgroundSceneLoad)
                 {
                     if (!waitingForBackgroundOperation)
                     {
@@ -145,7 +165,19 @@ public class PhotoStudio : Viewport
 
             case Step.InstanceScene:
             {
-                if (UseBackgroundSceneInstance)
+                if (TaskUsesWorldSimulation)
+                {
+                    // Make sure the used simulation is visible
+                    simulationWorldRoots[previouslyUsedWorldSimulation!].Visible = true;
+
+                    // Remove the old scene if a scene type thing was last photographed
+                    loadedTaskScene = null;
+                    instancedScene?.QueueFree();
+                    instancedScene = null;
+
+                    currentTaskStep = Step.ApplySceneParameters;
+                }
+                else if (UseBackgroundSceneInstance)
                 {
                     if (!waitingForBackgroundOperation)
                     {
@@ -163,19 +195,43 @@ public class PhotoStudio : Viewport
 
             case Step.ApplySceneParameters:
             {
-                currentTask!.Photographable.ApplySceneParameters(instancedScene ??
-                    throw new Exception("scene was not instanced when expected"));
+                if (TaskUsesWorldSimulation)
+                {
+                    currentTask!.SimulationPhotographable!.SetupWorldEntities(previouslyUsedWorldSimulation!);
+                }
+                else
+                {
+                    // If a simulation is used, hide that
+                    if (previouslyUsedWorldSimulation != null)
+                    {
+                        simulationWorldRoots[previouslyUsedWorldSimulation].Visible = false;
+                        previouslyUsedWorldSimulation = null;
+                    }
+
+                    currentTask!.ScenePhotographable!.ApplySceneParameters(instancedScene ??
+                        throw new Exception("scene was not instanced when expected"));
+                }
+
                 currentTaskStep = Step.AttachScene;
                 break;
             }
 
             case Step.AttachScene:
             {
-                // Only need to swap scenes if the new image is of a different type of thing than what we had previously
-                if (!previousSceneWasCorrect)
+                if (TaskUsesWorldSimulation)
                 {
-                    renderedObjectHolder.FreeChildren();
-                    renderedObjectHolder.AddChild(instancedScene);
+                    // Run a step to start things happening with the simulation
+                    previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
+                }
+                else
+                {
+                    // Only need to swap scenes if the new image is of a different type of thing than what we had
+                    // previously
+                    if (!previousSceneWasCorrect)
+                    {
+                        renderedObjectHolder.FreeChildren();
+                        renderedObjectHolder.AddChild(instancedScene);
+                    }
                 }
 
                 currentTaskStep = Step.WaitSceneStabilize;
@@ -184,15 +240,46 @@ public class PhotoStudio : Viewport
 
             case Step.WaitSceneStabilize:
             {
-                // Need to wait one frame for the objects to initialize
-                currentTaskStep = Step.PositionCamera;
+                if (TaskUsesWorldSimulation)
+                {
+                    // Wait until simulation no longer has any pending operations
+                    if (previouslyUsedWorldSimulation!.HasSystemsWithPendingOperations() ||
+                        !currentTask!.SimulationPhotographable!.StateHasStabilized(previouslyUsedWorldSimulation))
+                    {
+                        previouslyUsedWorldSimulation!.ProcessLogic(SimulationWorldTimeAdvanceStep);
+                    }
+                    else
+                    {
+                        // Simulation ready to proceed
+                        currentTaskStep = Step.PositionCamera;
+                    }
+                }
+                else
+                {
+                    // Need to wait one frame for the objects to initialize
+                    currentTaskStep = Step.PositionCamera;
+                }
+
                 break;
             }
 
             case Step.PositionCamera:
             {
-                camera.Translation = new Vector3(0,
-                    currentTask!.Photographable.CalculatePhotographDistance(instancedScene!), 0);
+                if (TaskUsesWorldSimulation)
+                {
+                    // Now run the one step with logic frame updates as well in the simulation
+                    previouslyUsedWorldSimulation!.ProcessAll(SimulationWorldTimeAdvanceStep);
+
+                    camera.Translation = new Vector3(0,
+                        currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
+                            previouslyUsedWorldSimulation), 0);
+                }
+                else
+                {
+                    camera.Translation = new Vector3(0,
+                        currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!), 0);
+                }
+
                 currentTaskStep = Step.Render;
                 break;
             }
@@ -223,9 +310,18 @@ public class PhotoStudio : Viewport
                 currentTask!.OnFinished(texture, renderedImage);
                 currentTask = null;
 
-                currentTaskStep = Step.NoTask;
+                currentTaskStep = Step.Cleanup;
                 renderedImage = null;
 
+                break;
+            }
+
+            case Step.Cleanup:
+            {
+                // Cleanup used world simulation (if any)
+                previouslyUsedWorldSimulation?.DestroyAllEntities();
+
+                currentTaskStep = Step.NoTask;
                 break;
             }
 
@@ -245,15 +341,6 @@ public class PhotoStudio : Viewport
         tasks.Enqueue(task);
     }
 
-    /// <summary>
-    ///   Starts an image creation for a thing that can be photographed
-    /// </summary>
-    /// <param name="photographable">The object to create and start an <see cref="ImageTask"/> for</param>
-    public void SubmitTask(IPhotographable photographable)
-    {
-        tasks.Enqueue(new ImageTask(photographable));
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -262,7 +349,24 @@ public class PhotoStudio : Viewport
             {
                 CameraPath.Dispose();
                 RenderedObjectHolderPath.Dispose();
+                SimulationWorldsParentPath.Dispose();
             }
+
+            foreach (var entry in worldSimulations)
+            {
+                entry.Value.Dispose();
+            }
+
+            worldSimulations.Clear();
+
+            foreach (var entry in simulationWorldRoots)
+            {
+                entry.Value.QueueFree();
+            }
+
+            simulationWorldRoots.Clear();
+
+            previouslyUsedWorldSimulation = null;
         }
 
         base.Dispose(disposing);
@@ -270,7 +374,7 @@ public class PhotoStudio : Viewport
 
     private void LoadCurrentTaskScene()
     {
-        var wantedScenePath = currentTask!.Photographable.SceneToPhotographPath;
+        var wantedScenePath = currentTask!.ScenePhotographable!.SceneToPhotographPath;
 
         if (wantedScenePath == loadedTaskScene)
         {
@@ -294,5 +398,49 @@ public class PhotoStudio : Viewport
 
         waitingForBackgroundOperation = false;
         currentTaskStep = Step.ApplySceneParameters;
+    }
+
+    private void LoadCurrentTaskWorldSimulation()
+    {
+        var nextSimulation =
+            GetOrCreateWorldSimulationForType(currentTask!.SimulationPhotographable!.SimulationToPhotograph);
+
+        if (previouslyUsedWorldSimulation != nextSimulation && previouslyUsedWorldSimulation != null)
+        {
+            // Switching simulations, hide the previous one
+            simulationWorldRoots[previouslyUsedWorldSimulation].Visible = false;
+        }
+
+        previouslyUsedWorldSimulation = nextSimulation;
+        currentTaskStep = Step.InstanceScene;
+    }
+
+    private IWorldSimulation GetOrCreateWorldSimulationForType(ISimulationPhotographable.SimulationType type)
+    {
+        if (worldSimulations.TryGetValue(type, out var existing))
+            return existing;
+
+        switch (type)
+        {
+            case ISimulationPhotographable.SimulationType.MicrobeGraphics:
+            {
+                var simulation = new MicrobeVisualOnlySimulation();
+                simulation.Init(CreateNewRoot(simulation));
+
+                return worldSimulations[type] = simulation;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
+
+    private Spatial CreateNewRoot(IWorldSimulation worldSimulation)
+    {
+        var node = new Spatial();
+        simulationWorldsParent.AddChild(node);
+        simulationWorldRoots[worldSimulation] = node;
+
+        return node;
     }
 }

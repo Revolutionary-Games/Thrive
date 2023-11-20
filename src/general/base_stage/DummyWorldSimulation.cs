@@ -63,6 +63,21 @@ public class DummyWorldSimulation : IWorldSimulation
     {
     }
 
+    public bool ProcessAll(float delta)
+    {
+        return true;
+    }
+
+    public bool ProcessLogic(float delta)
+    {
+        return true;
+    }
+
+    public bool HasSystemsWithPendingOperations()
+    {
+        return false;
+    }
+
     public void Dispose()
     {
         Dispose(true);

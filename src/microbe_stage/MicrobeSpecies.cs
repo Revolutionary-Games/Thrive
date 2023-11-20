@@ -13,7 +13,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties, IPhotographable
+public class MicrobeSpecies : Species, ICellProperties, ISimulationPhotographable
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -84,7 +84,8 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public bool CanEngulf => !MembraneType.CellWall;
 
     [JsonIgnore]
-    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
     public override void OnEdited()
     {
@@ -166,25 +167,21 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MembraneRigidity = casted.MembraneRigidity;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        throw new NotImplementedException("need to reimplement photographing cells");
-
-        // var microbe = (Microbe)instancedScene;
-        // microbe.IsForPreviewOnly = true;
-        //
-        // // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        // microbe._Ready();
-        //
-        // microbe.ApplySpecies(this);
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        throw new NotImplementedException();
+        ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationMicrobe(this);
+    }
 
-        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        // This is stabilized as long as the default no background operations check passes
+        // If this is changed CellType also needs changes
+        return true;
     }
 
     public override object Clone()

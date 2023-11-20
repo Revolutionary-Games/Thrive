@@ -257,6 +257,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem.ClearSpawnCoordinates();
     }
 
+    public override bool HasSystemsWithPendingOperations()
+    {
+        return microbeVisualsSystem.HasPendingOperations();
+    }
+
     public override void FreeNodeResources()
     {
         base.FreeNodeResources();

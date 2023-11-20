@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
-public class CellType : ICellProperties, IPhotographable, ICloneable
+public class CellType : ICellProperties, ISimulationPhotographable, ICloneable
 {
     [JsonConstructor]
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
@@ -56,7 +56,8 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public string FormattedName => TypeName;
 
     [JsonIgnore]
-    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
     public void RepositionToOrigin()
     {
@@ -92,18 +93,20 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         return false;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
-            .ApplySceneParameters(instancedScene);
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this).SetupWorldEntities(
+            worldSimulation);
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        throw new NotImplementedException();
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+    }
 
-        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return true;
     }
 
     public object Clone()
