@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.Command;
@@ -45,11 +44,14 @@
 
             if (control.State == MicrobeState.Unbinding)
             {
-                throw new NotImplementedException();
-            }
+                // Just stop movement while doing unbinding (other systems and microbe input handle the rest)
+                control.MovementDirection = Vector3.Zero;
 
-            /*TODO: else */
-            if (control.State == MicrobeState.Binding)
+                ref var position = ref entity.Get<WorldPosition>();
+
+                control.LookAtPoint = position.Position + position.Rotation.Xform(Vector3.Forward);
+            }
+            else if (control.State == MicrobeState.Binding)
             {
                 HandleBindingMode(ref control, entity, delta);
             }

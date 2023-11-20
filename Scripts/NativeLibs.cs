@@ -820,8 +820,7 @@ public class NativeLibs
                         platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
                 {
                     ColourConsole.WriteErrorLine(
-                        "Symbol extraction failed. Are breakpad tools installed at the expected path? " +
-                        "And is the 'strip' tool available in PATH?");
+                        "Symbol extraction failed. Are breakpad tools installed at the expected path?");
 
                     return false;
                 }
@@ -1191,7 +1190,7 @@ public class NativeLibs
 
         var downloadUrl = content;
 
-        ColourConsole.WriteInfoLine($"Downloading {downloadUrl}");
+        ColourConsole.WriteInfoLine($"Downloading {library} for {platform} version: {version}");
 
         // Download the file without sending the authentication headers used for the DevCenter
         using var normalClient = new HttpClient();

@@ -52,6 +52,29 @@ public class PlayerInspectInfo : Node
 
         validHits = PhysicalWorld.CastRayGetAllHits(from, offsetToEnd, hits);
 
+        // Process hits to real microbes (as in colonies the body hit is the colony leader always)
+        for (int i = 0; i < validHits; ++i)
+        {
+            var originalHitEntity = hits[i].BodyEntity;
+            if (originalHitEntity.Has<MicrobeColony>() && originalHitEntity.Has<PhysicsShapeHolder>())
+            {
+                var shape = originalHitEntity.Get<PhysicsShapeHolder>().Shape;
+
+                if (shape == null)
+                {
+                    GD.PrintErr("Ray hit entity with unknown shape");
+                    continue;
+                }
+
+                ref var colony = ref originalHitEntity.Get<MicrobeColony>();
+                if (colony.GetMicrobeFromSubShape(ref originalHitEntity.Get<MicrobePhysicsExtraData>(),
+                        shape.GetSubShapeIndexFromData(hits[i].SubShapeData), out var actualMicrobe))
+                {
+                    hits[i] = new PhysicsRayWithUserData(hits[i], actualMicrobe);
+                }
+            }
+        }
+
         previousHits.RemoveWhere(m =>
         {
             if (hits.Take(validHits).All(h => h.BodyEntity != m))
@@ -85,7 +108,8 @@ public class PlayerInspectInfo : Node
     }
 
     /// <summary>
-    ///   Returns the raycast data of the given raycast hit entity.
+    ///   Returns the raycast data of the given raycast hit entity. Note that the ray data doesn't have sub-shape index
+    ///   resolved. Except for microbe colonies those are already processed at this point.
     /// </summary>
     /// <param name="entity">Entity to get the data for</param>
     /// <param name="rayData">Where to put the found ray data, initialized to default if not found</param>
