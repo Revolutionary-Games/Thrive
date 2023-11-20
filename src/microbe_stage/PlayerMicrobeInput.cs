@@ -63,7 +63,7 @@ public class PlayerMicrobeInput : NodeWithInput
             {
                 // It's probably fine to not update the tutorial state here with events as this state doesn't last
                 // that long and the player needs a pretty long time to get so far in the game as to get here
-                control.MovementDirection = Vector3.Zero;
+                // Unbinding mode movement is canceled by the binding system now
                 return;
             }
 
@@ -224,28 +224,17 @@ public class PlayerMicrobeInput : NodeWithInput
         if (target == default || !target.IsAlive)
             return false;
 
-        // This checks for the microbe species member as all cell colonies are merged to have a single physics body
-        // so this always hits the colony lead cell
         if (!target.IsAlive || !target.Has<MicrobeSpeciesMember>())
             return false;
 
         // If didn't hit a cell colony, can't do anything
-        if (!target.Has<MicrobeColony>())
+        if (!target.Has<MicrobeColony>() && !target.Has<MicrobeColonyMember>())
             return false;
 
-        if (!stage.HoverInfo.GetRaycastData(target, out var raycastData))
-            return false;
+        RemoveCellFromColony(target);
 
-        ref var colony = ref target.Get<MicrobeColony>();
-
-        if (!colony.GetMicrobeFromSubShape(ref target.Get<MicrobePhysicsExtraData>(), raycastData.SubShapeData,
-                out var actualMicrobe))
-        {
-            return false;
-        }
-
-        RemoveCellFromColony(actualMicrobe);
-
+        // Removing a colony member should reset the microbe mode so this text should be hidden anyway soon, but
+        // apparently we wanted extra guarantee here
         stage.HUD.HintText = string.Empty;
         return true;
     }

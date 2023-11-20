@@ -41,7 +41,7 @@ public struct PhysicsCollision
     /// <summary>
     ///   Physics sub-shape data for this collision. Unknown (uint.Max) when used in a collision filter. When used as
     ///   a callback and sub-shape resolving is on this is resolved to the sub-shape index. If the native module
-    ///   doesn't use this then <see cref="PhysicsShape.GetSubShapeFromIndex"/> needs to be used from C# side.
+    ///   doesn't use this then <see cref="PhysicsShape.GetSubShapeIndexFromData"/> needs to be used from C# side.
     /// </summary>
     public readonly uint FirstSubShapeData;
 

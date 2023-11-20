@@ -204,7 +204,7 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
     }
 
-    public uint GetSubShapeFromIndex(uint subShapeData)
+    public uint GetSubShapeIndexFromData(uint subShapeData)
     {
         return NativeMethods.ShapeGetSubShapeFromIndex(AccessShapeInternal(), subShapeData);
     }
