@@ -491,6 +491,9 @@
 
             colony.ColonyMembers = newMembers;
 
+            if (!removedMemberIsLeader)
+                QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
+
             OnColonyMemberRemoved(removedMember, removedMemberIsLeader);
 
             // Remove colony members that depend on the removed member
@@ -507,6 +510,9 @@
                 // This is this way around to support recursive calls also adding things here
                 DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
 
+                // This might stackoverflow if we have absolute hugely nested cell colonies but there would probably
+                // need to be colonies with thousands of cells, which would already choke the game so that isn't much
+                // of a concern
                 if (!colony.RemoveFromColony(colonyEntity, next, recorder))
                 {
                     // Colony is entirely disbanded, doesn't make sense to continue removing things
@@ -515,12 +521,15 @@
                 }
             }
 
+            // Check against a logic error. All colony members ultimately depend on the leader so the above early
+            // exit must trigger uf the colony leader is removed
+            if (removedMember == colony.Leader)
+                throw new Exception("Colony should have been fully disbanded when leader was removed");
+
             // Remove structure data regarding the removed member
             colony.ColonyStructure.Remove(removedMember);
 
             colony.MarkMembersChanged();
-
-            QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
 
             return true;
         }
