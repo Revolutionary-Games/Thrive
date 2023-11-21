@@ -244,7 +244,7 @@ void PhysicalWorld::InitPhysicsWorld()
 // ------------------------------------ //
 bool PhysicalWorld::Process(float delta)
 {
-    // TODO: update thread count if changed (we won't need this when we have the custom job system done)
+    nextStepIsFresh = true;
 
     elapsedSinceUpdate += delta;
 
@@ -1001,6 +1001,8 @@ void PhysicalWorld::StepPhysics(float time)
 
     const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobExecutor);
 
+    nextStepIsFresh = false;
+
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
     switch (result)
@@ -1032,12 +1034,15 @@ void PhysicalWorld::ReportBodyWithActiveCollisions(PhysicsBody& body)
 
 void PhysicalWorld::PerformPhysicsStepOperations(float delta)
 {
-    pimpl->IncrementStepCounter();
+    // Only fresh steps increment the counter to that collision data can be preserved
+    if (nextStepIsFresh)
+        pimpl->IncrementStepCounter();
 
     // Collision setup
-    contactListener->ReportStepNumber(pimpl->stepCounter);
+    contactListener->ReportStepNumber(pimpl->stepCounter, !nextStepIsFresh);
 
-    pimpl->HandleExpiringBodyCollisions();
+    if (nextStepIsFresh)
+        pimpl->HandleExpiringBodyCollisions();
 
     // Apply per-step physics body state
 

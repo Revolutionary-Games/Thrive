@@ -267,6 +267,12 @@ private:
 
     int simulationsBetweenBroadPhaseOptimization = 67;
 
+    /// When running multiple physics steps with a single call to the simulation update methods this is used to not
+    /// discard collision recording information after the first step allowing application logic to read it
+    bool nextStepIsFresh = true;
+
+    std::atomic<bool> runningBackgroundSimulation{false};
+
     // Settings that only apply when creating a new physics system
 
     const unsigned int maxBodies = 10240;
