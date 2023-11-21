@@ -213,6 +213,7 @@ void TaskSystem::QueuedTask::ReleaseCurrentData()
     {
         case TaskType::StdFunction:
             Function.~function<void()>();
+            break;
         case TaskType::JoltJob:
             Jolt->Release();
             Jolt = nullptr;
