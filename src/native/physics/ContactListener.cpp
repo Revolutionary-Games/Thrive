@@ -22,6 +22,13 @@ ContactListener::ContactListener()
 }
 
 // ------------------------------------ //
+FORCE_INLINE float PreprocessPenetrationDepth(float penetration)
+{
+    // Seems like penetration can be negative (maybe when movement direction for collision resolving is negative), we
+    // always just want positive penetration for penetration amount calculations
+    return std::abs(penetration);
+}
+
 inline void PrepareBasicCollisionInfo(PhysicsCollision& collision, const PhysicsBody* body1, const PhysicsBody* body2)
 {
     collision.FirstBody = body1;
@@ -63,7 +70,6 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
 inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
     const PhysicsBody* body2, const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
 #endif
-
 {
     if (swapOrder)
     {
@@ -98,7 +104,7 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
     }
 #endif
 
-    collision.PenetrationAmount = manifold.mPenetrationDepth;
+    collision.PenetrationAmount = PreprocessPenetrationDepth(manifold.mPenetrationDepth);
 
     collision.JustStarted = justStarted;
 }
