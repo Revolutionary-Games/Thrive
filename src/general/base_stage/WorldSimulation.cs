@@ -446,6 +446,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///   Checks that previously started (on previous update) physics runs are complete before running this update.
     /// </summary>
     protected abstract void WaitForStartedPhysicsRun();
+
     protected abstract void OnStartPhysicsRunIfTime(float delta);
 
     protected abstract void OnProcessFixedLogic(float delta);
