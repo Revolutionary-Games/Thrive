@@ -9,6 +9,7 @@ public static class NativeInterop
 {
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
+    private static bool nativeLoadSucceeded;
 
     public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
 
@@ -88,6 +89,7 @@ public static class NativeInterop
         }
 
         GD.Print("Loaded native Thrive library version ", version);
+        nativeLoadSucceeded = true;
 
         // Enable debug logging if this is being debugged
 #if DEBUG
@@ -100,6 +102,14 @@ public static class NativeInterop
     /// </summary>
     public static void Shutdown()
     {
+        if (!nativeLoadSucceeded)
+        {
+            GD.Print("Skipping native library shutdown as it was not fully loaded");
+            return;
+        }
+
+        nativeLoadSucceeded = false;
+
         NativeMethods.DisableDebugDrawerCallbacks();
         NativeMethods.ShutdownThriveLibrary();
     }
