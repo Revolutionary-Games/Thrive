@@ -44,7 +44,57 @@ private:
         JoltJob,
     };
 
-    struct QueuedTask;
+    struct QuitSentinel
+    {
+    };
+
+    struct QueuedTask
+    {
+    public:
+    public:
+        explicit QueuedTask(SimpleCallable callable);
+
+        explicit QueuedTask(MethodAndInstance callable);
+
+        explicit QueuedTask(std::function<void()> callable);
+
+        explicit QueuedTask(std::function<void()>&& callable);
+
+        explicit QueuedTask(Job* callable);
+
+        explicit QueuedTask(QuitSentinel quit);
+
+        QueuedTask(const QueuedTask& other) = delete;
+
+        QueuedTask(QueuedTask&& other) noexcept;
+
+        inline ~QueuedTask()
+        {
+            ReleaseCurrentData();
+        }
+
+        void Invoke() const;
+
+        QueuedTask& operator=(QueuedTask&& other) noexcept;
+
+        QueuedTask& operator=(const QueuedTask& other) = delete;
+
+        union
+        {
+            SimpleCallable Simple;
+
+            MethodAndInstance Instance;
+
+            std::function<void()> Function;
+
+            Job* Jolt;
+        };
+
+        TaskType Type;
+
+    private:
+        void ReleaseCurrentData();
+    };
 
 private:
     TaskSystem();
@@ -76,7 +126,7 @@ public:
 
     void QueueJob(Job* inJob) override;
 
-    void QueueJobs(Job** inJobs, uint inNumJobs) override;
+    void QueueJobs(Job** inJobs, uint32_t inNumJobs) override;
 
     void SetThreads(int count) noexcept;
 

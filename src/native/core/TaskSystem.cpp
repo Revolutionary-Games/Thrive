@@ -7,7 +7,11 @@
 #include "Time.hpp"
 
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
 #include <debugapi.h>
+#include <processthreadsapi.h>
+
+#include "windows.h"
 #else
 #include <pthread.h>
 #endif
@@ -28,7 +32,7 @@ std::string GenerateThreadName(int id)
 #ifdef _WIN32
 
 // Thread rename trick on Windows
-const DWORD MS_VC_EXCEPTION = 0x406D1388;
+constexpr DWORD MS_VC_EXCEPTION = 0x406D1388;
 
 #pragma pack(push, 8)
 
@@ -52,6 +56,9 @@ void SetThreadNameImpl(DWORD threadId, const std::string& name)
     info.dwThreadID = threadId;
     info.dwFlags = 0;
 
+    // TODO: implement when cross compiled
+#ifdef _MSC_VER
+
     __try
     {
         RaiseException(MS_VC_EXCEPTION, 0, sizeof(info) / sizeof(ULONG_PTR), reinterpret_cast<ULONG_PTR*>(&info));
@@ -59,17 +66,30 @@ void SetThreadNameImpl(DWORD threadId, const std::string& name)
     __except (EXCEPTION_EXECUTE_HANDLER)
     {
     }
+#else
+    UNUSED(MS_VC_EXCEPTION);
+#endif
 }
 
 void SetThreadName(int id, std::thread& thread)
 {
     // Skip this if there is no debugger (as this uses an exception invoke way to perform the operation)
     if (!IsDebuggerPresent())
+    {
         return;
+    }
 
-    const auto nativehandle = GetThreadId(thread.native_handle());
+    const auto name = GenerateThreadName(id);
 
-    SetThreadNameImpl(nativehandle, name);
+    const auto threadId = GetThreadId(thread.native_handle());
+
+    // This new API is not available when cross compiled
+#ifdef _MSC_VER
+    // TODO: test and enable this
+    // SetThreadDescriptionA(threadId, name.c_str());
+#endif
+
+    SetThreadNameImpl(threadId, name);
 }
 
 void SetThreadNameCurrent(int id)
@@ -109,175 +129,143 @@ void SetThreadNameCurrent(int id)
 
 #endif
 
-struct QuitSentinel
+TaskSystem::QueuedTask::QueuedTask(SimpleCallable callable)
 {
-};
-
-struct TaskSystem::QueuedTask
-{
-public:
-    explicit QueuedTask(SimpleCallable callable)
-    {
-        Type = TaskType::Simple;
-        Simple = callable;
-    }
+    Type = TaskType::Simple;
+    Simple = callable;
+}
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
 
-    explicit QueuedTask(MethodAndInstance callable)
-    {
-        Type = TaskType::Instance;
-        Instance = callable;
-    }
+TaskSystem::QueuedTask::QueuedTask(MethodAndInstance callable)
+{
+    Type = TaskType::Instance;
+    Instance = callable;
+}
 
-    explicit QueuedTask(std::function<void()> callable)
-    {
-        Type = TaskType::StdFunction;
-        new (&Function) std::function<void()>(std::move(callable));
-    }
+TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable)
+{
+    Type = TaskType::StdFunction;
+    new (&Function) std::function<void()>(std::move(callable));
+}
 
-    explicit QueuedTask(std::function<void()>&& callable)
-    {
-        Type = TaskType::StdFunction;
-        new (&Function) std::function<void()>(std::move(callable));
-    }
+TaskSystem::QueuedTask::QueuedTask(std::function<void()>&& callable)
+{
+    Type = TaskType::StdFunction;
+    new (&Function) std::function<void()>(std::move(callable));
+}
 
-    explicit QueuedTask(Job* callable)
-    {
-        Type = TaskType::JoltJob;
-        callable->AddRef();
-        Jolt = callable;
-    }
+TaskSystem::QueuedTask::QueuedTask(Job* callable)
+{
+    Type = TaskType::JoltJob;
+    callable->AddRef();
+    Jolt = callable;
+}
 
-    explicit QueuedTask(QuitSentinel quit)
-    {
-        UNUSED(quit);
-        Type = TaskType::Quit;
-    }
+TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit)
+{
+    UNUSED(quit);
+    Type = TaskType::Quit;
+}
 
 #pragma clang diagnostic pop
 
-    QueuedTask(const QueuedTask& other) = delete;
+TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept
+{
+    Type = other.Type;
 
-    QueuedTask(QueuedTask&& other) noexcept
+    switch (other.Type)
     {
-        Type = other.Type;
-
-        switch (other.Type)
-        {
-            case TaskType::Cleared:
-            case TaskType::Quit:
-                break;
-            case TaskType::Simple:
-                Simple = other.Simple;
-                break;
-            case TaskType::Instance:
-                Instance = other.Instance;
-                break;
-            case TaskType::StdFunction:
-                new (&Function) std::function<void()>(std::move(other.Function));
-                break;
-            case TaskType::JoltJob:
-                other.Type = TaskType::Cleared;
-                Jolt = other.Jolt;
-                break;
-        }
+        case TaskType::Cleared:
+        case TaskType::Quit:
+            break;
+        case TaskType::Simple:
+            Simple = other.Simple;
+            break;
+        case TaskType::Instance:
+            Instance = other.Instance;
+            break;
+        case TaskType::StdFunction:
+            new (&Function) std::function<void()>(std::move(other.Function));
+            break;
+        case TaskType::JoltJob:
+            other.Type = TaskType::Cleared;
+            Jolt = other.Jolt;
+            break;
     }
+}
 
-    ~QueuedTask()
+void TaskSystem::QueuedTask::Invoke() const
+{
+    switch (Type)
+    {
+        case TaskType::Cleared:
+            return;
+        case TaskType::Quit:
+            LOG_ERROR("Can't execute quit command");
+            break;
+        case TaskType::Simple:
+            Simple();
+            break;
+        case TaskType::Instance:
+            Instance.Method(Instance.Instance);
+            break;
+        case TaskType::StdFunction:
+            Function();
+            break;
+        case TaskType::JoltJob:
+            // TODO: handle the return value?
+            Jolt->Execute();
+            break;
+    }
+}
+
+TaskSystem::QueuedTask& TaskSystem::QueuedTask::operator=(QueuedTask&& other) noexcept
+{
+    if (other.Type != Type)
     {
         ReleaseCurrentData();
+        Type = other.Type;
     }
 
-    void Invoke() const
+    switch (other.Type)
     {
-        switch (Type)
-        {
-            case TaskType::Cleared:
-                return;
-            case TaskType::Quit:
-                LOG_ERROR("Can't execute quit command");
-                break;
-            case TaskType::Simple:
-                Simple();
-                break;
-            case TaskType::Instance:
-                Instance.Method(Instance.Instance);
-                break;
-            case TaskType::StdFunction:
-                Function();
-                break;
-            case TaskType::JoltJob:
-                // TODO: handle the return value?
-                Jolt->Execute();
-                break;
-        }
+        case TaskType::Cleared:
+        case TaskType::Quit:
+            break;
+        case TaskType::Simple:
+            Simple = other.Simple;
+            break;
+        case TaskType::Instance:
+            Instance = other.Instance;
+            break;
+        case TaskType::JoltJob:
+            other.Type = TaskType::Cleared;
+            Jolt = other.Jolt;
+            break;
+        case TaskType::StdFunction:
+            Function = std::move(other.Function);
+            break;
     }
 
-    QueuedTask& operator=(QueuedTask&& other) noexcept
+    return *this;
+}
+
+void TaskSystem::QueuedTask::ReleaseCurrentData()
+{
+    switch (Type)
     {
-        if (other.Type != Type)
-        {
-            ReleaseCurrentData();
-            Type = other.Type;
-        }
-
-        switch (other.Type)
-        {
-            case TaskType::Cleared:
-            case TaskType::Quit:
-                break;
-            case TaskType::Simple:
-                Simple = other.Simple;
-                break;
-            case TaskType::Instance:
-                Instance = other.Instance;
-                break;
-            case TaskType::JoltJob:
-                other.Type = TaskType::Cleared;
-                Jolt = other.Jolt;
-                break;
-            case TaskType::StdFunction:
-                Function = std::move(other.Function);
-                break;
-        }
-
-        return *this;
+        case TaskType::StdFunction:
+            Function.~function<void()>();
+        case TaskType::JoltJob:
+            Jolt->Release();
+            Jolt = nullptr;
+            break;
+        default:
+            break;
     }
-
-    QueuedTask& operator=(const QueuedTask& other) = delete;
-
-    union
-    {
-        SimpleCallable Simple;
-
-        MethodAndInstance Instance;
-
-        std::function<void()> Function;
-
-        Job* Jolt;
-    };
-
-    TaskType Type;
-
-private:
-    /// Properly releases the union members that require releasing
-    void ReleaseCurrentData()
-    {
-        switch (Type)
-        {
-            case TaskType::StdFunction:
-                Function.~function<void()>();
-            case TaskType::JoltJob:
-                Jolt->Release();
-                Jolt = nullptr;
-                break;
-            default:
-                break;
-        }
-    }
-};
+}
 
 TaskSystem::TaskSystem() : queueLock(queueMutex)
 {
@@ -399,7 +387,7 @@ void TaskSystem::QueueJob(Job* inJob)
     queueNotify.notify_one();
 }
 
-void TaskSystem::QueueJobs(Job** inJobs, uint inNumJobs)
+void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
 {
     std::unique_lock<std::mutex> lock(queueMutex);
 
