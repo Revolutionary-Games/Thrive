@@ -53,7 +53,10 @@ public:
     /// Note that WaitForPhysicsToCompete must be called after this to ensure that the physics has finished
     void ProcessInBackground(float delta);
 
-    void WaitForPhysicsToComplete();
+    /// \brief Waits for ProcessInBackground started run to finish. This must be called before other world operations
+    /// are safe to use again
+    /// \returns True when a physics run was performed, False if not enough time had passed
+    bool WaitForPhysicsToComplete();
 
     // ------------------------------------ //
     // Bodies
@@ -207,6 +210,9 @@ private:
     /// \brief Creates the physics system
     void InitPhysicsWorld();
 
+    /// \brief Steps away all pending time. Needs to be ran in a background thread
+    void StepAllPhysicsStepsInBackground();
+
     void StepPhysics(float time);
 
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
@@ -240,6 +246,8 @@ private:
     int simulationsToNextOptimization = 1;
     float latestPhysicsTime = 0;
     float averagePhysicsTime = 0;
+
+    float backgroundSimulatedTime = 0;
 
     /// \brief Debug draw level (0 is disabled)
     ///

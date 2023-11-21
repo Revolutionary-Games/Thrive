@@ -138,23 +138,17 @@ TaskSystem::QueuedTask::QueuedTask(SimpleCallable callable)
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
 
-TaskSystem::QueuedTask::QueuedTask(MethodAndInstance callable)
-{
-    Type = TaskType::Instance;
-    Instance = callable;
-}
-
 TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable)
 {
     Type = TaskType::StdFunction;
     new (&Function) std::function<void()>(std::move(callable));
 }
 
-TaskSystem::QueuedTask::QueuedTask(std::function<void()>&& callable)
+/*TaskSystem::QueuedTask::QueuedTask(std::function<void()>&& callable)
 {
     Type = TaskType::StdFunction;
     new (&Function) std::function<void()>(std::move(callable));
-}
+}*/
 
 TaskSystem::QueuedTask::QueuedTask(Job* callable)
 {
@@ -175,25 +169,7 @@ TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept
 {
     Type = other.Type;
 
-    switch (other.Type)
-    {
-        case TaskType::Cleared:
-        case TaskType::Quit:
-            break;
-        case TaskType::Simple:
-            Simple = other.Simple;
-            break;
-        case TaskType::Instance:
-            Instance = other.Instance;
-            break;
-        case TaskType::StdFunction:
-            new (&Function) std::function<void()>(std::move(other.Function));
-            break;
-        case TaskType::JoltJob:
-            other.Type = TaskType::Cleared;
-            Jolt = other.Jolt;
-            break;
-    }
+    MoveDataFromOther(std::move(other));
 }
 
 void TaskSystem::QueuedTask::Invoke() const
@@ -207,9 +183,6 @@ void TaskSystem::QueuedTask::Invoke() const
             break;
         case TaskType::Simple:
             Simple();
-            break;
-        case TaskType::Instance:
-            Instance.Method(Instance.Instance);
             break;
         case TaskType::StdFunction:
             Function();
@@ -229,25 +202,7 @@ TaskSystem::QueuedTask& TaskSystem::QueuedTask::operator=(QueuedTask&& other) no
         Type = other.Type;
     }
 
-    switch (other.Type)
-    {
-        case TaskType::Cleared:
-        case TaskType::Quit:
-            break;
-        case TaskType::Simple:
-            Simple = other.Simple;
-            break;
-        case TaskType::Instance:
-            Instance = other.Instance;
-            break;
-        case TaskType::JoltJob:
-            other.Type = TaskType::Cleared;
-            Jolt = other.Jolt;
-            break;
-        case TaskType::StdFunction:
-            Function = std::move(other.Function);
-            break;
-    }
+    MoveDataFromOther(std::move(other));
 
     return *this;
 }
@@ -263,6 +218,27 @@ void TaskSystem::QueuedTask::ReleaseCurrentData()
             Jolt = nullptr;
             break;
         default:
+            break;
+    }
+}
+
+void TaskSystem::QueuedTask::MoveDataFromOther(QueuedTask&& other)
+{
+    switch (other.Type)
+    {
+        case TaskType::Cleared:
+        case TaskType::Quit:
+            break;
+        case TaskType::Simple:
+            Simple = other.Simple;
+            break;
+        case TaskType::StdFunction:
+            new (&Function) std::function<void()>(std::move(other.Function));
+            break;
+        case TaskType::JoltJob:
+            // Steal the job from the other one
+            other.Type = TaskType::Cleared;
+            Jolt = other.Jolt;
             break;
     }
 }
@@ -340,11 +316,31 @@ void TaskSystem::QueueTask(TaskSystem::SimpleCallable callable)
     queueNotify.notify_one();
 }
 
+void TaskSystem::QueueTask(QueuedTask&& task)
+{
+    queueLock.lock();
+
+    taskQueue.emplace(std::move(task));
+
+    queueLock.unlock();
+
+    queueNotify.notify_one();
+}
+
 void TaskSystem::QueueTaskFromBackgroundThread(TaskSystem::SimpleCallable callable)
 {
     std::lock_guard<std::mutex> lock(queueMutex);
 
     taskQueue.emplace(callable);
+
+    queueNotify.notify_one();
+}
+
+void TaskSystem::QueueTaskFromBackgroundThread(QueuedTask&& task)
+{
+    std::lock_guard<std::mutex> lock(queueMutex);
+
+    taskQueue.emplace(std::move(task));
 
     queueNotify.notify_one();
 }

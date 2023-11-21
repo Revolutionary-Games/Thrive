@@ -44,6 +44,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta);
+    [[maybe_unused]] THRIVE_NATIVE_API bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld);
+
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBodyWithAxisLock(

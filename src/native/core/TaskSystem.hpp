@@ -20,18 +20,6 @@ class TaskSystem : public JPH::JobSystemWithBarrier,
 {
 public:
     using SimpleCallable = void (*)();
-    using InstanceMethod = void (*)(void* instance);
-
-    struct MethodAndInstance
-    {
-    public:
-        MethodAndInstance(InstanceMethod method, void* instance) : Method(method), Instance(instance)
-        {
-        }
-
-        InstanceMethod Method;
-        void* Instance;
-    };
 
 private:
     enum class TaskType : uint8_t
@@ -39,7 +27,6 @@ private:
         Cleared = 0,
         Quit,
         Simple,
-        Instance,
         StdFunction,
         JoltJob,
     };
@@ -54,11 +41,9 @@ private:
     public:
         explicit QueuedTask(SimpleCallable callable);
 
-        explicit QueuedTask(MethodAndInstance callable);
-
         explicit QueuedTask(std::function<void()> callable);
 
-        explicit QueuedTask(std::function<void()>&& callable);
+        // explicit QueuedTask(std::function<void()>&& callable);
 
         explicit QueuedTask(Job* callable);
 
@@ -83,8 +68,6 @@ private:
         {
             SimpleCallable Simple;
 
-            MethodAndInstance Instance;
-
             std::function<void()> Function;
 
             Job* Jolt;
@@ -94,6 +77,7 @@ private:
 
     private:
         void ReleaseCurrentData();
+        void MoveDataFromOther(QueuedTask&& other);
     };
 
 private:
@@ -114,8 +98,22 @@ public:
     /// \brief Enqueues a new task. Can only be called from the main thread.
     void QueueTask(SimpleCallable callable);
 
+    void QueueTask(QueuedTask&& task);
+
+    void QueueTask(std::function<void()> callable)
+    {
+        QueueTask(QueuedTask(std::move(callable)));
+    }
+
     /// \brief Variant of queue that can be called from any thread
     void QueueTaskFromBackgroundThread(SimpleCallable callable);
+
+    void QueueTaskFromBackgroundThread(QueuedTask&& task);
+
+    void QueueTaskFromBackgroundThread(std::function<void()>&& callable)
+    {
+        QueueTaskFromBackgroundThread(QueuedTask(std::move(callable)));
+    }
 
     // Jolt task interface
 

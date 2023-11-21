@@ -210,6 +210,15 @@ PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
 
 PhysicalWorld::~PhysicalWorld()
 {
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("World is being destroyed while a background operation is in progress");
+        while (runningBackgroundSimulation)
+        {
+            HYPER_THREAD_YIELD;
+        }
+    }
+
     if (bodyCount != 0)
     {
         LOG_ERROR(
@@ -267,9 +276,51 @@ bool PhysicalWorld::Process(float delta)
     if (!simulatedPhysics)
         return false;
 
-    // TODO: Trigger stuff from the collision detection (but maybe some stuff needs to trigger for each step?)
-
     DrawPhysics(simulatedTime);
+
+    return true;
+}
+
+void PhysicalWorld::ProcessInBackground(float delta)
+{
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("Trying to start another background physics run while previous wasn't waited for");
+        return;
+    }
+
+    nextStepIsFresh = true;
+    backgroundSimulatedTime = 0;
+
+    elapsedSinceUpdate += delta;
+
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    if (elapsedSinceUpdate < singlePhysicsFrame)
+    {
+        // We can just early exit if there's nothing to do
+        return;
+    }
+
+    runningBackgroundSimulation = true;
+
+    TaskSystem::Get().QueueTask([&]() { StepAllPhysicsStepsInBackground(); });
+}
+
+bool PhysicalWorld::WaitForPhysicsToComplete()
+{
+    // For now this never sleep as it is assumed the physics should be done by the time the main thread gets here
+    // or very close to done
+    while (runningBackgroundSimulation)
+    {
+        HYPER_THREAD_YIELD;
+    }
+
+    if (nextStepIsFresh)
+        return false;
+
+    // Draw physics only here at the end to ensure this happens on the main thread
+    DrawPhysics(backgroundSimulatedTime);
 
     return true;
 }
@@ -962,6 +1013,19 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
     }
 
     return true;
+}
+
+// ------------------------------------ //
+void PhysicalWorld::StepAllPhysicsStepsInBackground()
+{
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    while (elapsedSinceUpdate > singlePhysicsFrame)
+    {
+        elapsedSinceUpdate -= singlePhysicsFrame;
+        backgroundSimulatedTime += singlePhysicsFrame;
+        StepPhysics(singlePhysicsFrame);
+    }
 }
 
 // ------------------------------------ //

@@ -115,6 +115,16 @@ bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta)
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->Process(delta);
 }
 
+void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->ProcessInBackground(delta);
+}
+
+bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->WaitForPhysicsToComplete();
+}
+
 PhysicsBody* PhysicalWorldCreateMovingBody(
     PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, bool addToWorld)
 {
