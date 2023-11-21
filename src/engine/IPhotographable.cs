@@ -1,9 +1,7 @@
-﻿using Godot;
-
-public interface IPhotographable
+﻿/// <summary>
+///   Base photographable type for things that can be photographed. See <see cref="IScenePhotographable"/> for example.
+/// </summary>
+public interface IPhotographable<T>
 {
-    public string SceneToPhotographPath { get; }
-
-    public void ApplySceneParameters(Spatial instancedScene);
-    public float CalculatePhotographDistance(Spatial instancedScene);
+    public float CalculatePhotographDistance(T photographableObjectState);
 }

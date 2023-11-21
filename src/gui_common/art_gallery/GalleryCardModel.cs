@@ -42,7 +42,7 @@ public class GalleryCardModel : GalleryCard
         Thumbnail = imageLoadingIcon;
     }
 
-    public class ModelPreview : IPhotographable
+    public class ModelPreview : IScenePhotographable
     {
         private string resourcePath;
         private string meshNodePath;

@@ -389,6 +389,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         minimumTimeBetweenLogicUpdates = 1 / logicFPS;
     }
 
+    public abstract bool HasSystemsWithPendingOperations();
+
     public virtual void FreeNodeResources()
     {
     }

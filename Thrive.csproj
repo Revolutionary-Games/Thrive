@@ -204,7 +204,9 @@
     <Compile Include="src\engine\input\RunOnRelativeMouseAttribute.cs" />
     <Compile Include="src\engine\input\ThreeDimensionalMovementMode.cs" />
     <Compile Include="src\engine\input\TwoDimensionalMovementMode.cs" />
+    <Compile Include="src\engine\IPhotographable.cs" />
     <Compile Include="src\engine\IResource.cs" />
+    <Compile Include="src\engine\ISimulationPhotographable.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
@@ -225,7 +227,7 @@
     <Compile Include="src\engine\ImageTask.cs" />
     <Compile Include="src\engine\input\IgnoreNoMethodsTakingInputAttribute.cs" />
     <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
-    <Compile Include="src\engine\IPhotographable.cs" />
+    <Compile Include="src\engine\IScenePhotographable.cs" />
     <Compile Include="src\engine\LaunchOptions.cs" />
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />

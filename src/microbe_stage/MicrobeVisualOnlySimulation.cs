@@ -110,6 +110,16 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         ProcessDelaySpawnedEntitiesImmediately();
 
         // Grab the created entity
+        var foundEntity = GetLastMicrobeEntity();
+
+        if (foundEntity == default)
+            throw new Exception("Could not find microbe entity that should have been created");
+
+        return foundEntity;
+    }
+
+    public Entity GetLastMicrobeEntity()
+    {
         Entity foundEntity = default;
 
         foreach (var entity in EntitySystem)
@@ -120,9 +130,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             // In case there are already multiple microbes, grab the last one
             foundEntity = entity;
         }
-
-        if (foundEntity == default)
-            throw new Exception("Could not find microbe entity that should have been created");
 
         return foundEntity;
     }
@@ -201,6 +208,32 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         ref var organelleContainer = ref microbe.Get<OrganelleContainer>();
 
         organelleContainer.OrganelleVisualsCreated = false;
+    }
+
+    public float CalculateMicrobePhotographDistance()
+    {
+        var microbe = GetLastMicrobeEntity();
+
+        if (microbe == default)
+            throw new InvalidOperationException("No microbe exists to operate on");
+
+        ref var cellProperties = ref microbe.Get<CellProperties>();
+
+        // This uses the membrane as radius is not set as the physics system doesn't run
+        if (!cellProperties.IsMembraneReady())
+            throw new InvalidOperationException("Microbe doesn't have a ready membrane");
+
+        var radius = cellProperties.CreatedMembrane!.EncompassingCircleRadius;
+
+        if (cellProperties.IsBacteria)
+            radius *= 0.5f;
+
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(radius * Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    }
+
+    public override bool HasSystemsWithPendingOperations()
+    {
+        return microbeVisualsSystem.HasPendingOperations();
     }
 
     protected override void InitSystemsEarly()

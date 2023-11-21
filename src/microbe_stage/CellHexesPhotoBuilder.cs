@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class CellHexesPhotoBuilder : Spatial, IPhotographable
+public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
 {
     private float radius;
     private bool radiusDirty;
