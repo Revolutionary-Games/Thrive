@@ -342,7 +342,7 @@ void TaskSystem::QueueTask(TaskSystem::SimpleCallable callable)
 
 void TaskSystem::QueueTaskFromBackgroundThread(TaskSystem::SimpleCallable callable)
 {
-    std::unique_lock<std::mutex> lock(queueMutex);
+    std::lock_guard<std::mutex> lock(queueMutex);
 
     taskQueue.emplace(callable);
 
@@ -381,7 +381,7 @@ void TaskSystem::FreeJob(Job* inJob)
 
 void TaskSystem::QueueJob(Job* inJob)
 {
-    std::unique_lock<std::mutex> lock(queueMutex);
+    std::lock_guard<std::mutex> lock(queueMutex);
     taskQueue.emplace(inJob);
 
     queueNotify.notify_one();
@@ -389,7 +389,7 @@ void TaskSystem::QueueJob(Job* inJob)
 
 void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
 {
-    std::unique_lock<std::mutex> lock(queueMutex);
+    std::lock_guard<std::mutex> lock(queueMutex);
 
     for (size_t i = 0; i < inNumJobs; ++i)
     {
