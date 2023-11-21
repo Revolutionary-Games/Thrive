@@ -22,7 +22,7 @@ static std::atomic<int> ThreadIdentifierNumber{0};
 
 std::string GenerateThreadName(int id)
 {
-    return "TNatTask_" + std::to_string(id);
+    return "TNative_" + std::to_string(id);
 }
 
 #ifdef _WIN32
@@ -299,6 +299,7 @@ TaskSystem::~TaskSystem()
 
 void TaskSystem::Shutdown()
 {
+    AssertIsMainThread();
     runThreads = false;
 
     // End all threads and wait for them
@@ -307,9 +308,18 @@ void TaskSystem::Shutdown()
         EndTaskThread();
     }
 
-    for (auto& thread : taskThreads)
+    try
     {
-        thread.join();
+        for (auto& thread : taskThreads)
+        {
+            thread.join();
+        }
+
+        taskThreads.clear();
+    }
+    catch (const std::exception& e)
+    {
+        LOG_ERROR(std::string("Failed to join a task thread: ") + e.what());
     }
 }
 
