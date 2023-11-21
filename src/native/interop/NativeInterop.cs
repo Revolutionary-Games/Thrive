@@ -48,6 +48,9 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
+        // TODO: allow controlling native executor thread count (automatically and through the GUI)
+        NativeMethods.SetNativeExecutorThreads(3);
+
 #if DEBUG
         CheckSizesOfInteropTypes();
 #endif
@@ -207,6 +210,12 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void SetLogForwardingCallback(OnLogMessage callback);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetNativeExecutorThreads(int count);
+
+    [DllImport("thrive_native")]
+    internal static extern int GetNativeExecutorThreads();
 
     [DllImport("thrive_native")]
     internal static extern bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);

@@ -17,7 +17,6 @@ namespace JPH
 {
 class PhysicsSystem;
 class TempAllocator;
-class JobSystemThreadPool;
 class BodyID;
 class Shape;
 
@@ -45,12 +44,16 @@ public:
     PhysicalWorld();
     ~PhysicalWorld();
 
-    // TODO: multithread this and allow physics to run while other stuff happens
     /// \brief Process physics
     /// \returns True when enough time has passed and physics was stepped
     bool Process(float delta);
 
-    // TODO: physics debug drawing
+    /// \brief Processes as many physics steps as needed in the background
+    ///
+    /// Note that WaitForPhysicsToCompete must be called after this to ensure that the physics has finished
+    void ProcessInBackground(float delta);
+
+    void WaitForPhysicsToComplete();
 
     // ------------------------------------ //
     // Bodies
@@ -204,7 +207,7 @@ private:
     /// \brief Creates the physics system
     void InitPhysicsWorld();
 
-    void StepPhysics(JPH::JobSystemThreadPool& jobs, float time);
+    void StepPhysics(float time);
 
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
         JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity(),
@@ -255,10 +258,6 @@ private:
     std::unique_ptr<ContactListener> contactListener;
     std::unique_ptr<BodyActivationListener> activationListener;
     std::unique_ptr<StepListener> stepListener;
-
-    // TODO: switch to this custom one
-    // std::unique_ptr<TaskSystem> jobSystem;
-    std::unique_ptr<JPH::JobSystemThreadPool> jobSystem;
 
     std::unique_ptr<JPH::TempAllocator> tempAllocator;
 

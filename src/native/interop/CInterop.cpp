@@ -9,6 +9,7 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
@@ -54,6 +55,9 @@ int32_t InitThriveLibrary()
 
     JPH::RegisterTypes();
 
+    // Start up the task system
+    Thrive::TaskSystem::Get();
+
     LOG_DEBUG("Native library init succeeded");
     return 0;
 }
@@ -65,6 +69,8 @@ void ShutdownThriveLibrary()
 
     delete JPH::Factory::sInstance;
     JPH::Factory::sInstance = nullptr;
+
+    Thrive::TaskSystem::Get().Shutdown();
 
     SetLogForwardingCallback(nullptr);
 }
@@ -599,6 +605,18 @@ JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 applie
     auto result = rotation.Multiply3x3(mInvInertiaDiagonal * rotation.Multiply3x3Transposed(accumulatedTorque));
 
     return Thrive::Vec3ToCAPI(deltaTime * result);
+}
+
+// ------------------------------------ //
+void SetNativeExecutorThreads(int32_t count)
+{
+    LOG_DEBUG("Set native thread count: " + std::to_string(count));
+    Thrive::TaskSystem::Get().SetThreads(count);
+}
+
+int32_t GetNativeExecutorThreads()
+{
+    return Thrive::TaskSystem::Get().GetThreads();
 }
 
 // ------------------------------------ //

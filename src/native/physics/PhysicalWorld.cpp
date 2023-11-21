@@ -5,9 +5,6 @@
 #include <fstream>
 
 #include "boost/circular_buffer.hpp"
-
-// TODO: switch to a custom thread pool
-#include "Jolt/Core/JobSystemThreadPool.h"
 #include "Jolt/Core/StreamWrapper.h"
 #include "Jolt/Physics/Body/BodyCreationSettings.h"
 #include "Jolt/Physics/Collision/CastResult.h"
@@ -17,11 +14,10 @@
 #include "Jolt/Physics/PhysicsSettings.h"
 #include "Jolt/Physics/PhysicsSystem.h"
 
-// #include "core/TaskSystem.hpp"
-
 #include "core/Math.hpp"
 #include "core/Mutex.hpp"
 #include "core/Spinlock.hpp"
+#include "core/TaskSystem.hpp"
 #include "core/Time.hpp"
 
 #include "ArrayRayCollector.hpp"
@@ -209,13 +205,6 @@ PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
     tempAllocator = std::make_unique<JPH::TempAllocatorMalloc>();
 #endif
 
-    // Create job system
-    // TODO: configurable threads (should be about 1-8), or well if we share thread with other systems then maybe up
-    // to like any cores not used by the C# background tasks
-    int physicsThreads = 2;
-    jobSystem =
-        std::make_unique<JPH::JobSystemThreadPool>(JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsBarriers, physicsThreads);
-
     InitPhysicsWorld();
 }
 
@@ -271,7 +260,7 @@ bool PhysicalWorld::Process(float delta)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         simulatedTime += singlePhysicsFrame;
-        StepPhysics(*jobSystem, singlePhysicsFrame);
+        StepPhysics(singlePhysicsFrame);
         simulatedPhysics = true;
     }
 
@@ -976,7 +965,7 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
 }
 
 // ------------------------------------ //
-void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
+void PhysicalWorld::StepPhysics(float time)
 {
     if (changesToBodies) [[unlikely]]
     {
@@ -1007,7 +996,10 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 
     // Per physics step forces are applied in PerformPhysicsStepOperations triggered by the step listener
 
-    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
+    // TODO: ensure that our custom task system is not (much) slower than the Jolt inbuilt one
+    auto& jobExecutor = TaskSystem::Get();
+
+    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobExecutor);
 
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 

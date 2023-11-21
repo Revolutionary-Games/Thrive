@@ -75,6 +75,8 @@
 // When defined the collision listener will automatically resolve sub-shape indexes on the first level
 #define AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
 
+#define TASK_WAIT_LOOP_COUNT 5
+
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
 

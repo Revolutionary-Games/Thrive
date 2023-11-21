@@ -202,6 +202,9 @@ extern "C"
 
     // ------------------------------------ //
     // Misc
+    [[maybe_unused]] THRIVE_NATIVE_API void SetNativeExecutorThreads(int32_t count);
+    [[maybe_unused]] THRIVE_NATIVE_API int32_t GetNativeExecutorThreads();
+
     [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
     [[maybe_unused]] THRIVE_NATIVE_API void DisableDebugDrawerCallbacks();
 }
