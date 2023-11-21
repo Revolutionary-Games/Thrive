@@ -407,7 +407,13 @@ protected:
 
                 // Don't need to check first body as it is always us
 
-                if (candidate->SecondBody == otherBody)
+                // This intends to compare the pointer data
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-sizeof-expression"
+                // Might be better to use a memory compare here as this might be better regarding the atomics
+
+                // if (candidate->SecondBody == otherBody)
+                if (std::memcmp(&candidate->SecondBody, &otherBody, sizeof(otherBody)) == 0)
                 {
                     // Found a match
                     // TODO: is this needed (or does this not help either?)
@@ -415,6 +421,8 @@ protected:
                     usedExisting = true;
                     return candidate;
                 }
+
+#pragma clang diagnostic pop
             }
         }
 

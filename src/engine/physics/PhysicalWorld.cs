@@ -71,6 +71,23 @@ public class PhysicalWorld : IDisposable
     }
 
     /// <summary>
+    ///   Runs physics but in the background thread. Must call <see cref="WaitUntilPhysicsRunEnds"/> after before
+    ///   continuing using the world.
+    /// </summary>
+    /// <param name="delta">
+    ///   Amount of time elapsed since the last call, used to simulate right amount of passed time
+    /// </param>
+    public void ProcessPhysicsOnBackgroundThread(float delta)
+    {
+        NativeMethods.ProcessPhysicalWorldInBackground(AccessWorldInternal(), delta);
+    }
+
+    public bool WaitUntilPhysicsRunEnds()
+    {
+        return NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+    }
+
+    /// <summary>
     ///   Creates a new moving body
     /// </summary>
     /// <param name="shape">The shape for the body</param>
@@ -519,6 +536,12 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern bool ProcessPhysicalWorld(IntPtr physicalWorld, float delta);
+
+    [DllImport("thrive_native")]
+    internal static extern void ProcessPhysicalWorldInBackground(IntPtr physicalWorld, float delta);
+
+    [DllImport("thrive_native")]
+    internal static extern bool WaitForPhysicsToCompleteInPhysicalWorld(IntPtr physicalWorld);
 
     [DllImport("thrive_native")]
     internal static extern IntPtr PhysicalWorldCreateMovingBody(IntPtr physicalWorld, IntPtr shape,

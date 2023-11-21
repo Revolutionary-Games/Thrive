@@ -55,6 +55,9 @@ public:
 
     /// \brief Waits for ProcessInBackground started run to finish. This must be called before other world operations
     /// are safe to use again
+    ///
+    /// It is safe to call this multiple times, this will just return if no physics run has happened or at worst this
+    /// does a tiny bit of extra debug drawing processing (if even enabled)
     /// \returns True when a physics run was performed, False if not enough time had passed
     bool WaitForPhysicsToComplete();
 

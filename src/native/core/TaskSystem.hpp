@@ -159,6 +159,10 @@ private:
 
     std::queue<QueuedTask> taskQueue;
 
+#ifdef USE_OBJECT_POOLS
+    std::mutex jobPoolMutex;
+#endif
+
     std::mutex queueMutex;
     std::condition_variable queueNotify;
 

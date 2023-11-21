@@ -225,6 +225,14 @@ void TaskSystem::QueuedTask::ReleaseCurrentData()
 
 void TaskSystem::QueuedTask::MoveDataFromOther(QueuedTask&& other)
 {
+#ifndef NDEBUG
+    if (Type != other.Type)
+    {
+        LOG_ERROR("QueuedTask types must match before copying data");
+        std::abort();
+    }
+#endif
+
     switch (other.Type)
     {
         case TaskType::Cleared:
@@ -349,13 +357,18 @@ void TaskSystem::QueueTaskFromBackgroundThread(QueuedTask&& task)
 TaskSystem::JobHandle TaskSystem::CreateJob(
     const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction, uint32_t inNumDependencies)
 {
+    Job* job;
+
 #ifdef USE_OBJECT_POOLS
-    auto job = jobPool.malloc();
+    {
+        std::lock_guard<std::mutex> lock(jobPoolMutex);
+        job = jobPool.malloc();
+    }
 
     ::new (job) Job(inName, inColor, this, inJobFunction, inNumDependencies);
 
 #else
-    auto job = new Job(inName, inColor, this, inJobFunction, inNumDependencies);
+    job = new Job(inName, inColor, this, inJobFunction, inNumDependencies);
 #endif
 
     JobHandle handle(job);
@@ -369,6 +382,8 @@ TaskSystem::JobHandle TaskSystem::CreateJob(
 void TaskSystem::FreeJob(Job* inJob)
 {
 #ifdef USE_OBJECT_POOLS
+    std::lock_guard<std::mutex> lock(jobPoolMutex);
+
     jobPool.destroy(inJob);
 #else
     delete inJob;

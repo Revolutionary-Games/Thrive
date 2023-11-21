@@ -249,11 +249,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     {
     }
 
-    protected override bool RunPhysicsIfBehind()
-    {
-        return false;
-    }
-
     protected override void OnProcessFixedLogic(float delta)
     {
         microbeVisualsSystem.Update(delta);

@@ -253,6 +253,12 @@ void PhysicalWorld::InitPhysicsWorld()
 // ------------------------------------ //
 bool PhysicalWorld::Process(float delta)
 {
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("May not call world sync process while background process is used");
+        return false;
+    }
+
     nextStepIsFresh = true;
 
     elapsedSinceUpdate += delta;
@@ -283,7 +289,8 @@ bool PhysicalWorld::Process(float delta)
 
 void PhysicalWorld::ProcessInBackground(float delta)
 {
-    if (runningBackgroundSimulation)
+    bool previous = false;
+    if (!runningBackgroundSimulation.compare_exchange_strong(previous, true))
     {
         LOG_ERROR("Trying to start another background physics run while previous wasn't waited for");
         return;
@@ -304,7 +311,7 @@ void PhysicalWorld::ProcessInBackground(float delta)
 
     runningBackgroundSimulation = true;
 
-    TaskSystem::Get().QueueTask([&]() { StepAllPhysicsStepsInBackground(); });
+    TaskSystem::Get().QueueTask([this]() { StepAllPhysicsStepsInBackground(); });
 }
 
 bool PhysicalWorld::WaitForPhysicsToComplete()
@@ -322,6 +329,7 @@ bool PhysicalWorld::WaitForPhysicsToComplete()
     // Draw physics only here at the end to ensure this happens on the main thread
     DrawPhysics(backgroundSimulatedTime);
 
+    backgroundSimulatedTime = 0;
     return true;
 }
 
@@ -1026,6 +1034,8 @@ void PhysicalWorld::StepAllPhysicsStepsInBackground()
         backgroundSimulatedTime += singlePhysicsFrame;
         StepPhysics(singlePhysicsFrame);
     }
+
+    runningBackgroundSimulation = false;
 }
 
 // ------------------------------------ //
