@@ -264,7 +264,6 @@ TaskSystem::~TaskSystem()
 
 void TaskSystem::Shutdown()
 {
-    AssertIsMainThread();
     runThreads = false;
 
     // End all threads and wait for them

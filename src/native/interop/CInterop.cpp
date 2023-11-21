@@ -64,6 +64,8 @@ int32_t InitThriveLibrary()
 
 void ShutdownThriveLibrary()
 {
+    Thrive::TaskSystem::AssertIsMainThread();
+
     // Unregister physics
     JPH::UnregisterTypes();
 
