@@ -77,6 +77,31 @@
 
 #define TASK_WAIT_LOOP_COUNT 5
 
+#ifdef NDEBUG
+#define DEBUG_BREAK
+#endif
+
+#ifdef _WIN32
+
+#ifndef DEBUG_BREAK
+#define DEBUG_BREAK __debugbreak();
+#endif
+
+#else
+
+// For signals
+#include <csignal>
+
+#ifndef DEBUG_BREAK
+#define DEBUG_BREAK                                               \
+    {                                                             \
+        LOG_WRITE("DEBUG_BREAK HIT! at:");                        \
+        LOG_WRITE(__FILE__ ":" + std::to_string(__LINE__));       \
+        std::raise(SIGINT);                                       \
+    }
+#endif
+#endif
+
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus
 

@@ -336,6 +336,7 @@ void TaskSystem::AssertIsMainThread()
     }
 
     LOG_ERROR("Operation that should have been on the main thread is not ran on the main thread");
+    DEBUG_BREAK;
     std::abort();
 }
 
@@ -519,7 +520,7 @@ void TaskSystem::RunTaskThread(int id)
 
                     if (task.Type == TaskType::Quit)
                     {
-                        break;
+                        return;
                     }
 
                     try
