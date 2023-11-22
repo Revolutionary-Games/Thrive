@@ -26,6 +26,8 @@ option(USE_LOCK_FREE_QUEUE
 # option(TASK_QUEUE_USES_POINTERS
 #   "If on uses pointers in the task queue instead of the task objects themselves" ON)
 
+# This is disabled for now as this is not available when cross compiling to
+# Windows
 option(USE_ATOMIC_COLLISION_WRITE
   "If on uses atomic write to collision data that multiple threads might want
   to read/write" OFF)

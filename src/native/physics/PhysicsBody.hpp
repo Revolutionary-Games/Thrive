@@ -393,7 +393,6 @@ protected:
     {
         HandleStepIdentifier(stepIdentifier);
 
-        // TODO: is there a way to ensure we see consistent state in the written to data slots here?
         const auto compareCount = activeRecordedCollisionCount.load(std::memory_order::acquire);
 
         if (compareCount > 0)
@@ -410,10 +409,15 @@ protected:
                 // This intends to compare the pointer data
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-sizeof-expression"
-                // Might be better to use a memory compare here as this might be better regarding the atomics
 
+#ifdef USE_ATOMIC_COLLISION_WRITE
+                const std::atomic_ref<const PhysicsBody*> compareAtomic{candidate->SecondBody};
+                if (compareAtomic.load(std::memory_order::acquire) == otherBody)
+#else
+                // Might be better to use a memory compare here as this might be better regarding the atomics
                 // if (candidate->SecondBody == otherBody)
                 if (std::memcmp(&candidate->SecondBody, &otherBody, sizeof(otherBody)) == 0)
+#endif
                 {
                     // Found a match
                     // TODO: is this needed (or does this not help either?)
@@ -494,9 +498,24 @@ private:
 
             // Don't need to check first body as it is always us
 
-            if (candidate->SecondBody == otherBody)
+            // Atomics can be used here as well becase even though there is a lock above, the lock is not held while
+            // writing
+            // This intends to compare the pointer data
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-sizeof-expression"
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+            const std::atomic_ref<const PhysicsBody*> compareAtomic{candidate->SecondBody};
+            if (compareAtomic.load(std::memory_order::acquire) == otherBody)
+#else
+            // Might be better to use a memory compare here as this might be better regarding the atomics
+            // if (candidate->SecondBody == otherBody)
+            if (std::memcmp(&candidate->SecondBody, &otherBody, sizeof(otherBody)) == 0)
+#endif
             {
                 // Found a match
+                // TODO: is this needed (or does this not help either?)
+                // std::atomic_thread_fence(std::memory_order::acquire);
                 usedExisting = true;
                 return candidate;
             }

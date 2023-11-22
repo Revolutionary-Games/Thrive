@@ -32,7 +32,14 @@ FORCE_INLINE float PreprocessPenetrationDepth(float penetration)
 inline void PrepareBasicCollisionInfo(PhysicsCollision& collision, const PhysicsBody* body1, const PhysicsBody* body2)
 {
     collision.FirstBody = body1;
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<const PhysicsBody*> secondBodyAtomic{collision.SecondBody};
+
+    secondBodyAtomic.store(body2, std::memory_order::release);
+#else
     collision.SecondBody = body2;
+#endif
 
     if (body1->HasUserData()) [[likely]]
     {
@@ -104,9 +111,18 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
     }
 #endif
 
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<float> penetrationAtomic{collision.PenetrationAmount};
+
+    penetrationAtomic.store(PreprocessPenetrationDepth(manifold.mPenetrationDepth), std::memory_order::release);
+
+    const std::atomic_ref<bool> startedAtomic{collision.JustStarted};
+    startedAtomic.store(justStarted, std::memory_order::release);
+#else
     collision.PenetrationAmount = PreprocessPenetrationDepth(manifold.mPenetrationDepth);
 
     collision.JustStarted = justStarted;
+#endif
 }
 
 /// \brief Updates just the properties of the collision that can change (i.e. collision entity IDs should have been set
@@ -114,17 +130,29 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
 inline void UpdateCollisionInfoFromManifold(
     PhysicsCollision& collision, const JPH::ContactManifold& manifold, bool justStarted)
 {
-    // TODO: would using memcpy here ensure more memory consistency (or using thread fences?)
-
     // Just started status is written on top of the previous data if this
     if (justStarted)
     {
+#ifdef USE_ATOMIC_COLLISION_WRITE
+        const std::atomic_ref<bool> startedAtomic{collision.JustStarted};
+        startedAtomic.store(justStarted, std::memory_order::release);
+#else
         collision.JustStarted = true;
+#endif
     }
 
     // Keep the highest penetration of the merged collisions
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<float> penetrationAtomic{collision.PenetrationAmount};
+
+    penetrationAtomic.store(std::max(PreprocessPenetrationDepth(manifold.mPenetrationDepth),
+                                penetrationAtomic.load(std::memory_order::acquire)),
+        std::memory_order::release);
+#else
     collision.PenetrationAmount =
         std::max(PreprocessPenetrationDepth(manifold.mPenetrationDepth), collision.PenetrationAmount);
+#endif
 }
 
 JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, const JPH::Body& body2,
