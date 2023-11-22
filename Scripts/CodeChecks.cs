@@ -68,6 +68,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "RevolutionaryGamesCommon/**",
         "src/native/**.cpp",
         "src/native/**.hpp",
+        "third_party/**.hpp",
     };
 
     protected override string MainSolutionFile => "Thrive.sln";
