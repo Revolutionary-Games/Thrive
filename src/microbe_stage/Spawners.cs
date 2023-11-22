@@ -153,12 +153,11 @@ public static class SpawnHelpers
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
         });
 
-        // TODO: need to add saving support here. Maybe a new component like SimpleShapeCreator?
-        entity.Set(new PhysicsShapeHolder
-        {
-            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
-                Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY),
-        });
+        // Need to specify shape like this to make saving work
+        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
+
+        entity.Set<PhysicsShapeHolder>();
         entity.Set(new CollisionManagement
         {
             IgnoredCollisionsWith = new List<Entity> { emitter },
@@ -318,15 +317,17 @@ public static class SpawnHelpers
             Velocity = initialVelocity,
         });
 
-        // TODO: need to add saving support here. Maybe a new component like CollisionShapeLoader?
-        entity.Set(new PhysicsShapeHolder
+        if (selectedMesh.ConvexShapePath == null)
         {
-            Shape = selectedMesh.ConvexShapePath != null ?
-                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity) :
+            entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, chunkType.Radius,
+                chunkType.PhysicsDensity));
+        }
+        else
+        {
+            entity.Set(new CollisionShapeLoader(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity));
+        }
 
-                // TODO: cache this as most chunks will use the same radius
-                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
-        });
+        entity.Set<PhysicsShapeHolder>();
 
         // See the remarks comment on EntityRadiusInfo
         entity.Set(new EntityRadiusInfo(chunkType.Radius));
@@ -590,13 +591,9 @@ public static class SpawnHelpers
 
         // The shape is created in the background (by MicrobePhysicsCreationAndSizeSystem) to reduce lag when
         // something spawns
-        entity.Set(new PhysicsShapeHolder
-        {
-            Shape = null,
-        });
+        entity.Set<PhysicsShapeHolder>();
 
         // Movement
-        // TODO: calculate rotation rate
         entity.Set(new MicrobeControl(location));
         entity.Set<ManualPhysicsControl>();
 

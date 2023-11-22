@@ -87,7 +87,6 @@ public class PhysicsShape : IDisposable
         return result.Shape;
     }
 
-    // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes
     public static PhysicsShape CreateMicrobeShape(ReadOnlySpan<JVecF3> organellePositions, float overallDensity,
         bool scaleAsBacteria, bool createAsSpheres = false)
     {
@@ -178,6 +177,8 @@ public class PhysicsShape : IDisposable
 
         // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
         // caused by different real scales of the meshes used for collisions)
+        // TODO: base rotations are also problematic here (the rock chunks are rotated differently visually compared to
+        // the physics shape)
         float scale = 90;
 
         // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
