@@ -73,6 +73,8 @@ __meta__ = {
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]
+[connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
+[connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="." method="OpenToHelp"]
 [connection signal="OnSecreteSlimeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="SecreteSlime" binds= [ 1.0 ]]
 [connection signal="OnToggleBindingButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
