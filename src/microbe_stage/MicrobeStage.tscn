@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=85]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="ButtonGroup" id=2]
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -51,6 +55,18 @@ margin_right = -0.943848
 
 [node name="MicrobeHUD" parent="." instance=ExtResource( 3 )]
 
+[node name="EnvironmentExpandButton" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer" index="1"]
+group = SubResource( 1 )
+
+[node name="EnvironmentCompressButton" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentGroup/EnvironmentPanel/VBoxContainer/Header/HBoxContainer" index="2"]
+group = SubResource( 1 )
+
+[node name="CompoundExpandButton" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer" index="2"]
+group = SubResource( 2 )
+
+[node name="CompoundCompressButton" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Header/HBoxContainer" index="3"]
+group = SubResource( 2 )
+
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
 
@@ -80,3 +96,6 @@ __meta__ = {
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="OnUnbindAllButtonPressed" from="MicrobeHUD" to="." method="UnbindAll"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
+
+[editable path="MicrobeHUD"]
+[editable path="MicrobeHUD/PausePrompt"]

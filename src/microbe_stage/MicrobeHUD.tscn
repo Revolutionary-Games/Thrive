@@ -2067,7 +2067,7 @@ __meta__ = {
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="hide" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
-[connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEgulfmentPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]
