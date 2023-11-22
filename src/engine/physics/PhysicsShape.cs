@@ -206,7 +206,7 @@ public class PhysicsShape : IDisposable
 
     public uint GetSubShapeIndexFromData(uint subShapeData)
     {
-        return NativeMethods.ShapeGetSubShapeFromIndex(AccessShapeInternal(), subShapeData);
+        return NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
     }
 
     /// <summary>
@@ -314,10 +314,10 @@ internal static partial class NativeMethods
     internal static extern float ShapeGetMass(IntPtr shape);
 
     [DllImport("thrive_native")]
-    internal static extern uint ShapeGetSubShapeFromIndex(IntPtr shape, uint subShapeData);
+    internal static extern uint ShapeGetSubShapeIndex(IntPtr shape, uint subShapeData);
 
     [DllImport("thrive_native")]
-    internal static extern uint ShapeGetSubShapeFromIndexWithRemainder(IntPtr shape, uint subShapeData,
+    internal static extern uint ShapeGetSubShapeIndexWithRemainder(IntPtr shape, uint subShapeData,
         out uint remainder);
 
     [DllImport("thrive_native")]

@@ -9,7 +9,7 @@ add_library(thrive_native SHARED
   core/NonCopyable.hpp core/Reference.hpp
   core/RefCounted.hpp
   core/Spinlock.hpp
-  # core/TaskSystem.cpp core/TaskSystem.hpp
+  core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
   physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/BodyControlState.hpp
@@ -56,6 +56,8 @@ target_link_libraries(thrive_native PUBLIC Boost::intrusive
   Boost::circular_buffer Boost::pool)
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+
+target_include_directories(thrive_native PUBLIC ../../third_party/concurrentqueue)
 
 # TODO: the one private precompiled header will probably cause issues with
 # other libraries linking to this

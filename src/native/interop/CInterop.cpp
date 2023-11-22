@@ -9,6 +9,7 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
@@ -54,17 +55,24 @@ int32_t InitThriveLibrary()
 
     JPH::RegisterTypes();
 
+    // Start up the task system
+    Thrive::TaskSystem::Get();
+
     LOG_DEBUG("Native library init succeeded");
     return 0;
 }
 
 void ShutdownThriveLibrary()
 {
+    Thrive::TaskSystem::AssertIsMainThread();
+
     // Unregister physics
     JPH::UnregisterTypes();
 
     delete JPH::Factory::sInstance;
     JPH::Factory::sInstance = nullptr;
+
+    Thrive::TaskSystem::Get().Shutdown();
 
     SetLogForwardingCallback(nullptr);
 }
@@ -107,6 +115,16 @@ void DestroyPhysicalWorld(PhysicalWorld* physicalWorld)
 bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->Process(delta);
+}
+
+void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->ProcessInBackground(delta);
+}
+
+bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->WaitForPhysicsToComplete();
 }
 
 PhysicsBody* PhysicalWorldCreateMovingBody(
@@ -562,7 +580,7 @@ float ShapeGetMass(PhysicsShape* shape)
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
 
-uint32_t ShapeGetSubShapeFromIndex(PhysicsShape* shape, uint32_t subShapeData)
+uint32_t ShapeGetSubShapeIndex(PhysicsShape* shape, uint32_t subShapeData)
 {
     JPH::SubShapeID unusedRemainder;
 
@@ -570,7 +588,7 @@ uint32_t ShapeGetSubShapeFromIndex(PhysicsShape* shape, uint32_t subShapeData)
         std::bit_cast<JPH::SubShapeID>(subShapeData), unusedRemainder);
 }
 
-uint32_t ShapeGetSubShapeFromIndexWithRemainder(PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder)
+uint32_t ShapeGetSubShapeIndexWithRemainder(PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder)
 {
     static_assert(sizeof(remainder) == sizeof(JPH::SubShapeID));
 
@@ -599,6 +617,18 @@ JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 applie
     auto result = rotation.Multiply3x3(mInvInertiaDiagonal * rotation.Multiply3x3Transposed(accumulatedTorque));
 
     return Thrive::Vec3ToCAPI(deltaTime * result);
+}
+
+// ------------------------------------ //
+void SetNativeExecutorThreads(int32_t count)
+{
+    LOG_DEBUG("Set native thread count: " + std::to_string(count));
+    Thrive::TaskSystem::Get().SetThreads(count);
+}
+
+int32_t GetNativeExecutorThreads()
+{
+    return Thrive::TaskSystem::Get().GetThreads();
 }
 
 // ------------------------------------ //
