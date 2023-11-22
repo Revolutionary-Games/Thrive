@@ -138,9 +138,14 @@ TaskSystem::QueuedTask::QueuedTask(SimpleCallable callable)
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
 
-TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable)
+#ifdef USE_LOCK_FREE_QUEUE
+TaskSystem::QueuedTask::QueuedTask() : Type(TaskType::Cleared)
 {
-    Type = TaskType::StdFunction;
+}
+#endif
+
+TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable) : Type(TaskType::StdFunction)
+{
     new (&Function) std::function<void()>(std::move(callable));
 }
 
@@ -150,27 +155,23 @@ TaskSystem::QueuedTask::QueuedTask(std::function<void()> callable)
     new (&Function) std::function<void()>(std::move(callable));
 }*/
 
-TaskSystem::QueuedTask::QueuedTask(Job* callable)
+TaskSystem::QueuedTask::QueuedTask(Job* callable) : Type(TaskType::JoltJob)
 {
-    Type = TaskType::JoltJob;
     callable->AddRef();
     Jolt = callable;
 }
 
-TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit)
+TaskSystem::QueuedTask::QueuedTask(QuitSentinel quit) : Type(TaskType::Quit)
 {
     UNUSED(quit);
-    Type = TaskType::Quit;
+}
+
+TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept : Type(other.Type)
+{
+    MoveDataFromOther(std::move(other));
 }
 
 #pragma clang diagnostic pop
-
-TaskSystem::QueuedTask::QueuedTask(QueuedTask&& other) noexcept
-{
-    Type = other.Type;
-
-    MoveDataFromOther(std::move(other));
-}
 
 void TaskSystem::QueuedTask::Invoke() const
 {
@@ -252,7 +253,12 @@ void TaskSystem::QueuedTask::MoveDataFromOther(QueuedTask&& other)
     }
 }
 
-TaskSystem::TaskSystem() : queueLock(queueMutex)
+TaskSystem::TaskSystem() :
+#ifdef USE_LOCK_FREE_QUEUE
+    // TODO: pick a reasonable queue size (right now assumed that all possible jobs are not queued at once)
+    taskQueue(JPH::cMaxPhysicsJobs / 2),
+#endif
+    queueLock(queueMutex)
 {
     // Mark main thread
     MainThreadIdentifier = MAIN_THREAD;
@@ -268,6 +274,7 @@ TaskSystem::TaskSystem() : queueLock(queueMutex)
 TaskSystem::~TaskSystem()
 {
     Shutdown();
+    std::atomic_thread_fence(std::memory_order::seq_cst);
 }
 
 void TaskSystem::Shutdown()
@@ -279,6 +286,10 @@ void TaskSystem::Shutdown()
     {
         EndTaskThread();
     }
+
+    // A duplicate notify compared to the EndTaskThread method but this feels better to ensure all threads are woken
+    // up if they were waiting immediately on shutdown
+    queueNotify.notify_all();
 
     try
     {
@@ -293,6 +304,17 @@ void TaskSystem::Shutdown()
     {
         LOG_ERROR(std::string("Failed to join a task thread: ") + e.what());
     }
+
+#ifdef USE_LOCK_FREE_QUEUE
+    // Empty out the queue
+    for (int i = 0; i < 5; ++i)
+    {
+        QueuedTask task;
+        while (taskQueue.try_dequeue(task))
+        {
+        }
+    }
+#endif
 }
 
 bool TaskSystem::IsOnMainThread()
@@ -313,42 +335,70 @@ void TaskSystem::AssertIsMainThread()
 }
 
 // ------------------------------------ //
-void TaskSystem::QueueTask(TaskSystem::SimpleCallable callable)
+#ifdef USE_LOCK_FREE_QUEUE
+
+void TaskSystem::TryEnqueueTask(QueuedTask&& task)
 {
-    queueLock.lock();
+    int retryCount = 0;
 
-    taskQueue.emplace(callable);
+    // The move should only take effect after the move succeeds
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-use-after-move"
 
-    queueLock.unlock();
+    // Retry the move until there is room in the queue
+    while (!taskQueue.try_enqueue(std::move(task)))
+    {
+        ++retryCount;
 
-    queueNotify.notify_one();
+        if (retryCount > 2)
+        {
+            // Start sleeping the thread if it has taken a lot of time
+            if (retryCount > 100)
+            {
+                if (retryCount > 1000)
+                {
+                    LOG_ERROR("Task system stuck trying to add new jobs to the queue");
+                }
+
+                std::this_thread::sleep_for(MicrosecondDuration(900));
+            }
+            else
+            {
+                std::this_thread::yield();
+            }
+        }
+    }
+
+#pragma clang diagnostic pop
 }
+#endif
+
+// ------------------------------------ //
 
 void TaskSystem::QueueTask(QueuedTask&& task)
 {
+#ifdef USE_LOCK_FREE_QUEUE
+    TryEnqueueTask(std::move(task));
+#else
     queueLock.lock();
 
     taskQueue.emplace(std::move(task));
 
     queueLock.unlock();
-
-    queueNotify.notify_one();
-}
-
-void TaskSystem::QueueTaskFromBackgroundThread(TaskSystem::SimpleCallable callable)
-{
-    std::lock_guard<std::mutex> lock(queueMutex);
-
-    taskQueue.emplace(callable);
+#endif
 
     queueNotify.notify_one();
 }
 
 void TaskSystem::QueueTaskFromBackgroundThread(QueuedTask&& task)
 {
+#ifdef USE_LOCK_FREE_QUEUE
+    TryEnqueueTask(std::move(task));
+#else
     std::lock_guard<std::mutex> lock(queueMutex);
 
     taskQueue.emplace(std::move(task));
+#endif
 
     queueNotify.notify_one();
 }
@@ -392,20 +442,32 @@ void TaskSystem::FreeJob(Job* inJob)
 
 void TaskSystem::QueueJob(Job* inJob)
 {
+#ifdef USE_LOCK_FREE_QUEUE
+    TryEnqueueTask(QueuedTask(inJob));
+#else
     std::lock_guard<std::mutex> lock(queueMutex);
     taskQueue.emplace(inJob);
+#endif
 
     queueNotify.notify_one();
 }
 
 void TaskSystem::QueueJobs(Job** inJobs, uint32_t inNumJobs)
 {
+#ifdef USE_LOCK_FREE_QUEUE
+    // TODO: should try_enqueue_bulk be used instead (at least when num jobs is over 2)?
+    for (size_t i = 0; i < inNumJobs; ++i)
+    {
+        TryEnqueueTask(QueuedTask(inJobs[i]));
+    }
+#else
     std::lock_guard<std::mutex> lock(queueMutex);
 
     for (size_t i = 0; i < inNumJobs; ++i)
     {
         taskQueue.emplace(inJobs[i]);
     }
+#endif
 
     if (inNumJobs > 4)
     {
@@ -479,11 +541,17 @@ void TaskSystem::StartTaskThread()
 
 void TaskSystem::EndTaskThread()
 {
+#ifdef USE_LOCK_FREE_QUEUE
+    TryEnqueueTask(QueuedTask(QuitSentinel()));
+#else
     queueLock.lock();
 
     taskQueue.emplace(QuitSentinel());
 
     queueLock.unlock();
+#endif
+
+    queueNotify.notify_one();
 
     --threadCount;
 }
@@ -491,36 +559,57 @@ void TaskSystem::EndTaskThread()
 // ------------------------------------ //
 void TaskSystem::RunTaskThread(int id)
 {
-    const auto threadWait = MillisecondDuration(5);
+    const auto threadWait = MillisecondDuration(8);
 
     std::unique_lock<std::mutex> lock{queueMutex};
 
     SetThreadNameCurrent(id);
 
+#ifdef USE_LOCK_FREE_QUEUE
+    lock.unlock();
+#endif
+
     while (runThreads)
     {
+        bool processed = false;
+
+#ifdef USE_LOCK_FREE_QUEUE
+        lock.lock();
+#endif
+
         queueNotify.wait_for(lock, threadWait);
+
+#ifdef USE_LOCK_FREE_QUEUE
+        lock.unlock();
+#endif
 
         for (int i = 0; i < TASK_WAIT_LOOP_COUNT; ++i)
         {
-            bool processed = false;
-
             // Process tasks until empty before waiting again
+#ifdef USE_LOCK_FREE_QUEUE
+            // TODO: should this variable be in the outer scope?
+            QueuedTask task;
+            while (taskQueue.try_dequeue(task))
+#else
             while (!taskQueue.empty())
+#endif
             {
                 {
+#ifndef USE_LOCK_FREE_QUEUE
                     const auto task = std::move(taskQueue.front());
 
                     taskQueue.pop();
 
                     // Unlock while running the task
                     lock.unlock();
-                    processed = true;
+#endif
 
                     if (task.Type == TaskType::Quit)
                     {
                         return;
                     }
+
+                    processed = true;
 
                     try
                     {
@@ -533,13 +622,24 @@ void TaskSystem::RunTaskThread(int id)
                     }
                 }
 
-                // Extra scope used above to not lock this again until needed
+#ifndef USE_LOCK_FREE_QUEUE
+                // Extra scope used above to not lock this again until needed (task is destructed)
                 lock.lock();
+#endif
             }
 
+#ifdef USE_LOCK_FREE_QUEUE
+            /*if (!processed)
+            {
+                // Reduce looping speed while the queue is empty
+                HYPER_THREAD_YIELD;
+            }*/
+#endif
+
+            // If we woke up but didn't find any work, go back to sleep
             if (!processed)
             {
-                HYPER_THREAD_YIELD;
+                break;
             }
         }
     }

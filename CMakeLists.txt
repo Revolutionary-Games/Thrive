@@ -19,6 +19,17 @@ option(LOCK_FREE_COLLISION_RECORDING
 option(USE_SMALL_VECTOR_POOLS
   "If on uses also pools for small list allocations in physics" OFF)
 
+option(USE_LOCK_FREE_QUEUE
+  "If on uses lock-free data structures" ON)
+
+# TODO: implement this if it might improve task performance
+# option(TASK_QUEUE_USES_POINTERS
+#   "If on uses pointers in the task queue instead of the task objects themselves" ON)
+
+option(USE_ATOMIC_COLLISION_WRITE
+  "If on uses atomic write to collision data that multiple threads might want
+  to read/write" OFF)
+
 option(WARNINGS_AS_ERRORS "When on treat compiler warnings as errors" ON)
 
 option(NULL_HAS_UNUSUAL_REPRESENTATION

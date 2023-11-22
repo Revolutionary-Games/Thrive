@@ -57,6 +57,8 @@ target_link_libraries(thrive_native PUBLIC Boost::intrusive
 
 target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
+target_include_directories(thrive_native PUBLIC ../../third_party/concurrentqueue)
+
 # TODO: the one private precompiled header will probably cause issues with
 # other libraries linking to this
 target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"

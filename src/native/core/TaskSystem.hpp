@@ -12,6 +12,8 @@
 
 #include "Include.h"
 
+#include "concurrentqueue.h"
+
 namespace Thrive
 {
 /// \brief Handles multithreaded execution of native module code
@@ -39,6 +41,11 @@ private:
     {
     public:
     public:
+#ifdef USE_LOCK_FREE_QUEUE
+        /// \brief Creates an empty task, for use to dequeue items
+        explicit QueuedTask();
+#endif
+
         explicit QueuedTask(SimpleCallable callable);
 
         explicit QueuedTask(std::function<void()> callable);
@@ -56,6 +63,10 @@ private:
         inline ~QueuedTask()
         {
             ReleaseCurrentData();
+
+            // TODO: check this:
+            // This allows objects of this type to be reused at the same address without requiring re-initialization
+            // Type = TaskType::Cleared;
         }
 
         void Invoke() const;
@@ -96,7 +107,10 @@ public:
     static void AssertIsMainThread();
 
     /// \brief Enqueues a new task. Can only be called from the main thread.
-    void QueueTask(SimpleCallable callable);
+    void QueueTask(SimpleCallable callable)
+    {
+        QueueTask(QueuedTask(callable));
+    }
 
     void QueueTask(QueuedTask&& task);
 
@@ -106,7 +120,10 @@ public:
     }
 
     /// \brief Variant of queue that can be called from any thread
-    void QueueTaskFromBackgroundThread(SimpleCallable callable);
+    void QueueTaskFromBackgroundThread(SimpleCallable callable)
+    {
+        QueueTaskFromBackgroundThread(QueuedTask(callable));
+    }
 
     void QueueTaskFromBackgroundThread(QueuedTask&& task);
 
@@ -145,6 +162,10 @@ public:
     void Shutdown();
 
 private:
+#ifdef USE_LOCK_FREE_QUEUE
+    FORCE_INLINE void TryEnqueueTask(QueuedTask&& task);
+#endif
+
     void StartTaskThread();
     void EndTaskThread();
 
@@ -157,13 +178,23 @@ private:
 
     std::vector<std::thread> taskThreads;
 
+    // || !defined(TASK_QUEUE_USES_POINTERS)
+#if defined(USE_LOCK_FREE_QUEUE)
+    moodycamel::ConcurrentQueue<QueuedTask> taskQueue;
+
+    // #ifdef TASK_QUEUE_USES_POINTERS
+
+#else
     std::queue<QueuedTask> taskQueue;
+#endif
 
 #ifdef USE_OBJECT_POOLS
     std::mutex jobPoolMutex;
 #endif
 
+    /// When USE_LOCK_FREE_QUEUE is defined this should not be locked to write to the queue
     std::mutex queueMutex;
+
     std::condition_variable queueNotify;
 
     /// Lock used on the main thread to enqueue tasks
