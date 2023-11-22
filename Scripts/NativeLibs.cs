@@ -930,6 +930,8 @@ public class NativeLibs
             ColourConsole.WriteInfoLine(
                 $"About to start uploading {library} for {platform} (file: {file}) that is missing from the server");
 
+            ColourConsole.WriteNormalLine("Library uncompressed size is: " + new FileInfo(file).Length.BytesToMiB(3));
+
             if (!await ConsoleHelpers.WaitForInputToContinue(cancellationToken))
             {
                 ColourConsole.WriteNormalLine("Canceling upload");
