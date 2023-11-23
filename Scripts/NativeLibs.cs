@@ -677,7 +677,7 @@ public class NativeLibs
         // of flags
         // TODO: figure out how to get the Jolt interprocedural check to work (now fails with trying to link the wrong
         // standard library). Might be related to the compiler checks that fail below.
-        shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=OFF ");
+        shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=ON ");
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
 
@@ -685,37 +685,27 @@ public class NativeLibs
         {
             case PackagePlatform.Linux:
             {
-                // Linux is all setup by default to use clang
-                // But we need to ensure the runtime is set correctly (the default podman image should have this but
-                // better be safe here)
-                // var target = "x86_64-unknown-linux-llvm";
-
-                var target = "x86_64-unknown-linux-gnu";
-
                 shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
                 shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
-
-                // The way cmake tests the compiler fails, but it does work so we force skip that here
-                shCommandBuilder.Append("-DCMAKE_C_COMPILER_WORKS=1 ");
-                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER_WORKS=1 ");
+                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER_AR=/usr/bin/llvm-ar ");
 
                 // ReSharper disable once CommentTypo
                 // -flto=thin specified here reduces the binary size a bit, not sure what's up with that other than
                 // maybe the cmake default LTO is slightly more conservative option
                 // $"-D CMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt' ");
-                shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt -flto=thin' ");
-                shCommandBuilder.Append(
-                    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libc++ -flto=thin ' ");
+                // shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt -flto=thin' ");
+                // shCommandBuilder.Append(
+                //    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libstdc++ -flto=thin ' ");
 
                 // shCommandBuilder.Append("-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu' ");
 
                 // Need to specify the standard library like this to prevent linker errors
                 // shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu  ");
 
-                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='");
+                // shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/ -v");
 
                 // Suppress normal standard library includes as they seem to end up being wrong
-                shCommandBuilder.Append("-nostdlib ");
+                // shCommandBuilder.Append("-nostdlib ");
 
                 // These aren't necessary for the compile to succeed but maybe specifying these before libc++ makes
                 // it prefer symbols from these?
@@ -725,18 +715,18 @@ public class NativeLibs
                 // ReSharper disable once CommentTypo
                 // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libllvmlibc.a ");
 
-                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
-                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a ");
+                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
+                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a ");
 
                 // This is necessary to compile
-                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a ");
-                shCommandBuilder.Append("-lc");
-                shCommandBuilder.Append("' ");
+                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a ");
+                // shCommandBuilder.Append("-lc");
+                // shCommandBuilder.Append("' ");
 
                 // Switching to using the clang standard library here as well as setting the target, these don't seem
                 // to really work
-                shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
-                shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
+                // shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
+                // shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
 
                 break;
             }
@@ -860,9 +850,10 @@ public class NativeLibs
 
             if (!options.DebugLibrary)
             {
-                await BinaryHelpers.Strip(target, cancellationToken);
+                // TODO: turn off again for debugging
+                // await BinaryHelpers.Strip(target, cancellationToken);
 
-                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+                // ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
             }
             else
             {

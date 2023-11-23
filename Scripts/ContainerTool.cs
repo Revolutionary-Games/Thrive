@@ -16,6 +16,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     public const string CrossCompilerClangName = "x86_64-w64-mingw32-clang";
     public const string CrossCompilerClangName32Bit = "i686-w64-mingw32-clang";
 
+    private const bool TestForNoGcc = false;
+
     private const string GLibCReference = "libc.so.6 => /lib64/libc.so.6";
 
     private readonly Regex clangVersionRegex = new(@"clang version ([\d\.]+\s*\(.+\))$\s*target:\s*([\w-]+)$",
@@ -181,15 +183,27 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         var command = new StringBuilder();
 
-        command.Append("clang --version && ");
+        command.Append("clang++ --version && ");
         command.Append("echo '");
         command.Append(simpleMainSourceCode);
         command.Append("' > /main.cpp && ");
 
         // Use lld, the libc++, and compiler_rt flags are mandatory for this to work
-        command.Append("clang -fuse-ld=lld -stdlib=libc++ --rtlib=compiler-rt ");
+        command.Append("clang++ -fuse-ld=lld ");
+
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162 // Unreachable code detected
+        if (TestForNoGcc)
+        {
+            // For now it seems we just have to link with the normal system stuff to create .so files that don't
+            // segfault a process on shutdown. Would be really nice to figure out a workaround (which probably is
+            // custom compiling Godot and Godot templates to also only use llvm system libraries)
+            command.Append("-stdlib=libc++ --rtlib=compiler-rt ");
+        }
 
         // Link statically to the standard libraries to produce an executable free of any references to gcc_s
+        // See the comment inside the testForNoGCC check block as to why this doesn't fully do what the comment two
+        // lines above this says
         command.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a " +
             "/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a /usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
 
@@ -226,13 +240,21 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         // Detect bad stuff in the output (of ldd presumably)
         var gccMatch = gccReference.Match(fullOutput);
-        if (gccMatch.Success)
+        if (gccMatch.Success && TestForNoGcc)
         {
             ColourConsole.WriteErrorLine(
                 $"Compiled clang version includes references to gcc (libraries), it is not clean (matched text: " +
                 $"{gccMatch.Value} at index: {gccMatch.Index}, output:\n{fullOutput}");
             return false;
         }
+
+        if (gccMatch.Success)
+        {
+            ColourConsole.WriteNormalLine("Created builder will dynamically reference gcc C++ libraries");
+        }
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162 // Unreachable code detected
 
         // If the created program does not refer to glibc dynamically (just uses clang standard libraries) that causes
         // an incompatibility on program shutdown crashing in at exit handlers
