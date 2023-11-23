@@ -179,7 +179,7 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 35.0f;
+    public const float FLAGELLA_BASE_FORCE = 250.7f;
 
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
