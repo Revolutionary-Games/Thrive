@@ -172,9 +172,14 @@ public class DebugDrawer : ControlWithInput
             // Send camera position to the debug draw for LOD purposes
             try
             {
-                DebugCameraLocation = GetViewport().GetCamera().GlobalTranslation;
+                var camera = GetViewport().GetCamera();
 
-                OnPhysicsDebugCameraPositionChangedHandler?.Invoke(DebugCameraLocation);
+                if (camera != null)
+                {
+                    DebugCameraLocation = camera.GlobalTranslation;
+
+                    OnPhysicsDebugCameraPositionChangedHandler?.Invoke(DebugCameraLocation);
+                }
             }
             catch (Exception e)
             {

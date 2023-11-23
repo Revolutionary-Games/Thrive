@@ -29,11 +29,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PhysicsBodyCreationSystem physicsBodyCreationSystem = null!;
     private PhysicsBodyDisablingSystem physicsBodyDisablingSystem = null!;
     private PhysicsCollisionManagementSystem physicsCollisionManagementSystem = null!;
+    private CollisionShapeLoaderSystem collisionShapeLoaderSystem = null!;
     private PhysicsUpdateAndPositionSystem physicsUpdateAndPositionSystem = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
 
     // private RenderOrderSystem renderOrderSystem = null! = null!;
 
+    private SimpleShapeCreatorSystem simpleShapeCreatorSystem = null!;
     private SoundEffectSystem soundEffectSystem = null!;
     private SoundListenerSystem soundListenerSystem = null!;
     private SpatialAttachSystem spatialAttachSystem = null!;
@@ -155,7 +157,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
+        collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
+
+        simpleShapeCreatorSystem = new SimpleShapeCreatorSystem(EntitySystem, couldParallelize);
 
         // TODO: different root for sounds?
         soundEffectSystem = new SoundEffectSystem(visualsParent, EntitySystem);
@@ -295,6 +300,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         entityMaterialFetchSystem.Update(delta);
         animationControlSystem.Update(delta);
 
+        simpleShapeCreatorSystem.Update(delta);
+        collisionShapeLoaderSystem.Update(delta);
         microbePhysicsCreationAndSizeSystem.Update(delta);
         physicsBodyCreationSystem.Update(delta);
         physicsBodyDisablingSystem.Update(delta);
@@ -433,7 +440,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             physicsBodyDisablingSystem.Dispose();
             physicsCollisionManagementSystem.Dispose();
             physicsUpdateAndPositionSystem.Dispose();
+            collisionShapeLoaderSystem.Dispose();
             predefinedVisualLoaderSystem.Dispose();
+            simpleShapeCreatorSystem.Dispose();
             soundEffectSystem.Dispose();
             soundListenerSystem.Dispose();
             spatialAttachSystem.Dispose();
