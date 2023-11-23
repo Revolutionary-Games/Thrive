@@ -689,45 +689,6 @@ public class NativeLibs
                 shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
                 shCommandBuilder.Append("-DCMAKE_CXX_COMPILER_AR=/usr/bin/llvm-ar ");
 
-                // ReSharper disable once CommentTypo
-                // -flto=thin specified here reduces the binary size a bit, not sure what's up with that other than
-                // maybe the cmake default LTO is slightly more conservative option
-                // $"-D CMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt' ");
-                // shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt -flto=thin' ");
-                // shCommandBuilder.Append(
-                //    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libstdc++ -flto=thin ' ");
-
-                // shCommandBuilder.Append("-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu' ");
-
-                // Need to specify the standard library like this to prevent linker errors
-                // shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu  ");
-
-                // shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/ -v");
-
-                // Suppress normal standard library includes as they seem to end up being wrong
-                // shCommandBuilder.Append("-nostdlib ");
-
-                // These aren't necessary for the compile to succeed but maybe specifying these before libc++ makes
-                // it prefer symbols from these?
-
-                // This first one requires a PIC linked llvm libc otherwise this will fail to link (which doesn't seem
-                // to just stick with any argument flags in the Dockerfile)
-                // ReSharper disable once CommentTypo
-                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libllvmlibc.a ");
-
-                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
-                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a ");
-
-                // This is necessary to compile
-                // shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a ");
-                // shCommandBuilder.Append("-lc");
-                // shCommandBuilder.Append("' ");
-
-                // Switching to using the clang standard library here as well as setting the target, these don't seem
-                // to really work
-                // shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
-                // shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
-
                 break;
             }
 
@@ -740,9 +701,6 @@ public class NativeLibs
                 shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName} ");
                 shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName} ");
 
-                shCommandBuilder.Append("-DCMAKE_C_FLAGS='' ");
-                shCommandBuilder.Append("-DCMAKE_CXX_FLAGS='' ");
-
                 shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
 
                 break;
@@ -752,11 +710,16 @@ public class NativeLibs
             {
                 // TODO: it's not really tested but it should work the same (with slightly tweaked tool names as the
                 // 64-bit version)
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_NAME=Windows ");
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_PROCESSOR=x86 ");
+
                 shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
                 shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
 
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
+
                 throw new NotImplementedException(
-                    "TODO: implement the rest of this based on the 64-bit windows version");
+                    "TODO: test (this was written based on the 64-bit windows version)");
             }
 
             case PackagePlatform.Mac:
@@ -850,10 +813,9 @@ public class NativeLibs
 
             if (!options.DebugLibrary)
             {
-                // TODO: turn off again for debugging
-                // await BinaryHelpers.Strip(target, cancellationToken);
+                await BinaryHelpers.Strip(target, cancellationToken);
 
-                // ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
             }
             else
             {

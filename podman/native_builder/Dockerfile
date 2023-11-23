@@ -23,10 +23,15 @@ RUN git clone https://github.com/llvm/llvm-project.git --depth 1 \
 
 RUN mkdir /llvm-binaries
 
-# Bootstrap build for clang that uses the llvm standard library in the second compilation stage
-# as much as possible. Glibc still needs to be dynamically linked to ensure that things don't
-# crash on shutdown on Linux (presumably due to Godot being compiled with glibc so having
-# two different C libraries will cause an incompatibility)
+# Bootstrap build for clang. It was attempted to use llvm standard
+# library everywhere but that creates a library that segfaults on
+# exit. For now only the C++ standard library is compiled, but even
+# that isn't really used as it depends on non-standard libraries
+# (atomic). This could be improved in the future. Glibc still needs to
+# be dynamically linked (probably always) to ensure that things don't
+# crash on shutdown on Linux (presumably due to Godot being compiled
+# with glibc so having two different C libraries will cause an
+# incompatibility)
 RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTRAP=ON \
     # libdir suffix to match what redhat does \
     -DCMAKE_BUILD_TYPE=Release -DLLVM_LIBDIR_SUFFIX=64 \
@@ -46,7 +51,6 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     -DBOOTSTRAP_LLVM_ENABLE_PROJECTS="clang;clang-tools-extra;libc;lld;polly;pstl" \
     -DBOOTSTRAP_LLVM_ENABLE_RUNTIMES=all \
     -DBOOTSTRAP_LLVM_TARGETS_TO_BUILD="X86;WebAssembly" \
-    # build now with the freshly built llvm libc runtime from the previous step \
     -DBOOTSTRAP_LLVM_ENABLE_LLVM_LIBC=OFF -DBOOTSTRAP_LLVM_ENABLE_LIBCXX=ON \
     # try to force linking against gcc_s off
     -DBOOTSTRAP_LIBCXX_HAS_GCC_S_LIB=OFF -DBOOTSTRAP_LIBCXX_HAS_ATOMIC_LIB=OFF \
@@ -128,20 +132,8 @@ COPY --from=pe-tools /pe-util/build/peldd /usr/bin/
 FROM almalinux:9
 
 # gcc-c++ is needed on top of libstdc++-devel to get all standard headers
-# clean all is not used here as the repoquery below ends up needing the info
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
     git gcc-c++ glibc-devel && dnf clean all
-    # git gcc glibc-devel # && dnf clean all
-
-# Delete files from gcc that aren't desired (for use if ever switching back to trying to
-# only use llvm runtime libraries)
-# Skip trying to delete folders as that causes a warning
-# RUN dnf repoquery -l gcc | grep -vE 'crtbegin|crtend|\.build-id' | tr '\n' '\0' | \
-#     xargs -0 -I {} sh -c '[ ! -d "{}" ] && rm -f {} || true'
-
-# This path needs to be updated when gcc is updated
-#RUN [ -f /usr/lib/gcc/x86_64-redhat-linux/11/crtbeginS.o ] && \
-#    echo "crtbegin was preserved correctly" || (echo "incorrectly removed crtbegin"; exit 1)
 
 # binutils is removed so that the default linker doesn't exist
 # RUN dnf remove binutils -y
