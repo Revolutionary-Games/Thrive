@@ -82,7 +82,7 @@ public static class NativeInterop
         if (version != NativeConstants.Version)
         {
             GD.PrintErr("Thrive native library is the wrong version! " +
-                "Please verify game files or if you are developing recompile the native library.");
+                "Please verify game files or if you are developing Thrive, recompile the native library.");
 
             throw new Exception($"Failed to initialize Thrive native library, unexpected version {version} " +
                 $"is not the required: {NativeConstants.Version}");

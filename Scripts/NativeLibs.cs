@@ -676,7 +676,7 @@ public class NativeLibs
         // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
         // of flags
         // TODO: figure out how to get the Jolt interprocedural check to work (now fails with trying to link the wrong
-        // standard library)
+        // standard library). Might be related to the compiler checks that fail below.
         shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=OFF ");
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
@@ -695,18 +695,24 @@ public class NativeLibs
                 shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
                 shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
 
+                // The way cmake tests the compiler fails, but it does work so we force skip that here
+                shCommandBuilder.Append("-DCMAKE_C_COMPILER_WORKS=1 ");
+                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER_WORKS=1 ");
+
                 // ReSharper disable once CommentTypo
                 // -flto=thin specified here reduces the binary size a bit, not sure what's up with that other than
                 // maybe the cmake default LTO is slightly more conservative option
+                // $"-D CMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt' ");
+                shCommandBuilder.Append($"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt -flto=thin' ");
                 shCommandBuilder.Append(
-                    $"-DCMAKE_C_FLAGS='-target {target} --rtlib=compiler-rt' ");
-                shCommandBuilder.Append(
-                    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libc++' ");
+                    $"-DCMAKE_CXX_FLAGS='-target {target} -stdlib=libc++ -flto=thin ' ");
 
-                shCommandBuilder.Append("-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu' ");
+                // shCommandBuilder.Append("-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu' ");
 
                 // Need to specify the standard library like this to prevent linker errors
-                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu  ");
+                // shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-L/usr/lib64/x86_64-unknown-linux-gnu  ");
+
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='");
 
                 // Suppress normal standard library includes as they seem to end up being wrong
                 shCommandBuilder.Append("-nostdlib ");
@@ -723,8 +729,14 @@ public class NativeLibs
                 shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a ");
 
                 // This is necessary to compile
-                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a");
+                shCommandBuilder.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a ");
+                shCommandBuilder.Append("-lc");
                 shCommandBuilder.Append("' ");
+
+                // Switching to using the clang standard library here as well as setting the target, these don't seem
+                // to really work
+                shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
+                shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
 
                 break;
             }
@@ -764,11 +776,6 @@ public class NativeLibs
             default:
                 throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
         }
-
-        // Switching to using the clang standard library here as well as setting the target
-
-        shCommandBuilder.Append("-DCLANG_DEFAULT_CXX_STDLIB=libc++ ");
-        shCommandBuilder.Append("-DCLANG_DEFAULT_RTLIB=compiler-rt ");
 
         // ReSharper restore StringLiteralTypo
 

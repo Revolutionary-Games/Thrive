@@ -16,8 +16,12 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     public const string CrossCompilerClangName = "x86_64-w64-mingw32-clang";
     public const string CrossCompilerClangName32Bit = "i686-w64-mingw32-clang";
 
+    private const string GLibCReference = "libc.so.6 => /lib64/libc.so.6";
+
     private readonly Regex clangVersionRegex = new(@"clang version ([\d\.]+\s*\(.+\))$\s*target:\s*([\w-]+)$",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+    private readonly Regex gccReference = new("gcc[^/]", RegexOptions.Multiline);
 
     /// <summary>
     ///   Tries to match references to gcc but not matching packages needed to be installed for wine
@@ -157,7 +161,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         if (line.Contains("Unable to link against LLVM libc"))
         {
             ColourConsole.WriteErrorLine("Canceling build as unable to link against LLVM libc detected " +
-                "(this would likely result in a clang that doesn't use libc++ without dependency on gcc)");
+                "(this would likely result in a clang that doesn't have libc++ properly built)");
 
             tokenSource.CancelAfter(TimeSpan.FromSeconds(0.3));
             return true;
@@ -221,16 +225,27 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         }
 
         // Detect bad stuff in the output (of ldd presumably)
-        if (fullOutput.Contains("gcc"))
+        var gccMatch = gccReference.Match(fullOutput);
+        if (gccMatch.Success)
         {
             ColourConsole.WriteErrorLine(
-                $"Compiled clang version includes references to gcc (libraries), it is not clean, " +
-                $"output:\n{fullOutput}");
+                $"Compiled clang version includes references to gcc (libraries), it is not clean (matched text: " +
+                $"{gccMatch.Value} at index: {gccMatch.Index}, output:\n{fullOutput}");
+            return false;
+        }
+
+        // If the created program does not refer to glibc dynamically (just uses clang standard libraries) that causes
+        // an incompatibility on program shutdown crashing in at exit handlers
+        if (!fullOutput.Contains(GLibCReference))
+        {
+            ColourConsole.WriteErrorLine(
+                $"Compiled program doesn't dynamically link to glibc, output:\n{fullOutput}");
             return false;
         }
 
         // TODO: is there a way to verify the static libraries in /usr/lib64/x86_64-unknown-linux-gnu/ do not contain
-        // any gcc symbols that might end up in the created executables / libraries?
+        // any gcc symbols that might end up in the created executables / libraries? (so only dynamic glibc link
+        // happens)
 
         // Just in case the program compiled but could not run
         if (!fullOutput.Contains(programPrintedText))
@@ -244,6 +259,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         ColourConsole.WriteInfoLine(
             $"Verified image has clang ({installedVersion}) that can compile executables without gcc lib pollution");
+        ColourConsole.WriteNormalLine("But has dynamically linked reference to glibc to be compatible when " +
+            "loaded into Godot processes");
         return true;
     }
 
