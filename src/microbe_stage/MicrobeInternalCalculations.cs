@@ -258,56 +258,21 @@ public static class MicrobeInternalCalculations
     /// <returns>The rotation speed</returns>
     public static float CalculateRotationSpeed(PhysicsShape shape, IEnumerable<IPositionedOrganelle> organelles)
     {
-        // Calculate rotation speed based on the inertia.
-        var speedFraction = shape.TestYRotationInertiaFactor();
-
-        // TODO: a good non-linear function here
-        // TODO: also should update MicrobeColonyHelpers.CalculateRotationMultiplier as that uses the same approach as
-        // here right now
-        // GD.Print("Speed fraction: ", speedFraction);
-
-        // if (speedFraction < 0.5284f)
-        // {
-        //     speedFraction = Mathf.Pow(1.1f * speedFraction - 0.8f, 3) + 0.5f;
-        // }
-        // else
-        // {
-        //     speedFraction = Mathf.Pow(1.3f * speedFraction - 0.5f, 3) + 0.483f;
-        // }
-
-        // This seems pretty much, fine though the top end is pretty harsh so at least for the top end another function
-        // should be used to get better small cell scaling)
-        speedFraction = Mathf.Clamp(Mathf.Pow(speedFraction, 1.0f / 4.0f), 0, 1);
-
-        var speed = Constants.CELL_MAX_ROTATION -
-            ((Constants.CELL_MAX_ROTATION - Constants.CELL_MIN_ROTATION) * speedFraction);
-
-        int ciliaCount = 0;
-
-        // For simplicity we calculate all cilia af if they are at a uniform (max radius) distance from the center
-        float radiusSquared = 1;
+        float cilliaFactor = 0;
 
         foreach (var organelle in organelles)
         {
-            if (!organelle.Definition.HasCiliaComponent)
-                continue;
-
-            ++ciliaCount;
-
-            var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
-
-            if (radiusSquared < distance)
-                radiusSquared = distance;
+            if (organelle.Definition.HasCiliaComponent)
+            {
+                cilliaFactor += Constants.CILIA_ROTATION_FACTOR +
+                    Hex.AxialToCartesian(organelle.Position).LengthSquared() * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
+            }
         }
 
-        // Add the extra speed from cilia
-        if (ciliaCount > 0)
-        {
-            speed -= ciliaCount * Mathf.Sqrt(radiusSquared) * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER *
-                Constants.CILIA_ROTATION_FACTOR;
-        }
+        var effectiveMass = shape.GetMass();
 
-        return Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION, Constants.CELL_MAX_ROTATION);
+        return effectiveMass / (Constants.CELL_ROTATION_INFLECTION_MASS + cilliaFactor + effectiveMass)
+            * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 
     /// <summary>
