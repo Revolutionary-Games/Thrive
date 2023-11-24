@@ -16,8 +16,14 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
     public const string CrossCompilerClangName = "x86_64-w64-mingw32-clang";
     public const string CrossCompilerClangName32Bit = "i686-w64-mingw32-clang";
 
+    private const bool TestForNoGcc = false;
+
+    private const string GLibCReference = "libc.so.6 => /lib64/libc.so.6";
+
     private readonly Regex clangVersionRegex = new(@"clang version ([\d\.]+\s*\(.+\))$\s*target:\s*([\w-]+)$",
         RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+    private readonly Regex gccReference = new("gcc[^/]", RegexOptions.Multiline);
 
     /// <summary>
     ///   Tries to match references to gcc but not matching packages needed to be installed for wine
@@ -157,7 +163,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         if (line.Contains("Unable to link against LLVM libc"))
         {
             ColourConsole.WriteErrorLine("Canceling build as unable to link against LLVM libc detected " +
-                "(this would likely result in a clang that doesn't use libc++ without dependency on gcc)");
+                "(this would likely result in a clang that doesn't have libc++ properly built)");
 
             tokenSource.CancelAfter(TimeSpan.FromSeconds(0.3));
             return true;
@@ -177,15 +183,27 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         var command = new StringBuilder();
 
-        command.Append("clang --version && ");
+        command.Append("clang++ --version && ");
         command.Append("echo '");
         command.Append(simpleMainSourceCode);
         command.Append("' > /main.cpp && ");
 
         // Use lld, the libc++, and compiler_rt flags are mandatory for this to work
-        command.Append("clang -fuse-ld=lld -stdlib=libc++ --rtlib=compiler-rt ");
+        command.Append("clang++ -fuse-ld=lld ");
+
+        // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162 // Unreachable code detected
+        if (TestForNoGcc)
+        {
+            // For now it seems we just have to link with the normal system stuff to create .so files that don't
+            // segfault a process on shutdown. Would be really nice to figure out a workaround (which probably is
+            // custom compiling Godot and Godot templates to also only use llvm system libraries)
+            command.Append("-stdlib=libc++ --rtlib=compiler-rt ");
+        }
 
         // Link statically to the standard libraries to produce an executable free of any references to gcc_s
+        // See the comment inside the testForNoGCC check block as to why this doesn't fully do what the comment two
+        // lines above this says
         command.Append("/usr/lib64/x86_64-unknown-linux-gnu/libc++.a " +
             "/usr/lib64/x86_64-unknown-linux-gnu/libc++abi.a /usr/lib64/x86_64-unknown-linux-gnu/libunwind.a ");
 
@@ -221,16 +239,35 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         }
 
         // Detect bad stuff in the output (of ldd presumably)
-        if (fullOutput.Contains("gcc"))
+        var gccMatch = gccReference.Match(fullOutput);
+        if (gccMatch.Success && TestForNoGcc)
         {
             ColourConsole.WriteErrorLine(
-                $"Compiled clang version includes references to gcc (libraries), it is not clean, " +
-                $"output:\n{fullOutput}");
+                $"Compiled clang version includes references to gcc (libraries), it is not clean (matched text: " +
+                $"{gccMatch.Value} at index: {gccMatch.Index}, output:\n{fullOutput}");
+            return false;
+        }
+
+        if (gccMatch.Success)
+        {
+            ColourConsole.WriteNormalLine("Created builder will dynamically reference gcc C++ libraries");
+        }
+
+        // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162 // Unreachable code detected
+
+        // If the created program does not refer to glibc dynamically (just uses clang standard libraries) that causes
+        // an incompatibility on program shutdown crashing in at exit handlers
+        if (!fullOutput.Contains(GLibCReference))
+        {
+            ColourConsole.WriteErrorLine(
+                $"Compiled program doesn't dynamically link to glibc, output:\n{fullOutput}");
             return false;
         }
 
         // TODO: is there a way to verify the static libraries in /usr/lib64/x86_64-unknown-linux-gnu/ do not contain
-        // any gcc symbols that might end up in the created executables / libraries?
+        // any gcc symbols that might end up in the created executables / libraries? (so only dynamic glibc link
+        // happens)
 
         // Just in case the program compiled but could not run
         if (!fullOutput.Contains(programPrintedText))
@@ -244,6 +281,8 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
 
         ColourConsole.WriteInfoLine(
             $"Verified image has clang ({installedVersion}) that can compile executables without gcc lib pollution");
+        ColourConsole.WriteNormalLine("But has dynamically linked reference to glibc to be compatible when " +
+            "loaded into Godot processes");
         return true;
     }
 

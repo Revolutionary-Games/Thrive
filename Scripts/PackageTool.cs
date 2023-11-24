@@ -45,6 +45,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "revision.txt",
         "ThriveAssetsLICENSE.txt",
         "GodotLicense.txt",
+        "runtime_licenses.txt",
         "gpl.txt",
         "LICENSE.txt",
         "README.txt",
@@ -55,6 +56,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         new("assets/LICENSE.txt", "ThriveAssetsLICENSE.txt"),
         new("assets/README.txt", "ThriveAssetsREADME.txt"),
         new("doc/GodotLicense.txt", "GodotLicense.txt"),
+        new("doc/RuntimeLicenses.txt", "RuntimeLicenses.txt"),
     };
 
     private static readonly IReadOnlyCollection<FileToPackage> NonSteamLicenseFiles = new List<FileToPackage>

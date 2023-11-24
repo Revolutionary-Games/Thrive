@@ -60,6 +60,7 @@ public class LicensesDisplay : CustomWindow
             (string.Empty, () => LoadFile(Constants.ASSETS_LICENSE_FILE)),
             (string.Empty, () => LoadFile(Constants.OFL_LICENSE_FILE)),
             (string.Empty, () => LoadFile(Constants.GODOT_LICENSE_FILE)),
+            (string.Empty, () => LoadFile(Constants.RUNTIME_LICENSE_FILE)),
         };
 
         if (!isSteamVersion)

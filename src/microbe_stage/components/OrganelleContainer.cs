@@ -74,13 +74,11 @@
 
         public int HexCount;
 
+        /// <summary>
+        ///   Lower values are faster rotation
+        /// </summary>
         public float RotationSpeed;
 
-        // TODO: add the following variables only if really needed
-        // private bool organelleMaxRenderPriorityDirty = true;
-        // private int cachedOrganelleMaxRenderPriority;
-
-        // TODO: could maybe redo these "feature flags" by having separate tagging components?
         public bool HasSignalingAgent;
 
         public bool HasBindingAgent;
@@ -210,6 +208,9 @@
 
         public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
         {
+            // Set an initial rotation rate that will be reset after this is properly calculated
+            container.RotationSpeed = 0.5f;
+
             container.Organelles?.Clear();
 
             container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
@@ -406,12 +407,6 @@
             container.OrganellesCapacity = 0;
             container.HasSignalingAgent = false;
             container.HasBindingAgent = false;
-
-            // TODO: rotation speed calculation
-            // TODO: rotation penalty from size
-            // TODO: rotation speed from cilia
-            // Lower value is faster rotation
-            container.RotationSpeed = 0.2f;
 
             if (container.Organelles == null)
                 throw new InvalidOperationException("Organelle list needs to be initialized first");

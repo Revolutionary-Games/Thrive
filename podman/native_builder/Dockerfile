@@ -2,7 +2,7 @@
 FROM almalinux:9 as llvm-builder
 
 RUN dnf install -y --setopt=deltarpm=false \
-    cmake gcc-c++ clang compiler-rt lld git unzip \
+    cmake gcc-c++ clang lld git unzip \
     zlib-devel libxml2-devel libedit-devel ncurses-devel && dnf clean all
 
 ENV LLVM_VERSION "17.0.4"
@@ -23,47 +23,41 @@ RUN git clone https://github.com/llvm/llvm-project.git --depth 1 \
 
 RUN mkdir /llvm-binaries
 
-# Bootstrap build for clang that uses the llvm standard library in the second compilation stage
+# Bootstrap build for clang. It was attempted to use llvm standard
+# library everywhere but that creates a library that segfaults on
+# exit. For now only the C++ standard library is compiled, but even
+# that isn't really used as it depends on non-standard libraries
+# (atomic). This could be improved in the future. Glibc still needs to
+# be dynamically linked (probably always) to ensure that things don't
+# crash on shutdown on Linux (presumably due to Godot being compiled
+# with glibc so having two different C libraries will cause an
+# incompatibility)
 RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTRAP=ON \
     # libdir suffix to match what redhat does \
     -DCMAKE_BUILD_TYPE=Release -DLLVM_LIBDIR_SUFFIX=64 \
     # first stage compiled with clang to avoid extra compiler errors \
     -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang \
     -G "Ninja" -DLLVM_PARALLEL_LINK_JOBS=${PARALLEL_LINK_JOBS} -DLLVM_ENABLE_LLD=ON \
-    -DLLVM_ENABLE_PROJECTS="clang;libc;compiler-rt;lld" \
+    -DLLVM_ENABLE_PROJECTS="clang;lld" \
     -DLLVM_ENABLE_RUNTIMES=all \
     -DLLVM_TARGETS_TO_BUILD="X86" \
-    -DCOMPILER_RT_BUILD_CRT=ON -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_TESTS=OFF \
-    # make files made by the first stage compiler use compiler-rt \
-    -DCLANG_DEFAULT_RTLIB=compiler-rt \
-    # try to make sure that the built libc++ doesn't depend on gcc \
-    -DLIBCXXABI_USE_LLVM_UNWINDER=ON -DLIBCXX_USE_COMPILER_RT=ON \
-    # trying to remove dependency on atomic lib \
-    -DCOMPILER_RT_BUILD_BUILTINS=ON \
-    # this causes build failures if turned on \
-    # -DCOMPILER_RT_BUILD_STANDALONE_LIBATOMIC=ON \
+    # configuring the built libc++ \
+    -DLIBCXXABI_USE_LLVM_UNWINDER=ON -DLIBCXX_USE_COMPILER_RT=OFF \
     # build fails due to non-relocatable .a files without this \
     -DLLVM_ENABLE_PIC=ON \
     # first stage must be installed system-wide for it to work \
     -DCMAKE_INSTALL_PREFIX=/ \
-    -DCLANG_BOOTSTRAP_PASSTHROUGH="CMAKE_BUILD_TYPE;LLVM_PARALLEL_LINK_JOBS;LLVM_ENABLE_LLD;LLVM_LIBDIR_SUFFIX;COMPILER_RT_BUILD_CRT;LLVM_INCLUDE_TESTS;LLVM_BUILD_TESTS;CLANG_DEFAULT_RTLIB;LIBCXXABI_USE_LLVM_UNWINDER;LIBCXX_USE_COMPILER_RT;COMPILER_RT_BUILD_BUILTINS;COMPILER_RT_BUILD_STANDALONE_LIBATOMIC;LLVM_ENABLE_PIC;CMAKE_INSTALL_PREFIX" \
-    -DBOOTSTRAP_LLVM_ENABLE_PROJECTS="clang;clang-tools-extra;libc;compiler-rt;lld;polly;pstl" \
+    -DCLANG_BOOTSTRAP_PASSTHROUGH="CMAKE_BUILD_TYPE;LLVM_PARALLEL_LINK_JOBS;LLVM_ENABLE_LLD;LLVM_LIBDIR_SUFFIX;LIBCXXABI_USE_LLVM_UNWINDER;LIBCXX_USE_COMPILER_RT;LLVM_ENABLE_PIC;CMAKE_INSTALL_PREFIX" \
+    -DBOOTSTRAP_LLVM_ENABLE_PROJECTS="clang;clang-tools-extra;libc;lld;polly;pstl" \
     -DBOOTSTRAP_LLVM_ENABLE_RUNTIMES=all \
     -DBOOTSTRAP_LLVM_TARGETS_TO_BUILD="X86;WebAssembly" \
-    # build now with the freshly built llvm libc runtime from the previous step \
-    -DBOOTSTRAP_LLVM_ENABLE_LLVM_LIBC=ON -DBOOTSTRAP_LLVM_ENABLE_LIBCXX=ON \
+    -DBOOTSTRAP_LLVM_ENABLE_LLVM_LIBC=OFF -DBOOTSTRAP_LLVM_ENABLE_LIBCXX=ON \
     # try to force linking against gcc_s off
     -DBOOTSTRAP_LIBCXX_HAS_GCC_S_LIB=OFF -DBOOTSTRAP_LIBCXX_HAS_ATOMIC_LIB=OFF \
-    # make this clang compile using the clang libs by default (sadly these don't seem to work) \
-    -DBOOTSTRAP_CLANG_DEFAULT_CXX_STDLIB=libc++ -DBOOTSTRAP_CLANG_DEFAULT_LINKER=lld \
-    # -DBOOTSTRAP_LLVM_DEFAULT_TARGET_TRIPLE=x86_64-unknown-linux-llvm && \
-    # force on the llvm runtime use and fPIC as LLVM_ENABLE_PIC is not enough for some reason \
-    # also need to specify the library path to load things from \
-    -DBOOTSTRAP_CMAKE_CXX_FLAGS='--rtlib=compiler-rt -stdlib=libc++ -L/lib64/x86_64-unknown-linux-gnu -fPIC' \
-    -DBOOTSTRAP_CMAKE_C_FLAGS='--rtlib=compiler-rt -fPIC' \
-    -DBOOTSTRAP_CMAKE_SHARED_LINKER_FLAGS='-L/lib64/x86_64-unknown-linux-gnu' \
-    # static libs don't use linker flags so don't specify those \
-    -DBOOTSTRAP_CMAKE_EXE_LINKER_FLAGS='--rtlib=compiler-rt -stdlib=libc++ -L/lib64/x86_64-unknown-linux-gnu' && \
+    -DBOOTSTRAP_CLANG_DEFAULT_LINKER=lld \
+    -DBOOTSTRAP_CMAKE_CXX_FLAGS='-fPIC' \
+    -DBOOTSTRAP_CMAKE_C_FLAGS='-fPIC' \
+    && \
     ninja install && \
     # need to make the system aware of the just installed new compiler \
     echo "/lib64/x86_64-unknown-linux-gnu" > /etc/ld.so.conf.d/clang.conf && ldconfig && \
@@ -75,9 +69,9 @@ RUN mkdir /build && cd /build && cmake /llvm-project/llvm -DCLANG_ENABLE_BOOTSTR
     # installed systemwide in the previous step \
     ninja stage2 && ninja stage2 install && \
     # verify the install location stuck correctly \
-    [ -f /llvm-binaries/lib64/x86_64-unknown-linux-gnu/libllvmlibc.a ] && \
-    echo "libllvmlibc was installed correctly" || \
-    (echo "build failed / libllvmlibc was not installed"; exit 1) && \
+    [ -f /llvm-binaries/bin/clang ] && \
+    echo "llvm was installed to the right folder" || \
+    (echo "build failed / llvm was not installed to the desired folder"; exit 1) && \
     rm -rf /build
 
 # pe-util tool builder
@@ -137,12 +131,14 @@ COPY --from=pe-tools /pe-util/build/peldd /usr/bin/
 # Final build image without temporary build artifacts and extra tools
 FROM almalinux:9
 
-# glibc-headers would almost be enough but it is missing stubs-64.h
+# gcc-c++ is needed on top of libstdc++-devel to get all standard headers
 RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
-    make git binutils bash glibc-devel && dnf clean all
+    git gcc-c++ glibc-devel && dnf clean all
 
 # binutils is removed so that the default linker doesn't exist
-RUN dnf remove binutils -y
+# RUN dnf remove binutils -y
+# Remove binutils but leave gcc
+RUN rpm --erase binutils binutils-gold --nodeps
 
 ENV CMAKE_VERSION "3.27.7"
 
@@ -165,7 +161,6 @@ COPY --from=llvm-builder /llvm-binaries/libexec /usr/libexec/
 
 # Setup default search path for it
 RUN echo "/usr/lib64/x86_64-unknown-linux-gnu/" > /etc/ld.so.conf.d/clang.conf
-# RUN echo "/usr/local/bin" > /etc/ld.so.conf.d/local.conf
 RUN ldconfig
 
 # When copied properly this exists thanks to the copy from the builder image
@@ -174,5 +169,4 @@ RUN [ -f /usr/bin/ld.lld ] && \
 
 RUN ln -s /usr/bin/ld.lld /usr/bin/ld
 
-# RUN echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/local_bin.sh
 
