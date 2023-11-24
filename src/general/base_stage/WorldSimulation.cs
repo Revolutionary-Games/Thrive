@@ -158,8 +158,6 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         Processing = true;
 
-        OnCheckPhysicsBeforeProcessStart();
-
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
 
@@ -170,6 +168,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         }
 
         ApplyECSThreadCount(ecsThreadsToUse);
+
+        // Make sure physics is not running while the systems are
+        WaitForStartedPhysicsRun();
 
         OnProcessFixedLogic(accumulatedLogicTime);
 
@@ -201,6 +202,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///   for GUI animation quality. Needs to be called after <see cref="ProcessLogic"/> for a frame when this occurs
     ///   (if a logic update was also performed this frame).
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this may not read any physics state as the next physics run may already be in progress on a
+    ///     different thread. Fixed process must be used to read / write physics data, and copy it in case any would be
+    ///     needed here.
+    ///   </para>
+    /// </remarks>
     public abstract void ProcessFrameLogic(float delta);
 
     public Entity CreateEmptyEntity()
@@ -389,6 +397,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         minimumTimeBetweenLogicUpdates = 1 / logicFPS;
     }
 
+    public abstract bool HasSystemsWithPendingOperations();
+
     public virtual void FreeNodeResources()
     {
     }
@@ -409,22 +419,9 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// </summary>
     protected abstract void InitSystemsEarly();
 
-    /// <summary>
-    ///   Checks that previously started (on previous update) physics runs are complete before running this update.
-    ///   Also if the physics simulation is behind by too much then this steps the simulation extra times.
-    /// </summary>
-    protected virtual void OnCheckPhysicsBeforeProcessStart()
-    {
-        WaitForStartedPhysicsRun();
-
-        while (RunPhysicsIfBehind())
-        {
-        }
-    }
-
     protected virtual void OnProcessPhysics(float delta)
     {
-        OnCheckPhysicsBeforeProcessStart();
+        WaitForStartedPhysicsRun();
         OnStartPhysicsRunIfTime(delta);
     }
 
@@ -445,16 +442,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         OnPlayerPositionSet(PlayerPosition);
     }
 
-    protected abstract void WaitForStartedPhysicsRun();
-    protected abstract void OnStartPhysicsRunIfTime(float delta);
-
     /// <summary>
-    ///   Should run the physics simulation if it is falling behind
+    ///   Checks that previously started (on previous update) physics runs are complete before running this update.
     /// </summary>
-    /// <returns>
-    ///   Should return true when behind and a step was run, this will be executed until this returns false
-    /// </returns>
-    protected abstract bool RunPhysicsIfBehind();
+    protected abstract void WaitForStartedPhysicsRun();
+
+    protected abstract void OnStartPhysicsRunIfTime(float delta);
 
     protected abstract void OnProcessFixedLogic(float delta);
 

@@ -410,7 +410,7 @@ public class CreditsScroll : Container
         var assetLicenseText = CreateFileLoadedPart(offset, Constants.ASSETS_README);
         offset += (int)assetLicenseText.Height + ExtraOffsetAfterTeam;
 
-        // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+        // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse RedundantIfElseBlock
 #pragma warning disable 162
         if (ShowFullLicenseTexts)
         {
@@ -418,12 +418,14 @@ public class CreditsScroll : Container
             var fullLicensesHeading = CreateDynamicPart(offset, "Full license texts follow");
             fullLicensesHeading.OnBecomeVisible += LoadFullLicenseTexts;
         }
+        else
+        {
+            var fullLicensesInfo = CreateDynamicPart(offset, "You can find full licenses in the \"extras\" menu");
+            fullLicensesInfo.OnBecomeVisible += LoadEndRemarks;
+        }
 
-        var fullLicensesInfo = CreateDynamicPart(offset, "You can find full licenses in the \"extras\" menu");
-        fullLicensesInfo.OnBecomeVisible += LoadEndRemarks;
+        // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse RedundantIfElseBlock
 #pragma warning restore 162
-
-        // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
     }
 
     private void LoadFullLicenseTexts()
@@ -474,9 +476,23 @@ public class CreditsScroll : Container
 
             endOfLicensesMarker.OnBecomeVisible += () =>
             {
-                // Restore normal speed after licenses are pretty much over
-                ScrollSpeed = normalScrollSpeed;
-                LoadEndRemarks();
+                // Show the runtime licenses
+                var runtimeLicenseLabel =
+                    CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart,
+                        Constants.RUNTIME_LICENSE_FILE);
+
+                runtimeLicenseLabel.OnBecomeVisible += () =>
+                {
+                    int offset2 = GetNextDynamicSectionOffset();
+                    var secondEndMarker = CreateDynamicPart(offset2, " ");
+
+                    secondEndMarker.OnBecomeVisible += () =>
+                    {
+                        // Restore normal speed after licenses are pretty much over
+                        ScrollSpeed = normalScrollSpeed;
+                        LoadEndRemarks();
+                    };
+                };
             };
         };
     }

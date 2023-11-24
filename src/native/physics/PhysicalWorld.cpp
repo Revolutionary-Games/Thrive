@@ -5,9 +5,6 @@
 #include <fstream>
 
 #include "boost/circular_buffer.hpp"
-
-// TODO: switch to a custom thread pool
-#include "Jolt/Core/JobSystemThreadPool.h"
 #include "Jolt/Core/StreamWrapper.h"
 #include "Jolt/Physics/Body/BodyCreationSettings.h"
 #include "Jolt/Physics/Collision/CastResult.h"
@@ -17,11 +14,10 @@
 #include "Jolt/Physics/PhysicsSettings.h"
 #include "Jolt/Physics/PhysicsSystem.h"
 
-// #include "core/TaskSystem.hpp"
-
 #include "core/Math.hpp"
 #include "core/Mutex.hpp"
 #include "core/Spinlock.hpp"
+#include "core/TaskSystem.hpp"
 #include "core/Time.hpp"
 
 #include "ArrayRayCollector.hpp"
@@ -209,18 +205,20 @@ PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
     tempAllocator = std::make_unique<JPH::TempAllocatorMalloc>();
 #endif
 
-    // Create job system
-    // TODO: configurable threads (should be about 1-8), or well if we share thread with other systems then maybe up
-    // to like any cores not used by the C# background tasks
-    int physicsThreads = 2;
-    jobSystem =
-        std::make_unique<JPH::JobSystemThreadPool>(JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsBarriers, physicsThreads);
-
     InitPhysicsWorld();
 }
 
 PhysicalWorld::~PhysicalWorld()
 {
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("World is being destroyed while a background operation is in progress");
+        while (runningBackgroundSimulation)
+        {
+            HYPER_THREAD_YIELD;
+        }
+    }
+
     if (bodyCount != 0)
     {
         LOG_ERROR(
@@ -255,7 +253,13 @@ void PhysicalWorld::InitPhysicsWorld()
 // ------------------------------------ //
 bool PhysicalWorld::Process(float delta)
 {
-    // TODO: update thread count if changed (we won't need this when we have the custom job system done)
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("May not call world sync process while background process is used");
+        return false;
+    }
+
+    nextStepIsFresh = true;
 
     elapsedSinceUpdate += delta;
 
@@ -271,17 +275,61 @@ bool PhysicalWorld::Process(float delta)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         simulatedTime += singlePhysicsFrame;
-        StepPhysics(*jobSystem, singlePhysicsFrame);
+        StepPhysics(singlePhysicsFrame);
         simulatedPhysics = true;
     }
 
     if (!simulatedPhysics)
         return false;
 
-    // TODO: Trigger stuff from the collision detection (but maybe some stuff needs to trigger for each step?)
-
     DrawPhysics(simulatedTime);
 
+    return true;
+}
+
+void PhysicalWorld::ProcessInBackground(float delta)
+{
+    bool previous = false;
+    if (!runningBackgroundSimulation.compare_exchange_strong(previous, true))
+    {
+        LOG_ERROR("Trying to start another background physics run while previous wasn't waited for");
+        return;
+    }
+
+    nextStepIsFresh = true;
+    backgroundSimulatedTime = 0;
+
+    elapsedSinceUpdate += delta;
+
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    if (elapsedSinceUpdate < singlePhysicsFrame)
+    {
+        // We can just early exit if there's nothing to do
+        return;
+    }
+
+    runningBackgroundSimulation = true;
+
+    TaskSystem::Get().QueueTask([this]() { StepAllPhysicsStepsInBackground(); });
+}
+
+bool PhysicalWorld::WaitForPhysicsToComplete()
+{
+    // For now this never sleep as it is assumed the physics should be done by the time the main thread gets here
+    // or very close to done
+    while (runningBackgroundSimulation)
+    {
+        HYPER_THREAD_YIELD;
+    }
+
+    if (nextStepIsFresh)
+        return false;
+
+    // Draw physics only here at the end to ensure this happens on the main thread
+    DrawPhysics(backgroundSimulatedTime);
+
+    backgroundSimulatedTime = 0;
     return true;
 }
 
@@ -976,7 +1024,22 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
 }
 
 // ------------------------------------ //
-void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
+void PhysicalWorld::StepAllPhysicsStepsInBackground()
+{
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    while (elapsedSinceUpdate > singlePhysicsFrame)
+    {
+        elapsedSinceUpdate -= singlePhysicsFrame;
+        backgroundSimulatedTime += singlePhysicsFrame;
+        StepPhysics(singlePhysicsFrame);
+    }
+
+    runningBackgroundSimulation = false;
+}
+
+// ------------------------------------ //
+void PhysicalWorld::StepPhysics(float time)
 {
     if (changesToBodies) [[unlikely]]
     {
@@ -1007,7 +1070,12 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 
     // Per physics step forces are applied in PerformPhysicsStepOperations triggered by the step listener
 
-    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
+    // TODO: ensure that our custom task system is not (much) slower than the Jolt inbuilt one
+    auto& jobExecutor = TaskSystem::Get();
+
+    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobExecutor);
+
+    nextStepIsFresh = false;
 
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
@@ -1040,12 +1108,15 @@ void PhysicalWorld::ReportBodyWithActiveCollisions(PhysicsBody& body)
 
 void PhysicalWorld::PerformPhysicsStepOperations(float delta)
 {
-    pimpl->IncrementStepCounter();
+    // Only fresh steps increment the counter to that collision data can be preserved
+    if (nextStepIsFresh)
+        pimpl->IncrementStepCounter();
 
     // Collision setup
-    contactListener->ReportStepNumber(pimpl->stepCounter);
+    contactListener->ReportStepNumber(pimpl->stepCounter, !nextStepIsFresh);
 
-    pimpl->HandleExpiringBodyCollisions();
+    if (nextStepIsFresh)
+        pimpl->HandleExpiringBodyCollisions();
 
     // Apply per-step physics body state
 

@@ -71,6 +71,21 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public new delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void OnToggleEngulfButtonPressed();
+
+    [Signal]
+    public delegate void OnFireToxinButtonPressed();
+
+    [Signal]
+    public delegate void OnSecreteSlimeButtonPressed();
+
+    [Signal]
+    public delegate void OnToggleBindingButtonPressed();
+
+    [Signal]
+    public delegate void OnUnbindAllButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -707,5 +722,30 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
+    }
+
+    private void OnEngulfmentPressed()
+    {
+        EmitSignal(nameof(OnToggleEngulfButtonPressed));
+    }
+
+    private void OnFireToxinPressed()
+    {
+        EmitSignal(nameof(OnFireToxinButtonPressed));
+    }
+
+    private void OnBindingModePressed()
+    {
+        EmitSignal(nameof(OnToggleBindingButtonPressed));
+    }
+
+    private void OnUnbindAllPressed()
+    {
+        EmitSignal(nameof(OnUnbindAllButtonPressed));
+    }
+
+    private void OnSecreteSlimePressed()
+    {
+        EmitSignal(nameof(OnSecreteSlimeButtonPressed));
     }
 }

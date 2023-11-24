@@ -37,9 +37,10 @@ public:
 
     void OnContactRemoved(const JPH::SubShapeIDPair& subShapePair) override;
 
-    inline void ReportStepNumber(uint32_t step) noexcept
+    inline void ReportStepNumber(uint32_t step, bool persistExistingCollisions) noexcept
     {
         physicsStep = step;
+        persistCollisions = persistExistingCollisions;
     }
 
 #ifdef JPH_DEBUG_RENDERER
@@ -68,6 +69,9 @@ private:
 #endif
 
     uint32_t physicsStep = std::numeric_limits<uint32_t>::max();
+
+    /// When this is true the listener keeps the previous physics data and only combines new data into the physics
+    bool persistCollisions = false;
 
 #ifdef JPH_DEBUG_RENDERER
     JPH::DebugRenderer* debugDrawer = nullptr;

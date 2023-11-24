@@ -3,6 +3,9 @@
 [ext_resource path="res://src/engine/PhotoStudio.cs" type="Script" id=1]
 
 [sub_resource type="Environment" id=2]
+background_mode = 1
+background_color = Color( 0, 0, 0, 0 )
+background_energy = 0.0
 ambient_light_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="World" id=1]
@@ -21,6 +24,7 @@ shadow_atlas_size = 512
 script = ExtResource( 1 )
 CameraPath = NodePath("Camera")
 RenderedObjectHolderPath = NodePath("RenderedObjectHolder")
+SimulationWorldsParentPath = NodePath("SimulationWorldsParent")
 UseBackgroundSceneLoad = true
 UseBackgroundSceneInstance = true
 
@@ -28,3 +32,5 @@ UseBackgroundSceneInstance = true
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
 
 [node name="RenderedObjectHolder" type="Spatial" parent="."]
+
+[node name="SimulationWorldsParent" type="Node" parent="."]

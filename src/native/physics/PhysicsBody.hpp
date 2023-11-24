@@ -383,6 +383,60 @@ protected:
     /// this frame and the data can't be recorded
     inline PhysicsCollision* GetNextCollisionRecordLocation(uint32_t stepIdentifier) noexcept
     {
+        HandleStepIdentifier(stepIdentifier);
+
+        return GetNextRecordLocation();
+    }
+
+    inline PhysicsCollision* GetNextOrExistingCollisionRecordLocation(
+        uint32_t stepIdentifier, PhysicsBody* otherBody, bool& usedExisting)
+    {
+        HandleStepIdentifier(stepIdentifier);
+
+        const auto compareCount = activeRecordedCollisionCount.load(std::memory_order::acquire);
+
+        if (compareCount > 0)
+        {
+            // Is this enough for the above TODO?
+            std::atomic_thread_fence(std::memory_order::acq_rel);
+
+            for (int i = 0; i < compareCount; ++i)
+            {
+                auto* candidate = &collisionRecordingTarget[i];
+
+                // Don't need to check first body as it is always us
+
+                // This intends to compare the pointer data
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-sizeof-expression"
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+                const std::atomic_ref<const PhysicsBody*> compareAtomic{candidate->SecondBody};
+                if (compareAtomic.load(std::memory_order::acquire) == otherBody)
+#else
+                // Might be better to use a memory compare here as this might be better regarding the atomics
+                // if (candidate->SecondBody == otherBody)
+                if (std::memcmp(&candidate->SecondBody, &otherBody, sizeof(otherBody)) == 0)
+#endif
+                {
+                    // Found a match
+                    // TODO: is this needed (or does this not help either?)
+                    // std::atomic_thread_fence(std::memory_order::acquire);
+                    usedExisting = true;
+                    return candidate;
+                }
+
+#pragma clang diagnostic pop
+            }
+        }
+
+        usedExisting = false;
+        return GetNextRecordLocation();
+    }
+
+private:
+    inline void HandleStepIdentifier(uint32_t stepIdentifier) noexcept
+    {
         auto originalStepValue = lastRecordedPhysicsStep.load(std::memory_order_acquire);
         if (stepIdentifier != originalStepValue)
         {
@@ -395,7 +449,10 @@ protected:
                 containedInWorld->ReportBodyWithActiveCollisions(*this);
             }
         }
+    }
 
+    inline PhysicsCollision* GetNextRecordLocation()
+    {
         // Atomically acquire the array index to write to
         const auto indexToWriteTo = activeRecordedCollisionCount.fetch_add(1, std::memory_order::acq_rel);
 
@@ -411,7 +468,9 @@ protected:
 
         return &collisionRecordingTarget[indexToWriteTo];
     }
+
 #else
+
     /// \brief Prepares a location to record a new collision on this body for this physics update
     /// \returns Pointer to write the data to, null if there was an overflow on the number of recorded collisions
     /// this frame and the data can't be recorded
@@ -419,6 +478,56 @@ protected:
     {
         Lock lock(collisionRecordMutex);
 
+        HandleStepIdentifier(stepIdentifier);
+
+        return GetNextRecordLocation();
+    }
+
+    inline PhysicsCollision* GetNextOrExistingCollisionRecordLocation(
+        uint32_t stepIdentifier, PhysicsBody* otherBody, bool& usedExisting)
+    {
+        Lock lock(collisionRecordMutex);
+
+        HandleStepIdentifier(stepIdentifier);
+
+        const auto compareCount = activeRecordedCollisionCount;
+
+        for (int i = 0; i < compareCount; ++i)
+        {
+            auto* candidate = &collisionRecordingTarget[i];
+
+            // Don't need to check first body as it is always us
+
+            // Atomics can be used here as well becase even though there is a lock above, the lock is not held while
+            // writing
+            // This intends to compare the pointer data
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-sizeof-expression"
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+            const std::atomic_ref<const PhysicsBody*> compareAtomic{candidate->SecondBody};
+            if (compareAtomic.load(std::memory_order::acquire) == otherBody)
+#else
+            // Might be better to use a memory compare here as this might be better regarding the atomics
+            // if (candidate->SecondBody == otherBody)
+            if (std::memcmp(&candidate->SecondBody, &otherBody, sizeof(otherBody)) == 0)
+#endif
+            {
+                // Found a match
+                // TODO: is this needed (or does this not help either?)
+                // std::atomic_thread_fence(std::memory_order::acquire);
+                usedExisting = true;
+                return candidate;
+            }
+        }
+
+        usedExisting = false;
+        return GetNextRecordLocation();
+    }
+
+private:
+    inline void HandleStepIdentifier(uint32_t stepIdentifier) noexcept
+    {
         if (stepIdentifier != lastRecordedPhysicsStep)
         {
             lastRecordedPhysicsStep = stepIdentifier;
@@ -427,15 +536,19 @@ protected:
             // activeRecordedCollisionCount before next physics step
             containedInWorld->ReportBodyWithActiveCollisions(*this);
         }
+    }
 
+    inline PhysicsCollision* GetNextRecordLocation()
+    {
         // Skip if too many collisions
-        if (activeRecordedCollisionCount >= maxCollisionsToRecord)
+        if (activeRecordedCollisionCount >= maxCollisionsToRecord) [[unlikely]]
             return false;
 
         return &collisionRecordingTarget[activeRecordedCollisionCount++];
     }
 #endif
 
+protected:
     /// \brief Clears recorded collision data
     ///
     /// This is used by the PhysicalWorld to prepare collision recording for the next frame

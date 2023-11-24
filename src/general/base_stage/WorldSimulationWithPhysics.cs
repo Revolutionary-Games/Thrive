@@ -77,18 +77,12 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
 
     protected override void WaitForStartedPhysicsRun()
     {
-        // TODO: implement multithreading
-    }
-
-    protected override bool RunPhysicsIfBehind()
-    {
-        // TODO: implement this once multithreaded running is added
-        return false;
+        physics.WaitUntilPhysicsRunEnds();
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
-        physics.ProcessPhysics(delta);
+        physics.ProcessPhysicsOnBackgroundThread(delta);
     }
 
     protected override void Dispose(bool disposing)

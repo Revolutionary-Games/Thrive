@@ -52,6 +52,7 @@ public static class MembraneComputationHelpers
         }
 
         var result = ArrayPool<Vector2>.Shared.Rent(length);
+        int resultWriteIndex = 0;
 
         for (int i = 0; i < collectionCount; ++i)
         {
@@ -62,9 +63,12 @@ public static class MembraneComputationHelpers
             foreach (var hex in entry.Definition.GetRotatedHexes(entry.Orientation))
             {
                 var hexCartesian = Hex.AxialToCartesian(entry.Position + hex);
-                result[i] = new Vector2(hexCartesian.x, hexCartesian.z);
+                result[resultWriteIndex++] = new Vector2(hexCartesian.x, hexCartesian.z);
             }
         }
+
+        if (resultWriteIndex != length)
+            throw new Exception("Logic error in membrane hex position copy");
 
         // Points are sorted to ensure same shape but different order of organelles results in reusable data
         // TODO: check if this is actually a good idea or it is better to not sort and let duplicate membrane data

@@ -9,6 +9,7 @@ public static class NativeInterop
 {
     private static bool loadCalled;
     private static bool debugDrawIsPossible;
+    private static bool nativeLoadSucceeded;
 
     public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
 
@@ -48,6 +49,9 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
+        // TODO: allow controlling native executor thread count (automatically and through the GUI)
+        NativeMethods.SetNativeExecutorThreads(3);
+
 #if DEBUG
         CheckSizesOfInteropTypes();
 #endif
@@ -78,13 +82,14 @@ public static class NativeInterop
         if (version != NativeConstants.Version)
         {
             GD.PrintErr("Thrive native library is the wrong version! " +
-                "Please verify game files or if you are developing recompile the native library.");
+                "Please verify game files or if you are developing Thrive, recompile the native library.");
 
             throw new Exception($"Failed to initialize Thrive native library, unexpected version {version} " +
                 $"is not the required: {NativeConstants.Version}");
         }
 
         GD.Print("Loaded native Thrive library version ", version);
+        nativeLoadSucceeded = true;
 
         // Enable debug logging if this is being debugged
 #if DEBUG
@@ -97,6 +102,14 @@ public static class NativeInterop
     /// </summary>
     public static void Shutdown()
     {
+        if (!nativeLoadSucceeded)
+        {
+            GD.Print("Skipping native library shutdown as it was not fully loaded");
+            return;
+        }
+
+        nativeLoadSucceeded = false;
+
         NativeMethods.DisableDebugDrawerCallbacks();
         NativeMethods.ShutdownThriveLibrary();
     }
@@ -207,6 +220,12 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void SetLogForwardingCallback(OnLogMessage callback);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetNativeExecutorThreads(int count);
+
+    [DllImport("thrive_native")]
+    internal static extern int GetNativeExecutorThreads();
 
     [DllImport("thrive_native")]
     internal static extern bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);

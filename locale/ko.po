@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 14:38-0600\n"
+"POT-Creation-Date: 2023-11-24 15:56-0600\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -129,11 +129,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "호기성 질소 고정"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "물질"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 #, fuzzy
 msgid "AGENTS_COLON"
 msgstr "상태:"
@@ -198,7 +198,7 @@ msgstr "배경 음량"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "암모니아"
 
@@ -227,7 +227,7 @@ msgstr ""
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:528
 msgid "APRIL"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr "커서 위치에서:"
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:532
 msgid "AUGUST"
 msgstr ""
 
@@ -475,13 +475,13 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:642
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:598
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1096,7 +1096,7 @@ msgstr "화합물:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "화합물"
 
@@ -1105,7 +1105,7 @@ msgstr "화합물"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "화합물:"
 
@@ -1501,7 +1501,7 @@ msgstr ""
 msgid "DEBUG_PANEL"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:520
+#: ../src/gui_common/CreditsScroll.cs:536
 msgid "DECEMBER"
 msgstr ""
 
@@ -1627,11 +1627,11 @@ msgstr ""
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:277
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:523
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
@@ -1966,7 +1966,7 @@ msgstr "자원 흡수 속도"
 msgid "EDITOR"
 msgstr "편집기"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -2041,7 +2041,7 @@ msgid "ENTITY_LABEL"
 msgstr "생태계: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "환경"
 
@@ -2255,7 +2255,7 @@ msgstr ""
 msgid "FEATURE_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:526
 #, fuzzy
 msgid "FEBRUARY"
 msgstr "어귀"
@@ -2304,7 +2304,7 @@ msgstr "{0}세대 끝내기"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "독소 공격"
 
@@ -2331,7 +2331,7 @@ msgstr "행성에서 멸종"
 msgid "FLEET_UNITS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 #, fuzzy
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -2408,12 +2408,12 @@ msgstr "개체수:"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2477,7 +2477,7 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2525,7 +2525,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "포도당"
 
@@ -2565,7 +2565,7 @@ msgstr "만화 눈 세포"
 msgid "GOT_IT"
 msgstr "알겠습니다"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:67
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:68
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
@@ -2578,7 +2578,7 @@ msgstr "동굴"
 msgid "GRAPHICS"
 msgstr "그래픽"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:515
 #, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "그래픽"
@@ -2678,7 +2678,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
@@ -2780,7 +2780,7 @@ msgstr "번영했습니다!"
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2954,7 +2954,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "철"
 
@@ -2967,7 +2967,7 @@ msgstr "철 화학합성독립영양"
 msgid "ITCH_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:525
 msgid "JANUARY"
 msgstr ""
 
@@ -2987,11 +2987,11 @@ msgstr ""
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:531
 msgid "JULY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:530
 msgid "JUNE"
 msgstr ""
 
@@ -3394,7 +3394,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "빛"
 
@@ -3609,7 +3609,7 @@ msgstr ""
 msgid "MAP"
 msgstr "지도"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:527
 msgid "MARCH"
 msgstr ""
 
@@ -3648,7 +3648,7 @@ msgstr ""
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:529
 msgid "MAY"
 msgstr ""
 
@@ -3839,7 +3839,7 @@ msgstr "미생물 자유 편집기"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:229
+#: ../src/microbe_stage/MicrobeSpecies.cs:231
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4302,7 +4302,7 @@ msgstr "아무 지역으로 이주"
 msgid "MOVE_TO_LAND"
 msgstr "육지로 이주"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4345,7 +4345,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "점액"
 
@@ -4600,7 +4600,7 @@ msgstr "큰 철 덩어리"
 msgid "NOT_STARTED_DOT"
 msgstr "시작되지 않음."
 
-#: ../src/gui_common/CreditsScroll.cs:519
+#: ../src/gui_common/CreditsScroll.cs:535
 #, fuzzy
 msgid "NOVEMBER"
 msgstr "이동"
@@ -4683,7 +4683,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:445
 #, fuzzy
 msgid "N_A"
 msgstr "N/A 변이 점수"
@@ -4692,12 +4692,12 @@ msgstr "N/A 변이 점수"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:499
 #, fuzzy
 msgid "N_TIMES"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/gui_common/CreditsScroll.cs:518
+#: ../src/gui_common/CreditsScroll.cs:534
 msgid "OCTOBER"
 msgstr ""
 
@@ -4921,7 +4921,7 @@ msgstr "삼투압 비용"
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "OUTREACH_TEAM"
 msgstr ""
 
@@ -4964,7 +4964,7 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -5100,7 +5100,7 @@ msgstr ""
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "재개"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr ""
 
@@ -5132,7 +5132,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:283
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -5153,7 +5153,7 @@ msgstr "/초"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "인산염"
 
@@ -5197,7 +5197,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:469
 #, fuzzy
 msgid "PLAYER"
 msgstr "플레이어 세포"
@@ -5263,7 +5263,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "현재 설정으로 실행"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
@@ -5296,7 +5296,7 @@ msgid "PRESSURE"
 msgstr "압력."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "압력."
 
@@ -5328,11 +5328,11 @@ msgstr ""
 msgid "PROCESS_PANEL_TITLE"
 msgstr "세포 진행률"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:520
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
@@ -5352,7 +5352,7 @@ msgstr "단백질"
 msgid "PROTOPLASM"
 msgstr "원형질"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:521
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
@@ -5900,7 +5900,7 @@ msgstr "해저"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "점액 분비"
 
@@ -5990,7 +5990,7 @@ msgstr ""
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr "선택됨:"
 
-#: ../src/gui_common/CreditsScroll.cs:517
+#: ../src/gui_common/CreditsScroll.cs:533
 msgid "SEPTEMBER"
 msgstr ""
 
@@ -6072,30 +6072,30 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "{0}에서 충돌이 있습니다.\n"
 "{1}에서 입력을 제거하시겠습니까?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
@@ -6162,7 +6162,7 @@ msgstr "미생물 단계"
 msgid "SOUND"
 msgstr "소리"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:516
 #, fuzzy
 msgid "SOUND_TEAM"
 msgstr "소리"
@@ -6231,7 +6231,7 @@ msgstr "마우스 특수 키 2"
 msgid "SPECIES"
 msgstr "종"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "종:"
 
@@ -6544,7 +6544,7 @@ msgstr ""
 msgid "SUPERR"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:524
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
@@ -6648,7 +6648,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:835
+#: ../src/late_multicellular_stage/MulticellularStage.cs:839
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6661,11 +6661,11 @@ msgid "TEMPERATURE"
 msgstr "온도"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "온도."
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:519
 msgid "TESTING_TEAM"
 msgstr ""
 
@@ -6673,7 +6673,7 @@ msgstr ""
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:488
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
@@ -6682,7 +6682,7 @@ msgstr ""
 msgid "THANK_YOU_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "THEORY_TEAM"
 msgstr ""
 
@@ -6861,7 +6861,7 @@ msgid "TITLE_COLON"
 msgstr "크기:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "결합 모드 켜고 끄기"
 
@@ -6872,7 +6872,7 @@ msgstr "디버깅 패널 켜고 끄기"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "삼키기 전환"
 
@@ -7181,7 +7181,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기능이 거의 없습니다. 무너지지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이고 영양분을 흡수 할 수 있다는 것입니다."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "모두 결합 해제하기"
 
@@ -7431,7 +7431,7 @@ msgstr "동굴"
 msgid "VIEW_SOURCE_CODE"
 msgstr "소스 코드 보기"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:522
 msgid "VIP_PATRONS"
 msgstr ""
 
@@ -7881,6 +7881,10 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:481
+msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7893,192 +7897,6 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:387
 #: ../simulation_parameters/common/wiki.json:426
 #: ../simulation_parameters/common/wiki.json:465
-#: ../simulation_parameters/common/wiki.json:504
-#: ../simulation_parameters/common/wiki.json:543
-#: ../simulation_parameters/common/wiki.json:582
-#: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:660
-#: ../simulation_parameters/common/wiki.json:699
-#: ../simulation_parameters/common/wiki.json:738
-#: ../simulation_parameters/common/wiki.json:777
-#: ../simulation_parameters/common/wiki.json:816
-#: ../simulation_parameters/common/wiki.json:855
-#: ../simulation_parameters/common/wiki.json:894
-#: ../simulation_parameters/common/wiki.json:933
-#: ../simulation_parameters/common/wiki.json:972
-#: ../simulation_parameters/common/wiki.json:1011
-#: ../simulation_parameters/common/wiki.json:1050
-#: ../simulation_parameters/common/wiki.json:1089
-msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:32
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:149
-#: ../simulation_parameters/common/wiki.json:188
-#: ../simulation_parameters/common/wiki.json:227
-#: ../simulation_parameters/common/wiki.json:266
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:344
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:422
-#: ../simulation_parameters/common/wiki.json:461
-#: ../simulation_parameters/common/wiki.json:500
-#: ../simulation_parameters/common/wiki.json:539
-#: ../simulation_parameters/common/wiki.json:578
-#: ../simulation_parameters/common/wiki.json:617
-#: ../simulation_parameters/common/wiki.json:656
-#: ../simulation_parameters/common/wiki.json:695
-#: ../simulation_parameters/common/wiki.json:734
-#: ../simulation_parameters/common/wiki.json:773
-#: ../simulation_parameters/common/wiki.json:812
-#: ../simulation_parameters/common/wiki.json:851
-#: ../simulation_parameters/common/wiki.json:890
-#: ../simulation_parameters/common/wiki.json:929
-#: ../simulation_parameters/common/wiki.json:968
-#: ../simulation_parameters/common/wiki.json:1007
-#: ../simulation_parameters/common/wiki.json:1046
-#: ../simulation_parameters/common/wiki.json:1085
-msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:28
-#: ../simulation_parameters/common/wiki.json:67
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:145
-#: ../simulation_parameters/common/wiki.json:184
-#: ../simulation_parameters/common/wiki.json:223
-#: ../simulation_parameters/common/wiki.json:262
-#: ../simulation_parameters/common/wiki.json:301
-#: ../simulation_parameters/common/wiki.json:340
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:457
-#: ../simulation_parameters/common/wiki.json:496
-#: ../simulation_parameters/common/wiki.json:535
-#: ../simulation_parameters/common/wiki.json:574
-#: ../simulation_parameters/common/wiki.json:613
-#: ../simulation_parameters/common/wiki.json:652
-#: ../simulation_parameters/common/wiki.json:691
-#: ../simulation_parameters/common/wiki.json:730
-#: ../simulation_parameters/common/wiki.json:769
-#: ../simulation_parameters/common/wiki.json:808
-#: ../simulation_parameters/common/wiki.json:847
-#: ../simulation_parameters/common/wiki.json:886
-#: ../simulation_parameters/common/wiki.json:925
-#: ../simulation_parameters/common/wiki.json:964
-#: ../simulation_parameters/common/wiki.json:1003
-#: ../simulation_parameters/common/wiki.json:1042
-#: ../simulation_parameters/common/wiki.json:1081
-msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:24
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:141
-#: ../simulation_parameters/common/wiki.json:180
-#: ../simulation_parameters/common/wiki.json:219
-#: ../simulation_parameters/common/wiki.json:258
-#: ../simulation_parameters/common/wiki.json:297
-#: ../simulation_parameters/common/wiki.json:336
-#: ../simulation_parameters/common/wiki.json:375
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:453
-#: ../simulation_parameters/common/wiki.json:492
-#: ../simulation_parameters/common/wiki.json:531
-#: ../simulation_parameters/common/wiki.json:570
-#: ../simulation_parameters/common/wiki.json:609
-#: ../simulation_parameters/common/wiki.json:648
-#: ../simulation_parameters/common/wiki.json:687
-#: ../simulation_parameters/common/wiki.json:726
-#: ../simulation_parameters/common/wiki.json:765
-#: ../simulation_parameters/common/wiki.json:804
-#: ../simulation_parameters/common/wiki.json:843
-#: ../simulation_parameters/common/wiki.json:882
-#: ../simulation_parameters/common/wiki.json:921
-#: ../simulation_parameters/common/wiki.json:960
-#: ../simulation_parameters/common/wiki.json:999
-#: ../simulation_parameters/common/wiki.json:1038
-#: ../simulation_parameters/common/wiki.json:1077
-msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:48
-#: ../simulation_parameters/common/wiki.json:87
-#: ../simulation_parameters/common/wiki.json:126
-#: ../simulation_parameters/common/wiki.json:165
-#: ../simulation_parameters/common/wiki.json:204
-#: ../simulation_parameters/common/wiki.json:243
-#: ../simulation_parameters/common/wiki.json:282
-#: ../simulation_parameters/common/wiki.json:321
-#: ../simulation_parameters/common/wiki.json:360
-#: ../simulation_parameters/common/wiki.json:399
-#: ../simulation_parameters/common/wiki.json:438
-#: ../simulation_parameters/common/wiki.json:477
-#: ../simulation_parameters/common/wiki.json:516
-#: ../simulation_parameters/common/wiki.json:555
-#: ../simulation_parameters/common/wiki.json:594
-#: ../simulation_parameters/common/wiki.json:633
-#: ../simulation_parameters/common/wiki.json:672
-#: ../simulation_parameters/common/wiki.json:711
-#: ../simulation_parameters/common/wiki.json:750
-#: ../simulation_parameters/common/wiki.json:789
-#: ../simulation_parameters/common/wiki.json:828
-#: ../simulation_parameters/common/wiki.json:867
-#: ../simulation_parameters/common/wiki.json:906
-#: ../simulation_parameters/common/wiki.json:945
-#: ../simulation_parameters/common/wiki.json:984
-#: ../simulation_parameters/common/wiki.json:1023
-#: ../simulation_parameters/common/wiki.json:1062
-#: ../simulation_parameters/common/wiki.json:1101
-msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:44
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:161
-#: ../simulation_parameters/common/wiki.json:200
-#: ../simulation_parameters/common/wiki.json:239
-#: ../simulation_parameters/common/wiki.json:278
-#: ../simulation_parameters/common/wiki.json:317
-#: ../simulation_parameters/common/wiki.json:356
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:434
-#: ../simulation_parameters/common/wiki.json:473
-#: ../simulation_parameters/common/wiki.json:512
-#: ../simulation_parameters/common/wiki.json:551
-#: ../simulation_parameters/common/wiki.json:590
-#: ../simulation_parameters/common/wiki.json:629
-#: ../simulation_parameters/common/wiki.json:668
-#: ../simulation_parameters/common/wiki.json:707
-#: ../simulation_parameters/common/wiki.json:746
-#: ../simulation_parameters/common/wiki.json:785
-#: ../simulation_parameters/common/wiki.json:824
-#: ../simulation_parameters/common/wiki.json:863
-#: ../simulation_parameters/common/wiki.json:902
-#: ../simulation_parameters/common/wiki.json:941
-#: ../simulation_parameters/common/wiki.json:980
-#: ../simulation_parameters/common/wiki.json:1019
-#: ../simulation_parameters/common/wiki.json:1058
-#: ../simulation_parameters/common/wiki.json:1097
-msgid "WIKI_HEADING_STRATEGY"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:40
-#: ../simulation_parameters/common/wiki.json:79
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:157
-#: ../simulation_parameters/common/wiki.json:196
-#: ../simulation_parameters/common/wiki.json:235
-#: ../simulation_parameters/common/wiki.json:274
-#: ../simulation_parameters/common/wiki.json:313
-#: ../simulation_parameters/common/wiki.json:352
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:469
 #: ../simulation_parameters/common/wiki.json:508
 #: ../simulation_parameters/common/wiki.json:547
 #: ../simulation_parameters/common/wiki.json:586
@@ -8095,6 +7913,192 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1015
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
+msgid "WIKI_HEADING_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:188
+#: ../simulation_parameters/common/wiki.json:227
+#: ../simulation_parameters/common/wiki.json:266
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:344
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:422
+#: ../simulation_parameters/common/wiki.json:461
+#: ../simulation_parameters/common/wiki.json:504
+#: ../simulation_parameters/common/wiki.json:543
+#: ../simulation_parameters/common/wiki.json:582
+#: ../simulation_parameters/common/wiki.json:621
+#: ../simulation_parameters/common/wiki.json:660
+#: ../simulation_parameters/common/wiki.json:699
+#: ../simulation_parameters/common/wiki.json:738
+#: ../simulation_parameters/common/wiki.json:777
+#: ../simulation_parameters/common/wiki.json:816
+#: ../simulation_parameters/common/wiki.json:855
+#: ../simulation_parameters/common/wiki.json:894
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:972
+#: ../simulation_parameters/common/wiki.json:1011
+#: ../simulation_parameters/common/wiki.json:1050
+#: ../simulation_parameters/common/wiki.json:1089
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:184
+#: ../simulation_parameters/common/wiki.json:223
+#: ../simulation_parameters/common/wiki.json:262
+#: ../simulation_parameters/common/wiki.json:301
+#: ../simulation_parameters/common/wiki.json:340
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:457
+#: ../simulation_parameters/common/wiki.json:500
+#: ../simulation_parameters/common/wiki.json:539
+#: ../simulation_parameters/common/wiki.json:578
+#: ../simulation_parameters/common/wiki.json:617
+#: ../simulation_parameters/common/wiki.json:656
+#: ../simulation_parameters/common/wiki.json:695
+#: ../simulation_parameters/common/wiki.json:734
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:812
+#: ../simulation_parameters/common/wiki.json:851
+#: ../simulation_parameters/common/wiki.json:890
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:968
+#: ../simulation_parameters/common/wiki.json:1007
+#: ../simulation_parameters/common/wiki.json:1046
+#: ../simulation_parameters/common/wiki.json:1085
+msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:141
+#: ../simulation_parameters/common/wiki.json:180
+#: ../simulation_parameters/common/wiki.json:219
+#: ../simulation_parameters/common/wiki.json:258
+#: ../simulation_parameters/common/wiki.json:297
+#: ../simulation_parameters/common/wiki.json:336
+#: ../simulation_parameters/common/wiki.json:375
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:496
+#: ../simulation_parameters/common/wiki.json:535
+#: ../simulation_parameters/common/wiki.json:574
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:652
+#: ../simulation_parameters/common/wiki.json:691
+#: ../simulation_parameters/common/wiki.json:730
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:808
+#: ../simulation_parameters/common/wiki.json:847
+#: ../simulation_parameters/common/wiki.json:886
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:964
+#: ../simulation_parameters/common/wiki.json:1003
+#: ../simulation_parameters/common/wiki.json:1042
+#: ../simulation_parameters/common/wiki.json:1081
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+#: ../simulation_parameters/common/wiki.json:126
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:204
+#: ../simulation_parameters/common/wiki.json:243
+#: ../simulation_parameters/common/wiki.json:282
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:360
+#: ../simulation_parameters/common/wiki.json:399
+#: ../simulation_parameters/common/wiki.json:438
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:520
+#: ../simulation_parameters/common/wiki.json:559
+#: ../simulation_parameters/common/wiki.json:598
+#: ../simulation_parameters/common/wiki.json:637
+#: ../simulation_parameters/common/wiki.json:676
+#: ../simulation_parameters/common/wiki.json:715
+#: ../simulation_parameters/common/wiki.json:754
+#: ../simulation_parameters/common/wiki.json:793
+#: ../simulation_parameters/common/wiki.json:832
+#: ../simulation_parameters/common/wiki.json:871
+#: ../simulation_parameters/common/wiki.json:910
+#: ../simulation_parameters/common/wiki.json:949
+#: ../simulation_parameters/common/wiki.json:988
+#: ../simulation_parameters/common/wiki.json:1027
+#: ../simulation_parameters/common/wiki.json:1066
+#: ../simulation_parameters/common/wiki.json:1105
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:200
+#: ../simulation_parameters/common/wiki.json:239
+#: ../simulation_parameters/common/wiki.json:278
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:356
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:434
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:516
+#: ../simulation_parameters/common/wiki.json:555
+#: ../simulation_parameters/common/wiki.json:594
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:672
+#: ../simulation_parameters/common/wiki.json:711
+#: ../simulation_parameters/common/wiki.json:750
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:828
+#: ../simulation_parameters/common/wiki.json:867
+#: ../simulation_parameters/common/wiki.json:906
+#: ../simulation_parameters/common/wiki.json:945
+#: ../simulation_parameters/common/wiki.json:984
+#: ../simulation_parameters/common/wiki.json:1023
+#: ../simulation_parameters/common/wiki.json:1062
+#: ../simulation_parameters/common/wiki.json:1101
+msgid "WIKI_HEADING_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:196
+#: ../simulation_parameters/common/wiki.json:235
+#: ../simulation_parameters/common/wiki.json:274
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:352
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:512
+#: ../simulation_parameters/common/wiki.json:551
+#: ../simulation_parameters/common/wiki.json:590
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:668
+#: ../simulation_parameters/common/wiki.json:707
+#: ../simulation_parameters/common/wiki.json:746
+#: ../simulation_parameters/common/wiki.json:785
+#: ../simulation_parameters/common/wiki.json:824
+#: ../simulation_parameters/common/wiki.json:863
+#: ../simulation_parameters/common/wiki.json:902
+#: ../simulation_parameters/common/wiki.json:941
+#: ../simulation_parameters/common/wiki.json:980
+#: ../simulation_parameters/common/wiki.json:1019
+#: ../simulation_parameters/common/wiki.json:1058
+#: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
@@ -8131,6 +8135,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:431
 msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:482
+msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:466
@@ -8173,189 +8181,189 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:505
+#: ../simulation_parameters/common/wiki.json:509
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:489
+#: ../simulation_parameters/common/wiki.json:493
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "미토콘드리아"
 
-#: ../simulation_parameters/common/wiki.json:501
+#: ../simulation_parameters/common/wiki.json:505
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:497
+#: ../simulation_parameters/common/wiki.json:501
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:493
+#: ../simulation_parameters/common/wiki.json:497
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:521
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:517
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:513
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../simulation_parameters/common/wiki.json:544
+#: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:528
+#: ../simulation_parameters/common/wiki.json:532
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:540
+#: ../simulation_parameters/common/wiki.json:544
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:536
+#: ../simulation_parameters/common/wiki.json:540
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "세포 기관 배치"
 
-#: ../simulation_parameters/common/wiki.json:532
+#: ../simulation_parameters/common/wiki.json:536
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:556
+#: ../simulation_parameters/common/wiki.json:560
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:552
+#: ../simulation_parameters/common/wiki.json:556
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:548
+#: ../simulation_parameters/common/wiki.json:552
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:626
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:606
+#: ../simulation_parameters/common/wiki.json:610
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:618
+#: ../simulation_parameters/common/wiki.json:622
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:618
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:614
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:634
+#: ../simulation_parameters/common/wiki.json:638
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../simulation_parameters/common/wiki.json:630
+#: ../simulation_parameters/common/wiki.json:634
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:630
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:583
+#: ../simulation_parameters/common/wiki.json:587
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:567
+#: ../simulation_parameters/common/wiki.json:571
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:579
+#: ../simulation_parameters/common/wiki.json:583
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:575
+#: ../simulation_parameters/common/wiki.json:579
 #, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:571
+#: ../simulation_parameters/common/wiki.json:575
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:595
+#: ../simulation_parameters/common/wiki.json:599
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:591
+#: ../simulation_parameters/common/wiki.json:595
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:587
+#: ../simulation_parameters/common/wiki.json:591
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:665
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:649
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:661
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "진핵 세포의 특징. 핵은 소포체와 골지체를 포함합니다. 원핵 세포의 진화는 내부 막의 시스템을 개발하는 것이며, 내부의 다른 원핵 생물을 동화시킴으로써 이루어집니다. 이를 통해 세포 내부에서 발생하는 여러 프로세스를 구분하거나 겹치는 것을 방지 할 수 있습니다. 이것은 그들의 새로운 세포막 기관이 세포질에서 자유롭게 떠 다니는 것보다 훨씬 더 복잡하고 효율적이며 전문화되도록합니다. 그러나 이 일은 세포를 훨씬 더 크게 만들고 유지하기 위해 많은 에너지를 필요로 하게 만듭니다."
 
-#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:657
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "세포 기관 배치"
 
-#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:653
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:677
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:673
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:665
+#: ../simulation_parameters/common/wiki.json:669
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -8364,41 +8372,41 @@ msgstr ""
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr "세포 기관"
 
-#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:704
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
-#: ../simulation_parameters/common/wiki.json:684
+#: ../simulation_parameters/common/wiki.json:688
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "옥시톡시솜"
 
-#: ../simulation_parameters/common/wiki.json:696
+#: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
-#: ../simulation_parameters/common/wiki.json:692
+#: ../simulation_parameters/common/wiki.json:696
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:688
+#: ../simulation_parameters/common/wiki.json:692
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
-#: ../simulation_parameters/common/wiki.json:712
+#: ../simulation_parameters/common/wiki.json:716
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:708
+#: ../simulation_parameters/common/wiki.json:712
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
-#: ../simulation_parameters/common/wiki.json:704
+#: ../simulation_parameters/common/wiki.json:708
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
@@ -8461,27 +8469,27 @@ msgstr "리소좀"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "대사체"
 
-#: ../simulation_parameters/common/wiki.json:483
+#: ../simulation_parameters/common/wiki.json:487
 #, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "미토콘드리아"
 
-#: ../simulation_parameters/common/wiki.json:522
+#: ../simulation_parameters/common/wiki.json:526
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "포식자 선모"
 
-#: ../simulation_parameters/common/wiki.json:600
+#: ../simulation_parameters/common/wiki.json:604
 #, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "질소 고정 색소체"
 
-#: ../simulation_parameters/common/wiki.json:561
+#: ../simulation_parameters/common/wiki.json:565
 #, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "니트로게나아제"
 
-#: ../simulation_parameters/common/wiki.json:639
+#: ../simulation_parameters/common/wiki.json:643
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "핵"
@@ -8491,128 +8499,128 @@ msgstr "핵"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "세포 기관 배치"
 
-#: ../simulation_parameters/common/wiki.json:678
+#: ../simulation_parameters/common/wiki.json:682
 #, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "옥시톡시솜"
 
-#: ../simulation_parameters/common/wiki.json:717
+#: ../simulation_parameters/common/wiki.json:721
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:756
+#: ../simulation_parameters/common/wiki.json:760
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "원형질"
 
-#: ../simulation_parameters/common/wiki.json:795
+#: ../simulation_parameters/common/wiki.json:799
 #, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "루스티시아닌"
 
-#: ../simulation_parameters/common/wiki.json:834
+#: ../simulation_parameters/common/wiki.json:838
 #, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "신호 기관"
 
-#: ../simulation_parameters/common/wiki.json:873
+#: ../simulation_parameters/common/wiki.json:877
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "점액 분출"
 
-#: ../simulation_parameters/common/wiki.json:912
+#: ../simulation_parameters/common/wiki.json:916
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "열 세포"
 
-#: ../simulation_parameters/common/wiki.json:951
+#: ../simulation_parameters/common/wiki.json:955
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "열합성 효소"
 
-#: ../simulation_parameters/common/wiki.json:990
+#: ../simulation_parameters/common/wiki.json:994
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "틸라코이드"
 
-#: ../simulation_parameters/common/wiki.json:1029
+#: ../simulation_parameters/common/wiki.json:1033
 #, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr ""
 "독소 \n"
 "액포"
 
-#: ../simulation_parameters/common/wiki.json:1068
+#: ../simulation_parameters/common/wiki.json:1072
 #, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
 msgstr ""
 "독소 \n"
 "액포"
 
-#: ../simulation_parameters/common/wiki.json:739
+#: ../simulation_parameters/common/wiki.json:743
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:723
+#: ../simulation_parameters/common/wiki.json:727
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:735
+#: ../simulation_parameters/common/wiki.json:739
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:731
+#: ../simulation_parameters/common/wiki.json:735
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:727
+#: ../simulation_parameters/common/wiki.json:731
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:751
+#: ../simulation_parameters/common/wiki.json:755
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:747
+#: ../simulation_parameters/common/wiki.json:751
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:743
+#: ../simulation_parameters/common/wiki.json:747
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:778
+#: ../simulation_parameters/common/wiki.json:782
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "원형질"
 
-#: ../simulation_parameters/common/wiki.json:762
+#: ../simulation_parameters/common/wiki.json:766
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "원형질"
 
-#: ../simulation_parameters/common/wiki.json:774
+#: ../simulation_parameters/common/wiki.json:778
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:770
+#: ../simulation_parameters/common/wiki.json:774
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/common/wiki.json:766
+#: ../simulation_parameters/common/wiki.json:770
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:790
+#: ../simulation_parameters/common/wiki.json:794
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:786
+#: ../simulation_parameters/common/wiki.json:790
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:782
+#: ../simulation_parameters/common/wiki.json:786
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -8624,312 +8632,312 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:817
+#: ../simulation_parameters/common/wiki.json:821
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:801
+#: ../simulation_parameters/common/wiki.json:805
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:817
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:813
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:809
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:833
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:825
+#: ../simulation_parameters/common/wiki.json:829
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:821
+#: ../simulation_parameters/common/wiki.json:825
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../simulation_parameters/common/wiki.json:856
+#: ../simulation_parameters/common/wiki.json:860
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "신호 기관"
 
-#: ../simulation_parameters/common/wiki.json:840
+#: ../simulation_parameters/common/wiki.json:844
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "신호 기관"
 
-#: ../simulation_parameters/common/wiki.json:852
+#: ../simulation_parameters/common/wiki.json:856
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:852
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:848
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:868
+#: ../simulation_parameters/common/wiki.json:872
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:864
+#: ../simulation_parameters/common/wiki.json:868
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "신호 기관"
 
-#: ../simulation_parameters/common/wiki.json:860
+#: ../simulation_parameters/common/wiki.json:864
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "신호 기관"
 
-#: ../simulation_parameters/common/wiki.json:895
+#: ../simulation_parameters/common/wiki.json:899
 #, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/common/wiki.json:879
+#: ../simulation_parameters/common/wiki.json:883
 #, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/common/wiki.json:891
+#: ../simulation_parameters/common/wiki.json:895
 #, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/common/wiki.json:887
+#: ../simulation_parameters/common/wiki.json:891
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../simulation_parameters/common/wiki.json:883
+#: ../simulation_parameters/common/wiki.json:887
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:911
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:907
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:934
+#: ../simulation_parameters/common/wiki.json:938
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:918
+#: ../simulation_parameters/common/wiki.json:922
 #, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:930
+#: ../simulation_parameters/common/wiki.json:934
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:930
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:922
+#: ../simulation_parameters/common/wiki.json:926
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:946
+#: ../simulation_parameters/common/wiki.json:950
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:942
+#: ../simulation_parameters/common/wiki.json:946
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:938
+#: ../simulation_parameters/common/wiki.json:942
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:977
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "열합성 효소"
 
-#: ../simulation_parameters/common/wiki.json:957
+#: ../simulation_parameters/common/wiki.json:961
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "열합성 효소"
 
-#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:973
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:969
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:965
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:985
+#: ../simulation_parameters/common/wiki.json:989
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:981
+#: ../simulation_parameters/common/wiki.json:985
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:977
+#: ../simulation_parameters/common/wiki.json:981
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1016
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:996
+#: ../simulation_parameters/common/wiki.json:1000
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1012
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:1004
+#: ../simulation_parameters/common/wiki.json:1008
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1000
+#: ../simulation_parameters/common/wiki.json:1004
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1028
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1024
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1020
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1055
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1035
+#: ../simulation_parameters/common/wiki.json:1039
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 "독소 \n"
 "액포"
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1051
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1047
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1043
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1063
+#: ../simulation_parameters/common/wiki.json:1067
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1059
+#: ../simulation_parameters/common/wiki.json:1063
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1059
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1090
+#: ../simulation_parameters/common/wiki.json:1094
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1074
+#: ../simulation_parameters/common/wiki.json:1078
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1086
+#: ../simulation_parameters/common/wiki.json:1090
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../simulation_parameters/common/wiki.json:1082
+#: ../simulation_parameters/common/wiki.json:1086
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
-#: ../simulation_parameters/common/wiki.json:1078
+#: ../simulation_parameters/common/wiki.json:1082
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1102
+#: ../simulation_parameters/common/wiki.json:1106
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1102
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1094
+#: ../simulation_parameters/common/wiki.json:1098
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 

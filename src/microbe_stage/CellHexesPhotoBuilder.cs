@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-public class CellHexesPhotoBuilder : Spatial, IPhotographable
+public class CellHexesPhotoBuilder : Spatial, IScenePhotographable
 {
     private float radius;
     private bool radiusDirty;
@@ -37,10 +37,11 @@ public class CellHexesPhotoBuilder : Spatial, IPhotographable
         builder.BuildHexStruct();
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public Vector3 CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((CellHexesPhotoBuilder)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        return new Vector3(0, PhotoStudio.CameraDistanceFromRadiusOfObject(
+            ((CellHexesPhotoBuilder)instancedScene).Radius *
+            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER), 0);
     }
 
     private void BuildHexStruct()

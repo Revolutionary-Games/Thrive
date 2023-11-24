@@ -165,9 +165,9 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 250.7f;
+    public const float FLAGELLA_BASE_FORCE = 50.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 910.0f;
+    public const float BASE_MOVEMENT_FORCE = 1200.0f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -1010,14 +1010,9 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
-
-    /// <summary>
-    ///   Scale used for one frame while membrane data is not ready yet
-    /// </summary>
-    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
     /// <summary>
     ///   Multiplier for cell editor actions in multicellular editor
@@ -1149,6 +1144,7 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+    public const string RUNTIME_LICENSE_FILE = "res://doc/RuntimeLicenses.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 

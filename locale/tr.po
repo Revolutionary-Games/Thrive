@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 14:38-0600\n"
+"POT-Creation-Date: 2023-11-24 15:56-0600\n"
 "PO-Revision-Date: 2023-11-01 12:41+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -122,11 +122,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Oksijenli Azot Fiksasyonu"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "Ajanlar"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 msgid "AGENTS_COLON"
 msgstr "Ajanlar:"
 
@@ -203,7 +203,7 @@ msgstr "Ortam seviyesi"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "Amonyak"
 
@@ -232,7 +232,7 @@ msgstr "Uygula"
 msgid "APPLY_CHANGES"
 msgstr "Değişiklikleri Uygula"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:528
 msgid "APRIL"
 msgstr "Nisan"
 
@@ -330,7 +330,7 @@ msgstr "İmleç Üzerinde:"
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ses çıkış aygıtı:"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:532
 msgid "AUGUST"
 msgstr "Ağustos"
 
@@ -477,13 +477,13 @@ msgstr "Bası Arttır"
 msgid "BATHYPELAGIC"
 msgstr "Batipelajik"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:642
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopik Ol ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:598
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr "Çok Hücreli Ol ({0}/{1})"
 
@@ -1059,7 +1059,7 @@ msgstr "Derlenme tarihi:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
@@ -1067,7 +1067,7 @@ msgstr "Bileşikler"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Bileşikleri göster / gizle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "Bileşikler:"
 
@@ -1467,7 +1467,7 @@ msgstr ""
 msgid "DEBUG_PANEL"
 msgstr "Hata Ayıklama Paneli"
 
-#: ../src/gui_common/CreditsScroll.cs:520
+#: ../src/gui_common/CreditsScroll.cs:536
 msgid "DECEMBER"
 msgstr "Aralık"
 
@@ -1589,11 +1589,11 @@ msgstr "Gelişme Vikisi"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Geliştirici vikimizi ziyaret edin"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:277
 msgid "DEVOURED"
 msgstr "Yutuldun"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:523
 msgid "DEV_BUILD_PATRONS"
 msgstr "Geliştirme Sürümü Destekçileri"
 
@@ -1920,7 +1920,7 @@ msgstr "Kaydırma hızı:"
 msgid "EDITOR"
 msgstr "Düzenleyici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Düzenleyiciye gir ve türünde değişiklik yap"
 
@@ -1988,7 +1988,7 @@ msgid "ENTITY_LABEL"
 msgstr "Varlık etiketi"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
@@ -2190,7 +2190,7 @@ msgstr "Devre Dışı"
 msgid "FEATURE_ENABLED"
 msgstr "Etkin"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:526
 msgid "FEBRUARY"
 msgstr "Şubat"
 
@@ -2238,7 +2238,7 @@ msgstr "{0} Kuşak Tamamla"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Toksin ateşle"
 
@@ -2263,7 +2263,7 @@ msgstr "{0} Filosu"
 msgid "FLEET_UNITS"
 msgstr "Filo Birimleri"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Yüzen Parçalar:"
 
@@ -2336,12 +2336,12 @@ msgstr "Fosilleştirme Başarısız"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "Fosil dosyası yazılamadı"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Bu türü fosilleştir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Bu türü fosilleştir (zaten fosilleştirildi)"
 
@@ -2401,7 +2401,7 @@ msgstr "Tam Mod Bilgisi"
 msgid "GALLERY_VIEWER"
 msgstr "Galeri Görüntüleyicisi"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
 
@@ -2448,7 +2448,7 @@ msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {2} arazisinden {1} arazis
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
@@ -2487,7 +2487,7 @@ msgstr "Pörtlek gözlü hücre"
 msgid "GOT_IT"
 msgstr "Anladım"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:67
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:68
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL lisans metni aşağıdadır:"
 
@@ -2499,7 +2499,7 @@ msgstr "GPU:"
 msgid "GRAPHICS"
 msgstr "Grafikler"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
 
@@ -2597,7 +2597,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
@@ -2689,7 +2689,7 @@ msgstr "Özgün"
 msgid "INFO_BOX_UPGRADES"
 msgstr "Geliştirmeler"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr "İçeri Alınmış Madde"
 
@@ -2850,7 +2850,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "Demir"
 
@@ -2862,7 +2862,7 @@ msgstr "Demir Kemolitoototrofisi"
 msgid "ITCH_TOOLTIP"
 msgstr "Itch.io sayfamızı ziyaret edin"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:525
 msgid "JANUARY"
 msgstr "Ocak"
 
@@ -2882,11 +2882,11 @@ msgstr "Otomatik olarak"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Hiçbir zaman"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:531
 msgid "JULY"
 msgstr "Temmuz"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:530
 msgid "JUNE"
 msgstr "Haziran"
 
@@ -3278,7 +3278,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hidrotermal bacalar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "Işık"
 
@@ -3479,7 +3479,7 @@ msgstr "Günün Saatini Manuel Olarak Ayarla"
 msgid "MAP"
 msgstr "Harita"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:527
 msgid "MARCH"
 msgstr "Mart"
 
@@ -3516,7 +3516,7 @@ msgstr "Maksimum varlık sayısı:"
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:529
 msgid "MAY"
 msgstr "Mayıs"
 
@@ -3712,7 +3712,7 @@ msgstr "Mikrop Düzenleyicisi Serbest Yapım Modu"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet\n"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:229
+#: ../src/microbe_stage/MicrobeSpecies.cs:231
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Evre[/b]\n"
@@ -4168,7 +4168,7 @@ msgstr "Herhangi Bir Araziye Git"
 msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre koloniniz olduğunda açılır."
 
@@ -4221,7 +4221,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "Müsilaj"
 
@@ -4465,7 +4465,7 @@ msgstr "Hata: Parça bulunamadı"
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
 
-#: ../src/gui_common/CreditsScroll.cs:519
+#: ../src/gui_common/CreditsScroll.cs:535
 msgid "NOVEMBER"
 msgstr "Kasım"
 
@@ -4540,7 +4540,7 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:445
 msgid "N_A"
 msgstr "Bilinmeyen"
 
@@ -4548,11 +4548,11 @@ msgstr "Bilinmeyen"
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:499
 msgid "N_TIMES"
 msgstr "x{0}"
 
-#: ../src/gui_common/CreditsScroll.cs:518
+#: ../src/gui_common/CreditsScroll.cs:534
 msgid "OCTOBER"
 msgstr "Ekim"
 
@@ -4764,7 +4764,7 @@ msgstr "(oyuncu türünün ozmoregülasyon maliyeti)"
 msgid "OUR_WIKI"
 msgstr "Vikimiz"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "OUTREACH_TEAM"
 msgstr "Destek Ekibi"
 
@@ -4806,7 +4806,7 @@ msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
@@ -4931,7 +4931,7 @@ msgstr "DURAKLATILDI"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr "[center]Oyuna devam etmek için [thrive:input]g_pause[/thrive:input] tuşuna basın[/center]"
 
@@ -4961,7 +4961,7 @@ msgstr "Barışçıl"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:283
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
@@ -4982,7 +4982,7 @@ msgstr "/saniye"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
@@ -5030,7 +5030,7 @@ msgstr "Gezegen oluşumu çok yakında!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Rastgele gezegen tohumu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:469
 msgid "PLAYER"
 msgstr "Oyuncu"
 
@@ -5093,7 +5093,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Mevcut Ayarlarla Oyna"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
@@ -5123,7 +5123,7 @@ msgid "PRESSURE"
 msgstr "Basınç"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
@@ -5155,11 +5155,11 @@ msgstr "@"
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Hücre İşleyişi"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "PROGRAMMING_TEAM"
 msgstr "Programlama Ekibi"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:520
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Proje Yönetim Ekibi"
 
@@ -5179,7 +5179,7 @@ msgstr "Proteinler"
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:521
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Çekme İstekleri / Programlama"
 
@@ -5690,7 +5690,7 @@ msgstr "Deniz Tabanı"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "Müsilaj salgıla"
 
@@ -5770,7 +5770,7 @@ msgstr "Burayı düzenlemek için düzenleyici sekmesinden bir doku türü seçi
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr "Kofulun depolayacağı bileşiği seçin:"
 
-#: ../src/gui_common/CreditsScroll.cs:517
+#: ../src/gui_common/CreditsScroll.cs:533
 msgid "SEPTEMBER"
 msgstr "Eylül"
 
@@ -5839,27 +5839,27 @@ msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık v
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Türünüzün diğer üyelerine komut vermede kullanılan menüyü açmak için [thrive:input]g_pack_commands[/thrive:input] tuşunu basılı tutun."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Agresif Ol"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Kaç"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Beni Takip Et"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Komut Yok"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Bana Gel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 msgid "SIGNAL_TO_EMIT"
 msgstr "Yollanacak Sinyal"
 
@@ -5920,7 +5920,7 @@ msgstr "Topluluk Evresi"
 msgid "SOUND"
 msgstr "Ses"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "SOUND_TEAM"
 msgstr "Ses Ekibi"
 
@@ -5985,7 +5985,7 @@ msgstr "Özel Fare Tuşu 2"
 msgid "SPECIES"
 msgstr "Türler"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "Türler:"
 
@@ -6291,7 +6291,7 @@ msgstr "Super Left"
 msgid "SUPERR"
 msgstr "Super Right"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:524
 msgid "SUPPORTER_PATRONS"
 msgstr "Destekçiler"
 
@@ -6392,7 +6392,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "Buhar Gücü"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:835
+#: ../src/late_multicellular_stage/MulticellularStage.cs:839
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "Kilidi açılan teknoloji: {0}"
 
@@ -6405,11 +6405,11 @@ msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:519
 msgid "TESTING_TEAM"
 msgstr "Deneme Ekibi"
 
@@ -6422,7 +6422,7 @@ msgstr ""
 "\n"
 "Eğer Thrive başlatılmadan önce Thrive Başlatıcı'yı görmek isterseniz, başlatıcıya dönmek için ana menüdeki butonu kullanabilir ve sonra başlatıcı ayarları menüsünden kesintisiz modu devre dışı bırakabilirsiniz."
 
-#: ../src/gui_common/CreditsScroll.cs:488
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Oynadığınız için teşekkür ederiz!\n"
@@ -6433,7 +6433,7 @@ msgstr ""
 msgid "THANK_YOU_TITLE"
 msgstr "Teşekkür Ederiz"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "THEORY_TEAM"
 msgstr "Teori Ekibi"
 
@@ -6611,7 +6611,7 @@ msgid "TITLE_COLON"
 msgstr "Başlık:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "Bağ kurma moduna geç"
 
@@ -6622,7 +6622,7 @@ msgstr "Hata ayıklama panelini aç"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "Yutma moduna geç"
 
@@ -6917,7 +6917,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Herhangi bir modu yüklemek ya da kaldırmak için değişiklikleri uygulamanız gerekir."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "Hepsinin bağını kopar"
 
@@ -7138,7 +7138,7 @@ msgstr "En son ki veya tüm Thrive yama notlarını şimdi görüntüle"
 msgid "VIEW_SOURCE_CODE"
 msgstr "Kaynak Kodunu İncele"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:522
 msgid "VIP_PATRONS"
 msgstr "VIP Destekçiler"
 
@@ -7588,6 +7588,10 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:481
+msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7600,192 +7604,6 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:387
 #: ../simulation_parameters/common/wiki.json:426
 #: ../simulation_parameters/common/wiki.json:465
-#: ../simulation_parameters/common/wiki.json:504
-#: ../simulation_parameters/common/wiki.json:543
-#: ../simulation_parameters/common/wiki.json:582
-#: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:660
-#: ../simulation_parameters/common/wiki.json:699
-#: ../simulation_parameters/common/wiki.json:738
-#: ../simulation_parameters/common/wiki.json:777
-#: ../simulation_parameters/common/wiki.json:816
-#: ../simulation_parameters/common/wiki.json:855
-#: ../simulation_parameters/common/wiki.json:894
-#: ../simulation_parameters/common/wiki.json:933
-#: ../simulation_parameters/common/wiki.json:972
-#: ../simulation_parameters/common/wiki.json:1011
-#: ../simulation_parameters/common/wiki.json:1050
-#: ../simulation_parameters/common/wiki.json:1089
-msgid "WIKI_HEADING_EFFECTS"
-msgstr "Etkiler"
-
-#: ../simulation_parameters/common/wiki.json:32
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:149
-#: ../simulation_parameters/common/wiki.json:188
-#: ../simulation_parameters/common/wiki.json:227
-#: ../simulation_parameters/common/wiki.json:266
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:344
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:422
-#: ../simulation_parameters/common/wiki.json:461
-#: ../simulation_parameters/common/wiki.json:500
-#: ../simulation_parameters/common/wiki.json:539
-#: ../simulation_parameters/common/wiki.json:578
-#: ../simulation_parameters/common/wiki.json:617
-#: ../simulation_parameters/common/wiki.json:656
-#: ../simulation_parameters/common/wiki.json:695
-#: ../simulation_parameters/common/wiki.json:734
-#: ../simulation_parameters/common/wiki.json:773
-#: ../simulation_parameters/common/wiki.json:812
-#: ../simulation_parameters/common/wiki.json:851
-#: ../simulation_parameters/common/wiki.json:890
-#: ../simulation_parameters/common/wiki.json:929
-#: ../simulation_parameters/common/wiki.json:968
-#: ../simulation_parameters/common/wiki.json:1007
-#: ../simulation_parameters/common/wiki.json:1046
-#: ../simulation_parameters/common/wiki.json:1085
-msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr "Değişiklikler"
-
-#: ../simulation_parameters/common/wiki.json:28
-#: ../simulation_parameters/common/wiki.json:67
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:145
-#: ../simulation_parameters/common/wiki.json:184
-#: ../simulation_parameters/common/wiki.json:223
-#: ../simulation_parameters/common/wiki.json:262
-#: ../simulation_parameters/common/wiki.json:301
-#: ../simulation_parameters/common/wiki.json:340
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:457
-#: ../simulation_parameters/common/wiki.json:496
-#: ../simulation_parameters/common/wiki.json:535
-#: ../simulation_parameters/common/wiki.json:574
-#: ../simulation_parameters/common/wiki.json:613
-#: ../simulation_parameters/common/wiki.json:652
-#: ../simulation_parameters/common/wiki.json:691
-#: ../simulation_parameters/common/wiki.json:730
-#: ../simulation_parameters/common/wiki.json:769
-#: ../simulation_parameters/common/wiki.json:808
-#: ../simulation_parameters/common/wiki.json:847
-#: ../simulation_parameters/common/wiki.json:886
-#: ../simulation_parameters/common/wiki.json:925
-#: ../simulation_parameters/common/wiki.json:964
-#: ../simulation_parameters/common/wiki.json:1003
-#: ../simulation_parameters/common/wiki.json:1042
-#: ../simulation_parameters/common/wiki.json:1081
-msgid "WIKI_HEADING_PROCESSES"
-msgstr "İşlemler"
-
-#: ../simulation_parameters/common/wiki.json:24
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:141
-#: ../simulation_parameters/common/wiki.json:180
-#: ../simulation_parameters/common/wiki.json:219
-#: ../simulation_parameters/common/wiki.json:258
-#: ../simulation_parameters/common/wiki.json:297
-#: ../simulation_parameters/common/wiki.json:336
-#: ../simulation_parameters/common/wiki.json:375
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:453
-#: ../simulation_parameters/common/wiki.json:492
-#: ../simulation_parameters/common/wiki.json:531
-#: ../simulation_parameters/common/wiki.json:570
-#: ../simulation_parameters/common/wiki.json:609
-#: ../simulation_parameters/common/wiki.json:648
-#: ../simulation_parameters/common/wiki.json:687
-#: ../simulation_parameters/common/wiki.json:726
-#: ../simulation_parameters/common/wiki.json:765
-#: ../simulation_parameters/common/wiki.json:804
-#: ../simulation_parameters/common/wiki.json:843
-#: ../simulation_parameters/common/wiki.json:882
-#: ../simulation_parameters/common/wiki.json:921
-#: ../simulation_parameters/common/wiki.json:960
-#: ../simulation_parameters/common/wiki.json:999
-#: ../simulation_parameters/common/wiki.json:1038
-#: ../simulation_parameters/common/wiki.json:1077
-msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr "Gereksinimler"
-
-#: ../simulation_parameters/common/wiki.json:48
-#: ../simulation_parameters/common/wiki.json:87
-#: ../simulation_parameters/common/wiki.json:126
-#: ../simulation_parameters/common/wiki.json:165
-#: ../simulation_parameters/common/wiki.json:204
-#: ../simulation_parameters/common/wiki.json:243
-#: ../simulation_parameters/common/wiki.json:282
-#: ../simulation_parameters/common/wiki.json:321
-#: ../simulation_parameters/common/wiki.json:360
-#: ../simulation_parameters/common/wiki.json:399
-#: ../simulation_parameters/common/wiki.json:438
-#: ../simulation_parameters/common/wiki.json:477
-#: ../simulation_parameters/common/wiki.json:516
-#: ../simulation_parameters/common/wiki.json:555
-#: ../simulation_parameters/common/wiki.json:594
-#: ../simulation_parameters/common/wiki.json:633
-#: ../simulation_parameters/common/wiki.json:672
-#: ../simulation_parameters/common/wiki.json:711
-#: ../simulation_parameters/common/wiki.json:750
-#: ../simulation_parameters/common/wiki.json:789
-#: ../simulation_parameters/common/wiki.json:828
-#: ../simulation_parameters/common/wiki.json:867
-#: ../simulation_parameters/common/wiki.json:906
-#: ../simulation_parameters/common/wiki.json:945
-#: ../simulation_parameters/common/wiki.json:984
-#: ../simulation_parameters/common/wiki.json:1023
-#: ../simulation_parameters/common/wiki.json:1062
-#: ../simulation_parameters/common/wiki.json:1101
-msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr "Bilimsel Geçmiş"
-
-#: ../simulation_parameters/common/wiki.json:44
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:161
-#: ../simulation_parameters/common/wiki.json:200
-#: ../simulation_parameters/common/wiki.json:239
-#: ../simulation_parameters/common/wiki.json:278
-#: ../simulation_parameters/common/wiki.json:317
-#: ../simulation_parameters/common/wiki.json:356
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:434
-#: ../simulation_parameters/common/wiki.json:473
-#: ../simulation_parameters/common/wiki.json:512
-#: ../simulation_parameters/common/wiki.json:551
-#: ../simulation_parameters/common/wiki.json:590
-#: ../simulation_parameters/common/wiki.json:629
-#: ../simulation_parameters/common/wiki.json:668
-#: ../simulation_parameters/common/wiki.json:707
-#: ../simulation_parameters/common/wiki.json:746
-#: ../simulation_parameters/common/wiki.json:785
-#: ../simulation_parameters/common/wiki.json:824
-#: ../simulation_parameters/common/wiki.json:863
-#: ../simulation_parameters/common/wiki.json:902
-#: ../simulation_parameters/common/wiki.json:941
-#: ../simulation_parameters/common/wiki.json:980
-#: ../simulation_parameters/common/wiki.json:1019
-#: ../simulation_parameters/common/wiki.json:1058
-#: ../simulation_parameters/common/wiki.json:1097
-msgid "WIKI_HEADING_STRATEGY"
-msgstr "Strateji"
-
-#: ../simulation_parameters/common/wiki.json:40
-#: ../simulation_parameters/common/wiki.json:79
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:157
-#: ../simulation_parameters/common/wiki.json:196
-#: ../simulation_parameters/common/wiki.json:235
-#: ../simulation_parameters/common/wiki.json:274
-#: ../simulation_parameters/common/wiki.json:313
-#: ../simulation_parameters/common/wiki.json:352
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:469
 #: ../simulation_parameters/common/wiki.json:508
 #: ../simulation_parameters/common/wiki.json:547
 #: ../simulation_parameters/common/wiki.json:586
@@ -7802,6 +7620,192 @@ msgstr "Strateji"
 #: ../simulation_parameters/common/wiki.json:1015
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
+msgid "WIKI_HEADING_EFFECTS"
+msgstr "Etkiler"
+
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:188
+#: ../simulation_parameters/common/wiki.json:227
+#: ../simulation_parameters/common/wiki.json:266
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:344
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:422
+#: ../simulation_parameters/common/wiki.json:461
+#: ../simulation_parameters/common/wiki.json:504
+#: ../simulation_parameters/common/wiki.json:543
+#: ../simulation_parameters/common/wiki.json:582
+#: ../simulation_parameters/common/wiki.json:621
+#: ../simulation_parameters/common/wiki.json:660
+#: ../simulation_parameters/common/wiki.json:699
+#: ../simulation_parameters/common/wiki.json:738
+#: ../simulation_parameters/common/wiki.json:777
+#: ../simulation_parameters/common/wiki.json:816
+#: ../simulation_parameters/common/wiki.json:855
+#: ../simulation_parameters/common/wiki.json:894
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:972
+#: ../simulation_parameters/common/wiki.json:1011
+#: ../simulation_parameters/common/wiki.json:1050
+#: ../simulation_parameters/common/wiki.json:1089
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "Değişiklikler"
+
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:184
+#: ../simulation_parameters/common/wiki.json:223
+#: ../simulation_parameters/common/wiki.json:262
+#: ../simulation_parameters/common/wiki.json:301
+#: ../simulation_parameters/common/wiki.json:340
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:457
+#: ../simulation_parameters/common/wiki.json:500
+#: ../simulation_parameters/common/wiki.json:539
+#: ../simulation_parameters/common/wiki.json:578
+#: ../simulation_parameters/common/wiki.json:617
+#: ../simulation_parameters/common/wiki.json:656
+#: ../simulation_parameters/common/wiki.json:695
+#: ../simulation_parameters/common/wiki.json:734
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:812
+#: ../simulation_parameters/common/wiki.json:851
+#: ../simulation_parameters/common/wiki.json:890
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:968
+#: ../simulation_parameters/common/wiki.json:1007
+#: ../simulation_parameters/common/wiki.json:1046
+#: ../simulation_parameters/common/wiki.json:1085
+msgid "WIKI_HEADING_PROCESSES"
+msgstr "İşlemler"
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:141
+#: ../simulation_parameters/common/wiki.json:180
+#: ../simulation_parameters/common/wiki.json:219
+#: ../simulation_parameters/common/wiki.json:258
+#: ../simulation_parameters/common/wiki.json:297
+#: ../simulation_parameters/common/wiki.json:336
+#: ../simulation_parameters/common/wiki.json:375
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:496
+#: ../simulation_parameters/common/wiki.json:535
+#: ../simulation_parameters/common/wiki.json:574
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:652
+#: ../simulation_parameters/common/wiki.json:691
+#: ../simulation_parameters/common/wiki.json:730
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:808
+#: ../simulation_parameters/common/wiki.json:847
+#: ../simulation_parameters/common/wiki.json:886
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:964
+#: ../simulation_parameters/common/wiki.json:1003
+#: ../simulation_parameters/common/wiki.json:1042
+#: ../simulation_parameters/common/wiki.json:1081
+msgid "WIKI_HEADING_REQUIREMENTS"
+msgstr "Gereksinimler"
+
+#: ../simulation_parameters/common/wiki.json:48
+#: ../simulation_parameters/common/wiki.json:87
+#: ../simulation_parameters/common/wiki.json:126
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:204
+#: ../simulation_parameters/common/wiki.json:243
+#: ../simulation_parameters/common/wiki.json:282
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:360
+#: ../simulation_parameters/common/wiki.json:399
+#: ../simulation_parameters/common/wiki.json:438
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:520
+#: ../simulation_parameters/common/wiki.json:559
+#: ../simulation_parameters/common/wiki.json:598
+#: ../simulation_parameters/common/wiki.json:637
+#: ../simulation_parameters/common/wiki.json:676
+#: ../simulation_parameters/common/wiki.json:715
+#: ../simulation_parameters/common/wiki.json:754
+#: ../simulation_parameters/common/wiki.json:793
+#: ../simulation_parameters/common/wiki.json:832
+#: ../simulation_parameters/common/wiki.json:871
+#: ../simulation_parameters/common/wiki.json:910
+#: ../simulation_parameters/common/wiki.json:949
+#: ../simulation_parameters/common/wiki.json:988
+#: ../simulation_parameters/common/wiki.json:1027
+#: ../simulation_parameters/common/wiki.json:1066
+#: ../simulation_parameters/common/wiki.json:1105
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr "Bilimsel Geçmiş"
+
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:200
+#: ../simulation_parameters/common/wiki.json:239
+#: ../simulation_parameters/common/wiki.json:278
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:356
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:434
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:516
+#: ../simulation_parameters/common/wiki.json:555
+#: ../simulation_parameters/common/wiki.json:594
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:672
+#: ../simulation_parameters/common/wiki.json:711
+#: ../simulation_parameters/common/wiki.json:750
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:828
+#: ../simulation_parameters/common/wiki.json:867
+#: ../simulation_parameters/common/wiki.json:906
+#: ../simulation_parameters/common/wiki.json:945
+#: ../simulation_parameters/common/wiki.json:984
+#: ../simulation_parameters/common/wiki.json:1023
+#: ../simulation_parameters/common/wiki.json:1062
+#: ../simulation_parameters/common/wiki.json:1101
+msgid "WIKI_HEADING_STRATEGY"
+msgstr "Strateji"
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:196
+#: ../simulation_parameters/common/wiki.json:235
+#: ../simulation_parameters/common/wiki.json:274
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:352
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:512
+#: ../simulation_parameters/common/wiki.json:551
+#: ../simulation_parameters/common/wiki.json:590
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:668
+#: ../simulation_parameters/common/wiki.json:707
+#: ../simulation_parameters/common/wiki.json:746
+#: ../simulation_parameters/common/wiki.json:785
+#: ../simulation_parameters/common/wiki.json:824
+#: ../simulation_parameters/common/wiki.json:863
+#: ../simulation_parameters/common/wiki.json:902
+#: ../simulation_parameters/common/wiki.json:941
+#: ../simulation_parameters/common/wiki.json:980
+#: ../simulation_parameters/common/wiki.json:1019
+#: ../simulation_parameters/common/wiki.json:1058
+#: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Geliştirmeler"
 
@@ -7849,6 +7853,10 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Geliştirmeler yok."
 
+#: ../simulation_parameters/common/wiki.json:482
+msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:466
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7889,189 +7897,189 @@ msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kü
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:505
+#: ../simulation_parameters/common/wiki.json:509
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:489
+#: ../simulation_parameters/common/wiki.json:493
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitokondri"
 
-#: ../simulation_parameters/common/wiki.json:501
+#: ../simulation_parameters/common/wiki.json:505
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:497
+#: ../simulation_parameters/common/wiki.json:501
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:493
+#: ../simulation_parameters/common/wiki.json:497
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:521
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:517
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:513
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
-#: ../simulation_parameters/common/wiki.json:544
+#: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:528
+#: ../simulation_parameters/common/wiki.json:532
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:540
+#: ../simulation_parameters/common/wiki.json:544
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:536
+#: ../simulation_parameters/common/wiki.json:540
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "İşlem yok"
 
-#: ../simulation_parameters/common/wiki.json:532
+#: ../simulation_parameters/common/wiki.json:536
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:556
+#: ../simulation_parameters/common/wiki.json:560
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:552
+#: ../simulation_parameters/common/wiki.json:556
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:548
+#: ../simulation_parameters/common/wiki.json:552
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:626
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:606
+#: ../simulation_parameters/common/wiki.json:610
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:618
+#: ../simulation_parameters/common/wiki.json:622
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
 
-#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:618
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:614
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:634
+#: ../simulation_parameters/common/wiki.json:638
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
 
-#: ../simulation_parameters/common/wiki.json:630
+#: ../simulation_parameters/common/wiki.json:634
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:630
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:583
+#: ../simulation_parameters/common/wiki.json:587
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:567
+#: ../simulation_parameters/common/wiki.json:571
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:579
+#: ../simulation_parameters/common/wiki.json:583
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:575
+#: ../simulation_parameters/common/wiki.json:579
 #, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:571
+#: ../simulation_parameters/common/wiki.json:575
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:595
+#: ../simulation_parameters/common/wiki.json:599
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:591
+#: ../simulation_parameters/common/wiki.json:595
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:587
+#: ../simulation_parameters/common/wiki.json:591
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:665
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:649
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:661
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı; yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
 
-#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:657
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "İşlem yok"
 
-#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:653
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:677
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:673
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:665
+#: ../simulation_parameters/common/wiki.json:669
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -8086,41 +8094,41 @@ msgstr ""
 "\n"
 "Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
-#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:704
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
-#: ../simulation_parameters/common/wiki.json:684
+#: ../simulation_parameters/common/wiki.json:688
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oksitoksizom"
 
-#: ../simulation_parameters/common/wiki.json:696
+#: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
-#: ../simulation_parameters/common/wiki.json:692
+#: ../simulation_parameters/common/wiki.json:696
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
-#: ../simulation_parameters/common/wiki.json:688
+#: ../simulation_parameters/common/wiki.json:692
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
-#: ../simulation_parameters/common/wiki.json:712
+#: ../simulation_parameters/common/wiki.json:716
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:708
+#: ../simulation_parameters/common/wiki.json:712
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
 
-#: ../simulation_parameters/common/wiki.json:704
+#: ../simulation_parameters/common/wiki.json:708
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
@@ -8173,23 +8181,23 @@ msgstr "Lizozom"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomlar"
 
-#: ../simulation_parameters/common/wiki.json:483
+#: ../simulation_parameters/common/wiki.json:487
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondri"
 
-#: ../simulation_parameters/common/wiki.json:522
+#: ../simulation_parameters/common/wiki.json:526
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miyofibril"
 
-#: ../simulation_parameters/common/wiki.json:600
+#: ../simulation_parameters/common/wiki.json:604
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Azot Fiksasyon Plastidi"
 
-#: ../simulation_parameters/common/wiki.json:561
+#: ../simulation_parameters/common/wiki.json:565
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrojenaz"
 
-#: ../simulation_parameters/common/wiki.json:639
+#: ../simulation_parameters/common/wiki.json:643
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Çekirdek"
 
@@ -8197,114 +8205,114 @@ msgstr "Çekirdek"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "Organeller"
 
-#: ../simulation_parameters/common/wiki.json:678
+#: ../simulation_parameters/common/wiki.json:682
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oksitoksizom"
 
-#: ../simulation_parameters/common/wiki.json:717
+#: ../simulation_parameters/common/wiki.json:721
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Delici Pilus"
 
-#: ../simulation_parameters/common/wiki.json:756
+#: ../simulation_parameters/common/wiki.json:760
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplazma"
 
-#: ../simulation_parameters/common/wiki.json:795
+#: ../simulation_parameters/common/wiki.json:799
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rustisiyanin"
 
-#: ../simulation_parameters/common/wiki.json:834
+#: ../simulation_parameters/common/wiki.json:838
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Sinyal Verici Ajan"
 
-#: ../simulation_parameters/common/wiki.json:873
+#: ../simulation_parameters/common/wiki.json:877
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Balçık Fışkırtıcı"
 
-#: ../simulation_parameters/common/wiki.json:912
+#: ../simulation_parameters/common/wiki.json:916
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../simulation_parameters/common/wiki.json:951
+#: ../simulation_parameters/common/wiki.json:955
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termosentaz"
 
-#: ../simulation_parameters/common/wiki.json:990
+#: ../simulation_parameters/common/wiki.json:994
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tilakoidler"
 
-#: ../simulation_parameters/common/wiki.json:1029
+#: ../simulation_parameters/common/wiki.json:1033
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "Toksin Kofulu"
 
-#: ../simulation_parameters/common/wiki.json:1068
+#: ../simulation_parameters/common/wiki.json:1072
 msgid "WIKI_PAGE_VACUOLE"
 msgstr "Koful"
 
-#: ../simulation_parameters/common/wiki.json:739
+#: ../simulation_parameters/common/wiki.json:743
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:723
+#: ../simulation_parameters/common/wiki.json:727
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:735
+#: ../simulation_parameters/common/wiki.json:739
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:731
+#: ../simulation_parameters/common/wiki.json:735
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:727
+#: ../simulation_parameters/common/wiki.json:731
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:751
+#: ../simulation_parameters/common/wiki.json:755
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:747
+#: ../simulation_parameters/common/wiki.json:751
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:743
+#: ../simulation_parameters/common/wiki.json:747
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:778
+#: ../simulation_parameters/common/wiki.json:782
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Protoplazma"
 
-#: ../simulation_parameters/common/wiki.json:762
+#: ../simulation_parameters/common/wiki.json:766
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplazma"
 
-#: ../simulation_parameters/common/wiki.json:774
+#: ../simulation_parameters/common/wiki.json:778
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:770
+#: ../simulation_parameters/common/wiki.json:774
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
 
-#: ../simulation_parameters/common/wiki.json:766
+#: ../simulation_parameters/common/wiki.json:770
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:790
+#: ../simulation_parameters/common/wiki.json:794
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:786
+#: ../simulation_parameters/common/wiki.json:790
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:782
+#: ../simulation_parameters/common/wiki.json:786
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -8321,312 +8329,312 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "Thrive Oyun İçi Vikisi"
 
-#: ../simulation_parameters/common/wiki.json:817
+#: ../simulation_parameters/common/wiki.json:821
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:801
+#: ../simulation_parameters/common/wiki.json:805
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:817
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:813
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:809
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:833
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:825
+#: ../simulation_parameters/common/wiki.json:829
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:821
+#: ../simulation_parameters/common/wiki.json:825
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
-#: ../simulation_parameters/common/wiki.json:856
+#: ../simulation_parameters/common/wiki.json:860
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "Sinyal Verici Ajan"
 
-#: ../simulation_parameters/common/wiki.json:840
+#: ../simulation_parameters/common/wiki.json:844
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "Sinyal Verici Ajan"
 
-#: ../simulation_parameters/common/wiki.json:852
+#: ../simulation_parameters/common/wiki.json:856
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:852
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Türünüzün diğer üyelerine komut vermede kullanılan menüyü açmak için [thrive:input]g_pack_commands[/thrive:input] tuşunu basılı tutun."
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:848
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
 
-#: ../simulation_parameters/common/wiki.json:868
+#: ../simulation_parameters/common/wiki.json:872
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
 
-#: ../simulation_parameters/common/wiki.json:864
+#: ../simulation_parameters/common/wiki.json:868
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "Sinyal Verici Ajan"
 
-#: ../simulation_parameters/common/wiki.json:860
+#: ../simulation_parameters/common/wiki.json:864
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Sinyal Verici Ajan"
 
-#: ../simulation_parameters/common/wiki.json:895
+#: ../simulation_parameters/common/wiki.json:899
 #, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
 
-#: ../simulation_parameters/common/wiki.json:879
+#: ../simulation_parameters/common/wiki.json:883
 #, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
 
-#: ../simulation_parameters/common/wiki.json:891
+#: ../simulation_parameters/common/wiki.json:895
 #, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "Birçok organizma, balçığımsı polisakkarit maddeler üretir. Müsilaj da bu polisakkaritlerden biridir. Pek çok tür, hareket için balçığı kullanırken belirli bakteri türleri yüksek basınçta bu maddeleri arkalarından salar. Bu fışkırtıcılar, roket motorları gibi davranır ve hücreleri inanılmaz hızda ileri doğru iter. Balçık ayrıca, yırtıcıları engellemek için kullanılır ve sadece fışkırtıcı kullanan organizmaların geçebildiği bir maddenin içine onları hapseder."
 
-#: ../simulation_parameters/common/wiki.json:887
+#: ../simulation_parameters/common/wiki.json:891
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"mucilage\"]müsilaja[/thrive:compound] çevirir. Depolanan [thrive:compound type=\"mucilage\"]müsilajı[/thrive:compound] salmak için [thrive:input]g_secrete_slime[/thrive:input] tuşuna basın. Müsilaj, salgılandığı hücrenin hızını arttırırken diğer yırtıcılarınkini azaltır."
 
-#: ../simulation_parameters/common/wiki.json:883
+#: ../simulation_parameters/common/wiki.json:887
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:911
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:907
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:934
+#: ../simulation_parameters/common/wiki.json:938
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:918
+#: ../simulation_parameters/common/wiki.json:922
 #, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:930
+#: ../simulation_parameters/common/wiki.json:934
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:930
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:922
+#: ../simulation_parameters/common/wiki.json:926
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:946
+#: ../simulation_parameters/common/wiki.json:950
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:942
+#: ../simulation_parameters/common/wiki.json:946
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:938
+#: ../simulation_parameters/common/wiki.json:942
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:977
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Termosentaz"
 
-#: ../simulation_parameters/common/wiki.json:957
+#: ../simulation_parameters/common/wiki.json:961
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "Termosentaz"
 
-#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:973
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:969
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:965
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:985
+#: ../simulation_parameters/common/wiki.json:989
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:981
+#: ../simulation_parameters/common/wiki.json:985
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:977
+#: ../simulation_parameters/common/wiki.json:981
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
-#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1016
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:996
+#: ../simulation_parameters/common/wiki.json:1000
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1012
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:1004
+#: ../simulation_parameters/common/wiki.json:1008
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1000
+#: ../simulation_parameters/common/wiki.json:1004
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1028
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1024
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1020
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1055
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1035
+#: ../simulation_parameters/common/wiki.json:1039
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 "Toksin\n"
 "Kofulu"
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1051
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1047
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1043
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1063
+#: ../simulation_parameters/common/wiki.json:1067
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1059
+#: ../simulation_parameters/common/wiki.json:1063
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1059
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1090
+#: ../simulation_parameters/common/wiki.json:1094
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1074
+#: ../simulation_parameters/common/wiki.json:1078
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1086
+#: ../simulation_parameters/common/wiki.json:1090
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]oksitoksi[/thrive:compound] toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
-#: ../simulation_parameters/common/wiki.json:1082
+#: ../simulation_parameters/common/wiki.json:1086
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
 
-#: ../simulation_parameters/common/wiki.json:1078
+#: ../simulation_parameters/common/wiki.json:1082
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1102
+#: ../simulation_parameters/common/wiki.json:1106
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1102
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1094
+#: ../simulation_parameters/common/wiki.json:1098
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 

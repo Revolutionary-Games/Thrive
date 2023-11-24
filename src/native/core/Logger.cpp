@@ -21,7 +21,14 @@ void Logger::Log(std::string_view message, LogLevel level)
         return;
     }
 
-    std::cout << message << "\n";
+    if (level != LogLevel::Write)
+    {
+        std::cout << message << "\n";
+    }
+    else
+    {
+        std::cout << message;
+    }
 
     if (level >= LogLevel::Error && flushOnError)
     {
