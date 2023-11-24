@@ -2074,3 +2074,5 @@ __meta__ = {
 [connection signal="pressed" from="ScrollContainer/HotBar/SecreteSlime" to="." method="OnSecreteSlimePressed"]
 [connection signal="Cancelled" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="StagePrototypeConfirm" to="." method="OnBecomeMulticellularConfirmed"]
+
+[editable path="PausePrompt"]
