@@ -94,12 +94,9 @@ public partial class CellBodyPlanEditorComponent :
     private ButtonGroup cellTypeButtonGroup = new();
 
     private CellPopupMenu cellPopupMenu = null!;
-#pragma warning restore CA2213
 
-    // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
-    private List<object> pendingScaleApplies = new();
-    private List<object> nextFrameScaleApplies = new();
-    private List<object> thisFrameScaleApplies = new();
+    private PackedScene billboardScene = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private string newName = "unset";
@@ -143,6 +140,8 @@ public partial class CellBodyPlanEditorComponent :
 
         cellTypeSelectionButtonScene =
             GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
+
+        billboardScene = GD.Load<PackedScene>("res://src/early_multicellular_stage/CellBillboard.tscn");
 
         ApplySelectionMenuTab();
 
@@ -246,29 +245,6 @@ public partial class CellBodyPlanEditorComponent :
             OnCellsChanged();
             cellDataDirty = false;
         }
-
-        foreach (var microbe in thisFrameScaleApplies)
-        {
-            _ = microbe;
-
-            throw new NotImplementedException();
-
-            // // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
-            // if (!IsInstanceValid(microbe))
-            //     continue;
-            //
-            // // Scale is computed so that all the cells are the size of 1 hex when placed
-            // // TODO: figure out why the extra multiplier to make things smaller is needed
-            // microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
-            //     Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
-        }
-
-        thisFrameScaleApplies.Clear();
-
-        var tempList = thisFrameScaleApplies;
-        thisFrameScaleApplies = nextFrameScaleApplies;
-        nextFrameScaleApplies = pendingScaleApplies;
-        pendingScaleApplies = tempList;
 
         // Show the cell that is about to be placed
         if (activeActionName != null && Editor.ShowHover)
@@ -993,62 +969,42 @@ public partial class CellBodyPlanEditorComponent :
     {
         modelHolder.Transform = new Transform(Quat.Identity, position);
 
-        // var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
+        var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
 
-        // Create a new microbe if one is not already in the model holder
-
-        _ = forceUpdateCellGraphics;
-
-        // TODO: reimplement with MicrobeVisualOnlySimulation (or really with the PhotoStudio to get much more
-        // potential performance by basically billboarding the entity graphics)
-        throw new NotImplementedException();
-
-        // Commented out code
-        // ReSharper disable once CommentTypo
-        /*Microbe microbe;
-
-        var newSpecies = new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), cell);
-
+        CellBillboard billboard;
         bool wasExisting = false;
 
-        if (modelHolder.InstancedNode is Microbe existingMicrobe)
+        // Create a new billboard if one not already there for the displayer
+        if (modelHolder.InstancedNode is CellBillboard existing)
         {
-            microbe = existingMicrobe;
-
+            billboard = existing;
             wasExisting = true;
         }
         else
         {
-            microbe = (Microbe)microbeScene.Instance();
-            microbe.IsForPreviewOnly = true;
+            billboard = (CellBillboard)billboardScene.Instance();
         }
 
         // Set look direction
-        microbe.LookAtPoint = position + rotation.Xform(Vector3.Forward);
-        microbe.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+        billboard.Transform = new Transform(rotation, new Vector3(0, 0, 0));
 
-        // Skip if it is already displaying the type
-        if (wasExisting && !forceUpdateCellGraphics &&
-            microbe.Species.GetVisualHashCode() == newSpecies.GetVisualHashCode())
+        billboard.DisplayedCell = cell;
+
+        if (forceUpdateCellGraphics && wasExisting)
         {
-            return;
+            billboard.NotifyCellTypeMayHaveChanged();
         }
 
-        // Attach to scene to initialize the microbe before the operations that need that
-        modelHolder.LoadFromAlreadyLoadedNode(microbe);
+        modelHolder.LoadFromAlreadyLoadedNode(billboard);
 
-        // TODO: don't reload the species if the species data would be exactly the same as before to save on
-        // performance. This probably causes the bit of weird turning / flicker with placing more cells
-        microbe.ApplySpecies(newSpecies);
-
-        // Apply placeholder scale if doesn't have a scale
-        if (microbe.Membrane.Scale == Vector3.One)
-        {
-            microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
-        }
-
-        // Scale needs to be applied some frames later so that organelle positions are sent
-        pendingScaleApplies.Add(microbe);*/
+        // TODO: scale
+        // // Apply placeholder scale if doesn't have a scale
+        // if (microbe.Membrane.Scale == Vector3.One)
+        // {
+        //     microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
+        //
+        //     microbe.OverrideScaleForPreview(1.0f / microbe.Radius * );
+        // }
 
         // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
         // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be

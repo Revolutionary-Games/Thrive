@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Generic interface to allow working with microbe species and also multicellular species' individual cell types
 /// </summary>
-public interface ICellProperties
+public interface ICellProperties : ISimulationPhotographable
 {
     public OrganelleLayout<OrganelleTemplate> Organelles { get; }
     public MembraneType MembraneType { get; set; }
@@ -48,5 +48,32 @@ public static class CellPropertiesHelpers
         }
 
         return result;
+    }
+
+    public static int GetVisualHashCode(this ICellProperties properties)
+    {
+        int hash = properties.Colour.GetHashCode() * 607;
+
+        hash ^= (properties.MembraneType.GetHashCode() * 5743) ^ (properties.MembraneRigidity.GetHashCode() * 5749) ^
+            ((properties.IsBacteria ? 1 : 0) * 5779) ^ (properties.Organelles.Count * 131);
+
+        int counter = 0;
+        foreach (var organelle in properties.Organelles)
+        {
+            hash ^= counter++ * 13 * organelle.GetHashCode();
+        }
+
+        return hash;
+    }
+
+    public static void SetupWorldEntities(this ICellProperties properties, IWorldSimulation worldSimulation)
+    {
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), properties).SetupWorldEntities(
+            worldSimulation);
+    }
+
+    public static float CalculatePhotographDistance(this ICellProperties properties, IWorldSimulation worldSimulation)
+    {
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }
 }
