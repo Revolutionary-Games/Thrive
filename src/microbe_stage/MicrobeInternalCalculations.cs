@@ -274,8 +274,7 @@ public static class MicrobeInternalCalculations
 
             if (organelle.Definition.HasCiliaComponent)
             {
-                cilliaFactor += Constants.CILIA_ROTATION_FACTOR +
-                     distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
+                cilliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
         }
 
