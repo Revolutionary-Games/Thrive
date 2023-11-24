@@ -211,7 +211,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
 
-        MicrobeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, couldParallelize);
+        MicrobeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, parallelRunner);
 
         ProcessSystem = new ProcessSystem(EntitySystem, parallelRunner);
 

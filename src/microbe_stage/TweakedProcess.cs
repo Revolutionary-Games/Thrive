@@ -5,7 +5,20 @@
 /// </summary>
 public class TweakedProcess : ICloneable
 {
+    /// <summary>
+    ///   Holds the number of times the Process should be ran each cycle
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Most of the time this equals the number of organelles that run this process in the microbe,
+    ///     but this is not always the case
+    ///   </para>
+    /// </remarks>
     public float Count;
+
+    /// <summary>
+    ///   Acts as a speed multiplier for the process
+    /// </summary>
     public float Rate;
 
     public TweakedProcess(BioProcess process, float count = 1.0f, float rate = 1.0f)
