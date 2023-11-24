@@ -3,6 +3,9 @@
 [ext_resource path="res://src/engine/PhotoStudio.cs" type="Script" id=1]
 
 [sub_resource type="Environment" id=2]
+background_mode = 1
+background_color = Color( 0, 0, 0, 0 )
+background_energy = 0.0
 ambient_light_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="World" id=1]
