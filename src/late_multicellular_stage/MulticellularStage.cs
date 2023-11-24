@@ -658,26 +658,30 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 // TODO: change the view
             }
 
-            // TODO: reimplement this
-            throw new NotImplementedException();
-
-            /*// TODO: remove
+            // TODO: remove (this is just temporary prototype code)
             // Spawn a chunk to give the player some navigation reference
-            var mesh = new ChunkConfiguration.ChunkScene
+
+            var rigidBody = new RigidBody
             {
-                ScenePath = "res://assets/models/Iron5.tscn",
-                ConvexShapePath = "res://assets/models/Iron5.shape",
+                AxisLockLinearY = true,
             };
-            SpawnHelpers.SpawnChunk(new ChunkConfiguration
-                {
-                    Name = "test",
-                    Size = 10000,
-                    Radius = 10,
-                    Mass = 100,
-                    ChunkScale = 1,
-                    Meshes = new List<ChunkConfiguration.ChunkScene> { mesh },
-                }, new Vector3(3, 0, -15), rootOfDynamicallySpawned, SpawnHelpers.LoadChunkScene(),
-                random);*/
+
+            var owner = rigidBody.CreateShapeOwner(rigidBody);
+            rigidBody.ShapeOwnerAddShape(owner, new SphereShape
+            {
+                Radius = 10,
+            });
+
+            rigidBody.Mass = 100;
+
+            var visualsParent = new Spatial();
+            rigidBody.AddChild(visualsParent);
+
+            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instance<Spatial>());
+
+            rigidBody.Translation = new Vector3(3, 0, -15);
+
+            rootOfDynamicallySpawned.AddChild(rigidBody);
         }
 
         // patchManager.CurrentGame = CurrentGame;
