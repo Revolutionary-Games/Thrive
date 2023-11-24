@@ -69,9 +69,14 @@ public class CellBillboard : Spatial
         material = new SpatialMaterial
         {
             AlbedoTexture = null,
+            FlagsTransparent = true,
         };
 
         quad.MaterialOverride = material;
+
+        // Make the quad not visible before it has a material to prevent it from flashing white
+        quad.Visible = false;
+
         ApplyScale();
     }
 
@@ -80,12 +85,16 @@ public class CellBillboard : Spatial
         if (!dirty)
             return;
 
+        if (quad == null)
+            throw new NotSupportedException("Billboard was not initialized");
+
         if (imageTask != null)
         {
             if (imageTask.Finished)
             {
                 cellImage = imageTask.FinalImage;
                 material.AlbedoTexture = cellImage;
+                quad.Visible = true;
             }
 
             return;
@@ -94,6 +103,7 @@ public class CellBillboard : Spatial
         if (displayedCell == null)
         {
             // This was cleared
+            quad.Visible = false;
             material.AlbedoTexture = null;
         }
         else
