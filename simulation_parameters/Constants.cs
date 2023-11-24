@@ -167,7 +167,7 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 50.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1000.0f;
+    public const float BASE_MOVEMENT_FORCE = 1200.0f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
