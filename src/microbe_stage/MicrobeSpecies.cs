@@ -13,7 +13,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties, ISimulationPhotographable
+public class MicrobeSpecies : Species, ICellProperties
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -86,6 +86,13 @@ public class MicrobeSpecies : Species, ICellProperties, ISimulationPhotographabl
     [JsonIgnore]
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
+    {
+        // This is stabilized as long as the default no background operations check passes
+        // If this is changed CellType also needs changes
+        return true;
+    }
 
     public override void OnEdited()
     {
@@ -167,9 +174,9 @@ public class MicrobeSpecies : Species, ICellProperties, ISimulationPhotographabl
         MembraneRigidity = casted.MembraneRigidity;
     }
 
-    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
@@ -179,9 +186,7 @@ public class MicrobeSpecies : Species, ICellProperties, ISimulationPhotographabl
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)
     {
-        // This is stabilized as long as the default no background operations check passes
-        // If this is changed CellType also needs changes
-        return true;
+        return StateHasStabilizedImpl(worldSimulation);
     }
 
     public override object Clone()

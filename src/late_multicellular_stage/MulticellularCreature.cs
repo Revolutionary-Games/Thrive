@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterInventory,
+public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 20, 0);
@@ -379,7 +379,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             // TODO: only allow jumping when touching the ground
             // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
             // use the on press key thing to only trigger jumping once?
-            ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 1000);
+            ApplyCentralImpulse(new Vector3(0, 1, 0) * delta * 12000);
         }
     }
 

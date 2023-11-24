@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
-public class CellType : ICellProperties, ISimulationPhotographable, ICloneable
+public class CellType : ICellProperties, ICloneable
 {
     [JsonConstructor]
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
@@ -95,18 +95,17 @@ public class CellType : ICellProperties, ISimulationPhotographable, ICloneable
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this).SetupWorldEntities(
-            worldSimulation);
+        CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
-    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)
     {
-        return true;
+        return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
     }
 
     public object Clone()

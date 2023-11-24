@@ -1010,14 +1010,9 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
-
-    /// <summary>
-    ///   Scale used for one frame while membrane data is not ready yet
-    /// </summary>
-    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
     /// <summary>
     ///   Multiplier for cell editor actions in multicellular editor

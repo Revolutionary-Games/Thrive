@@ -251,6 +251,10 @@ public class PhotoStudio : Viewport
                     else
                     {
                         // Simulation ready to proceed
+
+                        // Now run the one step with logic frame updates as well in the simulation
+                        previouslyUsedWorldSimulation.ProcessAll(SimulationWorldTimeAdvanceStep);
+
                         currentTaskStep = Step.PositionCamera;
                     }
                 }
@@ -267,17 +271,12 @@ public class PhotoStudio : Viewport
             {
                 if (TaskUsesWorldSimulation)
                 {
-                    // Now run the one step with logic frame updates as well in the simulation
-                    previouslyUsedWorldSimulation!.ProcessAll(SimulationWorldTimeAdvanceStep);
-
-                    camera.Translation = new Vector3(0,
-                        currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
-                            previouslyUsedWorldSimulation), 0);
+                    camera.Translation = currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
+                        previouslyUsedWorldSimulation!);
                 }
                 else
                 {
-                    camera.Translation = new Vector3(0,
-                        currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!), 0);
+                    camera.Translation = currentTask!.ScenePhotographable!.CalculatePhotographDistance(instancedScene!);
                 }
 
                 currentTaskStep = Step.Render;

@@ -165,7 +165,8 @@ public class GameProperties
         {
             var template = new OrganelleTemplate(axon, new Hex(0, r), 0);
 
-            if (!brainType.Organelles.CanPlaceAndIsTouching(template, true, false))
+            // Add no longer allows replacing cytoplasm by default
+            if (!brainType.Organelles.CanPlaceAndIsTouching(template, false, false))
                 continue;
 
             brainType.Organelles.Add(template);
