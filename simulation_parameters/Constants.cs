@@ -1010,7 +1010,7 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 1.80f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
