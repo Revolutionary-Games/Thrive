@@ -258,19 +258,28 @@ public static class MicrobeInternalCalculations
     /// <returns>The rotation speed</returns>
     public static float CalculateRotationSpeed(PhysicsShape shape, IEnumerable<IPositionedOrganelle> organelles)
     {
+        shape.TestYRotationInertiaFactor();
+
         float cilliaFactor = 0;
+        float maxRadius = 0;
 
         foreach (var organelle in organelles)
         {
+            var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
+
+            if (distance > maxRadius)
+            {
+                maxRadius = distance;
+            }
+
             if (organelle.Definition.HasCiliaComponent)
             {
                 cilliaFactor += Constants.CILIA_ROTATION_FACTOR +
-                    Hex.AxialToCartesian(organelle.Position).LengthSquared() *
-                    Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
+                     distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
         }
 
-        var effectiveMass = shape.GetMass();
+        var effectiveMass = shape.GetMass() + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
 
         return effectiveMass / (Constants.CELL_ROTATION_INFLECTION_MASS + cilliaFactor + effectiveMass)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
