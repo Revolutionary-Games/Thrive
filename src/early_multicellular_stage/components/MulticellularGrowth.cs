@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using DefaultEcs;
-    using DefaultEcs.Command;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -144,10 +143,8 @@
             }
         }
 
-        // TODO: determine if it is good to always require passing the recorder parameter or if this should take in
-        // a world simulation object
         public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
-            in Entity entity, IWorldSimulation worldSimulation, EntityCommandRecorder recorder)
+            in Entity entity, IWorldSimulation worldSimulation)
         {
             // Clear variables
 
@@ -163,6 +160,8 @@
             // Delete the cells in our colony currently
             if (entity.Has<MicrobeColony>())
             {
+                var recorder = worldSimulation.StartRecordingEntityCommands();
+
                 ref var colony = ref entity.Get<MicrobeColony>();
 
                 foreach (var member in colony.ColonyMembers)
@@ -175,6 +174,7 @@
 
                 var entityRecord = recorder.Record(entity);
                 entityRecord.Remove<MicrobeColony>();
+                worldSimulation.FinishRecordingEntityCommands(recorder);
             }
         }
 
@@ -276,8 +276,7 @@
             return species
                 .Cells[
                     multicellularGrowth.IsFullyGrownMulticellular ? 0 : multicellularGrowth.NextBodyPlanCellToGrowIndex]
-                .CellType
-                .CalculateTotalComposition();
+                .CellType.CalculateTotalComposition();
         }
 
         public static void CalculateTotalBodyPlanCompounds(this ref MulticellularGrowth multicellularGrowth,

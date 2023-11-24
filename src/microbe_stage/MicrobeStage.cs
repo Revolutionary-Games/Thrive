@@ -591,12 +591,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species);
+                earlySpeciesType.Species, WorldSimulation);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species);
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;

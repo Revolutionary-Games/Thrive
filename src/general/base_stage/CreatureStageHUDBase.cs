@@ -920,9 +920,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected void UpdateReproductionProgress()
     {
-        CalculatePlayerReproductionProgress(
-            out Dictionary<Compound, float> gatheredCompounds,
-            out Dictionary<Compound, float> totalNeededCompounds);
+        CalculatePlayerReproductionProgress(out var gatheredCompounds, out var totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;
@@ -953,7 +951,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     }
 
     protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds);
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds);
 
     protected void UpdateATP(float delta)
     {

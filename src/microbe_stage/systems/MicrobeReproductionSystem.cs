@@ -502,7 +502,7 @@
 
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                 organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                    entity, species, species);
+                    entity, species, species, worldSimulation);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
             }

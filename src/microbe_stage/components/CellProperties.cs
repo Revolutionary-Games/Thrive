@@ -486,8 +486,11 @@
         ///   (<see cref="newProperties"/> applies instead). Note if species object instance changes from what it
         ///   was before, the code calling this method must do that adjustment manually.
         /// </param>
+        /// <param name="worldSimulation">
+        ///   Needed when resetting multicellular growth as that needs to delete colony cells
+        /// </param>
         public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
-            ICellProperties newProperties, Species baseReproductionCostFrom)
+            ICellProperties newProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
             // Copy new cell type properties
             cellProperties.MembraneType = newProperties.MembraneType;
@@ -508,7 +511,7 @@
             // Reset all the duplicates organelles / reproduction progress of the entity
             // This also resets multicellular creature's reproduction progress
             organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                entity, newProperties, baseReproductionCostFrom);
+                entity, newProperties, baseReproductionCostFrom, worldSimulation);
 
             // Reset runtime colour
             if (entity.Has<ColourAnimation>())
