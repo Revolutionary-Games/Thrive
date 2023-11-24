@@ -50,6 +50,17 @@ public static class CellPropertiesHelpers
         return result;
     }
 
+    public static void SetupWorldEntities(this ICellProperties properties, IWorldSimulation worldSimulation)
+    {
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), properties).SetupWorldEntities(
+            worldSimulation);
+    }
+
+    public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+    }
+
     public static int GetVisualHashCode(this ICellProperties properties)
     {
         int hash = properties.Colour.GetHashCode() * 607;
@@ -64,16 +75,5 @@ public static class CellPropertiesHelpers
         }
 
         return hash;
-    }
-
-    public static void SetupWorldEntities(this ICellProperties properties, IWorldSimulation worldSimulation)
-    {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), properties).SetupWorldEntities(
-            worldSimulation);
-    }
-
-    public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
-    {
-        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }
 }
