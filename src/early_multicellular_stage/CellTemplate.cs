@@ -86,9 +86,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
         return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
     }
 
-    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(this, worldSimulation);
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public object Clone()

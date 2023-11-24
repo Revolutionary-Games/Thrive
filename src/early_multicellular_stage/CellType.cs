@@ -98,9 +98,9 @@ public class CellType : ICellProperties, ICloneable
         CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
-    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(this, worldSimulation);
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)

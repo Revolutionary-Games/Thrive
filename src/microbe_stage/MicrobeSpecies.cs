@@ -174,9 +174,9 @@ public class MicrobeSpecies : Species, ICellProperties
         MembraneRigidity = casted.MembraneRigidity;
     }
 
-    public float CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

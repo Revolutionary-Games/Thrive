@@ -72,7 +72,7 @@ public static class CellPropertiesHelpers
             worldSimulation);
     }
 
-    public static float CalculatePhotographDistance(this ICellProperties properties, IWorldSimulation worldSimulation)
+    public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
         return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }

@@ -59,10 +59,10 @@ public class GalleryCardModel : GalleryCard
         {
         }
 
-        public float CalculatePhotographDistance(Spatial instancedScene)
+        public Vector3 CalculatePhotographDistance(Spatial instancedScene)
         {
             var instancedMesh = instancedScene.GetNode<MeshInstance>(meshNodePath);
-            return instancedMesh.GetTransformedAabb().Size.Length();
+            return new Vector3(0, instancedMesh.GetTransformedAabb().Size.Length(), 0);
         }
     }
 }
