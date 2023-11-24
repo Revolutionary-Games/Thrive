@@ -7,8 +7,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using World = DefaultEcs.World;
-    using Godot;
 
     /// <summary>
     ///   Controls the speed of biological processes on a microbe
@@ -18,7 +16,6 @@
     ///     If you are looking for the actual implementation of processes, see <see cref="Systems.ProcessSystem"/>
     ///   </para>
     /// </remarks>
-    [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
     public sealed class MicrobeProcessManagerSystem : AEntitySetSystem<float>
     {
@@ -41,10 +38,9 @@
 
         protected override void Update(float delta, in Entity entity)
         {
-            ref var storage = ref entity.Get<CompoundStorage>();
             ref var processes = ref entity.Get<BioProcesses>();
 
-            ManageProcesses(ref processes, ref storage, delta);
+            ManageProcesses(ref processes, delta);
         }
 
         private float GetPriority(BioProcess process)
@@ -92,20 +88,20 @@
             return priority;
         }
 
-        private void ManageProcesses(ref BioProcesses processor, ref CompoundStorage storage, float delta)
+        private void ManageProcesses(ref BioProcesses processor, float delta)
         {
             // Make sure there are ActiveProcesses
             if (processor.ActiveProcesses == null)
                 return;
 
+            if (processor.LimitedATP == null || processor.GlucoseATP == null)
+            {
+                processor.LimitedATP = 0;
+                processor.GlucoseATP = 0;
+            }
+
             if (biome == null)
                 throw new NullReferenceException("Biome needs to be set");
-
-            // Track ATP generated from gluscose for RuBisCo
-            var glucoseATP = 0.0f;
-
-            // Create dummy compound bag
-            var bag = storage.Compounds.Clone();
 
             // Sort processes in order of priority
             // TODO: Possibly find a way to not run this on every call
@@ -113,69 +109,6 @@
                 .OrderBy(p => GetPriority(p.Process)).ToList();
 
             processor.ActiveProcesses = processPriority;
-
-            foreach (var process in processor.ActiveProcesses)
-            {
-                process.Rate = 1;
-            }
-
-            foreach (var process in processor.ActiveProcesses)
-            {
-                var processData = process.Process;
-
-                // This is used for any other changes to the rate
-                var speedModifier = 1.0f;
-
-                var environmentModifier = ProcessSystem.CalculateEnvironmentModifier(processData, null, biome);
-
-                // Constrains the speed of the process to not exceed or overuse storage
-                var storageConstraintModifier = ProcessSystem.CalculateStorageModifier(process, null, environmentModifier,
-                    delta, bag);
-
-                var rate = speedModifier;
-                var totalModifier = rate * process.Count * environmentModifier * storageConstraintModifier;
-
-                // Set process rate if above minimum
-                process.Rate = totalModifier < Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION ? 0 : rate;
-
-                totalModifier *= delta;
-
-                bool glucoseConsumer = false;
-
-                // Consume inputs from dummy bag
-                foreach (var entry in processData.Inputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
-
-                    if (entry.Key == Glucose && totalModifier >= MathUtils.EPSILON)
-                    {
-                        glucoseConsumer = true;
-                    }
-
-                    var inputRemoved = entry.Value * totalModifier;
-                    bag.TakeCompound(entry.Key, inputRemoved);
-                }
-
-                // Add outputs to dummy bag
-                foreach (var entry in processData.Outputs)
-                {
-                    if (entry.Key.IsEnvironmental)
-                        continue;
-
-                    var outputGenerated = entry.Value * totalModifier;
-
-                    if(entry.Key == ATP && glucoseConsumer)
-                    {
-                        glucoseATP += outputGenerated;
-                    }
-
-                    bag.AddCompound(entry.Key, outputGenerated);
-                }
-
-                bag.ClampNegativeCompoundAmounts();
-                bag.FixNaNCompounds();
-            }
 
             var ruBisCo = processor.ActiveProcesses.SingleOrDefault(
                 p => p.Process.InternalName == "calvin_cycle");
@@ -185,18 +118,32 @@
                 var environmentModifier = ProcessSystem.CalculateEnvironmentModifier(ruBisCo.Process, null,
                     biome);
 
-                var maxATP = atpIn * environmentModifier * delta;
+                float maxATP = atpIn * environmentModifier * delta;
 
-                if(glucoseATP < maxATP)
+                if (processor.GlucoseATP > MathUtils.EPSILON)
                 {
-                    ruBisCo.Rate = glucoseATP / maxATP;
+                    if (processor.GlucoseATP <= maxATP)
+                    {
+                        ruBisCo.Rate *= (processor.GlucoseATP / maxATP).Value;
+                    }
+                    else
+                    {
+                        ruBisCo.Rate = 0;
+                    }
                 }
-                else
+                else if (processor.LimitedATP > MathUtils.EPSILON)
                 {
+                    var newRate = (processor.LimitedATP / maxATP).Value;
+                    ruBisCo.Rate = newRate < 1 ? newRate : 1;
+                }
+
+                if (ruBisCo.Rate <= Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     ruBisCo.Rate = 0;
-                }
             }
 
+            // Reset stored values
+            processor.GlucoseATP = 0;
+            processor.LimitedATP = 0;
         }
     }
 }

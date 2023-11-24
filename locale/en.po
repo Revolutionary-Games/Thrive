@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-18 18:59-0600\n"
+"POT-Creation-Date: 2023-11-24 14:38-0600\n"
 "PO-Revision-Date: 2023-10-31 16:14+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -117,7 +117,7 @@ msgstr "Advanced"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Open the advanced setup view"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:99
+#: ../simulation_parameters/microbe_stage/bio_processes.json:100
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobic Nitrogen Fixation"
 
@@ -215,7 +215,7 @@ msgstr "Amount of autosaves to keep:"
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:110
+#: ../simulation_parameters/microbe_stage/bio_processes.json:111
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobic Nitrogen Fixation"
 
@@ -847,8 +847,8 @@ msgstr "Chemosynthesizing proteins are small clusters of protein in the cytoplas
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Also turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:79
-#: ../simulation_parameters/microbe_stage/bio_processes.json:89
+#: ../simulation_parameters/microbe_stage/bio_processes.json:80
+#: ../simulation_parameters/microbe_stage/bio_processes.json:90
 msgid "CHEMO_SYNTHESIS"
 msgstr "Chemosynthesis"
 
@@ -2854,7 +2854,7 @@ msgstr ""
 msgid "IRON"
 msgstr "Iron"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:140
+#: ../simulation_parameters/microbe_stage/bio_processes.json:141
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Iron Chemolithoautotrophy"
 
@@ -4225,7 +4225,7 @@ msgstr "{0} MP"
 msgid "MUCILAGE"
 msgstr "Mucilage"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:70
+#: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Mucilage synthesis"
 
@@ -4810,8 +4810,8 @@ msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:comp
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:50
-#: ../simulation_parameters/microbe_stage/bio_processes.json:60
+#: ../simulation_parameters/microbe_stage/bio_processes.json:51
+#: ../simulation_parameters/microbe_stage/bio_processes.json:61
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Synthesis"
 
@@ -4986,8 +4986,8 @@ msgstr "/second"
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:40
-#: ../simulation_parameters/microbe_stage/bio_processes.json:130
+#: ../simulation_parameters/microbe_stage/bio_processes.json:41
+#: ../simulation_parameters/microbe_stage/bio_processes.json:131
 msgid "PHOTOSYNTHESIS"
 msgstr "Photosynthesis"
 
@@ -5366,7 +5366,7 @@ msgid "RESOURCE_WOOD"
 msgstr "Wood"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:120
+#: ../simulation_parameters/microbe_stage/bio_processes.json:121
 msgid "RESPIRATION"
 msgstr "Aerobic Respiration"
 
@@ -5441,7 +5441,7 @@ msgstr "RuBisCo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:350
 msgid "RUBISCO_DESCRIPTION"
-msgstr ""
+msgstr "RuBisCo is an enzyme present in plants, algae, photosynthetic protists and certain autotrophic bacteria. It catalyzes the first step of Carbon Fixation in the Calvin cycle and is the most abundant protein in the biosphere"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:349
 msgid "RUBISCO_PROCESSES_DESCRIPTION"
@@ -6461,8 +6461,8 @@ msgstr "Thermosynthase is a protein that uses thermal convection to change its f
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:151
-#: ../simulation_parameters/microbe_stage/bio_processes.json:160
+#: ../simulation_parameters/microbe_stage/bio_processes.json:152
+#: ../simulation_parameters/microbe_stage/bio_processes.json:161
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
 
