@@ -88,6 +88,9 @@ public class CellBillboard : Spatial
         if (quad == null)
             throw new NotSupportedException("Billboard was not initialized");
 
+        // TODO: should this skip starting generating the image while this is hidden? (maybe once we have image request
+        // caching for microbes this will not matter at all)
+
         if (imageTask != null)
         {
             if (imageTask.Finished)

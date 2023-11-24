@@ -277,6 +277,15 @@ public partial class CellBodyPlanEditorComponent :
                 (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
                 effectiveSymmetry);
         }
+        else if (forceUpdateCellGraphics)
+        {
+            // Make sure all cell graphics holders are updated
+            foreach (var hoverModel in hoverModels)
+            {
+                if (hoverModel.InstancedNode is CellBillboard billboard)
+                    billboard.NotifyCellTypeMayHaveChanged();
+            }
+        }
 
         forceUpdateCellGraphics = false;
     }
@@ -386,6 +395,9 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
+        // Update all cell graphics holders
+        forceUpdateCellGraphics = true;
+
         // This may be called while hidden from the undo/redo system
         if (Visible)
             UpdateAlreadyPlacedVisuals();
@@ -393,9 +405,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
-
-        // Update all cell graphics holders
-        forceUpdateCellGraphics = true;
     }
 
     /// <summary>
@@ -624,7 +633,9 @@ public partial class CellBodyPlanEditorComponent :
 
         bool showModel = !hadDuplicate;
 
-        if (showModel)
+        // When force updating this has to run to make sure the cell holder has been forced to refresh so that when
+        // it becomes visible it doesn't have outdated graphics on it
+        if (showModel || forceUpdateCellGraphics)
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
@@ -632,7 +643,8 @@ public partial class CellBodyPlanEditorComponent :
 
             ShowCellTypeInModelHolder(modelHolder, cellToPlace, cartesianPosition, rotation);
 
-            modelHolder.Visible = true;
+            if (showModel)
+                modelHolder.Visible = true;
         }
     }
 
@@ -996,15 +1008,6 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         modelHolder.LoadFromAlreadyLoadedNode(billboard);
-
-        // TODO: scale
-        // // Apply placeholder scale if doesn't have a scale
-        // if (microbe.Membrane.Scale == Vector3.One)
-        // {
-        //     microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
-        //
-        //     microbe.OverrideScaleForPreview(1.0f / microbe.Radius * );
-        // }
 
         // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
         // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be
