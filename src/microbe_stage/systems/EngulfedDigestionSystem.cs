@@ -113,6 +113,11 @@
                     engulfedObject.Get<CompoundAbsorber>().AbsorbSpeed = -1;
                 }
 
+                if (engulfedObject.Has<MicrobeControl>())
+                {
+                    engulfedObject.Get<MicrobeControl>().State = MicrobeState.Normal;
+                }
+
                 Enzyme usedEnzyme;
 
                 var digestibility = organelles.CanDigestObject(ref engulfable);
