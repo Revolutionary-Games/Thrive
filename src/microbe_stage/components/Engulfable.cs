@@ -163,6 +163,18 @@
                 callbacks.OnReproductionStatus?.Invoke(entity, false);
             }
 
+            // Disable absorbing compounds
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+            }
+
+            // Force mode to normal
+            if (entity.Has<MicrobeControl>())
+            {
+                entity.Get<MicrobeControl>().State = MicrobeState.Normal;
+            }
+
             // Save the original scale for re-applying when ejecting
             ref var spatial = ref entity.Get<SpatialInstance>();
             engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
@@ -273,6 +285,11 @@
                 // Reset wigglyness (which was cleared when this was engulfed)
                 if (cellProperties.CreatedMembrane != null)
                     cellProperties.ApplyMembraneWigglyness(cellProperties.CreatedMembrane);
+            }
+
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
             }
 
             // Reset render priority
