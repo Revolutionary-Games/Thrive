@@ -283,7 +283,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
-            hp = 1 - (stage.Player.Get<Engulfable>().DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD / 2);
+            hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
             hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
             playerWasDigested = true;
