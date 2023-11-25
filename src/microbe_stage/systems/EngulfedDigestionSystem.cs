@@ -107,6 +107,12 @@
                 if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
                     continue;
 
+                // Disable engulfed entities from absorbing compounds
+                if (engulfedObject.Has<CompoundAbsorber>())
+                {
+                    engulfedObject.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+                }
+
                 Enzyme usedEnzyme;
 
                 var digestibility = organelles.CanDigestObject(ref engulfable);
