@@ -197,11 +197,6 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         // Make sure player is spawned
         SpawnPlayer();
 
-        if (Player is Entity entity)
-        {
-            entity.Get<Engulfer>().EngulfingSize = entity.Get<OrganelleContainer>().HexCount;
-        }
-
         BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 

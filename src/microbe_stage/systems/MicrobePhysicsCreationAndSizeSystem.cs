@@ -437,6 +437,11 @@
                 entity.Get<CompoundAbsorber>().AbsorbRadius =
                     Math.Max(cellProperties.Radius, Constants.MICROBE_MIN_ABSORB_RADIUS);
             }
+
+            if (entity.Has<Engulfer>())
+            {
+                entity.Get<Engulfer>().EngulfingSize = entity.Get<OrganelleContainer>().HexCount;
+            }
         }
 
         private void Dispose(bool disposing)
