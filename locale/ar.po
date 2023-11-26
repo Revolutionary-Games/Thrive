@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 19:16+0200\n"
+"POT-Creation-Date: 2023-11-26 10:24-0600\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -124,7 +124,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr ""
 
@@ -452,13 +452,13 @@ msgstr ""
 msgid "BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:642
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:598
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1027,7 +1027,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -1821,7 +1821,7 @@ msgstr ""
 msgid "EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1882,7 +1882,7 @@ msgid "ENTITY_LABEL"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr ""
 
@@ -2126,7 +2126,7 @@ msgstr "عام"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr ""
 
@@ -2334,7 +2334,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr ""
 
@@ -2479,7 +2479,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
@@ -2571,7 +2571,7 @@ msgstr ""
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2734,7 +2734,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr ""
 
@@ -3161,7 +3161,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr ""
 
@@ -3949,7 +3949,7 @@ msgstr ""
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -3992,7 +3992,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr ""
 
@@ -4210,11 +4210,11 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:868
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:867
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:860
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:859
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4303,7 +4303,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:445
 msgid "N_A"
 msgstr ""
 
@@ -4311,7 +4311,7 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:499
 msgid "N_TIMES"
 msgstr ""
 
@@ -4559,7 +4559,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr ""
 
@@ -4733,7 +4733,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr ""
 
@@ -4776,7 +4776,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:469
 msgid "PLAYER"
 msgstr ""
 
@@ -4837,7 +4837,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr ""
@@ -4867,7 +4867,7 @@ msgid "PRESSURE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr ""
 
@@ -5414,7 +5414,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -6120,7 +6120,7 @@ msgid "TEMPERATURE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
@@ -6322,7 +6322,7 @@ msgid "TITLE_COLON"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -6333,7 +6333,7 @@ msgstr ""
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -6547,7 +6547,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr ""
 
