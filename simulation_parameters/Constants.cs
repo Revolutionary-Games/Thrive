@@ -165,9 +165,9 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 50.0f;
+    public const float FLAGELLA_BASE_FORCE = 55.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1200.0f;
+    public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -363,7 +363,7 @@ public static class Constants
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
 
     public const float CHUNK_PHYSICS_DAMPING = 0.2f;
-    public const float MICROBE_PHYSICS_DAMPING = 0.97f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.99f;
 
     /// <summary>
     ///   This only really matters when cells are dead
