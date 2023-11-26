@@ -518,14 +518,7 @@ public static class SpawnHelpers
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
             organelleContainer.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-            // Finish setting up these two components
-            entity.Set(organelleContainer);
-
-            storage.Compounds.AddInitialCompounds(species.InitialCompounds);
-            entity.Set(storage);
-
-            // Engulfing
-
+            // Finish setting up related components
             var engulfable = new Engulfable
             {
                 RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
@@ -537,6 +530,11 @@ public static class SpawnHelpers
 
             entity.Set(engulfable);
             entity.Set(engulfer);
+
+            entity.Set(organelleContainer);
+
+            storage.Compounds.AddInitialCompounds(species.InitialCompounds);
+            entity.Set(storage);
         }
 
         entity.Set(bioProcesses);
