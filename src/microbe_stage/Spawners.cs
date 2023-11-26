@@ -498,17 +498,14 @@ public static class SpawnHelpers
         };
 
         int organelleCount;
-        float engulfSize;
+        var organelleContainer = default(OrganelleContainer);
 
         // Initialize organelles for the cell type
         {
-            var container = default(OrganelleContainer);
+            organelleContainer.CreateOrganelleLayout(usedCellProperties);
+            organelleContainer.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
-            container.CreateOrganelleLayout(usedCellProperties);
-            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
-
-            organelleCount = container.Organelles!.Count;
-            engulfSize = container.HexCount;
+            organelleCount = organelleContainer.Organelles!.Count;
 
             // Compound storage
             var storage = new CompoundStorage
@@ -519,10 +516,10 @@ public static class SpawnHelpers
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
-            container.UpdateCompoundBagStorageFromOrganelles(ref storage);
+            organelleContainer.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
             // Finish setting up these two components
-            entity.Set(container);
+            entity.Set(organelleContainer);
 
             storage.Compounds.AddInitialCompounds(species.InitialCompounds);
             entity.Set(storage);
@@ -611,17 +608,19 @@ public static class SpawnHelpers
             SignalingChannel = species.ID,
         });
 
-        entity.Set(new Engulfable
-        {
-            BaseEngulfSize = engulfSize,
-            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
-        });
+        // Engulfing
 
-        entity.Set(new Engulfer
+        var engulfable = new Engulfable
         {
-            EngulfingSize = engulfSize,
-            EngulfStorageSize = engulfSize,
-        });
+            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+        };
+
+        var engulfer = default(Engulfer);
+
+        organelleContainer.UpdateEngulfingData(ref engulfer, ref engulfable);
+
+        entity.Set(engulfable);
+        entity.Set(engulfer);
 
         // Microbes are not affected by currents before they are visualized
         // entity.Set<CurrentAffected>();
