@@ -7,6 +7,7 @@
     /// <summary>
     ///   Things that have a health and can be damaged
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Health
     {
         public List<DamageEventNotice>? RecentDamageReceived;
@@ -110,7 +111,8 @@
                 }
             }
 
-            // TODO: probably need a separate system to trigger this
+            // TODO: probably need a separate system to trigger this (or well we can trigger this but warn mod authors
+            // that this is a multithreaded operation)
             // ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
         }
 

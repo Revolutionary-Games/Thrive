@@ -36,6 +36,12 @@
 
 #cmakedefine LOCK_FREE_COLLISION_RECORDING
 
+#cmakedefine USE_LOCK_FREE_QUEUE
+
+#cmakedefine USE_ATOMIC_COLLISION_WRITE
+
+// #cmakedefine TASK_QUEUE_USES_POINTERS
+
 #ifdef WIN32
 #define FORCE_INLINE __forceinline
 #else
@@ -71,6 +77,51 @@
 
 // The second + 4 is padding here
 #define PHYSICS_RAY_DATA_SIZE (PHYSICS_USER_DATA_SIZE + POINTER_SIZE + 4 + 4)
+
+// When defined the collision listener will automatically resolve sub-shape indexes on the first level
+#define AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+
+#ifdef USE_LOCK_FREE_QUEUE
+#define TASK_WAIT_LOOP_COUNT 20
+#else
+#define TASK_WAIT_LOOP_COUNT 5
+#endif
+
+#ifdef NDEBUG
+#define DEBUG_BREAK
+#endif
+
+#ifdef _WIN32
+
+#ifndef DEBUG_BREAK
+#define DEBUG_BREAK __debugbreak();
+#endif
+
+#else
+
+#ifdef __cplusplus
+// For signals
+#include <csignal>
+#else
+#include <signal.h>
+#endif
+
+#ifndef DEBUG_BREAK
+#ifdef __cplusplus
+#define DEBUG_BREAK                                               \
+    {                                                             \
+        LOG_WRITE("DEBUG_BREAK HIT! at:");                        \
+        LOG_WRITE(__FILE__ ":" + std::to_string(__LINE__));       \
+        std::raise(SIGINT);                                       \
+    }
+#endif
+#else
+#define DEBUG_BREAK                                               \
+    {                                                             \
+        raise(SIGINT);                                            \
+    }
+#endif
+#endif
 
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus

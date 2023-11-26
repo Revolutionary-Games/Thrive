@@ -74,7 +74,8 @@ bool PhysicsBody::RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noex
     const auto end = ignoredCollisions.end();
     for (auto iter = ignoredCollisions.begin(); iter != end; ++iter)
     {
-        if (*iter == idToRemove){
+        if (*iter == idToRemove)
+        {
             ignoredCollisions.erase(iter);
             return true;
         }
@@ -129,10 +130,13 @@ bool PhysicsBody::DisableBodyControl() noexcept
 // ------------------------------------ //
 void PhysicsBody::MarkUsedInWorld(PhysicalWorld* world) noexcept
 {
-    if (containedInWorld)
-        LOG_ERROR("PhysicsBody marked used when already in use");
+    if (containedInWorld != world)
+    {
+        if (containedInWorld)
+            LOG_ERROR("PhysicsBody marked used when already in use by different world");
 
-    containedInWorld = world;
+        containedInWorld = world;
+    }
 
     // Calling this method is the way that bodies become attached again (if detached previously)
     detached = false;

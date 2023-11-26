@@ -11,6 +11,7 @@
     ///   AI for a single Microbe (enables the <see cref="MicrobeAISystem"/>. to run on this). And also the memory for
     ///   the AI.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeAI
     {
         public float TimeUntilNextThink;
@@ -55,17 +56,15 @@
         /// <summary>
         ///   Resets AI status when this AI controlled microbe is removed from a colony
         /// </summary>
-        public static void ResetAI(this ref MicrobeAI ai)
+        public static void ResetAI(this ref MicrobeAI ai, in Entity entity)
         {
             ai.PreviousAngle = 0;
             ai.TargetPosition = Vector3.Zero;
             ai.FocusedPrey = default;
             ai.PursuitThreshold = 0;
 
-            throw new NotImplementedException();
-
-            // microbe.MovementDirection = Vector3.Zero;
-            // microbe.TotalAbsorbedCompounds.Clear();
+            ref var absorber = ref entity.Get<CompoundAbsorber>();
+            absorber.TotalAbsorbedCompounds?.Clear();
         }
 
         public static void MoveToLocation(this ref MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control)

@@ -187,7 +187,7 @@ _C#_, _Mono Debug_, and _C# Tools for Godot_.
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
-MSBuild (VS Build Tools).
+dotnet CLI.
 
 If you want to setup live debugging with Godot follow the instructions here:
 https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
@@ -346,8 +346,7 @@ things should be working.
 Thrive depends on some native libraries which must be present before
 the game can be ran.
 
-In the future it will be possible to download compatible libraries
-with a script:
+The easiest way to get these is to download precompiled ones by running:
 ```sh
 dotnet run --project Scripts -- native Fetch Install
 ```
@@ -367,8 +366,16 @@ dotnet run --project Scripts -- native Build Install
 
 Debug versions for easier native code development / more robust error
 condition checking can be built and installed by adding `-d` to the
-end of the previous command to specify debug versions of the
-libraries to be used.
+end of the previous command to specify debug versions of the libraries
+to be used. Sometimes debug versions of the libraries are available
+for download and in those cases `-d` can be added to the end of the
+`Fetch` command as well.
+
+Note that for release making you need the native libraries for all
+platforms:
+```sh
+dotnet run --project Scripts -- native Fetch
+```
 
 ## Using Development Environments
 
@@ -586,6 +593,11 @@ example
 `RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj`
 or other csproj or .cs files missing), first try initializing and
 updating git submodules and building again.
+
+If you get errors from any files in the Scripts folder, for example
+`Thrive\Scripts\Program.cs`, then you likely have an outdated version
+of the submodules. Running the above submodule update command should
+fix these kind of errors as well.
 
 ### Troubleshooting regarding Godot automatically breaking
 

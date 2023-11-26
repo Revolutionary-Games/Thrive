@@ -23,7 +23,7 @@
         private readonly IReadOnlyCollection<Compound> ventableCompounds;
 
         public UnneededCompoundVentingSystem(CompoundCloudSystem compoundCloudSystem, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+            IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
         {
             this.compoundCloudSystem = compoundCloudSystem;
             ventableCompounds = SimulationParameters.Instance.GetCloudCompounds();

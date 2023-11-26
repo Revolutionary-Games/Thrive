@@ -71,6 +71,21 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public new delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void OnToggleEngulfButtonPressed();
+
+    [Signal]
+    public delegate void OnFireToxinButtonPressed();
+
+    [Signal]
+    public delegate void OnSecreteSlimeButtonPressed();
+
+    [Signal]
+    public delegate void OnToggleBindingButtonPressed();
+
+    [Signal]
+    public delegate void OnUnbindAllButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -268,7 +283,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
-            hp = 1 - (stage.Player.Get<Engulfable>().DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+            hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
             hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
             playerWasDigested = true;
@@ -299,10 +314,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var compounds = stage.Player.Get<CompoundStorage>().Compounds;
             return compound => compounds.IsUseful(compound);
         }
-
-        throw new NotImplementedException();
-
-        // return compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound));
+        else
+        {
+            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
+            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
+        }
     }
 
     protected override bool SpecialHandleBar(ProgressBar bar)
@@ -323,10 +339,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
 
-        throw new NotImplementedException();
-
-        // return colony.ColonyMembers.Any(
-        //     c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
+        return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -336,23 +349,24 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
 
-        throw new NotImplementedException();
-
-        // return stage!.Player!.Colony?.ColonyCompounds;
+        return stage.Player.Get<MicrobeColony>().GetCompounds();
     }
 
     protected override void UpdateCompoundBars(float delta)
     {
         base.UpdateCompoundBars(delta);
 
+        float maxSize;
         if (stage!.Player.Has<MicrobeColony>())
         {
-            // TODO: calculate total engulf size (probably don't need to cache this as only the GUI needs this
-            // currently)
-            throw new NotImplementedException();
+            maxSize = stage.Player.Get<MicrobeColony>().CalculateTotalEngulfStorageSize();
+        }
+        else
+        {
+            maxSize = stage.Player.Get<Engulfer>().EngulfStorageSize;
         }
 
-        ingestedMatterBar.MaxValue = stage.Player.Get<Engulfer>().EngulfStorageSize;
+        ingestedMatterBar.MaxValue = maxSize;
         GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
@@ -386,13 +400,15 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
-            throw new NotImplementedException();
+            ref var colony = ref player.Get<MicrobeColony>();
 
-            // showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
-            // showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
+            // TODO: does this need a variant that just returns a bool and has an early exit?
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+
+            showToxin = vacuoles > 0;
+            showSlime = slimeJets > 0;
         }
-
-        /* TODO: else */
+        else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
@@ -516,12 +532,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-        {
-            // TODO: calculate total used ingestion capacity
-            throw new NotImplementedException();
-
-            // return ?
-        }
+            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
 
         return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
     }
@@ -711,5 +722,30 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
+    }
+
+    private void OnEngulfmentPressed()
+    {
+        EmitSignal(nameof(OnToggleEngulfButtonPressed));
+    }
+
+    private void OnFireToxinPressed()
+    {
+        EmitSignal(nameof(OnFireToxinButtonPressed));
+    }
+
+    private void OnBindingModePressed()
+    {
+        EmitSignal(nameof(OnToggleBindingButtonPressed));
+    }
+
+    private void OnUnbindAllPressed()
+    {
+        EmitSignal(nameof(OnUnbindAllButtonPressed));
+    }
+
+    private void OnSecreteSlimePressed()
+    {
+        EmitSignal(nameof(OnSecreteSlimeButtonPressed));
     }
 }

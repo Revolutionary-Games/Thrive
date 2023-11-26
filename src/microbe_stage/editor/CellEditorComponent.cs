@@ -275,7 +275,7 @@ public partial class CellEditorComponent :
     ///   We're taking advantage of the available membrane and organelle system already present in the microbe stage
     ///   for the membrane preview.
     /// </summary>
-    private MicrobeVisualOnlySimulation previewSimulation = new();
+    private MicrobeVisualOnlySimulation? previewSimulation;
 
     private MicrobeSpecies? previewMicrobeSpecies;
     private Entity previewMicrobe;
@@ -347,7 +347,7 @@ public partial class CellEditorComponent :
             previewMicrobeSpecies.MembraneRigidity = value;
 
             if (previewMicrobe.IsAlive)
-                previewSimulation.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
+                previewSimulation!.ApplyMicrobeRigidity(previewMicrobe, previewMicrobeSpecies.MembraneRigidity);
         }
     }
 
@@ -374,7 +374,7 @@ public partial class CellEditorComponent :
             previewMicrobeSpecies.Colour = value;
 
             if (previewMicrobe.IsAlive)
-                previewSimulation.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
+                previewSimulation!.ApplyMicrobeColour(previewMicrobe, previewMicrobeSpecies.Colour);
         }
     }
 
@@ -610,6 +610,18 @@ public partial class CellEditorComponent :
             behaviourEditor.Init(owningEditor, fresh);
         }
 
+        // Visual simulation is needed very early when loading a save
+        previewSimulation = new MicrobeVisualOnlySimulation();
+
+        cellPreviewVisualsRoot = new Spatial
+        {
+            Name = "CellPreviewVisuals",
+        };
+
+        Editor.RootOfDynamicallySpawned.AddChild(cellPreviewVisualsRoot);
+
+        previewSimulation.Init(cellPreviewVisualsRoot);
+
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
 
@@ -677,15 +689,6 @@ public partial class CellEditorComponent :
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
 
         ApplySymmetryForCurrentOrganelle();
-
-        cellPreviewVisualsRoot = new Spatial
-        {
-            Name = "CellPreviewVisuals",
-        };
-
-        Editor.RootOfDynamicallySpawned.AddChild(cellPreviewVisualsRoot);
-
-        previewSimulation.Init(cellPreviewVisualsRoot);
     }
 
     public override void _Process(float delta)
@@ -716,7 +719,10 @@ public partial class CellEditorComponent :
 
         // Process microbe visuals preview when it is visible
         if (cellPreviewVisualsRoot.Visible)
-            previewSimulation.ProcessAll(delta);
+        {
+            // Init being called is checked at the start of this method
+            previewSimulation!.ProcessAll(delta);
+        }
 
         // Show the organelle that is about to be placed
         if (Editor.ShowHover && !MicrobePreviewMode)
@@ -1276,8 +1282,6 @@ public partial class CellEditorComponent :
     {
         if (disposing)
         {
-            previewSimulation.Dispose();
-
             if (TopPanelPath != null)
             {
                 TopPanelPath.Dispose();
@@ -1322,6 +1326,8 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
             }
+
+            previewSimulation?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1329,6 +1335,9 @@ public partial class CellEditorComponent :
 
     private bool CreatePreviewMicrobeIfNeeded()
     {
+        if (previewSimulation == null)
+            throw new InvalidOperationException("Component needs to be initialized first");
+
         if (previewMicrobe.IsAlive && previewMicrobeSpecies != null)
             return false;
 
@@ -1371,7 +1380,7 @@ public partial class CellEditorComponent :
         previewMicrobeSpecies.IsBacteria = false;
 
         // This is now just for applying changes in the species to the preview cell
-        previewSimulation.ApplyNewVisualisationMicrobeSpecies(previewMicrobe, previewMicrobeSpecies);
+        previewSimulation!.ApplyNewVisualisationMicrobeSpecies(previewMicrobe, previewMicrobeSpecies);
 
         microbeVisualizationOrganellePositionsAreDirty = false;
     }

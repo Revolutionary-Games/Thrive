@@ -47,10 +47,17 @@
         /// </summary>
         private readonly List<Task> activeGenerationTasks = new();
 
+        private bool pendingMembraneGenerations;
+
         private int runningMembraneTaskCount;
 
         public MicrobeVisualsSystem(World world) : base(world, null)
         {
+        }
+
+        public bool HasPendingOperations()
+        {
+            return pendingMembraneGenerations;
         }
 
         public override void Dispose()
@@ -73,6 +80,8 @@
         protected override void PreUpdate(float delta)
         {
             base.PreUpdate(delta);
+
+            pendingMembraneGenerations = false;
 
             activeGenerationTasks.RemoveAll(t => t.IsCompleted);
         }
@@ -117,6 +126,8 @@
 
                 // Need to wait for membrane generation. Organelle visuals aren't created yet even if they could be
                 // to avoid the organelles popping in before the membrane.
+                pendingMembraneGenerations = true;
+
                 return;
             }
 
@@ -233,10 +244,14 @@
         private void SetMembraneDisplayData(Membrane membrane, MembranePointData cacheData,
             ref CellProperties cellProperties)
         {
+#if DEBUG
+            var oldData = membrane.MembraneData;
+#endif
+
             membrane.MembraneData = cacheData;
 
 #if DEBUG
-            if (membrane.IsChangingShape)
+            if (membrane.IsChangingShape && !ReferenceEquals(oldData, cacheData))
                 throw new Exception("This field should have been reset automatically");
 #endif
 

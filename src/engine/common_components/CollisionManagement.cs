@@ -11,6 +11,7 @@
     /// <summary>
     ///   Allows modifying <see cref="Physics"/> collisions of this entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CollisionManagement
     {
         /// <summary>

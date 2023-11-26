@@ -96,7 +96,7 @@ public class ResourceManager : Node
                         // Need to prepare this
                         if (preparingBackgroundResource == null)
                         {
-                            TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }));
+                            TaskExecutor.Instance.AddTask(new Task(() => { PrepareLoad(resource); }), false);
 
                             preparingBackgroundResource = resource;
                             progressedLoading = true;
@@ -118,7 +118,7 @@ public class ResourceManager : Node
                                     "Missing handling for requiring sync post process but supporting async load");
                             }
 
-                            TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }));
+                            TaskExecutor.Instance.AddTask(new Task(() => { PerformFullLoad(resource); }), false);
 
                             processingBackgroundResource = resource;
                             processingResources.RemoveAt(i);

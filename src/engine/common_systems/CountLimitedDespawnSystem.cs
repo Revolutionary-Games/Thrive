@@ -4,7 +4,6 @@
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
-    using DefaultEcs.Threading;
     using Godot;
     using World = DefaultEcs.World;
 
@@ -24,8 +23,7 @@
 
         private Vector3 playerPosition;
 
-        public CountLimitedDespawnSystem(IEntityContainer entityContainer, World world, IParallelRunner runner) :
-            base(world, runner)
+        public CountLimitedDespawnSystem(IEntityContainer entityContainer, World world) : base(world, null)
         {
             this.entityContainer = entityContainer;
         }
@@ -65,6 +63,7 @@
 
             ++group.Count;
 
+            // TODO: determine if this part at least could be run in parallel
             var distance = position.Position.DistanceSquaredTo(playerPosition);
 
             if (!group.HasFarthestEntity)

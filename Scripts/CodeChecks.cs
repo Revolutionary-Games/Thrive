@@ -68,6 +68,14 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "RevolutionaryGamesCommon/**",
         "src/native/**.cpp",
         "src/native/**.hpp",
+        "third_party/**.hpp",
+    };
+
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards => new[]
+    {
+        "third_party/boost/**",
+        "third_party/concurrentqueue/**",
+        "third_party/JoltPhysics/**",
     };
 
     protected override string MainSolutionFile => "Thrive.sln";

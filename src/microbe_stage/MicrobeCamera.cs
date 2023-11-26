@@ -8,6 +8,13 @@ using Newtonsoft.Json;
 public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked, IGameCamera
 {
     /// <summary>
+    ///   Automatically process the camera position while game is paused (used to still process zooming easily while
+    ///   microbe stage is paused)
+    /// </summary>
+    [Export]
+    public bool AutoProcessWhilePaused;
+
+    /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
@@ -151,6 +158,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
             ResetHeight();
 
         UpdateBackgroundVisibility();
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public void ResolveNodeReferences()
@@ -189,6 +198,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
         if (lastSetLightLevel != lightLevel)
         {
             UpdateLightLevel(delta);
+        }
+
+        if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
+        {
+            UpdateCameraPosition(delta, null);
         }
     }
 

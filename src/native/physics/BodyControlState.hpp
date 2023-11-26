@@ -9,8 +9,6 @@ class BodyControlState
 public:
     BodyControlState() = default;
 
-    JPH::Quat previousRotation = {};
-    JPH::Quat previousTarget = {};
     JPH::Quat targetRotation = {};
 
     JPH::Vec3 movement = {};
@@ -18,9 +16,6 @@ public:
     /// \brief Rotation speed divisor. Should at smallest be 1 for full speed, any higher value has chance of causing
     /// unwanted oscillation. Higher values slow down rotation.
     float rotationRate = 1;
-
-    bool justStarted = true;
-    bool targetChanged = false;
 };
 
 } // namespace Thrive::Physics

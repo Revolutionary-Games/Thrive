@@ -22,9 +22,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private Compound glucose = null!;
     private Compound phosphate = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
+    // This is no longer saved with child properties as it gets really complicated trying to load data into this from
+    // a save
     private PatchManager patchManager = null!;
+
+    private Patch? tempPatchManagerCurrentPatch;
+    private float tempPatchManagerBrightness;
 
 #pragma warning disable CA2213
     private MicrobeTutorialGUI tutorialGUI = null!;
@@ -58,6 +61,16 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private float templateMaxLightLevel;
 
     [JsonProperty]
+    private bool appliedPlayerGodMode;
+
+    // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
+    // from being created
+    // [JsonConstructor]
+    // public MicrobeStage(MicrobeWorldSimulation worldSimulation) : base(worldSimulation)
+    // {
+    // }
+
+    [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
 
@@ -81,6 +94,20 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive;
+
+    [JsonProperty]
+    public Patch? SavedPatchManagerPatch
+    {
+        get => patchManager.ReadPreviousPatchForSave();
+        set => tempPatchManagerCurrentPatch = value;
+    }
+
+    [JsonProperty]
+    public float SavedPatchManagerBrightness
+    {
+        get => patchManager.ReadBrightnessForSave();
+        set => tempPatchManagerBrightness = value;
+    }
 
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -124,19 +151,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
-
-        // These need to be created here as well for child property save load to work
-
-        // Initialise the simulation on a basic level first to make sure right system objects are available. This used
-        // to be in SetupStage before base init, but this is now required here
-        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
-
-        // Hook up the simulation to some of the other systems
-        WorldSimulation.CameraFollowSystem.Camera = Camera;
-        HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
-
-        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
-            WorldSimulation.TimedLifeSystem, worldLight);
     }
 
     public override void _EnterTree()
@@ -260,6 +274,25 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            // Apply player god mode
+            ref var playerHealth = ref Player.Get<Health>();
+
+            if (playerHealth.Invulnerable != CheatManager.GodMode)
+            {
+                // Only reset invulnerability if set by god mode
+                if (playerHealth.Invulnerable && appliedPlayerGodMode)
+                {
+                    playerHealth.Invulnerable = false;
+                    appliedPlayerGodMode = false;
+                }
+                else if (!playerHealth.Invulnerable)
+                {
+                    GD.Print("Enabling microbe god mode");
+                    playerHealth.Invulnerable = true;
+                    appliedPlayerGodMode = true;
+                }
             }
         }
         else
@@ -653,14 +686,33 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void SetupStage()
     {
+        EnsureWorldSimulationIsCreated();
+
+        // Initialise the simulation on a basic level first to ensure the base stage setup has all the objects it needs
+        WorldSimulation.Init(rootOfDynamicallySpawned, Clouds);
+
+        patchManager = new PatchManager(WorldSimulation.SpawnSystem, WorldSimulation.ProcessSystem, Clouds,
+            WorldSimulation.TimedLifeSystem, worldLight);
+
+        if (IsLoadedFromSave)
+        {
+            patchManager.ApplySaveState(tempPatchManagerCurrentPatch, tempPatchManagerBrightness);
+            tempPatchManagerCurrentPatch = null;
+        }
+
         base.SetupStage();
 
-        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
+        // Hook up the simulation to some of the other systems
+        WorldSimulation.CameraFollowSystem.Camera = Camera;
+        HoverInfo.PhysicalWorld = WorldSimulation.PhysicalWorld;
 
+        // Init the simulation and finish setting up the systems (for example cloud init happens here)
         WorldSimulation.InitForCurrentGame(CurrentGame!);
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);
+
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeStage);
 
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
@@ -836,8 +888,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (disposing)
         {
-            WorldSimulation.Dispose();
-
             GuidanceLinePath?.Dispose();
         }
 
@@ -864,9 +914,16 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         SaveHelper.Save(name, this);
     }
 
-    // TODO: remove if no new use is found for this
     private void OnFinishLoading()
     {
+        // TODO: re-read the player entity from the simulation as it is not currently saved (there should be a TODO
+        // in somewhere like the entity reference converter about making this possible)
+        Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
+
+        if (!HasPlayer)
+        {
+            GD.Print("Loaded game doesn't have a currently alive player");
+        }
     }
 
     /// <summary>
@@ -968,69 +1025,71 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         // a new one to avoid having two player entities existing at the same time
     }
 
+    // These need to use invoke as during gameplay code these can be called in a multithreaded way
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Entity player, bool ready)
     {
-        OnCanEditStatusChanged(ready &&
-            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies));
-
-        if (player.Has<OrganelleContainer>() &&
-            player.Get<OrganelleContainer>().Organelles.Any(o => o.Definition.InternalName != "cytoplasm"))
-        {
-            TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this);
-        }
+        Invoke.Instance.QueueForObject(() => OnCanEditStatusChanged(ready &&
+            (!player.Has<MicrobeColony>() || GameWorld.PlayerSpecies is not MicrobeSpecies)), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerUnbindEnabled(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbindEnabled, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerUnbound(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerIngesting(Entity player, Entity ingested)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfedByHostile(Entity player, Entity hostile)
     {
-        try
+        Invoke.Instance.QueueForObject(() =>
         {
-            ref var hostileCell = ref hostile.Get<OrganelleContainer>();
+            try
+            {
+                ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
-            ref var engulfable = ref player.Get<Engulfable>();
+                ref var engulfable = ref player.Get<Engulfable>();
 
-            if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
-                TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
-        }
+                if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
+                    TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
+            }
+        }, this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfmentLimitReached(Entity player)
     {
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+        Invoke.Instance.QueueForObject(
+            () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
     }
 
     [DeserializedCallbackAllowed]
     private void OnPlayerNoticeMessage(Entity player, IHUDMessage message)
     {
-        HUD.HUDMessages.ShowMessage(message);
+        Invoke.Instance.QueueForObject(() => HUD.HUDMessages.ShowMessage(message), this);
     }
 
     /// <summary>
-    ///   Updates the chemoreception lines
+    ///   Updates the chemoreception lines. Not called in a multithreaded way
     /// </summary>
     [DeserializedCallbackAllowed]
     private void HandlePlayerChemoreception(Entity microbe,

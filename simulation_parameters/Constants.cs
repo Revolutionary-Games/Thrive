@@ -18,6 +18,27 @@ public static class Constants
     public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
 
     /// <summary>
+    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
+    /// </summary>
+    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
+
+    /// <summary>
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
+    ///   the max number of threads.
+    /// </summary>
+    public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
+
+    // The following variables define the number of entities each thread running a system of that category needs to be
+    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
+    // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
+    // (4 * 15 {60} <= 40)
+    public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
+    public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
+    public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
+    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
+
+    /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
     ///   tasks.
     /// </summary>
@@ -144,9 +165,9 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 250.7f;
+    public const float FLAGELLA_BASE_FORCE = 55.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 910.0f;
+    public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -165,10 +186,11 @@ public static class Constants
     public const float CILIA_ROTATION_FACTOR = 0.08f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
 
+    // These speed values are also reversed like the above
     public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
     public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
+    public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -312,7 +334,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 10.0f;
+    public const float AGENT_EMISSION_VELOCITY = 14.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -324,7 +346,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 600.0f;
+    public const float MUCILAGE_JET_FACTOR = 100000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -341,7 +363,7 @@ public static class Constants
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
 
     public const float CHUNK_PHYSICS_DAMPING = 0.2f;
-    public const float MICROBE_PHYSICS_DAMPING = 0.97f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.99f;
 
     /// <summary>
     ///   This only really matters when cells are dead
@@ -602,9 +624,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    public const float ENGULF_EJECTION_VELOCITY = 20.0f;
-
-    public const float ENGULF_EJECTION_FORCE = 20.0f;
+    public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
@@ -988,14 +1008,9 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
-
-    /// <summary>
-    ///   Scale used for one frame while membrane data is not ready yet
-    /// </summary>
-    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
     /// <summary>
     ///   Multiplier for cell editor actions in multicellular editor
@@ -1127,6 +1142,7 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+    public const string RUNTIME_LICENSE_FILE = "res://doc/RuntimeLicenses.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 

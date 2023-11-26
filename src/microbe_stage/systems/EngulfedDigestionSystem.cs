@@ -32,7 +32,7 @@
         private readonly Enzyme lipase;
 
         public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+            IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             this.compoundCloudSystem = compoundCloudSystem;
             var simulationParameters = SimulationParameters.Instance;
@@ -90,10 +90,6 @@
 
                 ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
-                // Skip processing things that aren't currently fully ingested
-                if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
-                    continue;
-
                 // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
                 // is overloaded
                 if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)
@@ -145,10 +141,11 @@
 
                 var additionalCompounds = engulfable.AdditionalEngulfableCompounds;
 
+                // TODO: this seems not possible to run in parallel
                 // Workaround to avoid NaN compounds in engulfed objects, leading to glitches like infinite compound
                 // ejection and incorrect ingested matter display
                 // https://github.com/Revolutionary-Games/Thrive/issues/3548
-                containedCompounds?.FixNaNCompounds();
+                // containedCompounds?.FixNaNCompounds();
 
                 var totalAmountLeft = 0.0f;
 

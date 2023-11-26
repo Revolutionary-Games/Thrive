@@ -11,13 +11,17 @@ public class ImageTask
     private ImageTexture? finalImage;
     private Image? plainImage;
 
-    public ImageTask(IPhotographable photographable, bool storePlainImage = false)
+    public ImageTask(IScenePhotographable photographable, bool storePlainImage = false)
     {
         this.storePlainImage = storePlainImage;
-        Photographable = photographable;
+        ScenePhotographable = photographable;
     }
 
-    public IPhotographable Photographable { get; }
+    public ImageTask(ISimulationPhotographable photographable, bool storePlainImage = false)
+    {
+        this.storePlainImage = storePlainImage;
+        SimulationPhotographable = photographable;
+    }
 
     public bool Finished { get; private set; }
 
@@ -36,6 +40,9 @@ public class ImageTask
         get => plainImage ?? throw new InvalidOperationException("Not finished yet or not configured to be saved");
         private set => plainImage = value;
     }
+
+    internal IScenePhotographable? ScenePhotographable { get; }
+    internal ISimulationPhotographable? SimulationPhotographable { get; }
 
     public void OnFinished(ImageTexture texture, Image rawImage)
     {

@@ -7,6 +7,7 @@
     /// <summary>
     ///   Control variables for specifying how a microbe wants to move / behave
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeControl
     {
         /// <summary>

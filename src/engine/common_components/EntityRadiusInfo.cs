@@ -10,6 +10,7 @@
     ///     positions -hhyyrylainen
     ///   </para>
     /// </remarks>
+    [JSONDynamicTypeAllowed]
     public struct EntityRadiusInfo
     {
         public float Radius;

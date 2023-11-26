@@ -107,6 +107,7 @@
     <Compile Include="src\benchmark\BenchmarkHelpers.cs" />
     <Compile Include="src\benchmark\DummySpawnSystem.cs" />
     <Compile Include="src\benchmark\microbe\MicrobeBenchmark.cs" />
+    <Compile Include="src\early_multicellular_stage\CellBillboard.cs" />
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
@@ -134,10 +135,10 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\common_components\AnimationControl.cs" />
-    <Compile Include="src\engine\common_components\AttachedChildren.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CameraFollowTarget.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />
+    <Compile Include="src\engine\common_components\CollisionShapeLoader.cs" />
     <Compile Include="src\engine\common_components\ColourAnimation.cs" />
     <Compile Include="src\engine\common_components\CountLimited.cs" />
     <Compile Include="src\engine\common_components\DamageCooldown.cs" />
@@ -157,6 +158,8 @@
     <Compile Include="src\engine\common_components\RenderOrderOverride.cs" />
     <Compile Include="src\engine\common_components\ReproductionStatus.cs" />
     <Compile Include="src\engine\common_components\Selectable.cs" />
+    <Compile Include="src\engine\common_components\SimpleShapeCreator.cs" />
+    <Compile Include="src\engine\common_components\SimpleShapeType.cs" />
     <Compile Include="src\engine\common_components\SoundEffectPlayer.cs" />
     <Compile Include="src\engine\common_components\SoundListener.cs" />
     <Compile Include="src\engine\common_components\SpatialInstance.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="src\engine\common_systems\AnimationControlSystem.cs" />
     <Compile Include="src\engine\common_systems\AttachedEntityPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\CameraFollowSystem.cs" />
+    <Compile Include="src\engine\common_systems\CollisionShapeLoaderSystem.cs" />
     <Compile Include="src\engine\common_systems\ColourAnimationSystem.cs" />
     <Compile Include="src\engine\common_systems\CountLimitedDespawnSystem.cs" />
     <Compile Include="src\engine\common_systems\DamageCooldownSystem.cs" />
@@ -182,6 +186,7 @@
     <Compile Include="src\engine\common_systems\PhysicsUpdateAndPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
     <Compile Include="src\engine\common_systems\RenderOrderSystem.cs" />
+    <Compile Include="src\engine\common_systems\SimpleShapeCreatorSystem.cs" />
     <Compile Include="src\engine\common_systems\SoundEffectSystem.cs" />
     <Compile Include="src\engine\common_systems\SoundListenerSystem.cs" />
     <Compile Include="src\engine\common_systems\SpatialAttachSystem.cs" />
@@ -206,7 +211,9 @@
     <Compile Include="src\engine\input\RunOnRelativeMouseAttribute.cs" />
     <Compile Include="src\engine\input\ThreeDimensionalMovementMode.cs" />
     <Compile Include="src\engine\input\TwoDimensionalMovementMode.cs" />
+    <Compile Include="src\engine\IPhotographable.cs" />
     <Compile Include="src\engine\IResource.cs" />
+    <Compile Include="src\engine\ISimulationPhotographable.cs" />
     <Compile Include="src\engine\ITextureResource.cs" />
     <Compile Include="src\engine\LastPlayedVersion.cs" />
     <Compile Include="src\engine\MissingExportVariableValueException.cs" />
@@ -227,7 +234,7 @@
     <Compile Include="src\engine\ImageTask.cs" />
     <Compile Include="src\engine\input\IgnoreNoMethodsTakingInputAttribute.cs" />
     <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
-    <Compile Include="src\engine\IPhotographable.cs" />
+    <Compile Include="src\engine\IScenePhotographable.cs" />
     <Compile Include="src\engine\LaunchOptions.cs" />
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
@@ -307,6 +314,7 @@
     <Compile Include="src\general\base_stage\IStrategyStageHUD.cs" />
     <Compile Include="src\general\base_stage\IWorldSimulation.cs" />
     <Compile Include="src\general\base_stage\IWorldSimulationWithPhysics.cs" />
+    <Compile Include="src\general\base_stage\UnsavedEntities.cs" />
     <Compile Include="src\general\base_stage\WorldSimulation.cs" />
     <Compile Include="src\general\base_stage\StageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageBase.cs" />
@@ -399,7 +407,6 @@
     <Compile Include="src\general\HexWithData.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
-    <Compile Include="src\general\IGraphicalEntity.cs" />
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
     <Compile Include="src\general\ActionInterferenceMode.cs" />
@@ -774,8 +781,11 @@
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityWorldConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
+    <Compile Include="src\saving\serializers\GodotQuatConverter.cs" />
     <Compile Include="src\saving\serializers\InProgressObjectDeserialization.cs" />
     <Compile Include="src\saving\serializers\LocalizedStringTypeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
@@ -792,8 +802,10 @@
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\UnsavedEntitiesConverter.cs" />
     <Compile Include="src\saving\TarHelper.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
+    <Compile Include="src\saving\TemporarySystemHelper.cs" />
     <Compile Include="src\society_stage\CitizenMovingSystem.cs" />
     <Compile Include="src\society_stage\gui\ResearchScreen.cs" />
     <Compile Include="src\society_stage\gui\ResourceDisplayBar.cs" />
@@ -913,7 +925,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AngleSharp">
-      <Version>1.0.5</Version>
+      <Version>1.0.7</Version>
     </PackageReference>
     <PackageReference Include="DefaultEcs">
       <Version>0.17.2</Version>

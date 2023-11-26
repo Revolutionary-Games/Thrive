@@ -5,9 +5,6 @@
 #include <fstream>
 
 #include "boost/circular_buffer.hpp"
-
-// TODO: switch to a custom thread pool
-#include "Jolt/Core/JobSystemThreadPool.h"
 #include "Jolt/Core/StreamWrapper.h"
 #include "Jolt/Physics/Body/BodyCreationSettings.h"
 #include "Jolt/Physics/Collision/CastResult.h"
@@ -17,10 +14,10 @@
 #include "Jolt/Physics/PhysicsSettings.h"
 #include "Jolt/Physics/PhysicsSystem.h"
 
-// #include "core/TaskSystem.hpp"
-
+#include "core/Math.hpp"
 #include "core/Mutex.hpp"
 #include "core/Spinlock.hpp"
+#include "core/TaskSystem.hpp"
 #include "core/Time.hpp"
 
 #include "ArrayRayCollector.hpp"
@@ -36,9 +33,6 @@
 #endif
 
 JPH_SUPPRESS_WARNINGS
-
-// Enables slower turning in ApplyBodyControl when close to the target rotation
-// #define USE_SLOW_TURN_NEAR_TARGET
 
 // ------------------------------------ //
 namespace Thrive::Physics
@@ -211,18 +205,20 @@ PhysicalWorld::PhysicalWorld() : pimpl(std::make_unique<Pimpl>())
     tempAllocator = std::make_unique<JPH::TempAllocatorMalloc>();
 #endif
 
-    // Create job system
-    // TODO: configurable threads (should be about 1-8), or well if we share thread with other systems then maybe up
-    // to like any cores not used by the C# background tasks
-    int physicsThreads = 2;
-    jobSystem =
-        std::make_unique<JPH::JobSystemThreadPool>(JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsBarriers, physicsThreads);
-
     InitPhysicsWorld();
 }
 
 PhysicalWorld::~PhysicalWorld()
 {
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("World is being destroyed while a background operation is in progress");
+        while (runningBackgroundSimulation)
+        {
+            HYPER_THREAD_YIELD;
+        }
+    }
+
     if (bodyCount != 0)
     {
         LOG_ERROR(
@@ -257,7 +253,13 @@ void PhysicalWorld::InitPhysicsWorld()
 // ------------------------------------ //
 bool PhysicalWorld::Process(float delta)
 {
-    // TODO: update thread count if changed (we won't need this when we have the custom job system done)
+    if (runningBackgroundSimulation)
+    {
+        LOG_ERROR("May not call world sync process while background process is used");
+        return false;
+    }
+
+    nextStepIsFresh = true;
 
     elapsedSinceUpdate += delta;
 
@@ -273,17 +275,61 @@ bool PhysicalWorld::Process(float delta)
     {
         elapsedSinceUpdate -= singlePhysicsFrame;
         simulatedTime += singlePhysicsFrame;
-        StepPhysics(*jobSystem, singlePhysicsFrame);
+        StepPhysics(singlePhysicsFrame);
         simulatedPhysics = true;
     }
 
     if (!simulatedPhysics)
         return false;
 
-    // TODO: Trigger stuff from the collision detection (but maybe some stuff needs to trigger for each step?)
-
     DrawPhysics(simulatedTime);
 
+    return true;
+}
+
+void PhysicalWorld::ProcessInBackground(float delta)
+{
+    bool previous = false;
+    if (!runningBackgroundSimulation.compare_exchange_strong(previous, true))
+    {
+        LOG_ERROR("Trying to start another background physics run while previous wasn't waited for");
+        return;
+    }
+
+    nextStepIsFresh = true;
+    backgroundSimulatedTime = 0;
+
+    elapsedSinceUpdate += delta;
+
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    if (elapsedSinceUpdate < singlePhysicsFrame)
+    {
+        // We can just early exit if there's nothing to do
+        return;
+    }
+
+    runningBackgroundSimulation = true;
+
+    TaskSystem::Get().QueueTask([this]() { StepAllPhysicsStepsInBackground(); });
+}
+
+bool PhysicalWorld::WaitForPhysicsToComplete()
+{
+    // For now this never sleep as it is assumed the physics should be done by the time the main thread gets here
+    // or very close to done
+    while (runningBackgroundSimulation)
+    {
+        HYPER_THREAD_YIELD;
+    }
+
+    if (nextStepIsFresh)
+        return false;
+
+    // Draw physics only here at the end to ensure this happens on the main thread
+    DrawPhysics(backgroundSimulatedTime);
+
+    backgroundSimulatedTime = 0;
     return true;
 }
 
@@ -380,8 +426,10 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
         return;
     }
 
-    if (body.IsInSpecificWorld(this))
+    if (!body.IsInSpecificWorld(this))
     {
+        // This constraint can probably be relaxed quite easily but for now this has not been required so this is not
+        // done
         LOG_ERROR("Physics body can only be added back to the world it was created for");
         return;
     }
@@ -392,7 +440,14 @@ void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
         if (!constraint->IsCreatedInWorld())
         {
             // TODO: constraint creation has to be skipped if the other body the constraint is on is currently
-            //  detached
+            // detached and created later
+            if ((constraint->optionalSecondBody != nullptr && constraint->optionalSecondBody.get() != &body &&
+                    constraint->optionalSecondBody->IsDetached()) ||
+                (constraint->firstBody.get() != &body && constraint->firstBody->IsDetached()))
+            {
+                LOG_ERROR("Not implemented handling for deferring constraint creation for detached body");
+                continue;
+            }
 
             physicsSystem->AddConstraint(constraint->GetConstraint().GetPtr());
             constraint->OnRegisteredToWorld(*this);
@@ -586,10 +641,6 @@ void PhysicalWorld::SetVelocityAndAngularVelocity(
 void PhysicalWorld::SetBodyControl(
     PhysicsBody& bodyWrapper, JPH::Vec3Arg movementImpulse, JPH::Quat targetRotation, float rotationRate)
 {
-    // Used to detect when the target has changed enough to warrant logic change in the control apply. This needs
-    // to be relatively large to avoid oscillation
-    constexpr auto newRotationTargetAfter = 0.01f;
-
     if (rotationRate <= 0) [[unlikely]]
     {
         LOG_ERROR("Invalid rotationRate variable for controlling a body, needs to be positive");
@@ -611,23 +662,9 @@ void PhysicalWorld::SetBodyControl(
     if (justEnabled) [[unlikely]]
     {
         pimpl->AddPerStepControlBody(bodyWrapper);
-
-        state->previousTarget = targetRotation;
-        state->targetRotation = targetRotation;
-        state->targetChanged = true;
-        state->justStarted = true;
-    }
-    else
-    {
-        state->targetRotation = targetRotation;
-
-        if (!targetRotation.IsClose(state->previousTarget, newRotationTargetAfter))
-        {
-            state->targetChanged = true;
-            state->previousTarget = state->targetRotation;
-        }
     }
 
+    state->targetRotation = targetRotation;
     state->movement = movementImpulse;
     state->rotationRate = rotationRate;
 }
@@ -987,7 +1024,22 @@ bool PhysicalWorld::DumpSystemState(std::string_view path)
 }
 
 // ------------------------------------ //
-void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
+void PhysicalWorld::StepAllPhysicsStepsInBackground()
+{
+    const auto singlePhysicsFrame = 1 / physicsFrameRate;
+
+    while (elapsedSinceUpdate > singlePhysicsFrame)
+    {
+        elapsedSinceUpdate -= singlePhysicsFrame;
+        backgroundSimulatedTime += singlePhysicsFrame;
+        StepPhysics(singlePhysicsFrame);
+    }
+
+    runningBackgroundSimulation = false;
+}
+
+// ------------------------------------ //
+void PhysicalWorld::StepPhysics(float time)
 {
     if (changesToBodies) [[unlikely]]
     {
@@ -1018,7 +1070,12 @@ void PhysicalWorld::StepPhysics(JPH::JobSystemThreadPool& jobs, float time)
 
     // Per physics step forces are applied in PerformPhysicsStepOperations triggered by the step listener
 
-    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobs);
+    // TODO: ensure that our custom task system is not (much) slower than the Jolt inbuilt one
+    auto& jobExecutor = TaskSystem::Get();
+
+    const auto result = physicsSystem->Update(time, collisionStepsPerUpdate, tempAllocator.get(), &jobExecutor);
+
+    nextStepIsFresh = false;
 
     const auto elapsed = std::chrono::duration_cast<SecondDuration>(TimingClock::now() - start).count();
 
@@ -1051,12 +1108,15 @@ void PhysicalWorld::ReportBodyWithActiveCollisions(PhysicsBody& body)
 
 void PhysicalWorld::PerformPhysicsStepOperations(float delta)
 {
-    pimpl->IncrementStepCounter();
+    // Only fresh steps increment the counter to that collision data can be preserved
+    if (nextStepIsFresh)
+        pimpl->IncrementStepCounter();
 
     // Collision setup
-    contactListener->ReportStepNumber(pimpl->stepCounter);
+    contactListener->ReportStepNumber(pimpl->stepCounter, !nextStepIsFresh);
 
-    pimpl->HandleExpiringBodyCollisions();
+    if (nextStepIsFresh)
+        pimpl->HandleExpiringBodyCollisions();
 
     // Apply per-step physics body state
 
@@ -1180,13 +1240,6 @@ void PhysicalWorld::UpdateBodyUserPointer(const PhysicsBody& body)
 // ------------------------------------ //
 void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 {
-    constexpr auto allowedRotationDifference = 0.0001f;
-    constexpr auto overshootDetectWhenAllAnglesLessThan = PI * 0.025f;
-
-#ifdef USE_SLOW_TURN_NEAR_TARGET
-    constexpr auto closeToTargetThreshold = 0.20f;
-#endif
-
     // Normalize delta to 60Hz update rate to make gameplay logic not depend on the physics framerate
     float normalizedDelta = delta / (1 / 60.0f);
 
@@ -1203,101 +1256,25 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     }
 
     JPH::Body& body = lock.GetBody();
-    const auto degreesOfFreedom = body.GetMotionProperties()->GetAllowedDOFs();
 
     if (controlState->movement.LengthSq() > 0.000001f)
         body.AddImpulse(controlState->movement * normalizedDelta);
 
+    // A really simple rotation matching based on JPH::Body::MoveKinematic approach. Now this doesn't seem to need
+    // to have any rotation value being close to target threshold or overshoot detection.
     const auto& currentRotation = body.GetRotation();
 
-    const auto inversedTargetRotation = controlState->targetRotation.Inversed();
-    const auto difference = currentRotation * inversedTargetRotation;
+    // Can use conjugated here as the rotation is always a unit rotation
+    const auto difference = controlState->targetRotation * currentRotation.Conjugated();
 
-    if (difference.IsClose(JPH::Quat::sIdentity(), allowedRotationDifference))
-    {
-        // At rotation target, stop rotation
-        // TODO: we could allow small velocities to allow external objects to force our rotation off a bit after which
-        // this would correct itself
-        body.SetAngularVelocity({0, 0, 0});
-    }
-    else
-    {
-        // Not currently at the rotation target
-        auto differenceAngles = difference.GetEulerAngles();
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
+    JPH::Vec3 axis;
+#pragma clang diagnostic pop
 
-        // Things break a lot if we add rotation on an axis where rotation is not allowed due to DOF
-        if ((degreesOfFreedom & JPH::AllRotationAllowed) != JPH::AllRotationAllowed)
-        {
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationX)) == 0)
-            {
-                differenceAngles.SetX(0);
-            }
-
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationY)) == 0)
-            {
-                differenceAngles.SetY(0);
-            }
-
-            if (static_cast<int>((degreesOfFreedom & JPH::EAllowedDOFs::RotationZ)) == 0)
-            {
-                differenceAngles.SetZ(0);
-            }
-        }
-
-        bool setNormalVelocity = true;
-
-        if (!controlState->justStarted && !controlState->targetChanged)
-        {
-            // Check if we overshot the target and should stop to avoid oscillating
-
-            // Compare the current rotation state with the previous one to detect if we are now on different side of
-            // the target rotation than the previous rotation was
-            const auto oldDifference = controlState->previousRotation * inversedTargetRotation;
-            const auto oldAngles = oldDifference.GetEulerAngles();
-
-            const auto angleDifference = oldAngles - differenceAngles;
-
-            bool potentiallyOvershot = std::signbit(oldAngles.GetX()) != std::signbit(differenceAngles.GetX()) ||
-                std::signbit(oldAngles.GetY()) != std::signbit(differenceAngles.GetY()) ||
-                std::signbit(oldAngles.GetZ()) != std::signbit(differenceAngles.GetZ());
-
-            // If the signs are different and the angles are close enough (to make sure if we overshoot a ton we
-            // correct) then detect an overshoot
-            if (potentiallyOvershot && std::abs(angleDifference.GetX()) < overshootDetectWhenAllAnglesLessThan &&
-                std::abs(angleDifference.GetY()) < overshootDetectWhenAllAnglesLessThan &&
-                std::abs(angleDifference.GetZ()) < overshootDetectWhenAllAnglesLessThan)
-            {
-                // Overshot and we are within angle limits, reset velocity to 0 to prevent oscillation
-                body.SetAngularVelocity({0, 0, 0});
-                setNormalVelocity = false;
-            }
-        }
-
-        if (setNormalVelocity)
-        {
-#ifdef USE_SLOW_TURN_NEAR_TARGET
-            // When near the target slow down rotation
-            const bool nearTarget = difference.IsClose(JPH::Quat::sIdentity(), closeToTargetThreshold);
-
-            // It seems as these angles are the distance left, these are hopefully fine to be as-is without any kind
-            // of delta adjustment
-            if (nearTarget)
-            {
-                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate * 0.5f);
-            }
-            else
-            {
-                body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
-            }
-#else
-            body.SetAngularVelocityClamped(differenceAngles / controlState->rotationRate);
-#endif // USE_SLOW_TURN_NEAR_TARGET
-        }
-    }
-
-    controlState->previousRotation = currentRotation;
-    controlState->justStarted = false;
-    controlState->targetChanged = false;
+    float angle;
+    difference.GetAxisAngle(axis, angle);
+    body.SetAngularVelocityClamped(axis * (angle / controlState->rotationRate * normalizedDelta));
 }
 
 #pragma clang diagnostic push

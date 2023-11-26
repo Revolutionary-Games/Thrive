@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.Command;
@@ -24,6 +23,7 @@
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [RunsAfter(typeof(MicrobeMovementSystem))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
@@ -44,11 +44,14 @@
 
             if (control.State == MicrobeState.Unbinding)
             {
-                throw new NotImplementedException();
-            }
+                // Just stop movement while doing unbinding (other systems and microbe input handle the rest)
+                control.MovementDirection = Vector3.Zero;
 
-            /*TODO: else */
-            if (control.State == MicrobeState.Binding)
+                ref var position = ref entity.Get<WorldPosition>();
+
+                control.LookAtPoint = position.Position + position.Rotation.Xform(Vector3.Forward);
+            }
+            else if (control.State == MicrobeState.Binding)
             {
                 HandleBindingMode(ref control, entity, delta);
             }
@@ -170,21 +173,40 @@
             // Create a colony if there isn't one yet
             if (!primaryEntity.Has<MicrobeColony>())
             {
-                if (indexOfMemberToBindTo != 0)
+                if (!primaryEntity.Has<MicrobeColonyMember>())
                 {
-                    // This should never happen as the colony is not yet created, the parent cell is by itself so the
-                    // index should always be 0
-                    GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
-                    indexOfMemberToBindTo = 0;
+                    if (indexOfMemberToBindTo != 0)
+                    {
+                        // This should never happen as the colony is not yet created, the parent cell is by itself so
+                        // the index should always be 0
+                        GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
+                        indexOfMemberToBindTo = 0;
+                    }
+
+                    var colony = new MicrobeColony(primaryEntity, control.State, primaryEntity, other);
+
+                    if (!colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
+                    {
+                        GD.PrintErr("Setting up data of initial colony member failed, canceling colony creation");
+                        success = false;
+                    }
+                    else
+                    {
+                        // Add the colony component to the lead cell
+                        recorder.Record(primaryEntity).Set(colony);
+
+                        // Report not being able to reproduce by the lead cell
+                        MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);
+
+                        success = true;
+                    }
                 }
-
-                var colony = new MicrobeColony(primaryEntity, control.State, other);
-
-                MicrobeColonyHelpers.OnColonyMemberAdded(primaryEntity);
-
-                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
-
-                recorder.Record(primaryEntity).Set(colony);
+                else
+                {
+                    // This shouldn't happen as colony members shouldn't be able to collide
+                    GD.PrintErr("Entity that is part of another microbe colony can't become a colony leader");
+                    success = false;
+                }
             }
             else
             {

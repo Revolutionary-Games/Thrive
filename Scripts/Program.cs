@@ -279,7 +279,7 @@ public class Program
     }
 
     [Verb("native", HelpText = "Handling for native libraries needed by Thrive")]
-    public class NativeLibOptions : ScriptOptionsBase
+    public class NativeLibOptions : SymbolUploadOptionsBase
     {
         public enum OperationMode
         {
@@ -319,6 +319,11 @@ public class Program
             ///   Upload packaged libraries missing from the server
             /// </summary>
             Upload,
+
+            /// <summary>
+            ///   Just upload only symbols that exist locally but are missing from the server
+            /// </summary>
+            Symbols,
         }
 
         [Usage(ApplicationAlias = "dotnet run --project Scripts --")]
@@ -348,7 +353,7 @@ public class Program
             HelpText = "Set to work on debug versions of the libraries")]
         public bool DebugLibrary { get; set; }
 
-        [Option('p', "platform", Required = false, Default = null,
+        [Option('t', "platform", Required = false, Default = null,
             HelpText = "Use to override detected platforms for selected operation")]
         public IList<PackagePlatform>? Platforms { get; set; } = new List<PackagePlatform>();
 
@@ -440,6 +445,8 @@ public class Program
 
     public class ContainerOptions : ContainerOptionsBase
     {
+        [Option('i', "image", Default = ImageType.CI, HelpText = "The image to build")]
+        public ImageType Image { get; set; } = ImageType.CI;
     }
 
     [Verb("steam", HelpText = "Control Steam build variant building")]

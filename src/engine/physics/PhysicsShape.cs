@@ -87,7 +87,6 @@ public class PhysicsShape : IDisposable
         return result.Shape;
     }
 
-    // TODO: hashing and caching based on the parameters to avoid needing to constantly create new shapes
     public static PhysicsShape CreateMicrobeShape(ReadOnlySpan<JVecF3> organellePositions, float overallDensity,
         bool scaleAsBacteria, bool createAsSpheres = false)
     {
@@ -178,6 +177,8 @@ public class PhysicsShape : IDisposable
 
         // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
         // caused by different real scales of the meshes used for collisions)
+        // TODO: base rotations are also problematic here (the rock chunks are rotated differently visually compared to
+        // the physics shape)
         float scale = 90;
 
         // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
@@ -204,6 +205,11 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeGetMass(AccessShapeInternal());
     }
 
+    public uint GetSubShapeIndexFromData(uint subShapeData)
+    {
+        return NativeMethods.ShapeGetSubShapeIndex(AccessShapeInternal(), subShapeData);
+    }
+
     /// <summary>
     ///   Calculates how much angular velocity this shape would get given the torque (based on this shapes rotational
     ///   inertia)
@@ -213,6 +219,27 @@ public class PhysicsShape : IDisposable
     public Vector3 CalculateResultingTorqueFromInertia(Vector3 torque)
     {
         return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
+    }
+
+    // TODO: check if this is used sensibly by the rotation rate calculations
+    /// <summary>
+    ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
+    /// </summary>
+    /// <returns>A speed factor that is roughly around 0-1 range but doesn't follow any hard limits</returns>
+    public float TestYRotationInertiaFactor()
+    {
+        // We give torque vector to apply to the shape and then compare
+        // the resulting angular velocities to see how fast the shape can turn
+        // We use a multiplier here to ensure the float values don't get very low very fast
+        var torqueToTest = Vector3.Up * 1000;
+
+        var velocities = CalculateResultingTorqueFromInertia(torqueToTest);
+
+        // Detect how much torque was preserved
+        var speedFraction = velocities.y / torqueToTest.y;
+        speedFraction *= 1000;
+
+        return speedFraction;
     }
 
     public void Dispose()
@@ -286,6 +313,13 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern float ShapeGetMass(IntPtr shape);
+
+    [DllImport("thrive_native")]
+    internal static extern uint ShapeGetSubShapeIndex(IntPtr shape, uint subShapeData);
+
+    [DllImport("thrive_native")]
+    internal static extern uint ShapeGetSubShapeIndexWithRemainder(IntPtr shape, uint subShapeData,
+        out uint remainder);
 
     [DllImport("thrive_native")]
     internal static extern JVecF3 ShapeCalculateResultingAngularVelocity(IntPtr shape, JVecF3 appliedTorque,

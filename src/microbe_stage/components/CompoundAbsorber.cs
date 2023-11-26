@@ -6,6 +6,7 @@
     ///   Entity that can absorb compounds from <see cref="CompoundCloudSystem"/>. Requires <see cref="WorldPosition"/>
     ///   and <see cref="CompoundStorage"/> components as well.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CompoundAbsorber
     {
         /// <summary>

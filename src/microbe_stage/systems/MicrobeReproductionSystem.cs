@@ -25,6 +25,8 @@
     [With(typeof(BioProcesses))]
     [Without(typeof(AttachedToEntity))]
     [Without(typeof(EarlyMulticellularSpeciesMember))]
+    [WritesToComponent(typeof(Engulfable))]
+    [WritesToComponent(typeof(Engulfer))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -37,7 +39,7 @@
         private float reproductionDelta;
 
         public MicrobeReproductionSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+            IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             this.worldSimulation = worldSimulation;
             this.spawnSystem = spawnSystem;
@@ -246,11 +248,7 @@
                 }
                 else
                 {
-                    // TODO: handle this somehow... (probably caching the position and rotation from last call in
-                    // the visuals system?)
-                    throw new NotImplementedException();
-
-                    // nodeToScale.Transform = organelle.CalculateVisualsTransformExternal();
+                    nodeToScale.Transform = organelle.CalculateVisualsTransformExternalCached();
                 }
             }
         }
@@ -345,6 +343,7 @@
                 {
                     // Mark this organelle as done and return to its normal size.
                     organelle.ResetGrowth();
+                    organellesNeedingScaleUpdate.Push(organelle);
 
                     // This doesn't need to update individual scales as a full organelles change is queued below for
                     // a different system to handle
@@ -357,7 +356,8 @@
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
-                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>());
+                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
+                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
                 }
             }
 

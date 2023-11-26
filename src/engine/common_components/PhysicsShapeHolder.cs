@@ -5,6 +5,7 @@
     /// <summary>
     ///   Holds a physics shape once one is ready and then allows creating a physics body from it
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct PhysicsShapeHolder
     {
         [JsonIgnore]
@@ -25,7 +26,7 @@
     public static class PhysicsShapeHolderExtensions
     {
         /// <summary>
-        ///   Gets the mass of a shape holder's shape if exist (if doesn't exist sets mass to 1)
+        ///   Gets the mass of a shape holder's shape if exist (if doesn't exist sets mass to 1000)
         /// </summary>
         /// <param name="shapeHolder">Shape holder to look at</param>
         /// <param name="mass">The found shape mass or 1000 if not found</param>

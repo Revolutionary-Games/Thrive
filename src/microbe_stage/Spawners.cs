@@ -152,11 +152,12 @@ public static class SpawnHelpers
             Velocity = normalizedDirection * Constants.AGENT_EMISSION_VELOCITY,
             AxisLock = Physics.AxisLockType.YAxisWithRotation,
         });
-        entity.Set(new PhysicsShapeHolder
-        {
-            Shape = PhysicsShape.CreateSphere(Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
-                Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY),
-        });
+
+        // Need to specify shape like this to make saving work
+        entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, Constants.TOXIN_PROJECTILE_PHYSICS_SIZE,
+            Constants.TOXIN_PROJECTILE_PHYSICS_DENSITY));
+
+        entity.Set<PhysicsShapeHolder>();
         entity.Set(new CollisionManagement
         {
             IgnoredCollisionsWith = new List<Entity> { emitter },
@@ -315,14 +316,18 @@ public static class SpawnHelpers
             LinearDamping = Constants.CHUNK_PHYSICS_DAMPING,
             Velocity = initialVelocity,
         });
-        entity.Set(new PhysicsShapeHolder
-        {
-            Shape = selectedMesh.ConvexShapePath != null ?
-                PhysicsShape.CreateShapeFromGodotResource(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity) :
 
-                // TODO: cache this as most chunks will use the same radius
-                PhysicsShape.CreateSphere(chunkType.Radius, chunkType.PhysicsDensity),
-        });
+        if (selectedMesh.ConvexShapePath == null)
+        {
+            entity.Set(new SimpleShapeCreator(SimpleShapeType.Sphere, chunkType.Radius,
+                chunkType.PhysicsDensity));
+        }
+        else
+        {
+            entity.Set(new CollisionShapeLoader(selectedMesh.ConvexShapePath, chunkType.PhysicsDensity));
+        }
+
+        entity.Set<PhysicsShapeHolder>();
 
         // See the remarks comment on EntityRadiusInfo
         entity.Set(new EntityRadiusInfo(chunkType.Radius));
@@ -493,17 +498,14 @@ public static class SpawnHelpers
         };
 
         int organelleCount;
-        float engulfSize;
 
         // Initialize organelles for the cell type
         {
             var container = default(OrganelleContainer);
-
             container.CreateOrganelleLayout(usedCellProperties);
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;
-            engulfSize = container.HexCount;
 
             // Compound storage
             var storage = new CompoundStorage
@@ -516,7 +518,19 @@ public static class SpawnHelpers
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-            // Finish setting up these two components
+            var engulfable = new Engulfable
+            {
+                RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+            };
+
+            var engulfer = default(Engulfer);
+
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
+
+            entity.Set(engulfable);
+            entity.Set(engulfer);
+
+            // Finish setting up related components
             entity.Set(container);
 
             storage.Compounds.AddInitialCompounds(species.InitialCompounds);
@@ -584,14 +598,11 @@ public static class SpawnHelpers
             RecordActiveCollisions = Constants.MAX_SIMULTANEOUS_COLLISIONS_SMALL,
         });
 
-        // The shape is created in the background to reduce lag when something spawns
-        entity.Set(new PhysicsShapeHolder
-        {
-            Shape = null,
-        });
+        // The shape is created in the background (by MicrobePhysicsCreationAndSizeSystem) to reduce lag when
+        // something spawns
+        entity.Set<PhysicsShapeHolder>();
 
         // Movement
-        // TODO: calculate rotation rate
         entity.Set(new MicrobeControl(location));
         entity.Set<ManualPhysicsControl>();
 
@@ -607,18 +618,6 @@ public static class SpawnHelpers
         entity.Set(new CommandSignaler
         {
             SignalingChannel = species.ID,
-        });
-
-        entity.Set(new Engulfable
-        {
-            BaseEngulfSize = engulfSize,
-            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
-        });
-
-        entity.Set(new Engulfer
-        {
-            EngulfingSize = engulfSize,
-            EngulfStorageSize = engulfSize,
         });
 
         // Microbes are not affected by currents before they are visualized

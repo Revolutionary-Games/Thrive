@@ -101,7 +101,7 @@ public abstract class PhotographablePreview : Control
     ///   <code>
     ///     protected override ImageTask? SetupImageTask()
     ///     {
-    ///         return conditionValid ? new ImageTask(new IPhotographable()) : null;
+    ///         return conditionValid ? new ImageTask(new IScenePhotographable()) : null;
     ///     }
     ///   </code>
     /// </example>

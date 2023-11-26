@@ -6,6 +6,7 @@
     ///   Overrides rendering order for an entity with <see cref="EntityMaterial"/>. Used for some specific rendering
     ///   effects that can't be done otherwise.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct RenderOrderOverride
     {
         /// <summary>

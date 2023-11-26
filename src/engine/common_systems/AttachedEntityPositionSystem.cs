@@ -36,7 +36,7 @@
 
             ref var position = ref entity.Get<WorldPosition>();
 
-            position.Position = parentPosition.Position + attachInfo.RelativePosition;
+            position.Position = parentPosition.Position + parentPosition.Rotation.Xform(attachInfo.RelativePosition);
             position.Rotation = parentPosition.Rotation * attachInfo.RelativeRotation;
         }
     }

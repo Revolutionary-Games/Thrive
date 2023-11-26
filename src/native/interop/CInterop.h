@@ -44,6 +44,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta);
+    [[maybe_unused]] THRIVE_NATIVE_API bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld);
+
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBodyWithAxisLock(
@@ -195,8 +198,16 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeCalculateResultingAngularVelocity(
         PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime = 1);
 
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeIndex(PhysicsShape* shape, uint32_t subShapeData);
+
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeIndexWithRemainder(
+        PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder);
+
     // ------------------------------------ //
     // Misc
+    [[maybe_unused]] THRIVE_NATIVE_API void SetNativeExecutorThreads(int32_t count);
+    [[maybe_unused]] THRIVE_NATIVE_API int32_t GetNativeExecutorThreads();
+
     [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
     [[maybe_unused]] THRIVE_NATIVE_API void DisableDebugDrawerCallbacks();
 }

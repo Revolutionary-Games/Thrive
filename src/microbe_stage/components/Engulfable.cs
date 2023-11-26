@@ -10,8 +10,16 @@
     /// <summary>
     ///   Something that can be engulfed by a microbe
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct Engulfable
     {
+        /// <summary>
+        ///   Stores the original scale when this becomes engulfed so that it can be always restored (in some
+        ///   situations storing this in the transport animation will cause problems with not being able to reliably
+        ///   restore this, so this extra variable is used to get this to be problem free)
+        /// </summary>
+        public Vector3 OriginalScale;
+
         /// <summary>
         ///   If this is being engulfed then this is not default and is a reference to the entity (trying to) eating us
         /// </summary>
@@ -55,6 +63,8 @@
         /// </remarks>
         public float InitialTotalEngulfableCompounds;
 
+        // public int OriginalRenderPriority;
+
         /// <summary>
         ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
         ///   state is None.
@@ -87,10 +97,6 @@
             // TODO: refactor this to not use nullable values as that will save a bunch of boxing and memory allocation
             public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp;
             public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp;
-
-            public Vector3 OriginalScale;
-
-            // public int OriginalRenderPriority { get; set; }
         }
     }
 
@@ -156,6 +162,25 @@
 
                 callbacks.OnReproductionStatus?.Invoke(entity, false);
             }
+
+            // Disable absorbing compounds
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = -1;
+            }
+
+            // Force mode to normal
+            if (entity.Has<MicrobeControl>())
+            {
+                entity.Get<MicrobeControl>().State = MicrobeState.Normal;
+            }
+
+            // Save the original scale for re-applying when ejecting
+            ref var spatial = ref entity.Get<SpatialInstance>();
+            engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
+
+            // TODO: store original render priority?
+            // bulkTransport.OriginalRenderPriority = target.RenderPriority,
 
             // TODO: render priority re-implementation (if we need this). Note that also
             // EngulfingSystem.IngestEngulfable has code that interacts with render priorities
@@ -261,6 +286,30 @@
                 if (cellProperties.CreatedMembrane != null)
                     cellProperties.ApplyMembraneWigglyness(cellProperties.CreatedMembrane);
             }
+
+            // Restore unlimited absorption speed
+            if (entity.Has<CompoundAbsorber>())
+            {
+                entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
+            }
+
+            // Reset render priority
+            // TODO: render priority
+            // engulfable.RenderPriority = animation.OriginalRenderPriority;
+
+            // Restore scale
+            ref var spatial = ref entity.Get<SpatialInstance>();
+
+#if DEBUG
+            if (engulfable.OriginalScale.Length() < MathUtils.EPSILON)
+            {
+                throw new Exception("Ejected engulfable with zero original scale");
+            }
+#endif
+
+            spatial.VisualScale = engulfable.OriginalScale;
+
+            // engulfable.OriginalRenderPriority
 
             // Reset our organelles' render priority back to their original values
             // TODO: unify this with the render priority re-apply that exists in EngulfingSystem.CompleteEjection

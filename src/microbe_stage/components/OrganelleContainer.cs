@@ -11,6 +11,7 @@
     /// <summary>
     ///   Entity that contains <see cref="PlacedOrganelle"/>
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct OrganelleContainer
     {
         /// <summary>
@@ -73,13 +74,11 @@
 
         public int HexCount;
 
+        /// <summary>
+        ///   Lower values are faster rotation
+        /// </summary>
         public float RotationSpeed;
 
-        // TODO: add the following variables only if really needed
-        // private bool organelleMaxRenderPriorityDirty = true;
-        // private int cachedOrganelleMaxRenderPriority;
-
-        // TODO: could maybe redo these "feature flags" by having separate tagging components?
         public bool HasSignalingAgent;
 
         public bool HasBindingAgent;
@@ -203,11 +202,15 @@
         public static bool CanUnbind(this ref OrganelleContainer organelleContainer, ref SpeciesMember species,
             in Entity entity)
         {
-            return species.Species is MicrobeSpecies && entity.Has<MicrobeColony>();
+            return species.Species is MicrobeSpecies &&
+                (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>());
         }
 
         public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
         {
+            // Set an initial rotation rate that will be reset after this is properly calculated
+            container.RotationSpeed = 0.5f;
+
             container.Organelles?.Clear();
 
             container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
@@ -235,6 +238,7 @@
             ICellProperties cellProperties, Species baseReproductionCostFrom)
         {
             container.CreateOrganelleLayout(cellProperties);
+            container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
 
             // Reproduction progress is lost
             container.AllOrganellesDivided = false;
@@ -272,7 +276,7 @@
         ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
         /// </summary>
         public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
-            ref BioProcesses bioProcesses)
+            ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable)
         {
             container.OrganelleVisualsCreated = false;
             container.OrganelleComponentsCached = false;
@@ -280,6 +284,7 @@
             // TODO: should there be a specific system that refreshes this data?
             // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
@@ -317,11 +322,15 @@
             // Colony lead cell uses all the chemoreceptors in the colony to make them all work
             if (entity.Has<MicrobeColony>())
             {
-                // TODO: reimplement recursive colony smell settings collection
-                throw new NotImplementedException("colony smelling not reimplemented yet");
-            }
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var collected = colony.CollectUniqueCompoundDetections();
 
-            /* TODO: else */
+                if (collected == null)
+                    return null;
+
+                collectedUniqueCompoundDetections = collected;
+            }
+            else
             {
                 if (container.ActiveCompoundDetections == null)
                     return null;
@@ -352,10 +361,15 @@
 
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
-            }
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var collected = colony.CollectUniqueSpeciesDetections();
 
-            /* TODO: else */
+                if (collected == null)
+                    return null;
+
+                collectedUniqueSpeciesDetections = collected;
+            }
+            else
             {
                 if (container.ActiveSpeciesDetections == null)
                     return null;
@@ -395,12 +409,6 @@
             container.OrganellesCapacity = 0;
             container.HasSignalingAgent = false;
             container.HasBindingAgent = false;
-
-            // TODO: rotation speed calculation
-            // TODO: rotation penalty from size
-            // TODO: rotation speed from cilia
-            // Lower value is faster rotation
-            container.RotationSpeed = 0.2f;
 
             if (container.Organelles == null)
                 throw new InvalidOperationException("Organelle list needs to be initialized first");
@@ -464,6 +472,15 @@
                     }
                 }
             }
+        }
+
+        public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
+            ref Engulfer engulfer, ref Engulfable engulfable)
+        {
+            engulfer.EngulfingSize = container.HexCount;
+            engulfer.EngulfStorageSize = container.HexCount;
+
+            engulfable.BaseEngulfSize = container.HexCount;
         }
 
         /// <summary>
@@ -582,7 +599,9 @@
         public static Dictionary<Compound, float> CalculateTotalReproductionCompounds(
             this ref OrganelleContainer organelleContainer, in Entity entity, Species species)
         {
-            if (entity.Has<MicrobeColony>())
+            // Multicellular species need to show their total body plan compounds. Other cells and even colonies just
+            // use the normal progress calculation for a single cell.
+            if (entity.Has<EarlyMulticellularSpeciesMember>())
             {
                 throw new NotImplementedException();
 
@@ -643,14 +662,14 @@
                 organelle.CalculateAbsorbedCompounds(result);
             }
 
-            if (entity.Has<MicrobeColony>())
+            if (entity.Has<MulticellularGrowth>())
             {
-                throw new NotImplementedException();
+                ref var multicellularGrowth = ref entity.Get<MulticellularGrowth>();
 
-                // result.Merge(compoundsUsedForMulticellularGrowth);
+                if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
+                    result.Merge(multicellularGrowth.CompoundsUsedForMulticellularGrowth);
             }
-
-            /* TODO: else */
+            else
             {
                 // For single microbes the base reproduction cost needs to be calculated here
                 baseReproductionInfo.CalculateAlreadyUsedBaseReproductionCompounds(species, result);
