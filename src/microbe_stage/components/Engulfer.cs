@@ -91,8 +91,6 @@
                 if (target.Has<SpeciesMember>() && target.Get<SpeciesMember>().ID == engulferSpeciesID)
                     return EngulfCheckResult.CannotCannibalize;
 
-                GD.Print(engulfer.EngulfingSize);
-
                 // Needs to be big enough to engulf
                 if (engulfer.EngulfingSize < engulfable.AdjustedEngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
                     return EngulfCheckResult.TargetTooBig;
