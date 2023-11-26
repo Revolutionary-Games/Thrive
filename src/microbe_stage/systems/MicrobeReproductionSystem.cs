@@ -25,6 +25,8 @@
     [With(typeof(BioProcesses))]
     [Without(typeof(AttachedToEntity))]
     [Without(typeof(EarlyMulticellularSpeciesMember))]
+    [WritesToComponent(typeof(Engulfable))]
+    [WritesToComponent(typeof(Engulfer))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -354,7 +356,8 @@
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
-                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>());
+                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
+                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
                 }
             }
 

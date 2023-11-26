@@ -495,6 +495,10 @@
             cellProperties.Colour = newProperties.Colour;
             cellProperties.MembraneRigidity = newProperties.MembraneRigidity;
 
+            // Update the enzyme required for digestion
+            entity.Get<Engulfable>().RequisiteEnzymeToDigest =
+                SimulationParameters.Instance.GetEnzyme(cellProperties.MembraneType.DissolverEnzyme);
+
             ref var spatial = ref entity.Get<SpatialInstance>();
 
             spatial.VisualScale = cellProperties.IsBacteria ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1, 1, 1);

@@ -498,17 +498,14 @@ public static class SpawnHelpers
         };
 
         int organelleCount;
-        float engulfSize;
 
         // Initialize organelles for the cell type
         {
             var container = default(OrganelleContainer);
-
             container.CreateOrganelleLayout(usedCellProperties);
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;
-            engulfSize = container.HexCount;
 
             // Compound storage
             var storage = new CompoundStorage
@@ -521,7 +518,19 @@ public static class SpawnHelpers
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-            // Finish setting up these two components
+            var engulfable = new Engulfable
+            {
+                RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+            };
+
+            var engulfer = default(Engulfer);
+
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
+
+            entity.Set(engulfable);
+            entity.Set(engulfer);
+
+            // Finish setting up related components
             entity.Set(container);
 
             storage.Compounds.AddInitialCompounds(species.InitialCompounds);
@@ -609,18 +618,6 @@ public static class SpawnHelpers
         entity.Set(new CommandSignaler
         {
             SignalingChannel = species.ID,
-        });
-
-        entity.Set(new Engulfable
-        {
-            BaseEngulfSize = engulfSize,
-            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
-        });
-
-        entity.Set(new Engulfer
-        {
-            EngulfingSize = engulfSize,
-            EngulfStorageSize = engulfSize,
         });
 
         // Microbes are not affected by currents before they are visualized
