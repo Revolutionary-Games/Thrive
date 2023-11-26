@@ -11,7 +11,6 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(CollisionManagement))]
     [With(typeof(MicrobePhysicsExtraData))]
-    [With(typeof(Species))]
     public sealed class PilusDamageSystem : AEntitySetSystem<float>
     {
         public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
