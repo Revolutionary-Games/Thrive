@@ -37,7 +37,6 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
-    [ReadsComponent(typeof(PhysicsShapeHolder))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsOnMainThread]
@@ -1177,27 +1176,6 @@
                 }
             }
 
-            // Try to get mass for ejection impulse strength calculation
-            float mass = 1000;
-            if (engulfableObject.Has<PhysicsShapeHolder>())
-            {
-                ref var shape = ref engulfableObject.Get<PhysicsShapeHolder>();
-
-                if (shape.Shape != null)
-                {
-                    mass = shape.Shape.GetMass();
-                }
-                else
-                {
-                    GD.PrintErr("Expelled engulfed object doesn't have physics shape initialized, " +
-                        "ejection impulse won't be correctly calculated");
-                }
-            }
-            else
-            {
-                GD.PrintErr("Engulfed object doesn't have shape component, can't know mass for ejection impulse");
-            }
-
             // Re-enable physics
             ref var physics = ref engulfableObject.Get<Physics>();
             physics.BodyDisabled = false;
@@ -1206,12 +1184,13 @@
 
             // And give an impulse
             // TODO: check is it correct to rotate by the rotation here on the relative position for this force
-            var impulse = engulferPosition.Rotation.Xform(relativePosition) * mass * Constants.ENGULF_EJECTION_FORCE;
+            var relativeVelocity =
+                engulferPosition.Rotation.Xform(relativePosition) * Constants.ENGULF_EJECTION_VELOCITY;
 
-            // Apply outwards ejection force
-            ref var manualPhysicsControl = ref engulfableObject.Get<ManualPhysicsControl>();
-            manualPhysicsControl.ImpulseToGive += impulse + engulferVelocity;
-            manualPhysicsControl.PhysicsApplied = false;
+            // Apply outwards ejection speed
+            physics.Velocity = engulferVelocity + relativeVelocity;
+            physics.AngularVelocity = Vector3.Zero;
+            physics.VelocitiesApplied = false;
 
             // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
             // the hostile engulfer entity)

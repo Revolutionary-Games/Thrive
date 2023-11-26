@@ -624,10 +624,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    // TODO: unify the following two variables
-    public const float ENGULF_EJECTION_VELOCITY = 5.0f;
-
-    public const float ENGULF_EJECTION_FORCE = 10.0f;
+    public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
