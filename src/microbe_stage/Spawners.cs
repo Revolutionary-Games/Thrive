@@ -501,11 +501,11 @@ public static class SpawnHelpers
 
         // Initialize organelles for the cell type
         {
-            var organelleContainer = default(OrganelleContainer);
-            organelleContainer.CreateOrganelleLayout(usedCellProperties);
-            organelleContainer.RecalculateOrganelleBioProcesses(ref bioProcesses);
+            var container = default(OrganelleContainer);
+            container.CreateOrganelleLayout(usedCellProperties);
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
-            organelleCount = organelleContainer.Organelles!.Count;
+            organelleCount = container.Organelles!.Count;
 
             // Compound storage
             var storage = new CompoundStorage
@@ -516,9 +516,8 @@ public static class SpawnHelpers
 
             // Run the storage update logic for the first time (to ensure consistency with later updates)
             // This has to be called as CreateOrganelleLayout doesn't do this automatically
-            organelleContainer.UpdateCompoundBagStorageFromOrganelles(ref storage);
+            container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-            // Finish setting up related components
             var engulfable = new Engulfable
             {
                 RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
@@ -526,12 +525,13 @@ public static class SpawnHelpers
 
             var engulfer = default(Engulfer);
 
-            organelleContainer.UpdateEngulfingData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingData(ref engulfer, ref engulfable);
 
             entity.Set(engulfable);
             entity.Set(engulfer);
 
-            entity.Set(organelleContainer);
+            // Finish setting up related components
+            entity.Set(container);
 
             storage.Compounds.AddInitialCompounds(species.InitialCompounds);
             entity.Set(storage);
