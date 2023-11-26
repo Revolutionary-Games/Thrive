@@ -25,6 +25,8 @@
     [With(typeof(BioProcesses))]
     [Without(typeof(AttachedToEntity))]
     [Without(typeof(EarlyMulticellularSpeciesMember))]
+    [WritesToComponent(typeof(Engulfable))]
+    [WritesToComponent(typeof(Engulfer))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
