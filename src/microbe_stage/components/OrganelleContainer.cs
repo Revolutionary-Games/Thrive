@@ -238,7 +238,7 @@
             ICellProperties cellProperties, Species baseReproductionCostFrom)
         {
             container.CreateOrganelleLayout(cellProperties);
-            container.UpdateEngulfingData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
+            container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
 
             // Reproduction progress is lost
             container.AllOrganellesDivided = false;
@@ -284,7 +284,7 @@
             // TODO: should there be a specific system that refreshes this data?
             // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
-            container.UpdateEngulfingData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);

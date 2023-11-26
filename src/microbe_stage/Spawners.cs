@@ -525,7 +525,7 @@ public static class SpawnHelpers
 
             var engulfer = default(Engulfer);
 
-            container.UpdateEngulfingData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
 
             entity.Set(engulfable);
             entity.Set(engulfer);
