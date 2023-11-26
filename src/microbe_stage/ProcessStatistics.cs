@@ -164,8 +164,19 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         // It is assumed that the updates have happened at pretty consistent intervals. So we do a rough average
         // based on the entry count. If we wanted to get fancy we could take the delta in each snapshot into account
         computedStatistics.CurrentSpeed = totalSpeed / entriesProcessed;
-        computedStatistics.WritableInputs.DivideBy(entriesProcessed);
-        computedStatistics.WritableOutputs.DivideBy(entriesProcessed);
+
+        // Stop it from displaying a process when it is running too slow
+        if (computedStatistics.CurrentSpeed < Constants.MINIMUM_DISPLAYABLE_PROCESS_FRACTION)
+        {
+            computedStatistics.CurrentSpeed = 0;
+            computedStatistics.WritableInputs.Keys.ToList().ForEach(k => computedStatistics.WritableInputs[k] = 0);
+            computedStatistics.WritableOutputs.Keys.ToList().ForEach(k => computedStatistics.WritableOutputs[k] = 0);
+        }
+        else
+        {
+            computedStatistics.WritableInputs.DivideBy(entriesProcessed);
+            computedStatistics.WritableOutputs.DivideBy(entriesProcessed);
+        }
 
         computedStatistics.WritableLimitingCompounds.Clear();
 

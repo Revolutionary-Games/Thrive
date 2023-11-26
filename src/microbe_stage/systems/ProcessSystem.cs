@@ -528,7 +528,7 @@
                 // process output numbers (computed after testing the speed), we need to multiply by inverse delta
                 currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
 
-                inputRemoved *= delta;
+                inputRemoved *= delta * resourceOveruseLimiter;
 
                 // If not enough we can't run the process unless we can lower resourceOveruseLimiter enough
                 var availableAmount = bag.GetCompoundAmount(entry.Key);
@@ -538,10 +538,7 @@
 
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
-                        if (neededModifier < resourceOveruseLimiter)
-                        {
-                            resourceOveruseLimiter = neededModifier;
-                        }
+                        resourceOveruseLimiter *= neededModifier;
                     }
                     else
                     {
@@ -562,7 +559,7 @@
                 // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
                 currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
 
-                outputAdded *= delta;
+                outputAdded *= delta * overProductionLimiter;
 
                 // if environmental right now this isn't released anywhere
                 if (entry.Key.IsEnvironmental)
@@ -577,10 +574,7 @@
 
                     if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     {
-                        if (neededModifier < overProductionLimiter)
-                        {
-                            overProductionLimiter = neededModifier;
-                        }
+                        overProductionLimiter *= neededModifier;
                     }
                     else
                     {

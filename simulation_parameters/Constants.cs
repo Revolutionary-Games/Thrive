@@ -1021,8 +1021,10 @@ public static class Constants
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
+    public const float MINIMUM_DISPLAYABLE_PROCESS_FRACTION = 0.01f;
+
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
-    public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+    public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 1.0f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
     public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;

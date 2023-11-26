@@ -113,29 +113,23 @@
             var ruBisCo = processor.ActiveProcesses.SingleOrDefault(
                 p => p.Process.InternalName == "calvin_cycle");
 
-            if (ruBisCo != null && ruBisCo.Process.Inputs.TryGetValue(ATP, out var atpIn))
+            if (ruBisCo != null)
             {
-                var environmentModifier = ProcessSystem.CalculateEnvironmentModifier(ruBisCo.Process, null,
-                    biome);
-
-                float maxATP = atpIn * environmentModifier * delta;
-
-                if (processor.GlucoseATP > MathUtils.EPSILON)
+                if (processor.GlucoseATP < MathUtils.EPSILON && processor.LimitedATP / delta > 0.5)
                 {
-                    if (processor.GlucoseATP <= maxATP)
-                    {
-                        ruBisCo.Rate *= (processor.GlucoseATP / maxATP).Value;
-                    }
-                    else
-                    {
-                        ruBisCo.Rate = 0;
-                    }
+                    ruBisCo.Rate += delta / ruBisCo.Count;
                 }
-                else if (processor.LimitedATP > MathUtils.EPSILON)
+                else if (processor.GlucoseATP < MathUtils.EPSILON && processor.LimitedATP / delta > 0.2)
                 {
-                    var newRate = (processor.LimitedATP / maxATP).Value;
-                    ruBisCo.Rate = newRate < 1 ? newRate : 1;
+                    ruBisCo.Rate += 0.2f * delta / ruBisCo.Count;
                 }
+                else if (processor.GlucoseATP > MathUtils.EPSILON)
+                {
+                    ruBisCo.Rate -= delta;
+                }
+
+                if (ruBisCo.Rate > 1)
+                    ruBisCo.Rate = 1;
 
                 if (ruBisCo.Rate <= Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
                     ruBisCo.Rate = 0;
