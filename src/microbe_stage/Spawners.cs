@@ -498,10 +498,10 @@ public static class SpawnHelpers
         };
 
         int organelleCount;
-        var organelleContainer = default(OrganelleContainer);
 
         // Initialize organelles for the cell type
         {
+            var organelleContainer = default(OrganelleContainer);
             organelleContainer.CreateOrganelleLayout(usedCellProperties);
             organelleContainer.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
@@ -523,6 +523,20 @@ public static class SpawnHelpers
 
             storage.Compounds.AddInitialCompounds(species.InitialCompounds);
             entity.Set(storage);
+
+            // Engulfing
+
+            var engulfable = new Engulfable
+            {
+                RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
+            };
+
+            var engulfer = default(Engulfer);
+
+            organelleContainer.UpdateEngulfingData(ref engulfer, ref engulfable);
+
+            entity.Set(engulfable);
+            entity.Set(engulfer);
         }
 
         entity.Set(bioProcesses);
@@ -607,20 +621,6 @@ public static class SpawnHelpers
         {
             SignalingChannel = species.ID,
         });
-
-        // Engulfing
-
-        var engulfable = new Engulfable
-        {
-            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(membraneType.DissolverEnzyme),
-        };
-
-        var engulfer = default(Engulfer);
-
-        organelleContainer.UpdateEngulfingData(ref engulfer, ref engulfable);
-
-        entity.Set(engulfable);
-        entity.Set(engulfer);
 
         // Microbes are not affected by currents before they are visualized
         // entity.Set<CurrentAffected>();
