@@ -287,6 +287,7 @@
                     cellProperties.ApplyMembraneWigglyness(cellProperties.CreatedMembrane);
             }
 
+            // Restore unlimited absorbtion speed
             if (entity.Has<CompoundAbsorber>())
             {
                 entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;

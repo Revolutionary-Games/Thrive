@@ -354,7 +354,8 @@
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
-                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>());
+                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
+                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
                 }
             }
 

@@ -238,6 +238,7 @@
             ICellProperties cellProperties, Species baseReproductionCostFrom)
         {
             container.CreateOrganelleLayout(cellProperties);
+            container.UpdateEngulfingData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
 
             // Reproduction progress is lost
             container.AllOrganellesDivided = false;
@@ -275,7 +276,7 @@
         ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
         /// </summary>
         public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
-            ref BioProcesses bioProcesses)
+            ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable)
         {
             container.OrganelleVisualsCreated = false;
             container.OrganelleComponentsCached = false;
@@ -283,6 +284,7 @@
             // TODO: should there be a specific system that refreshes this data?
             // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
+            container.UpdateEngulfingData(ref engulfer, ref engulfable);
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
@@ -470,6 +472,14 @@
                     }
                 }
             }
+        }
+
+        public static void UpdateEngulfingData(this ref OrganelleContainer container, ref Engulfer engulfer, ref Engulfable engulfable)
+        {
+            engulfer.EngulfingSize = container.HexCount;
+            engulfer.EngulfStorageSize = container.HexCount;
+
+            engulfable.BaseEngulfSize = container.HexCount;
         }
 
         /// <summary>
