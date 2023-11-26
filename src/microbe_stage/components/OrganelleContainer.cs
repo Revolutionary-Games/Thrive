@@ -474,7 +474,7 @@
             }
         }
 
-        public static void UpdateEngulfingData(this ref OrganelleContainer container,
+        public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
             ref Engulfer engulfer, ref Engulfable engulfable)
         {
             engulfer.EngulfingSize = container.HexCount;
