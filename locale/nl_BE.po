@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 15:56-0600\n"
+"POT-Creation-Date: 2023-11-24 19:16+0200\n"
 "PO-Revision-Date: 2022-07-20 09:20+0000\n"
 "Last-Translator: Simeon Duwel <tameimpalafan123@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -133,7 +133,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aërobe stikstoffixatie"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeHUD.tscn:1431
+#: ../src/microbe_stage/MicrobeStage.tscn:1466
 msgid "AGENTS"
 msgstr "Middelen"
 
@@ -208,7 +208,7 @@ msgstr "Sfeer volume"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeHUD.tscn:1173
+#: ../src/microbe_stage/MicrobeStage.tscn:1208
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
@@ -487,13 +487,13 @@ msgstr "Bass omhoog"
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagisch"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:642
-#: ../src/microbe_stage/MicrobeHUD.tscn:1621
+#: ../src/microbe_stage/MicrobeHUD.cs:627
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:598
-#: ../src/microbe_stage/MicrobeHUD.tscn:1610
+#: ../src/microbe_stage/MicrobeHUD.cs:583
+#: ../src/microbe_stage/MicrobeStage.tscn:1645
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -1098,7 +1098,7 @@ msgstr "Chemische verbindingen:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeHUD.tscn:1031
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 msgid "COMPOUNDS"
 msgstr "Chemische verbindingen"
 
@@ -1983,7 +1983,7 @@ msgstr "Grondstofabsorbtiesnelheid"
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1789
+#: ../src/microbe_stage/MicrobeStage.tscn:1824
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Voeg een nieuwe sneltoets toe"
@@ -2053,7 +2053,7 @@ msgid "ENTITY_LABEL"
 msgstr "Bioom: {0}"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeHUD.tscn:570
+#: ../src/microbe_stage/MicrobeStage.tscn:601
 msgid "ENVIRONMENT"
 msgstr "Omgeving"
 
@@ -2332,7 +2332,7 @@ msgstr "met concentratie van"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeHUD.tscn:1961
+#: ../src/microbe_stage/MicrobeStage.tscn:1997
 msgid "FIRE_TOXIN"
 msgstr "Vergif vuren"
 
@@ -2564,7 +2564,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeHUD.tscn:1127
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -2719,7 +2719,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeHUD.tscn:1274
+#: ../src/microbe_stage/MicrobeStage.tscn:1309
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
@@ -2820,7 +2820,7 @@ msgstr "JE HEBT OVERWONNEN!"
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1370
+#: ../src/microbe_stage/MicrobeStage.tscn:1405
 msgid "INGESTED_MATTER"
 msgstr ""
 
@@ -2993,7 +2993,7 @@ msgstr "Protanope (Rood-Groen)"
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeHUD.tscn:1320
+#: ../src/microbe_stage/MicrobeStage.tscn:1355
 msgid "IRON"
 msgstr "Ijzer"
 
@@ -3434,7 +3434,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeHUD.tscn:892
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Licht"
 
@@ -4313,7 +4313,7 @@ msgstr "Ga naar deze plek"
 msgid "MOVE_TO_LAND"
 msgstr "Mod om te uploaden:"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1606
+#: ../src/microbe_stage/MicrobeStage.tscn:1641
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4361,7 +4361,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeHUD.tscn:1536
+#: ../src/microbe_stage/MicrobeStage.tscn:1571
 msgid "MUCILAGE"
 msgstr ""
 
@@ -4694,7 +4694,7 @@ msgstr "Num Lock(toets)"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:445
+#: ../src/microbe_stage/MicrobeHUD.cs:430
 msgid "N_A"
 msgstr "N/A"
 
@@ -4702,7 +4702,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:499
+#: ../src/microbe_stage/MicrobeHUD.cs:484
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4976,7 +4976,7 @@ msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:co
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeHUD.tscn:1488
+#: ../src/microbe_stage/MicrobeStage.tscn:1523
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -5165,7 +5165,7 @@ msgstr "/seconde"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeHUD.tscn:1222
+#: ../src/microbe_stage/MicrobeStage.tscn:1257
 msgid "PHOSPHATE"
 msgstr "Fosfaat"
 
@@ -5209,7 +5209,7 @@ msgstr ""
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:469
+#: ../src/microbe_stage/MicrobeHUD.cs:454
 #, fuzzy
 msgid "PLAYER"
 msgstr "Spelerscel"
@@ -5275,7 +5275,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeHUD.tscn:1641
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "BEVOLKING:"
@@ -5308,7 +5308,7 @@ msgid "PRESSURE"
 msgstr "Druk"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeHUD.tscn:947
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "Druk."
 
@@ -5909,7 +5909,7 @@ msgstr "Zeebodem"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeHUD.tscn:2010
+#: ../src/microbe_stage/MicrobeStage.tscn:2042
 msgid "SECRETE_SLIME"
 msgstr ""
 
@@ -6658,7 +6658,7 @@ msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeHUD.tscn:836
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
@@ -6868,7 +6868,7 @@ msgid "TITLE_COLON"
 msgstr "Grootte:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeHUD.tscn:1973
+#: ../src/microbe_stage/MicrobeStage.tscn:2008
 msgid "TOGGLE_BINDING"
 msgstr "Schakel verbinden"
 
@@ -6880,7 +6880,7 @@ msgstr "Schakel verzwelg"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeHUD.tscn:1947
+#: ../src/microbe_stage/MicrobeStage.tscn:1984
 msgid "TOGGLE_ENGULF"
 msgstr "Schakel verzwelg"
 
@@ -7188,7 +7188,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Je moet je aanpassingen toepassen om mods te laden of te ontladen."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeHUD.tscn:1986
+#: ../src/microbe_stage/MicrobeStage.tscn:2020
 msgid "UNBIND_ALL"
 msgstr "Ontbind alles"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 15:56-0600\n"
+"POT-Creation-Date: 2023-11-24 19:16+0200\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -130,7 +130,7 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixació Aeròbica de Nitrogen"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeHUD.tscn:1431
+#: ../src/microbe_stage/MicrobeStage.tscn:1466
 msgid "AGENTS"
 msgstr "Agents"
 
@@ -203,7 +203,7 @@ msgstr "Volum de l'ambient"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeHUD.tscn:1173
+#: ../src/microbe_stage/MicrobeStage.tscn:1208
 msgid "AMMONIA"
 msgstr "Amoníac"
 
@@ -473,13 +473,13 @@ msgstr "Tecla Bass Up"
 msgid "BATHYPELAGIC"
 msgstr "Zona batipelàgica"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:642
-#: ../src/microbe_stage/MicrobeHUD.tscn:1621
+#: ../src/microbe_stage/MicrobeHUD.cs:627
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "BECOME_MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:598
-#: ../src/microbe_stage/MicrobeHUD.tscn:1610
+#: ../src/microbe_stage/MicrobeHUD.cs:583
+#: ../src/microbe_stage/MicrobeStage.tscn:1645
 msgid "BECOME_MULTICELLULAR"
 msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
@@ -1070,7 +1070,7 @@ msgstr "Compostos:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeHUD.tscn:1031
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
@@ -1924,7 +1924,7 @@ msgstr "Velocitat de Digestió"
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1789
+#: ../src/microbe_stage/MicrobeStage.tscn:1824
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrar a l'editor i modificar la teva espècie"
 
@@ -1992,7 +1992,7 @@ msgid "ENTITY_LABEL"
 msgstr "Etiqueta d'entitat"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeHUD.tscn:570
+#: ../src/microbe_stage/MicrobeStage.tscn:601
 msgid "ENVIRONMENT"
 msgstr "Entorn"
 
@@ -2275,7 +2275,7 @@ msgstr "Acaba {0} Generacions"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeHUD.tscn:1961
+#: ../src/microbe_stage/MicrobeStage.tscn:1997
 msgid "FIRE_TOXIN"
 msgstr "Llançar les toxines"
 
@@ -2501,7 +2501,7 @@ msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1} des de {2}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeHUD.tscn:1127
+#: ../src/microbe_stage/MicrobeStage.tscn:1162
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
@@ -2656,7 +2656,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeHUD.tscn:1274
+#: ../src/microbe_stage/MicrobeStage.tscn:1309
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
@@ -2756,7 +2756,7 @@ msgstr "HAS ACONSEGUIT PROSPERAR!"
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1370
+#: ../src/microbe_stage/MicrobeStage.tscn:1405
 msgid "INGESTED_MATTER"
 msgstr "Matèria Ingerida"
 
@@ -2930,7 +2930,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeHUD.tscn:1320
+#: ../src/microbe_stage/MicrobeStage.tscn:1355
 msgid "IRON"
 msgstr "Ferro"
 
@@ -3360,7 +3360,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fumaroles hidrotermals"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeHUD.tscn:892
+#: ../src/microbe_stage/MicrobeStage.tscn:925
 msgid "LIGHT"
 msgstr "Llum"
 
@@ -4262,7 +4262,7 @@ msgstr "Moure a aquest Indret"
 msgid "MOVE_TO_LAND"
 msgstr "Mod a Carregar:"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1606
+#: ../src/microbe_stage/MicrobeStage.tscn:1641
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
@@ -4340,7 +4340,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeHUD.tscn:1536
+#: ../src/microbe_stage/MicrobeStage.tscn:1571
 msgid "MUCILAGE"
 msgstr "Mucílag"
 
@@ -4663,7 +4663,7 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:445
+#: ../src/microbe_stage/MicrobeHUD.cs:430
 msgid "N_A"
 msgstr "N/A"
 
@@ -4671,7 +4671,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "S'han esgotat els Punts de Mutació"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:499
+#: ../src/microbe_stage/MicrobeHUD.cs:484
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4940,7 +4940,7 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeHUD.tscn:1488
+#: ../src/microbe_stage/MicrobeStage.tscn:1523
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -5128,7 +5128,7 @@ msgstr "/segon"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeHUD.tscn:1222
+#: ../src/microbe_stage/MicrobeStage.tscn:1257
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
@@ -5172,7 +5172,7 @@ msgstr "Pròximament, generació planetària!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Llavor de planeta aleatòria"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:469
+#: ../src/microbe_stage/MicrobeHUD.cs:454
 #, fuzzy
 msgid "PLAYER"
 msgstr "Cèl·lula del jugador"
@@ -5237,7 +5237,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeHUD.tscn:1641
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
@@ -5267,7 +5267,7 @@ msgid "PRESSURE"
 msgstr "Pressió"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeHUD.tscn:947
+#: ../src/microbe_stage/MicrobeStage.tscn:980
 msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
@@ -5853,7 +5853,7 @@ msgstr "Llit marí"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeHUD.tscn:2010
+#: ../src/microbe_stage/MicrobeStage.tscn:2042
 msgid "SECRETE_SLIME"
 msgstr "Secretar mucílag"
 
@@ -6593,7 +6593,7 @@ msgid "TEMPERATURE"
 msgstr "Temperatura"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeHUD.tscn:836
+#: ../src/microbe_stage/MicrobeStage.tscn:869
 msgid "TEMPERATURE_SHORT"
 msgstr "Temperatura"
 
@@ -6796,7 +6796,7 @@ msgid "TITLE_COLON"
 msgstr "Títol:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeHUD.tscn:1973
+#: ../src/microbe_stage/MicrobeStage.tscn:2008
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
@@ -6807,7 +6807,7 @@ msgstr "Obrir el menú de debug"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeHUD.tscn:1947
+#: ../src/microbe_stage/MicrobeStage.tscn:1984
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
@@ -7097,7 +7097,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Has d'aplicar els teus canvis per pujar o descarregar mods."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeHUD.tscn:1986
+#: ../src/microbe_stage/MicrobeStage.tscn:2020
 msgid "UNBIND_ALL"
 msgstr "Desunir totes les cèl·lules"
 
