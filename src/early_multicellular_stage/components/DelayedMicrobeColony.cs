@@ -13,6 +13,8 @@ namespace Components
         /// </summary>
         public Entity FinishAttachingToColony;
 
+        public int AttachIndex;
+
         public int GrowAdditionalMembers;
 
         // This doesn't have an applied field as this component is always removed after operating on it because this
@@ -30,15 +32,22 @@ namespace Components
             GrowAdditionalMembers = growAdditionalMembers;
 
             FinishAttachingToColony = default(Entity);
+            AttachIndex = 0;
         }
 
         /// <summary>
         ///   Attach to a colony in a delayed way (must have attached position already set)
         /// </summary>
         /// <param name="delayAttachToColony">Entity to attach to</param>
-        public DelayedMicrobeColony(Entity delayAttachToColony)
+        /// <param name="targetIndex">
+        ///   The index the new member should be placed at. This exists to allow ensuring colonies to have consistent
+        ///   order for their delay attached members if multiple are added at once;
+        /// </param>
+        public DelayedMicrobeColony(Entity delayAttachToColony, int targetIndex)
         {
             FinishAttachingToColony = delayAttachToColony;
+            AttachIndex = targetIndex;
+
             GrowAdditionalMembers = 0;
         }
     }

@@ -658,13 +658,14 @@ public static class SpawnHelpers
                     // Chance to spawn fully grown or partially grown
                     if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
                     {
-                        spawnLimitWeight +=
-                            MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
-                                spawnLimitWeight);
+                        spawnLimitWeight += MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity,
+                            multicellular, spawnLimitWeight);
                     }
                     else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
                     {
-                        var maxCount = multicellular.Cells.Count;
+                        // -1 here as the bud is always spawned so the number of cells to add on top of that is the max
+                        // count
+                        var maxCount = multicellular.Cells.Count - 1;
                         int cellsToAdd = 0;
 
                         while (cellsToAdd < maxCount)
@@ -675,9 +676,11 @@ public static class SpawnHelpers
                                 break;
                         }
 
-                        spawnLimitWeight +=
-                            MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity,
+                        if (cellsToAdd > 0)
+                        {
+                            spawnLimitWeight += MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity,
                                 spawnLimitWeight, cellsToAdd);
+                        }
                     }
 
                     break;
@@ -998,14 +1001,6 @@ public class MicrobeSpawner : Spawner
             // The true here is that this is AI controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, Species,
                 location, true, null, out entity, MulticellularSpawnState.ChanceForFullColony);
-
-            if (Species is EarlyMulticellularSpecies)
-            {
-                throw new NotImplementedException();
-
-                // SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
-                // TODO: weight needs to be adjusted for the created colony
-            }
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);
 

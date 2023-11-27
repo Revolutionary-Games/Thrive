@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -44,7 +43,8 @@
 
                     lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
                     {
-                        throw new NotImplementedException();
+                        CompleteDelayedColonyAttach(ref colony, delayed.FinishAttachingToColony, entity,
+                            recorder, delayed.AttachIndex);
                     }
                 }
                 else
@@ -58,7 +58,6 @@
             }
 
             // Remove the component now that it is processed
-
             recorderEntity.Remove<DelayedMicrobeColony>();
 
             worldSimulation.FinishRecordingEntityCommands(recorder);
@@ -67,7 +66,7 @@
         private void GrowColonyMembers(in Entity entity, EntityRecord recorderEntity,
             EntityCommandRecorder recorder, int members)
         {
-            if (!entity.Has<EarlyMulticellularSpecies>())
+            if (!entity.Has<EarlyMulticellularSpeciesMember>())
             {
                 GD.PrintErr("Only early multicellular species members can have delayed colony growth");
                 return;
@@ -87,15 +86,7 @@
                 }
 
                 // Growing a new colony
-                var colony = new MicrobeColony
-                {
-                    Leader = entity,
-                    ColonyState = entity.Get<MicrobeControl>().State,
-
-                    // As we need to spawn the entities to add to the colony the next frame, we can only add the lead
-                    // cell here
-                    ColonyMembers = new[] { entity },
-                };
+                var colony = new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State);
 
                 recorderEntity.Set(colony);
             }
@@ -110,10 +101,10 @@
                 bodyPlanIndex = colony.ColonyMembers.Length;
             }
 
-            ref var species = ref entity.Get<EarlyMulticellularSpecies>();
+            ref var species = ref entity.Get<EarlyMulticellularSpeciesMember>();
 
             bool added = false;
-            var cellsToGrow = species.Cells.Skip(bodyPlanIndex).Take(members);
+            var cellsToGrow = species.Species.Cells.Skip(bodyPlanIndex).Take(members);
 
             ref var parentPosition = ref entity.Get<WorldPosition>();
 
@@ -126,13 +117,13 @@
 
                 attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
-                SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
-                    parentPosition.Position + attachPosition.RelativePosition, true, cellTemplate.CellType, recorder,
-                    out var member, MulticellularSpawnState.Bud);
+                SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species.Species,
+                    parentPosition.Position + parentPosition.Rotation.Xform(attachPosition.RelativePosition), true,
+                    cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud);
 
                 member.Set(attachPosition);
 
-                member.Set(new DelayedMicrobeColony(entity));
+                member.Set(new DelayedMicrobeColony(entity, bodyPlanIndex++));
 
                 // Ensure no physics is created before the attach completes
                 member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
@@ -143,8 +134,15 @@
             if (!added)
             {
                 GD.Print("Delayed colony growth didn't add any new cells as add from index was higher than " +
-                    "available cell");
+                    "available cell count");
             }
+        }
+
+        private void CompleteDelayedColonyAttach(ref MicrobeColony colony, in Entity colonyEntity, in Entity entity,
+            EntityCommandRecorder recorder, int targetMemberIndex)
+        {
+            var parentIndex = colony.CalculateSensibleParentIndexForMulticellular(ref entity.Get<AttachedToEntity>());
+            colony.FinishQueuedMemberAdd(colonyEntity, parentIndex, entity, targetMemberIndex, recorder);
         }
     }
 }
