@@ -34,8 +34,8 @@
                 {
                     if (!HasBeenShown && CanTrigger)
                     {
+                        overallState.EditorRedoTutorial.CanTrigger = true;
                         Show();
-                        overallState.EditorTutorialEnd.CanTrigger = true;
 
                         return true;
                     }

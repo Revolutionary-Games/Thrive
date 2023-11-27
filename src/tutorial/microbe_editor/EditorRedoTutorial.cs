@@ -9,6 +9,11 @@
     /// </summary>
     public class EditorRedoTutorial : TutorialPhase
     {
+        public EditorRedoTutorial()
+        {
+            CanTrigger = false;
+        }
+
         public override string ClosedByName => "CellEditorRedo";
 
         [JsonIgnore]
@@ -28,11 +33,9 @@
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
             object sender)
         {
-            return false;
-
             switch (eventType)
             {
-                case TutorialEventType.MicrobeEditorUndo:
+                case TutorialEventType.TutorialClosed:
                 {
                     if (!HasBeenShown && CanTrigger)
                     {

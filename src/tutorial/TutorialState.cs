@@ -298,6 +298,10 @@ public class TutorialState : ITutorialInput
             GD.PrintErr("Unknown tutorial closed: ", name);
             HideAll();
         }
+        else
+        {
+            SendEvent(TutorialEventType.TutorialClosed, EventArgs.Empty, this);
+        }
     }
 
     public void OnTutorialClosed()
