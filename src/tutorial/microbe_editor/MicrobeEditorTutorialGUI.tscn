@@ -100,12 +100,11 @@ visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 8 )]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -206.0
-margin_top = -213.0
-margin_bottom = 188.0
+margin_left = -160.0
+margin_top = 91.0
+margin_right = 160.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 360, 375 )
 PreventsMouseCaptureWhileOpen = true
 ShowCloseButton = false
@@ -475,13 +474,12 @@ text = "GOT_IT"
 visible = false
 
 [node name="AtpBalanceIntroduction" type="Control" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -160.0
+margin_left = -200.0
 margin_top = 91.0
-margin_right = 160.0
-margin_bottom = 435.0
+margin_right = 200.0
+margin_bottom = 440.0
 rect_min_size = Vector2( 260, 240 )
 theme = ExtResource( 2 )
 script = ExtResource( 7 )
@@ -491,7 +489,7 @@ __meta__ = {
 }
 PreventsMouseCaptureWhileOpen = false
 WindowTitle = "TUTORIAL"
-Description = "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+Description = "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AtpBalanceIntroduction"]
@@ -501,28 +499,28 @@ rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AtpBalanceIntroduction/ScrollContainer"]
-margin_right = 320.0
-margin_bottom = 344.0
+margin_right = 400.0
+margin_bottom = 349.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_right = 320.0
+margin_right = 400.0
 margin_bottom = 24.0
 custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
-margin_right = 320.0
-margin_bottom = 305.0
+margin_right = 400.0
+margin_bottom = 310.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
-margin_left = 105.0
-margin_top = 309.0
-margin_right = 215.0
-margin_bottom = 344.0
+margin_left = 145.0
+margin_top = 314.0
+margin_right = 255.0
+margin_bottom = 349.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
