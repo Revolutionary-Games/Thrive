@@ -13,7 +13,7 @@
     public struct MicrobeEventCallbacks
     {
         /// <summary>
-        ///   Triggers whenevery the player enters unbind mode
+        ///   Triggers whenever the player enters unbind mode
         ///   <remarks>
         ///     <para>
         ///       Only works for the player
