@@ -697,9 +697,14 @@ public static class Constants
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
-    ///   Damage a single pilus stab does
+    ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 20.0f;
+    public const float PILUS_BASE_DAMAGE = 240.0f;
+
+    /// <summary>
+    ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
+    /// </summary>
+    public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
