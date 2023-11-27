@@ -78,7 +78,6 @@
                     continue;
                 }
 
-                // TODO: readjust the pilus damage now that this takes penetration depth into account
                 float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
                 // TODO: as this will be done differently ensure game balance still works
@@ -87,8 +86,11 @@
                 // MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
 
                 // Skip too small damage
-                if (damage < 0.0001f)
+                if (damage < 0.01f)
                     continue;
+
+                if (damage > Constants.PILUS_MAX_DAMAGE)
+                    damage = Constants.PILUS_MAX_DAMAGE;
 
                 targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus");
             }
