@@ -40,5 +40,17 @@
         ///   multiple different places on exactly the same frame.
         /// </summary>
         public static readonly object EntityAttachRelationshipModifyLock = new();
+
+        /// <summary>
+        ///   Creates the position in a cell colony for multicellular body plan part. Note that unlike before this uses
+        ///   the hard position set in the body plan to avoid some attach weirdness bugs, though now this is much more
+        ///   dependent on intercellular matrix graphics to look good (which at the time of writing is not implemented)
+        /// </summary>
+        public static void CreateMulticellularAttachPosition(this ref AttachedToEntity attachedToEntity,
+            Hex cellTemplatePosition, int cellTemplateOrientation)
+        {
+            attachedToEntity.RelativePosition = Hex.AxialToCartesian(cellTemplatePosition);
+            attachedToEntity.RelativeRotation = MathUtils.CreateRotationForOrganelle(cellTemplateOrientation);
+        }
     }
 }

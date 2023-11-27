@@ -153,7 +153,8 @@
         /// </remarks>
         public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
             in Entity entity, Species species, IWorldSimulation worldSimulation, ISpawnSystem spawnerToRegisterWith,
-            ModifyDividedCellCallback? customizeCallback)
+            ModifyDividedCellCallback? customizeCallback,
+            MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
         {
             if (organelles.Organelles == null)
                 throw new InvalidOperationException("Organelles not initialized");
@@ -224,6 +225,34 @@
                 //
                 // distanceRight += ;
             }
+            else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                     multicellularSpawnState != MulticellularSpawnState.Bud)
+            {
+                // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
+                bool first = true;
+
+                foreach (var eventualMember in earlyMulticellularSpecies.Cells)
+                {
+                    // Skip lead cell
+                    if (first)
+                    {
+                        first = false;
+                        continue;
+                    }
+
+                    var memberPosition = Hex.AxialToCartesian(eventualMember.Position);
+
+                    // TODO: should the 1.5f multiplier be kept here
+                    var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
+                        -memberPosition,
+                        eventualMember.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
+
+                    if (distance > distanceRight)
+                    {
+                        distanceRight = distance;
+                    }
+                }
+            }
 
             float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
@@ -246,7 +275,7 @@
 
             // Create the one daughter cell.
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-                true, null, out var copyEntity);
+                true, null, out var copyEntity, multicellularSpawnState);
 
             // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
             // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like

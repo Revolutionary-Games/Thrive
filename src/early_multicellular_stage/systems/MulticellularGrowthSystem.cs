@@ -23,7 +23,8 @@
     {
         private GameWorld? gameWorld;
 
-        public MulticellularGrowthSystem(World world, IParallelRunner runner) : base(world, runner)
+        public MulticellularGrowthSystem(World world, IParallelRunner runner) : base(world, runner,
+            Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
         {
         }
 

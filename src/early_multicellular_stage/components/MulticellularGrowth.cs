@@ -47,7 +47,10 @@
 
         public MulticellularGrowth(EarlyMulticellularSpecies species)
         {
-            NextBodyPlanCellToGrowIndex = -1;
+            // Start growing at the cell after the initial bud
+            // TODO: this needs changing when other reproduction methods are implemented (this same thing is also
+            // in ResetMulticellularProgress)
+            NextBodyPlanCellToGrowIndex = 1;
 
             LostPartsOfBodyPlan = null;
             CompoundsNeededForNextCell = null;
@@ -149,6 +152,7 @@
             // Clear variables
 
             // The first cell is the last to duplicate (budding reproduction) so the body plan starts filling at index 1
+            // Note that this is also set in the struct constructor
             multicellularGrowth.NextBodyPlanCellToGrowIndex = 1;
             multicellularGrowth.EnoughResourcesForBudding = false;
 

@@ -381,22 +381,34 @@ public static class SpawnHelpers
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
-        bool aiControlled, CellType? multicellularCellType = null)
+        bool aiControlled, CellType? multicellularCellType = null,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
-            multicellularCellType, out _);
+            multicellularCellType, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
         IWorldSimulation worldSimulation, Species species,
-        Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity)
+        Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud, Random? random = null)
+    {
+        var recorder = worldSimulation.StartRecordingEntityCommands();
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled, multicellularCellType,
+            recorder, out entity, multicellularSpawnState, random);
+    }
+
+    public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
+        IWorldSimulation worldSimulation, Species species,
+        Vector3 location, bool aiControlled, CellType? multicellularCellType, EntityCommandRecorder recorder,
+        out EntityRecord entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
+        Random? random = null)
     {
         // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
         // MicrobeVisualOnlySimulation microbe update methods are also up to date
 
-        var recorder = worldSimulation.StartRecordingEntityCommands();
         var entityCreator = worldSimulation.GetRecorderWorld(recorder);
 
         entity = worldSimulation.CreateEntityDeferred(entityCreator);
@@ -443,8 +455,11 @@ public static class SpawnHelpers
         ICellProperties usedCellProperties;
         MembraneType membraneType;
 
+        EarlyMulticellularSpecies? multicellular = null;
+
         if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
         {
+            multicellular = earlyMulticellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularCellType != null)
@@ -457,6 +472,8 @@ public static class SpawnHelpers
                 var properties = new CellProperties(multicellularCellType);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
+
+                // TODO: should this also be given MulticellularGrowth to allow this to grow fully if the colony splits
             }
             else
             {
@@ -580,13 +597,7 @@ public static class SpawnHelpers
         });
 
         // Physics
-        entity.Set(new Physics
-        {
-            AxisLock = Physics.AxisLockType.YAxisWithRotation,
-            LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
-            AngularDamping = Constants.MICROBE_PHYSICS_DAMPING_ANGULAR,
-            TrackVelocity = true,
-        });
+        entity.Set(Components.PhysicsHelpers.CreatePhysicsForMicrobe());
 
         entity.Set<MicrobePhysicsExtraData>();
 
@@ -628,44 +639,57 @@ public static class SpawnHelpers
 
         entity.Set(new ReadableName(new LocalizedString(species.FormattedName)));
 
-        return (recorder, OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount));
-    }
+        float spawnLimitWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelleCount);
 
-    /// <summary>
-    ///   Gives a random chance for a multicellular cell colony to spawn partially or fully grown
-    /// </summary>
-    /// <param name="microbe">The multicellular microbe</param>
-    /// <param name="random">Random to use for the randomness</param>
-    /// <exception cref="ArgumentException">If the microbe is not multicellular</exception>
-    public static void GiveFullyGrownChanceForMulticellular(Entity microbe, Random random)
-    {
-        throw new NotImplementedException();
-
-        /*if (!microbe.IsMulticellular)
-            throw new ArgumentException("must be multicellular");
-
-        // Chance to spawn fully grown or partially grown
-        if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
+        if (multicellularSpawnState != MulticellularSpawnState.Bud && multicellular != null)
         {
-            throw new NotImplementedException();
-
-            // microbe.BecomeFullyGrownMulticellularColony();
-        }
-        else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
-        {
-            while (!microbe.IsFullyGrownMulticellular)
+            switch (multicellularSpawnState)
             {
-                throw new NotImplementedException();
-
-                // microbe.AddMulticellularGrowthCell(true);
-
-                if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
+                case MulticellularSpawnState.FullColony:
+                    spawnLimitWeight +=
+                        MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
+                            spawnLimitWeight);
                     break;
-            }
-        }*/
 
-        // TODO: need to adjust entity weight in the spawned entity
-        // throw new NotImplementedException();
+                case MulticellularSpawnState.ChanceForFullColony:
+                {
+                    random ??= new Random();
+
+                    // Chance to spawn fully grown or partially grown
+                    if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
+                    {
+                        spawnLimitWeight +=
+                            MicrobeColonyHelpers.SpawnAsFullyGrownMulticellularColony(entity, multicellular,
+                                spawnLimitWeight);
+                    }
+                    else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
+                    {
+                        var maxCount = multicellular.Cells.Count;
+                        int cellsToAdd = 0;
+
+                        while (cellsToAdd < maxCount)
+                        {
+                            ++cellsToAdd;
+
+                            if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
+                                break;
+                        }
+
+                        spawnLimitWeight +=
+                            MicrobeColonyHelpers.SpawnAsPartialMulticellularColony(entity,
+                                spawnLimitWeight, cellsToAdd);
+                    }
+
+                    break;
+                }
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(multicellularSpawnState), multicellularSpawnState,
+                        null);
+            }
+        }
+
+        return (recorder, spawnLimitWeight);
     }
 
     /// <summary>
@@ -694,7 +718,8 @@ public static class SpawnHelpers
         IWorldSimulation worldSimulation, Species species,
         Vector3 location, out EntityRecord entity)
     {
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, null, out entity);
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, null, out entity,
+            MulticellularSpawnState.Bud);
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location, Compound compound, float amount,
@@ -972,7 +997,7 @@ public class MicrobeSpawner : Spawner
         {
             // The true here is that this is AI controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, Species,
-                location, true, null, out entity);
+                location, true, null, out entity, MulticellularSpawnState.ChanceForFullColony);
 
             if (Species is EarlyMulticellularSpecies)
             {

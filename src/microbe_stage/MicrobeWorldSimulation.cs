@@ -82,6 +82,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private ToxinCollisionSystem toxinCollisionSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
+    // Multicellular systems
+    private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
+    private MulticellularGrowthSystem multicellularGrowthSystem = null!;
+
     private EntitySet cellCountingEntitySet = null!;
 
 #pragma warning disable CA2213
@@ -205,6 +209,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
 
+        delayedColonyOperationSystem = new DelayedColonyOperationSystem(this, EntitySystem, couldParallelize);
+        multicellularGrowthSystem = new MulticellularGrowthSystem(EntitySystem, parallelRunner);
+
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
 
@@ -235,6 +242,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
+        multicellularGrowthSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }
@@ -337,6 +345,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.Update(delta);
 
         microbeReproductionSystem.Update(delta);
+        multicellularGrowthSystem.Update(delta);
         organelleComponentFetchSystem.Update(delta);
 
         if (RunAI)
@@ -370,6 +379,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physicsBodyControlSystem.Update(delta);
 
         colonyBindingSystem.Update(delta);
+        delayedColonyOperationSystem.Update(delta);
 
         // renderOrderSystem.Update(delta);
 
@@ -480,6 +490,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();
             unneededCompoundVentingSystem.Dispose();
+            delayedColonyOperationSystem.Dispose();
+            multicellularGrowthSystem.Dispose();
 
             CameraFollowSystem.Dispose();
             ProcessSystem.Dispose();

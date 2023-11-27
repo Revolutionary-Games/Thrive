@@ -743,9 +743,41 @@
 
             var singleCellWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelles.Count);
 
-            weight = singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
-                colony.ColonyMembers.Length;
+            weight = CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
             return true;
+        }
+
+        public static float CalculateColonyAdditionalEntityWeight(float singleCellWeight, int memberCount)
+        {
+            return singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
+                memberCount;
+        }
+
+        /// <summary>
+        ///   Makes an entity that is being spawned into a fully grown multicellular colony
+        /// </summary>
+        /// <returns>How much the added colony members add entity weight</returns>
+        public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, EarlyMulticellularSpecies species,
+            float originalWeight)
+        {
+            int members = species.Cells.Count - 1;
+
+            SetupColonyWithMembersDelayed(entity, members);
+
+            return CalculateColonyAdditionalEntityWeight(originalWeight, members);
+        }
+
+        public static float SpawnAsPartialMulticellularColony(EntityRecord entity, float originalWeight, int membersToAdd)
+        {
+            if (membersToAdd < 1)
+            {
+                GD.PrintErr("Spawn as partially grown colony was passed 0 as number of cells to add");
+                return 0;
+            }
+
+            SetupColonyWithMembersDelayed(entity, membersToAdd);
+
+            return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
         }
 
         /// <summary>
@@ -966,6 +998,15 @@
                 colony.HexCount = hexCount;
                 colony.DerivedStatisticsCalculated = true;
             }
+        }
+
+        /// <summary>
+        ///   Sets up a colony to be created for an entity after it is spawned. This works in a delayed way as the
+        ///   entity is not known when it is being spawned so normal colony creation doesn't work.
+        /// </summary>
+        private static void SetupColonyWithMembersDelayed(EntityRecord entity, int membersAfterLeader)
+        {
+            entity.Set(new DelayedMicrobeColony(membersAfterLeader));
         }
     }
 }
