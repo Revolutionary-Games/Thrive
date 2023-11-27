@@ -36,12 +36,13 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoRedoToTutorial(TutorialState tutorial)
+    public void SendHighlightsToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+        tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()

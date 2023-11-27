@@ -148,7 +148,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         pauseMenu.GameProperties = CurrentGame;
 
         // Send undo button to the tutorial system
-        cellEditorTab.SendUndoRedoToTutorial(TutorialState);
+        cellEditorTab.SendHighlightsToTutorial(TutorialState);
     }
 
     protected override void InitEditorGUI(bool fresh)

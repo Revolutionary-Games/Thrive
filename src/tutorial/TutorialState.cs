@@ -92,6 +92,9 @@ public class TutorialState : ITutorialInput
     public NegativeAtpBalanceTutorial NegativeAtpBalanceTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
+
+    [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
     /// <summary>
@@ -407,6 +410,7 @@ public class TutorialState : ITutorialInput
             OrganelleDivisionTutorial,
             FlagellumPlacementTutorial,
             ModifyOrganelleTutorial,
+            AtpBalanceIntroduction,
         };
     }
 }

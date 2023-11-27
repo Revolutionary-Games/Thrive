@@ -28,6 +28,8 @@
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
             object sender)
         {
+            return false;
+
             switch (eventType)
             {
                 case TutorialEventType.MicrobeEditorUndo:

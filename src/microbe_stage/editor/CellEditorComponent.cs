@@ -107,6 +107,9 @@ public partial class CellEditorComponent :
     public NodePath MembraneColorPickerPath = null!;
 
     [Export]
+    public NodePath ATPBalancePanelPath = null!;
+
+    [Export]
     public NodePath ATPBalanceLabelPath = null!;
 
     [Export]
@@ -206,6 +209,7 @@ public partial class CellEditorComponent :
     private Slider rigiditySlider = null!;
     private TweakedColourPicker membraneColorPicker = null!;
 
+    private Control atpBalancePanel = null!;
     private Label atpBalanceLabel = null!;
     private Label atpProductionLabel = null!;
     private Label atpConsumptionLabel = null!;
@@ -585,6 +589,7 @@ public partial class CellEditorComponent :
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
+        atpBalancePanel = GetNode<Control>(ATPBalancePanelPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
@@ -1313,6 +1318,7 @@ public partial class CellEditorComponent :
                 WorstPatchLabelPath.Dispose();
                 BestPatchLabelPath.Dispose();
                 MembraneColorPickerPath.Dispose();
+                ATPBalancePanelPath.Dispose();
                 ATPBalanceLabelPath.Dispose();
                 ATPProductionLabelPath.Dispose();
                 ATPConsumptionLabelPath.Dispose();

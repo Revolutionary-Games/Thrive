@@ -53,6 +53,12 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath ModifyOrganelleTutorialPath = null!;
 
+    [Export]
+    public NodePath AtpBalanceIntroductionPath = null!;
+
+    [Export]
+    public NodePath AtpBalanceBarHighlightPath = null!;
+
 #pragma warning disable CA2213
     private CustomWindow editorEntryReport = null!;
     private CustomWindow patchMap = null!;
@@ -67,6 +73,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomWindow madeNoChangesTutorial = null!;
     private CustomWindow flagellumPlacementTutorial = null!;
     private CustomWindow modifyOrganelleTutorial = null!;
+    private CustomWindow atpBalanceIntroduction = null!;
 #pragma warning restore CA2213
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
@@ -80,6 +87,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public ControlHighlight? CellEditorRedoHighlight { get; private set; }
 
     public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
+
+    public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
     public bool EditorEntryReportVisible
     {
@@ -328,6 +337,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool AtpBalanceIntroductionVisible
+    {
+        get => atpBalanceIntroduction.Visible;
+        set
+        {
+            if (value == atpBalanceIntroduction.Visible)
+                return;
+
+            if (value)
+            {
+                atpBalanceIntroduction.Show();
+            }
+            else
+            {
+                atpBalanceIntroduction.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomWindow>(EditorEntryReportPath);
@@ -343,10 +371,12 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         madeNoChangesTutorial = GetNode<CustomWindow>(MadeNoChangesTutorialPath);
         flagellumPlacementTutorial = GetNode<CustomWindow>(FlagellumPlacementTutorialPath);
         modifyOrganelleTutorial = GetNode<CustomWindow>(ModifyOrganelleTutorialPath);
+        atpBalanceIntroduction = GetNode<CustomWindow>(AtpBalanceIntroductionPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
+        AtpBalanceBarHighlight = GetNode<ControlHighlight>(AtpBalanceBarHighlightPath);
 
         PauseMode = PauseModeEnum.Process;
     }
@@ -393,6 +423,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
                 MadeNoChangesTutorialPath.Dispose();
                 FlagellumPlacementTutorialPath.Dispose();
                 ModifyOrganelleTutorialPath.Dispose();
+                AtpBalanceIntroductionPath.Dispose();
+                AtpBalanceBarHighlightPath.Dispose();
             }
         }
 

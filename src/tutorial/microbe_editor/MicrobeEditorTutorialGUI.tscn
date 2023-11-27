@@ -34,6 +34,8 @@ NegativeAtpBalanceTutorialPath = NodePath("NegativeAtpBalanceTutorial")
 MadeNoChangesTutorialPath = NodePath("MadeNoChangesTutorial")
 FlagellumPlacementTutorialPath = NodePath("FlagellumPlacementTutorial")
 ModifyOrganelleTutorialPath = NodePath("ModifyOrganelleTutorial")
+AtpBalanceIntroductionPath = NodePath("AtpBalanceIntroduction")
+AtpBalanceBarHighlightPath = NodePath("AtpBalanceBarHighlight")
 
 [node name="AddWindowReorderingSupportToSiblings" parent="." instance=ExtResource( 10 )]
 
@@ -469,6 +471,62 @@ rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
 
+[node name="AtpBalanceBarHighlight" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="AtpBalanceIntroduction" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 91.0
+margin_right = 160.0
+margin_bottom = 435.0
+rect_min_size = Vector2( 260, 240 )
+theme = ExtResource( 2 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+PreventsMouseCaptureWhileOpen = false
+WindowTitle = "TUTORIAL"
+Description = "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
+LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AtpBalanceIntroduction"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AtpBalanceIntroduction/ScrollContainer"]
+margin_right = 320.0
+margin_bottom = 344.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomRichTextLabel" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_right = 320.0
+margin_bottom = 24.0
+custom_fonts/normal_font = ExtResource( 4 )
+ExtendedBbcode = ""
+
+[node name="Control" type="Control" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 320.0
+margin_bottom = 305.0
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
+margin_left = 105.0
+margin_top = 309.0
+margin_right = 215.0
+margin_bottom = 344.0
+rect_min_size = Vector2( 110, 0 )
+size_flags_horizontal = 4
+text = "GOT_IT"
+
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
 [connection signal="hide" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorIntroduction" ]]
@@ -488,3 +546,5 @@ text = "GOT_IT"
 [connection signal="pressed" from="MadeNoChangesTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "MadeNoChangesTutorial" ]]
 [connection signal="hide" from="NegativeAtpBalanceTutorial" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]
 [connection signal="pressed" from="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "NegativeAtpBalanceTutorial" ]]
+[connection signal="hide" from="AtpBalanceIntroduction" to="." method="OnSpecificCloseClicked" binds= [ "AtpBalanceIntroduction" ]]
+[connection signal="pressed" from="AtpBalanceIntroduction/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "AtpBalanceIntroduction" ]]
