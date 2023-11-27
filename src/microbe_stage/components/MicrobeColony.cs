@@ -501,12 +501,12 @@
         public static bool RemoveFromColony(this ref MicrobeColony colony, in Entity colonyEntity, Entity removedMember,
             EntityCommandRecorder recorder)
         {
-            if (colonyEntity.Has<EarlyMulticellularSpeciesMember>())
+            if (colonyEntity.Has<MulticellularGrowth>())
             {
                 // Lost a member of the multicellular organism
-                throw new NotImplementedException();
-
-                // OnMulticellularColonyCellLost(microbe);
+                ref var growth = ref colonyEntity.Get<MulticellularGrowth>();
+                growth.OnMulticellularColonyCellLost(ref colonyEntity.Get<OrganelleContainer>(),
+                    colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
             }
 
             bool removedMemberIsLeader = false;
