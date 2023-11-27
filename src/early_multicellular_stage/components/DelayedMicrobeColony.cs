@@ -1,4 +1,4 @@
-namespace Components
+﻿namespace Components
 {
     using DefaultEcs;
 
@@ -25,7 +25,7 @@ namespace Components
         /// </summary>
         /// <param name="growAdditionalMembers">
         ///   How many members to add (should be one less than the early multicellular body plan count for fully
-        /// grown colony)
+        ///   grown colony)
         /// </param>
         public DelayedMicrobeColony(int growAdditionalMembers)
         {
