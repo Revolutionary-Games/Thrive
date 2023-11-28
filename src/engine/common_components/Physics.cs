@@ -102,5 +102,17 @@
                 Physics.CollisionState.DisableCollisions :
                 Physics.CollisionState.EnableCollisions;
         }
+
+        public static Physics CreatePhysicsForMicrobe(bool disabledInitially = false)
+        {
+            return new Physics
+            {
+                AxisLock = Physics.AxisLockType.YAxisWithRotation,
+                LinearDamping = Constants.MICROBE_PHYSICS_DAMPING,
+                AngularDamping = Constants.MICROBE_PHYSICS_DAMPING_ANGULAR,
+                TrackVelocity = true,
+                BodyDisabled = disabledInitially,
+            };
+        }
     }
 }

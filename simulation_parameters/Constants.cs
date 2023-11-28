@@ -37,6 +37,7 @@ public static class Constants
     public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
     public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
     public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
+    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -59,6 +60,19 @@ public static class Constants
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    /// <summary>
+    ///   Needed to get the cell positions when creating the actual colonies to line up where they should.
+    ///   TODO: figure out a better approach to multicellular cell positioning than this to avoid gaps (or maybe a post
+    ///   process step when membranes are ready to pull cells closer to close up any gaps?)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Lowering this makes up/down direction cells closer to touching, but increases overlap on horizontally next
+    ///     to each other.
+    ///   </para>
+    /// </remarks>
+    public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
@@ -165,9 +179,9 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 50.0f;
+    public const float FLAGELLA_BASE_FORCE = 55.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1200.0f;
+    public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -346,7 +360,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 10000.0f;
+    public const float MUCILAGE_JET_FACTOR = 100000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -363,7 +377,7 @@ public static class Constants
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
 
     public const float CHUNK_PHYSICS_DAMPING = 0.2f;
-    public const float MICROBE_PHYSICS_DAMPING = 0.97f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.99f;
 
     /// <summary>
     ///   This only really matters when cells are dead
@@ -624,10 +638,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    // TODO: unify the following two variables
-    public const float ENGULF_EJECTION_VELOCITY = 5.0f;
-
-    public const float ENGULF_EJECTION_FORCE = 10.0f;
+    public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
@@ -700,9 +711,14 @@ public static class Constants
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
-    ///   Damage a single pilus stab does
+    ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 20.0f;
+    public const float PILUS_BASE_DAMAGE = 240.0f;
+
+    /// <summary>
+    ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
+    /// </summary>
+    public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 

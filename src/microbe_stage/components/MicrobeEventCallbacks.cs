@@ -12,6 +12,14 @@
     [JSONDynamicTypeAllowed]
     public struct MicrobeEventCallbacks
     {
+        /// <summary>
+        ///   Triggers whenever the player enters unbind mode
+        ///   <remarks>
+        ///     <para>
+        ///       Only works for the player
+        ///     </para>
+        ///   </remarks>
+        /// </summary>
         public Action<Entity>? OnUnbindEnabled;
 
         public Action<Entity>? OnUnbound;
