@@ -1074,7 +1074,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 ref var engulfable = ref player.Get<Engulfable>();
 
                 if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
+                {
                     TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+
+                    // TODO: re-enable the editor button if the player is ejected from engulfment
+                    OnCanEditStatusChanged(false);
+                }
             }
             catch (Exception e)
             {
