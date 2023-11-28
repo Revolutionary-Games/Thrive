@@ -45,12 +45,12 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (SimulationParameters.Instance.GetAllCompounds().ContainsKey("mucilage"))
         {
             shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.Name == mucilage.Name)).ToList();
+                .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.Name == mucilage.Name)).ToList();
         }
         else
         {
             shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && (!c.IsAgent)).ToList();
+                .Where(c => !c.IsEnvironmental && (!c.IsAgent)).ToList();
         }
 
         foreach (var compound in shownChoices)
