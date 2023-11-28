@@ -208,6 +208,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // Player just became dead
             GD.Print("Detected player is no longer alive after last simulation update");
             OnPlayerDied(Player);
+            playerAlive = false;
         }
 
         if (HasPlayer)
@@ -232,6 +233,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
                     new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
+
+                if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+                {
+                    MakeEditorForFreebuildAvailable();
+                }
+            }
+            else if (playerAlive)
+            {
+                MakeEditorForFreebuildAvailable();
             }
 
             elapsedSinceEntityPositionCheck += delta;
