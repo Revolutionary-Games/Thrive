@@ -263,7 +263,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             throw new InvalidOperationException("UpdateHealth called before stage is set");
 
         // Normal health update if there is a player and the player was not engulfed
-        if (stage.HasPlayer && stage.Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.Ingested)
+        if (stage.HasPlayer &&
+            stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
             healthBar.TintProgress = defaultHealthBarColour;
