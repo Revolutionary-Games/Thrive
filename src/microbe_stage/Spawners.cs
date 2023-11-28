@@ -396,12 +396,12 @@ public static class SpawnHelpers
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud, Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled, multicellularCellType,
-            recorder, out entity, multicellularSpawnState, random);
+        return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
+            multicellularCellType,
+            recorder, out entity, multicellularSpawnState, random));
     }
 
-    public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
-        IWorldSimulation worldSimulation, Species species,
+    public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation, Species species,
         Vector3 location, bool aiControlled, CellType? multicellularCellType, EntityCommandRecorder recorder,
         out EntityRecord entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
         Random? random = null)
@@ -692,7 +692,7 @@ public static class SpawnHelpers
             }
         }
 
-        return (recorder, spawnLimitWeight);
+        return spawnLimitWeight;
     }
 
     /// <summary>

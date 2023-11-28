@@ -209,9 +209,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
 
-        delayedColonyOperationSystem = new DelayedColonyOperationSystem(this, EntitySystem, couldParallelize);
-        multicellularGrowthSystem = new MulticellularGrowthSystem(EntitySystem, parallelRunner);
-
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
 
@@ -222,6 +219,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeReproductionSystem = new MicrobeReproductionSystem(this, SpawnSystem, EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
+
+        delayedColonyOperationSystem =
+            new DelayedColonyOperationSystem(this, SpawnSystem, EntitySystem, couldParallelize);
+        multicellularGrowthSystem = new MulticellularGrowthSystem(this, SpawnSystem, EntitySystem, parallelRunner);
 
         CloudSystem = cloudSystem;
 

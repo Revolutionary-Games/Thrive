@@ -17,11 +17,41 @@
     public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
+        private readonly ISpawnSystem spawnSystem;
 
-        public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, World world, IParallelRunner runner) :
-            base(world, runner, Constants.HUGE_MAX_SPAWNED_ENTITIES)
+        public DelayedColonyOperationSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
+            IParallelRunner runner) : base(world, runner, Constants.HUGE_MAX_SPAWNED_ENTITIES)
         {
             this.worldSimulation = worldSimulation;
+            this.spawnSystem = spawnSystem;
+        }
+
+        public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
+            int colonyTargetIndex, CellTemplate cellTemplate, Species species, IWorldSimulation worldSimulation,
+            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+        {
+            var attachPosition = new AttachedToEntity
+            {
+                AttachedTo = colonyEntity,
+            };
+
+            attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
+
+            var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
+                colonyPosition.Position + colonyPosition.Rotation.Xform(attachPosition.RelativePosition), true,
+                cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud);
+
+            // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
+            // or attaching fails
+            notifySpawnTo.NotifyExternalEntitySpawned(member,
+                Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+
+            member.Set(attachPosition);
+
+            member.Set(new DelayedMicrobeColony(colonyEntity, colonyTargetIndex));
+
+            // Ensure no physics is created before the attach completes
+            member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -110,23 +140,8 @@
 
             foreach (var cellTemplate in cellsToGrow)
             {
-                var attachPosition = new AttachedToEntity
-                {
-                    AttachedTo = entity,
-                };
-
-                attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
-
-                SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species.Species,
-                    parentPosition.Position + parentPosition.Rotation.Xform(attachPosition.RelativePosition), true,
-                    cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud);
-
-                member.Set(attachPosition);
-
-                member.Set(new DelayedMicrobeColony(entity, bodyPlanIndex++));
-
-                // Ensure no physics is created before the attach completes
-                member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
+                CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
+                    worldSimulation, recorder, spawnSystem);
 
                 added = true;
             }

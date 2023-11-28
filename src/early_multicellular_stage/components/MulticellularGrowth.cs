@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using Newtonsoft.Json;
+    using Systems;
 
     /// <summary>
     ///   Keeps track of multicellular growth data
@@ -15,11 +17,12 @@
         // public Dictionary<CellType, Entity>? GrownCells;
 
         /// <summary>
-        ///   List of cells that need to be regrown after being lost in
+        ///   List of cells that need to be regrown, after being lost, in
         ///   <see cref="MulticellularGrowthHelpers.AddMulticellularGrowthCell"/>
         /// </summary>
         public List<int>? LostPartsOfBodyPlan;
 
+        // TODO: update the growth system to reuse these objects instead of needing to clear these to null
         public Dictionary<Compound, float>? CompoundsNeededForNextCell;
 
         public Dictionary<Compound, float>? CompoundsUsedForMulticellularGrowth;
@@ -31,7 +34,7 @@
         /// </summary>
         public CellLayout<CellTemplate>? TargetCellLayout;
 
-        // TODO: switch this to non-nullable
+        // TODO: switch this to non-nullable (and add a separate variable indicating if replacing something)
         /// <summary>
         ///   Once all lost body plan parts have been grown, this is the index the growing resumes at
         /// </summary>
@@ -75,75 +78,27 @@
         /// <summary>
         ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
         /// </summary>
-        public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth)
+        public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
+            in Entity entity, EarlyMulticellularSpecies species, IWorldSimulation worldSimulation,
+            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
         {
-            throw new NotImplementedException();
-
-            // Commented out code
-            // ReSharper disable once CommentTypo
-            /*if (Colony == null)
+            if (!entity.Has<MicrobeColony>())
             {
-                MicrobeColony.CreateColonyForMicrobe(this);
+                var entityRecord = recorder.Record(entity);
 
-                if (Colony == null)
-                    throw new Exception("An issue occured during colony creation!");
+                entityRecord.Set(new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State));
             }
 
-            var template = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex];
+            ref var colonyPosition = ref entity.Get<WorldPosition>();
 
-            var cell = CreateMulticellularColonyMemberCell(template.CellType);
-            cell.MulticellularBodyPlanPartIndex = multicellularGrowth.NextBodyPlanCellToGrowIndex;
+            var cellTemplate = species.Cells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
-            // We don't reset our state here in case we want to be in engulf mode
-            // TODO: grab this from the colony
-            cell.State = State;
-
-            // Attach the created cell to the right spot in our colony
-            var ourTransform = GlobalTransform;
-
-            var attachVector = ourTransform.origin + ourTransform.basis.Xform(Hex.AxialToCartesian(template.Position));
-
-            // Ensure no tiny y component exists here
-            attachVector.y = 0;
-
-            var newCellTransform = new Transform(
-                MathUtils.CreateRotationForOrganelle(template.Orientation) * ourTransform.basis.Quat(),
-                attachVector);
-            cell.GlobalTransform = newCellTransform;
-
-            var newCellPosition = newCellTransform.origin;
-
-            // Adding a cell to a colony snaps it close to its colony parent so we need to find the closes existing
-            // cell in the colony to use as that here
-            var parent = this;
-            var currentDistanceSquared = (newCellPosition - ourTransform.origin).LengthSquared();
-
-            foreach (var colonyMember in Colony.ColonyMembers)
-            {
-                if (colonyMember == this)
-                    continue;
-
-                var distance = (colonyMember.GlobalTransform.origin - newCellPosition).LengthSquared();
-
-                if (distance < currentDistanceSquared)
-                {
-                    parent = colonyMember;
-                    currentDistanceSquared = distance;
-                }
-            }
-
-            Colony.AddToColony(cell, parent);
+            DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
+                multicellularGrowth.NextBodyPlanCellToGrowIndex,
+                cellTemplate, species, worldSimulation, recorder, notifySpawnTo);
 
             ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
-            multicellularGrowth.CompoundsNeededForNextCell = null;*/
-        }
-
-        public static void BecomeFullyGrownMulticellularColony(this ref MulticellularGrowth multicellularGrowth)
-        {
-            while (!multicellularGrowth.IsFullyGrownMulticellular)
-            {
-                multicellularGrowth.AddMulticellularGrowthCell();
-            }
+            multicellularGrowth.CompoundsNeededForNextCell = null;
         }
 
         public static void ResetMulticellularProgress(this ref MulticellularGrowth multicellularGrowth,
