@@ -209,6 +209,11 @@ public static class MicrobeInternalCalculations
         return finalSpeed;
     }
 
+    public static float SpeedToUserReadableNumber(float rawSpeed)
+    {
+        return rawSpeed * 100;
+    }
+
     /// <summary>
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>

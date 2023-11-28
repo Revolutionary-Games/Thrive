@@ -208,6 +208,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // Player just became dead
             GD.Print("Detected player is no longer alive after last simulation update");
             OnPlayerDied(Player);
+            playerAlive = false;
         }
 
         if (HasPlayer)
@@ -232,6 +233,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
                     new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
+
+                if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+                {
+                    MakeEditorForFreebuildAvailable();
+                }
+            }
+            else if (playerAlive)
+            {
+                MakeEditorForFreebuildAvailable();
             }
 
             elapsedSinceEntityPositionCheck += delta;
@@ -357,9 +367,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// </summary>
     public override void MoveToEditor()
     {
-        if (!HasPlayer || Player.Get<Health>().Dead)
+        if (!HasPlayer || Player.Get<Health>().Dead || PlayerIsEngulfed(Player))
         {
-            GD.PrintErr("Player object disappeared or died while transitioning to the editor");
+            GD.PrintErr("Player object disappeared, died, or was engulfed while transitioning to the editor");
+            HUD.OnCancelEditorEntry();
             return;
         }
 
@@ -419,9 +430,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     /// </summary>
     public void MoveToMulticellular()
     {
-        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>())
+        if (!HasPlayer || Player.Get<Health>().Dead || !Player.Has<MicrobeColony>() || PlayerIsEngulfed(Player))
         {
             GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
+            HUD.OnCancelEditorEntry();
             return;
         }
 
@@ -659,8 +671,28 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (HasPlayer)
         {
+            ref var health = ref Player.Get<Health>();
+
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            Player.Get<Health>().DealDamage(9999.0f, "suicide");
+            health.DealDamage(9999.0f, "suicide");
+
+            // Force digestion to complete immediately
+            if (Player.Has<Engulfable>())
+            {
+                ref var engulfable = ref Player.Get<Engulfable>();
+
+                if (engulfable.PhagocytosisStep is not (PhagocytosisPhase.None or PhagocytosisPhase.Ejection))
+                {
+                    GD.Print("Forcing player digestion to progress much faster");
+
+                    // Seems like there's no really good way to force digestion to complete immediately, so instead we
+                    // clear everything here to force the digestion to complete immediately
+                    engulfable.AdditionalEngulfableCompounds?.Clear();
+
+                    ref var storage = ref Player.Get<CompoundStorage>();
+                    storage.Compounds.ClearCompounds();
+                }
+            }
         }
     }
 
@@ -990,12 +1022,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         HandlePlayerDeath();
 
-        bool engulfed = false;
-
-        if (player.IsAlive && player.Has<Engulfable>())
-        {
-            engulfed = player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
-        }
+        bool engulfed = PlayerIsEngulfed(player);
 
         // Engulfing death has a different tutorial
         if (!engulfed)
@@ -1003,6 +1030,27 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         // Don't clear the player object here as we want to wait until the player entity is deleted before creating
         // a new one to avoid having two player entities existing at the same time
+    }
+
+    private bool PlayerIsEngulfed(Entity player)
+    {
+        if (player.IsAlive && player.Has<Engulfable>())
+        {
+            return player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Makes the freebuild editor immediately available (called each update as long as the player is alive)
+    /// </summary>
+    private void MakeEditorForFreebuildAvailable()
+    {
+        if (PlayerIsEngulfed(Player))
+            return;
+
+        OnCanEditStatusChanged(true);
     }
 
     // These need to use invoke as during gameplay code these can be called in a multithreaded way
@@ -1046,7 +1094,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 ref var engulfable = ref player.Get<Engulfable>();
 
                 if (hostileCell.CanDigestObject(ref engulfable) == DigestCheckResult.Ok)
+                {
                     TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+
+                    // TODO: re-enable the editor button if the player is ejected from engulfment
+                    OnCanEditStatusChanged(false);
+                }
             }
             catch (Exception e)
             {

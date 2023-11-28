@@ -25,8 +25,8 @@
 
         private bool timeToUpdate;
 
-        public EntitySignalingSystem(World world, IParallelRunner runner) : base(world, runner,
-            Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
+        public EntitySignalingSystem(World world, IParallelRunner runner) :
+            base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
         {
         }
 
