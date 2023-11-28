@@ -41,17 +41,8 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
-        // Probably can be replaced with better logic
-        if (SimulationParameters.Instance.GetAllCompounds().ContainsKey("mucilage"))
-        {
-            shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-                .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.Name == mucilage.Name)).ToList();
-        }
-        else
-        {
-            shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-                .Where(c => !c.IsEnvironmental && (!c.IsAgent)).ToList();
-        }
+        shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
+            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.InternalName == mucilage.InternalName)).ToList();
 
         foreach (var compound in shownChoices)
             compounds.AddItem(compound.Name);
