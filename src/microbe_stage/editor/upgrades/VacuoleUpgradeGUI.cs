@@ -23,10 +23,14 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213
 
+    private Compound mucilage = null!;
+
     private List<Compound>? shownChoices;
 
     public override void _Ready()
     {
+        mucilage = SimulationParameters.Instance.GetCompound("sunlight");
+
         compounds = GetNode<OptionButton>(CompoundsPath);
         description = GetNode<Label>(CompoundDescriptionPath);
         isSpecializedCheckbox = GetNode<CheckBox>(IsSpecializedCheckboxPath);
@@ -41,7 +45,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (SimulationParameters.Instance.GetAllCompounds().ContainsKey("mucilage"))
         {
             shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.Name == SimulationParameters.Instance.GetCompound("mucilage").Name)).ToList();
+            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.Name == mucilage.Name)).ToList();
         }
         else
         {
