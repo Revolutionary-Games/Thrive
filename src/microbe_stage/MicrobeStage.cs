@@ -1115,7 +1115,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     private void OnPlayerEjectedFromHostileEngulfer(Entity player)
     {
         // Re-check the reproduction status with the normal reproduction status check
-        OnPlayerReproductionStatusChanged(player.Get<OrganelleContainer>().AllOrganellesDivided);
+        OnPlayerReproductionStatusChanged(player, player.Get<OrganelleContainer>().AllOrganellesDivided);
     }
 
     [DeserializedCallbackAllowed]
