@@ -74,9 +74,6 @@
 
         // The following variables are internal for the collision management system and should not be modified
         [JsonIgnore]
-        public bool CurrentCollisionState;
-
-        [JsonIgnore]
         public bool CollisionFilterCallbackRegistered;
 
         /// <summary>

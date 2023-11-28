@@ -37,6 +37,9 @@ void PhysicsBody::SetCollisionRecordingTarget(CollisionRecordListType target, in
     collisionRecordingTarget = target;
     maxCollisionsToRecord = maxCount;
     activeRecordedCollisionCount = 0;
+
+    if (collisionRecordingTarget == nullptr && maxCollisionsToRecord > 0)
+        LOG_ERROR("Collision recording will record into null pointer");
 }
 
 void PhysicsBody::ClearCollisionRecordingTarget() noexcept
@@ -44,6 +47,9 @@ void PhysicsBody::ClearCollisionRecordingTarget() noexcept
     collisionRecordingTarget = nullptr;
     maxCollisionsToRecord = 0;
     activeRecordedCollisionCount = 0;
+
+    if (activeUserPointerFlags & PHYSICS_BODY_RECORDING_FLAG)
+        LOG_ERROR("Collision recording was cleared while flag is still active");
 }
 
 // ------------------------------------ //
