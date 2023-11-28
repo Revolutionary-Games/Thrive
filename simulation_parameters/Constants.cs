@@ -60,6 +60,19 @@ public static class Constants
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
 
+    /// <summary>
+    ///   Needed to get the cell positions when creating the actual colonies to line up where they should.
+    ///   TODO: figure out a better approach to multicellular cell positioning than this to avoid gaps (or maybe a post
+    ///   process step when membranes are ready to pull cells closer to close up any gaps?)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Lowering this makes up/down direction cells closer to touching, but increases overlap on horizontally next
+    ///     to each other.
+    ///   </para>
+    /// </remarks>
+    public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
+
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;

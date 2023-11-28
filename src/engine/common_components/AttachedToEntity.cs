@@ -46,10 +46,18 @@
         ///   the hard position set in the body plan to avoid some attach weirdness bugs, though now this is much more
         ///   dependent on intercellular matrix graphics to look good (which at the time of writing is not implemented)
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     See the TODO on <see cref="Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER"/> about how this doesn't
+        ///     exactly work perfectly, but at least removes one different bug.
+        ///   </para>
+        /// </remarks>
         public static void CreateMulticellularAttachPosition(this ref AttachedToEntity attachedToEntity,
             Hex cellTemplatePosition, int cellTemplateOrientation)
         {
-            attachedToEntity.RelativePosition = Hex.AxialToCartesian(cellTemplatePosition);
+            attachedToEntity.RelativePosition = Hex.AxialToCartesian(cellTemplatePosition) *
+                Constants.MULTICELLULAR_CELL_DISTANCE_MULTIPLIER;
+
             attachedToEntity.RelativeRotation = MathUtils.CreateRotationForOrganelle(cellTemplateOrientation);
         }
     }

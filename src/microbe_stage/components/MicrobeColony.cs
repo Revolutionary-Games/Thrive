@@ -1044,9 +1044,8 @@
         ///   </para>
         /// </remarks>
         /// <returns>Parent index</returns>
-        public static int CalculateSensibleParentIndexForMulticellularGrowth(this ref MicrobeColony colony,
-            int indexToAddTo,
-            ref AttachedToEntity calculatedPosition)
+        public static int CalculateSensibleParentIndexForMulticellularGrowthOrder(this ref MicrobeColony colony,
+            int indexToAddTo, ref AttachedToEntity calculatedPosition)
         {
             if (indexToAddTo < 1)
                 GD.PrintErr("Index to add to should be at least 1 when looking for colony parent to use");
