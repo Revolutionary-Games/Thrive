@@ -671,8 +671,28 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         if (HasPlayer)
         {
+            ref var health = ref Player.Get<Health>();
+
             // This doesn't use the microbe damage calculation as this damage can't be resisted
-            Player.Get<Health>().DealDamage(9999.0f, "suicide");
+            health.DealDamage(9999.0f, "suicide");
+
+            // Force digestion to complete immediately
+            if (Player.Has<Engulfable>())
+            {
+                ref var engulfable = ref Player.Get<Engulfable>();
+
+                if (engulfable.PhagocytosisStep is not (PhagocytosisPhase.None or PhagocytosisPhase.Ejection))
+                {
+                    GD.Print("Forcing player digestion to progress much faster");
+
+                    // Seems like there's no really good way to force digestion to complete immediately, so instead we
+                    // clear everything here to force the digestion to complete immediately
+                    engulfable.AdditionalEngulfableCompounds?.Clear();
+
+                    ref var storage = ref Player.Get<CompoundStorage>();
+                    storage.Compounds.ClearCompounds();
+                }
+            }
         }
     }
 
