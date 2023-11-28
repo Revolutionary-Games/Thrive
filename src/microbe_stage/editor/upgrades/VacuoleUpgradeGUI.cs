@@ -29,7 +29,7 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        mucilage = SimulationParameters.Instance.GetCompound("sunlight");
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
 
         compounds = GetNode<OptionButton>(CompoundsPath);
         description = GetNode<Label>(CompoundDescriptionPath);
