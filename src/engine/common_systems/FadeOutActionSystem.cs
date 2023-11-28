@@ -148,8 +148,17 @@
 
                 if (particles == null)
                 {
-                    throw new NullReferenceException(
-                        $"Graphical instance ({spatial.GraphicalInstance}) casted as particles is null");
+                    // Allow one level of indirection node
+                    if (spatial.GraphicalInstance?.GetChildCount() > 0)
+                    {
+                        particles = spatial.GraphicalInstance.GetChild(0) as Particles;
+                    }
+
+                    if (particles == null)
+                    {
+                        throw new NullReferenceException(
+                            $"Graphical instance ({spatial.GraphicalInstance}) casted as particles is null");
+                    }
                 }
 
                 particles.Emitting = false;
