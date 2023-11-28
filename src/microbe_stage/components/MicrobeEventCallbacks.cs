@@ -26,13 +26,13 @@
 
         public Action<Entity, Entity>? OnIngestedByHostile;
 
+        public Action<Entity>? OnEjectedFromHostileEngulfer;
+
         public Action<Entity, Entity>? OnSuccessfulEngulfment;
 
         public Action<Entity>? OnEngulfmentStorageFull;
 
         public Action<Entity, IHUDMessage>? OnNoticeMessage;
-
-        public Action<Entity>? OnEjectedFromHostileEngulfer;
 
         /// <summary>
         ///   Called when the reproduction status of this microbe changes
