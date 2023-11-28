@@ -329,6 +329,12 @@
             // {
             //     organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
             // }
+
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+                callbacks.OnEjectedFromHostileEngulfer?.Invoke(entity);
+            }
         }
 
         public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
