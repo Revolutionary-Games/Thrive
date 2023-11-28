@@ -13,9 +13,6 @@
     /// </summary>
     public struct MulticellularGrowth
     {
-        // TODO: remove if this doesn't end up a useful variable
-        // public Dictionary<CellType, Entity>? GrownCells;
-
         /// <summary>
         ///   List of cells that need to be regrown, after being lost, in
         ///   <see cref="MulticellularGrowthHelpers.AddMulticellularGrowthCell"/>
