@@ -1050,6 +1050,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (PlayerIsEngulfed(Player))
             return;
 
+        if (!CurrentGame!.FreeBuild)
+            return;
+
         OnCanEditStatusChanged(true);
     }
 
