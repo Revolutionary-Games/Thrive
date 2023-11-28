@@ -1058,8 +1058,8 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
-        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+        return MicrobeInternalCalculations.CalculateSpeed(
+            editedMicrobeOrganelles.Organelles, Membrane, Rigidity, !HasNucleus);
     }
 
     public float CalculateRotationSpeed()

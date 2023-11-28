@@ -735,6 +735,13 @@ void PhysicalWorld::ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH:
 const int32_t* PhysicalWorld::EnableCollisionRecording(
     PhysicsBody& body, CollisionRecordListType collisionRecordingTarget, int maxRecordedCollisions)
 {
+    if (maxRecordedCollisions < 1)
+    {
+        LOG_ERROR("Cannot start recording less than 1 collision");
+        DisableCollisionRecording(body);
+        return nullptr;
+    }
+
     body.SetCollisionRecordingTarget(collisionRecordingTarget, maxRecordedCollisions);
 
     if (body.MarkCollisionRecordingEnabled())
@@ -747,12 +754,12 @@ const int32_t* PhysicalWorld::EnableCollisionRecording(
 
 void PhysicalWorld::DisableCollisionRecording(PhysicsBody& body)
 {
-    body.ClearCollisionRecordingTarget();
-
     if (body.MarkCollisionRecordingDisabled())
     {
         UpdateBodyUserPointer(body);
     }
+
+    body.ClearCollisionRecordingTarget();
 }
 
 void PhysicalWorld::AddCollisionIgnore(PhysicsBody& body, const PhysicsBody& ignoredBody, bool skipDuplicates)
@@ -839,12 +846,12 @@ void PhysicalWorld::AddCollisionFilter(PhysicsBody& body, CollisionFilterCallbac
 
 void PhysicalWorld::DisableCollisionFilter(PhysicsBody& body)
 {
-    body.RemoveCollisionFilter();
-
     if (body.MarkCollisionFilterCallbackDisabled())
     {
         UpdateBodyUserPointer(body);
     }
+
+    body.RemoveCollisionFilter();
 }
 
 // ------------------------------------ //
