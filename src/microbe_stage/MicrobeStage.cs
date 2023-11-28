@@ -591,12 +591,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species);
+                earlySpeciesType.Species, WorldSimulation);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species);
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;
@@ -613,27 +613,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 });
 
                 // If multicellular, we want that other cell colony to be fully grown to show budding in action
-                if (Player.Has<EarlyMulticellularSpeciesMember>())
-                {
-                    throw new NotImplementedException();
-
-                    /*daughter.BecomeFullyGrownMulticellularColony();
-
-                    if (daughter.Colony != null)
-                    {
-                        // Add more extra offset between the player and the divided cell
-                        var daughterPosition = daughter.GlobalTransform.origin;
-                        var direction = (playerPosition - daughterPosition).Normalized();
-
-                        var colonyMembers = daughter.Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
-
-                        float distance = MathUtils.GetMaximumDistanceInDirection(direction, daughterPosition,
-                            colonyMembers);
-
-                        daughter.Translation += -direction * distance;
-                    }*/
-                }
-            });
+            }, MulticellularSpawnState.FullColony);
 
         // This is queued to run on the world after the next update as that's when the duplicate entity will spawn
         // The entity is not forced to spawn here immediately to reduce the lag impact that is already caused by
@@ -994,7 +974,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         cellProperties.Divide(ref organelles, Player, playerSpecies, WorldSimulation, WorldSimulation.SpawnSystem,
-            null);
+            null, MulticellularSpawnState.ChanceForFullColony);
     }
 
     private void OnDespawnAllEntitiesCheatUsed(object? sender, EventArgs args)

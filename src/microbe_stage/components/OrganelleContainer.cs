@@ -235,7 +235,7 @@
         /// </summary>
         public static void ResetOrganelleLayout(this ref OrganelleContainer container,
             ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
-            ICellProperties cellProperties, Species baseReproductionCostFrom)
+            ICellProperties cellProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
             container.CreateOrganelleLayout(cellProperties);
             container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
@@ -249,9 +249,10 @@
             // Unbind if a colony's master cell removed its binding agent.
             if (!container.HasBindingAgent && entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                var recorder = worldSimulation.StartRecordingEntityCommands();
+                MicrobeColonyHelpers.UnbindAll(entity, recorder);
 
-                // Colony.RemoveFromColony(this);
+                worldSimulation.FinishRecordingEntityCommands(recorder);
             }
 
             ref var status = ref entity.Get<MicrobeStatus>();
@@ -262,9 +263,9 @@
 
             if (entity.Has<EarlyMulticellularSpeciesMember>())
             {
-                throw new NotImplementedException();
+                ref var growth = ref entity.Get<MulticellularGrowth>();
 
-                // ResetMulticellularProgress();
+                growth.ResetMulticellularProgress(entity, worldSimulation);
             }
 
             container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
@@ -548,7 +549,7 @@
         public static float CalculateReproductionProgress(this ref OrganelleContainer organelleContainer,
             ref ReproductionStatus reproductionStatus, ref SpeciesMember speciesMember, in Entity entity,
             CompoundBag storedCompounds, WorldGenerationSettings worldSettings,
-            out Dictionary<Compound, float> gatheredCompounds, out Dictionary<Compound, float> totalCompounds)
+            out Dictionary<Compound, float> gatheredCompounds, out IReadOnlyDictionary<Compound, float> totalCompounds)
         {
             // Calculate total compounds needed to split all organelles
             totalCompounds = organelleContainer.CalculateTotalReproductionCompounds(entity, speciesMember.Species);
@@ -596,16 +597,21 @@
         ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to
         ///   calculate the fraction done.
         /// </summary>
-        public static Dictionary<Compound, float> CalculateTotalReproductionCompounds(
+        public static IReadOnlyDictionary<Compound, float> CalculateTotalReproductionCompounds(
             this ref OrganelleContainer organelleContainer, in Entity entity, Species species)
         {
             // Multicellular species need to show their total body plan compounds. Other cells and even colonies just
             // use the normal progress calculation for a single cell.
-            if (entity.Has<EarlyMulticellularSpeciesMember>())
+            if (entity.Has<MulticellularGrowth>())
             {
-                throw new NotImplementedException();
+                ref var growth = ref entity.Get<MulticellularGrowth>();
 
-                // return CalculateTotalBodyPlanCompounds();
+                // TODO: check that this is set to null in all the right places
+                if (growth.TotalNeededForMulticellularGrowth == null)
+                    growth.CalculateTotalBodyPlanCompounds(species);
+
+                return growth.TotalNeededForMulticellularGrowth ??
+                    throw new Exception("Total body plan compounds calculation failed");
             }
 
             var result = organelleContainer.CalculateNonDuplicateOrganelleInitialCompositionTotals();

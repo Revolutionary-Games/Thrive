@@ -19,12 +19,18 @@
     [With(typeof(MicrobeStatus))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(Health))]
+    [ReadsComponent(typeof(WorldPosition))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
+        private readonly IWorldSimulation worldSimulation;
+        private readonly ISpawnSystem spawnSystem;
         private GameWorld? gameWorld;
 
-        public MulticellularGrowthSystem(World world, IParallelRunner runner) : base(world, runner)
+        public MulticellularGrowthSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
+            IParallelRunner runner) : base(world, runner, Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
         {
+            this.worldSimulation = worldSimulation;
+            this.spawnSystem = spawnSystem;
         }
 
         public void SetWorld(GameWorld world)
@@ -196,7 +202,12 @@
                 // Except in the case that we were just getting resources for budding, skip in that case
                 if (!multicellularGrowth.IsFullyGrownMulticellular)
                 {
-                    multicellularGrowth.AddMulticellularGrowthCell();
+                    var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                    multicellularGrowth.AddMulticellularGrowthCell(entity, speciesData.Species, worldSimulation,
+                        recorder, spawnSystem);
+
+                    worldSimulation.FinishRecordingEntityCommands(recorder);
                 }
                 else
                 {

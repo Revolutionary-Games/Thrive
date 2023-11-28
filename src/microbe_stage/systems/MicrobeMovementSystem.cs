@@ -203,7 +203,8 @@
                     entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
                 }
 
-                force *= mass / 1000.0f * CheatManager.Speed;
+                // There's an additional divisor here to make the speed cheat reasonable
+                force *= mass / 1000.0f * CheatManager.Speed / 3;
             }
 
             var movementVector = control.MovementDirection * force;
