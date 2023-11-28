@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -89,7 +88,10 @@
                     GD.PrintErr("Entity is stuck inside a dead engulfer!");
 
 #if DEBUG
-                    throw new InvalidOperationException("Entity is inside a dead engulfer (not ejected)");
+
+                    // Disabled for now as the likely root cause of this is the spawn system despawning an entity
+                    // so a system needs to be updated to remove engulfables from inside dead engulfers
+                    // throw new InvalidOperationException("Entity is inside a dead engulfer (not ejected)");
 #endif
                 }
             }

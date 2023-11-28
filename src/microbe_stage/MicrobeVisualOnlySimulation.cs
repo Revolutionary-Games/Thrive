@@ -56,7 +56,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, runner);
 
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, runner);
+        fadeOutActionSystem = new FadeOutActionSystem(this, null, EntitySystem, runner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, runner);
 
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);

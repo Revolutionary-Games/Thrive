@@ -13,14 +13,18 @@
     /// </summary>
     [With(typeof(FadeOutActions))]
     [With(typeof(TimedLife))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [WritesToComponent(typeof(CompoundStorage))]
     public sealed class FadeOutActionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
+        private readonly CompoundCloudSystem? compoundCloudSystem;
 
-        public FadeOutActionSystem(IWorldSimulation worldSimulation, World world, IParallelRunner runner) :
-            base(world, runner)
+        public FadeOutActionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem? compoundCloudSystem,
+            World world, IParallelRunner runner) : base(world, runner, Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
         {
             this.worldSimulation = worldSimulation;
+            this.compoundCloudSystem = compoundCloudSystem;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -71,11 +75,21 @@
                     entity.StartDissolveAnimation(worldSimulation, true, false);
                 }
 
-                if (actions.VentCompounds)
+                // Fade actions can be used without a cloud simulation
+                if (actions.VentCompounds && compoundCloudSystem != null)
                 {
-                    // TODO: implement this
-                    GD.PrintErr("TODO: implement vent compounds on fade");
-                    throw new NotImplementedException();
+                    if (entity.Has<CompoundStorage>() && entity.Has<WorldPosition>())
+                    {
+                        ref var position = ref entity.Get<WorldPosition>();
+                        ref var storage = ref entity.Get<CompoundStorage>();
+
+                        storage.VentAllCompounds(position.Position, compoundCloudSystem);
+                    }
+                    else
+                    {
+                        GD.PrintErr("Cannot vent compounds on fade as entity has no compound storage " +
+                            "(or world position is missing)");
+                    }
                 }
 
                 // Fade started, don't destroy yet
