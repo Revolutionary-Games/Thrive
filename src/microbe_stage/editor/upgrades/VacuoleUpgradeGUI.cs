@@ -29,14 +29,14 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-
         compounds = GetNode<OptionButton>(CompoundsPath);
         description = GetNode<Label>(CompoundDescriptionPath);
         isSpecializedCheckbox = GetNode<CheckBox>(IsSpecializedCheckboxPath);
         compoundSelection = GetNode<VBoxContainer>(CompoundSelectionPath);
 
         compounds.Clear();
+
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
