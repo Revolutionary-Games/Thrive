@@ -276,6 +276,10 @@
                             position.Position, new Random(), customizeCallback, null);
 
                         SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
+
+                        // Don't need to do the normal entity state restore as the entity was killed and will be
+                        // shortly destroyed
+                        return;
                     }
                 }
             }
