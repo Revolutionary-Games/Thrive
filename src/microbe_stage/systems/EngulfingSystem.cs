@@ -119,16 +119,19 @@
                 return;
 
             ref var engulfer = ref entity.Get<Engulfer>();
-            while (engulfer.EngulfedObjects is { Count: > 0 })
+
+            if (engulfer.EngulfedObjects is not { Count: > 0 })
+                return;
+
+            // Immediately force eject all the engulfed objects
+            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
+            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
             {
-                // Immediately force eject all the engulfed objects
-                var engulfableObject = engulfer.EngulfedObjects[engulfer.EngulfedObjects.Count - 1];
+                var engulfableObject = engulfer.EngulfedObjects![i];
 
                 if (!engulfableObject.Has<Engulfable>())
                 {
-                    // TODO: should this attempt to release all the other objects?
-                    GD.PrintErr("Skip ejecting engulfables on engulfer destroy as engulfed entity is " +
-                        "missing engulfable component");
+                    GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
                     break;
                 }
 
