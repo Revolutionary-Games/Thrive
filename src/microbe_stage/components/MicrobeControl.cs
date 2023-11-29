@@ -85,9 +85,12 @@
 
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                // PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
+                colony.PerformForOtherColonyMembersThanLeader(member =>
+                    member.Get<MicrobeControl>()
+                        .EmitToxin(ref member.Get<OrganelleContainer>(), member.Get<CompoundStorage>().Compounds,
+                            member, agentType));
             }
 
             if (control.AgentEmissionCooldown > 0)
@@ -118,9 +121,12 @@
         {
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                // PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+                // TODO: is it a good idea to allocate a delegate here?
+                colony.PerformForOtherColonyMembersThanLeader(member =>
+                    member.Get<MicrobeControl>()
+                        .QueueSecreteSlime(ref member.Get<OrganelleContainer>(), member, duration));
             }
 
             if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)
