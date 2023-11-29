@@ -145,6 +145,9 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
 
+    [Export]
+    public NodePath RightPanelScrollContainerPath = null!;
+
 #pragma warning disable CA2213
 
     // Light level controls
@@ -225,6 +228,8 @@ public partial class CellEditorComponent :
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
+
+    private ScrollContainer rightPanelScrollContainer = null!;
 
     private PackedScene organelleSelectionButtonScene = null!;
 
@@ -599,6 +604,8 @@ public partial class CellEditorComponent :
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
+
+        rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -1334,6 +1341,7 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
+                RightPanelScrollContainerPath.Dispose();
             }
 
             previewSimulation?.Dispose();

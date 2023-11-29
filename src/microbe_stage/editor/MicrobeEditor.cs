@@ -148,7 +148,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         pauseMenu.GameProperties = CurrentGame;
 
         // Send highlighted controls to the tutorial system
-        cellEditorTab.SendHighlightsToTutorial(TutorialState);
+        cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
+
     }
 
     protected override void InitEditorGUI(bool fresh)

@@ -19,10 +19,10 @@
             if (gui.AtpBalanceBarHighlight == null)
                 throw new InvalidOperationException($"{nameof(gui.AtpBalanceBarHighlight)} has not been set");
 
-            gui.AtpBalanceBarHighlight.TargetControl = ShownCurrently ? ATPBalanceBarControl : null;
+            gui.AtpBalanceBarHighlight.TargetControl = ATPBalanceBarControl;
 
             gui.AtpBalanceIntroductionVisible = ShownCurrently;
-            gui.AtpBalanceBarHighlight.Visible = ShownCurrently;
+            gui.HandleShowingATPBarHighlight();
         }
 
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,

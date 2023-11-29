@@ -409,6 +409,7 @@ CompoundBalancePath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContaine
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
+RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer")
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -919,10 +920,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 372.0
-margin_top = 397.0
-margin_right = 688.0
-margin_bottom = 987.0
+margin_left = 376.0
+margin_top = 401.0
+margin_right = 692.0
+margin_bottom = 991.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]

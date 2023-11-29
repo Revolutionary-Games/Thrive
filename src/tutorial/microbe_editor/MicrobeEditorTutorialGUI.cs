@@ -90,6 +90,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
+    public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
+
     public bool EditorEntryReportVisible
     {
         get => editorEntryReport.Visible;
@@ -399,6 +401,17 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    public void HandleShowingATPBarHighlight()
+    {
+        bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
+        AtpBalanceBarHighlight!.Visible = eitherVisible;
+
+        // Force the scroll panel to scroll down
+        // This is done to show the ATP Balance Bar
+        if (eitherVisible)
+            RightPanelScrollContainer.ScrollVertical = 1000;
     }
 
     protected override void Dispose(bool disposing)
