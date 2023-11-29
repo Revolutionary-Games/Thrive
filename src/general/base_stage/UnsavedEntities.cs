@@ -67,4 +67,9 @@ public sealed class UnsavedEntities
             }
         }
     }
+
+    public void SetExtraIgnoreSource(IReadOnlyCollection<Entity> additionalIgnores)
+    {
+        additionalIgnoreSource = additionalIgnores;
+    }
 }

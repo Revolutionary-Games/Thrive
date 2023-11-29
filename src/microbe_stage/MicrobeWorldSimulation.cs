@@ -231,6 +231,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physics.RemoveGravity();
 
         OnInitialized();
+
+        // In case this is loaded from a save ensure the next save has correct ignore entities
+        entitiesToNotSave.SetExtraIgnoreSource(queuedForDelete);
     }
 
     /// <summary>
