@@ -184,6 +184,15 @@ public static class Constants
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
     /// <summary>
+    ///   How much extra base movement is given per hex. Only applies between
+    ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
+    /// </summary>
+    public const float BASE_MOVEMENT_PER_HEX = 50;
+
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
+
+    /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
     ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
     ///   base density has as much impact on the average density as 4 organelles.
