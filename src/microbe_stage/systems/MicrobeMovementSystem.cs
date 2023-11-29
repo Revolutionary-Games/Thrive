@@ -117,9 +117,7 @@
 
             if (entity.Has<MicrobeColony>())
             {
-                rotationSpeed = Mathf.Clamp(rotationSpeed * entity.Get<MicrobeColony>().ColonyRotationMultiplier,
-                    Math.Max(rotationSpeed * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MIN_ROTATION),
-                    Constants.CELL_MAX_ROTATION);
+                rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
             }
 
             return rotationSpeed;

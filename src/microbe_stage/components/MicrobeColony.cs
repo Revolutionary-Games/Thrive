@@ -43,7 +43,7 @@
         [JsonIgnore]
         public ColonyCompoundBag? ColonyCompounds;
 
-        public float ColonyRotationMultiplier;
+        public float ColonyRotationSpeed;
 
         // TODO: this needs to be hooked up everywhere, right now the entire colony state control from the leader
         // doesn't work
@@ -104,7 +104,7 @@
                 ColonyStructure[member] = leader;
             }
 
-            ColonyRotationMultiplier = 1;
+            ColonyRotationSpeed = 1;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -136,7 +136,7 @@
 
             ColonyStructure = new Dictionary<Entity, Entity>();
 
-            ColonyRotationMultiplier = 1;
+            ColonyRotationSpeed = 1;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -884,44 +884,26 @@
         /// </summary>
         public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
         {
-            var speedFraction = entireColonyShape.TestYRotationInertiaFactor();
-
-            // TODO: a better function (should also update MicrobeInternalCalculations.CalculateRotationSpeed)
-            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2.0f);
-
-            float colonyRotationHelp = 0;
+            float colonyRotation = 0;
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                // Leader uses its own rotation value as the base on top which this rotation multiplier is applied so
-                // this needs to be skipped here
-                if (colonyMember == colony.Leader)
-                    continue;
-
                 ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
-                if (distanceSquared < MathUtils.EPSILON)
-                    continue;
+                // Multiply both the propulsion and mass by the distance from center to simulate leverage
+                // This relies on the bounding of the cell rotation, as a colony can never be faster than the
+                // fastest cell inside it
+                var memberRotation = colonyMember.Get<OrganelleContainer>().RotationSpeed
+                    * (1 + 0.05f * distanceSquared);
 
-                // TODO: should this use the member rotation speed (which is dependent on its size and
-                // how many cilia there are that far away, this is the currently used math) or just count of cilia and
-                // the distance
-                // Convert rotation speed from value that when higher reduces rotation speed to one that increases as
-                // rotation is faster
-                var memberRotation = 1 / colonyMember.Get<OrganelleContainer>().RotationSpeed;
-
-                // TODO: tweak the constant here (and probably also adjust the rotation hindering formula)
-                colonyRotationHelp += memberRotation * Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER *
-                    Mathf.Sqrt(distanceSquared);
+                colonyRotation += memberRotation;
             }
 
-            var multiplier = rotationHindering / colonyRotationHelp;
+            var biasedAverageRotation = colonyRotation / colony.ColonyMembers.Count();
 
-            colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
-                Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
-                Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
+            colony.ColonyRotationSpeed = biasedAverageRotation;
         }
 
         /// <summary>
