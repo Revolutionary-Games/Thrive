@@ -33,9 +33,6 @@
 
             reproductionStatus.MissingCompoundsForBaseReproduction.Clear();
             reproductionStatus.MissingCompoundsForBaseReproduction.Merge(species.BaseReproductionCost);
-
-            // TODO: there was a line here to reset the multicellular growth needed totals, so whatever calls this will
-            // need to handle that in the future
         }
 
         public static void CalculateAlreadyUsedBaseReproductionCompounds(this ref ReproductionStatus reproductionStatus,
