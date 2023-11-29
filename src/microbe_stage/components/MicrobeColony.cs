@@ -317,11 +317,12 @@
         }
 
         /// <summary>
-        ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
+        ///   Perform an action for all members of this cell's colony other than the leader
         /// </summary>
-        public static void PerformForOtherColonyMembersThanLeader(this ref MicrobeColony colony, Action<Entity> action,
-            Entity skipEntity)
+        public static void PerformForOtherColonyMembersThanLeader(this ref MicrobeColony colony, Action<Entity> action)
         {
+            var skipEntity = colony.Leader;
+
             foreach (var cell in colony.ColonyMembers)
             {
                 if (cell == skipEntity)
@@ -646,14 +647,22 @@
             if (!organelles.CanUnbind(ref entity.Get<SpeciesMember>(), entity))
                 return false;
 
+            // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should
+            // keep the disband entire colony functionality
+            // Colony!.RemoveFromColony(this); (when entity is a colony leader)
+            return RemoveFromColony(entity, entityCommandRecorder);
+        }
+
+        /// <summary>
+        ///   Removes the given entity from the microbe colony it is in (if any)
+        /// </summary>
+        /// <returns>True on success</returns>
+        public static bool RemoveFromColony(in Entity entity, EntityCommandRecorder entityCommandRecorder)
+        {
             lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
             {
                 if (entity.Has<MicrobeColony>())
                 {
-                    // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should
-                    // keep the disband entire colony functionality
-                    // Colony!.RemoveFromColony(this);
-
                     ref var colony = ref entity.Get<MicrobeColony>();
 
                     try
@@ -663,6 +672,7 @@
                     catch (Exception e)
                     {
                         GD.PrintErr("Disbanding a colony for a leader failed: ", e);
+                        return false;
                     }
                 }
                 else if (entity.Has<MicrobeColonyMember>())
@@ -684,6 +694,7 @@
                     catch (Exception e)
                     {
                         GD.PrintErr("Disbanding a colony from a member failed: ", e);
+                        return false;
                     }
                 }
             }
