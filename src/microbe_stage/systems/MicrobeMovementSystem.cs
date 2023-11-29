@@ -154,7 +154,8 @@
             }
 
             // Base movement force
-            float force = Constants.BASE_MOVEMENT_FORCE;
+            float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
+                cellProperties.MembraneRigidity, organelles.HexCount);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
