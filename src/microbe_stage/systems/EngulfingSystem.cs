@@ -110,6 +110,34 @@
             return true;
         }
 
+        /// <summary>
+        ///   Eject all engulfables of a destroyed entity (if it is an engulfer)
+        /// </summary>
+        public void OnEntityDestroyed(in Entity entity)
+        {
+            if (!entity.Has<Engulfer>())
+                return;
+
+            ref var engulfer = ref entity.Get<Engulfer>();
+            while (engulfer.EngulfedObjects is { Count: > 0 })
+            {
+                // Immediately force eject all the engulfed objects
+                var engulfableObject = engulfer.EngulfedObjects[engulfer.EngulfedObjects.Count - 1];
+
+                if (!engulfableObject.Has<Engulfable>())
+                {
+                    // TODO: should this attempt to release all the other objects?
+                    GD.PrintErr("Skip ejecting engulfables on engulfer destroy as engulfed entity is " +
+                        "missing engulfable component");
+                    break;
+                }
+
+                ref var engulfable = ref engulfableObject.Get<Engulfable>();
+
+                CompleteEjection(ref engulfer, entity, ref engulfable, engulfableObject, false);
+            }
+        }
+
         protected override void Update(float delta, in Entity entity)
         {
             ref var engulfer = ref entity.Get<Engulfer>();
@@ -1119,7 +1147,7 @@
         }
 
         private void CompleteEjection(ref Engulfer engulfer, in Entity entity, ref Engulfable engulfable,
-            in Entity engulfableObject)
+            in Entity engulfableObject, bool canMoveToHigherLevelEngulfer = true)
         {
             if (engulfer.EngulfedObjects == null)
             {
@@ -1203,7 +1231,7 @@
 
             phagosome?.Hide();
 
-            if (entity.Has<Engulfable>())
+            if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
             {
                 ref var engulfersEngulfable = ref entity.Get<Engulfable>();
 
