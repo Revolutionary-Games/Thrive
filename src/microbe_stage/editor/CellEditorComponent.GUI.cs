@@ -42,7 +42,9 @@ public partial class CellEditorComponent
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+
         tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
+        tutorial.NegativeAtpBalanceTutorial.ATPBalanceBarControl = atpBalancePanel;
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()

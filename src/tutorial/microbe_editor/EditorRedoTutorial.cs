@@ -9,10 +9,6 @@
     /// </summary>
     public class EditorRedoTutorial : TutorialPhase
     {
-        public EditorRedoTutorial()
-        {
-            CanTrigger = false;
-        }
 
         public override string ClosedByName => "CellEditorRedo";
 
@@ -35,7 +31,7 @@
         {
             switch (eventType)
             {
-                case TutorialEventType.TutorialClosed:
+                case TutorialEventType.MicrobeEditorUndo:
                 {
                     if (!HasBeenShown && CanTrigger)
                     {

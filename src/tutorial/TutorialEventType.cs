@@ -167,9 +167,4 @@ public enum TutorialEventType
     ///   Triggers when the player places their first flagellum
     /// </summary>
     MicrobeFlagellumPlaced,
-
-    /// <summary>
-    ///   Triggers when any tutorial has closed
-    /// </summary>
-    TutorialClosed,
 }

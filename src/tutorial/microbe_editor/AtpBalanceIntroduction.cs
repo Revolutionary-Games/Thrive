@@ -30,14 +30,21 @@
         {
             switch (eventType)
             {
-                case TutorialEventType.MicrobeEditorUndo:
+                case TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged:
                 {
-                    if (!HasBeenShown && CanTrigger)
+                    if (args is EnergyBalanceEventArgs energyBalanceEventArgs)
                     {
-                        overallState.EditorRedoTutorial.CanTrigger = true;
-                        Show();
+                        var energyBalanceInfo = energyBalanceEventArgs.EnergyBalanceInfo;
+                        bool isNegativeAtpBalance =
+                            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption;
 
-                        return true;
+                        if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
+                        {
+                            Show();
+                            overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
+
+                            return true;
+                        }
                     }
 
                     break;
