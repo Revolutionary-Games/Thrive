@@ -179,7 +179,7 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 55.0f;
+    public const float FLAGELLA_BASE_FORCE = 60.0f;
 
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
@@ -187,7 +187,7 @@ public static class Constants
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 50;
+    public const float BASE_MOVEMENT_PER_HEX = 45;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
     public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
