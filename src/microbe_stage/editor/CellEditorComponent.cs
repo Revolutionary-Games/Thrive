@@ -1185,11 +1185,14 @@ public partial class CellEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        if (AddOrganelle(ActiveActionName!))
+
+        var organelle = ActiveActionName;
+
+        if (AddOrganelle(organelle!))
         {
             // Only trigger tutorial if an organelle was really placed
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced,
-                new OrganellePlacedEventArgs(GetOrganelleDefinition(ActiveActionName!)), this);
+                new OrganellePlacedEventArgs(GetOrganelleDefinition(organelle!)), this);
         }
     }
 
@@ -1720,15 +1723,6 @@ public partial class CellEditorComponent :
 
         if (placementActions.Count < 1)
             return false;
-
-        if (organelleType == flagellum.InternalName)
-        {
-            if (Editor.CurrentGame.TutorialState.Enabled)
-            {
-                Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeFlagellumPlaced, EventArgs.Empty,
-                    this);
-            }
-        }
 
         var multiAction = new CombinedEditorAction(placementActions);
 

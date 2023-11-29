@@ -162,9 +162,4 @@ public enum TutorialEventType
     ///   Triggers when the first non-cytoplasm organelle divided
     /// </summary>
     MicrobeNonCytoplasmOrganelleDivided,
-
-    /// <summary>
-    ///   Triggers when the player places their first flagellum
-    /// </summary>
-    MicrobeFlagellumPlaced,
 }

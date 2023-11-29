@@ -19,12 +19,20 @@
         {
             switch (eventType)
             {
-                case TutorialEventType.MicrobeFlagellumPlaced:
+                case TutorialEventType.MicrobeEditorOrganellePlaced:
                 {
-                    if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
+                    if (args is OrganellePlacedEventArgs organellePlacedArgs)
                     {
-                        Show();
-                        return true;
+                        OrganelleDefinition flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
+
+                        if (organellePlacedArgs.Definition.InternalName != flagellum.InternalName)
+                            break;
+
+                        if (!HasBeenShown && CanTrigger && !overallState.TutorialActive())
+                        {
+                            Show();
+                            return true;
+                        }
                     }
 
                     break;
