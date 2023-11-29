@@ -175,6 +175,12 @@
                 entity.Get<MicrobeControl>().State = MicrobeState.Normal;
             }
 
+            // Disable compound venting
+            if (entity.Has<UnneededCompoundVenter>())
+            {
+                entity.Get<UnneededCompoundVenter>().VentThreshold = float.MaxValue;
+            }
+
             // Save the original scale for re-applying when ejecting
             ref var spatial = ref entity.Get<SpatialInstance>();
             engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
@@ -293,6 +299,12 @@
                 entity.Get<CompoundAbsorber>().AbsorbSpeed = 0;
             }
 
+            // Re-enable compound venting
+            if (entity.Has<UnneededCompoundVenter>())
+            {
+                entity.Get<UnneededCompoundVenter>().VentThreshold = Constants.DEFAULT_MICROBE_VENT_THRESHOLD;
+            }
+
             // Reset render priority
             // TODO: render priority
             // engulfable.RenderPriority = animation.OriginalRenderPriority;
@@ -317,6 +329,12 @@
             // {
             //     organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
             // }
+
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+                callbacks.OnEjectedFromHostileEngulfer?.Invoke(entity);
+            }
         }
 
         public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,

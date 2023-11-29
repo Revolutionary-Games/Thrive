@@ -204,7 +204,7 @@
                 }
 
                 // There's an additional divisor here to make the speed cheat reasonable
-                force *= mass / 1000.0f * CheatManager.Speed / 3;
+                force *= mass / 1000.0f * CheatManager.Speed / 4;
             }
 
             var movementVector = control.MovementDirection * force;
