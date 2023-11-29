@@ -25,8 +25,12 @@
             if (!attachInfo.AttachedTo.Has<WorldPosition>())
             {
                 // This can happen if the entity is dead now
-                // TODO: should this queue a clear of the data (it's not safe to remove during an update without using
-                // the recorder interface)
+
+                if (!attachInfo.AttachedTo.IsAlive)
+                {
+                    // TODO: should this queue a clear of the data (using entity command recorder), or entity delete?
+                }
+
                 return;
             }
 
