@@ -563,6 +563,22 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         stage.MovingToEditor = true;
     }
 
+    /// <summary>
+    ///   Used to safely cancel editor entry if preconditions are no longer met
+    /// </summary>
+    public void OnCancelEditorEntry()
+    {
+        GD.Print("Canceled editor entry, fading stage back in");
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f);
+
+        // Prevent being stuck in a state where editor can no longer be entered
+        // https://github.com/Revolutionary-Games/Thrive/issues/4204
+        stage!.MovingToEditor = false;
+
+        // TODO: should the editor button be always unlocked like this
+        editorButton.Disabled = false;
+    }
+
     public void ShowPatchName(string localizedPatchName)
     {
         patchNameOverlay.ShowName(localizedPatchName);
@@ -920,9 +936,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected void UpdateReproductionProgress()
     {
-        CalculatePlayerReproductionProgress(
-            out Dictionary<Compound, float> gatheredCompounds,
-            out Dictionary<Compound, float> totalNeededCompounds);
+        CalculatePlayerReproductionProgress(out var gatheredCompounds, out var totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;
@@ -953,7 +967,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     }
 
     protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds);
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds);
 
     protected void UpdateATP(float delta)
     {

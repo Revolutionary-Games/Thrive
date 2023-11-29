@@ -56,7 +56,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, runner);
 
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, runner);
+        fadeOutActionSystem = new FadeOutActionSystem(this, null, EntitySystem, runner);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, runner);
 
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
@@ -144,7 +144,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this);
 
         // TODO: update species member component if species changed?
     }

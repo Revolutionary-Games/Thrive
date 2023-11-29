@@ -8,10 +8,13 @@
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+// Windows.h needs to be before these
+
 #include <debugapi.h>
 #include <processthreadsapi.h>
 
-#include "windows.h"
 #else
 #include <pthread.h>
 #endif

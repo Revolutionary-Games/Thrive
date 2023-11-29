@@ -47,6 +47,9 @@ constexpr uint64_t PHYSICS_BODY_DISABLE_COLLISION_FLAG = 0x4;
 constexpr uint64_t PHYSICS_BODY_SPECIAL_COLLISION_FLAG =
     PHYSICS_BODY_COLLISION_FILTER_FLAG | PHYSICS_BODY_DISABLE_COLLISION_FLAG;
 
+static_assert(STUFFED_POINTER_DATA_MASK ==
+    (PHYSICS_BODY_COLLISION_FILTER_FLAG | PHYSICS_BODY_RECORDING_FLAG | PHYSICS_BODY_DISABLE_COLLISION_FLAG));
+
 #ifdef USE_SMALL_VECTOR_POOLS
 using IgnoredCollisionList = std::vector<JPH::BodyID, boost::pool_allocator<JPH::BodyID>>;
 #else
@@ -61,9 +64,13 @@ class alignas(STUFFED_POINTER_ALIGNMENT) PhysicsBody : public RefCounted<Physics
     friend TrackedConstraint;
     friend ContactListener;
 
-    // Flags used only internally to track some extra state
-    static constexpr uint64_t EXTRA_FLAG_FILTER_LIST = 0x8;
-    static constexpr uint64_t EXTRA_FLAG_FILTER_CALLBACK = 0x16;
+    // Flags used only internally to track some extra state (these are not passed to the user pointer value)
+    static constexpr uint64_t EXTRA_FLAG_FILTER_LIST = 32;
+    static constexpr uint64_t EXTRA_FLAG_FILTER_CALLBACK = 64;
+
+    // Ensure these extra flags don't leak into the other flag area
+    static_assert((EXTRA_FLAG_FILTER_LIST & STUFFED_POINTER_DATA_MASK) == 0);
+    static_assert((EXTRA_FLAG_FILTER_CALLBACK & STUFFED_POINTER_DATA_MASK) == 0);
 
 protected:
 #ifndef USE_OBJECT_POOLS
@@ -147,11 +154,17 @@ public:
 
     inline void SetCollisionFilter(CollisionFilterCallback callback) noexcept
     {
+        if (callback == nullptr)
+            LOG_ERROR("Collision filter callback set to null (use RemoveCollisionFilter to clear the value)");
+
         callbackBasedFilter = callback;
     }
 
     inline void RemoveCollisionFilter() noexcept
     {
+        if (activeUserPointerFlags & EXTRA_FLAG_FILTER_CALLBACK)
+            LOG_ERROR("Removing collision filter method while it is enabled");
+
         callbackBasedFilter = nullptr;
     }
 
@@ -220,12 +233,17 @@ public:
             return true;
 
         activeUserPointerFlags &= ~PHYSICS_BODY_COLLISION_FILTER_FLAG;
-
         return true;
     }
 
     inline bool MarkCollisionFilterCallbackUsed() noexcept
     {
+        if (callbackBasedFilter == nullptr)
+        {
+            LOG_ERROR("Trying to mark collision filter as enabled when the filter pointer is null");
+            return false;
+        }
+
         const auto old = activeUserPointerFlags;
 
         activeUserPointerFlags |= EXTRA_FLAG_FILTER_CALLBACK;
@@ -257,6 +275,9 @@ public:
 
     inline bool MarkCollisionRecordingEnabled() noexcept
     {
+        if (collisionRecordingTarget == nullptr || maxCollisionsToRecord < 1)
+            LOG_ERROR("Enabling collision record flag without target");
+
         const auto old = activeUserPointerFlags;
 
         activeUserPointerFlags |= PHYSICS_BODY_RECORDING_FLAG;
@@ -303,8 +324,18 @@ public:
 
     [[nodiscard]] inline uint64_t CalculateUserPointer() const noexcept
     {
+#ifndef NDEBUG
+        if (!CheckPointerAlignment())
+            LOG_ERROR("Body data pointer alignment error");
+#endif
+
         return reinterpret_cast<uint64_t>(this) |
             (static_cast<uint64_t>(activeUserPointerFlags) & STUFFED_POINTER_DATA_MASK);
+    }
+
+    inline bool CheckPointerAlignment() const noexcept
+    {
+        return (reinterpret_cast<uint64_t>(this) & STUFFED_POINTER_DATA_MASK) == 0;
     }
 
     // ------------------------------------ //
@@ -327,6 +358,7 @@ public:
         // Fail if too much data given
         if (length > static_cast<int>(userData.size()))
         {
+            LOG_ERROR("Physics body has too long user data");
             userDataLength = 0;
             return false;
         }

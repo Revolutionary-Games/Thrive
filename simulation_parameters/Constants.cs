@@ -37,6 +37,7 @@ public static class Constants
     public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
     public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
     public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
+    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -59,6 +60,19 @@ public static class Constants
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    /// <summary>
+    ///   Needed to get the cell positions when creating the actual colonies to line up where they should.
+    ///   TODO: figure out a better approach to multicellular cell positioning than this to avoid gaps (or maybe a post
+    ///   process step when membranes are ready to pull cells closer to close up any gaps?)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Lowering this makes up/down direction cells closer to touching, but increases overlap on horizontally next
+    ///     to each other.
+    ///   </para>
+    /// </remarks>
+    public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
@@ -165,9 +179,18 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 55.0f;
+    public const float FLAGELLA_BASE_FORCE = 60.0f;
 
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
+
+    /// <summary>
+    ///   How much extra base movement is given per hex. Only applies between
+    ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
+    /// </summary>
+    public const float BASE_MOVEMENT_PER_HEX = 45;
+
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -697,9 +720,14 @@ public static class Constants
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
-    ///   Damage a single pilus stab does
+    ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 20.0f;
+    public const float PILUS_BASE_DAMAGE = 240.0f;
+
+    /// <summary>
+    ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
+    /// </summary>
+    public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
