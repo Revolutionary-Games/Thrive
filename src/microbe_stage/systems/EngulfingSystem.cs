@@ -37,6 +37,7 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsOnMainThread]
@@ -189,7 +190,7 @@
 
                 if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
                 {
-                    control.State = MicrobeState.Normal;
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
                 }
                 else
                 {
@@ -214,7 +215,8 @@
             {
                 if (control.State == MicrobeState.Engulf)
                 {
-                    // Force out of incorrect state
+                    // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
+                    // colony that can engulf even if the leader can't)
                     control.State = MicrobeState.Normal;
                 }
             }

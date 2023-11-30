@@ -172,6 +172,7 @@
             // Force mode to normal
             if (entity.Has<MicrobeControl>())
             {
+                // Cells are yanked from colonies so this doesn't need to use colony aware set
                 entity.Get<MicrobeControl>().State = MicrobeState.Normal;
             }
 
