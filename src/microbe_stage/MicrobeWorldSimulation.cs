@@ -33,8 +33,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PhysicsUpdateAndPositionSystem physicsUpdateAndPositionSystem = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
 
-    // private RenderOrderSystem renderOrderSystem = null! = null!;
-
     private SimpleShapeCreatorSystem simpleShapeCreatorSystem = null!;
     private SoundEffectSystem soundEffectSystem = null!;
     private SoundListenerSystem soundListenerSystem = null!;
@@ -77,6 +75,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
+    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
@@ -204,6 +203,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
+        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
@@ -311,6 +311,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         predefinedVisualLoaderSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
         animationControlSystem.Update(delta);
+        microbeRenderPrioritySystem.Update(delta);
 
         simpleShapeCreatorSystem.Update(delta);
         collisionShapeLoaderSystem.Update(delta);
@@ -493,6 +494,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             pilusDamageSystem.Dispose();
             slimeSlowdownSystem.Dispose();
             microbePhysicsCreationAndSizeSystem.Dispose();
+            microbeRenderPrioritySystem.Dispose();
             microbeReproductionSystem.Dispose();
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();

@@ -1291,6 +1291,13 @@ public static class Constants
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
+    public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
+
+    /// <summary>
+    ///   If membrane scene is updated this should be updated as well
+    /// </summary>
+    public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
+
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     // TODO: combine to a common module with launcher as these are there as well

@@ -570,6 +570,8 @@ public static class SpawnHelpers
             ApplyVisualScale = true,
         });
 
+        entity.Set(new RenderPriorityOverride(Constants.MICROBE_DEFAULT_RENDER_PRIORITY));
+
         entity.Set<EntityMaterial>();
 
         entity.Set(new ColourAnimation(Membrane.MembraneTintFromSpeciesColour(usedCellProperties.Colour))
