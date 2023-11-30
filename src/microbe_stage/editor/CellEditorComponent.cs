@@ -1192,7 +1192,6 @@ public partial class CellEditorComponent :
 
     protected override void PerformActiveAction()
     {
-
         var organelle = ActiveActionName;
 
         if (AddOrganelle(organelle!))

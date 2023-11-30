@@ -149,7 +149,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
         // Send highlighted controls to the tutorial system
         cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
-
     }
 
     protected override void InitEditorGUI(bool fresh)
