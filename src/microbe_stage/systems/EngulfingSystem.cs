@@ -196,20 +196,6 @@
                 {
                     checkEngulfStartCollisions = true;
                 }
-
-                ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
-
-                // Play sound
-                if (actuallyEngulfing)
-                {
-                    // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
-                    soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
-                        delta);
-                }
-                else
-                {
-                    soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
-                }
             }
             else
             {
@@ -219,6 +205,20 @@
                     // colony that can engulf even if the leader can't)
                     control.State = MicrobeState.Normal;
                 }
+            }
+
+            ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+
+            // Play sound
+            if (actuallyEngulfing)
+            {
+                // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
+                    delta);
+            }
+            else
+            {
+                soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
             }
 
             bool hasColony = false;
