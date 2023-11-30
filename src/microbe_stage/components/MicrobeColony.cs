@@ -45,6 +45,8 @@
 
         public float ColonyRotationMultiplier;
 
+        // TODO: this needs to be hooked up everywhere, right now the entire colony state control from the leader
+        // doesn't work
         /// <summary>
         ///   The overall state of the colony, this variable is required to allow colonies where only some cells can
         ///   engulf to properly enter engulf mode etc. and ensure newly added cells pick up the right mode.
@@ -101,6 +103,38 @@
 
                 ColonyStructure[member] = leader;
             }
+
+            ColonyRotationMultiplier = 1;
+            ColonyCompounds = null;
+
+            HexCount = 0;
+            CanEngulf = false;
+            DerivedStatisticsCalculated = false;
+            EntityWeightApplied = false;
+        }
+
+        /// <summary>
+        ///   Creates a delay-filled microbe colony. Mainly used by <see cref="Systems.DelayedColonyOperationSystem"/>
+        /// </summary>
+        public MicrobeColony(bool delayAdded, in Entity leader, MicrobeState initialState)
+        {
+            // This parameter exists to differentiate the call signature from the fully immediately created colony
+            // constructor
+            if (!delayAdded)
+                throw new ArgumentException("This constructor is for delay created colonies");
+
+            _ = delayAdded;
+
+            Leader = leader;
+
+            // TODO: pooling
+            // As we need to spawn the entities to add to the colony the next frame, we can only add the lead
+            // cell here when constructing the colony
+            ColonyMembers = new[] { leader };
+
+            ColonyState = initialState;
+
+            ColonyStructure = new Dictionary<Entity, Entity>();
 
             ColonyRotationMultiplier = 1;
             ColonyCompounds = null;
@@ -372,6 +406,63 @@
         }
 
         /// <summary>
+        ///   Finishes adding a queued colony member. This is used by
+        ///   <see cref="Systems.DelayedColonyOperationSystem"/>
+        /// </summary>
+        public static void FinishQueuedMemberAdd(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
+            Entity newMember, int intendedNewMemberIndex, EntityCommandRecorder recorder)
+        {
+            if (!newMember.Has<AttachedToEntity>())
+            {
+                throw new InvalidOperationException(
+                    "This add variant may only be called for partially already added entity");
+            }
+
+            if (newMember.Has<MicrobeColonyMember>())
+                throw new ArgumentException("Microbe already is in a colony");
+
+            if (intendedNewMemberIndex == 0)
+                throw new ArgumentException("Intended new member index may not be 0");
+
+#if DEBUG
+            if (colony.ColonyMembers.Contains(newMember))
+            {
+                throw new InvalidOperationException("Trying to add same newMember twice to colony");
+            }
+#endif
+
+            // TODO: switch to using a pool here. Can't easily switch right now as the array length is used in various
+            // places currently so having the length exceed the actual member count will be problematic
+            // When converting all uses of the member list need to be checked as this is set in quite many places
+            var newMembers = new Entity[colony.ColonyMembers.Length + 1];
+
+            // Specifying an index after all items is the same as specifying last. This makes sure that slightly out
+            // of sync data in delayed apply colony membership doesn't cause issues.
+            if (intendedNewMemberIndex >= newMembers.Length)
+                intendedNewMemberIndex = newMembers.Length - 1;
+
+            // Place at the intended index
+            for (int i = 0; i < colony.ColonyMembers.Length && i < intendedNewMemberIndex; ++i)
+            {
+                newMembers[i] = colony.ColonyMembers[i];
+            }
+
+            newMembers[intendedNewMemberIndex] = newMember;
+
+            for (int i = intendedNewMemberIndex + 1; i < newMembers.Length; ++i)
+            {
+                // As we inserted one new item, the items don't anymore map 1-to-1 between the arrays
+                newMembers[i] = colony.ColonyMembers[i - 1];
+            }
+
+            colony.ColonyMembers = newMembers;
+
+            colony.MarkMembersChanged();
+
+            SetupDelayAddedColonyMemberData(ref colony, colonyEntity, parentIndex, newMember, recorder);
+        }
+
+        /// <summary>
         ///   Sets up an initial colony member that is added in the <see cref="MicrobeColony"/> constructor. Variant
         ///   of <see cref="AddToColony"/> that works a bit specially
         /// </summary>
@@ -410,12 +501,12 @@
         public static bool RemoveFromColony(this ref MicrobeColony colony, in Entity colonyEntity, Entity removedMember,
             EntityCommandRecorder recorder)
         {
-            if (colonyEntity.Has<EarlyMulticellularSpeciesMember>())
+            if (colonyEntity.Has<MulticellularGrowth>())
             {
                 // Lost a member of the multicellular organism
-                throw new NotImplementedException();
-
-                // OnMulticellularColonyCellLost(microbe);
+                ref var growth = ref colonyEntity.Get<MulticellularGrowth>();
+                growth.OnMulticellularColonyCellLost(ref colonyEntity.Get<OrganelleContainer>(),
+                    colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
             }
 
             bool removedMemberIsLeader = false;
@@ -691,18 +782,21 @@
         /// <summary>
         ///   Called for each newMember that is added to a cell colony. Not called for the lead cell.
         /// </summary>
-        public static void OnColonyMemberAdded(in Entity addedEntity)
+        public static void OnColonyMemberAdded(ref MicrobeColony colony, in Entity addedEntity)
         {
             ref var physics = ref addedEntity.Get<Physics>();
             physics.BodyDisabled = true;
 
             ref var control = ref addedEntity.Get<MicrobeControl>();
 
-            // TODO: should this apply the colony's overall state
-            // Multicellular creature can stay in engulf mode when growing things
-            if (!addedEntity.Has<EarlyMulticellularSpeciesMember>() || control.State != MicrobeState.Engulf)
+            if (!addedEntity.Has<EarlyMulticellularSpeciesMember>())
             {
                 control.State = MicrobeState.Normal;
+            }
+            else
+            {
+                // Multicellular creature can stay in wanted mode while growing
+                control.State = colony.ColonyState;
             }
 
             if (addedEntity.Has<OrganelleContainer>())
@@ -743,9 +837,46 @@
 
             var singleCellWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelles.Count);
 
-            weight = singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
-                colony.ColonyMembers.Length;
+            weight = CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
             return true;
+        }
+
+        public static float CalculateColonyAdditionalEntityWeight(float singleCellWeight, int memberCount)
+        {
+            return singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
+                memberCount;
+        }
+
+        /// <summary>
+        ///   Makes an entity that is being spawned into a fully grown multicellular colony
+        /// </summary>
+        /// <returns>How much the added colony members add entity weight</returns>
+        public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, EarlyMulticellularSpecies species,
+            float originalWeight)
+        {
+            int members = species.Cells.Count - 1;
+
+            // Ignore fully spawning early multicellular species that only have one cell in them
+            if (members < 1)
+                return 0;
+
+            SetupColonyWithMembersDelayed(entity, members);
+
+            return CalculateColonyAdditionalEntityWeight(originalWeight, members);
+        }
+
+        public static float SpawnAsPartialMulticellularColony(EntityRecord entity, float originalWeight,
+            int membersToAdd)
+        {
+            if (membersToAdd < 1)
+            {
+                GD.PrintErr("Spawn as partially grown colony was passed 0 as number of cells to add");
+                return 0;
+            }
+
+            SetupColonyWithMembersDelayed(entity, membersToAdd);
+
+            return CalculateColonyAdditionalEntityWeight(originalWeight, membersToAdd);
         }
 
         /// <summary>
@@ -854,6 +985,105 @@
             return (newTranslation, cellPosition.Rotation * globalParentRotation.Inverse());
         }
 
+        /// <summary>
+        ///   Looks at all the existing colony members and picks the one that is most sensible for the new cell to
+        ///   attach to in the colony.
+        /// </summary>
+        /// <returns>Parent index</returns>
+        /// <remarks>
+        ///   <para>
+        ///     As the multicellular editor doesn't specify the parent cells of the cells in the body layout, this
+        ///     method is used to determine dynamically which cell a given new colony member should be parented to.
+        ///   </para>
+        /// </remarks>
+        public static int CalculateSensibleParentIndexForMulticellular(this ref MicrobeColony colony,
+            ref AttachedToEntity calculatedPosition)
+        {
+            float bestDistance = float.MaxValue;
+            int bestParentIndex = 0;
+
+            var members = colony.ColonyMembers;
+
+            for (int i = 0; i < members.Length; ++i)
+            {
+                float distance;
+                if (i == 0)
+                {
+                    // Colony leader has no attached to component
+                    distance = calculatedPosition.RelativePosition.LengthSquared();
+                }
+                else
+                {
+                    distance = members[i].Get<AttachedToEntity>().RelativePosition
+                        .DistanceSquaredTo(calculatedPosition.RelativePosition);
+                }
+
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestParentIndex = i;
+                }
+            }
+
+            // Check against the exact starting value indicating nothing was found
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (bestDistance == float.MaxValue)
+                GD.PrintErr("Could not find sensible parent index to attach to colony");
+
+            return bestParentIndex;
+        }
+
+        /// <summary>
+        ///   This might be useful in the future to check body plan parent distances when taking into account the
+        ///   growth order
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Looks at all the colony members until the given index (exclusive upper bound) and picks the one that is
+        ///     most sensible for the new cell to attach to in the colony.
+        ///   </para>
+        /// </remarks>
+        /// <returns>Parent index</returns>
+        public static int CalculateSensibleParentIndexForMulticellularGrowthOrder(this ref MicrobeColony colony,
+            int indexToAddTo, ref AttachedToEntity calculatedPosition)
+        {
+            if (indexToAddTo < 1)
+                GD.PrintErr("Index to add to should be at least 1 when looking for colony parent to use");
+
+            float bestDistance = float.MaxValue;
+            int bestParentIndex = 0;
+
+            var members = colony.ColonyMembers;
+
+            for (int i = 0; i < members.Length && i < indexToAddTo; ++i)
+            {
+                float distance;
+                if (i == 0)
+                {
+                    // Colony leader has no attached to component
+                    distance = calculatedPosition.RelativePosition.LengthSquared();
+                }
+                else
+                {
+                    distance = members[i].Get<AttachedToEntity>().RelativePosition
+                        .DistanceSquaredTo(calculatedPosition.RelativePosition);
+                }
+
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestParentIndex = i;
+                }
+            }
+
+            // Check against the exact starting value indicating nothing was found
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (bestDistance == float.MaxValue)
+                GD.PrintErr("Could not find sensible parent index to attach to colony");
+
+            return bestParentIndex;
+        }
+
         public static void DebugCheckColonyHasNoDeadEntities(this ref MicrobeColony colony)
         {
             foreach (var colonyMember in colony.ColonyMembers)
@@ -906,6 +1136,28 @@
         private static void SetupColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
             in Entity newMember, Vector3 offsetToColonyLeader, Quat rotationToLeader, EntityCommandRecorder recorder)
         {
+            OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
+
+            var memberRecord = recorder.Record(newMember);
+            memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
+
+            OnColonyMemberAdded(ref colony, newMember);
+        }
+
+        private static void SetupDelayAddedColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity,
+            int parentIndex,
+            in Entity newMember, EntityCommandRecorder recorder)
+        {
+            OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
+
+            // This variant is used for entities that have already the attached to component created
+
+            OnColonyMemberAdded(ref colony, newMember);
+        }
+
+        private static void OnCommonColonyMemberSetup(ref MicrobeColony colony, Entity colonyEntity, int parentIndex,
+            Entity newMember, EntityCommandRecorder recorder)
+        {
             ref var cellProperties = ref colonyEntity.Get<CellProperties>();
 
             // Need to recreate the physics body for this colony
@@ -917,9 +1169,6 @@
 
             var memberRecord = recorder.Record(newMember);
             memberRecord.Set(new MicrobeColonyMember(colonyEntity));
-            memberRecord.Set(new AttachedToEntity(colonyEntity, offsetToColonyLeader, rotationToLeader));
-
-            OnColonyMemberAdded(newMember);
         }
 
         private static void MarkMembersChanged(this ref MicrobeColony colony)
@@ -966,6 +1215,15 @@
                 colony.HexCount = hexCount;
                 colony.DerivedStatisticsCalculated = true;
             }
+        }
+
+        /// <summary>
+        ///   Sets up a colony to be created for an entity after it is spawned. This works in a delayed way as the
+        ///   entity is not known when it is being spawned so normal colony creation doesn't work.
+        /// </summary>
+        private static void SetupColonyWithMembersDelayed(EntityRecord entity, int membersAfterLeader)
+        {
+            entity.Set(new DelayedMicrobeColony(membersAfterLeader));
         }
     }
 }

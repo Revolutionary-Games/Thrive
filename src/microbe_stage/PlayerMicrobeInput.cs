@@ -191,6 +191,10 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             control.State = MicrobeState.Unbinding;
+
+            ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();
+
+            callbacks.OnUnbindEnabled?.Invoke(stage.Player);
         }
     }
 

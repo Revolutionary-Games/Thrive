@@ -184,7 +184,8 @@ public static class NodeHelpers
 
         try
         {
-            return (ShaderMaterial)geometry.MaterialOverride;
+            if (geometry.MaterialOverride != null)
+                return (ShaderMaterial)geometry.MaterialOverride;
         }
         catch (InvalidCastException)
         {
@@ -194,6 +195,11 @@ public static class NodeHelpers
 
             throw;
         }
+
+        GD.PrintErr("Material override missing on node (", node, "): ", node.GetPath(),
+            " relative path: ", modelPath);
+
+        throw new Exception("No material override to fetch material as");
     }
 
     /// <summary>

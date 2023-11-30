@@ -154,7 +154,8 @@
             }
 
             // Base movement force
-            float force = Constants.BASE_MOVEMENT_FORCE;
+            float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
+                cellProperties.MembraneRigidity, organelles.HexCount);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
@@ -203,7 +204,8 @@
                     entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
                 }
 
-                force *= mass / 1000.0f * CheatManager.Speed;
+                // There's an additional divisor here to make the speed cheat reasonable
+                force *= mass / 1000.0f * CheatManager.Speed / 4;
             }
 
             var movementVector = control.MovementDirection * force;

@@ -402,6 +402,12 @@ public class PhysicalWorld : IDisposable
         receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
             body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
 
+        if (receiverOfAddressOfCollisionCount == IntPtr.Zero)
+        {
+            GD.PrintErr("Failed to start collision recording, result count variable pointer is null");
+            throw new Exception("Native side collision recording start failed");
+        }
+
         return collisionsArray;
     }
 

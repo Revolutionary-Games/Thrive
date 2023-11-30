@@ -32,7 +32,6 @@
     [With(typeof(SpatialInstance))]
     [With(typeof(SpeciesMember))]
     [WritesToComponent(typeof(Engulfable))]
-    [WritesToComponent(typeof(AttachedChildren))]
     [WritesToComponent(typeof(Physics))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]

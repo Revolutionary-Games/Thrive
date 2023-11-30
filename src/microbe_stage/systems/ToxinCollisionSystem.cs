@@ -73,6 +73,9 @@
                 // And make sure the flag we check for is set immediately to not process this projectile again
                 // (this is just extra safety against the time over callback configuration not working correctly)
                 damageSource.ProjectileUsed = true;
+
+                // Only deal damage at most to a single thing
+                break;
             }
         }
 
@@ -120,19 +123,41 @@
 
             var damageTarget = collision.SecondEntity;
 
+            // TODO: there is a pretty rare bug where the collision data has random entities in it
+
             // Skip if hit something that's not a microbe (we don't know how to damage other things currently)
-            if (!damageTarget.Has<MicrobeSpeciesMember>())
+            if (!damageTarget.Has<SpeciesMember>())
                 return false;
 
-            ref var speciesComponent = ref damageTarget.Get<MicrobeSpeciesMember>();
+            ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
 
             try
             {
                 ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
 
                 // Disallow friendly fire
-                if (speciesComponent.Species == damageSource.ToxinProperties.Species)
+                if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
                     return false;
+
+                // Pilus and colony handling requires extra data
+                if (damageTarget.Has<MicrobePhysicsExtraData>())
+                {
+                    ref var extraData = ref damageTarget.Get<MicrobePhysicsExtraData>();
+
+                    // Skip damage if hit a pilus
+                    if (extraData.IsSubShapePilus(collision.SecondSubShapeData))
+                        return false;
+
+                    if (damageTarget.Has<MicrobeColony>())
+                    {
+                        // Hit a microbe colony, forward the damage to the exact colony member that was hit
+                        if (damageTarget.Get<MicrobeColony>().GetMicrobeFromSubShape(ref extraData,
+                                collision.SecondSubShapeData, out var hitEntity))
+                        {
+                            damageTarget = hitEntity;
+                        }
+                    }
+                }
 
                 ref var health = ref damageTarget.Get<Health>();
 
@@ -140,13 +165,6 @@
                 {
                     // Consume this even though this won't deal damage
                     return true;
-                }
-
-                if (damageTarget.Has<MicrobeColony>())
-                {
-                    // Hit a microbe colony, forward the damage to the exact colony member that was hit
-                    // TODO: forward damage to specific microbe
-                    throw new NotImplementedException();
                 }
 
                 if (damageTarget.Has<CellProperties>())

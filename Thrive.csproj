@@ -109,6 +109,7 @@
     <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
+    <Compile Include="src\early_multicellular_stage\components\DelayedMicrobeColony.cs" />
     <Compile Include="src\early_multicellular_stage\components\EarlyMulticellularSpeciesMember.cs" />
     <Compile Include="src\early_multicellular_stage\components\MulticellularGrowth.cs" />
     <Compile Include="src\early_multicellular_stage\EarlyMulticellularSpecies.cs" />
@@ -122,6 +123,8 @@
     <Compile Include="src\early_multicellular_stage\editor\CellTypeSelection.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
     <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
+    <Compile Include="src\early_multicellular_stage\MulticellularSpawnState.cs" />
+    <Compile Include="src\early_multicellular_stage\systems\DelayedColonyOperationSystem.cs" />
     <Compile Include="src\early_multicellular_stage\systems\MulticellularGrowthSystem.cs" />
     <Compile Include="src\engine\attributes\ReadsComponentAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsAfterAttribute.cs" />
@@ -133,7 +136,6 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\common_components\AnimationControl.cs" />
-    <Compile Include="src\engine\common_components\AttachedChildren.cs" />
     <Compile Include="src\engine\common_components\AttachedToEntity.cs" />
     <Compile Include="src\engine\common_components\CameraFollowTarget.cs" />
     <Compile Include="src\engine\common_components\CollisionManagement.cs" />

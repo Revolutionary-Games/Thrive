@@ -263,7 +263,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             throw new InvalidOperationException("UpdateHealth called before stage is set");
 
         // Normal health update if there is a player and the player was not engulfed
-        if (stage.HasPlayer && stage.Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.Ingested)
+        if (stage.HasPlayer &&
+            stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
             healthBar.TintProgress = defaultHealthBarColour;
@@ -283,7 +284,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
-            hp = 1 - (stage.Player.Get<Engulfable>().DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+            hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
             hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
             playerWasDigested = true;
@@ -377,7 +378,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     }
 
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds)
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
     {
         stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(
             ref stage.Player.Get<ReproductionStatus>(), ref stage.Player.Get<SpeciesMember>(),

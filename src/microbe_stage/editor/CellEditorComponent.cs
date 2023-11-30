@@ -914,7 +914,7 @@ public partial class CellEditorComponent :
             return;
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount("sunlight", CompoundAmountType.Maximum) > 0.0f;
+            Editor.CurrentPatch.GetCompoundAmount(sunlight.InternalName, CompoundAmountType.Maximum) > 0.0f;
 
         // Calculate and send energy balance and compound balance to the GUI
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
@@ -1058,8 +1058,8 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
-        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
-            !HasNucleus);
+        return MicrobeInternalCalculations.CalculateSpeed(
+            editedMicrobeOrganelles.Organelles, Membrane, Rigidity, !HasNucleus);
     }
 
     public float CalculateRotationSpeed()
