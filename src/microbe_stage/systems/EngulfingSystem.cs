@@ -34,6 +34,7 @@
     [With(typeof(SpeciesMember))]
     [WritesToComponent(typeof(Engulfable))]
     [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(RenderPriorityOverride))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
@@ -501,9 +502,20 @@
 
             StartBulkTransport(ref engulfable, ref attached, animationSpeed, initialEndosomeScale);
 
-            // TODO: render priority
-            // We want the ingested material to be always visible over the organelles
-            // target.RenderPriority += OrganelleMaxRenderPriority + 1;
+            // Update render priority in this special case (normal case goes through OnBecomeEngulfed)
+            if (targetEntity.Has<RenderPriorityOverride>() && engulferEntity.Has<RenderPriorityOverride>())
+            {
+                var engulferPriority = engulferEntity.Get<RenderPriorityOverride>().RenderPriority;
+
+                ref var renderPriority = ref targetEntity.Get<RenderPriorityOverride>();
+
+                // Make the render priority of our organelles be on top of the highest possible render priority
+                // of the hostile engulfer's organelles
+                renderPriority.RenderPriority = engulferPriority + Constants.HEX_MAX_RENDER_PRIORITY + 2;
+                renderPriority.RenderPriorityApplied = false;
+
+                // The above doesn't take recursive engulfing into account but that's probably fine enough in this case
+            }
 
             // Physics should be already handled
 
@@ -1008,7 +1020,10 @@
                 radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random, out var ingestionPoint,
                 out var boundingBoxSize);
 
-            engulfable.OnBecomeEngulfed(targetEntity);
+            ref var engulferPriority = ref engulferEntity.Get<RenderPriorityOverride>();
+
+            // This sets the target render priority
+            engulfable.OnBecomeEngulfed(targetEntity, engulferPriority.RenderPriority);
 
             // This is setup in OnBecomeEngulfed so this code must be after that
             var originalScale = engulfable.OriginalScale;
@@ -1041,10 +1056,6 @@
 
             if (recorder != null)
                 worldSimulation.FinishRecordingEntityCommands(recorder);
-
-            // TODO: render priority
-            // We want the ingested material to be always visible over the organelles
-            // target.RenderPriority += OrganelleMaxRenderPriority + 1;
 
             // Disable physics for the engulfed entity
             ref var physics = ref targetEntity.Get<Physics>();
@@ -1386,11 +1397,16 @@
                 // TODO: if state is ejecting then phagosome creation should be skipped to save creating an object that
                 // will be deleted in a few frames anyway
 
-                // TODO: render priority calculated properly
-                int maxRenderPriority = Constants.HEX_RENDER_PRIORITY_DISTANCE + 1;
+                // 1 is from membrane
+                int basePriority = 1 + Constants.HEX_MAX_RENDER_PRIORITY;
+
+                if (engulfedObject.Has<RenderPriorityOverride>())
+                {
+                    basePriority += engulfedObject.Get<RenderPriorityOverride>().RenderPriority;
+                }
 
                 // Form phagosome as it is missing
-                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, maxRenderPriority);
+                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
             }
 
             ref var relativePosition = ref engulfedObject.Get<AttachedToEntity>();
