@@ -415,6 +415,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showSlime = organelles.SlimeJets is { Count: > 0 };
         }
 
+        // TODO: should this read the engulf state from colony as the player cell might be unable to engulf but some
+        // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
             organelles.HasSignalingAgent, control.State == MicrobeState.Engulf);
 

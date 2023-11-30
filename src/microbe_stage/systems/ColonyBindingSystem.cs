@@ -26,6 +26,7 @@
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
+    [WritesToComponent(typeof(MicrobeColony))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -82,7 +83,7 @@
 
             if (compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                control.State = MicrobeState.Normal;
+                control.SetStateColonyAware(entity, MicrobeState.Normal);
                 return;
             }
 
@@ -91,6 +92,10 @@
             // To simplify the logic this audio is now played non-looping
             // TODO: if this sounds too bad with the sound volume no longer fading then this will need to change
             soundPlayer.PlaySoundEffectIfNotPlayingAlready(Constants.MICROBE_BINDING_MODE_SOUND, 0.6f);
+
+            // For colony members no collisions can happen as the colony leader only has physics
+            if (entity.Has<MicrobeColonyMember>())
+                return;
 
             var count = entity.Get<CollisionManagement>().GetActiveCollisions(out var collisions);
 
@@ -183,7 +188,9 @@
                         indexOfMemberToBindTo = 0;
                     }
 
-                    var colony = new MicrobeColony(primaryEntity, control.State, primaryEntity, other);
+                    // As the state is forced to normal when binding succeeds, set the initial colony state to normal
+                    // here
+                    var colony = new MicrobeColony(primaryEntity, MicrobeState.Normal, primaryEntity, other);
 
                     if (!colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
                     {
@@ -213,6 +220,9 @@
                 ref var colony = ref primaryEntity.Get<MicrobeColony>();
 
                 success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
+
+                if (success)
+                    control.SetStateColonyAware(primaryEntity, MicrobeState.Normal);
             }
 
             if (!success)
@@ -223,8 +233,7 @@
                 return false;
             }
 
-            // Move out of binding state before adding the colony member to avoid accidental collisions being able to
-            // recursively trigger colony attachment
+            // Colony aware set is used above if it can be
             control.State = MicrobeState.Normal;
 
             // Other cell control is set by MicrobeColonyHelpers.OnColonyMemberAdded
