@@ -666,6 +666,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await revision.WriteLineAsync(await GitRunHelpers.Log("./", 1, cancellationToken));
         await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync(await GitRunHelpers.SubmoduleInfo("./", cancellationToken));
+        await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync("Submodules used by native libraries may be newer than what precompiled files " +
+            "were used. Please cross reference the reported native library version with Thrive repository to see " +
+            "exact used submodule version");
+        await revision.WriteLineAsync(string.Empty);
 
         var diff = (await GitRunHelpers.Diff("./", cancellationToken, false, false)).Trim();
 
