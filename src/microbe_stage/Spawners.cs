@@ -306,7 +306,7 @@ public static class SpawnHelpers
                 FadeTime = Constants.EMITTER_DESPAWN_DELAY,
                 DisableCollisions = true,
                 RemoveVelocity = true,
-                DisableParticles = true,
+                DisableParticles = selectedMesh.IsParticles,
                 UsesMicrobialDissolveEffect = true,
                 VentCompounds = hasCompounds,
             });
