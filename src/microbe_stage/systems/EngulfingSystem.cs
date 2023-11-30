@@ -1522,9 +1522,17 @@
             engulfable.AdditionalEngulfableCompounds =
                 engulfable.CalculateAdditionalDigestibleCompounds(engulfableEntity);
 
-            engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
-                .Where(c => c.Key.Digestible)
-                .Sum(c => c.Value);
+            if (engulfableEntity.Has<CompoundStorage>())
+            {
+                engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
+                    .Where(c => c.Key.Digestible)
+                    .Sum(c => c.Value);
+            }
+            else
+            {
+                // This is a fallback against causing a crash here, but engulfing won't be able to digest anything
+                engulfable.InitialTotalEngulfableCompounds = 0;
+            }
 
             if (engulfable.AdditionalEngulfableCompounds != null)
             {
