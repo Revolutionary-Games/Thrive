@@ -6,6 +6,7 @@
     using System.Linq;
     using Components;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using DefaultEcs.System;
     using Godot;
     using World = DefaultEcs.World;
@@ -136,6 +137,8 @@
             ref var control = ref entity.Get<MicrobeControl>();
             ref var cellProperties = ref entity.Get<CellProperties>();
 
+            bool checkEngulfStartCollisions = false;
+
             var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
             if (actuallyEngulfing)
@@ -159,14 +162,21 @@
                 }
                 else
                 {
-                    if (entity.Has<MicrobeColonyMember>())
-                    {
-                        // TODO: fix colony members to be able to engulf things
-                        throw new NotImplementedException();
-                    }
+                    checkEngulfStartCollisions = true;
+                }
 
-                    CheckStartEngulfing(ref entity.Get<CollisionManagement>(), ref cellProperties, ref engulfer,
-                        entity);
+                ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+
+                // Play sound
+                if (actuallyEngulfing)
+                {
+                    // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+                    soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
+                        delta);
+                }
+                else
+                {
+                    soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
                 }
             }
             else
@@ -178,17 +188,21 @@
                 }
             }
 
-            ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+            bool hasColony = false;
 
-            // Play sound
-            if (actuallyEngulfing)
+            // Colony leader detects all collisions, even when not in engulf mode, as long as colony is in engulf mode
+            if (entity.Has<MicrobeColony>())
             {
-                // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
-                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0, delta);
+                hasColony = true;
+
+                if (entity.Get<MicrobeColony>().ColonyState == MicrobeState.Engulf)
+                    checkEngulfStartCollisions = true;
             }
-            else
+
+            if (checkEngulfStartCollisions)
             {
-                soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
+                CheckStartEngulfing(ref entity.Get<CollisionManagement>(), ref cellProperties, ref engulfer,
+                    entity, hasColony);
             }
 
             HandleExpiringExpelledObjects(ref engulfer, delta);
@@ -775,7 +789,7 @@
         }
 
         private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-            ref Engulfer engulfer, in Entity entity)
+            ref Engulfer engulfer, in Entity entity, bool resolveColony)
         {
             ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
 
@@ -809,11 +823,28 @@
                     continue;
 
                 // Pili don't block engulfing, check starting engulfing
-                if (CheckStartEngulfingOnCandidate(ref cellProperties, ref engulfer, ref species, in entity,
-                        collision.SecondEntity))
+                var realEngulfer = entity;
+
+                if (resolveColony)
                 {
-                    // Engulf at most one thing per update, if the collision still exist next update we'll pull it in
-                    // then
+                    // Need to resolve the real microbe that collided
+                    ref var colony = ref entity.Get<MicrobeColony>();
+                    if (colony.GetMicrobeFromSubShape(ref ourExtraData, collision.FirstSubShapeData, out var adjusted))
+                    {
+                        realEngulfer = adjusted;
+                    }
+                }
+
+                ref var actualEngulfer = ref engulfer;
+
+                ref var actualCellProperties =
+                    ref realEngulfer == entity ? ref cellProperties : ref realEngulfer.Get<CellProperties>();
+
+                if (CheckStartEngulfingOnCandidate(ref actualCellProperties, ref actualEngulfer, ref species,
+                        realEngulfer, collision.SecondEntity))
+                {
+                    // Engulf at most one thing per update, if further collisions still exist next update we'll pull
+                    // it in then
                     return;
                 }
             }
@@ -924,14 +955,20 @@
 
             CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
 
-            if (targetEntity.Has<MicrobeColonyMember>())
+            EntityCommandRecorder? recorder = null;
+
+            // Steal this cell from a colony if it is in a colony currently
+            // Right now this causes extra operations for deleting the attach component but avoiding that would
+            // complicate the code a lot here
+            if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
             {
-                // Steal this cell from a colony if it is in a colony currently
+                recorder ??= worldSimulation.StartRecordingEntityCommands();
 
-                // TODO: implement eating members from colonies
-                throw new NotImplementedException();
-
-                // Colony?.RemoveFromColony(targetEntity);
+                if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
+                {
+                    GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
+                    return false;
+                }
             }
 
             var relativePosition = CalculateEngulfableTargetPosition(ref engulferCellProperties, ref engulferPosition,
@@ -956,7 +993,7 @@
             }
             else
             {
-                var recorder = worldSimulation.StartRecordingEntityCommands();
+                recorder ??= worldSimulation.StartRecordingEntityCommands();
 
                 var targetRecord = recorder.Record(targetEntity);
 
@@ -967,9 +1004,10 @@
                     CalculateInitialEndosomeScale());
 
                 targetRecord.Set(attached);
-
-                worldSimulation.FinishRecordingEntityCommands(recorder);
             }
+
+            if (recorder != null)
+                worldSimulation.FinishRecordingEntityCommands(recorder);
 
             // TODO: render priority
             // We want the ingested material to be always visible over the organelles

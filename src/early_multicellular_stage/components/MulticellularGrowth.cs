@@ -61,7 +61,7 @@
 
             TargetCellLayout = species.Cells;
 
-            // TODO: this needs to be recalculated if the species' properties changes
+            // This is updated by ReApplyCellTypeProperties when needed
             this.CalculateTotalBodyPlanCompounds(species);
         }
 

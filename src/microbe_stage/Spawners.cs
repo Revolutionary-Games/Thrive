@@ -257,6 +257,7 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
+        bool hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is 0 to disallow adding any more compounds to the compound bag
@@ -280,6 +281,8 @@ public static class SpawnHelpers
             {
                 Compounds = compounds,
             });
+
+            hasCompounds = true;
 
             entity.Set(new CompoundVenter
             {
@@ -305,7 +308,7 @@ public static class SpawnHelpers
                 RemoveVelocity = true,
                 DisableParticles = true,
                 UsesMicrobialDissolveEffect = true,
-                VentCompounds = true,
+                VentCompounds = hasCompounds,
             });
         }
 

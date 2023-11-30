@@ -19,6 +19,7 @@
     [With(typeof(MicrobeStatus))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(Health))]
+    [Without(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(WorldPosition))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
@@ -109,7 +110,8 @@
                     // We have completed our body plan and can (once enough resources) reproduce
                     if (multicellularGrowth.EnoughResourcesForBudding)
                     {
-                        ReadyToReproduce(ref organelleContainer, entity);
+                        ReadyToReproduce(ref organelleContainer, ref multicellularGrowth, ref baseReproduction, entity,
+                            speciesData.Species);
                     }
                     else
                     {
@@ -218,7 +220,8 @@
             }
         }
 
-        private void ReadyToReproduce(ref OrganelleContainer organelles, in Entity entity)
+        private void ReadyToReproduce(ref OrganelleContainer organelles, ref MulticellularGrowth multicellularGrowth,
+            ref ReproductionStatus baseReproduction, in Entity entity, EarlyMulticellularSpecies species)
         {
             Action<Entity, bool>? reproductionCallback;
             if (entity.Has<MicrobeEventCallbacks>())
@@ -241,15 +244,48 @@
             }
             else
             {
-                throw new NotImplementedException();
+                multicellularGrowth.EnoughResourcesForBudding = false;
 
-                // enoughResourcesForBudding = false;
-                //
-                // // Let's require the base reproduction cost to be fulfilled again as well, to keep down the
-                // colony
-                // // spam, and for consistency with non-multicellular microbes
-                // SetupRequiredBaseReproductionCompounds();
-                // baseReproduction.MissingCompoundsForBaseReproduction
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                baseReproduction.SetupRequiredBaseReproductionCompounds(species);
+
+                // Total cost may have changed so recalculate that
+                multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
+
+                SpawnEarlyMulticellularOffspring(ref organelles, in entity, species);
+            }
+        }
+
+        private void SpawnEarlyMulticellularOffspring(ref OrganelleContainer organelles, in Entity entity,
+            EarlyMulticellularSpecies species)
+        {
+            // Skip reproducing if we would go too much over the entity limit
+            if (!spawnSystem.IsUnderEntityLimitForReproducing())
+            {
+                // For now this just loses the progress resources towards the reproduction and this will be checked
+                // again when the budding cost is fulfilled again
+                return;
+            }
+
+            if (!species.PlayerSpecies)
+            {
+                gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
+            }
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            try
+            {
+                // Create the colony bud (for now this is the only reproduction type)
+                cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+            }
+            catch (Exception e)
+            {
+                // This catch helps if a colony member somehow got processed for the reproduction system and causes
+                // an exception due to not being allowed to divide
+                GD.PrintErr("Early multicellular cell divide failed: ", e);
             }
         }
     }

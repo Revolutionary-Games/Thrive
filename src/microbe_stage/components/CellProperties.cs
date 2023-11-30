@@ -550,6 +550,15 @@
 
                 colourAnimation.UpdateAnimationForNewDefaultColour();
             }
+
+            // Reset multicellular cost if this is multicellular
+            if (baseReproductionCostFrom is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                entity.Has<MulticellularGrowth>())
+            {
+                ref var growth = ref entity.Get<MulticellularGrowth>();
+
+                growth.CalculateTotalBodyPlanCompounds(earlyMulticellularSpecies);
+            }
         }
 
         public static void ApplyMembraneWigglyness(this ref CellProperties cellProperties, Membrane targetMembrane)
