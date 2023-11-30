@@ -67,6 +67,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
     {
+        // Need a renamed git submodule file to include it in the package
+        "gitmodules",
         "default_bus_layout.tres",
         "default_env.tres",
         "Directory.Build.props",
@@ -405,6 +407,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         ColourConsole.WriteSuccessLine("Native library operations succeeded");
 
         return true;
+    }
+
+    protected override async Task<bool> CompressSourceCode(CancellationToken cancellationToken)
+    {
+        // Prepare git modules before compressing (see the comment on the file list why this is like this)
+        File.Copy(".gitmodules", "gitmodules", true);
+
+        return await base.CompressSourceCode(cancellationToken);
     }
 
     protected override async Task<bool> Compress(PackagePlatform platform, string folder, string archiveFile,
