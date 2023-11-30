@@ -414,7 +414,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         // Prepare git modules before compressing (see the comment on the file list why this is like this)
         File.Copy(".gitmodules", "gitmodules", true);
 
-        return await base.CompressSourceCode(cancellationToken);
+        var result = await base.CompressSourceCode(cancellationToken);
+
+        // Remove the copied file to not have it hang around
+        File.Delete("gitmodules");
+
+        return result;
     }
 
     protected override async Task<bool> Compress(PackagePlatform platform, string folder, string archiveFile,
