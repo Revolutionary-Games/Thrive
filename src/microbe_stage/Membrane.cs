@@ -237,7 +237,7 @@ public class Membrane : MeshInstance
     private void SetMesh()
     {
         Mesh = membraneData.GeneratedMesh;
-        SetSurfaceMaterial(membraneData.SurfaceIndex, MaterialToEdit);
+        MaterialOverride = MaterialToEdit;
     }
 
     private void ApplyAllMaterialParameters()
