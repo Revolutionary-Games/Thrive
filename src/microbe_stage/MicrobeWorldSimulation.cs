@@ -117,6 +117,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; } = null!;
 
+    [JsonIgnore]
+    public MicrobeProcessManagerSystem MicrobeProcessManagerSystem { get; private set; } = null!;
+
     // TODO: could replace this reference in PatchManager by it just calling ClearPlayerLocationDependentCaches
     [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
@@ -212,6 +215,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // Systems stored in properties
         CameraFollowSystem = new CameraFollowSystem(EntitySystem);
 
+        MicrobeProcessManagerSystem = new MicrobeProcessManagerSystem(EntitySystem, parallelRunner);
+
         ProcessSystem = new ProcessSystem(EntitySystem, parallelRunner);
 
         TimedLifeSystem = new TimedLifeSystem(this, EntitySystem, couldParallelize);
@@ -263,6 +268,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public void SetSimulationBiome(BiomeConditions biomeConditions)
     {
         ProcessSystem.SetBiome(biomeConditions);
+        MicrobeProcessManagerSystem.SetBiome(biomeConditions);
     }
 
     /// <summary>
@@ -341,6 +347,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         toxinCollisionSystem.Update(delta);
         damageOnTouchSystem.Update(delta);
         pilusDamageSystem.Update(delta);
+
+        MicrobeProcessManagerSystem.Update(delta);
 
         ProcessSystem.Update(delta);
 
@@ -502,6 +510,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
             CameraFollowSystem.Dispose();
             ProcessSystem.Dispose();
+            MicrobeProcessManagerSystem.Dispose();
             TimedLifeSystem.Dispose();
             SpawnSystem.Dispose();
 

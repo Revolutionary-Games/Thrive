@@ -27,6 +27,16 @@
       "atp": 3
     }
   },
+  "calvin_cycle": {
+    "name": "CALVIN_CYCLE",
+    "inputs": {
+      "carbondioxide": 0.09,
+      "atp": 3
+    },
+    "outputs": {
+      "glucose": 0.005
+    }
+  },
   "photosynthesis": {
     "name": "PHOTOSYNTHESIS",
     "inputs": {
@@ -124,7 +134,7 @@
       "sunlight": 1
     },
     "outputs": {
-      "glucose": 0.012
+      "atp": 7
     }
   },
   "iron_chemolithoautotrophy": {

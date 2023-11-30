@@ -269,6 +269,37 @@
     "editorButtonGroup": "Protein",
     "editorButtonOrder": 1
   },
+  "ruBisCo": {
+    "mpCost": 45,
+    "initialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "processes": {
+      "calvin_cycle": 1
+    },
+    "components": {
+      "storage": {
+        "capacity": 0.5
+      }
+    },
+    "prokaryoteChance": 0.5,
+    "chanceToCreate": 0.5,
+    "Density": 900,
+    "displayScene": "res://assets/models/organelles/RuBisCo.tscn",
+    "name": "RUBISCO",
+    "productionColour": "#26e0ff",
+    "consumptionColour": "#ff5649",
+    "iconPath": "res://assets/textures/gui/bevel/parts/RuBisCoIcon.png",
+    "editorButtonGroup": "Protein",
+    "editorButtonOrder": 1
+  },
   "nitrogenfixingplastid": {
     "mpCost": 50,
     "initialComposition": {

@@ -24,5 +24,15 @@
         ///   If set to not-null process statistics are gathered here
         /// </summary>
         public ProcessStatistics? ProcessStatistics;
+
+        /// <summary>
+        ///   The amount of unusded ATP this microbes could produce. Used for calcuating process speeds.
+        /// </summary>
+        public float? LimitedATP;
+
+        /// <summary>
+        ///   Set to the amount of ATP this micrboes gained from consuming glucose. Used for RuBisCo Process speed.
+        /// </summary>
+        public float? GlucoseATP;
     }
 }
