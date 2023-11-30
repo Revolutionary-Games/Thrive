@@ -21,13 +21,12 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///   to work correctly.
     /// </summary>
     [JsonProperty]
-    protected readonly UnsavedEntities entitiesToNotSave = new();
+    protected readonly UnsavedEntities entitiesToNotSave;
 
     [JsonProperty]
     protected readonly World entities;
 
-    // TODO: did these protected property loading work? Loading / saving for the entities
-    protected readonly List<Entity> queuedForDelete = new();
+    protected readonly Queue<Entity> queuedForDelete = new();
 
     /// <summary>
     ///   Used to tell a few systems the approximate player position which might not always exist
@@ -53,12 +52,14 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     public WorldSimulation()
     {
         entities = new World();
+        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 
     [JsonConstructor]
     public WorldSimulation(World entities)
     {
         this.entities = entities;
+        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
     }
 
     /// <summary>
@@ -238,7 +239,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
                 return true;
             }
 
-            queuedForDelete.Add(entity);
+            queuedForDelete.Enqueue(entity);
         }
 
         return true;
@@ -536,14 +537,13 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         // fine to use without a lock here
         lock (queuedForDelete)
         {
-            foreach (var entity in queuedForDelete)
+            // This uses a while loop to allow entity destroy callbacks to queue more entities to be destroyed
+            while (queuedForDelete.Count > 0)
             {
-                PerformEntityDestroy(entity);
+                PerformEntityDestroy(queuedForDelete.Dequeue());
             }
 
             // TODO: would it make sense to switch entity count reporting to this class?
-
-            queuedForDelete.Clear();
         }
     }
 

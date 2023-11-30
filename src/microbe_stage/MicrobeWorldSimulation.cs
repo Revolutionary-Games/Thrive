@@ -177,7 +177,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, couldParallelize);
         colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem, couldParallelize);
-        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(EntitySystem, couldParallelize);
+        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(this, EntitySystem, couldParallelize);
 
         // TODO: clouds currently only allow 2 thread to absorb at once
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
@@ -231,6 +231,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physics.RemoveGravity();
 
         OnInitialized();
+
+        // In case this is loaded from a save ensure the next save has correct ignore entities
+        entitiesToNotSave.SetExtraIgnoreSource(queuedForDelete);
     }
 
     /// <summary>
@@ -408,6 +411,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
+
+        engulfingSystem.OnEntityDestroyed(entity);
+        colonyStatsUpdateSystem.OnEntityDestroyed(entity);
     }
 
     protected override void OnPlayerPositionSet(Vector3 playerPosition)
