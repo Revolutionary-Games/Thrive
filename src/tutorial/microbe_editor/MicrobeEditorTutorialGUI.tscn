@@ -419,13 +419,12 @@ custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
 [node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -160.0
+margin_left = -170.0
 margin_top = 91.0
-margin_right = 160.0
-margin_bottom = 435.0
+margin_right = 170.0
+margin_bottom = 460.0
 rect_min_size = Vector2( 260, 240 )
 theme = ExtResource( 2 )
 script = ExtResource( 7 )
@@ -444,28 +443,28 @@ rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NegativeAtpBalanceTutorial/ScrollContainer"]
-margin_right = 320.0
-margin_bottom = 344.0
+margin_right = 340.0
+margin_bottom = 369.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CustomRichTextLabel" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_right = 320.0
+margin_right = 340.0
 margin_bottom = 24.0
 custom_fonts/normal_font = ExtResource( 4 )
 ExtendedBbcode = ""
 
 [node name="Control" type="Control" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
-margin_right = 320.0
-margin_bottom = 305.0
+margin_right = 340.0
+margin_bottom = 330.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="NegativeAtpBalanceTutorial/ScrollContainer/VBoxContainer"]
-margin_left = 105.0
-margin_top = 309.0
-margin_right = 215.0
-margin_bottom = 344.0
+margin_left = 115.0
+margin_top = 334.0
+margin_right = 225.0
+margin_bottom = 369.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
@@ -474,12 +473,13 @@ text = "GOT_IT"
 visible = false
 
 [node name="AtpBalanceIntroduction" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -200.0
 margin_top = 91.0
 margin_right = 200.0
-margin_bottom = 440.0
+margin_bottom = 500.0
 rect_min_size = Vector2( 260, 240 )
 theme = ExtResource( 2 )
 script = ExtResource( 7 )
@@ -500,7 +500,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AtpBalanceIntroduction/ScrollContainer"]
 margin_right = 400.0
-margin_bottom = 349.0
+margin_bottom = 409.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -513,14 +513,14 @@ ExtendedBbcode = ""
 [node name="Control" type="Control" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 400.0
-margin_bottom = 310.0
+margin_bottom = 370.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="AtpBalanceIntroduction/ScrollContainer/VBoxContainer"]
 margin_left = 145.0
-margin_top = 314.0
+margin_top = 374.0
 margin_right = 255.0
-margin_bottom = 349.0
+margin_bottom = 409.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
