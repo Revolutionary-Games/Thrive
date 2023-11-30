@@ -81,7 +81,8 @@
 
                         foreach (var extraMaterial in tempMaterialsList)
                         {
-                            extraMaterial.RenderPriority = organelleRenderOrder;
+                            // Sub-graphics have one less render priority
+                            extraMaterial.RenderPriority = organelleRenderOrder - 1;
                         }
 
                         tempMaterialsList.Clear();
