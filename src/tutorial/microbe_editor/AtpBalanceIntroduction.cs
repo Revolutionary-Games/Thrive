@@ -9,6 +9,8 @@
     /// </summary>
     public class AtpBalanceIntroduction : TutorialPhase
     {
+        private bool shouldEnableNegativeATPTutorial;
+
         public override string ClosedByName => nameof(AtpBalanceIntroduction);
 
         [JsonIgnore]
@@ -41,7 +43,7 @@
                         if (!HasBeenShown && isNegativeAtpBalance && CanTrigger && !overallState.TutorialActive())
                         {
                             Show();
-                            overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
+                            shouldEnableNegativeATPTutorial = true;
 
                             return true;
                         }
@@ -49,9 +51,31 @@
 
                     break;
                 }
+
+                case TutorialEventType.EnteredMicrobeEditor:
+                {
+                    GD.PushWarning("enable");
+
+                    if (shouldEnableNegativeATPTutorial)
+                    {
+                        overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
+                        HandlesEvents = false;
+                        shouldEnableNegativeATPTutorial = false;
+                    }
+
+                    break;
+                }
             }
 
             return false;
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+
+            // This is done to ensure the next tutorial will be enabled
+            HandlesEvents = true;
         }
     }
 }

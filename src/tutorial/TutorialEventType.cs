@@ -109,7 +109,7 @@ public enum TutorialEventType
     MicrobeEditorOrganelleToPlaceChanged,
 
     /// <summary>
-    ///   Player placed an organelle
+    ///   Player placed an organelle, args is <see cref="OrganellePlacedEventArgs"/>
     /// </summary>
     MicrobeEditorOrganellePlaced,
 
