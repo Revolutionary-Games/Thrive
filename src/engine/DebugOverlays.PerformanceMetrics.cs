@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
@@ -18,11 +19,22 @@ public partial class DebugOverlays
     [Export]
     public NodePath MetricsTextPath = null!;
 
+    /// <summary>
+    ///   How long to keep physical world's stats since the last time they were reported, used to clear old world data
+    ///   out of the display.
+    /// </summary>
+    [Export]
+    public float TimeToKeepPhysicalWorldData = 0.4f;
+
     // TODO: make this time based
     private const int SpawnHistoryLength = 300;
 
     private readonly Deque<float> spawnHistory = new(SpawnHistoryLength);
     private readonly Deque<float> despawnHistory = new(SpawnHistoryLength);
+
+    private readonly List<PhysicalWorldStats> customPhysics = new();
+
+    private readonly List<PhysicalWorldStats> customPhysicsToRemove = new();
 
 #pragma warning disable CA2213
     private Label fpsLabel = null!;
@@ -63,8 +75,30 @@ public partial class DebugOverlays
         currentDespawned += newDespawns;
     }
 
+    public void ReportPhysicalWorldStats(PhysicalWorld physicalWorld)
+    {
+        foreach (var entry in customPhysics)
+        {
+            if (entry.World.TryGetTarget(out var target) && physicalWorld == target)
+            {
+                entry.TimeSinceUpdate = 0;
+                entry.LatestPhysicsTime = physicalWorld.LatestPhysicsDuration;
+                entry.AveragePhysicsTime = physicalWorld.AveragePhysicsDuration;
+                return;
+            }
+        }
+
+        customPhysics.Add(new PhysicalWorldStats(new WeakReference<PhysicalWorld>(physicalWorld))
+        {
+            LatestPhysicsTime = physicalWorld.LatestPhysicsDuration,
+            AveragePhysicsTime = physicalWorld.AveragePhysicsDuration,
+        });
+    }
+
     private void UpdateMetrics(float delta)
     {
+        UpdatePhysicalWorldDataExpiration(delta);
+
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
 
@@ -82,9 +116,15 @@ public partial class DebugOverlays
         // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
         // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
 
+        float customPhysicsTime = customPhysics.Sum(s => s.LatestPhysicsTime);
+
+        // TODO: show the average physics time as well
+        float customPhysicsAverage = customPhysics.Sum(s => s.AveragePhysicsTime);
+        _ = customPhysicsAverage;
+
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
-                    Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
+                    Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess) + customPhysicsTime,
                     Math.Round(entities, 1), children,
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
@@ -116,5 +156,36 @@ public partial class DebugOverlays
 
         currentSpawned = 0.0f;
         currentDespawned = 0.0f;
+    }
+
+    private void UpdatePhysicalWorldDataExpiration(float delta)
+    {
+        foreach (var entry in customPhysics)
+        {
+            entry.TimeSinceUpdate += delta;
+
+            if (entry.TimeSinceUpdate > TimeToKeepPhysicalWorldData)
+                customPhysicsToRemove.Add(entry);
+        }
+
+        foreach (var toRemove in customPhysicsToRemove)
+        {
+            customPhysics.Remove(toRemove);
+        }
+
+        customPhysicsToRemove.Clear();
+    }
+
+    private class PhysicalWorldStats
+    {
+        public readonly WeakReference<PhysicalWorld> World;
+        public float TimeSinceUpdate;
+        public float LatestPhysicsTime;
+        public float AveragePhysicsTime;
+
+        public PhysicalWorldStats(WeakReference<PhysicalWorld> world)
+        {
+            World = world;
+        }
     }
 }

@@ -67,6 +67,12 @@ public class PhysicalWorld : IDisposable
     {
         bool processed = NativeMethods.ProcessPhysicalWorld(AccessWorldInternal(), delta);
 
+        if (processed)
+        {
+            if (DebugOverlays.Instance.PerformanceMetricsVisible)
+                DebugOverlays.Instance.ReportPhysicalWorldStats(this);
+        }
+
         return processed;
     }
 
@@ -84,7 +90,15 @@ public class PhysicalWorld : IDisposable
 
     public bool WaitUntilPhysicsRunEnds()
     {
-        return NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+        bool processed = NativeMethods.WaitForPhysicsToCompleteInPhysicalWorld(AccessWorldInternal());
+
+        if (processed)
+        {
+            if (DebugOverlays.Instance.PerformanceMetricsVisible)
+                DebugOverlays.Instance.ReportPhysicalWorldStats(this);
+        }
+
+        return processed;
     }
 
     /// <summary>
