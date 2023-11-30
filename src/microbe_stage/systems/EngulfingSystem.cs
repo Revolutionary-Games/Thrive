@@ -37,6 +37,7 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsOnMainThread]
@@ -189,34 +190,35 @@
 
                 if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
                 {
-                    control.State = MicrobeState.Normal;
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
                 }
                 else
                 {
                     checkEngulfStartCollisions = true;
-                }
-
-                ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
-
-                // Play sound
-                if (actuallyEngulfing)
-                {
-                    // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
-                    soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
-                        delta);
-                }
-                else
-                {
-                    soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
                 }
             }
             else
             {
                 if (control.State == MicrobeState.Engulf)
                 {
-                    // Force out of incorrect state
+                    // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
+                    // colony that can engulf even if the leader can't)
                     control.State = MicrobeState.Normal;
                 }
+            }
+
+            ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
+
+            // Play sound
+            if (actuallyEngulfing)
+            {
+                // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
+                    delta);
+            }
+            else
+            {
+                soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
             }
 
             bool hasColony = false;
