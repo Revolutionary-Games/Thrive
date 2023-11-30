@@ -67,6 +67,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
     {
+        // Need a renamed git submodule file to include it in the package
+        "gitmodules",
         "default_bus_layout.tres",
         "default_env.tres",
         "Directory.Build.props",
@@ -407,6 +409,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         return true;
     }
 
+    protected override async Task<bool> CompressSourceCode(CancellationToken cancellationToken)
+    {
+        // Prepare git modules before compressing (see the comment on the file list why this is like this)
+        File.Copy(".gitmodules", "gitmodules", true);
+
+        var result = await base.CompressSourceCode(cancellationToken);
+
+        // Remove the copied file to not have it hang around
+        File.Delete("gitmodules");
+
+        return result;
+    }
+
     protected override async Task<bool> Compress(PackagePlatform platform, string folder, string archiveFile,
         CancellationToken cancellationToken)
     {
@@ -665,6 +680,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await using var revision = File.CreateText(RevisionFile);
 
         await revision.WriteLineAsync(await GitRunHelpers.Log("./", 1, cancellationToken));
+        await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync(await GitRunHelpers.SubmoduleInfo("./", cancellationToken));
+        await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync("Submodules used by native libraries may be newer than what precompiled files " +
+            "were used. Please cross reference the reported native library version with Thrive repository to see " +
+            "exact used submodule version");
         await revision.WriteLineAsync(string.Empty);
 
         var diff = (await GitRunHelpers.Diff("./", cancellationToken, false, false)).Trim();
