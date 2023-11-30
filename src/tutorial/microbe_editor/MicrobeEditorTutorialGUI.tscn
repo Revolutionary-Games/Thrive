@@ -187,7 +187,6 @@ Description = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 ShowDelay = 0.7
 
 [node name="ModifyOrganelleTutorial" parent="." instance=ExtResource( 8 )]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -419,6 +418,7 @@ custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
 [node name="NegativeAtpBalanceTutorial" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -170.0
