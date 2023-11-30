@@ -901,9 +901,7 @@
                 colonyRotation += memberRotation;
             }
 
-            var biasedAverageRotation = colonyRotation / colony.ColonyMembers.Count();
-
-            colony.ColonyRotationSpeed = biasedAverageRotation;
+            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Count();
         }
 
         /// <summary>

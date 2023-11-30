@@ -111,14 +111,14 @@
             // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
             // only
 
-            // Lower value is faster rotation
-            if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-                rotationSpeed /= CheatManager.Speed;
-
             if (entity.Has<MicrobeColony>())
             {
                 rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
             }
+
+            // Lower value is faster rotation
+            if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
+                rotationSpeed /= CheatManager.Speed;
 
             return rotationSpeed;
         }
