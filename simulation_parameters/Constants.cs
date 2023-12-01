@@ -230,14 +230,14 @@ public static class Constants
     /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE = 900000.0f;
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 14.0f;
+    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
 
     /// <summary>
     ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
     ///   avoid having to create a ton of physics sensors.
     /// </summary>
-    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.75f;
+    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
 
     /// <summary>
     ///   1 means that each cilia counts as 1 in the pulling force
