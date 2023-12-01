@@ -223,11 +223,27 @@ public static class Constants
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
     public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+
+    /// <summary>
+    ///   Limits how often the cilia samples the rotation speed it should be at. Also rate limits how often the cilia
+    ///   pull physics is applied.
+    /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
-    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
-    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
+
+    /// <summary>
+    ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
+    ///   avoid having to create a ton of physics sensors.
+    /// </summary>
+    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
+
+    /// <summary>
+    ///   1 means that each cilia counts as 1 in the pulling force
+    /// </summary>
+    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
@@ -445,6 +461,11 @@ public static class Constants
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
 
     /// <summary>
+    ///   How many collision a default sensor can detect at once
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
+
+    /// <summary>
     ///   Cooldown between agent emissions, in seconds.
     /// </summary>
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
@@ -539,9 +560,11 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Cells need at least this much ATP to regenerate health passively
+    ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
+    ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to
+    ///   constant osmoregulation and processes running.
     /// </summary>
-    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 1;
+    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP

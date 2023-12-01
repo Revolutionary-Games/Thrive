@@ -29,6 +29,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PhysicsBodyCreationSystem physicsBodyCreationSystem = null!;
     private PhysicsBodyDisablingSystem physicsBodyDisablingSystem = null!;
     private PhysicsCollisionManagementSystem physicsCollisionManagementSystem = null!;
+    private PhysicsSensorSystem physicsSensorSystem = null!;
     private CollisionShapeLoaderSystem collisionShapeLoaderSystem = null!;
     private PhysicsUpdateAndPositionSystem physicsUpdateAndPositionSystem = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
@@ -159,6 +160,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
+        physicsSensorSystem = new PhysicsSensorSystem(physics, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
@@ -198,7 +200,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
-        organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
+        organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
@@ -380,6 +382,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         organelleTickSystem.Update(delta);
 
+        physicsSensorSystem.Update(delta);
+
         fadeOutActionSystem.Update(delta);
         physicsBodyControlSystem.Update(delta);
 
@@ -410,8 +414,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
+        // This doesn't seem to be required as the bodies are fully destroyed anyway so they can't record anything
+        // physicsCollisionManagementSystem.OnEntityDestroyed(entity);
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
+        physicsSensorSystem.OnEntityDestroyed(entity);
 
         engulfingSystem.OnEntityDestroyed(entity);
         colonyStatsUpdateSystem.OnEntityDestroyed(entity);
@@ -457,6 +464,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             physicsBodyCreationSystem.Dispose();
             physicsBodyDisablingSystem.Dispose();
             physicsCollisionManagementSystem.Dispose();
+            physicsSensorSystem.Dispose();
             physicsUpdateAndPositionSystem.Dispose();
             collisionShapeLoaderSystem.Dispose();
             predefinedVisualLoaderSystem.Dispose();
