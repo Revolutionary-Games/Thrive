@@ -901,7 +901,7 @@
                 colonyRotation += memberRotation;
             }
 
-            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Count();
+            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.ToArray().Length;
         }
 
         /// <summary>
