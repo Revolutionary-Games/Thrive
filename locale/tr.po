@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-24 19:16+0200\n"
-"PO-Revision-Date: 2023-11-01 12:41+0000\n"
+"PO-Revision-Date: 2023-11-27 17:42+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -292,7 +292,7 @@ msgstr "CPU'da hiper iş parçacığını etkin varsay"
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Hiper iş parçacığının etkin olup olmadığı otomatik olarak tespit edilemez.\n"
-"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için; bu, varsayılan iş parçacığı sayısını etkiler."
+"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için, bu, varsayılan iş parçacığı sayısını etkiler."
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
@@ -566,7 +566,7 @@ msgstr "Bağlayıcı Ajan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:830
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Diğer hücrelerle bağ kurmayı sağlar. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:829
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -824,7 +824,7 @@ msgstr "Kemoreseptör"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:763
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için, kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:762
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -872,7 +872,7 @@ msgstr "Kloroplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:938
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "Kloroplast; zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından ve sudan [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için ışık enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır."
+msgstr "Kloroplast, zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından ve sudan [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için ışık enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:937
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -1406,7 +1406,7 @@ msgstr "Sitoplazma"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur. Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+msgstr "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur. Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
@@ -1532,7 +1532,7 @@ msgstr ""
 "\n"
 "Yeni oyun için bir iniş yapma ayrıcalığı alacaksınız. Gelecek bir sürümde bu ayrıcalığı kendiniz seçebileceksiniz. Ancak şimdilik bu ayrıcalık, size her defasında ozmoregülasyonda %20'lik bir azalma sağlayacak.\n"
 "\n"
-"Evrene iniş yapmayı onayladığınızda; örneğin, farklı bir haritada oynamak için yeni bir gezegen tohumu seçerek veya BH'yi devre dışı bırakarak oyun ayarlarını düzenleyebilirsiniz."
+"Evrene iniş yapmayı onayladığınızda, örneğin, farklı bir haritada oynamak için yeni bir gezegen tohumu seçerek veya BH'yi devre dışı bırakarak oyun ayarlarını düzenleyebilirsiniz."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1873,7 +1873,7 @@ msgstr "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerinden biri bizim
 
 #: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP üretir. Bu da demek oluyor ki; eğer ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısınız."
+msgstr "İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik alan da saniyede 5 ATP üretir. Bu da demek oluyor ki, eğer ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısınız."
 
 #: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
@@ -3461,7 +3461,7 @@ msgstr "Lizozom"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+msgstr "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
@@ -3701,12 +3701,12 @@ msgstr "Hücreniz her çoğaldığında, Mikrop Düzenleyicisi'ne giriş yapars�
 
 #: ../src/general/MainMenu.tscn:410
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Mikrop Düzenleyicisi Serbest Yapım Modu"
+msgstr "Mikrop Serbest Yapım Düzenleyicisi"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:976
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet\n"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet"
 
 #: ../src/microbe_stage/MicrobeSpecies.cs:231
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3823,7 +3823,7 @@ msgstr "Düzenleyiciyi açmak ve hücrenizi çoğaltmak için hücrenizin yeteri
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Ayrıca; sizden küçük hücreleri, bakterileri, demir parçalarını ve hücre parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsiniz. Bu eylem, fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücrenizi yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutmayın."
+msgstr "Ayrıca, sizden küçük hücreleri, bakterileri, demir parçalarını ve hücre parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsiniz. Bu eylem, fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücrenizi yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutmayın."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -3833,7 +3833,7 @@ msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Düzenleyicide; çok çeşitli oyun stillerine imkan veren, türünüzü evrimleştirmeniz için birçok organel vardır."
+msgstr "Düzenleyicide, çok çeşitli oyun stillerine imkan veren, türünüzü evrimleştirmeniz için birçok organel vardır."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -4109,7 +4109,7 @@ msgstr "Daha Fazla Bilgi Göster"
 
 #: ../src/general/OptionsMenu.tscn:1535
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr "Stratejik görünümde; imleç ekranın kenarındayken, ekranı kaydır"
+msgstr "Stratejik görünümde, imleç ekranın kenarındayken, ekranı kaydır"
 
 #: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -4183,7 +4183,7 @@ msgstr ""
 "\n"
 "Eğer şu anda su altındaysanız, karaya kalıcı olarak çıkamayacak ve oyunu bitiremeyeceksiniz.\n"
 "\n"
-"Bu yüzden; eğer karaya henüz çıkmadıysanız, bütün bu hususları çok dikkatli bir şekilde göz önüne alarak karar verin."
+"Bu yüzden, eğer karaya henüz çıkmadıysanız, bütün bu hususları çok dikkatli bir şekilde göz önüne alarak karar verin."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
@@ -4196,7 +4196,7 @@ msgstr ""
 "\n"
 "Şu anki karaya geçiş, oyuna tam anlamıyla ekleneceği zamana göre, çok daha ani şekilde gerçekleşmektedir.\n"
 "\n"
-"Planda olan; ani bir değişim olmadan, karaya çıkışı kademeli yapmak."
+"Planda olan, ani bir değişim olmadan, karaya çıkışı kademeli yapmak."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
@@ -4516,11 +4516,11 @@ msgstr "Çekirdek"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Çekirdek, geri dönüşü olmayan bir evrim olduğu için çekirdeği silme işlemi gerçekleştirilemiyor.\n"
-"Ancak; eğer çekirdek mevcut süreçte yerleştirildiyse, bu değişikliği geri alma ya da yinelemeye izin verilir."
+"Ancak, eğer çekirdek mevcut süreçte yerleştirildiyse, bu değişikliği geri alma ya da yinelemeye izin verilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı; yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
+msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -5813,7 +5813,7 @@ msgstr "Sinyal Verici Ajan"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
+msgstr "Sinyal verici ajanlar, belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
@@ -6808,7 +6808,7 @@ msgstr ""
 "\n"
 "Ayrıca bir organeli eklemenin gerçekten yararlı olup olmadığını dikkatli bir şekilde düşünün. Her bir parçayı sürdürmek ATP'ye mal olduğu için ve çoğalmak için daha fazla kaynak gerektirdiği için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
 "\n"
-"Oyunda kullanılabilecek olası bir strateji; bir tek altıgen sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
+"Oyunda kullanılabilecek olası bir strateji, bir tek altıgen sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:274
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -7221,29 +7221,27 @@ msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:76
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr ""
+"Bağlayıcı ajanlara sahip olmak, hücrelerin koloni oluşturmak için [b]bağ kurma moduna[/b] girmesini sağlar. Bu organel, sonraki evrelerde ilerlemek için gereklidir. Bağ kurma modu aktifken, saniyede 2 ATP tüketir ve aynı türden hücrelerle temas halindeyken veya manuel olarak ayarlandığında devre dışı kalır.\n"
+"\n"
+"Bir kolonideki hücreler kaynaklarını paylaşır; kaynaklar tüm hücreler arasında eşit olarak bölüştürülür ve hücrelerin kolonideki her ek hücre başına ozmoregülasyon miktarı azalır. Ozmoregülasyon indirimi, aşağıdaki denklemle hesaplanır: [b]Hücre Ozmoregülasyon Maliyeti * 20.0 / (20.0 + Toplam Koloni Üyesi)[/b]. Bu, 50 ozmoregülasyon maliyetli bir hücrenin 5 üyeli bir kolonide 40 ozmoregülasyon maliyetine sahip olacağı anlamına gelir."
 
 #: ../simulation_parameters/common/wiki.json:60
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr "Bağlayıcı Ajan"
+msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi oluşturmalarına olanak tanır. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
 
 #: ../simulation_parameters/common/wiki.json:72
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Değişiklikler yok."
 
 #: ../simulation_parameters/common/wiki.json:68
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
-msgstr "Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna basın. Bağ kurma modundayken, kendi türünüze ait diğer hücrelere yaklaşarak onları koloninize ekleyebilirsiniz. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna basın. Diğer hücrelere bağlıyken düzenleyiciye giremezsiniz."
+msgstr "İşlem yok."
 
 #: ../simulation_parameters/common/wiki.json:64
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Bir hücre, Bağlayıcı Ajanları evrimleştirmek için çekirdeğe sahip olmalıdır."
 
 #: ../simulation_parameters/common/wiki.json:88
 #, fuzzy
@@ -7251,14 +7249,15 @@ msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
 
 #: ../simulation_parameters/common/wiki.json:84
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr ""
+"Koloni oluşturma yeteneği, özellikle fotosentetik organizmalar için, güçlüdür. Koloniye eklenen her bir hücre, genel ozmoregülasyon maliyetini düşürür. Bu, daha yüksek enerji verimliliği anlamına gelir. Bu ayrıca, fotosentez yapan organizmaların daha hızlı glukoz üreteceği ve yırtıcı kolonilerin yemek aralarında daha uzun süre dayanacağı anlamına gelir.\n"
+"\n"
+"Ancak bağ kurulacak müttefik hücreleri bulmak zor olabilir. Bu yüzden, koloni oluşumunu kolaylaştırmak amacıyla müttefikleri konumunuza çağırmak için bir [b]sinyal verici ajan[/b] kullanmak faydalı olabilir."
 
 #: ../simulation_parameters/common/wiki.json:80
-#, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:115
 #, fuzzy
@@ -7380,31 +7379,27 @@ msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
 
 #: ../simulation_parameters/common/wiki.json:232
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
-msgstr "Kemosentez Yapan Proteinler"
+msgstr "Özel etkiler yok."
 
 #: ../simulation_parameters/common/wiki.json:216
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr "Kemosentez Yapan Proteinler"
+msgstr "Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [b]hidrojen sülfür[/b], [b]karbondioksit[/b] gazı ve suyu [b]glukoza[/b] dönüştüren, sitoplazmada bulunan küçük proteinler kümesidir. Üretilen [b]glukoz[/b] oranı, [b]karbondioksit[/b] konsantrasyonu ile doğru orantılıdır. Kemosentez yapan proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../simulation_parameters/common/wiki.json:228
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr "Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştüren, sitoplazmada bulunan küçük proteinler kümesidir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Kemosentez yapan proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Değişiklikler yok."
 
 #: ../simulation_parameters/common/wiki.json:224
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+msgstr ""
+"[b]Bakteri Kemosentezi:[/b] [b]Hidrojen Sülfür + Karbondioksit[/b] → [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"\n"
+"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]"
 
 #: ../simulation_parameters/common/wiki.json:220
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
-msgstr ""
-"Kemosentez\n"
-"Yapan Proteinler"
+msgstr "Gereksinimler yok."
 
 #: ../simulation_parameters/common/wiki.json:244
 #, fuzzy
@@ -7412,14 +7407,17 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "Kemosentez yapan proteinler, [b]hidrojen sülfür kemosentezi[/b] adı verilen bir işlemde, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve suyu [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştüren, sitoplazmada bulunan küçük proteinler kümesidir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Kemosentez yapan proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../simulation_parameters/common/wiki.json:240
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
-msgstr "Kemosentez Yapan Proteinler"
+msgstr ""
+"Kemosentez yapan proteinler ile hücreler, volkanik bacalardaki en bol ve güvenilir enerji kaynaklarından birine erişir: [b]Hidrojen sülfür[/b]. Depolanabilir bir bileşik olan [b]hidrojen sülfür[/b], sürekli olarak [b]glukoza[/b] dönüştürüldüğünden hücre içinde fazladan stoklanabilir. Böylece, bir seferde daha fazla enerji deposu tutulmasını sağlar.\n"
+"\n"
+"Etkili kemosentez yapan bir bakteri oluşturmak için hücre içinde net bir [b]glukoz[/b] artışı sağlamaya, bunun için de yeterli proteine ihtiyacınız vardır. Başlamak için en iyi yol, ilk kuşakta iki kemosentez yapan protein yerleştirmek, ardından sonraki kuşakta bir [b]metabolozom[/b] ve güçlendirmeyi istediğiniz herhangi bir parçayı yerleştirmektir. Buradan sonra genellikle güvenli olan işlem, eklenen her iki parça başına yalnızca bir kemosentez yapan protein daha yerleştirmektir.\n"
+"\n"
+"Ancak dikkatli olun. Çünkü [i]hidrojen sülfür[/i], sadece birkaç biyomda bulunur. Kendinizi hidrojen sülfürü birincil enerji kaynağı olarak kullanmak üzere evrimleştirirseniz, bu sizin ihtiyaç duyduğunuzda başka ortamlara etkili bir şekilde yolculuk yapmanızı engelleyecektir."
 
 #: ../simulation_parameters/common/wiki.json:236
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Kemosentez Yapan Proteinler"
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:271
 #, fuzzy
@@ -7500,7 +7498,7 @@ msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan sitoplazmanı
 #: ../simulation_parameters/common/wiki.json:333
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr ""
-"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
+"Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
 "\n"
 "Yaptığı işlevlerden biri [b]glikolizdir[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümü. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
@@ -7569,7 +7567,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:481
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-msgstr ""
+msgstr "Oksijenli hücre solunumu (glukoz -> ATP)"
 
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
@@ -7803,7 +7801,7 @@ msgid "WIKI_LYSOSOME_INTRO"
 msgstr ""
 "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir.\n"
 "\n"
-"Lizozom; çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+"Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
 
 #: ../simulation_parameters/common/wiki.json:423
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
@@ -7818,7 +7816,7 @@ msgstr "İşlemler yok."
 
 #: ../simulation_parameters/common/wiki.json:415
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr "Bir hücre, lizozomları evrimleştirmek için çekirdek gerektirir."
+msgstr "Bir hücre, lizozomları evrimleştirmek için çekirdeğe sahip olmalıdır."
 
 #: ../simulation_parameters/common/wiki.json:439
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
@@ -7835,36 +7833,89 @@ msgstr "Geliştirmeler yok."
 #: ../simulation_parameters/common/wiki.json:482
 msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
+"Glukozun enerji için parçalanma işlemi, hem prokaryotlarda hem de ökaryotlarda birkaç adımda gerçekleşir. Aradaki tek fark, bazı enzimlerin bulunduğu ve düzenlendiği yerdir. Aşağıda, moleküllerin tam adları ve kimyasal formülleri/kısaltmaları ile birlikte çeşitli reaksiyonların bir özeti verilmiştir.\n"
+"\n"
+"<br>[b]Glikoliz:[/b] Glikoliz, 10 farklı enzim tarafından katalize edilen 11 ara bileşik ile birkaç adımda gerçekleşir. Sonuç olarak bir glukoz; iki pirüvat molekülü, iki ATP molekülü ve iki NADH molekülü (daha sonra 4-5 ATP molekülüne dönüştürülür) üretir. Glikoliz, hem ökaryotlarda hem de prokaryotlarda sitoplazmada meydana gelir.\n"
+"\n"
+"Net reaksiyon şu şekildedir:\n"
+"\n"
+"[i]Glukoz + 2 ADP + 2 NAD+ + 2 Pi → 2 pirüvat + 2 ATP + 2 NADH + 2 su[/i]\n"
+"\n"
+"<br>\n"
+"\n"
+"Glikoliz hakkında daha fazla şey öğrenmek isterseniz, <a rel=\"nofollow\" class=\"external free\" href=\"https://www.tuscany-diet.net/2018/02/06/glycolysis/\">https://www.tuscany-diet.net/2018/02/06/glycolysis/</a> adresini ziyaret edin.\n"
+"\n"
+"[b]Zincir reaksiyon:[/b]\n"
+"\n"
+"Bu reaksiyon glikolizi, ATP üretimindeki sonraki büyük reaksiyon döngüsüne bağlar: Sitrik asit döngüsü olarak da bilinen Krebs döngüsü.\n"
+"\n"
+"[i]2 Pirüvat + 2 CoA + 2 NAD+ + 2 Pi → 2 asetil-CoA + 2 NADH + 2 CO2[/i]\n"
+"\n"
+"[b]Krebs döngüsü:[/b]\n"
+"\n"
+"[i]2 asetil-CoA + 6 NAD+ + 2 FAD + 2 GDP + 2 Pi + 4 H2O → 2 CoA + 6 NADH + 6 FADH2 + 4 H+ + 2 GTP + 4 CO2[/i]\n"
+"\n"
+"[b]Elektron taşıma zinciri ve oksidatif fosforilasyon:[/b]\n"
+"\n"
+"10 NADH + 10 H+ + 2 FADH2 + 2 GTP + 6 O2 -&gt; 25ATP + 3 ATP + 2 ATP\n"
+"\n"
+"Glikolizle de 2 ATP üretildiğini unutmayın. Bu işlem, [b]üretilen toplam ATP miktarını 32'ye çıkarır.[/b]\n"
+"\n"
+"Ancak, gerçek maksimum ATP miktarı, elektron taşıma zinciri tarafından mitokondriyal zarın üstünden pompalanan hidrojenlerin miktarındaki farklılıklar nedeniyle türler ve dokular arasında değişiklik gösterir. Başka bir deyişle, NADH ve FADH2 molekülü başına üretilen ATP miktarı türe bağlıdır. Toplam miktarın genellikle 36-38 ATP arasında olduğu ifade edilir.\n"
+"\n"
+"[b]Kısaltmalar:[/b]\n"
+"\n"
+"ATP: Adenozin TriFosfat\n"
+"\n"
+"ADP: Adenozin DiFosfat\n"
+"\n"
+"NAD+: Nikotinamid Adenin Dinükleotit\n"
+"\n"
+"NADH: Nikotinamid Adenin Dinükleotit (İndirgenmiş)\n"
+"\n"
+"FAD: Flavin Adenin Dinükleotit\n"
+"\n"
+"FADH2: Flavin Adenin Dinükleotit (İndirgenmiş)\n"
+"\n"
+"GTP: Guanozin TriFosfat\n"
+"\n"
+"GDP: Guanozin DiFosfat\n"
+"\n"
+"Pi: İnorganik Fosfat\n"
+"\n"
+"CoA: Koenzim A\n"
+"\n"
+"CO2: Karbondioksit"
 
 #: ../simulation_parameters/common/wiki.json:466
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Etkiler yok."
 
 #: ../simulation_parameters/common/wiki.json:450
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
-msgstr "Metabolozomlar"
+msgstr "Metabolozomlar, [b]Oksijenli Solunumun[/b] bir biçimi olan ve <a href=\"/wiki/Mitochondrion\" title=\"Mitochondrion\">Mitokondridekinden</a> daha verimsiz olan [b]Protein Solunumunu[/b] gerçekleştirir. Bu, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanılarak [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesi işlemidir."
 
 #: ../simulation_parameters/common/wiki.json:462
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Değişiklikler yok."
 
 #: ../simulation_parameters/common/wiki.json:458
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] @ [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound]\n"
+"\n"
+"Protein Solunumu, Metabolozomlar tarafından gerçekleştirilen bir enerji üretim yöntemidir. Bu işlemin gerçekleşmesi için glukoz girişi gereklidir ve işlemin hızı çevresel Oksijen miktarı ile doğru orantılıdır."
 
 #: ../simulation_parameters/common/wiki.json:454
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Gereksinimler yok"
 
 #: ../simulation_parameters/common/wiki.json:478
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr ""
+"Ökaryotlardan farklı olarak, prokaryot organellerinin zarı yoktur. Bunun yerine, bakteri gibi prokaryotlar proteinlerden yapılmış bölümler oluşturur. Metabolozom, resmi olarak bakteri mikro kompartmanı (BMC) olarak adlandırılan bölümün bir örneğidir. BMC'ler, virüs kapsidine benzeyen 100-200 nm büyüklüğünde çok yüzeyli bir protein kabuğundan oluşur. Kabuğu oluşturan proteinler, tipik olarak farklı bileşiklerin (substratlar ve ürünler) organele girip çıkmasını sağlayan (yarı geçirgen) gözeneklere sahiptirler. Bu proteinler, belirli metabolik işlemlere dahil olan enzimleri ve proteinleri tek bir noktada yoğunlaştırarak onların başarımını sağlarlar. Protein kabuğu aynı zamanda fiziksel bir bariyer görevi görerek toksik veya kararsız ara bileşikler oluşturan metabolik reaksiyonların gerçekleşmesine olanak tanır.\n"
+"\n"
+"Metabolozomlar, katalitik bir BMC türüdür ve gliserol ve amino asitler gibi farklı karbon kaynaklarının parçalanmasında rol oynarlar. Glukozun parçalanma işleminin metabolozomlarda gerçekleştiğine dair net bir kanıt yoktur. Ancak, bunu yapabildiğini varsaymak çok da mantıksız değildir."
 
 #: ../simulation_parameters/common/wiki.json:474
 #, fuzzy
@@ -7872,34 +7923,31 @@ msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../simulation_parameters/common/wiki.json:470
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen [b]Oksijenli Solunuma[/b] kıyasla, metabolozomlar [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:509
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
+msgstr "Etkiler yok."
 
 #: ../simulation_parameters/common/wiki.json:493
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
-msgstr "Mitokondri"
+msgstr "Hücrenin güç merkezidir. Mitokondri, [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. Mitokondri bu işlevi <a href=\"/wiki/Metabolosomes\" title=\"Metabolosomes\">Metabolozom</a> gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
 #: ../simulation_parameters/common/wiki.json:505
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
+msgstr "Değişiklikler yok."
 
 #: ../simulation_parameters/common/wiki.json:501
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
-msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr ""
+"[b]Oksijenli Solunum:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] @ [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound]\n"
+"\n"
+"Oksijenli solunum, ana enerji üretim yöntemlerinden biridir. Bu işlem, düzenli bir glukoz girişi gerektirir. Ancak, ortamdaki oksijen miktarıyla doğru orantılıdır."
 
 #: ../simulation_parameters/common/wiki.json:497
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
+msgstr "Bir hücre, Mitokondriyi evrimleştirmek için <a href=\"/wiki/Nucleus\" title=\"Nucleus\">Çekirdeğe</a> sahip olmalıdır."
 
 #: ../simulation_parameters/common/wiki.json:521
 #, fuzzy
@@ -7912,9 +7960,8 @@ msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
 #: ../simulation_parameters/common/wiki.json:513
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Mitokondri, [b]oksijenli solunum[/b] adı verilen bir işlemde, [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sitoplazmada olduğundan çok daha etkili bir şekilde dönüştürür. Ancak çalışmak için [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda bulunan düşük seviyelerdeki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound], onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
@@ -8300,7 +8347,7 @@ msgid "WIKI_ROOT_BODY"
 msgstr ""
 "Oyun içi Thrive vikisine hoşgeldiniz. Burada, strateji rehberlerinden oyun mekaniklerini destekleyen bilimsel teoriye kadar, oyun kavramları hakkında ayrıntılı bilgi bulabilirsiniz.\n"
 "\n"
-"Bu bölümdeki sayfaların çoğu, [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online geliştirici vikisindeki[/url][/color]  İngilizce içerik kullanılarak otomatik olarak oluşturulmuş ve topluluk tarafından çevrilmiştir. Eğer viki içeriğini yazmaya ve güncel tutmaya yardımcı olmak isterseniz, lütfen [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]ekibimize katılmayı[/url][/color] düşünün.\n"
+"Bu bölümdeki sayfaların çoğu, [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]online geliştirici vikisindeki[/url][/color] İngilizce içerik kullanılarak otomatik olarak oluşturulmuş ve topluluk tarafından çevrilmiştir. Eğer viki içeriğini yazmaya ve güncel tutmaya yardımcı olmak isterseniz, lütfen [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]ekibimize katılmayı[/url][/color] düşünün.\n"
 "\n"
 "Ana oyun kavramlarından bazıları için aşağıdaki bağlantıları inceleyin."
 
@@ -8503,27 +8550,27 @@ msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 #: ../simulation_parameters/common/wiki.json:1016
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Özel etkiler yok."
 
 #: ../simulation_parameters/common/wiki.json:1000
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [b]karbondioksit[/b] gazından [b]glukoz[/b] üretmek için [b]ışık[/b] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [b]glukoz[/b] oranı,[b]karbondioksit[/b] konsantrasyonu ve [b]ışık[/b] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../simulation_parameters/common/wiki.json:1012
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Değişiklikler yok"
 
 #: ../simulation_parameters/common/wiki.json:1008
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
+"[b]Kromatofor Fotosentezi:[/b] [b]Güneş Işığı + Karbondioksit[/b] → [b]Glukoz + Oksijen[/b]\n"
+"\n"
+"[b]Glikoliz:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]"
 
 #: ../simulation_parameters/common/wiki.json:1004
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Gereksinimler yok"
 
 #: ../simulation_parameters/common/wiki.json:1028
 #, fuzzy
@@ -8531,14 +8578,19 @@ msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
 
 #: ../simulation_parameters/common/wiki.json:1024
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr ""
+"Tilakoidler, glukoz üretmek için ışığa (lüks ile ölçülür) ihtiyaç duyar. Bu nedenle, yalnızca epipelajik veya gelgit havuzları gibi yüzey seviyesindeki arazilerde kullanılabilirler. Bu yüzden, oyuncunun fotosenteze başlamadan önce geçerli bir arazide yaşadığından emin olması çok önemlidir. Bir kez kurulduğunda; etkili biçimde fotosentez yapan bir hücre oluşturmak, hücrede net pozitif bir glukoz üretimi olduğunu ve bunu sürdürebilecek kadar enerji olduğunu garantilemek kadar basittir. Hayatta kalmak için yeterince glukoz üretemeyeceğinizi düşünüyorsanız, endişelenmeyin! Bir hücrenin enerji tüketiminin çoğu hareketten kaynaklanır ki bu da yiyeceğini bulmak zorunda olmayan bir hücre için tamamen isteğe bağlıdır. Bu nedenle, hareketsiz kalmak net glukoz üretimini önemli ölçüde arttırabilir.\n"
+"\n"
+"Gündüz/gece döngüsünün varlığında, etkili bir fotosentetik hücre oluşturmak zor hale gelebilir. Maksimum glukoz üretimini garantiye almak için karşılayabileceğiniz kadar fotosentez yapan parça ve de uzun gecelerde daha fazla glukoz depolamanızı sağlayacak olan uygun miktarda depo geliştirici parça yerleştirin. Eğer glukoz deponuz düşükse, enerji tüketimini daha da azaltmak için hareketsiz kalmanız veya karmaşık bir organizyonunuz varsa, av peşinde koşmanız tavsiye edilir.\n"
+"\n"
+"Gece bastırdığında, artık hiçbir glukoz üretemediğiniz için korkutucu miktarda enerji tüketmeye başlamanız muhtemeldir. Ama korkmayın! Enerji tasarrufu yapmak ve sabaha kadar dayanmak için hareketsiz kalın.\n"
+"\n"
+"Lüks seviyelerinin yükselmeye başladığı gündüz vaktinde çoğalmanız şiddetle tavsiye edilir. Çünkü çoğaldıktan sonra glukoz deponuz yarıya inecektir ki bu da gece yarısında sizi potansiyel olarak ölüme terk edebilir."
 
 #: ../simulation_parameters/common/wiki.json:1020
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr "Tilakoidler, ışığa hassas pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]fotosentez[/b] adı verilen bir işlemde, sudan ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanırlar. Bu pigmentler ayrıca yapıya kendine özgü bir renk verir. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] şiddeti ile doğru orantılıdır. Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+msgstr "Geliştirmeler yok."
 
 #: ../simulation_parameters/common/wiki.json:1055
 #, fuzzy
