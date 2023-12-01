@@ -152,6 +152,7 @@
     <Compile Include="src\engine\common_components\ManualPhysicsControl.cs" />
     <Compile Include="src\engine\common_components\PathLoadedSceneVisuals.cs" />
     <Compile Include="src\engine\common_components\Physics.cs" />
+    <Compile Include="src\engine\common_components\PhysicsSensor.cs" />
     <Compile Include="src\engine\common_components\PhysicsShapeHolder.cs" />
     <Compile Include="src\engine\common_components\PlayerMarker.cs" />
     <Compile Include="src\engine\common_components\PredefinedVisuals.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="src\engine\common_systems\PhysicsBodyCreationSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsBodyDisablingSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsSensorSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsUpdateAndPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
     <Compile Include="src\engine\common_systems\RenderPrioritySystem.cs" />
