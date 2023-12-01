@@ -1,0 +1,187 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
+[ext_resource path="res://src/thriveopedia/pages/wiki/OrganelleInfoBox.cs" type="Script" id=6]
+
+[node name="PanelContainer" type="PanelContainer"]
+margin_right = 286.0
+margin_bottom = 732.0
+rect_min_size = Vector2( 330, 0 )
+theme = ExtResource( 5 )
+script = ExtResource( 6 )
+NamePath = NodePath("")
+IconPath = NodePath("")
+ModelPath = NodePath("")
+CostLabelPath = NodePath("MarginContainer/VBoxContainer/GameplayType/Value")
+RequiresNucleusIconPath = NodePath("")
+ProcessesLabelPath = NodePath("")
+EnzymesLabelPath = NodePath("")
+MassLabelPath = NodePath("")
+SizeLabelPath = NodePath("")
+OsmoregulationCostLabelPath = NodePath("")
+StorageLabelPath = NodePath("")
+UniqueIconPath = NodePath("")
+UpgradesLabelPath = NodePath("")
+InternalNameLabelPath = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 329.0
+margin_bottom = 731.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 318.0
+margin_bottom = 720.0
+
+[node name="GameplayType" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GameplayType"]
+margin_right = 160.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "INFO_BOX_GAMEPLAY_TYPE"
+align = 1
+autowrap = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/GameplayType"]
+margin_left = 164.0
+margin_top = 10.0
+margin_right = 308.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.25098 )
+margin_top = 41.0
+margin_right = 308.0
+margin_bottom = 45.0
+
+[node name="Previous Stage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 49.0
+margin_right = 308.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Previous Stage"]
+margin_right = 160.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "INFO_BOX_PREVIOUS_STAGE"
+align = 1
+autowrap = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Previous Stage"]
+margin_left = 164.0
+margin_top = 10.0
+margin_right = 308.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.25098 )
+margin_top = 90.0
+margin_right = 308.0
+margin_bottom = 94.0
+
+[node name="Next Stage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 98.0
+margin_right = 308.0
+margin_bottom = 135.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Next Stage"]
+margin_right = 160.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "INFO_BOX_NEXT_STAGE"
+align = 1
+autowrap = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Next Stage"]
+margin_left = 164.0
+margin_top = 10.0
+margin_right = 308.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.25098 )
+margin_top = 139.0
+margin_right = 308.0
+margin_bottom = 143.0
+
+[node name="Editors" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 147.0
+margin_right = 308.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Editors"]
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "INFO_BOX_EDITORS"
+align = 1
+autowrap = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Editors"]
+margin_left = 164.0
+margin_top = 4.0
+margin_right = 308.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0.25098 )
+margin_top = 176.0
+margin_right = 308.0
+margin_bottom = 180.0
+
+[node name="InternalName" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 184.0
+margin_right = 308.0
+margin_bottom = 221.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+margin_right = 160.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 3 )
+text = "INFO_BOX_INTERNAL_NAME"
+align = 1
+autowrap = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/InternalName"]
+margin_left = 164.0
+margin_top = 10.0
+margin_right = 308.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
