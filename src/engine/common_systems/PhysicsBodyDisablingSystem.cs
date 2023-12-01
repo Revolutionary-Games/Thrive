@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
