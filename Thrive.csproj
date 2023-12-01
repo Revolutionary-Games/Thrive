@@ -22,6 +22,8 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\ThriveopediaStagesRootPage.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\PageLinkButton.cs" />	
     <Compile Include="simulation_parameters\BuildInfo.cs" />
     <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
@@ -863,7 +865,6 @@
     <Compile Include="src\thriveopedia\pages\ThriveopediaWikiPage.cs" />
     <Compile Include="src\thriveopedia\pages\ThriveopediaWikiRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\OrganelleInfoBox.cs" />
-    <Compile Include="src\thriveopedia\pages\wiki\OrganelleLinkButton.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\ThriveopediaOrganellesRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\ThriveopediaOrganellePage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\WikiPageSection.cs" />

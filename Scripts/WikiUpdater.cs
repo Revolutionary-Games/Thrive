@@ -165,7 +165,7 @@ public static class WikiUpdater
         var sections = GetMainBodySections(body);
         var untranslatedSections = sections.Select(section => UntranslateSection(section, "STAGES_ROOT")).ToList();
 
-        var untranslatedPage = new Wiki.Page("WIKI_PAGE_Stages_ROOT", "StagesRoot", STAGES_CATEGORY,
+        var untranslatedPage = new Wiki.Page("WIKI_PAGE_STAGES_ROOT", "StagesRoot", STAGES_CATEGORY,
             untranslatedSections);
         var translatedPage = new Wiki.Page("Stages", "StagesRoot", STAGES_CATEGORY, sections);
 

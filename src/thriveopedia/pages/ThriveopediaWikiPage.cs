@@ -43,6 +43,12 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         organellesRootPage.PageContent = wiki.OrganellesRoot;
         pages.Add(organellesRootPage);
 
+        var stagesRootScene =
+            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.tscn");
+        var stagesRootPage = (ThriveopediaStagesRootPage)stagesRootScene.Instance();
+        stagesRootPage.PageContent = wiki.StagesRoot;
+        pages.Add(stagesRootPage);
+
         var organellePageScene =
             GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/ThriveopediaOrganellePage.tscn");
 
