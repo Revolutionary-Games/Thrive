@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 19:16+0200\n"
+"POT-Creation-Date: 2023-12-01 21:29+0100\n"
 "PO-Revision-Date: 2023-11-27 17:42+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -47,7 +47,7 @@ msgstr "Перервати"
 msgid "ABORTED_DOT"
 msgstr "Перервано."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:864
 msgid "ABYSSOPELAGIC"
 msgstr "морська безодня"
 
@@ -122,11 +122,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна фіксація азоту"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "Агенти"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 msgid "AGENTS_COLON"
 msgstr "Агенти:"
 
@@ -203,7 +203,7 @@ msgstr "Гучність оточення"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "Аміак"
 
@@ -473,17 +473,17 @@ msgstr "Баси вниз"
 msgid "BASSUP"
 msgstr "Баси вгору"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:592
+#: ../simulation_parameters/microbe_stage/biomes.json:610
 msgid "BATHYPELAGIC"
 msgstr "Придоння"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітинності ({0}/{1})"
 
@@ -542,16 +542,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:81
-#: ../simulation_parameters/microbe_stage/biomes.json:332
-#: ../simulation_parameters/microbe_stage/biomes.json:501
-#: ../simulation_parameters/microbe_stage/biomes.json:669
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1165
-#: ../simulation_parameters/microbe_stage/biomes.json:1414
-#: ../simulation_parameters/microbe_stage/biomes.json:1582
-#: ../simulation_parameters/microbe_stage/biomes.json:1773
-#: ../simulation_parameters/microbe_stage/biomes.json:1942
-#: ../simulation_parameters/microbe_stage/biomes.json:2110
+#: ../simulation_parameters/microbe_stage/biomes.json:338
+#: ../simulation_parameters/microbe_stage/biomes.json:513
+#: ../simulation_parameters/microbe_stage/biomes.json:687
+#: ../simulation_parameters/microbe_stage/biomes.json:941
+#: ../simulation_parameters/microbe_stage/biomes.json:1195
+#: ../simulation_parameters/microbe_stage/biomes.json:1450
+#: ../simulation_parameters/microbe_stage/biomes.json:1624
+#: ../simulation_parameters/microbe_stage/biomes.json:1822
+#: ../simulation_parameters/microbe_stage/biomes.json:1997
+#: ../simulation_parameters/microbe_stage/biomes.json:2171
 msgid "BIG_IRON_CHUNK"
 msgstr "Великий шматок заліза"
 
@@ -720,27 +720,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Вуглекислий газ"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:879
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в достатку"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:883
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "невелика кількість"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:887
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:881
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "нормально"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:885
 msgid "CATEGORY_SOME"
 msgstr "трішки"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:889
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
@@ -890,7 +890,7 @@ msgstr "Хроматична аберація:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:109
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr "Фрагмент трупу клітини"
 
@@ -947,7 +947,7 @@ msgstr "Дільник роздільної здатності хмари:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мінімальний інтервал симуляції хмари:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1336
+#: ../simulation_parameters/microbe_stage/biomes.json:1372
 msgid "COASTAL"
 msgstr "Узбережжя"
 
@@ -1055,7 +1055,7 @@ msgstr "Збірка в:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "Сполуки"
 
@@ -1063,7 +1063,7 @@ msgstr "Сполуки"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати/ приховати сполуки"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "Сполуки:"
 
@@ -1448,7 +1448,7 @@ msgstr "Калібрування ертвої зони було скинуто"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Конфігурація мертвої зони"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:337
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:339
 msgid "DEATH"
 msgstr "Смерть"
 
@@ -1585,7 +1585,7 @@ msgstr "Розробницьке wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Відвідайте наше розробницьке wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:278
 msgid "DEVOURED"
 msgstr "З'їдений"
 
@@ -1916,7 +1916,7 @@ msgstr "Швидкість панорамування:"
 msgid "EDITOR"
 msgstr "Редактор"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Увійдіть до редактора та модифікуйте свій вид"
 
@@ -1984,7 +1984,7 @@ msgid "ENTITY_LABEL"
 msgstr "Мітка сутності"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "Оточення"
 
@@ -2044,11 +2044,11 @@ msgstr "Помилка збереження"
 msgid "ESCAPE"
 msgstr "Вийти з повноекрання"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1205
+#: ../src/microbe_stage/MicrobeStage.cs:1248
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1864
+#: ../simulation_parameters/microbe_stage/biomes.json:1919
 msgid "ESTUARY"
 msgstr "Гирло"
 
@@ -2234,7 +2234,7 @@ msgstr "Завершення {0} генерацій"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
@@ -2259,21 +2259,21 @@ msgstr "Флот {0}"
 msgid "FLEET_UNITS"
 msgstr "Одиниці флоту"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Плавучі чанки:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:197
-#: ../simulation_parameters/microbe_stage/biomes.json:446
-#: ../simulation_parameters/microbe_stage/biomes.json:614
-#: ../simulation_parameters/microbe_stage/biomes.json:862
-#: ../simulation_parameters/microbe_stage/biomes.json:1110
-#: ../simulation_parameters/microbe_stage/biomes.json:1359
-#: ../simulation_parameters/microbe_stage/biomes.json:1527
-#: ../simulation_parameters/microbe_stage/biomes.json:1699
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2055
+#: ../simulation_parameters/microbe_stage/biomes.json:203
+#: ../simulation_parameters/microbe_stage/biomes.json:458
+#: ../simulation_parameters/microbe_stage/biomes.json:632
+#: ../simulation_parameters/microbe_stage/biomes.json:886
+#: ../simulation_parameters/microbe_stage/biomes.json:1140
+#: ../simulation_parameters/microbe_stage/biomes.json:1395
+#: ../simulation_parameters/microbe_stage/biomes.json:1569
+#: ../simulation_parameters/microbe_stage/biomes.json:1747
+#: ../simulation_parameters/microbe_stage/biomes.json:1942
+#: ../simulation_parameters/microbe_stage/biomes.json:2116
 msgid "FLOATING_HAZARD"
 msgstr "Плавуча загроза"
 
@@ -2332,12 +2332,12 @@ msgstr "Невдале скам'яніння"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "Файл скам'яніння неможливо записати"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Скам'янити цей вид"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Скам'янити цей вид (вже скам'янено)"
 
@@ -2444,7 +2444,7 @@ msgstr "Частина популуляції [b][u]{0}[/u][/b] мігрувал
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -2465,16 +2465,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Інструменти Бога"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:105
-#: ../simulation_parameters/microbe_stage/biomes.json:356
-#: ../simulation_parameters/microbe_stage/biomes.json:525
-#: ../simulation_parameters/microbe_stage/biomes.json:773
-#: ../simulation_parameters/microbe_stage/biomes.json:1021
-#: ../simulation_parameters/microbe_stage/biomes.json:1269
-#: ../simulation_parameters/microbe_stage/biomes.json:1438
-#: ../simulation_parameters/microbe_stage/biomes.json:1606
-#: ../simulation_parameters/microbe_stage/biomes.json:1797
-#: ../simulation_parameters/microbe_stage/biomes.json:1966
-#: ../simulation_parameters/microbe_stage/biomes.json:2214
+#: ../simulation_parameters/microbe_stage/biomes.json:362
+#: ../simulation_parameters/microbe_stage/biomes.json:537
+#: ../simulation_parameters/microbe_stage/biomes.json:791
+#: ../simulation_parameters/microbe_stage/biomes.json:1045
+#: ../simulation_parameters/microbe_stage/biomes.json:1299
+#: ../simulation_parameters/microbe_stage/biomes.json:1474
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
+#: ../simulation_parameters/microbe_stage/biomes.json:2021
+#: ../simulation_parameters/microbe_stage/biomes.json:2275
 msgid "GOOGLY_EYE_CELL"
 msgstr "Бігаючі оченята клітин"
 
@@ -2593,7 +2593,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
@@ -2605,11 +2605,11 @@ msgstr "Гіпер вліво"
 msgid "HYPERR"
 msgstr "Гіпер вправо"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1754
+#: ../simulation_parameters/microbe_stage/biomes.json:1802
 msgid "ICESHARD"
 msgstr "Крижані уламки"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1673
+#: ../simulation_parameters/microbe_stage/biomes.json:1721
 msgid "ICESHELF"
 msgstr "Льодовиковий шельф"
 
@@ -2686,7 +2686,7 @@ msgstr "Унікальний"
 msgid "INFO_BOX_UPGRADES"
 msgstr "Покращення"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr "Поглинута матерія"
 
@@ -2847,7 +2847,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "Залізо"
 
@@ -3275,7 +3275,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Гідротермальні джерела"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "Світло"
 
@@ -3480,11 +3480,11 @@ msgstr "Мапа"
 msgid "MARCH"
 msgstr "Березень"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:252
-#: ../simulation_parameters/microbe_stage/biomes.json:693
-#: ../simulation_parameters/microbe_stage/biomes.json:941
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
-#: ../simulation_parameters/microbe_stage/biomes.json:2134
+#: ../simulation_parameters/microbe_stage/biomes.json:258
+#: ../simulation_parameters/microbe_stage/biomes.json:711
+#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:2195
 msgid "MARINE_SNOW"
 msgstr "Морський сніг"
 
@@ -3559,7 +3559,7 @@ msgstr "Типи Мембрани"
 msgid "MENU"
 msgstr "Меню"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1088
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "MESOPELAGIC"
 msgstr "Серединомор'я"
 
@@ -4166,7 +4166,7 @@ msgstr "Переміститися на будь-яку ділянку"
 msgid "MOVE_TO_LAND"
 msgstr "Перейти на сушу"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейдіть до наступного сходинки гри (багатоклітинності). Доступний при достатньому розмірі колонії."
 
@@ -4219,7 +4219,7 @@ msgstr "{0} ОM"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "Слиз"
 
@@ -4435,19 +4435,19 @@ msgstr "Немає з чим взаємодіяти"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Пошкодження через нестачу АТФ"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:199
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:195
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Пошкодження через токсини у поглинутій матерії"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:126
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Немає {0} для поглинання цілі"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:868
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:942
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Поточний розмір клітини замалий для поглинання цілі"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:860
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:934
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Замало простору поглинутої матерії для поглинання цілі"
 
@@ -4538,7 +4538,7 @@ msgstr "Перемикання числового регістрату(Num Lock)
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
 msgstr "Н/Є"
 
@@ -4546,7 +4546,7 @@ msgstr "Н/Є"
 msgid "N_A_MP"
 msgstr "Н/Є ОМ"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:502
 msgid "N_TIMES"
 msgstr "x{0}"
 
@@ -4803,7 +4803,7 @@ msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] н
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
 
@@ -4928,7 +4928,7 @@ msgstr "ПАУЗА"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Повернутись до гри"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr "[center]Натисніть [thrive:input]g_pause[/thrive:input], аби продовжити гру[/center]"
 
@@ -4948,7 +4948,7 @@ msgstr "Завантаження pck файлу ({0}) невдалося том�
 msgid "PEACEFUL"
 msgstr "Мирність"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -4958,7 +4958,7 @@ msgstr "Мирність"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4979,7 +4979,7 @@ msgstr "/секунду"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
@@ -5027,7 +5027,7 @@ msgstr "Генерація планети пройшла успішно!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Рандомний сід планети"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "PLAYER"
 msgstr "Гравець"
 
@@ -5090,7 +5090,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Грати з поточними налаштуваннями"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
@@ -5120,7 +5120,7 @@ msgid "PRESSURE"
 msgstr "Тиск"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "Тиск"
 
@@ -5263,7 +5263,8 @@ msgstr "Звіт"
 msgid "REPORT_BUG"
 msgstr "Зробити баг-репорт"
 
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:495
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:274
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "розмножено"
 
@@ -5666,13 +5667,13 @@ msgstr "Шукати..."
 msgid "SEARCH_RADIUS"
 msgstr "Радіус пошуку:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2033
+#: ../simulation_parameters/microbe_stage/biomes.json:2094
 msgid "SEA_FLOOR"
 msgstr "Морське дно"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "Виділення слизу"
 
@@ -5821,27 +5822,27 @@ msgstr "Сигнальний агент дозволяє клітинам ств
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Натисніть [thrive:input]g_pack_commands[/thrive:input] для відкриття меню надавання команд іншим особам вашого виду."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Зробіться агресивними"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Тікайте"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Стежте за мною"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Нема команд"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Рухайтесь до мене"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал для виведення"
 
@@ -5881,16 +5882,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"mucilage\"][/thrive:compound]. Натисніть [thrive:input]g_secrete_slime[/thrive:input] для позбавлення накопиченнь [thrive:compound type=\"mucilage\"][/thrive:compound], пришвидчуючи клітину та сповільнюючи хижаків."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:45
-#: ../simulation_parameters/microbe_stage/biomes.json:216
-#: ../simulation_parameters/microbe_stage/biomes.json:465
-#: ../simulation_parameters/microbe_stage/biomes.json:633
-#: ../simulation_parameters/microbe_stage/biomes.json:881
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
-#: ../simulation_parameters/microbe_stage/biomes.json:1546
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1906
-#: ../simulation_parameters/microbe_stage/biomes.json:2074
+#: ../simulation_parameters/microbe_stage/biomes.json:222
+#: ../simulation_parameters/microbe_stage/biomes.json:477
+#: ../simulation_parameters/microbe_stage/biomes.json:651
+#: ../simulation_parameters/microbe_stage/biomes.json:905
+#: ../simulation_parameters/microbe_stage/biomes.json:1159
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1766
+#: ../simulation_parameters/microbe_stage/biomes.json:1961
+#: ../simulation_parameters/microbe_stage/biomes.json:2135
 msgid "SMALL_IRON_CHUNK"
 msgstr "Малий шматок заліза"
 
@@ -5942,7 +5943,7 @@ msgstr "Спавн амоніаку"
 msgid "SPAWN_ENEMY"
 msgstr "Спавн ворога"
 
-#: ../src/microbe_stage/MicrobeStage.cs:961
+#: ../src/microbe_stage/MicrobeStage.cs:974
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
@@ -5967,7 +5968,7 @@ msgstr "Спеціальна миша 2"
 msgid "SPECIES"
 msgstr "Види"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "Види:"
 
@@ -6038,6 +6039,10 @@ msgstr "Швидкість:"
 #: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "поширено в ділянці:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.cs:19
+msgid "STAGES"
+msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -6240,11 +6245,11 @@ msgstr "Центр суспільства"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Фабрика на паровій тязі"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1203
+#: ../src/microbe_stage/MicrobeStage.cs:1246
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1204
+#: ../src/microbe_stage/MicrobeStage.cs:1247
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "вдале очищення"
 
@@ -6386,7 +6391,7 @@ msgid "TEMPERATURE"
 msgstr "Температура"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
@@ -6526,7 +6531,7 @@ msgstr "Тилакоїди"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Тилакоїди є кластерами з білків та фотосинтезувальних пігментів. Пігменти використовують енергію [thrive:compound type=\"sunlight\"][/thrive:compound], щоб продукувати [thrive:compound type=\"glucose\"][/thrive:compound] з води та газуватої форми [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процесі, що зветься [b]фотосинтезом[/b]. Ці пігменти також надають характерний колір. Їхня кількість виробленої [thrive:compound type=\"glucose\"][/thrive:compound] залежить від концентрації [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]. Оскільки тилакоїди зафіксовані безпосередньо в цитоплазмі, навколишня рідина одразу здійснює певний [b]гліколіз[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:423
+#: ../simulation_parameters/microbe_stage/biomes.json:435
 msgid "TIDEPOOL"
 msgstr "Припливний басейн"
 
@@ -6550,8 +6555,8 @@ msgstr "[b][u]{0}[/u][/b] відокремилося від [b][u]{1}[/u][/b] я
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
 
-#: ../src/microbe_stage/MicrobeStage.cs:435
-#: ../src/microbe_stage/MicrobeStage.cs:439
+#: ../src/microbe_stage/MicrobeStage.cs:447
+#: ../src/microbe_stage/MicrobeStage.cs:451
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "Вид [b][u]{0}[/u][/b] перейшов до багатоклітинності"
 
@@ -6592,7 +6597,7 @@ msgid "TITLE_COLON"
 msgstr "Назва:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
@@ -6603,7 +6608,7 @@ msgstr "Ввімкнути панель налагоджування"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
@@ -6899,11 +6904,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Ви маєте застосувати зміни, щоб завантажити або відвантажити будь-які моди."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "Роз'єднати всіх"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:204
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим зв'язування"
 
@@ -6911,7 +6916,7 @@ msgstr "Режим зв'язування"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Це збірка налагоджувань, де інформація нижче, ймовірно, застаріла"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1505
+#: ../simulation_parameters/microbe_stage/biomes.json:1547
 msgid "UNDERWATERCAVE"
 msgstr "Підводна печера"
 
@@ -7056,7 +7061,7 @@ msgstr "Вакуоля — це внутрішня мембранна орган
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "Спеціалізована вакуоля"
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:132
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "Ця вакуоля зберігатиме {0} одиниць усіх речовин"
 
@@ -7064,11 +7069,11 @@ msgstr "Ця вакуоля зберігатиме {0} одиниць усіх �
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Збільшує простір для зберігання у клітинні."
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:137
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Ця вакуоля зберігатиме {0} одиниць обраної речовини"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:635
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7133,7 +7138,7 @@ msgstr "Видимий"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Запропунувати функцію"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:178
 msgid "VOLCANIC_VENT"
 msgstr "Жерло вулкана"
 
@@ -7189,6 +7194,94 @@ msgstr "Колесо вгору"
 #, fuzzy
 msgid "WIKI"
 msgstr "Наша Wiki"
+
+#: ../simulation_parameters/common/wiki.json:1367
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Поточні розробники"
+
+#: ../simulation_parameters/common/wiki.json:1359
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Внутрішні ефекти:"
+
+#: ../simulation_parameters/common/wiki.json:1347
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Рустіціанін — це білок, що використовує [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] для окиснення [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший. Цей процес, що зветься [b]залізним диханням[/b], вивільняє енергію, яку клітина потім забирає."
+
+#: ../simulation_parameters/common/wiki.json:1351
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1355
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Вітаємо!"
+
+#: ../simulation_parameters/common/wiki.json:1363
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Рустіціанін — це білок, що використовує [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] для окиснення [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший. Цей процес, що зветься [b]залізним диханням[/b], вивільняє енергію, яку клітина потім забирає."
+
+#: ../simulation_parameters/common/wiki.json:1243
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Дозволяє з'єднуватися з іншими клітинами. Це перший крок до багатоклітинності. Коли ваша клітина — частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднанням."
+
+#: ../simulation_parameters/common/wiki.json:1235
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Стадія пробудження"
+
+#: ../simulation_parameters/common/wiki.json:1223
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "З'єднувальний агент"
+
+#: ../simulation_parameters/common/wiki.json:1227
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Стадія пробудження"
+
+#: ../simulation_parameters/common/wiki.json:1231
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Стадія пробудження"
+
+#: ../simulation_parameters/common/wiki.json:1239
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Стадія пробудження"
+
+#: ../simulation_parameters/common/wiki.json:1212
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1204
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Стадія свідомості"
+
+#: ../simulation_parameters/common/wiki.json:1192
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#: ../simulation_parameters/common/wiki.json:1196
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Стадія свідомості"
+
+#: ../simulation_parameters/common/wiki.json:1200
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Нітрогеназа"
+
+#: ../simulation_parameters/common/wiki.json:1208
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Стадія свідомості"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy
@@ -7572,6 +7665,32 @@ msgstr ""
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1145
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#: ../simulation_parameters/common/wiki.json:1176
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#: ../simulation_parameters/common/wiki.json:1180
+#: ../simulation_parameters/common/wiki.json:1211
+#: ../simulation_parameters/common/wiki.json:1242
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1304
+#: ../simulation_parameters/common/wiki.json:1335
+#: ../simulation_parameters/common/wiki.json:1366
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Поточні розробники"
+
+#: ../simulation_parameters/common/wiki.json:1137
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Загальний редактор та стратегічні стадії"
+
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7603,6 +7722,27 @@ msgstr ""
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1168
+#: ../simulation_parameters/common/wiki.json:1203
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1265
+#: ../simulation_parameters/common/wiki.json:1296
+#: ../simulation_parameters/common/wiki.json:1327
+#: ../simulation_parameters/common/wiki.json:1358
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#: ../simulation_parameters/common/wiki.json:1133
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#: ../simulation_parameters/common/wiki.json:1141
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Загальний редактор та стратегічні стадії"
+
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
 #: ../simulation_parameters/common/wiki.json:110
@@ -7633,6 +7773,17 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1160
+#: ../simulation_parameters/common/wiki.json:1195
+#: ../simulation_parameters/common/wiki.json:1226
+#: ../simulation_parameters/common/wiki.json:1257
+#: ../simulation_parameters/common/wiki.json:1288
+#: ../simulation_parameters/common/wiki.json:1319
+#: ../simulation_parameters/common/wiki.json:1350
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Загальний редактор та стратегічні стадії"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7759,6 +7910,28 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Загальний редактор та стратегічні стадії"
 
+#: ../simulation_parameters/common/wiki.json:1164
+#: ../simulation_parameters/common/wiki.json:1199
+#: ../simulation_parameters/common/wiki.json:1230
+#: ../simulation_parameters/common/wiki.json:1261
+#: ../simulation_parameters/common/wiki.json:1292
+#: ../simulation_parameters/common/wiki.json:1323
+#: ../simulation_parameters/common/wiki.json:1354
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#: ../simulation_parameters/common/wiki.json:1172
+#: ../simulation_parameters/common/wiki.json:1207
+#: ../simulation_parameters/common/wiki.json:1238
+#: ../simulation_parameters/common/wiki.json:1269
+#: ../simulation_parameters/common/wiki.json:1300
+#: ../simulation_parameters/common/wiki.json:1331
+#: ../simulation_parameters/common/wiki.json:1362
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Загальний редактор та стратегічні стадії"
+
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
 #: ../simulation_parameters/common/wiki.json:118
@@ -7789,6 +7962,36 @@ msgstr "Загальний редактор та стратегічні стад
 #: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1305
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Дозволяє з'єднуватися з іншими клітинами. Це перший крок до багатоклітинності. Коли ваша клітина — частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднанням."
+
+#: ../simulation_parameters/common/wiki.json:1297
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Індустріальна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1285
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "З'єднувальний агент"
+
+#: ../simulation_parameters/common/wiki.json:1289
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Індустріальна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1293
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Індустріальна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1301
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Індустріальна стадія"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
@@ -7869,6 +8072,52 @@ msgstr "Метаболосоми є скупченнями білків в бі�
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Метаболосоми є скупченнями білків в білковій оболонці. Вони набагато швидше перетворюють [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] ніж в цитоплазмі під час процесу, що зветься [b]Анаеробним Диханням[/b]. Та для цього потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нищий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнює синтез [thrive:compound type=\"atp\"][/thrive:compound]. Оскільки метаболосоми розміщені в цитоплазмі, навколишня рідина здійснює [b]гліколіз[/b]."
 
+#: ../simulation_parameters/common/wiki.json:1146
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#: ../simulation_parameters/common/wiki.json:1138
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Мікробний редактор"
+
+#: ../simulation_parameters/common/wiki.json:1134
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#: ../simulation_parameters/common/wiki.json:1142
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Мікробна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1130
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
 #: ../simulation_parameters/common/wiki.json:509
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
@@ -7908,6 +8157,50 @@ msgstr "Енергостанція клітини. Мітохондрія є д�
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Енергостанція клітини. Мітохондрія є двомембранною структурою, заповненою білками та ферментами. Це прокаріот, поглинутий для використання еукаріотичним господарем. Вона здатна перетворювати [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound] з сильно вищою ефективністю, аніж це робить цитоплазма, в процесі названому [b]анаеробним диханням[/b]. Однак для функціонування мітохондрії потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нижчий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнить продукування [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:1177
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Багатоклітинна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1181
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Вітаємо на ранній багатоклітинній стадії!\n"
+"\n"
+"Ви змогли довести свій вид крізь одноклітинну фазу.\n"
+"\n"
+"Геймплей наслідує основній механіці мікробної стадії. Вам ще треба рости своїм за організм, щоб розмножуватись та переходити до редактору.\n"
+"\n"
+"Проте зараз ви ще можите розробити макет колоніальної клітини в редакторі та спеціалізувати вашу клітину для різних цілей. Пам'ятайте, що члени колонії не здатні ділити між собою [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Якщо ви використовуєте розмноження брунькуванням( метод за замовчуванням) ви почнете керувати малою брунькою та потребуватимете вирощення решти клітинного макету."
+
+#: ../simulation_parameters/common/wiki.json:1169
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Багатоклітинна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1157
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Багатоклітинна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1161
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Багатоклітинна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1165
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Багатоклітинна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1173
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Багатоклітинна стадія"
 
 #: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
@@ -8099,6 +8392,21 @@ msgstr "Модифікована метаболосома відповідає �
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#: ../simulation_parameters/common/wiki.json:1341
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Рустіціанін"
+
+#: ../simulation_parameters/common/wiki.json:1217
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Стадія пробудження"
+
+#: ../simulation_parameters/common/wiki.json:1186
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Стадія свідомості"
+
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
 msgstr ""
@@ -8147,6 +8455,11 @@ msgstr "Цитоплазма"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Джгутик"
 
+#: ../simulation_parameters/common/wiki.json:1279
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Індустріальна стадія"
+
 #: ../simulation_parameters/common/wiki.json:405
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
@@ -8157,10 +8470,20 @@ msgstr "Лізосома"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболосоми"
 
+#: ../simulation_parameters/common/wiki.json:1124
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Нітрогеназа"
+
 #: ../simulation_parameters/common/wiki.json:487
 #, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Мітохондрія"
+
+#: ../simulation_parameters/common/wiki.json:1151
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Багатоклітинна стадія"
 
 #: ../simulation_parameters/common/wiki.json:526
 #, fuzzy
@@ -8215,6 +8538,21 @@ msgstr "Сигнальний агент"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Поросома"
+
+#: ../simulation_parameters/common/wiki.json:1248
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Стадія суспільства"
+
+#: ../simulation_parameters/common/wiki.json:1310
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Поросома"
+
+#: ../simulation_parameters/common/wiki.json:1112
+#, fuzzy
+msgid "WIKI_PAGE_Stages_ROOT"
+msgstr "Місце для органели"
 
 #: ../simulation_parameters/common/wiki.json:916
 #, fuzzy
@@ -8434,6 +8772,69 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1274
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1266
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Стадія суспільства"
+
+#: ../simulation_parameters/common/wiki.json:1254
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці ядерні пории, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
+
+#: ../simulation_parameters/common/wiki.json:1258
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Стадія суспільства"
+
+#: ../simulation_parameters/common/wiki.json:1262
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Стадія суспільства"
+
+#: ../simulation_parameters/common/wiki.json:1270
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Стадія суспільства"
+
+#: ../simulation_parameters/common/wiki.json:1336
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1328
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Поросома"
+
+#: ../simulation_parameters/common/wiki.json:1316
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Багато організмів продукують полісахариди, злизоподібну субстанцію, та слиз є одним з таких. Хоч багато видів використовують слиз для руху, деякі типи бектерій викидають ці речовини під високим тиском. Ці ядерні пории, наче ракетні двигуни, пхаючи клітину вперід з неймовірною швидкістю. Слиз також використовується для протидії хижакам, затримуючи їх у речовині, доступній лише для організмів, що володіють струменями."
+
+#: ../simulation_parameters/common/wiki.json:1320
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Космічна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1324
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Нітрогеназа"
+
+#: ../simulation_parameters/common/wiki.json:1332
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Космічна стадія"
+
+#: ../simulation_parameters/common/wiki.json:1118
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Аксон"
 
 #: ../simulation_parameters/common/wiki.json:938
 #, fuzzy

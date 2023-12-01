@@ -1,17 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/thriveopedia/pages/wiki/OrganelleLinkButton.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/thriveopedia/pages/wiki/PageLinkButton.cs" type="Script" id=3]
 
-[node name="OrganelleLinkButton" type="VBoxContainer"]
+[node name="PageLinkButton" type="VBoxContainer"]
 margin_right = 150.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 0, 195 )
-theme = ExtResource( 3 )
-script = ExtResource( 1 )
-ButtonPath = NodePath("Button")
-LabelPath = NodePath("Label")
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Button" type="Button" parent="."]
 margin_right = 150.0

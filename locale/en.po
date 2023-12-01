@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 19:16+0200\n"
+"POT-Creation-Date: 2023-12-01 21:29+0100\n"
 "PO-Revision-Date: 2023-10-31 16:14+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -47,7 +47,7 @@ msgstr "Abort"
 msgid "ABORTED_DOT"
 msgstr "Aborted."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:864
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagic"
 
@@ -122,11 +122,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobic Nitrogen Fixation"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 msgid "AGENTS_COLON"
 msgstr "Agents:"
 
@@ -203,7 +203,7 @@ msgstr "Ambiance volume"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "Ammonia"
 
@@ -473,17 +473,17 @@ msgstr "Bass Down"
 msgid "BASSUP"
 msgstr "Bass Up"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:592
+#: ../simulation_parameters/microbe_stage/biomes.json:610
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagic"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr "Become Multicellular ({0}/{1})"
 
@@ -542,16 +542,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Best Patch:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:81
-#: ../simulation_parameters/microbe_stage/biomes.json:332
-#: ../simulation_parameters/microbe_stage/biomes.json:501
-#: ../simulation_parameters/microbe_stage/biomes.json:669
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1165
-#: ../simulation_parameters/microbe_stage/biomes.json:1414
-#: ../simulation_parameters/microbe_stage/biomes.json:1582
-#: ../simulation_parameters/microbe_stage/biomes.json:1773
-#: ../simulation_parameters/microbe_stage/biomes.json:1942
-#: ../simulation_parameters/microbe_stage/biomes.json:2110
+#: ../simulation_parameters/microbe_stage/biomes.json:338
+#: ../simulation_parameters/microbe_stage/biomes.json:513
+#: ../simulation_parameters/microbe_stage/biomes.json:687
+#: ../simulation_parameters/microbe_stage/biomes.json:941
+#: ../simulation_parameters/microbe_stage/biomes.json:1195
+#: ../simulation_parameters/microbe_stage/biomes.json:1450
+#: ../simulation_parameters/microbe_stage/biomes.json:1624
+#: ../simulation_parameters/microbe_stage/biomes.json:1822
+#: ../simulation_parameters/microbe_stage/biomes.json:1997
+#: ../simulation_parameters/microbe_stage/biomes.json:2171
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
@@ -720,27 +720,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Carbon Dioxide"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:879
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:883
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:887
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:881
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:885
 msgid "CATEGORY_SOME"
 msgstr "some"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:889
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
@@ -890,7 +890,7 @@ msgstr "Chromatic aberration:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:109
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr "Cell Corpse Chunk"
 
@@ -947,7 +947,7 @@ msgstr "Cloud resolution divisor:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Cloud simulation minimum interval:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1336
+#: ../simulation_parameters/microbe_stage/biomes.json:1372
 msgid "COASTAL"
 msgstr "Coastal"
 
@@ -1055,7 +1055,7 @@ msgstr "Built at:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
@@ -1063,7 +1063,7 @@ msgstr "Compounds"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide compounds"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "Compounds:"
 
@@ -1448,7 +1448,7 @@ msgstr "Deadzone calibrations have been reset"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Deadzone Configuration"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:337
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:339
 msgid "DEATH"
 msgstr "death"
 
@@ -1585,7 +1585,7 @@ msgstr "Development Wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Visit our developer wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:278
 msgid "DEVOURED"
 msgstr "Devoured"
 
@@ -1916,7 +1916,7 @@ msgstr "Pan speed:"
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
 
@@ -1984,7 +1984,7 @@ msgid "ENTITY_LABEL"
 msgstr "Entity label"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "Environment"
 
@@ -2044,11 +2044,11 @@ msgstr "Error Saving"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1205
+#: ../src/microbe_stage/MicrobeStage.cs:1248
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1864
+#: ../simulation_parameters/microbe_stage/biomes.json:1919
 msgid "ESTUARY"
 msgstr "Estuary"
 
@@ -2234,7 +2234,7 @@ msgstr "Finish {0} Generations"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
@@ -2259,21 +2259,21 @@ msgstr "{0} Fleet"
 msgid "FLEET_UNITS"
 msgstr "Fleet Units"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Floating Chunks:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:197
-#: ../simulation_parameters/microbe_stage/biomes.json:446
-#: ../simulation_parameters/microbe_stage/biomes.json:614
-#: ../simulation_parameters/microbe_stage/biomes.json:862
-#: ../simulation_parameters/microbe_stage/biomes.json:1110
-#: ../simulation_parameters/microbe_stage/biomes.json:1359
-#: ../simulation_parameters/microbe_stage/biomes.json:1527
-#: ../simulation_parameters/microbe_stage/biomes.json:1699
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2055
+#: ../simulation_parameters/microbe_stage/biomes.json:203
+#: ../simulation_parameters/microbe_stage/biomes.json:458
+#: ../simulation_parameters/microbe_stage/biomes.json:632
+#: ../simulation_parameters/microbe_stage/biomes.json:886
+#: ../simulation_parameters/microbe_stage/biomes.json:1140
+#: ../simulation_parameters/microbe_stage/biomes.json:1395
+#: ../simulation_parameters/microbe_stage/biomes.json:1569
+#: ../simulation_parameters/microbe_stage/biomes.json:1747
+#: ../simulation_parameters/microbe_stage/biomes.json:1942
+#: ../simulation_parameters/microbe_stage/biomes.json:2116
 msgid "FLOATING_HAZARD"
 msgstr "Floating Hazard"
 
@@ -2332,12 +2332,12 @@ msgstr "Fossilisation Failed"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "The fossil file could not be written"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Fossilise this species"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "Fossilise this species (already fossilised)"
 
@@ -2444,7 +2444,7 @@ msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -2465,16 +2465,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "God Tools"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:105
-#: ../simulation_parameters/microbe_stage/biomes.json:356
-#: ../simulation_parameters/microbe_stage/biomes.json:525
-#: ../simulation_parameters/microbe_stage/biomes.json:773
-#: ../simulation_parameters/microbe_stage/biomes.json:1021
-#: ../simulation_parameters/microbe_stage/biomes.json:1269
-#: ../simulation_parameters/microbe_stage/biomes.json:1438
-#: ../simulation_parameters/microbe_stage/biomes.json:1606
-#: ../simulation_parameters/microbe_stage/biomes.json:1797
-#: ../simulation_parameters/microbe_stage/biomes.json:1966
-#: ../simulation_parameters/microbe_stage/biomes.json:2214
+#: ../simulation_parameters/microbe_stage/biomes.json:362
+#: ../simulation_parameters/microbe_stage/biomes.json:537
+#: ../simulation_parameters/microbe_stage/biomes.json:791
+#: ../simulation_parameters/microbe_stage/biomes.json:1045
+#: ../simulation_parameters/microbe_stage/biomes.json:1299
+#: ../simulation_parameters/microbe_stage/biomes.json:1474
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
+#: ../simulation_parameters/microbe_stage/biomes.json:2021
+#: ../simulation_parameters/microbe_stage/biomes.json:2275
 msgid "GOOGLY_EYE_CELL"
 msgstr "Googly eye cell"
 
@@ -2593,7 +2593,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hydrogen Sulfide"
 
@@ -2605,11 +2605,11 @@ msgstr "Hyper Left"
 msgid "HYPERR"
 msgstr "Hyper Right"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1754
+#: ../simulation_parameters/microbe_stage/biomes.json:1802
 msgid "ICESHARD"
 msgstr "Ice Shard"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1673
+#: ../simulation_parameters/microbe_stage/biomes.json:1721
 msgid "ICESHELF"
 msgstr "Ice Shelf"
 
@@ -2685,7 +2685,7 @@ msgstr "Unique"
 msgid "INFO_BOX_UPGRADES"
 msgstr "Upgrades"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr "Ingested Matter"
 
@@ -2846,7 +2846,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "Iron"
 
@@ -3274,7 +3274,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "Light"
 
@@ -3479,11 +3479,11 @@ msgstr "Map"
 msgid "MARCH"
 msgstr "March"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:252
-#: ../simulation_parameters/microbe_stage/biomes.json:693
-#: ../simulation_parameters/microbe_stage/biomes.json:941
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
-#: ../simulation_parameters/microbe_stage/biomes.json:2134
+#: ../simulation_parameters/microbe_stage/biomes.json:258
+#: ../simulation_parameters/microbe_stage/biomes.json:711
+#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:2195
 msgid "MARINE_SNOW"
 msgstr "Marine snow"
 
@@ -3558,7 +3558,7 @@ msgstr "Membrane Types"
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1088
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "MESOPELAGIC"
 msgstr "Mesopelagic"
 
@@ -4164,7 +4164,7 @@ msgstr "Move to Any Patch"
 msgid "MOVE_TO_LAND"
 msgstr "Move to Land"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Move to the next stage of the game (multicellular). Available once you have a big enough cell colony."
 
@@ -4217,7 +4217,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "Mucilage"
 
@@ -4433,19 +4433,19 @@ msgstr "Nothing to interact with"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Damaged due to not having any ATP"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:199
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:195
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Damaged by toxins in ingested matter"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:126
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Missing {0} to engulf target"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:868
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:942
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Current cell size too small to engulf target"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:860
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:934
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Not enough space in ingested matter storage to engulf target"
 
@@ -4536,7 +4536,7 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
 msgstr "N/A"
 
@@ -4544,7 +4544,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:502
 msgid "N_TIMES"
 msgstr "x{0}"
 
@@ -4801,7 +4801,7 @@ msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:comp
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -4926,7 +4926,7 @@ msgstr "PAUSED"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Return to the game"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
 
@@ -4946,7 +4946,7 @@ msgstr "Loading of pck file ({0}) failed because the file does not exist"
 msgid "PEACEFUL"
 msgstr "Peaceful"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -4956,7 +4956,7 @@ msgstr "Peaceful"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4977,7 +4977,7 @@ msgstr "/second"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
@@ -5025,7 +5025,7 @@ msgstr "Planet generation coming soon!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "PLAYER"
 msgstr "Player"
 
@@ -5088,7 +5088,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Play With Current Setting"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
@@ -5118,7 +5118,7 @@ msgid "PRESSURE"
 msgstr "Pressure"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
@@ -5261,7 +5261,8 @@ msgstr "Report"
 msgid "REPORT_BUG"
 msgstr "Report a Bug"
 
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:495
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:274
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -5664,13 +5665,13 @@ msgstr "Search..."
 msgid "SEARCH_RADIUS"
 msgstr "Search Radius:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2033
+#: ../simulation_parameters/microbe_stage/biomes.json:2094
 msgid "SEA_FLOOR"
 msgstr "Sea Floor"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "Secrete mucilage"
 
@@ -5819,27 +5820,27 @@ msgstr "Signaling agents allow cells to create chemicals that other cells can re
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Hold [thrive:input]g_pack_commands[/thrive:input] to open a menu to issue commands to other members of your species."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Become Aggressive"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Flee"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Follow Me"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "No Command"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Move To Me"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal To Emit"
 
@@ -5879,16 +5880,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"mucilage\"][/thrive:compound]. Press [thrive:input]g_secrete_slime[/thrive:input] to release stored [thrive:compound type=\"mucilage\"][/thrive:compound], boosting this cell's speed and slowing predators."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:45
-#: ../simulation_parameters/microbe_stage/biomes.json:216
-#: ../simulation_parameters/microbe_stage/biomes.json:465
-#: ../simulation_parameters/microbe_stage/biomes.json:633
-#: ../simulation_parameters/microbe_stage/biomes.json:881
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
-#: ../simulation_parameters/microbe_stage/biomes.json:1546
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1906
-#: ../simulation_parameters/microbe_stage/biomes.json:2074
+#: ../simulation_parameters/microbe_stage/biomes.json:222
+#: ../simulation_parameters/microbe_stage/biomes.json:477
+#: ../simulation_parameters/microbe_stage/biomes.json:651
+#: ../simulation_parameters/microbe_stage/biomes.json:905
+#: ../simulation_parameters/microbe_stage/biomes.json:1159
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1766
+#: ../simulation_parameters/microbe_stage/biomes.json:1961
+#: ../simulation_parameters/microbe_stage/biomes.json:2135
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
@@ -5940,7 +5941,7 @@ msgstr "Spawn ammonia"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:961
+#: ../src/microbe_stage/MicrobeStage.cs:974
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
@@ -5965,7 +5966,7 @@ msgstr "Mouse Special 2"
 msgid "SPECIES"
 msgstr "Species"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "Species:"
 
@@ -6036,6 +6037,10 @@ msgstr "Speed:"
 #: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.cs:19
+msgid "STAGES"
+msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -6238,11 +6243,11 @@ msgstr "Society Center"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Steam Powered Factory"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1203
+#: ../src/microbe_stage/MicrobeStage.cs:1246
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1204
+#: ../src/microbe_stage/MicrobeStage.cs:1247
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
@@ -6384,7 +6389,7 @@ msgid "TEMPERATURE"
 msgstr "Temperature"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
@@ -6524,7 +6529,7 @@ msgstr "Thylakoids"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of [thrive:compound type=\"sunlight\"][/thrive:compound] to produce [thrive:compound type=\"glucose\"][/thrive:compound] from water and gaseous [thrive:compound type=\"carbondioxide\"][/thrive:compound] in a process called [b]photosynthesis[/b]. These pigments are also what give them a distinctive colour. The rate of their [thrive:compound type=\"glucose\"][/thrive:compound] production scales with the concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some [b]glycolysis[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:423
+#: ../simulation_parameters/microbe_stage/biomes.json:435
 msgid "TIDEPOOL"
 msgstr "Tidepool"
 
@@ -6548,8 +6553,8 @@ msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to f
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
-#: ../src/microbe_stage/MicrobeStage.cs:435
-#: ../src/microbe_stage/MicrobeStage.cs:439
+#: ../src/microbe_stage/MicrobeStage.cs:447
+#: ../src/microbe_stage/MicrobeStage.cs:451
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b] became multicellular"
 
@@ -6590,7 +6595,7 @@ msgid "TITLE_COLON"
 msgstr "Title:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -6601,7 +6606,7 @@ msgstr "Toggle debug panel"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
@@ -6896,11 +6901,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "You need to apply your changes to load or unload any mods."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "Unbind all"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:204
 msgid "UNBIND_HELP_TEXT"
 msgstr "Unbind Mode"
 
@@ -6908,7 +6913,7 @@ msgstr "Unbind Mode"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "This is a debug build where the info below is probably not up to date"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1505
+#: ../simulation_parameters/microbe_stage/biomes.json:1547
 msgid "UNDERWATERCAVE"
 msgstr "Underwater cave"
 
@@ -7053,7 +7058,7 @@ msgstr "The vacuole is an internal membranous organelle used for storage in the 
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "Specialized Vacuole"
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:132
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "The vacuole will store {0} units of all compounds"
 
@@ -7061,11 +7066,11 @@ msgstr "The vacuole will store {0} units of all compounds"
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:137
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "The vacuole will store {0} units of the selected compound"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:635
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7129,7 +7134,7 @@ msgstr "Visible"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:178
 msgid "VOLCANIC_VENT"
 msgstr "Volcanic Vent"
 
@@ -7184,6 +7189,93 @@ msgstr "Wheel up"
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.cs:10
 msgid "WIKI"
 msgstr "Wiki"
+
+#: ../simulation_parameters/common/wiki.json:1367
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Work has not yet started on Ascenscion."
+
+#: ../simulation_parameters/common/wiki.json:1359
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1347
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "In a nutshell: This is the endgame where you can zoom about the galaxy as a metaphysical being, shaping and observing what you wish. It's been a long journey and you deserve it."
+
+#: ../simulation_parameters/common/wiki.json:1351
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+"Ascension is a key concept in Thrive, comparable to \"winning the game\" in other videogames. It is a state where a sentient organism is transformed to energy form by an Ascension Gate and thus it gets god-like powers, using the energy of the universe itself (essentially doing miracles for free).\n"
+"\n"
+"What Ascension does is that, provided you have researched <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a> research, there will be a new \"God Tools\" panel accessible anywhere in gameplay, allowing you to change anything you want. From creating whole solar systems to smallest bacteria, from destroying whole civilizations to possessing one of its members, all possible."
+
+#: ../simulation_parameters/common/wiki.json:1355
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "You will enter Ascension once your species goes through an Ascension Gate. We will likely want to show the game credits after the cutscene of entering the ascension stage. Once the credits are finished the player is thrown back into the game in the Ascension stage with a congratulatory message. To make this the last hurdle of the game the Ascension Gate will require a lot of research (including the above mentioned <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a>) and a ton of energy, multiple suns worth, to create and operate. Other potentially hostile species will have their last chance to attack the player here before the player gets infinite power and can just erase competing interstellar empires."
+
+#: ../simulation_parameters/common/wiki.json:1363
+msgid "WIKI_ASCENSION_UI"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1243
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Work has not yet started on the Awakening Stage."
+
+#: ../simulation_parameters/common/wiki.json:1235
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1223
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "In a nutshell: You start with a creature beginning to discover the use of tools and must rapidly improve them to survive and outcompete competition. It ends upon the construction of your first Society Center."
+
+#: ../simulation_parameters/common/wiki.json:1227
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1231
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr ""
+"The Awakening Stage begins when the player’s species achieves sapience. However, at this point, little changes, other than the ending of evolution for the player’s species. As the timescales have shrunk massively, only small evolutionary changes can happen anymore. <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> is still locked, the Nation Editor is locked, and Society Centers don’t exist. The initial transition is mostly symbolic (other than the greatly reduced species editing ability), and the substance of the change is gradual.\n"
+"\n"
+"What is enabled, although not at first visible, is the Research Web. The Research Web cannot be viewed until Record Keeping is discovered. Interaction is also automatically discovered. Researchable technologies cannot be directly researched at this point. Instead, the actions that the player carries out, such as communicating or interacting with the environment, now provide progress towards discovering new technologies or Inventions, in effect developing your technology. This is the effect of having discovered Interaction. For example, using objects in the environment as tools (after crafting together raw materials found around the world) runs the chance of discovering the invention Tools (progress should be guaranteed to not subject players to a total random experience). <a href=\"/wiki/Tech_Editor\" title=\"Tech Editor\">Tech Editor</a> will now be unlocked after Crafting becomes available. Tools allows Tech Objects made by the player in the Tech Editor, which are tagged as \"Tools\", to be equipped by members of their species.\n"
+"\n"
+"The Language invention allows the player to task other members of their species to do more specific assignments. This feature builds on top of the pack commands from earlier stages (these are the signaling agents in the microbe stage). Every time a task is assigned (or performed), Cooperation progresses towards being discovered (as progress shouldn't depend on random chance, but there could be a chance for early lucky unlocks). Cooperation builds upon Language by allowing other species members, at this point advanced enough to be called tribe members, to discover technologies as a result of their own actions. Remember, before this, only the player’s organism could discover new technologies. This frees up the player to take more of a management role in their emerging tribe.\n"
+"\n"
+"At this point <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> is still locked, but the player can use pack commands to assign members of their species to various tasks (most important being resource and food collection), made possible by discovering the Cooperation Invention. Once the player has assigned some resource gatherers and built structures, Collective Residence is discovered allowing the building of the Society Center building, which will establish a settlement.\n"
+"\n"
+"The stage ends when the player builds their first Society Center. At this point the player's view will transition into the <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> really highlighting the change between the stages and the move to the strategy stages of the game."
+
+#: ../simulation_parameters/common/wiki.json:1239
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1212
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Prototype level of the development of the Aware and later stages has started. The prototypes are much rougher than multicellular prototype, which itself is not up to the quality we want the finished game to be."
+
+#: ../simulation_parameters/common/wiki.json:1204
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1192
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "The Aware Stage begins with the player controlling their species that has just developed a nervous system and gained sentience. They will experience generations of evolution until they have evolved full intelligence, or sapience."
+
+#: ../simulation_parameters/common/wiki.json:1196
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Aware stage is the largest and most important \"animal\" stage of the game. To reach the aware stage, your multicellular species must attain a moderate level of intelligence. It is in this stage of the game that evolution will be seen in all of its glory, and that the biome will be of utmost importance. Awakening Stage follows Aware stage when the player begins to use tools."
+
+#: ../simulation_parameters/common/wiki.json:1200
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr ""
+"The stage starts when the player has developed a central nervous system along with a brain and their species becomes aware of their surroundings.\n"
+"\n"
+"The stage ends when the player has increased the brain capacity of their species enough for them to reach sapience and gain the ability to develop and use tools."
+
+#: ../simulation_parameters/common/wiki.json:1208
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Coming soon."
 
 #: ../simulation_parameters/common/wiki.json:37
 msgid "WIKI_AXON_EFFECTS"
@@ -7321,23 +7413,23 @@ msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:193
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
-msgstr "TBA"
+msgstr "The Chemoreceptor draws a line towards the nearest patch of a certain compound or cell of a certain species.The color of the line can be customized in the Modification Menu."
 
 #: ../simulation_parameters/common/wiki.json:177
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr "TBA"
+msgstr "Chemoreceptors are [b]external organelles[/b] that represent the microbe's ability to detect compounds in the environment. They can be set to detect a specific type of compound or set to be able to detect cells of [b]other species[/b]"
 
 #: ../simulation_parameters/common/wiki.json:189
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr "TBA"
+msgstr "Modify the Chemoreceptor to select what type of compound to search for, or alternatively what species to detect.It is also possible to set a [b]search radius[/b], which is the distance it's going to search in; as well as the [b]minimum amount to detect[/b] which is how small a patch of compounds can be for it to be detected."
 
 #: ../simulation_parameters/common/wiki.json:185
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr "TBA"
+msgstr "No processes."
 
 #: ../simulation_parameters/common/wiki.json:181
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr "TBA"
+msgstr "No Requirements"
 
 #: ../simulation_parameters/common/wiki.json:205
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
@@ -7349,7 +7441,7 @@ msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:197
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "TBA"
+msgstr "No upgrades."
 
 #: ../simulation_parameters/common/wiki.json:232
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
@@ -7529,6 +7621,28 @@ msgstr "TBA"
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr "Aerobic cellular respiration (glucose -> ATP)"
 
+#: ../simulation_parameters/common/wiki.json:1145
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Appendices"
+
+#: ../simulation_parameters/common/wiki.json:1176
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Concept Art"
+
+#: ../simulation_parameters/common/wiki.json:1180
+#: ../simulation_parameters/common/wiki.json:1211
+#: ../simulation_parameters/common/wiki.json:1242
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1304
+#: ../simulation_parameters/common/wiki.json:1335
+#: ../simulation_parameters/common/wiki.json:1366
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Current Development"
+
+#: ../simulation_parameters/common/wiki.json:1137
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Editor"
+
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7560,6 +7674,24 @@ msgstr "Aerobic cellular respiration (glucose -> ATP)"
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Effects"
 
+#: ../simulation_parameters/common/wiki.json:1168
+#: ../simulation_parameters/common/wiki.json:1203
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1265
+#: ../simulation_parameters/common/wiki.json:1296
+#: ../simulation_parameters/common/wiki.json:1327
+#: ../simulation_parameters/common/wiki.json:1358
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Features"
+
+#: ../simulation_parameters/common/wiki.json:1133
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Gameplay"
+
+#: ../simulation_parameters/common/wiki.json:1141
+msgid "WIKI_HEADING_GDD"
+msgstr "GDD"
+
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
 #: ../simulation_parameters/common/wiki.json:110
@@ -7590,6 +7722,16 @@ msgstr "Effects"
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modifications"
+
+#: ../simulation_parameters/common/wiki.json:1160
+#: ../simulation_parameters/common/wiki.json:1195
+#: ../simulation_parameters/common/wiki.json:1226
+#: ../simulation_parameters/common/wiki.json:1257
+#: ../simulation_parameters/common/wiki.json:1288
+#: ../simulation_parameters/common/wiki.json:1319
+#: ../simulation_parameters/common/wiki.json:1350
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Overview"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7715,6 +7857,26 @@ msgstr "Scientific Background"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Strategy"
 
+#: ../simulation_parameters/common/wiki.json:1164
+#: ../simulation_parameters/common/wiki.json:1199
+#: ../simulation_parameters/common/wiki.json:1230
+#: ../simulation_parameters/common/wiki.json:1261
+#: ../simulation_parameters/common/wiki.json:1292
+#: ../simulation_parameters/common/wiki.json:1323
+#: ../simulation_parameters/common/wiki.json:1354
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Transitions"
+
+#: ../simulation_parameters/common/wiki.json:1172
+#: ../simulation_parameters/common/wiki.json:1207
+#: ../simulation_parameters/common/wiki.json:1238
+#: ../simulation_parameters/common/wiki.json:1269
+#: ../simulation_parameters/common/wiki.json:1300
+#: ../simulation_parameters/common/wiki.json:1331
+#: ../simulation_parameters/common/wiki.json:1362
+msgid "WIKI_HEADING_UI"
+msgstr "UI"
+
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
 #: ../simulation_parameters/common/wiki.json:118
@@ -7745,6 +7907,40 @@ msgstr "Strategy"
 #: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Upgrades"
+
+#: ../simulation_parameters/common/wiki.json:1305
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Development has not started on this stage. Gameplay and theory design for this stage will become relevant once the <a href=\"/wiki/Society_Stage\" title=\"Society Stage\">Society Stage</a> is being worked on."
+
+#: ../simulation_parameters/common/wiki.json:1297
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1285
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Industrial stage is the sixth of seven Thrive's gameplay stages, coming after the <a href=\"/wiki/Society_Stage\" title=\"Society Stage\">Society Stage</a> with the invention of industrial machines. Technology and culture are much more advanced now, and civilization is largely reliant on machines to sustain itself. The whole planet is now mostly explored and populated, allowing you communicate or wage wars practically anywhere. Diplomatic and leadership skills are needed more than ever before.\n"
+"\n"
+"Technological advance is rapidly accelerating, with complicated machinery invented in tens of years unlike hundreds of years before. New powered vehicles, medical methods, industrial machines, but also new weapons, including those of mass destruction, are to be counted with.\n"
+"\n"
+"The Industrial stage ends with the invention of space travel, being followed by the <a href=\"/wiki/Space_Stage\" title=\"Space Stage\">Space Stage</a>. The first rocket to reach space marks the end of the stage, but the early <a href=\"/wiki/Space_Stage\" title=\"Space Stage\">Space Stage</a> is still very similar to the Industrial Stage."
+
+#: ../simulation_parameters/common/wiki.json:1289
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "The Industrial Stage will mostly revolve around population. Population will skyrocket. The economy will boom. Wars will get larger and bloodier. Consumption and pollution will rise. All of these will be results of the increase in the number of members of the player's species in the world. This will be brought about by advances in medicine, farming, sanitation, logistics, refrigeration, and transportation. These lead to the spike in the population, which in turn catalyzes the Industrial Revolution, which in effect engenders new military, scientific, economic, and political reforms."
+
+#: ../simulation_parameters/common/wiki.json:1293
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr ""
+"The Industrial Stage officially begins when the player’s nation discovers the technology Steam Power (and builds the first industrial machine). Following this, Assembly Line vastly improves production and manufacturing, Railroads advances the rate of trade and transportation, and Agricultural Engineering progresses crop growth and output. New military technologies lead to a revolution in warfare.\n"
+"\n"
+"The Industrial Stage is highlighted with just that process, revolution. It leads to a revolution on all scales of society, and can with time come to drastically alter the competition between the rising nations.\n"
+"\n"
+"The stage ends when the player first reaches space."
+
+#: ../simulation_parameters/common/wiki.json:1301
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Coming soon."
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
@@ -7885,6 +8081,112 @@ msgstr "TBA"
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "No upgrades."
 
+#: ../simulation_parameters/common/wiki.json:1146
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr "There are some tables and other things collected in the <a href=\"/wiki/Microbe_Stage_Appendices\" title=\"Microbe Stage Appendices\">Microbe Stage Appendices</a>"
+
+#: ../simulation_parameters/common/wiki.json:1138
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr ""
+"The editor is the strategic side of the microbial stage and is accessed whenever the player reproduces. It is in this editor that the player is allowed to evolve their species by placing parts from a list of available proteins or organelles onto their cell. Each generation, the player is given 100 Mutation points or MP that is used as a currency to buy these parts. The editor is currently divided into three different windows; The report page, the patch map, and finally the editor itself.\n"
+"\n"
+"The report menu is the first page the player will see upon entering the editor. This page describes all environmental changes that had taken place before entering the editor such as changes in species population, compound concentration, and etc. The information provided in the report can be helpful, but is not a necessity for performing well in the game, so players need not concern themselves with analyzing its contents.\n"
+"\n"
+"The second page a player will visit is the patch map. This menu displays what is essentially the world map, with patches representing biomes the player can visit interconnected by lines that represent traversable paths. The player can select each visible patch to display the environmental statistics of that biome, such as compound concentration, species present, and so on. Should the selected patch be connected to the player's occupied patch via a path, the player will be able to choose to play in the selected patch upon leaving the editor.Players who intend to move to new environments should take care and inspect a patch before moving to it to ensure they are prepared for what is to come.\n"
+"\n"
+"Below is a complete list of the various patch varieties currently in the game.\n"
+"\n"
+"[indent]—   Abyssopelagic[/indent]\n"
+"[indent]—   Bathypelagic[/indent]\n"
+"[indent]—   Mesopelagic[/indent]\n"
+"[indent]—   Epipelagic[/indent]\n"
+"[indent]—   Sea Floor[/indent]\n"
+"[indent]—   Tidepool[/indent]\n"
+"[indent]—   Estuary[/indent]\n"
+"[indent]—   vents[/indent]\n"
+"[indent]—   Coast[/indent]\n"
+"[indent]—   Ice Shelf[/indent]\n"
+"[indent]—   Caves[/indent]\n"
+"\n"
+"[i]Main Article: <a href=\"/wiki/Microbe_Biomes\" title=\"Microbe Biomes\">Microbe Biomes</a>[/i]\n"
+"\n"
+"Each patch represents a certain biome. The biome defines the physical properties of that patch, such as the temperature, pressure, and light levels. \n"
+"\n"
+"The editor page is where the player will be able to customize their cell part by part. The majority of the editor is taken up by a hex field where the cell parts are placed, with the center being occupied by the player's current cell. To the left of this large space is the part list where the player will select parts to place on their cell, or otherwise change its qualities such as color or membrane type. The top right space is occupied by the organism statistics describing what the cell is capable of, as well as including the ATP balance bar which informs the player on the amount of ATP they produce versus how much they consume. The player should always make sure that the red bar is shorter than the green bar, or else they will meet an untimely demise of their own creation. In the bottom right, players will find the autoevo prediction screen which details how well their species is expected to perform with the changes they make according to the autoevo algorithm. Finally, the top left of the editor contains the tabs used to navigate between the previous pages, as well as the MP bar that displays the player's current bank of MP.\n"
+"\n"
+"The player is able to place new parts or hexes adjacent to any preexisting occupied hex, or atop a cytoplasm hex to replace it with a new part. Should the player desire to, they can delete parts of their cell by right-clicking placed parts at a cost of 10 MP per deletion. Alternatively, the player can use the arrow buttons located at the bottom of the editor screen to undo or redo previous actions, however this functionality will only work on changes made in the current editor section. The button in the middle of the arrow buttons is the symmetry key, which when clicked will change the player's current symmetry mode. All parts can be deleted except for three exceptions, the nucleus, binding agents, and the last hex of the cell. These parts can still be moved however, so don't stress if you don't like it's current position!\n"
+"\n"
+"The cell editor contains three different tabs, each with a unique function.\n"
+"\n"
+"The structure tab contains all of the parts the player can choose from such as proteins, organelles, and extracellular structures like the pili. The player must click on their desired part icon to select it, and then click where they want to place it within the hex field to add the part to their organism.The structure tab is divided into three categories; [b]prokaryotic structures[/b], [b]external organelles[/b], and [b]internal organelles[/b]. Internal organelles in particular cannot be used by the player until they have evolved the nucleus. The player can also freely modify, delete, or otherwise relocate placed parts while in the structure tab.\n"
+"\n"
+"The membrane tab contains options for customizing the cell's membrane. Here, the player is presented with a list of buttons representing various membrane and cell wall varieties, each with unique stats and abilities. In order to select a membrane type, the player need only ensure they have enough MP and click the desired type. The player is also granted a slider that adjusts fluidity and rigidity at the cost of 2 MP per change. The more fluid a cell is the faster and fragile it is, while rigid cells are durable but slow.At the bottom of the membrane tab is the color wheel, which allows the player to choose which color their cell will be. This feature is entirely cosmetic and does not cost any MP to change.\n"
+"\n"
+"The behavior tab presents the player with a list of behavioral scales and sliders to adjust them with. Adjusting these sliders allows the player to control how their species AI responds to the world around them, but currently does not effect the player themselves. Each slider represents two extremes of a personality scale, the position of which determining how far a species leans in either attitude. \n"
+"\n"
+"The current personality scales are;\n"
+"\n"
+"[indent]—   Peaceful/Aggressive: Determining how hostile or ambivalent a species is towards other species.[/indent]\n"
+"[indent]—   Cautious/Opportunistic: Determining how willing a species is to endanger themselves for potential gain.[/indent]\n"
+"[indent]—   Brave/Fearful: Determining how willing a species is to flee from perceived threats, and how threatening they need to be.[/indent]\n"
+"[indent]—   Sessile/Active: Determining how willing a species is to move, if at all, without stimulus.[/indent]\n"
+"[indent]—   Responsive/Focused: Determining how quickly a species gives up pursuing a goal, if ever.[/indent]"
+
+#: ../simulation_parameters/common/wiki.json:1134
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"The Microbe Stage takes place in a 3D environment viewed from a 2D perspective, as if being viewed from a microscope. Here, the player must steer their cell into brightly colored compound clouds to sustain and grow their cell until they can reproduce. At the beginning of the game there will be no predators, the only dangers being starvation and the occasional toxin. However, as the player reproduces, new competing species will branch away from the player's species and steadily become an increasingly dangerous obstacle for the player to overcome. While at first the player is a tiny cell only capable of consuming glucose ammonia and phosphates, the player will be able to adapt their cell in any way they choose after every reproduction, granting the player new abilities and options as time goes on. This comes at a cost however, as the player cell becomes larger and more complex, it will require more food to sustain. The player must take care to ensure that their cell is always sustainable or they will quickly starve. Additionally, species that arise from your own will inherit your adaptations, so the player must be cautious of how soon they develop things such as weaponry.\n"
+"\n"
+"The Microbe Stage is played using the keyboard and mouse. The cell always faces the mouse cursor's position, while the WASD keys will propel the cell in a direction relative to the cursor's position. For example, pressing the W key will make the cell travel forward towards the mouse cursor. Whereas pressing the S key will make the cell travel backwards away from the mouse cursor. These controls allow the player to strategically move their cell to dodge toxin projectiles or position themselves to catch as many prey cells as they can.The mouse is also used to interact with the various UI elements on the screen.\n"
+"\n"
+"Pressing the G key will enable Engulfment Mode. In this mode, the cell will begin flashing with a blue overlay and damage any cells smaller than them they come into contact with. All cells have this ability, regardless of adaptations so it would be wise to avoid approaching larger cells if the player does not have any defenses.\n"
+"\n"
+"Pressing the E key will expel a toxin projectile from your cell, should your cell possess toxin generating parts.\n"
+"\n"
+"Using the mouse wheel, the player can adjust their field of view. This is very useful for navigating the environment around them or taking a close look at their cell.\n"
+"\n"
+"Pressing X will enable auto-move, causing the player to move forward automatically. This frees the player from continuously holding down the movement keys when they do not have a need for fine control. The player can still steer using the mouse while in this state, and can cancel auto-move at any time by pressing any movement key.\n"
+"\n"
+"These are unique parameters that relate to the climate of the current patch and act as a passive effect on the cells.\n"
+"\n"
+"[indent]—   [b]Temperature:[/b] The measure of heat in the current environment. Temperature currently has no direct effect on cells, but is needed to generate energy using thermoplasts.[/indent]\n"
+"\n"
+"[indent]—   [b]Pressure:[/b] The amount of crushing force in the environment due to depth. Pressure currently has no effect in the game.[/indent]\n"
+"\n"
+"[indent]—   [b]Lux:[/b] The amount of light reaching the environment. Lux is vital for photosynthesis to function, so photosynthesizers should make sure that the environment they inhabit has enough light to support them. 50% lux and above makes for a perfectly suitable home for photosynthesizers.[/indent]\n"
+"\n"
+"These are gasses that are present within a patch and do not have a physical presence in the game world. These elements act as a passive effect on various processes of the cell and can be required for certain proteins and organelles to function.\n"
+"\n"
+"[indent]—   [b]Oxygen:[/b] An important gas for aerobic respiration, oxygen is used by parts such as metabolosomes to perform their purposes. The more oxygen that is present in a patch, the better these parts will perform. Currently, oxygen has no other effect on cells and is at a constant 21% concentration in all patches.[/indent]\n"
+"\n"
+"[indent]—   [b]Nitrogen:[/b] A gas used by cells for nitrogen fixation in the synthesis of ammonia. Nitrogen currently has no other effect on cells and is at a constant 70% concentration in all patches.[/indent]\n"
+"\n"
+"[indent]—   [b]Carbon Dioxide:[/b] An important gas for chemosynthesis and photosynthesis. Carbon dioxide is currently at a constant 9% concentration in all patches.[/indent]\n"
+"\n"
+"There are several compounds present in the Microbe Stage. Below is a list of all compounds and their uses.\n"
+"\n"
+"[indent]—   [b]Glucose:[/b] Primary ATP storage for cells, and initial source of food for the player. Glucose is consumed by several organelles and proteins to produce ATP, the most notable being the metabolosomes and mitochondria as they are specifically used for glucose. When the player dies they will respawn with a reserve of glucose within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available glucose found in the environment, as every generation the global glucose amounts decrease by 80%. Glucose clouds are white in color.[/indent]\n"
+"\n"
+"[indent]—   [b]Ammonia:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitrogen-fixing plastid can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
+"\n"
+"[indent]—   [b]Phosphate:[/b] Identical in purpose to ammonia, phosphate is a requirement for reproduction. Unlike ammonia, however, there are no methods of synthesizing phosphate so it can only be found in the environment or from predation. Phosphate clouds are purple in color.[/indent]\n"
+"\n"
+"[indent]—   [b]Hydrogen Sulfide:[/b] An alternative source of glucose for cells, that can be found in high quantities in a select few patches. Should a player intend to use hydrogen sulfide for energy, they must take care to ensure that the patch they inhabit contains the compound. Hydrogen sulfide is only usable if the player possesses chemosynthesizing proteins, otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.[/indent]\n"
+"[indent]—   [b]Iron:[/b] Another alternative source of ATP, iron is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, iron can not only be found in clouds but also as variably sized chunks that trail iron clouds as they drift. Iron can only be used by a cell if it possesses rustycyanin. Iron clouds appear brown in color. The chunks themselves can be engulfed for a significant source of iron.[/indent]"
+
+#: ../simulation_parameters/common/wiki.json:1142
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "There is a separate game design document for the microbe stage that goes into more details: <a href=\"/wiki/Microbe_Stage_GDD\" title=\"Microbe Stage GDD\">Microbe Stage GDD</a>"
+
+#: ../simulation_parameters/common/wiki.json:1130
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Previous stage: No earlier stages.\n"
+"\n"
+"Next stage: <a href=\"/wiki/Multicellular_Stage\" title=\"Multicellular Stage\">Multicellular Stage</a>\n"
+"\n"
+"The Microbe Stage is the first stage of the game. The stage begins with the first species to exist in the world, fresh from the primordial origins of life exploring the nutrient-rich Pangonian Vents. It is here that the player assumes the role of a tiny prokaryotic blob of cytoplasm, one of a few individuals of their species. At this point, the player must rely entirely on finding loose glucose to survive as they do not yet possess ways to process other nutrients and seek out phosphates and ammonia to grow bigger in preparation for reproduction. Once the player has reached a sufficient size they will be capable of reproducing, which will bring the player to the microbe editor should they choose to do so. As the game continues, the player will steadily adapt their cell to better survive in a world that grows gradually harsher each generation, and compete with new species that have arisen from the player's own."
+
 #: ../simulation_parameters/common/wiki.json:509
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "No effects."
@@ -7919,6 +8221,50 @@ msgstr "TBA"
 #: ../simulation_parameters/common/wiki.json:513
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "No upgrades."
+
+#: ../simulation_parameters/common/wiki.json:1177
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr ""
+"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:30px auto;\"><a href=\"/wiki/File:Multiperceptionconcept.jpg\" class=\"image\" title=\"Perception concept\"><img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Perception concept</p>			</div>		</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:21px auto;\"><a href=\"/wiki/File:Multieditorconcept.jpeg\" class=\"image\" title=\"Editor concept\"><img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Editor concept</p>			</div>		</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:41px auto;\"><a href=\"/wiki/File:Multicolorconcept.png\" class=\"image\" title=\"Terrain color concept\"><img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Terrain color concept</p>			</div>		</div>[/indent]"
+
+#: ../simulation_parameters/common/wiki.json:1181
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Prototype level of the development of the multicellular stage has started. Early multicellular is mostly playable. Later multicellular stage is more experimental prototype."
+
+#: ../simulation_parameters/common/wiki.json:1169
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr ""
+"The gameplay of the first segment of the stage will feel a lot like the Microbe Stage. Gameplay will continue on the 2D plane with other cells, but the difference will be that the player will now control a growing colony. The difference from the end of microbe stage is that the colony can no longer be disbanded, instead it acts like a permanently stuck together, singular organism. This is the early part of the multicellular where the microbe environment is still used and the player can interact with microbes.\n"
+"\n"
+"In the editor, the player can now create and edit cell types in addition to making changes to the structure and organelles of those cells. Any change made to one cell of a cell type in the colony will automatically apply to all other cells of that type. Using different cell types the player will be able to specialize different cells in his colony towards different functions, giving them a big advantage over unicellular organisms.\n"
+"\n"
+"In the later part of multicellular stage, the player becomes a macroscopic creature. This shifts the game's scale so that microbes are no longer visible and the player moves onto sculpting tissues instead of placing individual cells.\n"
+"\n"
+"There is a separate page for the <a href=\"/wiki/Multicellular_Stage_GDD\" title=\"Multicellular Stage GDD\">Multicellular Stage GDD</a> describing the stage mechanics in more details."
+
+#: ../simulation_parameters/common/wiki.json:1157
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "In the Multicellular Stage, your colony will become more complex and specialized, as well as experiencing a transition into a 3D environment, until it becomes a macroscopic multicellular organism. The stage ends when your creature first develops a nervous system and thus sentience."
+
+#: ../simulation_parameters/common/wiki.json:1161
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr ""
+"Life in the oceans flourishes. There will be a lot of diversity. The world has suddenly gotten a lot bigger for the player.\n"
+"\n"
+"The player will now control a colony of cells that form a larger organism. The scale will gradually increase in size."
+
+#: ../simulation_parameters/common/wiki.json:1165
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr ""
+"The stage starts when cells bind together through use of Binding Agents (Adhesion Proteins) and the cells can no longer unbind (they become actually a single organism). The move to multicellular requires a large enough cell colony to exist as a precondition.\n"
+"\n"
+"It ends when the player's species evolves a nervous system."
+
+#: ../simulation_parameters/common/wiki.json:1173
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Nothing has been discussed."
 
 #: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
@@ -8061,23 +8407,30 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:704
 msgid "WIKI_OXYTOXISOME_EFFECTS"
-msgstr "TBA"
+msgstr "Having one or more Oxytoxisomes or <a href=\"/wiki/Toxin_Vacuole\" title=\"Toxin Vacuole\">Toxin Vacuoles</a> will allow the cell to shoot toxin particles. These will harm anything they collide with."
 
 #: ../simulation_parameters/common/wiki.json:688
 msgid "WIKI_OXYTOXISOME_INTRO"
-msgstr "TBA"
+msgstr "Oxytoxisomes are an inferior version of <a href=\"/wiki/Toxin_Vacuole\" title=\"Toxin Vacuole\">Toxin Vacuoles</a> available to [b]prokaryotes[/b]. They perform [b]OxyToxy Synthesis[/b] to produce [thrive:compound type=\"oxytoxy\"][/thrive:compound], a toxin you can fire as a ranged attack. The cytoplasm around it performs some [b]Glycolysis[/b]."
 
 #: ../simulation_parameters/common/wiki.json:700
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "TBA"
+msgstr "No modifications."
 
 #: ../simulation_parameters/common/wiki.json:696
 msgid "WIKI_OXYTOXISOME_PROCESSES"
-msgstr "TBA"
+msgstr ""
+"[b]OxyToxy Synthesis[/b]: [thrive:compound type=\"atp\"][/thrive:compound] → [thrive:compound type=\"oxytoxy\"][/thrive:compound] @ [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
+"\n"
+"Oxytoxisomes produce [thrive:compound type=\"oxytoxy\"][/thrive:compound] at a much less efficient rate than <a href=\"/wiki/Toxin_Vacuole\" title=\"Toxin Vacuole\">Toxin Vacuoles</a>. It requires an input of [thrive:compound type=\"atp\"][/thrive:compound] and scales with the amount of environmental [thrive:compound type=\"oxygen\"][/thrive:compound]. \n"
+"\n"
+"<br>[b]Glycolysis[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"The cytoplasm surrounding the organelle performs a less efficient form of [b]Glycolisis[/b]. This transform [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] though at a lesser rate than in <a href=\"/wiki/Cytoplasm\" title=\"Cytoplasm\">cytoplasm</a>. This is common in prokaryotic organelles."
 
 #: ../simulation_parameters/common/wiki.json:692
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr "TBA"
+msgstr "No requirements"
 
 #: ../simulation_parameters/common/wiki.json:716
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
@@ -8089,7 +8442,19 @@ msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:708
 msgid "WIKI_OXYTOXISOME_UPGRADES"
-msgstr "TBA"
+msgstr "No upgrades."
+
+#: ../simulation_parameters/common/wiki.json:1341
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Ascension"
+
+#: ../simulation_parameters/common/wiki.json:1217
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Awakening Stage"
+
+#: ../simulation_parameters/common/wiki.json:1186
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Aware Stage"
 
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
@@ -8131,6 +8496,10 @@ msgstr "Cytoplasm"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
 
+#: ../simulation_parameters/common/wiki.json:1279
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Industrial Stage"
+
 #: ../simulation_parameters/common/wiki.json:405
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
@@ -8139,9 +8508,17 @@ msgstr "Lysosome"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomes"
 
+#: ../simulation_parameters/common/wiki.json:1124
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Microbe Stage"
+
 #: ../simulation_parameters/common/wiki.json:487
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrion"
+
+#: ../simulation_parameters/common/wiki.json:1151
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Multicellular Stage"
 
 #: ../simulation_parameters/common/wiki.json:526
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -8186,6 +8563,18 @@ msgstr "Signaling Agent"
 #: ../simulation_parameters/common/wiki.json:877
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slime Jet"
+
+#: ../simulation_parameters/common/wiki.json:1248
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Society Stage"
+
+#: ../simulation_parameters/common/wiki.json:1310
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Space Stage"
+
+#: ../simulation_parameters/common/wiki.json:1112
+msgid "WIKI_PAGE_Stages_ROOT"
+msgstr "Stages"
 
 #: ../simulation_parameters/common/wiki.json:916
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -8380,6 +8769,90 @@ msgstr "TBA"
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "TBA"
 
+#: ../simulation_parameters/common/wiki.json:1274
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Development has not started on this stage. Theory and gameplay discussions haven't happened much in recent years for this stage. Discussions will need to resume once we have actually reached the Society Stage in official development."
+
+#: ../simulation_parameters/common/wiki.json:1266
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1254
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr ""
+"In a nutshell: in this stage you develop and expand your first <a href=\"/wiki/Society_Center\" title=\"Society Center\">settlement</a> and build more. This is reminiscent of the Middle Ages. It ends when you have sufficiently advanced technology.\n"
+"\n"
+"One of Thrive's seven gameplay stages, Society Stage begins after your sapient species (developed in <a href=\"/wiki/Awakening_Stage\" title=\"Awakening Stage\">Awakening Stage</a>) begins to form larger groups, or societies. At this point, <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> becomes the primary focal point of the game, rather than <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a> (although the player can still access is at any time, though this is low priority to implement). The <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a> is also unlocked for use. Finally, the player's species can begin to form Society Centers to form settlements.\n"
+"\n"
+"Throughout Society Stage, one of the major goals is to develop more and more advanced technology. As such, the Society Stage ends when your species develops sufficiently advanced technology to enter the <a href=\"/wiki/Industrial_Stage\" title=\"Industrial Stage\">Industrial Stage</a>."
+
+#: ../simulation_parameters/common/wiki.json:1258
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr ""
+"The Society Stage marks the transition of the player's species from a simple tribe to an advancing Civilization. The Society Stage is highlighted by certain technologies that enable the viewing and investment of the Research Web, the enabling of government policies, the emergence of religions, and the beginning of larger scale conflicts. The <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a> becomes more and more important throughout this stage, as does the <a href=\"/wiki/Tech_Editor\" title=\"Tech Editor\">Tech Editor</a>, and the <a href=\"/wiki/Squads\" title=\"Squads\">Squad Editor</a>. Although the player is free to return to playing as individual organisms within their species, all of the important events and decision take place on a large scale, and management of larger and larger numbers of people becomes essential. The player will have to balance the needs of their people, and the interests of their nation, to lead their civilization forwards.\n"
+"\n"
+"As it will be a huge amount of work to keep organism mode working for the later stages, it is not a priority to make sure that it does. After all the <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> is the most important and intended way to play the stage, and is required to advance. It has also been brought up that the impact of a single individual will be small at this stage, so allowing organism mode for just really walking around is nice, but a lot of effort for very little gameplay impact."
+
+#: ../simulation_parameters/common/wiki.json:1262
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr ""
+"The Society Stage begins when your first Society Center (settlement) is built. Collective Residence enables the forming of Society Centers. The Society Center building acts as the central hub for a settlement, which is a group of buildings that behave as a collective and get a procedurally generated name. New stats would also appear for that settlement, such as happiness, health, and stability. Controlling the game will switch to <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> and <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a> becomes unlocked. This allows the player to finally detach their perspective from that of the specific individual they were playing as, and instead zoom out to access the species from an RTS perspective. They can give orders to the different units of their tribes, and they can control multiple at the same time. Species members can now be designated to Populate these settlements, which means they disappear as a controllable unit and instead become a digit in the population (pop) of that settlement. By default pops will become assigned as Labourers. Although populating units into settlements takes away lots of their capabilities on the field, it opens up a whole new range of opportunities. And reduces the burden of controlling too many units at once. Now the label of Labourer, Artisan, or whichever other Pop type they are becomes important, since the computer now treats all of the members of that Pop as a whole. For example labourers perform manual work available in the settlement, and artisans perform selected crafting tasks. Taxes can be collected from the pops, they are subject to Population Growth, and they can be employed in buildings that require operators. They essentially become just numbers on the screen. Their models will no longer be important other than to arbitrarily walk around the settlement to make it look busy. This is part of the reason why <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a> is no longer important (but planned to still be available, though it is a low priority feature). To enter <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a> the player can select a tribesman and begin playing as them in <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a>, with access to all the same abilities as before.\n"
+"\n"
+"Nevertheless, members of the Pops now inhabiting these settlements can always be Deployed, which takes them out of the settlement and put them back as a unit in the game. Founding new settlements works in this fashion. Units, specifically Labourers, would have to be deployed from one settlement, and then travel to a new destination and build a new society center and support buildings to get the new settlement started. The Labourers used to build the settlement could then be used to populate it to get it off the ground. As a note, only Labourers can build buildings.\n"
+"\n"
+"Social Tradition unlocks Procedural Culture Generation, leading to the spawning of Arts in your nation. Societal advancement will gradually unlock more features of the <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a>.\n"
+"\n"
+"Conversely, during this whole period of advancement, other tribes of the player’s species would also begin to emerge. Each tribe that would arise out of the player’s species would take a part of the species’ population with them, so there would be a limited number of tribes that would form from the same species. Other species can also achieve sapience and begin forming tribes. How often that happens needs to be tweaked to be realistic as the timescales mean that multiple species would basically have to become sapient at the same time to a very small margin in the scale of overall evolution on the player's planet. If one species advances much faster they can wipe out other competitors with their technology very fast (in just a few tens of thousands of years). Only the tribe, and later the nation, formed by the player would be controllable by the player. These other nations would be the AI nations, and would be the source of competition with the player in the long history to come. They will still be part of the same species as the player, but will not be controllable, and may even become hostile towards the player. They would discover their own technologies, form their own society centers, and take their own path towards civilization.\n"
+"\n"
+"The stage ends once the player unlocks and builds the first industrial machine."
+
+#: ../simulation_parameters/common/wiki.json:1270
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1336
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Work has not yet started on the Space Stage."
+
+#: ../simulation_parameters/common/wiki.json:1328
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1316
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr ""
+"In a nutshell: This stage sees the player exploring the cosmos and having great technological advances.\n"
+"\n"
+"The Space Stage is the penultimate stage in Thrive. After an <a href=\"/wiki/Industrial_Stage\" title=\"Industrial Stage\">Industrial Stage</a> nation becomes advanced enough to build spaceships, they can begin expanding into the stars. At this point, the player has entered the Space Stage.\n"
+"\n"
+"The player's race has already researched many different technologies, but it is here that science-fiction (scific) technologies start to come into play. The player's race may encounter and interact with life on other planets and expand into the cosmos. Pursuing further technological advances will eventually lead to the unlocking of the combination of <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a> and <a href=\"/wiki/Ascension\" title=\"Ascension\">Ascension</a>. Some players may not like scifi in an otherwise science-based game, as such we will add a cutoff point where the player can choose to not advance to scifi technologies at the cost of not being able to reach <a href=\"/wiki/Ascension\" title=\"Ascension\">Ascension</a>. This will lock the player to essentially the early Space Stage."
+
+#: ../simulation_parameters/common/wiki.json:1320
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr ""
+"The early space stage begins with the first space flights of the player's species. This part focuses on developing spaceflight and exploring the player's own solar system. The first satellite launches and tries to reach moons of the home planet mark the early Space Stage gameplay. Otherwise the gameplay is very similar to industrial stage at this point but the player can zoom out all the way to view their own solar system and command their spacecraft in addition to still managing development of their planet.\n"
+"\n"
+"Another main point of early Space Stage is the unification of the player's world, because if not unified the other nations on the player's planet can keep interfering and attacking the player. It will be much harder (and we might want to make it impossible) to maintain a space empire when your homeworld is always at the risk of descending into planet-wide chaos.\n"
+"\n"
+"Later space stage is when the player develops the capacity to explore other solar systems. This is where Thrive becomes a scifi (science speculation) game with the invention of a faster than light (FTL) travel method. A possible choice here is to give an option to disable the scifi aspects of the game, in which case exploring just the few nearby star systems to the player's home star system will be the end of the game. With scifi enabled the player is able to colonize many star systems and establish an interstellar space empire, entering the last part of space stage. At this point the player will interact with other space empires, develop very advanced technologies and space fleets. Planet management will be simplified to not overload the player with micromanaging dozens of planets. The stage will culminate in the player building many mega projects like Dyson Spheres with the final one being the Ascension Gate which takes a ton of power and time to use. As the Ascension process gives unlimited power to the empire that first achieves it, the player needs to hold off all the other empires while they are building their ascension gate.\n"
+"\n"
+"As Thrive is a science-based game, the scifi tropes to be included in the game will be picked with utility and some semblance of realism (basing them on currently speculated plausible technologies) in mind. The game will aim to only pick scifi technologies that are really needed to make the latter half of space stage work. FTL will be essential but exotic weapons, energy sources, or materials thought to be currently impossible can be excluded without making the rest of the game plans about galactic empires impossible. This will reduce the amount of scifi handwaving needs to be added to the game."
+
+#: ../simulation_parameters/common/wiki.json:1324
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr ""
+"The stage begins when the player first reaches space with a primitive rocket.\n"
+"\n"
+"The stage ends when the player has built and powered the Ascension Gate with vast amounts of resources and research."
+
+#: ../simulation_parameters/common/wiki.json:1332
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Coming soon."
+
+#: ../simulation_parameters/common/wiki.json:1118
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "This is a list of the stages in the game. For an overview on the entire game and stages see <a href=\"/wiki/What_is_Thrive\" title=\"What is Thrive\">What is Thrive</a>."
+
 #: ../simulation_parameters/common/wiki.json:938
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "TBA"
@@ -8520,23 +8993,23 @@ msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:1094
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr "TBA"
+msgstr "No effects."
 
 #: ../simulation_parameters/common/wiki.json:1078
 msgid "WIKI_VACUOLE_INTRO"
-msgstr "TBA"
+msgstr "Vacuoles are organelles used to store compounds more densely than <a href=\"/wiki/Cytoplasm\" title=\"Cytoplasm\">Cytoplasm</a>. By default they store 8 of each type of compound."
 
 #: ../simulation_parameters/common/wiki.json:1090
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr "TBA"
+msgstr "Modify the Vacuole to set a [b]specialization[/b]. By default, the Vacuole stores 8 units of all compounds. However, this can be modified to store 16 but of only one specific type of compound (except [b]OxyToxy NT[/b])."
 
 #: ../simulation_parameters/common/wiki.json:1086
 msgid "WIKI_VACUOLE_PROCESSES"
-msgstr "TBA"
+msgstr "No processes"
 
 #: ../simulation_parameters/common/wiki.json:1082
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr "TBA"
+msgstr "A cell must have a <a href=\"/wiki/Nucleus\" title=\"Nucleus\">Nucleus</a> to evolve Vacuoles."
 
 #: ../simulation_parameters/common/wiki.json:1106
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
@@ -8548,7 +9021,7 @@ msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:1098
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr "TBA"
+msgstr "No upgrades."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:71
 msgid "WILL_YOU_THRIVE"

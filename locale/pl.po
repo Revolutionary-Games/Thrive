@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 19:16+0200\n"
+"POT-Creation-Date: 2023-12-01 21:29+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -47,7 +47,7 @@ msgstr "Przerwij"
 msgid "ABORTED_DOT"
 msgstr "Przerwano."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:864
 msgid "ABYSSOPELAGIC"
 msgstr "Abysal"
 
@@ -127,11 +127,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Tlenowe Wiązanie Azotu"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "Czynniki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 msgid "AGENTS_COLON"
 msgstr "Czynniki:"
 
@@ -208,7 +208,7 @@ msgstr "Głośność otoczenia"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "Amoniak (NH₃)"
 
@@ -472,17 +472,17 @@ msgstr "Zmniejsz Basy"
 msgid "BASSUP"
 msgstr "Zwiększ Basy"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:592
+#: ../simulation_parameters/microbe_stage/biomes.json:610
 msgid "BATHYPELAGIC"
 msgstr "Batypelagial"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr "Zostań organizmem wielokomórkowym! ({0}/{1})"
 
@@ -542,16 +542,16 @@ msgid "BEST_PATCH_COLON"
 msgstr "Najlepiej radzi sobie w:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:81
-#: ../simulation_parameters/microbe_stage/biomes.json:332
-#: ../simulation_parameters/microbe_stage/biomes.json:501
-#: ../simulation_parameters/microbe_stage/biomes.json:669
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1165
-#: ../simulation_parameters/microbe_stage/biomes.json:1414
-#: ../simulation_parameters/microbe_stage/biomes.json:1582
-#: ../simulation_parameters/microbe_stage/biomes.json:1773
-#: ../simulation_parameters/microbe_stage/biomes.json:1942
-#: ../simulation_parameters/microbe_stage/biomes.json:2110
+#: ../simulation_parameters/microbe_stage/biomes.json:338
+#: ../simulation_parameters/microbe_stage/biomes.json:513
+#: ../simulation_parameters/microbe_stage/biomes.json:687
+#: ../simulation_parameters/microbe_stage/biomes.json:941
+#: ../simulation_parameters/microbe_stage/biomes.json:1195
+#: ../simulation_parameters/microbe_stage/biomes.json:1450
+#: ../simulation_parameters/microbe_stage/biomes.json:1624
+#: ../simulation_parameters/microbe_stage/biomes.json:1822
+#: ../simulation_parameters/microbe_stage/biomes.json:1997
+#: ../simulation_parameters/microbe_stage/biomes.json:2171
 msgid "BIG_IRON_CHUNK"
 msgstr "Duży Kawałek Żelaza"
 
@@ -721,27 +721,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Dwutlenek Węgla"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:879
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "Mnóstwo"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:883
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "Średnia Ilość"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:887
 msgid "CATEGORY_LITTLE"
 msgstr "Mało"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:881
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "Całkiem Sporo"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:885
 msgid "CATEGORY_SOME"
 msgstr "Trochę"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:889
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "Prawie Wcale"
 
@@ -891,7 +891,7 @@ msgstr "Aberracja chromatyczna:"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:109
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
@@ -968,7 +968,7 @@ msgstr "Dzielnik rozdzielczości chmur:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimalny interwał symulacji chmur:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1336
+#: ../simulation_parameters/microbe_stage/biomes.json:1372
 msgid "COASTAL"
 msgstr "Przybrzeże"
 
@@ -1076,7 +1076,7 @@ msgstr "Zbudowane w:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "Związki"
 
@@ -1084,7 +1084,7 @@ msgstr "Związki"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj związki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "Związki:"
 
@@ -1465,7 +1465,7 @@ msgstr "Kalibracje martwej strefy zostały zresetowane"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Konfiguracja Martwej Strefy"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:337
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:339
 msgid "DEATH"
 msgstr "śmierć"
 
@@ -1601,7 +1601,7 @@ msgstr "Wiki Developerskie"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Odwiedź nasze wiki developerskie"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:278
 msgid "DEVOURED"
 msgstr "Rozszarpany"
 
@@ -1930,7 +1930,7 @@ msgstr "Szybkość przesuwania:"
 msgid "EDITOR"
 msgstr "Edytor"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
@@ -1998,7 +1998,7 @@ msgid "ENTITY_LABEL"
 msgstr "Oznaczenie Bytu"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "Środowisko"
 
@@ -2058,11 +2058,11 @@ msgstr "Błąd zapisu"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1205
+#: ../src/microbe_stage/MicrobeStage.cs:1248
 msgid "ESCAPE_ENGULFING"
 msgstr "Uniknij fagocytozy"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1864
+#: ../simulation_parameters/microbe_stage/biomes.json:1919
 msgid "ESTUARY"
 msgstr "Eustarium"
 
@@ -2251,7 +2251,7 @@ msgstr "Zakończ {0} Pokoleń"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Strzel toksyną"
 
@@ -2278,21 +2278,21 @@ msgstr "wyginął z planety"
 msgid "FLEET_UNITS"
 msgstr "{0} {1}"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "Dryfujące Odłamki:"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:197
-#: ../simulation_parameters/microbe_stage/biomes.json:446
-#: ../simulation_parameters/microbe_stage/biomes.json:614
-#: ../simulation_parameters/microbe_stage/biomes.json:862
-#: ../simulation_parameters/microbe_stage/biomes.json:1110
-#: ../simulation_parameters/microbe_stage/biomes.json:1359
-#: ../simulation_parameters/microbe_stage/biomes.json:1527
-#: ../simulation_parameters/microbe_stage/biomes.json:1699
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2055
+#: ../simulation_parameters/microbe_stage/biomes.json:203
+#: ../simulation_parameters/microbe_stage/biomes.json:458
+#: ../simulation_parameters/microbe_stage/biomes.json:632
+#: ../simulation_parameters/microbe_stage/biomes.json:886
+#: ../simulation_parameters/microbe_stage/biomes.json:1140
+#: ../simulation_parameters/microbe_stage/biomes.json:1395
+#: ../simulation_parameters/microbe_stage/biomes.json:1569
+#: ../simulation_parameters/microbe_stage/biomes.json:1747
+#: ../simulation_parameters/microbe_stage/biomes.json:1942
+#: ../simulation_parameters/microbe_stage/biomes.json:2116
 msgid "FLOATING_HAZARD"
 msgstr "Pływające Zagrożenie"
 
@@ -2355,12 +2355,12 @@ msgstr ""
 "Inicjalizacja biblioteki klienckiej Steam nie powiodła się. Funkcje Steam będą niedostępne.\n"
 "Upewnij się że Steam jest uruchomiony oraz jesteś zalogowany na odpowiednim koncie. Uruchom grę przez bibliotekę Steam jeśli problem będzie dalej się pojawiał."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2471,7 +2471,7 @@ msgstr "Część populacji [b][u]{0}[/u][/b] przeniosła się z {2} do {1}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "Glukoza (C₆H₁₂O₆)"
 
@@ -2493,16 +2493,16 @@ msgid "GOD_TOOLS_TITLE"
 msgstr "Dołącz do naszego serwera Discord"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:105
-#: ../simulation_parameters/microbe_stage/biomes.json:356
-#: ../simulation_parameters/microbe_stage/biomes.json:525
-#: ../simulation_parameters/microbe_stage/biomes.json:773
-#: ../simulation_parameters/microbe_stage/biomes.json:1021
-#: ../simulation_parameters/microbe_stage/biomes.json:1269
-#: ../simulation_parameters/microbe_stage/biomes.json:1438
-#: ../simulation_parameters/microbe_stage/biomes.json:1606
-#: ../simulation_parameters/microbe_stage/biomes.json:1797
-#: ../simulation_parameters/microbe_stage/biomes.json:1966
-#: ../simulation_parameters/microbe_stage/biomes.json:2214
+#: ../simulation_parameters/microbe_stage/biomes.json:362
+#: ../simulation_parameters/microbe_stage/biomes.json:537
+#: ../simulation_parameters/microbe_stage/biomes.json:791
+#: ../simulation_parameters/microbe_stage/biomes.json:1045
+#: ../simulation_parameters/microbe_stage/biomes.json:1299
+#: ../simulation_parameters/microbe_stage/biomes.json:1474
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
+#: ../simulation_parameters/microbe_stage/biomes.json:1846
+#: ../simulation_parameters/microbe_stage/biomes.json:2021
+#: ../simulation_parameters/microbe_stage/biomes.json:2275
 msgid "GOOGLY_EYE_CELL"
 msgstr "Komórka oczka"
 
@@ -2623,7 +2623,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "Siarkowodór (H₂S)"
 
@@ -2635,11 +2635,11 @@ msgstr "Hiper Lewo"
 msgid "HYPERR"
 msgstr "Hiper Prawo"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1754
+#: ../simulation_parameters/microbe_stage/biomes.json:1802
 msgid "ICESHARD"
 msgstr "Odłamy Lodu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1673
+#: ../simulation_parameters/microbe_stage/biomes.json:1721
 msgid "ICESHELF"
 msgstr "Lodowiec Szelfowy"
 
@@ -2723,7 +2723,7 @@ msgstr "PRZETRWAŁEŚ!"
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr "Wchłonięta Materia"
 
@@ -2887,7 +2887,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "Żelazo (Fe²⁺)"
 
@@ -3316,7 +3316,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "Kominy hydrotermalne"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "Światło"
 
@@ -3523,11 +3523,11 @@ msgstr "Mapa"
 msgid "MARCH"
 msgstr "Marzec"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:252
-#: ../simulation_parameters/microbe_stage/biomes.json:693
-#: ../simulation_parameters/microbe_stage/biomes.json:941
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
-#: ../simulation_parameters/microbe_stage/biomes.json:2134
+#: ../simulation_parameters/microbe_stage/biomes.json:258
+#: ../simulation_parameters/microbe_stage/biomes.json:711
+#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:2195
 msgid "MARINE_SNOW"
 msgstr "Śnieg morski"
 
@@ -3602,7 +3602,7 @@ msgstr "Rodzaje błony lub ściany komórkowej"
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1088
+#: ../simulation_parameters/microbe_stage/biomes.json:1118
 msgid "MESOPELAGIC"
 msgstr "Mezopelagial"
 
@@ -4215,7 +4215,7 @@ msgstr "Przenieś się do Jakiegokolwiek Obszaru"
 msgid "MOVE_TO_LAND"
 msgstr "Przemieść Się na Ląd"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, przy posiadaniu odpowiednio dużej kolonii."
 
@@ -4269,7 +4269,7 @@ msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "Śluz"
 
@@ -4488,19 +4488,19 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:199
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:195
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:126
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:868
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:942
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:860
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:934
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4592,7 +4592,7 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
 msgstr "Nie Dotyczy"
 
@@ -4600,7 +4600,7 @@ msgstr "Nie Dotyczy"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:502
 msgid "N_TIMES"
 msgstr "x{0}"
 
@@ -4862,7 +4862,7 @@ msgstr "Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "OxyToksy NT"
 
@@ -4988,7 +4988,7 @@ msgstr "ZAPAUZOWANO"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Wznów"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr "[center]Naciśnij [thrive:input]g_pause[/thrive:input] żeby odpauzować[/center]"
 
@@ -5008,7 +5008,7 @@ msgstr "Wczytywanie pliku pck ({0}) nie powiodło się, ponieważ ten plik nie i
 msgid "PEACEFUL"
 msgstr "Pokojowość"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -5018,7 +5018,7 @@ msgstr "Pokojowość"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5039,7 +5039,7 @@ msgstr "/sekundę"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "Fosforany (PO₄³⁻)"
 
@@ -5082,7 +5082,7 @@ msgstr "Generacja planety już wkrótce!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Losowe ziarno planety"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "PLAYER"
 msgstr "Gracz"
 
@@ -5145,7 +5145,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Graj Z Obecnym Ustawieniem"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
@@ -5175,7 +5175,7 @@ msgid "PRESSURE"
 msgstr "Ciśnienie"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "Ciśn."
 
@@ -5318,7 +5318,8 @@ msgstr "Raport"
 msgid "REPORT_BUG"
 msgstr "Zgłoś Buga"
 
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:495
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:274
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "Rozmnożyły się"
 
@@ -5724,13 +5725,13 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr "Zasięg Wyszukiwania:"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2033
+#: ../simulation_parameters/microbe_stage/biomes.json:2094
 msgid "SEA_FLOOR"
 msgstr "Dno Morza"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "Wydziel śluz"
 
@@ -5882,27 +5883,27 @@ msgstr "Czynnik komunikacyjny pozwala komórkom na wydzielanie związków chemic
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Przytrzymaj [thrive:input]g_pack_commands[/thrive:input] żeby otworzyć menu komunikacji z innymi przedstawicielami swojego gatunku."
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Zareaguj Agresją"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Uciekaj"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Podążaj za mną"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Brak Polecenia"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Zbliż się do mnie"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 msgid "SIGNAL_TO_EMIT"
 msgstr "Komunikat Do Nadania"
 
@@ -5942,16 +5943,16 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"mucilage\"][/thrive:compound]. Naciśnij [thrive:input]g_secrete_slime[/thrive:input] by wypuścić przechowywany [thrive:compound type=\"mucilage\"][/thrive:compound], zwiększając prędkość komórki jak i spowalniając drapieżniki."
 
 #: ../simulation_parameters/microbe_stage/biomes.json:45
-#: ../simulation_parameters/microbe_stage/biomes.json:216
-#: ../simulation_parameters/microbe_stage/biomes.json:465
-#: ../simulation_parameters/microbe_stage/biomes.json:633
-#: ../simulation_parameters/microbe_stage/biomes.json:881
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
-#: ../simulation_parameters/microbe_stage/biomes.json:1546
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1906
-#: ../simulation_parameters/microbe_stage/biomes.json:2074
+#: ../simulation_parameters/microbe_stage/biomes.json:222
+#: ../simulation_parameters/microbe_stage/biomes.json:477
+#: ../simulation_parameters/microbe_stage/biomes.json:651
+#: ../simulation_parameters/microbe_stage/biomes.json:905
+#: ../simulation_parameters/microbe_stage/biomes.json:1159
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1766
+#: ../simulation_parameters/microbe_stage/biomes.json:1961
+#: ../simulation_parameters/microbe_stage/biomes.json:2135
 msgid "SMALL_IRON_CHUNK"
 msgstr "Mały Kawałek Żelaza"
 
@@ -6007,7 +6008,7 @@ msgstr "Stwórz amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Przywołaj Przeciwnika"
 
-#: ../src/microbe_stage/MicrobeStage.cs:961
+#: ../src/microbe_stage/MicrobeStage.cs:974
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nie można przywołać przeciwnika, gdyż ta strefa nie posiada wrogo nastawionych gatunków"
 
@@ -6032,7 +6033,7 @@ msgstr "Mysz Specjalny 2"
 msgid "SPECIES"
 msgstr "Gatunek"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "Gatunek:"
 
@@ -6104,6 +6105,10 @@ msgstr "Szybkość:"
 #: ../src/auto-evo/RunResults.cs:720
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozpowszechnił się do obszarów:"
+
+#: ../src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.cs:19
+msgid "STAGES"
+msgstr ""
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:49
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -6311,11 +6316,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1203
+#: ../src/microbe_stage/MicrobeStage.cs:1246
 msgid "SUCCESSFUL_KILL"
 msgstr "udane zabicie"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1204
+#: ../src/microbe_stage/MicrobeStage.cs:1247
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Udane poszukiwanie"
 
@@ -6460,7 +6465,7 @@ msgid "TEMPERATURE"
 msgstr "Temperatura"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
@@ -6591,7 +6596,7 @@ msgstr "Tylakoidy"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:423
+#: ../simulation_parameters/microbe_stage/biomes.json:435
 msgid "TIDEPOOL"
 msgstr "Basen pływowy"
 
@@ -6615,8 +6620,8 @@ msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
-#: ../src/microbe_stage/MicrobeStage.cs:435
-#: ../src/microbe_stage/MicrobeStage.cs:439
+#: ../src/microbe_stage/MicrobeStage.cs:447
+#: ../src/microbe_stage/MicrobeStage.cs:451
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6663,7 +6668,7 @@ msgid "TITLE_COLON"
 msgstr "Tytuł:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "Przełączenie wiązania"
 
@@ -6674,7 +6679,7 @@ msgstr "Włącz panel debugowania"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "Przełączenie fagocytozy"
 
@@ -6971,11 +6976,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Musisz zatwierdzić zmiany, by załadować lub wyładować mody."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "Odwiąż wszystkie"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:204
 msgid "UNBIND_HELP_TEXT"
 msgstr "Tryb rozdzielenia"
 
@@ -6983,7 +6988,7 @@ msgstr "Tryb rozdzielenia"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1505
+#: ../simulation_parameters/microbe_stage/biomes.json:1547
 msgid "UNDERWATERCAVE"
 msgstr "Podwodna Jaskinia"
 
@@ -7132,7 +7137,7 @@ msgstr "Wakuola to wewnętrzna organella membranowa używana w komórce jako mag
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:132
 #, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "Zwiększa pojemność twojej komórki."
@@ -7141,12 +7146,12 @@ msgstr "Zwiększa pojemność twojej komórki."
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zwiększa pojemność twojej komórki."
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:137
 #, fuzzy
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "Zwiększa pojemność twojej komórki."
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:635
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7212,7 +7217,7 @@ msgstr "Widoczne"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Zasugeruj Funkcję"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:178
 msgid "VOLCANIC_VENT"
 msgstr "Komin hydrotermalny"
 
@@ -7268,6 +7273,91 @@ msgstr "Koło w górę"
 #, fuzzy
 msgid "WIKI"
 msgstr "Nasza strona Wiki"
+
+#: ../simulation_parameters/common/wiki.json:1367
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Obecni Developerzy"
+
+#: ../simulation_parameters/common/wiki.json:1359
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Zewnętrzne efekty:"
+
+#: ../simulation_parameters/common/wiki.json:1347
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:1351
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1355
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Populacja Gatunku"
+
+#: ../simulation_parameters/common/wiki.json:1363
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#: ../simulation_parameters/common/wiki.json:1243
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1235
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1223
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:1227
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1231
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1239
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:1212
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1204
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1192
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#: ../simulation_parameters/common/wiki.json:1196
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1200
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#: ../simulation_parameters/common/wiki.json:1208
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Wić"
 
 #: ../simulation_parameters/common/wiki.json:37
 #, fuzzy
@@ -7652,6 +7742,32 @@ msgstr ""
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1145
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1176
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Chemoreceptor"
+
+#: ../simulation_parameters/common/wiki.json:1180
+#: ../simulation_parameters/common/wiki.json:1211
+#: ../simulation_parameters/common/wiki.json:1242
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1304
+#: ../simulation_parameters/common/wiki.json:1335
+#: ../simulation_parameters/common/wiki.json:1366
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Obecni Developerzy"
+
+#: ../simulation_parameters/common/wiki.json:1137
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Czynnik Wiążący"
+
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7683,6 +7799,27 @@ msgstr ""
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1168
+#: ../simulation_parameters/common/wiki.json:1203
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1265
+#: ../simulation_parameters/common/wiki.json:1296
+#: ../simulation_parameters/common/wiki.json:1327
+#: ../simulation_parameters/common/wiki.json:1358
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1133
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
+
+#: ../simulation_parameters/common/wiki.json:1141
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Czynnik Wiążący"
+
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
 #: ../simulation_parameters/common/wiki.json:110
@@ -7712,6 +7849,16 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1160
+#: ../simulation_parameters/common/wiki.json:1195
+#: ../simulation_parameters/common/wiki.json:1226
+#: ../simulation_parameters/common/wiki.json:1257
+#: ../simulation_parameters/common/wiki.json:1288
+#: ../simulation_parameters/common/wiki.json:1319
+#: ../simulation_parameters/common/wiki.json:1350
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:28
@@ -7838,6 +7985,27 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1164
+#: ../simulation_parameters/common/wiki.json:1199
+#: ../simulation_parameters/common/wiki.json:1230
+#: ../simulation_parameters/common/wiki.json:1261
+#: ../simulation_parameters/common/wiki.json:1292
+#: ../simulation_parameters/common/wiki.json:1323
+#: ../simulation_parameters/common/wiki.json:1354
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1172
+#: ../simulation_parameters/common/wiki.json:1207
+#: ../simulation_parameters/common/wiki.json:1238
+#: ../simulation_parameters/common/wiki.json:1269
+#: ../simulation_parameters/common/wiki.json:1300
+#: ../simulation_parameters/common/wiki.json:1331
+#: ../simulation_parameters/common/wiki.json:1362
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:40
 #: ../simulation_parameters/common/wiki.json:79
 #: ../simulation_parameters/common/wiki.json:118
@@ -7868,6 +8036,35 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1305
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1297
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco związków by podzielić swoją komórkę."
+
+#: ../simulation_parameters/common/wiki.json:1285
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:1289
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1293
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Budując fabrykę przejdziesz w fazę cywilizacji. Kontynuować do następnego etapu?"
+
+#: ../simulation_parameters/common/wiki.json:1301
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Przejść do Fazy Cywilizacji?"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
@@ -7948,6 +8145,52 @@ msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potr
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
+#: ../simulation_parameters/common/wiki.json:1146
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#: ../simulation_parameters/common/wiki.json:1138
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Edytor Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1134
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#: ../simulation_parameters/common/wiki.json:1142
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1130
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
 #: ../simulation_parameters/common/wiki.json:509
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
@@ -7987,6 +8230,50 @@ msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to st
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest prokariotem ,który został przyswojony do użytku przez eukariotycznego hosta. Potrafi przekształcać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] znacznie efektywniej niż cytoplazma w procesie zwanym [b]oddychaniem komórkowym[/b]. Wymaga do funkcjonowania [thrive:compound type=\"oxygen\"][/thrive:compound], i niższe poziomy [thrive:compound type=\"oxygen\"][/thrive:compound] w otoczeniu spowalniają tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#: ../simulation_parameters/common/wiki.json:1177
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Etap Wielokomórkowca"
+
+#: ../simulation_parameters/common/wiki.json:1181
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
+"\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
+
+#: ../simulation_parameters/common/wiki.json:1169
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Etap Wielokomórkowca"
+
+#: ../simulation_parameters/common/wiki.json:1157
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Etap Wielokomórkowca"
+
+#: ../simulation_parameters/common/wiki.json:1161
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Etap Wielokomórkowca"
+
+#: ../simulation_parameters/common/wiki.json:1165
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Etap Wielokomórkowca"
+
+#: ../simulation_parameters/common/wiki.json:1173
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Etap Wielokomórkowca"
 
 #: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
@@ -8178,6 +8465,21 @@ msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
 
+#: ../simulation_parameters/common/wiki.json:1341
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyjanina"
+
+#: ../simulation_parameters/common/wiki.json:1217
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Czynnik Wiążący"
+
+#: ../simulation_parameters/common/wiki.json:1186
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Nitrogenaza"
+
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
 msgstr ""
@@ -8226,6 +8528,11 @@ msgstr "Cytozol"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Wić"
 
+#: ../simulation_parameters/common/wiki.json:1279
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Czynnik Wiążący"
+
 #: ../simulation_parameters/common/wiki.json:405
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
@@ -8236,10 +8543,20 @@ msgstr "Lizosom"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomy"
 
+#: ../simulation_parameters/common/wiki.json:1124
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenaza"
+
 #: ../simulation_parameters/common/wiki.json:487
 #, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
+
+#: ../simulation_parameters/common/wiki.json:1151
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Etap Wielokomórkowca"
 
 #: ../simulation_parameters/common/wiki.json:526
 #, fuzzy
@@ -8294,6 +8611,21 @@ msgstr "Czynnik Komunikacyjny"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Gruczoł Śluzowy"
+
+#: ../simulation_parameters/common/wiki.json:1248
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1310
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Gruczoł Śluzowy"
+
+#: ../simulation_parameters/common/wiki.json:1112
+#, fuzzy
+msgid "WIKI_PAGE_Stages_ROOT"
+msgstr "Dodaj organellę"
 
 #: ../simulation_parameters/common/wiki.json:916
 #, fuzzy
@@ -8513,6 +8845,69 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1274
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1266
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1254
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#: ../simulation_parameters/common/wiki.json:1258
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1262
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1270
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1336
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1328
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Gruczoł Śluzowy"
+
+#: ../simulation_parameters/common/wiki.json:1316
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#: ../simulation_parameters/common/wiki.json:1320
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1324
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#: ../simulation_parameters/common/wiki.json:1332
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Etap Mikroba"
+
+#: ../simulation_parameters/common/wiki.json:1118
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Akson"
 
 #: ../simulation_parameters/common/wiki.json:938
 #, fuzzy
