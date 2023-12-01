@@ -78,6 +78,7 @@
                     // from the world by us)
                     if (disabledBodies.Remove(body))
                     {
+                        // TODO: should a new position be applied first?
                         physicalWorld.AddBody(body);
                     }
                 }
