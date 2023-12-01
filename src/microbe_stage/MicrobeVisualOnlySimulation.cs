@@ -19,8 +19,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private PathBasedSceneLoader pathBasedSceneLoader = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
 
-    // private RenderOrderSystem renderOrderSystem = null! = null!;
-
     private SpatialAttachSystem spatialAttachSystem = null!;
     private SpatialPositionSystem spatialPositionSystem = null!;
 
@@ -29,6 +27,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     // private ColonyBindingSystem colonyBindingSystem = null!;
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
+    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
@@ -69,6 +68,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, parallelRunner);
 
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, runner);
+        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
@@ -318,7 +318,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         fadeOutActionSystem.Update(delta);
 
-        // renderOrderSystem.Update(delta);
+        microbeRenderPrioritySystem.Update(delta);
 
         cellBurstEffectSystem.Update(delta);
 
@@ -345,6 +345,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             spatialPositionSystem.Dispose();
             cellBurstEffectSystem.Dispose();
             microbeFlashingSystem.Dispose();
+            microbeRenderPrioritySystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
             tintColourAnimationSystem.Dispose();

@@ -1009,9 +1009,8 @@ public partial class CellBodyPlanEditorComponent :
 
         modelHolder.LoadFromAlreadyLoadedNode(billboard);
 
-        // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
-        // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be
-        // fine?
+        // TODO: render priority setting for the cells? (similarly to how organelles are handled in the cell editor)
+        // Alternatively maybe 0.01 of randomness in y-position would be fine?
     }
 
     private void OnSpeciesNameChanged(string newText)
