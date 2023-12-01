@@ -14,6 +14,7 @@ using ScriptsBase.Utilities;
 public static class WikiUpdater
 {
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
+    private const string STAGES_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Stages";
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
@@ -49,13 +50,21 @@ public static class WikiUpdater
     {
         var organellesRootTask = FetchOrganellesRootPage(cancellationToken);
         var organellesTask = FetchOrganellePages(cancellationToken);
+        var stagesRootTask = FetchStagesRootPage(cancellationToken);
+        var stagesTask = FetchStagePages(cancellationToken);
 
         var organellesRoot = await organellesRootTask;
         var organelles = await organellesTask;
+        var stagesRoot = await stagesRootTask;
+        var stages = await stagesTask;
 
-        var untranslatedWiki = new Wiki(
-            organellesRoot.UntranslatedPage,
-            organelles.Select(o => o.UntranslatedPage).ToList());
+        var untranslatedWiki = new Wiki()
+        {
+            OrganellesRoot = organellesRoot.UntranslatedPage,
+            Organelles = organelles.Select(o => o.UntranslatedPage).ToList(),
+            StagesRoot = stagesRoot.UntranslatedPage,
+            Stages = stages.Select(s => s.UntranslatedPage).ToList(),
+        };
 
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
@@ -66,9 +75,16 @@ public static class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
 
-        await InsertTranslatedPageContent(
-            organelles.Append(organellesRoot).ToList(),
-            cancellationToken);
+        var pages = new List<TranslationPair>()
+        {
+            organellesRoot,
+            stagesRoot,
+        };
+
+        pages.AddRange(organelles);
+        pages.AddRange(stages);
+
+        await InsertTranslatedPageContent(pages, cancellationToken);
 
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
 
@@ -138,6 +154,70 @@ public static class WikiUpdater
         }
 
         return organellePages;
+    }
+
+    private static async Task<TranslationPair> FetchStagesRootPage(CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteInfoLine("Fetching stages root page");
+
+        var body = (await HtmlReader.RetrieveHtmlDocument(STAGES_CATEGORY, cancellationToken)).Body!;
+
+        var sections = GetMainBodySections(body);
+        var untranslatedSections = sections.Select(section => UntranslateSection(section, "STAGES_ROOT")).ToList();
+
+        var untranslatedPage = new Wiki.Page("WIKI_PAGE_Stages_ROOT", "StagesRoot", STAGES_CATEGORY,
+            untranslatedSections);
+        var translatedPage = new Wiki.Page("Stages", "StagesRoot", STAGES_CATEGORY, sections);
+
+        ColourConsole.WriteSuccessLine("Populated content for stages root page");
+
+        return new TranslationPair(untranslatedPage, translatedPage);
+    }
+
+    private static async Task<List<TranslationPair>> FetchStagePages(CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteInfoLine("Fetching stage pages");
+
+        // Get the list of stages from the category page on the wiki
+        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(STAGES_CATEGORY, cancellationToken)).Body!;
+        var stages = categoryBody.QuerySelectorAll(".mw-category-group > ul > li");
+
+        var stagePages = new List<TranslationPair>();
+
+        foreach (var organelle in stages)
+        {
+            var name = organelle.TextContent.Trim();
+            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
+
+            var untranslatedStageName = name.ToUpperInvariant().Replace(" ", "_");
+
+            ColourConsole.WriteInfoLine($"Found stage {name}");
+
+            var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+
+            var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+
+            var sections = GetMainBodySections(body);
+            var untranslatedSections = sections.Select(
+                section => UntranslateSection(section, untranslatedStageName)).ToList();
+
+            var untranslatedPage = new Wiki.Page(
+                $"WIKI_PAGE_{untranslatedStageName}",
+                internalName,
+                url,
+                untranslatedSections);
+            var translatedPage = new Wiki.Page(
+                name,
+                internalName,
+                url,
+                sections);
+
+            stagePages.Add(new TranslationPair(untranslatedPage, translatedPage));
+
+            ColourConsole.WriteSuccessLine($"Populated content for stage with internal name {internalName}");
+        }
+
+        return stagePages;
     }
 
     /// <summary>
@@ -344,17 +424,18 @@ public static class WikiUpdater
     /// </summary>
     private class Wiki
     {
-        public Wiki(Page organellesRoot, List<Page> organelles)
-        {
-            OrganellesRoot = organellesRoot;
-            Organelles = organelles;
-        }
 
         [JsonInclude]
-        public Page OrganellesRoot { get; }
+        public Page OrganellesRoot { get; init; }
 
         [JsonInclude]
-        public List<Page> Organelles { get; }
+        public List<Page> Organelles { get; init; }
+
+        [JsonInclude]
+        public Page StagesRoot { get; init; }
+
+        [JsonInclude]
+        public List<Page> Stages { get; init; }
 
         public class Page
         {

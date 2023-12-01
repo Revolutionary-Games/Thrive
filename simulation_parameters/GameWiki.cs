@@ -15,6 +15,10 @@ public class GameWiki : IRegistryType
 
     public List<Page> Organelles { get; set; } = null!;
 
+    public Page StagesRoot { get; set; } = null!;
+
+    public List<Page> Stages { get; set; } = null!;
+
     public void ApplyTranslations()
     {
     }
