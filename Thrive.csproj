@@ -782,6 +782,7 @@
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
+    <Compile Include="src\saving\serializers\DictionaryWithJSONKeysConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\EntityWorldConverter.cs" />

@@ -11,6 +11,7 @@
     /// <summary>
     ///   Keeps track of multicellular growth data
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MulticellularGrowth
     {
         /// <summary>

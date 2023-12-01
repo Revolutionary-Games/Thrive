@@ -34,6 +34,7 @@
         ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
         ///   parent.
         /// </summary>
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, Entity>))]
         public Dictionary<Entity, Entity> ColonyStructure;
 
         /// <summary>
