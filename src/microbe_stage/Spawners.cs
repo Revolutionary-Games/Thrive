@@ -230,7 +230,7 @@ public static class SpawnHelpers
         bool hasMicrobeShaderParameters = false;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)
-        if (!selectedMesh.IsParticles)
+        if (!selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport)
         {
             entity.Set(new EntityMaterial
             {
@@ -306,7 +306,7 @@ public static class SpawnHelpers
                 FadeTime = Constants.EMITTER_DESPAWN_DELAY,
                 DisableCollisions = true,
                 RemoveVelocity = true,
-                DisableParticles = true,
+                DisableParticles = selectedMesh.IsParticles,
                 UsesMicrobialDissolveEffect = true,
                 VentCompounds = hasCompounds,
             });

@@ -108,7 +108,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -116,7 +117,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -359,7 +365,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -367,7 +374,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -528,7 +540,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -536,7 +549,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -776,7 +794,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -784,7 +803,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1024,7 +1048,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1032,7 +1057,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1272,7 +1302,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1280,7 +1311,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1441,7 +1477,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1449,7 +1486,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1609,7 +1651,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1617,7 +1660,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1755,7 +1803,8 @@
           "meshes": [
             {
               "scenePath": "res://assets/models/Iceshard1.tscn",
-              "convexShapePath": "res://assets/models/Iceshard1.shape"
+              "convexShapePath": "res://assets/models/Iceshard1.shape",
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 0.0001,
@@ -1764,7 +1813,7 @@
           "chunkScale": 1,
           "physicsDensity": 4000,
           "size": 1000,
-          "damages": 10,
+          "damages": 30,
           "deleteOnTouch": false,
           "compounds": {},
           "damageType": "ice"
@@ -1800,7 +1849,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1808,7 +1858,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -1969,7 +2024,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -1977,7 +2033,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
@@ -2217,7 +2278,8 @@
               "scenePath": "res://assets/models/easter_eggs/GooglyEyeCell.tscn",
               "sceneModelPath": "Armature/Skeleton/Cube",
               "sceneAnimationPath": "AnimationPlayer",
-              "playAnimation": true
+              "playAnimation": true,
+              "missingDefaultShaderSupport": true
             }
           ],
           "density": 1e-7,
@@ -2225,7 +2287,12 @@
           "size": 10,
           "physicsDensity": 2000,
           "radius": 2,
-          "easterEgg": true
+          "easterEgg": true,
+          "compounds": {
+            "glucose": {
+              "amount": 1
+            }
+          }
         }
       },
       "compounds": {
