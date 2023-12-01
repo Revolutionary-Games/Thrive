@@ -189,7 +189,7 @@ public class CiliaComponent : IOrganelleComponent
 
         // This needs to be done early to make early exits not cause issues
         // Reset this to have the other cilia report themselves to the shared object before the next update
-        var ciliaCountForForce = sharedPullData.CiliaCount;
+        float ciliaCountForForce = sharedPullData.CiliaCount;
         sharedPullData.CiliaCount = 1;
 
         if (!microbeEntity.Has<PhysicsSensor>())
@@ -234,6 +234,8 @@ public class CiliaComponent : IOrganelleComponent
         if (sharedPullData.JustPulledEntities.Count < 2)
             return;
 
+        ciliaCountForForce = 1 + (ciliaCountForForce - 1) * Constants.CILIA_FORCE_MULTIPLIER_PER_CILIA;
+
         ref var microbePosition = ref microbeEntity.Get<WorldPosition>();
         ref var microbePhysicsControl = ref microbeEntity.Get<ManualPhysicsControl>();
 
@@ -247,17 +249,24 @@ public class CiliaComponent : IOrganelleComponent
             if (!pulledEntity.Has<ManualPhysicsControl>())
                 continue;
 
+            // Skip attached things
+            if (pulledEntity.Has<AttachedToEntity>())
+                continue;
+
+            // TODO: should "friendly fire" be skipped here?
+
             ref var targetPosition = ref pulledEntity.Get<WorldPosition>();
 
-            // Fall off force by squared distance
-            var distanceSquared = targetPosition.Position.DistanceSquaredTo(microbePosition.Position);
+            // Fall off force by distance
+            // var distance = targetPosition.Position.DistanceSquaredTo(microbePosition.Position);
+            var distance = targetPosition.Position.DistanceTo(microbePosition.Position);
 
             // Too close to pull
-            if (distanceSquared < MathUtils.EPSILON)
+            if (distance < MathUtils.EPSILON)
                 return;
 
-            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce *
-                Constants.CILIA_FORCE_MULTIPLIER_PER_CILIA * delta / distanceSquared;
+            float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * delta /
+                (distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
 
             ref var targetPhysics = ref pulledEntity.Get<ManualPhysicsControl>();
             targetPhysics.ImpulseToGive +=

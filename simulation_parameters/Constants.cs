@@ -230,8 +230,8 @@ public static class Constants
     /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE = 900.0f;
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 11.0f;
+    public const float CILIA_PULLING_FORCE = 900000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 14.0f;
 
     /// <summary>
     ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
@@ -239,10 +239,12 @@ public static class Constants
     /// </summary>
     public const float CILIA_PULL_RADIUS_PER_CILIA = 0.75f;
 
-    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 2;
+    /// <summary>
+    ///   1 means that each cilia counts as 1 in the pulling force
+    /// </summary>
+    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
 
-    // TODO: re-introduce this if following squared force falloff is not good
-    // public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
