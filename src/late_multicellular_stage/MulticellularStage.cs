@@ -643,7 +643,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         {
             if (CurrentGame.GameWorld.Map.CurrentPatch != null)
             {
-                Biome currentBiome = SimulationParameters.Instance.GetBiome(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.InternalName);
+                string currentBiomeName = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.InternalName;
+                Biome currentBiome = SimulationParameters.Instance.GetBiome(currentBiomeName);
 
                 PanoramaSky worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
 
