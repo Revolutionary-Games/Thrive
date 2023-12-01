@@ -27,7 +27,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
-        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/OrganelleLinkButton.tscn");
+        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/PageLinkButton.tscn");
     }
 
     public override void OnThriveopediaOpened()
@@ -38,8 +38,10 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         foreach (var organelle in wiki.Organelles)
         {
-            var button = (OrganelleLinkButton)linkButtonScene.Instance();
-            button.Organelle = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
+            var button = (PageLinkButton)linkButtonScene.Instance();
+            var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
+            button.IconPath = organelleDefinition.IconPath!;
+            button.DisplayName = organelleDefinition.Name;
             button.OpenLink = () => ChangePage(organelle.InternalName);
             organelleListContainer.AddChild(button);
         }

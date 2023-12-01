@@ -26,7 +26,9 @@ public class GameWiki : IRegistryType
     public void Check(string name)
     {
         OrganellesRoot.Check(name);
+        StagesRoot.Check(name);
         Organelles.ForEach(page => page.Check(name));
+        Stages.ForEach(page => page.Check(name));
     }
 
     public class Page
