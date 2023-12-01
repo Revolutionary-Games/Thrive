@@ -4,6 +4,8 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
+    using Godot;
+    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles <see cref="DamageOnTouch"/> component setup and dealing the damage
@@ -51,7 +53,8 @@
 
                 ref var health = ref collision.SecondEntity.Get<Health>();
 
-                if (DealDamage(collision.SecondEntity, ref health, ref damageTouch, delta))
+                if (DealDamage(collision.SecondEntity, ref health, ref damageTouch, delta,
+                        collision.SecondSubShapeData))
                 {
                     collided = true;
                 }
@@ -79,25 +82,47 @@
             }
         }
 
-        private bool DealDamage(in Entity entity, ref Health health, ref DamageOnTouch damageTouch, float delta)
+        private bool DealDamage(in Entity entity, ref Health health, ref DamageOnTouch damageTouch, float delta,
+            uint subShape)
         {
             if (damageTouch.DestroyOnTouch)
             {
                 return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount,
-                    damageTouch.DamageType);
+                    damageTouch.DamageType, subShape);
             }
 
             return HandlePotentialMicrobeDamage(ref health, entity, damageTouch.DamageAmount * delta,
-                damageTouch.DamageType);
+                damageTouch.DamageType, subShape);
         }
 
         private bool HandlePotentialMicrobeDamage(ref Health health, in Entity entity, float damageValue,
-            string damageType)
+            string damageType, uint subShape)
         {
             if (entity.Has<CellProperties>())
             {
-                // TODO: disable dealing damage to a pilus
-                // return false
+                if (!entity.Has<MicrobePhysicsExtraData>())
+                {
+                    GD.PrintErr("Microbe missing physics extra data when checking with damage on touch entity");
+                    return true;
+                }
+
+                ref var entityExtraData = ref entity.Get<MicrobePhysicsExtraData>();
+
+                // Can't damage through a pilus
+                if (entityExtraData.IsSubShapePilus(subShape))
+                    return false;
+
+                if (entity.Has<MicrobeColony>())
+                {
+                    if (entity.Get<MicrobeColony>().GetMicrobeFromSubShape(ref entityExtraData,
+                            subShape, out var hitEntity))
+                    {
+                        hitEntity.Get<Health>()
+                            .DealMicrobeDamage(ref hitEntity.Get<CellProperties>(), damageValue, damageType);
+
+                        return true;
+                    }
+                }
 
                 health.DealMicrobeDamage(ref entity.Get<CellProperties>(), damageValue, damageType);
             }
