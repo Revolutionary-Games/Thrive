@@ -232,7 +232,10 @@ public class CiliaComponent : IOrganelleComponent
 
         // Skipped when count is 1 as the cell is just detecting itself
         if (sharedPullData.JustPulledEntities.Count < 2)
+        {
+            sharedPullData.JustPulledEntities.Clear();
             return;
+        }
 
         ciliaCountForForce = 1 + (ciliaCountForForce - 1) * Constants.CILIA_FORCE_MULTIPLIER_PER_CILIA;
 
@@ -278,6 +281,9 @@ public class CiliaComponent : IOrganelleComponent
                 (targetPosition.Position - microbePosition.Position).Normalized() * force;
             microbePhysicsControl.PhysicsApplied = false;
         }
+
+        // Really important to clear the processed entities to not pull in entities from super far away
+        sharedPullData.JustPulledEntities.Clear();
     }
 
     private PullingCiliaData? FindExistingPull(ref OrganelleContainer organelleContainer)
