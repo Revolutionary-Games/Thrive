@@ -877,6 +877,10 @@
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
+                // this needs to be skipped here
+                if (colonyMember == colony.Leader)
+                    continue;
+
                 ref var memberPosition = ref colonyMember.Get<AttachedToEntity>();
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
