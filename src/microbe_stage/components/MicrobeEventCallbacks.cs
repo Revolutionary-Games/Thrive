@@ -26,6 +26,8 @@
 
         public Action<Entity, Entity>? OnIngestedByHostile;
 
+        public Action<Entity>? OnEjectedFromHostileEngulfer;
+
         public Action<Entity, Entity>? OnSuccessfulEngulfment;
 
         public Action<Entity>? OnEngulfmentStorageFull;

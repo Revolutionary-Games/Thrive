@@ -781,6 +781,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             OnIngestedByHostile = OnPlayerEngulfedByHostile,
             OnSuccessfulEngulfment = OnPlayerIngesting,
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
+            OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
 
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
@@ -1050,6 +1051,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (PlayerIsEngulfed(Player))
             return;
 
+        if (!CurrentGame!.FreeBuild)
+            return;
+
         OnCanEditStatusChanged(true);
     }
 
@@ -1097,7 +1101,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
 
-                    // TODO: re-enable the editor button if the player is ejected from engulfment
                     OnCanEditStatusChanged(false);
                 }
             }
@@ -1106,6 +1109,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                 GD.PrintErr("Couldn't process player engulfed by hostile event: " + e);
             }
         }, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEjectedFromHostileEngulfer(Entity player)
+    {
+        // Re-check the reproduction status with the normal reproduction status check
+        OnPlayerReproductionStatusChanged(player, player.Get<OrganelleContainer>().AllOrganellesDivided);
     }
 
     [DeserializedCallbackAllowed]

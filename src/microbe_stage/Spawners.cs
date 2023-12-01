@@ -230,7 +230,7 @@ public static class SpawnHelpers
         bool hasMicrobeShaderParameters = false;
 
         // This needs to be skipped for particle type chunks (as they don't have materials)
-        if (!selectedMesh.IsParticles)
+        if (!selectedMesh.IsParticles && !selectedMesh.MissingDefaultShaderSupport)
         {
             entity.Set(new EntityMaterial
             {
@@ -257,6 +257,7 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
+        bool hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is 0 to disallow adding any more compounds to the compound bag
@@ -281,6 +282,8 @@ public static class SpawnHelpers
                 Compounds = compounds,
             });
 
+            hasCompounds = true;
+
             entity.Set(new CompoundVenter
             {
                 VentEachCompoundPerSecond = chunkType.VentAmount,
@@ -303,9 +306,9 @@ public static class SpawnHelpers
                 FadeTime = Constants.EMITTER_DESPAWN_DELAY,
                 DisableCollisions = true,
                 RemoveVelocity = true,
-                DisableParticles = true,
+                DisableParticles = selectedMesh.IsParticles,
                 UsesMicrobialDissolveEffect = true,
-                VentCompounds = true,
+                VentCompounds = hasCompounds,
             });
         }
 
@@ -566,6 +569,8 @@ public static class SpawnHelpers
             VisualScale = scale,
             ApplyVisualScale = true,
         });
+
+        entity.Set(new RenderPriorityOverride(Constants.MICROBE_DEFAULT_RENDER_PRIORITY));
 
         entity.Set<EntityMaterial>();
 

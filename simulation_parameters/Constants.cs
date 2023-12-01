@@ -179,9 +179,18 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 250.7f;
+    public const float FLAGELLA_BASE_FORCE = 60.0f;
 
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
+
+    /// <summary>
+    ///   How much extra base movement is given per hex. Only applies between
+    ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
+    /// </summary>
+    public const float BASE_MOVEMENT_PER_HEX = 45;
+
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -1283,6 +1292,13 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
+
+    /// <summary>
+    ///   If membrane scene is updated this should be updated as well
+    /// </summary>
+    public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 

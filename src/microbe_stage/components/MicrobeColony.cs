@@ -34,6 +34,7 @@
         ///   detect which cells are also lost if one cell is lost. Key is the dependent cell and the value is its
         ///   parent.
         /// </summary>
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, Entity>))]
         public Dictionary<Entity, Entity> ColonyStructure;
 
         /// <summary>
@@ -160,28 +161,6 @@
                 return colony.ColonyCompounds;
 
             return colony.ColonyCompounds = new ColonyCompoundBag(colony.ColonyMembers);
-        }
-
-        /// <summary>
-        ///   Applies a colony-wide state (for example makes all cells that can be in engulf mode in the colony be in
-        ///   engulf mode)
-        /// </summary>
-        public static void SetColonyState(this ref MicrobeColony colony, MicrobeState state)
-        {
-            if (state == colony.ColonyState)
-                return;
-
-            colony.ColonyState = state;
-
-            foreach (var cell in colony.ColonyMembers)
-            {
-                if (cell.IsAlive)
-                {
-                    // Setting this directly relies on all systems unsetting the state on cells that can't actually
-                    // perform the state
-                    cell.Get<MicrobeControl>().State = state;
-                }
-            }
         }
 
         /// <summary>
@@ -317,11 +296,12 @@
         }
 
         /// <summary>
-        ///   Perform an action for all members of this cell's colony other than this cell if this is the colony leader.
+        ///   Perform an action for all members of this cell's colony other than the leader
         /// </summary>
-        public static void PerformForOtherColonyMembersThanLeader(this ref MicrobeColony colony, Action<Entity> action,
-            Entity skipEntity)
+        public static void PerformForOtherColonyMembersThanLeader(this ref MicrobeColony colony, Action<Entity> action)
         {
+            var skipEntity = colony.Leader;
+
             foreach (var cell in colony.ColonyMembers)
             {
                 if (cell == skipEntity)
@@ -527,8 +507,12 @@
             ref var control = ref colonyEntity.Get<MicrobeControl>();
 
             // Exit cell unbind mode if currently in it (as the user has selected something to unbind)
-            if (control.State == MicrobeState.Unbinding)
-                control.State = MicrobeState.Normal;
+            if (control.State == MicrobeState.Unbinding || colony.ColonyState == MicrobeState.Unbinding)
+            {
+                control.SetStateColonyAware(colonyEntity, MicrobeState.Normal);
+            }
+
+            // TODO: should unbound cell have its state reset for example if it was in binding or engulf mode?
 
             // Need to recreate the physics body
             ref var cellProperties = ref colonyEntity.Get<CellProperties>();
@@ -639,21 +623,31 @@
             ref var control = ref entity.Get<MicrobeControl>();
 
             if (control.State is MicrobeState.Unbinding or MicrobeState.Binding)
-                control.State = MicrobeState.Normal;
+            {
+                control.SetStateColonyAware(entity, MicrobeState.Normal);
+            }
 
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
             if (!organelles.CanUnbind(ref entity.Get<SpeciesMember>(), entity))
                 return false;
 
+            // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should
+            // keep the disband entire colony functionality
+            // Colony!.RemoveFromColony(this); (when entity is a colony leader)
+            return RemoveFromColony(entity, entityCommandRecorder);
+        }
+
+        /// <summary>
+        ///   Removes the given entity from the microbe colony it is in (if any)
+        /// </summary>
+        /// <returns>True on success</returns>
+        public static bool RemoveFromColony(in Entity entity, EntityCommandRecorder entityCommandRecorder)
+        {
             lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
             {
                 if (entity.Has<MicrobeColony>())
                 {
-                    // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should
-                    // keep the disband entire colony functionality
-                    // Colony!.RemoveFromColony(this);
-
                     ref var colony = ref entity.Get<MicrobeColony>();
 
                     try
@@ -663,6 +657,7 @@
                     catch (Exception e)
                     {
                         GD.PrintErr("Disbanding a colony for a leader failed: ", e);
+                        return false;
                     }
                 }
                 else if (entity.Has<MicrobeColonyMember>())
@@ -684,6 +679,7 @@
                     catch (Exception e)
                     {
                         GD.PrintErr("Disbanding a colony from a member failed: ", e);
+                        return false;
                     }
                 }
             }
@@ -789,15 +785,8 @@
 
             ref var control = ref addedEntity.Get<MicrobeControl>();
 
-            if (!addedEntity.Has<EarlyMulticellularSpeciesMember>())
-            {
-                control.State = MicrobeState.Normal;
-            }
-            else
-            {
-                // Multicellular creature can stay in wanted mode while growing
-                control.State = colony.ColonyState;
-            }
+            // Move the added cell to the same state as the overall colony
+            control.State = colony.ColonyState;
 
             if (addedEntity.Has<OrganelleContainer>())
             {

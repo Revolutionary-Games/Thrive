@@ -173,8 +173,8 @@ public static class MicrobeInternalCalculations
                 rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
                 leftDirectionFactor = -rightDirectionFactor;
 
-                float movementConstant = Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement!.Momentum / 100.0f;
+                float movementConstant =
+                    Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
 
                 // We get the movement force for every direction as well
                 forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
@@ -201,12 +201,27 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce = Constants.BASE_MOVEMENT_FORCE *
-            (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+        float baseMovementForce =
+            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount));
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
 
         return finalSpeed;
+    }
+
+    public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount)
+    {
+        var movement = Constants.BASE_MOVEMENT_FORCE;
+
+        // Extra movement from organelles
+        movement += Mathf.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
+                Constants.BASE_MOVEMENT_EXTRA_HEX_END - Constants.BASE_MOVEMENT_EXTRA_HEX_START) *
+            Constants.BASE_MOVEMENT_PER_HEX;
+
+        // Apply membrane adjustment
+        movement *= membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        return movement;
     }
 
     public static float SpeedToUserReadableNumber(float rawSpeed)

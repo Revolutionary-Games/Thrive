@@ -20,6 +20,7 @@
     [With(typeof(CellProperties))]
     [With(typeof(SpatialInstance))]
     [With(typeof(EntityMaterial))]
+    [With(typeof(RenderPriorityOverride))]
     [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
@@ -162,6 +163,9 @@
             tempMaterialsList.Clear();
 
             organelleContainer.OrganelleVisualsCreated = true;
+
+            // Need to update render priority of the visuals
+            entity.Get<RenderPriorityOverride>().RenderPriorityApplied = false;
 
             // Force recreation of physics body in case organelles changed to make sure the shape matches growth status
             cellProperties.ShapeCreated = false;
@@ -335,8 +339,6 @@
                 {
                     tempMaterialsList[i].SetShaderParam("tint", organelleColour);
                 }
-
-                // TODO: render order?
             }
 
             // Delete unused visuals

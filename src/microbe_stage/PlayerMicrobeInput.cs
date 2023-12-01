@@ -145,13 +145,22 @@ public class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var cellProperties = ref stage.Player.Get<CellProperties>();
 
-        if (control.State == MicrobeState.Engulf)
+        var currentState = control.State;
+
+        if (stage.Player.Has<MicrobeColony>())
         {
-            control.State = MicrobeState.Normal;
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+            currentState = colony.ColonyState;
+        }
+
+        if (currentState == MicrobeState.Engulf)
+        {
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
-            control.State = MicrobeState.Engulf;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
         }
     }
 
@@ -164,13 +173,16 @@ public class PlayerMicrobeInput : NodeWithInput
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var organelles = ref stage.Player.Get<OrganelleContainer>();
 
+        // This doesn't check colony data as the player cell is always able to bind when in a colony so the state
+        // should not be able to be out of sync
+
         if (control.State == MicrobeState.Binding)
         {
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (organelles.HasBindingAgent)
         {
-            control.State = MicrobeState.Binding;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Binding);
         }
     }
 
@@ -185,12 +197,12 @@ public class PlayerMicrobeInput : NodeWithInput
         if (control.State == MicrobeState.Unbinding)
         {
             stage.HUD.HintText = string.Empty;
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
         else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
-            control.State = MicrobeState.Unbinding;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Unbinding);
 
             ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();
 

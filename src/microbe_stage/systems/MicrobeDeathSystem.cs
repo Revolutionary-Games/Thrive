@@ -25,6 +25,7 @@
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundAbsorber))]
+    [WritesToComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(EngulfingSystem))]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
@@ -311,6 +312,7 @@
             ref var physics = ref entity.Get<Physics>();
 
             // Reset some stuff
+            // This uses normal set to allow still potentially alive colony members to stay in their states
             control.State = MicrobeState.Normal;
             control.MovementDirection = new Vector3(0, 0, 0);
             organelleContainer.AllOrganellesDivided = false;

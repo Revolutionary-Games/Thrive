@@ -67,9 +67,10 @@
             absorber.TotalAbsorbedCompounds?.Clear();
         }
 
-        public static void MoveToLocation(this ref MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control)
+        public static void MoveToLocation(this ref MicrobeAI ai, Vector3 targetPosition, ref MicrobeControl control,
+            in Entity entity)
         {
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
             ai.TargetPosition = targetPosition;
             control.LookAtPoint = ai.TargetPosition;
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
