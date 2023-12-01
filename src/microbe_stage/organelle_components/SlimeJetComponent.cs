@@ -41,7 +41,8 @@ public class SlimeJetComponent : IOrganelleComponent
         organellePosition = Hex.AxialToCartesian(organelle.Position);
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+        IWorldSimulation worldSimulation, float delta)
     {
         // All of the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...

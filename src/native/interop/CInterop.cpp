@@ -168,6 +168,21 @@ PhysicsBody* PhysicalWorldCreateStaticBody(
     return reinterpret_cast<PhysicsBody*>(body.get());
 }
 
+PhysicsBody* PhysicalWorldCreateSensor(PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position,
+    JQuat rotation, bool detectSleepingBodies, bool detectStaticBodies)
+{
+    const auto body =
+        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+            ->CreateSensor(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
+                Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation),
+                detectSleepingBodies ? JPH::EMotionType::Kinematic : JPH::EMotionType::Static, detectStaticBodies);
+
+    if (body)
+        body->AddRef();
+
+    return reinterpret_cast<PhysicsBody*>(body.get());
+}
+
 void PhysicalWorldAddBody(PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate)
 {
     if (body == nullptr)

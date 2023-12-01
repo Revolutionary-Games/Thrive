@@ -418,6 +418,38 @@ Ref<PhysicsBody> PhysicalWorld::CreateStaticBody(const JPH::RefConst<JPH::Shape>
     return body;
 }
 
+Ref<PhysicsBody> PhysicalWorld::CreateSensor(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+    JPH::Quat rotation, JPH::EMotionType motionType, bool detectStaticBodies)
+{
+    if (shape == nullptr)
+    {
+        LOG_ERROR("No shape given to sensor create");
+        return nullptr;
+    }
+
+    // Being on the moving layer also makes the sensor to detect debris, sensor layer only detects moving bodies
+    auto body = CreateBody(*shape, JPH::EMotionType::Static, detectStaticBodies ? Layers::MOVING : Layers::SENSOR,
+        position, rotation, JPH::EAllowedDOFs::All, true);
+
+    if (body == nullptr)
+        return nullptr;
+
+    // Detecting static bodies is probably rare enough that this is fine to have a bit slower path
+    if (detectStaticBodies)
+    {
+        auto underlyingBody = physicsSystem->GetBodyLockInterface().TryGetBody(body->GetId());
+        if (underlyingBody != nullptr)
+        {
+            underlyingBody->SetSensorDetectsStatic(true);
+        }
+    }
+
+    physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::Activate);
+    OnPostBodyAdded(*body);
+
+    return body;
+}
+
 void PhysicalWorld::AddBody(PhysicsBody& body, bool activate)
 {
     if (body.IsInWorld() && !body.IsDetached())
@@ -1145,7 +1177,7 @@ void PhysicalWorld::PerformPhysicsStepOperations(float delta)
 
 Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
     JPH::RVec3Arg position, JPH::Quat rotation /*= JPH::Quat::sIdentity()*/,
-    JPH::EAllowedDOFs allowedDegreesOfFreedom /*= JPH::EAllowedDOFs::All*/)
+    JPH::EAllowedDOFs allowedDegreesOfFreedom /*= JPH::EAllowedDOFs::All*/, bool isSensor /*= false*/)
 {
 #ifndef NDEBUG
     // Sanity check some layer stuff
@@ -1157,6 +1189,12 @@ Ref<PhysicsBody> PhysicalWorld::CreateBody(const JPH::Shape& shape, JPH::EMotion
 #endif
 
     auto creationSettings = JPH::BodyCreationSettings(&shape, position, rotation, motionType, layer);
+
+    if (isSensor)
+    {
+        creationSettings.mIsSensor = true;
+    }
+
     creationSettings.mAllowedDOFs = allowedDegreesOfFreedom;
 
     const auto body = physicsSystem->GetBodyInterface().CreateBody(creationSettings);

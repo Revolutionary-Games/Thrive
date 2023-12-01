@@ -56,6 +56,10 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
 
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateSensor(PhysicalWorld* physicalWorld,
+        PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool detectSleepingBodies = false,
+        bool detectStaticBodies = false);
+
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldAddBody(
         PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate);
 

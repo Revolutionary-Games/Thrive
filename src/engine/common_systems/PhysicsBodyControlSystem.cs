@@ -62,14 +62,14 @@
 
                 if (control.ImpulseToGive != Vector3.Zero)
                 {
-                    control.ImpulseToGive = Vector3.Zero;
                     physicalWorld.GiveImpulse(body, control.ImpulseToGive);
+                    control.ImpulseToGive = Vector3.Zero;
                 }
 
                 if (control.AngularImpulseToGive != Vector3.Zero)
                 {
-                    control.AngularImpulseToGive = Vector3.Zero;
                     physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive);
+                    control.AngularImpulseToGive = Vector3.Zero;
                 }
 
                 control.PhysicsApplied = true;
