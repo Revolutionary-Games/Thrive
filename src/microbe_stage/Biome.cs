@@ -19,7 +19,7 @@ public class Biome : IRegistryType
     public string Background = null!;
 
     /// <summary>
-    ///   References a panorama resource path
+    ///   References a panorama resource path. The panorama images are backgrounds for 3D.
     /// </summary>
     public string Panorama = null!;
 
@@ -53,7 +53,7 @@ public class Biome : IRegistryType
         if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Background) || string.IsNullOrEmpty(Panorama))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Empty normal or damaged texture");
+                "Empty name background texture or panorama texture path");
         }
 
         if (Conditions == null)
