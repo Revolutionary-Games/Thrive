@@ -635,6 +635,16 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
+    public void UpdateBackgroundPanorama()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+            worldPanoramaSky.Panorama = GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+        }
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -714,7 +724,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
-        // TODO: load background graphics
+        UpdateBackgroundPanorama();
     }
 
     protected override void SpawnPlayer()
