@@ -377,16 +377,13 @@ public static class WikiUpdater
             translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
 
             // Translate infobox
-            if (untranslatedPage.InfoboxData.Count != 0)
-            {
-                var untranslatedInfobox = untranslatedPage!.InfoboxData;
-                var translatedInfobox = translatedPage!.InfoboxData;
+            var untranslatedInfobox = untranslatedPage!.InfoboxData;
+            var translatedInfobox = translatedPage!.InfoboxData;
 
-                for (int i = 0; i < untranslatedInfobox.Count; i++)
-                {
-                    translationPairs.TryAdd(untranslatedInfobox[i].Key, translatedInfobox[i].Key);
-                    translationPairs.TryAdd(untranslatedInfobox[i].Value, translatedInfobox[i].Value);
-                }
+            for (int i = 0; i < untranslatedInfobox.Count; i++)
+            {
+                translationPairs.TryAdd(untranslatedInfobox[i].InfoboxKey, translatedInfobox[i].InfoboxKey);
+                translationPairs.TryAdd(untranslatedInfobox[i].InfoboxValue, translatedInfobox[i].InfoboxValue);
             }
 
             for (var i = 0; i < untranslatedPage.Sections.Count; ++i)
@@ -571,14 +568,14 @@ public static class WikiUpdater
     {
         public InfoboxField(string key, string value)
         {
-            Key = key;
-            Value = value;
+            InfoboxKey = key;
+            InfoboxValue = value;
         }
 
         [JsonInclude]
-        public string Key { get; }
+        public string InfoboxKey { get; }
 
         [JsonInclude]
-        public string Value { get; }
+        public string InfoboxValue { get; }
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-02 17:59+0100\n"
+"POT-Creation-Date: 2023-12-02 23:13+0100\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -19,8 +19,21 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+#: ../simulation_parameters/common/wiki.json:1182
+msgid "2D"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1235
+msgid "2D_EARLY_3D_LATE"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1284
+#: ../simulation_parameters/common/wiki.json:1333
+msgid "3D"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:222
@@ -34,6 +47,21 @@ msgstr "Gerakan 3D"
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1529
+msgid "3D_SANDBOX"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1382
+#: ../simulation_parameters/common/wiki.json:1431
+#, fuzzy
+msgid "3D_STRATEGY"
+msgstr "Tahapan Mikrob"
+
+#: ../simulation_parameters/common/wiki.json:1480
+#, fuzzy
+msgid "3D_STRATEGY_SPACE"
+msgstr "Tahapan Mikrob"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -258,6 +286,11 @@ msgstr "Seni oleh {0}"
 msgid "ART_GALLERY"
 msgstr "Galeri Seni"
 
+#: ../simulation_parameters/common/wiki.json:1488
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
+
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -409,10 +442,14 @@ msgid "AVAILABLE_MODS"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:430
+#: ../simulation_parameters/common/wiki.json:1292
+#: ../simulation_parameters/common/wiki.json:1386
 msgid "AWAKENING_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:419
+#: ../simulation_parameters/common/wiki.json:1243
+#: ../simulation_parameters/common/wiki.json:1337
 #, fuzzy
 msgid "AWARE_STAGE"
 msgstr "Tahapan Mikrob"
@@ -606,6 +643,10 @@ msgstr "Vakuola Bioluminesensi"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
+
+#: ../simulation_parameters/common/wiki.json:1247
+msgid "BODY_PLAN_EDITOR_CELL_EDITOR"
+msgstr ""
 
 #: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -2722,6 +2763,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:458
+#: ../simulation_parameters/common/wiki.json:1390
+#: ../simulation_parameters/common/wiki.json:1484
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -2738,7 +2781,15 @@ msgstr "PM Tak Terhingga"
 msgid "INFO_BOX_COST"
 msgstr "KAMU TELAH BERKEMBANG!"
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:146
+#: ../simulation_parameters/common/wiki.json:1193
+#: ../simulation_parameters/common/wiki.json:1246
+#: ../simulation_parameters/common/wiki.json:1295
+#: ../simulation_parameters/common/wiki.json:1344
+#: ../simulation_parameters/common/wiki.json:1393
+#: ../simulation_parameters/common/wiki.json:1442
+#: ../simulation_parameters/common/wiki.json:1491
+#: ../simulation_parameters/common/wiki.json:1540
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:137
 #, fuzzy
 msgid "INFO_BOX_EDITORS"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -2747,13 +2798,21 @@ msgstr "KAMU TELAH BERKEMBANG!"
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:55
+#: ../simulation_parameters/common/wiki.json:1181
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1283
+#: ../simulation_parameters/common/wiki.json:1332
+#: ../simulation_parameters/common/wiki.json:1381
+#: ../simulation_parameters/common/wiki.json:1430
+#: ../simulation_parameters/common/wiki.json:1479
+#: ../simulation_parameters/common/wiki.json:1528
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:46
 #, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Harga Osmoregulasi"
 
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:176
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:167
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -2762,7 +2821,15 @@ msgstr "KAMU TELAH BERKEMBANG!"
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:115
+#: ../simulation_parameters/common/wiki.json:1189
+#: ../simulation_parameters/common/wiki.json:1242
+#: ../simulation_parameters/common/wiki.json:1291
+#: ../simulation_parameters/common/wiki.json:1340
+#: ../simulation_parameters/common/wiki.json:1389
+#: ../simulation_parameters/common/wiki.json:1438
+#: ../simulation_parameters/common/wiki.json:1487
+#: ../simulation_parameters/common/wiki.json:1536
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:106
 #, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "KAMU TELAH BERKEMBANG!"
@@ -2772,7 +2839,15 @@ msgstr "KAMU TELAH BERKEMBANG!"
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Harga Osmoregulasi"
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:85
+#: ../simulation_parameters/common/wiki.json:1185
+#: ../simulation_parameters/common/wiki.json:1238
+#: ../simulation_parameters/common/wiki.json:1287
+#: ../simulation_parameters/common/wiki.json:1336
+#: ../simulation_parameters/common/wiki.json:1385
+#: ../simulation_parameters/common/wiki.json:1434
+#: ../simulation_parameters/common/wiki.json:1483
+#: ../simulation_parameters/common/wiki.json:1532
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:76
 #, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr "Tidak ada proses"
@@ -3778,6 +3853,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Editor Mikrob"
 
 #: ../simulation_parameters/common/gallery.json:332
+#: ../simulation_parameters/common/wiki.json:1194
 msgid "MICROBE_EDITOR"
 msgstr "Editor Mikrob"
 
@@ -3867,6 +3943,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
+#: ../simulation_parameters/common/wiki.json:1239
 msgid "MICROBE_STAGE"
 msgstr "Tahapan Mikrob"
 
@@ -4386,6 +4463,8 @@ msgstr "Editor Multiseluler"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
+#: ../simulation_parameters/common/wiki.json:1190
+#: ../simulation_parameters/common/wiki.json:1288
 msgid "MULTICELLULAR_STAGE"
 msgstr "Tahapan Multiseluler"
 
@@ -4459,6 +4538,12 @@ msgstr "Bioma: {0}"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1394
+#: ../simulation_parameters/common/wiki.json:1443
+#, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Aktifkan editor"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4559,14 +4644,16 @@ msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nit
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
+#: ../simulation_parameters/common/wiki.json:1186
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:215
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:84
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:93
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:102
 msgid "NONE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1537
+msgid "NONE_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
@@ -6139,6 +6226,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Potongan Besi Kecil"
 
 #: ../simulation_parameters/common/gallery.json:441
+#: ../simulation_parameters/common/wiki.json:1341
+#: ../simulation_parameters/common/wiki.json:1435
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr "Tahapan Mikrob"
@@ -6165,6 +6254,8 @@ msgid "SPACE"
 msgstr "Space"
 
 #: ../simulation_parameters/common/gallery.json:469
+#: ../simulation_parameters/common/wiki.json:1439
+#: ../simulation_parameters/common/wiki.json:1533
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr "Tahapan Mikrob"
@@ -6591,6 +6682,13 @@ msgstr "Ambil tangkapan layar"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "HP:"
+
+#: ../simulation_parameters/common/wiki.json:1296
+#: ../simulation_parameters/common/wiki.json:1345
+#: ../simulation_parameters/common/wiki.json:1492
+#: ../simulation_parameters/common/wiki.json:1541
+msgid "TBA"
+msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"

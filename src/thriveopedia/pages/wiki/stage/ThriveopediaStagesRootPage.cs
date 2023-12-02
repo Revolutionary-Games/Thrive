@@ -40,7 +40,7 @@ public class ThriveopediaStagesRootPage : ThriveopediaWikiPage
 
             button.Name = stage.Name;
             button.IconPath = GetStageIconPath(stage);
-            button.OpenLink = () => ChangePage(stage.Name);
+            button.OpenLink = () => ChangePage(stage.InternalName);
             stageListContainer.AddChild(button);
         }
     }

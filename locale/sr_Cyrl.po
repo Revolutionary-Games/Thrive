@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-02 17:59+0100\n"
+"POT-Creation-Date: 2023-12-02 23:13+0100\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -19,8 +19,21 @@ msgstr ""
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.9.0\n"
 
+#: ../simulation_parameters/common/wiki.json:1182
+msgid "2D"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1235
+msgid "2D_EARLY_3D_LATE"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1284
+#: ../simulation_parameters/common/wiki.json:1333
+msgid "3D"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:222
@@ -36,6 +49,28 @@ msgstr "Покрет"
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1529
+msgid "3D_SANDBOX"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1382
+#: ../simulation_parameters/common/wiki.json:1431
+#, fuzzy
+msgid "3D_STRATEGY"
+msgstr ". Стопа"
+
+#: ../simulation_parameters/common/wiki.json:1480
+#, fuzzy
+msgid "3D_STRATEGY_SPACE"
+msgstr ""
+"На далекој ванземаљској планети, еони вулканске активности и удара метеора довели су до развоја новог феномена у свемиру.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Једноставни микроби бораве у дубоким пределима океана. Ви сте последњи универзални заједнички предак (LUCA) на овој планети.\n"
+"\n"
+"Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -264,6 +299,11 @@ msgstr ""
 msgid "ART_GALLERY"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:1488
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
+
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -415,10 +455,14 @@ msgid "AVAILABLE_MODS"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:430
+#: ../simulation_parameters/common/wiki.json:1292
+#: ../simulation_parameters/common/wiki.json:1386
 msgid "AWAKENING_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:419
+#: ../simulation_parameters/common/wiki.json:1243
+#: ../simulation_parameters/common/wiki.json:1337
 #, fuzzy
 msgid "AWARE_STAGE"
 msgstr ""
@@ -627,6 +671,10 @@ msgstr "Биолуминисцентна Вакуола"
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
+
+#: ../simulation_parameters/common/wiki.json:1247
+msgid "BODY_PLAN_EDITOR_CELL_EDITOR"
+msgstr ""
 
 #: ../src/general/GameProperties.cs:159
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -2741,6 +2789,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:458
+#: ../simulation_parameters/common/wiki.json:1390
+#: ../simulation_parameters/common/wiki.json:1484
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -2758,7 +2808,15 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:146
+#: ../simulation_parameters/common/wiki.json:1193
+#: ../simulation_parameters/common/wiki.json:1246
+#: ../simulation_parameters/common/wiki.json:1295
+#: ../simulation_parameters/common/wiki.json:1344
+#: ../simulation_parameters/common/wiki.json:1393
+#: ../simulation_parameters/common/wiki.json:1442
+#: ../simulation_parameters/common/wiki.json:1491
+#: ../simulation_parameters/common/wiki.json:1540
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:137
 #, fuzzy
 msgid "INFO_BOX_EDITORS"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -2767,13 +2825,21 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:55
+#: ../simulation_parameters/common/wiki.json:1181
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1283
+#: ../simulation_parameters/common/wiki.json:1332
+#: ../simulation_parameters/common/wiki.json:1381
+#: ../simulation_parameters/common/wiki.json:1430
+#: ../simulation_parameters/common/wiki.json:1479
+#: ../simulation_parameters/common/wiki.json:1528
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:46
 #, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Цена осморегулације"
 
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:176
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:167
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -2782,7 +2848,15 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:115
+#: ../simulation_parameters/common/wiki.json:1189
+#: ../simulation_parameters/common/wiki.json:1242
+#: ../simulation_parameters/common/wiki.json:1291
+#: ../simulation_parameters/common/wiki.json:1340
+#: ../simulation_parameters/common/wiki.json:1389
+#: ../simulation_parameters/common/wiki.json:1438
+#: ../simulation_parameters/common/wiki.json:1487
+#: ../simulation_parameters/common/wiki.json:1536
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:106
 #, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -2792,7 +2866,15 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Цена осморегулације"
 
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:85
+#: ../simulation_parameters/common/wiki.json:1185
+#: ../simulation_parameters/common/wiki.json:1238
+#: ../simulation_parameters/common/wiki.json:1287
+#: ../simulation_parameters/common/wiki.json:1336
+#: ../simulation_parameters/common/wiki.json:1385
+#: ../simulation_parameters/common/wiki.json:1434
+#: ../simulation_parameters/common/wiki.json:1483
+#: ../simulation_parameters/common/wiki.json:1532
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:76
 #, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr "Поставите органелу"
@@ -3811,6 +3893,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Учитавање Уређивача Микроба"
 
 #: ../simulation_parameters/common/gallery.json:332
+#: ../simulation_parameters/common/wiki.json:1194
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
@@ -3912,6 +3995,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
+#: ../simulation_parameters/common/wiki.json:1239
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -4442,6 +4526,8 @@ msgstr "Учитавање Уређивача Микроба"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
+#: ../simulation_parameters/common/wiki.json:1190
+#: ../simulation_parameters/common/wiki.json:1288
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Поставите органелу"
@@ -4518,6 +4604,12 @@ msgstr "Биом: {0}"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1394
+#: ../simulation_parameters/common/wiki.json:1443
+#, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Омогућите уређивач"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4623,14 +4715,16 @@ msgstr "Пластид за фиксирање азота је протеин к
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Пластид за фиксирање азота је протеин који може да користи гасовити азот и кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна фиксација азота."
 
+#: ../simulation_parameters/common/wiki.json:1186
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:215
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:84
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:93
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:102
 msgid "NONE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1537
+msgid "NONE_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
@@ -6222,6 +6316,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Мали гвоздени комад"
 
 #: ../simulation_parameters/common/gallery.json:441
+#: ../simulation_parameters/common/wiki.json:1341
+#: ../simulation_parameters/common/wiki.json:1435
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr ""
@@ -6255,6 +6351,8 @@ msgid "SPACE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:469
+#: ../simulation_parameters/common/wiki.json:1439
+#: ../simulation_parameters/common/wiki.json:1533
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr ""
@@ -6687,6 +6785,13 @@ msgstr "Снимите екран"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Здрав.:"
+
+#: ../simulation_parameters/common/wiki.json:1296
+#: ../simulation_parameters/common/wiki.json:1345
+#: ../simulation_parameters/common/wiki.json:1492
+#: ../simulation_parameters/common/wiki.json:1541
+msgid "TBA"
+msgstr ""
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
@@ -9851,9 +9956,6 @@ msgstr "Одзумирати"
 
 #~ msgid "USES"
 #~ msgstr "Користи"
-
-#~ msgid "DOT_RATE"
-#~ msgstr ". Стопа"
 
 #~ msgid "SCALES_WITH_CONCENTRATION_OF"
 #~ msgstr "скалира се са концентрацијом"

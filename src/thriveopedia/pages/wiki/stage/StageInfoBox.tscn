@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs" type="Script" id=4]
+[ext_resource path="res://src/thriveopedia/pages/wiki/stage/StageInfoBox.cs" type="Script" id=4]
 
 [node name="PanelContainer" type="PanelContainer"]
 margin_right = 330.0
@@ -11,19 +11,10 @@ margin_bottom = 243.0
 rect_min_size = Vector2( 330, 0 )
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
-NamePath = NodePath("")
-IconPath = NodePath("")
-ModelPath = NodePath("")
-CostLabelPath = NodePath("MarginContainer/VBoxContainer/GameplayType/Value")
-RequiresNucleusIconPath = NodePath("")
-ProcessesLabelPath = NodePath("")
-EnzymesLabelPath = NodePath("")
-MassLabelPath = NodePath("")
-SizeLabelPath = NodePath("")
-OsmoregulationCostLabelPath = NodePath("")
-StorageLabelPath = NodePath("")
-UniqueIconPath = NodePath("")
-UpgradesLabelPath = NodePath("")
+GameplayTypePath = NodePath("MarginContainer/VBoxContainer/GameplayType/Value")
+PreviousStagePath = NodePath("MarginContainer/VBoxContainer/Previous Stage/Value")
+NextStagePath = NodePath("MarginContainer/VBoxContainer/Next Stage/Value")
+EditorsPath = NodePath("MarginContainer/VBoxContainer/Editors/Value")
 InternalNameLabelPath = NodePath("MarginContainer/VBoxContainer/InternalName/Value")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

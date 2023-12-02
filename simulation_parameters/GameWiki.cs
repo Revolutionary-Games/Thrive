@@ -41,6 +41,8 @@ public class GameWiki : IRegistryType
 
         public List<Section> Sections { get; set; } = null!;
 
+        public List<InfoboxField> InfoboxData { get; set; } = new();
+
         public void Check(string name)
         {
             if (string.IsNullOrEmpty(InternalName))
@@ -80,5 +82,12 @@ public class GameWiki : IRegistryType
 
             public string SectionBody { get; set; } = null!;
         }
+    }
+
+    public class InfoboxField
+    {
+        public string InfoboxKey { get; set; } = null!;
+
+        public string InfoboxValue { get; set; } = null!;
     }
 }
