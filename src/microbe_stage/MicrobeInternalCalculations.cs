@@ -298,7 +298,8 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        var effectiveMass = organelles.Sum(x => x.Definition.HexCount) + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
+        var effectiveMass = organelles.Sum(x => x.Definition.HexCount)
+            + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
 
         return effectiveMass / (Constants.CELL_ROTATION_INFLECTION_MASS + cilliaFactor + effectiveMass)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
