@@ -888,7 +888,8 @@
                 // Multiply both the propulsion and mass by the distance from center to simulate leverage
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
-                var memberRotation = colonyMember.Get<OrganelleContainer>().RotationSpeed
+                var memberRotation = MicrobeInternalCalculations
+                    .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles)
                     * (1 + 0.05f * distanceSquared);
 
                 colonyRotation += memberRotation;
