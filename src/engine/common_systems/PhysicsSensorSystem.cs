@@ -1,6 +1,7 @@
 ﻿namespace Systems
 {
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -19,6 +20,7 @@
     {
         private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
 
+        private readonly List<NativePhysicsBody> createdSensors = new();
         private readonly Dictionary<Entity, NativePhysicsBody> detachedBodies = new();
 
         public PhysicsSensorSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world) :
@@ -35,6 +37,7 @@
             if (detachedBodies.TryGetValue(entity, out var detached))
             {
                 detachedBodies.Remove(entity);
+                createdSensors.Remove(detached);
                 worldSimulationWithPhysics.DestroyBody(detached);
             }
 
@@ -43,8 +46,11 @@
 
             ref var sensor = ref entity.Get<PhysicsSensor>();
 
-            if (sensor.SensorBody != null)
+            if (sensor.SensorBody != null && detached != sensor.SensorBody)
             {
+                if (!createdSensors.Remove(sensor.SensorBody))
+                    GD.PrintErr("Sensor system told about a destroyed sensor it didn't create");
+
                 worldSimulationWithPhysics.DestroyBody(sensor.SensorBody);
             }
         }
@@ -53,6 +59,16 @@
         {
             Dispose(true);
             base.Dispose();
+        }
+
+        protected override void PreUpdate(float delta)
+        {
+            // Immediate sensor destruction is handled by the world, but we still do this to detect if a sensor gets
+            // removed without deleting the entity
+            foreach (var createdSensor in createdSensors)
+            {
+                createdSensor.Marked = false;
+            }
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -91,12 +107,19 @@
                     detachedBodies[entity] = sensor.SensorBody;
                     worldSimulationWithPhysics.PhysicalWorld.DetachBody(sensor.SensorBody);
 
-                    sensor.SensorBody = null;
+                    // For now don't set this to null so that the body marking still works for disabled bodies
+                    // sensor.SensorBody = null;
                 }
             }
 
             if (sensor.Disabled)
+            {
+                // Keep created sensors even while disabled
+                if (sensor.SensorBody != null)
+                    sensor.SensorBody.Marked = true;
+
                 return;
+            }
 
             // See if everything is up to date first
             if (sensor.SensorBody == null && sensor.ActiveArea != null)
@@ -114,6 +137,8 @@
                         sensor.MaxActiveContacts :
                         Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR, out sensor.ActiveCollisionCountPtr);
 
+                createdSensors.Add(sensor.SensorBody);
+                sensor.SensorBody.Marked = true;
                 return;
             }
 
@@ -133,7 +158,34 @@
 
                 // TODO: should sensors have their rotation also apply? (see also above in the creation)
                 worldSimulationWithPhysics.PhysicalWorld.SetBodyPosition(sensor.SensorBody, position.Position);
+
+                sensor.SensorBody.Marked = true;
             }
+        }
+
+        protected override void PostUpdate(float delta)
+        {
+            createdSensors.RemoveAll(DestroySensorIfNotMarked);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool DestroySensorIfNotMarked(NativePhysicsBody body)
+        {
+            if (body.Marked)
+                return false;
+
+            foreach (var detachedBody in detachedBodies)
+            {
+                if (detachedBody.Value == body)
+                {
+                    detachedBodies.Remove(detachedBody.Key);
+                    break;
+                }
+            }
+
+            worldSimulationWithPhysics.DestroyBody(body);
+
+            return true;
         }
 
         private void Dispose(bool disposing)

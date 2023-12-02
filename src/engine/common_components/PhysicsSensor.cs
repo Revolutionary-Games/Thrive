@@ -102,7 +102,7 @@
         {
             // If state is not correct for reading
             collisions = physicsSensor.ActiveCollisions;
-            if (collisions == null || physicsSensor.ActiveCollisionCountPtr.ToInt64() == 0)
+            if (collisions == null || physicsSensor.ActiveCollisionCountPtr.ToInt64() == 0 || physicsSensor.Disabled)
             {
                 return 0;
             }
