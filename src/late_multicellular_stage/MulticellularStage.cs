@@ -300,8 +300,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         // Reset all growth progress of the player
         Player.ResetGrowth();
 
-        UpdateBackgroundPanorama();
-
         if (!CurrentGame!.TutorialState.Enabled)
         {
             // tutorialGUI.EventReceiver?.OnTutorialDisabled();
@@ -639,18 +637,11 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
     public void UpdateBackgroundPanorama()
     {
-        if (CurrentGame != null)
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
         {
-            if (CurrentGame.GameWorld.Map.CurrentPatch != null)
-            {
-                string currentBiomeName = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.InternalName;
-                Biome currentBiome = SimulationParameters.Instance.GetBiome(currentBiomeName);
+            var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
 
-                PanoramaSky worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
-
-                worldPanoramaSky.Panorama = (Texture)GD.Load(currentBiome.Panorama);
-                worldEnvironmentNode.Environment.BackgroundSky = worldPanoramaSky;
-            }
+            worldPanoramaSky.Panorama = GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
         }
     }
 
@@ -703,8 +694,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
             rootOfDynamicallySpawned.AddChild(rigidBody);
         }
 
-        UpdateBackgroundPanorama();
-
         // patchManager.CurrentGame = CurrentGame;
 
         if (IsLoadedFromSave)
@@ -735,7 +724,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
-        // TODO: load background graphics
+        UpdateBackgroundPanorama();
     }
 
     protected override void SpawnPlayer()
