@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-01 21:56+0100\n"
+"POT-Creation-Date: 2023-12-02 17:59+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -2744,55 +2744,76 @@ msgstr "Kunmetaĵoj"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:97
 #, fuzzy
 msgid "INFO_BOX_COST"
 msgstr "VI PROSPERIS!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:146
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "VI PROSPERIS!"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:55
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregada Kosto"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:176
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "VI PROSPERIS!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:115
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "VI PROSPERIS!"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:281
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregada Kosto"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:85
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Disloku organeton"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:158
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
 msgstr "Disloku organeton"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:127
 #, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Kerno/Nukleo"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:251
 #, fuzzy
 msgid "INFO_BOX_SIZE"
 msgstr "VI PROSPERIS!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:312
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "VI PROSPERIS!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:343
 #, fuzzy
 msgid "INFO_BOX_UNIQUE"
 msgstr "VI PROSPERIS!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -4589,9 +4610,12 @@ msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:215
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:84
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:93
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:102
 msgid "NONE"
 msgstr ""
 
@@ -4869,7 +4893,7 @@ msgstr "Aldonunovan funkcion por klavo"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Organetoj"
 
@@ -6351,7 +6375,7 @@ msgstr "Rapideco:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "disvastiĝas al flikĵj:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
 msgid "STAGES"
 msgstr ""
 
@@ -7572,72 +7596,72 @@ msgstr "Rado supren"
 msgid "WIKI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1367
+#: ../simulation_parameters/common/wiki.json:1523
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1515
 #, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr "Eksteraj efikoj:"
 
-#: ../simulation_parameters/common/wiki.json:1347
+#: ../simulation_parameters/common/wiki.json:1503
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:1351
+#: ../simulation_parameters/common/wiki.json:1507
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1355
+#: ../simulation_parameters/common/wiki.json:1511
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "Specio loĝantaro"
 
-#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1519
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:1243
+#: ../simulation_parameters/common/wiki.json:1327
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1235
+#: ../simulation_parameters/common/wiki.json:1319
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1223
+#: ../simulation_parameters/common/wiki.json:1307
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:1227
+#: ../simulation_parameters/common/wiki.json:1311
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1231
+#: ../simulation_parameters/common/wiki.json:1315
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1239
+#: ../simulation_parameters/common/wiki.json:1323
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:1212
+#: ../simulation_parameters/common/wiki.json:1278
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1204
+#: ../simulation_parameters/common/wiki.json:1270
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr ""
@@ -7649,12 +7673,12 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1192
+#: ../simulation_parameters/common/wiki.json:1258
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1196
+#: ../simulation_parameters/common/wiki.json:1262
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
 msgstr ""
@@ -7666,12 +7690,12 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1200
+#: ../simulation_parameters/common/wiki.json:1266
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr "Nitrogenazo"
 
-#: ../simulation_parameters/common/wiki.json:1208
+#: ../simulation_parameters/common/wiki.json:1274
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr ""
@@ -7683,803 +7707,803 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:37
+#: ../simulation_parameters/common/wiki.json:38
 #, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../simulation_parameters/common/wiki.json:21
+#: ../simulation_parameters/common/wiki.json:22
 msgid "WIKI_AXON_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:33
+#: ../simulation_parameters/common/wiki.json:34
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:29
+#: ../simulation_parameters/common/wiki.json:30
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:25
+#: ../simulation_parameters/common/wiki.json:26
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:49
+#: ../simulation_parameters/common/wiki.json:50
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:45
+#: ../simulation_parameters/common/wiki.json:46
 msgid "WIKI_AXON_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:41
+#: ../simulation_parameters/common/wiki.json:42
 msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:76
+#: ../simulation_parameters/common/wiki.json:78
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:60
+#: ../simulation_parameters/common/wiki.json:62
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:72
+#: ../simulation_parameters/common/wiki.json:74
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:68
+#: ../simulation_parameters/common/wiki.json:70
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:64
+#: ../simulation_parameters/common/wiki.json:66
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:88
+#: ../simulation_parameters/common/wiki.json:90
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:84
+#: ../simulation_parameters/common/wiki.json:86
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:80
+#: ../simulation_parameters/common/wiki.json:82
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:115
+#: ../simulation_parameters/common/wiki.json:118
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:99
+#: ../simulation_parameters/common/wiki.json:102
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:111
+#: ../simulation_parameters/common/wiki.json:114
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:107
+#: ../simulation_parameters/common/wiki.json:110
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:103
+#: ../simulation_parameters/common/wiki.json:106
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:127
+#: ../simulation_parameters/common/wiki.json:130
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:123
+#: ../simulation_parameters/common/wiki.json:126
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:119
+#: ../simulation_parameters/common/wiki.json:122
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:154
+#: ../simulation_parameters/common/wiki.json:158
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:138
+#: ../simulation_parameters/common/wiki.json:142
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:150
+#: ../simulation_parameters/common/wiki.json:154
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:146
+#: ../simulation_parameters/common/wiki.json:150
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:142
+#: ../simulation_parameters/common/wiki.json:146
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:166
+#: ../simulation_parameters/common/wiki.json:170
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:162
+#: ../simulation_parameters/common/wiki.json:166
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:158
+#: ../simulation_parameters/common/wiki.json:162
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:193
+#: ../simulation_parameters/common/wiki.json:198
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:177
+#: ../simulation_parameters/common/wiki.json:182
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr "Kemoplasto"
 
-#: ../simulation_parameters/common/wiki.json:189
+#: ../simulation_parameters/common/wiki.json:194
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:185
+#: ../simulation_parameters/common/wiki.json:190
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:181
+#: ../simulation_parameters/common/wiki.json:186
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:205
+#: ../simulation_parameters/common/wiki.json:210
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:201
+#: ../simulation_parameters/common/wiki.json:206
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:197
+#: ../simulation_parameters/common/wiki.json:202
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "La chememioplasto estas duoblomembrana strukturo, kiu havas proteinojn kapablajn transformi hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon dum proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado pliigas kun la koncentriĝo de karbona dioksido."
 
-#: ../simulation_parameters/common/wiki.json:232
+#: ../simulation_parameters/common/wiki.json:238
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Kemosintezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:216
+#: ../simulation_parameters/common/wiki.json:222
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr "Kemosintezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:228
+#: ../simulation_parameters/common/wiki.json:234
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
 msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:224
+#: ../simulation_parameters/common/wiki.json:230
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:220
+#: ../simulation_parameters/common/wiki.json:226
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr ""
 "Kemosin-\n"
 "tezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:244
+#: ../simulation_parameters/common/wiki.json:250
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "Kemosintezaj proteinoj estas malgrandaj aroj de proteinoj en la citoplasmo kapablaj konverti hidrogenan sulfidon, akvon kaj gasan karbondioksidon en glukozon en proceso nomata Kemosintezo de Hidrogena Sulfido. La rapideco de ĝia glukoza produktado kreskas kun la koncentriĝo de karbona dioksido. Ĉar la kemiosintezaj proteinoj estas suspensie rekte en la citoplasmo, la ĉirkaŭa fluido iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:240
+#: ../simulation_parameters/common/wiki.json:246
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr "Kemosintezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:236
+#: ../simulation_parameters/common/wiki.json:242
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Kemosintezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:271
+#: ../simulation_parameters/common/wiki.json:278
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:255
+#: ../simulation_parameters/common/wiki.json:262
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:267
+#: ../simulation_parameters/common/wiki.json:274
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:263
+#: ../simulation_parameters/common/wiki.json:270
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:259
+#: ../simulation_parameters/common/wiki.json:266
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:283
+#: ../simulation_parameters/common/wiki.json:290
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:279
+#: ../simulation_parameters/common/wiki.json:286
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:275
+#: ../simulation_parameters/common/wiki.json:282
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "La kloroplasto estas duobla membranstrukturo enhavanta fotosentemajn pigmentojn stakigitajn kune en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la kloroplasto kapablas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ĝi diversan koloron. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de lumo."
 
-#: ../simulation_parameters/common/wiki.json:310
+#: ../simulation_parameters/common/wiki.json:318
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:294
+#: ../simulation_parameters/common/wiki.json:302
 msgid "WIKI_CILIA_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:306
+#: ../simulation_parameters/common/wiki.json:314
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:302
+#: ../simulation_parameters/common/wiki.json:310
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:298
+#: ../simulation_parameters/common/wiki.json:306
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:322
+#: ../simulation_parameters/common/wiki.json:330
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:318
+#: ../simulation_parameters/common/wiki.json:326
 msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:314
+#: ../simulation_parameters/common/wiki.json:322
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:349
+#: ../simulation_parameters/common/wiki.json:358
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:333
+#: ../simulation_parameters/common/wiki.json:342
 #, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:345
+#: ../simulation_parameters/common/wiki.json:354
 #, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:341
+#: ../simulation_parameters/common/wiki.json:350
 #, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:337
+#: ../simulation_parameters/common/wiki.json:346
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:361
+#: ../simulation_parameters/common/wiki.json:370
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:357
+#: ../simulation_parameters/common/wiki.json:366
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:353
+#: ../simulation_parameters/common/wiki.json:362
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:388
+#: ../simulation_parameters/common/wiki.json:398
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
 
-#: ../simulation_parameters/common/wiki.json:372
+#: ../simulation_parameters/common/wiki.json:382
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
 
-#: ../simulation_parameters/common/wiki.json:384
+#: ../simulation_parameters/common/wiki.json:394
 #, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
 
-#: ../simulation_parameters/common/wiki.json:380
+#: ../simulation_parameters/common/wiki.json:390
 #, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "La flagelo estas vip-simila fasko de proteinaj fibroj etendiĝantaj de la membrano de la ĉelo, kiu povas uzi ATP por ondigi kaj peli la ĉelon en direkto."
 
-#: ../simulation_parameters/common/wiki.json:376
+#: ../simulation_parameters/common/wiki.json:386
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:400
+#: ../simulation_parameters/common/wiki.json:410
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:396
+#: ../simulation_parameters/common/wiki.json:406
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:392
+#: ../simulation_parameters/common/wiki.json:402
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:481
+#: ../simulation_parameters/common/wiki.json:493
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1145
+#: ../simulation_parameters/common/wiki.json:1175
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1176
+#: ../simulation_parameters/common/wiki.json:1224
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Kemoplasto"
 
-#: ../simulation_parameters/common/wiki.json:1180
-#: ../simulation_parameters/common/wiki.json:1211
-#: ../simulation_parameters/common/wiki.json:1242
-#: ../simulation_parameters/common/wiki.json:1273
-#: ../simulation_parameters/common/wiki.json:1304
-#: ../simulation_parameters/common/wiki.json:1335
-#: ../simulation_parameters/common/wiki.json:1366
+#: ../simulation_parameters/common/wiki.json:1228
+#: ../simulation_parameters/common/wiki.json:1277
+#: ../simulation_parameters/common/wiki.json:1326
+#: ../simulation_parameters/common/wiki.json:1375
+#: ../simulation_parameters/common/wiki.json:1424
+#: ../simulation_parameters/common/wiki.json:1473
+#: ../simulation_parameters/common/wiki.json:1522
 #, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1137
+#: ../simulation_parameters/common/wiki.json:1167
 #, fuzzy
 msgid "WIKI_HEADING_EDITOR"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:36
-#: ../simulation_parameters/common/wiki.json:75
-#: ../simulation_parameters/common/wiki.json:114
-#: ../simulation_parameters/common/wiki.json:153
-#: ../simulation_parameters/common/wiki.json:192
-#: ../simulation_parameters/common/wiki.json:231
-#: ../simulation_parameters/common/wiki.json:270
-#: ../simulation_parameters/common/wiki.json:309
-#: ../simulation_parameters/common/wiki.json:348
-#: ../simulation_parameters/common/wiki.json:387
-#: ../simulation_parameters/common/wiki.json:426
-#: ../simulation_parameters/common/wiki.json:465
-#: ../simulation_parameters/common/wiki.json:508
-#: ../simulation_parameters/common/wiki.json:547
-#: ../simulation_parameters/common/wiki.json:586
-#: ../simulation_parameters/common/wiki.json:625
-#: ../simulation_parameters/common/wiki.json:664
-#: ../simulation_parameters/common/wiki.json:703
-#: ../simulation_parameters/common/wiki.json:742
-#: ../simulation_parameters/common/wiki.json:781
-#: ../simulation_parameters/common/wiki.json:820
-#: ../simulation_parameters/common/wiki.json:859
-#: ../simulation_parameters/common/wiki.json:898
-#: ../simulation_parameters/common/wiki.json:937
-#: ../simulation_parameters/common/wiki.json:976
-#: ../simulation_parameters/common/wiki.json:1015
-#: ../simulation_parameters/common/wiki.json:1054
-#: ../simulation_parameters/common/wiki.json:1093
+#: ../simulation_parameters/common/wiki.json:37
+#: ../simulation_parameters/common/wiki.json:77
+#: ../simulation_parameters/common/wiki.json:117
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:197
+#: ../simulation_parameters/common/wiki.json:237
+#: ../simulation_parameters/common/wiki.json:277
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:357
+#: ../simulation_parameters/common/wiki.json:397
+#: ../simulation_parameters/common/wiki.json:437
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:561
+#: ../simulation_parameters/common/wiki.json:601
+#: ../simulation_parameters/common/wiki.json:641
+#: ../simulation_parameters/common/wiki.json:681
+#: ../simulation_parameters/common/wiki.json:721
+#: ../simulation_parameters/common/wiki.json:761
+#: ../simulation_parameters/common/wiki.json:801
+#: ../simulation_parameters/common/wiki.json:841
+#: ../simulation_parameters/common/wiki.json:881
+#: ../simulation_parameters/common/wiki.json:921
+#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:1001
+#: ../simulation_parameters/common/wiki.json:1041
+#: ../simulation_parameters/common/wiki.json:1081
+#: ../simulation_parameters/common/wiki.json:1121
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1168
-#: ../simulation_parameters/common/wiki.json:1203
-#: ../simulation_parameters/common/wiki.json:1234
-#: ../simulation_parameters/common/wiki.json:1265
-#: ../simulation_parameters/common/wiki.json:1296
-#: ../simulation_parameters/common/wiki.json:1327
-#: ../simulation_parameters/common/wiki.json:1358
+#: ../simulation_parameters/common/wiki.json:1216
+#: ../simulation_parameters/common/wiki.json:1269
+#: ../simulation_parameters/common/wiki.json:1318
+#: ../simulation_parameters/common/wiki.json:1367
+#: ../simulation_parameters/common/wiki.json:1416
+#: ../simulation_parameters/common/wiki.json:1465
+#: ../simulation_parameters/common/wiki.json:1514
 #, fuzzy
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1133
+#: ../simulation_parameters/common/wiki.json:1163
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr "aŭtomatan evolucion dum ludado"
 
-#: ../simulation_parameters/common/wiki.json:1141
+#: ../simulation_parameters/common/wiki.json:1171
 #, fuzzy
 msgid "WIKI_HEADING_GDD"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:32
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:149
-#: ../simulation_parameters/common/wiki.json:188
-#: ../simulation_parameters/common/wiki.json:227
-#: ../simulation_parameters/common/wiki.json:266
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:344
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:422
-#: ../simulation_parameters/common/wiki.json:461
-#: ../simulation_parameters/common/wiki.json:504
-#: ../simulation_parameters/common/wiki.json:543
-#: ../simulation_parameters/common/wiki.json:582
-#: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:660
-#: ../simulation_parameters/common/wiki.json:699
-#: ../simulation_parameters/common/wiki.json:738
-#: ../simulation_parameters/common/wiki.json:777
-#: ../simulation_parameters/common/wiki.json:816
-#: ../simulation_parameters/common/wiki.json:855
-#: ../simulation_parameters/common/wiki.json:894
-#: ../simulation_parameters/common/wiki.json:933
-#: ../simulation_parameters/common/wiki.json:972
-#: ../simulation_parameters/common/wiki.json:1011
-#: ../simulation_parameters/common/wiki.json:1050
-#: ../simulation_parameters/common/wiki.json:1089
+#: ../simulation_parameters/common/wiki.json:33
+#: ../simulation_parameters/common/wiki.json:73
+#: ../simulation_parameters/common/wiki.json:113
+#: ../simulation_parameters/common/wiki.json:153
+#: ../simulation_parameters/common/wiki.json:193
+#: ../simulation_parameters/common/wiki.json:233
+#: ../simulation_parameters/common/wiki.json:273
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:353
+#: ../simulation_parameters/common/wiki.json:393
+#: ../simulation_parameters/common/wiki.json:433
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:557
+#: ../simulation_parameters/common/wiki.json:597
+#: ../simulation_parameters/common/wiki.json:637
+#: ../simulation_parameters/common/wiki.json:677
+#: ../simulation_parameters/common/wiki.json:717
+#: ../simulation_parameters/common/wiki.json:757
+#: ../simulation_parameters/common/wiki.json:797
+#: ../simulation_parameters/common/wiki.json:837
+#: ../simulation_parameters/common/wiki.json:877
+#: ../simulation_parameters/common/wiki.json:917
+#: ../simulation_parameters/common/wiki.json:957
+#: ../simulation_parameters/common/wiki.json:997
+#: ../simulation_parameters/common/wiki.json:1037
+#: ../simulation_parameters/common/wiki.json:1077
+#: ../simulation_parameters/common/wiki.json:1117
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1160
-#: ../simulation_parameters/common/wiki.json:1195
-#: ../simulation_parameters/common/wiki.json:1226
-#: ../simulation_parameters/common/wiki.json:1257
-#: ../simulation_parameters/common/wiki.json:1288
-#: ../simulation_parameters/common/wiki.json:1319
-#: ../simulation_parameters/common/wiki.json:1350
+#: ../simulation_parameters/common/wiki.json:1208
+#: ../simulation_parameters/common/wiki.json:1261
+#: ../simulation_parameters/common/wiki.json:1310
+#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1408
+#: ../simulation_parameters/common/wiki.json:1457
+#: ../simulation_parameters/common/wiki.json:1506
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:28
-#: ../simulation_parameters/common/wiki.json:67
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:145
-#: ../simulation_parameters/common/wiki.json:184
-#: ../simulation_parameters/common/wiki.json:223
-#: ../simulation_parameters/common/wiki.json:262
-#: ../simulation_parameters/common/wiki.json:301
-#: ../simulation_parameters/common/wiki.json:340
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:457
-#: ../simulation_parameters/common/wiki.json:500
-#: ../simulation_parameters/common/wiki.json:539
-#: ../simulation_parameters/common/wiki.json:578
-#: ../simulation_parameters/common/wiki.json:617
-#: ../simulation_parameters/common/wiki.json:656
-#: ../simulation_parameters/common/wiki.json:695
-#: ../simulation_parameters/common/wiki.json:734
-#: ../simulation_parameters/common/wiki.json:773
-#: ../simulation_parameters/common/wiki.json:812
-#: ../simulation_parameters/common/wiki.json:851
-#: ../simulation_parameters/common/wiki.json:890
-#: ../simulation_parameters/common/wiki.json:929
-#: ../simulation_parameters/common/wiki.json:968
-#: ../simulation_parameters/common/wiki.json:1007
-#: ../simulation_parameters/common/wiki.json:1046
-#: ../simulation_parameters/common/wiki.json:1085
+#: ../simulation_parameters/common/wiki.json:29
+#: ../simulation_parameters/common/wiki.json:69
+#: ../simulation_parameters/common/wiki.json:109
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:189
+#: ../simulation_parameters/common/wiki.json:229
+#: ../simulation_parameters/common/wiki.json:269
+#: ../simulation_parameters/common/wiki.json:309
+#: ../simulation_parameters/common/wiki.json:349
+#: ../simulation_parameters/common/wiki.json:389
+#: ../simulation_parameters/common/wiki.json:429
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:553
+#: ../simulation_parameters/common/wiki.json:593
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:713
+#: ../simulation_parameters/common/wiki.json:753
+#: ../simulation_parameters/common/wiki.json:793
+#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:873
+#: ../simulation_parameters/common/wiki.json:913
+#: ../simulation_parameters/common/wiki.json:953
+#: ../simulation_parameters/common/wiki.json:993
+#: ../simulation_parameters/common/wiki.json:1033
+#: ../simulation_parameters/common/wiki.json:1073
+#: ../simulation_parameters/common/wiki.json:1113
 msgid "WIKI_HEADING_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:24
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:141
-#: ../simulation_parameters/common/wiki.json:180
-#: ../simulation_parameters/common/wiki.json:219
-#: ../simulation_parameters/common/wiki.json:258
-#: ../simulation_parameters/common/wiki.json:297
-#: ../simulation_parameters/common/wiki.json:336
-#: ../simulation_parameters/common/wiki.json:375
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:453
-#: ../simulation_parameters/common/wiki.json:496
-#: ../simulation_parameters/common/wiki.json:535
-#: ../simulation_parameters/common/wiki.json:574
-#: ../simulation_parameters/common/wiki.json:613
-#: ../simulation_parameters/common/wiki.json:652
-#: ../simulation_parameters/common/wiki.json:691
-#: ../simulation_parameters/common/wiki.json:730
-#: ../simulation_parameters/common/wiki.json:769
-#: ../simulation_parameters/common/wiki.json:808
-#: ../simulation_parameters/common/wiki.json:847
-#: ../simulation_parameters/common/wiki.json:886
-#: ../simulation_parameters/common/wiki.json:925
-#: ../simulation_parameters/common/wiki.json:964
-#: ../simulation_parameters/common/wiki.json:1003
-#: ../simulation_parameters/common/wiki.json:1042
-#: ../simulation_parameters/common/wiki.json:1081
+#: ../simulation_parameters/common/wiki.json:25
+#: ../simulation_parameters/common/wiki.json:65
+#: ../simulation_parameters/common/wiki.json:105
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:185
+#: ../simulation_parameters/common/wiki.json:225
+#: ../simulation_parameters/common/wiki.json:265
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:345
+#: ../simulation_parameters/common/wiki.json:385
+#: ../simulation_parameters/common/wiki.json:425
+#: ../simulation_parameters/common/wiki.json:465
+#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:549
+#: ../simulation_parameters/common/wiki.json:589
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:709
+#: ../simulation_parameters/common/wiki.json:749
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:869
+#: ../simulation_parameters/common/wiki.json:909
+#: ../simulation_parameters/common/wiki.json:949
+#: ../simulation_parameters/common/wiki.json:989
+#: ../simulation_parameters/common/wiki.json:1029
+#: ../simulation_parameters/common/wiki.json:1069
+#: ../simulation_parameters/common/wiki.json:1109
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:48
-#: ../simulation_parameters/common/wiki.json:87
-#: ../simulation_parameters/common/wiki.json:126
-#: ../simulation_parameters/common/wiki.json:165
-#: ../simulation_parameters/common/wiki.json:204
-#: ../simulation_parameters/common/wiki.json:243
-#: ../simulation_parameters/common/wiki.json:282
-#: ../simulation_parameters/common/wiki.json:321
-#: ../simulation_parameters/common/wiki.json:360
-#: ../simulation_parameters/common/wiki.json:399
-#: ../simulation_parameters/common/wiki.json:438
-#: ../simulation_parameters/common/wiki.json:477
-#: ../simulation_parameters/common/wiki.json:520
-#: ../simulation_parameters/common/wiki.json:559
-#: ../simulation_parameters/common/wiki.json:598
-#: ../simulation_parameters/common/wiki.json:637
-#: ../simulation_parameters/common/wiki.json:676
-#: ../simulation_parameters/common/wiki.json:715
-#: ../simulation_parameters/common/wiki.json:754
-#: ../simulation_parameters/common/wiki.json:793
-#: ../simulation_parameters/common/wiki.json:832
-#: ../simulation_parameters/common/wiki.json:871
-#: ../simulation_parameters/common/wiki.json:910
-#: ../simulation_parameters/common/wiki.json:949
-#: ../simulation_parameters/common/wiki.json:988
-#: ../simulation_parameters/common/wiki.json:1027
-#: ../simulation_parameters/common/wiki.json:1066
-#: ../simulation_parameters/common/wiki.json:1105
+#: ../simulation_parameters/common/wiki.json:49
+#: ../simulation_parameters/common/wiki.json:89
+#: ../simulation_parameters/common/wiki.json:129
+#: ../simulation_parameters/common/wiki.json:169
+#: ../simulation_parameters/common/wiki.json:209
+#: ../simulation_parameters/common/wiki.json:249
+#: ../simulation_parameters/common/wiki.json:289
+#: ../simulation_parameters/common/wiki.json:329
+#: ../simulation_parameters/common/wiki.json:369
+#: ../simulation_parameters/common/wiki.json:409
+#: ../simulation_parameters/common/wiki.json:449
+#: ../simulation_parameters/common/wiki.json:489
+#: ../simulation_parameters/common/wiki.json:533
+#: ../simulation_parameters/common/wiki.json:573
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:693
+#: ../simulation_parameters/common/wiki.json:733
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:853
+#: ../simulation_parameters/common/wiki.json:893
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:1013
+#: ../simulation_parameters/common/wiki.json:1053
+#: ../simulation_parameters/common/wiki.json:1093
+#: ../simulation_parameters/common/wiki.json:1133
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:44
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:161
-#: ../simulation_parameters/common/wiki.json:200
-#: ../simulation_parameters/common/wiki.json:239
-#: ../simulation_parameters/common/wiki.json:278
-#: ../simulation_parameters/common/wiki.json:317
-#: ../simulation_parameters/common/wiki.json:356
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:434
-#: ../simulation_parameters/common/wiki.json:473
-#: ../simulation_parameters/common/wiki.json:516
-#: ../simulation_parameters/common/wiki.json:555
-#: ../simulation_parameters/common/wiki.json:594
-#: ../simulation_parameters/common/wiki.json:633
-#: ../simulation_parameters/common/wiki.json:672
-#: ../simulation_parameters/common/wiki.json:711
-#: ../simulation_parameters/common/wiki.json:750
-#: ../simulation_parameters/common/wiki.json:789
-#: ../simulation_parameters/common/wiki.json:828
-#: ../simulation_parameters/common/wiki.json:867
-#: ../simulation_parameters/common/wiki.json:906
-#: ../simulation_parameters/common/wiki.json:945
-#: ../simulation_parameters/common/wiki.json:984
-#: ../simulation_parameters/common/wiki.json:1023
-#: ../simulation_parameters/common/wiki.json:1062
-#: ../simulation_parameters/common/wiki.json:1101
+#: ../simulation_parameters/common/wiki.json:45
+#: ../simulation_parameters/common/wiki.json:85
+#: ../simulation_parameters/common/wiki.json:125
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:205
+#: ../simulation_parameters/common/wiki.json:245
+#: ../simulation_parameters/common/wiki.json:285
+#: ../simulation_parameters/common/wiki.json:325
+#: ../simulation_parameters/common/wiki.json:365
+#: ../simulation_parameters/common/wiki.json:405
+#: ../simulation_parameters/common/wiki.json:445
+#: ../simulation_parameters/common/wiki.json:485
+#: ../simulation_parameters/common/wiki.json:529
+#: ../simulation_parameters/common/wiki.json:569
+#: ../simulation_parameters/common/wiki.json:609
+#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:689
+#: ../simulation_parameters/common/wiki.json:729
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:849
+#: ../simulation_parameters/common/wiki.json:889
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:1009
+#: ../simulation_parameters/common/wiki.json:1049
+#: ../simulation_parameters/common/wiki.json:1089
+#: ../simulation_parameters/common/wiki.json:1129
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1164
-#: ../simulation_parameters/common/wiki.json:1199
-#: ../simulation_parameters/common/wiki.json:1230
-#: ../simulation_parameters/common/wiki.json:1261
-#: ../simulation_parameters/common/wiki.json:1292
-#: ../simulation_parameters/common/wiki.json:1323
-#: ../simulation_parameters/common/wiki.json:1354
+#: ../simulation_parameters/common/wiki.json:1212
+#: ../simulation_parameters/common/wiki.json:1265
+#: ../simulation_parameters/common/wiki.json:1314
+#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1412
+#: ../simulation_parameters/common/wiki.json:1461
+#: ../simulation_parameters/common/wiki.json:1510
 #, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1172
-#: ../simulation_parameters/common/wiki.json:1207
-#: ../simulation_parameters/common/wiki.json:1238
-#: ../simulation_parameters/common/wiki.json:1269
-#: ../simulation_parameters/common/wiki.json:1300
-#: ../simulation_parameters/common/wiki.json:1331
-#: ../simulation_parameters/common/wiki.json:1362
+#: ../simulation_parameters/common/wiki.json:1220
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1322
+#: ../simulation_parameters/common/wiki.json:1371
+#: ../simulation_parameters/common/wiki.json:1420
+#: ../simulation_parameters/common/wiki.json:1469
+#: ../simulation_parameters/common/wiki.json:1518
 msgid "WIKI_HEADING_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:40
-#: ../simulation_parameters/common/wiki.json:79
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:157
-#: ../simulation_parameters/common/wiki.json:196
-#: ../simulation_parameters/common/wiki.json:235
-#: ../simulation_parameters/common/wiki.json:274
-#: ../simulation_parameters/common/wiki.json:313
-#: ../simulation_parameters/common/wiki.json:352
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:469
-#: ../simulation_parameters/common/wiki.json:512
-#: ../simulation_parameters/common/wiki.json:551
-#: ../simulation_parameters/common/wiki.json:590
-#: ../simulation_parameters/common/wiki.json:629
-#: ../simulation_parameters/common/wiki.json:668
-#: ../simulation_parameters/common/wiki.json:707
-#: ../simulation_parameters/common/wiki.json:746
-#: ../simulation_parameters/common/wiki.json:785
-#: ../simulation_parameters/common/wiki.json:824
-#: ../simulation_parameters/common/wiki.json:863
-#: ../simulation_parameters/common/wiki.json:902
-#: ../simulation_parameters/common/wiki.json:941
-#: ../simulation_parameters/common/wiki.json:980
-#: ../simulation_parameters/common/wiki.json:1019
-#: ../simulation_parameters/common/wiki.json:1058
-#: ../simulation_parameters/common/wiki.json:1097
+#: ../simulation_parameters/common/wiki.json:41
+#: ../simulation_parameters/common/wiki.json:81
+#: ../simulation_parameters/common/wiki.json:121
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:201
+#: ../simulation_parameters/common/wiki.json:241
+#: ../simulation_parameters/common/wiki.json:281
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:361
+#: ../simulation_parameters/common/wiki.json:401
+#: ../simulation_parameters/common/wiki.json:441
+#: ../simulation_parameters/common/wiki.json:481
+#: ../simulation_parameters/common/wiki.json:525
+#: ../simulation_parameters/common/wiki.json:565
+#: ../simulation_parameters/common/wiki.json:605
+#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:685
+#: ../simulation_parameters/common/wiki.json:725
+#: ../simulation_parameters/common/wiki.json:765
+#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:845
+#: ../simulation_parameters/common/wiki.json:885
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:1005
+#: ../simulation_parameters/common/wiki.json:1045
+#: ../simulation_parameters/common/wiki.json:1085
+#: ../simulation_parameters/common/wiki.json:1125
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1305
+#: ../simulation_parameters/common/wiki.json:1425
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1297
+#: ../simulation_parameters/common/wiki.json:1417
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1285
+#: ../simulation_parameters/common/wiki.json:1405
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:1289
+#: ../simulation_parameters/common/wiki.json:1409
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1293
+#: ../simulation_parameters/common/wiki.json:1413
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../simulation_parameters/common/wiki.json:1301
+#: ../simulation_parameters/common/wiki.json:1421
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:427
+#: ../simulation_parameters/common/wiki.json:438
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:411
+#: ../simulation_parameters/common/wiki.json:422
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:423
+#: ../simulation_parameters/common/wiki.json:434
 #, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:419
+#: ../simulation_parameters/common/wiki.json:430
 #, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:415
+#: ../simulation_parameters/common/wiki.json:426
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:439
+#: ../simulation_parameters/common/wiki.json:450
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:435
+#: ../simulation_parameters/common/wiki.json:446
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:431
+#: ../simulation_parameters/common/wiki.json:442
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:482
+#: ../simulation_parameters/common/wiki.json:494
 msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:466
+#: ../simulation_parameters/common/wiki.json:478
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:450
+#: ../simulation_parameters/common/wiki.json:462
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "Metabolosomoj"
 
-#: ../simulation_parameters/common/wiki.json:462
+#: ../simulation_parameters/common/wiki.json:474
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:458
+#: ../simulation_parameters/common/wiki.json:470
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Kurzo skalas kun la koncentro de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:454
+#: ../simulation_parameters/common/wiki.json:466
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:478
+#: ../simulation_parameters/common/wiki.json:490
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:474
+#: ../simulation_parameters/common/wiki.json:486
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:470
+#: ../simulation_parameters/common/wiki.json:482
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1146
+#: ../simulation_parameters/common/wiki.json:1176
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr ""
@@ -8491,12 +8515,12 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1138
+#: ../simulation_parameters/common/wiki.json:1168
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../simulation_parameters/common/wiki.json:1134
+#: ../simulation_parameters/common/wiki.json:1164
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
@@ -8508,7 +8532,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1142
+#: ../simulation_parameters/common/wiki.json:1172
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr ""
@@ -8520,7 +8544,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1130
+#: ../simulation_parameters/common/wiki.json:1160
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
@@ -8532,224 +8556,224 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:522
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:493
+#: ../simulation_parameters/common/wiki.json:506
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitokondrio"
 
-#: ../simulation_parameters/common/wiki.json:505
+#: ../simulation_parameters/common/wiki.json:518
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:501
+#: ../simulation_parameters/common/wiki.json:514
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:497
+#: ../simulation_parameters/common/wiki.json:510
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:534
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:530
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:526
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La potencocentro de la ĉelo. La mitokondrio (pluralo: mitokondrioj) estas duobla membrana strukturo plenigita de proteinoj kaj enzimoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. Ĝi povas konverti glukozon en ATP-on kun multe pli alta efikeco ol oni povas fari ĝin en la citoplasmo en proceso nomata Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP."
 
-#: ../simulation_parameters/common/wiki.json:1177
+#: ../simulation_parameters/common/wiki.json:1225
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:1181
+#: ../simulation_parameters/common/wiki.json:1229
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../simulation_parameters/common/wiki.json:1169
+#: ../simulation_parameters/common/wiki.json:1217
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:1157
+#: ../simulation_parameters/common/wiki.json:1205
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:1161
+#: ../simulation_parameters/common/wiki.json:1209
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:1165
+#: ../simulation_parameters/common/wiki.json:1213
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:1173
+#: ../simulation_parameters/common/wiki.json:1221
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:548
+#: ../simulation_parameters/common/wiki.json:562
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:532
+#: ../simulation_parameters/common/wiki.json:546
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:544
+#: ../simulation_parameters/common/wiki.json:558
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:540
+#: ../simulation_parameters/common/wiki.json:554
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:536
+#: ../simulation_parameters/common/wiki.json:550
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:560
+#: ../simulation_parameters/common/wiki.json:574
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:556
+#: ../simulation_parameters/common/wiki.json:570
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:552
+#: ../simulation_parameters/common/wiki.json:566
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:642
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:626
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:638
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
 
-#: ../simulation_parameters/common/wiki.json:618
+#: ../simulation_parameters/common/wiki.json:634
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
 
-#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:630
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:638
+#: ../simulation_parameters/common/wiki.json:654
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "La Nitrogen-Fiksanta Plastido estas proteino, kiu kapablas uzi gasan nitrogenon kaj oksigenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskan nutraĵon por ĉeloj. Ĉi tio estas procezo nomata Aerobia Nitrogena Fiksado."
 
-#: ../simulation_parameters/common/wiki.json:634
+#: ../simulation_parameters/common/wiki.json:650
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:630
+#: ../simulation_parameters/common/wiki.json:646
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:587
+#: ../simulation_parameters/common/wiki.json:602
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:571
+#: ../simulation_parameters/common/wiki.json:586
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:583
+#: ../simulation_parameters/common/wiki.json:598
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:579
+#: ../simulation_parameters/common/wiki.json:594
 #, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:575
+#: ../simulation_parameters/common/wiki.json:590
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:599
+#: ../simulation_parameters/common/wiki.json:614
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:595
+#: ../simulation_parameters/common/wiki.json:610
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:591
+#: ../simulation_parameters/common/wiki.json:606
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:665
+#: ../simulation_parameters/common/wiki.json:682
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:666
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:678
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "La ĉefa eco de eŭkariotaj ĉeloj. La kerno ankaŭ inkluzivas la endoplasman retikulo kaj la golgi-korpon. Ĉi tio estas evoluado de prokariotaj ĉeloj por disvolvi sistemon de internaj membranoj, farita per asimilado de alia prokarioto en si mem. Ĉi tio permesas al ili dividi, aŭ kunestigi la malsamajn procezojn okazantajn ene de la ĉelo kaj malhelpi ilin interkovri. Ĉi tio permesas al iliaj novaj membranoligitaj organetoj esti multe pli kompleksaj, efikaj kaj specialigitaj ol se ili libere flosus en la citoplasmo. Tamen ĉi tio kostas fari la ĉelon multe pli granda kaj postuli multan energion por konservi la ĉelon."
 
-#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:674
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:670
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:677
+#: ../simulation_parameters/common/wiki.json:694
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:690
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:686
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -8758,58 +8782,58 @@ msgstr ""
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr "Organetoj"
 
-#: ../simulation_parameters/common/wiki.json:704
+#: ../simulation_parameters/common/wiki.json:722
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:688
+#: ../simulation_parameters/common/wiki.json:706
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxytoxisomo"
 
-#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:718
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:696
+#: ../simulation_parameters/common/wiki.json:714
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Metabolosomoj estas aretoj de proteinoj envolvitaj en proteinaj ŝeloj. Ili povas konverti glukozon en ATP kun multe pli alta rapideco ol oni povas esti farita en la citoplasmo en proceso nomita Aeroba Respirado. Tamen ĝi postulas oksigenon por funkcii, kaj pli malaltaj niveloj de oksigeno en la medio malrapidigos la rapidon de ĝia produktado de ATP. Ĉar la metabolosomoj estas suspenditaj rekte en la citoplasmo, la ĉirkaŭa likvaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:692
+#: ../simulation_parameters/common/wiki.json:710
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:716
+#: ../simulation_parameters/common/wiki.json:734
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:712
+#: ../simulation_parameters/common/wiki.json:730
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:708
+#: ../simulation_parameters/common/wiki.json:726
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Modifita metabolosomo, responsanta pri la produktado de primitiva formo de la toksa agento OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:1341
+#: ../simulation_parameters/common/wiki.json:1497
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Rusticianino"
 
-#: ../simulation_parameters/common/wiki.json:1217
+#: ../simulation_parameters/common/wiki.json:1301
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:1186
+#: ../simulation_parameters/common/wiki.json:1252
 #, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr ""
@@ -8821,104 +8845,104 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:15
+#: ../simulation_parameters/common/wiki.json:16
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:54
+#: ../simulation_parameters/common/wiki.json:56
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:93
+#: ../simulation_parameters/common/wiki.json:96
 #, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "Biolumineska Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:132
+#: ../simulation_parameters/common/wiki.json:136
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Kemoplasto"
 
-#: ../simulation_parameters/common/wiki.json:171
+#: ../simulation_parameters/common/wiki.json:176
 #, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Kemoplasto"
 
-#: ../simulation_parameters/common/wiki.json:210
+#: ../simulation_parameters/common/wiki.json:216
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosintezaj Proteinoj"
 
-#: ../simulation_parameters/common/wiki.json:249
+#: ../simulation_parameters/common/wiki.json:256
 #, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Kloroplasto"
 
-#: ../simulation_parameters/common/wiki.json:288
+#: ../simulation_parameters/common/wiki.json:296
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:327
+#: ../simulation_parameters/common/wiki.json:336
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasmo"
 
-#: ../simulation_parameters/common/wiki.json:366
+#: ../simulation_parameters/common/wiki.json:376
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
-#: ../simulation_parameters/common/wiki.json:1279
+#: ../simulation_parameters/common/wiki.json:1399
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:405
+#: ../simulation_parameters/common/wiki.json:416
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oxytoxisomo"
 
-#: ../simulation_parameters/common/wiki.json:444
+#: ../simulation_parameters/common/wiki.json:456
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomoj"
 
-#: ../simulation_parameters/common/wiki.json:1124
+#: ../simulation_parameters/common/wiki.json:1154
 #, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
 msgstr "Nitrogenazo"
 
-#: ../simulation_parameters/common/wiki.json:487
+#: ../simulation_parameters/common/wiki.json:500
 #, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondrio"
 
-#: ../simulation_parameters/common/wiki.json:1151
+#: ../simulation_parameters/common/wiki.json:1199
 #, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:526
+#: ../simulation_parameters/common/wiki.json:540
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Raba Vilo (Pilus)"
 
-#: ../simulation_parameters/common/wiki.json:604
+#: ../simulation_parameters/common/wiki.json:620
 #, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Nitrogen-fiksa Plastido"
 
-#: ../simulation_parameters/common/wiki.json:565
+#: ../simulation_parameters/common/wiki.json:580
 #, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenazo"
 
-#: ../simulation_parameters/common/wiki.json:643
+#: ../simulation_parameters/common/wiki.json:660
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Kerno/Nukleo"
@@ -8928,37 +8952,37 @@ msgstr "Kerno/Nukleo"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "Disloku organeton"
 
-#: ../simulation_parameters/common/wiki.json:682
+#: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxisomo"
 
-#: ../simulation_parameters/common/wiki.json:721
+#: ../simulation_parameters/common/wiki.json:740
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:760
+#: ../simulation_parameters/common/wiki.json:780
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasmo"
 
-#: ../simulation_parameters/common/wiki.json:799
+#: ../simulation_parameters/common/wiki.json:820
 #, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticianino"
 
-#: ../simulation_parameters/common/wiki.json:838
+#: ../simulation_parameters/common/wiki.json:860
 #, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:877
+#: ../simulation_parameters/common/wiki.json:900
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1248
+#: ../simulation_parameters/common/wiki.json:1350
 #, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr ""
@@ -8970,111 +8994,111 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1310
+#: ../simulation_parameters/common/wiki.json:1448
 #, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:1112
+#: ../simulation_parameters/common/wiki.json:1141
 #, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:916
+#: ../simulation_parameters/common/wiki.json:940
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termika plasto"
 
-#: ../simulation_parameters/common/wiki.json:955
+#: ../simulation_parameters/common/wiki.json:980
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Kemisintezo"
 
-#: ../simulation_parameters/common/wiki.json:994
+#: ../simulation_parameters/common/wiki.json:1020
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tilakoidoj"
 
-#: ../simulation_parameters/common/wiki.json:1033
+#: ../simulation_parameters/common/wiki.json:1060
 #, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:1072
+#: ../simulation_parameters/common/wiki.json:1100
 #, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:743
+#: ../simulation_parameters/common/wiki.json:762
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:727
+#: ../simulation_parameters/common/wiki.json:746
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:739
+#: ../simulation_parameters/common/wiki.json:758
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:735
+#: ../simulation_parameters/common/wiki.json:754
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:731
+#: ../simulation_parameters/common/wiki.json:750
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:755
+#: ../simulation_parameters/common/wiki.json:774
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:751
+#: ../simulation_parameters/common/wiki.json:770
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:747
+#: ../simulation_parameters/common/wiki.json:766
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:782
+#: ../simulation_parameters/common/wiki.json:802
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Protoplasmo"
 
-#: ../simulation_parameters/common/wiki.json:766
+#: ../simulation_parameters/common/wiki.json:786
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasmo"
 
-#: ../simulation_parameters/common/wiki.json:778
+#: ../simulation_parameters/common/wiki.json:798
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:774
+#: ../simulation_parameters/common/wiki.json:794
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transformas [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:770
+#: ../simulation_parameters/common/wiki.json:790
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:794
+#: ../simulation_parameters/common/wiki.json:814
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:790
+#: ../simulation_parameters/common/wiki.json:810
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:786
+#: ../simulation_parameters/common/wiki.json:806
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -9086,134 +9110,134 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:821
+#: ../simulation_parameters/common/wiki.json:842
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:826
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:817
+#: ../simulation_parameters/common/wiki.json:838
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:834
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:830
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:854
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:850
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:825
+#: ../simulation_parameters/common/wiki.json:846
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Rusticianino estas proteino kapabla uzi gasan karbonan dioksidon kaj oksigenon por oksigeni feron de unu kemia stato al alia. Ĉi tiu procezo, nomata Fera Respirado, liberigas energion, kiun la ĉelo tiam povas rikolti."
 
-#: ../simulation_parameters/common/wiki.json:860
+#: ../simulation_parameters/common/wiki.json:882
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:866
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:856
+#: ../simulation_parameters/common/wiki.json:878
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:852
+#: ../simulation_parameters/common/wiki.json:874
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:870
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:872
+#: ../simulation_parameters/common/wiki.json:894
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:868
+#: ../simulation_parameters/common/wiki.json:890
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:864
+#: ../simulation_parameters/common/wiki.json:886
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr ""
 "Estas konflikto kun {0}.\n"
 "Ĉu vi volas forigi la enigon de {1}?"
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:922
 #, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:883
+#: ../simulation_parameters/common/wiki.json:906
 #, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:895
+#: ../simulation_parameters/common/wiki.json:918
 #, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:891
+#: ../simulation_parameters/common/wiki.json:914
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:887
+#: ../simulation_parameters/common/wiki.json:910
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:911
+#: ../simulation_parameters/common/wiki.json:934
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:930
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:926
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1274
+#: ../simulation_parameters/common/wiki.json:1376
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1266
+#: ../simulation_parameters/common/wiki.json:1368
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr ""
@@ -9225,12 +9249,12 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1254
+#: ../simulation_parameters/common/wiki.json:1356
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:1258
+#: ../simulation_parameters/common/wiki.json:1360
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
@@ -9242,7 +9266,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1262
+#: ../simulation_parameters/common/wiki.json:1364
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr ""
@@ -9254,7 +9278,7 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1270
+#: ../simulation_parameters/common/wiki.json:1372
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr ""
@@ -9266,21 +9290,21 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1336
+#: ../simulation_parameters/common/wiki.json:1474
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1328
+#: ../simulation_parameters/common/wiki.json:1466
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "Kerno/Nukleo"
 
-#: ../simulation_parameters/common/wiki.json:1316
+#: ../simulation_parameters/common/wiki.json:1454
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr "La gluiĝemaj internaĵoj de ĉelo. La citoplasmo estas la baza miksaĵo de jonoj, proteinoj kaj aliaj substancoj solvitaj en akvo, kiu plenigas la internon de la ĉelo. Unu el la funkcioj, kiujn ĝi plenumas, estas Fermentado, la konvertiĝo de glukozo en ATP-energion. Por havi pli progresintajn metabolojn, ĉeloj, al kiuj mankas organetoj, uzas energion de ATP. Ĝi ankaŭ estas uzita por stoki molekulojn en la ĉelo kaj kreskigi la grandecon de la ĉelo."
 
-#: ../simulation_parameters/common/wiki.json:1320
+#: ../simulation_parameters/common/wiki.json:1458
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr ""
@@ -9292,12 +9316,12 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1324
+#: ../simulation_parameters/common/wiki.json:1462
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr "Nitrogenazo"
 
-#: ../simulation_parameters/common/wiki.json:1332
+#: ../simulation_parameters/common/wiki.json:1470
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr ""
@@ -9309,202 +9333,202 @@ msgstr ""
 "\n"
 "Por postvivi en ĉi tiu malamika mondo, vi devos kolekti iujn ajn komponaĵojn, kiujn vi povas trovi, kaj evoluigi ĉiun generacion por konkurenci kontraŭ la aliaj specioj de mikroboj."
 
-#: ../simulation_parameters/common/wiki.json:1118
+#: ../simulation_parameters/common/wiki.json:1147
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Organetoj"
 
-#: ../simulation_parameters/common/wiki.json:938
+#: ../simulation_parameters/common/wiki.json:962
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:922
+#: ../simulation_parameters/common/wiki.json:946
 #, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:934
+#: ../simulation_parameters/common/wiki.json:958
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:930
+#: ../simulation_parameters/common/wiki.json:954
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:950
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:950
+#: ../simulation_parameters/common/wiki.json:974
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:946
+#: ../simulation_parameters/common/wiki.json:970
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:942
+#: ../simulation_parameters/common/wiki.json:966
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:977
+#: ../simulation_parameters/common/wiki.json:1002
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Kemisintezo"
 
-#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:986
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "Kemisintezo"
 
-#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:998
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:994
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:990
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:989
+#: ../simulation_parameters/common/wiki.json:1014
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:985
+#: ../simulation_parameters/common/wiki.json:1010
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:981
+#: ../simulation_parameters/common/wiki.json:1006
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "La termoplasto estas duobla membranstrukturo enhavanta termosentemajn pigmentojn kunigitajn en membranaj sakoj. Ĝi estas prokarioto asimilita por uzo de sia eŭkariota gastiganto. La pigmentoj en la termoplasto povas uzi la energion de varmaj diferencoj en la medio por produkti glukozon el akvo kaj gasa karbona dioksido en procezo nomita Termosintezo. La rapideco de ĝia produktado de glukozo dependas de la koncentriĝo de karbona dioksido kaj temperaturo."
 
-#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1042
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1000
+#: ../simulation_parameters/common/wiki.json:1026
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1038
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1034
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1004
+#: ../simulation_parameters/common/wiki.json:1030
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1028
+#: ../simulation_parameters/common/wiki.json:1054
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1050
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1046
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Tilakoidoj estas aretoj de proteinoj kaj fotosentemaj pigmentoj. La pigmentoj povas uzi la luman energion por produkti glukozon el akvo kaj gasa karbondioksido en procezo nomita fotosintezo. Ĉi tiuj pigmentoj ankaŭ donas al ili distingan koloron. La rapideco de ilia glukozoproduktado dependas de la koncentriĝo de karbona dioksido kaj intenseco de lumo. Ĉar la tilakoidoj estas pendigitaj rekte en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1082
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1066
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 "Toksa\n"
 "Vakuolo"
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1078
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1074
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1070
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1067
+#: ../simulation_parameters/common/wiki.json:1094
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1063
+#: ../simulation_parameters/common/wiki.json:1090
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1059
+#: ../simulation_parameters/common/wiki.json:1086
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1094
+#: ../simulation_parameters/common/wiki.json:1122
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1078
+#: ../simulation_parameters/common/wiki.json:1106
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1090
+#: ../simulation_parameters/common/wiki.json:1118
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1086
+#: ../simulation_parameters/common/wiki.json:1114
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "La toksina vakuolo estas vakuolo, kiu estis modifita por la specifa produktado, stokado kaj sekrecio de oxytoxy toksinoj. Pli da toksinaj vacuoloj pliigos la rapidecon, per kiu toksinoj povas esti liberigitaj."
 
-#: ../simulation_parameters/common/wiki.json:1082
+#: ../simulation_parameters/common/wiki.json:1110
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1106
+#: ../simulation_parameters/common/wiki.json:1134
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1102
+#: ../simulation_parameters/common/wiki.json:1130
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1126
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 

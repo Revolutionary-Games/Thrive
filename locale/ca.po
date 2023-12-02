@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-01 21:56+0100\n"
+"POT-Creation-Date: 2023-12-02 17:59+0100\n"
 "PO-Revision-Date: 2022-09-23 11:38+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -2700,55 +2700,76 @@ msgstr "Compostos infinits"
 msgid "INFINITE_MP"
 msgstr "MP Infinit"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:97
 #, fuzzy
 msgid "INFO_BOX_COST"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:146
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:55
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Cost d'Osmoregulació"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:176
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "Nom Intern (de Carpeta):"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:115
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "HAS ACONSEGUIT PROSPERAR!"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:281
 #, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:85
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Cap procés"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:158
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
 msgstr "Cap procés"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:127
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:127
 #, fuzzy
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Requereix nucli"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:251
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:251
 #, fuzzy
 msgid "INFO_BOX_SIZE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:312
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:312
 #, fuzzy
 msgid "INFO_BOX_STORAGE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:343
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:343
 #, fuzzy
 msgid "INFO_BOX_UNIQUE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
 
@@ -4526,9 +4547,12 @@ msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
-#: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:215
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:84
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:93
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.cs:102
 msgid "NONE"
 msgstr "Cap"
 
@@ -4797,7 +4821,7 @@ msgstr "Canviar la configuració"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
-#: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
@@ -6218,7 +6242,7 @@ msgstr "Velocitat:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "s'ha escampat a les zones:"
 
-#: ../src/thriveopedia/pages/wiki/ThriveopediaStagesRootPage.cs:19
+#: ../src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.cs:19
 msgid "STAGES"
 msgstr ""
 
@@ -7390,880 +7414,880 @@ msgstr "Rodeta amunt"
 msgid "WIKI"
 msgstr "la nostra Wiki"
 
-#: ../simulation_parameters/common/wiki.json:1367
+#: ../simulation_parameters/common/wiki.json:1523
 #, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Desenvolupadors Actuals"
 
-#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1515
 #, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr "Efectes externs:"
 
-#: ../simulation_parameters/common/wiki.json:1347
+#: ../simulation_parameters/common/wiki.json:1503
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:1351
+#: ../simulation_parameters/common/wiki.json:1507
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1355
+#: ../simulation_parameters/common/wiki.json:1511
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "Població de les Espècies"
 
-#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1519
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:1243
+#: ../simulation_parameters/common/wiki.json:1327
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1235
+#: ../simulation_parameters/common/wiki.json:1319
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1223
+#: ../simulation_parameters/common/wiki.json:1307
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:1227
+#: ../simulation_parameters/common/wiki.json:1311
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1231
+#: ../simulation_parameters/common/wiki.json:1315
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1239
+#: ../simulation_parameters/common/wiki.json:1323
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:1212
+#: ../simulation_parameters/common/wiki.json:1278
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1204
+#: ../simulation_parameters/common/wiki.json:1270
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1192
+#: ../simulation_parameters/common/wiki.json:1258
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:1196
+#: ../simulation_parameters/common/wiki.json:1262
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1200
+#: ../simulation_parameters/common/wiki.json:1266
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr "Nitrogenasa"
 
-#: ../simulation_parameters/common/wiki.json:1208
+#: ../simulation_parameters/common/wiki.json:1274
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:37
+#: ../simulation_parameters/common/wiki.json:38
 #, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Efectes externs:"
 
-#: ../simulation_parameters/common/wiki.json:21
+#: ../simulation_parameters/common/wiki.json:22
 msgid "WIKI_AXON_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:33
+#: ../simulation_parameters/common/wiki.json:34
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:29
+#: ../simulation_parameters/common/wiki.json:30
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Cap procés"
 
-#: ../simulation_parameters/common/wiki.json:25
+#: ../simulation_parameters/common/wiki.json:26
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:49
+#: ../simulation_parameters/common/wiki.json:50
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:45
+#: ../simulation_parameters/common/wiki.json:46
 msgid "WIKI_AXON_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:41
+#: ../simulation_parameters/common/wiki.json:42
 msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:76
+#: ../simulation_parameters/common/wiki.json:78
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:60
+#: ../simulation_parameters/common/wiki.json:62
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:72
+#: ../simulation_parameters/common/wiki.json:74
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:68
+#: ../simulation_parameters/common/wiki.json:70
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
 msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../simulation_parameters/common/wiki.json:64
+#: ../simulation_parameters/common/wiki.json:66
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:88
+#: ../simulation_parameters/common/wiki.json:90
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:84
+#: ../simulation_parameters/common/wiki.json:86
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:80
+#: ../simulation_parameters/common/wiki.json:82
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:115
+#: ../simulation_parameters/common/wiki.json:118
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:99
+#: ../simulation_parameters/common/wiki.json:102
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:111
+#: ../simulation_parameters/common/wiki.json:114
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:107
+#: ../simulation_parameters/common/wiki.json:110
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:103
+#: ../simulation_parameters/common/wiki.json:106
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:127
+#: ../simulation_parameters/common/wiki.json:130
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:123
+#: ../simulation_parameters/common/wiki.json:126
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:119
+#: ../simulation_parameters/common/wiki.json:122
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:154
+#: ../simulation_parameters/common/wiki.json:158
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:138
+#: ../simulation_parameters/common/wiki.json:142
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:150
+#: ../simulation_parameters/common/wiki.json:154
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:146
+#: ../simulation_parameters/common/wiki.json:150
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:142
+#: ../simulation_parameters/common/wiki.json:146
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:166
+#: ../simulation_parameters/common/wiki.json:170
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:162
+#: ../simulation_parameters/common/wiki.json:166
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:158
+#: ../simulation_parameters/common/wiki.json:162
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../simulation_parameters/common/wiki.json:193
+#: ../simulation_parameters/common/wiki.json:198
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:177
+#: ../simulation_parameters/common/wiki.json:182
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
 msgstr "Quimioreceptor"
 
-#: ../simulation_parameters/common/wiki.json:189
+#: ../simulation_parameters/common/wiki.json:194
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:185
+#: ../simulation_parameters/common/wiki.json:190
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
 msgstr "El Quimioreceptor permet detectar compostos a gran distància. Modifica'l un cop l'hagis col·locat per seleccionar el compost concret que vols detectar i el color de la línia que n'indicarà la direcció."
 
-#: ../simulation_parameters/common/wiki.json:181
+#: ../simulation_parameters/common/wiki.json:186
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:205
+#: ../simulation_parameters/common/wiki.json:210
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:201
+#: ../simulation_parameters/common/wiki.json:206
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:197
+#: ../simulation_parameters/common/wiki.json:202
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../simulation_parameters/common/wiki.json:232
+#: ../simulation_parameters/common/wiki.json:238
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:216
+#: ../simulation_parameters/common/wiki.json:222
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:228
+#: ../simulation_parameters/common/wiki.json:234
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
 msgstr "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:224
+#: ../simulation_parameters/common/wiki.json:230
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. També transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:220
+#: ../simulation_parameters/common/wiki.json:226
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
 msgstr ""
 "Proteïnes\n"
 "Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:244
+#: ../simulation_parameters/common/wiki.json:250
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
 msgstr "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:240
+#: ../simulation_parameters/common/wiki.json:246
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:236
+#: ../simulation_parameters/common/wiki.json:242
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:271
+#: ../simulation_parameters/common/wiki.json:278
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:255
+#: ../simulation_parameters/common/wiki.json:262
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:267
+#: ../simulation_parameters/common/wiki.json:274
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:263
+#: ../simulation_parameters/common/wiki.json:270
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produeix [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i a la intensitat de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:259
+#: ../simulation_parameters/common/wiki.json:266
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:283
+#: ../simulation_parameters/common/wiki.json:290
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:279
+#: ../simulation_parameters/common/wiki.json:286
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:275
+#: ../simulation_parameters/common/wiki.json:282
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../simulation_parameters/common/wiki.json:310
+#: ../simulation_parameters/common/wiki.json:318
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:294
+#: ../simulation_parameters/common/wiki.json:302
 msgid "WIKI_CILIA_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:306
+#: ../simulation_parameters/common/wiki.json:314
 msgid "WIKI_CILIA_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:302
+#: ../simulation_parameters/common/wiki.json:310
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 
-#: ../simulation_parameters/common/wiki.json:298
+#: ../simulation_parameters/common/wiki.json:306
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:322
+#: ../simulation_parameters/common/wiki.json:330
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:318
+#: ../simulation_parameters/common/wiki.json:326
 msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:314
+#: ../simulation_parameters/common/wiki.json:322
 msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:349
+#: ../simulation_parameters/common/wiki.json:358
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
-#: ../simulation_parameters/common/wiki.json:333
+#: ../simulation_parameters/common/wiki.json:342
 #, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
-#: ../simulation_parameters/common/wiki.json:345
+#: ../simulation_parameters/common/wiki.json:354
 #, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
-#: ../simulation_parameters/common/wiki.json:341
+#: ../simulation_parameters/common/wiki.json:350
 #, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:337
+#: ../simulation_parameters/common/wiki.json:346
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:361
+#: ../simulation_parameters/common/wiki.json:370
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:357
+#: ../simulation_parameters/common/wiki.json:366
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:353
+#: ../simulation_parameters/common/wiki.json:362
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:388
+#: ../simulation_parameters/common/wiki.json:398
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
-#: ../simulation_parameters/common/wiki.json:372
+#: ../simulation_parameters/common/wiki.json:382
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
-#: ../simulation_parameters/common/wiki.json:384
+#: ../simulation_parameters/common/wiki.json:394
 #, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
-#: ../simulation_parameters/common/wiki.json:380
+#: ../simulation_parameters/common/wiki.json:390
 #, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Fa servir [thrive:compound type=\"atp\"][/thrive:compound] per augmentar la velocitat del microbi."
 
-#: ../simulation_parameters/common/wiki.json:376
+#: ../simulation_parameters/common/wiki.json:386
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:400
+#: ../simulation_parameters/common/wiki.json:410
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:396
+#: ../simulation_parameters/common/wiki.json:406
 msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:392
+#: ../simulation_parameters/common/wiki.json:402
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:481
+#: ../simulation_parameters/common/wiki.json:493
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1145
+#: ../simulation_parameters/common/wiki.json:1175
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1176
+#: ../simulation_parameters/common/wiki.json:1224
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Quimioreceptor"
 
-#: ../simulation_parameters/common/wiki.json:1180
-#: ../simulation_parameters/common/wiki.json:1211
-#: ../simulation_parameters/common/wiki.json:1242
-#: ../simulation_parameters/common/wiki.json:1273
-#: ../simulation_parameters/common/wiki.json:1304
-#: ../simulation_parameters/common/wiki.json:1335
-#: ../simulation_parameters/common/wiki.json:1366
+#: ../simulation_parameters/common/wiki.json:1228
+#: ../simulation_parameters/common/wiki.json:1277
+#: ../simulation_parameters/common/wiki.json:1326
+#: ../simulation_parameters/common/wiki.json:1375
+#: ../simulation_parameters/common/wiki.json:1424
+#: ../simulation_parameters/common/wiki.json:1473
+#: ../simulation_parameters/common/wiki.json:1522
 #, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr "Desenvolupadors Actuals"
 
-#: ../simulation_parameters/common/wiki.json:1137
+#: ../simulation_parameters/common/wiki.json:1167
 #, fuzzy
 msgid "WIKI_HEADING_EDITOR"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:36
-#: ../simulation_parameters/common/wiki.json:75
-#: ../simulation_parameters/common/wiki.json:114
-#: ../simulation_parameters/common/wiki.json:153
-#: ../simulation_parameters/common/wiki.json:192
-#: ../simulation_parameters/common/wiki.json:231
-#: ../simulation_parameters/common/wiki.json:270
-#: ../simulation_parameters/common/wiki.json:309
-#: ../simulation_parameters/common/wiki.json:348
-#: ../simulation_parameters/common/wiki.json:387
-#: ../simulation_parameters/common/wiki.json:426
-#: ../simulation_parameters/common/wiki.json:465
-#: ../simulation_parameters/common/wiki.json:508
-#: ../simulation_parameters/common/wiki.json:547
-#: ../simulation_parameters/common/wiki.json:586
-#: ../simulation_parameters/common/wiki.json:625
-#: ../simulation_parameters/common/wiki.json:664
-#: ../simulation_parameters/common/wiki.json:703
-#: ../simulation_parameters/common/wiki.json:742
-#: ../simulation_parameters/common/wiki.json:781
-#: ../simulation_parameters/common/wiki.json:820
-#: ../simulation_parameters/common/wiki.json:859
-#: ../simulation_parameters/common/wiki.json:898
-#: ../simulation_parameters/common/wiki.json:937
-#: ../simulation_parameters/common/wiki.json:976
-#: ../simulation_parameters/common/wiki.json:1015
-#: ../simulation_parameters/common/wiki.json:1054
-#: ../simulation_parameters/common/wiki.json:1093
+#: ../simulation_parameters/common/wiki.json:37
+#: ../simulation_parameters/common/wiki.json:77
+#: ../simulation_parameters/common/wiki.json:117
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:197
+#: ../simulation_parameters/common/wiki.json:237
+#: ../simulation_parameters/common/wiki.json:277
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:357
+#: ../simulation_parameters/common/wiki.json:397
+#: ../simulation_parameters/common/wiki.json:437
+#: ../simulation_parameters/common/wiki.json:477
+#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:561
+#: ../simulation_parameters/common/wiki.json:601
+#: ../simulation_parameters/common/wiki.json:641
+#: ../simulation_parameters/common/wiki.json:681
+#: ../simulation_parameters/common/wiki.json:721
+#: ../simulation_parameters/common/wiki.json:761
+#: ../simulation_parameters/common/wiki.json:801
+#: ../simulation_parameters/common/wiki.json:841
+#: ../simulation_parameters/common/wiki.json:881
+#: ../simulation_parameters/common/wiki.json:921
+#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:1001
+#: ../simulation_parameters/common/wiki.json:1041
+#: ../simulation_parameters/common/wiki.json:1081
+#: ../simulation_parameters/common/wiki.json:1121
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1168
-#: ../simulation_parameters/common/wiki.json:1203
-#: ../simulation_parameters/common/wiki.json:1234
-#: ../simulation_parameters/common/wiki.json:1265
-#: ../simulation_parameters/common/wiki.json:1296
-#: ../simulation_parameters/common/wiki.json:1327
-#: ../simulation_parameters/common/wiki.json:1358
+#: ../simulation_parameters/common/wiki.json:1216
+#: ../simulation_parameters/common/wiki.json:1269
+#: ../simulation_parameters/common/wiki.json:1318
+#: ../simulation_parameters/common/wiki.json:1367
+#: ../simulation_parameters/common/wiki.json:1416
+#: ../simulation_parameters/common/wiki.json:1465
+#: ../simulation_parameters/common/wiki.json:1514
 #, fuzzy
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1133
+#: ../simulation_parameters/common/wiki.json:1163
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
-#: ../simulation_parameters/common/wiki.json:1141
+#: ../simulation_parameters/common/wiki.json:1171
 #, fuzzy
 msgid "WIKI_HEADING_GDD"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:32
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:149
-#: ../simulation_parameters/common/wiki.json:188
-#: ../simulation_parameters/common/wiki.json:227
-#: ../simulation_parameters/common/wiki.json:266
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:344
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:422
-#: ../simulation_parameters/common/wiki.json:461
-#: ../simulation_parameters/common/wiki.json:504
-#: ../simulation_parameters/common/wiki.json:543
-#: ../simulation_parameters/common/wiki.json:582
-#: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:660
-#: ../simulation_parameters/common/wiki.json:699
-#: ../simulation_parameters/common/wiki.json:738
-#: ../simulation_parameters/common/wiki.json:777
-#: ../simulation_parameters/common/wiki.json:816
-#: ../simulation_parameters/common/wiki.json:855
-#: ../simulation_parameters/common/wiki.json:894
-#: ../simulation_parameters/common/wiki.json:933
-#: ../simulation_parameters/common/wiki.json:972
-#: ../simulation_parameters/common/wiki.json:1011
-#: ../simulation_parameters/common/wiki.json:1050
-#: ../simulation_parameters/common/wiki.json:1089
+#: ../simulation_parameters/common/wiki.json:33
+#: ../simulation_parameters/common/wiki.json:73
+#: ../simulation_parameters/common/wiki.json:113
+#: ../simulation_parameters/common/wiki.json:153
+#: ../simulation_parameters/common/wiki.json:193
+#: ../simulation_parameters/common/wiki.json:233
+#: ../simulation_parameters/common/wiki.json:273
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:353
+#: ../simulation_parameters/common/wiki.json:393
+#: ../simulation_parameters/common/wiki.json:433
+#: ../simulation_parameters/common/wiki.json:473
+#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:557
+#: ../simulation_parameters/common/wiki.json:597
+#: ../simulation_parameters/common/wiki.json:637
+#: ../simulation_parameters/common/wiki.json:677
+#: ../simulation_parameters/common/wiki.json:717
+#: ../simulation_parameters/common/wiki.json:757
+#: ../simulation_parameters/common/wiki.json:797
+#: ../simulation_parameters/common/wiki.json:837
+#: ../simulation_parameters/common/wiki.json:877
+#: ../simulation_parameters/common/wiki.json:917
+#: ../simulation_parameters/common/wiki.json:957
+#: ../simulation_parameters/common/wiki.json:997
+#: ../simulation_parameters/common/wiki.json:1037
+#: ../simulation_parameters/common/wiki.json:1077
+#: ../simulation_parameters/common/wiki.json:1117
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1160
-#: ../simulation_parameters/common/wiki.json:1195
-#: ../simulation_parameters/common/wiki.json:1226
-#: ../simulation_parameters/common/wiki.json:1257
-#: ../simulation_parameters/common/wiki.json:1288
-#: ../simulation_parameters/common/wiki.json:1319
-#: ../simulation_parameters/common/wiki.json:1350
+#: ../simulation_parameters/common/wiki.json:1208
+#: ../simulation_parameters/common/wiki.json:1261
+#: ../simulation_parameters/common/wiki.json:1310
+#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1408
+#: ../simulation_parameters/common/wiki.json:1457
+#: ../simulation_parameters/common/wiki.json:1506
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:28
-#: ../simulation_parameters/common/wiki.json:67
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:145
-#: ../simulation_parameters/common/wiki.json:184
-#: ../simulation_parameters/common/wiki.json:223
-#: ../simulation_parameters/common/wiki.json:262
-#: ../simulation_parameters/common/wiki.json:301
-#: ../simulation_parameters/common/wiki.json:340
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:457
-#: ../simulation_parameters/common/wiki.json:500
-#: ../simulation_parameters/common/wiki.json:539
-#: ../simulation_parameters/common/wiki.json:578
-#: ../simulation_parameters/common/wiki.json:617
-#: ../simulation_parameters/common/wiki.json:656
-#: ../simulation_parameters/common/wiki.json:695
-#: ../simulation_parameters/common/wiki.json:734
-#: ../simulation_parameters/common/wiki.json:773
-#: ../simulation_parameters/common/wiki.json:812
-#: ../simulation_parameters/common/wiki.json:851
-#: ../simulation_parameters/common/wiki.json:890
-#: ../simulation_parameters/common/wiki.json:929
-#: ../simulation_parameters/common/wiki.json:968
-#: ../simulation_parameters/common/wiki.json:1007
-#: ../simulation_parameters/common/wiki.json:1046
-#: ../simulation_parameters/common/wiki.json:1085
+#: ../simulation_parameters/common/wiki.json:29
+#: ../simulation_parameters/common/wiki.json:69
+#: ../simulation_parameters/common/wiki.json:109
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:189
+#: ../simulation_parameters/common/wiki.json:229
+#: ../simulation_parameters/common/wiki.json:269
+#: ../simulation_parameters/common/wiki.json:309
+#: ../simulation_parameters/common/wiki.json:349
+#: ../simulation_parameters/common/wiki.json:389
+#: ../simulation_parameters/common/wiki.json:429
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:553
+#: ../simulation_parameters/common/wiki.json:593
+#: ../simulation_parameters/common/wiki.json:633
+#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:713
+#: ../simulation_parameters/common/wiki.json:753
+#: ../simulation_parameters/common/wiki.json:793
+#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:873
+#: ../simulation_parameters/common/wiki.json:913
+#: ../simulation_parameters/common/wiki.json:953
+#: ../simulation_parameters/common/wiki.json:993
+#: ../simulation_parameters/common/wiki.json:1033
+#: ../simulation_parameters/common/wiki.json:1073
+#: ../simulation_parameters/common/wiki.json:1113
 msgid "WIKI_HEADING_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:24
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:141
-#: ../simulation_parameters/common/wiki.json:180
-#: ../simulation_parameters/common/wiki.json:219
-#: ../simulation_parameters/common/wiki.json:258
-#: ../simulation_parameters/common/wiki.json:297
-#: ../simulation_parameters/common/wiki.json:336
-#: ../simulation_parameters/common/wiki.json:375
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:453
-#: ../simulation_parameters/common/wiki.json:496
-#: ../simulation_parameters/common/wiki.json:535
-#: ../simulation_parameters/common/wiki.json:574
-#: ../simulation_parameters/common/wiki.json:613
-#: ../simulation_parameters/common/wiki.json:652
-#: ../simulation_parameters/common/wiki.json:691
-#: ../simulation_parameters/common/wiki.json:730
-#: ../simulation_parameters/common/wiki.json:769
-#: ../simulation_parameters/common/wiki.json:808
-#: ../simulation_parameters/common/wiki.json:847
-#: ../simulation_parameters/common/wiki.json:886
-#: ../simulation_parameters/common/wiki.json:925
-#: ../simulation_parameters/common/wiki.json:964
-#: ../simulation_parameters/common/wiki.json:1003
-#: ../simulation_parameters/common/wiki.json:1042
-#: ../simulation_parameters/common/wiki.json:1081
+#: ../simulation_parameters/common/wiki.json:25
+#: ../simulation_parameters/common/wiki.json:65
+#: ../simulation_parameters/common/wiki.json:105
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:185
+#: ../simulation_parameters/common/wiki.json:225
+#: ../simulation_parameters/common/wiki.json:265
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:345
+#: ../simulation_parameters/common/wiki.json:385
+#: ../simulation_parameters/common/wiki.json:425
+#: ../simulation_parameters/common/wiki.json:465
+#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:549
+#: ../simulation_parameters/common/wiki.json:589
+#: ../simulation_parameters/common/wiki.json:629
+#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:709
+#: ../simulation_parameters/common/wiki.json:749
+#: ../simulation_parameters/common/wiki.json:789
+#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:869
+#: ../simulation_parameters/common/wiki.json:909
+#: ../simulation_parameters/common/wiki.json:949
+#: ../simulation_parameters/common/wiki.json:989
+#: ../simulation_parameters/common/wiki.json:1029
+#: ../simulation_parameters/common/wiki.json:1069
+#: ../simulation_parameters/common/wiki.json:1109
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:48
-#: ../simulation_parameters/common/wiki.json:87
-#: ../simulation_parameters/common/wiki.json:126
-#: ../simulation_parameters/common/wiki.json:165
-#: ../simulation_parameters/common/wiki.json:204
-#: ../simulation_parameters/common/wiki.json:243
-#: ../simulation_parameters/common/wiki.json:282
-#: ../simulation_parameters/common/wiki.json:321
-#: ../simulation_parameters/common/wiki.json:360
-#: ../simulation_parameters/common/wiki.json:399
-#: ../simulation_parameters/common/wiki.json:438
-#: ../simulation_parameters/common/wiki.json:477
-#: ../simulation_parameters/common/wiki.json:520
-#: ../simulation_parameters/common/wiki.json:559
-#: ../simulation_parameters/common/wiki.json:598
-#: ../simulation_parameters/common/wiki.json:637
-#: ../simulation_parameters/common/wiki.json:676
-#: ../simulation_parameters/common/wiki.json:715
-#: ../simulation_parameters/common/wiki.json:754
-#: ../simulation_parameters/common/wiki.json:793
-#: ../simulation_parameters/common/wiki.json:832
-#: ../simulation_parameters/common/wiki.json:871
-#: ../simulation_parameters/common/wiki.json:910
-#: ../simulation_parameters/common/wiki.json:949
-#: ../simulation_parameters/common/wiki.json:988
-#: ../simulation_parameters/common/wiki.json:1027
-#: ../simulation_parameters/common/wiki.json:1066
-#: ../simulation_parameters/common/wiki.json:1105
+#: ../simulation_parameters/common/wiki.json:49
+#: ../simulation_parameters/common/wiki.json:89
+#: ../simulation_parameters/common/wiki.json:129
+#: ../simulation_parameters/common/wiki.json:169
+#: ../simulation_parameters/common/wiki.json:209
+#: ../simulation_parameters/common/wiki.json:249
+#: ../simulation_parameters/common/wiki.json:289
+#: ../simulation_parameters/common/wiki.json:329
+#: ../simulation_parameters/common/wiki.json:369
+#: ../simulation_parameters/common/wiki.json:409
+#: ../simulation_parameters/common/wiki.json:449
+#: ../simulation_parameters/common/wiki.json:489
+#: ../simulation_parameters/common/wiki.json:533
+#: ../simulation_parameters/common/wiki.json:573
+#: ../simulation_parameters/common/wiki.json:613
+#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:693
+#: ../simulation_parameters/common/wiki.json:733
+#: ../simulation_parameters/common/wiki.json:773
+#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:853
+#: ../simulation_parameters/common/wiki.json:893
+#: ../simulation_parameters/common/wiki.json:933
+#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:1013
+#: ../simulation_parameters/common/wiki.json:1053
+#: ../simulation_parameters/common/wiki.json:1093
+#: ../simulation_parameters/common/wiki.json:1133
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:44
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:161
-#: ../simulation_parameters/common/wiki.json:200
-#: ../simulation_parameters/common/wiki.json:239
-#: ../simulation_parameters/common/wiki.json:278
-#: ../simulation_parameters/common/wiki.json:317
-#: ../simulation_parameters/common/wiki.json:356
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:434
-#: ../simulation_parameters/common/wiki.json:473
-#: ../simulation_parameters/common/wiki.json:516
-#: ../simulation_parameters/common/wiki.json:555
-#: ../simulation_parameters/common/wiki.json:594
-#: ../simulation_parameters/common/wiki.json:633
-#: ../simulation_parameters/common/wiki.json:672
-#: ../simulation_parameters/common/wiki.json:711
-#: ../simulation_parameters/common/wiki.json:750
-#: ../simulation_parameters/common/wiki.json:789
-#: ../simulation_parameters/common/wiki.json:828
-#: ../simulation_parameters/common/wiki.json:867
-#: ../simulation_parameters/common/wiki.json:906
-#: ../simulation_parameters/common/wiki.json:945
-#: ../simulation_parameters/common/wiki.json:984
-#: ../simulation_parameters/common/wiki.json:1023
-#: ../simulation_parameters/common/wiki.json:1062
-#: ../simulation_parameters/common/wiki.json:1101
+#: ../simulation_parameters/common/wiki.json:45
+#: ../simulation_parameters/common/wiki.json:85
+#: ../simulation_parameters/common/wiki.json:125
+#: ../simulation_parameters/common/wiki.json:165
+#: ../simulation_parameters/common/wiki.json:205
+#: ../simulation_parameters/common/wiki.json:245
+#: ../simulation_parameters/common/wiki.json:285
+#: ../simulation_parameters/common/wiki.json:325
+#: ../simulation_parameters/common/wiki.json:365
+#: ../simulation_parameters/common/wiki.json:405
+#: ../simulation_parameters/common/wiki.json:445
+#: ../simulation_parameters/common/wiki.json:485
+#: ../simulation_parameters/common/wiki.json:529
+#: ../simulation_parameters/common/wiki.json:569
+#: ../simulation_parameters/common/wiki.json:609
+#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:689
+#: ../simulation_parameters/common/wiki.json:729
+#: ../simulation_parameters/common/wiki.json:769
+#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:849
+#: ../simulation_parameters/common/wiki.json:889
+#: ../simulation_parameters/common/wiki.json:929
+#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:1009
+#: ../simulation_parameters/common/wiki.json:1049
+#: ../simulation_parameters/common/wiki.json:1089
+#: ../simulation_parameters/common/wiki.json:1129
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1164
-#: ../simulation_parameters/common/wiki.json:1199
-#: ../simulation_parameters/common/wiki.json:1230
-#: ../simulation_parameters/common/wiki.json:1261
-#: ../simulation_parameters/common/wiki.json:1292
-#: ../simulation_parameters/common/wiki.json:1323
-#: ../simulation_parameters/common/wiki.json:1354
+#: ../simulation_parameters/common/wiki.json:1212
+#: ../simulation_parameters/common/wiki.json:1265
+#: ../simulation_parameters/common/wiki.json:1314
+#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1412
+#: ../simulation_parameters/common/wiki.json:1461
+#: ../simulation_parameters/common/wiki.json:1510
 #, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1172
-#: ../simulation_parameters/common/wiki.json:1207
-#: ../simulation_parameters/common/wiki.json:1238
-#: ../simulation_parameters/common/wiki.json:1269
-#: ../simulation_parameters/common/wiki.json:1300
-#: ../simulation_parameters/common/wiki.json:1331
-#: ../simulation_parameters/common/wiki.json:1362
+#: ../simulation_parameters/common/wiki.json:1220
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1322
+#: ../simulation_parameters/common/wiki.json:1371
+#: ../simulation_parameters/common/wiki.json:1420
+#: ../simulation_parameters/common/wiki.json:1469
+#: ../simulation_parameters/common/wiki.json:1518
 msgid "WIKI_HEADING_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:40
-#: ../simulation_parameters/common/wiki.json:79
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:157
-#: ../simulation_parameters/common/wiki.json:196
-#: ../simulation_parameters/common/wiki.json:235
-#: ../simulation_parameters/common/wiki.json:274
-#: ../simulation_parameters/common/wiki.json:313
-#: ../simulation_parameters/common/wiki.json:352
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:469
-#: ../simulation_parameters/common/wiki.json:512
-#: ../simulation_parameters/common/wiki.json:551
-#: ../simulation_parameters/common/wiki.json:590
-#: ../simulation_parameters/common/wiki.json:629
-#: ../simulation_parameters/common/wiki.json:668
-#: ../simulation_parameters/common/wiki.json:707
-#: ../simulation_parameters/common/wiki.json:746
-#: ../simulation_parameters/common/wiki.json:785
-#: ../simulation_parameters/common/wiki.json:824
-#: ../simulation_parameters/common/wiki.json:863
-#: ../simulation_parameters/common/wiki.json:902
-#: ../simulation_parameters/common/wiki.json:941
-#: ../simulation_parameters/common/wiki.json:980
-#: ../simulation_parameters/common/wiki.json:1019
-#: ../simulation_parameters/common/wiki.json:1058
-#: ../simulation_parameters/common/wiki.json:1097
+#: ../simulation_parameters/common/wiki.json:41
+#: ../simulation_parameters/common/wiki.json:81
+#: ../simulation_parameters/common/wiki.json:121
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:201
+#: ../simulation_parameters/common/wiki.json:241
+#: ../simulation_parameters/common/wiki.json:281
+#: ../simulation_parameters/common/wiki.json:321
+#: ../simulation_parameters/common/wiki.json:361
+#: ../simulation_parameters/common/wiki.json:401
+#: ../simulation_parameters/common/wiki.json:441
+#: ../simulation_parameters/common/wiki.json:481
+#: ../simulation_parameters/common/wiki.json:525
+#: ../simulation_parameters/common/wiki.json:565
+#: ../simulation_parameters/common/wiki.json:605
+#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:685
+#: ../simulation_parameters/common/wiki.json:725
+#: ../simulation_parameters/common/wiki.json:765
+#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:845
+#: ../simulation_parameters/common/wiki.json:885
+#: ../simulation_parameters/common/wiki.json:925
+#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:1005
+#: ../simulation_parameters/common/wiki.json:1045
+#: ../simulation_parameters/common/wiki.json:1085
+#: ../simulation_parameters/common/wiki.json:1125
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1305
+#: ../simulation_parameters/common/wiki.json:1425
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1297
+#: ../simulation_parameters/common/wiki.json:1417
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../simulation_parameters/common/wiki.json:1285
+#: ../simulation_parameters/common/wiki.json:1405
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:1289
+#: ../simulation_parameters/common/wiki.json:1409
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1293
+#: ../simulation_parameters/common/wiki.json:1413
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
-#: ../simulation_parameters/common/wiki.json:1301
+#: ../simulation_parameters/common/wiki.json:1421
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:427
+#: ../simulation_parameters/common/wiki.json:438
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:411
+#: ../simulation_parameters/common/wiki.json:422
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
-#: ../simulation_parameters/common/wiki.json:423
+#: ../simulation_parameters/common/wiki.json:434
 #, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
-#: ../simulation_parameters/common/wiki.json:419
+#: ../simulation_parameters/common/wiki.json:430
 #, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
 
-#: ../simulation_parameters/common/wiki.json:415
+#: ../simulation_parameters/common/wiki.json:426
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:439
+#: ../simulation_parameters/common/wiki.json:450
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:435
+#: ../simulation_parameters/common/wiki.json:446
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:431
+#: ../simulation_parameters/common/wiki.json:442
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:482
+#: ../simulation_parameters/common/wiki.json:494
 msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:466
+#: ../simulation_parameters/common/wiki.json:478
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:450
+#: ../simulation_parameters/common/wiki.json:462
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "Metabolosomes"
 
-#: ../simulation_parameters/common/wiki.json:462
+#: ../simulation_parameters/common/wiki.json:474
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:458
+#: ../simulation_parameters/common/wiki.json:470
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:454
+#: ../simulation_parameters/common/wiki.json:466
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:478
+#: ../simulation_parameters/common/wiki.json:490
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:474
+#: ../simulation_parameters/common/wiki.json:486
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:470
+#: ../simulation_parameters/common/wiki.json:482
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:1146
+#: ../simulation_parameters/common/wiki.json:1176
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr ""
@@ -8277,12 +8301,12 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../simulation_parameters/common/wiki.json:1138
+#: ../simulation_parameters/common/wiki.json:1168
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr "Editor de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1134
+#: ../simulation_parameters/common/wiki.json:1164
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
@@ -8296,12 +8320,12 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../simulation_parameters/common/wiki.json:1142
+#: ../simulation_parameters/common/wiki.json:1172
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1130
+#: ../simulation_parameters/common/wiki.json:1160
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
@@ -8315,224 +8339,224 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:522
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:493
+#: ../simulation_parameters/common/wiki.json:506
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitocondri"
 
-#: ../simulation_parameters/common/wiki.json:505
+#: ../simulation_parameters/common/wiki.json:518
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:501
+#: ../simulation_parameters/common/wiki.json:514
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:497
+#: ../simulation_parameters/common/wiki.json:510
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:534
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:530
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:526
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:1177
+#: ../simulation_parameters/common/wiki.json:1225
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:1181
+#: ../simulation_parameters/common/wiki.json:1229
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Carregant l'Editor Multicel·lular Primerenc"
 
-#: ../simulation_parameters/common/wiki.json:1169
+#: ../simulation_parameters/common/wiki.json:1217
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:1157
+#: ../simulation_parameters/common/wiki.json:1205
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:1161
+#: ../simulation_parameters/common/wiki.json:1209
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:1165
+#: ../simulation_parameters/common/wiki.json:1213
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:1173
+#: ../simulation_parameters/common/wiki.json:1221
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:548
+#: ../simulation_parameters/common/wiki.json:562
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:532
+#: ../simulation_parameters/common/wiki.json:546
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:544
+#: ../simulation_parameters/common/wiki.json:558
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:540
+#: ../simulation_parameters/common/wiki.json:554
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Cap procés"
 
-#: ../simulation_parameters/common/wiki.json:536
+#: ../simulation_parameters/common/wiki.json:550
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:560
+#: ../simulation_parameters/common/wiki.json:574
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:556
+#: ../simulation_parameters/common/wiki.json:570
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:552
+#: ../simulation_parameters/common/wiki.json:566
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:642
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:626
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:638
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:618
+#: ../simulation_parameters/common/wiki.json:634
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:630
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:638
+#: ../simulation_parameters/common/wiki.json:654
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
-#: ../simulation_parameters/common/wiki.json:634
+#: ../simulation_parameters/common/wiki.json:650
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:630
+#: ../simulation_parameters/common/wiki.json:646
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:587
+#: ../simulation_parameters/common/wiki.json:602
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:571
+#: ../simulation_parameters/common/wiki.json:586
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:583
+#: ../simulation_parameters/common/wiki.json:598
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:579
+#: ../simulation_parameters/common/wiki.json:594
 #, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:575
+#: ../simulation_parameters/common/wiki.json:590
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:599
+#: ../simulation_parameters/common/wiki.json:614
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:595
+#: ../simulation_parameters/common/wiki.json:610
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:591
+#: ../simulation_parameters/common/wiki.json:606
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../simulation_parameters/common/wiki.json:665
+#: ../simulation_parameters/common/wiki.json:682
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:666
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:678
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "És la característica que defineix les cèl·lules eucariotes. El nucli inclou el Reticle Endoplasmàtic i l'Aparell de Golgi. Representa un pas evolutiu important respecte a les cèl·lules procariotes, que permet desenvolupar orgànuls més complexes, rodejats per una membrana, tot engolint i assimilant petites cèl·lules procariotes. Això permet dividir clarament l'interior de la cèl·lula en diversos compartiments separats, cadascun duent a terme un procés de síntesi de recursos diferents. Així, amb aquests nous orgànuls, la cèl·lula pot esdevenir molt més complexa, eficient i especialitzada. No obstant, això també implica que la cèl·lula ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
 
-#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:674
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Cap procés"
 
-#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:670
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:677
+#: ../simulation_parameters/common/wiki.json:694
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:690
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:686
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -8541,154 +8565,154 @@ msgstr ""
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr "Orgànuls"
 
-#: ../simulation_parameters/common/wiki.json:704
+#: ../simulation_parameters/common/wiki.json:722
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:688
+#: ../simulation_parameters/common/wiki.json:706
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxytoxysoma"
 
-#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:718
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:696
+#: ../simulation_parameters/common/wiki.json:714
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
 
-#: ../simulation_parameters/common/wiki.json:692
+#: ../simulation_parameters/common/wiki.json:710
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:716
+#: ../simulation_parameters/common/wiki.json:734
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:712
+#: ../simulation_parameters/common/wiki.json:730
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:708
+#: ../simulation_parameters/common/wiki.json:726
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../simulation_parameters/common/wiki.json:1341
+#: ../simulation_parameters/common/wiki.json:1497
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Rusticianina"
 
-#: ../simulation_parameters/common/wiki.json:1217
+#: ../simulation_parameters/common/wiki.json:1301
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:1186
+#: ../simulation_parameters/common/wiki.json:1252
 #, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:15
+#: ../simulation_parameters/common/wiki.json:16
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:54
+#: ../simulation_parameters/common/wiki.json:56
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:93
+#: ../simulation_parameters/common/wiki.json:96
 #, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/common/wiki.json:132
+#: ../simulation_parameters/common/wiki.json:136
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Quimioplast"
 
-#: ../simulation_parameters/common/wiki.json:171
+#: ../simulation_parameters/common/wiki.json:176
 #, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
 msgstr "Quimioreceptor"
 
-#: ../simulation_parameters/common/wiki.json:210
+#: ../simulation_parameters/common/wiki.json:216
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/common/wiki.json:249
+#: ../simulation_parameters/common/wiki.json:256
 #, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Cloroplast"
 
-#: ../simulation_parameters/common/wiki.json:288
+#: ../simulation_parameters/common/wiki.json:296
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:327
+#: ../simulation_parameters/common/wiki.json:336
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
 
-#: ../simulation_parameters/common/wiki.json:366
+#: ../simulation_parameters/common/wiki.json:376
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagel"
 
-#: ../simulation_parameters/common/wiki.json:1279
+#: ../simulation_parameters/common/wiki.json:1399
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/common/wiki.json:405
+#: ../simulation_parameters/common/wiki.json:416
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosoma"
 
-#: ../simulation_parameters/common/wiki.json:444
+#: ../simulation_parameters/common/wiki.json:456
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomes"
 
-#: ../simulation_parameters/common/wiki.json:1124
+#: ../simulation_parameters/common/wiki.json:1154
 #, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
 msgstr "Nitrogenasa"
 
-#: ../simulation_parameters/common/wiki.json:487
+#: ../simulation_parameters/common/wiki.json:500
 #, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocondri"
 
-#: ../simulation_parameters/common/wiki.json:1151
+#: ../simulation_parameters/common/wiki.json:1199
 #, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "Estadi Multicel·lular"
 
-#: ../simulation_parameters/common/wiki.json:526
+#: ../simulation_parameters/common/wiki.json:540
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Fibló"
 
-#: ../simulation_parameters/common/wiki.json:604
+#: ../simulation_parameters/common/wiki.json:620
 #, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/common/wiki.json:565
+#: ../simulation_parameters/common/wiki.json:580
 #, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenasa"
 
-#: ../simulation_parameters/common/wiki.json:643
+#: ../simulation_parameters/common/wiki.json:660
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Requereix nucli"
@@ -8698,143 +8722,143 @@ msgstr "Requereix nucli"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "Col·locar orgànul"
 
-#: ../simulation_parameters/common/wiki.json:682
+#: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxysoma"
 
-#: ../simulation_parameters/common/wiki.json:721
+#: ../simulation_parameters/common/wiki.json:740
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:760
+#: ../simulation_parameters/common/wiki.json:780
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "protoplasma"
 
-#: ../simulation_parameters/common/wiki.json:799
+#: ../simulation_parameters/common/wiki.json:820
 #, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticianina"
 
-#: ../simulation_parameters/common/wiki.json:838
+#: ../simulation_parameters/common/wiki.json:860
 #, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/common/wiki.json:877
+#: ../simulation_parameters/common/wiki.json:900
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Raig de llim"
 
-#: ../simulation_parameters/common/wiki.json:1248
+#: ../simulation_parameters/common/wiki.json:1350
 #, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1310
+#: ../simulation_parameters/common/wiki.json:1448
 #, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr "Raig de llim"
 
-#: ../simulation_parameters/common/wiki.json:1112
+#: ../simulation_parameters/common/wiki.json:1141
 #, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:916
+#: ../simulation_parameters/common/wiki.json:940
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../simulation_parameters/common/wiki.json:955
+#: ../simulation_parameters/common/wiki.json:980
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termosintasa"
 
-#: ../simulation_parameters/common/wiki.json:994
+#: ../simulation_parameters/common/wiki.json:1020
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Tilacoide"
 
-#: ../simulation_parameters/common/wiki.json:1033
+#: ../simulation_parameters/common/wiki.json:1060
 #, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
-#: ../simulation_parameters/common/wiki.json:1072
+#: ../simulation_parameters/common/wiki.json:1100
 #, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
-#: ../simulation_parameters/common/wiki.json:743
+#: ../simulation_parameters/common/wiki.json:762
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:727
+#: ../simulation_parameters/common/wiki.json:746
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:739
+#: ../simulation_parameters/common/wiki.json:758
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:735
+#: ../simulation_parameters/common/wiki.json:754
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:731
+#: ../simulation_parameters/common/wiki.json:750
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:755
+#: ../simulation_parameters/common/wiki.json:774
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:751
+#: ../simulation_parameters/common/wiki.json:770
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:747
+#: ../simulation_parameters/common/wiki.json:766
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:782
+#: ../simulation_parameters/common/wiki.json:802
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "protoplasma"
 
-#: ../simulation_parameters/common/wiki.json:766
+#: ../simulation_parameters/common/wiki.json:786
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "protoplasma"
 
-#: ../simulation_parameters/common/wiki.json:778
+#: ../simulation_parameters/common/wiki.json:798
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:774
+#: ../simulation_parameters/common/wiki.json:794
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:770
+#: ../simulation_parameters/common/wiki.json:790
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:794
+#: ../simulation_parameters/common/wiki.json:814
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:790
+#: ../simulation_parameters/common/wiki.json:810
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:786
+#: ../simulation_parameters/common/wiki.json:806
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -8846,375 +8870,375 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:821
+#: ../simulation_parameters/common/wiki.json:842
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:826
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:817
+#: ../simulation_parameters/common/wiki.json:838
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:834
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:830
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:854
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:850
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:825
+#: ../simulation_parameters/common/wiki.json:846
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../simulation_parameters/common/wiki.json:860
+#: ../simulation_parameters/common/wiki.json:882
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:866
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/common/wiki.json:856
+#: ../simulation_parameters/common/wiki.json:878
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "Els agents de senyalització permeten crear productes químics amb els quals altres cèl·lules hi poden reaccionar. Els productes de senyalització es poden utilitzar per atraure altres cèl·lules o avisar-les sobre el perill per a fer-les fugir."
 
-#: ../simulation_parameters/common/wiki.json:852
+#: ../simulation_parameters/common/wiki.json:874
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "Mantingues [thrive:input]g_pack_commands[/thrive:input] premut per obrir un menú que et permet donar ordres a altres membres de la teva espècie."
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:870
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "Els agents de senyalització permeten crear productes químics amb els quals altres cèl·lules hi poden reaccionar. Els productes de senyalització es poden utilitzar per atraure altres cèl·lules o avisar-les sobre el perill per a fer-les fugir."
 
-#: ../simulation_parameters/common/wiki.json:872
+#: ../simulation_parameters/common/wiki.json:894
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "Els agents de senyalització permeten crear productes químics amb els quals altres cèl·lules hi poden reaccionar. Els productes de senyalització es poden utilitzar per atraure altres cèl·lules o avisar-les sobre el perill per a fer-les fugir."
 
-#: ../simulation_parameters/common/wiki.json:868
+#: ../simulation_parameters/common/wiki.json:890
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/common/wiki.json:864
+#: ../simulation_parameters/common/wiki.json:886
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:922
 #, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:883
+#: ../simulation_parameters/common/wiki.json:906
 #, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:895
+#: ../simulation_parameters/common/wiki.json:918
 #, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:891
+#: ../simulation_parameters/common/wiki.json:914
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 
-#: ../simulation_parameters/common/wiki.json:887
+#: ../simulation_parameters/common/wiki.json:910
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:911
+#: ../simulation_parameters/common/wiki.json:934
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:930
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:926
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1274
+#: ../simulation_parameters/common/wiki.json:1376
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1266
+#: ../simulation_parameters/common/wiki.json:1368
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1254
+#: ../simulation_parameters/common/wiki.json:1356
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:1258
+#: ../simulation_parameters/common/wiki.json:1360
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1262
+#: ../simulation_parameters/common/wiki.json:1364
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1270
+#: ../simulation_parameters/common/wiki.json:1372
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1336
+#: ../simulation_parameters/common/wiki.json:1474
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1328
+#: ../simulation_parameters/common/wiki.json:1466
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "Raig de llim"
 
-#: ../simulation_parameters/common/wiki.json:1316
+#: ../simulation_parameters/common/wiki.json:1454
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
-#: ../simulation_parameters/common/wiki.json:1320
+#: ../simulation_parameters/common/wiki.json:1458
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1324
+#: ../simulation_parameters/common/wiki.json:1462
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr "Nitrogenasa"
 
-#: ../simulation_parameters/common/wiki.json:1332
+#: ../simulation_parameters/common/wiki.json:1470
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/wiki.json:1118
+#: ../simulation_parameters/common/wiki.json:1147
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Orgànuls"
 
-#: ../simulation_parameters/common/wiki.json:938
+#: ../simulation_parameters/common/wiki.json:962
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:922
+#: ../simulation_parameters/common/wiki.json:946
 #, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:934
+#: ../simulation_parameters/common/wiki.json:958
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:930
+#: ../simulation_parameters/common/wiki.json:954
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
-#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:950
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:950
+#: ../simulation_parameters/common/wiki.json:974
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:946
+#: ../simulation_parameters/common/wiki.json:970
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:942
+#: ../simulation_parameters/common/wiki.json:966
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../simulation_parameters/common/wiki.json:977
+#: ../simulation_parameters/common/wiki.json:1002
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "Termosintasa"
 
-#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:986
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "Termosintasa"
 
-#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:998
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
-#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:994
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura. La velocitat és proporcional a [thrive:compound type=\"temperature\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:990
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
-#: ../simulation_parameters/common/wiki.json:989
+#: ../simulation_parameters/common/wiki.json:1014
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
-#: ../simulation_parameters/common/wiki.json:985
+#: ../simulation_parameters/common/wiki.json:1010
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
-#: ../simulation_parameters/common/wiki.json:981
+#: ../simulation_parameters/common/wiki.json:1006
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "La termosintasa és una proteïna que fa servir la convecció tèrmica per canviar la seva forma, permetent-li plegar-se i adherir-se a l'ADP quan és exposada a la temperature, tot seguit desplegar-se i reciclar-la en ATP quan s'exposa a temperatures més baixes en un procés anomenat termosíntesi. La velocitat de la producció d'ATP és proporcional a la temperatura."
 
-#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1042
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1000
+#: ../simulation_parameters/common/wiki.json:1026
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1038
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1034
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1004
+#: ../simulation_parameters/common/wiki.json:1030
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1028
+#: ../simulation_parameters/common/wiki.json:1054
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1050
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1046
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1082
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1066
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1078
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1074
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible disparar, però el dany causat serà menor."
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1070
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1067
+#: ../simulation_parameters/common/wiki.json:1094
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1063
+#: ../simulation_parameters/common/wiki.json:1090
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1059
+#: ../simulation_parameters/common/wiki.json:1086
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1094
+#: ../simulation_parameters/common/wiki.json:1122
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1078
+#: ../simulation_parameters/common/wiki.json:1106
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1090
+#: ../simulation_parameters/common/wiki.json:1118
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../simulation_parameters/common/wiki.json:1086
+#: ../simulation_parameters/common/wiki.json:1114
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible disparar, però el dany causat serà menor."
 
-#: ../simulation_parameters/common/wiki.json:1082
+#: ../simulation_parameters/common/wiki.json:1110
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1106
+#: ../simulation_parameters/common/wiki.json:1134
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1102
+#: ../simulation_parameters/common/wiki.json:1130
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1126
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 

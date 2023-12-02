@@ -18,6 +18,7 @@ public static class WikiUpdater
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
+    private const string INFO_BOX_SELECTOR = ".wikitable > tbody";
 
     /// <summary>
     ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
@@ -184,9 +185,9 @@ public static class WikiUpdater
 
         var stagePages = new List<TranslationPair>();
 
-        foreach (var organelle in stages)
+        foreach (var stage in stages)
         {
-            var name = organelle.TextContent.Trim();
+            var name = stage.TextContent.Trim();
             var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             var untranslatedStageName = name.ToUpperInvariant().Replace(" ", "_");
@@ -197,6 +198,8 @@ public static class WikiUpdater
 
             var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
 
+            var (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(body, internalName);
+
             var sections = GetMainBodySections(body);
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedStageName)).ToList();
@@ -205,12 +208,14 @@ public static class WikiUpdater
                 $"WIKI_PAGE_{untranslatedStageName}",
                 internalName,
                 url,
-                untranslatedSections);
+                untranslatedSections,
+                untranslatedInfobox);
             var translatedPage = new Wiki.Page(
                 name,
                 internalName,
                 url,
-                sections);
+                sections,
+                translatedInfobox);
 
             stagePages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
@@ -218,6 +223,59 @@ public static class WikiUpdater
         }
 
         return stagePages;
+    }
+
+    /// <summary>
+    ///   Extracts all the fields of an associated page's infobox and generates translation keys
+    /// </summary>
+    /// <param name="body">The body of the page</param>
+    /// <param name="internalName">Internal name of the page</param>
+    /// <returns>A tuple containing the translated and untranlsated versions of the detected fields</returns>
+    /// <exception cref="System.InvalidOperationException">Thrown when an infobox is not found</exception>
+    private static (List<InfoboxField> Untranslated, List<InfoboxField> Translated)
+        GetInfoBoxFields(IHtmlElement body, string internalName)
+    {
+        ColourConsole.WriteInfoLine($"Extracting infobox content for page with internal name {internalName}");
+
+        // Get the infobox element
+        var infobox = body.QuerySelector(INFO_BOX_SELECTOR);
+
+        if (infobox == null)
+        {
+            throw new System.InvalidOperationException(
+                $"Did not find infobox on page with internal name {internalName}");
+        }
+
+        var translated = new List<InfoboxField>();
+        var untranslated = new List<InfoboxField>();
+
+        foreach (var row in infobox.Children)
+        {
+            if (row.Children.Count() <= 1)
+                continue;
+
+            // Parse the HTML table to get keys and values
+            var value = row.Children.Where(e => e.LocalName == "td").First();
+            var translatedKey = row.Children.Where(e => e.LocalName == "th").First().TextContent.Trim();
+            var id = value.Id!;
+
+            var textContent = value.TextContent!.Trim();
+
+            if (textContent == internalName)
+                continue;
+
+            // Format the found content for use in translation files
+            var untranlsatedKey = id.Replace("#", string.Empty).ToUpperInvariant().Replace("-", "_");
+            var untranslatedValue = textContent.ToUpperInvariant().Replace(' ', '_');
+            var validUntraslatedValue = Regex.Replace(untranslatedValue, @"[^A-Z0-9_]", string.Empty);
+
+            untranslated.Add(new InfoboxField(untranlsatedKey, validUntraslatedValue));
+            translated.Add(new InfoboxField(translatedKey, textContent));
+        }
+
+        ColourConsole.WriteInfoLine($"Completed extracting infobox content for page with internal name {internalName}");
+
+        return (untranslated, translated);
     }
 
     /// <summary>
@@ -317,6 +375,19 @@ public static class WikiUpdater
 
             // Translate page names
             translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
+
+            // Translate infobox
+            if (untranslatedPage.InfoboxData.Count != 0)
+            {
+                var untranslatedInfobox = untranslatedPage!.InfoboxData;
+                var translatedInfobox = translatedPage!.InfoboxData;
+
+                for (int i = 0; i < untranslatedInfobox.Count; i++)
+                {
+                    translationPairs.TryAdd(untranslatedInfobox[i].Key, translatedInfobox[i].Key);
+                    translationPairs.TryAdd(untranslatedInfobox[i].Value, translatedInfobox[i].Value);
+                }
+            }
 
             for (var i = 0; i < untranslatedPage.Sections.Count; ++i)
             {
@@ -424,27 +495,28 @@ public static class WikiUpdater
     /// </summary>
     private class Wiki
     {
+        [JsonInclude]
+        public Page OrganellesRoot { get; init; } = null!;
 
         [JsonInclude]
-        public Page OrganellesRoot { get; init; }
+        public List<Page> Organelles { get; init; } = null!;
 
         [JsonInclude]
-        public List<Page> Organelles { get; init; }
+        public Page StagesRoot { get; init; } = null!;
 
         [JsonInclude]
-        public Page StagesRoot { get; init; }
-
-        [JsonInclude]
-        public List<Page> Stages { get; init; }
+        public List<Page> Stages { get; init; } = null!;
 
         public class Page
         {
-            public Page(string name, string internalName, string url, List<Section> sections)
+            public Page(string name, string internalName, string url, List<Section> sections,
+                List<InfoboxField> infobox = null!)
             {
                 Name = name;
                 InternalName = internalName;
                 Url = url;
                 Sections = sections;
+                InfoboxData = infobox ?? new();
             }
 
             [JsonInclude]
@@ -458,6 +530,9 @@ public static class WikiUpdater
 
             [JsonInclude]
             public List<Section> Sections { get; }
+
+            [JsonInclude]
+            public List<InfoboxField> InfoboxData { get; }
 
             public class Section
             {
@@ -490,5 +565,20 @@ public static class WikiUpdater
         public Wiki.Page UntranslatedPage { get; }
 
         public Wiki.Page TranslatedPage { get; }
+    }
+
+    private class InfoboxField
+    {
+        public InfoboxField(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+
+        [JsonInclude]
+        public string Key { get; }
+
+        [JsonInclude]
+        public string Value { get; }
     }
 }
