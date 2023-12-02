@@ -17,13 +17,14 @@
     [RunsOnMainThread]
     public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
     {
-        private readonly PhysicalWorld physicalWorld;
+        private readonly IWorldSimulationWithPhysics worldSimulationWithPhysics;
 
         private readonly Dictionary<Entity, NativePhysicsBody> detachedBodies = new();
 
-        public PhysicsSensorSystem(PhysicalWorld physicalWorld, World world) : base(world, null)
+        public PhysicsSensorSystem(IWorldSimulationWithPhysics worldSimulationWithPhysics, World world) :
+            base(world, null)
         {
-            this.physicalWorld = physicalWorld;
+            this.worldSimulationWithPhysics = worldSimulationWithPhysics;
         }
 
         /// <summary>
@@ -34,7 +35,7 @@
             if (detachedBodies.TryGetValue(entity, out var detached))
             {
                 detachedBodies.Remove(entity);
-                physicalWorld.DestroyBody(detached);
+                worldSimulationWithPhysics.DestroyBody(detached);
             }
 
             if (!entity.Has<PhysicsSensor>())
@@ -44,7 +45,7 @@
 
             if (sensor.SensorBody != null)
             {
-                physicalWorld.DestroyBody(sensor.SensorBody);
+                worldSimulationWithPhysics.DestroyBody(sensor.SensorBody);
             }
         }
 
@@ -69,7 +70,7 @@
                     if (detachedBodies.TryGetValue(entity, out var disabledBody))
                     {
                         // TODO: should a new position be applied first?
-                        physicalWorld.AddBody(disabledBody);
+                        worldSimulationWithPhysics.PhysicalWorld.AddBody(disabledBody);
 
                         detachedBodies.Remove(entity);
 
@@ -88,7 +89,7 @@
                         GD.PrintErr("Sensor already had a disabled body stored, the reference will be leaked");
 
                     detachedBodies[entity] = sensor.SensorBody;
-                    physicalWorld.DetachBody(sensor.SensorBody);
+                    worldSimulationWithPhysics.PhysicalWorld.DetachBody(sensor.SensorBody);
 
                     sensor.SensorBody = null;
                 }
@@ -102,14 +103,14 @@
             {
                 // Time to create a body
                 ref var position = ref entity.Get<WorldPosition>();
-                sensor.SensorBody = physicalWorld.CreateSensor(sensor.ActiveArea, position.Position, Quat.Identity,
-                    sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
+                sensor.SensorBody = worldSimulationWithPhysics.CreateSensor(sensor.ActiveArea, position.Position,
+                    Quat.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
                 // Set no entity on the sensor so anything colliding with the sensor can't do anything
                 sensor.SensorBody.SetEntityReference(default(Entity));
 
-                sensor.ActiveCollisions = physicalWorld.BodyStartCollisionRecording(sensor.SensorBody,
-                    sensor.MaxActiveContacts > 0 ?
+                sensor.ActiveCollisions = worldSimulationWithPhysics.PhysicalWorld.BodyStartCollisionRecording(
+                    sensor.SensorBody, sensor.MaxActiveContacts > 0 ?
                         sensor.MaxActiveContacts :
                         Constants.MAX_SIMULTANEOUS_COLLISIONS_SENSOR, out sensor.ActiveCollisionCountPtr);
 
@@ -119,7 +120,7 @@
             // Applying a new shape
             if (sensor.ApplyNewShape && sensor.SensorBody != null && sensor.ActiveArea != null)
             {
-                physicalWorld.ChangeBodyShape(sensor.SensorBody, sensor.ActiveArea);
+                worldSimulationWithPhysics.PhysicalWorld.ChangeBodyShape(sensor.SensorBody, sensor.ActiveArea);
                 sensor.ApplyNewShape = false;
             }
 
@@ -131,7 +132,7 @@
                 ref var position = ref entity.Get<WorldPosition>();
 
                 // TODO: should sensors have their rotation also apply? (see also above in the creation)
-                physicalWorld.SetBodyPosition(sensor.SensorBody, position.Position);
+                worldSimulationWithPhysics.PhysicalWorld.SetBodyPosition(sensor.SensorBody, position.Position);
             }
         }
 

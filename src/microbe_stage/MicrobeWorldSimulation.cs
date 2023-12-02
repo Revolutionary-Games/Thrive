@@ -160,7 +160,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
-        physicsSensorSystem = new PhysicsSensorSystem(physics, EntitySystem);
+        physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
