@@ -128,6 +128,14 @@ public class PhysicalWorld : IDisposable
             new JVec3(position), new JQuat(rotation), addToWorld));
     }
 
+    public NativePhysicsBody CreateSensor(PhysicsShape shape, Vector3 position, Quat rotation,
+        bool detectSleepingBodies, bool detectStaticBodies = false)
+    {
+        return new NativePhysicsBody(NativeMethods.PhysicalWorldCreateSensor(AccessWorldInternal(),
+            shape.AccessShapeInternal(),
+            new JVec3(position), new JQuat(rotation), detectSleepingBodies, detectStaticBodies));
+    }
+
     /// <summary>
     ///   Adds an existing body back to this world
     /// </summary>
@@ -402,6 +410,12 @@ public class PhysicalWorld : IDisposable
         receiverOfAddressOfCollisionCount = NativeMethods.PhysicsBodyEnableCollisionRecording(AccessWorldInternal(),
             body.AccessBodyInternal(), arrayAddress, maxRecordedCollisions);
 
+        if (receiverOfAddressOfCollisionCount == IntPtr.Zero)
+        {
+            GD.PrintErr("Failed to start collision recording, result count variable pointer is null");
+            throw new Exception("Native side collision recording start failed");
+        }
+
         return collisionsArray;
     }
 
@@ -554,6 +568,11 @@ internal static partial class NativeMethods
     [DllImport("thrive_native")]
     internal static extern IntPtr PhysicalWorldCreateStaticBody(IntPtr physicalWorld, IntPtr shape,
         JVec3 position, JQuat rotation, bool addToWorld);
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr PhysicalWorldCreateSensor(IntPtr physicalWorld, IntPtr shape,
+        JVec3 position, JQuat rotation, bool detectSleepingBodies,
+        bool detectStaticBodies);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicalWorldAddBody(IntPtr physicalWorld, IntPtr body, bool activate);

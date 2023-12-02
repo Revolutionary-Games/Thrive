@@ -50,6 +50,12 @@
                 return;
             }
 
+            if (entity.Has<MicrobeColonyMember>())
+            {
+                GD.PrintErr("Colony members shouldn't run movement system");
+                return;
+            }
+
             ref var organelles = ref entity.Get<OrganelleContainer>();
             ref var control = ref entity.Get<MicrobeControl>();
 
@@ -154,7 +160,8 @@
             }
 
             // Base movement force
-            float force = Constants.BASE_MOVEMENT_FORCE;
+            float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
+                cellProperties.MembraneRigidity, organelles.HexCount);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
@@ -178,7 +185,9 @@
                 }
             }
 
-            if (control.MovementDirection != Vector3.Zero && entity.Has<MicrobeColony>())
+            bool hasColony = entity.Has<MicrobeColony>();
+
+            if (control.MovementDirection != Vector3.Zero && hasColony)
             {
                 CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection, delta,
                     ref force);
@@ -203,7 +212,8 @@
                     entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
                 }
 
-                force *= mass / 1000.0f * CheatManager.Speed;
+                // There's an additional divisor here to make the speed cheat reasonable
+                force *= mass / 1000.0f * CheatManager.Speed / 4;
             }
 
             var movementVector = control.MovementDirection * force;
@@ -211,6 +221,26 @@
             // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
             // by the transform)
             movementVector += CalculateMovementFromSlimeJets(ref organelles);
+
+            // Handle colony jets
+            if (hasColony)
+            {
+                // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
+                // be split into many methods to allow sharing the variable
+                ref var colony = ref entity.Get<MicrobeColony>();
+
+                foreach (var colonyMember in colony.ColonyMembers)
+                {
+                    // This doesn't really hurt as the slime jets were consumed above but for consistency with
+                    // basically all other places code like this is needed we skip the leader here
+                    if (colonyMember == entity)
+                        continue;
+
+                    ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+
+                    movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                }
+            }
 
             // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
             // vector to work correctly

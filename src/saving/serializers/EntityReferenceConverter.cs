@@ -3,8 +3,8 @@ using DefaultEcs;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Handles converting entity references to JSON and back into dummy references that
-///   <see cref="EntityWorldConverter"/> resolves on load
+///   Handles converting entity references to JSON and back into newly created entities. Mapping from old to new is
+///   stored in <see cref="SaveContext.OldToNewEntityMapping"/>
 /// </summary>
 public class EntityReferenceConverter : JsonConverter<Entity>
 {

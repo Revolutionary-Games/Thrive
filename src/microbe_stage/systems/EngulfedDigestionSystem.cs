@@ -90,10 +90,6 @@
 
                 ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
-                // Skip processing things that aren't currently fully ingested
-                if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
-                    continue;
-
                 // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
                 // is overloaded
                 if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)

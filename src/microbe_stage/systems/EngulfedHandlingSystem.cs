@@ -12,12 +12,6 @@
     ///   Handles <see cref="Engulfable"/> entities that are currently engulfed or have been engulfed before and should
     ///   heal
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: implement safety against being engulfed by a dead entity at which point the engulfable should be
-    ///     automatically freed from engulfment
-    ///   </para>
-    /// </remarks>
     [With(typeof(Engulfable))]
     [With(typeof(Engulfer))]
     [With(typeof(Health))]
@@ -82,8 +76,9 @@
                         KillEngulfed(entity, ref health, ref engulfable);
                 }
 
-                // If the engulfing entity is dead, then this should have been ejected
-                // See the TODO in the remarks section
+                // If the engulfing entity is dead, then this should have been ejected. The simulation world also has
+                // a on entity destroy callback that should do this so things are going pretty wrong if this is
+                // triggered
                 if (!engulfable.HostileEngulfer.IsAlive)
                 {
                     GD.PrintErr("Entity is stuck inside a dead engulfer!");

@@ -153,7 +153,8 @@
         /// </remarks>
         public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
             in Entity entity, Species species, IWorldSimulation worldSimulation, ISpawnSystem spawnerToRegisterWith,
-            ModifyDividedCellCallback? customizeCallback)
+            ModifyDividedCellCallback? customizeCallback,
+            MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
         {
             if (organelles.Organelles == null)
                 throw new InvalidOperationException("Organelles not initialized");
@@ -224,6 +225,34 @@
                 //
                 // distanceRight += ;
             }
+            else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                     multicellularSpawnState != MulticellularSpawnState.Bud)
+            {
+                // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
+                bool first = true;
+
+                foreach (var eventualMember in earlyMulticellularSpecies.Cells)
+                {
+                    // Skip lead cell
+                    if (first)
+                    {
+                        first = false;
+                        continue;
+                    }
+
+                    var memberPosition = Hex.AxialToCartesian(eventualMember.Position);
+
+                    // TODO: should the 1.5f multiplier be kept here
+                    var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
+                        -memberPosition,
+                        eventualMember.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
+
+                    if (distance > distanceRight)
+                    {
+                        distanceRight = distance;
+                    }
+                }
+            }
 
             float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
 
@@ -246,7 +275,7 @@
 
             // Create the one daughter cell.
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-                true, null, out var copyEntity);
+                true, null, out var copyEntity, multicellularSpawnState);
 
             // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
             // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
@@ -486,14 +515,21 @@
         ///   (<see cref="newProperties"/> applies instead). Note if species object instance changes from what it
         ///   was before, the code calling this method must do that adjustment manually.
         /// </param>
+        /// <param name="worldSimulation">
+        ///   Needed when resetting multicellular growth as that needs to delete colony cells
+        /// </param>
         public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
-            ICellProperties newProperties, Species baseReproductionCostFrom)
+            ICellProperties newProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
             // Copy new cell type properties
             cellProperties.MembraneType = newProperties.MembraneType;
             cellProperties.IsBacteria = newProperties.IsBacteria;
             cellProperties.Colour = newProperties.Colour;
             cellProperties.MembraneRigidity = newProperties.MembraneRigidity;
+
+            // Update the enzyme required for digestion
+            entity.Get<Engulfable>().RequisiteEnzymeToDigest =
+                SimulationParameters.Instance.GetEnzyme(cellProperties.MembraneType.DissolverEnzyme);
 
             ref var spatial = ref entity.Get<SpatialInstance>();
 
@@ -504,7 +540,7 @@
             // Reset all the duplicates organelles / reproduction progress of the entity
             // This also resets multicellular creature's reproduction progress
             organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                entity, newProperties, baseReproductionCostFrom);
+                entity, newProperties, baseReproductionCostFrom, worldSimulation);
 
             // Reset runtime colour
             if (entity.Has<ColourAnimation>())
@@ -513,6 +549,15 @@
                 colourAnimation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(newProperties.Colour);
 
                 colourAnimation.UpdateAnimationForNewDefaultColour();
+            }
+
+            // Reset multicellular cost if this is multicellular
+            if (baseReproductionCostFrom is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                entity.Has<MulticellularGrowth>())
+            {
+                ref var growth = ref entity.Get<MulticellularGrowth>();
+
+                growth.CalculateTotalBodyPlanCompounds(earlyMulticellularSpecies);
             }
         }
 

@@ -37,6 +37,7 @@ public static class Constants
     public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
     public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
     public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
+    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
 
     /// <summary>
     ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
@@ -59,6 +60,19 @@ public static class Constants
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    /// <summary>
+    ///   Needed to get the cell positions when creating the actual colonies to line up where they should.
+    ///   TODO: figure out a better approach to multicellular cell positioning than this to avoid gaps (or maybe a post
+    ///   process step when membranes are ready to pull cells closer to close up any gaps?)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Lowering this makes up/down direction cells closer to touching, but increases overlap on horizontally next
+    ///     to each other.
+    ///   </para>
+    /// </remarks>
+    public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
@@ -165,9 +179,18 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 50.0f;
+    public const float FLAGELLA_BASE_FORCE = 60.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1200.0f;
+    public const float BASE_MOVEMENT_FORCE = 1400.0f;
+
+    /// <summary>
+    ///   How much extra base movement is given per hex. Only applies between
+    ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
+    /// </summary>
+    public const float BASE_MOVEMENT_PER_HEX = 45;
+
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -200,11 +223,27 @@ public static class Constants
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
     public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+
+    /// <summary>
+    ///   Limits how often the cilia samples the rotation speed it should be at. Also rate limits how often the cilia
+    ///   pull physics is applied.
+    /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
-    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
-    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
+
+    /// <summary>
+    ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
+    ///   avoid having to create a ton of physics sensors.
+    /// </summary>
+    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
+
+    /// <summary>
+    ///   1 means that each cilia counts as 1 in the pulling force
+    /// </summary>
+    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
@@ -346,7 +385,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 10000.0f;
+    public const float MUCILAGE_JET_FACTOR = 100000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -363,7 +402,7 @@ public static class Constants
     public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
 
     public const float CHUNK_PHYSICS_DAMPING = 0.2f;
-    public const float MICROBE_PHYSICS_DAMPING = 0.97f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.99f;
 
     /// <summary>
     ///   This only really matters when cells are dead
@@ -420,6 +459,11 @@ public static class Constants
     ///   recording buffer cache work better (as it should hopefully put these two categories to separate buckets)
     /// </summary>
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
+
+    /// <summary>
+    ///   How many collision a default sensor can detect at once
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -516,9 +560,11 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Cells need at least this much ATP to regenerate health passively
+    ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
+    ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to
+    ///   constant osmoregulation and processes running.
     /// </summary>
-    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 1;
+    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -624,10 +670,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
-    // TODO: unify the following two variables
-    public const float ENGULF_EJECTION_VELOCITY = 5.0f;
-
-    public const float ENGULF_EJECTION_FORCE = 10.0f;
+    public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
@@ -700,9 +743,14 @@ public static class Constants
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
-    ///   Damage a single pilus stab does
+    ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 20.0f;
+    public const float PILUS_BASE_DAMAGE = 240.0f;
+
+    /// <summary>
+    ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
+    /// </summary>
+    public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
@@ -1265,6 +1313,13 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
+
+    /// <summary>
+    ///   If membrane scene is updated this should be updated as well
+    /// </summary>
+    public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 

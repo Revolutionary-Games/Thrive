@@ -6,19 +6,19 @@
     using DefaultEcs.Threading;
 
     /// <summary>
-    ///   Applies <see cref="RenderOrderOverride"/>
+    ///   Applies <see cref="RenderPriorityOverride"/>
     /// </summary>
-    [With(typeof(RenderOrderOverride))]
+    [With(typeof(RenderPriorityOverride))]
     [With(typeof(EntityMaterial))]
-    public sealed class RenderOrderSystem : AEntitySetSystem<float>
+    public sealed class RenderPrioritySystem : AEntitySetSystem<float>
     {
-        public RenderOrderSystem(World world, IParallelRunner runner) : base(world, runner)
+        public RenderPrioritySystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 
         protected override void Update(float delta, in Entity entity)
         {
-            ref var renderOrder = ref entity.Get<RenderOrderOverride>();
+            ref var renderOrder = ref entity.Get<RenderPriorityOverride>();
 
             if (renderOrder.RenderPriorityApplied)
                 return;

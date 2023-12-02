@@ -13,7 +13,8 @@
         public bool RemoveAngularVelocity;
 
         /// <summary>
-        ///   Disables a particles emitter if there is one on the entity spatial root
+        ///   Disables a particles emitter if there is one on the entity spatial root or the first child. Will print an
+        ///   error if missing.
         /// </summary>
         public bool DisableParticles;
 

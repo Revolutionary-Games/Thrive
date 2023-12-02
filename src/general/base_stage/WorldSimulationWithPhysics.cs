@@ -54,6 +54,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         return body;
     }
 
+    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quat rotation,
+        bool detectSleepingBodies = false, bool detectStaticBodies = false)
+    {
+        var body = physics.CreateSensor(sensorShape, position, rotation, detectSleepingBodies, detectStaticBodies);
+        createdBodies.Add(body);
+        return body;
+    }
+
     public void DestroyBody(NativePhysicsBody body)
     {
         if (!createdBodies.Remove(body))

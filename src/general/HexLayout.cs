@@ -34,6 +34,16 @@ public abstract class HexLayout<T> : ICollection<T>
     }
 
     /// <summary>
+    ///   Derived type JSON constructor (for types that need this to force proper deserialization)
+    /// </summary>
+    protected HexLayout(List<T> hexes, Action<T>? onAdded, Action<T>? onRemoved)
+    {
+        existingHexes = hexes;
+        this.onAdded = onAdded;
+        this.onRemoved = onRemoved;
+    }
+
+    /// <summary>
     ///   Number of contained hex-based elements
     /// </summary>
     public int Count => existingHexes.Count;

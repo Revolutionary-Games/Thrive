@@ -29,11 +29,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PhysicsBodyCreationSystem physicsBodyCreationSystem = null!;
     private PhysicsBodyDisablingSystem physicsBodyDisablingSystem = null!;
     private PhysicsCollisionManagementSystem physicsCollisionManagementSystem = null!;
+    private PhysicsSensorSystem physicsSensorSystem = null!;
     private CollisionShapeLoaderSystem collisionShapeLoaderSystem = null!;
     private PhysicsUpdateAndPositionSystem physicsUpdateAndPositionSystem = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
-
-    // private RenderOrderSystem renderOrderSystem = null! = null!;
 
     private SimpleShapeCreatorSystem simpleShapeCreatorSystem = null!;
     private SoundEffectSystem soundEffectSystem = null!;
@@ -77,10 +76,15 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
+    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
+
+    // Multicellular systems
+    private DelayedColonyOperationSystem delayedColonyOperationSystem = null!;
+    private MulticellularGrowthSystem multicellularGrowthSystem = null!;
 
     private EntitySet cellCountingEntitySet = null!;
 
@@ -148,7 +152,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         damageOnTouchSystem = new DamageOnTouchSystem(this, EntitySystem, couldParallelize);
         disallowPlayerBodySleepSystem = new DisallowPlayerBodySleepSystem(physics, EntitySystem);
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
-        fadeOutActionSystem = new FadeOutActionSystem(this, EntitySystem, couldParallelize);
+        fadeOutActionSystem = new FadeOutActionSystem(this, cloudSystem, EntitySystem, couldParallelize);
         pathBasedSceneLoader = new PathBasedSceneLoader(EntitySystem, nonParallelRunner);
         physicsBodyControlSystem = new PhysicsBodyControlSystem(physics, EntitySystem, couldParallelize);
         physicsBodyDisablingSystem = new PhysicsBodyDisablingSystem(physics, EntitySystem);
@@ -156,6 +160,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
+        physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
@@ -173,7 +178,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         colonyBindingSystem = new ColonyBindingSystem(this, EntitySystem, couldParallelize);
         colonyCompoundDistributionSystem = new ColonyCompoundDistributionSystem(EntitySystem, couldParallelize);
-        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(EntitySystem, couldParallelize);
+        colonyStatsUpdateSystem = new ColonyStatsUpdateSystem(this, EntitySystem, couldParallelize);
 
         // TODO: clouds currently only allow 2 thread to absorb at once
         compoundAbsorptionSystem = new CompoundAbsorptionSystem(cloudSystem, EntitySystem, parallelRunner);
@@ -195,11 +200,12 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
-        organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
+        organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
+        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
@@ -216,6 +222,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
         engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
 
+        delayedColonyOperationSystem =
+            new DelayedColonyOperationSystem(this, SpawnSystem, EntitySystem, couldParallelize);
+        multicellularGrowthSystem = new MulticellularGrowthSystem(this, SpawnSystem, EntitySystem, parallelRunner);
+
         CloudSystem = cloudSystem;
 
         cellCountingEntitySet = EntitySystem.GetEntities().With<CellProperties>().AsSet();
@@ -223,6 +233,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         physics.RemoveGravity();
 
         OnInitialized();
+
+        // In case this is loaded from a save ensure the next save has correct ignore entities
+        entitiesToNotSave.SetExtraIgnoreSource(queuedForDelete);
     }
 
     /// <summary>
@@ -235,6 +248,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
+        multicellularGrowthSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }
@@ -299,6 +313,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         predefinedVisualLoaderSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
         animationControlSystem.Update(delta);
+        microbeRenderPrioritySystem.Update(delta);
 
         simpleShapeCreatorSystem.Update(delta);
         collisionShapeLoaderSystem.Update(delta);
@@ -337,6 +352,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.Update(delta);
 
         microbeReproductionSystem.Update(delta);
+        multicellularGrowthSystem.Update(delta);
         organelleComponentFetchSystem.Update(delta);
 
         if (RunAI)
@@ -366,10 +382,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         organelleTickSystem.Update(delta);
 
+        physicsSensorSystem.Update(delta);
+
         fadeOutActionSystem.Update(delta);
         physicsBodyControlSystem.Update(delta);
 
         colonyBindingSystem.Update(delta);
+        delayedColonyOperationSystem.Update(delta);
 
         // renderOrderSystem.Update(delta);
 
@@ -395,8 +414,14 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
+        // This doesn't seem to be required as the bodies are fully destroyed anyway so they can't record anything
+        // physicsCollisionManagementSystem.OnEntityDestroyed(entity);
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
+        physicsSensorSystem.OnEntityDestroyed(entity);
+
+        engulfingSystem.OnEntityDestroyed(entity);
+        colonyStatsUpdateSystem.OnEntityDestroyed(entity);
     }
 
     protected override void OnPlayerPositionSet(Vector3 playerPosition)
@@ -439,6 +464,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             physicsBodyCreationSystem.Dispose();
             physicsBodyDisablingSystem.Dispose();
             physicsCollisionManagementSystem.Dispose();
+            physicsSensorSystem.Dispose();
             physicsUpdateAndPositionSystem.Dispose();
             collisionShapeLoaderSystem.Dispose();
             predefinedVisualLoaderSystem.Dispose();
@@ -476,10 +502,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             pilusDamageSystem.Dispose();
             slimeSlowdownSystem.Dispose();
             microbePhysicsCreationAndSizeSystem.Dispose();
+            microbeRenderPrioritySystem.Dispose();
             microbeReproductionSystem.Dispose();
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();
             unneededCompoundVentingSystem.Dispose();
+            delayedColonyOperationSystem.Dispose();
+            multicellularGrowthSystem.Dispose();
 
             CameraFollowSystem.Dispose();
             ProcessSystem.Dispose();

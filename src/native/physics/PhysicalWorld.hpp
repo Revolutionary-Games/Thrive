@@ -72,6 +72,11 @@ public:
     Ref<PhysicsBody> CreateStaticBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
         JPH::Quat rotation = JPH::Quat::sIdentity(), bool addToWorld = true);
 
+    /// \brief Create a sensor that doesn't react to physics forces but still can record active collisions (overlaps)
+    Ref<PhysicsBody> CreateSensor(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+        JPH::Quat rotation = JPH::Quat::sIdentity(), JPH::EMotionType motionType = JPH::EMotionType::Static,
+        bool detectStaticBodies = false);
+
     /// \brief Add a body that has been created but not added to the physics simulation in this world
     void AddBody(PhysicsBody& body, bool activate);
 
@@ -220,7 +225,7 @@ private:
 
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
         JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity(),
-        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All);
+        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All, bool isSensor = false);
 
     /// \brief Called after body has been created
     Ref<PhysicsBody> OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld);

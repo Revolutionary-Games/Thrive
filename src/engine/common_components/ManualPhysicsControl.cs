@@ -27,4 +27,17 @@
         /// </remarks>
         public bool PhysicsApplied;
     }
+
+    public static class ManualPhysicsControlHelpers
+    {
+        /// <summary>
+        ///   Resets any accumulated impulse and rotation on this control. Used when enabling disabled bodies as the
+        ///   bodies may have accumulated a ton of force from some system.
+        /// </summary>
+        public static void ResetAccumulatedForce(this ref ManualPhysicsControl manualPhysicsControl)
+        {
+            manualPhysicsControl.ImpulseToGive = Vector3.Zero;
+            manualPhysicsControl.AngularImpulseToGive = Vector3.Zero;
+        }
+    }
 }

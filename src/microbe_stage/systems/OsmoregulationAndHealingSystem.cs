@@ -22,6 +22,7 @@
     [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(Health))]
+    [ReadsComponent(typeof(MicrobeColony))]
     public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;
@@ -74,7 +75,7 @@
                 if (compounds.TakeCompound(atp, cost) < cost)
                 {
                     // Ran out of ATP, disable engulf
-                    control.State = MicrobeState.Normal;
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
                 }
             }
         }

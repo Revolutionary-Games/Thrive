@@ -6,6 +6,7 @@
     using System.Linq;
     using Components;
     using DefaultEcs;
+    using DefaultEcs.Command;
     using DefaultEcs.System;
     using Godot;
     using World = DefaultEcs.World;
@@ -32,12 +33,12 @@
     [With(typeof(SpatialInstance))]
     [With(typeof(SpeciesMember))]
     [WritesToComponent(typeof(Engulfable))]
-    [WritesToComponent(typeof(AttachedChildren))]
     [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(RenderPriorityOverride))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
-    [ReadsComponent(typeof(PhysicsShapeHolder))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsOnMainThread]
@@ -112,6 +113,37 @@
             return true;
         }
 
+        /// <summary>
+        ///   Eject all engulfables of a destroyed entity (if it is an engulfer)
+        /// </summary>
+        public void OnEntityDestroyed(in Entity entity)
+        {
+            if (!entity.Has<Engulfer>())
+                return;
+
+            ref var engulfer = ref entity.Get<Engulfer>();
+
+            if (engulfer.EngulfedObjects is not { Count: > 0 })
+                return;
+
+            // Immediately force eject all the engulfed objects
+            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
+            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
+            {
+                var engulfableObject = engulfer.EngulfedObjects![i];
+
+                if (!engulfableObject.Has<Engulfable>())
+                {
+                    GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
+                    break;
+                }
+
+                ref var engulfable = ref engulfableObject.Get<Engulfable>();
+
+                CompleteEjection(ref engulfer, entity, ref engulfable, engulfableObject, false);
+            }
+        }
+
         protected override void Update(float delta, in Entity entity)
         {
             ref var engulfer = ref entity.Get<Engulfer>();
@@ -138,6 +170,8 @@
             ref var control = ref entity.Get<MicrobeControl>();
             ref var cellProperties = ref entity.Get<CellProperties>();
 
+            bool checkEngulfStartCollisions = false;
+
             var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
             if (actuallyEngulfing)
@@ -157,25 +191,19 @@
 
                 if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
                 {
-                    control.State = MicrobeState.Normal;
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
                 }
                 else
                 {
-                    if (entity.Has<MicrobeColonyMember>())
-                    {
-                        // TODO: fix colony members to be able to engulf things
-                        throw new NotImplementedException();
-                    }
-
-                    CheckStartEngulfing(ref entity.Get<CollisionManagement>(), ref cellProperties, ref engulfer,
-                        entity);
+                    checkEngulfStartCollisions = true;
                 }
             }
             else
             {
                 if (control.State == MicrobeState.Engulf)
                 {
-                    // Force out of incorrect state
+                    // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
+                    // colony that can engulf even if the leader can't)
                     control.State = MicrobeState.Normal;
                 }
             }
@@ -186,11 +214,29 @@
             if (actuallyEngulfing)
             {
                 // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
-                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0, delta);
+                soundPlayer.PlayGraduallyTurningUpLoopingSound(Constants.MICROBE_ENGULFING_MODE_SOUND, 0.6f, 0,
+                    delta);
             }
             else
             {
                 soundPlayer.PlayGraduallyTurningDownSound(Constants.MICROBE_ENGULFING_MODE_SOUND, delta);
+            }
+
+            bool hasColony = false;
+
+            // Colony leader detects all collisions, even when not in engulf mode, as long as colony is in engulf mode
+            if (entity.Has<MicrobeColony>())
+            {
+                hasColony = true;
+
+                if (entity.Get<MicrobeColony>().ColonyState == MicrobeState.Engulf)
+                    checkEngulfStartCollisions = true;
+            }
+
+            if (checkEngulfStartCollisions)
+            {
+                CheckStartEngulfing(ref entity.Get<CollisionManagement>(), ref cellProperties, ref engulfer,
+                    entity, hasColony);
             }
 
             HandleExpiringExpelledObjects(ref engulfer, delta);
@@ -456,9 +502,20 @@
 
             StartBulkTransport(ref engulfable, ref attached, animationSpeed, initialEndosomeScale);
 
-            // TODO: render priority
-            // We want the ingested material to be always visible over the organelles
-            // target.RenderPriority += OrganelleMaxRenderPriority + 1;
+            // Update render priority in this special case (normal case goes through OnBecomeEngulfed)
+            if (targetEntity.Has<RenderPriorityOverride>() && engulferEntity.Has<RenderPriorityOverride>())
+            {
+                var engulferPriority = engulferEntity.Get<RenderPriorityOverride>().RenderPriority;
+
+                ref var renderPriority = ref targetEntity.Get<RenderPriorityOverride>();
+
+                // Make the render priority of our organelles be on top of the highest possible render priority
+                // of the hostile engulfer's organelles
+                renderPriority.RenderPriority = engulferPriority + Constants.HEX_MAX_RENDER_PRIORITY + 2;
+                renderPriority.RenderPriorityApplied = false;
+
+                // The above doesn't take recursive engulfing into account but that's probably fine enough in this case
+            }
 
             // Physics should be already handled
 
@@ -777,7 +834,7 @@
         }
 
         private void CheckStartEngulfing(ref CollisionManagement collisionManagement, ref CellProperties cellProperties,
-            ref Engulfer engulfer, in Entity entity)
+            ref Engulfer engulfer, in Entity entity, bool resolveColony)
         {
             ref var ourExtraData = ref entity.Get<MicrobePhysicsExtraData>();
 
@@ -811,11 +868,28 @@
                     continue;
 
                 // Pili don't block engulfing, check starting engulfing
-                if (CheckStartEngulfingOnCandidate(ref cellProperties, ref engulfer, ref species, in entity,
-                        collision.SecondEntity))
+                var realEngulfer = entity;
+
+                if (resolveColony)
                 {
-                    // Engulf at most one thing per update, if the collision still exist next update we'll pull it in
-                    // then
+                    // Need to resolve the real microbe that collided
+                    ref var colony = ref entity.Get<MicrobeColony>();
+                    if (colony.GetMicrobeFromSubShape(ref ourExtraData, collision.FirstSubShapeData, out var adjusted))
+                    {
+                        realEngulfer = adjusted;
+                    }
+                }
+
+                ref var actualEngulfer = ref engulfer;
+
+                ref var actualCellProperties =
+                    ref realEngulfer == entity ? ref cellProperties : ref realEngulfer.Get<CellProperties>();
+
+                if (CheckStartEngulfingOnCandidate(ref actualCellProperties, ref actualEngulfer, ref species,
+                        realEngulfer, collision.SecondEntity))
+                {
+                    // Engulf at most one thing per update, if further collisions still exist next update we'll pull
+                    // it in then
                     return;
                 }
             }
@@ -926,21 +1000,30 @@
 
             CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
 
-            if (targetEntity.Has<MicrobeColonyMember>())
+            EntityCommandRecorder? recorder = null;
+
+            // Steal this cell from a colony if it is in a colony currently
+            // Right now this causes extra operations for deleting the attach component but avoiding that would
+            // complicate the code a lot here
+            if (targetEntity.Has<MicrobeColonyMember>() || targetEntity.Has<MicrobeColony>())
             {
-                // Steal this cell from a colony if it is in a colony currently
+                recorder ??= worldSimulation.StartRecordingEntityCommands();
 
-                // TODO: implement eating members from colonies
-                throw new NotImplementedException();
-
-                // Colony?.RemoveFromColony(targetEntity);
+                if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
+                {
+                    GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
+                    return false;
+                }
             }
 
             var relativePosition = CalculateEngulfableTargetPosition(ref engulferCellProperties, ref engulferPosition,
                 radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random, out var ingestionPoint,
                 out var boundingBoxSize);
 
-            engulfable.OnBecomeEngulfed(targetEntity);
+            ref var engulferPriority = ref engulferEntity.Get<RenderPriorityOverride>();
+
+            // This sets the target render priority
+            engulfable.OnBecomeEngulfed(targetEntity, engulferPriority.RenderPriority);
 
             // This is setup in OnBecomeEngulfed so this code must be after that
             var originalScale = engulfable.OriginalScale;
@@ -958,7 +1041,7 @@
             }
             else
             {
-                var recorder = worldSimulation.StartRecordingEntityCommands();
+                recorder ??= worldSimulation.StartRecordingEntityCommands();
 
                 var targetRecord = recorder.Record(targetEntity);
 
@@ -969,13 +1052,10 @@
                     CalculateInitialEndosomeScale());
 
                 targetRecord.Set(attached);
-
-                worldSimulation.FinishRecordingEntityCommands(recorder);
             }
 
-            // TODO: render priority
-            // We want the ingested material to be always visible over the organelles
-            // target.RenderPriority += OrganelleMaxRenderPriority + 1;
+            if (recorder != null)
+                worldSimulation.FinishRecordingEntityCommands(recorder);
 
             // Disable physics for the engulfed entity
             ref var physics = ref targetEntity.Get<Physics>();
@@ -1121,7 +1201,7 @@
         }
 
         private void CompleteEjection(ref Engulfer engulfer, in Entity entity, ref Engulfable engulfable,
-            in Entity engulfableObject)
+            in Entity engulfableObject, bool canMoveToHigherLevelEngulfer = true)
         {
             if (engulfer.EngulfedObjects == null)
             {
@@ -1177,27 +1257,6 @@
                 }
             }
 
-            // Try to get mass for ejection impulse strength calculation
-            float mass = 1000;
-            if (engulfableObject.Has<PhysicsShapeHolder>())
-            {
-                ref var shape = ref engulfableObject.Get<PhysicsShapeHolder>();
-
-                if (shape.Shape != null)
-                {
-                    mass = shape.Shape.GetMass();
-                }
-                else
-                {
-                    GD.PrintErr("Expelled engulfed object doesn't have physics shape initialized, " +
-                        "ejection impulse won't be correctly calculated");
-                }
-            }
-            else
-            {
-                GD.PrintErr("Engulfed object doesn't have shape component, can't know mass for ejection impulse");
-            }
-
             // Re-enable physics
             ref var physics = ref engulfableObject.Get<Physics>();
             physics.BodyDisabled = false;
@@ -1206,12 +1265,13 @@
 
             // And give an impulse
             // TODO: check is it correct to rotate by the rotation here on the relative position for this force
-            var impulse = engulferPosition.Rotation.Xform(relativePosition) * mass * Constants.ENGULF_EJECTION_FORCE;
+            var relativeVelocity =
+                engulferPosition.Rotation.Xform(relativePosition) * Constants.ENGULF_EJECTION_VELOCITY;
 
-            // Apply outwards ejection force
-            ref var manualPhysicsControl = ref engulfableObject.Get<ManualPhysicsControl>();
-            manualPhysicsControl.ImpulseToGive += impulse + engulferVelocity;
-            manualPhysicsControl.PhysicsApplied = false;
+            // Apply outwards ejection speed
+            physics.Velocity = engulferVelocity + relativeVelocity;
+            physics.AngularVelocity = Vector3.Zero;
+            physics.VelocitiesApplied = false;
 
             // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
             // the hostile engulfer entity)
@@ -1225,7 +1285,7 @@
 
             phagosome?.Hide();
 
-            if (entity.Has<Engulfable>())
+            if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
             {
                 ref var engulfersEngulfable = ref entity.Get<Engulfable>();
 
@@ -1337,11 +1397,16 @@
                 // TODO: if state is ejecting then phagosome creation should be skipped to save creating an object that
                 // will be deleted in a few frames anyway
 
-                // TODO: render priority calculated properly
-                int maxRenderPriority = Constants.HEX_RENDER_PRIORITY_DISTANCE + 1;
+                // 1 is from membrane
+                int basePriority = 1 + Constants.HEX_MAX_RENDER_PRIORITY;
+
+                if (engulfedObject.Has<RenderPriorityOverride>())
+                {
+                    basePriority += engulfedObject.Get<RenderPriorityOverride>().RenderPriority;
+                }
 
                 // Form phagosome as it is missing
-                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, maxRenderPriority);
+                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
             }
 
             ref var relativePosition = ref engulfedObject.Get<AttachedToEntity>();
@@ -1473,9 +1538,17 @@
             engulfable.AdditionalEngulfableCompounds =
                 engulfable.CalculateAdditionalDigestibleCompounds(engulfableEntity);
 
-            engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
-                .Where(c => c.Key.Digestible)
-                .Sum(c => c.Value);
+            if (engulfableEntity.Has<CompoundStorage>())
+            {
+                engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
+                    .Where(c => c.Key.Digestible)
+                    .Sum(c => c.Value);
+            }
+            else
+            {
+                // This is a fallback against causing a crash here, but engulfing won't be able to digest anything
+                engulfable.InitialTotalEngulfableCompounds = 0;
+            }
 
             if (engulfable.AdditionalEngulfableCompounds != null)
             {

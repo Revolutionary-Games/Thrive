@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
@@ -12,9 +11,11 @@
     ///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
     ///   world at all)
     /// </summary>
+    [With(typeof(Physics))]
     [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(ManualPhysicsControl))]
     [RunsOnMainThread]
-    public sealed class PhysicsBodyDisablingSystem : AComponentSystem<float, Physics>
+    public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
 
@@ -57,43 +58,50 @@
             base.Dispose();
         }
 
-        protected override void Update(float state, Span<Physics> components)
+        protected override void Update(float delta, in Entity entity)
         {
-            foreach (ref Physics physics in components)
+            ref var physics = ref entity.Get<Physics>();
+
+            // Skip objects that are up to date
+            if (physics.InternalDisableState == physics.BodyDisabled)
+                return;
+
+            var body = physics.Body;
+            if (body == null)
+                return;
+
+            if (physics.InternalDisableState)
             {
-                // Skip objects that are up to date
-                if (physics.InternalDisableState == physics.BodyDisabled)
-                    continue;
+                // Need to restore body
+                physics.InternalDisableState = false;
 
-                var body = physics.Body;
-                if (body == null)
-                    continue;
-
-                if (physics.InternalDisableState)
+                // In case the body was recreated, then we need to skip this (as the body instance was not removed
+                // from the world by us)
+                if (disabledBodies.Remove(body))
                 {
-                    // Need to restore body
-                    physics.InternalDisableState = false;
+                    // TODO: should a new position be applied first?
+                    physicalWorld.AddBody(body);
+                }
 
-                    // In case the body was recreated, then we need to skip this (as the body instance was not removed
-                    // from the world by us)
-                    if (disabledBodies.Remove(body))
-                    {
-                        physicalWorld.AddBody(body);
-                    }
+                // Reset physics applied impulse which may have accumulated to be very large
+                if (entity.Has<ManualPhysicsControl>())
+                {
+                    ref var manual = ref entity.Get<ManualPhysicsControl>();
+                    manual.ResetAccumulatedForce();
+                }
+            }
+            else
+            {
+                // Disable the body
+                physics.InternalDisableState = true;
+
+                if (disabledBodies.Add(body))
+                {
+                    physicalWorld.DetachBody(body);
                 }
                 else
                 {
-                    // Disable the body
-                    physics.InternalDisableState = true;
-
-                    if (disabledBodies.Add(body))
-                    {
-                        physicalWorld.DetachBody(body);
-                    }
-                    else
-                    {
-                        GD.PrintErr("Body that was to be disabled was already disabled somehow");
-                    }
+                    GD.PrintErr("Body that was to be disabled was already disabled somehow");
                 }
             }
         }
