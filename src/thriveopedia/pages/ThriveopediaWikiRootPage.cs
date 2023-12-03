@@ -17,4 +17,9 @@ public class ThriveopediaWikiRootPage : ThriveopediaPage
     {
         ChangePage("OrganellesRoot");
     }
+
+    public void OnStagesPressed()
+    {
+        ChangePage("StagesRoot");
+    }
 }

@@ -62,17 +62,31 @@ rect_min_size = Vector2( 0, 10 )
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
 margin_top = 351.0
 margin_right = 864.0
-margin_bottom = 441.0
+margin_bottom = 491.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2" index="0"]
 margin_left = 307.0
 margin_right = 557.0
-margin_bottom = 90.0
+margin_bottom = 140.0
 custom_constants/separation = 10
 
-[node name="OrganellesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="0"]
+[node name="StagesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="0"]
 margin_right = 250.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "OPEN_ORGANELLES_PAGE"
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "STAGES"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OrganellesButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="1"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 hint_tooltip = "OPEN_ORGANELLES_PAGE"
 focus_neighbour_top = NodePath(".")
@@ -83,10 +97,10 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ComingSoonButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="1"]
-margin_top = 50.0
+[node name="ComingSoonButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer" index="2"]
+margin_top = 100.0
 margin_right = 250.0
-margin_bottom = 90.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_neighbour_top = NodePath(".")
 focus_previous = NodePath(".")
@@ -97,4 +111,5 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/StagesButton" to="." method="OnStagesPressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2/VBoxContainer/OrganellesButton" to="." method="OnOrganellesPressed"]

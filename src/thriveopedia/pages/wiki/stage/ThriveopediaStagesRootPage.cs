@@ -38,7 +38,7 @@ public class ThriveopediaStagesRootPage : ThriveopediaWikiPage
         {
             var button = (PageLinkButton)linkButtonScene.Instance();
 
-            button.Name = stage.Name;
+            button.DisplayName = stage.Name;
             button.IconPath = GetStageIconPath(stage);
             button.OpenLink = () => ChangePage(stage.InternalName);
             stageListContainer.AddChild(button);

@@ -38,14 +38,18 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
 
         var wiki = SimulationParameters.Instance.GetWiki();
 
-        GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
-            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
+        // Generate Stage Pages
 
         GeneratePage<ThriveopediaStagesRootPage>(pages, wiki.StagesRoot,
             "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.tscn");
 
         GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
             "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
+
+        // Generate Organelle Pages
+
+        GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
+            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
 
         GeneratePages<ThriveopediaOrganellePage>(pages, wiki.Organelles,
             "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
