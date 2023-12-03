@@ -869,9 +869,9 @@
         }
 
         /// <summary>
-        ///   Calculates the help and extra inertia caused by the colony member cells
+        ///   Calculates the total rotation rate of a colony. Physics shape is not currently used
         /// </summary>
-        public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
+        public static void CalculateRotationSpeed(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
         {
             float colonyRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);

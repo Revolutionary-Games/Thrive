@@ -241,24 +241,26 @@ public static class MicrobeInternalCalculations
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
     /// <param name="membraneType">
     ///   The membrane type. This must be known as it affects the membrane size (and thus radius of the cell and
-    ///   inertia)
+    ///   inertia) NOT CURRENTLY USED
     /// </param>
-    /// <param name="isBacteria">True when the species is bacteria</param>
+    /// <param name="isBacteria">True when the species is bacteria NOT CURRENTLY USED</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
     public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
         MembraneType membraneType, bool isBacteria)
     {
-        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+        // this ignores shape for now
+        //var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
-        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-            CalculateAverageDensity(organelles), isBacteria);
+        // this ignores shape for now
+        //var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+        //    CalculateAverageDensity(organelles), isBacteria);
 
         // This ignores pili right now, only the base microbe shape is calculated for inertia. If this is changed
         // the way the variant taking directly in the collision shape needs to be adjusted
 
-        return CalculateRotationSpeed(shape, organelles);
+        return CalculateRotationSpeed(organelles);
     }
 
     /// <summary>
@@ -267,17 +269,10 @@ public static class MicrobeInternalCalculations
     /// <remarks>
     ///   <para>
     ///     Microbe colonies help or hinder rotation. That calculation is in
-    ///     <see cref="Components.MicrobeColonyHelpers.CalculateRotationMultiplier"/>
+    ///     <see cref="Components.MicrobeColonyHelpers.CalculateRotationSpeed"/>
     ///   </para>
     /// </remarks>
     /// <returns>The rotation speed</returns>
-    public static float CalculateRotationSpeed(PhysicsShape shape, IEnumerable<IPositionedOrganelle> organelles)
-    {
-        shape.TestYRotationInertiaFactor();
-
-        return CalculateRotationSpeed(organelles);
-    }
-
     public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
     {
         float cilliaFactor = 0;
@@ -309,7 +304,7 @@ public static class MicrobeInternalCalculations
 
     /// <summary>
     ///   Converts the speed from
-    ///   <see cref="CalculateRotationSpeed(PhysicsShape,IEnumerable{IPositionedOrganelle})"/> to a user displayable
+    ///   <see cref="CalculateRotationSpeed(IEnumerable{IPositionedOrganelle})"/> to a user displayable
     ///   form
     /// </summary>
     /// <param name="rawSpeed">The raw speed value</param>

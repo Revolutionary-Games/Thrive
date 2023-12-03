@@ -179,7 +179,7 @@
                     {
                         // Update full colony rotation properties now with the physics shape
                         ref var colony = ref entity.Get<MicrobeColony>();
-                        colony.CalculateRotationMultiplier(shapeHolder.Shape);
+                        colony.CalculateRotationSpeed(shapeHolder.Shape);
                     }
 
                     // TODO: colony rotation rate update is elsewhere but it would make quite a bit of sense to move
@@ -406,6 +406,8 @@
         /// <summary>
         ///   Updates the microbe movement's used rotation rate. This is here as it is more efficient to calculate this
         ///   when the physics shape is also done.
+        ///
+        ///   Note that the PhysicsShape is not currently used in rotation calculations, and is retained for historical purposes
         /// </summary>
         private void UpdateRotationRate(PhysicsShape baseShape, ref OrganelleContainer organelleContainer)
         {
@@ -416,7 +418,7 @@
             }
 
             organelleContainer.RotationSpeed =
-                MicrobeInternalCalculations.CalculateRotationSpeed(baseShape, organelleContainer.Organelles);
+                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles);
         }
 
         private PhysicsShape CreatePilusShape(float size)
