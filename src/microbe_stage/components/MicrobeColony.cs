@@ -873,11 +873,12 @@
         /// </summary>
         public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
         {
-            float colonyRotation = 0;
+            float colonyRotation = MicrobeInternalCalculations
+                        .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                // this needs to be skipped here
+                // colony leader is set before the loop
                 if (colonyMember == colony.Leader)
                     continue;
 
@@ -890,7 +891,7 @@
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
                         .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!)
-                    * (1 + 0.05f * distanceSquared);
+                    * (1 + 0.03f * distanceSquared);
 
                 colonyRotation += memberRotation;
             }
