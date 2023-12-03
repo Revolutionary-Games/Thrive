@@ -251,10 +251,10 @@ public static class MicrobeInternalCalculations
         MembraneType membraneType, bool isBacteria)
     {
         // this ignores shape for now
-        //var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+        // var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
 
         // this ignores shape for now
-        //var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+        // var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
         //    CalculateAverageDensity(organelles), isBacteria);
 
         // This ignores pili right now, only the base microbe shape is calculated for inertia. If this is changed
