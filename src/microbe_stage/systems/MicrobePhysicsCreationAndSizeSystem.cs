@@ -406,8 +406,7 @@
         /// <summary>
         ///   Updates the microbe movement's used rotation rate. This is here as it is more efficient to calculate this
         ///   when the physics shape is also done.
-        ///
-        ///   Note that the PhysicsShape is not currently used in rotation calculations, and is retained for 
+        ///   Note that the PhysicsShape is not currently used in rotation calculations, and is retained for
         ///   historical purposes
         /// </summary>
         private void UpdateRotationRate(PhysicsShape baseShape, ref OrganelleContainer organelleContainer)
