@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -37,38 +38,18 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
 
         var wiki = SimulationParameters.Instance.GetWiki();
 
-        var organellesRootScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
-        var organellesRootPage = (ThriveopediaOrganellesRootPage)organellesRootScene.Instance();
-        organellesRootPage.PageContent = wiki.OrganellesRoot;
-        pages.Add(organellesRootPage);
+        GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
+            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellesRootPage.tscn");
 
-        var stagesRootScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.tscn");
-        var stagesRootPage = (ThriveopediaStagesRootPage)stagesRootScene.Instance();
-        stagesRootPage.PageContent = wiki.StagesRoot;
-        pages.Add(stagesRootPage);
+        GeneratePage<ThriveopediaStagesRootPage>(pages, wiki.StagesRoot,
+            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagesRootPage.tscn");
 
-        var organellePageScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn");
+        GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
+            "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
 
-        var stagePageScene =
-            GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
-
-        foreach (var stagePage in wiki.Stages)
-        {
-            var page = (ThriveopediaStagePage)stagePageScene.Instance();
-            page.PageContent = stagePage;
-            pages.Add(page);
-        }
-
-        foreach (var organellePage in wiki.Organelles)
-        {
-            var page = (ThriveopediaOrganellePage)organellePageScene.Instance();
-            page.PageContent = organellePage;
-            page.Organelle = SimulationParameters.Instance.GetOrganelleType(organellePage.InternalName);
-            pages.Add(page);
-        }
+        GeneratePages<ThriveopediaOrganellePage>(pages, wiki.Organelles,
+            "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
+            p => p.Organelle = SimulationParameters.Instance.GetOrganelleType(p.PageContent.InternalName));
 
         return pages;
     }
@@ -110,5 +91,31 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         }
 
         base.Dispose(disposing);
+    }
+
+    private static T GeneratePage<T>(List<ThriveopediaWikiPage> pageList, GameWiki.Page page, string scenePath)
+        where T : ThriveopediaWikiPage
+    {
+        var pageScene = GD.Load<PackedScene>(scenePath);
+        var pageInstance = (T)pageScene.Instance();
+        pageInstance.PageContent = page;
+        pageList.Add(pageInstance);
+
+        return pageInstance;
+    }
+
+    private static void GeneratePages<T>(List<ThriveopediaWikiPage> pageList, List<GameWiki.Page> pages,
+        string scenePath, Action<T>? extraDataInit = null)
+        where T : ThriveopediaWikiPage
+    {
+        var pageScene = GD.Load<PackedScene>(scenePath);
+
+        foreach (var page in pages)
+        {
+            var pageInstance = (T)pageScene.Instance();
+            pageInstance.PageContent = page;
+            extraDataInit?.Invoke(pageInstance);
+            pageList.Add(pageInstance);
+        }
     }
 }
