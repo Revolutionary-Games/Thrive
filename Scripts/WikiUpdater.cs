@@ -15,10 +15,15 @@ public static class WikiUpdater
 {
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string STAGES_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Stages";
+    private const string CONCEPTS_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Concepts";
+    private const string DEVELOPMENT_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Development";
+
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
+
     private const string INFO_BOX_SELECTOR = ".wikitable > tbody";
+    private const string CATEGORY_PAGES_SELECTOR = ".mw-category-group > ul > li";
 
     /// <summary>
     ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
@@ -49,22 +54,37 @@ public static class WikiUpdater
     /// </summary>
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
-        var organellesRootTask = FetchOrganellesRootPage(cancellationToken);
-        var organellesTask = FetchOrganellePages(cancellationToken);
-        var stagesRootTask = FetchStagesRootPage(cancellationToken);
-        var stagesTask = FetchStagePages(cancellationToken);
+        var organellesRootTask = FetchRootPage(ORGANELLE_CATEGORY, "Organelles", cancellationToken);
+        var stagesRootTask = FetchRootPage(STAGES_CATEGORY, "Stages", cancellationToken);
+        var conceptsRootTask = FetchRootPage(CONCEPTS_CATEGORY, "Concepts", cancellationToken);
+        var developmentRootTask = FetchRootPage(DEVELOPMENT_CATEGORY, "Development", cancellationToken);
+
+        var organellesTask = FetchPagesFromCategory(ORGANELLE_CATEGORY, "Organelle", cancellationToken);
+        var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
+        var conceptsTask = FetchPagesFromCategory(CONCEPTS_CATEGORY, "Concept", cancellationToken);
+        var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
 
         var organellesRoot = await organellesRootTask;
-        var organelles = await organellesTask;
+        var developmentRoot = await developmentRootTask;
+        var conceptsRoot = await conceptsRootTask;
         var stagesRoot = await stagesRootTask;
+
+        var organelles = await organellesTask;
+        var developmentPages = await developmentPagesTask;
+        var concepts = await conceptsTask;
         var stages = await stagesTask;
 
         var untranslatedWiki = new Wiki()
         {
             OrganellesRoot = organellesRoot.UntranslatedPage,
-            Organelles = organelles.Select(o => o.UntranslatedPage).ToList(),
             StagesRoot = stagesRoot.UntranslatedPage,
+            ConceptsRoot = conceptsRoot.UntranslatedPage,
+            DevelopmentRoot = developmentRoot.UntranslatedPage,
+
+            Organelles = organelles.Select(o => o.UntranslatedPage).ToList(),
             Stages = stages.Select(s => s.UntranslatedPage).ToList(),
+            Concepts = concepts.Select(c => c.UntranslatedPage).ToList(),
+            DevelopmentPages = developmentPages.Select(p => p.UntranslatedPage).ToList(),
         };
 
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
@@ -80,10 +100,14 @@ public static class WikiUpdater
         {
             organellesRoot,
             stagesRoot,
+            conceptsRoot,
+            developmentRoot,
         };
 
         pages.AddRange(organelles);
         pages.AddRange(stages);
+        pages.AddRange(concepts);
+        pages.AddRange(developmentPages);
 
         await InsertTranslatedPageContent(pages, cancellationToken);
 
@@ -92,137 +116,82 @@ public static class WikiUpdater
         return true;
     }
 
-    private static async Task<TranslationPair> FetchOrganellesRootPage(CancellationToken cancellationToken)
+    private static async Task<TranslationPair> FetchRootPage(string url, string categoryName, CancellationToken cancellationToken)
     {
-        ColourConsole.WriteInfoLine("Fetching organelles root page");
+        ColourConsole.WriteInfoLine($"Fetching {categoryName.ToLowerInvariant()} root page");
 
-        var body = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
+        var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+
+        var fullPageName = $"{categoryName}Root";
+        var translationKey = $"{categoryName.ToUpperInvariant()}_ROOT";
 
         var sections = GetMainBodySections(body);
-        var untranslatedSections = sections.Select(section => UntranslateSection(section, "ORGANELLES_ROOT")).ToList();
+        var untranslatedSections = sections.Select(section => UntranslateSection(section, translationKey)).ToList();
 
-        var untranslatedPage = new Wiki.Page("WIKI_PAGE_ORGANELLES_ROOT", "OrganellesRoot", ORGANELLE_CATEGORY,
+        var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{translationKey}", fullPageName, url,
             untranslatedSections);
-        var translatedPage = new Wiki.Page("Organelles", "OrganellesRoot", ORGANELLE_CATEGORY, sections);
+        var translatedPage = new Wiki.Page(categoryName, fullPageName, url, sections);
 
-        ColourConsole.WriteSuccessLine("Populated content for organelle root page");
+        ColourConsole.WriteSuccessLine($"Populated content for {categoryName.ToLowerInvariant()} root page");
 
         return new TranslationPair(untranslatedPage, translatedPage);
     }
 
-    private static async Task<List<TranslationPair>> FetchOrganellePages(CancellationToken cancellationToken)
+    private static async Task<List<TranslationPair>> FetchPagesFromCategory(string url, string pageType, CancellationToken cancellationToken)
     {
-        ColourConsole.WriteInfoLine("Fetching organelle pages");
+        ColourConsole.WriteInfoLine($"Fetching {pageType} pages");
 
-        // Get the list of organelles from the category page on the wiki
-        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
-        var organelles = categoryBody.QuerySelectorAll(".mw-category-group > ul > li");
+        // Get the list of pages from a category page on the wiki
+        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+        var pages = categoryBody.QuerySelectorAll(CATEGORY_PAGES_SELECTOR);
 
-        var organellePages = new List<TranslationPair>();
+        var allPages = new List<TranslationPair>();
 
-        foreach (var organelle in organelles)
+        foreach (var page in pages)
         {
-            var name = organelle.TextContent.Trim();
-            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
+            var name = page.TextContent.Trim();
+            var pageUrl = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
-            var untranslatedOrganelleName = name.ToUpperInvariant().Replace(" ", "_");
+            var untranslatedPageName = name.ToUpperInvariant().Replace(" ", "_");
 
-            ColourConsole.WriteInfoLine($"Found organelle {name}");
+            ColourConsole.WriteInfoLine($"Found {pageType} {name}");
 
-            var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+            var body = (await HtmlReader.RetrieveHtmlDocument(pageUrl, cancellationToken)).Body!;
 
-            // Get the internal name for cross-referencing against in-game data for the organelle
-            var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+            var translatedInfobox = new List<InfoboxField>();
+            var untranslatedInfobox = new List<InfoboxField>();
+
+            var internalName = string.Empty;
+
+            if (body.QuerySelector(".wikitable") != null)
+            {
+                internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+                (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(body, internalName);
+            }
 
             var sections = GetMainBodySections(body);
             var untranslatedSections = sections.Select(
-                section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
+                section => UntranslateSection(section, untranslatedPageName)).ToList();
 
             var untranslatedPage = new Wiki.Page(
-                $"WIKI_PAGE_{untranslatedOrganelleName}",
+                $"WIKI_PAGE_{untranslatedPageName}",
                 internalName,
-                url,
-                untranslatedSections);
-            var translatedPage = new Wiki.Page(
-                name,
-                internalName,
-                url,
-                sections);
-
-            organellePages.Add(new TranslationPair(untranslatedPage, translatedPage));
-
-            ColourConsole.WriteSuccessLine($"Populated content for organelle with internal name {internalName}");
-        }
-
-        return organellePages;
-    }
-
-    private static async Task<TranslationPair> FetchStagesRootPage(CancellationToken cancellationToken)
-    {
-        ColourConsole.WriteInfoLine("Fetching stages root page");
-
-        var body = (await HtmlReader.RetrieveHtmlDocument(STAGES_CATEGORY, cancellationToken)).Body!;
-
-        var sections = GetMainBodySections(body);
-        var untranslatedSections = sections.Select(section => UntranslateSection(section, "STAGES_ROOT")).ToList();
-
-        var untranslatedPage = new Wiki.Page("WIKI_PAGE_STAGES_ROOT", "StagesRoot", STAGES_CATEGORY,
-            untranslatedSections);
-        var translatedPage = new Wiki.Page("Stages", "StagesRoot", STAGES_CATEGORY, sections);
-
-        ColourConsole.WriteSuccessLine("Populated content for stages root page");
-
-        return new TranslationPair(untranslatedPage, translatedPage);
-    }
-
-    private static async Task<List<TranslationPair>> FetchStagePages(CancellationToken cancellationToken)
-    {
-        ColourConsole.WriteInfoLine("Fetching stage pages");
-
-        // Get the list of stages from the category page on the wiki
-        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(STAGES_CATEGORY, cancellationToken)).Body!;
-        var stages = categoryBody.QuerySelectorAll(".mw-category-group > ul > li");
-
-        var stagePages = new List<TranslationPair>();
-
-        foreach (var stage in stages)
-        {
-            var name = stage.TextContent.Trim();
-            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
-
-            var untranslatedStageName = name.ToUpperInvariant().Replace(" ", "_");
-
-            ColourConsole.WriteInfoLine($"Found stage {name}");
-
-            var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
-
-            var internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
-
-            var (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(body, internalName);
-
-            var sections = GetMainBodySections(body);
-            var untranslatedSections = sections.Select(
-                section => UntranslateSection(section, untranslatedStageName)).ToList();
-
-            var untranslatedPage = new Wiki.Page(
-                $"WIKI_PAGE_{untranslatedStageName}",
-                internalName,
-                url,
+                pageUrl,
                 untranslatedSections,
                 untranslatedInfobox);
             var translatedPage = new Wiki.Page(
                 name,
                 internalName,
-                url,
+                pageUrl,
                 sections,
                 translatedInfobox);
 
-            stagePages.Add(new TranslationPair(untranslatedPage, translatedPage));
+            allPages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
-            ColourConsole.WriteSuccessLine($"Populated content for stage with internal name {internalName}");
+            ColourConsole.WriteSuccessLine($"Populated content for {pageType} with internal name {internalName}");
         }
 
-        return stagePages;
+        return allPages;
     }
 
     /// <summary>
@@ -257,7 +226,10 @@ public static class WikiUpdater
             // Parse the HTML table to get keys and values
             var value = row.Children.Where(e => e.LocalName == "td").First();
             var translatedKey = row.Children.Where(e => e.LocalName == "th").First().TextContent.Trim();
-            var id = value.Id!;
+            var id = value.Id;
+
+            if (id == null)
+                continue;
 
             var textContent = value.TextContent!.Trim();
 
@@ -266,7 +238,13 @@ public static class WikiUpdater
 
             // Format the found content for use in translation files
             var untranlsatedKey = id.Replace("#", string.Empty).ToUpperInvariant().Replace("-", "_");
-            var untranslatedValue = textContent.ToUpperInvariant().Replace(' ', '_');
+            var untranslatedValue = textContent.ToUpperInvariant()
+                .Replace(' ', '_')
+                .Replace(",", "_COMMA")
+                .Replace("(", "_BRACKET_")
+                .Replace("__", "_");
+
+            // Remove any leftorver characters that are not supposed to be present in translation keys
             var validUntraslatedValue = Regex.Replace(untranslatedValue, @"[^A-Z0-9_]", string.Empty);
 
             untranslated.Add(new InfoboxField(untranlsatedKey, validUntraslatedValue));
@@ -374,7 +352,7 @@ public static class WikiUpdater
             var translatedPage = page.TranslatedPage;
 
             // Translate page names
-            translationPairs.Add(untranslatedPage.Name, translatedPage.Name);
+            translationPairs.TryAdd(untranslatedPage.Name, translatedPage.Name);
 
             // Translate infobox
             var untranslatedInfobox = untranslatedPage!.InfoboxData;
@@ -382,6 +360,10 @@ public static class WikiUpdater
 
             for (int i = 0; i < untranslatedInfobox.Count; i++)
             {
+                // Skip adding translations for numbers
+                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, @"^[0-9,. ]*$"))
+                    continue;
+
                 translationPairs.TryAdd(untranslatedInfobox[i].InfoboxKey, translatedInfobox[i].InfoboxKey);
                 translationPairs.TryAdd(untranslatedInfobox[i].InfoboxValue, translatedInfobox[i].InfoboxValue);
             }
@@ -392,7 +374,7 @@ public static class WikiUpdater
                 var translatedSection = translatedPage.Sections[i];
 
                 // Translate body sections
-                translationPairs.Add(untranslatedSection.SectionBody, translatedSection.SectionBody);
+                translationPairs.TryAdd(untranslatedSection.SectionBody, translatedSection.SectionBody);
 
                 if (untranslatedSection.SectionHeading != null && translatedSection.SectionHeading != null)
                 {
@@ -503,6 +485,18 @@ public static class WikiUpdater
 
         [JsonInclude]
         public List<Page> Stages { get; init; } = null!;
+
+        [JsonInclude]
+        public Page ConceptsRoot { get; init; } = null!;
+
+        [JsonInclude]
+        public List<Page> Concepts { get; init; } = null!;
+
+        [JsonInclude]
+        public Page DevelopmentRoot { get; init; } = null!;
+
+        [JsonInclude]
+        public List<Page> DevelopmentPages { get; init; } = null!;
 
         public class Page
         {
