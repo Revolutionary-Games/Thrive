@@ -282,9 +282,12 @@ public static class MicrobeInternalCalculations
     {
         float cilliaFactor = 0;
         float maxRadius = 0;
+        float totalMass = 0;
 
         foreach (var organelle in organelles)
         {
+            totalMass += organelle.Definition.HexCount;
+
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
             if (distance > maxRadius)
@@ -298,8 +301,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        var effectiveMass = organelles.Sum(x => x.Definition.HexCount)
-            + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
+        var effectiveMass = totalMass + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
 
         return effectiveMass / (Constants.CELL_ROTATION_INFLECTION_MASS + cilliaFactor + effectiveMass)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
