@@ -27,6 +27,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
+    [Export]
+    public NodePath WorldLightNodePath = null!;
+
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
     [JsonProperty]
@@ -42,6 +45,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+
+    private DirectionalLight worldLightNode = null!;
 
     private Camera? animationCamera;
 #pragma warning restore CA2213
@@ -125,6 +130,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
         selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
+        worldLightNode = GetNode<DirectionalLight>(WorldLightNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -643,6 +649,16 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
             worldPanoramaSky.Panorama = GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
         }
+
+        UpdateAmbientLight();
+    }
+
+    public void UpdateAmbientLight()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            worldLightNode.LightColor = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Sunlight.Colour;
+        }
     }
 
     protected override void SetupStage()
@@ -787,6 +803,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 ProgressBarSystemPath.Dispose();
                 SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
+                WorldLightNodePath.Dispose();
 
                 interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
             }

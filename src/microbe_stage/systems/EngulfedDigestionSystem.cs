@@ -220,6 +220,10 @@
                 if (initialTotalEngulfableCompounds != 0)
                 {
                     engulfable.DigestedAmount = 1 - (totalAmountLeft / initialTotalEngulfableCompounds);
+
+                    // Digested amount can become negative if the calculated initial compounds is not accurate anymore
+                    if (engulfable.DigestedAmount < 0)
+                        engulfable.DigestedAmount = 0;
                 }
                 else
                 {

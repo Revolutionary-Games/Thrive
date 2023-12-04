@@ -114,34 +114,27 @@
         }
 
         /// <summary>
-        ///   Eject all engulfables of a destroyed entity (if it is an engulfer)
+        ///   Eject all engulfables of a destroyed entity (if it is an engulfer). Or if the entity is an engulfable
+        ///   force eject if from an engulfer if it is inside any.
         /// </summary>
         public void OnEntityDestroyed(in Entity entity)
         {
+            if (entity.Has<Engulfable>())
+            {
+                ref var engulfable = ref entity.Get<Engulfable>();
+
+                if (engulfable.HostileEngulfer.IsAlive && engulfable.HostileEngulfer.Has<Engulfer>())
+                {
+                    // Force eject from the engulfer
+                    ForceEjectSingleEngulfable(ref engulfable.HostileEngulfer.Get<Engulfer>(),
+                        engulfable.HostileEngulfer, entity);
+                }
+            }
+
             if (!entity.Has<Engulfer>())
                 return;
 
-            ref var engulfer = ref entity.Get<Engulfer>();
-
-            if (engulfer.EngulfedObjects is not { Count: > 0 })
-                return;
-
-            // Immediately force eject all the engulfed objects
-            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
-            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
-            {
-                var engulfableObject = engulfer.EngulfedObjects![i];
-
-                if (!engulfableObject.Has<Engulfable>())
-                {
-                    GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
-                    break;
-                }
-
-                ref var engulfable = ref engulfableObject.Get<Engulfable>();
-
-                CompleteEjection(ref engulfer, entity, ref engulfable, engulfableObject, false);
-            }
+            EjectEngulfablesOnDeath(entity);
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -1543,6 +1536,15 @@
                 engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
                     .Where(c => c.Key.Digestible)
                     .Sum(c => c.Value);
+
+#if DEBUG
+                foreach (var entry in engulfableEntity.Get<CompoundStorage>().Compounds
+                             .Where(c => c.Key.Digestible))
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative stored compound amount in engulfed cell");
+                }
+#endif
             }
             else
             {
@@ -1552,9 +1554,45 @@
 
             if (engulfable.AdditionalEngulfableCompounds != null)
             {
+#if DEBUG
+                foreach (var entry in engulfable.AdditionalEngulfableCompounds)
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative calculated additional compound");
+                }
+#endif
+
                 engulfable.InitialTotalEngulfableCompounds +=
                     engulfable.AdditionalEngulfableCompounds.Sum(c => c.Value);
             }
+        }
+
+        private void EjectEngulfablesOnDeath(Entity entity)
+        {
+            ref var engulfer = ref entity.Get<Engulfer>();
+
+            if (engulfer.EngulfedObjects is not { Count: > 0 })
+                return;
+
+            // Immediately force eject all the engulfed objects
+            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
+            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
+            {
+                ForceEjectSingleEngulfable(ref engulfer, entity, engulfer.EngulfedObjects![i]);
+            }
+        }
+
+        private void ForceEjectSingleEngulfable(ref Engulfer engulfer, in Entity entity, in Entity toEject)
+        {
+            if (!toEject.Has<Engulfable>())
+            {
+                GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
+                return;
+            }
+
+            ref var engulfable = ref toEject.Get<Engulfable>();
+
+            CompleteEjection(ref engulfer, entity, ref engulfable, toEject, false);
         }
     }
 }

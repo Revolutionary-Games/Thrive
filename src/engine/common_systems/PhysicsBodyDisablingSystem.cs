@@ -83,6 +83,8 @@
                     physicalWorld.AddBody(body);
                 }
 
+                // TODO: should physics speed on the body or on the component be reset here?
+
                 // Reset physics applied impulse which may have accumulated to be very large
                 if (entity.Has<ManualPhysicsControl>())
                 {

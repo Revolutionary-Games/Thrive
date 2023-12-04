@@ -5,6 +5,7 @@
     using System.Linq;
     using DefaultEcs;
     using Godot;
+    using Newtonsoft.Json;
     using Systems;
 
     /// <summary>
@@ -23,6 +24,7 @@
         ///   something this cannot fully engulf. The value is how long since the object was expelled. Values are
         ///   automatically removed once the time reaches <see cref="Constants.ENGULF_EJECTED_COOLDOWN"/>
         /// </summary>
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, float>))]
         public Dictionary<Entity, float>? ExpelledObjects;
 
         /// <summary>
