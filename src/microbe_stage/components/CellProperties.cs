@@ -295,6 +295,9 @@
             // capacity already so
             var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
 
+            // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
+            copyEntityCompounds.CopyUsefulFrom(originalCompounds);
+
             var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
             bool isPlayerMicrobe = entity.Has<PlayerMarker>();
