@@ -316,6 +316,14 @@ void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 posi
             reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position), activate);
 }
 
+void SetBodyPositionAndRotation(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetPositionAndRotation(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position),
+            Thrive::QuatFromCAPI(rotation), activate);
+}
+
 void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
