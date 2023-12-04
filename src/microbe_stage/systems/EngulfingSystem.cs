@@ -1435,8 +1435,8 @@
                         animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
                 }
 
-                // Update endosome position in the animation
-                phagosome.Translation = relativePosition.RelativePosition;
+                // Endosome is parented to the visuals of the engulfed object, so its position shouldn't be updated
+                // endosome.Translation = relativePosition.RelativePosition;
 
                 return false;
             }
@@ -1513,7 +1513,7 @@
             }
             catch (ObjectDisposedException)
             {
-                // This can probably happen when the engulfed entity's visual instance has already been destroyed and
+                // This can happen when the engulfed entity's visual instance has already been destroyed and
                 // that resulted in the endosome graphics node to be deleted as it is parented there
 
                 GD.Print("Endosome was already disposed");
