@@ -292,7 +292,7 @@ public static class WikiUpdater
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 case "H3":
-                    text = $"[b]{child.Children.Where(c => c.ClassList.Contains("mw-headline")).First().TextContent}[/b]\n\n";
+                    text = $"[b][u]{child.Children.Where(c => c.ClassList.Contains("mw-headline")).First().TextContent}[/u][/b]\n\n";
                     break;
                 default:
                     // Ignore all other tag types
@@ -333,13 +333,20 @@ public static class WikiUpdater
                 $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
         }
 
-        return paragraph
+        var formatted = paragraph
             .Replace("\n", string.Empty)
             .Replace("<b>", "[b]")
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
             .Replace("</i>", "[/i]")
+            .Replace("<br>", "\n")
             .Replace("\"", "\\\"");
+
+        // Remove any HTML tags leftover to not pollute the page
+        return Regex.Replace(formatted, @"<[^>]*>", string.Empty);
+
+            // .Replace("<code>", "[code]")
+            // .Replace("</code>", "[/code]")
     }
 
     /// <summary>

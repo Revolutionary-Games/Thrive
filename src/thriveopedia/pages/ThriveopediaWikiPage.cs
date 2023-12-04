@@ -46,6 +46,14 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
             "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
 
+        // Generate Concept Pages
+
+        GeneratePage<ThriveopediaConceptsRootPage>(pages, wiki.ConceptsRoot,
+            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.tscn");
+
+        GeneratePages<ThriveopediaConceptPage>(pages, wiki.Concepts,
+            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptPage.tscn");
+
         // Generate Organelle Pages
 
         GeneratePage<ThriveopediaOrganellesRootPage>(pages, wiki.OrganellesRoot,
@@ -54,14 +62,6 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         GeneratePages<ThriveopediaOrganellePage>(pages, wiki.Organelles,
             "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
             p => p.Organelle = SimulationParameters.Instance.GetOrganelleType(p.PageContent.InternalName));
-
-        // Generate Concept Pages
-
-        GeneratePage<ThriveopediaConceptsRootPage>(pages, wiki.ConceptsRoot,
-            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.tscn");
-
-        GeneratePages<ThriveopediaConceptPage>(pages, wiki.Concepts,
-            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptPage.tscn");
 
         // Generate Development Pages
 
