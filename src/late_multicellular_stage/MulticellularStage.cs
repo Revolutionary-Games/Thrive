@@ -645,9 +645,14 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     {
         if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
         {
-            var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+            // Panoramas don't exist yet when above water so we need this null check
+            if (worldEnvironmentNode.Environment != null)
+            {
+                var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
 
-            worldPanoramaSky.Panorama = GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+                worldPanoramaSky.Panorama =
+                    GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+            }
         }
 
         UpdateAmbientLight();
