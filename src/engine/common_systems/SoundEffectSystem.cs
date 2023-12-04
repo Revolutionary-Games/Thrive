@@ -340,8 +340,8 @@
                         if (startNew && !string.IsNullOrEmpty(slot.SoundFile))
                         {
                             // Only start playing if can
-                            // TODO: don't apply this limit to the player
-                            if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS)
+                            // 2D sounds ignore the limit to make sure player sounds can always play
+                            if (playingSoundCount >= Constants.MAX_CONCURRENT_SOUNDS && !play2D)
                             {
                                 // This leaves SoundsApplied false so that this entity can keep trying until there are
                                 // empty sound playing slots
