@@ -341,20 +341,7 @@
 
             ref var engulfable = ref entity.Get<Engulfable>();
 
-            if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
-            {
-                // When dying when engulfed the normal actions don't apply
-                // Special handling for this is in EngulfableHelpers.OnExpelledFromEngulfment
-                return true;
-            }
-
-            var compounds = entity.Get<CompoundStorage>().Compounds;
-            ref var position = ref entity.Get<WorldPosition>();
-
             commandRecorder ??= worldSimulation.StartRecordingEntityCommands();
-
-            ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, commandRecorder);
-
             var entityRecord = commandRecorder.Record(entity);
 
             // Add a timed life component to make sure the entity will despawn after the death animation
@@ -362,6 +349,30 @@
             {
                 TimeToLiveRemaining = 1 / Constants.MEMBRANE_DISSOLVE_SPEED * 2,
             });
+
+            // TODO: if we have problems with dead microbes behaving weirdly in loaded saves, uncomment the next line
+            // worldSimulation.ReportEntityDyingSoon(entity);
+
+            if (entity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                // If a microbe died, notify about this. This does really important stuff if the player died before
+                // entering the editor
+                callbacks.OnReproductionStatus?.Invoke(entity, false);
+            }
+
+            if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
+            {
+                // When dying when engulfed all of the normal actions don't apply
+                // Special handling for this is in EngulfableHelpers.OnExpelledFromEngulfment
+                return true;
+            }
+
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+            ref var position = ref entity.Get<WorldPosition>();
+
+            ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, commandRecorder);
 
             // Ejecting all engulfed objects on death are now handled by EngulfingSystem
 
@@ -376,21 +387,9 @@
             SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
                 position.Position, random, null, glucose);
 
-            if (entity.Has<MicrobeEventCallbacks>())
-            {
-                ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-                // If a microbe died, notify about this. This does really important stuff if the player died before
-                // entering the editor
-                callbacks.OnReproductionStatus?.Invoke(entity, false);
-            }
-
             ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
 
             soundPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
-
-            // TODO: if we have problems with dead microbes behaving weirdly in loaded saves, uncomment the next line
-            // worldSimulation.ReportEntityDyingSoon(entity);
 
             return true;
         }
