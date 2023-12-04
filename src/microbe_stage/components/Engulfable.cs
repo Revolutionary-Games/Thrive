@@ -90,6 +90,11 @@
             /// </summary>
             public bool Interpolate;
 
+            /// <summary>
+            ///   Used to only trigger the digestion eject once
+            /// </summary>
+            public bool DigestionEjectionStarted;
+
             public float LerpDuration;
             public float AnimationTimeElapsed;
 

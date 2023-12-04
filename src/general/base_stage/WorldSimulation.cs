@@ -250,15 +250,28 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         if (Processing)
             throw new InvalidOperationException("Cannot destroy all entities while processing");
 
+        // Apply all commands first to clear these out to prevent these causing something to spawn after the clear
+        ApplyRecordedCommands();
+
         ProcessDestroyQueue();
 
-        // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
-        foreach (var entity in entities.ToList())
+        // This loop is here to ensure that no entities are left after destroy callbacks have been used
+        while (true)
         {
-            if (entity == skip)
-                continue;
+            bool despawned = false;
 
-            PerformEntityDestroy(entity);
+            // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
+            foreach (var entity in entities.ToList())
+            {
+                if (entity == skip)
+                    continue;
+
+                PerformEntityDestroy(entity);
+                despawned = true;
+            }
+
+            if (!despawned || skip != null)
+                break;
         }
 
         lock (queuedForDelete)

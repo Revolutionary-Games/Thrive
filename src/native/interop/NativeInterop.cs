@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Godot;
 
@@ -137,6 +138,16 @@ public static class NativeInterop
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
     {
         var message = Marshal.PtrToStringAnsi(messageData, messageLength);
+
+#if DEBUG
+
+        // Pause debugger when detecting a native assertion fail to give some idea as to what's going on
+        if (message.Contains("assert failed"))
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         if (level <= NativeMethods.LogLevel.Info)
         {
