@@ -116,7 +116,11 @@
                 }
 
                 // Growing a new colony
-                var colony = new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State);
+                var colony = new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State)
+                {
+                    // Mark as entity weight applied until the new members are attached
+                    EntityWeightApplied = true,
+                };
 
                 recorderEntity.Set(colony);
             }
@@ -129,6 +133,8 @@
                 // at multicellular growth etc. info here that might not even exist in all cases so a fallback like
                 // this might be needed
                 bodyPlanIndex = colony.ColonyMembers.Length;
+
+                colony.EntityWeightApplied = true;
             }
 
             ref var species = ref entity.Get<EarlyMulticellularSpeciesMember>();

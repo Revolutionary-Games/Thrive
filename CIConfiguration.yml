@@ -10,7 +10,7 @@ jobs:
       writeTo: v8-{Branch}-build
       shared:
         .git/lfs: v5-lfs
-        .import: v8-import
+        .import: v9-import
         builds: v4-builds
         native_libs: v1-native
       system:
@@ -42,7 +42,7 @@ jobs:
       writeTo: v5-{Branch}-jetbrains
       shared:
         .git/lfs: v5-lfs
-        .import: v8-import
+        .import: v9-import
         builds: v4-jetbrains-dummy-builds
       system:
         /root/.nuget: v4-nuget

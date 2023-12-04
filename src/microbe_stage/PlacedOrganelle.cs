@@ -403,6 +403,15 @@ public class PlacedOrganelle : IPositionedOrganelle
         // Maybe should have a variable for physics shape offset if different organelles need different things
         var offset = new Vector3(0, 0, isBacteria ? 1.0f : -1.0f);
 
+        // TODO: figure out why the pilus positioning ends up really strange for bacteria and needs adjustment when
+        // bigger
+        if (isBacteria)
+        {
+            var length = externalPosition.Length();
+            if (length > 4)
+                offset.z += length * Constants.BACTERIA_PILUS_ATTACH_ADJUSTMENT;
+        }
+
         return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
     }
 

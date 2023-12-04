@@ -95,6 +95,9 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPositionAndRotation(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate = true);
+
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity);
 

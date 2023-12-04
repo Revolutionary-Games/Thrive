@@ -715,6 +715,21 @@ void PhysicalWorld::SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool
         bodyId, position, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
 }
 
+void PhysicalWorld::SetPositionAndRotation(
+    JPH::BodyID bodyId, JPH::DVec3Arg position, JPH::QuatArg rotation, bool activate)
+{
+    if (!activate)
+    {
+        physicsSystem->GetBodyInterface().SetPositionAndRotationWhenChanged(
+            bodyId, position, rotation, JPH::EActivation::DontActivate);
+    }
+    else
+    {
+        physicsSystem->GetBodyInterface().SetPositionAndRotation(
+            bodyId, position, rotation, JPH::EActivation::Activate);
+    }
+}
+
 void PhysicalWorld::SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping)
 {
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);

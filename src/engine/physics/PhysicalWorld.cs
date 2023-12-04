@@ -264,6 +264,12 @@ public class PhysicalWorld : IDisposable
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
     }
 
+    public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quat rotation)
+    {
+        NativeMethods.SetBodyPositionAndRotation(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position),
+            new JQuat(rotation));
+    }
+
     /// <summary>
     ///   Sets velocity for a body
     /// </summary>
@@ -613,6 +619,10 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyPosition(IntPtr world, IntPtr body, JVec3 position, bool activate = true);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetBodyPositionAndRotation(IntPtr world, IntPtr body, JVec3 position, JQuat rotation,
+        bool activate = true);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyVelocity(IntPtr world, IntPtr body, JVecF3 velocity);

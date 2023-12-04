@@ -826,14 +826,14 @@
 
             var singleCellWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelles.Count);
 
-            weight = CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
+            weight = singleCellWeight +
+                CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
             return true;
         }
 
         public static float CalculateColonyAdditionalEntityWeight(float singleCellWeight, int memberCount)
         {
-            return singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
-                memberCount;
+            return singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER * memberCount;
         }
 
         /// <summary>

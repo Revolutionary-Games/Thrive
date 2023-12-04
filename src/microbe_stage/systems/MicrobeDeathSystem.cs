@@ -149,6 +149,7 @@
                 var sceneToUse = new ChunkConfiguration.ChunkScene
                 {
                     ScenePath = defaultChunkScene,
+                    PlayAnimation = false,
                 };
 
                 // Will only loop if there are still organelles available
@@ -164,6 +165,7 @@
                     {
                         sceneToUse.ScenePath = organelleDefinition.DisplayScene!;
                         sceneToUse.SceneModelPath = organelleDefinition.DisplaySceneModelPath;
+                        sceneToUse.SceneAnimationPath = organelleDefinition.DisplaySceneAnimation;
                     }
                     else
                     {

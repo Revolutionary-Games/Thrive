@@ -14,6 +14,7 @@
     [With(typeof(Physics))]
     [WritesToComponent(typeof(Physics))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsOnMainThread]
     public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
     {
@@ -79,8 +80,15 @@
                 // from the world by us)
                 if (disabledBodies.Remove(body))
                 {
-                    // TODO: should a new position be applied first?
                     physicalWorld.AddBody(body);
+
+                    if (entity.Has<WorldPosition>())
+                    {
+                        // Set new position to update the body to be where it should be now after not tracking its
+                        // position for a while (due to it being disabled)
+                        ref var newPosition = ref entity.Get<WorldPosition>();
+                        physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
+                    }
                 }
 
                 // TODO: should physics speed on the body or on the component be reset here?
