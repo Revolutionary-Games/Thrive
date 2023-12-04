@@ -232,73 +232,35 @@ public static class MicrobeInternalCalculations
     /// <summary>
     ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is a really slow variant (when membrane or shape is not cached) of this method as this needs to
-    ///     calculate the full cell collision shape to determine the rotation inertia.
-    ///   </para>
-    /// </remarks>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <param name="membraneType">
-    ///   The membrane type. This must be known as it affects the membrane size (and thus radius of the cell and
-    ///   inertia) NOT CURRENTLY USED
-    /// </param>
-    /// <param name="isBacteria">True when the species is bacteria NOT CURRENTLY USED</param>
     /// <returns>
     ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
     /// </returns>
-    public static float CalculateRotationSpeed(IReadOnlyList<IPositionedOrganelle> organelles,
-        MembraneType membraneType, bool isBacteria)
-    {
-        // this ignores shape for now
-        // var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
-
-        // this ignores shape for now
-        // var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-        //    CalculateAverageDensity(organelles), isBacteria);
-
-        // This ignores pili right now, only the base microbe shape is calculated for inertia. If this is changed
-        // the way the variant taking directly in the collision shape needs to be adjusted
-
-        return CalculateRotationSpeed(organelles);
-    }
-
-    /// <summary>
-    ///   Variant of speed calculation that uses already made shape
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Microbe colonies help or hinder rotation. That calculation is in
-    ///     <see cref="Components.MicrobeColonyHelpers.CalculateRotationSpeed"/>
-    ///   </para>
-    /// </remarks>
-    /// <returns>The rotation speed</returns>
     public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
     {
-        float cilliaFactor = 0;
-        float maxRadius = 0;
-        float totalMass = 0;
+        // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
+        // the real physics shape here
+        // shape.TestYRotationInertiaFactor()
 
+        float inertia = 1;
+        float ciliaFactor = 0;
+
+        // Simple moment of inertia calculation. Note that it is mass multiplied by square of the distance, so we can
+        // use the cheaper distance calculations
         foreach (var organelle in organelles)
         {
-            totalMass += organelle.Definition.HexCount;
-
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
-            if (distance > maxRadius)
-            {
-                maxRadius = distance;
-            }
+            inertia += distance * organelle.Definition.HexCount * organelle.Definition.Density *
+                organelle.Definition.RelativeDensityVolume * Constants.CELL_ROTATION_RADIUS_FACTOR;
 
             if (organelle.Definition.HasCiliaComponent)
             {
-                cilliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
+                ciliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
         }
 
-        var effectiveMass = totalMass + (maxRadius * Constants.CELL_ROTATION_RADIUS_FACTOR);
-
-        return effectiveMass / (Constants.CELL_ROTATION_INFLECTION_MASS + cilliaFactor + effectiveMass)
+        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
             * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 

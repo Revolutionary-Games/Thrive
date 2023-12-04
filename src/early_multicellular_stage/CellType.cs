@@ -145,7 +145,6 @@ public class CellType : ICellProperties, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

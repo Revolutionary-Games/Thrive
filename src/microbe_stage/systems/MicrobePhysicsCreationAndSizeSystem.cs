@@ -177,13 +177,11 @@
 
                     if (colonyMembranes != null)
                     {
-                        // Update full colony rotation properties now with the physics shape
+                        // Update full colony rotation properties. Note that this is here for historical reasons as
+                        // this used to use the shape of the entire colony here, which is only available easily here.
                         ref var colony = ref entity.Get<MicrobeColony>();
-                        colony.CalculateRotationSpeed(shapeHolder.Shape);
+                        colony.CalculateRotationSpeed();
                     }
-
-                    // TODO: colony rotation rate update is elsewhere but it would make quite a bit of sense to move
-                    // that logic here so that it can take advantage of the real physics shape
                 }
 
                 // Skip updating the physics body shape if we got the same cached shape as we had before
@@ -213,7 +211,7 @@
                 MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
                 cellProperties.IsBacteria);
 
-            UpdateRotationRate(shape, ref organelles);
+            UpdateRotationRate(ref organelles);
 
             ++extraData.MicrobeShapesCount;
             ++extraData.TotalShapeCount;
@@ -250,7 +248,7 @@
                 CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
                     vertexCount), Vector3.Zero, Quat.Identity));
 
-            UpdateRotationRate(combinedData[combinedData.Count - 1].Shape, ref organelles);
+            UpdateRotationRate(ref organelles);
 
             List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>?
                 memberOrganelles = null;
@@ -404,12 +402,11 @@
         }
 
         /// <summary>
-        ///   Updates the microbe movement's used rotation rate. This is here as it is more efficient to calculate this
-        ///   when the physics shape is also done.
-        ///   Note that the PhysicsShape is not currently used in rotation calculations, and is retained for
-        ///   historical purposes
+        ///   Updates the microbe movement's used rotation rate.
+        ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
+        ///   earlier version requiring it.
         /// </summary>
-        private void UpdateRotationRate(PhysicsShape baseShape, ref OrganelleContainer organelleContainer)
+        private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
         {
             if (organelleContainer.Organelles == null)
             {

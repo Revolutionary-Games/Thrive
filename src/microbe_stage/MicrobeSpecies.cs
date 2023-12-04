@@ -238,7 +238,6 @@ public class MicrobeSpecies : Species, ICellProperties
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

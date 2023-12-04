@@ -871,14 +871,18 @@
         /// <summary>
         ///   Calculates the total rotation rate of a colony. Physics shape is not currently used
         /// </summary>
-        public static void CalculateRotationSpeed(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
+        public static void CalculateRotationSpeed(this ref MicrobeColony colony)
         {
+            // TODO: see the comment in MicrobeInternalCalculations.CalculateRotationSpeed about:
+            // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
+            // be more physically accurate
+
             float colonyRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
+                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                // colony leader is set before the loop
+                // Colony leader is set before the loop
                 if (colonyMember == colony.Leader)
                     continue;
 
