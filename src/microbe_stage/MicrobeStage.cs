@@ -395,10 +395,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
         else
         {
-            // Might be related to saving but somehow the editor button can be enabled while in a colony
-            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
-            // becoming disabled properly
-            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            // This might not be required anymore but just for extra safety this is here
             if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
