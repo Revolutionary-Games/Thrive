@@ -106,8 +106,10 @@
                 if (playerWrapper.Player.Playing)
                 {
                     ++playingSoundCount;
+
+                    // TODO: should very long sounds be stopped if the entity is dead?
                 }
-                else if (playerWrapper.Loop)
+                else if (playerWrapper.Loop && playerWrapper.HasAliveEntity)
                 {
                     playerWrapper.Player.Play();
                     ++playingSoundCount;
@@ -139,7 +141,7 @@
                 {
                     ++playingSoundCount;
                 }
-                else if (playerWrapper.Loop)
+                else if (playerWrapper.Loop && playerWrapper.HasAliveEntity)
                 {
                     playerWrapper.Player.Play();
                     ++playingSoundCount;
@@ -555,6 +557,12 @@
                 SoundId = id;
                 Loop = loop;
             }
+
+            /// <summary>
+            ///   True when there is an alive entity related to this player. This is used to stop looping sounds for
+            ///   dead entities instead of playing forever.
+            /// </summary>
+            public bool HasAliveEntity => Entity.IsAlive;
 
             public void MarkEnded()
             {
