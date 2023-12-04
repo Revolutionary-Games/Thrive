@@ -291,6 +291,9 @@ public static class WikiUpdater
                         .Select(li => $"[indent]—   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
+                case "H3":
+                    text = $"[b]{child.Children.Where(c => c.ClassList.Contains("mw-headline")).First().TextContent}[/b]\n\n";
+                    break;
                 default:
                     // Ignore all other tag types
                     continue;
