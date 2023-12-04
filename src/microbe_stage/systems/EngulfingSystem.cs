@@ -261,7 +261,8 @@
 
                 var transportData = engulfable.BulkTransport;
 
-                if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested && transportData?.DigestionEjectionStarted != true)
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested &&
+                    transportData?.DigestionEjectionStarted != true)
                 {
                     if (transportData == null)
                     {

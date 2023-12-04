@@ -31,7 +31,7 @@
             if (spatial.GraphicalInstance == null)
                 return;
 
-            var player = GetPlayer(spatial.GraphicalInstance, animation.AnimationPlayerPath, false);
+            var player = GetPlayer(spatial.GraphicalInstance, animation.AnimationPlayerPath);
 
             if (player == null)
             {
@@ -55,7 +55,7 @@
             animation.AnimationApplied = true;
         }
 
-        private AnimationPlayer? GetPlayer(Spatial spatial, string? playerPath, bool printError = true)
+        private AnimationPlayer? GetPlayer(Spatial spatial, string? playerPath)
         {
             // TODO: cache for animation players to allow fast per-update data access
             // For now a cache is not implemented as this is just for stopping playing an animation once and then not
