@@ -55,6 +55,23 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
             "res://src/thriveopedia/pages/wiki/organelle/ThriveopediaOrganellePage.tscn",
             p => p.Organelle = SimulationParameters.Instance.GetOrganelleType(p.PageContent.InternalName));
 
+        // Generate Concept Pages
+
+        GeneratePage<ThriveopediaConceptsRootPage>(pages, wiki.ConceptsRoot,
+            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.tscn");
+
+        GeneratePages<ThriveopediaConceptPage>(pages, wiki.Concepts,
+            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptPage.tscn");
+
+        // Generate Development Pages
+
+        GeneratePage<ThriveopediaDevelopmentRootPage>(pages, wiki.DevelopmentRoot,
+            "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.tscn");
+
+        GeneratePages<ThriveopediaDevelopmentPage>(pages, wiki.DevelopmentPages,
+            "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentPage.tscn");
+
+
         return pages;
     }
 

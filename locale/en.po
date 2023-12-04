@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-03 23:24+0100\n"
+"POT-Creation-Date: 2023-12-04 20:51+0100\n"
 "PO-Revision-Date: 2023-10-31 16:14+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: Poedit 3.4\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../simulation_parameters/common/wiki.json:2238
+#: ../simulation_parameters/common/wiki.json:2218
 msgid "2D"
 msgstr "2D"
 
-#: ../simulation_parameters/common/wiki.json:2291
+#: ../simulation_parameters/common/wiki.json:2271
 msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr "2D (early), 3D (late)"
 
@@ -31,21 +31,21 @@ msgstr "2D (early), 3D (late)"
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D movement style:"
 
-#: ../simulation_parameters/common/wiki.json:2340
-#: ../simulation_parameters/common/wiki.json:2389
+#: ../simulation_parameters/common/wiki.json:2320
+#: ../simulation_parameters/common/wiki.json:2369
 msgid "3D"
 msgstr "3D"
 
-#: ../simulation_parameters/common/wiki.json:2585
+#: ../simulation_parameters/common/wiki.json:2565
 msgid "3D_COMMA_SANDBOX"
 msgstr "3D, Sandbox"
 
-#: ../simulation_parameters/common/wiki.json:2438
-#: ../simulation_parameters/common/wiki.json:2487
+#: ../simulation_parameters/common/wiki.json:2418
+#: ../simulation_parameters/common/wiki.json:2467
 msgid "3D_COMMA_STRATEGY"
 msgstr "3D, Strategy"
 
-#: ../simulation_parameters/common/wiki.json:2536
+#: ../simulation_parameters/common/wiki.json:2516
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr "3D, Strategy, Space"
 
@@ -61,7 +61,7 @@ msgstr "3D Movement"
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D movement style:"
 
-#: ../simulation_parameters/common/wiki.json:2183
+#: ../simulation_parameters/common/wiki.json:2163
 msgid "8_BRACKET_16"
 msgstr "8 (16)"
 
@@ -294,7 +294,7 @@ msgstr "Art by {0}"
 msgid "ART_GALLERY"
 msgstr "Art Gallery"
 
-#: ../simulation_parameters/common/wiki.json:2544
+#: ../simulation_parameters/common/wiki.json:2524
 msgid "ASCENSION"
 msgstr "Ascension"
 
@@ -451,14 +451,14 @@ msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
 #: ../simulation_parameters/common/gallery.json:430
-#: ../simulation_parameters/common/wiki.json:2348
-#: ../simulation_parameters/common/wiki.json:2442
+#: ../simulation_parameters/common/wiki.json:2328
+#: ../simulation_parameters/common/wiki.json:2422
 msgid "AWAKENING_STAGE"
 msgstr "Awakening Stage"
 
 #: ../simulation_parameters/common/gallery.json:419
-#: ../simulation_parameters/common/wiki.json:2299
-#: ../simulation_parameters/common/wiki.json:2393
+#: ../simulation_parameters/common/wiki.json:2279
+#: ../simulation_parameters/common/wiki.json:2373
 msgid "AWARE_STAGE"
 msgstr "Aware Stage"
 
@@ -647,7 +647,7 @@ msgstr "Bioluminescent Vacuole"
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
-#: ../simulation_parameters/common/wiki.json:2303
+#: ../simulation_parameters/common/wiki.json:2283
 msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr "Body Plan Editor, Cell Editor"
 
@@ -936,7 +936,7 @@ msgstr "The chosen filename ({0}) already exists. Overwrite?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic aberration:"
 
-#: ../simulation_parameters/common/wiki.json:2013
+#: ../simulation_parameters/common/wiki.json:1993
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Chromatophore Photosynthesis, Glycolysis"
 
@@ -1148,6 +1148,10 @@ msgstr "{0} consumption"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
 msgstr "Compound to Find:"
+
+#: ../src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.cs:11
+msgid "CONCEPTS"
+msgstr "Concepts"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -1619,6 +1623,10 @@ msgstr ""
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
 msgstr "Developers"
+
+#: ../src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.cs:11
+msgid "DEVELOPMENT"
+msgstr "Development"
 
 #: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_FORUM"
@@ -2685,8 +2693,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
 
 #: ../simulation_parameters/common/gallery.json:458
-#: ../simulation_parameters/common/wiki.json:2446
-#: ../simulation_parameters/common/wiki.json:2540
+#: ../simulation_parameters/common/wiki.json:2426
+#: ../simulation_parameters/common/wiki.json:2520
 msgid "INDUSTRIAL_STAGE"
 msgstr "Industrial Stage"
 
@@ -2715,29 +2723,29 @@ msgstr "Infinite MP"
 #: ../simulation_parameters/common/wiki.json:1137
 #: ../simulation_parameters/common/wiki.json:1214
 #: ../simulation_parameters/common/wiki.json:1291
-#: ../simulation_parameters/common/wiki.json:1388
-#: ../simulation_parameters/common/wiki.json:1465
-#: ../simulation_parameters/common/wiki.json:1542
-#: ../simulation_parameters/common/wiki.json:1619
-#: ../simulation_parameters/common/wiki.json:1696
-#: ../simulation_parameters/common/wiki.json:1773
-#: ../simulation_parameters/common/wiki.json:1850
-#: ../simulation_parameters/common/wiki.json:1927
-#: ../simulation_parameters/common/wiki.json:2004
-#: ../simulation_parameters/common/wiki.json:2081
-#: ../simulation_parameters/common/wiki.json:2158
+#: ../simulation_parameters/common/wiki.json:1368
+#: ../simulation_parameters/common/wiki.json:1445
+#: ../simulation_parameters/common/wiki.json:1522
+#: ../simulation_parameters/common/wiki.json:1599
+#: ../simulation_parameters/common/wiki.json:1676
+#: ../simulation_parameters/common/wiki.json:1753
+#: ../simulation_parameters/common/wiki.json:1830
+#: ../simulation_parameters/common/wiki.json:1907
+#: ../simulation_parameters/common/wiki.json:1984
+#: ../simulation_parameters/common/wiki.json:2061
+#: ../simulation_parameters/common/wiki.json:2138
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:97
 msgid "INFO_BOX_COST"
 msgstr "Base Cost (MP)"
 
-#: ../simulation_parameters/common/wiki.json:2249
-#: ../simulation_parameters/common/wiki.json:2302
-#: ../simulation_parameters/common/wiki.json:2351
-#: ../simulation_parameters/common/wiki.json:2400
-#: ../simulation_parameters/common/wiki.json:2449
-#: ../simulation_parameters/common/wiki.json:2498
-#: ../simulation_parameters/common/wiki.json:2547
-#: ../simulation_parameters/common/wiki.json:2596
+#: ../simulation_parameters/common/wiki.json:2229
+#: ../simulation_parameters/common/wiki.json:2282
+#: ../simulation_parameters/common/wiki.json:2331
+#: ../simulation_parameters/common/wiki.json:2380
+#: ../simulation_parameters/common/wiki.json:2429
+#: ../simulation_parameters/common/wiki.json:2478
+#: ../simulation_parameters/common/wiki.json:2527
+#: ../simulation_parameters/common/wiki.json:2576
 #: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:137
 msgid "INFO_BOX_EDITORS"
 msgstr "Editors"
@@ -2759,29 +2767,29 @@ msgstr "Editors"
 #: ../simulation_parameters/common/wiki.json:1149
 #: ../simulation_parameters/common/wiki.json:1226
 #: ../simulation_parameters/common/wiki.json:1303
-#: ../simulation_parameters/common/wiki.json:1400
-#: ../simulation_parameters/common/wiki.json:1477
-#: ../simulation_parameters/common/wiki.json:1554
-#: ../simulation_parameters/common/wiki.json:1631
-#: ../simulation_parameters/common/wiki.json:1708
-#: ../simulation_parameters/common/wiki.json:1785
-#: ../simulation_parameters/common/wiki.json:1862
-#: ../simulation_parameters/common/wiki.json:1939
-#: ../simulation_parameters/common/wiki.json:2016
-#: ../simulation_parameters/common/wiki.json:2093
-#: ../simulation_parameters/common/wiki.json:2170
+#: ../simulation_parameters/common/wiki.json:1380
+#: ../simulation_parameters/common/wiki.json:1457
+#: ../simulation_parameters/common/wiki.json:1534
+#: ../simulation_parameters/common/wiki.json:1611
+#: ../simulation_parameters/common/wiki.json:1688
+#: ../simulation_parameters/common/wiki.json:1765
+#: ../simulation_parameters/common/wiki.json:1842
+#: ../simulation_parameters/common/wiki.json:1919
+#: ../simulation_parameters/common/wiki.json:1996
+#: ../simulation_parameters/common/wiki.json:2073
+#: ../simulation_parameters/common/wiki.json:2150
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzymes"
 
-#: ../simulation_parameters/common/wiki.json:2237
-#: ../simulation_parameters/common/wiki.json:2290
-#: ../simulation_parameters/common/wiki.json:2339
-#: ../simulation_parameters/common/wiki.json:2388
-#: ../simulation_parameters/common/wiki.json:2437
-#: ../simulation_parameters/common/wiki.json:2486
-#: ../simulation_parameters/common/wiki.json:2535
-#: ../simulation_parameters/common/wiki.json:2584
+#: ../simulation_parameters/common/wiki.json:2217
+#: ../simulation_parameters/common/wiki.json:2270
+#: ../simulation_parameters/common/wiki.json:2319
+#: ../simulation_parameters/common/wiki.json:2368
+#: ../simulation_parameters/common/wiki.json:2417
+#: ../simulation_parameters/common/wiki.json:2466
+#: ../simulation_parameters/common/wiki.json:2515
+#: ../simulation_parameters/common/wiki.json:2564
 #: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:46
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Gameplay Type"
@@ -2795,14 +2803,14 @@ msgstr "Internal Name"
 msgid "INFO_BOX_MASS"
 msgstr "Mass"
 
-#: ../simulation_parameters/common/wiki.json:2245
-#: ../simulation_parameters/common/wiki.json:2298
-#: ../simulation_parameters/common/wiki.json:2347
-#: ../simulation_parameters/common/wiki.json:2396
-#: ../simulation_parameters/common/wiki.json:2445
-#: ../simulation_parameters/common/wiki.json:2494
-#: ../simulation_parameters/common/wiki.json:2543
-#: ../simulation_parameters/common/wiki.json:2592
+#: ../simulation_parameters/common/wiki.json:2225
+#: ../simulation_parameters/common/wiki.json:2278
+#: ../simulation_parameters/common/wiki.json:2327
+#: ../simulation_parameters/common/wiki.json:2376
+#: ../simulation_parameters/common/wiki.json:2425
+#: ../simulation_parameters/common/wiki.json:2474
+#: ../simulation_parameters/common/wiki.json:2523
+#: ../simulation_parameters/common/wiki.json:2572
 #: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:106
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr "Next Stage"
@@ -2824,29 +2832,29 @@ msgstr "Next Stage"
 #: ../simulation_parameters/common/wiki.json:1157
 #: ../simulation_parameters/common/wiki.json:1234
 #: ../simulation_parameters/common/wiki.json:1311
-#: ../simulation_parameters/common/wiki.json:1408
-#: ../simulation_parameters/common/wiki.json:1485
-#: ../simulation_parameters/common/wiki.json:1562
-#: ../simulation_parameters/common/wiki.json:1639
-#: ../simulation_parameters/common/wiki.json:1716
-#: ../simulation_parameters/common/wiki.json:1793
-#: ../simulation_parameters/common/wiki.json:1870
-#: ../simulation_parameters/common/wiki.json:1947
-#: ../simulation_parameters/common/wiki.json:2024
-#: ../simulation_parameters/common/wiki.json:2101
-#: ../simulation_parameters/common/wiki.json:2178
+#: ../simulation_parameters/common/wiki.json:1388
+#: ../simulation_parameters/common/wiki.json:1465
+#: ../simulation_parameters/common/wiki.json:1542
+#: ../simulation_parameters/common/wiki.json:1619
+#: ../simulation_parameters/common/wiki.json:1696
+#: ../simulation_parameters/common/wiki.json:1773
+#: ../simulation_parameters/common/wiki.json:1850
+#: ../simulation_parameters/common/wiki.json:1927
+#: ../simulation_parameters/common/wiki.json:2004
+#: ../simulation_parameters/common/wiki.json:2081
+#: ../simulation_parameters/common/wiki.json:2158
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:281
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
 
-#: ../simulation_parameters/common/wiki.json:2241
-#: ../simulation_parameters/common/wiki.json:2294
-#: ../simulation_parameters/common/wiki.json:2343
-#: ../simulation_parameters/common/wiki.json:2392
-#: ../simulation_parameters/common/wiki.json:2441
-#: ../simulation_parameters/common/wiki.json:2490
-#: ../simulation_parameters/common/wiki.json:2539
-#: ../simulation_parameters/common/wiki.json:2588
+#: ../simulation_parameters/common/wiki.json:2221
+#: ../simulation_parameters/common/wiki.json:2274
+#: ../simulation_parameters/common/wiki.json:2323
+#: ../simulation_parameters/common/wiki.json:2372
+#: ../simulation_parameters/common/wiki.json:2421
+#: ../simulation_parameters/common/wiki.json:2470
+#: ../simulation_parameters/common/wiki.json:2519
+#: ../simulation_parameters/common/wiki.json:2568
 #: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:76
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr "Previous Stage"
@@ -2868,17 +2876,17 @@ msgstr "Previous Stage"
 #: ../simulation_parameters/common/wiki.json:1145
 #: ../simulation_parameters/common/wiki.json:1222
 #: ../simulation_parameters/common/wiki.json:1299
-#: ../simulation_parameters/common/wiki.json:1396
-#: ../simulation_parameters/common/wiki.json:1473
-#: ../simulation_parameters/common/wiki.json:1550
-#: ../simulation_parameters/common/wiki.json:1627
-#: ../simulation_parameters/common/wiki.json:1704
-#: ../simulation_parameters/common/wiki.json:1781
-#: ../simulation_parameters/common/wiki.json:1858
-#: ../simulation_parameters/common/wiki.json:1935
-#: ../simulation_parameters/common/wiki.json:2012
-#: ../simulation_parameters/common/wiki.json:2089
-#: ../simulation_parameters/common/wiki.json:2166
+#: ../simulation_parameters/common/wiki.json:1376
+#: ../simulation_parameters/common/wiki.json:1453
+#: ../simulation_parameters/common/wiki.json:1530
+#: ../simulation_parameters/common/wiki.json:1607
+#: ../simulation_parameters/common/wiki.json:1684
+#: ../simulation_parameters/common/wiki.json:1761
+#: ../simulation_parameters/common/wiki.json:1838
+#: ../simulation_parameters/common/wiki.json:1915
+#: ../simulation_parameters/common/wiki.json:1992
+#: ../simulation_parameters/common/wiki.json:2069
+#: ../simulation_parameters/common/wiki.json:2146
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:158
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processes"
@@ -2900,17 +2908,17 @@ msgstr "Processes"
 #: ../simulation_parameters/common/wiki.json:1141
 #: ../simulation_parameters/common/wiki.json:1218
 #: ../simulation_parameters/common/wiki.json:1295
-#: ../simulation_parameters/common/wiki.json:1392
-#: ../simulation_parameters/common/wiki.json:1469
-#: ../simulation_parameters/common/wiki.json:1546
-#: ../simulation_parameters/common/wiki.json:1623
-#: ../simulation_parameters/common/wiki.json:1700
-#: ../simulation_parameters/common/wiki.json:1777
-#: ../simulation_parameters/common/wiki.json:1854
-#: ../simulation_parameters/common/wiki.json:1931
-#: ../simulation_parameters/common/wiki.json:2008
-#: ../simulation_parameters/common/wiki.json:2085
-#: ../simulation_parameters/common/wiki.json:2162
+#: ../simulation_parameters/common/wiki.json:1372
+#: ../simulation_parameters/common/wiki.json:1449
+#: ../simulation_parameters/common/wiki.json:1526
+#: ../simulation_parameters/common/wiki.json:1603
+#: ../simulation_parameters/common/wiki.json:1680
+#: ../simulation_parameters/common/wiki.json:1757
+#: ../simulation_parameters/common/wiki.json:1834
+#: ../simulation_parameters/common/wiki.json:1911
+#: ../simulation_parameters/common/wiki.json:1988
+#: ../simulation_parameters/common/wiki.json:2065
+#: ../simulation_parameters/common/wiki.json:2142
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:127
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr "Requires Nucleus"
@@ -2932,17 +2940,17 @@ msgstr "Requires Nucleus"
 #: ../simulation_parameters/common/wiki.json:1153
 #: ../simulation_parameters/common/wiki.json:1230
 #: ../simulation_parameters/common/wiki.json:1307
-#: ../simulation_parameters/common/wiki.json:1404
-#: ../simulation_parameters/common/wiki.json:1481
-#: ../simulation_parameters/common/wiki.json:1558
-#: ../simulation_parameters/common/wiki.json:1635
-#: ../simulation_parameters/common/wiki.json:1712
-#: ../simulation_parameters/common/wiki.json:1789
-#: ../simulation_parameters/common/wiki.json:1866
-#: ../simulation_parameters/common/wiki.json:1943
-#: ../simulation_parameters/common/wiki.json:2020
-#: ../simulation_parameters/common/wiki.json:2097
-#: ../simulation_parameters/common/wiki.json:2174
+#: ../simulation_parameters/common/wiki.json:1384
+#: ../simulation_parameters/common/wiki.json:1461
+#: ../simulation_parameters/common/wiki.json:1538
+#: ../simulation_parameters/common/wiki.json:1615
+#: ../simulation_parameters/common/wiki.json:1692
+#: ../simulation_parameters/common/wiki.json:1769
+#: ../simulation_parameters/common/wiki.json:1846
+#: ../simulation_parameters/common/wiki.json:1923
+#: ../simulation_parameters/common/wiki.json:2000
+#: ../simulation_parameters/common/wiki.json:2077
+#: ../simulation_parameters/common/wiki.json:2154
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:251
 msgid "INFO_BOX_SIZE"
 msgstr "Size (Hexes)"
@@ -2964,17 +2972,17 @@ msgstr "Size (Hexes)"
 #: ../simulation_parameters/common/wiki.json:1161
 #: ../simulation_parameters/common/wiki.json:1238
 #: ../simulation_parameters/common/wiki.json:1315
-#: ../simulation_parameters/common/wiki.json:1412
-#: ../simulation_parameters/common/wiki.json:1489
-#: ../simulation_parameters/common/wiki.json:1566
-#: ../simulation_parameters/common/wiki.json:1643
-#: ../simulation_parameters/common/wiki.json:1720
-#: ../simulation_parameters/common/wiki.json:1797
-#: ../simulation_parameters/common/wiki.json:1874
-#: ../simulation_parameters/common/wiki.json:1951
-#: ../simulation_parameters/common/wiki.json:2028
-#: ../simulation_parameters/common/wiki.json:2105
-#: ../simulation_parameters/common/wiki.json:2182
+#: ../simulation_parameters/common/wiki.json:1392
+#: ../simulation_parameters/common/wiki.json:1469
+#: ../simulation_parameters/common/wiki.json:1546
+#: ../simulation_parameters/common/wiki.json:1623
+#: ../simulation_parameters/common/wiki.json:1700
+#: ../simulation_parameters/common/wiki.json:1777
+#: ../simulation_parameters/common/wiki.json:1854
+#: ../simulation_parameters/common/wiki.json:1931
+#: ../simulation_parameters/common/wiki.json:2008
+#: ../simulation_parameters/common/wiki.json:2085
+#: ../simulation_parameters/common/wiki.json:2162
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:312
 msgid "INFO_BOX_STORAGE"
 msgstr "Storage"
@@ -2996,17 +3004,17 @@ msgstr "Storage"
 #: ../simulation_parameters/common/wiki.json:1165
 #: ../simulation_parameters/common/wiki.json:1242
 #: ../simulation_parameters/common/wiki.json:1319
-#: ../simulation_parameters/common/wiki.json:1416
-#: ../simulation_parameters/common/wiki.json:1493
-#: ../simulation_parameters/common/wiki.json:1570
-#: ../simulation_parameters/common/wiki.json:1647
-#: ../simulation_parameters/common/wiki.json:1724
-#: ../simulation_parameters/common/wiki.json:1801
-#: ../simulation_parameters/common/wiki.json:1878
-#: ../simulation_parameters/common/wiki.json:1955
-#: ../simulation_parameters/common/wiki.json:2032
-#: ../simulation_parameters/common/wiki.json:2109
-#: ../simulation_parameters/common/wiki.json:2186
+#: ../simulation_parameters/common/wiki.json:1396
+#: ../simulation_parameters/common/wiki.json:1473
+#: ../simulation_parameters/common/wiki.json:1550
+#: ../simulation_parameters/common/wiki.json:1627
+#: ../simulation_parameters/common/wiki.json:1704
+#: ../simulation_parameters/common/wiki.json:1781
+#: ../simulation_parameters/common/wiki.json:1858
+#: ../simulation_parameters/common/wiki.json:1935
+#: ../simulation_parameters/common/wiki.json:2012
+#: ../simulation_parameters/common/wiki.json:2089
+#: ../simulation_parameters/common/wiki.json:2166
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:343
 msgid "INFO_BOX_UNIQUE"
 msgstr "Unique"
@@ -3028,17 +3036,17 @@ msgstr "Unique"
 #: ../simulation_parameters/common/wiki.json:1169
 #: ../simulation_parameters/common/wiki.json:1246
 #: ../simulation_parameters/common/wiki.json:1323
-#: ../simulation_parameters/common/wiki.json:1420
-#: ../simulation_parameters/common/wiki.json:1497
-#: ../simulation_parameters/common/wiki.json:1574
-#: ../simulation_parameters/common/wiki.json:1651
-#: ../simulation_parameters/common/wiki.json:1728
-#: ../simulation_parameters/common/wiki.json:1805
-#: ../simulation_parameters/common/wiki.json:1882
-#: ../simulation_parameters/common/wiki.json:1959
-#: ../simulation_parameters/common/wiki.json:2036
-#: ../simulation_parameters/common/wiki.json:2113
-#: ../simulation_parameters/common/wiki.json:2190
+#: ../simulation_parameters/common/wiki.json:1400
+#: ../simulation_parameters/common/wiki.json:1477
+#: ../simulation_parameters/common/wiki.json:1554
+#: ../simulation_parameters/common/wiki.json:1631
+#: ../simulation_parameters/common/wiki.json:1708
+#: ../simulation_parameters/common/wiki.json:1785
+#: ../simulation_parameters/common/wiki.json:1862
+#: ../simulation_parameters/common/wiki.json:1939
+#: ../simulation_parameters/common/wiki.json:2016
+#: ../simulation_parameters/common/wiki.json:2093
+#: ../simulation_parameters/common/wiki.json:2170
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr "Upgrades"
@@ -3980,7 +3988,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Microbe Benchmark"
 
 #: ../simulation_parameters/common/gallery.json:332
-#: ../simulation_parameters/common/wiki.json:2250
+#: ../simulation_parameters/common/wiki.json:2230
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Editor"
 
@@ -4087,7 +4095,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#: ../simulation_parameters/common/wiki.json:2295
+#: ../simulation_parameters/common/wiki.json:2275
 msgid "MICROBE_STAGE"
 msgstr "Microbe Stage"
 
@@ -4596,8 +4604,8 @@ msgstr "Multicellular Freebuild Editor"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#: ../simulation_parameters/common/wiki.json:2246
-#: ../simulation_parameters/common/wiki.json:2344
+#: ../simulation_parameters/common/wiki.json:2226
+#: ../simulation_parameters/common/wiki.json:2324
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
 
@@ -4671,8 +4679,8 @@ msgstr "{0} (PWR: {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (U)"
 
-#: ../simulation_parameters/common/wiki.json:2450
-#: ../simulation_parameters/common/wiki.json:2499
+#: ../simulation_parameters/common/wiki.json:2430
+#: ../simulation_parameters/common/wiki.json:2479
 msgid "NATION_EDITOR"
 msgstr "Nation Editor"
 
@@ -4783,11 +4791,11 @@ msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:comp
 #: ../simulation_parameters/common/wiki.json:911
 #: ../simulation_parameters/common/wiki.json:935
 #: ../simulation_parameters/common/wiki.json:1012
-#: ../simulation_parameters/common/wiki.json:1393
-#: ../simulation_parameters/common/wiki.json:1417
-#: ../simulation_parameters/common/wiki.json:2009
-#: ../simulation_parameters/common/wiki.json:2033
-#: ../simulation_parameters/common/wiki.json:2187
+#: ../simulation_parameters/common/wiki.json:1373
+#: ../simulation_parameters/common/wiki.json:1397
+#: ../simulation_parameters/common/wiki.json:1989
+#: ../simulation_parameters/common/wiki.json:2013
+#: ../simulation_parameters/common/wiki.json:2167
 msgid "NO"
 msgstr "No"
 
@@ -4807,14 +4815,14 @@ msgstr "No"
 #: ../simulation_parameters/common/wiki.json:939
 #: ../simulation_parameters/common/wiki.json:996
 #: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1381
 #: ../simulation_parameters/common/wiki.json:1401
-#: ../simulation_parameters/common/wiki.json:1421
+#: ../simulation_parameters/common/wiki.json:1997
 #: ../simulation_parameters/common/wiki.json:2017
-#: ../simulation_parameters/common/wiki.json:2037
-#: ../simulation_parameters/common/wiki.json:2167
+#: ../simulation_parameters/common/wiki.json:2147
+#: ../simulation_parameters/common/wiki.json:2151
 #: ../simulation_parameters/common/wiki.json:2171
-#: ../simulation_parameters/common/wiki.json:2191
-#: ../simulation_parameters/common/wiki.json:2242
+#: ../simulation_parameters/common/wiki.json:2222
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
@@ -4822,7 +4830,7 @@ msgstr "No"
 msgid "NONE"
 msgstr "None"
 
-#: ../simulation_parameters/common/wiki.json:2593
+#: ../simulation_parameters/common/wiki.json:2573
 msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr "None, This is the last stage"
 
@@ -5225,7 +5233,7 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy Synthesis"
 
-#: ../simulation_parameters/common/wiki.json:1397
+#: ../simulation_parameters/common/wiki.json:1377
 msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy Synthesis, Glycolysis"
 
@@ -6317,8 +6325,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
 #: ../simulation_parameters/common/gallery.json:441
-#: ../simulation_parameters/common/wiki.json:2397
-#: ../simulation_parameters/common/wiki.json:2491
+#: ../simulation_parameters/common/wiki.json:2377
+#: ../simulation_parameters/common/wiki.json:2471
 msgid "SOCIETY_STAGE"
 msgstr "Society Stage"
 
@@ -6343,8 +6351,8 @@ msgid "SPACE"
 msgstr "Space"
 
 #: ../simulation_parameters/common/gallery.json:469
-#: ../simulation_parameters/common/wiki.json:2495
-#: ../simulation_parameters/common/wiki.json:2589
+#: ../simulation_parameters/common/wiki.json:2475
+#: ../simulation_parameters/common/wiki.json:2569
 msgid "SPACE_STAGE"
 msgstr "Space Stage"
 
@@ -6751,10 +6759,10 @@ msgstr "Take a screenshot"
 msgid "TARGET_TYPE_COLON"
 msgstr "Target Type:"
 
-#: ../simulation_parameters/common/wiki.json:2352
-#: ../simulation_parameters/common/wiki.json:2401
-#: ../simulation_parameters/common/wiki.json:2548
-#: ../simulation_parameters/common/wiki.json:2597
+#: ../simulation_parameters/common/wiki.json:2332
+#: ../simulation_parameters/common/wiki.json:2381
+#: ../simulation_parameters/common/wiki.json:2528
+#: ../simulation_parameters/common/wiki.json:2577
 msgid "TBA"
 msgstr "TBA"
 
@@ -7625,50 +7633,50 @@ msgstr "Wheel up"
 msgid "WIKI"
 msgstr "Wiki"
 
-#: ../simulation_parameters/common/wiki.json:2579
+#: ../simulation_parameters/common/wiki.json:2559
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Work has not yet started on Ascenscion."
 
-#: ../simulation_parameters/common/wiki.json:2571
+#: ../simulation_parameters/common/wiki.json:2551
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2559
+#: ../simulation_parameters/common/wiki.json:2539
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "In a nutshell: This is the endgame where you can zoom about the galaxy as a metaphysical being, shaping and observing what you wish. It's been a long journey and you deserve it."
 
-#: ../simulation_parameters/common/wiki.json:2563
+#: ../simulation_parameters/common/wiki.json:2543
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 "Ascension is a key concept in Thrive, comparable to \"winning the game\" in other videogames. It is a state where a sentient organism is transformed to energy form by an Ascension Gate and thus it gets god-like powers, using the energy of the universe itself (essentially doing miracles for free).\n"
 "\n"
 "What Ascension does is that, provided you have researched <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a> research, there will be a new \"God Tools\" panel accessible anywhere in gameplay, allowing you to change anything you want. From creating whole solar systems to smallest bacteria, from destroying whole civilizations to possessing one of its members, all possible."
 
-#: ../simulation_parameters/common/wiki.json:2567
+#: ../simulation_parameters/common/wiki.json:2547
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "You will enter Ascension once your species goes through an Ascension Gate. We will likely want to show the game credits after the cutscene of entering the ascension stage. Once the credits are finished the player is thrown back into the game in the Ascension stage with a congratulatory message. To make this the last hurdle of the game the Ascension Gate will require a lot of research (including the above mentioned <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a>) and a ton of energy, multiple suns worth, to create and operate. Other potentially hostile species will have their last chance to attack the player here before the player gets infinite power and can just erase competing interstellar empires."
 
-#: ../simulation_parameters/common/wiki.json:2575
+#: ../simulation_parameters/common/wiki.json:2555
 msgid "WIKI_ASCENSION_UI"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2383
+#: ../simulation_parameters/common/wiki.json:2363
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Work has not yet started on the Awakening Stage."
 
-#: ../simulation_parameters/common/wiki.json:2375
+#: ../simulation_parameters/common/wiki.json:2355
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2363
+#: ../simulation_parameters/common/wiki.json:2343
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "In a nutshell: You start with a creature beginning to discover the use of tools and must rapidly improve them to survive and outcompete competition. It ends upon the construction of your first Society Center."
 
-#: ../simulation_parameters/common/wiki.json:2367
+#: ../simulation_parameters/common/wiki.json:2347
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2371
+#: ../simulation_parameters/common/wiki.json:2351
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
 "The Awakening Stage begins when the player’s species achieves sapience. However, at this point, little changes, other than the ending of evolution for the player’s species. As the timescales have shrunk massively, only small evolutionary changes can happen anymore. <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> is still locked, the Nation Editor is locked, and Society Centers don’t exist. The initial transition is mostly symbolic (other than the greatly reduced species editing ability), and the substance of the change is gradual.\n"
@@ -7681,34 +7689,34 @@ msgstr ""
 "\n"
 "The stage ends when the player builds their first Society Center. At this point the player's view will transition into the <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> really highlighting the change between the stages and the move to the strategy stages of the game."
 
-#: ../simulation_parameters/common/wiki.json:2379
+#: ../simulation_parameters/common/wiki.json:2359
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2334
+#: ../simulation_parameters/common/wiki.json:2314
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prototype level of the development of the Aware and later stages has started. The prototypes are much rougher than multicellular prototype, which itself is not up to the quality we want the finished game to be."
 
-#: ../simulation_parameters/common/wiki.json:2326
+#: ../simulation_parameters/common/wiki.json:2306
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2314
+#: ../simulation_parameters/common/wiki.json:2294
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr "The Aware Stage begins with the player controlling their species that has just developed a nervous system and gained sentience. They will experience generations of evolution until they have evolved full intelligence, or sapience."
 
-#: ../simulation_parameters/common/wiki.json:2318
+#: ../simulation_parameters/common/wiki.json:2298
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
 msgstr "Aware stage is the largest and most important \"animal\" stage of the game. To reach the aware stage, your multicellular species must attain a moderate level of intelligence. It is in this stage of the game that evolution will be seen in all of its glory, and that the biome will be of utmost importance. Awakening Stage follows Aware stage when the player begins to use tools."
 
-#: ../simulation_parameters/common/wiki.json:2322
+#: ../simulation_parameters/common/wiki.json:2302
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr ""
 "The stage starts when the player has developed a central nervous system along with a brain and their species becomes aware of their surroundings.\n"
 "\n"
 "The stage ends when the player has increased the brain capacity of their species enough for them to reach sapience and gain the ability to develop and use tools."
 
-#: ../simulation_parameters/common/wiki.json:2330
+#: ../simulation_parameters/common/wiki.json:2310
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "Coming soon."
 
@@ -7982,18 +7990,15 @@ msgstr "TBA"
 msgid "WIKI_CILIA_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1343
-#: ../simulation_parameters/common/wiki.json:2630
+#: ../simulation_parameters/common/wiki.json:2610
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "For information regarding the behind the scenes and theory behind Compounds, go to <a href=\"/wiki/Compound_System_Development\" title=\"Compound System Development\">Compound System Development</a>."
 
-#: ../simulation_parameters/common/wiki.json:1335
-#: ../simulation_parameters/common/wiki.json:2622
+#: ../simulation_parameters/common/wiki.json:2602
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "<br>For the first few stages, the main resources in Thrive are [b]Compounds[/b]. Compounds are used in processes to create other compounds or are consumed in another way."
 
-#: ../simulation_parameters/common/wiki.json:1339
-#: ../simulation_parameters/common/wiki.json:2626
+#: ../simulation_parameters/common/wiki.json:2606
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "There are multiple different [b]Compounds[/b] in Thrive.\n"
@@ -8006,22 +8011,22 @@ msgstr ""
 "[indent]—   [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
 "\n"
-"These Compounds are created in special and have special uses.\n"
+"These Compounds are created in special <a href=\"/wiki/Organelles\" class=\"mw-redirect\" title=\"Organelles\">organelles</a> and have special uses.\n"
 "\n"
 "[indent]—   [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
 "\n"
 "[thrive:compound type=\"atp\"][/thrive:compound] is created primarily via [thrive:compound type=\"glucose\"][/thrive:compound] and is needed to keep your organism alive."
 
-#: ../simulation_parameters/common/wiki.json:2668
+#: ../simulation_parameters/common/wiki.json:2648
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "For the full list of compounds in the Microbe Stage, look at the Compounds table on the <a href=\"/wiki/Microbe_Stage_Appendices\" title=\"Microbe Stage Appendices\">Microbe Stage Appendices</a> page."
 
-#: ../simulation_parameters/common/wiki.json:2656
+#: ../simulation_parameters/common/wiki.json:2636
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
 msgstr "The compound system is one of the groundwork game mechanics underlying simulations throughout the entire game, designed for use everywhere from cellular homeostasis to interstellar trade."
 
-#: ../simulation_parameters/common/wiki.json:2664
+#: ../simulation_parameters/common/wiki.json:2644
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
 "[indent]—   Compounds are the materials that the world and organisms are made of. So, stuff like elemental compounds (like carbon), natural resources (salt, water), organic compounds (amino acids) and organic polymers (proteins).[/indent]\n"
@@ -8113,14 +8118,14 @@ msgstr ""
 "[indent]—   It’s also important that processes with a max capacity of 0 do not affect the system in any way.[/indent]\n"
 "[indent]—   That’s it! :D[/indent]"
 
-#: ../simulation_parameters/common/wiki.json:2660
+#: ../simulation_parameters/common/wiki.json:2640
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 "[indent]—   In Thrive the substances that things are composed of are known as compounds, which can be thought of as like resources. They aren’t limited to the scientific definition of \"Compound\" of two or more elements bonded together. Compounds in the resource sense can be elements (like oxygen), compounds (such as ammonia), or other substances (chemical agents or toxins).[/indent]\n"
 "\n"
 "[indent]—   Basically everything in the game is made of some compound. The compound system is to keep track of what organisms are made of, to track what the organism has eaten, what it's converted it into, and what waste products it expels. Everything else is part of the environment, and available to other organisms.[/indent]"
 
-#: ../simulation_parameters/common/wiki.json:2609
+#: ../simulation_parameters/common/wiki.json:2589
 msgid "WIKI_CONCEPTS_ROOT_INTRO"
 msgstr "These are various concepts shared by multiple stages or editors."
 
@@ -8162,7 +8167,7 @@ msgstr "TBA"
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "No upgrades."
 
-#: ../simulation_parameters/common/wiki.json:2643
+#: ../simulation_parameters/common/wiki.json:2623
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "These are pages related to the development of Thrive and contain information on theory and implementations"
 
@@ -8202,34 +8207,33 @@ msgstr "TBA"
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr "Aerobic cellular respiration (glucose -> ATP)"
 
-#: ../simulation_parameters/common/wiki.json:2231
+#: ../simulation_parameters/common/wiki.json:2211
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Appendices"
 
-#: ../simulation_parameters/common/wiki.json:2667
+#: ../simulation_parameters/common/wiki.json:2647
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr "Compounds List"
 
-#: ../simulation_parameters/common/wiki.json:2280
+#: ../simulation_parameters/common/wiki.json:2260
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Concept Art"
 
-#: ../simulation_parameters/common/wiki.json:2284
-#: ../simulation_parameters/common/wiki.json:2333
-#: ../simulation_parameters/common/wiki.json:2382
-#: ../simulation_parameters/common/wiki.json:2431
-#: ../simulation_parameters/common/wiki.json:2480
-#: ../simulation_parameters/common/wiki.json:2529
-#: ../simulation_parameters/common/wiki.json:2578
+#: ../simulation_parameters/common/wiki.json:2264
+#: ../simulation_parameters/common/wiki.json:2313
+#: ../simulation_parameters/common/wiki.json:2362
+#: ../simulation_parameters/common/wiki.json:2411
+#: ../simulation_parameters/common/wiki.json:2460
+#: ../simulation_parameters/common/wiki.json:2509
+#: ../simulation_parameters/common/wiki.json:2558
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr "Current Development"
 
-#: ../simulation_parameters/common/wiki.json:1342
-#: ../simulation_parameters/common/wiki.json:2629
+#: ../simulation_parameters/common/wiki.json:2609
 msgid "WIKI_HEADING_DEVELOPMENT"
 msgstr "Development"
 
-#: ../simulation_parameters/common/wiki.json:2223
+#: ../simulation_parameters/common/wiki.json:2203
 msgid "WIKI_HEADING_EDITOR"
 msgstr "Editor"
 
@@ -8250,39 +8254,39 @@ msgstr "Editor"
 #: ../simulation_parameters/common/wiki.json:1119
 #: ../simulation_parameters/common/wiki.json:1196
 #: ../simulation_parameters/common/wiki.json:1273
-#: ../simulation_parameters/common/wiki.json:1370
-#: ../simulation_parameters/common/wiki.json:1447
-#: ../simulation_parameters/common/wiki.json:1524
-#: ../simulation_parameters/common/wiki.json:1601
-#: ../simulation_parameters/common/wiki.json:1678
-#: ../simulation_parameters/common/wiki.json:1755
-#: ../simulation_parameters/common/wiki.json:1832
-#: ../simulation_parameters/common/wiki.json:1909
-#: ../simulation_parameters/common/wiki.json:1986
-#: ../simulation_parameters/common/wiki.json:2063
-#: ../simulation_parameters/common/wiki.json:2140
+#: ../simulation_parameters/common/wiki.json:1350
+#: ../simulation_parameters/common/wiki.json:1427
+#: ../simulation_parameters/common/wiki.json:1504
+#: ../simulation_parameters/common/wiki.json:1581
+#: ../simulation_parameters/common/wiki.json:1658
+#: ../simulation_parameters/common/wiki.json:1735
+#: ../simulation_parameters/common/wiki.json:1812
+#: ../simulation_parameters/common/wiki.json:1889
+#: ../simulation_parameters/common/wiki.json:1966
+#: ../simulation_parameters/common/wiki.json:2043
+#: ../simulation_parameters/common/wiki.json:2120
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Effects"
 
-#: ../simulation_parameters/common/wiki.json:2272
-#: ../simulation_parameters/common/wiki.json:2325
-#: ../simulation_parameters/common/wiki.json:2374
-#: ../simulation_parameters/common/wiki.json:2423
-#: ../simulation_parameters/common/wiki.json:2472
-#: ../simulation_parameters/common/wiki.json:2521
-#: ../simulation_parameters/common/wiki.json:2570
+#: ../simulation_parameters/common/wiki.json:2252
+#: ../simulation_parameters/common/wiki.json:2305
+#: ../simulation_parameters/common/wiki.json:2354
+#: ../simulation_parameters/common/wiki.json:2403
+#: ../simulation_parameters/common/wiki.json:2452
+#: ../simulation_parameters/common/wiki.json:2501
+#: ../simulation_parameters/common/wiki.json:2550
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Features"
 
-#: ../simulation_parameters/common/wiki.json:2219
+#: ../simulation_parameters/common/wiki.json:2199
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr "Gameplay"
 
-#: ../simulation_parameters/common/wiki.json:2227
+#: ../simulation_parameters/common/wiki.json:2207
 msgid "WIKI_HEADING_GDD"
 msgstr "GDD"
 
-#: ../simulation_parameters/common/wiki.json:2663
+#: ../simulation_parameters/common/wiki.json:2643
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Microbe Stage"
 
@@ -8303,28 +8307,28 @@ msgstr "Microbe Stage"
 #: ../simulation_parameters/common/wiki.json:1115
 #: ../simulation_parameters/common/wiki.json:1192
 #: ../simulation_parameters/common/wiki.json:1269
-#: ../simulation_parameters/common/wiki.json:1366
-#: ../simulation_parameters/common/wiki.json:1443
-#: ../simulation_parameters/common/wiki.json:1520
-#: ../simulation_parameters/common/wiki.json:1597
-#: ../simulation_parameters/common/wiki.json:1674
-#: ../simulation_parameters/common/wiki.json:1751
-#: ../simulation_parameters/common/wiki.json:1828
-#: ../simulation_parameters/common/wiki.json:1905
-#: ../simulation_parameters/common/wiki.json:1982
-#: ../simulation_parameters/common/wiki.json:2059
-#: ../simulation_parameters/common/wiki.json:2136
+#: ../simulation_parameters/common/wiki.json:1346
+#: ../simulation_parameters/common/wiki.json:1423
+#: ../simulation_parameters/common/wiki.json:1500
+#: ../simulation_parameters/common/wiki.json:1577
+#: ../simulation_parameters/common/wiki.json:1654
+#: ../simulation_parameters/common/wiki.json:1731
+#: ../simulation_parameters/common/wiki.json:1808
+#: ../simulation_parameters/common/wiki.json:1885
+#: ../simulation_parameters/common/wiki.json:1962
+#: ../simulation_parameters/common/wiki.json:2039
+#: ../simulation_parameters/common/wiki.json:2116
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modifications"
 
-#: ../simulation_parameters/common/wiki.json:2264
-#: ../simulation_parameters/common/wiki.json:2317
-#: ../simulation_parameters/common/wiki.json:2366
-#: ../simulation_parameters/common/wiki.json:2415
-#: ../simulation_parameters/common/wiki.json:2464
-#: ../simulation_parameters/common/wiki.json:2513
-#: ../simulation_parameters/common/wiki.json:2562
-#: ../simulation_parameters/common/wiki.json:2659
+#: ../simulation_parameters/common/wiki.json:2244
+#: ../simulation_parameters/common/wiki.json:2297
+#: ../simulation_parameters/common/wiki.json:2346
+#: ../simulation_parameters/common/wiki.json:2395
+#: ../simulation_parameters/common/wiki.json:2444
+#: ../simulation_parameters/common/wiki.json:2493
+#: ../simulation_parameters/common/wiki.json:2542
+#: ../simulation_parameters/common/wiki.json:2639
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr "Overview"
 
@@ -8345,17 +8349,17 @@ msgstr "Overview"
 #: ../simulation_parameters/common/wiki.json:1111
 #: ../simulation_parameters/common/wiki.json:1188
 #: ../simulation_parameters/common/wiki.json:1265
-#: ../simulation_parameters/common/wiki.json:1362
-#: ../simulation_parameters/common/wiki.json:1439
-#: ../simulation_parameters/common/wiki.json:1516
-#: ../simulation_parameters/common/wiki.json:1593
-#: ../simulation_parameters/common/wiki.json:1670
-#: ../simulation_parameters/common/wiki.json:1747
-#: ../simulation_parameters/common/wiki.json:1824
-#: ../simulation_parameters/common/wiki.json:1901
-#: ../simulation_parameters/common/wiki.json:1978
-#: ../simulation_parameters/common/wiki.json:2055
-#: ../simulation_parameters/common/wiki.json:2132
+#: ../simulation_parameters/common/wiki.json:1342
+#: ../simulation_parameters/common/wiki.json:1419
+#: ../simulation_parameters/common/wiki.json:1496
+#: ../simulation_parameters/common/wiki.json:1573
+#: ../simulation_parameters/common/wiki.json:1650
+#: ../simulation_parameters/common/wiki.json:1727
+#: ../simulation_parameters/common/wiki.json:1804
+#: ../simulation_parameters/common/wiki.json:1881
+#: ../simulation_parameters/common/wiki.json:1958
+#: ../simulation_parameters/common/wiki.json:2035
+#: ../simulation_parameters/common/wiki.json:2112
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "Processes"
 
@@ -8376,17 +8380,17 @@ msgstr "Processes"
 #: ../simulation_parameters/common/wiki.json:1107
 #: ../simulation_parameters/common/wiki.json:1184
 #: ../simulation_parameters/common/wiki.json:1261
-#: ../simulation_parameters/common/wiki.json:1358
-#: ../simulation_parameters/common/wiki.json:1435
-#: ../simulation_parameters/common/wiki.json:1512
-#: ../simulation_parameters/common/wiki.json:1589
-#: ../simulation_parameters/common/wiki.json:1666
-#: ../simulation_parameters/common/wiki.json:1743
-#: ../simulation_parameters/common/wiki.json:1820
-#: ../simulation_parameters/common/wiki.json:1897
-#: ../simulation_parameters/common/wiki.json:1974
-#: ../simulation_parameters/common/wiki.json:2051
-#: ../simulation_parameters/common/wiki.json:2128
+#: ../simulation_parameters/common/wiki.json:1338
+#: ../simulation_parameters/common/wiki.json:1415
+#: ../simulation_parameters/common/wiki.json:1492
+#: ../simulation_parameters/common/wiki.json:1569
+#: ../simulation_parameters/common/wiki.json:1646
+#: ../simulation_parameters/common/wiki.json:1723
+#: ../simulation_parameters/common/wiki.json:1800
+#: ../simulation_parameters/common/wiki.json:1877
+#: ../simulation_parameters/common/wiki.json:1954
+#: ../simulation_parameters/common/wiki.json:2031
+#: ../simulation_parameters/common/wiki.json:2108
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Requirements"
 
@@ -8407,17 +8411,17 @@ msgstr "Requirements"
 #: ../simulation_parameters/common/wiki.json:1131
 #: ../simulation_parameters/common/wiki.json:1208
 #: ../simulation_parameters/common/wiki.json:1285
-#: ../simulation_parameters/common/wiki.json:1382
-#: ../simulation_parameters/common/wiki.json:1459
-#: ../simulation_parameters/common/wiki.json:1536
-#: ../simulation_parameters/common/wiki.json:1613
-#: ../simulation_parameters/common/wiki.json:1690
-#: ../simulation_parameters/common/wiki.json:1767
-#: ../simulation_parameters/common/wiki.json:1844
-#: ../simulation_parameters/common/wiki.json:1921
-#: ../simulation_parameters/common/wiki.json:1998
-#: ../simulation_parameters/common/wiki.json:2075
-#: ../simulation_parameters/common/wiki.json:2152
+#: ../simulation_parameters/common/wiki.json:1362
+#: ../simulation_parameters/common/wiki.json:1439
+#: ../simulation_parameters/common/wiki.json:1516
+#: ../simulation_parameters/common/wiki.json:1593
+#: ../simulation_parameters/common/wiki.json:1670
+#: ../simulation_parameters/common/wiki.json:1747
+#: ../simulation_parameters/common/wiki.json:1824
+#: ../simulation_parameters/common/wiki.json:1901
+#: ../simulation_parameters/common/wiki.json:1978
+#: ../simulation_parameters/common/wiki.json:2055
+#: ../simulation_parameters/common/wiki.json:2132
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
 msgstr "Scientific Background"
 
@@ -8438,42 +8442,41 @@ msgstr "Scientific Background"
 #: ../simulation_parameters/common/wiki.json:1127
 #: ../simulation_parameters/common/wiki.json:1204
 #: ../simulation_parameters/common/wiki.json:1281
-#: ../simulation_parameters/common/wiki.json:1378
-#: ../simulation_parameters/common/wiki.json:1455
-#: ../simulation_parameters/common/wiki.json:1532
-#: ../simulation_parameters/common/wiki.json:1609
-#: ../simulation_parameters/common/wiki.json:1686
-#: ../simulation_parameters/common/wiki.json:1763
-#: ../simulation_parameters/common/wiki.json:1840
-#: ../simulation_parameters/common/wiki.json:1917
-#: ../simulation_parameters/common/wiki.json:1994
-#: ../simulation_parameters/common/wiki.json:2071
-#: ../simulation_parameters/common/wiki.json:2148
+#: ../simulation_parameters/common/wiki.json:1358
+#: ../simulation_parameters/common/wiki.json:1435
+#: ../simulation_parameters/common/wiki.json:1512
+#: ../simulation_parameters/common/wiki.json:1589
+#: ../simulation_parameters/common/wiki.json:1666
+#: ../simulation_parameters/common/wiki.json:1743
+#: ../simulation_parameters/common/wiki.json:1820
+#: ../simulation_parameters/common/wiki.json:1897
+#: ../simulation_parameters/common/wiki.json:1974
+#: ../simulation_parameters/common/wiki.json:2051
+#: ../simulation_parameters/common/wiki.json:2128
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Strategy"
 
-#: ../simulation_parameters/common/wiki.json:2268
-#: ../simulation_parameters/common/wiki.json:2321
-#: ../simulation_parameters/common/wiki.json:2370
-#: ../simulation_parameters/common/wiki.json:2419
-#: ../simulation_parameters/common/wiki.json:2468
-#: ../simulation_parameters/common/wiki.json:2517
-#: ../simulation_parameters/common/wiki.json:2566
+#: ../simulation_parameters/common/wiki.json:2248
+#: ../simulation_parameters/common/wiki.json:2301
+#: ../simulation_parameters/common/wiki.json:2350
+#: ../simulation_parameters/common/wiki.json:2399
+#: ../simulation_parameters/common/wiki.json:2448
+#: ../simulation_parameters/common/wiki.json:2497
+#: ../simulation_parameters/common/wiki.json:2546
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr "Transitions"
 
-#: ../simulation_parameters/common/wiki.json:1338
-#: ../simulation_parameters/common/wiki.json:2625
+#: ../simulation_parameters/common/wiki.json:2605
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
 msgstr "Types of Compounds"
 
-#: ../simulation_parameters/common/wiki.json:2276
-#: ../simulation_parameters/common/wiki.json:2329
-#: ../simulation_parameters/common/wiki.json:2378
-#: ../simulation_parameters/common/wiki.json:2427
-#: ../simulation_parameters/common/wiki.json:2476
-#: ../simulation_parameters/common/wiki.json:2525
-#: ../simulation_parameters/common/wiki.json:2574
+#: ../simulation_parameters/common/wiki.json:2256
+#: ../simulation_parameters/common/wiki.json:2309
+#: ../simulation_parameters/common/wiki.json:2358
+#: ../simulation_parameters/common/wiki.json:2407
+#: ../simulation_parameters/common/wiki.json:2456
+#: ../simulation_parameters/common/wiki.json:2505
+#: ../simulation_parameters/common/wiki.json:2554
 msgid "WIKI_HEADING_UI"
 msgstr "UI"
 
@@ -8494,29 +8497,29 @@ msgstr "UI"
 #: ../simulation_parameters/common/wiki.json:1123
 #: ../simulation_parameters/common/wiki.json:1200
 #: ../simulation_parameters/common/wiki.json:1277
-#: ../simulation_parameters/common/wiki.json:1374
-#: ../simulation_parameters/common/wiki.json:1451
-#: ../simulation_parameters/common/wiki.json:1528
-#: ../simulation_parameters/common/wiki.json:1605
-#: ../simulation_parameters/common/wiki.json:1682
-#: ../simulation_parameters/common/wiki.json:1759
-#: ../simulation_parameters/common/wiki.json:1836
-#: ../simulation_parameters/common/wiki.json:1913
-#: ../simulation_parameters/common/wiki.json:1990
-#: ../simulation_parameters/common/wiki.json:2067
-#: ../simulation_parameters/common/wiki.json:2144
+#: ../simulation_parameters/common/wiki.json:1354
+#: ../simulation_parameters/common/wiki.json:1431
+#: ../simulation_parameters/common/wiki.json:1508
+#: ../simulation_parameters/common/wiki.json:1585
+#: ../simulation_parameters/common/wiki.json:1662
+#: ../simulation_parameters/common/wiki.json:1739
+#: ../simulation_parameters/common/wiki.json:1816
+#: ../simulation_parameters/common/wiki.json:1893
+#: ../simulation_parameters/common/wiki.json:1970
+#: ../simulation_parameters/common/wiki.json:2047
+#: ../simulation_parameters/common/wiki.json:2124
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Upgrades"
 
-#: ../simulation_parameters/common/wiki.json:2481
+#: ../simulation_parameters/common/wiki.json:2461
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Development has not started on this stage. Gameplay and theory design for this stage will become relevant once the <a href=\"/wiki/Society_Stage\" title=\"Society Stage\">Society Stage</a> is being worked on."
 
-#: ../simulation_parameters/common/wiki.json:2473
+#: ../simulation_parameters/common/wiki.json:2453
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2461
+#: ../simulation_parameters/common/wiki.json:2441
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
 "Industrial stage is the sixth of seven Thrive's gameplay stages, coming after the <a href=\"/wiki/Society_Stage\" title=\"Society Stage\">Society Stage</a> with the invention of industrial machines. Technology and culture are much more advanced now, and civilization is largely reliant on machines to sustain itself. The whole planet is now mostly explored and populated, allowing you communicate or wage wars practically anywhere. Diplomatic and leadership skills are needed more than ever before.\n"
@@ -8525,11 +8528,11 @@ msgstr ""
 "\n"
 "The Industrial stage ends with the invention of space travel, being followed by the <a href=\"/wiki/Space_Stage\" title=\"Space Stage\">Space Stage</a>. The first rocket to reach space marks the end of the stage, but the early <a href=\"/wiki/Space_Stage\" title=\"Space Stage\">Space Stage</a> is still very similar to the Industrial Stage."
 
-#: ../simulation_parameters/common/wiki.json:2465
+#: ../simulation_parameters/common/wiki.json:2445
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr "The Industrial Stage will mostly revolve around population. Population will skyrocket. The economy will boom. Wars will get larger and bloodier. Consumption and pollution will rise. All of these will be results of the increase in the number of members of the player's species in the world. This will be brought about by advances in medicine, farming, sanitation, logistics, refrigeration, and transportation. These lead to the spike in the population, which in turn catalyzes the Industrial Revolution, which in effect engenders new military, scientific, economic, and political reforms."
 
-#: ../simulation_parameters/common/wiki.json:2469
+#: ../simulation_parameters/common/wiki.json:2449
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr ""
 "The Industrial Stage officially begins when the player’s nation discovers the technology Steam Power (and builds the first industrial machine). Following this, Assembly Line vastly improves production and manufacturing, Railroads advances the rate of trade and transportation, and Agricultural Engineering progresses crop growth and output. New military technologies lead to a revolution in warfare.\n"
@@ -8538,7 +8541,7 @@ msgstr ""
 "\n"
 "The stage ends when the player first reaches space."
 
-#: ../simulation_parameters/common/wiki.json:2477
+#: ../simulation_parameters/common/wiki.json:2457
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Coming soon."
 
@@ -8681,11 +8684,11 @@ msgstr "TBA"
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "No upgrades."
 
-#: ../simulation_parameters/common/wiki.json:2232
+#: ../simulation_parameters/common/wiki.json:2212
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr "There are some tables and other things collected in the <a href=\"/wiki/Microbe_Stage_Appendices\" title=\"Microbe Stage Appendices\">Microbe Stage Appendices</a>"
 
-#: ../simulation_parameters/common/wiki.json:2224
+#: ../simulation_parameters/common/wiki.json:2204
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
 "The editor is the strategic side of the microbial stage and is accessed whenever the player reproduces. It is in this editor that the player is allowed to evolve their species by placing parts from a list of available proteins or organelles onto their cell. Each generation, the player is given 100 Mutation points or MP that is used as a currency to buy these parts. The editor is currently divided into three different windows; The report page, the patch map, and finally the editor itself.\n"
@@ -8732,7 +8735,7 @@ msgstr ""
 "[indent]—   Sessile/Active: Determining how willing a species is to move, if at all, without stimulus.[/indent]\n"
 "[indent]—   Responsive/Focused: Determining how quickly a species gives up pursuing a goal, if ever.[/indent]"
 
-#: ../simulation_parameters/common/wiki.json:2220
+#: ../simulation_parameters/common/wiki.json:2200
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
 "The Microbe Stage takes place in a 3D environment viewed from a 2D perspective, as if being viewed from a microscope. Here, the player must steer their cell into brightly colored compound clouds to sustain and grow their cell until they can reproduce. At the beginning of the game there will be no predators, the only dangers being starvation and the occasional toxin. However, as the player reproduces, new competing species will branch away from the player's species and steadily become an increasingly dangerous obstacle for the player to overcome. While at first the player is a tiny cell only capable of consuming glucose ammonia and phosphates, the player will be able to adapt their cell in any way they choose after every reproduction, granting the player new abilities and options as time goes on. This comes at a cost however, as the player cell becomes larger and more complex, it will require more food to sustain. The player must take care to ensure that their cell is always sustainable or they will quickly starve. Additionally, species that arise from your own will inherit your adaptations, so the player must be cautious of how soon they develop things such as weaponry.\n"
@@ -8774,11 +8777,11 @@ msgstr ""
 "[indent]—   [b]Hydrogen Sulfide:[/b] An alternative source of glucose for cells, that can be found in high quantities in a select few patches. Should a player intend to use hydrogen sulfide for energy, they must take care to ensure that the patch they inhabit contains the compound. Hydrogen sulfide is only usable if the player possesses chemosynthesizing proteins, otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.[/indent]\n"
 "[indent]—   [b]Iron:[/b] Another alternative source of ATP, iron is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, iron can not only be found in clouds but also as variably sized chunks that trail iron clouds as they drift. Iron can only be used by a cell if it possesses rustycyanin. Iron clouds appear brown in color. The chunks themselves can be engulfed for a significant source of iron.[/indent]"
 
-#: ../simulation_parameters/common/wiki.json:2228
+#: ../simulation_parameters/common/wiki.json:2208
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "There is a separate game design document for the microbe stage that goes into more details: <a href=\"/wiki/Microbe_Stage_GDD\" title=\"Microbe Stage GDD\">Microbe Stage GDD</a>"
 
-#: ../simulation_parameters/common/wiki.json:2216
+#: ../simulation_parameters/common/wiki.json:2196
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 "Previous stage: No earlier stages.\n"
@@ -8822,18 +8825,18 @@ msgstr "TBA"
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "No upgrades."
 
-#: ../simulation_parameters/common/wiki.json:2281
+#: ../simulation_parameters/common/wiki.json:2261
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:30px auto;\"><a href=\"/wiki/File:Multiperceptionconcept.jpg\" class=\"image\" title=\"Perception concept\"><img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Perception concept</p>			</div>		</div>[/indent]\n"
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:21px auto;\"><a href=\"/wiki/File:Multieditorconcept.jpeg\" class=\"image\" title=\"Editor concept\"><img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Editor concept</p>			</div>		</div>[/indent]\n"
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:41px auto;\"><a href=\"/wiki/File:Multicolorconcept.png\" class=\"image\" title=\"Terrain color concept\"><img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Terrain color concept</p>			</div>		</div>[/indent]"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:30px auto;\"><a href=\"/wiki/File:Multiperceptionconcept.jpg\" class=\"image\" title=\"Perception concept\"><img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Perception concept</p>\t\t\t</div>\t\t</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:21px auto;\"><a href=\"/wiki/File:Multieditorconcept.jpeg\" class=\"image\" title=\"Editor concept\"><img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Editor concept</p>\t\t\t</div>\t\t</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:41px auto;\"><a href=\"/wiki/File:Multicolorconcept.png\" class=\"image\" title=\"Terrain color concept\"><img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Terrain color concept</p>\t\t\t</div>\t\t</div>[/indent]"
 
-#: ../simulation_parameters/common/wiki.json:2285
+#: ../simulation_parameters/common/wiki.json:2265
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prototype level of the development of the multicellular stage has started. Early multicellular is mostly playable. Later multicellular stage is more experimental prototype."
 
-#: ../simulation_parameters/common/wiki.json:2273
+#: ../simulation_parameters/common/wiki.json:2253
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
 "The gameplay of the first segment of the stage will feel a lot like the Microbe Stage. Gameplay will continue on the 2D plane with other cells, but the difference will be that the player will now control a growing colony. The difference from the end of microbe stage is that the colony can no longer be disbanded, instead it acts like a permanently stuck together, singular organism. This is the early part of the multicellular where the microbe environment is still used and the player can interact with microbes.\n"
@@ -8844,25 +8847,25 @@ msgstr ""
 "\n"
 "There is a separate page for the <a href=\"/wiki/Multicellular_Stage_GDD\" title=\"Multicellular Stage GDD\">Multicellular Stage GDD</a> describing the stage mechanics in more details."
 
-#: ../simulation_parameters/common/wiki.json:2261
+#: ../simulation_parameters/common/wiki.json:2241
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "In the Multicellular Stage, your colony will become more complex and specialized, as well as experiencing a transition into a 3D environment, until it becomes a macroscopic multicellular organism. The stage ends when your creature first develops a nervous system and thus sentience."
 
-#: ../simulation_parameters/common/wiki.json:2265
+#: ../simulation_parameters/common/wiki.json:2245
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr ""
 "Life in the oceans flourishes. There will be a lot of diversity. The world has suddenly gotten a lot bigger for the player.\n"
 "\n"
 "The player will now control a colony of cells that form a larger organism. The scale will gradually increase in size."
 
-#: ../simulation_parameters/common/wiki.json:2269
+#: ../simulation_parameters/common/wiki.json:2249
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr ""
 "The stage starts when cells bind together through use of Binding Agents (Adhesion Proteins) and the cells can no longer unbind (they become actually a single organism). The move to multicellular requires a large enough cell colony to exist as a precondition.\n"
 "\n"
 "It ends when the player's species evolves a nervous system."
 
-#: ../simulation_parameters/common/wiki.json:2277
+#: ../simulation_parameters/common/wiki.json:2257
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Nothing has been discussed."
 
@@ -9005,19 +9008,19 @@ msgstr ""
 "\n"
 "Select an organelle from the list below to learn more."
 
-#: ../simulation_parameters/common/wiki.json:1371
+#: ../simulation_parameters/common/wiki.json:1351
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "Having one or more Oxytoxisomes or <a href=\"/wiki/Toxin_Vacuole\" title=\"Toxin Vacuole\">Toxin Vacuoles</a> will allow the cell to shoot toxin particles. These will harm anything they collide with."
 
-#: ../simulation_parameters/common/wiki.json:1355
+#: ../simulation_parameters/common/wiki.json:1335
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxytoxisomes are an inferior version of <a href=\"/wiki/Toxin_Vacuole\" title=\"Toxin Vacuole\">Toxin Vacuoles</a> available to [b]prokaryotes[/b]. They perform [b]OxyToxy Synthesis[/b] to produce [thrive:compound type=\"oxytoxy\"][/thrive:compound], a toxin you can fire as a ranged attack. The cytoplasm around it performs some [b]Glycolysis[/b]."
 
-#: ../simulation_parameters/common/wiki.json:1367
+#: ../simulation_parameters/common/wiki.json:1347
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "No modifications."
 
-#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1343
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
 "[b]OxyToxy Synthesis[/b]: [thrive:compound type=\"atp\"][/thrive:compound] → [thrive:compound type=\"oxytoxy\"][/thrive:compound] @ [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
@@ -9028,31 +9031,31 @@ msgstr ""
 "\n"
 "The cytoplasm surrounding the organelle performs a less efficient form of [b]Glycolisis[/b]. This transform [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] though at a lesser rate than in <a href=\"/wiki/Cytoplasm\" title=\"Cytoplasm\">cytoplasm</a>. This is common in prokaryotic organelles."
 
-#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1339
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "No requirements"
 
-#: ../simulation_parameters/common/wiki.json:1383
+#: ../simulation_parameters/common/wiki.json:1363
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1379
+#: ../simulation_parameters/common/wiki.json:1359
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1375
+#: ../simulation_parameters/common/wiki.json:1355
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "No upgrades."
 
-#: ../simulation_parameters/common/wiki.json:2553
+#: ../simulation_parameters/common/wiki.json:2533
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Ascension"
 
-#: ../simulation_parameters/common/wiki.json:2357
+#: ../simulation_parameters/common/wiki.json:2337
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr "Awakening Stage"
 
-#: ../simulation_parameters/common/wiki.json:2308
+#: ../simulation_parameters/common/wiki.json:2288
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Aware Stage"
 
@@ -9088,16 +9091,15 @@ msgstr "Chloroplast"
 msgid "WIKI_PAGE_CILIA"
 msgstr "Cilia"
 
-#: ../simulation_parameters/common/wiki.json:1329
-#: ../simulation_parameters/common/wiki.json:2616
+#: ../simulation_parameters/common/wiki.json:2596
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Compounds"
 
-#: ../simulation_parameters/common/wiki.json:2650
+#: ../simulation_parameters/common/wiki.json:2630
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
 msgstr "Compound System Development"
 
-#: ../simulation_parameters/common/wiki.json:2603
+#: ../simulation_parameters/common/wiki.json:2583
 msgid "WIKI_PAGE_CONCEPTS_ROOT"
 msgstr "Concepts"
 
@@ -9105,7 +9107,7 @@ msgstr "Concepts"
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasm"
 
-#: ../simulation_parameters/common/wiki.json:2637
+#: ../simulation_parameters/common/wiki.json:2617
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
 msgstr "Development"
 
@@ -9113,7 +9115,7 @@ msgstr "Development"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
 
-#: ../simulation_parameters/common/wiki.json:2455
+#: ../simulation_parameters/common/wiki.json:2435
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Industrial Stage"
 
@@ -9125,7 +9127,7 @@ msgstr "Lysosome"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomes"
 
-#: ../simulation_parameters/common/wiki.json:2210
+#: ../simulation_parameters/common/wiki.json:2190
 msgid "WIKI_PAGE_MICROBE_STAGE"
 msgstr "Microbe Stage"
 
@@ -9133,7 +9135,7 @@ msgstr "Microbe Stage"
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrion"
 
-#: ../simulation_parameters/common/wiki.json:2255
+#: ../simulation_parameters/common/wiki.json:2235
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
 
@@ -9157,123 +9159,123 @@ msgstr "Nucleus"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "Organelles"
 
-#: ../simulation_parameters/common/wiki.json:1349
+#: ../simulation_parameters/common/wiki.json:1329
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxisome"
 
-#: ../simulation_parameters/common/wiki.json:1426
+#: ../simulation_parameters/common/wiki.json:1406
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "Perforator Pilus"
 
-#: ../simulation_parameters/common/wiki.json:1503
+#: ../simulation_parameters/common/wiki.json:1483
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasm"
 
-#: ../simulation_parameters/common/wiki.json:1580
+#: ../simulation_parameters/common/wiki.json:1560
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanin"
 
-#: ../simulation_parameters/common/wiki.json:1657
+#: ../simulation_parameters/common/wiki.json:1637
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Signaling Agent"
 
-#: ../simulation_parameters/common/wiki.json:1734
+#: ../simulation_parameters/common/wiki.json:1714
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slime Jet"
 
-#: ../simulation_parameters/common/wiki.json:2406
+#: ../simulation_parameters/common/wiki.json:2386
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "Society Stage"
 
-#: ../simulation_parameters/common/wiki.json:2504
+#: ../simulation_parameters/common/wiki.json:2484
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr "Space Stage"
 
-#: ../simulation_parameters/common/wiki.json:2197
+#: ../simulation_parameters/common/wiki.json:2177
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr "Stages"
 
-#: ../simulation_parameters/common/wiki.json:1811
+#: ../simulation_parameters/common/wiki.json:1791
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Thermoplast"
 
-#: ../simulation_parameters/common/wiki.json:1888
+#: ../simulation_parameters/common/wiki.json:1868
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
-#: ../simulation_parameters/common/wiki.json:1965
+#: ../simulation_parameters/common/wiki.json:1945
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Thylakoids"
 
-#: ../simulation_parameters/common/wiki.json:2042
+#: ../simulation_parameters/common/wiki.json:2022
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "Toxin Vacuole"
 
-#: ../simulation_parameters/common/wiki.json:2119
+#: ../simulation_parameters/common/wiki.json:2099
 msgid "WIKI_PAGE_VACUOLE"
 msgstr "Vacuole"
 
-#: ../simulation_parameters/common/wiki.json:1448
+#: ../simulation_parameters/common/wiki.json:1428
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1432
+#: ../simulation_parameters/common/wiki.json:1412
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1444
+#: ../simulation_parameters/common/wiki.json:1424
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1440
+#: ../simulation_parameters/common/wiki.json:1420
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1436
+#: ../simulation_parameters/common/wiki.json:1416
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1460
+#: ../simulation_parameters/common/wiki.json:1440
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1456
+#: ../simulation_parameters/common/wiki.json:1436
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1452
+#: ../simulation_parameters/common/wiki.json:1432
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1525
+#: ../simulation_parameters/common/wiki.json:1505
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1509
+#: ../simulation_parameters/common/wiki.json:1489
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1521
+#: ../simulation_parameters/common/wiki.json:1501
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1517
+#: ../simulation_parameters/common/wiki.json:1497
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1513
+#: ../simulation_parameters/common/wiki.json:1493
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1537
+#: ../simulation_parameters/common/wiki.json:1517
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1533
+#: ../simulation_parameters/common/wiki.json:1513
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1529
+#: ../simulation_parameters/common/wiki.json:1509
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "TBA"
 
@@ -9290,111 +9292,111 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "Thrive In-Game Wiki"
 
-#: ../simulation_parameters/common/wiki.json:1602
+#: ../simulation_parameters/common/wiki.json:1582
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1586
+#: ../simulation_parameters/common/wiki.json:1566
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1598
+#: ../simulation_parameters/common/wiki.json:1578
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1594
+#: ../simulation_parameters/common/wiki.json:1574
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1590
+#: ../simulation_parameters/common/wiki.json:1570
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1614
+#: ../simulation_parameters/common/wiki.json:1594
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1610
+#: ../simulation_parameters/common/wiki.json:1590
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1606
+#: ../simulation_parameters/common/wiki.json:1586
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1679
+#: ../simulation_parameters/common/wiki.json:1659
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1663
+#: ../simulation_parameters/common/wiki.json:1643
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1675
+#: ../simulation_parameters/common/wiki.json:1655
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1671
+#: ../simulation_parameters/common/wiki.json:1651
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1667
+#: ../simulation_parameters/common/wiki.json:1647
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1691
+#: ../simulation_parameters/common/wiki.json:1671
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1687
+#: ../simulation_parameters/common/wiki.json:1667
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1683
+#: ../simulation_parameters/common/wiki.json:1663
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1756
+#: ../simulation_parameters/common/wiki.json:1736
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1740
+#: ../simulation_parameters/common/wiki.json:1720
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1752
+#: ../simulation_parameters/common/wiki.json:1732
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1748
+#: ../simulation_parameters/common/wiki.json:1728
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1744
+#: ../simulation_parameters/common/wiki.json:1724
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1768
+#: ../simulation_parameters/common/wiki.json:1748
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1764
+#: ../simulation_parameters/common/wiki.json:1744
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1760
+#: ../simulation_parameters/common/wiki.json:1740
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2432
+#: ../simulation_parameters/common/wiki.json:2412
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Development has not started on this stage. Theory and gameplay discussions haven't happened much in recent years for this stage. Discussions will need to resume once we have actually reached the Society Stage in official development."
 
-#: ../simulation_parameters/common/wiki.json:2424
+#: ../simulation_parameters/common/wiki.json:2404
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2412
+#: ../simulation_parameters/common/wiki.json:2392
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
 "In a nutshell: in this stage you develop and expand your first <a href=\"/wiki/Society_Center\" title=\"Society Center\">settlement</a> and build more. This is reminiscent of the Middle Ages. It ends when you have sufficiently advanced technology.\n"
@@ -9403,14 +9405,14 @@ msgstr ""
 "\n"
 "Throughout Society Stage, one of the major goals is to develop more and more advanced technology. As such, the Society Stage ends when your species develops sufficiently advanced technology to enter the <a href=\"/wiki/Industrial_Stage\" title=\"Industrial Stage\">Industrial Stage</a>."
 
-#: ../simulation_parameters/common/wiki.json:2416
+#: ../simulation_parameters/common/wiki.json:2396
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
 "The Society Stage marks the transition of the player's species from a simple tribe to an advancing Civilization. The Society Stage is highlighted by certain technologies that enable the viewing and investment of the Research Web, the enabling of government policies, the emergence of religions, and the beginning of larger scale conflicts. The <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a> becomes more and more important throughout this stage, as does the <a href=\"/wiki/Tech_Editor\" title=\"Tech Editor\">Tech Editor</a>, and the <a href=\"/wiki/Squads\" title=\"Squads\">Squad Editor</a>. Although the player is free to return to playing as individual organisms within their species, all of the important events and decision take place on a large scale, and management of larger and larger numbers of people becomes essential. The player will have to balance the needs of their people, and the interests of their nation, to lead their civilization forwards.\n"
 "\n"
 "As it will be a huge amount of work to keep organism mode working for the later stages, it is not a priority to make sure that it does. After all the <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> is the most important and intended way to play the stage, and is required to advance. It has also been brought up that the impact of a single individual will be small at this stage, so allowing organism mode for just really walking around is nice, but a lot of effort for very little gameplay impact."
 
-#: ../simulation_parameters/common/wiki.json:2420
+#: ../simulation_parameters/common/wiki.json:2400
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr ""
 "The Society Stage begins when your first Society Center (settlement) is built. Collective Residence enables the forming of Society Centers. The Society Center building acts as the central hub for a settlement, which is a group of buildings that behave as a collective and get a procedurally generated name. New stats would also appear for that settlement, such as happiness, health, and stability. Controlling the game will switch to <a href=\"/wiki/Strategy_Mode\" title=\"Strategy Mode\">Strategy Mode</a> and <a href=\"/wiki/Nation_Editor\" title=\"Nation Editor\">Nation Editor</a> becomes unlocked. This allows the player to finally detach their perspective from that of the specific individual they were playing as, and instead zoom out to access the species from an RTS perspective. They can give orders to the different units of their tribes, and they can control multiple at the same time. Species members can now be designated to Populate these settlements, which means they disappear as a controllable unit and instead become a digit in the population (pop) of that settlement. By default pops will become assigned as Labourers. Although populating units into settlements takes away lots of their capabilities on the field, it opens up a whole new range of opportunities. And reduces the burden of controlling too many units at once. Now the label of Labourer, Artisan, or whichever other Pop type they are becomes important, since the computer now treats all of the members of that Pop as a whole. For example labourers perform manual work available in the settlement, and artisans perform selected crafting tasks. Taxes can be collected from the pops, they are subject to Population Growth, and they can be employed in buildings that require operators. They essentially become just numbers on the screen. Their models will no longer be important other than to arbitrarily walk around the settlement to make it look busy. This is part of the reason why <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a> is no longer important (but planned to still be available, though it is a low priority feature). To enter <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a> the player can select a tribesman and begin playing as them in <a href=\"/wiki/Organism_Mode\" title=\"Organism Mode\">Organism Mode</a>, with access to all the same abilities as before.\n"
@@ -9423,19 +9425,19 @@ msgstr ""
 "\n"
 "The stage ends once the player unlocks and builds the first industrial machine."
 
-#: ../simulation_parameters/common/wiki.json:2428
+#: ../simulation_parameters/common/wiki.json:2408
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2530
+#: ../simulation_parameters/common/wiki.json:2510
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Work has not yet started on the Space Stage."
 
-#: ../simulation_parameters/common/wiki.json:2522
+#: ../simulation_parameters/common/wiki.json:2502
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2510
+#: ../simulation_parameters/common/wiki.json:2490
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
 "In a nutshell: This stage sees the player exploring the cosmos and having great technological advances.\n"
@@ -9444,7 +9446,7 @@ msgstr ""
 "\n"
 "The player's race has already researched many different technologies, but it is here that science-fiction (scific) technologies start to come into play. The player's race may encounter and interact with life on other planets and expand into the cosmos. Pursuing further technological advances will eventually lead to the unlocking of the combination of <a href=\"/index.php?title=God_Tools&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"God Tools (page does not exist)\">God Tools</a> and <a href=\"/wiki/Ascension\" title=\"Ascension\">Ascension</a>. Some players may not like scifi in an otherwise science-based game, as such we will add a cutoff point where the player can choose to not advance to scifi technologies at the cost of not being able to reach <a href=\"/wiki/Ascension\" title=\"Ascension\">Ascension</a>. This will lock the player to essentially the early Space Stage."
 
-#: ../simulation_parameters/common/wiki.json:2514
+#: ../simulation_parameters/common/wiki.json:2494
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr ""
 "The early space stage begins with the first space flights of the player's species. This part focuses on developing spaceflight and exploring the player's own solar system. The first satellite launches and tries to reach moons of the home planet mark the early Space Stage gameplay. Otherwise the gameplay is very similar to industrial stage at this point but the player can zoom out all the way to view their own solar system and command their spacecraft in addition to still managing development of their planet.\n"
@@ -9455,113 +9457,118 @@ msgstr ""
 "\n"
 "As Thrive is a science-based game, the scifi tropes to be included in the game will be picked with utility and some semblance of realism (basing them on currently speculated plausible technologies) in mind. The game will aim to only pick scifi technologies that are really needed to make the latter half of space stage work. FTL will be essential but exotic weapons, energy sources, or materials thought to be currently impossible can be excluded without making the rest of the game plans about galactic empires impossible. This will reduce the amount of scifi handwaving needs to be added to the game."
 
-#: ../simulation_parameters/common/wiki.json:2518
+#: ../simulation_parameters/common/wiki.json:2498
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr ""
 "The stage begins when the player first reaches space with a primitive rocket.\n"
 "\n"
 "The stage ends when the player has built and powered the Ascension Gate with vast amounts of resources and research."
 
-#: ../simulation_parameters/common/wiki.json:2526
+#: ../simulation_parameters/common/wiki.json:2506
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "Coming soon."
 
-#: ../simulation_parameters/common/wiki.json:2203
+#: ../simulation_parameters/common/wiki.json:2183
 msgid "WIKI_STAGES_ROOT_INTRO"
-msgstr "This is a list of the stages in the game. For an overview on the entire game and stages see <a href=\"/wiki/What_is_Thrive\" title=\"What is Thrive\">What is Thrive</a>."
+msgstr ""
+"These are all the stages in the game. In total, there are 8 stages, each with it's own slightly different gameplay.\n"
+"\n"
+"As you progress through Thrive, you will transition through the various stages, ultimately allowing you to reach ascension.\n"
+"\n"
+"You start the game as a single celled organism, later developing organs and tissues, then becoming sapient and building a society leading to a conquest of space."
 
-#: ../simulation_parameters/common/wiki.json:1833
+#: ../simulation_parameters/common/wiki.json:1813
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1817
+#: ../simulation_parameters/common/wiki.json:1797
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1829
+#: ../simulation_parameters/common/wiki.json:1809
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1825
+#: ../simulation_parameters/common/wiki.json:1805
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1821
+#: ../simulation_parameters/common/wiki.json:1801
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1845
+#: ../simulation_parameters/common/wiki.json:1825
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1841
+#: ../simulation_parameters/common/wiki.json:1821
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1837
+#: ../simulation_parameters/common/wiki.json:1817
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1910
+#: ../simulation_parameters/common/wiki.json:1890
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1894
+#: ../simulation_parameters/common/wiki.json:1874
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1906
+#: ../simulation_parameters/common/wiki.json:1886
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1902
+#: ../simulation_parameters/common/wiki.json:1882
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1898
+#: ../simulation_parameters/common/wiki.json:1878
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1922
+#: ../simulation_parameters/common/wiki.json:1902
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1918
+#: ../simulation_parameters/common/wiki.json:1898
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1914
+#: ../simulation_parameters/common/wiki.json:1894
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1987
+#: ../simulation_parameters/common/wiki.json:1967
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "No special effects."
 
-#: ../simulation_parameters/common/wiki.json:1971
+#: ../simulation_parameters/common/wiki.json:1951
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of [b]sunlight[/b] to produce [b]glucose[/b] from water and gaseous [b]carbon dioxide[/b] in a process called [b]photosynthesis[/b]. These pigments are also what give them a distinctive colour. The rate of their [b]glucose[/b] production scales with the concentration of [b]carbon dioxide[/b] and intensity of [b]sunlight[/b]. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some [b]glycolysis[/b]."
 
-#: ../simulation_parameters/common/wiki.json:1983
+#: ../simulation_parameters/common/wiki.json:1963
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "No modifications"
 
-#: ../simulation_parameters/common/wiki.json:1979
+#: ../simulation_parameters/common/wiki.json:1959
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 "[b]Chromatophore Photosynthesis:[/b] [b]Sunlight + Carbon Dioxide[/b] → [b]Glucose + Oxygen[/b]\n"
 "\n"
 "[b]Glycolysis:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../simulation_parameters/common/wiki.json:1975
+#: ../simulation_parameters/common/wiki.json:1955
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr "No requirements"
 
-#: ../simulation_parameters/common/wiki.json:1999
+#: ../simulation_parameters/common/wiki.json:1979
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:1995
+#: ../simulation_parameters/common/wiki.json:1975
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
 "Thylakoids require light (measured in lux) in order to produce glucose, and thus are only viable in surface-level patches such as the epipelagic, or tidepools. Thus it is very important that the player make sure that they currently live in a valid patch before relying on photosynthesis. Once established, building an effective photosynthesizer is as simple as ensuring that there is net positive glucose production in the cell, and enough energy to sustain it. If it seems like you might not produce enough glucose to stay alive, fret not! Much of a cell's energy consumption is from movement which is entirely optional for a cell that does not need to find it's food, so sitting still can drastically increase net glucose production.\n"
@@ -9572,71 +9579,71 @@ msgstr ""
 "\n"
 "It is highly recommended that you reproduce around morning time when lux levels begin to rise, as after reproducing you will have halved your glucose storage which can potentially leave you for dead in middle of the night."
 
-#: ../simulation_parameters/common/wiki.json:1991
+#: ../simulation_parameters/common/wiki.json:1971
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "No upgrades."
 
-#: ../simulation_parameters/common/wiki.json:2064
+#: ../simulation_parameters/common/wiki.json:2044
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2048
+#: ../simulation_parameters/common/wiki.json:2028
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2060
+#: ../simulation_parameters/common/wiki.json:2040
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2056
+#: ../simulation_parameters/common/wiki.json:2036
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2052
+#: ../simulation_parameters/common/wiki.json:2032
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2076
+#: ../simulation_parameters/common/wiki.json:2056
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2072
+#: ../simulation_parameters/common/wiki.json:2052
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2068
+#: ../simulation_parameters/common/wiki.json:2048
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2141
+#: ../simulation_parameters/common/wiki.json:2121
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "No effects."
 
-#: ../simulation_parameters/common/wiki.json:2125
+#: ../simulation_parameters/common/wiki.json:2105
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "Vacuoles are organelles used to store compounds more densely than <a href=\"/wiki/Cytoplasm\" title=\"Cytoplasm\">Cytoplasm</a>. By default they store 8 of each type of compound."
 
-#: ../simulation_parameters/common/wiki.json:2137
+#: ../simulation_parameters/common/wiki.json:2117
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "Modify the Vacuole to set a [b]specialization[/b]. By default, the Vacuole stores 8 units of all compounds. However, this can be modified to store 16 but of only one specific type of compound (except [b]OxyToxy NT[/b])."
 
-#: ../simulation_parameters/common/wiki.json:2133
+#: ../simulation_parameters/common/wiki.json:2113
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "No processes"
 
-#: ../simulation_parameters/common/wiki.json:2129
+#: ../simulation_parameters/common/wiki.json:2109
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr "A cell must have a <a href=\"/wiki/Nucleus\" title=\"Nucleus\">Nucleus</a> to evolve Vacuoles."
 
-#: ../simulation_parameters/common/wiki.json:2153
+#: ../simulation_parameters/common/wiki.json:2133
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2149
+#: ../simulation_parameters/common/wiki.json:2129
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "TBA"
 
-#: ../simulation_parameters/common/wiki.json:2145
+#: ../simulation_parameters/common/wiki.json:2125
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "No upgrades."
 
@@ -9743,7 +9750,7 @@ msgstr "years"
 #: ../simulation_parameters/common/wiki.json:161
 #: ../simulation_parameters/common/wiki.json:830
 #: ../simulation_parameters/common/wiki.json:988
-#: ../simulation_parameters/common/wiki.json:2163
+#: ../simulation_parameters/common/wiki.json:2143
 msgid "YES"
 msgstr "Yes"
 

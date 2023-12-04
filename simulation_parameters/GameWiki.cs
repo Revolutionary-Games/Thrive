@@ -19,6 +19,14 @@ public class GameWiki : IRegistryType
 
     public List<Page> Stages { get; set; } = null!;
 
+    public Page ConceptsRoot { get; set; } = null!;
+
+    public List<Page> Concepts { get; set; } = null!;
+
+    public Page DevelopmentRoot { get; set; } = null!;
+
+    public List<Page> DevelopmentPages { get; set; } = null!;
+
     public void ApplyTranslations()
     {
     }
@@ -27,8 +35,13 @@ public class GameWiki : IRegistryType
     {
         OrganellesRoot.Check(name);
         StagesRoot.Check(name);
+        ConceptsRoot.Check(name);
+        DevelopmentRoot.Check(name);
+
         Organelles.ForEach(page => page.Check(name));
         Stages.ForEach(page => page.Check(name));
+        Concepts.ForEach(page => page.Check(name));
+        DevelopmentPages.ForEach(page => page.Check(name));
     }
 
     public class Page

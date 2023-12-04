@@ -22,6 +22,10 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\concept\ThriveopediaConceptPage.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\concept\ThriveopediaConceptsRootPage.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\development\ThriveopediaDevelopmentPage.cs" />
+    <Compile Include="src\thriveopedia\pages\wiki\development\ThriveopediaDevelopmentRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\stage\ThriveopediaStagesRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\stage\ThriveopediaStagePage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\stage\StageInfoBox.cs" />
@@ -981,6 +985,7 @@
     <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\common\visual_resources.json" />
+    <Content Include="simulation_parameters\common\wiki.json" />
     <Content Include="simulation_parameters\industrial_stage\units.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />

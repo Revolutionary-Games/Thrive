@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptPage.cs" type="Script" id=2]
+
+[node name="ThriveopediaPage" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+margin_right = 864.0
+
+[node name="MainArticle" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 864.0
+size_flags_horizontal = 3

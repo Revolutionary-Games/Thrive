@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -146,6 +147,7 @@ public static class WikiUpdater
         var pages = categoryBody.QuerySelectorAll(CATEGORY_PAGES_SELECTOR);
 
         var allPages = new List<TranslationPair>();
+        var textInfo = CultureInfo.InvariantCulture.TextInfo;
 
         foreach (var page in pages)
         {
@@ -161,7 +163,7 @@ public static class WikiUpdater
             var translatedInfobox = new List<InfoboxField>();
             var untranslatedInfobox = new List<InfoboxField>();
 
-            var internalName = string.Empty;
+            var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
 
             if (body.QuerySelector(".wikitable") != null)
             {
