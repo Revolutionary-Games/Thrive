@@ -703,7 +703,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
             ref var timed = ref Player.Get<TimedLife>();
             timed.FadeTimeRemaining =
-                Math.Min(Constants.MAXIMUM_PLAYER_DYING_TIME, timed.FadeTimeRemaining ?? float.MaxValue);
+                Math.Min(Constants.MAX_PLAYER_DYING_TIME, timed.FadeTimeRemaining ?? float.MaxValue);
         }
     }
 

@@ -60,7 +60,7 @@ public static class Constants
     ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
     ///   softlocks.
     /// </summary>
-    public const float MAXIMUM_PLAYER_DYING_TIME = 10;
+    public const float MAX_PLAYER_DYING_TIME = 10;
 
     /// <summary>
     ///   How long the initial compounds should last (in seconds)
@@ -1562,6 +1562,9 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
+        (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;
