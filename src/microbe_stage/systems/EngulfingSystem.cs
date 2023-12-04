@@ -265,7 +265,7 @@
                 {
                     if (transportData == null)
                     {
-                        transportData = new Engulfable.BulkTransportAnimation();
+                        transportData = GetNewTransportAnimation();
                         engulfable.BulkTransport = transportData;
                     }
 
