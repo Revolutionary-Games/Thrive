@@ -379,7 +379,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 14.0f;
+    public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
