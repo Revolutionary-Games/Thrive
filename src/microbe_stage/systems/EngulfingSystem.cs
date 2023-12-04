@@ -145,9 +145,8 @@
             // Don't process engulfing when dead
             if (health.Dead)
             {
-                // TODO: should this wait until death is processed?
-
-                // Need to eject everything
+                // Need to eject everything (there's also a separate eject for to be deleted entities as not all dead
+                // entities have a chance to still process this)
                 if (engulfer.EngulfedObjects != null)
                 {
                     // This sets the list to null to not constantly run this (the if block this is in won't get
@@ -288,8 +287,12 @@
                 }
 
                 // Only handle the animations / state changes when they need updating
-                if (transportData?.Interpolate != true)
+                if (transportData?.Interpolate != true &&
+                    engulfable.PhagocytosisStep != PhagocytosisPhase.RequestExocytosis &&
+                    engulfable.PhagocytosisStep != PhagocytosisPhase.Ejection)
+                {
                     continue;
+                }
 
                 if (AnimateBulkTransport(entity, ref engulfable, engulfedEntity, delta))
                 {
@@ -320,7 +323,17 @@
                                 RemoveEndosomeFromEntity(entity, endosome);
                             }
 
-                            transportData.TargetValuesToLerp = (null, engulfable.OriginalScale, null);
+                            if (transportData == null)
+                            {
+                                GD.PrintErr("Forcing ejection completion due to missing animation");
+                                CompleteEjection(ref engulfer, entity, ref engulfable, engulfedEntity);
+                                break;
+                            }
+
+                            // Preserve any previous animation properties that may have been setup by exocytosis
+                            // request
+                            transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Translation,
+                                engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
                             StartBulkTransport(ref engulfable,
                                 ref engulfedEntity.Get<AttachedToEntity>(), 1.0f,
                                 Vector3.One);
@@ -1123,20 +1136,14 @@
             if (engulferCellProperties.IsBacteria)
                 nearestPointOfMembraneToTarget *= 0.5f;
 
-            var animation = engulfable.BulkTransport;
-
             // If the animation is missing then for simplicity we just eject immediately or if the attached to
             // component is missing even though it should be always there
 
-            if (animation == null || engulfedObject.Has<AttachedToEntity>())
+            if (engulfedObject.Has<AttachedToEntity>())
             {
                 if (!engulfedObject.Has<AttachedToEntity>())
                 {
                     GD.Print($"Immediately ejecting engulfable that has no {nameof(AttachedToEntity)} component");
-                }
-                else
-                {
-                    GD.Print("Immediately ejecting engulfable that has no animation properties");
                 }
 
                 CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
@@ -1185,6 +1192,15 @@
             else
             {
                 GD.PrintErr("Cannot properly animate endosome for ejection (current scale unknown)");
+            }
+
+            var animation = engulfable.BulkTransport;
+
+            if (animation == null)
+            {
+                // Ejection was requested when there was no animation
+                animation = GetNewTransportAnimation();
+                engulfable.BulkTransport = animation;
             }
 
             animation.TargetValuesToLerp = (nearestPointOfMembraneToTarget, null, targetEndosomeScale);
@@ -1274,9 +1290,9 @@
 
             // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
             // as the ejection completes
-            var phagosome = GetEndosomeIfExists(entity, engulfableObject);
+            var endosome = GetEndosomeIfExists(entity, engulfableObject);
 
-            phagosome?.Hide();
+            endosome?.Hide();
 
             if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
             {
@@ -1371,6 +1387,10 @@
 
             if (animation == null)
             {
+                // Exocytosis request can be performed even without animation starting
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.RequestExocytosis)
+                    return true;
+
                 // Some code didn't initialize the animation data
                 GD.PrintErr($"{nameof(AnimateBulkTransport)} cannot run because bulk animation data is null");
                 return true;
@@ -1383,9 +1403,9 @@
                 return false;
             }
 
-            var phagosome = GetEndosomeIfExists(entity, engulfedObject);
+            var endosome = GetEndosomeIfExists(entity, engulfedObject);
 
-            if (phagosome == null)
+            if (endosome == null)
             {
                 // TODO: if state is ejecting then phagosome creation should be skipped to save creating an object that
                 // will be deleted in a few frames anyway
@@ -1399,7 +1419,7 @@
                 }
 
                 // Form phagosome as it is missing
-                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
+                endosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
             }
 
             ref var relativePosition = ref engulfedObject.Get<AttachedToEntity>();
@@ -1431,7 +1451,7 @@
 
                 if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
                 {
-                    phagosome.Scale = animation.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                    endosome.Scale = animation.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
                         animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
                 }
 
@@ -1453,7 +1473,7 @@
             }
 
             if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
-                phagosome.Scale = animation.TargetValuesToLerp.EndosomeScale.Value;
+                endosome.Scale = animation.TargetValuesToLerp.EndosomeScale.Value;
 
             StopBulkTransport(animation);
 
