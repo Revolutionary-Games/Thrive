@@ -1536,6 +1536,15 @@
                 engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
                     .Where(c => c.Key.Digestible)
                     .Sum(c => c.Value);
+
+#if DEBUG
+                foreach (var entry in engulfableEntity.Get<CompoundStorage>().Compounds
+                             .Where(c => c.Key.Digestible))
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative stored compound amount in engulfed cell");
+                }
+#endif
             }
             else
             {
@@ -1545,6 +1554,14 @@
 
             if (engulfable.AdditionalEngulfableCompounds != null)
             {
+#if DEBUG
+                foreach (var entry in engulfable.AdditionalEngulfableCompounds)
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative calculated additional compound");
+                }
+#endif
+
                 engulfable.InitialTotalEngulfableCompounds +=
                     engulfable.AdditionalEngulfableCompounds.Sum(c => c.Value);
             }

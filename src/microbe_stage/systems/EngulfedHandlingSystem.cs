@@ -52,6 +52,9 @@
                 {
                     // Cell is not too damaged, can heal itself in open environment and continue living
                     engulfable.DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+
+                    if (engulfable.DigestedAmount < 0)
+                        engulfable.DigestedAmount = 0;
                 }
             }
             else
