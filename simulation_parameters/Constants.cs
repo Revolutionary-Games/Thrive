@@ -760,6 +760,8 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT = 0.13f;
+
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
