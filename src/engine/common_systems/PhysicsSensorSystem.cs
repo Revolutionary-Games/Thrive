@@ -85,8 +85,12 @@
                     // Re-enable (not an error if body doesn't exist, it will be created brand-new soon)
                     if (detachedBodies.TryGetValue(entity, out var disabledBody))
                     {
-                        // TODO: should a new position be applied first?
                         worldSimulationWithPhysics.PhysicalWorld.AddBody(disabledBody);
+
+                        // Update position before the sensor should have any time to collide with anything
+                        // Note that rotation is not updated as it's not updated elsewhere for sensors either
+                        ref var newPosition = ref entity.Get<WorldPosition>();
+                        worldSimulationWithPhysics.PhysicalWorld.SetBodyPosition(disabledBody, newPosition.Position);
 
                         detachedBodies.Remove(entity);
 
