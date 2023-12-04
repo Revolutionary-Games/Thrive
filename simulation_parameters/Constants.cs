@@ -57,6 +57,12 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 2.0f;
 
     /// <summary>
+    ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
+    ///   softlocks.
+    /// </summary>
+    public const float MAXIMUM_PLAYER_DYING_TIME = 10;
+
+    /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
