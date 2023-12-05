@@ -209,11 +209,13 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    // Note that the speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 3.0f;
-    public const float CELL_MIN_ROTATION = 0.2f;
-    public const float CILIA_ROTATION_FACTOR = 0.08f;
-    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
+    // Note that the rotation speed is reversed, i.e. lower values mean faster
+    public const float CELL_MAX_ROTATION = 10.0f;
+    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 200.0f;
+    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
     // These speed values are also reversed like the above
     public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
