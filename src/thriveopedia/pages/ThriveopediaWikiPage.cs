@@ -51,8 +51,9 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         GeneratePage<ThriveopediaConceptsRootPage>(pages, wiki.ConceptsRoot,
             "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.tscn");
 
-        GeneratePages<ThriveopediaConceptPage>(pages, wiki.Concepts,
-            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptPage.tscn");
+        GeneratePages<SimpleWikiPage>(pages, wiki.Concepts,
+            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+            p => p.Parent = "ConceptsRoot");
 
         // Generate Organelle Pages
 
@@ -68,9 +69,9 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         GeneratePage<ThriveopediaDevelopmentRootPage>(pages, wiki.DevelopmentRoot,
             "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentRootPage.tscn");
 
-        GeneratePages<ThriveopediaDevelopmentPage>(pages, wiki.DevelopmentPages,
-            "res://src/thriveopedia/pages/wiki/development/ThriveopediaDevelopmentPage.tscn");
-
+        GeneratePages<SimpleWikiPage>(pages, wiki.DevelopmentPages,
+            "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
+            p => p.Parent = "DevelopmentRoot");
 
         return pages;
     }

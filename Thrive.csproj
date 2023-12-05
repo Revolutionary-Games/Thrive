@@ -22,9 +22,8 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\thriveopedia\pages\wiki\concept\ThriveopediaConceptPage.cs" />
+    <Compile Include="src\thriveopedia\pages\SimpleWikiPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\concept\ThriveopediaConceptsRootPage.cs" />
-    <Compile Include="src\thriveopedia\pages\wiki\development\ThriveopediaDevelopmentPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\development\ThriveopediaDevelopmentRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\stage\ThriveopediaStagesRootPage.cs" />
     <Compile Include="src\thriveopedia\pages\wiki\stage\ThriveopediaStagePage.cs" />
