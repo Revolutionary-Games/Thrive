@@ -202,14 +202,16 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
         float baseMovementForce =
-            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount));
+            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
+                isBacteria);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
 
         return finalSpeed;
     }
 
-    public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount)
+    public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount,
+        bool isBacteria)
     {
         var movement = Constants.BASE_MOVEMENT_FORCE;
 
@@ -220,6 +222,9 @@ public static class MicrobeInternalCalculations
 
         // Apply membrane adjustment
         movement *= membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        if (!isBacteria)
+            movement *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
         return movement;
     }

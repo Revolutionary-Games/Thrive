@@ -190,6 +190,11 @@ public static class Constants
     public const float BASE_MOVEMENT_FORCE = 1400.0f;
 
     /// <summary>
+    ///   As eukaryotes are immediately 50% larger they get a corresponding movement force increase to offset that
+    /// </summary>
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 1.5f;
+
+    /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
