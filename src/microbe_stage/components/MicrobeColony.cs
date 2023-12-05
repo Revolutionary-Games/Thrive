@@ -869,7 +869,7 @@
         }
 
         /// <summary>
-        ///   Calculates the total rotation rate of a colony. Physics shape is not currently used
+        ///   Calculates the total rotation rate of a colony. Physics shape is not currently used.
         /// </summary>
         public static void CalculateRotationSpeed(this ref MicrobeColony colony)
         {
@@ -900,7 +900,7 @@
                 colonyRotation += memberRotation;
             }
 
-            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.ToArray().Length;
+            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Length;
         }
 
         /// <summary>
