@@ -99,4 +99,5 @@ __meta__ = {
 [connection signal="OnToggleBindingButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="OnUnbindAllButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="UnbindAll"]
+[connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="PauseMenu" method="OpenToHelp"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
