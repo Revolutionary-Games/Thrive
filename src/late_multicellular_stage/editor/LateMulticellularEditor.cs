@@ -36,6 +36,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [Export]
     public NodePath BodyEditorLightPath = null!;
 
+    [Export]
+    public NodePath WorldEnvironmentNodePath = null!;
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -58,6 +61,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     private Camera body3DEditorCamera = null!;
     private Light bodyEditorLight = null!;
+
+    private WorldEnvironment worldEnvironmentNode = null!;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -182,6 +187,16 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         base.Undo();
     }
 
+    public void UpdateBackgroundPanorama(Biome biome)
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+            worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
+        }
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -192,6 +207,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
         cellEditorLight = GetNode<Light>(CellEditorLightPath);
+
+        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
         bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
@@ -423,6 +440,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 NoCellTypeSelectedPath.Dispose();
                 CellEditorCameraPath.Dispose();
                 CellEditorLightPath.Dispose();
+                WorldEnvironmentNodePath.Dispose();
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
@@ -440,7 +458,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
 
-        // TODO: 3D editor backgrounds for patches
+        UpdateBackgroundPanorama(patch.BiomeTemplate);
     }
 
     private void SetWorldSceneObjectVisibilityWeControl()

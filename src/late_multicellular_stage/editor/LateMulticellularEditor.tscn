@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
@@ -11,6 +11,20 @@
 [ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=12]
+
+[sub_resource type="PanoramaSky" id=1]
+resource_local_to_scene = true
+panorama = ExtResource( 12 )
+
+[sub_resource type="Environment" id=2]
+resource_local_to_scene = true
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 0.0313726, 0.443137, 0.482353, 1 )
+dof_blur_far_distance = 50.0
+dof_blur_far_transition = 25.0
+dof_blur_far_amount = 0.05
 
 [node name="LateMulticellularEditor" type="Node"]
 script = ExtResource( 5 )
@@ -26,11 +40,15 @@ CellEditorCameraPath = NodePath("MicrobeEditorWorld/PrimaryCamera")
 CellEditorLightPath = NodePath("MicrobeEditorWorld/EditorLight")
 Body3DEditorCameraPath = NodePath("EditorWorld/PrimaryCamera")
 BodyEditorLightPath = NodePath("EditorWorld/EditorLight")
+WorldEnvironmentNodePath = NodePath("EditorWorld/WorldEnvironment")
 
 [node name="EditorWorld" parent="." instance=ExtResource( 7 )]
 
 [node name="PrimaryCamera" parent="EditorWorld" index="0"]
 current = true
+
+[node name="WorldEnvironment" parent="EditorWorld" index="6"]
+environment = SubResource( 2 )
 
 [node name="MicrobeEditorWorld" parent="." instance=ExtResource( 6 )]
 
@@ -85,7 +103,6 @@ text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
 align = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource( 2 )]
-theme = ExtResource( 1 )
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnCellTypeToEditSelected" from="LateMulticellularEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]
