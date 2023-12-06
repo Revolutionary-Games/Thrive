@@ -189,12 +189,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     public void UpdateBackgroundPanorama(Biome biome)
     {
-        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
-        {
-            var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
 
-            worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
-        }
+        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
