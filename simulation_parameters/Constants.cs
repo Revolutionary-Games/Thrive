@@ -201,7 +201,7 @@ public static class Constants
     public const float BASE_MOVEMENT_PER_HEX = 55;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
-    public const int BASE_MOVEMENT_EXTRA_HEX_END = 3000;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
