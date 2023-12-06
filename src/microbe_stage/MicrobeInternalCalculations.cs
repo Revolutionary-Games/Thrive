@@ -176,6 +176,9 @@ public static class MicrobeInternalCalculations
                 float movementConstant =
                     Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
 
+                if (!isBacteria)
+                    movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
                 // We get the movement force for every direction as well
                 forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
                 backwardsDirectionMovementForce += MovementForce(movementConstant, backwardDirectionFactor);
