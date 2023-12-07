@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 /// <summary>
 ///   Static class that holds information about currently activated cheats
@@ -26,6 +27,11 @@ public static class CheatManager
     ///   Fired whenever the user uses the "Despawn All Entities" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
+
+    /// <summary>
+    ///   Fired whenever the user uses the "Reveal All Patches" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnRevealAllPatches;
 
     /// <summary>
     ///   You automatically have 100% of all compounds
@@ -92,6 +98,11 @@ public static class CheatManager
     public static void DespawnAllEntities()
     {
         OnDespawnAllEntitiesCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
+    public static void RevealAllPatches()
+    {
+        OnRevealAllPatches?.Invoke(null, EventArgs.Empty);
     }
 
     public static void DisableAllCheats()

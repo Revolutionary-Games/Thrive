@@ -13,8 +13,9 @@
 [ext_resource path="res://assets/fonts/NotoSansBengali-SemiBold.ttf" type="DynamicFontData" id=11]
 
 [resource]
-size = 65
+size = 32
 use_filter = true
+extra_spacing_bottom = -6
 font_data = ExtResource( 1 )
 fallback/0 = ExtResource( 2 )
 fallback/1 = ExtResource( 3 )

@@ -88,6 +88,9 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
+    [JsonProperty]
+    public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
+
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
@@ -455,6 +458,25 @@ public class Patch
             return;
 
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
+    }
+
+    public void ApplyVisibilityToNeighbours(MapElementVisibility visibility)
+    {
+        foreach (var patch in Adjacent)
+        {
+            patch.ApplyVisibility(visibility);
+        }
+    }
+
+    public void ApplyVisibility(MapElementVisibility visibility)
+    {
+        GD.Print($"Applying visibility: {visibility}");
+
+        if ((int)Visibility >= (int)visibility)
+            Visibility = visibility;
+
+        if ((int)Region.Visibility >= (int)visibility)
+            Region.Visibility = visibility;
     }
 
     public override string ToString()

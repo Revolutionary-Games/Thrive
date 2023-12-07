@@ -17,6 +17,9 @@ public class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
+    [Export]
+    public bool IgnoreFogOfWar;
+
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -102,6 +105,8 @@ public class PatchMapDrawer : Control
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
 
+    private FogOfWarMode FogOfWar => Map!.FogOfWar;
+
     public override void _Ready()
     {
         base._Ready();
@@ -118,6 +123,13 @@ public class PatchMapDrawer : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
+
+        if (IgnoreFogOfWar)
+        {
+            Map?.RevealAllPatches();
+            dirty = true;
+            IgnoreFogOfWar = false;
+        }
 
         CheckForDirtyNodes();
 
@@ -678,6 +690,12 @@ public class PatchMapDrawer : Control
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
+            if (region1.Visibility == MapElementVisibility.Hidden ||
+                region2.Visibility == MapElementVisibility.Hidden)
+            {
+                continue;
+            }
+
             var points = entry.Value;
             for (int i = 1; i < points.Length; i++)
             {
@@ -707,6 +725,10 @@ public class PatchMapDrawer : Control
 
         foreach (var region in map.Regions.Values)
         {
+            // Don't draw borders for hidden regions
+            if (region.Visibility == MapElementVisibility.Hidden)
+                continue;
+
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
                 Colors.DarkCyan, false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
@@ -719,6 +741,13 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in patch.Adjacent)
             {
+                // Do not draw connections to/from hidden patches
+                if (patch.Visibility == MapElementVisibility.Hidden ||
+                    adjacent.Visibility == MapElementVisibility.Hidden)
+                {
+                    continue;
+                }
+
                 // Only draw connections if patches belong to the same region
                 if (patch.Region.ID == adjacent.Region.ID)
                 {
@@ -767,6 +796,7 @@ public class PatchMapDrawer : Control
             node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             AddChild(node);
+            node.UpdateVisibility();
             nodes.Add(node.Patch, node);
         }
 

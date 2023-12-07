@@ -27,6 +27,12 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
+    [Export]
+    public NodePath UnknownLabelPath = null!;
+
+    [Export]
+    public string UnknownTextureFilePath = null!;
+
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
@@ -35,6 +41,7 @@ public class PatchMapNode : MarginContainer
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
+    private Label? unknownLabel;
 #pragma warning restore CA2213
 
     private Texture? patchIcon;
@@ -75,6 +82,12 @@ public class PatchMapNode : MarginContainer
     {
         get => patch ?? throw new InvalidOperationException("Patch not set yet");
         set => patch = value;
+    }
+
+    public MapElementVisibility Visibility
+    {
+        get => patch!.Visibility;
+        set => patch!.ApplyVisibility(value);
     }
 
     public bool IsDirty { get; private set; }
@@ -169,11 +182,14 @@ public class PatchMapNode : MarginContainer
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
+        unknownLabel = GetNode<Label>(UnknownLabelPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
         UpdateGreyscale();
+
+        UpdateVisibility();
     }
 
     public override void _Process(float delta)
@@ -206,6 +222,28 @@ public class PatchMapNode : MarginContainer
         }
     }
 
+    public void UpdateVisibility()
+    {
+        switch (Visibility)
+        {
+            case MapElementVisibility.Hidden:
+                Hide();
+                return;
+
+            case MapElementVisibility.Unknown:
+                Show();
+                unknownLabel!.Show();
+                PatchIcon = GD.Load<Texture>(UnknownTextureFilePath);
+                return;
+
+            case MapElementVisibility.Shown:
+                Show();
+                unknownLabel!.Hide();
+                PatchIcon = patch!.BiomeTemplate.LoadedIcon;
+                return;
+        }
+    }
+
     public void OnSelect()
     {
         Selected = true;
@@ -233,6 +271,7 @@ public class PatchMapNode : MarginContainer
                 HighlightPanelPath.Dispose();
                 MarkPanelPath.Dispose();
                 AdjacentPanelPath.Dispose();
+                UnknownLabelPath.Dispose();
             }
         }
 

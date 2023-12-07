@@ -88,6 +88,9 @@ public class WorldGenerationSettings
     public float OsmoregulationMultiplier => Difficulty.OsmoregulationMultiplier;
 
     [JsonIgnore]
+    public FogOfWarMode FogOfWarMode => Difficulty.FogOfWarMode;
+
+    [JsonIgnore]
     public bool FreeGlucoseCloud => Difficulty.FreeGlucoseCloud;
 
     [JsonIgnore]

@@ -925,6 +925,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+            Visibility = selectedPatch.Visibility,
         };
 
         patchDetailsPanel.SelectedPatch = patch;

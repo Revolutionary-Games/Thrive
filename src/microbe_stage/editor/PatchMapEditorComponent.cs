@@ -42,6 +42,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private Compound sunlight = null!;
 
+    [JsonProperty]
+    private FogOfWarMode fogOfWar;
+
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
@@ -81,6 +84,20 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        fogOfWar = Editor.CurrentGame.FreeBuild ?
+            FogOfWarMode.Ignored :
+            Editor.CurrentGame.GameWorld.WorldSettings.FogOfWarMode;
+
+        if (fogOfWar == FogOfWarMode.Ignored)
+        {
+            foreach (var patch in mapDrawer.Map!.Patches)
+            {
+                patch.Value.ApplyVisibility(MapElementVisibility.Shown);
+            }
+        }
+
+        mapDrawer.Map!.FogOfWar = fogOfWar;
 
         if (!fresh)
         {
@@ -261,6 +278,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private void UpdatePlayerPatch(Patch? patch)
     {
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
+        GD.Print(fogOfWar);
+        if (mapDrawer.Map!.UpdatePatchVisbility(patch ?? playerPatchOnEntry))
+            mapDrawer.MarkDirty();
+
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here

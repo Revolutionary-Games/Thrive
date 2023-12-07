@@ -29,6 +29,9 @@ public class PatchMap : ISaveLoadable
         Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
         / Regions.Count;
 
+    [JsonProperty]
+    public FogOfWarMode FogOfWar { get; set; }
+
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
@@ -426,6 +429,38 @@ public class PatchMap : ISaveLoadable
                 if (!ContainsRegionAdjacency(entry.Value.ID, adjacent.ID))
                     RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
             }
+        }
+    }
+
+    public bool UpdatePatchVisbility(Patch patch)
+    {
+        switch (FogOfWar)
+        {
+            case FogOfWarMode.Ignored:
+                return false;
+
+            case FogOfWarMode.Intense:
+                patch.ApplyVisibility(MapElementVisibility.Shown);
+                patch.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
+                return true;
+
+            case FogOfWarMode.Regular:
+                patch.ApplyVisibility(MapElementVisibility.Shown);
+                patch.ApplyVisibilityToNeighbours(MapElementVisibility.Shown);
+                foreach (var neighbour in patch.Adjacent)
+                    neighbour.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+    public void RevealAllPatches()
+    {
+        foreach (var patch in Patches)
+        {
+            patch.Value.ApplyVisibility(MapElementVisibility.Shown);
         }
     }
 

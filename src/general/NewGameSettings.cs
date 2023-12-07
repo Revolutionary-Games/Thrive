@@ -91,6 +91,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath OsmoregulationMultiplierReadoutPath = null!;
 
     [Export]
+    public NodePath FogOfWarModeDropdownPath = null!;
+
+    [Export]
+    public NodePath FogOfWarModeDescriptionPath = null!;
+
+    [Export]
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
@@ -173,6 +179,8 @@ public class NewGameSettings : ControlWithInput
     private LineEdit glucoseDecayRateReadout = null!;
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
+    private OptionButton fogOfWarModeDropdown = null!;
+    private Label fogOfWarModeDescription = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
     private Button limitGrowthRateButton = null!;
@@ -255,6 +263,8 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
         osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
+        fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
+        fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
@@ -300,6 +310,11 @@ public class NewGameSettings : ControlWithInput
             difficultyPresetButton.AddItem(preset.UntranslatedName);
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
+
+        // Add items to fog of war dropdown
+        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_DISABLED", (int)FogOfWarMode.Ignored);
+        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_REGULAR", (int)FogOfWarMode.Regular);
+        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_INTENSE", (int)FogOfWarMode.Intense);
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
@@ -443,6 +458,8 @@ public class NewGameSettings : ControlWithInput
                 GlucoseDecayRateReadoutPath.Dispose();
                 OsmoregulationMultiplierPath.Dispose();
                 OsmoregulationMultiplierReadoutPath.Dispose();
+                FogOfWarModeDropdownPath.Dispose();
+                FogOfWarModeDescriptionPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
@@ -544,6 +561,7 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
                 PassiveReproduction = passiveReproductionButton.Pressed,
                 LimitGrowthRate = limitGrowthRateButton.Pressed,
+                FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
             };
 
             settings.Difficulty = customDifficulty;
@@ -677,6 +695,7 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = preset.PassiveReproduction;
         limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
+        fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -715,6 +734,9 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
+                continue;
+
+            if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -773,6 +795,12 @@ public class NewGameSettings : ControlWithInput
         amount = Math.Round(amount, 1);
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
 
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnFogOfWarModeChanged(int index)
+    {
+        _ = index;
         UpdateSelectedDifficultyPresetControl();
     }
 
