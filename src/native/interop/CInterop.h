@@ -171,6 +171,8 @@ extern "C"
     // Body functions
     [[maybe_unused]] THRIVE_NATIVE_API void ReleasePhysicsBodyReference(PhysicsBody* body);
 
+    [[maybe_unused]] THRIVE_NATIVE_API bool PhysicsBodyIsDetached(PhysicsBody* body);
+
     /// Set user data for a physics body, note that currently all data needs to be the same size to fully work,
     /// which is specified by Thrive::PHYSICS_USER_DATA_SIZE
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetUserData(

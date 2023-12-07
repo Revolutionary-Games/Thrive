@@ -21,6 +21,7 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -38,7 +39,7 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            if (physics.BodyDisabled || physics.Body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
 
             // Skip dead microbes being allowed to move, this is now needed as the death system keeps the physics body
@@ -46,7 +47,7 @@
             if (entity.Get<Health>().Dead)
             {
                 // Disable control to not have the dead microbes maintain rotation or anything like that
-                physicalWorld.DisableMicrobeBodyControl(physics.Body);
+                physicalWorld.DisableMicrobeBodyControl(physics.Body!);
                 return;
             }
 
@@ -96,6 +97,9 @@
 #if DEBUG
             if (!wantedRotation.IsNormalized())
                 throw new Exception("Created target microbe rotation is not normalized");
+
+            if (physics.Body!.IsDetached)
+                throw new Exception("Trying to run microbe control on detached body");
 #endif
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
@@ -107,7 +111,7 @@
                 CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                     delta);
 
-            physicalWorld.ApplyBodyMicrobeControl(physics.Body, movementImpulse, wantedRotation, rotationSpeed);
+            physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
         }
 
         private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)

@@ -1,4 +1,4 @@
 ﻿public class NativeConstants
 {
-    public const int Version = 7;
+    public const int Version = 8;
 }
