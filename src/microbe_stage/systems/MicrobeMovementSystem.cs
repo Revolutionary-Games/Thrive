@@ -159,7 +159,7 @@
 
             // Base movement force
             float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
-                cellProperties.MembraneRigidity, organelles.HexCount);
+                cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
@@ -179,7 +179,8 @@
             {
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity, delta);
+                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity,
+                        cellProperties.IsBacteria, delta);
                 }
             }
 
@@ -187,8 +188,8 @@
 
             if (control.MovementDirection != Vector3.Zero && hasColony)
             {
-                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection, delta,
-                    ref force);
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
+                    cellProperties.IsBacteria, delta, ref force);
             }
 
             if (control.SlowedBySlime)
@@ -267,7 +268,7 @@
         }
 
         private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-            float delta, ref float force)
+            bool isBacteria, float delta, ref float force)
         {
             // Multiplies the movement factor as if the colony has the normal microbe speed
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
@@ -301,7 +302,7 @@
                     foreach (var flagellum in organelles.ThrustComponents)
                     {
                         force += flagellum.UseForMovement(movementDirection, compounds,
-                            relativeRotation, delta);
+                            relativeRotation, isBacteria, delta);
                     }
                 }
             }

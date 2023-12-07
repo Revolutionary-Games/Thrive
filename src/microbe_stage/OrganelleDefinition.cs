@@ -61,8 +61,6 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public Texture? LoadedIcon;
 
-    // TODO: switch this out for a density value and start using this in the physics body creation
-
     /// <summary>
     ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
     ///   microbe collision shapes can be reused more widely
