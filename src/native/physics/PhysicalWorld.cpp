@@ -679,6 +679,12 @@ void PhysicalWorld::SetBodyControl(
         return;
     }
 
+    if (bodyWrapper.IsDetached())
+    {
+        LOG_ERROR("Cannot set body control on detached body");
+        return;
+    }
+
     BodyControlState* state;
 
     bool justEnabled = bodyWrapper.EnableBodyControlIfNotAlready();
@@ -1258,6 +1264,20 @@ void PhysicalWorld::OnPostBodyAdded(PhysicsBody& body)
     // TODO: does detached body also need to keep an extra reference?
     body.AddRef();
     ++bodyCount;
+
+#ifndef NDEBUG
+    JPH::BodyLockRead lock(physicsSystem->GetBodyLockInterface(), body.GetId());
+    if (!lock.Succeeded()) [[unlikely]]
+    {
+        LOG_ERROR("Body can't be locked after adding");
+        return;
+    }
+
+    if (!lock.GetBody().IsInBroadPhase())
+    {
+        LOG_ERROR("Body added to physics world is not marked as being in the broadphase");
+    }
+#endif
 }
 
 void PhysicalWorld::OnBodyPreLeaveWorld(PhysicsBody& body)
