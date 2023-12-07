@@ -1307,7 +1307,8 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     const auto bodyId = bodyWrapper.GetId();
 
     // This method is called by the step listener meaning that all bodies are already locked so this needs to be used
-    // like this
+    // like this. The call to activate probably needs to be protected with a lock if body control is applied in the
+    // future by multiple threads.
     JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterfaceNoLock(), bodyId);
     if (!lock.Succeeded()) [[unlikely]]
     {
@@ -1317,8 +1318,24 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
 
     JPH::Body& body = lock.GetBody();
 
+    // Ensure this doesn't cause a crash if there's a bug elsewhere in body handling
+    if (!body.IsInBroadPhase())
+    {
+        LOG_ERROR("Body not in broadphase used in body control");
+        return;
+    }
+
     if (controlState->movement.LengthSq() > 0.000001f)
+    {
         body.AddImpulse(controlState->movement * normalizedDelta);
+
+        // Activate inactive bodies when controlled to ensure they cannot accumulate a lot of impulse and eventually
+        // shoot off at high velocity when touched
+        if (!body.IsActive())
+        {
+            physicsSystem->GetBodyInterfaceNoLock().ActivateBody(bodyId);
+        }
+    }
 
     // A really simple rotation matching based on JPH::Body::MoveKinematic approach. Now this doesn't seem to need
     // to have any rotation value being close to target threshold or overshoot detection.
@@ -1335,6 +1352,8 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     float angle;
     difference.GetAxisAngle(axis, angle);
     body.SetAngularVelocityClamped(axis * (angle / controlState->rotationRate * normalizedDelta));
+
+    // TODO: should enough applied angular velocity also wake up the body?
 }
 
 #pragma clang diagnostic push
