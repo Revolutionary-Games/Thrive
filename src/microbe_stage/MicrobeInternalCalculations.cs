@@ -292,10 +292,11 @@ public static class MicrobeInternalCalculations
 
         foreach (var organelle in organelles)
         {
-            var volume = organelle.Definition.RelativeDensityVolume;
+            var definition = organelle.Definition;
+            var volume = definition.HexCount * definition.RelativeDensityVolume;
             totalVolume += volume;
 
-            density += organelle.Definition.Density * volume;
+            density += definition.Density * volume;
         }
 
         return density / totalVolume;

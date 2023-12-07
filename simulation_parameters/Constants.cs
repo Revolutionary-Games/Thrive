@@ -190,7 +190,7 @@ public static class Constants
     public const float BASE_MOVEMENT_FORCE = 1000.0f;
 
     /// <summary>
-    ///   As eukaryotes are immediately 50% larger they get a corresponding movement force increase to offset that
+    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 3.0f;
 
