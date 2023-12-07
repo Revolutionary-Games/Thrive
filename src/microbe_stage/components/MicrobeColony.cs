@@ -46,8 +46,6 @@
 
         public float ColonyRotationSpeed;
 
-        // TODO: this needs to be hooked up everywhere, right now the entire colony state control from the leader
-        // doesn't work
         /// <summary>
         ///   The overall state of the colony, this variable is required to allow colonies where only some cells can
         ///   engulf to properly enter engulf mode etc. and ensure newly added cells pick up the right mode.
@@ -489,6 +487,9 @@
                     colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
             }
 
+            if (!removedMember.IsAlive)
+                throw new Exception("Cannot process a dead entity remove from a colony");
+
             bool removedMemberIsLeader = false;
 
             // Colony members or leader can be removed by this method
@@ -543,28 +544,7 @@
                 return false;
             }
 
-            // TODO: pooling (see the TODO in the add method)
-            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
-            // more of these lists...
-            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
-
-            int writeIndex = 0;
-
-            // Copy all members except the removed one
-            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
-            {
-                var member = colony.ColonyMembers[i];
-
-                if (member == removedMember)
-                    continue;
-
-                newMembers[writeIndex++] = member;
-            }
-
-            if (writeIndex != newMembers.Length)
-                throw new Exception("Logic error in new member array copy");
-
-            colony.ColonyMembers = newMembers;
+            RemoveColonyMemberFromMemberList(ref colony, removedMember);
 
             if (!removedMemberIsLeader)
                 QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
@@ -584,6 +564,22 @@
 
                 // This is this way around to support recursive calls also adding things here
                 DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+
+                if (!next.IsAlive)
+                {
+                    // This entity is already dead, this should hopefully never trigger. If this does then this would
+                    // give some more info on a colony despawn crash problem.
+                    GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                        "light fallback cleanup");
+
+                    colony.ColonyStructure.Remove(next);
+
+                    if (colony.ColonyMembers.Contains(next))
+                        RemoveColonyMemberFromMemberList(ref colony, next);
+
+                    // Normal remove can't be performed so the above emergency cleanup needs to be enough
+                    continue;
+                }
 
                 // This might stackoverflow if we have absolute hugely nested cell colonies but there would probably
                 // need to be colonies with thousands of cells, which would already choke the game so that isn't much
@@ -1148,6 +1144,40 @@
 
             var memberRecord = recorder.Record(newMember);
             memberRecord.Set(new MicrobeColonyMember(colonyEntity));
+        }
+
+        /// <summary>
+        ///   Removes a member from the colony. It is incorrect to call this with an entity that is not contained in
+        ///   the list of members.
+        /// </summary>
+        /// <exception cref="Exception">If this is called with a member not in the members list</exception>
+        private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
+        {
+            // TODO: pooling (see the TODO in the add method)
+            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
+            // more of these lists...
+            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
+
+            int writeIndex = 0;
+
+            // Copy all members except the removed one
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                var member = colony.ColonyMembers[i];
+
+                if (member == removedMember)
+                    continue;
+
+                newMembers[writeIndex++] = member;
+            }
+
+            if (writeIndex != newMembers.Length)
+            {
+                throw new Exception("Logic error in new member array copy without member " +
+                    "(was it ensured removed member was in the list)");
+            }
+
+            colony.ColonyMembers = newMembers;
         }
 
         private static void MarkMembersChanged(this ref MicrobeColony colony)
