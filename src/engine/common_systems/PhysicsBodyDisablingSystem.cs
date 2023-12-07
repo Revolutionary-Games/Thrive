@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
@@ -89,6 +90,11 @@
                         ref var newPosition = ref entity.Get<WorldPosition>();
                         physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
                     }
+
+#if DEBUG
+                    if (body.IsDetached)
+                        throw new Exception("Body is still detached after re-enabling");
+#endif
                 }
 
                 // TODO: should physics speed on the body or on the component be reset here?
@@ -108,6 +114,11 @@
                 if (disabledBodies.Add(body))
                 {
                     physicalWorld.DetachBody(body);
+
+#if DEBUG
+                    if (!body.IsDetached)
+                        throw new Exception("Body didn't detach");
+#endif
                 }
                 else
                 {
