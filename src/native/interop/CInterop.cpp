@@ -360,7 +360,7 @@ bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
 void ChangeBodyShape(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsShape* shape, bool activate)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->ChangeBodyShape(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+        ->ChangeBodyShape(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
             reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(), activate);
 }
 
