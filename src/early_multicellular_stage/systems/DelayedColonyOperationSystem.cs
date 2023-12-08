@@ -28,18 +28,20 @@
 
         public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
             int colonyTargetIndex, CellTemplate cellTemplate, Species species, IWorldSimulation worldSimulation,
-            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
         {
             var attachPosition = new AttachedToEntity
             {
                 AttachedTo = colonyEntity,
             };
 
+            // For now we rely on absolute positions instead of needing to wait until all relevant membranes are ready
+            // and calculate the attach position like that
             attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
             var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
                 colonyPosition.Position + colonyPosition.Rotation.Xform(attachPosition.RelativePosition), true,
-                cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud);
+                cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud, giveStartingCompounds);
 
             // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
             // or attaching fails
@@ -147,7 +149,7 @@
             foreach (var cellTemplate in cellsToGrow)
             {
                 CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
-                    worldSimulation, recorder, spawnSystem);
+                    worldSimulation, recorder, spawnSystem, true);
 
                 added = true;
             }

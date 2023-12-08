@@ -91,9 +91,11 @@
 
             var cellTemplate = species.Cells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
+            // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
+            // colony it joins
             DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
                 multicellularGrowth.NextBodyPlanCellToGrowIndex,
-                cellTemplate, species, worldSimulation, recorder, notifySpawnTo);
+                cellTemplate, species, worldSimulation, recorder, notifySpawnTo, false);
 
             ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
             multicellularGrowth.CompoundsNeededForNextCell = null;
