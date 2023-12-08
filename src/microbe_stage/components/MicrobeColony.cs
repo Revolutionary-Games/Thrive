@@ -385,7 +385,10 @@
 
         /// <summary>
         ///   Finishes adding a queued colony member. This is used by
-        ///   <see cref="Systems.DelayedColonyOperationSystem"/>
+        ///   <see cref="Systems.DelayedColonyOperationSystem"/>. This automatically adjusts the parent index to +1 if
+        ///   the inserted member index is before the parent index (to make sure the parent index points to the
+        ///   intended member of the colony and won't point to the newly added member which would cause in invalid
+        ///   parent loop)
         /// </summary>
         public static void FinishQueuedMemberAdd(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
             Entity newMember, int intendedNewMemberIndex, EntityCommandRecorder recorder)
@@ -436,6 +439,16 @@
             colony.ColonyMembers = newMembers;
 
             colony.MarkMembersChanged();
+
+            // If the new member is inserted before the parent index, increment the parent index
+            if (parentIndex >= intendedNewMemberIndex)
+                ++parentIndex;
+
+            if (parentIndex == intendedNewMemberIndex)
+            {
+                throw new ArgumentException(
+                    "New member intended index and its parent's index ended up being the same (self would be parent)");
+            }
 
             SetupDelayAddedColonyMemberData(ref colony, colonyEntity, parentIndex, newMember, recorder);
         }
@@ -499,7 +512,7 @@
             }
             else if (!removedMember.Has<MicrobeColonyMember>())
             {
-                throw new ArgumentException("Microbe not a member of a colony");
+                throw new ArgumentException("Microbe not a member of a colony (missing component)");
             }
 
             if (!colony.ColonyMembers.Contains(removedMember))
@@ -1120,8 +1133,7 @@
         }
 
         private static void SetupDelayAddedColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity,
-            int parentIndex,
-            in Entity newMember, EntityCommandRecorder recorder)
+            int parentIndex, in Entity newMember, EntityCommandRecorder recorder)
         {
             OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
@@ -1133,12 +1145,18 @@
         private static void OnCommonColonyMemberSetup(ref MicrobeColony colony, Entity colonyEntity, int parentIndex,
             Entity newMember, EntityCommandRecorder recorder)
         {
+            if (parentIndex >= colony.ColonyMembers.Length)
+                throw new ArgumentException("Cannot use out of range parent index for new colony member parent");
+
             ref var cellProperties = ref colonyEntity.Get<CellProperties>();
 
             // Need to recreate the physics body for this colony
             cellProperties.ShapeCreated = false;
 
             var parentMicrobe = colony.ColonyMembers[parentIndex];
+
+            if (newMember == parentMicrobe)
+                throw new ArgumentException("Entity cannot be its own parent in a colony");
 
             colony.ColonyStructure[newMember] = parentMicrobe;
 
