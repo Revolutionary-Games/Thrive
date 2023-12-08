@@ -777,11 +777,15 @@ bool PhysicalWorld::FixBodyYCoordinateToZero(JPH::BodyID bodyId)
     return false;
 }
 
-void PhysicalWorld::ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate)
+void PhysicalWorld::ChangeBodyShape(PhysicsBody& body, const JPH::RefConst<JPH::Shape>& shape, bool activate)
 {
+    // Must force no-activation when detached to prevent crashing
+    if (body.IsDetached())
+        activate = false;
+
     // For now this always recalculates mass and inertia
     physicsSystem->GetBodyInterface().SetShape(
-        bodyId, shape, true, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
+        body.GetId(), shape, true, activate ? JPH::EActivation::Activate : JPH::EActivation::DontActivate);
 }
 
 // ------------------------------------ //

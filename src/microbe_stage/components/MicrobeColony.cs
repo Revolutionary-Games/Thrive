@@ -46,8 +46,6 @@
 
         public float ColonyRotationSpeed;
 
-        // TODO: this needs to be hooked up everywhere, right now the entire colony state control from the leader
-        // doesn't work
         /// <summary>
         ///   The overall state of the colony, this variable is required to allow colonies where only some cells can
         ///   engulf to properly enter engulf mode etc. and ensure newly added cells pick up the right mode.
@@ -387,7 +385,10 @@
 
         /// <summary>
         ///   Finishes adding a queued colony member. This is used by
-        ///   <see cref="Systems.DelayedColonyOperationSystem"/>
+        ///   <see cref="Systems.DelayedColonyOperationSystem"/>. This automatically adjusts the parent index to +1 if
+        ///   the inserted member index is before the parent index (to make sure the parent index points to the
+        ///   intended member of the colony and won't point to the newly added member which would cause in invalid
+        ///   parent loop)
         /// </summary>
         public static void FinishQueuedMemberAdd(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
             Entity newMember, int intendedNewMemberIndex, EntityCommandRecorder recorder)
@@ -439,6 +440,16 @@
 
             colony.MarkMembersChanged();
 
+            // If the new member is inserted before the parent index, increment the parent index
+            if (parentIndex >= intendedNewMemberIndex)
+                ++parentIndex;
+
+            if (parentIndex == intendedNewMemberIndex)
+            {
+                throw new ArgumentException(
+                    "New member intended index and its parent's index ended up being the same (self would be parent)");
+            }
+
             SetupDelayAddedColonyMemberData(ref colony, colonyEntity, parentIndex, newMember, recorder);
         }
 
@@ -489,6 +500,9 @@
                     colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
             }
 
+            if (!removedMember.IsAlive)
+                throw new Exception("Cannot process a dead entity remove from a colony");
+
             bool removedMemberIsLeader = false;
 
             // Colony members or leader can be removed by this method
@@ -498,7 +512,7 @@
             }
             else if (!removedMember.Has<MicrobeColonyMember>())
             {
-                throw new ArgumentException("Microbe not a member of a colony");
+                throw new ArgumentException("Microbe not a member of a colony (missing component)");
             }
 
             if (!colony.ColonyMembers.Contains(removedMember))
@@ -543,28 +557,7 @@
                 return false;
             }
 
-            // TODO: pooling (see the TODO in the add method)
-            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
-            // more of these lists...
-            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
-
-            int writeIndex = 0;
-
-            // Copy all members except the removed one
-            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
-            {
-                var member = colony.ColonyMembers[i];
-
-                if (member == removedMember)
-                    continue;
-
-                newMembers[writeIndex++] = member;
-            }
-
-            if (writeIndex != newMembers.Length)
-                throw new Exception("Logic error in new member array copy");
-
-            colony.ColonyMembers = newMembers;
+            RemoveColonyMemberFromMemberList(ref colony, removedMember);
 
             if (!removedMemberIsLeader)
                 QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
@@ -584,6 +577,22 @@
 
                 // This is this way around to support recursive calls also adding things here
                 DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+
+                if (!next.IsAlive)
+                {
+                    // This entity is already dead, this should hopefully never trigger. If this does then this would
+                    // give some more info on a colony despawn crash problem.
+                    GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                        "light fallback cleanup");
+
+                    colony.ColonyStructure.Remove(next);
+
+                    if (colony.ColonyMembers.Contains(next))
+                        RemoveColonyMemberFromMemberList(ref colony, next);
+
+                    // Normal remove can't be performed so the above emergency cleanup needs to be enough
+                    continue;
+                }
 
                 // This might stackoverflow if we have absolute hugely nested cell colonies but there would probably
                 // need to be colonies with thousands of cells, which would already choke the game so that isn't much
@@ -1124,8 +1133,7 @@
         }
 
         private static void SetupDelayAddedColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity,
-            int parentIndex,
-            in Entity newMember, EntityCommandRecorder recorder)
+            int parentIndex, in Entity newMember, EntityCommandRecorder recorder)
         {
             OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
@@ -1137,6 +1145,9 @@
         private static void OnCommonColonyMemberSetup(ref MicrobeColony colony, Entity colonyEntity, int parentIndex,
             Entity newMember, EntityCommandRecorder recorder)
         {
+            if (parentIndex >= colony.ColonyMembers.Length)
+                throw new ArgumentException("Cannot use out of range parent index for new colony member parent");
+
             ref var cellProperties = ref colonyEntity.Get<CellProperties>();
 
             // Need to recreate the physics body for this colony
@@ -1144,10 +1155,47 @@
 
             var parentMicrobe = colony.ColonyMembers[parentIndex];
 
+            if (newMember == parentMicrobe)
+                throw new ArgumentException("Entity cannot be its own parent in a colony");
+
             colony.ColonyStructure[newMember] = parentMicrobe;
 
             var memberRecord = recorder.Record(newMember);
             memberRecord.Set(new MicrobeColonyMember(colonyEntity));
+        }
+
+        /// <summary>
+        ///   Removes a member from the colony. It is incorrect to call this with an entity that is not contained in
+        ///   the list of members.
+        /// </summary>
+        /// <exception cref="Exception">If this is called with a member not in the members list</exception>
+        private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
+        {
+            // TODO: pooling (see the TODO in the add method)
+            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
+            // more of these lists...
+            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
+
+            int writeIndex = 0;
+
+            // Copy all members except the removed one
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                var member = colony.ColonyMembers[i];
+
+                if (member == removedMember)
+                    continue;
+
+                newMembers[writeIndex++] = member;
+            }
+
+            if (writeIndex != newMembers.Length)
+            {
+                throw new Exception("Logic error in new member array copy without member " +
+                    "(was it ensured removed member was in the list)");
+            }
+
+            colony.ColonyMembers = newMembers;
         }
 
         private static void MarkMembersChanged(this ref MicrobeColony colony)

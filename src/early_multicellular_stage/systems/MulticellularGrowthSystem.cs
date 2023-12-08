@@ -57,9 +57,6 @@
 
             ref var growth = ref entity.Get<MulticellularGrowth>();
             HandleMulticellularReproduction(ref growth, entity, delta);
-
-            // TODO: when spawning a new cell to add to colony it needs to be ensured that its membrane is ready before
-            // attach to calculate the attach position
         }
 
         private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
