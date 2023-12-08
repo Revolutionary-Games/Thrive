@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-24 19:16+0200\n"
-"PO-Revision-Date: 2023-06-26 06:04+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2023-12-05 07:44+0000\n"
+"Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.2.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -625,9 +625,8 @@ msgstr "Construir uma Cidade"
 
 #: ../src/industrial_stage/gui/CityScreen.tscn:85
 #: ../src/space_stage/gui/PlanetScreen.tscn:88
-#, fuzzy
 msgid "BUILD_QUEUE"
-msgstr "Construir uma Estrutura"
+msgstr "Fila de Construção"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1942
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
@@ -895,7 +894,7 @@ msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade 
 
 #: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Pedaço de Cadáver Celular"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
 msgid "CHUNK_FOOD_SOURCE"
@@ -1024,13 +1023,12 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Brilho ou intensidade da cor"
 
 #: ../simulation_parameters/common/input_options.json:87
-#, fuzzy
 msgid "COMMON_ABILITIES"
-msgstr "Habilidades"
+msgstr "Habilidades Comuns"
 
 #: ../simulation_parameters/common/input_options.json:169
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Editor Comum e Estágios Estratégicos"
 
 #: ../src/general/MainMenu.tscn:685
 msgid "COMMUNITY_FORUM"
@@ -1215,7 +1213,7 @@ msgstr "Zona morta:"
 
 #: ../src/general/OptionsMenu.tscn:592
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
-msgstr ""
+msgstr "Tipos de prompts de botões do controle:"
 
 #: ../src/general/OptionsMenu.tscn:1388
 msgid "CONTROLLER_SENSITIVITY"
@@ -1239,67 +1237,61 @@ msgstr "Tritanopia (Azul-Amarelo)"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:249
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Limpar entradas selecionadas"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1158
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
-msgstr ""
+msgstr "Erro: bug interno no consumo de item durante criação"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1124
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "Inversamente proporcional"
+msgstr "Não foi possível encontrar os itens de entrada para criação"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:234
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Entradas"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:184
-#, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr "Inversamente proporcional"
+msgstr "Receitas Conhecidas"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1096
-#, fuzzy
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
-msgstr "Inversamente proporcional"
+msgstr "Não há {0} suficiente para criar a receita"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1083
 msgid "CRAFTING_NO_RECIPE_SELECTED"
-msgstr ""
+msgstr "Por favor, selecione uma receita acima para criar primeiro"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1104
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
-msgstr ""
+msgstr "Não há espaço para receber todos os resultados da criação"
 
 #: ../src/awakening_stage/gui/RecipeListItem.cs:110
 #: ../src/awakening_stage/gui/RecipeListItem.tscn:61
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Copiar Resultados"
+msgstr "{0} ({1})"
 
 #: ../simulation_parameters/awakening_stage/crafting_recipes.json:3
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Machado de Mão de Pedra"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:280
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Copiar Resultados"
+msgstr "Resultados"
 
 #: ../src/awakening_stage/gui/InventoryScreen.cs:1527
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:215
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "Selecione uma receita de criação ou adicione itens para filtrar"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:293
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Pegar tudo"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:170
-#, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "Falta um título"
+msgstr "Criação"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
@@ -1371,14 +1363,12 @@ msgstr "LOCALIZAÇÃO ATUAL"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:38
 #: ../src/society_stage/gui/ResearchScreen.tscn:39
-#, fuzzy
 msgid "CURRENT_RESEARCH_NONE"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Sem pesquisas ativas"
 
 #: ../src/society_stage/gui/ResearchScreen.cs:44
-#, fuzzy
 msgid "CURRENT_RESEARCH_PROGRESS"
-msgstr "Abrir a tela de ajuda"
+msgstr "Atualmente pesquisando: {0} ({1})"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:269
 msgid "CURRENT_WORLD"
@@ -1498,9 +1488,8 @@ msgstr ""
 "- {2} Salvamento(s) de backup"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:164
-#, fuzzy
 msgid "DELETE_FOSSIL_CONFIRMATION"
-msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
+msgstr "A exclusão deste fóssil é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
 
 #: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
@@ -1531,19 +1520,21 @@ msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Apagar o jogo salvo?"
 
 #: ../src/space_stage/gui/SpaceHUD.tscn:53
-#, fuzzy
 msgid "DESCEND_BUTTON"
-msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
+msgstr "Descender"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:11
-#, fuzzy
 msgid "DESCEND_CONFIRMATION"
-msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
+msgstr "Tem certeza de que deseja Descender?"
 
 #: ../src/ascension_stage/gui/DescendConfirmationDialog.tscn:12
-#, fuzzy
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
-msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thrivepédia ou pode carregar a espécie fossilizada por meio do editor livre."
+msgstr ""
+"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
+"\n"
+"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
+"\n"
+"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -2019,7 +2010,7 @@ msgstr "Epipelágico"
 
 #: ../src/awakening_stage/EquipmentCategory.cs:9
 msgid "EQUIPMENT_TYPE_AXE"
-msgstr ""
+msgstr "Machado"
 
 #: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
 msgid "ERROR"
@@ -2276,9 +2267,8 @@ msgid "FLEET_NAME_FROM_PLACE"
 msgstr "foi extinto do planeta"
 
 #: ../src/space_stage/gui/SpaceFleetInfoPopup.tscn:38
-#, fuzzy
 msgid "FLEET_UNITS"
-msgstr "{0} {1}"
+msgstr "Unidades da Frota"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:90
 msgid "FLOATING_CHUNKS_COLON"
@@ -2346,16 +2336,12 @@ msgid "FOSSILISATION_EXPLANATION"
 msgstr "Fossilize essa espécie para salvá-la no museu. Você pode acessar o museu pela Thrivepédia ou pode carregar a espécie fossilizada por meio do editor livre."
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:202
-#, fuzzy
 msgid "FOSSILISATION_FAILED"
-msgstr "Fossilizar essa espécie"
+msgstr "Falha na Fossilização"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:204
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"A inicialização da biblioteca do cliente Steam falhou. As funcionalidades do Steam estarão indisponíveis.\n"
-"Certifique-se de que o Steam esteja em execução e que você tenha feito o login na conta correta. Se o erro persistir, execute o jogo através do software do cliente Steam."
+msgstr "O arquivo do fóssil não pôde ser escrito"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:231
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
@@ -2662,7 +2648,7 @@ msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os
 
 #: ../simulation_parameters/common/gallery.json:458
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Estágio Industrial"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
@@ -2679,7 +2665,7 @@ msgstr "VOCÊ PROSPEROU!"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzimas"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:404
 #, fuzzy
@@ -2688,7 +2674,7 @@ msgstr "Nome Interno (da Pasta):"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:220
 msgid "INFO_BOX_MASS"
-msgstr ""
+msgstr "Massa"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
 #, fuzzy
@@ -2722,7 +2708,7 @@ msgstr "VOCÊ PROSPEROU!"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Melhorias"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1405
 msgid "INGESTED_MATTER"
@@ -2775,7 +2761,7 @@ msgstr "Taxa de mutação da IA"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:458
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Concluir Construção (materiais necessários em falta)"
 
 #: ../src/awakening_stage/InteractionType.cs:8
 #, fuzzy
@@ -2789,7 +2775,7 @@ msgstr "Taxa de mutação da IA"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:448
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Depositar Materiais (sem itens adequados carregados)"
 
 #: ../src/awakening_stage/InteractionType.cs:20
 #, fuzzy
@@ -2808,15 +2794,15 @@ msgstr "Taxa de mutação da IA"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:434
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Colher (EQUIPAMENTO FALTANDO:{0})"
 
 #: ../src/awakening_stage/InteractionType.cs:5
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Pegar"
 
 #: ../src/late_multicellular_stage/MulticellularCreature.cs:411
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Pegar (CHEIO)"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:458
 msgid "INTERNALS"
@@ -2865,7 +2851,7 @@ msgstr "Esquema URL inválido"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:78
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Itens no Chão"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:104
 #, fuzzy
@@ -2874,11 +2860,11 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:153
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Criação"
 
 #: ../src/awakening_stage/gui/InventoryScreen.tscn:147
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Chão"
 
 #: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
 #: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
@@ -3520,7 +3506,7 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enz
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:130
 msgid "MANUALLY_SET_TIME"
-msgstr ""
+msgstr "Definir Manualmente a Hora do Dia"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:130
 msgid "MAP"
@@ -4162,7 +4148,7 @@ msgstr "Mostrar Mais Informações"
 
 #: ../src/general/OptionsMenu.tscn:1535
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Mover visualização estratégica ao mover o cursor para as bordas da tela"
 
 #: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
@@ -4351,9 +4337,8 @@ msgid "NAME"
 msgstr "Nome:"
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
-#, fuzzy
 msgid "NAME_LABEL_CITY"
-msgstr "Bioma: {0}"
+msgstr "{0} ({1})"
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:61
 #: ../src/space_stage/SpaceFleet.cs:38
@@ -4363,7 +4348,7 @@ msgstr "Bioma: {0}"
 
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
-msgstr ""
+msgstr "{0} (I)"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
@@ -5584,7 +5569,7 @@ msgstr "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Quando relatar um erro de salvamento, por favor inclua [color=#3796e1][url={0}]{1}[/url][/color] da [color=#3796e1][url={2}]pasta de logs[/url][/color] pois essa é uma informação crucial para os desenvolvedores do Thrive entenderem qual foi o erro de salvamento. Sem esse arquivo, será extremamente difícil diagnosticar e corrigir esse problema."
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 #, fuzzy
@@ -5706,7 +5691,7 @@ msgstr "Efeitos externos:"
 
 #: ../simulation_parameters/common/screen_effects.json:8
 msgid "SCREEN_EFFECT_GREYSCALE"
-msgstr ""
+msgstr "Escala de cinza"
 
 #: ../simulation_parameters/common/screen_effects.json:3
 #, fuzzy
@@ -5728,7 +5713,7 @@ msgstr "Pesquisar…"
 
 #: ../src/thriveopedia/Thriveopedia.tscn:365
 msgid "SEARCH_PLACEHOLDER"
-msgstr ""
+msgstr "Pesquisar..."
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:65
 msgid "SEARCH_RADIUS"
@@ -5812,7 +5797,7 @@ msgstr "Construir uma Estrutura"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:20
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
-msgstr ""
+msgstr "Selecione uma Estrutura para Colocar"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:84
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
@@ -6007,7 +5992,7 @@ msgstr "Construir uma Estrutura"
 
 #: ../src/space_stage/PlacedSpaceStructure.cs:74
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr ""
+msgstr "Estrutura está esperando a frota de construção e recursos: {0}"
 
 #: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_AMMONIA"
@@ -6277,7 +6262,7 @@ msgstr "Estrutura"
 
 #: ../simulation_parameters/space_stage/space_structures.json:26
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr ""
+msgstr "Portão de Ascensão"
 
 #: ../simulation_parameters/space_stage/space_structures.json:3
 #, fuzzy
@@ -6286,38 +6271,38 @@ msgstr "Estrutura"
 
 #: ../src/awakening_stage/PlacedStructure.cs:69
 msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
-msgstr ""
+msgstr "Os materiais necessários para construção foram depositados"
 
 #: ../simulation_parameters/awakening_stage/structures.json:50
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Cabana de Caçador-Coletor"
 
 #: ../src/awakening_stage/PlacedStructure.cs:42
 #: ../src/space_stage/PlacedSpaceStructure.cs:53
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
-msgstr ""
+msgstr "Construindo: {0}"
 
 #: ../src/awakening_stage/PlacedStructure.cs:74
 msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
-msgstr ""
+msgstr "Materiais necessários antes que a construção possa ser concluída: {0}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:103
 #: ../src/space_stage/gui/SpaceConstructionPopup.cs:95
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "{0} (custo inicial: {1}, total: {2}"
 
 #: ../src/awakening_stage/gui/SelectBuildingPopup.cs:98
 #: ../src/space_stage/gui/SpaceConstructionPopup.cs:90
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
-msgstr ""
+msgstr "{0} (INSUFICIENTE PARA COMEÇAR: {1}, total: {2})"
 
 #: ../simulation_parameters/awakening_stage/structures.json:3
 msgid "STRUCTURE_SOCIETY_CENTER"
-msgstr ""
+msgstr "Centro da Sociedade"
 
 #: ../simulation_parameters/awakening_stage/structures.json:92
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
-msgstr ""
+msgstr "Fábrica Movida a Vapor"
 
 #: ../src/microbe_stage/MicrobeStage.cs:1203
 msgid "SUCCESSFUL_KILL"
@@ -6402,31 +6387,31 @@ msgstr "Tipo:"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Ascensão"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:21
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr ""
+msgstr "Caça e Coleta"
 
 #: ../src/awakening_stage/ResearchLevel.cs:36
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
-msgstr ""
+msgstr "Espaço Avançado"
 
 #: ../src/awakening_stage/ResearchLevel.cs:24
 msgid "TECHNOLOGY_LEVEL_INDUSTRIAL"
-msgstr ""
+msgstr "Industrial"
 
 #: ../src/awakening_stage/ResearchLevel.cs:12
 msgid "TECHNOLOGY_LEVEL_PRE_SOCIETY"
-msgstr ""
+msgstr "Pré-Sociedade"
 
 #: ../src/awakening_stage/ResearchLevel.cs:18
 msgid "TECHNOLOGY_LEVEL_PRIMITIVE"
-msgstr ""
+msgstr "Primitivo"
 
 #: ../src/awakening_stage/ResearchLevel.cs:42
 msgid "TECHNOLOGY_LEVEL_SCIFI"
-msgstr ""
+msgstr "Ficção Científica"
 
 #: ../src/awakening_stage/ResearchLevel.cs:30
 #, fuzzy
@@ -6435,28 +6420,28 @@ msgstr "Média"
 
 #: ../src/society_stage/gui/TechWebGUI.cs:148
 msgid "TECHNOLOGY_REQUIRED_LEVEL"
-msgstr ""
+msgstr "Nível tecnológico necessário: {0}"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:41
 msgid "TECHNOLOGY_ROCKETRY"
-msgstr ""
+msgstr "Foguetes"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:3
 msgid "TECHNOLOGY_SIMPLE_STONE_TOOLS"
-msgstr ""
+msgstr "Ferramentas Simples de Pedra"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:12
 msgid "TECHNOLOGY_SOCIETY_CENTER"
-msgstr ""
+msgstr "Construindo o Centro de Sociedade"
 
 #: ../simulation_parameters/awakening_stage/technologies.json:30
 msgid "TECHNOLOGY_STEAM_POWER"
-msgstr ""
+msgstr "Energia a Vapor"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
 #: ../src/late_multicellular_stage/MulticellularStage.cs:839
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
-msgstr ""
+msgstr "Tecnologia desbloqueada: {0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
@@ -6672,7 +6657,7 @@ msgstr "Tempo Passado: {0:#,#} anos"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:141
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Hora do Dia"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -6733,7 +6718,7 @@ msgstr "Ferramentas"
 
 #: ../simulation_parameters/awakening_stage/equipment.json:3
 msgid "TOOL_HAND_AXE"
-msgstr ""
+msgstr "Machado de Mão"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
 msgid "TOTAL_POPULATION_COLON"
@@ -6850,16 +6835,15 @@ msgstr ""
 "Boa sorte!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:254
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
-"Este é o mapa de regiões.\n"
+"Seu saldo de ATP está negativo.\n"
 "\n"
-"Cada ícone representa um ambiente onde você pode habitar, o painel à direita mostra mais informações sobre a região selecionada.\n"
+"Ao executar todos os processos e se movimentar, sua criatura esgotará sua energia e morrerá.\n"
 "\n"
-"Ao selecionar uma região ao lado da que você está atualmente, que é destacada com uma borda azul, você pode apertar o botão “Mover para esta região” para migrar para lá.\n"
+"Você pode adicionar organelas produtoras de ATP para criar uma célula que pode se mover constantemente.\n"
 "\n"
-"Tente selecionar uma região para continuar."
+"Ou você pode adicionar armazenamento para criar uma célula que só pode se mover em rajadas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:61
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -7023,7 +7007,7 @@ msgstr "Taxa de mutação da IA"
 
 #: ../simulation_parameters/industrial_stage/units.json:3
 msgid "UNIT_SIMPLE_ROCKET"
-msgstr ""
+msgstr "Foguete Simples"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -7146,7 +7130,7 @@ msgstr "O vacúolo é uma organela membranosa interna usada para o armazenamento
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn:24
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Vacúolo Especializado"
 
 #: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
 #, fuzzy
@@ -7613,7 +7597,7 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 
 #: ../simulation_parameters/common/wiki.json:337
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requisitos."
 
 #: ../simulation_parameters/common/wiki.json:361
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
@@ -7625,7 +7609,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:353
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Sem melhorias."
 
 #: ../simulation_parameters/common/wiki.json:388
 #, fuzzy
@@ -7665,7 +7649,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:481
 msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-msgstr ""
+msgstr "Respiração celular aeróbica (glicose -> ATP)"
 
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
@@ -7696,7 +7680,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1054
 #: ../simulation_parameters/common/wiki.json:1093
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Efeitos"
 
 #: ../simulation_parameters/common/wiki.json:32
 #: ../simulation_parameters/common/wiki.json:71
@@ -7727,7 +7711,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Modificações"
 
 #: ../simulation_parameters/common/wiki.json:28
 #: ../simulation_parameters/common/wiki.json:67
@@ -7758,7 +7742,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1085
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Processos"
 
 #: ../simulation_parameters/common/wiki.json:24
 #: ../simulation_parameters/common/wiki.json:63
@@ -7789,7 +7773,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1042
 #: ../simulation_parameters/common/wiki.json:1081
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Requisitos"
 
 #: ../simulation_parameters/common/wiki.json:48
 #: ../simulation_parameters/common/wiki.json:87
@@ -7883,11 +7867,17 @@ msgstr "Estágio Desperto"
 #: ../simulation_parameters/common/wiki.json:1058
 #: ../simulation_parameters/common/wiki.json:1097
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Melhorias"
 
 #: ../simulation_parameters/common/wiki.json:427
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
+"Equipar um lisossomo com [b]quitinase[/b] ou [b]celulase[/b] permite que a célula possa digerir outras células com membranas de quitina ou celulose, respectivamente. Se uma célula não tiver um lisossomo equipado com quitinase ou celulase, ela não poderá digerir outras células que possuam essas respectivas membranas.\n"
+"\n"
+"Além de suas estatísticas gerais, cada lisossomo contribui com:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] de velocidade de digestão. A matéria ingerida será digerida mais rapidamente. [/indent]\n"
+"[indent]—   [b]+4.5%[/b] de eficiência de digestão para a enzima escolhida. Células ingeridas com a membrana alvo da enzima produzirão mais compostos quando digeridas.[/indent]"
 
 #: ../simulation_parameters/common/wiki.json:411
 #, fuzzy
@@ -7906,7 +7896,7 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enz
 
 #: ../simulation_parameters/common/wiki.json:415
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Uma célula precisa ter um núcleo para evoluir lisossomos."
 
 #: ../simulation_parameters/common/wiki.json:439
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
@@ -7918,7 +7908,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:431
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Sem melhorias."
 
 #: ../simulation_parameters/common/wiki.json:482
 msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
@@ -8196,7 +8186,7 @@ msgstr "Um metabolossomo modificado responsável pela produção de uma forma pr
 
 #: ../simulation_parameters/common/wiki.json:15
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Axônio"
 
 #: ../simulation_parameters/common/wiki.json:54
 #, fuzzy
@@ -8230,7 +8220,7 @@ msgstr "Cloroplasto"
 
 #: ../simulation_parameters/common/wiki.json:288
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Cílios"
 
 #: ../simulation_parameters/common/wiki.json:327
 #, fuzzy
@@ -8289,7 +8279,7 @@ msgstr "Oxitoxissoma"
 
 #: ../simulation_parameters/common/wiki.json:721
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Pilus Perfurador"
 
 #: ../simulation_parameters/common/wiki.json:760
 #, fuzzy
@@ -8410,10 +8400,15 @@ msgstr ""
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:39
 msgid "WIKI_ROOT_BODY"
 msgstr ""
+"Bem-vindo à wiki interna do Thrive. Aqui você encontrará informações detalhadas sobre conceitos do jogo, desde guias de estratégia até a teoria científica que fundamenta as mecânicas do jogo.\n"
+"\n"
+"A maioria das páginas dessa seção são geradas automaticamente a partir do conteúdo em inglês da [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]wiki de desenvolvimento online[/url][/color] e traduzidas pela comunidade. Se você deseja ajudar a escrever e manter o conteúdo da wiki, por favor considere [color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]juntar-se à equipe[/url][/color].\n"
+"\n"
+"Veja os links abaixo para alguns dos principais conceitos do jogo."
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:21
 msgid "WIKI_ROOT_HEADING"
-msgstr ""
+msgstr "Wiki Interna do Thrive"
 
 #: ../simulation_parameters/common/wiki.json:821
 #, fuzzy
@@ -8570,9 +8565,8 @@ msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
 #: ../simulation_parameters/common/wiki.json:977
-#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
-msgstr "Termossintase"
+msgstr "A ser anunciado"
 
 #: ../simulation_parameters/common/wiki.json:961
 #, fuzzy
@@ -8627,10 +8621,13 @@ msgstr "Tilacóides são aglomerações de proteínas e pigmentos fotossensívei
 #: ../simulation_parameters/common/wiki.json:1008
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
+"[b]Fotossíntese de Cromatóforos:[/b] [b]Luz Solar + Dióxido de Carbono[/b] → [b]Glicose + Oxigênio[/b]\n"
+"\n"
+"[b]Glicólise:[/b] [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/wiki.json:1004
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requisitos"
 
 #: ../simulation_parameters/common/wiki.json:1028
 #, fuzzy
