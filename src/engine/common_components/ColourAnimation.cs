@@ -145,6 +145,9 @@
                 return;
             }
 
+            // Prevent any animations from overriding this (which would cause the new default colour to not stick)
+            animation.AnimationUserInfo = int.MaxValue;
+
             // Replace current animation with one going to the new base colour
             animation.AutoReverseAnimation = false;
 
