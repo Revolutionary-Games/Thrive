@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-24 19:16+0200\n"
+"POT-Creation-Date: 2023-12-11 16:28+0200\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: Bi2Nb9O3 <1022780532@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -47,7 +47,7 @@ msgstr "中止"
 msgid "ABORTED_DOT"
 msgstr "中止。"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:868
 msgid "ABYSSOPELAGIC"
 msgstr "深海带"
 
@@ -122,11 +122,11 @@ msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1400
-#: ../src/microbe_stage/MicrobeStage.tscn:1466
+#: ../src/microbe_stage/MicrobeHUD.tscn:1431
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:91
+#: ../src/microbe_stage/MicrobeHUD.cs:106
 msgid "AGENTS_COLON"
 msgstr "物质："
 
@@ -203,7 +203,7 @@ msgstr "环境声效"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
-#: ../src/microbe_stage/MicrobeStage.tscn:1208
+#: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "氨"
 
@@ -473,17 +473,17 @@ msgstr "降低低音"
 msgid "BASSUP"
 msgstr "提高低音"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:592
+#: ../simulation_parameters/microbe_stage/biomes.json:613
 msgid "BATHYPELAGIC"
 msgstr "半深海带"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.tscn:1621
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:583
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:1610
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
@@ -541,17 +541,17 @@ msgstr "结果："
 msgid "BEST_PATCH_COLON"
 msgstr "最繁荣的地区："
 
-#: ../simulation_parameters/microbe_stage/biomes.json:81
-#: ../simulation_parameters/microbe_stage/biomes.json:332
-#: ../simulation_parameters/microbe_stage/biomes.json:501
-#: ../simulation_parameters/microbe_stage/biomes.json:669
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1165
-#: ../simulation_parameters/microbe_stage/biomes.json:1414
-#: ../simulation_parameters/microbe_stage/biomes.json:1582
-#: ../simulation_parameters/microbe_stage/biomes.json:1773
-#: ../simulation_parameters/microbe_stage/biomes.json:1942
-#: ../simulation_parameters/microbe_stage/biomes.json:2110
+#: ../simulation_parameters/microbe_stage/biomes.json:82
+#: ../simulation_parameters/microbe_stage/biomes.json:340
+#: ../simulation_parameters/microbe_stage/biomes.json:516
+#: ../simulation_parameters/microbe_stage/biomes.json:691
+#: ../simulation_parameters/microbe_stage/biomes.json:946
+#: ../simulation_parameters/microbe_stage/biomes.json:1201
+#: ../simulation_parameters/microbe_stage/biomes.json:1457
+#: ../simulation_parameters/microbe_stage/biomes.json:1632
+#: ../simulation_parameters/microbe_stage/biomes.json:1831
+#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:2182
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
 
@@ -559,7 +559,7 @@ msgstr "大铁块"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10⁹"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:538
+#: ../simulation_parameters/microbe_stage/organelles.json:537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "连接器"
@@ -592,7 +592,7 @@ msgstr "从临近地区来的增加生物多样性的物种获得额外的种群
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "增加生物多样性的物种会在创造时被变异"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:791
+#: ../simulation_parameters/microbe_stage/organelles.json:787
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
@@ -720,27 +720,27 @@ msgstr "大写锁定"
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:863
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:879
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "很多"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:867
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:883
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "较多"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:871
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:887
 msgid "CATEGORY_LITTLE"
 msgstr "少"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:865
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:881
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "多"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:869
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:885
 msgid "CATEGORY_SOME"
 msgstr "中等"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:873
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:889
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
@@ -804,7 +804,7 @@ msgstr "作弊菜单"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:369
+#: ../simulation_parameters/microbe_stage/organelles.json:368
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "化学质体"
@@ -817,7 +817,7 @@ msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:707
+#: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "化学感受器"
@@ -865,7 +865,7 @@ msgstr "几丁质酶使细胞能够分解几丁质膜。每次添加都会增加
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。. [b]几丁质酶可以消化这堵墙[/b]，使其容易被捕食者吞噬。"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:578
+#: ../simulation_parameters/microbe_stage/organelles.json:576
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "叶绿体"
@@ -890,7 +890,7 @@ msgstr "色差："
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与[thrive:compound type=\"sunlight\"][/thrive:compound]强度成正比。"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:108
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:109
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr "细胞尸体碎块"
 
@@ -898,7 +898,7 @@ msgstr "细胞尸体碎块"
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}消耗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:859
+#: ../simulation_parameters/microbe_stage/organelles.json:855
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "纤毛"
@@ -947,7 +947,7 @@ msgstr "云分辨率除数："
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1336
+#: ../simulation_parameters/microbe_stage/biomes.json:1378
 msgid "COASTAL"
 msgstr "海岸"
 
@@ -1055,7 +1055,7 @@ msgstr "编译于："
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
-#: ../src/microbe_stage/MicrobeStage.tscn:1064
+#: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -1063,7 +1063,7 @@ msgstr "化合物"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏化合物"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:88
+#: ../src/microbe_stage/MicrobeHUD.cs:103
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
@@ -1399,7 +1399,7 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../simulation_parameters/microbe_stage/organelles.json:609
+#: ../simulation_parameters/microbe_stage/organelles.json:607
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "细胞质"
@@ -1448,7 +1448,7 @@ msgstr "死区已重置"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "死区控制"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:337
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:341
 msgid "DEATH"
 msgstr "死亡数"
 
@@ -1585,7 +1585,7 @@ msgstr "开发者wiki"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "访问我们的开发者wiki"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:262
+#: ../src/microbe_stage/MicrobeHUD.cs:278
 msgid "DEVOURED"
 msgstr "被吞噬"
 
@@ -1916,7 +1916,7 @@ msgstr "旋转速度："
 msgid "EDITOR"
 msgstr "编辑器"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1824
+#: ../src/microbe_stage/MicrobeHUD.tscn:1789
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
 
@@ -1959,15 +1959,15 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2441
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2440
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2451
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2445
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2444
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
@@ -1984,7 +1984,7 @@ msgid "ENTITY_LABEL"
 msgstr "实体标签"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:561
-#: ../src/microbe_stage/MicrobeStage.tscn:601
+#: ../src/microbe_stage/MicrobeHUD.tscn:570
 msgid "ENVIRONMENT"
 msgstr "环境"
 
@@ -2044,11 +2044,11 @@ msgstr "存档时出错"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1205
+#: ../src/microbe_stage/MicrobeStage.cs:1256
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1864
+#: ../simulation_parameters/microbe_stage/biomes.json:1928
 msgid "ESTUARY"
 msgstr "河口"
 
@@ -2056,8 +2056,9 @@ msgstr "河口"
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化树"
 
-#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:70
-msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
+#: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:66
+#, fuzzy
+msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 "无法在自由构建模式或0.6.0之前的版本的存档中显示。\n"
 "\n"
@@ -2234,11 +2235,11 @@ msgstr "完成{0}次世代"
 
 #: ../simulation_parameters/common/input_options.json:41
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeStage.tscn:1997
+#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:404
+#: ../simulation_parameters/microbe_stage/organelles.json:403
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "鞭毛"
@@ -2259,21 +2260,21 @@ msgstr "{0} 舰队"
 msgid "FLEET_UNITS"
 msgstr "舰队单位"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:90
+#: ../src/microbe_stage/MicrobeHUD.cs:105
 msgid "FLOATING_CHUNKS_COLON"
 msgstr "漂浮的碎块："
 
-#: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:197
-#: ../simulation_parameters/microbe_stage/biomes.json:446
-#: ../simulation_parameters/microbe_stage/biomes.json:614
-#: ../simulation_parameters/microbe_stage/biomes.json:862
-#: ../simulation_parameters/microbe_stage/biomes.json:1110
-#: ../simulation_parameters/microbe_stage/biomes.json:1359
-#: ../simulation_parameters/microbe_stage/biomes.json:1527
-#: ../simulation_parameters/microbe_stage/biomes.json:1699
-#: ../simulation_parameters/microbe_stage/biomes.json:1887
-#: ../simulation_parameters/microbe_stage/biomes.json:2055
+#: ../simulation_parameters/microbe_stage/biomes.json:27
+#: ../simulation_parameters/microbe_stage/biomes.json:205
+#: ../simulation_parameters/microbe_stage/biomes.json:461
+#: ../simulation_parameters/microbe_stage/biomes.json:636
+#: ../simulation_parameters/microbe_stage/biomes.json:891
+#: ../simulation_parameters/microbe_stage/biomes.json:1146
+#: ../simulation_parameters/microbe_stage/biomes.json:1402
+#: ../simulation_parameters/microbe_stage/biomes.json:1577
+#: ../simulation_parameters/microbe_stage/biomes.json:1756
+#: ../simulation_parameters/microbe_stage/biomes.json:1952
+#: ../simulation_parameters/microbe_stage/biomes.json:2127
 msgid "FLOATING_HAZARD"
 msgstr "漂浮的危害物"
 
@@ -2300,7 +2301,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2458
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2457
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -2332,12 +2333,12 @@ msgstr "未能保存到化石中"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "未能保存化石文件"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:231
+#: ../src/microbe_stage/MicrobeHUD.cs:246
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "保存该物种到化石中"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:230
+#: ../src/microbe_stage/MicrobeHUD.cs:245
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr "保存该物种到化石中（已保存）"
 
@@ -2444,7 +2445,7 @@ msgstr "一部分[b][u]{0}[/u][/b]种群已经从{2}移民到了{1}"
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
-#: ../src/microbe_stage/MicrobeStage.tscn:1162
+#: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -2464,17 +2465,17 @@ msgstr "上帝模式"
 msgid "GOD_TOOLS_TITLE"
 msgstr "上帝工具"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:105
-#: ../simulation_parameters/microbe_stage/biomes.json:356
-#: ../simulation_parameters/microbe_stage/biomes.json:525
-#: ../simulation_parameters/microbe_stage/biomes.json:773
-#: ../simulation_parameters/microbe_stage/biomes.json:1021
-#: ../simulation_parameters/microbe_stage/biomes.json:1269
-#: ../simulation_parameters/microbe_stage/biomes.json:1438
-#: ../simulation_parameters/microbe_stage/biomes.json:1606
-#: ../simulation_parameters/microbe_stage/biomes.json:1797
-#: ../simulation_parameters/microbe_stage/biomes.json:1966
-#: ../simulation_parameters/microbe_stage/biomes.json:2214
+#: ../simulation_parameters/microbe_stage/biomes.json:106
+#: ../simulation_parameters/microbe_stage/biomes.json:364
+#: ../simulation_parameters/microbe_stage/biomes.json:540
+#: ../simulation_parameters/microbe_stage/biomes.json:795
+#: ../simulation_parameters/microbe_stage/biomes.json:1050
+#: ../simulation_parameters/microbe_stage/biomes.json:1305
+#: ../simulation_parameters/microbe_stage/biomes.json:1481
+#: ../simulation_parameters/microbe_stage/biomes.json:1656
+#: ../simulation_parameters/microbe_stage/biomes.json:1855
+#: ../simulation_parameters/microbe_stage/biomes.json:2031
+#: ../simulation_parameters/microbe_stage/biomes.json:2286
 msgid "GOOGLY_EYE_CELL"
 msgstr "呆滞眼球细胞"
 
@@ -2593,7 +2594,7 @@ msgstr "{0} (x{1})"
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
-#: ../src/microbe_stage/MicrobeStage.tscn:1309
+#: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
@@ -2605,11 +2606,11 @@ msgstr "Hyper Left"
 msgid "HYPERR"
 msgstr "Hyper Right"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1754
+#: ../simulation_parameters/microbe_stage/biomes.json:1811
 msgid "ICESHARD"
 msgstr "冰砾"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1673
+#: ../simulation_parameters/microbe_stage/biomes.json:1729
 msgid "ICESHELF"
 msgstr "冰架"
 
@@ -2686,7 +2687,7 @@ msgstr "你已发展繁荣（Thrived）！"
 msgid "INFO_BOX_UPGRADES"
 msgstr "升级"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeHUD.tscn:1370
 msgid "INGESTED_MATTER"
 msgstr "摄入的物质"
 
@@ -2847,7 +2848,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
-#: ../src/microbe_stage/MicrobeStage.tscn:1355
+#: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "铁"
 
@@ -3073,7 +3074,7 @@ msgstr "此翻译仍在开发中（已完成 {0}%）"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1402
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1401
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
@@ -3275,7 +3276,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr "热泉"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:885
-#: ../src/microbe_stage/MicrobeStage.tscn:925
+#: ../src/microbe_stage/MicrobeHUD.tscn:892
 msgid "LIGHT"
 msgstr "光强"
 
@@ -3455,7 +3456,7 @@ msgstr ""
 "3D菜单背景已被启用，这可能占用了大量性能。禁用3D菜单背景可能会极大地提高性能。\n"
 "你现在希望这么做吗？"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:908
+#: ../simulation_parameters/microbe_stage/organelles.json:904
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "LYSOSOME"
 msgstr "溶酶体"
@@ -3480,11 +3481,11 @@ msgstr "地图"
 msgid "MARCH"
 msgstr "三月"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:252
-#: ../simulation_parameters/microbe_stage/biomes.json:693
-#: ../simulation_parameters/microbe_stage/biomes.json:941
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
-#: ../simulation_parameters/microbe_stage/biomes.json:2134
+#: ../simulation_parameters/microbe_stage/biomes.json:260
+#: ../simulation_parameters/microbe_stage/biomes.json:715
+#: ../simulation_parameters/microbe_stage/biomes.json:970
+#: ../simulation_parameters/microbe_stage/biomes.json:1225
+#: ../simulation_parameters/microbe_stage/biomes.json:2206
 msgid "MARINE_SNOW"
 msgstr "海洋雪"
 
@@ -3559,7 +3560,7 @@ msgstr "细胞膜类型"
 msgid "MENU"
 msgstr "菜单"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1088
+#: ../simulation_parameters/microbe_stage/biomes.json:1123
 msgid "MESOPELAGIC"
 msgstr "中层带"
 
@@ -3918,7 +3919,7 @@ msgstr "缺少或无效的必填字段的格式：{0}"
 msgid "MISSING_TITLE"
 msgstr "缺少标题"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:469
+#: ../simulation_parameters/microbe_stage/organelles.json:468
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "线粒体"
@@ -4163,7 +4164,7 @@ msgstr "移动到任意地区"
 msgid "MOVE_TO_LAND"
 msgstr "成为陆地生物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大的细胞群后就可以使用。"
 
@@ -4201,7 +4202,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "成为陆地生物？"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:588
+#: ../src/late_multicellular_stage/MulticellularStage.cs:594
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "成为社会性生物中......"
 
@@ -4216,7 +4217,7 @@ msgstr "{0} 变异点"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
-#: ../src/microbe_stage/MicrobeStage.tscn:1571
+#: ../src/microbe_stage/MicrobeHUD.tscn:1536
 msgid "MUCILAGE"
 msgstr "黏液"
 
@@ -4426,7 +4427,7 @@ msgstr "最基础的细胞膜，基本没啥保护能力。同时也需要很多
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:507
+#: ../src/late_multicellular_stage/MulticellularStage.cs:513
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "没有可以交互的物体"
 
@@ -4434,19 +4435,19 @@ msgstr "没有可以交互的物体"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "因ATP耗尽而受伤"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:199
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:195
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "由于摄入物体中的毒素而受伤"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:130
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:126
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "没有用于吞噬目标的 {0}"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:868
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:949
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前细胞大小不足以吞噬目标"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:860
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:941
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
@@ -4471,7 +4472,7 @@ msgid "NO_AI"
 msgstr "AI关闭"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2473
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2472
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -4508,12 +4509,12 @@ msgstr "找不到截图目录"
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:679
+#: ../simulation_parameters/microbe_stage/organelles.json:677
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1399
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "不能删除细胞核，因为这是个不可逆的进化。\n"
@@ -4534,10 +4535,10 @@ msgstr "数字锁定"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2331
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2341
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2330
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2340
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:430
+#: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
 msgstr "N/A"
 
@@ -4545,7 +4546,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "不消耗变异点"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:484
+#: ../src/microbe_stage/MicrobeHUD.cs:502
 msgid "N_TIMES"
 msgstr "x{0}"
 
@@ -4672,7 +4673,7 @@ msgstr "改变你的设置"
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:937
+#: ../simulation_parameters/microbe_stage/organelles.json:933
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 msgid "ORGANELLE_AXON"
 msgstr "轴突"
@@ -4685,7 +4686,7 @@ msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:980
+#: ../simulation_parameters/microbe_stage/organelles.json:975
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纤维"
@@ -4802,7 +4803,7 @@ msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:comp
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
-#: ../src/microbe_stage/MicrobeStage.tscn:1523
+#: ../src/microbe_stage/MicrobeHUD.tscn:1488
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
@@ -4928,7 +4929,7 @@ msgstr "暂停中"
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "返回游戏"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:74
+#: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
 msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暂停[/center]"
 
@@ -4948,7 +4949,7 @@ msgstr "pck文件（{0}）因不存在载入失败"
 msgid "PEACEFUL"
 msgstr "和平"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:618
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
 #: ../src/general/NewGameSettings.cs:765
 #: ../src/general/WorldGenerationSettings.cs:147
@@ -4958,7 +4959,7 @@ msgstr "和平"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
-#: ../src/microbe_stage/MicrobeHUD.cs:268
+#: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4979,7 +4980,7 @@ msgstr "每秒"
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:1257
+#: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
@@ -5027,7 +5028,7 @@ msgstr "行星生成即将发布！"
 msgid "PLANET_RANDOM_SEED"
 msgstr "世界生成种子"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "PLAYER"
 msgstr "玩家"
 
@@ -5090,7 +5091,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "使用当前设置"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
+#: ../src/microbe_stage/MicrobeHUD.tscn:1641
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
@@ -5103,7 +5104,7 @@ msgstr "种群数量："
 msgid "POPULATION_IN_PATCHES"
 msgstr "地区中的种群数量："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2322
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2321
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
@@ -5120,7 +5121,7 @@ msgid "PRESSURE"
 msgstr "压力"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
-#: ../src/microbe_stage/MicrobeStage.tscn:980
+#: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
@@ -5263,7 +5264,8 @@ msgstr "报告"
 msgid "REPORT_BUG"
 msgstr "报告一个bug"
 
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:495
+#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:271
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:498
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
@@ -5671,13 +5673,13 @@ msgstr "搜索..."
 msgid "SEARCH_RADIUS"
 msgstr "搜索半径："
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2033
+#: ../simulation_parameters/microbe_stage/biomes.json:2104
 msgid "SEA_FLOOR"
 msgstr "海床"
 
 #: ../simulation_parameters/common/input_options.json:45
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeStage.tscn:2042
+#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "喷射黏液"
 
@@ -5813,7 +5815,7 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:768
+#: ../simulation_parameters/microbe_stage/organelles.json:764
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "信号剂"
@@ -5826,27 +5828,27 @@ msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按[thrive:input]g_pack_commands[/thrive:input]来打开一个用于给你的物种中其它成员发号施令的菜单。"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:154
+#: ../src/microbe_stage/MicrobeHUD.cs:169
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "变得更有侵略性"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:153
+#: ../src/microbe_stage/MicrobeHUD.cs:168
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "逃跑"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:151
+#: ../src/microbe_stage/MicrobeHUD.cs:166
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "跟我来"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:150
+#: ../src/microbe_stage/MicrobeHUD.cs:165
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "无指令"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:152
+#: ../src/microbe_stage/MicrobeHUD.cs:167
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "到我这边来"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:157
+#: ../src/microbe_stage/MicrobeHUD.cs:172
 msgid "SIGNAL_TO_EMIT"
 msgstr "要发出的信号"
 
@@ -5872,7 +5874,7 @@ msgstr "大小："
 msgid "SLIDESHOW"
 msgstr "幻灯片"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:742
+#: ../simulation_parameters/microbe_stage/organelles.json:738
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr "黏液喷嘴"
@@ -5885,17 +5887,17 @@ msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"mucilage\"][/thrive:compound]. 点击 [thrive:input]g_secrete_slime[/thrive:input] 以喷射储存的 [thrive:compound type=\"mucilage\"][/thrive:compound], 增加该细胞的速度并减慢被困在黏液里的捕食者的速度."
 
-#: ../simulation_parameters/microbe_stage/biomes.json:45
-#: ../simulation_parameters/microbe_stage/biomes.json:216
-#: ../simulation_parameters/microbe_stage/biomes.json:465
-#: ../simulation_parameters/microbe_stage/biomes.json:633
-#: ../simulation_parameters/microbe_stage/biomes.json:881
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
-#: ../simulation_parameters/microbe_stage/biomes.json:1546
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1906
-#: ../simulation_parameters/microbe_stage/biomes.json:2074
+#: ../simulation_parameters/microbe_stage/biomes.json:46
+#: ../simulation_parameters/microbe_stage/biomes.json:224
+#: ../simulation_parameters/microbe_stage/biomes.json:480
+#: ../simulation_parameters/microbe_stage/biomes.json:655
+#: ../simulation_parameters/microbe_stage/biomes.json:910
+#: ../simulation_parameters/microbe_stage/biomes.json:1165
+#: ../simulation_parameters/microbe_stage/biomes.json:1421
+#: ../simulation_parameters/microbe_stage/biomes.json:1596
+#: ../simulation_parameters/microbe_stage/biomes.json:1775
+#: ../simulation_parameters/microbe_stage/biomes.json:1971
+#: ../simulation_parameters/microbe_stage/biomes.json:2146
 msgid "SMALL_IRON_CHUNK"
 msgstr "小铁块"
 
@@ -5947,7 +5949,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:961
+#: ../src/microbe_stage/MicrobeStage.cs:982
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
@@ -5972,7 +5974,7 @@ msgstr "鼠标侧键2"
 msgid "SPECIES"
 msgstr "物种"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:89
+#: ../src/microbe_stage/MicrobeHUD.cs:104
 msgid "SPECIES_COLON"
 msgstr "物种："
 
@@ -6245,11 +6247,11 @@ msgstr "社会中心"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "蒸汽动力工厂"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1203
+#: ../src/microbe_stage/MicrobeStage.cs:1254
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1204
+#: ../src/microbe_stage/MicrobeStage.cs:1255
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
@@ -6378,7 +6380,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "蒸汽动力"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:839
+#: ../src/late_multicellular_stage/MulticellularStage.cs:871
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "解锁的科技：{0}"
 
@@ -6391,7 +6393,7 @@ msgid "TEMPERATURE"
 msgstr "温度"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:829
-#: ../src/microbe_stage/MicrobeStage.tscn:869
+#: ../src/microbe_stage/MicrobeHUD.tscn:836
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
@@ -6423,7 +6425,7 @@ msgstr "感谢"
 msgid "THEORY_TEAM"
 msgstr "理论家团队"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:826
+#: ../simulation_parameters/microbe_stage/organelles.json:822
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "热能体"
@@ -6531,7 +6533,7 @@ msgstr "类囊体"
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:423
+#: ../simulation_parameters/microbe_stage/biomes.json:437
 msgid "TIDEPOOL"
 msgstr "潮池"
 
@@ -6555,8 +6557,8 @@ msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个�
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是演化压力"
 
-#: ../src/microbe_stage/MicrobeStage.cs:435
-#: ../src/microbe_stage/MicrobeStage.cs:439
+#: ../src/microbe_stage/MicrobeStage.cs:444
+#: ../src/microbe_stage/MicrobeStage.cs:448
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b]成为多细胞生物"
 
@@ -6597,7 +6599,7 @@ msgid "TITLE_COLON"
 msgstr "标题："
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeStage.tscn:2008
+#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
@@ -6608,7 +6610,7 @@ msgstr "控制调试菜单"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeStage.tscn:1984
+#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
@@ -6666,7 +6668,7 @@ msgstr "存档数："
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:505
+#: ../simulation_parameters/microbe_stage/organelles.json:504
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
@@ -6901,11 +6903,11 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要应用更变才能加载或卸载任何mod。"
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeStage.tscn:2020
+#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "取消所有连接"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:192
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:204
 msgid "UNBIND_HELP_TEXT"
 msgstr "解连接模式"
 
@@ -6913,7 +6915,7 @@ msgstr "解连接模式"
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "这是一个调试版本，下面的信息可能不是最新的"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1505
+#: ../simulation_parameters/microbe_stage/biomes.json:1554
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
@@ -6971,21 +6973,21 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "未命名"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:873
+#: ../simulation_parameters/microbe_stage/organelles.json:869
 msgid "UPGRADE_CILIA_PULL"
 msgstr "捕食纤毛"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:874
+#: ../simulation_parameters/microbe_stage/organelles.json:870
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:33
-#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../simulation_parameters/microbe_stage/organelles.json:866
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:32
-#: ../simulation_parameters/microbe_stage/organelles.json:869
+#: ../simulation_parameters/microbe_stage/organelles.json:865
 msgid "UPGRADE_NAME_NONE"
 msgstr "默认"
 
@@ -7058,7 +7060,7 @@ msgstr "液泡是一个内部膜质细胞器，用于在细胞内储存。它们
 msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "特化型液泡"
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:128
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:132
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "液泡将存储总共{0}个单位的任何化合物。"
 
@@ -7066,11 +7068,11 @@ msgstr "液泡将存储总共{0}个单位的任何化合物。"
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "增加细胞的存储空间。"
 
-#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:133
+#: ../src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.cs:137
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
 msgstr "液泡将存储{0}个单位的选定化合物。"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:619
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:635
 #: ../src/gui_common/CompoundAmount.cs:173
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
 msgid "VALUE_WITH_UNIT"
@@ -7134,7 +7136,7 @@ msgstr "可见"
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:179
 msgid "VOLCANIC_VENT"
 msgstr "海底热泉"
 
