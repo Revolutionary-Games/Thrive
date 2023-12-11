@@ -257,6 +257,7 @@ public static class MicrobeInternalCalculations
         // use the cheaper distance calculations
         foreach (var organelle in organelles)
         {
+            // TODO: should this be switched to calculate things per-hex instead of just organelle center positions?
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
             inertia += distance * organelle.Definition.HexCount * organelle.Definition.Density *
