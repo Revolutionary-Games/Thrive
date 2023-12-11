@@ -271,6 +271,14 @@
             container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
+
+            // Rescale health in case max health changed (for example the player picked a new membrane)
+            ref var health = ref entity.Get<Health>();
+            if (!health.Dead && health.CurrentHealth > 0 && health.MaxHealth > 0)
+            {
+                health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellProperties.MembraneType,
+                    cellProperties.MembraneRigidity));
+            }
         }
 
         /// <summary>
