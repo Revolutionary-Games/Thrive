@@ -681,7 +681,7 @@ public static class Constants
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
     public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
