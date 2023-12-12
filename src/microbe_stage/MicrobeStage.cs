@@ -232,7 +232,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             if (Player.Has<MicrobeColony>())
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
+                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
+                        Player.Has<EarlyMulticellularSpeciesMember>()), this);
 
                 if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
                 {
