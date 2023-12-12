@@ -625,6 +625,9 @@
                 if (geometryInstance != null)
                 {
                     boundingBoxSize = geometryInstance.GetAabb().Size;
+
+                    // Apply the current visual scale as it is not included in the AABB automatically
+                    boundingBoxSize *= geometryInstance.Scale;
                 }
                 else
                 {
