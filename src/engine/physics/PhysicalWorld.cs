@@ -239,6 +239,9 @@ public class PhysicalWorld : IDisposable
 #if DEBUG
         if (!lookDirection.IsNormalized())
             throw new ArgumentException("Look direction needs to be normalized");
+
+        if (rotationSpeedDivisor <= 0)
+            throw new ArgumentException("Rotation speed can't be zero or negative");
 #endif
 
         // Too low speed divisor causes too fast rotation and instability that way
