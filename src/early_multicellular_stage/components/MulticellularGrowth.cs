@@ -94,8 +94,8 @@
             // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
             // colony it joins
             DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
-                multicellularGrowth.NextBodyPlanCellToGrowIndex,
-                cellTemplate, species, worldSimulation, recorder, notifySpawnTo, false);
+                multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, recorder,
+                notifySpawnTo, false);
 
             ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
             multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -144,6 +144,13 @@
             var species = colonyEntity.Get<EarlyMulticellularSpeciesMember>().Species;
 
             var lostPartIndex = lostCell.Get<EarlyMulticellularSpeciesMember>().MulticellularBodyPlanPartIndex;
+
+            // If the lost index is the first cell, then it should be disbanding the colony. We don't need to keep
+            // track of when that will regrow as entirely new colonies will be created for the surviving members.
+            // This shouldn't really matter anyway as this growth object should be getting deleted anyway shortly along
+            // with the removed cell.
+            if (lostPartIndex == 0)
+                return;
 
             // We need to reset our growth towards the next cell and instead replace the cell we just lost
             multicellularGrowth.LostPartsOfBodyPlan ??= new List<int>();

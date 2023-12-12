@@ -34,8 +34,10 @@
                         var data = (MicrobeColonyEventArgs)args;
 
                         // Give advice if player is in a colony, but not big enough to get to the next stage
+                        // Also prevent triggering when multicellular to avoid this incorrectly showing if the early
+                        // game was played without tutorials
                         hasColony = data.HasColony && data.MemberCount <
-                            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+                            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR && !data.IsMulticellular;
                     }
 
                     break;
