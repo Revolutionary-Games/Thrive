@@ -38,6 +38,11 @@ JPH_SUPPRESS_WARNINGS
 namespace Thrive::Physics
 {
 
+// When on, a more efficient calculation is used for body control
+#define ASSUME_BODY_ROTATION_IS_UNIT
+
+// #define CHECK_ROTATION_PROBLEMS
+
 class PhysicalWorld::Pimpl
 {
 public:
@@ -1365,8 +1370,26 @@ void PhysicalWorld::ApplyBodyControl(PhysicsBody& bodyWrapper, float delta)
     // to have any rotation value being close to target threshold or overshoot detection.
     const auto& currentRotation = body.GetRotation();
 
+#ifdef CHECK_ROTATION_PROBLEMS
+    if (std::abs(currentRotation.Length() - 1) > 0.000001f)
+        LOG_ERROR("Body rotation is nor normalized, length: " + std::to_string(currentRotation.Length()));
+
+    if (currentRotation.IsNaN())
+    {
+        LOG_ERROR("Body rotation is NaN! Something has corrupted it, resetting to identity");
+
+        physicsSystem->GetBodyInterfaceNoLock().SetRotation(
+            bodyId, JPH::Quat::sIdentity(), JPH::EActivation::DontActivate);
+        return;
+    }
+#endif
+
+#ifdef ASSUME_BODY_ROTATION_IS_UNIT
     // Can use conjugated here as the rotation is always a unit rotation
     const auto difference = controlState->targetRotation * currentRotation.Conjugated();
+#else
+    const auto difference = controlState->targetRotation * currentRotation.Inversed();
+#endif
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cppcoreguidelines-pro-type-member-init"
