@@ -41,16 +41,14 @@ public class RotationEventArgs : TutorialEventArgs
 
 public class MicrobeMovementEventArgs : TutorialEventArgs
 {
-    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection, Vector3 lookVector)
+    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection)
     {
         UsesScreenRelativeMovement = usesScreenRelativeMovement;
         MovementDirection = movementDirection;
-        LookVector = lookVector;
     }
 
     public bool UsesScreenRelativeMovement { get; }
     public Vector3 MovementDirection { get; }
-    public Vector3 LookVector { get; }
 }
 
 public class EntityPositionEventArgs : TutorialEventArgs
