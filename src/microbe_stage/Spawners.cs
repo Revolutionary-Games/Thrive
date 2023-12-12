@@ -545,7 +545,7 @@ public static class SpawnHelpers
 
             var engulfer = default(Engulfer);
 
-            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, usedCellProperties.IsBacteria);
 
             entity.Set(engulfable);
             entity.Set(engulfer);

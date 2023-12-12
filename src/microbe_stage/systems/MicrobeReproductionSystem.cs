@@ -356,8 +356,10 @@
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
+                    // These are fetched here as most of the time only one organelle will divide per step so it doesn't
+                    // help to complicate things by trying to fetch these before the loop
                     organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
-                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
+                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(), ref entity.Get<CellProperties>());
                 }
             }
 
