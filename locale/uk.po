@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-13 11:23+0200\n"
+"POT-Creation-Date: 2023-12-13 11:46+0200\n"
 "PO-Revision-Date: 2023-11-27 17:42+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2647,9 +2647,8 @@ msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:97
-#, fuzzy
 msgid "INFO_BOX_COST"
-msgstr "ВИ ПРОЦВІТАЄТЕ!"
+msgstr "Базова ціна (МО)"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:189
 msgid "INFO_BOX_ENZYMES"
@@ -7423,9 +7422,8 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Хемосинтезувальні білки"
 
 #: ../simulation_parameters/common/wiki.json:216
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr "Хемосинтезувальні білки"
+msgstr "Хемосинтезувальні білки - це малі кластери протеїнів у цитоплазмі, які здатні перетворювати [b]сірководень[/b], [b]вуглекислий газ[/b] та воду в [b]глюкозу[/b] у процесі під назвою [b]хемонсинтезис сірководню[/b]. Швидкість її вироблення [b]глюкози[/b] збільшується з концентрацією [b]вуглекислого газу[/b]. Оскільки хемосинтетичні білки розподіляються прямо в цитоплазмі, оточуюча рідина виконує деякий [b]гліколіз[/b]."
 
 #: ../simulation_parameters/common/wiki.json:228
 #, fuzzy
@@ -7438,9 +7436,8 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr "Перетворює [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] на [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Також перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/wiki.json:220
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_REQUIREMENTS"
-msgstr "Хемосинтезувальні білки"
+msgstr "Нема вимог."
 
 #: ../simulation_parameters/common/wiki.json:244
 #, fuzzy
@@ -7453,9 +7450,8 @@ msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_STRATEGY"
 msgstr "Хемосинтезувальні білки"
 
 #: ../simulation_parameters/common/wiki.json:236
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_UPGRADES"
-msgstr "Хемосинтезувальні білки"
+msgstr "Нема покращень."
 
 #: ../simulation_parameters/common/wiki.json:271
 #, fuzzy
@@ -7883,9 +7879,8 @@ msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr "Перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить відд [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/wiki.json:454
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr "Метаболосоми є скупченнями білків в білковій оболонці. Вони набагато швидше перетворюють [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] ніж в цитоплазмі під час процесу, що зветься [b]Анаеробним Диханням[/b]. Та для цього потрібен [thrive:compound type=\"oxygen\"][/thrive:compound], а нищий рівень [thrive:compound type=\"oxygen\"][/thrive:compound] сповільнює синтез [thrive:compound type=\"atp\"][/thrive:compound]. Оскільки метаболосоми розміщені в цитоплазмі, навколишня рідина здійснює [b]гліколіз[/b]."
+msgstr "Нема вимог"
 
 #: ../simulation_parameters/common/wiki.json:478
 #, fuzzy
@@ -8558,9 +8553,8 @@ msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Тилакоїди є кластерами з білків та фотосинтезувальних пігментів. Пігменти використовують енергію [thrive:compound type=\"sunlight\"][/thrive:compound], щоб продукувати [thrive:compound type=\"glucose\"][/thrive:compound] з води та газуватої форми [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процесі, що зветься [b]фотосинтезом[/b]. Ці пігменти також надають характерний колір. Їхня кількість виробленої [thrive:compound type=\"glucose\"][/thrive:compound] залежить від концентрації [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]. Оскільки тилакоїди зафіксовані безпосередньо в цитоплазмі, навколишня рідина одразу здійснює певний [b]гліколіз[/b]."
 
 #: ../simulation_parameters/common/wiki.json:1012
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr "Тилакоїди є кластерами з білків та фотосинтезувальних пігментів. Пігменти використовують енергію [thrive:compound type=\"sunlight\"][/thrive:compound], щоб продукувати [thrive:compound type=\"glucose\"][/thrive:compound] з води та газуватої форми [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процесі, що зветься [b]фотосинтезом[/b]. Ці пігменти також надають характерний колір. Їхня кількість виробленої [thrive:compound type=\"glucose\"][/thrive:compound] залежить від концентрації [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]. Оскільки тилакоїди зафіксовані безпосередньо в цитоплазмі, навколишня рідина одразу здійснює певний [b]гліколіз[/b]."
+msgstr "Нема модифікацій"
 
 #: ../simulation_parameters/common/wiki.json:1008
 msgid "WIKI_THYLAKOIDS_PROCESSES"
@@ -8782,6 +8776,12 @@ msgstr "Приблизитись"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
+#~ msgstr ""
+#~ "Поки не відображається в вільного режиму або збереженнях до версії 0.6.0.\n"
+#~ "\n"
+#~ "Якщо нічого не підходить, то сталася помилка. Будь-ласка , повідомте розробницьку команду та внесіть це до журналу гри."
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
