@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-13 11:37+0200\n"
+"POT-Creation-Date: 2023-12-13 11:46+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -469,7 +469,7 @@ msgid "BATHYPELAGIC"
 msgstr "Batypelagiál"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:645
-#: ../src/microbe_stage/MicrobeHUD.tscn:1621
+#: ../src/microbe_stage/MicrobeHUD.tscn:1622
 #, fuzzy
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stať sa makroskopickým ({0}/{1})"
@@ -1897,7 +1897,7 @@ msgstr "Rýchlosť trávenia"
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1789
+#: ../src/microbe_stage/MicrobeHUD.tscn:1790
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Vstúpte do editora a upravte svoj druh"
 
@@ -2237,10 +2237,14 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Počet potrebných generácií: {0}"
 
 #: ../simulation_parameters/common/input_options.json:41
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Ohnivý toxín"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/microbe_stage/MicrobeHUD.tscn:1962
+#, fuzzy
+msgid "FIRE_TOXIN_TOOLTIP"
+msgstr "Niektoré možnosti môžu byť vypnuté, ak je realistický režim zapnutý"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
@@ -4164,6 +4168,11 @@ msgstr "Presunúť sa na toto miesto"
 msgid "MOVE_TO_LAND"
 msgstr "Mod na nahranie:"
 
+#: ../src/microbe_stage/MicrobeHUD.tscn:1618
+#, fuzzy
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Stať sa makroskopickým ({0}/{1})"
+
 #: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
@@ -5096,7 +5105,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeHUD.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1642
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIA:"
@@ -5689,10 +5698,14 @@ msgid "SEA_FLOOR"
 msgstr "Morské dno"
 
 #: ../simulation_parameters/common/input_options.json:45
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
+#: ../src/microbe_stage/MicrobeHUD.tscn:2012
+#, fuzzy
+msgid "SECRETE_SLIME_TOOLTIP"
+msgstr "Pozastaviť hru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
@@ -5838,6 +5851,11 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:764
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
+msgstr "Bunková signalizácia"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1999
+#, fuzzy
+msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr "Bunková signalizácia"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
@@ -6622,8 +6640,12 @@ msgid "TITLE_COLON"
 msgstr "Názov:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
+msgstr "Prepnúť spájanie"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1974
+#, fuzzy
+msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Prepnúť spájanie"
 
 #: ../simulation_parameters/common/input_options.json:326
@@ -6633,8 +6655,12 @@ msgstr "Prepnúť debugovací panel"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
+msgstr "Prepnúť pohlcovanie"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1948
+#, fuzzy
+msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Prepnúť pohlcovanie"
 
 #: ../simulation_parameters/common/input_options.json:330
@@ -6846,8 +6872,12 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
+msgstr "Rozpojiť všetky"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1987
+#, fuzzy
+msgid "UNBIND_ALL_TOOLTIP"
 msgstr "Rozpojiť všetky"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:203

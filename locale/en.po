@@ -478,7 +478,7 @@ msgid "BATHYPELAGIC"
 msgstr "Bathypelagic"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:645
-#: ../src/microbe_stage/MicrobeHUD.tscn:1621
+#: ../src/microbe_stage/MicrobeHUD.tscn:1622
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
@@ -1916,7 +1916,7 @@ msgstr "Pan speed:"
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:1789
+#: ../src/microbe_stage/MicrobeHUD.tscn:1790
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Enter the editor and modify your species"
 
@@ -2233,10 +2233,13 @@ msgid "FINISH_X_GENERATIONS"
 msgstr "Finish {0} Generations"
 
 #: ../simulation_parameters/common/input_options.json:41
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
-#: ../src/microbe_stage/MicrobeHUD.tscn:1961
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
+#: ../src/microbe_stage/MicrobeHUD.tscn:1962
+msgid "FIRE_TOXIN_TOOLTIP"
+msgstr "Fire toxin projectile causing damage to hit cells"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
@@ -4164,9 +4167,13 @@ msgstr "Move to Any Patch"
 msgid "MOVE_TO_LAND"
 msgstr "Move to Land"
 
+#: ../src/microbe_stage/MicrobeHUD.tscn:1618
+msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
+msgstr "Move to the late multicellular stage (macroscopic). Available once you have a big enough cell colony."
+
 #: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Move to the next stage of the game (multicellular). Available once you have a big enough cell colony."
+msgstr "Move to the next stage of the game (early multicellular). Available once you have a big enough cell colony."
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
@@ -5089,7 +5096,7 @@ msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Play With Current Setting"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
-#: ../src/microbe_stage/MicrobeHUD.tscn:1641
+#: ../src/microbe_stage/MicrobeHUD.tscn:1642
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
@@ -5671,10 +5678,13 @@ msgid "SEA_FLOOR"
 msgstr "Sea Floor"
 
 #: ../simulation_parameters/common/input_options.json:45
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
-#: ../src/microbe_stage/MicrobeHUD.tscn:2010
 msgid "SECRETE_SLIME"
 msgstr "Secrete mucilage"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
+#: ../src/microbe_stage/MicrobeHUD.tscn:2012
+msgid "SECRETE_SLIME_TOOLTIP"
+msgstr "Secrete mucilage for a speed boost and slowing down cells stuck in slime"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
@@ -5812,6 +5822,10 @@ msgstr "Show Thrive news feed (downloads from the internet)"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "Signaling Agent"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1999
+msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
+msgstr "Hold key to show pack commands menu for commanding other cells"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "SIGNALING_AGENT_DESCRIPTION"
@@ -6592,9 +6606,12 @@ msgid "TITLE_COLON"
 msgstr "Title:"
 
 #: ../simulation_parameters/common/input_options.json:57
-#: ../src/microbe_stage/MicrobeHUD.tscn:1973
 msgid "TOGGLE_BINDING"
-msgstr "Toggle binding"
+msgstr "Toggle binding mode"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1974
+msgid "TOGGLE_BINDING_TOOLTIP"
+msgstr "Toggle binding mode. Touch other cells to create a colony."
 
 #: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
@@ -6603,9 +6620,14 @@ msgstr "Toggle debug panel"
 #: ../simulation_parameters/common/input_options.json:49
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1917
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1953
-#: ../src/microbe_stage/MicrobeHUD.tscn:1947
 msgid "TOGGLE_ENGULF"
-msgstr "Toggle engulf"
+msgstr "Toggle engulf mode"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1948
+msgid "TOGGLE_ENGULF_TOOLTIP"
+msgstr ""
+"Toggle engulf mode to engulf various chunks\n"
+" as well as smaller organisms in exchange for greater ATP usage while active"
 
 #: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
@@ -6898,9 +6920,12 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "You need to apply your changes to load or unload any mods."
 
 #: ../simulation_parameters/common/input_options.json:65
-#: ../src/microbe_stage/MicrobeHUD.tscn:1986
 msgid "UNBIND_ALL"
 msgstr "Unbind all"
+
+#: ../src/microbe_stage/MicrobeHUD.tscn:1987
+msgid "UNBIND_ALL_TOOLTIP"
+msgstr "Unbind all cells in colony"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:203
 msgid "UNBIND_HELP_TEXT"
