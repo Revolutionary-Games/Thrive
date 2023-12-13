@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -18,7 +19,7 @@ public class MouseHoverPanel : PanelContainer
     private Container nothingHereContainer = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private System.Collections.Generic.Dictionary<string, MouseHoverCategory> categories = new();
+    private Dictionary<string, MouseHoverCategory> categories = new();
 
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
