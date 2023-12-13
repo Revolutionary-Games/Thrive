@@ -43,6 +43,18 @@ public abstract class Species : ICloneable
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
+    /// <summary>
+    ///   Unique id of this species, used to identify this
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public uint ID { get; private set; }
+
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
@@ -86,18 +98,6 @@ public abstract class Species : ICloneable
     public long Population { get; set; } = 1;
 
     public int Generation { get; set; } = 1;
-
-    /// <summary>
-    ///   Unique id of this species, used to identify this
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     In the previous version a string name was used to identify species, but it was just the word species
-    ///     followed by a sequential number, so now this is an actual number.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public uint ID { get; private set; }
 
     /// <summary>
     ///   This is the genome of the species

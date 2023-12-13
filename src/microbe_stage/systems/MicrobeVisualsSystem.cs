@@ -369,7 +369,7 @@
 
             // Limit concurrent tasks
             int max = Math.Max(1, executor.ParallelTasks - Constants.MEMBRANE_TASKS_LEAVE_EMPTY_THREADS);
-            if (runningMembraneTaskCount + 1 >= max)
+            if (runningMembraneTaskCount >= max)
                 return;
 
             // Don't uselessly spawn too many tasks

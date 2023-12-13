@@ -53,6 +53,11 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public float MembraneRigidity { get; set; }
 
+    /// <summary>
+    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    /// </summary>
+    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]

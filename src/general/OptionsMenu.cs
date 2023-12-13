@@ -1511,7 +1511,11 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateDefaultAudioOutputDeviceText()
     {
-        audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+        // Only update the text when the button is populated (otherwise this triggers an error when exiting the editor)
+        if (audioOutputDeviceSelection.GetItemCount() > 0)
+        {
+            audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+        }
     }
 
     private void LoadAudioOutputDevices()

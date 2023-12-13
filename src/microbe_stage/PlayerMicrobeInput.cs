@@ -108,8 +108,7 @@ public class PlayerMicrobeInput : NodeWithInput
             }
 
             stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
-                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection,
-                    control.LookAtPoint - position.Position), this);
+                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection), this);
         }
     }
 
