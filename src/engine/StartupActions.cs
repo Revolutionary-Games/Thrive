@@ -34,6 +34,30 @@ public class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
+        bool skipNative = false;
+
+        try
+        {
+            NativeInterop.Load();
+        }
+        catch (DllNotFoundException)
+        {
+            if (Engine.EditorHint)
+            {
+                skipNative = true;
+                GD.Print("Skipping native library load in editor as it is not available");
+            }
+            else
+            {
+                GD.PrintErr("Native library is missing (or unloadable). If you downloaded a compiled Thrive " +
+                    "version, this version is broken. If you are trying to compile Thrive you need to compile the " +
+                    "native modules as well");
+                GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless" +
+                    "this is an official Thrive release that has this issue");
+                throw;
+            }
+        }
+
         // Load settings here, to make sure locales etc. are applied to the main loaded and autoloaded scenes
         try
         {
@@ -45,5 +69,8 @@ public class StartupActions : Node
         {
             GD.PrintErr("Failed to initialize settings: ", e);
         }
+
+        if (!skipNative)
+            NativeInterop.Init(Settings.Instance);
     }
 }

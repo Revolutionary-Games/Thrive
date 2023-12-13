@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 
@@ -8,10 +8,11 @@ using Newtonsoft.Json;
 ///   Base stage for the stages where the player controls a single creature
 /// </summary>
 /// <typeparam name="TPlayer">The type of the player object</typeparam>
+/// <typeparam name="TSimulation">The type of simulation this stage uses</typeparam>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
-    where TPlayer : class
+public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreatureStage
+    where TSimulation : class, IWorldSimulation, new()
 {
 #pragma warning disable CA2213
     protected DirectionalLight worldLight = null!;
@@ -32,15 +33,34 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    public CreatureStageBase()
+    {
+    }
+
+    [JsonConstructor]
+    public CreatureStageBase(TSimulation worldSimulation)
+    {
+        WorldSimulation = worldSimulation;
+    }
+
+    // TODO: eventually convert this just to a Entity without having any generic type configurability here
     /// <summary>
     ///   The current player or null.
-    ///   TODO: check: Due to references on save load this needs to be after the systems
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     This is JSON ignored as the entity reference can't be loaded currently, see why here:
+    ///     <see cref="SaveContext.OldToNewEntityMapping"/>
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
-    public bool HasPlayer => Player != null;
+    public abstract bool HasPlayer { get; }
+
+    [JsonProperty]
+    public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -48,64 +68,6 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
-
-    /// <summary>
-    ///   List access to the dynamic entities in the stage. This is used for saving and loading
-    /// </summary>
-    public List<Node> DynamicEntities
-    {
-        get
-        {
-            var results = new HashSet<Node>();
-
-            foreach (var node in rootOfDynamicallySpawned.GetChildren())
-            {
-                bool disposed = false;
-
-                var casted = (Spatial)node;
-
-                // Objects that cause disposed exceptions. Seems still pretty important to protect saving against
-                // very rare issues
-                try
-                {
-                    // Skip objects that will be deleted. This might help with Microbe saving as it might be that
-                    // the contained organelles are already disposed whereas the Microbe is just only queued for
-                    // deletion
-                    if (casted.IsQueuedForDeletion())
-                    {
-                        disposed = true;
-                    }
-                    else
-                    {
-                        if (casted.Transform.origin == Vector3.Zero)
-                        {
-                        }
-                    }
-                }
-                catch (ObjectDisposedException e)
-                {
-                    disposed = true;
-
-                    // TODO: remove the disposed checks entirely once we confirm this never happens anymore
-                    GD.PrintErr("Detected a disposed object to be saved: ", e);
-                }
-
-                if (!disposed)
-                    results.Add(casted);
-            }
-
-            return results.ToList();
-        }
-        set
-        {
-            rootOfDynamicallySpawned.FreeChildren();
-
-            foreach (var entity in value)
-            {
-                rootOfDynamicallySpawned.AddChild(entity);
-            }
-        }
-    }
 
     [JsonIgnore]
     protected abstract ICreatureStageHUD BaseHUD { get; }
@@ -177,9 +139,12 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
             float totalEntityWeight = 0;
             int totalEntityCount = 0;
 
-            foreach (var entity in rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
+            foreach (var entity in WorldSimulation.EntitySystem)
             {
-                totalEntityWeight += entity.EntityWeight;
+                if (!entity.Has<Spawned>())
+                    continue;
+
+                totalEntityWeight += entity.Get<Spawned>().EntityWeight;
                 ++totalEntityCount;
             }
 
@@ -268,6 +233,23 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
         UpdatePatchSettings();
         PatchExtinctionResolved();
         SpawnPlayer();
+    }
+
+    protected override void SetupStage()
+    {
+        EnsureWorldSimulationIsCreated();
+
+        base.SetupStage();
+    }
+
+    protected void EnsureWorldSimulationIsCreated()
+    {
+        // When loading a save the world simulation is loaded from the save, otherwise it needs to be created
+        if (WorldSimulation == null!)
+        {
+            WorldSimulation = new TSimulation();
+            WorldSimulation.ResolveNodeReferences();
+        }
     }
 
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
@@ -386,6 +368,18 @@ public abstract class CreatureStageBase<TPlayer> : StageBase, ICreatureStage
         playerExtinctInCurrentPatch = true;
 
         BaseHUD.ShowPatchExtinctionBox();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            // Guard against uninitialized stage object created temporarily in Godot from crashing
+            if (WorldSimulation != null!)
+                WorldSimulation.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void PatchExtinctionResolved()

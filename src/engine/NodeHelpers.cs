@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -161,17 +162,44 @@ public static class NodeHelpers
     {
         GeometryInstance geometry;
 
-        // Fetch the actual model from the scene
-        if (string.IsNullOrEmpty(modelPath))
+        try
         {
-            geometry = (GeometryInstance)node;
+            // Fetch the actual model from the scene
+            if (modelPath == null || modelPath.IsEmpty())
+            {
+                geometry = (GeometryInstance)node;
+            }
+            else
+            {
+                geometry = node.GetNode<GeometryInstance>(modelPath);
+            }
         }
-        else
+        catch (InvalidCastException)
         {
-            geometry = node.GetNode<GeometryInstance>(modelPath);
+            GD.PrintErr("Converting node to GeometryInstance for getting material failed, on node: ", node.GetPath(),
+                " relative path: ",
+                modelPath);
+            throw;
         }
 
-        return (ShaderMaterial)geometry.MaterialOverride;
+        try
+        {
+            if (geometry.MaterialOverride != null)
+                return (ShaderMaterial)geometry.MaterialOverride;
+        }
+        catch (InvalidCastException)
+        {
+            GD.PrintErr($"Converting material to {nameof(ShaderMaterial)} failed, on node: ", node.GetPath(),
+                " relative path: ",
+                modelPath);
+
+            throw;
+        }
+
+        GD.PrintErr("Material override missing on node (", node, "): ", node.GetPath(),
+            " relative path: ", modelPath);
+
+        throw new Exception("No material override to fetch material as");
     }
 
     /// <summary>

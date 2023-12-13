@@ -7,25 +7,20 @@
 public class CustomPopupMenu : TopLevelContainer
 {
     [Export]
-    public NodePath? PanelPath;
+    public NodePath? PanelContainerPath;
 
     [Export]
     public NodePath ContainerPath = null!;
 
 #pragma warning disable CA2213 // Disposable fields should be disposed
-    private Panel panel = null!;
+    private PanelContainer panelContainer = null!;
     private Container container = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
-    private Vector2 cachedMinSize;
-
     public override void _Ready()
     {
-        panel = GetNode<Panel>(PanelPath);
+        panelContainer = GetNode<PanelContainer>(PanelContainerPath);
         container = GetNode<Container>(ContainerPath);
-
-        cachedMinSize = RectMinSize;
-        RectMinSize = Vector2.Zero;
 
         ResolveNodeReferences();
         RemapDynamicChildren();
@@ -35,7 +30,7 @@ public class CustomPopupMenu : TopLevelContainer
     {
         foreach (Control child in GetChildren())
         {
-            if (child.Equals(panel))
+            if (child.Equals(panelContainer))
                 continue;
 
             child.ReParent(container);
@@ -48,7 +43,7 @@ public class CustomPopupMenu : TopLevelContainer
 
     protected override void OnOpen()
     {
-        CreateTween().TweenProperty(this, "rect_size", cachedMinSize, 0.2f)
+        CreateTween().TweenProperty(this, "rect_scale", Vector2.One, 0.2f)
             .From(Vector2.Zero)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
@@ -57,8 +52,8 @@ public class CustomPopupMenu : TopLevelContainer
     protected override void OnClose()
     {
         var tween = CreateTween();
-        tween.TweenProperty(this, "rect_size", Vector2.Zero, 0.15f)
-            .From(cachedMinSize)
+        tween.TweenProperty(this, "rect_scale", Vector2.Zero, 0.15f)
+            .From(Vector2.One)
             .SetTrans(Tween.TransitionType.Circ)
             .SetEase(Tween.EaseType.Out);
         tween.TweenCallback(this, nameof(OnClosingAnimationFinished));
@@ -68,9 +63,9 @@ public class CustomPopupMenu : TopLevelContainer
     {
         if (disposing)
         {
-            if (PanelPath != null)
+            if (PanelContainerPath != null)
             {
-                PanelPath.Dispose();
+                PanelContainerPath.Dispose();
                 ContainerPath.Dispose();
             }
         }

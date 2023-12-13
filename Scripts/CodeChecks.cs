@@ -64,8 +64,18 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => new[]
     {
-        "third_party/*",
-        "RevolutionaryGamesCommon/*",
+        "third_party/**",
+        "RevolutionaryGamesCommon/**",
+        "src/native/**.cpp",
+        "src/native/**.hpp",
+        "third_party/**.hpp",
+    };
+
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards => new[]
+    {
+        "third_party/boost/**",
+        "third_party/concurrentqueue/**",
+        "third_party/JoltPhysics/**",
     };
 
     protected override string MainSolutionFile => "Thrive.sln";

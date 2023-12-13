@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties, IPhotographable
+public class MicrobeSpecies : Species, ICellProperties
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -52,6 +53,11 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     public float MembraneRigidity { get; set; }
 
+    /// <summary>
+    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    /// </summary>
+    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
@@ -60,15 +66,17 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
     // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
     [JsonIgnore]
-    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+    public float BaseSpeed =>
+        MicrobeInternalCalculations.CalculateSpeed(Organelles.Organelles, MembraneType, MembraneRigidity, IsBacteria);
 
     [JsonProperty]
-    public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;
+    public float BaseRotationSpeed { get; set; }
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
-    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.EngulfSize"/> and the math
-    ///   should always match between these two.
+    ///   they haven't duplicated any organelles. This is related to <see cref="Components.Engulfer.EngulfingSize"/>
+    ///   (as well as the size this takes up as an <see cref="Components.Engulfable"/>) and the math should always
+    ///   match between these two.
     /// </summary>
     [JsonIgnore]
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
@@ -81,7 +89,15 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public bool CanEngulf => !MembraneType.CellWall;
 
     [JsonIgnore]
-    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
+    {
+        // This is stabilized as long as the default no background operations check passes
+        // If this is changed CellType also needs changes
+        return true;
+    }
 
     public override void OnEdited()
     {
@@ -163,21 +179,19 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MembraneRigidity = casted.MembraneRigidity;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        var microbe = (Microbe)instancedScene;
-        microbe.IsForPreviewOnly = true;
-
-        // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        microbe._Ready();
-
-        microbe.ApplySpecies(this);
+        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationMicrobe(this);
+    }
+
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return StateHasStabilizedImpl(worldSimulation);
     }
 
     public override object Clone()
@@ -229,6 +243,6 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

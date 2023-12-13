@@ -7,6 +7,12 @@ public interface IOrganelleComponentFactory
     ///   Creates a new organelle component of the type that this factory makes
     /// </summary>
     /// <returns>The created component.</returns>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: refactor this to take in <see cref="PlacedOrganelle"/> to allow more easily initializing the
+    ///     component state in the constructor rather than using null overrides so much.
+    ///   </para>
+    /// </remarks>
     public IOrganelleComponent Create();
 
     /// <summary>

@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 public class GodotColorConverter : JsonConverter
 {
-    public override bool CanRead => true;
+    private static readonly Type ColorType = typeof(Color);
 
     public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
@@ -17,16 +17,16 @@ public class GodotColorConverter : JsonConverter
         writer.WriteStartObject();
 
         writer.WritePropertyName("r");
-        serializer.Serialize(writer, colour.r);
+        writer.WriteValue(colour.r);
 
         writer.WritePropertyName("g");
-        serializer.Serialize(writer, colour.g);
+        writer.WriteValue(colour.g);
 
         writer.WritePropertyName("b");
-        serializer.Serialize(writer, colour.b);
+        writer.WriteValue(colour.b);
 
         writer.WritePropertyName("a");
-        serializer.Serialize(writer, colour.a);
+        writer.WriteValue(colour.a);
 
         writer.WriteEndObject();
     }
@@ -60,6 +60,6 @@ public class GodotColorConverter : JsonConverter
 
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(Color);
+        return objectType == ColorType;
     }
 }

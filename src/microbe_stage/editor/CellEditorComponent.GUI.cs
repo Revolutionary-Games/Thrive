@@ -161,7 +161,7 @@ public partial class CellEditorComponent
 
     private void UpdateSpeed(float speed)
     {
-        speedLabel.Value = (float)Math.Round(speed, 1);
+        speedLabel.Value = (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(speed), 1);
     }
 
     private void UpdateRotationSpeed(float speed)

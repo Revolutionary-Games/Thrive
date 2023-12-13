@@ -13,14 +13,14 @@ public partial class CellEditorComponent
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        membraneOrganellePositionsAreDirty = true;
+        microbeVisualizationOrganellePositionsAreDirty = true;
     }
 
     [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
         organelleDataDirty = true;
-        membraneOrganellePositionsAreDirty = true;
+        microbeVisualizationOrganellePositionsAreDirty = true;
     }
 
     [DeserializedCallbackAllowed]
@@ -221,11 +221,12 @@ public partial class CellEditorComponent
 
         StartAutoEvoPrediction();
 
-        if (previewMicrobe != null)
+        if (previewMicrobeSpecies != null)
         {
-            previewMicrobe.Membrane.Type = membrane;
-            previewMicrobe.Membrane.Dirty = true;
-            previewMicrobe.ApplyMembraneWigglyness();
+            previewMicrobeSpecies.MembraneType = membrane;
+
+            if (previewMicrobe.IsAlive)
+                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, membrane);
         }
     }
 
@@ -242,11 +243,12 @@ public partial class CellEditorComponent
 
         StartAutoEvoPrediction();
 
-        if (previewMicrobe != null)
+        if (previewMicrobeSpecies != null)
         {
-            previewMicrobe.Membrane.Type = Membrane;
-            previewMicrobe.Membrane.Dirty = true;
-            previewMicrobe.ApplyMembraneWigglyness();
+            previewMicrobeSpecies.MembraneType = Membrane;
+
+            if (previewMicrobe.IsAlive)
+                previewSimulation!.ApplyMicrobeMembraneType(previewMicrobe, Membrane);
         }
     }
 

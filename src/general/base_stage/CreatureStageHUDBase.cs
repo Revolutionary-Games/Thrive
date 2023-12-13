@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Components;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -130,6 +131,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     [Export]
     public NodePath SecreteSlimeHotkeyPath = null!;
 
+    // TODO: rename to SignalingAgentsHotkeyPath
     [Export]
     public NodePath SignallingAgentsHotkeyPath = null!;
 
@@ -212,7 +214,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected GridContainer? environmentPanelBarContainer;
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
-    protected ActionButton signallingAgentsHotkey = null!;
+    protected ActionButton signalingAgentsHotkey = null!;
 
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
@@ -403,7 +405,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
-        signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
+        signalingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
 
@@ -561,6 +563,22 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         stage.MovingToEditor = true;
     }
 
+    /// <summary>
+    ///   Used to safely cancel editor entry if preconditions are no longer met
+    /// </summary>
+    public void OnCancelEditorEntry()
+    {
+        GD.Print("Canceled editor entry, fading stage back in");
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.3f);
+
+        // Prevent being stuck in a state where editor can no longer be entered
+        // https://github.com/Revolutionary-Games/Thrive/issues/4204
+        stage!.MovingToEditor = false;
+
+        // TODO: should the editor button be always unlocked like this
+        editorButton.Disabled = false;
+    }
+
     public void ShowPatchName(string localizedPatchName)
     {
         patchNameOverlay.ShowName(localizedPatchName);
@@ -672,9 +690,15 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
     {
-        if (button.AttachedEntity is Microbe microbe)
+        if (!button.AttachedEntity.IsAlive)
         {
-            fossilisationDialog.SelectedSpecies = microbe.Species;
+            GD.PrintErr("Tried to show fossilization dialog for a dead entity");
+            return;
+        }
+
+        if (button.AttachedEntity.Has<MicrobeSpeciesMember>())
+        {
+            fossilisationDialog.SelectedSpecies = button.AttachedEntity.Get<MicrobeSpeciesMember>().Species;
             fossilisationDialog.PopupCenteredShrink();
         }
         else
@@ -912,9 +936,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     protected void UpdateReproductionProgress()
     {
-        CalculatePlayerReproductionProgress(
-            out Dictionary<Compound, float> gatheredCompounds,
-            out Dictionary<Compound, float> totalNeededCompounds);
+        CalculatePlayerReproductionProgress(out var gatheredCompounds, out var totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;
@@ -945,7 +967,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     }
 
     protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds);
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds);
 
     protected void UpdateATP(float delta)
     {
@@ -1025,12 +1047,12 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
-        signallingAgentsHotkey.Visible = showingSignaling;
+        signalingAgentsHotkey.Visible = showingSignaling;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
+        signalingAgentsHotkey.Pressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
     }
 
     protected void OpenMenu()

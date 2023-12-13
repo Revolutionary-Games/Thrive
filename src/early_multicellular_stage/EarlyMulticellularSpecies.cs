@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Represents an early multicellular species that is composed of multiple cells
@@ -18,6 +19,10 @@ public class EarlyMulticellularSpecies : Species
     {
     }
 
+    /// <summary>
+    ///   The cells that make up this species' body plan. The first index is the cell of the bud type and the cells
+    ///   grow in order.
+    /// </summary>
     [JsonProperty]
     public CellLayout<CellTemplate> Cells { get; private set; } = new();
 

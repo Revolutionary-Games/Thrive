@@ -1,75 +1,78 @@
 ﻿using System;
-using System.Reflection;
+using DefaultEcs;
 using Newtonsoft.Json;
 
-public class EntityReferenceConverter : JsonConverter
+/// <summary>
+///   Handles converting entity references to JSON and back into newly created entities. Mapping from old to new is
+///   stored in <see cref="SaveContext.OldToNewEntityMapping"/>
+/// </summary>
+public class EntityReferenceConverter : JsonConverter<Entity>
 {
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    private const string AlwaysRemovedPart = "Entity ";
+    private static readonly string DefaultEntityStr = default(Entity).ToString().Substring(AlwaysRemovedPart.Length);
+
+    private readonly SaveContext context;
+
+    public EntityReferenceConverter(SaveContext context)
     {
-        if (value == null)
-        {
-            writer.WriteNull();
-            return;
-        }
+        this.context = context;
 
-        var objectType = value.GetType();
-
-        var genericTypes = objectType.GenericTypeArguments;
-
-        if (genericTypes.Length != 1)
-            throw new JsonException("Invalid generic types for EntityReference");
-
-        // Even though Microbe is used here, it shouldn't matter at all, as we just want to grab the property name
-        var property = objectType.GetProperty(nameof(EntityReference<Microbe>.Value));
-
-        if (property == null)
-            throw new JsonException("Value property not found in EntityReference");
-
-        var internalValue = property.GetValue(value);
-
-        if (internalValue == null)
-        {
-            writer.WriteNull();
-            return;
-        }
-
-        serializer.Serialize(writer, internalValue, genericTypes[0]);
+#if DEBUG
+        if (DefaultEntityStr != "0:0.0")
+            throw new Exception("Text format for Entity ToString has changed");
+#endif
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue,
+    public override void WriteJson(JsonWriter writer, Entity value, JsonSerializer serializer)
+    {
+        if (value == default)
+        {
+            writer.WriteValue(value.ToString());
+            return;
+        }
+
+        // Don't write non-alive entities or entities that no longer want to be saved
+        if (context.SkipSavingEntity(value) || !value.IsAlive)
+            value = default;
+
+        writer.WriteValue(value.ToString());
+    }
+
+    public override Entity ReadJson(JsonReader reader, Type objectType, Entity existingValue, bool hasExistingValue,
         JsonSerializer serializer)
     {
-        ConstructorInfo? constructor;
-        if (reader.TokenType == JsonToken.Null)
+        if (context.ProcessedEntityWorld == null)
+            throw new JsonException("Cannot load an entity reference without a currently being loaded entity world");
+
+        var old = reader.Value as string ??
+            throw new Exception("Entity reference is null, or not string (should be default instead of null always)");
+
+        // Need to remove the "Entity " part of the string
+#if DEBUG
+        if (!old.Contains(AlwaysRemovedPart))
+            throw new Exception("Unexpected entity reference string format");
+#endif
+
+        // Remove extra quotes automatically
+        if (old.StartsWith("\""))
         {
-            constructor = objectType.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null,
-                CallingConventions.HasThis, Array.Empty<Type>(), null);
-
-            if (constructor == null)
-                throw new JsonException("could not find default constructor for EntityReference");
-
-            return constructor.Invoke(Array.Empty<object>());
+            old = old.Substring(1 + AlwaysRemovedPart.Length, old.Length - 2 - AlwaysRemovedPart.Length);
+        }
+        else
+        {
+            old = old.Substring(AlwaysRemovedPart.Length, old.Length - AlwaysRemovedPart.Length);
         }
 
-        var genericTypes = objectType.GenericTypeArguments;
+        if (old == DefaultEntityStr)
+            return default(Entity);
 
-        if (genericTypes.Length != 1)
-            throw new JsonException("Invalid generic types for EntityReference");
+        // If already loaded return the entity
+        if (context.OldToNewEntityMapping.TryGetValue(old, out var existing))
+            return existing;
 
-        constructor = objectType.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null,
-            CallingConventions.HasThis, new[] { genericTypes[0] }, null);
+        var newValue = context.ProcessedEntityWorld.CreateEntity();
+        context.OldToNewEntityMapping[old] = newValue;
 
-        if (constructor == null)
-            throw new JsonException("could not find single argument constructor for EntityReference");
-
-        return constructor.Invoke(new[] { serializer.Deserialize(reader, genericTypes[0]) });
-    }
-
-    public override bool CanConvert(Type objectType)
-    {
-        if (!objectType.IsGenericType)
-            return false;
-
-        return objectType.GetGenericTypeDefinition() == typeof(EntityReference<>);
+        return newValue;
     }
 }

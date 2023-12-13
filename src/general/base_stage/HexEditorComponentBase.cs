@@ -7,10 +7,9 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
-public abstract class
-    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
-        EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-        ISaveLoadedTracked, IChildPropertiesLoadCallback
+public abstract class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
+    ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
@@ -232,8 +231,6 @@ public abstract class
                 "This editor component was loaded from a save and is not fully functional");
         }
 
-        camera.ObjectToFollow = cameraFollow;
-
         if (fresh)
         {
             placementRotation = 0;
@@ -304,6 +301,8 @@ public abstract class
 
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+
+        camera.UpdateCameraPosition(delta, cameraFollow.GlobalTranslation);
     }
 
     public void ResetSymmetryButton()

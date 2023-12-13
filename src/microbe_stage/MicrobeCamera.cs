@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked, IGameCamera
 {
     /// <summary>
-    ///   Object the camera positions itself over
+    ///   Automatically process the camera position while game is paused (used to still process zooming easily while
+    ///   microbe stage is paused)
     /// </summary>
-    public Spatial? ObjectToFollow;
+    [Export]
+    public bool AutoProcessWhilePaused;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -47,6 +49,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [Export]
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
+
+    /// <summary>
+    ///   Now required with native physics to ensure that there's no occasional hitching with the camera
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float SnapWithDistanceLessThan = 7.0f;
 
     /// <summary>
     ///   How many units of light level can change per second
@@ -149,6 +158,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             ResetHeight();
 
         UpdateBackgroundVisibility();
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public void ResolveNodeReferences()
@@ -188,24 +199,38 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         {
             UpdateLightLevel(delta);
         }
+
+        if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
+        {
+            UpdateCameraPosition(delta, null);
+        }
     }
 
-    /// <summary>
-    ///   Updates camera position to follow the object
-    /// </summary>
-    public override void _PhysicsProcess(float delta)
+    public void UpdateCameraPosition(float delta, Vector3? followedObject)
     {
         var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
         var currentCameraHeight = new Vector3(0, Translation.y, 0);
         var newCameraHeight = new Vector3(0, CameraHeight, 0);
 
-        if (ObjectToFollow != null)
+        if (followedObject != null)
         {
             var newFloorPosition = new Vector3(
-                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
+                followedObject.Value.x, 0, followedObject.Value.z);
 
-            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
-                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            Vector3 target;
+
+            if (currentFloorPosition.DistanceTo(newFloorPosition) < SnapWithDistanceLessThan)
+            {
+                // Don't interpolate floor position, this stops every few seconds slight hitching happening visually
+                // with the player movement using the new physics (even when multiplying InterpolateSpeed with delta)
+                target = newFloorPosition +
+                    currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            }
+            else
+            {
+                target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                    + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+            }
 
             Translation = target;
         }

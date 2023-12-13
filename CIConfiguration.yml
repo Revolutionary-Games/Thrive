@@ -5,15 +5,16 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v7-{Branch}-build
-        - v7-master-build
-      writeTo: v7-{Branch}-build
+        - v8-{Branch}-build
+        - v8-master-build
+      writeTo: v8-{Branch}-build
       shared:
-        .git/lfs: v4-lfs
-        .import: v7-import
-        builds: v3-builds
+        .git/lfs: v5-lfs
+        .import: v9-import
+        builds: v4-builds
+        native_libs: v1-native
       system:
-        /root/.nuget: v3-nuget
+        /root/.nuget: v4-nuget
     steps:
       - run:
           name: Make project valid for compile
@@ -24,6 +25,9 @@ jobs:
           name: Build with warnings
           command: dotnet run --project Scripts -- check compile
       - run:
+          name: Download native libraries
+          command: dotnet run --project Scripts -- native Fetch
+      - run:
           name: Create builds
           command: dotnet run --project Scripts -- package --dehydrated
       - run:
@@ -33,15 +37,15 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v4-{Branch}-jetbrains
-        - v4-master-jetbrains
-      writeTo: v4-{Branch}-jetbrains
+        - v5-{Branch}-jetbrains
+        - v5-master-jetbrains
+      writeTo: v5-{Branch}-jetbrains
       shared:
-        .git/lfs: v4-lfs
-        .import: v7-import
-        builds: v3-jetbrains-dummy-builds
+        .git/lfs: v5-lfs
+        .import: v9-import
+        builds: v4-jetbrains-dummy-builds
       system:
-        /root/.nuget: v3-nuget
+        /root/.nuget: v4-nuget
     artifacts:
       paths:
         - files_to_check.txt
@@ -94,13 +98,13 @@ jobs:
     image: thrive/godot-ci:v21
     cache:
       loadFrom:
-        - v4-{Branch}-format
-        - v4-master-format
-      writeTo: v4-{Branch}-format
+        - v5-{Branch}-format
+        - v5-master-format
+      writeTo: v5-{Branch}-format
       shared:
-        .git/lfs: v4-lfs
+        .git/lfs: v5-lfs
       system:
-        /root/.nuget: v3-nuget
+        /root/.nuget: v4-nuget
     artifacts:
       paths:
         - format_diff.patch

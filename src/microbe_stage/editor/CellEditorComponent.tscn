@@ -918,10 +918,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 364.0
-margin_top = 389.0
-margin_right = 680.0
-margin_bottom = 979.0
+margin_left = 368.0
+margin_top = 393.0
+margin_right = 684.0
+margin_bottom = 983.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1504,8 +1504,8 @@ margin_bottom = -1.41425
 [node name="OrganellePopupMenu" parent="." instance=ExtResource( 47 )]
 anchor_right = 0.15625
 anchor_bottom = 0.183333
-margin_right = 420.0
-margin_bottom = 267.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PredictionExplanation" parent="." instance=ExtResource( 39 )]
 rect_min_size = Vector2( 550, 500 )

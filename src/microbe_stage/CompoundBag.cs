@@ -7,7 +7,14 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: determine if this is now actually used in multiple places in saves or not (as this is marked as having
+///     an ID)
+///   </para>
+/// </remarks>
 [UseThriveSerializer]
+[JsonObject(IsReference = true)]
 public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
@@ -51,10 +58,32 @@ public class CompoundBag : ICompoundStorage
         return NominalCapacity;
     }
 
-    public void SetCapacityForCompound(Compound compound, float capacity)
+    /// <summary>
+    ///   Adds specialized capacity for a compound. <see cref="NominalCapacity"/> must be set before calling this.
+    ///   To reset this value call <see cref="ClearSpecificCapacities"/> to restart filling this info.
+    /// </summary>
+    /// <param name="compound">The compound type</param>
+    /// <param name="capacityToAdd">Capacity to add for this compound</param>
+    /// <remarks>
+    ///   <para>
+    ///     This now adds capacity (and starts capacities from the nominal capacity) instead of setting the value
+    ///     directly. This is to allow the <see cref="MicrobeInternalCalculations"/> method that updates this to avoid
+    ///     memory allocations.
+    ///   </para>
+    /// </remarks>
+    public void AddSpecificCapacityForCompound(Compound compound, float capacityToAdd)
     {
         compoundCapacities ??= new Dictionary<Compound, float>();
-        compoundCapacities[compound] = capacity;
+
+        if (!compoundCapacities.TryGetValue(compound, out var existing))
+        {
+            // Add nominal capacity as the base amount here when the first specific capacity value is added
+            compoundCapacities[compound] = capacityToAdd + NominalCapacity;
+        }
+        else
+        {
+            compoundCapacities[compound] = existing + capacityToAdd;
+        }
     }
 
     public float GetCompoundAmount(Compound compound)
@@ -77,7 +106,7 @@ public class CompoundBag : ICompoundStorage
 
     public float TakeCompound(Compound compound, float amount)
     {
-        if (!Compounds.TryGetValue(compound, out var existingAmount) || amount <= 0.0f)
+        if (amount <= 0.0f || !Compounds.TryGetValue(compound, out var existingAmount))
             return 0.0f;
 
         amount = Math.Min(existingAmount, amount);
@@ -105,11 +134,6 @@ public class CompoundBag : ICompoundStorage
         return Compounds.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
     public void ClearCompounds()
     {
         Compounds.Clear();
@@ -131,9 +155,8 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
-    ///   Returns true if at least one compound type has been marked
-    ///   useful. This is used to detect that process system has ran
-    ///   before venting.
+    ///   Returns true if at least one compound type has been marked useful.
+    ///   This is used to detect that process system has ran before venting.
     /// </summary>
     public bool HasAnyBeenSetUseful()
     {
@@ -160,6 +183,51 @@ public class CompoundBag : ICompoundStorage
         return compounds.Any(usefulCompounds.Contains);
     }
 
+    /// <summary>
+    ///   Copies the useful data from another bag
+    /// </summary>
+    public void CopyUsefulFrom(CompoundBag other)
+    {
+        ClearUseful();
+
+        foreach (var useful in other.usefulCompounds)
+        {
+            usefulCompounds.Add(useful);
+        }
+    }
+
+    /// <summary>
+    ///   Returns true only if this compound bag contains any compounds whatsoever
+    /// </summary>
+    /// <returns>True if not empty</returns>
+    public bool HasAnyCompounds()
+    {
+        foreach (var compoundsValue in Compounds.Values)
+        {
+            if (compoundsValue > 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void AddInitialCompounds(IReadOnlyDictionary<Compound, float> compounds)
+    {
+        foreach (var entry in compounds)
+        {
+            if (!Compounds.TryGetValue(entry.Key, out var existingAmount))
+            {
+                Compounds[entry.Key] = entry.Value;
+                continue;
+            }
+
+            float toAdd = entry.Value - existingAmount;
+
+            if (toAdd > 0)
+                Compounds[entry.Key] = existingAmount + toAdd;
+        }
+    }
+
     public void ClampNegativeCompoundAmounts()
     {
         var negative = Compounds.Where(c => c.Value < 0.0f).ToList();
@@ -183,5 +251,10 @@ public class CompoundBag : ICompoundStorage
             // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
             Compounds[entry.Key] = 0;
         }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

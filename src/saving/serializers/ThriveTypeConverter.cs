@@ -24,7 +24,7 @@ public class ThriveTypeConverter : TypeConverter
 
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     {
-        return typeof(string) == destinationType || destinationType.CustomAttributes.Any(
+        return destinationType == StringType || destinationType.CustomAttributes.Any(
             attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
     }
 

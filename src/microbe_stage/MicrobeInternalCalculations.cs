@@ -52,6 +52,7 @@ public static class MicrobeInternalCalculations
 
         var capacities = new Dictionary<Compound, float>();
 
+        // Update the variant of this logic in UpdateSpecificCapacities if changes are made
         foreach (var organelle in organelles)
         {
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
@@ -59,6 +60,7 @@ public static class MicrobeInternalCalculations
             if (specificCapacity.Compound == null)
                 continue;
 
+            // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
             if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
             {
                 capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
@@ -70,6 +72,27 @@ public static class MicrobeInternalCalculations
         }
 
         return capacities;
+    }
+
+    /// <summary>
+    ///   Variant of <see cref="GetTotalSpecificCapacity"/> to update spawned microbe stats. The used
+    ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
+    /// </summary>
+    /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
+    /// <param name="organelles">Organelles to find specific capacity from</param>
+    public static void UpdateSpecificCapacities(CompoundBag compoundBag, IEnumerable<PlacedOrganelle> organelles)
+    {
+        compoundBag.ClearSpecificCapacities();
+
+        foreach (var organelle in organelles)
+        {
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (specificCapacity.Compound == null)
+                continue;
+
+            compoundBag.AddSpecificCapacityForCompound(specificCapacity.Compound, specificCapacity.Capacity);
+        }
     }
 
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
@@ -110,10 +133,16 @@ public static class MicrobeInternalCalculations
             o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
-    public static float CalculateSpeed(ICollection<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity)
+    // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
+    public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
+        float membraneRigidity, bool isBacteria)
     {
-        float microbeMass = Constants.MICROBE_BASE_MASS;
+        // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
+        // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
+        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+            CalculateAverageDensity(organelles), isBacteria);
 
         float organelleMovementForce = 0;
 
@@ -129,10 +158,10 @@ public static class MicrobeInternalCalculations
         float rightDirectionFactor;
         float leftDirectionFactor;
 
+        // TODO: balance the calculation in regards to the new flagella force and the base movement force
+
         foreach (var organelle in organelles)
         {
-            microbeMass += organelle.Definition.Mass;
-
             if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
@@ -144,8 +173,11 @@ public static class MicrobeInternalCalculations
                 rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
                 leftDirectionFactor = -rightDirectionFactor;
 
-                float movementConstant = Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement!.Momentum / 100.0f;
+                float movementConstant =
+                    Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
+
+                if (!isBacteria)
+                    movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
                 // We get the movement force for every direction as well
                 forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
@@ -172,74 +204,103 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+        float baseMovementForce =
+            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
+                isBacteria);
 
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
 
         return finalSpeed;
     }
 
+    public static float CalculateBaseMovement(MembraneType membraneType, float membraneRigidity, int hexCount,
+        bool isBacteria)
+    {
+        var movement = Constants.BASE_MOVEMENT_FORCE;
+
+        // Extra movement from organelles
+        movement += Mathf.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
+                Constants.BASE_MOVEMENT_EXTRA_HEX_END - Constants.BASE_MOVEMENT_EXTRA_HEX_START) *
+            Constants.BASE_MOVEMENT_PER_HEX;
+
+        // Apply membrane adjustment
+        movement *= membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        if (!isBacteria)
+            movement *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
+        return movement;
+    }
+
+    public static float SpeedToUserReadableNumber(float rawSpeed)
+    {
+        return rawSpeed * 100;
+    }
+
     /// <summary>
-    ///   Calculates the rotation speed for a cell
+    ///   Calculates the rotation speed for a cell. Note that higher value means slower rotation.
     /// </summary>
     /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
-    /// <returns>The rotation slerp factor (speed)</returns>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: should this also be affected by the membrane type?
-    ///   </para>
-    /// </remarks>
+    /// <returns>
+    ///   The rotation speed value for putting in <see cref="Components.OrganelleContainer.RotationSpeed"/>
+    /// </returns>
     public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
     {
+        // TODO: it would be very nice to be able to switch this back to a more physically accurate calculation using
+        // the real physics shape here
+        // shape.TestYRotationInertiaFactor()
+
         float inertia = 1;
-
-        int ciliaCount = 0;
-
-        // For simplicity we calculate all cilia af if they are at a uniform (max radius) distance from the center
-        float radiusSquared = 1;
+        float ciliaFactor = 0;
 
         // Simple moment of inertia calculation. Note that it is mass multiplied by square of the distance, so we can
         // use the cheaper distance calculations
         foreach (var organelle in organelles)
         {
+            // TODO: should this be switched to calculate things per-hex instead of just organelle center positions?
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
+
+            inertia += distance * organelle.Definition.HexCount * organelle.Definition.Density *
+                organelle.Definition.RelativeDensityVolume * Constants.CELL_ROTATION_RADIUS_FACTOR;
 
             if (organelle.Definition.HasCiliaComponent)
             {
-                ++ciliaCount;
-
-                if (radiusSquared < distance)
-                    radiusSquared = distance;
+                ciliaFactor += Constants.CILIA_ROTATION_FACTOR + distance * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER;
             }
-
-            // Ignore the center organelle in rotation calculations
-            if (distance < MathUtils.EPSILON)
-                continue;
-
-            inertia += distance * organelle.Definition.Mass * Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
         }
 
-        float speed = Constants.CELL_BASE_ROTATION / inertia;
-
-        // Add the extra speed from cilia after we took away some with the rotational inertia calculation
-        if (ciliaCount > 0)
-        {
-            speed += ciliaCount * Mathf.Sqrt(radiusSquared) * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER *
-                Constants.CILIA_ROTATION_FACTOR;
-        }
-
-        return Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION, Constants.CELL_MAX_ROTATION);
+        return inertia / (Constants.CELL_ROTATION_INFLECTION_INERTIA + ciliaFactor + inertia)
+            * Constants.CELL_MAX_ROTATION + Constants.CELL_MIN_ROTATION;
     }
 
     /// <summary>
-    ///   Converts the speed from <see cref="CalculateRotationSpeed"/> to a user displayable form
+    ///   Converts the speed from
+    ///   <see cref="CalculateRotationSpeed(IEnumerable{IPositionedOrganelle})"/> to a user displayable
+    ///   form
     /// </summary>
     /// <param name="rawSpeed">The raw speed value</param>
     /// <returns>Converted value to be shown in the GUI</returns>
     public static float RotationSpeedToUserReadableNumber(float rawSpeed)
     {
-        return rawSpeed * 500;
+        return 1 / rawSpeed * 100;
+    }
+
+    public static float CalculateAverageDensity(IEnumerable<IPositionedOrganelle> organelles)
+    {
+        float totalVolume = Constants.BASE_CELL_DENSITY_VOLUME;
+
+        float density = Constants.BASE_CELL_DENSITY * Constants.BASE_CELL_DENSITY_VOLUME;
+
+        foreach (var organelle in organelles)
+        {
+            var definition = organelle.Definition;
+            var volume = definition.HexCount * definition.RelativeDensityVolume;
+            totalVolume += volume;
+
+            density += definition.Density * volume;
+        }
+
+        return density / totalVolume;
     }
 
     public static float CalculateDigestionSpeed(int enzymeCount)

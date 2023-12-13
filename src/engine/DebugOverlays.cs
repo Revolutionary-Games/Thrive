@@ -205,13 +205,9 @@ public partial class DebugOverlays : Control
 
         ShowEntityLabels = state;
 
-        if (state)
+        if (!state)
         {
-            InitiateEntityLabels();
-        }
-        else
-        {
-            CleanEntityLabels();
+            ClearEntityLabels();
         }
     }
 
