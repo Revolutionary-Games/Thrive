@@ -23,12 +23,12 @@
     "CompoundCloudBrightness": 1.3,
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
               "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn",
-              "isParticles": true
+              "IsParticles": true
             }
           ],
           "Density": 0.0001,
@@ -42,7 +42,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -78,7 +78,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -102,7 +102,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -113,7 +113,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -129,17 +129,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -201,7 +201,7 @@
     ],
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -220,7 +220,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -240,7 +240,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -256,7 +256,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "MarineSnow": {
+        "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
@@ -336,7 +336,7 @@
             }
           }
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -360,7 +360,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -371,7 +371,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -392,7 +392,7 @@
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
@@ -457,7 +457,7 @@
     "CompoundCloudBrightness": 2,
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -476,7 +476,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -496,7 +496,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -512,7 +512,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -520,7 +520,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -536,7 +536,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -547,7 +547,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -568,7 +568,7 @@
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
@@ -632,7 +632,7 @@
     },
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -651,7 +651,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -671,7 +671,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -687,7 +687,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -711,7 +711,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "MarineSnow": {
+        "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
@@ -791,7 +791,7 @@
             }
           }
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -802,7 +802,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -818,17 +818,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -887,7 +887,7 @@
     },
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -906,7 +906,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -942,7 +942,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -966,7 +966,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "MarineSnow": {
+        "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
@@ -1025,7 +1025,7 @@
               "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -1046,7 +1046,7 @@
             }
           }
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -1057,7 +1057,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -1073,17 +1073,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -1142,7 +1142,7 @@
     },
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -1161,7 +1161,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -1197,7 +1197,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -1205,7 +1205,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -1221,7 +1221,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "MarineSnow": {
+        "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
@@ -1280,7 +1280,7 @@
               "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -1301,7 +1301,7 @@
             }
           }
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -1312,7 +1312,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -1328,17 +1328,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -1398,7 +1398,7 @@
     "CompoundCloudBrightness": 2.5,
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -1417,7 +1417,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -1453,7 +1453,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -1461,7 +1461,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -1477,7 +1477,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -1488,7 +1488,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -1504,17 +1504,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -1573,7 +1573,7 @@
     },
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -1592,7 +1592,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -1628,7 +1628,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -1652,7 +1652,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -1663,7 +1663,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -1679,12 +1679,12 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
@@ -1694,7 +1694,7 @@
         },
         "hydrogensulfide": {
           "Amount": 200000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "oxygen": {
@@ -1752,7 +1752,7 @@
     ],
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -1760,7 +1760,7 @@
               "IsParticles": true
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -1771,7 +1771,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -1807,7 +1807,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IceShard": {
+        "iceShard": {
           "Name": "ICESHARD",
           "Meshes": [
             {
@@ -1827,7 +1827,7 @@
           "Compounds": {},
           "DamageType": "ice"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -1851,7 +1851,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -1862,7 +1862,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -1878,17 +1878,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -1948,7 +1948,7 @@
     "CompoundCloudBrightness": 2.5,
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -1967,7 +1967,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -1987,7 +1987,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -2003,7 +2003,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -2011,7 +2011,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -2027,7 +2027,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -2038,7 +2038,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -2054,17 +2054,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -2123,7 +2123,7 @@
     },
     "Conditions": {
       "Chunks": {
-        "FloatingToxin": {
+        "floatingToxin": {
           "Name": "FLOATING_HAZARD",
           "Meshes": [
             {
@@ -2142,7 +2142,7 @@
           "Compounds": {},
           "DamageType": "toxin"
         },
-        "IronSmallChunk": {
+        "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
           "Meshes": [
             {
@@ -2162,7 +2162,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -2178,7 +2178,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "IronBigChunk": {
+        "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
@@ -2186,7 +2186,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 5e-05,
+          "Density": 0.00005,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -2202,7 +2202,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "MarineSnow": {
+        "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
@@ -2261,7 +2261,7 @@
               "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -2282,7 +2282,7 @@
             }
           }
         },
-        "GooglyEyeCell": {
+        "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
             {
@@ -2293,7 +2293,7 @@
               "MissingDefaultShaderSupport": true
             }
           ],
-          "Density": 1e-07,
+          "Density": 1e-7,
           "ChunkScale": 1,
           "Size": 10,
           "PhysicsDensity": 2000,
@@ -2309,17 +2309,17 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "glucose": {
           "Amount": 125000,
-          "Density": 4e-05,
+          "Density": 0.00004,
           "Ambient": 0
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 6e-05,
+          "Density": 0.00006,
           "Ambient": 0
         },
         "hydrogensulfide": {

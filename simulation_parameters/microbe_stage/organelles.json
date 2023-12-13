@@ -1,6 +1,6 @@
 ﻿{
   "pilus": {
-    "MpCost": 30,
+    "MPCost": 30,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -19,6 +19,7 @@
     "ProkaryoteChance": 0.5,
     "ChanceToCreate": 0.5,
     "Density": 1500,
+    "RelativeDensityVolume": 0,
     "DisplayScene": "res://assets/models/organelles/Pilus.tscn",
     "PositionedExternally": true,
     "Name": "ORGANELLE_PILUS",
@@ -34,13 +35,13 @@
       "Injectisome": {
         "Name": "UPGRADE_PILUS_INJECTISOME",
         "Description": "UPGRADE_PILUS_INJECTISOME_DESCRIPTION",
-        "MpCost": 25,
+        "MPCost": 25,
         "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
       }
     }
   },
   "rusticyanin": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -74,7 +75,7 @@
     "EditorButtonOrder": 4
   },
   "nitrogenase": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -106,7 +107,7 @@
     "EditorButtonOrder": 5
   },
   "protoplasm": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -138,7 +139,7 @@
     "EditorButtonOrder": 5
   },
   "chemoSynthesizingProteins": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -170,7 +171,7 @@
     "EditorButtonOrder": 3
   },
   "oxytoxyProteins": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -206,7 +207,7 @@
     "EditorButtonOrder": 6
   },
   "chromatophore": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -238,7 +239,7 @@
     "EditorButtonOrder": 2
   },
   "metabolosome": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -269,7 +270,7 @@
     "EditorButtonOrder": 1
   },
   "nitrogenfixingplastid": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -305,7 +306,7 @@
     "EditorButtonOrder": 7
   },
   "thermosynthase": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -337,7 +338,7 @@
     "LAWK": false
   },
   "chemoplast": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -371,7 +372,7 @@
     "EditorButtonOrder": 6
   },
   "flagellum": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -407,7 +408,7 @@
     "EditorButtonOrder": 1
   },
   "vacuole": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -437,7 +438,7 @@
     "EditorButtonOrder": 8
   },
   "mitochondrion": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -473,7 +474,7 @@
     "EditorButtonOrder": 3
   },
   "oxytoxy": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -509,7 +510,7 @@
     "EditorButtonOrder": 9
   },
   "bindingAgent": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -541,7 +542,7 @@
     "EditorButtonOrder": 2
   },
   "chloroplast": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -579,7 +580,7 @@
     "EditorButtonOrder": 4
   },
   "cytoplasm": {
-    "MpCost": 22,
+    "MPCost": 22,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -611,7 +612,7 @@
     "EditorButtonOrder": 1
   },
   "nucleus": {
-    "MpCost": 70,
+    "MPCost": 70,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -680,7 +681,7 @@
     "EditorButtonOrder": 1
   },
   "chemoreceptor": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -707,7 +708,7 @@
     "EditorButtonOrder": 3
   },
   "slimeJet": {
-    "MpCost": 60,
+    "MPCost": 60,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -741,7 +742,7 @@
     "EditorButtonOrder": 4
   },
   "signalingAgent": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -768,7 +769,7 @@
     "EditorButtonOrder": 10
   },
   "bioluminescentVacuole": {
-    "MpCost": 40,
+    "MPCost": 40,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -791,7 +792,7 @@
     "Unimplemented": true
   },
   "thermoplast": {
-    "MpCost": 55,
+    "MPCost": 55,
     "InitialComposition": {
       "ammonia": 2,
       "phosphates": 2
@@ -828,7 +829,7 @@
     "LAWK": false
   },
   "cilia": {
-    "MpCost": 40,
+    "MPCost": 40,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -867,13 +868,13 @@
       "Pull": {
         "Name": "UPGRADE_CILIA_PULL",
         "Description": "UPGRADE_CILIA_PULL_DESCRIPTION",
-        "MpCost": 25,
+        "MPCost": 25,
         "IconPath": "res://assets/textures/gui/bevel/part_upgrades/CiliaPullIcon.png"
       }
     }
   },
   "lysosome": {
-    "MpCost": 45,
+    "MPCost": 45,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -908,7 +909,7 @@
     "EditorButtonOrder": 5
   },
   "axon": {
-    "MpCost": 100,
+    "MPCost": 100,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
@@ -936,7 +937,7 @@
     "EditorButtonOrder": 1
   },
   "myofibril": {
-    "MpCost": 50,
+    "MPCost": 50,
     "InitialComposition": {
       "ammonia": 1,
       "phosphates": 1
