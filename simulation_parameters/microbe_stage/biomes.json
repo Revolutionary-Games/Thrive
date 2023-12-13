@@ -1822,7 +1822,7 @@
           "ChunkScale": 1,
           "PhysicsDensity": 4000,
           "Size": 1000,
-          "Damages": 10,
+          "Damages": 30,
           "DeleteOnTouch": false,
           "Compounds": {},
           "DamageType": "ice"
@@ -1835,7 +1835,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 2e-05,
+          "Density": 0.00002,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
