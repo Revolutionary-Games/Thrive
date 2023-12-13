@@ -187,13 +187,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         base.Undo();
     }
 
-    public void UpdateBackgroundPanorama(Biome biome)
-    {
-        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
-
-        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
-    }
-
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -456,6 +449,16 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
 
         UpdateBackgroundPanorama(patch.BiomeTemplate);
+    }
+
+    private void UpdateBackgroundPanorama(Biome biome)
+    {
+        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
+
+        // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
+        // in the editor)
     }
 
     private void SetWorldSceneObjectVisibilityWeControl()
