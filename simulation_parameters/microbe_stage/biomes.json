@@ -344,7 +344,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -387,7 +387,7 @@
       "Compounds": {
         "ammonia": {
           "Amount": 250000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "glucose": {
@@ -397,12 +397,12 @@
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "hydrogensulfide": {
           "Amount": 250000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "oxygen": {
@@ -563,7 +563,7 @@
       "Compounds": {
         "ammonia": {
           "Amount": 200000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "glucose": {
@@ -573,7 +573,7 @@
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -640,7 +640,7 @@
               "IsParticles": true
             }
           ],
-          "Density": 7e-05,
+          "Density": 0.00007,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -695,7 +695,7 @@
               "ConvexShapePath": "res://assets/models/Iron5.shape"
             }
           ],
-          "Density": 3e-05,
+          "Density": 0.00003,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
@@ -1181,7 +1181,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -1437,7 +1437,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -1689,7 +1689,7 @@
         },
         "phosphates": {
           "Amount": 250000,
-          "Density": 8e-05,
+          "Density": 0.00008,
           "Ambient": 0
         },
         "hydrogensulfide": {
@@ -1929,7 +1929,7 @@
     "Background": "estuary",
     "Panorama": "res://assets/textures/background/panoramas/Estuary.png",
     "Icon": "res://assets/textures/gui/bevel/estuary.png",
-    "sunlight": {
+    "Sunlight": {
       "Colour": {
         "r": 0.882,
         "g": 0.552,
