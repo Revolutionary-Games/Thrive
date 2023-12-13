@@ -37,6 +37,7 @@ InteractionPopupPath = NodePath("InteractablePopup")
 ProgressBarSystemPath = NodePath("ProgressBarSystem")
 SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
+WorldLightNodePath = NodePath("World/WorldLight")
 
 [node name="World" type="Node" parent="."]
 

@@ -33,9 +33,10 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            var body = physics.Body;
-            if (physics.BodyDisabled || body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
+
+            var body = physics.Body!;
 
             ref var position = ref entity.Get<WorldPosition>();
 
@@ -53,6 +54,8 @@
 
             (position.Position, position.Rotation) = physicalWorld.ReadBodyPosition(body);
 
+            // TODO: it might be a good slight performance improvement to have a single native method to get both
+            // the velocities and positions with a single native method call
             if (physics.TrackVelocity)
             {
                 (physics.Velocity, physics.AngularVelocity) = physicalWorld.ReadBodyVelocity(body);

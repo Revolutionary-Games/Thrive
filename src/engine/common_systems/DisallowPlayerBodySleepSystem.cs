@@ -26,7 +26,7 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            if (physics.BodyDisabled || physics.Body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
 
             if (appliedSleepDisableTo != null && appliedSleepDisableTo.TryGetTarget(out var appliedTo) &&
@@ -36,8 +36,8 @@
             }
 
             // Apply no sleep to the new body
-            physicalWorld.SetBodyAllowSleep(physics.Body, false);
-            appliedSleepDisableTo = new WeakReference<NativePhysicsBody>(physics.Body);
+            physicalWorld.SetBodyAllowSleep(physics.Body!, false);
+            appliedSleepDisableTo = new WeakReference<NativePhysicsBody>(physics.Body!);
         }
     }
 }

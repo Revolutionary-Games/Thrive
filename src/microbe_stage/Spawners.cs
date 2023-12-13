@@ -384,30 +384,37 @@ public static class SpawnHelpers
     }
 
     public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
-        bool aiControlled, CellType? multicellularCellType = null,
+        bool aiControlled, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
+    {
+        SpawnMicrobe(worldSimulation, species, location, aiControlled, (null, 0), multicellularSpawnState);
+    }
+
+    public static void SpawnMicrobe(IWorldSimulation worldSimulation, Species species, Vector3 location,
+        bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
     {
         var (recorder, _) = SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
-            multicellularCellType, out _, multicellularSpawnState);
+            multicellularData, out _, multicellularSpawnState);
 
         FinalizeEntitySpawn(recorder, worldSimulation);
     }
 
     public static (EntityCommandRecorder Recorder, float Weight) SpawnMicrobeWithoutFinalizing(
         IWorldSimulation worldSimulation, Species species,
-        Vector3 location, bool aiControlled, CellType? multicellularCellType, out EntityRecord entity,
+        Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        out EntityRecord entity,
         MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud, Random? random = null)
     {
         var recorder = worldSimulation.StartRecordingEntityCommands();
         return (recorder, SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, aiControlled,
-            multicellularCellType,
-            recorder, out entity, multicellularSpawnState, random));
+            multicellularData, recorder, out entity, multicellularSpawnState, true, random));
     }
 
     public static float SpawnMicrobeWithoutFinalizing(IWorldSimulation worldSimulation, Species species,
-        Vector3 location, bool aiControlled, CellType? multicellularCellType, EntityCommandRecorder recorder,
-        out EntityRecord entity, MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
-        Random? random = null)
+        Vector3 location, bool aiControlled, (CellType? MulticellularCellType, int CellBodyPlanIndex) multicellularData,
+        EntityCommandRecorder recorder, out EntityRecord entity,
+        MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud,
+        bool giveInitialCompounds = true, Random? random = null)
     {
         // If this method is modified it must be ensured that CellPropertiesHelpers.ReApplyCellTypeProperties and
         // MicrobeVisualOnlySimulation microbe update methods are also up to date
@@ -465,14 +472,19 @@ public static class SpawnHelpers
             multicellular = earlyMulticellularSpecies;
             CellType resolvedCellType;
 
-            if (multicellularCellType != null)
+            if (multicellularData.MulticellularCellType != null)
             {
                 // Non-first cell in an early multicellular colony
+                if (multicellularData.CellBodyPlanIndex == 0)
+                {
+                    throw new ArgumentException(
+                        "Multicellular cell type needs to be accompanied by the body plan index");
+                }
 
-                resolvedCellType = multicellularCellType;
+                resolvedCellType = multicellularData.MulticellularCellType;
 
-                usedCellProperties = multicellularCellType;
-                var properties = new CellProperties(multicellularCellType);
+                usedCellProperties = multicellularData.MulticellularCellType;
+                var properties = new CellProperties(multicellularData.MulticellularCellType);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
@@ -480,6 +492,11 @@ public static class SpawnHelpers
             }
             else
             {
+                if (multicellularData.CellBodyPlanIndex != 0)
+                {
+                    throw new ArgumentException("First Multicellular cell must have body plan index of 0");
+                }
+
                 resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
 
                 usedCellProperties = resolvedCellType;
@@ -490,7 +507,8 @@ public static class SpawnHelpers
                 entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
             }
 
-            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType));
+            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType,
+                multicellularData.CellBodyPlanIndex));
         }
         else if (species is MicrobeSpecies microbeSpecies)
         {
@@ -504,7 +522,7 @@ public static class SpawnHelpers
             membraneType = properties.MembraneType;
             entity.Set(properties);
 
-            if (multicellularCellType != null)
+            if (multicellularData.MulticellularCellType != null)
                 GD.PrintErr("Multicellular cell type may not be set when spawning a MicrobeSpecies instance");
         }
         else
@@ -545,7 +563,7 @@ public static class SpawnHelpers
 
             var engulfer = default(Engulfer);
 
-            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, usedCellProperties.IsBacteria);
 
             entity.Set(engulfable);
             entity.Set(engulfer);
@@ -553,7 +571,9 @@ public static class SpawnHelpers
             // Finish setting up related components
             entity.Set(container);
 
-            storage.Compounds.AddInitialCompounds(species.InitialCompounds);
+            if (giveInitialCompounds)
+                storage.Compounds.AddInitialCompounds(species.InitialCompounds);
+
             entity.Set(storage);
         }
 
@@ -726,7 +746,7 @@ public static class SpawnHelpers
         IWorldSimulation worldSimulation, Species species,
         Vector3 location, out EntityRecord entity)
     {
-        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, null, out entity,
+        return SpawnMicrobeWithoutFinalizing(worldSimulation, species, location, true, (null, 0), out entity,
             MulticellularSpawnState.Bud);
     }
 
@@ -1005,7 +1025,7 @@ public class MicrobeSpawner : Spawner
         {
             // The true here is that this is AI controlled
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, Species,
-                location, true, null, out entity, MulticellularSpawnState.ChanceForFullColony);
+                location, true, (null, 0), out entity, MulticellularSpawnState.ChanceForFullColony);
 
             ModLoader.ModInterface.TriggerOnMicrobeSpawned(entity);
 

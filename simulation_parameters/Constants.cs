@@ -57,6 +57,12 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 2.0f;
 
     /// <summary>
+    ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
+    ///   softlocks.
+    /// </summary>
+    public const float MAX_PLAYER_DYING_TIME = 10;
+
+    /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
@@ -179,15 +185,20 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 4.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 60.0f;
+    public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1400.0f;
+    public const float BASE_MOVEMENT_FORCE = 1000.0f;
+
+    /// <summary>
+    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
+    /// </summary>
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 3.0f;
 
     /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 45;
+    public const float BASE_MOVEMENT_PER_HEX = 55;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
     public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
@@ -203,11 +214,13 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    // Note that the speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 3.0f;
-    public const float CELL_MIN_ROTATION = 0.2f;
-    public const float CILIA_ROTATION_FACTOR = 0.08f;
-    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
+    // Note that the rotation speed is reversed, i.e. lower values mean faster
+    public const float CELL_MAX_ROTATION = 10.0f;
+    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 200.0f;
+    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
     // These speed values are also reversed like the above
     public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
@@ -373,7 +386,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 14.0f;
+    public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -665,10 +678,12 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
     public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
@@ -753,6 +768,8 @@ public static class Constants
     public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
+
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT = 0.13f;
 
     /// <summary>
     ///   Damage a single injectisome stab does
@@ -1556,6 +1573,9 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
+        (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;

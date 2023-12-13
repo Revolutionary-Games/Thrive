@@ -71,6 +71,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     public bool MicrobeControlEnabled { get; set; }
 
     public bool IsDisposed => disposed;
+    public bool IsDetached => NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal());
 
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
@@ -199,6 +200,9 @@ internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
     internal static extern void ReleasePhysicsBodyReference(IntPtr body);
+
+    [DllImport("thrive_native")]
+    internal static extern bool PhysicsBodyIsDetached(IntPtr body);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodySetUserData(IntPtr body, in Entity userData, int userDataSize);

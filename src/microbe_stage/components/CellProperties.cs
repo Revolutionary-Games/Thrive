@@ -275,7 +275,7 @@
 
             // Create the one daughter cell.
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-                true, null, out var copyEntity, multicellularSpawnState);
+                true, (null, 0), out var copyEntity, multicellularSpawnState);
 
             // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
             // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
@@ -294,6 +294,9 @@
             // Copying the capacity should be fine like this as the original cell should be reset to the normal
             // capacity already so
             var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
+
+            // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
+            copyEntityCompounds.CopyUsefulFrom(originalCompounds);
 
             var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 

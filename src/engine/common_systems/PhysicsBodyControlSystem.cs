@@ -26,9 +26,10 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            var body = physics.Body;
-            if (physics.BodyDisabled || body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
+
+            var body = physics.Body!;
 
             ref var control = ref entity.Get<ManualPhysicsControl>();
 

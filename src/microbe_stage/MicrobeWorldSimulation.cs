@@ -390,8 +390,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         colonyBindingSystem.Update(delta);
         delayedColonyOperationSystem.Update(delta);
 
-        // renderOrderSystem.Update(delta);
-
         cellBurstEffectSystem.Update(delta);
 
         microbeFlashingSystem.Update(delta);

@@ -112,13 +112,16 @@ public:
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
 
+    void SetPositionAndRotation(
+        JPH::BodyID bodyId, JPH::DVec3Arg position, JPH::QuatArg rotation, bool activate = true);
+
     void SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping);
 
     /// \brief Ensures body's Y coordinate is 0, if not moves it so that it is 0
     /// \returns True if the body's position changed, false if no fix was needed
     bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);
 
-    void ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
+    void ChangeBodyShape(PhysicsBody& body, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
 
     // ------------------------------------ //
     // Collisions

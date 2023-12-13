@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Collections.Generic;
     using Components;
     using DefaultEcs;
@@ -14,6 +15,7 @@
     [With(typeof(Physics))]
     [WritesToComponent(typeof(Physics))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsOnMainThread]
     public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
     {
@@ -79,9 +81,23 @@
                 // from the world by us)
                 if (disabledBodies.Remove(body))
                 {
-                    // TODO: should a new position be applied first?
                     physicalWorld.AddBody(body);
+
+                    if (entity.Has<WorldPosition>())
+                    {
+                        // Set new position to update the body to be where it should be now after not tracking its
+                        // position for a while (due to it being disabled)
+                        ref var newPosition = ref entity.Get<WorldPosition>();
+                        physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
+                    }
+
+#if DEBUG
+                    if (body.IsDetached)
+                        throw new Exception("Body is still detached after re-enabling");
+#endif
                 }
+
+                // TODO: should physics speed on the body or on the component be reset here?
 
                 // Reset physics applied impulse which may have accumulated to be very large
                 if (entity.Has<ManualPhysicsControl>())
@@ -98,6 +114,11 @@
                 if (disabledBodies.Add(body))
                 {
                     physicalWorld.DetachBody(body);
+
+#if DEBUG
+                    if (!body.IsDetached)
+                        throw new Exception("Body didn't detach");
+#endif
                 }
                 else
                 {

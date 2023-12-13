@@ -316,6 +316,14 @@ void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 posi
             reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position), activate);
 }
 
+void SetBodyPositionAndRotation(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetPositionAndRotation(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), activate);
+}
+
 void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
@@ -352,7 +360,7 @@ bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
 void ChangeBodyShape(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsShape* shape, bool activate)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->ChangeBodyShape(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+        ->ChangeBodyShape(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
             reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(), activate);
 }
 
@@ -492,6 +500,11 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
         return;
 
     reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->Release();
+}
+
+bool PhysicsBodyIsDetached(PhysicsBody* body)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
 }
 
 void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength)

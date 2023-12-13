@@ -232,7 +232,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             if (Player.Has<MicrobeColony>())
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
+                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
+                        Player.Has<EarlyMulticellularSpeciesMember>()), this);
 
                 if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
                 {
@@ -395,10 +396,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
         else
         {
-            // Might be related to saving but somehow the editor button can be enabled while in a colony
-            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
-            // becoming disabled properly
-            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            // This might not be required anymore but just for extra safety this is here
             if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
@@ -480,7 +478,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Set(new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0]));
+            microbe.Set(
+                new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
             microbe.Set(new MulticellularGrowth(multicellularSpecies));
 
@@ -693,6 +692,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     storage.Compounds.ClearCompounds();
                 }
             }
+
+            // Force player despawn to happen if there is a problem that prevented the player timed life from being
+            // added
+            if (!Player.Has<TimedLife>())
+            {
+                Player.Set<TimedLife>();
+            }
+
+            ref var timed = ref Player.Get<TimedLife>();
+            timed.FadeTimeRemaining =
+                Math.Min(Constants.MAX_PLAYER_DYING_TIME, timed.FadeTimeRemaining ?? float.MaxValue);
         }
     }
 
@@ -767,7 +777,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
 
         var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, GameWorld.PlayerSpecies,
-            spawnLocation, false, null, out var entityRecord);
+            spawnLocation, false, (null, 0), out var entityRecord);
 
         entityRecord.Set(new MicrobeEventCallbacks
         {
@@ -981,7 +991,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         var playerPosition = Player.Get<WorldPosition>().Position;
 
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, randomSpecies,
-            playerPosition + Vector3.Forward * 20, true, null, out var entity);
+            playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
         WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity,

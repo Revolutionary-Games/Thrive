@@ -401,7 +401,16 @@ public class PlacedOrganelle : IPositionedOrganelle
         var extraRotation = new Quat(new Vector3(1, 0, 0), Mathf.Pi * 0.5f);
 
         // Maybe should have a variable for physics shape offset if different organelles need different things
-        var offset = new Vector3(0, 0, isBacteria ? 1.0f : -1.0f);
+        var offset = new Vector3(0, 0, -1.0f);
+
+        // Need to adjust physics position for bacteria scale
+        if (isBacteria)
+        {
+            // TODO: find the root cause and fix properly why this kind of very specific tweak is needed
+            var length = externalPosition.Length() * 0.575f;
+
+            offset.z += length;
+        }
 
         return (externalPosition + orientation.Xform(offset), orientation * extraRotation);
     }

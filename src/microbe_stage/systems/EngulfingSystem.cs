@@ -114,34 +114,27 @@
         }
 
         /// <summary>
-        ///   Eject all engulfables of a destroyed entity (if it is an engulfer)
+        ///   Eject all engulfables of a destroyed entity (if it is an engulfer). Or if the entity is an engulfable
+        ///   force eject if from an engulfer if it is inside any.
         /// </summary>
         public void OnEntityDestroyed(in Entity entity)
         {
+            if (entity.Has<Engulfable>())
+            {
+                ref var engulfable = ref entity.Get<Engulfable>();
+
+                if (engulfable.HostileEngulfer.IsAlive && engulfable.HostileEngulfer.Has<Engulfer>())
+                {
+                    // Force eject from the engulfer
+                    ForceEjectSingleEngulfable(ref engulfable.HostileEngulfer.Get<Engulfer>(),
+                        engulfable.HostileEngulfer, entity);
+                }
+            }
+
             if (!entity.Has<Engulfer>())
                 return;
 
-            ref var engulfer = ref entity.Get<Engulfer>();
-
-            if (engulfer.EngulfedObjects is not { Count: > 0 })
-                return;
-
-            // Immediately force eject all the engulfed objects
-            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
-            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
-            {
-                var engulfableObject = engulfer.EngulfedObjects![i];
-
-                if (!engulfableObject.Has<Engulfable>())
-                {
-                    GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
-                    break;
-                }
-
-                ref var engulfable = ref engulfableObject.Get<Engulfable>();
-
-                CompleteEjection(ref engulfer, entity, ref engulfable, engulfableObject, false);
-            }
+            EjectEngulfablesOnDeath(entity);
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -152,9 +145,8 @@
             // Don't process engulfing when dead
             if (health.Dead)
             {
-                // TODO: should this wait until death is processed?
-
-                // Need to eject everything
+                // Need to eject everything (there's also a separate eject for to be deleted entities as not all dead
+                // entities have a chance to still process this)
                 if (engulfer.EngulfedObjects != null)
                 {
                     // This sets the list to null to not constantly run this (the if block this is in won't get
@@ -269,11 +261,12 @@
 
                 var transportData = engulfable.BulkTransport;
 
-                if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested)
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested &&
+                    transportData?.DigestionEjectionStarted != true)
                 {
                     if (transportData == null)
                     {
-                        transportData = new Engulfable.BulkTransportAnimation();
+                        transportData = GetNewTransportAnimation();
                         engulfable.BulkTransport = transportData;
                     }
 
@@ -295,8 +288,12 @@
                 }
 
                 // Only handle the animations / state changes when they need updating
-                if (transportData?.Interpolate != true)
+                if (transportData?.Interpolate != true &&
+                    engulfable.PhagocytosisStep != PhagocytosisPhase.RequestExocytosis &&
+                    engulfable.PhagocytosisStep != PhagocytosisPhase.Ejection)
+                {
                     continue;
+                }
 
                 if (AnimateBulkTransport(entity, ref engulfable, engulfedEntity, delta))
                 {
@@ -327,7 +324,17 @@
                                 RemoveEndosomeFromEntity(entity, endosome);
                             }
 
-                            transportData.TargetValuesToLerp = (null, engulfable.OriginalScale, null);
+                            if (transportData == null)
+                            {
+                                GD.PrintErr("Forcing ejection completion due to missing animation");
+                                CompleteEjection(ref engulfer, entity, ref engulfable, engulfedEntity);
+                                break;
+                            }
+
+                            // Preserve any previous animation properties that may have been setup by exocytosis
+                            // request
+                            transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Translation,
+                                engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
                             StartBulkTransport(ref engulfable,
                                 ref engulfedEntity.Get<AttachedToEntity>(), 1.0f,
                                 Vector3.One);
@@ -618,6 +625,9 @@
                 if (geometryInstance != null)
                 {
                     boundingBoxSize = geometryInstance.GetAabb().Size;
+
+                    // Apply the current visual scale as it is not included in the AABB automatically
+                    boundingBoxSize *= geometryInstance.Scale;
                 }
                 else
                 {
@@ -917,7 +927,15 @@
                 // binding system
                 lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
                 {
-                    return IngestEngulfable(ref engulfer, ref cellProperties, entity, ref engulfable.Get<Engulfable>(),
+                    ref var engulfableComponent = ref engulfable.Get<Engulfable>();
+
+                    if (engulfableComponent.PhagocytosisStep != PhagocytosisPhase.None)
+                    {
+                        throw new InvalidOperationException(
+                            "Detected something that is currently engulfed as being engulfable");
+                    }
+
+                    return IngestEngulfable(ref engulfer, ref cellProperties, entity, ref engulfableComponent,
                         engulfable);
                 }
             }
@@ -1105,7 +1123,10 @@
             // TODO: being dead should probably override the following two if checks
             // Need to skip until the engulfer's membrane is ready
             if (engulferCellProperties.CreatedMembrane == null)
+            {
+                GD.PrintErr("Skipping ejecting engulfable as the engulfer doesn't have membrane ready yet");
                 return;
+            }
 
             if (engulfable.PhagocytosisStep is PhagocytosisPhase.Exocytosis or PhagocytosisPhase.None
                 or PhagocytosisPhase.Ejection)
@@ -1114,10 +1135,16 @@
             }
 
             if (engulfer.EngulfedObjects == null)
+            {
+                GD.PrintErr("Engulfer has no list of engulfed objects, it cannot expel anything");
                 return;
+            }
 
             if (!engulfer.EngulfedObjects.Contains(engulfedObject))
+            {
+                GD.PrintErr("Tried to eject something from engulfer that it hasn't engulfed");
                 return;
+            }
 
             engulfable.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
@@ -1130,21 +1157,12 @@
             if (engulferCellProperties.IsBacteria)
                 nearestPointOfMembraneToTarget *= 0.5f;
 
-            var animation = engulfable.BulkTransport;
-
             // If the animation is missing then for simplicity we just eject immediately or if the attached to
             // component is missing even though it should be always there
 
-            if (animation == null || engulfedObject.Has<AttachedToEntity>())
+            if (!engulfedObject.Has<AttachedToEntity>())
             {
-                if (!engulfedObject.Has<AttachedToEntity>())
-                {
-                    GD.Print($"Immediately ejecting engulfable that has no {nameof(AttachedToEntity)} component");
-                }
-                else
-                {
-                    GD.Print("Immediately ejecting engulfable that has no animation properties");
-                }
+                GD.Print($"Immediately ejecting engulfable that has no {nameof(AttachedToEntity)} component");
 
                 CompleteEjection(ref engulfer, entity, ref engulfable, engulfedObject);
 
@@ -1194,6 +1212,15 @@
                 GD.PrintErr("Cannot properly animate endosome for ejection (current scale unknown)");
             }
 
+            var animation = engulfable.BulkTransport;
+
+            if (animation == null)
+            {
+                // Ejection was requested when there was no animation
+                animation = GetNewTransportAnimation();
+                engulfable.BulkTransport = animation;
+            }
+
             animation.TargetValuesToLerp = (nearestPointOfMembraneToTarget, null, targetEndosomeScale);
             StartBulkTransport(ref engulfable, ref attached, animationSpeed, currentEndosomeScale);
 
@@ -1214,7 +1241,56 @@
             // Mark the object as recently expelled (0 seconds since ejection)
             engulfer.ExpelledObjects[engulfableObject] = 0;
 
-            Vector3 relativePosition = Vector3.Forward;
+            PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
+
+            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable);
+
+            // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
+            // as the ejection completes
+            var endosome = GetEndosomeIfExists(entity, engulfableObject);
+
+            endosome?.Hide();
+
+            if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
+            {
+                ref var engulfersEngulfable = ref entity.Get<Engulfable>();
+
+                if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
+                {
+                    if (!engulfersEngulfable.HostileEngulfer.IsAlive ||
+                        !engulfersEngulfable.HostileEngulfer.Has<Engulfer>())
+                    {
+                        GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
+                            "engulfer is not alive");
+                        return;
+                    }
+
+                    // Skip sending to the hostile engulfer if it is dead
+                    if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
+                        engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
+                    {
+                        GD.Print("Not sending engulfable to our engulfer as that is dead");
+                        return;
+                    }
+
+                    ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
+
+                    // We have our own engulfer and it wants to claim this object we've just expelled
+                    if (!IngestEngulfable(ref hostileEngulfer,
+                            ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
+                            engulfersEngulfable.HostileEngulfer, ref engulfable,
+                            engulfableObject))
+                    {
+                        GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
+                    }
+                }
+            }
+        }
+
+        private void PerformEjectionForceAndAttachedRemove(in Entity entity, ref Engulfable engulfable,
+            Entity engulfableObject)
+        {
+            var relativePosition = Vector3.Forward;
 
             // This lock is a bit useless but for symmetry on start this is also used here on eject
             lock (AttachedToEntityHelpers.EntityAttachRelationshipModifyLock)
@@ -1276,49 +1352,6 @@
             // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
             // the hostile engulfer entity)
             engulfable.OnExpelledFromEngulfment(engulfableObject, spawnSystem, worldSimulation);
-
-            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable);
-
-            // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
-            // as the ejection completes
-            var phagosome = GetEndosomeIfExists(entity, engulfableObject);
-
-            phagosome?.Hide();
-
-            if (entity.Has<Engulfable>() && canMoveToHigherLevelEngulfer)
-            {
-                ref var engulfersEngulfable = ref entity.Get<Engulfable>();
-
-                if (engulfersEngulfable.PhagocytosisStep != PhagocytosisPhase.None)
-                {
-                    if (!engulfersEngulfable.HostileEngulfer.IsAlive ||
-                        !engulfersEngulfable.HostileEngulfer.Has<Engulfer>())
-                    {
-                        GD.PrintErr("Attempt to pass ejected object to our engulfer failed because that " +
-                            "engulfer is not alive");
-                        return;
-                    }
-
-                    // Skip sending to the hostile engulfer if it is dead
-                    if (engulfersEngulfable.HostileEngulfer.Has<Health>() &&
-                        engulfersEngulfable.HostileEngulfer.Get<Health>().Dead)
-                    {
-                        GD.Print("Not sending engulfable to our engulfer as that is dead");
-                        return;
-                    }
-
-                    ref var hostileEngulfer = ref engulfersEngulfable.HostileEngulfer.Get<Engulfer>();
-
-                    // We have our own engulfer and it wants to claim this object we've just expelled
-                    if (!IngestEngulfable(ref hostileEngulfer,
-                            ref engulfersEngulfable.HostileEngulfer.Get<CellProperties>(),
-                            engulfersEngulfable.HostileEngulfer, ref engulfable,
-                            engulfableObject))
-                    {
-                        GD.PrintErr("Failed to pass ejected object from an engulfed object to its engulfer");
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -1340,6 +1373,7 @@
             if (transport != null)
             {
                 transport.Interpolate = false;
+                transport.DigestionEjectionStarted = false;
 
                 lock (UnusedTransportAnimations)
                 {
@@ -1378,8 +1412,18 @@
 
             if (animation == null)
             {
+                // Exocytosis request can be performed even without animation starting
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.RequestExocytosis)
+                    return true;
+
                 // Some code didn't initialize the animation data
                 GD.PrintErr($"{nameof(AnimateBulkTransport)} cannot run because bulk animation data is null");
+                return true;
+            }
+
+            if (!animation.Interpolate)
+            {
+                // Animation is complete, this happens when the steps are updated for example to request exocytosis
                 return true;
             }
 
@@ -1390,9 +1434,9 @@
                 return false;
             }
 
-            var phagosome = GetEndosomeIfExists(entity, engulfedObject);
+            var endosome = GetEndosomeIfExists(entity, engulfedObject);
 
-            if (phagosome == null)
+            if (endosome == null)
             {
                 // TODO: if state is ejecting then phagosome creation should be skipped to save creating an object that
                 // will be deleted in a few frames anyway
@@ -1406,7 +1450,7 @@
                 }
 
                 // Form phagosome as it is missing
-                phagosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
+                endosome = CreateEndosome(entity, ref spatial, engulfedObject, basePriority);
             }
 
             ref var relativePosition = ref engulfedObject.Get<AttachedToEntity>();
@@ -1438,12 +1482,12 @@
 
                 if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
                 {
-                    phagosome.Scale = animation.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                    endosome.Scale = animation.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
                         animation.TargetValuesToLerp.EndosomeScale.Value, fraction);
                 }
 
-                // Update endosome position in the animation
-                phagosome.Translation = relativePosition.RelativePosition;
+                // Endosome is parented to the visuals of the engulfed object, so its position shouldn't be updated
+                // endosome.Translation = relativePosition.RelativePosition;
 
                 return false;
             }
@@ -1460,7 +1504,7 @@
             }
 
             if (animation.TargetValuesToLerp.EndosomeScale.HasValue)
-                phagosome.Scale = animation.TargetValuesToLerp.EndosomeScale.Value;
+                endosome.Scale = animation.TargetValuesToLerp.EndosomeScale.Value;
 
             StopBulkTransport(animation);
 
@@ -1520,7 +1564,7 @@
             }
             catch (ObjectDisposedException)
             {
-                // This can probably happen when the engulfed entity's visual instance has already been destroyed and
+                // This can happen when the engulfed entity's visual instance has already been destroyed and
                 // that resulted in the endosome graphics node to be deleted as it is parented there
 
                 GD.Print("Endosome was already disposed");
@@ -1543,6 +1587,15 @@
                 engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
                     .Where(c => c.Key.Digestible)
                     .Sum(c => c.Value);
+
+#if DEBUG
+                foreach (var entry in engulfableEntity.Get<CompoundStorage>().Compounds
+                             .Where(c => c.Key.Digestible))
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative stored compound amount in engulfed cell");
+                }
+#endif
             }
             else
             {
@@ -1552,9 +1605,56 @@
 
             if (engulfable.AdditionalEngulfableCompounds != null)
             {
+#if DEBUG
+                foreach (var entry in engulfable.AdditionalEngulfableCompounds)
+                {
+                    if (entry.Value < 0)
+                        throw new Exception("Negative calculated additional compound");
+                }
+#endif
+
                 engulfable.InitialTotalEngulfableCompounds +=
                     engulfable.AdditionalEngulfableCompounds.Sum(c => c.Value);
             }
+        }
+
+        private void EjectEngulfablesOnDeath(Entity entity)
+        {
+            ref var engulfer = ref entity.Get<Engulfer>();
+
+            if (engulfer.EngulfedObjects is not { Count: > 0 })
+                return;
+
+            // Immediately force eject all the engulfed objects
+            // Loop is used here to be able to release all the objects that can be (are not dead / missing components)
+            for (int i = engulfer.EngulfedObjects.Count - 1; i >= 0; --i)
+            {
+                ForceEjectSingleEngulfable(ref engulfer, entity, engulfer.EngulfedObjects![i]);
+            }
+        }
+
+        private void ForceEjectSingleEngulfable(ref Engulfer engulfer, in Entity entity, in Entity toEject)
+        {
+            if (!toEject.Has<Engulfable>())
+            {
+                GD.Print("Skip ejecting engulfable on engulfer destroy as it no longer has engulfable component");
+                return;
+            }
+
+            ref var engulfable = ref toEject.Get<Engulfable>();
+
+            // This shouldn't happen but here's this workaround to stop crashing
+            if (engulfer.EngulfedObjects == null)
+            {
+                GD.PrintErr(
+                    "Force ejection on engulfer that doesn't have engulfed object list setup is skipping " +
+                    "normal eject logic");
+
+                PerformEjectionForceAndAttachedRemove(entity, ref engulfable, toEject);
+                return;
+            }
+
+            CompleteEjection(ref engulfer, entity, ref engulfable, toEject, false);
         }
     }
 }

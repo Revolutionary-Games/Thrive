@@ -45,6 +45,9 @@
 
             if (animation.StopPlaying)
             {
+                // Reset this to make sure the animation doesn't start again behind our backs
+                player.Autoplay = null;
+
                 // TODO: parameter in the component to allow passing reset: false?
                 player.Stop();
             }
@@ -58,10 +61,34 @@
             // For now a cache is not implemented as this is just for stopping playing an animation once and then not
             // doing anything
 
-            // When no path provided, assume default name. This is needed as the AnimationPlayer doesn't inherit
-            // Spatial so we can't try to even cast that here
+            int childCount = spatial.GetChildCount();
+
+            // When no path provided, find the first animation player
             if (string.IsNullOrEmpty(playerPath))
-                return spatial.GetNode<AnimationPlayer>(nameof(AnimationPlayer));
+            {
+                for (int i = 0; i < childCount; ++i)
+                {
+                    var child = spatial.GetChild(i);
+
+                    if (child is AnimationPlayer casted)
+                        return casted;
+                }
+
+                return null;
+            }
+
+            if (childCount == 1)
+            {
+                // There might be one level of indirection
+                if (!playerPath!.StartsWith("Spatial"))
+                {
+                    // TODO: how to suppress errors if this is wrong
+                    var attempt = spatial.GetChild(0).GetNode<AnimationPlayer>(playerPath);
+
+                    if (attempt != null)
+                        return attempt;
+                }
+            }
 
             return spatial.GetNode<AnimationPlayer>(playerPath);
         }

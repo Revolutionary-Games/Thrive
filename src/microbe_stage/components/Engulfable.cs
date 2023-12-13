@@ -90,6 +90,11 @@
             /// </summary>
             public bool Interpolate;
 
+            /// <summary>
+            ///   Used to only trigger the digestion eject once
+            /// </summary>
+            public bool DigestionEjectionStarted;
+
             public float LerpDuration;
             public float AnimationTimeElapsed;
 
@@ -230,7 +235,12 @@
         public static void OnExpelledFromEngulfment(this ref Engulfable engulfable, in Entity entity,
             ISpawnSystem spawnSystem, IWorldSimulation worldSimulation)
         {
-            if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
+            bool alreadyDeathProcessed = false;
+
+            if (entity.Has<Health>())
+                alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
+
+            if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
             {
                 if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
                 {
@@ -289,6 +299,14 @@
 
             if (entity.Has<CellProperties>())
             {
+                if (alreadyDeathProcessed)
+                {
+                    if (!entity.Has<TimedLife>())
+                    {
+                        GD.PrintErr("Microbe was ejected from engulfment without setting lifetime remaining");
+                    }
+                }
+
                 ref var cellProperties = ref entity.Get<CellProperties>();
 
                 // Reset wigglyness (which was cleared when this was engulfed)

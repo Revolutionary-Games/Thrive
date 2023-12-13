@@ -221,7 +221,6 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
     }
 
-    // TODO: check if this is used sensibly by the rotation rate calculations
     /// <summary>
     ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
     /// </summary>

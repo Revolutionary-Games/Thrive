@@ -5,6 +5,7 @@
     using System.Linq;
     using DefaultEcs;
     using DefaultEcs.Command;
+    using Godot;
     using Newtonsoft.Json;
     using Systems;
 
@@ -91,9 +92,11 @@
 
             var cellTemplate = species.Cells[multicellularGrowth.NextBodyPlanCellToGrowIndex];
 
+            // Remove the starting compounds as this is a growth cell which shouldn't give free resources to the
+            // colony it joins
             DelayedColonyOperationSystem.CreateDelayAttachedMicrobe(ref colonyPosition, entity,
-                multicellularGrowth.NextBodyPlanCellToGrowIndex,
-                cellTemplate, species, worldSimulation, recorder, notifySpawnTo);
+                multicellularGrowth.NextBodyPlanCellToGrowIndex, cellTemplate, species, worldSimulation, recorder,
+                notifySpawnTo, false);
 
             ++multicellularGrowth.NextBodyPlanCellToGrowIndex;
             multicellularGrowth.CompoundsNeededForNextCell = null;
@@ -142,6 +145,23 @@
             var species = colonyEntity.Get<EarlyMulticellularSpeciesMember>().Species;
 
             var lostPartIndex = lostCell.Get<EarlyMulticellularSpeciesMember>().MulticellularBodyPlanPartIndex;
+
+            // If the lost index is the first cell, then it should be disbanding the colony. We don't need to keep
+            // track of when that will regrow as entirely new colonies will be created for the surviving members.
+            // This shouldn't really matter anyway as this growth object should be getting deleted anyway shortly along
+            // with the removed cell.
+            if (lostPartIndex == 0)
+                return;
+
+            if (species.Cells.Count > lostPartIndex)
+            {
+                GD.PrintErr(
+                    "Multicellular colony lost a cell at index that is no longer valid for the species, " +
+                    "ignoring this for regrowing");
+
+                // TODO: does this need to  adjust multicellularGrowth.CompoundsUsedForMulticellularGrowth?
+                return;
+            }
 
             // We need to reset our growth towards the next cell and instead replace the cell we just lost
             multicellularGrowth.LostPartsOfBodyPlan ??= new List<int>();
@@ -198,12 +218,11 @@
             }
 
             // Adjust the already used compound amount to lose the progress we made for the current cell and also
-            // towards the lost cell, this we the total progress bar should be correct
+            // towards the lost cell, this should ensure the total progress bar should be correct
             if (multicellularGrowth.CompoundsUsedForMulticellularGrowth != null)
             {
                 var totalNeededForLostCell = species.Cells[lostPartIndex]
-                    .CellType
-                    .CalculateTotalComposition();
+                    .CellType.CalculateTotalComposition();
 
                 foreach (var compound in multicellularGrowth.CompoundsUsedForMulticellularGrowth.Keys.ToArray())
                 {

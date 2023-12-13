@@ -21,6 +21,7 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -38,7 +39,7 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            if (physics.BodyDisabled || physics.Body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
 
             // Skip dead microbes being allowed to move, this is now needed as the death system keeps the physics body
@@ -46,7 +47,7 @@
             if (entity.Get<Health>().Dead)
             {
                 // Disable control to not have the dead microbes maintain rotation or anything like that
-                physicalWorld.DisableMicrobeBodyControl(physics.Body);
+                physicalWorld.DisableMicrobeBodyControl(physics.Body!);
                 return;
             }
 
@@ -96,6 +97,9 @@
 #if DEBUG
             if (!wantedRotation.IsNormalized())
                 throw new Exception("Created target microbe rotation is not normalized");
+
+            if (physics.Body!.IsDetached)
+                throw new Exception("Trying to run microbe control on detached body");
 #endif
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
@@ -107,7 +111,7 @@
                 CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                     delta);
 
-            physicalWorld.ApplyBodyMicrobeControl(physics.Body, movementImpulse, wantedRotation, rotationSpeed);
+            physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
         }
 
         private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
@@ -117,16 +121,14 @@
             // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
             // only
 
+            if (entity.Has<MicrobeColony>())
+            {
+                rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
+            }
+
             // Lower value is faster rotation
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
                 rotationSpeed /= CheatManager.Speed;
-
-            if (entity.Has<MicrobeColony>())
-            {
-                rotationSpeed = Mathf.Clamp(rotationSpeed * entity.Get<MicrobeColony>().ColonyRotationMultiplier,
-                    Math.Max(rotationSpeed * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MIN_ROTATION),
-                    Constants.CELL_MAX_ROTATION);
-            }
 
             return rotationSpeed;
         }
@@ -161,7 +163,7 @@
 
             // Base movement force
             float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
-                cellProperties.MembraneRigidity, organelles.HexCount);
+                cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
@@ -181,7 +183,8 @@
             {
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity, delta);
+                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity,
+                        cellProperties.IsBacteria, delta);
                 }
             }
 
@@ -189,8 +192,8 @@
 
             if (control.MovementDirection != Vector3.Zero && hasColony)
             {
-                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection, delta,
-                    ref force);
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
+                    cellProperties.IsBacteria, delta, ref force);
             }
 
             if (control.SlowedBySlime)
@@ -269,7 +272,7 @@
         }
 
         private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-            float delta, ref float force)
+            bool isBacteria, float delta, ref float force)
         {
             // Multiplies the movement factor as if the colony has the normal microbe speed
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
@@ -303,7 +306,7 @@
                     foreach (var flagellum in organelles.ThrustComponents)
                     {
                         force += flagellum.UseForMovement(movementDirection, compounds,
-                            relativeRotation, delta);
+                            relativeRotation, isBacteria, delta);
                     }
                 }
             }
