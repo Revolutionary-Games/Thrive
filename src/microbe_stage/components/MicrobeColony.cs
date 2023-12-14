@@ -1095,10 +1095,13 @@
                     // Not attaching directly to the colony leader, need to combine the offsets
                     ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
 
-                    offsetToColonyLeader += parentsAttachOffset.RelativePosition;
+                    var rotationToParentInverse = parentsAttachOffset.RelativeRotation.Inverse();
 
-                    // TODO: check that the multiply order is right here
-                    rotationToLeader = (parentsAttachOffset.RelativeRotation * rotationToLeader).Normalized();
+                    // TODO: figure out why this starts to give bad results once many cells away from the colony leader
+                    offsetToColonyLeader = parentsAttachOffset.RelativePosition +
+                        rotationToParentInverse.Xform(offsetToColonyLeader);
+
+                    rotationToLeader = (rotationToParentInverse * rotationToLeader).Normalized();
                 }
             }
             catch (Exception e)
