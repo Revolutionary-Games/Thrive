@@ -153,7 +153,7 @@
             if (lostPartIndex == 0)
                 return;
 
-            if (species.Cells.Count > lostPartIndex)
+            if (lostPartIndex >= species.Cells.Count)
             {
                 GD.PrintErr(
                     "Multicellular colony lost a cell at index that is no longer valid for the species, " +
