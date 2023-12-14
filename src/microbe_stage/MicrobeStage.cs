@@ -95,6 +95,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive;
 
+    [JsonIgnore]
+    public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
+
     [JsonProperty]
     public Patch? SavedPatchManagerPatch
     {
@@ -192,7 +195,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             }
         }
 
-        bool playerAlive = IsPlayerAlive();
+        bool playerAlive = HasAlivePlayer;
 
         if (WorldSimulation.ProcessAll(delta))
         {
@@ -203,7 +206,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (gameOver || playerExtinctInCurrentPatch)
             return;
 
-        if (playerAlive != IsPlayerAlive())
+        if (playerAlive != HasAlivePlayer)
         {
             // Player just became dead
             GD.Print("Detected player is no longer alive after last simulation update");
@@ -805,7 +808,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
 
-        if (!IsPlayerAlive())
+        if (!HasAlivePlayer)
             throw new InvalidOperationException("Player spawn didn't create player entity correctly");
 
         // We despawn everything here as either the player just spawned for the first time or died and is being spawned
@@ -1003,7 +1006,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
     {
-        if (!IsPlayerAlive())
+        if (!HasAlivePlayer)
         {
             GD.PrintErr("Can't use duplicate player cheat as player is dead");
             return;
@@ -1237,9 +1240,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private bool IsPlayerAlive()
     {
-        if (!HasPlayer)
-            return false;
-
         try
         {
             return !Player.Get<Health>().Dead;

@@ -59,6 +59,9 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonIgnore]
     public abstract bool HasPlayer { get; }
 
+    [JsonIgnore]
+    public abstract bool HasAlivePlayer { get; }
+
     [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
 
