@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-13 11:46+0200\n"
-"PO-Revision-Date: 2023-12-02 22:33+0000\n"
+"PO-Revision-Date: 2023-12-15 07:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.2.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2057,12 +2057,11 @@ msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:66
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
-"0.6.0'dan önceki sürümlerde başlatılan kayıtlarda veya 0.6.1'den önceki sürümlerde başlatılan serbest derleme kayıtlarında henüz görüntülenemiyor.\n"
+"Evrim ağacını kurma işlemi başarısız oldu.\n"
 "\n"
-"Eğer bunların hiçbiri geçerli değilse, bir hata oluşmuştur. Lütfen geliştirici ekibi bilgilendirin ve oyun günlüklerini sağlayın."
+"Lütfen bunu geliştirici ekibine bildirin ve oyun loglarını temin edin."
 
 #: ../src/general/OptionsMenu.tscn:1964
 msgid "EXACT_VERSION_COLON"
@@ -2239,9 +2238,8 @@ msgstr "Toksin ateşle"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1967
 #: ../src/microbe_stage/MicrobeHUD.tscn:1962
-#, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "Sadece BH etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
+msgstr "Vurulan hücrelerde hasara yol açan toksin mermisi ateş et"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
@@ -3805,7 +3803,7 @@ msgstr "Dikkatli olun çünkü rakipleriniz sizinle birlikte gelişiyorlar. Düz
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi oluşturmalarına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girin. Yalnızca kendi türünüze ait hücrelere bağlanabilirsiniz. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
+msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi kurmalarına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girin. Yalnızca kendi türünüze ait hücrelere bağlanabilirsiniz. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
@@ -4170,13 +4168,12 @@ msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1618
-#, fuzzy
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre koloniniz olduğunda açılır."
+msgstr "İleri çok hücreli evresine git (makroskopik). Yeterince büyük bir hücre koloniniz olduğunda açılır."
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1606
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre koloniniz olduğunda açılır."
+msgstr "Oyunun sonraki evresine git (ilk çok hücreli). Yeterince büyük bir hücre koloniniz olduğunda açılır."
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
@@ -5686,9 +5683,8 @@ msgstr "Müsilaj salgıla"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1990
 #: ../src/microbe_stage/MicrobeHUD.tscn:2012
-#, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
-msgstr "Müsilaj salgıla"
+msgstr "Hız artışı ve balçığa saplanan hücreleri yavaşlatmak için müsilaj salgıla"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
@@ -5828,9 +5824,8 @@ msgid "SIGNALING_AGENT"
 msgstr "Sinyal Verici Ajan"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1999
-#, fuzzy
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr "Sinyal verici ajanlar, belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikelere karşı uyarmak için kullanılabilir."
+msgstr "Diğer hücrelere komut vermeye yarayan grup komutlarını göstermek için tuşu basılı tut"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "SIGNALING_AGENT_DESCRIPTION"
@@ -6615,9 +6610,8 @@ msgid "TOGGLE_BINDING"
 msgstr "Bağ kurma moduna geç"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1974
-#, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
-msgstr "Bağ kurma moduna geç"
+msgstr "Bağ kurma moduna geç. Bir koloni oluşturmak için diğer hücrelere dokunun."
 
 #: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
@@ -6630,9 +6624,10 @@ msgid "TOGGLE_ENGULF"
 msgstr "Yutma moduna geç"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1948
-#, fuzzy
 msgid "TOGGLE_ENGULF_TOOLTIP"
-msgstr "Yutma moduna geç"
+msgstr ""
+"Etkinken, daha fazla ATP kullanılması karşılığında\n"
+"çeşitli parçaların yanı sıra daha küçük organizmaları yutmak için yutma moduna geç"
 
 #: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_FPS"
@@ -6929,9 +6924,8 @@ msgid "UNBIND_ALL"
 msgstr "Hepsinin bağını kopar"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1987
-#, fuzzy
 msgid "UNBIND_ALL_TOOLTIP"
-msgstr "Hepsinin bağını kopar"
+msgstr "Kolonideki bütün hücrelerin bağını kopar"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:203
 msgid "UNBIND_HELP_TEXT"
@@ -7262,7 +7256,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:60
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi oluşturmalarına olanak tanır. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
+msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi kurmalarına olanak tanır. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
 
 #: ../simulation_parameters/common/wiki.json:72
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
