@@ -139,7 +139,8 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
-    public abstract void RepositionToOrigin();
+    /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
+    public abstract bool RepositionToOrigin();
 
     public void SetPopulationFromPatches(long population)
     {

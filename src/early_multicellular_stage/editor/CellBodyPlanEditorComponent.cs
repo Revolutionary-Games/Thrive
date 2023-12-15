@@ -339,9 +339,18 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
+        // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
+        // editor component (that is used as a special mode in multicellular) is performed.
+        foreach (var cellType in editedSpecies.CellTypes)
+        {
+            cellType.RepositionToOrigin();
+        }
+
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
-        // editor so this step can be skipped
+        // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
+        // than this approach that can move around the cells a lot.
         editedSpecies.Cells.Clear();
 
         foreach (var hexWithData in editedMicrobeCells)

@@ -107,10 +107,11 @@ public class MicrobeSpecies : Species, ICellProperties
         UpdateInitialCompounds();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public override void UpdateInitialCompounds()

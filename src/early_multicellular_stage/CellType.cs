@@ -59,10 +59,11 @@ public class CellType : ICellProperties, ICloneable
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public void UpdateNameIfValid(string newName)
