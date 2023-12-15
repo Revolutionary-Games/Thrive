@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-13 11:46+0200\n"
-"PO-Revision-Date: 2023-12-08 06:37+0000\n"
+"PO-Revision-Date: 2023-12-15 07:47+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -557,7 +557,7 @@ msgstr "大鐵塊"
 
 #: ../src/general/utils/StringUtils.cs:21
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} B"
+msgstr "{0}E+9"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:537
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:828
@@ -1418,7 +1418,7 @@ msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thri
 
 #: ../src/general/NewGameSettings.tscn:945
 msgid "DAY_LENGTH"
-msgstr "日長"
+msgstr "一日時長"
 
 #: ../src/general/NewGameSettings.tscn:988
 msgid "DAY_LENGTH_EXPLANATION"
@@ -1530,9 +1530,9 @@ msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
 "下凡會結束您已飛升的狀態並讓您回到微生物階段。從那裡您可以在本存檔中再次從頭開始玩一遍遊戲。\n"
 "\n"
-"您在新的遊玩過程中會獲得一項下凡的加成。在未來版本中您將可以自己選擇一項加成，但現在它將固定為滲透調節消耗 -20％。\n"
+"您在新的遊玩過程中會獲得一項下凡的加成。在未來版本中您將可以自己選擇一項加成，但現在它將固定為滲透調節成本 -20％。\n"
 "\n"
-"一旦您確定要下凡，您可以編輯遊戲設定，比如說選擇一個新的世界種子來在一張新的地圖上游玩或禁用「僅限已知生命」選項等等。"
+"一旦您確定要下凡，您可以編輯遊戲設定，比如說選擇一個新的世界種子來在一張新的地圖上游玩或停用「僅限已知生命形式」選項等等。"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
@@ -1563,7 +1563,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr "開發者"
+msgstr "開發人員"
 
 #: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_FORUM"
@@ -2664,7 +2664,7 @@ msgstr "質量"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:281
 msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "滲透調節消耗"
+msgstr "滲透調節成本"
 
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.tscn:158
 msgid "INFO_BOX_PROCESSES"
@@ -2995,7 +2995,7 @@ msgstr "↑"
 
 #: ../src/general/utils/StringUtils.cs:37
 msgid "KILO_ABBREVIATION"
-msgstr "{0} K"
+msgstr "{0}E+3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
@@ -3646,7 +3646,7 @@ msgstr ""
 "\n"
 "固氮酶：在無氧環境下將大氣中的氮和 [thrive:compound type=\"atp\"][/thrive:compound] 轉化為 [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"氧化毒素酶：將 [thrive:compound type=\"atp\"][/thrive:compound] 轉化為 [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"氧化毒酶體：將 [thrive:compound type=\"atp\"][/thrive:compound] 轉化為 [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 "\n"
 "熱合成酶：利用溫度梯度生產 [thrive:compound type=\"atp\"][/thrive:compound]"
 
@@ -3880,7 +3880,7 @@ msgstr "滑鼠中鍵"
 
 #: ../src/general/utils/StringUtils.cs:29
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} M"
+msgstr "{0}E+6"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:87
 msgid "MINIMUM_AMOUNT_TO_FIND"
@@ -3971,11 +3971,11 @@ msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "檢測到已安裝的模組，但沒有啟用的模組。\n"
 "\n"
-"模組在安裝後需要被啟用。在「額外內容」中使用模組按鈕訪問模組管理器。"
+"模組在安裝後需要被啟用。在額外內容中使用模組按鈕存取模組管理器。"
 
 #: ../src/modding/ModManager.tscn:937 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
-msgstr "Mod組裝："
+msgstr "模組 Assembly："
 
 #: ../src/modding/ModManager.tscn:959 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
@@ -3983,32 +3983,32 @@ msgstr "模組 Assembly 主類別："
 
 #: ../src/modding/ModLoader.cs:450
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr "{0}：在mod的裝配中沒有找到指定的mod類\"{1}\""
+msgstr "{0}：在模組程式集中找不到指定的模組類 「{1}」"
 
 #: ../src/modding/ModLoader.cs:461
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "{0}: mod的裝配初始化方法調用失敗"
+msgstr "{0}：模組程式集初始化方法呼叫失敗"
 
 #: ../src/modding/ModLoader.cs:475
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr "{0}: mod的裝配初始化方法調用失敗，出現異常。 {1}"
+msgstr "{0}：模組程式集初始化方法呼叫失敗，出現異常：{1}"
 
 #: ../src/modding/ModLoader.cs:324
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr "{0}：彙編加載失敗，出現異常。 {1}"
+msgstr "{0}：程式集載入失敗，出現異常：{1}"
 
 #: ../src/modding/ModLoader.cs:363
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr "{0}: mod的裝配卸載方法調用失敗"
+msgstr "{0}：模組程式集卸載方法呼叫失敗"
 
 #: ../src/modding/ModLoader.cs:369
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr "{0}: mod的裝配卸載方法調用失敗，出現異常。 {1}"
+msgstr "{0}：模組程式集卸載方法呼叫失敗，出現異常：{1}"
 
 #: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:679
 #: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
-msgstr "MOD作者："
+msgstr "模組作者："
 
 #: ../src/modding/ModManager.tscn:981
 msgid "MOD_AUTO_HARMONY"
@@ -4016,16 +4016,16 @@ msgstr "使用自動 Harmony："
 
 #: ../src/modding/ModManager.tscn:1008
 msgid "MOD_CREATION_FAILED"
-msgstr "Mod創建失敗"
+msgstr "模組創建失敗"
 
 #: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:723
 #: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
-msgstr "Mod 描述："
+msgstr "模組描述："
 
 #: ../src/modding/ModManager.tscn:745 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Mod的完整描述："
+msgstr "模組詳細說明："
 
 #: ../src/modding/ModLoader.cs:498
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
@@ -4037,80 +4037,80 @@ msgstr "{0}：模組的 Harmony 卸載失敗，出現異常：{1}"
 
 #: ../src/modding/ModLoader.cs:339
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
-msgstr "{0}：沒有可加載的資源"
+msgstr "{0}：沒有可載入的資源"
 
 #: ../src/modding/ModManager.tscn:783 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
-msgstr "圖標文件："
+msgstr "圖示檔案："
 
 #: ../src/modding/ModManager.tscn:805 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
-msgstr "Mod信息URL："
+msgstr "模組資訊網址："
 
 #: ../src/modding/ModManager.tscn:658 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
-msgstr "內部（文件夾）名稱："
+msgstr "內部（資料夾）名稱："
 
 #: ../src/modding/ModManager.tscn:827 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
-msgstr "Mod許可："
+msgstr "模組授權條款："
 
 #: ../src/general/MainMenu.tscn:995
 msgid "MOD_LOAD_ERRORS"
-msgstr "Mod加載錯誤"
+msgstr "模組載入錯誤"
 
 #: ../src/general/MainMenu.tscn:996
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
+msgstr "載入一個或多個模組時發生錯誤。記錄檔可能包含附加資訊。"
 
 #: ../src/modding/ModManager.tscn:1017
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "在加載或卸載一個或多個mod時發生錯誤。日誌可能包含其他信息。"
+msgstr "載入或卸載一個或多個模組時發生錯誤。記錄檔可能包含附加資訊。"
 
 #: ../src/modding/ModManager.tscn:539
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "注意：許多mods需要重新啟動遊戲才能正常加載或卸載。只加載你信任的mods，因為它們可能包含可執行的問題代碼。"
+msgstr "注意：許多模組需要重新啟動遊戲才能正確載入或卸載。僅載入您信任的模組，因為它們可能包含可執行程式碼。"
 
 #: ../src/modding/ModManager.tscn:1024
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+msgstr "一個或多個模組需要重新啟動遊戲才能正確載入或卸載"
 
 #: ../src/modding/ModManager.tscn:893 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr "最高要求的Thrive 版本："
+msgstr "支援的最高 Thrive 版本："
 
 #: ../src/modding/ModManager.tscn:871 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
-msgstr "最低要求的Thrive版本："
+msgstr "要求的最低 Thrive 版本："
 
 #: ../src/modding/ModManager.tscn:636 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
-msgstr "Mod名字："
+msgstr "模組名稱："
 
 #: ../src/modding/ModManager.tscn:915 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
-msgstr "Mod .pck 文件："
+msgstr "模組 .pck 檔案："
 
 #: ../src/modding/ModManager.tscn:849 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr "推薦的Thrive 版本："
+msgstr "推薦的 Thrive 版本："
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr "將上傳的Mod："
+msgstr "將上傳的模組："
 
 #: ../src/modding/ModUploader.tscn:44 ../src/modding/ModUploader.tscn:307
 msgid "MOD_UPLOADER"
-msgstr "Mod上傳工具"
+msgstr "模組上傳工具"
 
 #: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:701
 #: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
-msgstr "MOD版本："
+msgstr "模組版本："
 
 #: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
-msgstr "顯示更多信息"
+msgstr "顯示更多資訊"
 
 #: ../src/general/OptionsMenu.tscn:1535
 msgid "MOUSE_EDGE_PANNING_OPTION"
@@ -4118,11 +4118,11 @@ msgstr "當遊標位於螢幕邊緣時平移畫面"
 
 #: ../src/general/OptionsMenu.tscn:1272
 msgid "MOUSE_LOOK_SENSITIVITY"
-msgstr "鼠標靈敏度"
+msgstr "滑鼠靈敏度"
 
 #: ../src/general/OptionsMenu.tscn:1344
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
-msgstr "用視窗大小決定滑鼠靈敏度"
+msgstr "滑鼠靈敏度隨視窗大小縮放"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:262
 msgid "MOVE"
@@ -4135,7 +4135,7 @@ msgstr "移動"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:602
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
-msgstr "每物種遷徙嘗試次數"
+msgstr "每個物種的遷徙嘗試次數"
 
 #: ../simulation_parameters/common/input_options.json:24
 msgid "MOVE_BACKWARDS"
@@ -4143,7 +4143,7 @@ msgstr "後退"
 
 #: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr "向下移動或下蹲"
+msgstr "向下移動或蹲下"
 
 #: ../simulation_parameters/common/input_options.json:20
 msgid "MOVE_FORWARD"
@@ -4163,11 +4163,11 @@ msgstr "右移"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
 msgid "MOVE_TO_ANY_PATCH"
-msgstr "移動到任何區域"
+msgstr "移動至任何區域"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1571
 msgid "MOVE_TO_LAND"
-msgstr "移動到陸地"
+msgstr "移動至陸地"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1618
 #, fuzzy
@@ -4180,11 +4180,11 @@ msgstr "進入遊戲的下一個階段（多細胞）。 細胞群達到一定�
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "移動到這個區域"
+msgstr "移動至此區域"
 
 #: ../simulation_parameters/common/input_options.json:198
 msgid "MOVE_UP_OR_JUMP"
-msgstr "向上移動或起跳"
+msgstr "向上移動或跳躍"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2027
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
@@ -4202,7 +4202,7 @@ msgstr "進入覺醒階段？"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2022
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
-"你即將登陸並成為陸地生物。這允許你在遊戲中進展到後續階段。一旦你登上陸地你便再也無法回到海洋裡生存。\n"
+"您即將登陸並成為陸地生物。這允許您在遊戲中進入後續階段。一旦您登上陸地您便再也無法回到海洋中生存。\n"
 "\n"
 "目前遊戲中由海洋到陸地的轉變比計劃中要加入的內容唐突許多。\n"
 "\n"
@@ -4210,7 +4210,7 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:2021
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
-msgstr "移動去陸地？"
+msgstr "移動至陸地？"
 
 #: ../src/late_multicellular_stage/MulticellularStage.cs:594
 msgid "MOVING_TO_SOCIETY_STAGE"
@@ -4223,7 +4223,7 @@ msgstr "社會化中…"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 msgid "MP_COST"
-msgstr "{0} 變異點"
+msgstr "{0} 突變點數"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1511
@@ -4267,9 +4267,9 @@ msgstr "多重採樣抗鋸齒："
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:135
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
-"歡迎來到博物館！ 在這裡你可以欣賞眾多在遊玩過程中被化石化的物種。 你甚至可以在自由編輯器中用它們進行遊戲。\n"
+"歡迎來到博物館！在這裡，您可以欣賞您在所有遊戲過程中化石化的許多物種。您甚至可以透過在自由編輯器中開啟它們來作為一個物種進行遊戲。\n"
 "\n"
-" 按下暫停鍵並在螢幕上選中一個微生物，以將該物種化石化。"
+"若要讓遊戲中的物種變成化石，請按暫停按鈕。然後在螢幕上選擇一種微生物將其化石化。"
 
 #: ../simulation_parameters/common/gallery.json:254
 msgid "MUSIC"
@@ -4285,7 +4285,7 @@ msgstr "每個物種的突變嘗試次數"
 
 #: ../src/general/NewGameSettings.tscn:416
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr "突變成本係數"
+msgstr "突變成本倍率"
 
 #: ../src/general/NewGameSettings.tscn:456
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
@@ -4303,7 +4303,7 @@ msgstr "靜音"
 
 #: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
-msgstr "名字："
+msgstr "名稱："
 
 #: ../src/industrial_stage/gui/CityNameLabel.cs:56
 msgid "NAME_LABEL_CITY"
@@ -4320,13 +4320,13 @@ msgstr "{0}（未完成）"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "負ATP平衡"
+msgstr "ATP 負平衡"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"你的微生物沒辦法產出足以維持生存的ATP量！\n"
-"你確定要繼續嗎？"
+"您的微生物無法產生足夠的 ATP 來維持生存！\n"
+"您確定要繼續嗎？"
 
 #: ../src/modding/ModManager.tscn:523
 msgid "NEW"
@@ -4335,8 +4335,8 @@ msgstr "新增"
 #: ../src/saving/SaveList.tscn:79
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"這個存檔是來自更新版本的Thrive的並且很可能不兼容。\n"
-"你確定要強行載入這個存檔嗎？"
+"此存檔來自較新版本的 Thrive 並且很可能不相容。\n"
+"您仍然想嘗試載入此存檔嗎？"
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
@@ -4344,7 +4344,7 @@ msgstr "新聞"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:638
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "增加提升生物多樣性物種的初始數量"
+msgstr "生物多樣性物種的初始種群數量"
 
 #: ../src/general/MainMenu.tscn:305
 msgid "NEW_GAME"
@@ -4356,11 +4356,11 @@ msgstr "開始新遊戲"
 
 #: ../src/general/NewGameSettings.tscn:285
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
-msgstr "提示：你可以隨時在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]選項菜單[/url][/color]中調適性能相關選項以提高遊戲性能"
+msgstr "注意：您可以隨時在[color=#3796e1][url=thrive://GUI/OptionsMenu/Performance]選項選單[/url][/color]中更改與效能相關的選項以提高遊戲性能"
 
 #: ../src/modding/NewModGUI.cs:211
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "我極好的Mod"
+msgstr "我令人驚嘆的模組"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
@@ -4400,7 +4400,7 @@ msgstr "固氮酶是一種蛋白質，能夠利用氣態 [thrive:compound type=\
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:492
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]濃度成正比。"
+msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"ammonia\"][/thrive:compound]。速率與 [thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:300
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
@@ -4413,7 +4413,7 @@ msgstr "固氮質體是一種能夠使用氣態 [thrive:compound type=\"nitrogen
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]與[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。"
+msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"ammonia\"][/thrive:compound]。速率與 [thrive:compound type=\"nitrogen\"][/thrive:compound] 和 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
@@ -4429,7 +4429,7 @@ msgstr "正常"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr "最基礎的細胞膜的形式，它抵抗傷害的能力很少。同時也需要很多能量才能確保不變形。優點是能允許細胞更迅速地移動與吸收營養。"
+msgstr "最基本的細胞膜形式，它幾乎沒有抵抗傷害的能力。同時還需要更多的能量才能維持外型。優點是它可以讓細胞更迅速地移動並吸收營養。"
 
 #: ../src/gui_common/MouseHoverPanel.tscn:72
 msgid "NOTHING_HERE"
@@ -4441,15 +4441,15 @@ msgstr "沒有可以互動的物件"
 
 #: ../src/microbe_stage/systems/MicrobeEventCallbackSystem.cs:100
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
-msgstr "ATP耗盡導致損傷"
+msgstr "因 ATP 耗盡而損傷"
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:202
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
-msgstr "攝入毒素導致損傷"
+msgstr "因攝入物質中的毒素而損傷"
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:131
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
-msgstr "沒有吞噬目標需要的 {0}"
+msgstr "缺少 {0} 來吞噬目標"
 
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:960
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
@@ -4458,7 +4458,7 @@ msgstr "目前細胞大小不足以吞噬目標"
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:952
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr "沒有足夠的儲存空間以攝入吞噬的目標"
+msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:502
 msgid "NOTICE_READY_TO_EDIT"
@@ -4478,16 +4478,16 @@ msgstr "十一月"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
-msgstr "沒有AI"
+msgstr "無 AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2472
 msgid "NO_DATA_TO_SHOW"
-msgstr "沒有數據可顯示"
+msgstr "無資料可顯示"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:289
 msgid "NO_EVENTS_RECORDED"
-msgstr "沒有事件被記錄"
+msgstr "無事件記錄"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:153
 msgid "NO_FOSSIL_DIRECTORY"
@@ -4500,7 +4500,7 @@ msgstr "未啟用任何模組"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:982
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "沒有處理"
+msgstr "無代謝過程"
 
 #: ../src/saving/SaveList.tscn:52
 msgid "NO_SAVEGAMES_FOUND"
@@ -4516,7 +4516,7 @@ msgstr "找不到截圖目錄"
 
 #: ../src/modding/ModManager.cs:715
 msgid "NO_SELECTED_MOD"
-msgstr "沒有被選取的MOD"
+msgstr "無選取模組"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:677
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
@@ -4526,16 +4526,16 @@ msgstr "細胞核"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1399
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-"細胞核的進化是不可逆的，不能被刪除。\n"
-"不過如果是在當前時代中放置的，仍可被刪除或重新設置。"
+"無法刪除細胞核，因為這是不可逆的演化。\n"
+"然而，如果是在本次編輯中放置的，仍然允許撤消或重做。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:871
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "真核細胞的決定性特徵。細胞核還包括內質網和戈爾吉體。這是原核細胞的一種進化，發展出一套內膜系統，是通過在自身內部同化另一種原核生物而完成的。這使它們能夠將細胞內發生的不同過程分隔開來，或者說抵禦，防止它們重疊。這使得它們新的膜結合的細胞器比自由漂浮在細胞質中的細胞器要復雜得多、高效得多、專業化得多。然而，這樣做的代價是使細胞大得多，需要大量的細胞能量來維持。"
+msgstr "真核細胞的決定性特徵。細胞核也包括內質網和高基氏體。這是原核細胞演化出內膜系統的過程，透過同化自身內部的另一種原核生物來完成。這使它們能在細胞內完成不同的代謝過程，並防止它們互相重疊干擾。這使得它們的新有膜細胞器比自由漂浮在細胞質中的細胞器更加複雜、高效和專門化。然而，這麼做的代價是使細胞變得更大並且需要大量的細胞能量來維護。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:870
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "允許更複雜的、有膜的細胞器的進化。需要花費大量的ATP來維持。這是一種不可逆的進化。"
+msgstr "允許演化出更複雜的有膜細胞器，並將受到的傷害減少 50%。需要花費大量 ATP 來維護。這是一種不可逆的演化。"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -4581,14 +4581,14 @@ msgstr "確認"
 #: ../src/saving/SaveList.tscn:87
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"這個存檔是來自於更老版本的Thrive的，有可能不兼容。\n"
-"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。\n"
-"你很可能會碰上各種問題，但它們不會是我們的首要解決對象。\n"
-"你確定要強行載入這個存檔嗎？"
+"此存檔來自舊版本的 Thrive 並且可能不相容。\n"
+"由於 Thrive 目前還處於開發早期，存檔相容性並不是優先考慮的問題。\n"
+"您可以報告遇到的任何問題，但它們不是目前的最高優先事項。\n"
+"您仍然想嘗試載入此存檔嗎？"
 
 #: ../src/modding/ModManager.tscn:154
 msgid "OPEN_FOLDER"
-msgstr "打開文件夾"
+msgstr "打開資料夾"
 
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:88
 msgid "OPEN_FOSSIL_FOLDER"
@@ -4597,8 +4597,8 @@ msgstr "打開化石資料夾"
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.cs:142
 msgid "OPEN_FOSSIL_IN_FREEBUILD_WARNING"
 msgstr ""
-"你確定要使用此物種開始新遊戲嗎？\n"
-"你會失去任何未保存的進度。"
+"您確定要使用此物種開始新遊戲嗎？\n"
+"您將遺失所有未儲存的進度。"
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:134
 #: ../src/space_stage/gui/PlanetScreen.tscn:108
@@ -4615,11 +4615,11 @@ msgstr "在自由編輯器中打開"
 
 #: ../src/general/OptionsMenu.tscn:1816
 msgid "OPEN_LOGS_FOLDER"
-msgstr "打開日誌文件夾"
+msgstr "打開記錄檔資料夾"
 
 #: ../src/modding/ModManager.tscn:484
 msgid "OPEN_MOD_URL"
-msgstr "打開信息網址"
+msgstr "開啟資訊網址"
 
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:77
 msgid "OPEN_ORGANELLES_PAGE"
@@ -4627,7 +4627,7 @@ msgstr "開啟細胞器頁面"
 
 #: ../simulation_parameters/common/input_options.json:177
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "打開細胞器菜單"
+msgstr "開啟細胞器選單"
 
 #: ../src/society_stage/gui/SocietyHUD.tscn:139
 msgid "OPEN_RESEARCH_SCREEN"
@@ -4635,7 +4635,7 @@ msgstr "開啟研究頁面"
 
 #: ../src/saving/SaveManagerGUI.tscn:90
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "打開存檔文件夾"
+msgstr "開啟存檔目錄"
 
 #: ../simulation_parameters/common/input_options.json:250
 msgid "OPEN_SCIENCE_MENU"
@@ -4643,15 +4643,15 @@ msgstr "開啟科研選單"
 
 #: ../src/general/OptionsMenu.tscn:1808
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "打開截圖文件夾"
+msgstr "開啟截圖資料夾"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:50
 msgid "OPEN_THE_MENU"
-msgstr "打開主菜單"
+msgstr "開啟主選單"
 
 #: ../src/general/OptionsMenu.tscn:937
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "幫忙翻譯這個遊戲"
+msgstr "幫助翻譯此遊戲"
 
 #: ../src/auto-evo/AutoEvoRun.cs:140
 msgid "OPERATION_PAUSED_DOT"
@@ -4660,13 +4660,13 @@ msgstr "暫停中。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:185
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"機會主義型微生物會和競爭對手爭奪物質塊\n"
+"投機型微生物會與競爭對手爭奪物質塊\n"
 "並且會在獵物過大無法吞噬的情況下使用毒素攻擊。\n"
-"謹慎型微生物則不大可能冒風險爭奪物質塊。"
+"謹慎型微生物則不會為了物質塊而將自己置於危險之中。"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
 msgid "OPPORTUNISTIC"
-msgstr "機會主義"
+msgstr "投機"
 
 #: ../src/general/MainMenu.tscn:326 ../src/general/PauseMenu.tscn:223
 msgid "OPTIONS"
@@ -4711,11 +4711,11 @@ msgstr "掠食性菌毛"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:730
 msgid "ORGANELLE_PILUS_DESCRIPTION"
-msgstr "纖毛（單數：pilus）存在於許多微生物的表面，類似於細毛。一個微生物的表面可能有幾十到幾百個纖毛，有多種用途之一，包括捕食作用。致病性微生物利用纖毛來提高毒性，或者附著並結合在宿主組織上，或者穿過外膜侵入細胞質。存在許多類似的纖毛，但在進化上沒有關係，是趨同進化的結果。一個生物體可能有能力表達幾種類型的纖毛，那些存在於表面的纖毛不斷被改變和替換。"
+msgstr "菌毛存在於許多微生物的表面，類似於細毛。一個微生物表面可能存在數十至數百個菌毛，並用於多種目的之一，包括在捕食中的作用。病原微生物利用菌毛提高毒性，或者附著並結合宿主組織，或者穿透外膜侵入細胞質。有許多相似的菌毛存在，但在演化上並不相關，而是趨同演化的結果。單一生物體可能具有表達多種類型菌毛的能力，並且表面上存在的菌毛通常會不斷被改變和替換。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:729
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
-msgstr "用來刺其它細胞。"
+msgstr "可用於刺傷其他細胞或防禦其毒素。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:977
 msgid "ORGANISM_STATISTICS"
@@ -4756,7 +4756,7 @@ msgstr "滲透調節"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
 msgid "OSMOREGULATION_COST"
-msgstr "滲透調節消耗"
+msgstr "滲透調節成本"
 
 #: ../src/general/NewGameSettings.tscn:710
 msgid "OSMOREGULATION_COST_MULTIPLIER"
@@ -4768,7 +4768,7 @@ msgstr "（玩家物種滲透調節的成本）"
 
 #: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
-msgstr "我們的Wiki"
+msgstr "我們的 Wiki"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "OUTREACH_TEAM"
@@ -4780,11 +4780,11 @@ msgstr "外部貢獻者"
 
 #: ../src/saving/NewSaveMenu.tscn:91
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "覆寫現有的存檔："
+msgstr "覆蓋現有存檔："
 
 #: ../src/saving/NewSaveMenu.tscn:139
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "覆寫現有的存檔？"
+msgstr "覆蓋現有存檔？"
 
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
@@ -4800,15 +4800,15 @@ msgstr "氧"
 #: ../simulation_parameters/microbe_stage/organelles.json:202
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
-msgstr "氧化毒素酶"
+msgstr "氧化毒酶體"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:534
 msgid "OXYTOXISOME_DESC"
-msgstr "一種被修飾的代謝體，負責產生原始形式的有毒物質-氧化毒素。"
+msgstr "一種被修飾的代謝體，負責產生原始形式的有毒物質 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:533
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]濃度成正比。可以通過按下[thrive:input]g_fire_toxin[/thrive:input]來釋放毒素。"
+msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下 [thrive:input]g_fire_toxin[/thrive:input] 釋放毒素。當 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1460
@@ -4919,7 +4919,7 @@ msgstr "變更："
 
 #: ../src/gui_common/PatchNotesList.cs:248
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr "在 [color=#3796e1][url={0}]Github[/url][/color] 上查看此版本的完整詳細信息"
+msgstr "在 [color=#3796e1][url={0}]Github[/url][/color] 上查看此版本的完整詳細資訊"
 
 #: ../src/general/MainMenu.tscn:823
 msgid "PATREON_TOOLTIP"
@@ -4927,7 +4927,7 @@ msgstr "造訪我們的 Patreon 頁面"
 
 #: ../src/gui_common/CreditsScroll.cs:331
 msgid "PATRONS"
-msgstr "贊助人"
+msgstr "贊助者"
 
 #: ../src/microbe_stage/PausePrompt.tscn:23
 msgid "PAUSED"
@@ -4939,7 +4939,7 @@ msgstr "返回遊戲"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:89
 msgid "PAUSE_PROMPT"
-msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暫停[/center]"
+msgstr "[center]按 [thrive:input]g_pause[/thrive:input] 解除暫停[/center]"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:64
 msgid "PAUSE_TOOLTIP"
@@ -4947,7 +4947,7 @@ msgstr "暫停遊戲"
 
 #: ../src/modding/ModLoader.cs:538
 msgid "PCK_LOAD_FAILED"
-msgstr "加载pck文件（{0}）失败"
+msgstr "載入 pck 檔案（{0}）失敗"
 
 #: ../src/modding/ModLoader.cs:530
 msgid "PCK_LOAD_FAILED_DOES_NOT_EXIST"
@@ -4983,7 +4983,7 @@ msgstr "取消連接"
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:199
 msgid "PER_SECOND_SLASH"
-msgstr "/秒"
+msgstr "／秒"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
@@ -5006,11 +5006,11 @@ msgstr "物理條件"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 msgid "PHYSICAL_RESISTANCE"
-msgstr "物理抵抗力"
+msgstr "物理抗性"
 
 #: ../simulation_parameters/common/input_options.json:173
 msgid "PLACE_ORGANELLE"
-msgstr "放置細胞器"
+msgstr "放置細胞器（或其他可放置的物件）"
 
 #: ../src/general/NewGameSettings.tscn:313
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
@@ -5024,7 +5024,7 @@ msgstr ""
 "僅限已知生命形式：{0}\n"
 "生命起源：{1}\n"
 "晝夜循環：{2}\n"
-"一天的長度：{3} 秒\n"
+"一日時長：{3} 秒\n"
 "星球隨機種子：{4}"
 
 #: ../src/general/NewGameSettings.tscn:1067
@@ -5034,7 +5034,7 @@ msgstr "敬請期待行星生成功能！"
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:1001
 msgid "PLANET_RANDOM_SEED"
-msgstr "世界生成種子"
+msgstr "星球隨機種子"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:472
 msgid "PLAYER"
@@ -5042,7 +5042,7 @@ msgstr "玩家"
 
 #: ../src/general/NewGameSettings.tscn:593
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "玩家死亡懲罰"
+msgstr "玩家死亡種群數量懲罰"
 
 #: ../src/general/NewGameSettings.tscn:633
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
@@ -5096,13 +5096,13 @@ msgstr "在開始新遊戲時播放微生物開場動畫"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:433
 msgid "PLAY_WITH_CURRENT_SETTING"
-msgstr "使用當前設置"
+msgstr "使用當前設定"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1611
 #: ../src/microbe_stage/MicrobeHUD.tscn:1642
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
-msgstr "人口："
+msgstr "種群數量："
 
 #: ../src/auto-evo/RunResults.cs:622
 msgid "POPULATION_COLON"
@@ -5110,28 +5110,28 @@ msgstr "種群數量："
 
 #: ../src/auto-evo/RunResults.cs:747
 msgid "POPULATION_IN_PATCHES"
-msgstr "該區域人口:"
+msgstr "該區域人口："
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2321
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "{0} ({1})"
+msgstr "{0}（{1}）"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
 msgid "PREDATION_FOOD_SOURCE"
-msgstr "捕食{0}"
+msgstr "捕食 {0}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "查看預測背後的詳細信息"
+msgstr "查看預測背後的詳細資訊"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
 msgid "PRESSURE"
-msgstr "壓強"
+msgstr "壓力"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:940
 #: ../src/microbe_stage/MicrobeHUD.tscn:947
 msgid "PRESSURE_SHORT"
-msgstr "壓強"
+msgstr "壓力"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:441
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -5143,7 +5143,7 @@ msgstr "預覽圖像不存在"
 
 #: ../src/modding/ModUploader.cs:395
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr "預覽圖像文件太大"
+msgstr "預覽圖像檔案過大"
 
 #: ../src/auto-evo/RunResults.cs:637
 msgid "PREVIOUS_COLON"
@@ -5151,7 +5151,7 @@ msgstr "之前："
 
 #: ../src/saving/InProgressLoad.cs:156
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "處理載入的物體中"
+msgstr "處理載入的物件中"
 
 #: ../src/gui_common/ChemicalEquation.cs:323
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
@@ -5159,23 +5159,23 @@ msgstr "@"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:17
 msgid "PROCESS_PANEL_TITLE"
-msgstr "细胞處理"
+msgstr "细胞代謝過程"
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "PROGRAMMING_TEAM"
-msgstr "編程團隊"
+msgstr "程式設計團隊"
 
 #: ../src/gui_common/CreditsScroll.cs:520
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr "項目管理團隊"
+msgstr "專案管理團隊"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:652
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "使剛遷移的物種免於受物種上限的影響"
+msgstr "保護剛遷移的族群免受物種容量上限的影響"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:659
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "使剛創造的物種免於受物種上限的影響"
+msgstr "保護剛創造的物種免受物種容量上限的影響"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:757
 msgid "PROTEINS"
@@ -5187,7 +5187,7 @@ msgstr "原生質"
 
 #: ../src/gui_common/CreditsScroll.cs:521
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr "合併請求/編程"
+msgstr "PR／程式設計"
 
 #: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_LOAD"
@@ -5199,7 +5199,7 @@ msgstr "快速存檔"
 
 #: ../src/general/MainMenu.tscn:379
 msgid "QUIT"
-msgstr "離開"
+msgstr "退出"
 
 #: ../src/general/MainMenu.tscn:365 ../src/general/MainMenu.tscn:374
 #: ../src/general/PauseMenu.tscn:238
@@ -5209,8 +5209,8 @@ msgstr "退出遊戲"
 #: ../src/general/PauseMenu.cs:418
 msgid "QUIT_GAME_WARNING"
 msgstr ""
-"你確定要退出遊戲嗎？\n"
-"你會失去任何未保存的進度。"
+"您確定要退出遊戲嗎？\n"
+"您將遺失所有未儲存的進度。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "RANDOMIZE_SPECIES_NAME"
@@ -5232,7 +5232,7 @@ msgstr "原始值："
 
 #: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
-msgstr "讀取存檔數據中"
+msgstr "讀取存檔資料中"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:826
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
@@ -5241,7 +5241,7 @@ msgstr "已就緒"
 
 #: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "推薦Thrive："
+msgstr "推薦的 Thrive 版本："
 
 #: ../src/general/MainMenu.tscn:859
 msgid "REDDIT_TOOLTIP"
@@ -5257,11 +5257,11 @@ msgstr "重做上一個動作"
 
 #: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
 msgid "REFRESH"
-msgstr "刷新"
+msgstr "重新整理"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:666
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "目標地區滅絕時，返還遷移的費用"
+msgstr "在目標區域滅絕時，返還遷移花費"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:112
@@ -5315,11 +5315,11 @@ msgstr "重置死區"
 
 #: ../src/general/OptionsMenu.tscn:1879
 msgid "RESET_DISMISSED_POPUPS"
-msgstr "重置禁用彈出窗口的設定"
+msgstr "重置已關閉的彈出視窗"
 
 #: ../src/general/OptionsMenu.tscn:2094
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "將輸入重置為默認？"
+msgstr "將輸入重設為預設值？"
 
 #: ../src/general/OptionsMenu.tscn:1604
 msgid "RESET_KEYBINDINGS"
@@ -5327,20 +5327,20 @@ msgstr "重置按鍵綁定"
 
 #: ../src/general/OptionsMenu.tscn:2074
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "默認"
+msgstr "預設"
 
 #: ../src/general/OptionsMenu.tscn:2085
 msgid "RESET_TO_DEFAULTS"
-msgstr "重置為默認？"
+msgstr "重置為預設值？"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
-msgstr "不會被沒有對應消化酶酶的細胞吞噬並消化"
+msgstr "抵抗基本吞噬"
 
 #: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
-msgstr "解像度："
+msgstr "解析度："
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
@@ -5349,7 +5349,7 @@ msgstr "解像度："
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "資源吸收速度"
+msgstr "物質吸收速度"
 
 #: ../src/awakening_stage/PlacedStructure.cs:72
 #: ../src/space_stage/PlacedSpaceStructure.cs:72
@@ -5379,7 +5379,7 @@ msgstr "有氧呼吸作用"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
 msgid "RESPONSIVE"
-msgstr "響應"
+msgstr "應變"
 
 #: ../src/modding/ModManager.tscn:1022
 msgid "RESTART_REQUIRED"
@@ -5387,27 +5387,27 @@ msgstr "需要重新啟動"
 
 #: ../src/general/PauseMenu.tscn:176
 msgid "RESUME"
-msgstr "返回"
+msgstr "繼續"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:65
 msgid "RESUME_TOOLTIP"
-msgstr "返回遊戲"
+msgstr "繼續遊戲"
 
 #: ../src/general/PauseMenu.tscn:231
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
-msgstr "返回主菜單"
+msgstr "返回主選單"
 
 #: ../src/general/PauseMenu.tscn:230
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "退出到主選單"
+msgstr "退出至主選單"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
 #: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
-"你確定要退出到主菜單嗎？\n"
-"你會失去任何未保存的進度。"
+"您確定要退出至主選單嗎？\n"
+"您將遺失所有未儲存的進度。"
 
 #: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -5419,7 +5419,7 @@ msgstr "→"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:245
 msgid "RIGHT_MOUSE"
-msgstr "鼠標右鍵"
+msgstr "滑鼠右鍵"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:876
 msgid "RIGID"
@@ -5427,7 +5427,7 @@ msgstr "剛體"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:134
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難移動。"
+msgstr "更堅硬的膜有助於抵抗損傷，但會使細胞更難移動。"
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "ROTATE_LEFT"
@@ -5443,7 +5443,7 @@ msgstr "旋轉："
 
 #: ../src/general/OptionsMenu.tscn:1070
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "在遊戲中啟用auto-evo"
+msgstr "在遊戲過程中運行 auto-evo"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:356
 msgid "RUN_ONE_STEP"
@@ -5455,11 +5455,11 @@ msgstr "{0}：從區域 {2} 擴散了 {1} 種群數量"
 
 #: ../src/auto-evo/RunResults.cs:709
 msgid "RUN_RESULT_GENE_CODE"
-msgstr "基因編碼："
+msgstr "遺傳密碼："
 
 #: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "填補生態位"
+msgstr "為了填補生態棲位"
 
 #: ../src/auto-evo/RunResults.cs:671
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
@@ -5467,15 +5467,15 @@ msgstr "由於不同的演化壓力而出現"
 
 #: ../src/auto-evo/RunResults.cs:655
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "从{0}分支"
+msgstr "來自 {0} 的分支"
 
 #: ../src/auto-evo/RunResults.cs:688
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "在一些地區的種群分支成了新的物種{0}："
+msgstr "某些區域中的種群分支形成新物種 {0}："
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:699
 msgid "RUN_X_WORLDS"
-msgstr "運行{0}個世界"
+msgstr "運行 {0} 個世界"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:408
 msgid "RUN_X_WORLDS_TOOLTIP"
@@ -5494,7 +5494,7 @@ msgstr "鐵硫菌藍蛋白是一種蛋白質，能夠使用 [thrive:compound typ
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:452
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"iron\"][/thrive:compound]轉換為thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的濃度成正比。"
+msgstr "將 [thrive:compound type=\"iron\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 和 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
 #: ../src/general/MainMenu.tscn:991
 msgid "SAFE_MODE_EXPLANATION"
@@ -5514,7 +5514,7 @@ msgstr "Thrive 以安全模式啟動"
 
 #: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
-msgstr "儲存"
+msgstr "存檔"
 
 #: ../src/general/OptionsMenu.tscn:2147
 msgid "SAVE_AND_CONTINUE"
@@ -5526,16 +5526,16 @@ msgstr "自動存檔"
 
 #: ../src/saving/SaveList.cs:252
 msgid "SAVE_DELETE_WARNING"
-msgstr "刪去的存檔無法復原，你確定要永久性刪除{0}嗎？"
+msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
 
 #: ../src/saving/SaveStatusOverlay.cs:175
 #: ../src/saving/SaveStatusOverlay.tscn:118
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr "回報存檔錯誤時，請包含 [color=#3796e1][url={2}]記錄檔資料夾[/url][/color] 中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該文件，診斷和解決此問題將非常困難。"
+msgstr "回報存檔錯誤時，請包含[color=#3796e1][url={2}]記錄檔資料夾[/url][/color]中的 [color=#3796e1][url={0}]{1}[/url][/color]，因為這是 Thrive 開發人員找出存檔錯誤的關鍵資訊。如果沒有該文件，診斷和解決此問題將非常困難。"
 
 #: ../src/saving/SaveStatusOverlay.cs:182
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
-msgstr "在報告此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在 [color=#3796e1][url={1}]記錄檔資料夾[/url][/color] 中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
+msgstr "在回報此存檔錯誤之前，請確保 JSON 偵錯模式未停用。自動 JSON 偵錯模式應在[color=#3796e1][url={1}]記錄檔資料夾[/url][/color]中建立一個名為 {0} 的額外檔案。該文件包含供 Thrive 開發人員確定存檔錯誤的關鍵資訊。"
 
 #: ../src/saving/InProgressSave.cs:246
 msgid "SAVE_FAILED"
@@ -5556,8 +5556,8 @@ msgstr "存檔版本不同"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"您嘗試加載的保存版本與遊戲版本不匹配。\n"
-"請通過主菜單手動加載保存。"
+"您嘗試載入的存檔版本與遊戲版本不匹配。\n"
+"請透過選單手動載入存檔。"
 
 #: ../src/saving/InProgressLoad.cs:143
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -6691,9 +6691,7 @@ msgstr "抗毒素"
 #: ../simulation_parameters/microbe_stage/organelles.json:504
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
-msgstr ""
-"毒素\n"
-"液泡"
+msgstr "毒素液泡"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -8198,7 +8196,7 @@ msgstr "細胞器"
 
 #: ../simulation_parameters/common/wiki.json:682
 msgid "WIKI_PAGE_OXYTOXISOME"
-msgstr "氧化毒素酶"
+msgstr "氧化毒酶體"
 
 #: ../simulation_parameters/common/wiki.json:721
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
