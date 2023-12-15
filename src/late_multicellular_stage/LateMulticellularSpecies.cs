@@ -81,9 +81,9 @@ public class LateMulticellularSpecies : Species
         SetTypeFromBrainPower();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        BodyLayout.RepositionToGround();
+        return BodyLayout.RepositionToGround();
     }
 
     public override void UpdateInitialCompounds()

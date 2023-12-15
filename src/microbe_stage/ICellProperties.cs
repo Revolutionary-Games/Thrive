@@ -27,7 +27,8 @@ public interface ICellProperties : ISimulationPhotographable
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
     /// </summary>
-    public void RepositionToOrigin();
+    /// <returns>True when changes were made, false if everything was positioned well already</returns>
+    public bool RepositionToOrigin();
 
     public void UpdateNameIfValid(string newName);
 }

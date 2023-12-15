@@ -61,9 +61,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
-        CellType.RepositionToOrigin();
+        return CellType.RepositionToOrigin();
     }
 
     public void UpdateNameIfValid(string newName)
