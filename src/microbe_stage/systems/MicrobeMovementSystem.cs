@@ -128,7 +128,7 @@
 
             // Lower value is faster rotation
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-                rotationSpeed /= CheatManager.Speed;
+                rotationSpeed /= CheatManager.Speed * 2;
 
             return rotationSpeed;
         }
@@ -208,15 +208,7 @@
 
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
             {
-                float mass = 1000;
-
-                if (entity.Has<PhysicsShapeHolder>())
-                {
-                    entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
-                }
-
-                // There's an additional divisor here to make the speed cheat reasonable
-                force *= mass / 1000.0f * CheatManager.Speed / 4;
+                force *= CheatManager.Speed;
             }
 
             var movementVector = control.MovementDirection * force;
