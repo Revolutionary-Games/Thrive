@@ -188,6 +188,9 @@
                 }
             }
 
+            force *= cellProperties.MembraneType.MovementFactor -
+                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+
             bool hasColony = entity.Has<MicrobeColony>();
 
             if (control.MovementDirection != Vector3.Zero && hasColony)
@@ -200,11 +203,10 @@
                 force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
             // Movement modifier from engulf (this used to be handled in the engulfing code, now it's here)
+            // TODO: should colony member engulf states be separately calculated for movement? Right now this makes it
+            // very powerful to not have the primary cell type able to engulf but having other engulfing cells.
             if (control.State == MicrobeState.Engulf)
                 force *= Constants.ENGULFING_MOVEMENT_MULTIPLIER;
-
-            force *= cellProperties.MembraneType.MovementFactor -
-                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
             {
