@@ -507,6 +507,11 @@ public static class SpawnHelpers
                 entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
             }
 
+#if DEBUG
+            if (multicellularData.CellBodyPlanIndex >= earlyMulticellularSpecies.Cells.Count)
+                throw new InvalidOperationException("Bad body plan index was generated for a cell");
+#endif
+
             entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType,
                 multicellularData.CellBodyPlanIndex));
         }
