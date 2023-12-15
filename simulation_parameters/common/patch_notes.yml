@@ -248,3 +248,37 @@
     - Updated AngleSharp from 1.0.6 to 1.0.7
     - "Added new languages: Bengalian, Belarussian, and Macedonian"
     - Updated translations
+
+0.6.4.1:
+  IntroductionText: |
+    Here is a patch release to fix most of the serious problems found in 0.6.4 after the release and improve the game balancing. After this there's only some minor issues left from the ECS architecture refactor. There's only a few kind of new features in this release: panorama backgrounds for late multicellular editor and some better tooltips.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.4.1
+  PatchNotes:
+    - "Balancing improvements: movement speed for larger cells was increased a  bit, bacteria can now again spawn in larger swarms than just 2 at once, and debuffed colony movement bonus a bit to make sure colonies aren't faster than individual cells."
+    - Added better tooltips for microbe action hotbar and become macroscopic button
+    - Added panoramic 3D backgrounds for late multicellular editor. Before they were used just for the stage itself.
+    - Fixed cells not appearing at all when using low thread count. The same root cause also caused cell rotations to stop working after some time in the game.
+    - Hexes placed in previous editor session are now slightly darker to make them actually visually distinct
+    - Engulfing animation now correctly stars from the engulfed object's world position
+    - Fixed eukaryotic size bonus for engulfment not working
+    - Fixed new health max not applying after exiting the editor
+    - Fixed engulfing pulling in animation playing twice in a row
+    - Fixed engulfing endosome graphics scale blowing up a ton when engulfing a specific object type
+    - Fixed engulf eject animations not working at all
+    - Fixed a crash related to despawning engulfed objects
+    - Fixed a save error when a species had a chemoreceptor set to detect that species it was in
+    - Fixed incorrect data being generated for multicellular body plan indexes which lead to a crash when colonies regrew lost cells
+    - Fixed tutorial about leaving colony to be able to enter the editor being able to trigger in early multicellular stage
+    - Fixed the reproduction bars staying white if the player died when the editor was available. Also with the same change compound bars will only update while the player is alive.
+    - Fixed softlock when pressing the editor button but the player was in a microbe colony (not multicellular)
+    - Fixed Godot warning that was printed when the editor was exited (this was from the options menu sound device list)
+    - Fixed a Godot error when shutting down the game that was caused by PhotoStudio
+    - Mostly fixed microbe colony member positions. Members bound 3-4 cells away from the lead cell still have some rotation and positioning issues.
+    - Made multicellular lost cell tracking ignore cells that no longer pointed to a valid cell index in a species' body plan. Most likely caused by removing cells from the body plan after that cell colony was spawned.
+    - Going to the art gallery now disables the 3D menu background performance tracking which should fix unintentional low performance detection due to a lag spike
+    - Removed old evolutionary tree build error message that should not be able to trigger anymore as we have had a save breakage point
+    - Made speed cheats work much better, especially for larger colonies which got way too much bonus speed
+    - Unified the cases of our JSON files, properties are now PascalCase everywhere (with internal names still keeping camelCase naming)
+    - Fixed native library symbol upload script
+    - Updated Nito.Collections.Deque from 1.1.1 to 1.2.1
+    - Updated translations
