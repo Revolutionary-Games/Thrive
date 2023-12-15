@@ -476,9 +476,9 @@
 
             // Additional compounds have already been set by the original ingestion action
 
-            var relativePosition = CalculateEngulfableTargetPosition(ref engulferCellProperties, ref engulferPosition,
-                radius, ref targetEntityPosition, ref targetSpatial, targetRadius, new Random(), out var ingestionPoint,
-                out var boundingBoxSize);
+            var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
+                ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, new Random(),
+                out var relativePosition, out var boundingBoxSize);
 
             Vector3 originalScale;
 
@@ -498,7 +498,7 @@
                 originalScale = Vector3.One;
             }
 
-            CreateEngulfableTransport(ref engulfable, ingestionPoint, originalScale, boundingBoxSize);
+            CreateEngulfableTransport(ref engulfable, engulfableFinalPosition, originalScale, boundingBoxSize);
 
             var initialEndosomeScale = CalculateInitialEndosomeScale();
 
@@ -574,7 +574,7 @@
 
         private static Vector3 CalculateEngulfableTargetPosition(ref CellProperties engulferCellProperties,
             ref WorldPosition engulferPosition, float radius, ref WorldPosition targetEntityPosition,
-            ref SpatialInstance targetSpatial, float targetRadius, Random random, out Vector3 ingestionPoint,
+            ref SpatialInstance targetSpatial, float targetRadius, Random random, out Vector3 relativePosition,
             out Vector3 boundingBoxSize)
         {
             // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
@@ -583,12 +583,14 @@
 
             var targetRadiusNormalized = Mathf.Clamp(targetRadius / radius, 0.0f, 1.0f);
 
-            var relativePosition = targetEntityPosition.Position - engulferPosition.Position;
-            var rotatedRelativeVector = engulferPosition.Rotation.Xform(relativePosition);
+            // This needs to convert the relative vector from world space to engulfer local space as this is used
+            // as the attached component position so it is applied relative to the engulfer and its rotation
+            relativePosition =
+                engulferPosition.Rotation.Inverse().Xform(targetEntityPosition.Position - engulferPosition.Position);
 
             var nearestPointOfMembraneToTarget =
                 engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(
-                    rotatedRelativeVector.x, rotatedRelativeVector.z);
+                    relativePosition.x, relativePosition.z);
 
             // The point nearest to the membrane calculation doesn't take being bacteria into account
             if (engulferCellProperties.IsBacteria)
@@ -602,7 +604,7 @@
 
             // Get the final storing position by taking a value between this cell's center and the storing area edge.
             // This would lessen the possibility of engulfed things getting bunched up in the same position.
-            ingestionPoint = new Vector3(
+            var ingestionPoint = new Vector3(
                 random.Next(0.0f, viableStoringAreaEdge.x),
                 engulferPosition.Position.y,
                 random.Next(0.0f, viableStoringAreaEdge.z));
@@ -646,7 +648,7 @@
             if (boundingBoxSize.y < Mathf.Epsilon)
                 boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
 
-            return relativePosition;
+            return ingestionPoint;
         }
 
         private static void CreateEngulfableTransport(ref Engulfable engulfable, Vector3 ingestionPoint,
@@ -1034,9 +1036,9 @@
                 }
             }
 
-            var relativePosition = CalculateEngulfableTargetPosition(ref engulferCellProperties, ref engulferPosition,
-                radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random, out var ingestionPoint,
-                out var boundingBoxSize);
+            var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
+                ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random,
+                out var relativePosition, out var boundingBoxSize);
 
             ref var engulferPriority = ref engulferEntity.Get<RenderPriorityOverride>();
 
@@ -1046,7 +1048,7 @@
             // This is setup in OnBecomeEngulfed so this code must be after that
             var originalScale = engulfable.OriginalScale;
 
-            CreateEngulfableTransport(ref engulfable, ingestionPoint, originalScale, boundingBoxSize);
+            CreateEngulfableTransport(ref engulfable, engulfableFinalPosition, originalScale, boundingBoxSize);
 
             // If the other body is already attached this needs to handle that correctly
             if (targetEntity.Has<AttachedToEntity>())
