@@ -183,11 +183,11 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 8.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 50.0f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 650.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
@@ -198,9 +198,9 @@ public static class Constants
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 110;
+    public const float BASE_MOVEMENT_PER_HEX = 130;
 
-    public const int BASE_MOVEMENT_EXTRA_HEX_START = 1;
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
     public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
 
     /// <summary>
@@ -215,7 +215,7 @@ public static class Constants
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 5.0f;
+    public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.1f;
     public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
