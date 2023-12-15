@@ -254,7 +254,7 @@
     Here is a patch release to fix most of the serious problems found in 0.6.4 after the release and improve the game balancing. After this there's only some minor issues left from the ECS architecture refactor. There's only a few kind of new features in this release: panorama backgrounds for late multicellular editor and some better tooltips.
   ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.6.4.1
   PatchNotes:
-    - "Balancing improvements: movement speed for larger cells was increased a  bit, bacteria can now again spawn in larger swarms than just 2 at once, and debuffed colony movement bonus a bit to make sure colonies aren't faster than individual cells."
+    - "Balancing improvements: movement speed for larger cells was increased a bit, bacteria can now again spawn in larger swarms than just 2 at once, and debuffed colony movement bonus a bit to make sure colonies aren't faster than individual cells."
     - Added better tooltips for microbe action hotbar and become macroscopic button
     - Added panoramic 3D backgrounds for late multicellular editor. Before they were used just for the stage itself.
     - Fixed cells not appearing at all when using low thread count. The same root cause also caused cell rotations to stop working after some time in the game.
