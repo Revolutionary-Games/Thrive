@@ -183,25 +183,25 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 20.0f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1000.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
     /// </summary>
-    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 3.0f;
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 55;
+    public const float BASE_MOVEMENT_PER_HEX = 130;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
-    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -215,10 +215,10 @@ public static class Constants
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 10.0f;
+    public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.1f;
     public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
-    public const float CELL_ROTATION_RADIUS_FACTOR = 200.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
     public const float CILIA_ROTATION_FACTOR = 32000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
@@ -760,7 +760,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 240.0f;
+    public const float PILUS_BASE_DAMAGE = 235.0f;
 
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
@@ -906,7 +906,7 @@ public static class Constants
     /// <summary>
     ///   Maximum extra microbes to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_COLONY_SIZE = 3;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
