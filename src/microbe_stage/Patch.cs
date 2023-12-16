@@ -127,6 +127,28 @@ public class Patch
     public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
 
     /// <summary>
+    ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
+    /// </summary>
+    [JsonIgnore]
+    public LocalizedString VisibleName
+    {
+        get
+        {
+            switch (Visibility)
+            {
+                case MapElementVisibility.Shown:
+                    return Name;
+                case MapElementVisibility.Unknown:
+                    return new LocalizedString("UNKNOWN_PATCH");
+                case MapElementVisibility.Hidden:
+                    return new LocalizedString("UNDISCOVERED_PATCH");
+                default:
+                    throw new InvalidOperationException("Invalid Patch Visbility");
+            }
+        }
+    }
+
+    /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>
@@ -470,8 +492,6 @@ public class Patch
 
     public void ApplyVisibility(MapElementVisibility visibility)
     {
-        GD.Print($"Applying visibility: {visibility}");
-
         if ((int)Visibility >= (int)visibility)
             Visibility = visibility;
 

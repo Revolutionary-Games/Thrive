@@ -10,7 +10,7 @@ public class PatchDetailsPanel : PanelContainer
     public NodePath? NothingSelectedPath;
 
     [Export]
-    public NodePath UnknownPatchPath;
+    public NodePath UnknownPatchPath = null!;
 
     [Export]
     public NodePath DetailsPath = null!;

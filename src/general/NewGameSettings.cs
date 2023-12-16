@@ -312,9 +312,9 @@ public class NewGameSettings : ControlWithInput
         }
 
         // Add items to fog of war dropdown
-        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_DISABLED", (int)FogOfWarMode.Ignored);
-        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_REGULAR", (int)FogOfWarMode.Regular);
-        fogOfWarModeDropdown.AddItem("FOG_OF_WAR_INTENSE", (int)FogOfWarMode.Intense);
+        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_DISABLED"), (int)FogOfWarMode.Ignored);
+        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_REGULAR"), (int)FogOfWarMode.Regular);
+        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_INTENSE"), (int)FogOfWarMode.Intense);
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
@@ -697,6 +697,8 @@ public class NewGameSettings : ControlWithInput
         limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
 
+        UpdateFogOfWarModeDescription(preset.FogOfWarMode);
+
         UpdateSelectedDifficultyPresetControl();
     }
 
@@ -800,8 +802,29 @@ public class NewGameSettings : ControlWithInput
 
     private void OnFogOfWarModeChanged(int index)
     {
-        _ = index;
+        var mode = (FogOfWarMode)index;
+        UpdateFogOfWarModeDescription(mode);
         UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void UpdateFogOfWarModeDescription(FogOfWarMode mode)
+    {
+        var description = string.Empty;
+
+        switch (mode)
+        {
+            case FogOfWarMode.Ignored:
+                description = TranslationServer.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
+                break;
+            case FogOfWarMode.Regular:
+                description = TranslationServer.Translate("FOG_OF_WAR_REGULAR_DESCRIPTION");
+                break;
+            case FogOfWarMode.Intense:
+                description = TranslationServer.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
+                break;
+        }
+
+        fogOfWarModeDescription.Text = description;
     }
 
     private void OnFreeGlucoseCloudToggled(bool pressed)
