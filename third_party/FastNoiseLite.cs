@@ -1298,7 +1298,8 @@ public class FastNoiseLite
         if (a <= 0)
         {
             n0 = 0;
-        }else
+        }
+        else
         {
             n0 = (a * a) * (a * a) * GradCoord(seed, i, j, x0, y0);
         }
@@ -1307,7 +1308,8 @@ public class FastNoiseLite
         if (c <= 0)
         {
             n2 = 0;
-        }else
+        }
+        else
         {
             float x2 = x0 + (2 * (float)G2 - 1);
             float y2 = y0 + (2 * (float)G2 - 1);
@@ -1322,7 +1324,8 @@ public class FastNoiseLite
             if (b <= 0)
             {
                 n1 = 0;
-            }else
+            }
+            else
             {
                 n1 = (b * b) * (b * b) * GradCoord(seed, i, j + PrimeY, x1, y1);
             }
@@ -1335,7 +1338,8 @@ public class FastNoiseLite
             if (b <= 0)
             {
                 n1 = 0;
-            }else
+            }
+            else
             {
                 n1 = (b * b) * (b * b) * GradCoord(seed, i + PrimeX, j, x1, y1);
             }

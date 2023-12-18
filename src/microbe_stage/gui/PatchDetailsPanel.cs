@@ -313,9 +313,8 @@ public class PatchDetailsPanel : PanelContainer
 
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName, CompoundAmountType.Maximum);
         light.Text =
-            unitFormat.FormatSafe(
-                percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
-                    sunlightCompound.InternalName))), "lx");
+            unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
+                sunlightCompound.InternalName))), "lx");
         lightMax.Text = TranslationServer.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
