@@ -757,10 +757,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         switch (index)
         {
-            case 0: return vector.X;
-            case 1: return vector.Y;
-            case 2: return vector.Z;
-            case 3: return vector.W;
+            case 0:
+                return vector.X;
+            case 1:
+                return vector.Y;
+            case 2:
+                return vector.Z;
+            case 3:
+                return vector.W;
         }
 
         return 0;
