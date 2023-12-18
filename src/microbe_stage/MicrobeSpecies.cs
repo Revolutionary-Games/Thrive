@@ -234,8 +234,7 @@ public class MicrobeSpecies : Species, ICellProperties
     public override string GetDetailString()
     {
         return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,

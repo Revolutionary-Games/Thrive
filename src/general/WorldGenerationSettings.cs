@@ -137,8 +137,7 @@ public class WorldGenerationSettings
             difficulty.Name :
             TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
 
-        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(
-            translatedDifficulty,
+        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
             MPMultiplier,
             AIMutationMultiplier,
             CompoundDensity,
