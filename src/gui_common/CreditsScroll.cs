@@ -535,8 +535,7 @@ public class CreditsScroll : Container
             case "November": return TranslationServer.Translate("NOVEMBER");
             case "December": return TranslationServer.Translate("DECEMBER");
             default:
-                GD.Print(
-                    $"unknown heading '{team}' needs to be added to " +
+                GD.Print($"unknown heading '{team}' needs to be added to " +
                     $"{nameof(CreditsScroll)}.{nameof(GetTranslatedHeading)}");
                 return team;
         }

@@ -586,21 +586,22 @@ public class NewGameSettings : ControlWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 1.5f), () =>
-            {
-                // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
-                EmitSignal(nameof(OnNewGameVideoStarted));
-            });
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f), () =>
+                {
+                    // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
+                    EmitSignal(nameof(OnNewGameVideoStarted));
+                });
 
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame, true, false);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
+                true, false);
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
         }
     }
 

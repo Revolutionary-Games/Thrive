@@ -92,8 +92,7 @@ public class TutorialDialog : CustomWindow
         RectPivotOffset = RectSize / 2;
         RectScale = Vector2.Zero;
 
-        tween.InterpolateProperty(
-            this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
+        tween.InterpolateProperty(this, "rect_scale", Vector2.Zero, Vector2.One, 0.3f, Tween.TransitionType.Expo,
             Tween.EaseType.Out, ShowDelay);
         tween.Start();
     }

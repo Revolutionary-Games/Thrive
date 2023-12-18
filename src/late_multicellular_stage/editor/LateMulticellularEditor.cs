@@ -487,8 +487,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(
-                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+                1.5f);
             return;
         }
 

@@ -1156,8 +1156,7 @@ public class InventoryScreen : ControlWithInput
         if (error)
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
-            GD.PrintErr(
-                "Ran into an item consume problem before crafting, some items may have already permanently " +
+            GD.PrintErr("Ran into an item consume problem before crafting, some items may have already permanently " +
                 "disappeared. This is a bug");
             return;
         }

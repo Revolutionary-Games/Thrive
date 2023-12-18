@@ -283,8 +283,8 @@ public class CustomRichTextLabel : RichTextLabel
                     var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
                         StringComparison.InvariantCulture);
 
-                    var input = extendedBbcode.Substring(
-                        lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
+                    var input = extendedBbcode.Substring(lastStartingTagEndIndex + 1,
+                        closingTagStartIndex - lastStartingTagEndIndex - 1);
 
                     if (Enum.TryParse(bbcode, true, out ThriveBbCode parsedTag))
                     {
@@ -446,22 +446,22 @@ public class CustomRichTextLabel : RichTextLabel
 
                     case "ENGULF_COMPOUND_ABSORBING_PER_SECOND":
                     {
-                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 
                     case "ENZYME_DIGESTION_SPEED_UP_FRACTION":
                     {
-                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 
                     case "ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
                     {
-                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
-                            format, CultureInfo.CurrentCulture);
+                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(format,
+                            CultureInfo.CurrentCulture);
                         break;
                     }
 

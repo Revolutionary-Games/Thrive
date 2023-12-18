@@ -53,8 +53,7 @@ public static class WikiUpdater
         var organellesRoot = await organellesRootTask;
         var organelles = await organellesTask;
 
-        var untranslatedWiki = new Wiki(
-            organellesRoot.UntranslatedPage,
+        var untranslatedWiki = new Wiki(organellesRoot.UntranslatedPage,
             organelles.Select(o => o.UntranslatedPage).ToList());
 
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
@@ -66,8 +65,7 @@ public static class WikiUpdater
 
         ColourConsole.WriteSuccessLine("Translations update succeeded, inserting English strings for wiki content");
 
-        await InsertTranslatedPageContent(
-            organelles.Append(organellesRoot).ToList(),
+        await InsertTranslatedPageContent(organelles.Append(organellesRoot).ToList(),
             cancellationToken);
 
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
@@ -121,13 +119,11 @@ public static class WikiUpdater
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
 
-            var untranslatedPage = new Wiki.Page(
-                $"WIKI_PAGE_{untranslatedOrganelleName}",
+            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}",
                 internalName,
                 url,
                 untranslatedSections);
-            var translatedPage = new Wiki.Page(
-                name,
+            var translatedPage = new Wiki.Page(name,
                 internalName,
                 url,
                 sections);
@@ -207,8 +203,7 @@ public static class WikiUpdater
         foreach (var compound in CustomBbcodeCompounds)
         {
             var compoundText = compound.ToLowerInvariant().Replace(" ", string.Empty);
-            paragraph = paragraph.Replace(
-                $"<b>{compound}</b>",
+            paragraph = paragraph.Replace($"<b>{compound}</b>",
                 $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
         }
 

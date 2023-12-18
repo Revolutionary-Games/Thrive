@@ -493,8 +493,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         // Integer calculations are intentional here
         // ReSharper disable PossibleLossOfFraction
-        return new Vector3(
-            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+        return new Vector3(cloudX * Resolution +
+            ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_WIDTH,
             0,
             cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
@@ -615,8 +615,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     private Vector4 CalculateCloudToAdd(Compound compound, float density)
     {
-        return new Vector4(
-            Compounds[0] == compound ? density : 0.0f,
+        return new Vector4(Compounds[0] == compound ? density : 0.0f,
             Compounds[1] == compound ? density : 0.0f,
             Compounds[2] == compound ? density : 0.0f,
             Compounds[3] == compound ? density : 0.0f);
@@ -666,8 +665,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
@@ -705,8 +703,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);

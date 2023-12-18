@@ -953,8 +953,8 @@
                     vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
 
             var cellMembranePoint = cellPosition.Rotation.Xform(
-                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
-                    vectorToParentInLocalSpace.x, vectorToParentInLocalSpace.z));
+                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
+                    vectorToParentInLocalSpace.z));
 
             // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
             // membrane point otherwise.

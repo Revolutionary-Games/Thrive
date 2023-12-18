@@ -121,8 +121,7 @@
                         continue;
 
                     // Calculate random amount of population to send
-                    int moveAmount = (int)random.Next(
-                        population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+                    int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
                         population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
                     if (moveAmount > 0)

@@ -118,8 +118,7 @@ public class GUICommon : Node
         // Keep this node running even while paused
         PauseMode = PauseModeEnum.Process;
 
-        buttonPressSound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+        buttonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     /// <summary>

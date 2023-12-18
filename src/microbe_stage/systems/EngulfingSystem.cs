@@ -589,8 +589,8 @@
                 engulferPosition.Rotation.Inverse().Xform(targetEntityPosition.Position - engulferPosition.Position);
 
             var nearestPointOfMembraneToTarget =
-                engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(
-                    relativePosition.x, relativePosition.z);
+                engulferCellProperties.CreatedMembrane!.GetVectorTowardsNearestPointOfMembrane(relativePosition.x,
+                    relativePosition.z);
 
             // The point nearest to the membrane calculation doesn't take being bacteria into account
             if (engulferCellProperties.IsBacteria)
@@ -599,13 +599,12 @@
             // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
             // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
             // This will then act as a "maximum extent/edge" that qualifies as the interior of the engulfer's membrane
-            var viableStoringAreaEdge = nearestPointOfMembraneToTarget.LinearInterpolate(
-                Vector3.Zero, targetRadiusNormalized);
+            var viableStoringAreaEdge =
+                nearestPointOfMembraneToTarget.LinearInterpolate(Vector3.Zero, targetRadiusNormalized);
 
             // Get the final storing position by taking a value between this cell's center and the storing area edge.
             // This would lessen the possibility of engulfed things getting bunched up in the same position.
-            var ingestionPoint = new Vector3(
-                random.Next(0.0f, viableStoringAreaEdge.x),
+            var ingestionPoint = new Vector3(random.Next(0.0f, viableStoringAreaEdge.x),
                 engulferPosition.Position.y,
                 random.Next(0.0f, viableStoringAreaEdge.z));
 
@@ -1648,8 +1647,7 @@
             // This shouldn't happen but here's this workaround to stop crashing
             if (engulfer.EngulfedObjects == null)
             {
-                GD.PrintErr(
-                    "Force ejection on engulfer that doesn't have engulfed object list setup is skipping " +
+                GD.PrintErr("Force ejection on engulfer that doesn't have engulfed object list setup is skipping " +
                     "normal eject logic");
 
                 PerformEjectionForceAndAttachedRemove(entity, ref engulfable, toEject);

@@ -57,8 +57,7 @@ public class RunOnAxisAttribute : InputAttribute
             {
                 if (nextInputMouse != null)
                 {
-                    throw new ArgumentException(
-                        "Mouse axis inputs need to be specified between the other inputs " +
+                    throw new ArgumentException("Mouse axis inputs need to be specified between the other inputs " +
                         "(before the action it applies to)");
                 }
 
