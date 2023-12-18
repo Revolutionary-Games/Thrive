@@ -344,22 +344,14 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
             return true;
         }
 
-        throw new NotImplementedException();
+        GetMouseMetaball(out _, out var metaball);
 
-        /*
-        GetMouseMetaball(out int q, out int r);
-
-        var hex = GetHexAt(new Hex(q, r));
-
-        if (hex == null)
-            return true;
-
-        StartHexMove(hex);
+        if (metaball != null)
+            StartHexMove(metaball);
 
         // Once a move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelState();
         return true;
-        */
     }
 
     public void StartHexMove(TMetaball selectedHex)
@@ -417,20 +409,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     [RunOnKeyDown("e_delete")]
     public void RemoveHexAtCursor()
     {
-        throw new NotImplementedException();
+        GetMouseMetaball(out var position, out var metaball);
 
-        /*
-        GetMouseMetaball(out int q, out int r);
-
-        Hex mouseHex = new Hex(q, r);
-
-        var hex = GetHexAt(mouseHex);
-
-        if (hex == null)
-            return;
-
-        RemoveAtPosition(mouseHex);
-        */
+        if (metaball != null)
+            RemoveAtPosition(position, metaball);
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
