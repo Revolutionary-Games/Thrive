@@ -21,6 +21,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
+    private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
     // a save
@@ -130,8 +131,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         ResolveNodeReferences();
 
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
+        var simulationParameters = SimulationParameters.Instance;
+        glucose = simulationParameters.GetCompound("glucose");
+        phosphate = simulationParameters.GetCompound("phosphates");
+        cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -794,6 +797,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
             OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
 
+            OnOrganelleDuplicated = OnPlayerOrganelleDuplicated,
+
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
 
@@ -1134,6 +1139,16 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
+    }
+
+    private void OnPlayerOrganelleDuplicated(Entity player, PlacedOrganelle organelle)
+    {
+        if (organelle.Definition.InternalName == cytoplasm.InternalName)
+            return;
+
+        Invoke.Instance.QueueForObject(() =>
+                TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this),
+            this);
     }
 
     [DeserializedCallbackAllowed]
