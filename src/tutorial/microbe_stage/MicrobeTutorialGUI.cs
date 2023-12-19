@@ -55,6 +55,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath DayNightTutorialPath = null!;
 
     [Export]
+    public NodePath OrganelleDivisionTutorialPath = null!;
+
+    [Export]
     public NodePath BecomeMulticellularTutorialPath = null!;
 
     [Export]
@@ -93,6 +96,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow earlyMulticellularWelcome = null!;
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
+    private CustomWindow organelleDivisionTutorial = null!;
 #pragma warning restore CA2213
 
     [Signal]
@@ -390,6 +394,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool OrganelleDivisionTutorialVisible
+    {
+        get => organelleDivisionTutorial.Visible;
+        set
+        {
+            if (value == organelleDivisionTutorial.Visible)
+                return;
+
+            organelleDivisionTutorial.Visible = value;
+        }
+    }
+
     public bool BecomeMulticellularTutorialVisible
     {
         get => becomeMulticellularTutorial.Visible;
@@ -424,6 +440,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         earlyMulticellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
         dayNightTutorial = GetNode<CustomWindow>(DayNightTutorialPath);
         becomeMulticellularTutorial = GetNode<CustomWindow>(BecomeMulticellularTutorialPath);
+        organelleDivisionTutorial = GetNode<CustomWindow>(OrganelleDivisionTutorialPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
@@ -471,6 +488,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
                 LeaveColonyTutorialPath.Dispose();
                 EarlyMulticellularWelcomePath.Dispose();
                 DayNightTutorialPath.Dispose();
+                OrganelleDivisionTutorialPath.Dispose();
                 BecomeMulticellularTutorialPath.Dispose();
                 CheckTheHelpMenuPath.Dispose();
                 EngulfmentExplanationPath.Dispose();

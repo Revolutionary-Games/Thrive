@@ -45,6 +45,11 @@
         /// </summary>
         public Action<Entity, List<(Compound Compound, Color Colour, Vector3 Target)>?,
             List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>?>? OnChemoreceptionInfo;
+
+        /// <summary>
+        ///   Called when an organelle duplicates in this microbe in preparation for reproduction
+        /// </summary>
+        public Action<Entity, PlacedOrganelle>? OnOrganelleDuplicated;
     }
 
     public static class MicrobeEventCallbackHelpers

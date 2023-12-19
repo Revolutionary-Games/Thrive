@@ -569,6 +569,30 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
+                    case "StorageIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/StorageIcon.png", 20, 0, 3);
+                        break;
+                    }
+
+                    case "OsmoIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png", 20, 0, 3);
+                        break;
+                    }
+
+                    case "MovementIcon":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/SpeedIcon.png", 20, 0, 3);
+                        break;
+                    }
+
+                    case "MP":
+                    {
+                        output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0, 3);
+                        break;
+                    }
+
                     default:
                     {
                         GD.PrintErr($"Icon: \"{input}\" doesn't exist, referenced in bbcode");

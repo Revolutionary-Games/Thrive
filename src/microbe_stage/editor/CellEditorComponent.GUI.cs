@@ -36,12 +36,16 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoRedoToTutorial(TutorialState tutorial)
+    public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+
+        tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
+
+        gui.RightPanelScrollContainer = rightPanelScrollContainer;
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
