@@ -432,6 +432,11 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    /// <summary>
+    ///   Updates the visibility of a given patch and its neighbours according to the <see cref="FogOfWarMode"/>
+    /// </summary>
+    /// <param name="patch">The patch to be updated</param>
+    /// <returns>Weather or not an update has actually been performed</returns>
     public bool UpdatePatchVisbility(Patch patch)
     {
         switch (FogOfWar)
@@ -456,6 +461,9 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    /// <summary>
+    ///   Reveals all patches in the patch map
+    /// </summary>
     public void RevealAllPatches()
     {
         foreach (var patch in Patches)

@@ -82,6 +82,7 @@
                 { "0.6.2.0-rc1", new UpgradeJustVersionNumber("0.6.2.0") },
                 { "0.6.2.0", new UpgradeJustVersionNumber("0.6.3.0-rc1") },
                 { "0.6.3.0-rc1", new UpgradeJustVersionNumber("0.6.3.0") },
+                { "0.6.4.1", new UpgradeStep0641To065() },
             };
         }
     }
@@ -304,6 +305,50 @@
                     asObject.Remove("Organelles");
                     asObject["existingHexes"] = organelleList;
                 }
+            }
+        }
+    }
+
+    internal class UpgradeStep0641To065 : BaseRecursiveJSONWalkerStep
+    {
+        private const string VISIBILITY = "Visibility";
+
+        protected override string VersionAfter => "0.6.5.0";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            // The patch map needs to be updated in older versions to show the entire thing,
+            // as 0.6.5 introduces fog-of-war
+
+            // Make patches visible
+            if (property.Name == "Patches")
+            {
+                var elements = new List<JObject>();
+
+                if (property.Value is JArray array)
+                {
+                    elements = array.Select(t => (JObject)t).ToList();
+                }
+
+                if (property.Value is JObject @object)
+                {
+                    elements = @object.Values().Select(t => (JObject)t).ToList();
+                }
+
+                foreach (var element in elements)
+                {
+                    if (!element.ContainsKey("$id"))
+                        continue;
+
+                    element.Add(VISIBILITY, 0);
+                }
+            }
+
+            // Make regions visible
+            if (property.Name == "Region")
+            {
+                var dict = (JObject)property.Value;
+                dict.Add(VISIBILITY, 0);
             }
         }
     }

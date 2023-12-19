@@ -88,6 +88,16 @@ public class Patch
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
 
+    /// <summary>
+    ///   The visibility of this patch on the map
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Generally, this should not be set directly, instead
+    ///     <see cref="ApplyVisibility"/> should be used to perform additional checks 
+    ///     and apply visibility to the region
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
     public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
 
@@ -482,6 +492,10 @@ public class Patch
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
     }
 
+    /// <summary>
+    ///   Runs <see cref="ApplyVisibility"/> on all of the patches neighbours
+    /// </summary>
+    /// <param name="visibility">The visibility to be set</param>
     public void ApplyVisibilityToNeighbours(MapElementVisibility visibility)
     {
         foreach (var patch in Adjacent)
@@ -490,8 +504,13 @@ public class Patch
         }
     }
 
+    /// <summary>
+    ///   Sets <see cref="Visibility"/> and the visibility of the region if more visible than current
+    /// </summary>
+    /// <param name="visibility">The visibility to be set</param>
     public void ApplyVisibility(MapElementVisibility visibility)
     {
+        // Only update visibility if the new visibility is more visible than the current one
         if ((int)Visibility >= (int)visibility)
             Visibility = visibility;
 
