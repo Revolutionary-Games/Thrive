@@ -54,8 +54,6 @@
 
                 case TutorialEventType.EnteredMicrobeEditor:
                 {
-                    GD.PushWarning("enable");
-
                     if (shouldEnableNegativeATPTutorial)
                     {
                         overallState.NegativeAtpBalanceTutorial.CanTrigger = true;
