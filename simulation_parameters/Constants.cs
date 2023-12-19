@@ -267,6 +267,10 @@ public static class Constants
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
+
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
@@ -298,27 +302,7 @@ public static class Constants
     /// </summary>
     public const int DESPAWN_RADIUS_OFFSET = 50;
 
-    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
-        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
-
-    public const float STARTING_SPAWN_DENSITY = 70000.0f;
-    public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
-
-    /// <summary>
-    ///   Radius of the zone where the player is considered immobile as he remains inside.
-    ///   Used to not overgenerate when the player doesn't move.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The value is squared for faster computation.
-    ///   </para>
-    ///   <para>
-    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
-    ///     to make spawn zone match when moving.
-    ///   </para>
-    /// </remarks>
-    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
@@ -464,7 +448,7 @@ public static class Constants
     ///   all entities' buffers can go to the cache for example when loading a save while in game. That is required
     ///   because most entities have the exact same buffer length.
     /// </summary>
-    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT = 500;
+    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH = 500;
 
     /// <summary>
     ///   How many collisions each normal entity can detect at once (if more collisions happen during an update the
@@ -589,9 +573,6 @@ public static class Constants
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
-
-    // TODO: remove if unused with ECS
-    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
     ///   Because reproduction progress is most often time limited,
@@ -775,7 +756,7 @@ public static class Constants
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
 
-    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT = 0.13f;
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
 
     /// <summary>
     ///   Damage a single injectisome stab does
@@ -799,10 +780,17 @@ public static class Constants
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
     public const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
-    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
     public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+
+    /// <summary>
+    ///   How often a microbe can get the engulf escape population bonus
+    /// </summary>
+    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int PLAYER_DEATH_POPULATION_LOSS_CONSTANT = -20;
     public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
@@ -810,11 +798,6 @@ public static class Constants
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
-
-    /// <summary>
-    ///   How often a microbe can get the engulf escape population bonus
-    /// </summary>
-    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int BASE_MUTATION_POINTS = 100;
 
@@ -837,6 +820,8 @@ public static class Constants
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
+    // TODO: remove the drag variables if https://github.com/Revolutionary-Games/Thrive/issues/4719 is not decided to
+    // be implemented
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
     ///   and multiplying it by this. This must be negative!
@@ -914,16 +899,6 @@ public static class Constants
     /// </summary>
     public const int MAX_BACTERIAL_COLONY_SIZE = 3;
 
-    // What is divided during fear and aggression calculations in the AI
-    public const float AGGRESSION_DIVISOR = 25.0f;
-    public const float FEAR_DIVISOR = 25.0f;
-    public const float ACTIVITY_DIVISOR = 100.0f;
-    public const float FOCUS_DIVISOR = 100.0f;
-    public const float OPPORTUNISM_DIVISOR = 100.0f;
-
-    // Cooldown for AI for toggling engulfing
-    public const float AI_ENGULF_INTERVAL = 300;
-
     /// <summary>
     ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
     ///   it can't eat
@@ -933,16 +908,12 @@ public static class Constants
     // Average number of calls to think method before doing expensive cloud-finding calculations
     public const int AI_STEPS_PER_SMELL = 20;
 
-    // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
-    public const float AI_COMPOUND_BIAS = -10.0f;
-
     /// <summary>
     ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
     /// </summary>
     public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
 
     public const float AI_BASE_MOVEMENT = 1.0f;
-    public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
@@ -1140,13 +1111,6 @@ public static class Constants
     ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
     /// </summary>
     public const int GLOBAL_EVENT_LOG_CAP = 20;
-
-    /// <summary>
-    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
-    ///   to see what small cells are.
-    ///   Specifically for use with LengthSquared.
-    /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
     ///   Buffs small bacteria
