@@ -238,7 +238,8 @@
             ICellProperties cellProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
             container.CreateOrganelleLayout(cellProperties);
-            container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>());
+            container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
+                cellProperties.IsBacteria);
 
             // Reproduction progress is lost
             container.AllOrganellesDivided = false;
@@ -271,21 +272,28 @@
             container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
+
+            // Rescale health in case max health changed (for example the player picked a new membrane)
+            ref var health = ref entity.Get<Health>();
+            if (!health.Dead && health.CurrentHealth > 0 && health.MaxHealth > 0)
+            {
+                health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellProperties.MembraneType,
+                    cellProperties.MembraneRigidity));
+            }
         }
 
         /// <summary>
         ///   Marks that the organelles have changed. Has to be called for things to be refreshed.
         /// </summary>
         public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
-            ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable)
+            ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable,
+            ref CellProperties cellProperties)
         {
             container.OrganelleVisualsCreated = false;
             container.OrganelleComponentsCached = false;
 
-            // TODO: should there be a specific system that refreshes this data?
-            // CreateOrganelleLayout might need changes in that case to call this method immediately
             container.CalculateOrganelleLayoutStatistics();
-            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable);
+            container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, cellProperties.IsBacteria);
             container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
@@ -476,12 +484,20 @@
         }
 
         public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
-            ref Engulfer engulfer, ref Engulfable engulfable)
+            ref Engulfer engulfer, ref Engulfable engulfable, bool isBacteria)
         {
-            engulfer.EngulfingSize = container.HexCount;
-            engulfer.EngulfStorageSize = container.HexCount;
+            float multiplier = 1;
 
-            engulfable.BaseEngulfSize = container.HexCount;
+            // Eukaryotic size increase to buff engulfing to match the visual size
+            if (!isBacteria)
+            {
+                multiplier = Constants.EUKARYOTIC_ENGULF_SIZE_MULTIPLIER;
+            }
+
+            engulfer.EngulfingSize = container.HexCount * multiplier;
+            engulfer.EngulfStorageSize = container.HexCount * multiplier;
+
+            engulfable.BaseEngulfSize = container.HexCount * multiplier;
         }
 
         /// <summary>

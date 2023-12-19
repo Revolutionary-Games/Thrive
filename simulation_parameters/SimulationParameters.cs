@@ -93,8 +93,8 @@ public class SimulationParameters : Node
                 new DirectTypeLoadOverride(typeof(Enzyme), null),
             };
 
-            compounds = LoadRegistry<Compound>(
-                "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
+            compounds = LoadRegistry<Compound>("res://simulation_parameters/microbe_stage/compounds.json",
+                deserializers);
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
         }
 
@@ -104,8 +104,7 @@ public class SimulationParameters : Node
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
         organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
 
-        NameGenerator = LoadDirectObject<NameGenerator>(
-            "res://simulation_parameters/microbe_stage/species_names.json");
+        NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
 
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 

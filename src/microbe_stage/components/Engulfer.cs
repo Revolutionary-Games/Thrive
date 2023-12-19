@@ -5,6 +5,7 @@
     using System.Linq;
     using DefaultEcs;
     using Godot;
+    using Newtonsoft.Json;
     using Systems;
 
     /// <summary>
@@ -23,6 +24,7 @@
         ///   something this cannot fully engulf. The value is how long since the object was expelled. Values are
         ///   automatically removed once the time reaches <see cref="Constants.ENGULF_EJECTED_COOLDOWN"/>
         /// </summary>
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Entity, float>))]
         public Dictionary<Entity, float>? ExpelledObjects;
 
         /// <summary>
@@ -204,16 +206,16 @@
             // Cannot start ejecting a thing that is not in a valid state for that
             switch (engulfable.PhagocytosisStep)
             {
+                case PhagocytosisPhase.None:
                 case PhagocytosisPhase.Ingestion:
-                case PhagocytosisPhase.Ingested:
-                    break;
+                case PhagocytosisPhase.Digested:
+                    return false;
 
                 case PhagocytosisPhase.RequestExocytosis:
-                    // Already requested
+                case PhagocytosisPhase.Exocytosis:
+                case PhagocytosisPhase.Ejection:
+                    // Already requested / happening
                     return true;
-
-                default:
-                    return false;
             }
 
             engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;

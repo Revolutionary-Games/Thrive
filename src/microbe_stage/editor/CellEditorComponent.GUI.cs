@@ -51,8 +51,8 @@ public partial class CellEditorComponent
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
-        ToolTipManager.Instance.ShowPopup(
-            TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            1.5f);
     }
 
     protected override void RegisterTooltips()
@@ -445,8 +445,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION").FormatSafe(
-                displayName, energyBalance.Consumption[subBar.Name]);
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
+                .FormatSafe(displayName, energyBalance.Consumption[subBar.Name]);
         }
     }
 

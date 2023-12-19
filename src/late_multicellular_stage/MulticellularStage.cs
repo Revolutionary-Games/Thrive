@@ -27,6 +27,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
+    [Export]
+    public NodePath WorldLightNodePath = null!;
+
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
     [JsonProperty]
@@ -42,6 +45,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+
+    private DirectionalLight worldLightNode = null!;
 
     private Camera? animationCamera;
 #pragma warning restore CA2213
@@ -86,6 +91,10 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
 
+    // TODO: change when there is dying implemented
+    [JsonIgnore]
+    public override bool HasAlivePlayer => HasPlayer;
+
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -125,6 +134,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
         selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
+        worldLightNode = GetNode<DirectionalLight>(WorldLightNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -635,6 +645,31 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
+    public void UpdateBackgroundPanorama()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            // Panoramas don't exist yet when above water so we need this null check
+            if (worldEnvironmentNode.Environment != null)
+            {
+                var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+                worldPanoramaSky.Panorama =
+                    GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+            }
+        }
+
+        UpdateAmbientLight();
+    }
+
+    public void UpdateAmbientLight()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            worldLightNode.LightColor = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Sunlight.Colour;
+        }
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -714,7 +749,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
-        // TODO: load background graphics
+        UpdateBackgroundPanorama();
     }
 
     protected override void SpawnPlayer()
@@ -777,6 +812,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 ProgressBarSystemPath.Dispose();
                 SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
+                WorldLightNodePath.Dispose();
 
                 interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
             }

@@ -57,6 +57,12 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 2.0f;
 
     /// <summary>
+    ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
+    ///   softlocks.
+    /// </summary>
+    public const float MAX_PLAYER_DYING_TIME = 10;
+
+    /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
@@ -177,20 +183,30 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 60.0f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1400.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    /// <summary>
+    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
+    /// </summary>
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 45;
+    public const float BASE_MOVEMENT_PER_HEX = 130;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
-    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
+
+    /// <summary>
+    ///   This is used to slightly debuff colony movement
+    /// </summary>
+    public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -203,17 +219,20 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    // Note that the speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 3.0f;
-    public const float CELL_MIN_ROTATION = 0.2f;
-    public const float CILIA_ROTATION_FACTOR = 0.08f;
-    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
+    // Note that the rotation speed is reversed, i.e. lower values mean faster
+    public const float CELL_MAX_ROTATION = 8.0f;
+    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
+    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
-    // These speed values are also reversed like the above
-    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
-    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
+    // TODO: remove if these stay unused
+    // // These speed values are also reversed like the above
+    // public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    // public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    // public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    // public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -223,11 +242,27 @@ public static class Constants
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
     public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+
+    /// <summary>
+    ///   Limits how often the cilia samples the rotation speed it should be at. Also rate limits how often the cilia
+    ///   pull physics is applied.
+    /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
-    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
-    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
+
+    /// <summary>
+    ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
+    ///   avoid having to create a ton of physics sensors.
+    /// </summary>
+    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
+
+    /// <summary>
+    ///   1 means that each cilia counts as 1 in the pulling force
+    /// </summary>
+    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
@@ -357,7 +392,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 14.0f;
+    public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -443,6 +478,11 @@ public static class Constants
     ///   recording buffer cache work better (as it should hopefully put these two categories to separate buckets)
     /// </summary>
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
+
+    /// <summary>
+    ///   How many collision a default sensor can detect at once
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -539,9 +579,11 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Cells need at least this much ATP to regenerate health passively
+    ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
+    ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to
+    ///   constant osmoregulation and processes running.
     /// </summary>
-    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 1;
+    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -642,10 +684,12 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
     public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
@@ -722,7 +766,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 240.0f;
+    public const float PILUS_BASE_DAMAGE = 235.0f;
 
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
@@ -730,6 +774,8 @@ public static class Constants
     public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
+
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT = 0.13f;
 
     /// <summary>
     ///   Damage a single injectisome stab does
@@ -866,7 +912,7 @@ public static class Constants
     /// <summary>
     ///   Maximum extra microbes to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_COLONY_SIZE = 3;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
@@ -1292,6 +1338,13 @@ public static class Constants
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
+    public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
+
+    /// <summary>
+    ///   If membrane scene is updated this should be updated as well
+    /// </summary>
+    public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
+
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     // TODO: combine to a common module with launcher as these are there as well
@@ -1477,8 +1530,7 @@ public static class Constants
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
         OS.HasFeature("standalone") ?
-            Path.Combine(
-                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+            Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
                 throw new InvalidOperationException("no current executable path"), "mods") :
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",
@@ -1527,6 +1579,9 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
+        (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;

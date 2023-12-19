@@ -123,8 +123,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac && p != PackagePlatform.Web)
-                    .ToList();
+                DefaultPlatforms = ThrivePlatforms.Where(p =>
+                    p != PackagePlatform.Mac && p != PackagePlatform.Web && p != PackagePlatform.Windows32).ToList();
             }
         }
 
@@ -293,8 +293,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             if (!File.Exists(expectedWebFile))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected web file ({expectedWebFile}) was not created on export. " +
+                ColourConsole.WriteErrorLine($"Expected web file ({expectedWebFile}) was not created on export. " +
                     "Are export templates installed?");
                 return false;
             }
@@ -635,8 +634,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (version != requiredVersion)
         {
-            ColourConsole.WriteErrorLine(
-                $"Godot is available but it is the wrong version (installed) {version} != " +
+            ColourConsole.WriteErrorLine($"Godot is available but it is the wrong version (installed) {version} != " +
                 $"{requiredVersion} (required)");
             return false;
         }

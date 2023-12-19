@@ -21,8 +21,7 @@ public class ReferenceResolver : IReferenceResolver
     {
         if (!referenceToObject.TryGetValue(reference, out var referencedObject))
         {
-            throw new KeyNotFoundException(
-                $"The reference {reference} was not found. " +
+            throw new KeyNotFoundException($"The reference {reference} was not found. " +
                 "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer] " +
                 "and make sure property order is sensible");
         }

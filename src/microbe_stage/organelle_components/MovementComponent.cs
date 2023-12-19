@@ -36,7 +36,8 @@ public class MovementComponent : IOrganelleComponent
         force = CalculateForce(organelle.Position, momentum);
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+        IWorldSimulation worldSimulation, float delta)
     {
         // Stop animating when being engulfed
         if (microbeEntity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
@@ -65,9 +66,9 @@ public class MovementComponent : IOrganelleComponent
     }
 
     public float UseForMovement(Vector3 wantedMovementDirection, CompoundBag compounds, Quat extraColonyRotation,
-        float delta)
+        bool isBacteria, float delta)
     {
-        return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, delta);
+        return CalculateMovementForce(compounds, wantedMovementDirection, extraColonyRotation, isBacteria, delta);
     }
 
     /// <summary>
@@ -106,7 +107,7 @@ public class MovementComponent : IOrganelleComponent
     ///   </para>
     /// </remarks>
     private float CalculateMovementForce(CompoundBag compounds, Vector3 wantedMovementDirection,
-        Quat extraColonyRotation, float elapsed)
+        Quat extraColonyRotation, bool isBacteria, float elapsed)
     {
         // Real force the flagella applied to the colony (considering rotation)
         var realForce = extraColonyRotation.Xform(force);
@@ -140,8 +141,10 @@ public class MovementComponent : IOrganelleComponent
 
         SetSpeedFactor(newAnimationSpeed);
 
-        // TODO: adjust the flagella force for the new physics engine
-        return Constants.FLAGELLA_BASE_FORCE * forceMagnitude;
+        if (isBacteria)
+            return Constants.FLAGELLA_BASE_FORCE * forceMagnitude;
+
+        return Constants.FLAGELLA_BASE_FORCE * forceMagnitude * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
     }
 }
 

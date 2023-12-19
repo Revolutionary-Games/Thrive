@@ -155,11 +155,12 @@
     <Compile Include="src\engine\common_components\ManualPhysicsControl.cs" />
     <Compile Include="src\engine\common_components\PathLoadedSceneVisuals.cs" />
     <Compile Include="src\engine\common_components\Physics.cs" />
+    <Compile Include="src\engine\common_components\PhysicsSensor.cs" />
     <Compile Include="src\engine\common_components\PhysicsShapeHolder.cs" />
     <Compile Include="src\engine\common_components\PlayerMarker.cs" />
     <Compile Include="src\engine\common_components\PredefinedVisuals.cs" />
     <Compile Include="src\engine\common_components\ReadableName.cs" />
-    <Compile Include="src\engine\common_components\RenderOrderOverride.cs" />
+    <Compile Include="src\engine\common_components\RenderPriorityOverride.cs" />
     <Compile Include="src\engine\common_components\ReproductionStatus.cs" />
     <Compile Include="src\engine\common_components\Selectable.cs" />
     <Compile Include="src\engine\common_components\SimpleShapeCreator.cs" />
@@ -187,9 +188,10 @@
     <Compile Include="src\engine\common_systems\PhysicsBodyCreationSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsBodyDisablingSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsCollisionManagementSystem.cs" />
+    <Compile Include="src\engine\common_systems\PhysicsSensorSystem.cs" />
     <Compile Include="src\engine\common_systems\PhysicsUpdateAndPositionSystem.cs" />
     <Compile Include="src\engine\common_systems\PredefinedVisualLoaderSystem.cs" />
-    <Compile Include="src\engine\common_systems\RenderOrderSystem.cs" />
+    <Compile Include="src\engine\common_systems\RenderPrioritySystem.cs" />
     <Compile Include="src\engine\common_systems\SimpleShapeCreatorSystem.cs" />
     <Compile Include="src\engine\common_systems\SoundEffectSystem.cs" />
     <Compile Include="src\engine\common_systems\SoundListenerSystem.cs" />
@@ -673,6 +675,7 @@
     <Compile Include="src\microbe_stage\systems\MicrobeMovementSoundSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeMovementSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobePhysicsCreationAndSizeSystem.cs" />
+    <Compile Include="src\microbe_stage\systems\MicrobeRenderPrioritySystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeReproductionSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeShaderSystem.cs" />
     <Compile Include="src\microbe_stage\systems\MicrobeVisualsSystem.cs" />
@@ -784,6 +787,7 @@
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
+    <Compile Include="src\saving\serializers\DictionaryWithJSONKeysConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\EntityWorldConverter.cs" />
@@ -947,7 +951,7 @@
       <Version>1.3.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.Collections.Deque">
-      <Version>1.1.1</Version>
+      <Version>1.2.1</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.2</Version>

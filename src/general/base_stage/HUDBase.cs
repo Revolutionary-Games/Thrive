@@ -35,8 +35,8 @@ public abstract class HUDBase : Control, IStageHUD
         // Fade out for that smooth satisfying transition
         stageBase.TransitionFinished = false;
 
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stageBase.OnFinishTransitioning);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f,
+            stageBase.OnFinishTransitioning);
     }
 
     protected override void Dispose(bool disposing)

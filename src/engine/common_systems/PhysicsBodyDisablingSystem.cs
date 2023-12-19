@@ -12,9 +12,12 @@
     ///   Handles disabling and enabling the physics body for an entity (disabled bodies don't exist in the physical
     ///   world at all)
     /// </summary>
+    [With(typeof(Physics))]
     [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(ManualPhysicsControl))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsOnMainThread]
-    public sealed class PhysicsBodyDisablingSystem : AComponentSystem<float, Physics>
+    public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
 
@@ -57,43 +60,69 @@
             base.Dispose();
         }
 
-        protected override void Update(float state, Span<Physics> components)
+        protected override void Update(float delta, in Entity entity)
         {
-            foreach (ref Physics physics in components)
+            ref var physics = ref entity.Get<Physics>();
+
+            // Skip objects that are up to date
+            if (physics.InternalDisableState == physics.BodyDisabled)
+                return;
+
+            var body = physics.Body;
+            if (body == null)
+                return;
+
+            if (physics.InternalDisableState)
             {
-                // Skip objects that are up to date
-                if (physics.InternalDisableState == physics.BodyDisabled)
-                    continue;
+                // Need to restore body
+                physics.InternalDisableState = false;
 
-                var body = physics.Body;
-                if (body == null)
-                    continue;
-
-                if (physics.InternalDisableState)
+                // In case the body was recreated, then we need to skip this (as the body instance was not removed
+                // from the world by us)
+                if (disabledBodies.Remove(body))
                 {
-                    // Need to restore body
-                    physics.InternalDisableState = false;
+                    physicalWorld.AddBody(body);
 
-                    // In case the body was recreated, then we need to skip this (as the body instance was not removed
-                    // from the world by us)
-                    if (disabledBodies.Remove(body))
+                    if (entity.Has<WorldPosition>())
                     {
-                        physicalWorld.AddBody(body);
+                        // Set new position to update the body to be where it should be now after not tracking its
+                        // position for a while (due to it being disabled)
+                        ref var newPosition = ref entity.Get<WorldPosition>();
+                        physicalWorld.SetBodyPositionAndRotation(body, newPosition.Position, newPosition.Rotation);
                     }
+
+#if DEBUG
+                    if (body.IsDetached)
+                        throw new Exception("Body is still detached after re-enabling");
+#endif
+                }
+
+                // TODO: should physics speed on the body or on the component be reset here?
+
+                // Reset physics applied impulse which may have accumulated to be very large
+                if (entity.Has<ManualPhysicsControl>())
+                {
+                    ref var manual = ref entity.Get<ManualPhysicsControl>();
+                    manual.ResetAccumulatedForce();
+                }
+            }
+            else
+            {
+                // Disable the body
+                physics.InternalDisableState = true;
+
+                if (disabledBodies.Add(body))
+                {
+                    physicalWorld.DetachBody(body);
+
+#if DEBUG
+                    if (!body.IsDetached)
+                        throw new Exception("Body didn't detach");
+#endif
                 }
                 else
                 {
-                    // Disable the body
-                    physics.InternalDisableState = true;
-
-                    if (disabledBodies.Add(body))
-                    {
-                        physicalWorld.DetachBody(body);
-                    }
-                    else
-                    {
-                        GD.PrintErr("Body that was to be disabled was already disabled somehow");
-                    }
+                    GD.PrintErr("Body that was to be disabled was already disabled somehow");
                 }
             }
         }

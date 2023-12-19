@@ -259,11 +259,10 @@ public partial class CellBodyPlanEditorComponent :
             {
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                    {
-                        Position = new Hex(q, r),
-                    });
+                isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
+                {
+                    Position = new Hex(q, r),
+                });
             }
             else
             {
@@ -339,9 +338,18 @@ public partial class CellBodyPlanEditorComponent :
     {
         var editedSpecies = Editor.EditedSpecies;
 
+        // Note that for the below calculations to work all cell types need to be positioned correctly. So we need
+        // to force that to happen here first. This also ensures that the skipped positioning to origin of the cell
+        // editor component (that is used as a special mode in multicellular) is performed.
+        foreach (var cellType in editedSpecies.CellTypes)
+        {
+            cellType.RepositionToOrigin();
+        }
+
         // Compute final cell layout positions and update the species
         // TODO: maybe in the future we want to switch to editing the full hex layout with the entire cells in this
-        // editor so this step can be skipped
+        // editor so this step can be skipped. Or another approach that keeps the shape the player worked on better
+        // than this approach that can move around the cells a lot.
         editedSpecies.Cells.Clear();
 
         foreach (var hexWithData in editedMicrobeCells)
@@ -948,9 +956,8 @@ public partial class CellBodyPlanEditorComponent :
         var islands = editedMicrobeCells.GetIslandHexes();
 
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(
-            editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
-                Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
+        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
+            Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islands);
 
         int nextFreeCell = 0;
 
@@ -1009,9 +1016,8 @@ public partial class CellBodyPlanEditorComponent :
 
         modelHolder.LoadFromAlreadyLoadedNode(billboard);
 
-        // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
-        // This is probably not needed but when converted to quads, maybe 0.01 of randomness in y-position would be
-        // fine?
+        // TODO: render priority setting for the cells? (similarly to how organelles are handled in the cell editor)
+        // Alternatively maybe 0.01 of randomness in y-position would be fine?
     }
 
     private void OnSpeciesNameChanged(string newText)

@@ -959,8 +959,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         world.UpdateWorldStatistics();
 
-        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(
-            world.CurrentGeneration,
+        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(world.CurrentGeneration,
             world.PatchesCount,
             world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture),
             world.TotalSpeciesCount,

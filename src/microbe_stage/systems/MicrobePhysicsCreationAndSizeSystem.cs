@@ -177,13 +177,11 @@
 
                     if (colonyMembranes != null)
                     {
-                        // Update full colony rotation properties now with the physics shape
+                        // Update full colony rotation properties. Note that this is here for historical reasons as
+                        // this used to use the shape of the entire colony here, which is only available easily here.
                         ref var colony = ref entity.Get<MicrobeColony>();
-                        colony.CalculateRotationMultiplier(shapeHolder.Shape);
+                        colony.CalculateRotationSpeed();
                     }
-
-                    // TODO: colony rotation rate update is elsewhere but it would make quite a bit of sense to move
-                    // that logic here so that it can take advantage of the real physics shape
                 }
 
                 // Skip updating the physics body shape if we got the same cached shape as we had before
@@ -209,11 +207,11 @@
             ref OrganelleContainer organelles, ref CellProperties cellProperties,
             Vector2[] membraneVertices, int vertexCount)
         {
+            UpdateRotationRate(ref organelles);
+
             var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
                 MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
                 cellProperties.IsBacteria);
-
-            UpdateRotationRate(shape, ref organelles);
 
             ++extraData.MicrobeShapesCount;
             ++extraData.TotalShapeCount;
@@ -231,7 +229,8 @@
                 MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
                 isBacteria);
 
-            // Rotation rate doesn't need to be updated as the microbe if ever ejected will create its own shape
+            // Rotation rate doesn't need to be updated as the microbe, if ever ejected, will create its own shape
+            // Colony rotation calculation uses the organelles directly to calculate the rotation.
 
             ++extraData.MicrobeShapesCount;
             ++extraData.TotalShapeCount;
@@ -243,14 +242,19 @@
             ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
             Vector2[] membraneVertices, int vertexCount, List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
         {
+            UpdateRotationRate(ref organelles);
+
             var combinedData = temporaryCombinedShapeData.Value;
+
+#if DEBUG
+            if (combinedData.Count > 0)
+                throw new Exception("Combined shape data list was not properly cleared on last use");
+#endif
 
             // Base microbe shape is always first
             combinedData.Add((
                 CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
                     vertexCount), Vector3.Zero, Quat.Identity));
-
-            UpdateRotationRate(combinedData[combinedData.Count - 1].Shape, ref organelles);
 
             List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>?
                 memberOrganelles = null;
@@ -404,10 +408,11 @@
         }
 
         /// <summary>
-        ///   Updates the microbe movement's used rotation rate. This is here as it is more efficient to calculate this
-        ///   when the physics shape is also done.
+        ///   Updates the microbe movement's used rotation rate.
+        ///   Note that the PhysicsShape is not currently used in rotation calculations, and this code is here due to
+        ///   earlier version requiring it.
         /// </summary>
-        private void UpdateRotationRate(PhysicsShape baseShape, ref OrganelleContainer organelleContainer)
+        private void UpdateRotationRate(ref OrganelleContainer organelleContainer)
         {
             if (organelleContainer.Organelles == null)
             {
@@ -416,7 +421,7 @@
             }
 
             organelleContainer.RotationSpeed =
-                MicrobeInternalCalculations.CalculateRotationSpeed(baseShape, organelleContainer.Organelles);
+                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles);
         }
 
         private PhysicsShape CreatePilusShape(float size)

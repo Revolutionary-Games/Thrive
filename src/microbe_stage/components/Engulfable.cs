@@ -63,7 +63,7 @@
         /// </remarks>
         public float InitialTotalEngulfableCompounds;
 
-        // public int OriginalRenderPriority;
+        public int OriginalRenderPriority;
 
         /// <summary>
         ///   The current step of phagocytosis process this engulfable is currently in. If not phagocytized,
@@ -74,7 +74,6 @@
         // This might not need a reference to the hostile engulfer as this should have AttachedToEntity to mark what
         // this is attached to
 
-        // TODO: implement this for when ejected
         /// <summary>
         ///   If this is partially digested when ejected from an engulfer, this is destroyed (with a dissolve animation
         ///   if detected to be possible)
@@ -90,6 +89,11 @@
             ///   If false the animation is complete and doesn't require actions
             /// </summary>
             public bool Interpolate;
+
+            /// <summary>
+            ///   Used to only trigger the digestion eject once
+            /// </summary>
+            public bool DigestionEjectionStarted;
 
             public float LerpDuration;
             public float AnimationTimeElapsed;
@@ -136,7 +140,8 @@
         ///   Called when this becomes engulfed and starts to be pulled in (this may get immediately thrown out if this
         ///   is not digestible by the attacker)
         /// </summary>
-        public static void OnBecomeEngulfed(this ref Engulfable engulfable, in Entity entity)
+        public static void OnBecomeEngulfed(this ref Engulfable engulfable, in Entity entity,
+            int engulferRenderPriority)
         {
             if (entity.Has<CellProperties>())
             {
@@ -186,23 +191,21 @@
             ref var spatial = ref entity.Get<SpatialInstance>();
             engulfable.OriginalScale = spatial.ApplyVisualScale ? spatial.VisualScale : Vector3.One;
 
-            // TODO: store original render priority?
-            // bulkTransport.OriginalRenderPriority = target.RenderPriority,
+            if (entity.Has<RenderPriorityOverride>())
+            {
+                ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
 
-            // TODO: render priority re-implementation (if we need this). Note that also
-            // EngulfingSystem.IngestEngulfable has code that interacts with render priorities
-            // Make the render priority of our organelles be on top of the highest possible render priority
-            // of the hostile engulfer's organelles
-            // var hostile = HostileEngulfer.Value;
-            // if (hostile != null)
-            // {
-            //     foreach (var organelle in organelles!)
-            //     {
-            //         var newPriority = Mathf.Clamp(Hex.GetRenderPriority(organelle.Position) +
-            //             hostile.OrganelleMaxRenderPriority, 0, Material.RenderPriorityMax);
-            //         organelle.UpdateRenderPriority(newPriority);
-            //     }
-            // }
+                engulfable.OriginalRenderPriority = renderPriority.RenderPriority;
+
+                // Make the render priority of our organelles be on top of the highest possible render priority
+                // of the hostile engulfer's organelles
+                // +2 is used here as the membrane also takes one render priority slot
+                renderPriority.RenderPriority = engulferRenderPriority + Constants.HEX_MAX_RENDER_PRIORITY + 2;
+                renderPriority.RenderPriorityApplied = false;
+
+                // TODO: the above doesn't take recursive engulfing into account but that's probably fine enough for now
+                // If the above is done, IngestEngulfableFromOtherEntity might also need changes
+            }
         }
 
         /// <summary>
@@ -232,7 +235,12 @@
         public static void OnExpelledFromEngulfment(this ref Engulfable engulfable, in Entity entity,
             ISpawnSystem spawnSystem, IWorldSimulation worldSimulation)
         {
-            if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
+            bool alreadyDeathProcessed = false;
+
+            if (entity.Has<Health>())
+                alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
+
+            if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
             {
                 if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
                 {
@@ -291,6 +299,14 @@
 
             if (entity.Has<CellProperties>())
             {
+                if (alreadyDeathProcessed)
+                {
+                    if (!entity.Has<TimedLife>())
+                    {
+                        GD.PrintErr("Microbe was ejected from engulfment without setting lifetime remaining");
+                    }
+                }
+
                 ref var cellProperties = ref entity.Get<CellProperties>();
 
                 // Reset wigglyness (which was cleared when this was engulfed)
@@ -311,8 +327,16 @@
             }
 
             // Reset render priority
-            // TODO: render priority
-            // engulfable.RenderPriority = animation.OriginalRenderPriority;
+            if (entity.Has<RenderPriorityOverride>())
+            {
+                ref var renderPriority = ref entity.Get<RenderPriorityOverride>();
+
+                renderPriority.RenderPriority = engulfable.OriginalRenderPriority;
+                renderPriority.RenderPriorityApplied = false;
+
+                // If recursive engulfing render priority is supported in the future, there might be a need to write
+                // some code here related to that
+            }
 
             // Restore scale
             ref var spatial = ref entity.Get<SpatialInstance>();
@@ -325,15 +349,6 @@
 #endif
 
             spatial.VisualScale = engulfable.OriginalScale;
-
-            // engulfable.OriginalRenderPriority
-
-            // Reset our organelles' render priority back to their original values
-            // TODO: unify this with the render priority re-apply that exists in EngulfingSystem.CompleteEjection
-            // foreach (var organelle in organelles!)
-            // {
-            //     organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
-            // }
 
             if (entity.Has<MicrobeEventCallbacks>())
             {

@@ -29,11 +29,10 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PhysicsBodyCreationSystem physicsBodyCreationSystem = null!;
     private PhysicsBodyDisablingSystem physicsBodyDisablingSystem = null!;
     private PhysicsCollisionManagementSystem physicsCollisionManagementSystem = null!;
+    private PhysicsSensorSystem physicsSensorSystem = null!;
     private CollisionShapeLoaderSystem collisionShapeLoaderSystem = null!;
     private PhysicsUpdateAndPositionSystem physicsUpdateAndPositionSystem = null!;
     private PredefinedVisualLoaderSystem predefinedVisualLoaderSystem = null!;
-
-    // private RenderOrderSystem renderOrderSystem = null! = null!;
 
     private SimpleShapeCreatorSystem simpleShapeCreatorSystem = null!;
     private SoundEffectSystem soundEffectSystem = null!;
@@ -77,6 +76,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
+    private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourAnimationSystem tintColourAnimationSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
@@ -160,6 +160,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsBodyCreationSystem(this, physicsBodyDisablingSystem, EntitySystem);
         physicsCollisionManagementSystem =
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
+        physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
         collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
@@ -199,11 +200,12 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
-        organelleTickSystem = new OrganelleTickSystem(EntitySystem, parallelRunner);
+        organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
+        microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
@@ -311,6 +313,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         predefinedVisualLoaderSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
         animationControlSystem.Update(delta);
+        microbeRenderPrioritySystem.Update(delta);
 
         simpleShapeCreatorSystem.Update(delta);
         collisionShapeLoaderSystem.Update(delta);
@@ -379,13 +382,13 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         organelleTickSystem.Update(delta);
 
+        physicsSensorSystem.Update(delta);
+
         fadeOutActionSystem.Update(delta);
         physicsBodyControlSystem.Update(delta);
 
         colonyBindingSystem.Update(delta);
         delayedColonyOperationSystem.Update(delta);
-
-        // renderOrderSystem.Update(delta);
 
         cellBurstEffectSystem.Update(delta);
 
@@ -409,8 +412,11 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         base.OnEntityDestroyed(in entity);
 
+        // This doesn't seem to be required as the bodies are fully destroyed anyway so they can't record anything
+        // physicsCollisionManagementSystem.OnEntityDestroyed(entity);
         physicsBodyDisablingSystem.OnEntityDestroyed(entity);
         physicsBodyCreationSystem.OnEntityDestroyed(entity);
+        physicsSensorSystem.OnEntityDestroyed(entity);
 
         engulfingSystem.OnEntityDestroyed(entity);
         colonyStatsUpdateSystem.OnEntityDestroyed(entity);
@@ -456,6 +462,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             physicsBodyCreationSystem.Dispose();
             physicsBodyDisablingSystem.Dispose();
             physicsCollisionManagementSystem.Dispose();
+            physicsSensorSystem.Dispose();
             physicsUpdateAndPositionSystem.Dispose();
             collisionShapeLoaderSystem.Dispose();
             predefinedVisualLoaderSystem.Dispose();
@@ -493,6 +500,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
             pilusDamageSystem.Dispose();
             slimeSlowdownSystem.Dispose();
             microbePhysicsCreationAndSizeSystem.Dispose();
+            microbeRenderPrioritySystem.Dispose();
             microbeReproductionSystem.Dispose();
             tintColourAnimationSystem.Dispose();
             toxinCollisionSystem.Dispose();

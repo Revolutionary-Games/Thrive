@@ -27,9 +27,11 @@ public class CellLayout<T> : HexLayout<T>
     {
     }
 
-    // TODO: remove if this doesn't end up being necessary
-    /*[JsonIgnore]
-    public IReadOnlyList<T> Cells => existingHexes;*/
+    [JsonConstructor]
+    public CellLayout(List<T> existingHexes, Action<T>? onAdded, Action<T>? onRemoved) : base(existingHexes, onAdded,
+        onRemoved)
+    {
+    }
 
     /// <summary>
     ///   The center of mass of the contained organelles in all cells

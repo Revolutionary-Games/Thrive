@@ -40,7 +40,9 @@ archive and run the Godot executable in it.
 Git with LFS
 ------------
 
-To clone the Thrive repository properly you need Git with Git LFS.
+To clone the Thrive repository properly you need Git with Git
+LFS. Note that the GitHub option to download as .zip will not work
+(unless that is updated in the future to include LFS assets).
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
@@ -598,6 +600,16 @@ If you get errors from any files in the Scripts folder, for example
 `Thrive\Scripts\Program.cs`, then you likely have an outdated version
 of the submodules. Running the above submodule update command should
 fix these kind of errors as well.
+
+### Godot asset import fails / images can't be opened
+
+The most likely case with Godot not being able to import the binary
+assets and none of the game images being able to be opened with an
+image viewer, is that the Thrive repository was not cloned with the
+LFS data. Please see above the LFS instructions and try doing it again
+with those instructions until the downloaded image files can be
+opened. After that Godot should be able to import all the assets
+properly.
 
 ### Troubleshooting regarding Godot automatically breaking
 

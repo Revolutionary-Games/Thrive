@@ -55,12 +55,6 @@ public class OrganelleLayout<T> : HexLayout<T>
         }
     }
 
-    /// <summary>
-    ///   The highest assigned render priority from all of the organelles.
-    /// </summary>
-    [JsonIgnore]
-    public int MaxRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
-
     public override bool CanPlace(T hex)
     {
         return CanPlace(hex, false);
@@ -106,15 +100,21 @@ public class OrganelleLayout<T> : HexLayout<T>
         return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
     }
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
         var centerOfMass = CenterOfMass;
+
+        // Skip if center of mass is already correct
+        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
+            return false;
 
         foreach (var organelle in Organelles)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
             organelle.Position -= centerOfMass;
         }
+
+        return true;
     }
 
     protected override IEnumerable<Hex> GetHexComponentPositions(T hex)

@@ -195,8 +195,8 @@ public class InProgressLoad
                 {
                     MainMenu.OnEnteringGame();
 
-                    TransitionManager.Instance.AddSequence(
-                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+                        () => LoadingScreen.Instance.Hide(), false, false);
 
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
                         () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);

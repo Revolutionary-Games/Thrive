@@ -26,9 +26,10 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            var body = physics.Body;
-            if (physics.BodyDisabled || body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
+
+            var body = physics.Body!;
 
             ref var control = ref entity.Get<ManualPhysicsControl>();
 
@@ -62,14 +63,14 @@
 
                 if (control.ImpulseToGive != Vector3.Zero)
                 {
-                    control.ImpulseToGive = Vector3.Zero;
                     physicalWorld.GiveImpulse(body, control.ImpulseToGive);
+                    control.ImpulseToGive = Vector3.Zero;
                 }
 
                 if (control.AngularImpulseToGive != Vector3.Zero)
                 {
-                    control.AngularImpulseToGive = Vector3.Zero;
                     physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive);
+                    control.AngularImpulseToGive = Vector3.Zero;
                 }
 
                 control.PhysicsApplied = true;

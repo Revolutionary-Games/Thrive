@@ -184,6 +184,19 @@ public class CompoundBag : ICompoundStorage
     }
 
     /// <summary>
+    ///   Copies the useful data from another bag
+    /// </summary>
+    public void CopyUsefulFrom(CompoundBag other)
+    {
+        ClearUseful();
+
+        foreach (var useful in other.usefulCompounds)
+        {
+            usefulCompounds.Add(useful);
+        }
+    }
+
+    /// <summary>
     ///   Returns true only if this compound bag contains any compounds whatsoever
     /// </summary>
     /// <returns>True if not empty</returns>

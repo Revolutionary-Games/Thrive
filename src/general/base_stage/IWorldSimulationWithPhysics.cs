@@ -17,5 +17,8 @@ public interface IWorldSimulationWithPhysics : IWorldSimulation
 
     public NativePhysicsBody CreateStaticBody(PhysicsShape shape, Vector3 position, Quat rotation);
 
+    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quat rotation,
+        bool detectSleepingBodies = false, bool detectStaticBodies = false);
+
     public void DestroyBody(NativePhysicsBody body);
 }

@@ -36,6 +36,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [Export]
     public NodePath BodyEditorLightPath = null!;
 
+    [Export]
+    public NodePath WorldEnvironmentNodePath = null!;
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -58,6 +61,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     private Camera body3DEditorCamera = null!;
     private Light bodyEditorLight = null!;
+
+    private WorldEnvironment worldEnvironmentNode = null!;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -192,6 +197,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
         cellEditorLight = GetNode<Light>(CellEditorLightPath);
+
+        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
         bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
@@ -423,6 +430,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 NoCellTypeSelectedPath.Dispose();
                 CellEditorCameraPath.Dispose();
                 CellEditorLightPath.Dispose();
+                WorldEnvironmentNodePath.Dispose();
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
@@ -440,7 +448,17 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
 
-        // TODO: 3D editor backgrounds for patches
+        UpdateBackgroundPanorama(patch.BiomeTemplate);
+    }
+
+    private void UpdateBackgroundPanorama(Biome biome)
+    {
+        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
+
+        // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
+        // in the editor)
     }
 
     private void SetWorldSceneObjectVisibilityWeControl()
@@ -469,8 +487,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(
-                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+                1.5f);
             return;
         }
 

@@ -20,6 +20,7 @@
     [With(typeof(CellProperties))]
     [With(typeof(SpatialInstance))]
     [With(typeof(EntityMaterial))]
+    [With(typeof(RenderPriorityOverride))]
     [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
@@ -149,8 +150,7 @@
             }
 
             // Material is initialized in _Ready so this is after AddChild of membrane
-            tempMaterialsList.Add(
-                cellProperties.CreatedMembrane!.MaterialToEdit ??
+            tempMaterialsList.Add(cellProperties.CreatedMembrane!.MaterialToEdit ??
                 throw new Exception("Membrane didn't set material to edit"));
 
             // TODO: should this hide organelles when the microbe is dead? (hiding / deleting organelle instances is
@@ -162,6 +162,9 @@
             tempMaterialsList.Clear();
 
             organelleContainer.OrganelleVisualsCreated = true;
+
+            // Need to update render priority of the visuals
+            entity.Get<RenderPriorityOverride>().RenderPriorityApplied = false;
 
             // Force recreation of physics body in case organelles changed to make sure the shape matches growth status
             cellProperties.ShapeCreated = false;
@@ -335,8 +338,6 @@
                 {
                     tempMaterialsList[i].SetShaderParam("tint", organelleColour);
                 }
-
-                // TODO: render order?
             }
 
             // Delete unused visuals
@@ -367,7 +368,7 @@
 
             // Limit concurrent tasks
             int max = Math.Max(1, executor.ParallelTasks - Constants.MEMBRANE_TASKS_LEAVE_EMPTY_THREADS);
-            if (runningMembraneTaskCount + 1 >= max)
+            if (runningMembraneTaskCount >= max)
                 return;
 
             // Don't uselessly spawn too many tasks

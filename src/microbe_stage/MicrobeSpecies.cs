@@ -53,6 +53,11 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public float MembraneRigidity { get; set; }
 
+    /// <summary>
+    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    /// </summary>
+    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
@@ -102,10 +107,11 @@ public class MicrobeSpecies : Species, ICellProperties
         UpdateInitialCompounds();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public override void UpdateInitialCompounds()
@@ -228,8 +234,7 @@ public class MicrobeSpecies : Species, ICellProperties
     public override string GetDetailString()
     {
         return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,
@@ -238,7 +243,6 @@ public class MicrobeSpecies : Species, ICellProperties
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

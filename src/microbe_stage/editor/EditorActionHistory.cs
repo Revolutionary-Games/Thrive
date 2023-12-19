@@ -341,8 +341,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                     // from the oldest data towards the newer data
                     if (!newData.TryMerge(currentData))
                     {
-                        throw new InvalidOperationException(
-                            "Action data that should have accepted a merge, didn't");
+                        throw new InvalidOperationException("Action data that should have accepted a merge, didn't");
                     }
                 }
 

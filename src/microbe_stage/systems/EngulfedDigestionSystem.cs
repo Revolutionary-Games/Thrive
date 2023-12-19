@@ -94,7 +94,12 @@
                 // is overloaded
                 if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)
                 {
-                    engulfer.EjectEngulfable(ref engulfable);
+                    if (engulfer.EjectEngulfable(ref engulfable))
+                    {
+                        entity.SendNoticeIfPossible(
+                            new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
+                    }
+
                     continue;
                 }
 
@@ -121,10 +126,12 @@
 
                     case DigestCheckResult.MissingEnzyme:
                     {
-                        engulfer.EjectEngulfable(ref engulfable);
+                        if (engulfer.EjectEngulfable(ref engulfable))
+                        {
+                            entity.SendNoticeIfPossible(new LocalizedString("NOTICE_ENGULF_MISSING_ENZYME",
+                                engulfable.RequisiteEnzymeToDigest!.Name));
+                        }
 
-                        entity.SendNoticeIfPossible(new LocalizedString("NOTICE_ENGULF_MISSING_ENZYME",
-                            engulfable.RequisiteEnzymeToDigest!.Name));
                         continue;
                     }
 
@@ -220,6 +227,10 @@
                 if (initialTotalEngulfableCompounds != 0)
                 {
                     engulfable.DigestedAmount = 1 - (totalAmountLeft / initialTotalEngulfableCompounds);
+
+                    // Digested amount can become negative if the calculated initial compounds is not accurate anymore
+                    if (engulfable.DigestedAmount < 0)
+                        engulfable.DigestedAmount = 0;
                 }
                 else
                 {

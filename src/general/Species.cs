@@ -43,6 +43,18 @@ public abstract class Species : ICloneable
     public IReadOnlyDictionary<Compound, float> BaseReproductionCost =>
         cachedBaseReproductionCost ??= CalculateBaseReproductionCost();
 
+    /// <summary>
+    ///   Unique id of this species, used to identify this
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     In the previous version a string name was used to identify species, but it was just the word species
+    ///     followed by a sequential number, so now this is an actual number.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public uint ID { get; private set; }
+
     public string Genus { get; set; }
     public string Epithet { get; set; }
 
@@ -88,18 +100,6 @@ public abstract class Species : ICloneable
     public int Generation { get; set; } = 1;
 
     /// <summary>
-    ///   Unique id of this species, used to identify this
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     In the previous version a string name was used to identify species, but it was just the word species
-    ///     followed by a sequential number, so now this is an actual number.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public uint ID { get; private set; }
-
-    /// <summary>
     ///   This is the genome of the species
     /// </summary>
     [JsonIgnore]
@@ -139,7 +139,8 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
-    public abstract void RepositionToOrigin();
+    /// <returns>True when repositioning happened, false if this was already positioned correctly</returns>
+    public abstract bool RepositionToOrigin();
 
     public void SetPopulationFromPatches(long population)
     {
@@ -287,8 +288,7 @@ public abstract class Species : ICloneable
 
     public virtual string GetDetailString()
     {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            FormattedNameBbCode,
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
             Population,

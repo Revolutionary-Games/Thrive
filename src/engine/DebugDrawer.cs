@@ -193,8 +193,7 @@ public class DebugDrawer : ControlWithInput
                 // Put some extra buffer in the memory advice
                 extraNeededDrawMemory += SingleTriangleDrawMemoryUse * 100;
 
-                GD.PrintErr(
-                    "Debug drawer hit immediate geometry memory limit (extra needed memory: " +
+                GD.PrintErr("Debug drawer hit immediate geometry memory limit (extra needed memory: " +
                     $"{extraNeededDrawMemory / 1024} KiB), some things were not rendered " +
                     "(this message won't repeat even if the problem occurs again)");
             }

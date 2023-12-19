@@ -112,8 +112,7 @@
             }
             catch (Exception e)
             {
-                GD.PrintErr(
-                    $"Cannot apply all fade out actions due to missing {nameof(Physics)} " +
+                GD.PrintErr($"Cannot apply all fade out actions due to missing {nameof(Physics)} " +
                     "component on entity: ", e);
             }
         }
@@ -132,8 +131,7 @@
             }
             catch (Exception e)
             {
-                GD.PrintErr(
-                    $"Cannot apply all fade out actions due to missing {nameof(ManualPhysicsControl)} " +
+                GD.PrintErr($"Cannot apply all fade out actions due to missing {nameof(ManualPhysicsControl)} " +
                     "component on entity: ", e);
             }
         }
@@ -169,8 +167,7 @@
             }
             catch (Exception e)
             {
-                GD.PrintErr(
-                    $"Cannot apply all fade out actions due to missing {nameof(SpatialInstance)} " +
+                GD.PrintErr($"Cannot apply all fade out actions due to missing {nameof(SpatialInstance)} " +
                     "or the visuals not being particles: ", e);
             }
         }

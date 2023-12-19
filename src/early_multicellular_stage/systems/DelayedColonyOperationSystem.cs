@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -27,19 +28,35 @@
         }
 
         public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
-            int colonyTargetIndex, CellTemplate cellTemplate, Species species, IWorldSimulation worldSimulation,
-            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
+            int colonyTargetIndex, CellTemplate cellTemplate, EarlyMulticellularSpecies species,
+            IWorldSimulation worldSimulation,
+            EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
         {
+            if (colonyTargetIndex == 0)
+                throw new ArgumentException("Cannot delay add the root colony cell");
+
+            int bodyPlanIndex = colonyTargetIndex;
+
+            if (bodyPlanIndex < 0 || bodyPlanIndex >= species.Cells.Count)
+            {
+                GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
+                    "a valid value");
+                bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
+            }
+
             var attachPosition = new AttachedToEntity
             {
                 AttachedTo = colonyEntity,
             };
 
+            // For now we rely on absolute positions instead of needing to wait until all relevant membranes are ready
+            // and calculate the attach position like that
             attachPosition.CreateMulticellularAttachPosition(cellTemplate.Position, cellTemplate.Orientation);
 
             var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
                 colonyPosition.Position + colonyPosition.Rotation.Xform(attachPosition.RelativePosition), true,
-                cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud);
+                (cellTemplate.CellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
+                giveStartingCompounds);
 
             // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
             // or attaching fails
@@ -116,7 +133,11 @@
                 }
 
                 // Growing a new colony
-                var colony = new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State);
+                var colony = new MicrobeColony(true, entity, entity.Get<MicrobeControl>().State)
+                {
+                    // Mark as entity weight applied until the new members are attached
+                    EntityWeightApplied = true,
+                };
 
                 recorderEntity.Set(colony);
             }
@@ -129,6 +150,8 @@
                 // at multicellular growth etc. info here that might not even exist in all cases so a fallback like
                 // this might be needed
                 bodyPlanIndex = colony.ColonyMembers.Length;
+
+                colony.EntityWeightApplied = true;
             }
 
             ref var species = ref entity.Get<EarlyMulticellularSpeciesMember>();
@@ -141,7 +164,7 @@
             foreach (var cellTemplate in cellsToGrow)
             {
                 CreateDelayAttachedMicrobe(ref parentPosition, entity, bodyPlanIndex++, cellTemplate, species.Species,
-                    worldSimulation, recorder, spawnSystem);
+                    worldSimulation, recorder, spawnSystem, true);
 
                 added = true;
             }
