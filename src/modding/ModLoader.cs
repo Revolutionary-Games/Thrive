@@ -41,8 +41,8 @@ public class ModLoader : Node
         }
         catch (Exception e)
         {
-            GD.PrintErr(
-                "Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ", e);
+            GD.PrintErr("Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ",
+                e);
         }
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet

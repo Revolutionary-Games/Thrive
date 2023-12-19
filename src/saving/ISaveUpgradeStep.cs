@@ -272,8 +272,7 @@
             var references = CreateObjectReferenceDatabase((JObject?)editor["history"] ??
                 throw new JsonException("editor history object missing"));
 
-            ResolveObjectReferences(
-                (JObject?)cellEditorTab["editedMicrobeOrganelles"] ??
+            ResolveObjectReferences((JObject?)cellEditorTab["editedMicrobeOrganelles"] ??
                 throw new JsonException("edited microbe organelles has disappeared"), references);
 
             editor["selectedEditorTab"] = gui.GetValue("selectedEditorTab");

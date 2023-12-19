@@ -56,8 +56,7 @@
             if (updatedSpecies == null)
                 throw new KeyNotFoundException($"No species with ID {speciesID} found in generation history");
 
-            return new SpeciesRecordFull(
-                updatedSpecies,
+            return new SpeciesRecordFull(updatedSpecies,
                 speciesRecord.Population,
                 speciesRecord.MutatedPropertiesID,
                 speciesRecord.SplitFromID);

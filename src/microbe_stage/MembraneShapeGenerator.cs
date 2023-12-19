@@ -82,8 +82,7 @@ public class MembraneShapeGenerator
 
         for (int i = MembraneResolution; i > 0; i--)
         {
-            startingBuffer.Add(new Vector2(
-                cellDimensions - 2 * cellDimensions / MembraneResolution * i,
+            startingBuffer.Add(new Vector2(cellDimensions - 2 * cellDimensions / MembraneResolution * i,
                 cellDimensions));
         }
 
@@ -95,8 +94,7 @@ public class MembraneShapeGenerator
 
         for (int i = MembraneResolution; i > 0; i--)
         {
-            startingBuffer.Add(new Vector2(
-                -cellDimensions + 2 * cellDimensions / MembraneResolution * i,
+            startingBuffer.Add(new Vector2(-cellDimensions + 2 * cellDimensions / MembraneResolution * i,
                 -cellDimensions));
         }
 

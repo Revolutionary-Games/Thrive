@@ -562,8 +562,7 @@ public class NativeLibs
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteErrorLine(
-                $"CMake configuration failed (exit: {result.ExitCode}). " +
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
                 "Do you have the required build tools installed?");
 
             return false;
@@ -641,8 +640,7 @@ public class NativeLibs
         startInfo.ArgumentList.Add("-t");
 
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
-        startInfo.ArgumentList.Add(
-            $"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
 
         if (options.Verbose)
         {
@@ -718,8 +716,7 @@ public class NativeLibs
 
                 shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
 
-                throw new NotImplementedException(
-                    "TODO: test (this was written based on the 64-bit windows version)");
+                throw new NotImplementedException("TODO: test (this was written based on the 64-bit windows version)");
             }
 
             case PackagePlatform.Mac:

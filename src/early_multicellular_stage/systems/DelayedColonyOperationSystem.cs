@@ -39,8 +39,7 @@
 
             if (bodyPlanIndex < 0 || bodyPlanIndex >= species.Cells.Count)
             {
-                GD.PrintErr(
-                    $"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
+                GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
                     "a valid value");
                 bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
             }

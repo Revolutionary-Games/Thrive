@@ -404,8 +404,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
-        return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+        return new Vector3((int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
             0,
             (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
     }

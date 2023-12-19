@@ -72,8 +72,7 @@
                 if (configuration.UseBiodiversityForceSplit)
                 {
                     // TODO: implement this
-                    throw new NotImplementedException(
-                        "Marking biodiversity increase as split is not implemented");
+                    throw new NotImplementedException("Marking biodiversity increase as split is not implemented");
                 }
 
                 break;

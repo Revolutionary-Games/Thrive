@@ -208,8 +208,8 @@ public static class SpawnHelpers
 
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
-        entity.Set(new WorldPosition(location, new Quat(
-            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+        entity.Set(new WorldPosition(location,
+            new Quat(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
 
         // TODO: redo chunk visuals with the loadable visual definitions
         // entity.Set(new PredefinedVisuals
@@ -815,8 +815,8 @@ public static class SpawnHelpers
 
             // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
             // scale, but entities shouldn't anyway be allowed to have a root node scale
-            location = new Transform(
-                new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)), location.origin);
+            location = new Transform(new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)),
+                location.origin);
         }
 
         worldNode.AddChild(resourceEntity);

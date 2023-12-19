@@ -106,8 +106,7 @@ public class LocalizedStringBuilder : IFormattable
 
     public string ToString(string? format, IFormatProvider? formatProvider)
     {
-        return string.Format(
-            formatProvider ?? CultureInfo.CurrentCulture,
+        return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
             format ?? FormatString ?? string.Empty,
             items.ToArray<object>());
     }

@@ -199,8 +199,7 @@
 
                     if (memberOrganelles.Organelles == null)
                     {
-                        GD.PrintErr(
-                            "Can't use microbe colony member organelle positions for divide separation " +
+                        GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
                             "calculation as they aren't available");
                         continue;
                     }

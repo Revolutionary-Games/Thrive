@@ -163,7 +163,7 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
     private void ResetPrimaryIfMatchesFallback(TKey key)
     {
         if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue) &&
-            primaryValue is { })
+            primaryValue is not null)
         {
             if (primaryValue.Equals(fallbackValue))
             {

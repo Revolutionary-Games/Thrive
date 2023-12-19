@@ -61,8 +61,9 @@
         /// <returns>The per-species results with all species cloned</returns>
         public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
         {
-            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
-                (Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+            return results.ToDictionary(r => r.Key.ID,
+                r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
+                    r.Value.SplitFrom?.ID));
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -880,8 +881,8 @@
                     if (globalPopulation <= 0)
                     {
                         // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
-                        LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                "TIMELINE_SPECIES_EXTINCT", species.FormattedName),
+                        LogEventGloballyAndLocally(world, patch,
+                            new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedName),
                             species.PlayerSpecies, "extinction.png");
 
                         continue;
@@ -904,8 +905,7 @@
                     }
                     else
                     {
-                        patch.LogEvent(new LocalizedString(
-                                "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
+                        patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
                             species.PlayerSpecies, "extinctionLocal.png");
                     }
 

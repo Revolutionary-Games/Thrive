@@ -129,8 +129,8 @@ public static class MicrobeInternalCalculations
 
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
     {
-        return organelles.Where(
-            o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
+        return organelles.Where(o => o.Definition.Components.Storage != null)
+            .Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive

@@ -217,8 +217,7 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
         // Ensure thread unsafe operation doesn't happen
         if (Processing)
         {
-            throw new InvalidOperationException(
-                "Can't use entity create at this time, use deferred create");
+            throw new InvalidOperationException("Can't use entity create at this time, use deferred create");
         }
 
         return entities.CreateEntity();

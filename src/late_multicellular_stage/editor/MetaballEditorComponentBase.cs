@@ -128,7 +128,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     }
 
     /// <summary>
-    ///   If true a hex move is in progress and can be canceled
+    ///   If true a metaball move is in progress and can be canceled
     /// </summary>
     [JsonIgnore]
     public bool CanCancelMove => MovingPlacedMetaball != null;
@@ -329,10 +329,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     }
 
     /// <summary>
-    ///   Begin hex movement under the cursor
+    ///   Begin metaball movement under the cursor
     /// </summary>
     [RunOnKeyDown("e_move")]
-    public bool StartHexMoveAtCursor()
+    public bool StartMetaballMoveAtCursor()
     {
         if (!Visible)
             return false;
@@ -347,22 +347,22 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         GetMouseMetaball(out _, out var metaball);
 
         if (metaball != null)
-            StartHexMove(metaball);
+            StartMetaballMove(metaball);
 
         // Once a move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelState();
         return true;
     }
 
-    public void StartHexMove(TMetaball selectedHex)
+    public void StartMetaballMove(TMetaball selectedMetaball)
     {
         if (MovingPlacedMetaball != null)
         {
             // Already moving something! some code went wrong
-            throw new InvalidOperationException("Can't begin hex move while another in progress");
+            throw new InvalidOperationException("Can't begin metaball move while another in progress");
         }
 
-        MovingPlacedMetaball = selectedHex;
+        MovingPlacedMetaball = selectedMetaball;
 
         OnMoveActionStarted();
 
@@ -373,7 +373,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         UpdateSymmetryButton();
     }
 
-    public void StartHexMoveWithSymmetry(IEnumerable<TMetaball> selectedHexes)
+    public void StartMetaballMoveWithSymmetry(IEnumerable<TMetaball> selectedMetaballs)
     {
         // TODO: implement symmetry move for metaballs (note also not implemented for hex editor yet)
         throw new NotImplementedException();
@@ -404,10 +404,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     }
 
     /// <summary>
-    ///   Remove the hex under the cursor (if there is one)
+    ///   Remove the metaball under the cursor (if there is one)
     /// </summary>
     [RunOnKeyDown("e_delete")]
-    public void RemoveHexAtCursor()
+    public void RemoveMetaballAtCursor()
     {
         GetMouseMetaball(out var position, out var metaball);
 

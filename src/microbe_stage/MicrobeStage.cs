@@ -323,8 +323,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
-            TutorialState.SendEvent(
-                TutorialEventType.EnteredMicrobeStage,
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
                 new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
         }
         else
@@ -445,8 +444,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         previousSpecies.Obsolete = true;
 
         // Log becoming multicellular in the timeline
-        GameWorld.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
@@ -773,8 +771,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (spawnedPlayer)
         {
             // Random location on respawn
-            spawnLocation = new Vector3(
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            spawnLocation = new Vector3(random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             WorldSimulation.ClearPlayerLocationDependentCaches();
