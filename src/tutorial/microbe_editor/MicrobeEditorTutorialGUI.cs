@@ -420,7 +420,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         // TODO: it seems like Godot doesn't have a scroll into view so we need to ensure that the scroll cannot be too
         // much or too little ever
         if (eitherVisible)
-            RightPanelScrollContainer.ScrollVertical = 1000;
+            RightPanelScrollContainer.ScrollVertical = 500;
     }
 
     protected override void Dispose(bool disposing)
