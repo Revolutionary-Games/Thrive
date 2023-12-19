@@ -69,7 +69,7 @@ public enum TutorialEventType
     MicrobePlayerReadyToEdit,
 
     /// <summary>
-    ///   Player presses the button the exit the microbe editor but has made  no changes
+    ///   Player presses the button the exit the microbe editor but has made no changes
     /// </summary>
     MicrobeEditorNoChangesMade,
 
@@ -114,7 +114,7 @@ public enum TutorialEventType
     MicrobeEditorOrganellePlaced,
 
     /// <summary>
-    ///   Player modified an organelle
+    ///   Player modified an organelle (modification was started, not finished yet)
     /// </summary>
     MicrobeEditorOrganelleModified,
 

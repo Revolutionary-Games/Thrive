@@ -904,10 +904,11 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        // This is triggered when no changes have been made
+        // This is triggered when no changes have been made. A more accurate way would be to check the action history
+        // for any undoable action, but that isn't accessible here currently so this is probably good enough.
         if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
         {
-            TutorialState tutorialState = Editor.CurrentGame.TutorialState;
+            var tutorialState = Editor.CurrentGame.TutorialState;
 
             if (tutorialState.Enabled)
             {
@@ -1190,13 +1191,13 @@ public partial class CellEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        var organelle = ActiveActionName;
+        var organelle = ActiveActionName!;
 
-        if (AddOrganelle(organelle!))
+        if (AddOrganelle(organelle))
         {
             // Only trigger tutorial if an organelle was really placed
             TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced,
-                new OrganellePlacedEventArgs(GetOrganelleDefinition(organelle!)), this);
+                new OrganellePlacedEventArgs(GetOrganelleDefinition(organelle)), this);
         }
     }
 

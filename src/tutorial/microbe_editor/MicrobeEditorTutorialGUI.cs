@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Microbe editor tutorial
@@ -90,6 +91,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public ControlHighlight? AtpBalanceBarHighlight { get; private set; }
 
+    /// <summary>
+    ///   This is used to ensure scroll position shows elements related to active tutorials
+    /// </summary>
     public ScrollContainer RightPanelScrollContainer { get; set; } = null!;
 
     public bool EditorEntryReportVisible
@@ -405,11 +409,16 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public void HandleShowingATPBarHighlight()
     {
+        if (AtpBalanceBarHighlight == null)
+            throw new InvalidOperationException("Balance bar highlight control is not set");
+
         bool eitherVisible = atpBalanceIntroduction.Visible || negativeAtpBalanceTutorial.Visible;
-        AtpBalanceBarHighlight!.Visible = eitherVisible;
+        AtpBalanceBarHighlight.Visible = eitherVisible;
 
         // Force the scroll panel to scroll down
         // This is done to show the ATP Balance Bar
+        // TODO: it seems like Godot doesn't have a scroll into view so we need to ensure that the scroll cannot be too
+        // much or too little ever
         if (eitherVisible)
             RightPanelScrollContainer.ScrollVertical = 1000;
     }

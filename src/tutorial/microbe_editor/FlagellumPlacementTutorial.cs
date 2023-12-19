@@ -7,6 +7,8 @@
     /// </summary>
     public class FlagellumPlacementTutorial : TutorialPhase
     {
+        private readonly OrganelleDefinition flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
+
         public override string ClosedByName => "FlagellumPlacementTutorial";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
@@ -23,8 +25,6 @@
                 {
                     if (args is OrganellePlacedEventArgs organellePlacedArgs)
                     {
-                        OrganelleDefinition flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
-
                         if (organellePlacedArgs.Definition.InternalName != flagellum.InternalName)
                             break;
 
