@@ -80,16 +80,17 @@
         private void DealPilusDamage(ref MicrobePhysicsExtraData ourExtraData, ref PhysicsCollision collision,
             in Entity targetEntity)
         {
+            // Skip applying damage while previous damage cooldown is still active
+            ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
+
+            if (cooldown.IsInCooldown())
+                return;
+
             ref var targetHealth = ref targetEntity.Get<Health>();
 
             if (ourExtraData.IsSubShapeInjectisomeIfIsPilus(collision.FirstSubShapeData))
             {
-                // Injectisome attack, this deals non-physics force based damage, so this uses a cooldown
-                ref var cooldown = ref collision.SecondEntity.Get<DamageCooldown>();
-
-                if (cooldown.IsInCooldown())
-                    return;
-
+                // Injectisome attack
                 targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(),
                     Constants.INJECTISOME_BASE_DAMAGE, "injectisome");
 
@@ -99,11 +100,6 @@
 
             float damage = Constants.PILUS_BASE_DAMAGE * collision.PenetrationAmount;
 
-            // TODO: as this will be done differently ensure game balance still works
-            // // Give immunity to prevent massive damage at some angles
-            // // https://github.com/Revolutionary-Games/Thrive/issues/3267
-            // MakeInvulnerable(Constants.PILUS_INVULNERABLE_TIME);
-
             // Skip too small damage
             if (damage < 0.01f)
                 return;
@@ -112,6 +108,9 @@
                 damage = Constants.PILUS_MAX_DAMAGE;
 
             targetHealth.DealMicrobeDamage(ref collision.SecondEntity.Get<CellProperties>(), damage, "pilus");
+
+            cooldown.StartDamageScaledCooldown(damage, Constants.PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN,
+                Constants.PILUS_MAX_DAMAGE, Constants.PILUS_MIN_COOLDOWN, Constants.PILUS_MAX_COOLDOWN);
         }
     }
 }

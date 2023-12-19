@@ -786,9 +786,19 @@ public static class Constants
 
     /// <summary>
     ///   How much time (in seconds) an injectisome applies invulnerability upon damage. Note the invulnerability is
-    ///   not against all other damage types.
+    ///   not against all other damage types, but just the pilus.
     /// </summary>
-    public const float PILUS_INVULNERABLE_TIME = 0.35f;
+    public const float INJECTISOME_INVULNERABLE_TIME = 0.35f;
+
+    /// <summary>
+    ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
+    ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
+    /// </summary>
+    public const float PILUS_MIN_COOLDOWN = 0.2f;
+
+    public const float PILUS_MAX_COOLDOWN = 0.45f;
+
+    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MAX_DAMAGE * 0.6f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
