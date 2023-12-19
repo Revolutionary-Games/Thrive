@@ -44,7 +44,6 @@ public partial class CellEditorComponent
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
 
         tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
-        tutorial.NegativeAtpBalanceTutorial.ATPBalanceBarControl = atpBalancePanel;
 
         gui.RightPanelScrollContainer = rightPanelScrollContainer;
     }

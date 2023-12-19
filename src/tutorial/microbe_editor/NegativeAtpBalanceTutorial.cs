@@ -1,11 +1,9 @@
 ﻿namespace Tutorial
 {
     using System;
-    using Godot;
-    using Newtonsoft.Json;
 
     /// <summary>
-    ///   Tells the player about negative ATP balance
+    ///   Tells the player about negative ATP balance (but only after the ATP introduction tutorial has triggered)
     /// </summary>
     public class NegativeAtpBalanceTutorial : TutorialPhase
     {
@@ -16,16 +14,8 @@
 
         public override string ClosedByName => "NegativeAtpBalanceTutorial";
 
-        [JsonIgnore]
-        public Control? ATPBalanceBarControl { get; set; }
-
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
-            if (gui.AtpBalanceBarHighlight == null)
-                throw new InvalidOperationException($"{nameof(gui.AtpBalanceBarHighlight)} has not been set");
-
-            gui.AtpBalanceBarHighlight.TargetControl = ATPBalanceBarControl;
-
             gui.NegativeAtpBalanceTutorialVisible = ShownCurrently;
             gui.HandleShowingATPBarHighlight();
         }
