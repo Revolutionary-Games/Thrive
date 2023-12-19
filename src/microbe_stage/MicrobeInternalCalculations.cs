@@ -129,8 +129,8 @@ public static class MicrobeInternalCalculations
 
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
     {
-        return organelles.Where(
-            o => o.Definition.Components.Storage != null).Sum(o => o.Definition.Components.Storage!.Capacity);
+        return organelles.Where(o => o.Definition.Components.Storage != null)
+            .Sum(o => o.Definition.Components.Storage!.Capacity);
     }
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
@@ -257,6 +257,7 @@ public static class MicrobeInternalCalculations
         // use the cheaper distance calculations
         foreach (var organelle in organelles)
         {
+            // TODO: should this be switched to calculate things per-hex instead of just organelle center positions?
             var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
 
             inertia += distance * organelle.Definition.HexCount * organelle.Definition.Density *

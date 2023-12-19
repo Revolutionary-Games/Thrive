@@ -15,8 +15,7 @@ public class WorldGenerationSettings
         if (difficulty is DifficultyPreset preset && preset.InternalName ==
             SimulationParameters.Instance.GetDifficultyPreset("custom").InternalName)
         {
-            GD.PrintErr(
-                $"Ignoring setting custom difficulty preset object to {nameof(WorldGenerationSettings)} " +
+            GD.PrintErr($"Ignoring setting custom difficulty preset object to {nameof(WorldGenerationSettings)} " +
                 "(using normal instead). This should only happen when loading older saves");
             Difficulty = SimulationParameters.Instance.GetDifficultyPreset("normal");
         }
@@ -138,8 +137,7 @@ public class WorldGenerationSettings
             difficulty.Name :
             TranslationServer.Translate("DIFFICULTY_PRESET_CUSTOM");
 
-        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(
-            translatedDifficulty,
+        return TranslationServer.Translate("DIFFICULTY_DETAILS_STRING").FormatSafe(translatedDifficulty,
             MPMultiplier,
             AIMutationMultiplier,
             CompoundDensity,

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -80,8 +81,8 @@ public class ThriveJsonConverter : IDisposable
     /// </param>
     public string SerializeObject(object @object, Type? type = null)
     {
-        return PerformWithSettings(
-            settings => JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(settings =>
+            JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T? DeserializeObject<T>(string json)
@@ -231,8 +232,7 @@ public class ThriveJsonConverter : IDisposable
 
                 // If we get here, we didn't get another exception...
                 // So we could maybe re-throw the first exception so that we fail like we should
-                GD.PrintErr(
-                    "Expected an exception for the second try at JSON operation, but it succeeded, " +
+                GD.PrintErr("Expected an exception for the second try at JSON operation, but it succeeded, " +
                     "re-throwing the original exception");
                 throw;
             }
@@ -281,10 +281,18 @@ public abstract class BaseThriveConverter : JsonConverter
 
     private static readonly List<string> DefaultOnlyChildCopyIgnore = new();
 
+    private static readonly ConcurrentQueue<List<(int Order, string Name, object? Value, Type FieldType)>>
+        DelayWriteProperties = new();
+
+    private static readonly IComparer<(int Order, string Name, object? Value, Type FieldType)> PropertyOrderComparer =
+        new OrderComparer();
+
     private static readonly Type ObjectBaseType = typeof(object);
     private static readonly Type AlwaysDynamicAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
     private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
     private static readonly Type BaseDynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
+    private static readonly Type JsonPropertyAttribute = typeof(JsonPropertyAttribute);
+    private static readonly Type JsonIgnoreAttribute = typeof(JsonIgnoreAttribute);
 
     protected BaseThriveConverter(ISaveContext? context)
     {
@@ -309,15 +317,14 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<FieldInfo> FieldsOf(Type type, bool handleClassJSONSettings = true)
     {
-        var fields = type.GetFields(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(p => p.CustomAttributes.All(
-            a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(p => p.CustomAttributes.All(a => a.AttributeType != JsonIgnoreAttribute &&
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
         fields = fields.Where(p =>
             (p.IsPublic && !p.IsInitOnly) ||
-            p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+            p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
 
         // Ignore fields that are marked export without explicit JSON property
         fields = fields.Where(p =>
@@ -330,8 +337,7 @@ public abstract class BaseThriveConverter : JsonConverter
             if (settings is { MemberSerialization: MemberSerialization.OptIn })
             {
                 // Ignore all fields not opted in
-                fields = fields.Where(
-                    p => p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+                fields = fields.Where(p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
             }
         }
 
@@ -340,19 +346,17 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<PropertyInfo> PropertiesOf(object value, bool handleClassJSONSettings = true)
     {
-        return PropertiesOf(value.GetType());
+        return PropertiesOf(value.GetType(), handleClassJSONSettings);
     }
 
     public static IEnumerable<PropertyInfo> PropertiesOf(Type type, bool handleClassJSONSettings = true)
     {
-        var properties = type.GetProperties(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
-            p => p.CustomAttributes.All(
-                a => a.AttributeType != typeof(JsonIgnoreAttribute)));
+        var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(p => p.CustomAttributes.All(a => a.AttributeType != JsonIgnoreAttribute));
 
         // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
         properties = properties.Where(p => p.GetSetMethod() != null ||
-            p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+            p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
 
         // Ignore properties that are marked export without explicit JSON property
         properties = properties.Where(p =>
@@ -366,7 +370,7 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 // Ignore all properties not opted in
                 properties = properties.Where(
-                    p => p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+                    p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
             }
         }
 
@@ -385,7 +389,7 @@ public abstract class BaseThriveConverter : JsonConverter
         if (!export)
             return false;
 
-        return customAttributeData.All(attr => attr.AttributeType != typeof(JsonPropertyAttribute));
+        return customAttributeData.All(attr => attr.AttributeType != JsonPropertyAttribute);
     }
 
     public static bool IsIgnoredGodotMember(string name, Type type)
@@ -686,9 +690,30 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
             }
 
+            List<(int Order, string Name, object? Value, Type FieldType)>? delayWriteProperties = null;
+
+            // TODO: does this need to support higher priority properties (i.e. negative ordering)?
+
             // First time writing, write all fields and properties
             foreach (var field in FieldsOf(value))
             {
+                var jsonCustomization = field.GetCustomAttribute<JsonPropertyAttribute>();
+                if (jsonCustomization != null && jsonCustomization.Order != 0)
+                {
+                    if (jsonCustomization.Order < 0)
+                        throw new NotSupportedException("Negative JSON priority order is not implemented");
+
+                    if (delayWriteProperties == null)
+                    {
+                        if (!DelayWriteProperties.TryDequeue(out delayWriteProperties))
+                            delayWriteProperties = new List<(int Order, string Name, object? Value, Type FieldType)>();
+                    }
+
+                    delayWriteProperties.Add((jsonCustomization.Order, field.Name, field.GetValue(value),
+                        field.FieldType));
+                    continue;
+                }
+
                 WriteMember(field.Name, field.GetValue(value), field.FieldType, type, writer, serializer);
             }
 
@@ -723,8 +748,39 @@ public abstract class BaseThriveConverter : JsonConverter
                     continue;
                 }
 
+                var jsonCustomization = property.GetCustomAttribute<JsonPropertyAttribute>();
+                if (jsonCustomization != null && jsonCustomization.Order != 0)
+                {
+                    if (jsonCustomization.Order < 0)
+                        throw new NotSupportedException("Negative JSON priority oder is not implemented");
+
+                    if (delayWriteProperties == null)
+                    {
+                        if (!DelayWriteProperties.TryDequeue(out delayWriteProperties))
+                            delayWriteProperties = new List<(int Order, string Name, object? Value, Type FieldType)>();
+                    }
+
+                    delayWriteProperties.Add((jsonCustomization.Order, property.Name, memberValue,
+                        property.PropertyType));
+                    continue;
+                }
+
                 WriteMember(property.Name, memberValue, property.PropertyType, type, writer,
                     serializer);
+            }
+
+            if (delayWriteProperties != null)
+            {
+                delayWriteProperties.Sort(PropertyOrderComparer);
+
+                foreach (var delayWrite in delayWriteProperties)
+                {
+                    WriteMember(delayWrite.Name, delayWrite.Value, delayWrite.FieldType, type, writer,
+                        serializer);
+                }
+
+                delayWriteProperties.Clear();
+                DelayWriteProperties.Enqueue(delayWriteProperties);
             }
 
             WriteCustomExtraFields(writer, value, serializer);
@@ -757,7 +813,7 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   Default member writer for thrive types. Has special handling for some Thrive types,
     ///   others use default serializers
     /// </summary>
-    protected virtual void WriteMember(string name, object memberValue, Type memberType, Type objectType,
+    protected virtual void WriteMember(string name, object? memberValue, Type memberType, Type objectType,
         JsonWriter writer, JsonSerializer serializer)
     {
         if (SkipMember(name))
@@ -943,10 +999,19 @@ public abstract class BaseThriveConverter : JsonConverter
                 serializer.ReferenceResolver.GetReference(serializer, oldReference), newReference);
         }
     }
+
+    private class OrderComparer : IComparer<(int Order, string Name, object? Value, Type FieldType)>
+    {
+        public int Compare((int Order, string Name, object? Value, Type FieldType) x,
+            (int Order, string Name, object? Value, Type FieldType) y)
+        {
+            return x.Order.CompareTo(y.Order);
+        }
+    }
 }
 
 /// <summary>
-///   When a class has this attribute DefaultThriveJSONConverter is used to serialize it
+///   When a class has this attribute <see cref="DefaultThriveJSONConverter"/> is used to serialize it
 /// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
 public class UseThriveSerializerAttribute : Attribute
@@ -955,7 +1020,7 @@ public class UseThriveSerializerAttribute : Attribute
 
 /// <summary>
 ///   Custom serializer for all Thrive types that don't need any special handling. They need to have the attribute
-///   UseThriveSerializerAttribute to be detected
+///   <see cref="UseThriveSerializerAttribute"/> to be detected
 /// </summary>
 internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
@@ -973,8 +1038,8 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         // Types with out custom attribute are supported
-        if (objectType.CustomAttributes.Any(
-                attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
+        if (objectType.CustomAttributes.Any(attr =>
+                attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
         {
             return true;
         }

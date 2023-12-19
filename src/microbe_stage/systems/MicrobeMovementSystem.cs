@@ -128,7 +128,7 @@
 
             // Lower value is faster rotation
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-                rotationSpeed /= CheatManager.Speed;
+                rotationSpeed /= CheatManager.Speed * 2;
 
             return rotationSpeed;
         }
@@ -188,6 +188,9 @@
                 }
             }
 
+            force *= cellProperties.MembraneType.MovementFactor -
+                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+
             bool hasColony = entity.Has<MicrobeColony>();
 
             if (control.MovementDirection != Vector3.Zero && hasColony)
@@ -200,23 +203,14 @@
                 force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
             // Movement modifier from engulf (this used to be handled in the engulfing code, now it's here)
+            // TODO: should colony member engulf states be separately calculated for movement? Right now this makes it
+            // very powerful to not have the primary cell type able to engulf but having other engulfing cells.
             if (control.State == MicrobeState.Engulf)
                 force *= Constants.ENGULFING_MOVEMENT_MULTIPLIER;
 
-            force *= cellProperties.MembraneType.MovementFactor -
-                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
-
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
             {
-                float mass = 1000;
-
-                if (entity.Has<PhysicsShapeHolder>())
-                {
-                    entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
-                }
-
-                // There's an additional divisor here to make the speed cheat reasonable
-                force *= mass / 1000.0f * CheatManager.Speed / 4;
+                force *= CheatManager.Speed;
             }
 
             var movementVector = control.MovementDirection * force;
@@ -278,8 +272,9 @@
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-            // int memberCount;
-            force *= microbeColony.ColonyMembers.Length;
+            // Note that the multiplier below was added as a workaround for colonies being faster than individual cells
+            // TODO: a proper rebalance of the algorithm would be excellent to do
+            force *= microbeColony.ColonyMembers.Length * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
             var seriesValue = 1 - 1 / (float)Math.Pow(2, microbeColony.ColonyMembers.Length - 1);
             force -= (force * 0.15f) * seriesValue;
 
@@ -306,7 +301,7 @@
                     foreach (var flagellum in organelles.ThrustComponents)
                     {
                         force += flagellum.UseForMovement(movementDirection, compounds,
-                            relativeRotation, isBacteria, delta);
+                            relativeRotation, isBacteria, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                     }
                 }
             }

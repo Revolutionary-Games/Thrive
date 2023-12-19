@@ -214,8 +214,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
 
         if (followedObject != null)
         {
-            var newFloorPosition = new Vector3(
-                followedObject.Value.x, 0, followedObject.Value.z);
+            var newFloorPosition = new Vector3(followedObject.Value.x, 0, followedObject.Value.z);
 
             Vector3 target;
 
@@ -246,8 +245,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
         {
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
-            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateZoomSpeed);
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(target, InterpolateZoomSpeed);
         }
 
         cursorDirty = true;

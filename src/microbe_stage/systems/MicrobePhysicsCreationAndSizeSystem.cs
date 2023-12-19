@@ -207,11 +207,11 @@
             ref OrganelleContainer organelles, ref CellProperties cellProperties,
             Vector2[] membraneVertices, int vertexCount)
         {
+            UpdateRotationRate(ref organelles);
+
             var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneVertices, vertexCount,
                 MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
                 cellProperties.IsBacteria);
-
-            UpdateRotationRate(ref organelles);
 
             ++extraData.MicrobeShapesCount;
             ++extraData.TotalShapeCount;
@@ -229,7 +229,8 @@
                 MicrobeInternalCalculations.CalculateAverageDensity(organelles.Organelles!),
                 isBacteria);
 
-            // Rotation rate doesn't need to be updated as the microbe if ever ejected will create its own shape
+            // Rotation rate doesn't need to be updated as the microbe, if ever ejected, will create its own shape
+            // Colony rotation calculation uses the organelles directly to calculate the rotation.
 
             ++extraData.MicrobeShapesCount;
             ++extraData.TotalShapeCount;
@@ -241,14 +242,19 @@
             ref OrganelleContainer organelles, ref CellProperties cellProperties, in Entity entity,
             Vector2[] membraneVertices, int vertexCount, List<(Membrane Membrane, bool Bacteria)>? colonyMembranes)
         {
+            UpdateRotationRate(ref organelles);
+
             var combinedData = temporaryCombinedShapeData.Value;
+
+#if DEBUG
+            if (combinedData.Count > 0)
+                throw new Exception("Combined shape data list was not properly cleared on last use");
+#endif
 
             // Base microbe shape is always first
             combinedData.Add((
                 CreateSimpleMicrobeShape(ref extraData, ref organelles, ref cellProperties, membraneVertices,
                     vertexCount), Vector3.Zero, Quat.Identity));
-
-            UpdateRotationRate(ref organelles);
 
             List<(OrganelleLayout<PlacedOrganelle> Organelles, Vector3 ExtraOffset, Quat ExtraRotation)>?
                 memberOrganelles = null;

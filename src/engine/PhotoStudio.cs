@@ -271,8 +271,9 @@ public class PhotoStudio : Viewport
             {
                 if (TaskUsesWorldSimulation)
                 {
-                    camera.Translation = currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
-                        previouslyUsedWorldSimulation!);
+                    camera.Translation =
+                        currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
+                            previouslyUsedWorldSimulation!);
                 }
                 else
                 {
@@ -360,7 +361,10 @@ public class PhotoStudio : Viewport
 
             foreach (var entry in simulationWorldRoots)
             {
-                entry.Value.QueueFree();
+                // This is needed to not cause warnings when shutting down the game as apparently the worlds have been
+                // destroyed already by Godot
+                if (IsInstanceValid(entry.Value))
+                    entry.Value.QueueFree();
             }
 
             simulationWorldRoots.Clear();

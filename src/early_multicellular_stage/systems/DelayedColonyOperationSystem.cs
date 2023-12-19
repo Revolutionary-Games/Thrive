@@ -1,5 +1,6 @@
 ﻿namespace Systems
 {
+    using System;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -27,9 +28,22 @@
         }
 
         public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
-            int colonyTargetIndex, CellTemplate cellTemplate, Species species, IWorldSimulation worldSimulation,
+            int colonyTargetIndex, CellTemplate cellTemplate, EarlyMulticellularSpecies species,
+            IWorldSimulation worldSimulation,
             EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
         {
+            if (colonyTargetIndex == 0)
+                throw new ArgumentException("Cannot delay add the root colony cell");
+
+            int bodyPlanIndex = colonyTargetIndex;
+
+            if (bodyPlanIndex < 0 || bodyPlanIndex >= species.Cells.Count)
+            {
+                GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
+                    "a valid value");
+                bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
+            }
+
             var attachPosition = new AttachedToEntity
             {
                 AttachedTo = colonyEntity,
@@ -41,7 +55,8 @@
 
             var weight = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species,
                 colonyPosition.Position + colonyPosition.Rotation.Xform(attachPosition.RelativePosition), true,
-                cellTemplate.CellType, recorder, out var member, MulticellularSpawnState.Bud, giveStartingCompounds);
+                (cellTemplate.CellType, bodyPlanIndex), recorder, out var member, MulticellularSpawnState.Bud,
+                giveStartingCompounds);
 
             // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
             // or attaching fails

@@ -915,6 +915,7 @@
         /// <summary>
         ///   This method calculates the relative rotation and translation this microbe should have to its
         ///   microbe colony parent.
+        ///   Note this explanation image was made for the old version of this method but may still be useful:
         ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
         ///     Visual explanation
         ///   </a>
@@ -930,47 +931,40 @@
             if (cellProperties.CreatedMembrane == null)
                 throw new InvalidOperationException("Cell to add to colony has no membrane set");
 
-            // Gets the global rotation of the parent
-            // TODO: verify that the quaternion math is correct here
-            var globalParentRotation = colonyParentPosition.Rotation;
-
             // A vector from the parent to me
             var vectorFromParent = cellPosition.Position - colonyParentPosition.Position;
 
             // A vector from me to the parent
             var vectorToParent = -vectorFromParent;
 
-            // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right
-            // would be nice
-            // This vector represents the vectorToParent as if I had no rotation.
-            // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
-            // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
-            var vectorToParentWithoutRotation =
-                vectorToParent.Rotated(Vector3.Down, cellPosition.Rotation.GetEuler().y);
+            var parentRotationInverse = colonyParentPosition.Rotation.Inverse();
+            var cellRotationInverse = cellPosition.Rotation.Inverse();
 
-            // This vector represents the vectorFromParent as if the parent had no rotation.
-            var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+            // These are in the local space of the given two cells respectively
+            var vectorFromParentInLocalSpace = parentRotationInverse.Xform(vectorFromParent);
 
-            // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
-            // This gets added to the vector calculated one call before.
-            var correctedVectorFromParent = colonyParentProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
-                    vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
+            var vectorToParentInLocalSpace = cellRotationInverse.Xform(vectorToParent);
 
-            // Calculates the vector from my center to my membrane towards the parent.
-            // This vector gets rotated back to cancel out the rotation applied two calls above.
-            // -= to negate the vector, so that the two membrane vectors amplify
-            correctedVectorFromParent -= cellProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x,
-                    vectorToParentWithoutRotation.z)
-                .Rotated(Vector3.Up, cellPosition.Rotation.GetEuler().y);
+            // Calculate membrane sizes that should be added to the distance between the center's of the cells so that
+            // the cells don't overlap. The membrane points are in local coordinates so they are translated back to
+            // world coordinates.
+            var parentMembranePoint = colonyParentPosition.Rotation.Xform(
+                colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
+                    vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
 
-            // Rotated because the rotational scope is different.
-            var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+            var cellMembranePoint = cellPosition.Rotation.Xform(
+                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
+                    vectorToParentInLocalSpace.z));
 
-            // TODO: this used to just negate the euler angles here, check that multiplying by inverse rotation is
-            // correct
-            return (newTranslation, cellPosition.Rotation * globalParentRotation.Inverse());
+            // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
+            // membrane point otherwise.
+            var finalOffsetVector = parentMembranePoint - cellMembranePoint;
+
+            // Rotated because the rotation should be in the local space of the colony parent
+            var newTranslation = parentRotationInverse.Xform(finalOffsetVector);
+
+            // Transform rotation also to work correctly in the parent's local coordinate space
+            return (newTranslation, parentRotationInverse * cellPosition.Rotation);
         }
 
         /// <summary>
@@ -1101,10 +1095,13 @@
                     // Not attaching directly to the colony leader, need to combine the offsets
                     ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
 
-                    offsetToColonyLeader += parentsAttachOffset.RelativePosition;
+                    var rotationToParentInverse = parentsAttachOffset.RelativeRotation.Inverse();
 
-                    // TODO: check that the multiply order is right here
-                    rotationToLeader = (parentsAttachOffset.RelativeRotation * rotationToLeader).Normalized();
+                    // TODO: figure out why this starts to give bad results once many cells away from the colony leader
+                    offsetToColonyLeader = parentsAttachOffset.RelativePosition +
+                        rotationToParentInverse.Xform(offsetToColonyLeader);
+
+                    rotationToLeader = (rotationToParentInverse * rotationToLeader).Normalized();
                 }
             }
             catch (Exception e)

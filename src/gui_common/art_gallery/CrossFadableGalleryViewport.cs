@@ -26,8 +26,7 @@ public class CrossFadableGalleryViewport : ViewportContainer
         tween.InterpolateProperty(this, "modulate", null, Colors.Black, FadeDuration);
         tween.Start();
 
-        tween.CheckAndConnect(
-            "tween_completed", this, nameof(OnFaded), null, (uint)ConnectFlags.Oneshot);
+        tween.CheckAndConnect("tween_completed", this, nameof(OnFaded), null, (uint)ConnectFlags.Oneshot);
     }
 
     private void OnFaded(Object @object, NodePath key)

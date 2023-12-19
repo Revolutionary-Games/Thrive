@@ -183,25 +183,30 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 20.0f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1000.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
     /// </summary>
-    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 3.0f;
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 55;
+    public const float BASE_MOVEMENT_PER_HEX = 130;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
-    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
+
+    /// <summary>
+    ///   This is used to slightly debuff colony movement
+    /// </summary>
+    public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -215,18 +220,19 @@ public static class Constants
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 10.0f;
+    public const float CELL_MAX_ROTATION = 8.0f;
     public const float CELL_MIN_ROTATION = 0.1f;
     public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
-    public const float CELL_ROTATION_RADIUS_FACTOR = 200.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
     public const float CILIA_ROTATION_FACTOR = 32000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
-    // These speed values are also reversed like the above
-    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
-    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
+    // TODO: remove if these stay unused
+    // // These speed values are also reversed like the above
+    // public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    // public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    // public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    // public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -678,10 +684,12 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
     public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
@@ -758,7 +766,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 240.0f;
+    public const float PILUS_BASE_DAMAGE = 235.0f;
 
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
@@ -904,7 +912,7 @@ public static class Constants
     /// <summary>
     ///   Maximum extra microbes to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_COLONY_SIZE = 3;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
@@ -1050,6 +1058,7 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
@@ -1521,8 +1530,7 @@ public static class Constants
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
         OS.HasFeature("standalone") ?
-            Path.Combine(
-                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+            Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
                 throw new InvalidOperationException("no current executable path"), "mods") :
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",

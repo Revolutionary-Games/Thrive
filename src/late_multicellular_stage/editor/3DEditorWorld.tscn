@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/editor/EditorCamera3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/background/panoramas/Epipelagic.png" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0.129412, 0.141176, 1 )
@@ -15,6 +16,19 @@ size = Vector2( 10, 10 )
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.278431, 0.294118, 0.290196, 1 )
+
+[sub_resource type="PanoramaSky" id=5]
+resource_local_to_scene = true
+panorama = ExtResource( 3 )
+
+[sub_resource type="Environment" id=6]
+resource_local_to_scene = true
+background_mode = 2
+background_sky = SubResource( 5 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+dof_blur_far_distance = 50.0
+dof_blur_far_transition = 25.0
+dof_blur_far_amount = 0.05
 
 [node name="3DEditorWorld" type="Node"]
 
@@ -55,3 +69,6 @@ omni_attenuation = 0.420448
 [node name="Ground" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )

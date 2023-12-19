@@ -356,8 +356,8 @@ public class PlacedOrganelle : IPositionedOrganelle
     {
         var scale = CalculateTransformScale();
 
-        return new Transform(new Basis(
-                MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
+        return new Transform(
+            new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
             Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
         // TODO: check is this still needed

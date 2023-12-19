@@ -449,7 +449,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (stage == null)
             return;
 
-        if (stage.HasPlayer)
+        if (stage.HasAlivePlayer)
         {
             UpdateNeededBars();
             UpdateCompoundBars(delta);
@@ -1004,7 +1004,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         if (!processPanel.Visible)
             return;
 
-        processPanel.ShownData = stage is { HasPlayer: true } ? GetPlayerProcessStatistics() : null;
+        processPanel.ShownData = stage is { HasAlivePlayer: true } ? GetPlayerProcessStatistics() : null;
     }
 
     protected abstract ProcessStatistics? GetPlayerProcessStatistics();
