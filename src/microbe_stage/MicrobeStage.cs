@@ -1141,6 +1141,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
     }
 
+    [DeserializedCallbackAllowed]
     private void OnPlayerOrganelleDuplicated(Entity player, PlacedOrganelle organelle)
     {
         if (organelle.Definition.InternalName == cytoplasm.InternalName)
