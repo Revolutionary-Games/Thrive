@@ -900,14 +900,26 @@ public static class Constants
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
     /// <summary>
-    ///   Minimum extra microbes to spawn
+    ///   Minimum extra bacteria to spawn
     /// </summary>
-    public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+    public const int MIN_BACTERIAL_SWARM_SIZE = 0;
 
     /// <summary>
-    ///   Maximum extra microbes to spawn
+    ///   Maximum extra bacteria to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 3;
+    public const int MAX_BACTERIAL_SWARM_SIZE = 3;
+
+    /// <summary>
+    ///   If a species has this many hexes then <see cref="MAX_BACTERIAL_SWARM_SIZE"/> is debuffed by one for this
+    ///   species. This value is divided by 2 as the hex size of bacteria only count for half of a "full" hex. When
+    ///   tweaking only change the first number for future readability (and not the division by 2 part).
+    /// </summary>
+    public const float REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 6 / 2.0f;
+
+    /// <summary>
+    ///   Even more reduces the bacteria swarm size of a species that is this big when spawning
+    /// </summary>
+    public const float FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 10 / 2.0f;
 
     /// <summary>
     ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
@@ -1556,6 +1568,9 @@ public static class Constants
 
     private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
         (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
+
+    private const uint FurtherSwarmReductionIsHigherThanSmallReduction =
+        (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;

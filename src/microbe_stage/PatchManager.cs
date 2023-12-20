@@ -228,8 +228,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
-                    compoundCloudSystem, CurrentGame), Constants.MICROBE_SPAWN_RADIUS),
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species), Constants.MICROBE_SPAWN_RADIUS),
                 new MicrobeSpawnerComparer());
         }
     }

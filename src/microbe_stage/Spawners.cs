@@ -14,8 +14,7 @@ using Godot;
 /// </summary>
 public static class Spawners
 {
-    public static MicrobeSpawner MakeMicrobeSpawner(Species species,
-        CompoundCloudSystem cloudSystem, GameProperties currentGame)
+    public static MicrobeSpawner MakeMicrobeSpawner(Species species)
     {
         return new MicrobeSpawner(species);
     }
@@ -728,14 +727,30 @@ public static class SpawnHelpers
     /// <summary>
     ///   Calculates spaced out positions to spawn a bacteria swarm (to avoid them all overlapping)
     /// </summary>
-    public static List<Vector3> CalculateBacteriaSwarmPositions(Vector3 initialLocation, Random random)
+    public static List<Vector3>? CalculateBacteriaSwarmPositions(Vector3 initialLocation, MicrobeSpecies species,
+        Random random)
     {
-        var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+        // +1 is used here as Next has a non-exclusive upper bound
+        int maxSize = Constants.MAX_BACTERIAL_SWARM_SIZE + 1;
 
-        var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-            Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+        if (species.BaseHexSize >= Constants.FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT)
+        {
+            // This reduction by 2 gets the max swarm size spawn back to what it was in 0.6.3
+            maxSize -= 2;
+        }
+        else if (species.BaseHexSize >= Constants.REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT)
+        {
+            maxSize -= 1;
+        }
+
+        var clumpSize = random.Next(Constants.MIN_BACTERIAL_SWARM_SIZE, maxSize);
+
+        if (clumpSize <= 0)
+            return null;
 
         var result = new List<Vector3>(clumpSize);
+
+        var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         for (int i = 0; i < clumpSize; i++)
         {
@@ -1019,12 +1034,12 @@ public class MicrobeSpawner : Spawner
         if (Species.Obsolete)
             GD.PrintErr("Obsolete species microbe has spawned");
 
+        var microbeSpecies = Species as MicrobeSpecies;
+
         bool bacteria = false;
 
-        if (Species is MicrobeSpecies microbeSpecies)
-        {
+        if (microbeSpecies != null)
             bacteria = microbeSpecies.IsBacteria;
-        }
 
         var firstSpawn = new SingleItemSpawnQueue((out EntityRecord entity) =>
         {
@@ -1043,10 +1058,17 @@ public class MicrobeSpawner : Spawner
             return firstSpawn;
         }
 
+        if (microbeSpecies == null)
+            throw new Exception("Logic error in microbe species not being set");
+
         // More complex, first need to do a normal spawn, and then continue onto bacteria swarm ones so we use a
         // combined queue specifically written for this use case
 
-        var stateData = SpawnHelpers.CalculateBacteriaSwarmPositions(location, random);
+        var stateData = SpawnHelpers.CalculateBacteriaSwarmPositions(location, microbeSpecies, random);
+
+        // No swarm wants to spawn
+        if (stateData == null)
+            return firstSpawn;
 
         var swarmQueue = new CallbackSpawnQueue<List<Vector3>>((List<Vector3> positions, out EntityRecord entity) =>
         {
