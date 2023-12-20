@@ -407,7 +407,7 @@ public class PlacedOrganelle : IPositionedOrganelle
         if (isBacteria)
         {
             // TODO: find the root cause and fix properly why this kind of very specific tweak is needed
-            var length = externalPosition.Length() * 0.575f;
+            var length = externalPosition.Length() * Constants.BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER;
 
             offset.z += length;
         }

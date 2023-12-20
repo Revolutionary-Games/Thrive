@@ -1000,8 +1000,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
-        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity,
-            Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+            weight);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
