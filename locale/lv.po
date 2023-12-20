@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-19 09:28+0200\n"
+"POT-Creation-Date: 2023-12-20 12:45+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -64,7 +64,7 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:702
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:490
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:53
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -113,11 +113,11 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1182
+#: ../src/general/NewGameSettings.tscn:1219
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1177
+#: ../src/general/NewGameSettings.tscn:1214
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
@@ -153,12 +153,12 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agresīvs"
 
-#: ../src/general/NewGameSettings.tscn:475
+#: ../src/general/NewGameSettings.tscn:477
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutācijas punkti"
 
-#: ../src/general/NewGameSettings.tscn:515
+#: ../src/general/NewGameSettings.tscn:517
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
@@ -185,7 +185,7 @@ msgstr "Satur mutāciju"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Organisma statistika"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1003
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Organisma statistika"
@@ -204,7 +204,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1177
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:678
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:694
 #: ../src/microbe_stage/MicrobeHUD.tscn:1173
 msgid "AMMONIA"
 msgstr "Amonjaks"
@@ -289,10 +289,10 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:426
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:661
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:695
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:439
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:455
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfēras gāzes"
 
@@ -304,12 +304,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:379
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
 msgid "ATP_PRODUCTION"
 msgstr "ATP ražošana"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:379
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
@@ -371,18 +371,18 @@ msgstr "Automātiska-Evo Pareģošana"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:210
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:909
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:910
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo rezultāti:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:211
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -418,10 +418,10 @@ msgstr ""
 msgid "AWARE_STAGE"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:998
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:999
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
-#: ../src/general/NewGameSettings.tscn:1145
+#: ../src/general/NewGameSettings.tscn:1182
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
@@ -448,15 +448,15 @@ msgstr "Atpakaļ"
 msgid "BASE_MOBILITY"
 msgstr "Kustīgums"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:437
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1167
+#: ../src/general/NewGameSettings.tscn:1204
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1162
+#: ../src/general/NewGameSettings.tscn:1199
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
@@ -522,7 +522,7 @@ msgstr "Uzvedība"
 msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr "Uzvedība"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:302
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:319
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:299
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:316
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -725,7 +725,7 @@ msgid "CAPSLOCK"
 msgstr "Caps Lock (taustiņš)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:138
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:534
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:550
 msgid "CARBON_DIOXIDE"
 msgstr "Ogļskābā gāze"
 
@@ -954,9 +954,9 @@ msgstr "Dzēst vecos saglabāšanas failus"
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:256
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:364
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:418
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:379
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:431
 msgid "CLOSE"
 msgstr "Aizvērt"
 
@@ -1069,12 +1069,12 @@ msgid "COMPILED_AT_COLON"
 msgstr "Savienojumi:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:603
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:619
 #: ../src/microbe_stage/MicrobeHUD.tscn:1031
 msgid "COMPOUNDS"
 msgstr "Savienojumi"
@@ -1096,12 +1096,12 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "Savienojumu mākonis"
 
-#: ../src/general/NewGameSettings.tscn:534
+#: ../src/general/NewGameSettings.tscn:536
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Savienojumu mākonis"
 
-#: ../src/general/NewGameSettings.tscn:574
+#: ../src/general/NewGameSettings.tscn:576
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1139,7 +1139,7 @@ msgstr "APSTIPRINĀT"
 msgid "CONFIRM_DELETE"
 msgstr "Apstiprināt Izeju"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
 #: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
@@ -1188,13 +1188,13 @@ msgstr ""
 "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
 "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
-#: ../src/general/NewGameSettings.cs:404
-#: ../src/general/NewGameSettings.tscn:1198
+#: ../src/general/NewGameSettings.cs:423
+#: ../src/general/NewGameSettings.tscn:1235
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
-#: ../src/general/NewGameSettings.cs:411
+#: ../src/general/NewGameSettings.cs:430
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr ""
 
@@ -1390,7 +1390,7 @@ msgstr "CTRL"
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:157
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:173
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -1409,7 +1409,7 @@ msgstr "Atvērt palīdzības ekrānu"
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:962
+#: ../src/auto-evo/AutoEvoExploringTool.cs:963
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organisma statistika"
@@ -1435,11 +1435,11 @@ msgstr "Citoplazmas glikolīze"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:945
+#: ../src/general/NewGameSettings.tscn:982
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:988
+#: ../src/general/NewGameSettings.tscn:1025
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
@@ -1448,11 +1448,11 @@ msgstr ""
 "Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
 "un visbiežāk uzbruks pretī."
 
-#: ../src/general/NewGameSettings.tscn:916
+#: ../src/general/NewGameSettings.tscn:953
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:925
+#: ../src/general/NewGameSettings.tscn:962
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:341
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:340
 msgid "DEATH"
 msgstr ""
 
@@ -1619,23 +1619,23 @@ msgstr ""
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:303
+#: ../src/general/NewGameSettings.tscn:305
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:140
+#: ../src/general/WorldGenerationSettings.cs:143
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:375
+#: ../src/general/NewGameSettings.tscn:129
+#: ../src/general/NewGameSettings.tscn:377
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:138
+#: ../simulation_parameters/common/difficulty_presets.json:45
+#: ../src/general/WorldGenerationSettings.cs:141
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
@@ -1643,11 +1643,11 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:29
+#: ../simulation_parameters/common/difficulty_presets.json:31
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../simulation_parameters/common/difficulty_presets.json:16
+#: ../simulation_parameters/common/difficulty_presets.json:17
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
@@ -1670,7 +1670,7 @@ msgstr "Izmirusi suga"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Ātrums:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:224
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:223
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -1918,12 +1918,12 @@ msgstr "Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tā
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Rekur padoms, jūs varat nomedīt citas sugas līz izmiršanai, ja neesat pietiekami akurāts. Citas sugas arī to spēj darīt."
 
-#: ../src/general/NewGameSettings.tscn:1122
+#: ../src/general/NewGameSettings.tscn:1159
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Jautrs fakts; Didīnijs un Paramēcijs ir mācību grāmats piemērs plēsēja un upura attiecībām, ko pētīja vairākas desmitgades. Šobrī, vai jūs esat Didīnijs, vai tomēr Paramēcijs? Plēsējs vai upurs?"
 
-#: ../src/general/NewGameSettings.tscn:1130
+#: ../src/general/NewGameSettings.tscn:1167
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1971,23 +1971,23 @@ msgstr "Ieslēgt redaktoru"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ieslēgt GUI gaismas efektus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:448
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:447
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:411
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:410
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2472
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2473
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2483
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2484
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2476
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2477
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2008,11 +2008,11 @@ msgstr ""
 msgid "ENVIRONMENT"
 msgstr "Vide"
 
-#: ../src/general/NewGameSettings.tscn:652
+#: ../src/general/NewGameSettings.tscn:654
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:691
+#: ../src/general/NewGameSettings.tscn:693
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
 
@@ -2071,7 +2071,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1256
+#: ../src/microbe_stage/MicrobeStage.cs:1272
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2079,7 +2079,7 @@ msgstr ""
 msgid "ESTUARY"
 msgstr "Grīva"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:957
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:958
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2128,7 +2128,7 @@ msgstr ""
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1014
 #, fuzzy
 msgid "EXPORT_SUCCESS"
 msgstr "{0} Plēsonība"
@@ -2149,13 +2149,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr "IZMIRŠANA"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:436
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:447
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Izmira no plankuma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:435
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:448
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Izmira no planētas"
 
@@ -2340,11 +2340,42 @@ msgstr ""
 "un visticamāk būs ambiciozāki par gabaliem.\n"
 "Atsaucīgi mikrobi ātrāk pāries uz jauniem mērķiem."
 
+#: ../src/microbe_stage/FogOfWarMode.cs:5
+msgid "FOG_OF_WAR_DISABLED"
+msgstr ""
+
+#: ../src/general/NewGameSettings.cs:821
+#, fuzzy
+msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
+msgstr "Apraksts:"
+
+#: ../src/microbe_stage/FogOfWarMode.cs:11
+msgid "FOG_OF_WAR_INTENSE"
+msgstr ""
+
+#: ../src/general/NewGameSettings.cs:827
+#, fuzzy
+msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
+msgstr "Apraksts:"
+
+#: ../src/general/NewGameSettings.tscn:770
+msgid "FOG_OF_WAR_MODE"
+msgstr ""
+
+#: ../src/microbe_stage/FogOfWarMode.cs:8
+msgid "FOG_OF_WAR_REGULAR"
+msgstr ""
+
+#: ../src/general/NewGameSettings.cs:824
+#, fuzzy
+msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
+msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
 msgstr "Barības ķēde"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2490
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2432,11 +2463,11 @@ msgstr "Aerobiskā elpošana"
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:763
+#: ../src/general/NewGameSettings.tscn:800
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:771
+#: ../src/general/NewGameSettings.tscn:808
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -2499,13 +2530,13 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:937
+#: ../src/auto-evo/RunResults.cs:953
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1125
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:713
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:729
 #: ../src/microbe_stage/MicrobeHUD.tscn:1127
 msgid "GLUCOSE"
 msgstr "Glikoze"
@@ -2543,8 +2574,7 @@ msgid "GOOGLY_EYE_CELL"
 msgstr "Spēlētāja šūna"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:169
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:470
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:526
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:487
 msgid "GOT_IT"
 msgstr ""
 
@@ -2656,7 +2686,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1281
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:643
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:659
 #: ../src/microbe_stage/MicrobeHUD.tscn:1274
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sērūdeņradis"
@@ -2685,12 +2715,12 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1101
+#: ../src/general/NewGameSettings.tscn:1138
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Novietot organoīdu"
 
-#: ../src/general/NewGameSettings.tscn:1109
+#: ../src/general/NewGameSettings.tscn:1146
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -2922,7 +2952,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1333
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:784
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:800
 #: ../src/microbe_stage/MicrobeHUD.tscn:1320
 msgid "IRON"
 msgstr "Dzelzs"
@@ -3150,7 +3180,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1432
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3231,13 +3261,13 @@ msgstr ""
 msgid "LAUNCHMEDIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:155
-#: ../src/general/NewGameSettings.tscn:854
+#: ../src/general/NewGameSettings.tscn:157
+#: ../src/general/NewGameSettings.tscn:891
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:162
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:164
+#: ../src/general/NewGameSettings.tscn:899
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -3322,13 +3352,13 @@ msgstr ""
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licences aizsedzošās daļas no Thrive ir parādītas šeit"
 
-#: ../src/general/NewGameSettings.tscn:181
-#: ../src/general/NewGameSettings.tscn:881
+#: ../src/general/NewGameSettings.tscn:183
+#: ../src/general/NewGameSettings.tscn:918
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:190
-#: ../src/general/NewGameSettings.tscn:890
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:927
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -3337,28 +3367,28 @@ msgstr ""
 "Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
 "un visbiežāk uzbruks pretī."
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:47
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:44
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:205
-#: ../src/general/NewGameSettings.tscn:898
+#: ../src/general/NewGameSettings.tscn:207
+#: ../src/general/NewGameSettings.tscn:935
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:937
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:41
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -3381,7 +3411,7 @@ msgstr "Rullīte pa labi"
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:318
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:335
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
@@ -3390,7 +3420,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Rullīte pa labi"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:384
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:400
 #, fuzzy
 msgid "LIGHT_MAX"
 msgstr "Gaisma"
@@ -3400,12 +3430,12 @@ msgstr "Gaisma"
 msgid "LIMIT_EXTREME"
 msgstr "Papildinājumi"
 
-#: ../src/general/NewGameSettings.tscn:805
+#: ../src/general/NewGameSettings.tscn:842
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE"
 msgstr "APSTIPRINĀT"
 
-#: ../src/general/NewGameSettings.tscn:813
+#: ../src/general/NewGameSettings.tscn:850
 #, fuzzy
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
@@ -3642,7 +3672,7 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/auto-evo/EvolutionaryTree.cs:403
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:169
 #: ../src/microbe_stage/editor/TimelineTab.cs:230
 msgid "MEGA_YEARS"
 msgstr ""
@@ -3795,8 +3825,8 @@ msgstr "Katru reizi, kad jūs pavairojaties, jūs ieejat Mikrobu Redaktorā, kur
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:975
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1019
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organisma statistika"
@@ -3989,7 +4019,7 @@ msgstr "Minimums:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nav atļauts rādīt mazāk nekā {0} datu kopu(as)!"
 
-#: ../src/general/NewGameSettings.tscn:323 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:221
 msgid "MISC"
 msgstr ""
 
@@ -4032,7 +4062,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:237
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:236
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4275,7 +4305,7 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:927
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:943
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
@@ -4374,11 +4404,11 @@ msgstr "Mūzikas skaļums"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutācijas punkti"
 
-#: ../src/general/NewGameSettings.tscn:416
+#: ../src/general/NewGameSettings.tscn:418
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:456
+#: ../src/general/NewGameSettings.tscn:458
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
@@ -4446,7 +4476,7 @@ msgstr "Jauna spēle"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:285
+#: ../src/general/NewGameSettings.tscn:287
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4480,7 +4510,7 @@ msgid "NEXT_EDITOR_TAB"
 msgstr "Ieslēgt redaktoru"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:152
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:507
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:523
 msgid "NITROGEN"
 msgstr "Slāpeklis"
 
@@ -4578,7 +4608,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2504
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2505
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nav datu, ko parādīt"
 
@@ -4621,7 +4651,7 @@ msgstr "Nav atlasīto modifikāciju"
 msgid "NUCLEUS"
 msgstr "Kodols"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1430
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1431
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4640,8 +4670,8 @@ msgstr "Num Lock (taustiņš)"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2362
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2372
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2373
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
@@ -4826,7 +4856,7 @@ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thri
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma statistika"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:431
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
 msgid "OSMOREGULATION"
 msgstr "Osmoregulācija"
 
@@ -4863,12 +4893,12 @@ msgstr "Osmoregulācija"
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulācijas izmaksas"
 
-#: ../src/general/NewGameSettings.tscn:710
+#: ../src/general/NewGameSettings.tscn:712
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulācijas izmaksas"
 
-#: ../src/general/NewGameSettings.tscn:750
+#: ../src/general/NewGameSettings.tscn:752
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulācijas izmaksas"
@@ -4900,7 +4930,7 @@ msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Pārrakstīt esošo saglabāšanas failu:"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:124
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:480
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:496
 msgid "OXYGEN"
 msgstr "Skābeklis"
 
@@ -4971,14 +5001,14 @@ msgstr "Panoramējiet pa labi"
 msgid "PAN_CAMERA_UP"
 msgstr "Panoramējiet uz augšu"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:821
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr ""
 "Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
 "Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
-#: ../src/general/NewGameSettings.tscn:792
+#: ../src/general/NewGameSettings.tscn:829
 #, fuzzy
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
@@ -5081,14 +5111,14 @@ msgstr ""
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:766
-#: ../src/general/WorldGenerationSettings.cs:145
+#: ../src/general/NewGameSettings.cs:794
+#: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:258
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:231
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:257
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:405
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:322
 #: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
@@ -5109,7 +5139,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1229
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:749
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:765
 #: ../src/microbe_stage/MicrobeHUD.tscn:1222
 msgid "PHOSPHATE"
 msgstr "Fosfāti"
@@ -5120,7 +5150,7 @@ msgid "PHOTOSYNTHESIS"
 msgstr "Fotosintēze"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:561
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:239
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziskie apstākļi"
 
@@ -5134,23 +5164,23 @@ msgstr ""
 msgid "PLACE_ORGANELLE"
 msgstr "Novietot organoīdu"
 
-#: ../src/general/NewGameSettings.tscn:313
+#: ../src/general/NewGameSettings.tscn:315
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/WorldGenerationSettings.cs:157
+#: ../src/general/WorldGenerationSettings.cs:160
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 #, fuzzy
 msgid "PLANET_DETAILS_STRING"
 msgstr "Atvērt logu mapi"
 
-#: ../src/general/NewGameSettings.tscn:1067
+#: ../src/general/NewGameSettings.tscn:1104
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:225
+#: ../src/general/NewGameSettings.tscn:1038
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -5159,11 +5189,11 @@ msgstr ""
 msgid "PLAYER"
 msgstr "Spēlētāja šūna"
 
-#: ../src/general/NewGameSettings.tscn:593
+#: ../src/general/NewGameSettings.tscn:595
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:633
+#: ../src/general/NewGameSettings.tscn:635
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
 
@@ -5224,17 +5254,17 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "POPULĀCIJA:"
 
-#: ../src/auto-evo/RunResults.cs:623
+#: ../src/auto-evo/RunResults.cs:629
 #, fuzzy
 msgid "POPULATION_COLON"
 msgstr "Kopējā Populācija:"
 
-#: ../src/auto-evo/RunResults.cs:748
+#: ../src/auto-evo/RunResults.cs:762
 #, fuzzy
 msgid "POPULATION_IN_PATCHES"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2353
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2354
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5246,7 +5276,7 @@ msgstr "{0} Plēsonība"
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:332
 msgid "PRESSURE"
 msgstr "Spiediens"
 
@@ -5267,7 +5297,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:644
 #, fuzzy
 msgid "PREVIOUS_COLON"
 msgstr "Suga:"
@@ -5337,8 +5367,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Randomizēt sugas nosaukumu"
 
-#: ../src/general/NewGameSettings.tscn:242
-#: ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/NewGameSettings.tscn:244
+#: ../src/general/NewGameSettings.tscn:1051
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Atsākt spēli"
@@ -5397,7 +5427,7 @@ msgid "REPORT_BUG"
 msgstr ""
 
 #: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:279
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:500
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:508
 msgid "REPRODUCED"
 msgstr ""
 
@@ -5537,12 +5567,17 @@ msgstr "Atgriezties izvēlnē"
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Atgriezties izvēlnē"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1010
 #: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Vai patiešām vēlaties iziet uz galveno izvēlni?\n"
 "Jūs zaudēsiet nesaglabāto progresu."
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:44
+#, fuzzy
+msgid "REVEAL_ALL_PATCHES"
+msgstr "Izplatījās uz plankumiem:"
 
 #: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -5585,27 +5620,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:743
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} aizsūtot:{1} populāciju no plankuma: {2}"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:724
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "Gēna kods:"
 
-#: ../src/auto-evo/RunResults.cs:669
+#: ../src/auto-evo/RunResults.cs:675
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "Radās, lai aizpildītu nišu"
 
-#: ../src/auto-evo/RunResults.cs:672
+#: ../src/auto-evo/RunResults.cs:678
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "Radās dažādās atlases spiediena dēļ"
 
-#: ../src/auto-evo/RunResults.cs:656
+#: ../src/auto-evo/RunResults.cs:662
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "Atdalījās no {0}"
 
-#: ../src/auto-evo/RunResults.cs:689
+#: ../src/auto-evo/RunResults.cs:695
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "Populācija dažos plankumos atdalījās, lai veidotu jaunu sugu {0}:"
 
@@ -5825,7 +5860,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr "Atsākt spēli"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:272
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5859,7 +5894,7 @@ msgstr ""
 msgid "SELECT_A_GENERATION"
 msgstr "Atlasīts:"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:122
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:123
 msgid "SELECT_A_PATCH"
 msgstr ""
 
@@ -6121,7 +6156,7 @@ msgstr "Iespavnot amonjaku"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:985
+#: ../src/microbe_stage/MicrobeStage.cs:990
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6156,12 +6191,12 @@ msgstr "Suga:"
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
 
-#: ../src/auto-evo/RunResults.cs:705
+#: ../src/auto-evo/RunResults.cs:719
 #, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "Satur mutāciju"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:425
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:428
 msgid "SPECIES_LIST"
 msgstr "Sugu saraksts"
 
@@ -6180,7 +6215,7 @@ msgstr "Sugas nosaukums..."
 msgid "SPECIES_POPULATION"
 msgstr "Sugas populācija"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:863
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:879
 msgid "SPECIES_PRESENT"
 msgstr "Sastopamās sugas"
 
@@ -6197,7 +6232,7 @@ msgstr ""
 msgid "SPECIES_TO_FIND"
 msgstr "Suga:"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:347
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:364
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Sugas populācija"
@@ -6210,7 +6245,7 @@ msgstr "Ātrums"
 msgid "SPEED_COLON"
 msgstr "Ātrums:"
 
-#: ../src/auto-evo/RunResults.cs:721
+#: ../src/auto-evo/RunResults.cs:735
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "Izplatījās uz plankumiem:"
@@ -6227,7 +6262,7 @@ msgstr "Sākas"
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1201
+#: ../src/general/NewGameSettings.tscn:1238
 #, fuzzy
 msgid "START_GAME"
 msgstr "Saglabāt spēli"
@@ -6423,11 +6458,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1254
+#: ../src/microbe_stage/MicrobeStage.cs:1270
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1255
+#: ../src/microbe_stage/MicrobeStage.cs:1271
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6443,7 +6478,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:449
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:360
 msgid "SUNLIGHT"
 msgstr "Saules gaisma"
 
@@ -6565,9 +6600,9 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:293
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:296
 msgid "TEMPERATURE"
 msgstr "Temperatūra"
 
@@ -6632,7 +6667,7 @@ msgstr "Pārveido [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] p
 msgid "THERMOSYNTHESIS"
 msgstr "Hemosintēze"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:185
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glikozes daudzums ir samazināts līdz {0} no iepriekšējā daudzuma."
 
@@ -6716,18 +6751,18 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:962
+#: ../src/auto-evo/RunResults.cs:978
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Radās, lai aizpildītu nišu"
 
-#: ../src/auto-evo/RunResults.cs:968
+#: ../src/auto-evo/RunResults.cs:984
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Radās dažādās atlases spiediena dēļ"
 
-#: ../src/microbe_stage/MicrobeStage.cs:447
-#: ../src/microbe_stage/MicrobeStage.cs:451
+#: ../src/microbe_stage/MicrobeStage.cs:450
+#: ../src/microbe_stage/MicrobeStage.cs:454
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6745,33 +6780,33 @@ msgstr ""
 "\n"
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
-#: ../src/auto-evo/RunResults.cs:885
+#: ../src/auto-evo/RunResults.cs:899
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:932
+#: ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:943
+#: ../src/auto-evo/RunResults.cs:959
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:901 ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:936
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Sugas populācija"
 
-#: ../src/auto-evo/RunResults.cs:895 ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:930
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Sugas populācija"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:176
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -6916,11 +6951,10 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:218
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:272
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:380
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:435
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:491
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:340
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:396
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:452
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 #, fuzzy
@@ -6932,7 +6966,7 @@ msgstr "Tutoriāls"
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Novietot organoīdu"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:492
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:453
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6963,7 +6997,7 @@ msgstr ""
 "\n"
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:273
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:269
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
@@ -7025,7 +7059,7 @@ msgstr ""
 "\n"
 "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:436
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:397
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -7033,7 +7067,7 @@ msgstr ""
 "\n"
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:341
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
@@ -7053,7 +7087,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:287
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
@@ -7171,6 +7205,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "Zemūdens ala"
 
+#: ../src/microbe_stage/Patch.cs:22
+#, fuzzy
+msgid "UNDISCOVERED_PATCH"
+msgstr "Atcelt pašreizējo darbību"
+
 #: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
 msgstr "Atsaukt"
@@ -7209,6 +7248,16 @@ msgstr ""
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
+#: ../src/microbe_stage/Patch.cs:21
+msgid "UNKNOWN_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:98
+#, fuzzy
+msgid "UNKNOWN_SHORT"
+msgstr "Atcelt pašreizējo darbību"
 
 #: ../src/general/OptionsMenu.cs:1637
 #, fuzzy
@@ -7335,7 +7384,7 @@ msgstr "Apraksts:"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:635
 #: ../src/gui_common/CompoundAmount.cs:173
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:306
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:323
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
@@ -7432,11 +7481,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:843
+#: ../src/auto-evo/RunResults.cs:857
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "Izmira no planētas"
 
-#: ../src/auto-evo/RunResults.cs:632
+#: ../src/auto-evo/RunResults.cs:638
 msgid "WENT_EXTINCT_IN"
 msgstr "Izmira {0}"
 
@@ -8949,7 +8998,7 @@ msgstr ""
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Organisma statistika"
 
-#: ../src/general/WorldGenerationSettings.cs:170
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -8974,11 +9023,11 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:422
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:425
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
 msgstr ""
 

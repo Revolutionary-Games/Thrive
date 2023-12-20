@@ -89,12 +89,13 @@ expand = true
 stretch_mode = 6
 
 [node name="UnknownLabel" type="Label" parent="MarginContainer/MarginContainer"]
+visible = false
 margin_left = 1.0
 margin_top = 10.0
-margin_right = 55.0
+margin_right = 232.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "?"
+text = "UNKNOWN_SHORT"
 align = 1
 valign = 1
 

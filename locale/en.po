@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-19 09:28+0200\n"
-"PO-Revision-Date: 2023-12-20 11:19+0200\n"
+"POT-Creation-Date: 2023-12-20 12:45+0200\n"
+"PO-Revision-Date: 2023-12-20 12:45+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -34,10 +34,6 @@ msgstr "3D Movement"
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D movement style:"
-
-#: ../src/microbe_stage/editor/PatchMapNode.tscn:98
-msgid "?"
-msgstr "?"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -67,7 +63,7 @@ msgstr "Move to the Awakening Stage. Available once you have enough brain power 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:702
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:490
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:53
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Action blocked while another is in progress"
 
@@ -175,7 +171,7 @@ msgstr "Allow species to not mutate (if no good mutation is found)"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generic Statistics of All Worlds"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1003
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generations:[/b]\n"
@@ -313,12 +309,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "ATP Balance"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:379
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:380
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:379
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
@@ -453,7 +449,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Base Mobility"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:437
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
@@ -936,9 +932,9 @@ msgstr "Clean Up Old Saves"
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:256
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:310
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:364
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:418
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:379
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:431
 msgid "CLOSE"
 msgstr "Close"
 
@@ -1056,7 +1052,7 @@ msgid "COMPILED_AT_COLON"
 msgstr "Built at:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1027
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:32
@@ -1162,12 +1158,12 @@ msgstr ""
 "\n"
 "Cancelling the launch will destroy the spacecraft unit. Launch the spacecraft?"
 
-#: ../src/general/NewGameSettings.cs:419
+#: ../src/general/NewGameSettings.cs:423
 #: ../src/general/NewGameSettings.tscn:1235
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Enter the game with these settings"
 
-#: ../src/general/NewGameSettings.cs:426
+#: ../src/general/NewGameSettings.cs:430
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Some settings are invalid"
 
@@ -1455,7 +1451,7 @@ msgstr "Deadzone calibrations have been reset"
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Deadzone Configuration"
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:341
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:340
 msgid "DEATH"
 msgstr "death"
 
@@ -1605,7 +1601,7 @@ msgstr "Devbuilds Supporters"
 msgid "DIFFICULTY"
 msgstr "Difficulty"
 
-#: ../src/general/WorldGenerationSettings.cs:140
+#: ../src/general/WorldGenerationSettings.cs:143
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:50
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
@@ -1625,8 +1621,8 @@ msgstr ""
 msgid "DIFFICULTY_PRESET"
 msgstr "Difficulty preset"
 
-#: ../simulation_parameters/common/difficulty_presets.json:42
-#: ../src/general/WorldGenerationSettings.cs:138
+#: ../simulation_parameters/common/difficulty_presets.json:45
+#: ../src/general/WorldGenerationSettings.cs:141
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Custom"
 
@@ -1658,7 +1654,7 @@ msgstr "Digestion Speed"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Digestion Speed:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:224
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:223
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1958,23 +1954,23 @@ msgstr "Enable the editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:448
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:447
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:411
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:410
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2472
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2473
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2483
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2484
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2476
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2477
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
@@ -2051,7 +2047,7 @@ msgstr "Error Saving"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1256
+#: ../src/microbe_stage/MicrobeStage.cs:1272
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -2127,13 +2123,13 @@ msgstr "Just like 99% of all species that have ever existed, your species has go
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCTION"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:436
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:447
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:450
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Extinct from patch"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:435
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:448
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinct from the planet"
 
@@ -2217,7 +2213,7 @@ msgstr "This item was truncated due to being too long, please read the original 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Filter items by category:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:143
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:144
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:79
 msgid "FIND_CURRENT_PATCH"
@@ -2306,19 +2302,19 @@ msgstr ""
 "and might be much more ambitious over chunks.\n"
 "Responsive microbes will switch to new targets sooner."
 
-#: ../src/general/NewGameSettings.cs:315
+#: ../src/microbe_stage/FogOfWarMode.cs:5
 msgid "FOG_OF_WAR_DISABLED"
 msgstr "Fog Of War Disabled"
 
-#: ../src/general/NewGameSettings.cs:816
+#: ../src/general/NewGameSettings.cs:821
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "(all patches will be revealed)"
 
-#: ../src/general/NewGameSettings.cs:317
+#: ../src/microbe_stage/FogOfWarMode.cs:11
 msgid "FOG_OF_WAR_INTENSE"
 msgstr "Intense Fog Of War"
 
-#: ../src/general/NewGameSettings.cs:822
+#: ../src/general/NewGameSettings.cs:827
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(only patches the player has been to will be revealed)"
 
@@ -2326,11 +2322,11 @@ msgstr "(only patches the player has been to will be revealed)"
 msgid "FOG_OF_WAR_MODE"
 msgstr "Fog Of War Mode"
 
-#: ../src/general/NewGameSettings.cs:316
+#: ../src/microbe_stage/FogOfWarMode.cs:8
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Regular Fog Of War"
 
-#: ../src/general/NewGameSettings.cs:819
+#: ../src/general/NewGameSettings.cs:824
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr "(patches the player has been to, and adjacent patches will be revealed)"
 
@@ -2338,7 +2334,7 @@ msgstr "(patches the player has been to, and adjacent patches will be revealed)"
 msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2490
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 
@@ -2475,7 +2471,7 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/auto-evo/RunResults.cs:943
+#: ../src/auto-evo/RunResults.cs:953
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 
@@ -2517,8 +2513,7 @@ msgid "GOOGLY_EYE_CELL"
 msgstr "Googly eye cell"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:169
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:470
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:526
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:487
 msgid "GOT_IT"
 msgstr "Got it"
 
@@ -3111,7 +3106,7 @@ msgstr "This language is still a work in progress ({0}% complete)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1432
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Can't delete the last organelle"
 
@@ -3287,14 +3282,14 @@ msgstr "Life origin"
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(starting location)"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:47
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:44
 msgid "LIFE_ORIGIN_POND"
 msgstr "Warm little pond"
@@ -3304,10 +3299,10 @@ msgstr "Warm little pond"
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Some options may be disabled if LAWK only is enabled"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:208
-#: ../src/general/NewGameSettings.tscn:900
-#: ../src/general/NewGameSettings.tscn:901
+#: ../src/general/NewGameSettings.tscn:209
+#: ../src/general/NewGameSettings.tscn:210
+#: ../src/general/NewGameSettings.tscn:937
+#: ../src/general/NewGameSettings.tscn:938
 #: ../src/general/WorldGenerationSettings.cs:41
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
@@ -3329,7 +3324,7 @@ msgstr "Current"
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Day"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:318
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:335
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} at noon"
 
@@ -3576,7 +3571,7 @@ msgid "MEDIASTOP"
 msgstr "Media Stop"
 
 #: ../src/auto-evo/EvolutionaryTree.cs:403
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:169
 #: ../src/microbe_stage/editor/TimelineTab.cs:230
 msgid "MEGA_YEARS"
 msgstr "Myr"
@@ -3742,8 +3737,8 @@ msgstr "Every time you reproduce, you will enter the Microbe Editor, where you c
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:975
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1019
+#: ../src/auto-evo/AutoEvoExploringTool.cs:976
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Found in {1} species, averaging {2} each"
 
@@ -3980,7 +3975,7 @@ msgstr "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:237
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:236
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "Mixed..."
 
@@ -4523,7 +4518,7 @@ msgid "NO_AI"
 msgstr "No AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2504
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2505
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -4565,7 +4560,7 @@ msgstr "No Selected Mod"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1430
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1431
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Can't delete the nucleus as this is an irreversible evolution.\n"
@@ -4586,8 +4581,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2362
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2372
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2373
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "N_A"
@@ -4763,7 +4758,7 @@ msgstr "Can be used to stab the other cells or to defend against their toxins."
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:431
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
@@ -5001,14 +4996,14 @@ msgstr "Peaceful"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:766
-#: ../src/general/WorldGenerationSettings.cs:145
+#: ../src/general/NewGameSettings.cs:794
+#: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:258
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:402
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:305
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:231
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:257
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:405
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:322
 #: ../src/microbe_stage/MicrobeHUD.cs:284
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
@@ -5059,7 +5054,7 @@ msgstr "Place organelle (or other placeable thing)"
 msgid "PLANET"
 msgstr "Planet"
 
-#: ../src/general/WorldGenerationSettings.cs:157
+#: ../src/general/WorldGenerationSettings.cs:160
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:78
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
@@ -5146,15 +5141,15 @@ msgstr "Play With Current Setting"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/auto-evo/RunResults.cs:623
+#: ../src/auto-evo/RunResults.cs:629
 msgid "POPULATION_COLON"
 msgstr "population:"
 
-#: ../src/auto-evo/RunResults.cs:748
+#: ../src/auto-evo/RunResults.cs:762
 msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2353
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2354
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5187,7 +5182,7 @@ msgstr "Preview image doesn't exist"
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "Preview image file is too large"
 
-#: ../src/auto-evo/RunResults.cs:638
+#: ../src/auto-evo/RunResults.cs:644
 msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
@@ -5315,7 +5310,7 @@ msgid "REPORT_BUG"
 msgstr "Report a Bug"
 
 #: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:279
-#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:500
+#: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:508
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -5451,7 +5446,7 @@ msgstr ""
 "Are you sure you want to exit to the main menu?\n"
 "You will lose any unsaved progress."
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:42
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:44
 msgid "REVEAL_ALL_PATCHES"
 msgstr "Reveal All Patches"
 
@@ -5495,27 +5490,27 @@ msgstr "Run auto-evo during gameplay"
 msgid "RUN_ONE_STEP"
 msgstr "Run One Step"
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:743
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:710
+#: ../src/auto-evo/RunResults.cs:724
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gene code:"
 
-#: ../src/auto-evo/RunResults.cs:669
+#: ../src/auto-evo/RunResults.cs:675
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "emerged to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:672
+#: ../src/auto-evo/RunResults.cs:678
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "emerged due to differing selection pressures"
 
-#: ../src/auto-evo/RunResults.cs:656
+#: ../src/auto-evo/RunResults.cs:662
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "split off from {0}"
 
-#: ../src/auto-evo/RunResults.cs:689
+#: ../src/auto-evo/RunResults.cs:695
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "population in some patches split off to form new species {0}:"
 
@@ -5735,8 +5730,8 @@ msgstr "Secrete mucilage"
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr "Secrete mucilage for a speed boost and slowing down cells stuck in slime"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:152
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:293
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:129
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -6005,7 +6000,7 @@ msgstr "Spawn ammonia"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:988
+#: ../src/microbe_stage/MicrobeStage.cs:990
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
@@ -6048,11 +6043,11 @@ msgstr ""
 "[b]Behaviour[/b]\n"
 "  {5}"
 
-#: ../src/auto-evo/RunResults.cs:705
+#: ../src/auto-evo/RunResults.cs:719
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has mutated"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:425
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:428
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
@@ -6086,7 +6081,7 @@ msgstr "Minimum population fraction of a species to allow split by mutations"
 msgid "SPECIES_TO_FIND"
 msgstr "Species to Find:"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:347
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:364
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
@@ -6098,7 +6093,7 @@ msgstr "Speed"
 msgid "SPEED_COLON"
 msgstr "Speed:"
 
-#: ../src/auto-evo/RunResults.cs:721
+#: ../src/auto-evo/RunResults.cs:735
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
@@ -6303,11 +6298,11 @@ msgstr "Society Center"
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr "Steam Powered Factory"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1254
+#: ../src/microbe_stage/MicrobeStage.cs:1270
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1255
+#: ../src/microbe_stage/MicrobeStage.cs:1271
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
@@ -6605,40 +6600,40 @@ msgstr "Show global events"
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Show local events"
 
-#: ../src/auto-evo/RunResults.cs:968
+#: ../src/auto-evo/RunResults.cs:978
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
-#: ../src/auto-evo/RunResults.cs:974
+#: ../src/auto-evo/RunResults.cs:984
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
-#: ../src/microbe_stage/MicrobeStage.cs:447
-#: ../src/microbe_stage/MicrobeStage.cs:451
+#: ../src/microbe_stage/MicrobeStage.cs:450
+#: ../src/microbe_stage/MicrobeStage.cs:454
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b] became multicellular"
 
-#: ../src/auto-evo/RunResults.cs:885
+#: ../src/auto-evo/RunResults.cs:899
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[b][u]{0}[/u][/b] has gone extinct!"
 
-#: ../src/auto-evo/RunResults.cs:914
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] has disappeared from this patch"
 
-#: ../src/auto-evo/RunResults.cs:938
+#: ../src/auto-evo/RunResults.cs:948
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated into this patch from {1}"
 
-#: ../src/auto-evo/RunResults.cs:949
+#: ../src/auto-evo/RunResults.cs:959
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1}"
 
-#: ../src/auto-evo/RunResults.cs:901 ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:915 ../src/auto-evo/RunResults.cs:936
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[b][u]{0}[/u][/b] population has decreased to {1}"
 
-#: ../src/auto-evo/RunResults.cs:895 ../src/auto-evo/RunResults.cs:916
+#: ../src/auto-evo/RunResults.cs:909 ../src/auto-evo/RunResults.cs:930
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[b][u]{0}[/u][/b] population has increased to {1}"
 
@@ -6782,11 +6777,10 @@ msgstr "Try taking some screenshots!"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:218
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:272
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:380
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:435
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:491
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:340
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:396
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:452
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:66
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
 msgid "TUTORIAL"
@@ -6805,7 +6799,7 @@ msgstr ""
 "\n"
 "If you are using budding reproduction (the default method), you start off controlling a small bud and need to grow the rest of your cell layout."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:492
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:453
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "The ATP Production bar on the right indicates how much [thrive:compound type=\"atp\"][/thrive:compound] your cell produces compared to how much is consumed. If the top bar is shorter than the bottom one, then you are not producing enough [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -6835,7 +6829,7 @@ msgstr ""
 "\n"
 "To continue, select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with [thrive:input]e_rotate_left[/thrive:input] and [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:273
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:269
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 "You can add a [b]chemoreceptor[/b] organelle to your cell.\n"
@@ -6875,7 +6869,7 @@ msgstr ""
 "\n"
 "Modify the organelle to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:436
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:397
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
 "Your [thrive:compound type=\"atp\"][/thrive:compound] balance is negative.\n"
@@ -6886,7 +6880,7 @@ msgstr ""
 "\n"
 "Alternatively, you could also remove unneeded or redundant organelles."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:341
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "You have not made any changes to your species.\n"
@@ -6927,7 +6921,7 @@ msgstr ""
 "\n"
 "Press the redo button (next to the undo button) to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:287
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "You should focus on [b]specialization[/b] to survive on one or two [thrive:compound type=\"atp\"][/thrive:compound] sources so that you don't require many different resources at once to sustain yourself.\n"
@@ -7041,7 +7035,7 @@ msgstr "This is a debug build where the info below is probably not up to date"
 msgid "UNDERWATERCAVE"
 msgstr "Underwater cave"
 
-#: ../src/microbe_stage/Patch.cs:144
+#: ../src/microbe_stage/Patch.cs:22
 msgid "UNDISCOVERED_PATCH"
 msgstr "Undiscovered Patch"
 
@@ -7082,9 +7076,13 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Unknown on Windows"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
-#: ../src/microbe_stage/Patch.cs:142
+#: ../src/microbe_stage/Patch.cs:21
 msgid "UNKNOWN_PATCH"
 msgstr "Unknown Patch"
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:98
+msgid "UNKNOWN_SHORT"
+msgstr "?"
 
 #: ../src/general/OptionsMenu.cs:1637
 msgid "UNKNOWN_VERSION"
@@ -7295,11 +7293,11 @@ msgstr "Waiting for auto-evo:"
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Welcome to the Thriveopedia"
 
-#: ../src/auto-evo/RunResults.cs:843
+#: ../src/auto-evo/RunResults.cs:857
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
-#: ../src/auto-evo/RunResults.cs:632
+#: ../src/auto-evo/RunResults.cs:638
 msgid "WENT_EXTINCT_IN"
 msgstr "went extinct in {0}"
 
@@ -8752,7 +8750,7 @@ msgstr "Worlds' data have been successfully exported to {0}"
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr "Generic Statistics of Current World"
 
-#: ../src/general/WorldGenerationSettings.cs:170
+#: ../src/general/WorldGenerationSettings.cs:173
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:106
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
@@ -8779,11 +8777,11 @@ msgstr "Xbox One"
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:420
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:421
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:422
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:423
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:424
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:425
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:427
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 msgid "YEARS"
 msgstr "years"
 
