@@ -89,15 +89,18 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             FogOfWarMode.Ignored :
             Editor.CurrentGame.GameWorld.WorldSettings.FogOfWarMode;
 
+        var map = Editor.CurrentGame.GameWorld.Map;
+
+        if (map != mapDrawer.Map)
+            throw new InvalidOperationException("Map is not set correctly on this component");
+
         if (fogOfWar == FogOfWarMode.Ignored)
         {
-            foreach (var patch in mapDrawer.Map!.Patches)
-            {
-                patch.Value.ApplyVisibility(MapElementVisibility.Shown);
-            }
+            map.RevealAllPatches();
         }
 
-        mapDrawer.Map!.FogOfWar = fogOfWar;
+        // Make sure the map setting of fog of war always matches the world
+        map.FogOfWar = fogOfWar;
 
         if (!fresh)
         {
@@ -107,7 +110,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         {
             targetPatch = null;
 
-            playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
+            playerPatchOnEntry = map.CurrentPatch ??
                 throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
             UpdatePlayerPatch(playerPatchOnEntry);
@@ -277,9 +280,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdatePlayerPatch(Patch? patch)
     {
+        if (mapDrawer.Map == null)
+            throw new InvalidOperationException("Map needs to be set on the drawer first");
+
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
-        GD.Print(fogOfWar);
-        if (mapDrawer.Map!.UpdatePatchVisbility(patch ?? playerPatchOnEntry))
+
+        if (mapDrawer.Map.UpdatePatchVisibility(mapDrawer.PlayerPatch))
             mapDrawer.MarkDirty();
 
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;

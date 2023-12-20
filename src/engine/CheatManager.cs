@@ -13,22 +13,22 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnHideCheatMenus;
 
     /// <summary>
-    ///   Fired whenever the user uses the "Duplicate Player" cheat
+    ///   Fired whenever the player uses the "Duplicate Player" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnPlayerDuplicationCheatUsed;
 
     /// <summary>
-    ///   Fired whenever the user uses the "Spawn Enemy" cheat
+    ///   Fired whenever the player uses the "Spawn Enemy" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnSpawnEnemyCheatUsed;
 
     /// <summary>
-    ///   Fired whenever the user uses the "Despawn All Entities" cheat
+    ///   Fired whenever the player uses the "Despawn All Entities" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnDespawnAllEntitiesCheatUsed;
 
     /// <summary>
-    ///   Fired whenever the user uses the "Reveal All Patches" cheat
+    ///   Fired whenever the player uses the "Reveal All Patches" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnRevealAllPatches;
 

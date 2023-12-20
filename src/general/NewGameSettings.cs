@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Container = Godot.Container;
 
 public class NewGameSettings : ControlWithInput
 {
@@ -311,10 +313,12 @@ public class NewGameSettings : ControlWithInput
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
         }
 
-        // Add items to fog of war dropdown
-        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_DISABLED"), (int)FogOfWarMode.Ignored);
-        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_REGULAR"), (int)FogOfWarMode.Regular);
-        fogOfWarModeDropdown.AddItem(TranslationServer.Translate("FOG_OF_WAR_INTENSE"), (int)FogOfWarMode.Intense);
+        // Add items to the fog of war dropdown
+        foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
+        {
+            fogOfWarModeDropdown.AddItem(
+                TranslationServer.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
+        }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);

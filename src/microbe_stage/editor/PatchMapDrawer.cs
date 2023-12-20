@@ -107,8 +107,6 @@ public class PatchMapDrawer : Control
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
 
-    private FogOfWarMode FogOfWar => Map!.FogOfWar;
-
     public override void _Ready()
     {
         base._Ready();
@@ -126,9 +124,10 @@ public class PatchMapDrawer : Control
     {
         base._Process(delta);
 
-        if (IgnoreFogOfWar)
+        // When set to ignore fog of war automatically reveal the entire map set to us
+        if (IgnoreFogOfWar && Map != null)
         {
-            Map?.RevealAllPatches();
+            Map.RevealAllPatches();
             dirty = true;
             IgnoreFogOfWar = false;
         }
@@ -329,6 +328,7 @@ public class PatchMapDrawer : Control
 
     private void ApplyFadeToLine(Line2D line, bool reversed)
     {
+        // TODO: it seems just a few gradients are used, so these should be able to be cached
         var gradient = new Gradient();
         var color = line.DefaultColor;
         Color transparent = new(color, 0);
@@ -427,6 +427,8 @@ public class PatchMapDrawer : Control
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
 
+        // TODO: it would be pretty nice to be able to use a buffer pool for the path points here as a ton of memory
+        // is re-allocated here each time the map needs drawing
         var probablePaths = new List<(Vector2[] Path, int Priority)>();
 
         // Direct line, I shape, highest priority
@@ -764,6 +766,8 @@ public class PatchMapDrawer : Control
 
         nodes.Clear();
 
+        // TODO: figure out a more sensible place to call this as this will use the old connections which are cleared
+        // immediately below after this call. So if the connections end up with different data
         RebuildRegionConnections();
 
         connections.Clear();
@@ -784,46 +788,12 @@ public class PatchMapDrawer : Control
                 continue;
             }
 
-            var node = (PatchMapNode)nodeScene.Instance();
-            node.MarginLeft = entry.Value.ScreenCoordinates.x;
-            node.MarginTop = entry.Value.ScreenCoordinates.y;
-            node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
-
-            node.Patch = entry.Value;
-            node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
-
-            node.MonochromeMaterial = MonochromeMaterial;
-
-            node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
-
-            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
-
-            AddChild(node);
-            node.UpdateVisibility();
-            nodes.Add(node.Patch, node);
+            AddPatchNode(entry.Value, entry.Value.ScreenCoordinates);
         }
 
         foreach (var entry in unknownRegions)
         {
-            var pos = GetUnknownRegionPosition(entry.Item1);
-
-            var node = (PatchMapNode)nodeScene.Instance();
-            node.MarginLeft = pos.x;
-            node.MarginTop = pos.y;
-            node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
-
-            node.Patch = entry.Item2;
-            node.PatchIcon = entry.Item2.BiomeTemplate.LoadedIcon;
-
-            node.MonochromeMaterial = MonochromeMaterial;
-
-            node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
-
-            node.Enabled = patchEnableStatusesToBeApplied?[entry.Item2] ?? true;
-
-            AddChild(node);
-            node.UpdateVisibility();
-            nodes.Add(node.Patch, node);
+            AddPatchNode(entry.Item2, GetUnknownRegionPosition(entry.Item1));
         }
 
         bool runNodeSelectionsUpdate = true;
@@ -855,10 +825,30 @@ public class PatchMapDrawer : Control
             UpdateNodeSelections();
     }
 
+    private void AddPatchNode(Patch patch, Vector2 position)
+    {
+        var node = (PatchMapNode)nodeScene.Instance();
+        node.MarginLeft = position.x;
+        node.MarginTop = position.y;
+        node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
+
+        node.Patch = patch;
+        node.PatchIcon = patch.BiomeTemplate.LoadedIcon;
+
+        node.MonochromeMaterial = MonochromeMaterial;
+
+        node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
+
+        node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
+
+        AddChild(node);
+        nodes.Add(node.Patch, node);
+    }
+
     private void RebuildRegionConnections()
     {
-        foreach (var connection in regionConnectionLines)
-            connection.Value.Free();
+        foreach (var connection in regionConnectionLines.Values)
+            connection.Free();
 
         regionConnectionLines.Clear();
 
@@ -883,9 +873,13 @@ public class PatchMapDrawer : Control
             regionConnectionLines.Add(entry.Key, line);
 
             if (region1Shown && !region2Shown)
+            {
                 ApplyFadeToLine(line, false);
+            }
             else if (!region1Shown && region2Shown)
+            {
                 ApplyFadeToLine(line, true);
+            }
         }
     }
 

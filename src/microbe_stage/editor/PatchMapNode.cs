@@ -86,8 +86,8 @@ public class PatchMapNode : MarginContainer
 
     public MapElementVisibility Visibility
     {
-        get => patch!.Visibility;
-        set => patch!.ApplyVisibility(value);
+        get => Patch.Visibility;
+        set => Patch.ApplyVisibility(value);
     }
 
     public bool IsDirty { get; private set; }
@@ -224,6 +224,9 @@ public class PatchMapNode : MarginContainer
 
     public void UpdateVisibility()
     {
+        if (unknownLabel == null)
+            throw new InvalidOperationException("Not initialized yet");
+
         switch (Visibility)
         {
             case MapElementVisibility.Hidden:
@@ -231,16 +234,22 @@ public class PatchMapNode : MarginContainer
                 return;
 
             case MapElementVisibility.Unknown:
+            {
                 Show();
-                unknownLabel!.Show();
+                unknownLabel.Show();
+
+                // TODO: would it help anything to persistently load the unknown texture (instead of each time here)?
                 PatchIcon = GD.Load<Texture>(UnknownTextureFilePath);
                 return;
+            }
 
             case MapElementVisibility.Shown:
+            {
                 Show();
-                unknownLabel!.Hide();
+                unknownLabel.Hide();
                 PatchIcon = patch!.BiomeTemplate.LoadedIcon;
                 return;
+            }
         }
     }
 

@@ -601,7 +601,7 @@
             {
                 var builder2 = new LocalizedStringBuilder(80);
 
-                // Patch visbility is ignored if the output is not read by the player
+                // Patch visibility is ignored if the output is not read by the player
                 if (!playerReadable)
                 {
                     builder2.Append(patch.ID);
@@ -700,7 +700,15 @@
                     {
                         builder.Append("   ");
 
-                        builder.Append(patch.VisibleName);
+                        if (playerReadable)
+                        {
+                            builder.Append(patch.VisibleName);
+                        }
+                        else
+                        {
+                            builder.Append(patch.Name);
+                        }
+
                         builder.Append('\n');
                     }
                 }
@@ -935,6 +943,8 @@
                 foreach (var migration in GetMigrationsTo(patch))
                 {
                     // Log to destination patch
+                    // TODO: these events need to dynamically reveal their names in the event log once the player
+                    // discovers them
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
                             migration.Value.From.VisibleName),
                         migration.Key.PlayerSpecies, "newSpecies.png");

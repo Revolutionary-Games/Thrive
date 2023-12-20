@@ -436,8 +436,8 @@ public class PatchMap : ISaveLoadable
     ///   Updates the visibility of a given patch and its neighbours according to the <see cref="FogOfWarMode"/>
     /// </summary>
     /// <param name="patch">The patch to be updated</param>
-    /// <returns>Weather or not an update has actually been performed</returns>
-    public bool UpdatePatchVisbility(Patch patch)
+    /// <returns>Whether or not an update has actually been performed</returns>
+    public bool UpdatePatchVisibility(Patch patch)
     {
         switch (FogOfWar)
         {
@@ -445,16 +445,22 @@ public class PatchMap : ISaveLoadable
                 return false;
 
             case FogOfWarMode.Intense:
+            {
                 patch.ApplyVisibility(MapElementVisibility.Shown);
                 patch.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
                 return true;
+            }
 
             case FogOfWarMode.Regular:
+            {
                 patch.ApplyVisibility(MapElementVisibility.Shown);
                 patch.ApplyVisibilityToNeighbours(MapElementVisibility.Shown);
+
                 foreach (var neighbour in patch.Adjacent)
                     neighbour.ApplyVisibilityToNeighbours(MapElementVisibility.Unknown);
+
                 return true;
+            }
 
             default:
                 return false;
