@@ -16,6 +16,13 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
+    private static readonly LocalizedString UnknownPatchName = new LocalizedString("UNKNOWN_PATCH");
+    private static readonly LocalizedString HiddenPatchName = new LocalizedString("UNDISCOVERED_PATCH");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
+
     private readonly Compound sunlight;
 
     /// <summary>
@@ -93,9 +100,8 @@ public class Patch
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Generally, this should not be set directly, instead
-    ///     <see cref="ApplyVisibility"/> should be used to perform additional checks 
-    ///     and apply visibility to the region
+    ///     Generally, this should not be set directly, instead <see cref="ApplyVisibility"/> should be used to
+    ///     perform additional checks and apply visibility to the region
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -149,11 +155,11 @@ public class Patch
                 case MapElementVisibility.Shown:
                     return Name;
                 case MapElementVisibility.Unknown:
-                    return new LocalizedString("UNKNOWN_PATCH");
+                    return UnknownPatchName;
                 case MapElementVisibility.Hidden:
-                    return new LocalizedString("UNDISCOVERED_PATCH");
+                    return HiddenPatchName;
                 default:
-                    throw new InvalidOperationException("Invalid Patch Visbility");
+                    throw new InvalidOperationException("Invalid Patch Visibility");
             }
         }
     }

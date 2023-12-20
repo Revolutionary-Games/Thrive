@@ -82,6 +82,7 @@
                 { "0.6.2.0-rc1", new UpgradeJustVersionNumber("0.6.2.0") },
                 { "0.6.2.0", new UpgradeJustVersionNumber("0.6.3.0-rc1") },
                 { "0.6.3.0-rc1", new UpgradeJustVersionNumber("0.6.3.0") },
+                { "0.6.4.0", new UpgradeJustVersionNumber("0.6.4.1") },
                 { "0.6.4.1", new UpgradeStep0641To065() },
             };
         }
@@ -311,9 +312,12 @@
 
     internal class UpgradeStep0641To065 : BaseRecursiveJSONWalkerStep
     {
+        /// <summary>
+        ///   This refers to <see cref="Patch.Visibility"/>
+        /// </summary>
         private const string VISIBILITY = "Visibility";
 
-        protected override string VersionAfter => "0.6.5.0";
+        protected override string VersionAfter => "0.6.5.0-alpha";
 
         protected override void CheckAndUpdateProperty(JProperty property)
         {
@@ -323,24 +327,27 @@
             // Make patches visible
             if (property.Name == "Patches")
             {
-                var elements = new List<JObject>();
+                IEnumerable<JObject> elements;
 
                 if (property.Value is JArray array)
                 {
-                    elements = array.Select(t => (JObject)t).ToList();
+                    elements = array.Select(t => (JObject)t);
                 }
-
-                if (property.Value is JObject @object)
+                else if (property.Value is JObject @object)
                 {
-                    elements = @object.Values().Select(t => (JObject)t).ToList();
+                    elements = @object.Values().Select(t => (JObject)t);
+                }
+                else
+                {
+                    return;
                 }
 
                 foreach (var element in elements)
                 {
-                    if (!element.ContainsKey("$id"))
+                    if (!element.ContainsKey(nameof(Patch.BiomeType)))
                         continue;
 
-                    element.Add(VISIBILITY, 0);
+                    element.Add(VISIBILITY, (int)MapElementVisibility.Shown);
                 }
             }
 
@@ -348,7 +355,7 @@
             if (property.Name == "Region")
             {
                 var dict = (JObject)property.Value;
-                dict.Add(VISIBILITY, 0);
+                dict.Add(VISIBILITY, (int)MapElementVisibility.Shown);
             }
         }
     }
