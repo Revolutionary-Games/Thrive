@@ -157,7 +157,10 @@ public class PatchMapDrawer : Control
 
         // Create connections between regions if they dont exist.
         if (connections.Count == 0)
+        {
             CreateRegionLinks();
+            RebuildRegionConnections();
+        }
 
         DrawRegionBorders();
         DrawPatchLinks();
@@ -167,8 +170,6 @@ public class PatchMapDrawer : Control
         {
             // Just snap, it can get pretty annoying otherwise
             CenterToCurrentPatch(false);
-
-            RebuildRegionConnections();
 
             alreadyDrawn = true;
         }
@@ -765,10 +766,6 @@ public class PatchMapDrawer : Control
             node.Free();
 
         nodes.Clear();
-
-        // TODO: figure out a more sensible place to call this as this will use the old connections which are cleared
-        // immediately below after this call. So if the connections end up with different data
-        RebuildRegionConnections();
 
         connections.Clear();
 
