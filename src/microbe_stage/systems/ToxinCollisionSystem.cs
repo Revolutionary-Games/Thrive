@@ -85,29 +85,39 @@
         /// <returns>False when should pass through</returns>
         private static bool FilterCollisions(ref PhysicsCollision collision)
         {
-            // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
-            // periodically)
-
-            // Toxin is always the first entity as it is what registers this collision callback
-            if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
-            {
-                // Hit something other than a microbe
-                return true;
-            }
-
-            ref var speciesComponent = ref collision.SecondEntity.Get<MicrobeSpeciesMember>();
-
             try
             {
-                ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
+                // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
+                // periodically)
 
-                // Don't hit microbes of the same species as the toxin shooter
-                if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
-                    return false;
+                // Toxin is always the first entity as it is what registers this collision callback
+                if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
+                {
+                    // Hit something other than a microbe
+                    return true;
+                }
+
+                ref var speciesComponent = ref collision.SecondEntity.Get<MicrobeSpeciesMember>();
+
+                try
+                {
+                    ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
+
+                    // Don't hit microbes of the same species as the toxin shooter
+                    if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr($"Entity that collided as a toxin is missing {nameof(ToxinDamageSource)} component: ",
+                        e);
+                }
             }
             catch (Exception e)
             {
-                GD.PrintErr($"Entity that collided as a toxin is missing {nameof(ToxinDamageSource)} component: ", e);
+                // Catch any exceptions to not let them escape up to the native code calling side which would blow up
+                // everything
+                GD.PrintErr("Unexpected error in collision filter: ", e);
             }
 
             // No reason why this shouldn't collie
