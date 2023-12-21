@@ -185,7 +185,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
-        engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, couldParallelize);
+        engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
