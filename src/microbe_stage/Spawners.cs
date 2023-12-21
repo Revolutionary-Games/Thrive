@@ -626,7 +626,7 @@ public static class SpawnHelpers
         });
 
         // Physics
-        entity.Set(Components.PhysicsHelpers.CreatePhysicsForMicrobe());
+        entity.Set(PhysicsHelpers.CreatePhysicsForMicrobe());
 
         entity.Set<MicrobePhysicsExtraData>();
 
