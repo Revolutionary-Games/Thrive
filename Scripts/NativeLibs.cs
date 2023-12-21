@@ -678,6 +678,7 @@ public class NativeLibs
         shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=ON ");
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
+        shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
 
         switch (platform)
         {

@@ -182,7 +182,7 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)

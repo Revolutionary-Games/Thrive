@@ -42,6 +42,8 @@
 
 // #cmakedefine TASK_QUEUE_USES_POINTERS
 
+#cmakedefine THRIVE_DISTRIBUTION
+
 #ifdef WIN32
 #define FORCE_INLINE __forceinline
 #else
@@ -143,5 +145,12 @@ constexpr uint64_t STUFFED_POINTER_POINTER_MASK = ~STUFFED_POINTER_DATA_MASK;
 constexpr uint32_t COLLISION_UNKNOWN_SUB_SHAPE = std::numeric_limits<uint32_t>::max();
 
 } // namespace Thrive
+
+// Ensuring release builds don't have debug on
+#ifdef THRIVE_DISTRIBUTION
+#ifndef NDEBUG
+#error "NDEBUG needs to be defined when building for distribution"
+#endif
+#endif
 
 #endif
