@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [sub_resource type="PanoramaSky" id=1]
 resource_local_to_scene = true
@@ -66,7 +65,6 @@ pause_mode = 1
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
 MenuPath = NodePath("../PauseMenu")
-MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 
@@ -86,8 +84,6 @@ margin_bottom = 540.0
 [node name="InteractablePopup" parent="." instance=ExtResource( 8 )]
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource( 10 )]
-
-[node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
