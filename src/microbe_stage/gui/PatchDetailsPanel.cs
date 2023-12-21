@@ -10,6 +10,9 @@ public class PatchDetailsPanel : PanelContainer
     public NodePath? NothingSelectedPath;
 
     [Export]
+    public NodePath UnknownPatchPath = null!;
+
+    [Export]
     public NodePath DetailsPath = null!;
 
     [Export]
@@ -92,6 +95,7 @@ public class PatchDetailsPanel : PanelContainer
 
 #pragma warning disable CA2213
     private Control nothingSelected = null!;
+    private Control unknownPatch = null!;
     private Control details = null!;
     private Control playerHere = null!;
     private Label name = null!;
@@ -181,6 +185,7 @@ public class PatchDetailsPanel : PanelContainer
     public override void _Ready()
     {
         nothingSelected = GetNode<Control>(NothingSelectedPath);
+        unknownPatch = GetNode<Control>(UnknownPatchPath);
         details = GetNode<Control>(DetailsPath);
         playerHere = GetNode<Control>(PlayerHerePath);
         name = GetNode<Label>(NamePath);
@@ -232,14 +237,25 @@ public class PatchDetailsPanel : PanelContainer
         {
             details.Visible = false;
             nothingSelected.Visible = true;
+            unknownPatch.Visible = false;
 
             return;
         }
 
-        details.Visible = true;
-        nothingSelected.Visible = false;
+        if (SelectedPatch.Visibility != MapElementVisibility.Shown)
+        {
+            details.Visible = false;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = true;
+        }
+        else
+        {
+            details.Visible = true;
+            nothingSelected.Visible = false;
+            unknownPatch.Visible = false;
 
-        UpdatePatchDetails();
+            UpdatePatchDetails();
+        }
 
         if (moveToPatchButton != null)
         {
@@ -255,6 +271,7 @@ public class PatchDetailsPanel : PanelContainer
             if (NothingSelectedPath != null)
             {
                 NothingSelectedPath.Dispose();
+                UnknownPatchPath.Dispose();
                 DetailsPath.Dispose();
                 NamePath.Dispose();
                 PlayerHerePath.Dispose();

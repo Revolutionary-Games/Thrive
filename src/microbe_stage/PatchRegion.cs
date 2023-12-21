@@ -96,6 +96,9 @@ public class PatchRegion
     [JsonProperty]
     public List<Patch> Patches { get; private set; } = null!;
 
+    [JsonProperty]
+    public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
+
     /// <summary>
     ///   Adds a connection to region
     /// </summary>
