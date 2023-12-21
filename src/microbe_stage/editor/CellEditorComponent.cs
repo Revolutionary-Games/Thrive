@@ -2030,7 +2030,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        if (TutorialState!.Enabled)
+        if (TutorialState?.Enabled == true)
         {
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganelleModified, EventArgs.Empty, this);
         }
