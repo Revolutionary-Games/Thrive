@@ -12,9 +12,6 @@ public interface ICellProperties : ISimulationPhotographable
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
 
-    // TODO: this is a bit expensive property now as this uses MicrobeInternalCalculations.CalculateRotationSpeed which
-    // now needs to generate the full physics shape to calculate inertia. Maybe the users of this could be switched
-    // to a lazy method to ensure that species generation and modification is faster?
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
@@ -33,9 +30,12 @@ public interface ICellProperties : ISimulationPhotographable
     public void UpdateNameIfValid(string newName);
 }
 
-public static class CellPropertiesHelpers
+/// <summary>
+///   General helpers for working with a general <see cref="ICellProperties"/> type.
+///   <see cref="Components.CellPropertiesHelpers"/> are related to ECS component operations.
+/// </summary>
+public static class GeneralCellPropertiesHelpers
 {
-    // TODO: this can probably be deleted entirely as unused old code
     /// <summary>
     ///   The total compounds in the composition of all organelles
     /// </summary>

@@ -78,7 +78,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)
@@ -88,7 +88,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public object Clone()
