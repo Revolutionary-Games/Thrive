@@ -304,6 +304,13 @@
                     if (!entity.Has<TimedLife>())
                     {
                         GD.PrintErr("Microbe was ejected from engulfment without setting lifetime remaining");
+                        GD.Print("Creating timed life now as safety fallback");
+                        var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                        var entityRecord = recorder.Record(entity);
+                        entityRecord.Set(new TimedLife(10));
+
+                        worldSimulation.FinishRecordingEntityCommands(recorder);
                     }
                 }
 
