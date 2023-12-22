@@ -558,6 +558,8 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         EnsureGameIsUnpausedForEditor();
 
+        stage.RecordPlayerReproduction();
+
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;

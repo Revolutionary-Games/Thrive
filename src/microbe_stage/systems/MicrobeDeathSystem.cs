@@ -340,6 +340,12 @@
                     Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
             }
 
+            // Record player death in statistics
+            if (entity.Has<PlayerMarker>())
+            {
+                gameWorld?.StatisticsTracker.TotalPlayerDeaths.Increment();
+            }
+
             ref var engulfable = ref entity.Get<Engulfable>();
 
             commandRecorder ??= worldSimulation.StartRecordingEntityCommands();

@@ -368,6 +368,7 @@ public class Patch
         switch (compound.InternalName)
         {
             case "sunlight":
+            case "temperature":
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":

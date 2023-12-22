@@ -22,10 +22,7 @@ public class GameWorld : ISaveLoadable
     public UnlockProgress UnlockProgress = new();
 
     [JsonProperty]
-    public int TotalPlayerDeaths;
-
-    [JsonProperty]
-    public int TotalMicrobesEngulfedByPlayer;
+    public WorldStatsTracker StatisticsTracker = new();
 
     [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
@@ -107,6 +104,9 @@ public class GameWorld : ISaveLoadable
             // Make sure average light levels are computed already
             UpdateGlobalAverageSunlight();
         }
+
+        // Initialize the tracking for organelle unlock conditions
+        OrganelleUnlockHelpers.InitConditionTracking(this);
     }
 
     /// <summary>
@@ -650,6 +650,9 @@ public class GameWorld : ISaveLoadable
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
 
         LightCycle.CalculateDependentLightData(WorldSettings);
+
+        // Initialize organelle unlock tracking here, aftter StatisticsTracker has loaded
+        OrganelleUnlockHelpers.InitConditionTracking(this);
     }
 
     public void BuildEvolutionaryTree(EvolutionaryTree tree)

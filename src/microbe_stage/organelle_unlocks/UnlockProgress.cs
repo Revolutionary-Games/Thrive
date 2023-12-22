@@ -50,7 +50,7 @@ public class UnlockProgress
         if (organelle.UnlockConditions == null || game.FreeBuild)
             return true;
 
-        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied(game.GameWorld)))
+        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied()))
             UnlockOrganelle(organelle, game);
 
         return unlockedOrganelles.Contains(organelle);

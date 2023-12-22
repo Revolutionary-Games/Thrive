@@ -338,7 +338,7 @@ public partial class CellEditorComponent
             control.Hide();
 
             var buttonGroup = organelle.EditorButtonGroup;
-            var unlockRequirements = organelle.UnlockRequirements(Editor.CurrentGame);
+            var unlockRequirements = organelle.GenerateUnlockRequirementsText(Editor.CurrentGame);
             var unlockTextString = new LocalizedString("UNLOCK_WHEN", organelle.Name, unlockRequirements);
 
             (LocalizedStringBuilder UnlockText, int Count) group;

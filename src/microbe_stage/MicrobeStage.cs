@@ -372,6 +372,15 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
     }
 
+    public override void RecordPlayerReproduction()
+    {
+        if (!HasPlayer || Player.Get<Health>().Dead || PlayerIsEngulfed(Player))
+            return;
+
+        GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReporduction(Player,
+            GameWorld.Map?.CurrentPatch?.BiomeTemplate);
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>

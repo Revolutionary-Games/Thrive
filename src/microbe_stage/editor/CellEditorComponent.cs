@@ -661,7 +661,12 @@ public partial class CellEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
+                // Update the organelle unlock system now as the GUI is also updated
+                OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
+                    Editor.EditedCellProperties, energyBalanceInfo);
+
                 UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+                CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
                 CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
             }
@@ -699,11 +704,8 @@ public partial class CellEditorComponent :
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateMPCost();
 
-        UpdateOrganelleUnlockTooltips();
-
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
-        CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
             Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
@@ -795,7 +797,8 @@ public partial class CellEditorComponent :
 
         // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
         // the logic here the first time this is called too early
-        if (Editor.EditedCellProperties == null && IsMulticellularEditor)
+        var properties = Editor.EditedCellProperties;
+        if (properties == null && IsMulticellularEditor)
             return;
 
         if (IsMulticellularEditor)
@@ -810,22 +813,32 @@ public partial class CellEditorComponent :
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
         // that just marks things dirty and we update our stats on the next _Process call)
-        Membrane = Editor.EditedCellProperties!.MembraneType;
-        Rigidity = Editor.EditedCellProperties.MembraneRigidity;
-        Colour = Editor.EditedCellProperties.Colour;
+        Membrane = properties!.MembraneType;
+        Rigidity = properties.MembraneRigidity;
+        Colour = properties.Colour;
 
         if (!IsMulticellularEditor)
             behaviourEditor.OnEditorSpeciesSetup(species);
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in Editor.EditedCellProperties.Organelles.Organelles)
+        foreach (var organelle in properties.Organelles.Organelles)
         {
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        newName = Editor.EditedCellProperties.FormattedName;
+        newName = properties.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+        // Calculate the energy balance here as it is needed for some unlock conditions
+        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles,
+            properties.MembraneType, Editor.CurrentPatch.Biome);
+
+        OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
+            properties, energyBalanceInfo);
+
+        CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
+        UpdateOrganelleUnlockTooltips();
+
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
 
         // Setup the display cell
         CreatePreviewMicrobeIfNeeded();
@@ -946,7 +959,7 @@ public partial class CellEditorComponent :
 
     public void UpdatePatchDependentBalanceData()
     {
-        // Skip if not opened in the multicellular editor
+        // Skip if opened in the multicellular editor
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
@@ -2049,13 +2062,12 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Lock / unlock a single organelle that need a nucleus
+    ///   Lock / unlock a single organelle that needs a nucleus
     /// </summary>
     private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
         OrganelleDefinition organelle)
     {
         var item = placeablePartSelectionElements[organelle];
-        var game = Editor.CurrentGame;
 
         if (organelle.Unique && placedUniqueOrganelleNames.Contains(organelle))
         {
@@ -2065,16 +2077,12 @@ public partial class CellEditorComponent :
         {
             item.Locked = true;
         }
-        else if (!game.GameWorld.UnlockProgress.IsUnlocked(organelle, game))
-        {
-            item.Locked = true;
-        }
         else
         {
             item.Locked = false;
         }
 
-        item.RecentlyUnlocked = game.GameWorld.UnlockProgress.RecentlyUnlocked(organelle);
+        item.RecentlyUnlocked = Editor.CurrentGame.GameWorld.UnlockProgress.RecentlyUnlocked(organelle);
     }
 
     /// <summary>

@@ -592,6 +592,11 @@
     <Compile Include="src\microbe_stage\ISpeciesMemberLocationData.cs" />
     <Compile Include="src\microbe_stage\FogOfWarMode.cs" />
     <Compile Include="src\microbe_stage\MapElementVisibility.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockHelpers.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />
+    <Compile Include="src\statistics_tracking\IStatistic.cs" />
     <Compile Include="src\microbe_stage\MembranePointData.cs" />
     <Compile Include="src\microbe_stage\MembraneShapeGenerator.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -637,7 +642,11 @@
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
+    <Compile Include="src\statistics_tracking\ReproductionStatistic.cs" />
+    <Compile Include="src\statistics_tracking\GenericStatistic.cs" />
+    <Compile Include="src\statistics_tracking\WorldStatsTracker.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
+    <Compile Include="src\statistics_tracking\StatsTrackerEvent.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />
@@ -757,6 +766,7 @@
     <Compile Include="src\modding\ModUploader.cs" />
     <Compile Include="src\modding\NewModGUI.cs" />
     <Compile Include="src\modding\WorkshopData.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\StatisticBasedUnlockCondition.cs" />
     <Compile Include="src\native\interop\JVec3.cs" />
     <Compile Include="src\native\interop\NativeInterop.cs" />
     <Compile Include="src\native\NativeConstants.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using UnlockConstraints;
 
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
@@ -186,7 +187,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   The possible conditions where a player can unlock this organelle.
     /// </summary>
-    public List<OrganelleUnlockConstraints>? UnlockConditions;
+    public List<ConditionSet>? UnlockConditions;
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -504,7 +505,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   A bbcode string containing all the unlock conditions for this organelle.
     /// </summary>
-    public LocalizedStringBuilder UnlockRequirements(GameProperties game)
+    public LocalizedStringBuilder GenerateUnlockRequirementsText(GameProperties game)
     {
         LocalizedStringBuilder unlockRequirements = new();
         if (UnlockConditions != null)
@@ -514,9 +515,9 @@ public class OrganelleDefinition : IRegistryType
             {
                 if (!first)
                     unlockRequirements.Append(new LocalizedString("UNLOCK_OR"));
-                first = false;
 
-                unlockCondition.Tooltip(game.GameWorld, unlockRequirements);
+                unlockCondition.GenerateTooltip(unlockRequirements);
+                first = false;
             }
         }
 

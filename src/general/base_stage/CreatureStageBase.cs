@@ -220,6 +220,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
+    public abstract void RecordPlayerReproduction();
+
     public abstract void MoveToEditor();
 
     public abstract void OnSuicide();
