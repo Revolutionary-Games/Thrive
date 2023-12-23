@@ -194,6 +194,7 @@ public class SaveManagerGUI : Control
 
     private void RefreshList()
     {
+        filterOptions.Selected = 0;
         saveList.Refresh();
     }
 
