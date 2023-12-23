@@ -44,6 +44,9 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath SaveDeletionFailedErrorPath = null!;
 
+    [Export]
+    public NodePath FilterOptionsPath = null!;
+
 #pragma warning disable CA2213
     private SaveList saveList = null!;
     private Label selectedItemCount = null!;
@@ -56,6 +59,7 @@ public class SaveManagerGUI : Control
     private CustomConfirmationDialog deleteOldConfirmDialog = null!;
     private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
     private CustomConfirmationDialog errorSaveDeletionFailed = null!;
+    private OptionButton filterOptions = null!;
 #pragma warning restore CA2213
 
     private List<SaveListItem>? selected;
@@ -103,8 +107,14 @@ public class SaveManagerGUI : Control
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
         saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
         errorSaveDeletionFailed = GetNode<CustomConfirmationDialog>(SaveDeletionFailedErrorPath);
+        filterOptions = GetNode<OptionButton>(FilterOptionsPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
+
+        filterOptions.AddItem(TranslationServer.Translate("ALL"), 0);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_MANUAL"), 1);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_AUTOSAVE"), 2);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_QUICKSAVE"), 3);
     }
 
     public override void _Process(float delta)
@@ -162,6 +172,7 @@ public class SaveManagerGUI : Control
                 DeleteOldConfirmDialogPath.Dispose();
                 SaveDirectoryWarningDialogPath.Dispose();
                 SaveDeletionFailedErrorPath.Dispose();
+                FilterOptionsPath.Dispose();
             }
         }
 
@@ -318,31 +329,24 @@ public class SaveManagerGUI : Control
         item.LoadThisSave();
     }
 
-    private void FilterAll()
+    private void OnFilterSelected(int index)
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        saveList.Filter(SaveInformation.SaveType.Manual, true);
-    }
-
-    private void FilterQuickSaves()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        saveList.Filter(SaveInformation.SaveType.QuickSave);
-    }
-
-    private void FilterAutoSaves()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        saveList.Filter(SaveInformation.SaveType.AutoSave);
-    }
-
-    private void FilterManual()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        saveList.Filter(SaveInformation.SaveType.Manual);
+        switch (index)
+        {
+            case 0:
+                saveList.Filter(SaveInformation.SaveType.Manual, true);
+                break;
+            case 1:
+                saveList.Filter(SaveInformation.SaveType.Manual);
+                break;
+            case 2:
+                saveList.Filter(SaveInformation.SaveType.AutoSave);
+                break;
+            case 3:
+                saveList.Filter(SaveInformation.SaveType.QuickSave);
+                break;
+        }
     }
 }
