@@ -89,10 +89,49 @@ margin_right = 929.0
 margin_bottom = 37.0
 text = "OPEN_SAVE_DIRECTORY"
 
+[node name="TopBox2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 1000.0
+margin_bottom = 78.0
+alignment = 1
+
+[node name="FilterAll" type="Button" parent="CenterContainer/VBoxContainer/TopBox2"]
+margin_left = 210.0
+margin_right = 255.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 37 )
+text = "ALL"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox2"]
+margin_left = 259.0
+margin_right = 263.0
+margin_bottom = 37.0
+
+[node name="FilterManual" type="Button" parent="CenterContainer/VBoxContainer/TopBox2"]
+margin_left = 267.0
+margin_right = 421.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 37 )
+text = "SAVE_MANUAL"
+
+[node name="FilterAutoSaves" type="Button" parent="CenterContainer/VBoxContainer/TopBox2"]
+margin_left = 425.0
+margin_right = 602.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 37 )
+text = "SAVE_AUTOSAVE"
+
+[node name="FilterQuickSaves" type="Button" parent="CenterContainer/VBoxContainer/TopBox2"]
+margin_left = 606.0
+margin_right = 789.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 37 )
+text = "SAVE_QUICKSAVE"
+
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 41.0
+margin_top = 82.0
 margin_right = 1000.0
 margin_bottom = 561.0
 size_flags_vertical = 3
@@ -213,6 +252,10 @@ DialogText = "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteOld" to="." method="DeleteOldButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/OpenSaveDir" to="." method="OpenSaveDirectoryPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox2/FilterAll" to="." method="FilterAll"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox2/FilterManual" to="." method="FilterManual"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox2/FilterAutoSaves" to="." method="FilterAutoSaves"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox2/FilterQuickSaves" to="." method="FilterQuickSaves"]
 [connection signal="OnConfirmed" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSaveListItemConfirmed"]
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]

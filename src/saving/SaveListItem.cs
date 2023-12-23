@@ -46,6 +46,8 @@ public class SaveListItem : PanelContainer
     [Export]
     public NodePath HighlightPath = null!;
 
+    public SaveInformation.SaveType SaveType;
+
     private static readonly object ResizeLock = new();
 
 #pragma warning disable CA2213
@@ -235,6 +237,8 @@ public class SaveListItem : PanelContainer
         createdBy.Text = save.Info.Creator;
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
+
+        SaveType = save.Info.Type;
 
         loadingData = false;
     }

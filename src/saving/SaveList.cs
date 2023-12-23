@@ -213,6 +213,30 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnItemsChanged));
     }
 
+    public void Filter(SaveInformation.SaveType saveTypeFilter = SaveInformation.SaveType.Manual, bool showAll = false)
+    {
+        foreach (var item in savesList.GetChildren())
+        {
+            GD.Print("Item", item);
+            SaveListItem? saveItem = item as SaveListItem;
+
+            if (saveItem != null)
+            {
+                if (showAll)
+                {
+                    ((CanvasItem)item).Show();
+                }
+                else
+                {
+                    if (saveItem.SaveType != saveTypeFilter)
+                        ((CanvasItem)item).Hide();
+                    else
+                        ((CanvasItem)item).Show();
+                }
+            }
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

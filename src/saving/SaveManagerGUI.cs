@@ -317,4 +317,24 @@ public class SaveManagerGUI : Control
     {
         item.LoadThisSave();
     }
+
+    private void FilterAll()
+    {
+        saveList.Filter(SaveInformation.SaveType.Manual, true);
+    }
+
+    private void FilterQuickSaves()
+    {
+        saveList.Filter(SaveInformation.SaveType.QuickSave);
+    }
+
+    private void FilterAutoSaves()
+    {
+        saveList.Filter(SaveInformation.SaveType.AutoSave);
+    }
+
+    private void FilterManual()
+    {
+        saveList.Filter(SaveInformation.SaveType.Manual);
+    }
 }
