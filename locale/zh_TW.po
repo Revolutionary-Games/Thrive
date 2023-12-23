@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-22 14:28+0100\n"
+"POT-Creation-Date: 2023-12-13 11:46+0200\n"
 "PO-Revision-Date: 2023-12-15 11:27+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -156,7 +156,6 @@ msgstr "（AI 物種突變的速度）"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
-#: ../src/saving/SaveManagerGUI.tscn:103
 msgid "ALL"
 msgstr "全部"
 
@@ -428,7 +427,7 @@ msgstr "意識階段"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:149
+#: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
 msgstr "返回"
 
@@ -1490,7 +1489,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "刪除此化石將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:229
+#: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "刪除舊存檔？"
 
@@ -1506,7 +1505,7 @@ msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 msgid "DELETE_SELECTED"
 msgstr "刪除選取的"
 
-#: ../src/saving/SaveManagerGUI.tscn:222
+#: ../src/saving/SaveManagerGUI.tscn:183
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "刪除選取的存檔？"
 
@@ -2132,7 +2131,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:397
+#: ../src/general/base_stage/CreatureStageBase.cs:394
 msgid "EXTINCT_IN_PATCH"
 msgstr "在這個區域滅絕了"
 
@@ -2156,11 +2155,11 @@ msgstr "造訪我們的 Facebook 頁面"
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../src/saving/SaveManagerGUI.tscn:248
+#: ../src/saving/SaveManagerGUI.tscn:209
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "錯誤：無法刪除一個或多個存檔。"
 
-#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:246
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
 msgid "FAILED_SAVE_DELETION"
 msgstr "錯誤：存檔刪除失敗"
 
@@ -3714,7 +3713,7 @@ msgstr "微生物階段自由編輯器"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:237
+#: ../src/microbe_stage/MicrobeSpecies.cs:236
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]階段[/b]\n"
@@ -4213,7 +4212,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "移動至陸地？"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:598
+#: ../src/late_multicellular_stage/MulticellularStage.cs:594
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "社會化中…"
 
@@ -4436,7 +4435,7 @@ msgstr "最基本的細胞膜形式，它幾乎沒有抵抗傷害的能力。同
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:517
+#: ../src/late_multicellular_stage/MulticellularStage.cs:513
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "沒有可以互動的物件"
 
@@ -4452,12 +4451,12 @@ msgstr "因攝入物質中的毒素而損傷"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "缺少 {0} 來吞噬目標"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:962
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:960
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前細胞大小不足以吞噬目標"
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:954
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:952
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
 
@@ -4507,7 +4506,7 @@ msgstr "無代謝過程"
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:236
+#: ../src/saving/SaveManagerGUI.tscn:197
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存檔目錄"
 
@@ -5049,7 +5048,7 @@ msgstr "玩家死亡種群數量懲罰"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "（當玩家死亡時玩家物種數量減少的係數）"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:329
+#: ../src/general/base_stage/CreatureStageBase.cs:326
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -5065,7 +5064,7 @@ msgstr "玩家已滅絕"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相對於玩家"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:273
+#: ../src/general/base_stage/CreatureStageBase.cs:270
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5521,7 +5520,7 @@ msgstr "存檔"
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
-#: ../src/saving/SaveInformation.cs:22 ../src/saving/SaveManagerGUI.tscn:122
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
 
@@ -5584,15 +5583,15 @@ msgstr ""
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "。無法釋放已載入的資源：{0}"
 
-#: ../src/saving/SaveInformation.cs:16 ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr "手動"
 
-#: ../src/saving/SaveInformation.cs:28 ../src/saving/SaveManagerGUI.tscn:129
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr "快速存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:181
+#: ../src/saving/SaveManagerGUI.tscn:142
 msgid "SAVE_SPACE_USED"
 msgstr "已使用空間："
 
@@ -5698,7 +5697,7 @@ msgstr "分泌粘液"
 msgid "SEED_LABEL"
 msgstr "星球種子：{0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:162
 msgid "SELECTED_COLON"
 msgstr "選取的："
 
@@ -5962,7 +5961,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敵人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:988
+#: ../src/microbe_stage/MicrobeStage.cs:985
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -5991,7 +5990,7 @@ msgstr "物種"
 msgid "SPECIES_COLON"
 msgstr "物種："
 
-#: ../src/general/Species.cs:291
+#: ../src/general/Species.cs:290
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]物種[/b]\n"
@@ -6393,7 +6392,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "蒸氣動力"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:875
+#: ../src/late_multicellular_stage/MulticellularStage.cs:871
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "已解鎖科技：{0}"
 
@@ -6570,8 +6569,8 @@ msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個�
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
 
-#: ../src/microbe_stage/MicrobeStage.cs:449
-#: ../src/microbe_stage/MicrobeStage.cs:453
+#: ../src/microbe_stage/MicrobeStage.cs:446
+#: ../src/microbe_stage/MicrobeStage.cs:450
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b] 成為多細胞生物"
 
@@ -6679,7 +6678,7 @@ msgstr "手斧"
 msgid "TOTAL_POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/saving/SaveManagerGUI.tscn:161
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
 msgstr "存檔數："
 
@@ -6726,7 +6725,7 @@ msgstr "Treble Up"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試將一些物種變成化石！"
 
-#: ../src/saving/SaveManagerGUI.tscn:238
+#: ../src/saving/SaveManagerGUI.tscn:199
 msgid "TRY_MAKING_A_SAVE"
 msgstr "試著存個檔吧！"
 

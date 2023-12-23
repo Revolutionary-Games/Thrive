@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-22 14:28+0100\n"
+"POT-Creation-Date: 2023-12-13 11:46+0200\n"
 "PO-Revision-Date: 2023-06-07 10:02+0000\n"
 "Last-Translator: matdeluis <luisdebonoir@protonmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -166,7 +166,6 @@ msgstr "(velocidade na qual as espécies de IA sofrem mutação)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
-#: ../src/saving/SaveManagerGUI.tscn:103
 msgid "ALL"
 msgstr "Tudo"
 
@@ -432,7 +431,7 @@ msgstr "Fase Microbial"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:149
+#: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
 msgstr "Voltar"
 
@@ -1516,7 +1515,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o desejas apagar permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.tscn:229
+#: ../src/saving/SaveManagerGUI.tscn:190
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Apagar jogos guardados antigos?"
 
@@ -1532,7 +1531,7 @@ msgstr "Apagar o jogo guardado não pode ser revertido, tens a certeza que o des
 msgid "DELETE_SELECTED"
 msgstr "Apagar Selecionado"
 
-#: ../src/saving/SaveManagerGUI.tscn:222
+#: ../src/saving/SaveManagerGUI.tscn:183
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Apagar o(s) jogo(s) guardado(s) selecionado(s)?"
 
@@ -2189,7 +2188,7 @@ msgstr "Extinguiram-se na região"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinguiram-se no planeta"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:397
+#: ../src/general/base_stage/CreatureStageBase.cs:394
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Extinguiram-se na região"
@@ -2215,12 +2214,12 @@ msgstr "Pausa o jogo"
 msgid "FAILED"
 msgstr "Falhou"
 
-#: ../src/saving/SaveManagerGUI.tscn:248
+#: ../src/saving/SaveManagerGUI.tscn:209
 #, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "O meu mod incrível"
 
-#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:246
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
 #, fuzzy
 msgid "FAILED_SAVE_DELETION"
 msgstr "Erro: Falha ao gravar as novas definições no ficheiro de configuração."
@@ -3824,7 +3823,7 @@ msgstr "Editor livre para micróbios"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Estatísticas de Organismo"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:237
+#: ../src/microbe_stage/MicrobeSpecies.cs:236
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estágio[/b]\n"
@@ -4327,7 +4326,7 @@ msgstr "Protanóptico (Vermelho-Verde)"
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Protanóptico (Vermelho-Verde)"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:598
+#: ../src/late_multicellular_stage/MulticellularStage.cs:594
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Protanóptico (Vermelho-Verde)"
@@ -4560,7 +4559,7 @@ msgstr "A forma mais básica da membrana, tem pouca proteção contra danos. Tam
 msgid "NOTHING_HERE"
 msgstr "Nada aqui"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:517
+#: ../src/late_multicellular_stage/MulticellularStage.cs:513
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4576,12 +4575,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:962
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:960
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:954
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:952
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4634,7 +4633,7 @@ msgstr "Sem processos"
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Não foram encontrados jogos guardados"
 
-#: ../src/saving/SaveManagerGUI.tscn:236
+#: ../src/saving/SaveManagerGUI.tscn:197
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Nenhum diretório de ficheiros guardados encontrado"
 
@@ -5197,7 +5196,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(coeficiente de redução na população da espécie do jogador para cada morte do jogador)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:329
+#: ../src/general/base_stage/CreatureStageBase.cs:326
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -5214,7 +5213,7 @@ msgstr "O jogador está extinto"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "O jogador está extinto"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:273
+#: ../src/general/base_stage/CreatureStageBase.cs:270
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduzido"
 
@@ -5691,7 +5690,7 @@ msgstr "Gravar"
 msgid "SAVE_AND_CONTINUE"
 msgstr "Gravar e continuar"
 
-#: ../src/saving/SaveInformation.cs:22 ../src/saving/SaveManagerGUI.tscn:122
+#: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
 msgstr "Guardar automaticamente"
 
@@ -5756,15 +5755,15 @@ msgstr ""
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Erro ao libertar recursos carregados: {0}"
 
-#: ../src/saving/SaveInformation.cs:16 ../src/saving/SaveManagerGUI.tscn:115
+#: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
 msgstr "Manual"
 
-#: ../src/saving/SaveInformation.cs:28 ../src/saving/SaveManagerGUI.tscn:129
+#: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
 msgstr "Guardar rapidamente"
 
-#: ../src/saving/SaveManagerGUI.tscn:181
+#: ../src/saving/SaveManagerGUI.tscn:142
 msgid "SAVE_SPACE_USED"
 msgstr "Espaço utilizado:"
 
@@ -5878,7 +5877,7 @@ msgstr "Retomar o jogo"
 msgid "SEED_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:162
 msgid "SELECTED_COLON"
 msgstr "Selecionado:"
 
@@ -6161,7 +6160,7 @@ msgstr "Gerar amoníaco"
 msgid "SPAWN_ENEMY"
 msgstr "Spawn Inimigo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:988
+#: ../src/microbe_stage/MicrobeStage.cs:985
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível de usar o cheat de spawn inimigo porque esta região não contém nenhuma espécie inimiga"
@@ -6192,7 +6191,7 @@ msgstr "Lista de Espécies"
 msgid "SPECIES_COLON"
 msgstr "Espécies:"
 
-#: ../src/general/Species.cs:291
+#: ../src/general/Species.cs:290
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "{0} (x{1})"
@@ -6600,7 +6599,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:875
+#: ../src/late_multicellular_stage/MulticellularStage.cs:871
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6772,8 +6771,8 @@ msgstr "[u]{0}[/u] separou-se de [u]{1}[/u] como uma nova espécie para preenche
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] separou-se de [u]{1}[/u] como uma nova espécie devido a diferentes pressões de seleção"
 
-#: ../src/microbe_stage/MicrobeStage.cs:449
-#: ../src/microbe_stage/MicrobeStage.cs:453
+#: ../src/microbe_stage/MicrobeStage.cs:446
+#: ../src/microbe_stage/MicrobeStage.cs:450
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6891,7 +6890,7 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "População Total:"
 
-#: ../src/saving/SaveManagerGUI.tscn:161
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
 msgstr "Número de jogos guardados:"
 
@@ -6943,7 +6942,7 @@ msgstr "Aumentar agudos"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Tente tirar algumas capturas de ecrã!"
 
-#: ../src/saving/SaveManagerGUI.tscn:238
+#: ../src/saving/SaveManagerGUI.tscn:199
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Tente guardar!"
 
