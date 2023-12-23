@@ -320,21 +320,29 @@ public class SaveManagerGUI : Control
 
     private void FilterAll()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveList.Filter(SaveInformation.SaveType.Manual, true);
     }
 
     private void FilterQuickSaves()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveList.Filter(SaveInformation.SaveType.QuickSave);
     }
 
     private void FilterAutoSaves()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveList.Filter(SaveInformation.SaveType.AutoSave);
     }
 
     private void FilterManual()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveList.Filter(SaveInformation.SaveType.Manual);
     }
 }
