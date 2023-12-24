@@ -492,7 +492,6 @@ public class SaveList : ScrollContainer
 
     private void CountLoadedItems()
     {
-
         loadedItems += 1;
 
         if (loadedItems == allItemsCount)
