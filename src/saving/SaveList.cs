@@ -219,6 +219,7 @@ public class SaveList : ScrollContainer
         savesList.QueueFreeChildren();
 
         allItemsCount = 0;
+        loadedItems = 0;
 
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
@@ -488,6 +489,7 @@ public class SaveList : ScrollContainer
         saveToBeLoaded = null;
         isLoadingSave = false;
     }
+
     private void CountLoadedItems()
     {
 
@@ -495,7 +497,6 @@ public class SaveList : ScrollContainer
 
         if (loadedItems == allItemsCount)
         {
-            loadedItems = 0;
             EmitSignal(nameof(OnItemsDataLoadedCompleted));
         }
     }
