@@ -348,7 +348,6 @@ public class SaveManagerGUI : Control
         }
 
         saveList.Filter((SaveInformation.SaveType)index);
-
     }
 
     private void OnRefreshCompleted()
