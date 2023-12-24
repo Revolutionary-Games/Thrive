@@ -341,21 +341,14 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        switch (index)
+        if (index == 3)
         {
-            case (int)SaveInformation.SaveType.Manual:
-                saveList.Filter(SaveInformation.SaveType.Manual);
-                break;
-            case (int)SaveInformation.SaveType.AutoSave:
-                saveList.Filter(SaveInformation.SaveType.AutoSave);
-                break;
-            case (int)SaveInformation.SaveType.QuickSave:
-                saveList.Filter(SaveInformation.SaveType.QuickSave);
-                break;
-            case 3:
-                saveList.Filter(SaveInformation.SaveType.Manual, true);
-                break;
+            saveList.Filter(null!, true);
+            return;
         }
+
+        saveList.Filter((SaveInformation.SaveType)index);
+
     }
 
     private void OnRefreshCompleted()

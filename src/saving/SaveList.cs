@@ -225,13 +225,13 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnItemsChanged));
     }
 
-    public void Filter(SaveInformation.SaveType saveTypeFilter, bool showAll = false)
+    public void Filter(SaveInformation.SaveType? saveTypeFilter, bool showAll = false)
     {
         foreach (var item in savesList.GetChildren())
         {
             SaveListItem? saveItem = item as SaveListItem;
 
-            if (saveItem != null)
+            if (saveItem != null && saveTypeFilter != null)
             {
                 if (showAll)
                 {
