@@ -75,6 +75,9 @@ public class SaveList : ScrollContainer
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
 
+    private int allItemsCount = 0;
+    private int loadedItems = 0;
+
     private bool refreshing;
     private bool refreshedAtLeastOnce;
 
@@ -101,6 +104,8 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnSaveLoaded(string saveName);
 
+    [Signal]
+    public delegate void OnItemsDataLoadedCompleted();
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -174,6 +179,7 @@ public class SaveList : ScrollContainer
                     nameof(OnDifferentVersionPrototypeLoaded));
                 item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnProblemFreeLoaded),
                     new Array { save });
+                item.Connect(nameof(SaveListItem.OnSaveDataLoaded), this, nameof(CountLoadedItems));
 
                 item.SaveName = save;
                 savesList.AddChild(item);
@@ -182,6 +188,11 @@ public class SaveList : ScrollContainer
         else
         {
             noSavesItem.Visible = true;
+        }
+
+        foreach (var item in savesList.GetChildren())
+        {
+            allItemsCount += 1;
         }
 
         loadingItem.Visible = false;
@@ -207,6 +218,8 @@ public class SaveList : ScrollContainer
 
         savesList.QueueFreeChildren();
 
+        allItemsCount = 0;
+
         loadingItem.Visible = true;
         readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
@@ -217,7 +230,6 @@ public class SaveList : ScrollContainer
     {
         foreach (var item in savesList.GetChildren())
         {
-            GD.Print("Item", item);
             SaveListItem? saveItem = item as SaveListItem;
 
             if (saveItem != null)
@@ -475,5 +487,16 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
         saveToBeLoaded = null;
         isLoadingSave = false;
+    }
+    private void CountLoadedItems()
+    {
+
+        loadedItems += 1;
+
+        if (loadedItems == allItemsCount)
+        {
+            loadedItems = 0;
+            EmitSignal(nameof(OnItemsDataLoadedCompleted));
+        }
     }
 }

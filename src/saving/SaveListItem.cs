@@ -105,6 +105,9 @@ public class SaveListItem : PanelContainer
     [Signal]
     public delegate void OnDifferentVersionPrototypeLoaded();
 
+    [Signal]
+    public delegate void OnSaveDataLoaded();
+
     /// <summary>
     ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress
     ///   so this is more of an informative callback for components that need to know when a save load was done.
@@ -241,6 +244,7 @@ public class SaveListItem : PanelContainer
         SaveType = save.Info.Type;
 
         loadingData = false;
+        EmitSignal(nameof(OnSaveDataLoaded));
     }
 
     public override void _GuiInput(InputEvent @event)

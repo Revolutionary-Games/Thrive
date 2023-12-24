@@ -227,6 +227,7 @@ DialogText = "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/OpenSaveDir" to="." method="OpenSaveDirectoryPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/TopBox2/FilterOptions" to="." method="OnFilterSelected"]
 [connection signal="OnConfirmed" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSaveListItemConfirmed"]
+[connection signal="OnItemsDataLoadedCompleted" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnRefreshCompleted"]
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]
 [connection signal="Confirmed" from="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog" to="." method="OnConfirmDeleteSelected"]

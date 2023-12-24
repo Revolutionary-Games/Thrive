@@ -115,6 +115,9 @@ public class SaveManagerGUI : Control
         filterOptions.AddItem(TranslationServer.Translate("SAVE_MANUAL"), 1);
         filterOptions.AddItem(TranslationServer.Translate("SAVE_AUTOSAVE"), 2);
         filterOptions.AddItem(TranslationServer.Translate("SAVE_QUICKSAVE"), 3);
+
+        filterOptions.Selected = 0;
+        filterOptions.Disabled = true;
     }
 
     public override void _Process(float delta)
@@ -195,6 +198,8 @@ public class SaveManagerGUI : Control
     private void RefreshList()
     {
         filterOptions.Selected = 0;
+        filterOptions.Disabled = true;
+
         saveList.Refresh();
     }
 
@@ -349,5 +354,10 @@ public class SaveManagerGUI : Control
                 saveList.Filter(SaveInformation.SaveType.QuickSave);
                 break;
         }
+    }
+
+    private void OnRefreshCompleted()
+    {
+        filterOptions.Disabled = false;
     }
 }
