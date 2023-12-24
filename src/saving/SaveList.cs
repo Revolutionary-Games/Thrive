@@ -75,8 +75,8 @@ public class SaveList : ScrollContainer
     private PackedScene listItemScene = null!;
 #pragma warning restore CA2213
 
-    private int allItemsCount = 0;
-    private int loadedItems = 0;
+    private int allItemsCount;
+    private int loadedItems;
 
     private bool refreshing;
     private bool refreshedAtLeastOnce;
@@ -106,6 +106,7 @@ public class SaveList : ScrollContainer
 
     [Signal]
     public delegate void OnItemsDataLoadedCompleted();
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -224,7 +225,7 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnItemsChanged));
     }
 
-    public void Filter(SaveInformation.SaveType saveTypeFilter = SaveInformation.SaveType.Manual, bool showAll = false)
+    public void Filter(SaveInformation.SaveType saveTypeFilter, bool showAll = false)
     {
         foreach (var item in savesList.GetChildren())
         {
@@ -234,14 +235,14 @@ public class SaveList : ScrollContainer
             {
                 if (showAll)
                 {
-                    ((CanvasItem)item).Show();
+                    saveItem.Show();
                 }
                 else
                 {
                     if (saveItem.SaveType != saveTypeFilter)
-                        ((CanvasItem)item).Hide();
+                        saveItem.Hide();
                     else
-                        ((CanvasItem)item).Show();
+                        saveItem.Show();
                 }
             }
         }
@@ -489,7 +490,7 @@ public class SaveList : ScrollContainer
 
     private void CountLoadedItems()
     {
-        loadedItems += 1;
+        loadedItems++;
 
         if (loadedItems == allItemsCount)
         {

@@ -111,12 +111,14 @@ public class SaveManagerGUI : Control
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
 
-        filterOptions.AddItem(TranslationServer.Translate("ALL"), 0);
-        filterOptions.AddItem(TranslationServer.Translate("SAVE_MANUAL"), 1);
-        filterOptions.AddItem(TranslationServer.Translate("SAVE_AUTOSAVE"), 2);
-        filterOptions.AddItem(TranslationServer.Translate("SAVE_QUICKSAVE"), 3);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_MANUAL"), (int)SaveInformation.SaveType.Manual);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_AUTOSAVE"), (int)SaveInformation.SaveType.AutoSave);
+        filterOptions.AddItem(TranslationServer.Translate("SAVE_QUICKSAVE"), (int)SaveInformation.SaveType.QuickSave);
 
-        filterOptions.Selected = 0;
+        // All doesn't have SaveType counterpart
+        filterOptions.AddItem(TranslationServer.Translate("ALL"), 3);
+
+        filterOptions.Selected = 3;
         filterOptions.Disabled = true;
     }
 
@@ -197,7 +199,7 @@ public class SaveManagerGUI : Control
 
     private void RefreshList()
     {
-        filterOptions.Selected = 0;
+        filterOptions.Selected = 3;
         filterOptions.Disabled = true;
 
         saveList.Refresh();
@@ -341,17 +343,17 @@ public class SaveManagerGUI : Control
 
         switch (index)
         {
-            case 0:
-                saveList.Filter(SaveInformation.SaveType.Manual, true);
-                break;
-            case 1:
+            case (int)SaveInformation.SaveType.Manual:
                 saveList.Filter(SaveInformation.SaveType.Manual);
                 break;
-            case 2:
+            case (int)SaveInformation.SaveType.AutoSave:
                 saveList.Filter(SaveInformation.SaveType.AutoSave);
                 break;
-            case 3:
+            case (int)SaveInformation.SaveType.QuickSave:
                 saveList.Filter(SaveInformation.SaveType.QuickSave);
+                break;
+            case 3:
+                saveList.Filter(SaveInformation.SaveType.Manual, true);
                 break;
         }
     }
