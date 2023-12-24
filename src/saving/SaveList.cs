@@ -190,10 +190,7 @@ public class SaveList : ScrollContainer
             noSavesItem.Visible = true;
         }
 
-        foreach (var item in savesList.GetChildren())
-        {
-            allItemsCount += 1;
-        }
+        allItemsCount = savesList.GetChildren().Count;
 
         loadingItem.Visible = false;
         refreshing = false;
