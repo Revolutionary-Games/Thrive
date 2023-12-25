@@ -925,6 +925,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+            Visibility = selectedPatch.Visibility,
         };
 
         patchDetailsPanel.SelectedPatch = patch;
@@ -959,8 +960,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         world.UpdateWorldStatistics();
 
-        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(
-            world.CurrentGeneration,
+        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(world.CurrentGeneration,
             world.PatchesCount,
             world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture),
             world.TotalSpeciesCount,

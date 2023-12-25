@@ -491,10 +491,9 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
-        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
-            ModsInstalledButNotEnabledWarningPath);
-        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(
-            LowPerformanceWarningPath);
+        modsInstalledButNotEnabledWarning =
+            GetNode<PermanentlyDismissibleDialog>(ModsInstalledButNotEnabledWarningPath);
+        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(LowPerformanceWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
         menus = GetNode<CenterContainer>(MenusPath);
 
@@ -723,8 +722,8 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null,
+            false);
 
         // Start music after the video
         StartMusic();
@@ -890,12 +889,11 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (EarlyMulticellularEditor)SceneManager.Instance.LoadScene(
-                MainGameState.EarlyMulticellularEditor).Instance();
+            var editor = (EarlyMulticellularEditor)SceneManager.Instance
+                .LoadScene(MainGameState.EarlyMulticellularEditor).Instance();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(
-                new WorldGenerationSettings(), true);
+            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

@@ -22,6 +22,9 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
+    <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />
     <Compile Include="simulation_parameters\BuildInfo.cs" />
     <Compile Include="simulation_parameters\DirectTypeLoadOverride.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
@@ -242,7 +245,6 @@
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
-    <Compile Include="src\engine\PhysicsHelpers.cs" />
     <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
@@ -588,6 +590,8 @@
     <Compile Include="src\microbe_stage\IReadonlyCompoundClouds.cs" />
     <Compile Include="src\microbe_stage\ISpawnSystem.cs" />
     <Compile Include="src\microbe_stage\ISpeciesMemberLocationData.cs" />
+    <Compile Include="src\microbe_stage\FogOfWarMode.cs" />
+    <Compile Include="src\microbe_stage\MapElementVisibility.cs" />
     <Compile Include="src\microbe_stage\MembranePointData.cs" />
     <Compile Include="src\microbe_stage\MembraneShapeGenerator.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -889,7 +893,9 @@
     <Compile Include="src\tutorial\microbe_editor\EditorTutorialEnd.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorUndoTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorWelcome.cs" />
+    <Compile Include="src\tutorial\microbe_editor\MadeNoChangesTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\MicrobeEditorTutorialGUI.cs" />
+    <Compile Include="src\tutorial\microbe_editor\ModifyOrganelleTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\NegativeAtpBalanceTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
@@ -908,6 +914,7 @@
     <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeUnbind.cs" />
+    <Compile Include="src\tutorial\microbe_stage\OrganelleDivisionTutorial.cs" />
     <Compile Include="src\tutorial\TutorialEventArgs.cs" />
     <Compile Include="src\tutorial\TutorialEventType.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />

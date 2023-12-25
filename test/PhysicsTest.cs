@@ -368,6 +368,23 @@ public class PhysicsTest : Node
         base.Dispose(disposing);
     }
 
+    // These used to be general helpers, but now are only needed to allow running this legacy benchmark
+    private static uint CreateShapeOwnerWithTransform(CollisionObject entity, Transform transform, Shape shape)
+    {
+        var newShapeOwnerId = entity.CreateShapeOwner(shape);
+        entity.ShapeOwnerAddShape(newShapeOwnerId, shape);
+        entity.ShapeOwnerSetTransform(newShapeOwnerId, transform);
+        return newShapeOwnerId;
+    }
+
+    private static uint CreateNewOwnerId(CollisionObject oldParent, CollisionObject newParent, Transform transform,
+        uint oldShapeOwnerId)
+    {
+        var shape = oldParent.ShapeOwnerGetShape(oldShapeOwnerId, 0);
+        var newShapeOwnerId = CreateShapeOwnerWithTransform(newParent, transform, shape);
+        return newShapeOwnerId;
+    }
+
     private void StartTest()
     {
         SetupPhysicsBodies();
@@ -727,7 +744,7 @@ public class PhysicsTest : Node
 
         foreach (var position in organellePositions)
         {
-            body.CreateShapeOwnerWithTransform(new Transform(Basis.Identity, position), sphere);
+            CreateShapeOwnerWithTransform(body, new Transform(Basis.Identity, position), sphere);
         }
     }
 

@@ -193,8 +193,7 @@
                     position, random, true, velocity);
 
                 // Add to the spawn system to make these chunks limit possible number of entities
-                spawnSystem.NotifyExternalEntitySpawned(chunk,
-                    Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, 1);
+                spawnSystem.NotifyExternalEntitySpawned(chunk, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, 1);
 
                 ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
             }

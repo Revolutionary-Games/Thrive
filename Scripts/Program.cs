@@ -22,8 +22,7 @@ public class Program
                 PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
                 TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions,
                 GodotProjectValidMakerOptions>(args)
-            .MapResult(
-                (CheckOptions options) => RunChecks(options),
+            .MapResult((CheckOptions options) => RunChecks(options),
                 (NativeLibOptions options) => RunNativeLibsTool(options),
                 (TestOptions options) => RunTests(options),
                 (ChangesOptions options) => RunChangesFinding(options),

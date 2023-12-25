@@ -380,8 +380,8 @@ public class ToolTipManager : CanvasLayer
                 var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
                 if (control != null)
                 {
-                    position = new Vector2(
-                        control.RectGlobalPosition.x + control.RectSize.x, control.RectGlobalPosition.y);
+                    position = new Vector2(control.RectGlobalPosition.x + control.RectSize.x,
+                        control.RectGlobalPosition.y);
                     offset = new Vector2(0, control.RectSize.y);
                 }
                 else
@@ -419,8 +419,7 @@ public class ToolTipManager : CanvasLayer
 
         // Clamp tooltip position so it doesn't go offscreen
         // TODO: Take into account viewport (window) resizing for the offsetting.
-        MainToolTip.ToolTipNode.RectPosition = new Vector2(
-            Mathf.Clamp(newPos.x, 0, screenRect.Size.x - tooltipSize.x),
+        MainToolTip.ToolTipNode.RectPosition = new Vector2(Mathf.Clamp(newPos.x, 0, screenRect.Size.x - tooltipSize.x),
             Mathf.Clamp(newPos.y, 0, screenRect.Size.y - tooltipSize.y));
 
         MainToolTip.ToolTipNode.RectSize = Vector2.Zero;

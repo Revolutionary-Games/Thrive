@@ -97,8 +97,7 @@ public class PhysicsShape : IDisposable
                 (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
         }
 
-        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(
-            MemoryMarshal.GetReference(organellePositions),
+        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(MemoryMarshal.GetReference(organellePositions),
             (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
     }
 

@@ -199,8 +199,7 @@
 
                     if (memberOrganelles.Organelles == null)
                     {
-                        GD.PrintErr(
-                            "Can't use microbe colony member organelle positions for divide separation " +
+                        GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
                             "calculation as they aren't available");
                         continue;
                     }
@@ -285,8 +284,8 @@
             // TODO: should this also set an initial look direction that is the same?
 
             // Make it despawn like normal
-            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity,
-                Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+                weight);
 
             // Remove the compounds from the created cell
             var originalCompounds = entity.Get<CompoundStorage>().Compounds;

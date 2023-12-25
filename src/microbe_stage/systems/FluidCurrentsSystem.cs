@@ -85,8 +85,7 @@
                 currentsTimePassed * CURRENTS_TIMESCALE);
 
             var disturbancesVelocity = new Vector2(disturbancesX, disturbancesY);
-            var currentsVelocity = new Vector2(
-                Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
+            var currentsVelocity = new Vector2(Math.Abs(currentsX) > MIN_CURRENT_INTENSITY ? currentsX : 0.0f,
                 Math.Abs(currentsY) > MIN_CURRENT_INTENSITY ? currentsY : 0.0f);
 
             return (disturbancesVelocity * DISTURBANCE_TO_CURRENTS_RATIO) +

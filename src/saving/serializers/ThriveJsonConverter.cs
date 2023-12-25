@@ -81,8 +81,8 @@ public class ThriveJsonConverter : IDisposable
     /// </param>
     public string SerializeObject(object @object, Type? type = null)
     {
-        return PerformWithSettings(
-            settings => JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(settings =>
+            JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T? DeserializeObject<T>(string json)
@@ -232,8 +232,7 @@ public class ThriveJsonConverter : IDisposable
 
                 // If we get here, we didn't get another exception...
                 // So we could maybe re-throw the first exception so that we fail like we should
-                GD.PrintErr(
-                    "Expected an exception for the second try at JSON operation, but it succeeded, " +
+                GD.PrintErr("Expected an exception for the second try at JSON operation, but it succeeded, " +
                     "re-throwing the original exception");
                 throw;
             }
@@ -318,9 +317,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<FieldInfo> FieldsOf(Type type, bool handleClassJSONSettings = true)
     {
-        var fields = type.GetFields(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(p => p.CustomAttributes.All(
-            a => a.AttributeType != JsonIgnoreAttribute &&
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(p => p.CustomAttributes.All(a => a.AttributeType != JsonIgnoreAttribute &&
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
@@ -339,8 +337,7 @@ public abstract class BaseThriveConverter : JsonConverter
             if (settings is { MemberSerialization: MemberSerialization.OptIn })
             {
                 // Ignore all fields not opted in
-                fields = fields.Where(
-                    p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
+                fields = fields.Where(p => p.CustomAttributes.Any(a => a.AttributeType == JsonPropertyAttribute));
             }
         }
 
@@ -354,10 +351,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
     public static IEnumerable<PropertyInfo> PropertiesOf(Type type, bool handleClassJSONSettings = true)
     {
-        var properties = type.GetProperties(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
-            p => p.CustomAttributes.All(
-                a => a.AttributeType != JsonIgnoreAttribute));
+        var properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(p => p.CustomAttributes.All(a => a.AttributeType != JsonIgnoreAttribute));
 
         // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
         properties = properties.Where(p => p.GetSetMethod() != null ||
@@ -1043,8 +1038,8 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         // Types with out custom attribute are supported
-        if (objectType.CustomAttributes.Any(
-                attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
+        if (objectType.CustomAttributes.Any(attr =>
+                attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute))
         {
             return true;
         }

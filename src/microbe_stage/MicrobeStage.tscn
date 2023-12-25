@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=85]
-[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -76,8 +75,6 @@ visible = false
 
 [node name="PatchNameOverlay" parent="." instance=ExtResource( 85 )]
 visible = false
-
-[node name="RadialPopup" parent="." instance=ExtResource( 87 )]
 
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false

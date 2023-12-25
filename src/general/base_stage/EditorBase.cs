@@ -315,8 +315,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished,
+            false);
 
         return true;
     }
@@ -699,8 +699,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            ToolTipManager.Instance.ShowPopup(
-                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+                1.5f);
             return;
         }
 
@@ -898,8 +898,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     private void FadeIn()
     {
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true,
+            false);
     }
 
     private void StartMusic()

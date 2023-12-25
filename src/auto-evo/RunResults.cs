@@ -61,8 +61,9 @@
         /// <returns>The per-species results with all species cloned</returns>
         public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
         {
-            return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordFull(
-                (Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
+            return results.ToDictionary(r => r.Key.ID,
+                r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
+                    r.Value.SplitFrom?.ID));
         }
 
         public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -599,13 +600,19 @@
             LocalizedStringBuilder PatchString(Patch patch)
             {
                 var builder2 = new LocalizedStringBuilder(80);
+
+                // Patch visibility is ignored if the output is not read by the player
                 if (!playerReadable)
                 {
                     builder2.Append(patch.ID);
+                    builder2.Append(' ');
+                    builder2.Append(patch.Name);
+
+                    return builder2;
                 }
 
                 builder2.Append(' ');
-                builder2.Append(patch.Name);
+                builder2.Append(patch.VisibleName);
 
                 return builder2;
             }
@@ -693,7 +700,15 @@
                     {
                         builder.Append("   ");
 
-                        builder.Append(patch.Name);
+                        if (playerReadable)
+                        {
+                            builder.Append(patch.VisibleName);
+                        }
+                        else
+                        {
+                            builder.Append(patch.Name);
+                        }
+
                         builder.Append('\n');
                     }
                 }
@@ -726,8 +741,8 @@
                         {
                             builder.Append("  ");
                             builder.Append(new LocalizedString("RUN_RESULT_BY_SENDING_POPULATION",
-                                spreadEntry.To.Name, spreadEntry.Population,
-                                spreadEntry.From.Name));
+                                spreadEntry.To.VisibleName, spreadEntry.Population,
+                                spreadEntry.From.VisibleName));
                         }
                         else
                         {
@@ -880,8 +895,8 @@
                     if (globalPopulation <= 0)
                     {
                         // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
-                        LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                "TIMELINE_SPECIES_EXTINCT", species.FormattedName),
+                        LogEventGloballyAndLocally(world, patch,
+                            new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedName),
                             species.PlayerSpecies, "extinction.png");
 
                         continue;
@@ -904,8 +919,7 @@
                     }
                     else
                     {
-                        patch.LogEvent(new LocalizedString(
-                                "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
+                        patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
                             species.PlayerSpecies, "extinctionLocal.png");
                     }
 
@@ -929,19 +943,21 @@
                 foreach (var migration in GetMigrationsTo(patch))
                 {
                     // Log to destination patch
+                    // TODO: these events need to dynamically reveal their names in the event log once the player
+                    // discovers them
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
-                            migration.Value.From.Name),
+                            migration.Value.From.VisibleName),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to game world
                     world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, migration.Value.To.Name,
-                            migration.Value.From.Name),
+                            migration.Key.FormattedName, migration.Value.To.VisibleName,
+                            migration.Value.From.VisibleName),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to origin patch
                     migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, migration.Value.To.Name),
+                            migration.Key.FormattedName, migration.Value.To.VisibleName),
                         migration.Key.PlayerSpecies, "newSpecies.png");
                 }
 

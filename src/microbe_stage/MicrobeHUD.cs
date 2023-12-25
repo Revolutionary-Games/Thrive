@@ -575,8 +575,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
             {
-                stage.CurrentGame.TutorialState.SendEvent(
-                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+                stage.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeBecomeMulticellularAvailable,
+                    EventArgs.Empty, this);
             }
         }
 
