@@ -900,8 +900,9 @@ public class PatchMapDrawer : Control
     private Line2D[] BuildUnknownRegionConnections(Line2D startingConnection, PatchRegion targetRegion,
         PatchRegion startRegion, Color color, bool reversed)
     {
-        var startingPoint = reversed ? startingConnection.Points[startingConnection.Points.Length - 1]
-            : startingConnection.Points[0];
+        var startingPoint = reversed ?
+            startingConnection.Points[startingConnection.Points.Length - 1] :
+            startingConnection.Points[0];
 
         var adjacencies = startRegion.PatchAdjacencies[targetRegion.ID];
 
