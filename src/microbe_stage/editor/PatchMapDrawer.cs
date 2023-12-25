@@ -911,7 +911,7 @@ public class PatchMapDrawer : Control
             .Where(p => adjacencies.Contains(p))
             .ToArray();
 
-        var connections = new Line2D[patches.Length];
+        var newConnections = new Line2D[patches.Length];
 
         var i = 0;
         foreach (var targetPatch in patches)
@@ -928,7 +928,7 @@ public class PatchMapDrawer : Control
                     endingPoint,
                 };
 
-                connections[i++] = CreateConnectionLine(straightPoints, color);
+                newConnections[i++] = CreateConnectionLine(straightPoints, color);
                 continue;
             }
 
@@ -941,10 +941,10 @@ public class PatchMapDrawer : Control
                 endingPoint,
             };
 
-            connections[i++] = CreateConnectionLine(points, color);
+            newConnections[i++] = CreateConnectionLine(points, color);
         }
 
-        return connections;
+        return newConnections;
     }
 
     private void ApplyFadeIfNeeded(PatchRegion startingRegion, PatchRegion endingRegion,
