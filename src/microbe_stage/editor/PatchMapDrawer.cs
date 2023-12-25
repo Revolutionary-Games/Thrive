@@ -862,23 +862,27 @@ public class PatchMapDrawer : Control
             var vis1 = region1.Visibility;
             var vis2 = region2.Visibility;
 
+            // Do not draw connections between hidden or unknown regions
             if (vis1 != MapElementVisibility.Shown && vis2 != MapElementVisibility.Shown)
-            {
                 continue;
-            }
 
+            // Check if connections should be highlighted
+            // (Unknown patches should not highlight connections)
             var highlight = CheckHighlightedAdjacency(region1, region2) &&
                 SelectedPatch?.Visibility == MapElementVisibility.Shown;
 
             var color = highlight ? HighlightedConnectionColor : DefaultConnectionColor;
 
+            // Create the main connection line
             var points = entry.Value;
             var line = CreateConnectionLine(points, color);
             regionConnectionLines.Add(entry.Key, line);
 
+            // Fade the connection line if need be
             ApplyFadeIfNeeded(region1, region2, line, false);
             ApplyFadeIfNeeded(region2, region1, line, true);
 
+            // Create additional lines to connect "floating" patches in unknown regions
             if (vis1 == MapElementVisibility.Unknown)
             {
                 additionalConnectionLines
