@@ -119,7 +119,7 @@ public class SaveManagerGUI : Control
         filterOptions.AddItem(TranslationServer.Translate("ALL"), 3);
 
         filterOptions.Selected = 3;
-        filterOptions.Disabled = true;
+        SetFilterDropdownAvailability(true);
     }
 
     public override void _Process(float delta)
@@ -158,6 +158,20 @@ public class SaveManagerGUI : Control
         UpdateButtonsStatus();
 
         refreshing = false;
+    }
+
+    public void SetFilterDropdownAvailability(bool disabled)
+    {
+        filterOptions.Disabled = disabled;
+
+        if (disabled)
+        {
+            filterOptions.RegisterToolTipForControl("cannotFilterSavesWhileRefreshing", "saveManager");
+        }
+        else
+        {
+            filterOptions.UnRegisterToolTipForControl("cannotFilterSavesWhileRefreshing", "saveManager");
+        }
     }
 
     protected override void Dispose(bool disposing)
@@ -200,7 +214,7 @@ public class SaveManagerGUI : Control
     private void RefreshList()
     {
         filterOptions.Selected = 3;
-        filterOptions.Disabled = true;
+        SetFilterDropdownAvailability(true);
 
         saveList.Refresh();
     }
@@ -353,6 +367,6 @@ public class SaveManagerGUI : Control
 
     private void OnRefreshCompleted()
     {
-        filterOptions.Disabled = false;
+        SetFilterDropdownAvailability(false);
     }
 }

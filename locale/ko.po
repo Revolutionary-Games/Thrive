@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-13 11:46+0200\n"
+"POT-Creation-Date: 2023-12-25 21:23+0100\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "저장 및 계속"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:210
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1879
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
@@ -143,7 +143,7 @@ msgstr "상태:"
 msgid "AGENT_NAME"
 msgstr "동굴"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:186
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
@@ -162,6 +162,7 @@ msgstr "(AI 종이 변이하는 속도)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
+#: ../src/saving/SaveManagerGUI.cs:119
 msgid "ALL"
 msgstr "모두"
 
@@ -279,7 +280,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1897
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -421,7 +422,7 @@ msgstr "미생물 단계"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "BACK"
 msgstr "뒤로"
 
@@ -435,13 +436,13 @@ msgstr "뒤로가기"
 msgid "BACKSPACE"
 msgstr "뒤로가기"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1617
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1682
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "기동성"
@@ -566,16 +567,16 @@ msgid "BILLION_ABBREVIATION"
 msgstr "{0} 십억"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "BINDING_AGENT"
 msgstr "결합 기관"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:839
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -601,7 +602,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "생성 시 생물 다양성을 증진하는 종이 변이됨"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1216
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "생물발광 액포"
 
@@ -651,11 +652,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1593
 msgid "CALCIUM_CARBONATE"
 msgstr "탄산 칼슘"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1594
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 탄산 칼슘으로 만든 강한 껍질을 가지고 있습니다. 손상에 쉽게 저항 할 수 있으며 변형되지 않는 데 더 적은 에너지가 필요합니다. 이 두터운 막의 단점은 세포가 훨씬 느려지고 자원을 흡수하는 데 시간이 걸린다는 것입니다."
 
@@ -682,7 +683,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "확인"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "현재 동작 취소"
 
@@ -696,12 +697,16 @@ msgstr ""
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1706
 msgid "CANNOT_ENGULF"
 msgstr "삼킬 수 없음"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+msgid "CANNOT_FILTER_SAVES_WHILE_REFRESHING"
+msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -782,11 +787,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1463
 msgid "CELLULOSE"
 msgstr "섬유소"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
@@ -799,7 +804,7 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "설명:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:109
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "연대 변경"
 
@@ -823,44 +828,44 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:368
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
 msgid "CHEMOPLAST"
 msgstr "화학 기관"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1024
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:770
 msgid "CHEMORECEPTOR"
 msgstr "화학 수용체"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:772
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:395
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "화학 단백질"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:397
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에서 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 세포질의 작은 단백질 집합입니다. 포도당 생산 속도는 이산화탄소 농도에 따라 달라집니다. 화학 합성 단백질이 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:396
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에서 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 세포질의 작은 단백질 집합입니다. 포도당 생산 속도는 이산화탄소 농도에 따라 달라집니다. 화학 합성 단백질이 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -871,7 +876,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "화학적 합성"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1528
 msgid "CHITIN"
 msgstr "키틴질"
 
@@ -884,20 +889,20 @@ msgstr "키틴 분해 효소"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1529
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 독소에 의한 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 드는 에너지가 적지만, 자원을 빠르게 흡수할 수 없고 속도가 더 느려집니다. [b]키틴 소화 효소는 이 벽을 소화할 수 있어[/b] 포식자의 삼킴에 취약하게 만듭니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:576
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:945
 msgid "CHLOROPLAST"
 msgstr "엽록체"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "엽록체는 감광성 안료가 막낭에 쌓여있는 이중 막 구조입니다. 진핵 생물이 숙주로써 이용하기 위해 동화된 원핵 생물입니다. 엽록체의 안료는 빛의 에너지를 사용하여 광합성이라고하는 과정을 통해서 물과 기체 이산화탄소로부터 포도당을 생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:946
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "엽록체는 감광성 안료가 막낭에 쌓여있는 이중 막 구조입니다. 진핵 생물이 숙주로써 이용하기 위해 동화된 원핵 생물입니다. 엽록체의 안료는 빛의 에너지를 사용하여 광합성이라고하는 과정을 통해서 물과 기체 이산화탄소로부터 포도당을 생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
@@ -911,7 +916,7 @@ msgstr "선택한 파일명 ({0}) 은 이미 존재합니다. 덮어쓰겠습니
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:356
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에서 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 세포질의 작은 단백질 집합입니다. 포도당 생산 속도는 이산화탄소 농도에 따라 달라집니다. 화학 합성 단백질이 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -926,16 +931,16 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "화합물 구름"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:803
 msgid "CILIA"
 msgstr "섬모"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:805
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
@@ -948,7 +953,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "CITY_SHORT_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/saving/SaveManagerGUI.tscn:79
+#: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
@@ -1345,7 +1350,7 @@ msgstr "로 생성됨:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "생성된 매체:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:127
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "새 미생물 생성"
 
@@ -1433,11 +1438,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:607
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:244
 msgid "CYTOPLASM"
 msgstr "세포질"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
@@ -1445,7 +1450,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "세포질 해당 작용"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
@@ -1511,7 +1516,7 @@ msgstr ""
 msgid "DELETE"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:264
+#: ../src/saving/SaveManagerGUI.cs:297
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
@@ -1524,7 +1529,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
-#: ../src/saving/SaveManagerGUI.tscn:190
+#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "이전 저장을 삭제합니까?"
@@ -1537,16 +1542,16 @@ msgstr "세포 소기관 삭제"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
-#: ../src/saving/SaveManagerGUI.tscn:71
+#: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
 msgstr "선택된 파일 삭제"
 
-#: ../src/saving/SaveManagerGUI.tscn:183
+#: ../src/saving/SaveManagerGUI.tscn:195
 #, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "선택된 저장을 삭제합니까?"
 
-#: ../src/saving/SaveManagerGUI.cs:254
+#: ../src/saving/SaveManagerGUI.cs:287
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 저장 {0} 개를 삭제하시겠습니까?"
 
@@ -1663,7 +1668,7 @@ msgstr "어려움"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "보통"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1263
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1672,7 +1677,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "설명:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "자원 흡수 속도"
@@ -1808,7 +1813,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
 msgid "DOUBLE"
 msgstr "이중"
 
@@ -1816,7 +1821,7 @@ msgstr "이중"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되고 무너지지 않는데 더 적은 에너지를 사용합니다. 그러나 세포의 속도와 자원 흡수 또한 더욱 느려집니다 ."
 
@@ -2192,7 +2197,7 @@ msgstr "지역에서 멸종"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "이전에 존재했던 다른 99%의 종처럼, 당신의 종 또한 멸종했습니다. 나머지는 당신의 자리에 들어가 번영을 누리겠지만, 당신은 아닙니다. 당신은 잊혀질 것이고, 진화의 실패한 표상이 될 것입니다."
 
-#: ../src/general/base_stage/CreatureStageBase.cs:394
+#: ../src/general/base_stage/CreatureStageBase.cs:397
 msgid "EXTINCT_IN_PATCH"
 msgstr "지역에서 멸종"
 
@@ -2219,12 +2224,12 @@ msgstr "새로운 키 배치 추가"
 msgid "FAILED"
 msgstr "저장 실패"
 
-#: ../src/saving/SaveManagerGUI.tscn:209
+#: ../src/saving/SaveManagerGUI.tscn:221
 #, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:219
 #, fuzzy
 msgid "FAILED_SAVE_DELETION"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
@@ -2238,7 +2243,7 @@ msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소�
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:202
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
@@ -2286,7 +2291,7 @@ msgstr ""
 msgid "FINISHED_DOT"
 msgstr "완료됨."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "편집을 종료하고 환경으로 돌아가기"
 
@@ -2309,15 +2314,15 @@ msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:650
 msgid "FLAGELLUM"
 msgstr "편모"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:652
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:651
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 세포막에서 이어지는 채찍 모양의 단백질 섬유 다발입니다."
@@ -2362,7 +2367,7 @@ msgstr "유동성 / 강도"
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:218
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
@@ -2587,7 +2592,7 @@ msgstr "그래픽"
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1891
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
@@ -2601,13 +2606,13 @@ msgstr "{0} 천"
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1501
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1629
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1694
 msgid "HEALTH"
 msgstr "생명력"
 
@@ -3482,7 +3487,7 @@ msgstr "지질 분해 효소"
 msgid "LIPASE_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "불러오기"
 
@@ -3587,16 +3592,16 @@ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "LYSOSOME"
 msgstr "리소좀"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -3684,7 +3689,7 @@ msgstr "백만 년"
 msgid "MEMBRANE"
 msgstr "세포막 유형"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "MEMBRANE_RIGIDITY"
 msgstr "세포막 강도"
 
@@ -3701,15 +3706,15 @@ msgid "MESOPELAGIC"
 msgstr "중해수층"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "METABOLOSOMES"
 msgstr "대사체"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:288
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -3726,7 +3731,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:139
+#: ../src/saving/SaveManagerGUI.cs:154
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -3839,7 +3844,7 @@ msgstr "미생물 자유 편집기"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:236
+#: ../src/microbe_stage/MicrobeSpecies.cs:237
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4047,15 +4052,15 @@ msgid "MISSING_TITLE"
 msgstr "번영했습니다!"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:918
 msgid "MITOCHONDRION"
 msgstr "미토콘드리아"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:919
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
@@ -4335,7 +4340,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:594
+#: ../src/late_multicellular_stage/MulticellularStage.cs:598
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
@@ -4510,7 +4515,7 @@ msgstr "속도:"
 msgid "NEXT_CAPITAL"
 msgstr "다음"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:103
 #, fuzzy
 msgid "NEXT_EDITOR_TAB"
 msgstr "편집기 활성화"
@@ -4521,29 +4526,29 @@ msgid "NITROGEN"
 msgstr "질소"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:102
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:500
 msgid "NITROGENASE"
 msgstr "니트로게나아제"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:502
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:501
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:300
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1050
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "질소 고정 색소체"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1052
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
@@ -4556,11 +4561,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1351
 msgid "NORMAL"
 msgstr "보통"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기능이 거의 없습니다. 무너지지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이고 영양분을 흡수 할 수 있다는 것입니다."
 
@@ -4568,7 +4573,7 @@ msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기�
 msgid "NOTHING_HERE"
 msgstr "아무것도 없음"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:513
+#: ../src/late_multicellular_stage/MulticellularStage.cs:517
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4584,12 +4589,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:960
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:962
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:952
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:954
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4634,7 +4639,7 @@ msgstr "저장 폴더 열기"
 msgid "NO_MODS_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:991
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
@@ -4644,7 +4649,7 @@ msgstr "세포 기관 배치"
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:197
+#: ../src/saving/SaveManagerGUI.tscn:209
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
@@ -4660,7 +4665,7 @@ msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:677
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:878
 msgid "NUCLEUS"
 msgstr "핵"
 
@@ -4668,11 +4673,11 @@ msgstr "핵"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "진핵 세포의 특징. 핵은 소포체와 골지체를 포함합니다. 원핵 세포의 진화는 내부 막의 시스템을 개발하는 것이며, 내부의 다른 원핵 생물을 동화시킴으로써 이루어집니다. 이를 통해 세포 내부에서 발생하는 여러 프로세스를 구분하거나 겹치는 것을 방지 할 수 있습니다. 이것은 그들의 새로운 세포막 기관이 세포질에서 자유롭게 떠 다니는 것보다 훨씬 더 복잡하고 효율적이며 전문화되도록합니다. 그러나 이 일은 세포를 훨씬 더 크게 만들고 유지하기 위해 많은 에너지를 필요로 하게 만듭니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "세포막 기관에 더 복잡한 진화를 허용\n"
@@ -4782,7 +4787,7 @@ msgstr "세포 소기관 메뉴 열기"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "도움말 열기"
 
-#: ../src/saving/SaveManagerGUI.tscn:90
+#: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
@@ -4807,7 +4812,7 @@ msgstr "게임을 번역하는 것을 도와주세요"
 msgid "OPERATION_PAUSED_DOT"
 msgstr "일시 정지됨."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
@@ -4831,12 +4836,12 @@ msgid "ORGANELLES"
 msgstr "세포 기관"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:933
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1299
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "세포 기관"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1300
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
@@ -4847,26 +4852,26 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "세포 기관 배치"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:975
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "포식자 선모"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
 msgid "ORGANELLE_PILUS"
 msgstr "포식자 선모"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:738
 #, fuzzy
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "이것으로 다른 세포를 찌르세요."
@@ -4879,36 +4884,36 @@ msgstr "생체 상태창"
 msgid "OSMOREGULATION"
 msgstr "삼투압 조절"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:269
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:525
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:682
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1076
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1558
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1686
 msgid "OSMOREGULATION_COST"
 msgstr "삼투압 비용"
 
@@ -4954,15 +4959,15 @@ msgid "OXYGEN"
 msgstr "산소"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:202
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:541
 msgid "OXYTOXISOME"
 msgstr "옥시톡시솜"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:543
 msgid "OXYTOXISOME_DESC"
 msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -5048,7 +5053,7 @@ msgstr "멸종"
 msgid "PATCH_MAP"
 msgstr "지역 지도"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -5172,9 +5177,9 @@ msgstr "광합성"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "물리적 상태"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 msgid "PHYSICAL_RESISTANCE"
 msgstr "물리 저항"
 
@@ -5215,7 +5220,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(플레이어가 죽을 때마다 플레이어 종의 개체수가 감소하는 정도)"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:326
+#: ../src/general/base_stage/CreatureStageBase.cs:329
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
@@ -5234,7 +5239,7 @@ msgstr "플레이어 사망함"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "플레이어 사망함"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:270
+#: ../src/general/base_stage/CreatureStageBase.cs:273
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
@@ -5384,7 +5389,7 @@ msgstr "새로운 키 배치 추가"
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 모드 경고"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
@@ -5426,11 +5431,11 @@ msgstr "재개"
 msgid "REDO"
 msgstr "다시 실행"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
 msgid "REDO_THE_LAST_ACTION"
 msgstr "마지막 활동 되돌리기"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
 msgstr "새로 고침"
 
@@ -5518,8 +5523,8 @@ msgstr "기본값"
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1514
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1579
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5527,12 +5532,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "해상도:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "자원 흡수 속도"
 
@@ -5619,7 +5624,7 @@ msgstr "마우스 오른쪽 버튼"
 msgid "RIGID"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:143
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "세포막 강도가 높을수록 피해에 더 견딜 수 있지만, 세포를 더욱 움직이기 힘들게 할 것입니다."
 
@@ -5679,16 +5684,16 @@ msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:70
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:460
 msgid "RUSTICYANIN"
 msgstr "루스티시아닌"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:462
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:461
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
@@ -5717,11 +5722,11 @@ msgstr "저장"
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:22 ../src/saving/SaveManagerGUI.cs:115
 msgid "SAVE_AUTOSAVE"
 msgstr "자동 저장"
 
-#: ../src/saving/SaveList.cs:252
+#: ../src/saving/SaveList.cs:289
 msgid "SAVE_DELETE_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
@@ -5778,15 +5783,15 @@ msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소�
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:16
+#: ../src/saving/SaveInformation.cs:16 ../src/saving/SaveManagerGUI.cs:114
 msgid "SAVE_MANUAL"
 msgstr "설명서"
 
-#: ../src/saving/SaveInformation.cs:28
+#: ../src/saving/SaveInformation.cs:28 ../src/saving/SaveManagerGUI.cs:116
 msgid "SAVE_QUICKSAVE"
 msgstr "빠른 저장"
 
-#: ../src/saving/SaveManagerGUI.tscn:142
+#: ../src/saving/SaveManagerGUI.tscn:154
 msgid "SAVE_SPACE_USED"
 msgstr "사용된 용량:"
 
@@ -5907,7 +5912,7 @@ msgstr "점액 분비"
 msgid "SEED_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:162
+#: ../src/saving/SaveManagerGUI.tscn:174
 msgid "SELECTED_COLON"
 msgstr "선택됨:"
 
@@ -5993,7 +5998,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1885
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6041,7 +6046,7 @@ msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
@@ -6053,7 +6058,7 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:764
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1174
 msgid "SIGNALING_AGENT"
 msgstr "신호 기관"
 
@@ -6062,12 +6067,12 @@ msgstr "신호 기관"
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1176
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1175
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
@@ -6103,11 +6108,11 @@ msgstr ""
 "{1}에서 입력을 제거하시겠습니까?"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1656
 msgid "SILICA"
 msgstr "이산화규소"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1657
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
 
@@ -6125,16 +6130,16 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
 msgid "SLIME_JET"
 msgstr "점액 분출"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:699
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
@@ -6206,7 +6211,7 @@ msgstr "암모니아 배치"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:985
+#: ../src/microbe_stage/MicrobeStage.cs:988
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6235,7 +6240,7 @@ msgstr "종"
 msgid "SPECIES_COLON"
 msgstr "종:"
 
-#: ../src/general/Species.cs:290
+#: ../src/general/Species.cs:291
 #, fuzzy
 msgid "SPECIES_DETAIL_TEXT"
 msgstr "존재하는 종"
@@ -6287,7 +6292,7 @@ msgstr "종:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "종:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
 msgid "SPEED"
 msgstr "속도"
 
@@ -6414,27 +6419,27 @@ msgstr "임의 사용자 이름:"
 msgid "STOP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "STORAGE"
 msgstr "저장소"
 
@@ -6528,7 +6533,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6647,12 +6652,12 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:871
+#: ../src/late_multicellular_stage/MulticellularStage.cs:875
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1912
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6686,30 +6691,30 @@ msgid "THEORY_TEAM"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "THERMOPLAST"
 msgstr "열 세포"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "THERMOSYNTHASE"
 msgstr "열합성 효소"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
@@ -6775,7 +6780,7 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:355
 msgid "THYLAKOID"
 msgstr "틸라코이드"
 
@@ -6783,7 +6788,7 @@ msgstr "틸라코이드"
 msgid "THYLAKOIDS"
 msgstr "틸라코이드"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:357
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -6813,8 +6818,8 @@ msgstr "유전자 코드:"
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "퍼뜨리기:"
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
-#: ../src/microbe_stage/MicrobeStage.cs:450
+#: ../src/microbe_stage/MicrobeStage.cs:449
+#: ../src/microbe_stage/MicrobeStage.cs:453
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6929,32 +6934,32 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:122
+#: ../src/saving/SaveManagerGUI.tscn:134
 msgid "TOTAL_SAVES"
 msgstr "총 저장:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
 msgid "TOXIN_RESISTANCE"
 msgstr "독소 저항"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1133
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "독소 \n"
 "액포"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1135
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1134
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1217
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
 
@@ -6982,7 +6987,7 @@ msgstr ""
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "스크린샷 촬영"
 
-#: ../src/saving/SaveManagerGUI.tscn:199
+#: ../src/saving/SaveManagerGUI.tscn:211
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
@@ -7215,7 +7220,7 @@ msgstr "수중 동굴"
 msgid "UNDO"
 msgstr "실행 취소"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:115
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "마지막 활동 취소"
 
@@ -7357,11 +7362,11 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1092
 msgid "VACUOLE"
 msgstr "액포"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1094
 msgid "VACUOLE_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
@@ -7374,7 +7379,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1093
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."

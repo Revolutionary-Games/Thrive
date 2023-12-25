@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-13 11:46+0200\n"
+"POT-Creation-Date: 2023-12-25 21:23+0100\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -96,7 +96,7 @@ msgstr "Aktiv"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Nuvarande trådar:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:210
 #, fuzzy
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
@@ -107,7 +107,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ytterligare valideringar upptäckte ett problem: {0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1879
 #, fuzzy
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lägg till ny tangentbindning"
@@ -138,7 +138,7 @@ msgstr "Medel:"
 msgid "AGENT_NAME"
 msgstr "{0}medel"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:186
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Aggressiva mikrober jagar byte över större avstånd\n"
@@ -160,6 +160,7 @@ msgstr "(farten som AI arter muterar)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
+#: ../src/saving/SaveManagerGUI.cs:119
 msgid "ALL"
 msgstr "Allt"
 
@@ -287,7 +288,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Anta att CPUn har hyperthreading aktiverad"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1897
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -431,7 +432,7 @@ msgstr "Mikrob Stadiet"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "BACK"
 msgstr "Backåt"
 
@@ -443,13 +444,13 @@ msgstr "Omvänt snedstreck"
 msgid "BACKSPACE"
 msgstr "Backa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1617
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1682
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitet"
@@ -572,16 +573,16 @@ msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "BINDING_AGENT"
 msgstr "Bindemedel"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:839
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
@@ -607,7 +608,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Biodiversitetsökande art muteras när den skapas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1216
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescerande vakuol"
 
@@ -657,11 +658,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Av Revolutionary Games Studio"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1593
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalciumkarbonat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1594
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -687,7 +688,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AVBRYT"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Avbryt denna handling"
 
@@ -701,11 +702,15 @@ msgstr "En celltyp som används i din kroppsplan kan inte raderas"
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kan inte radera använd celltyp"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1706
 msgid "CANNOT_ENGULF"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+msgid "CANNOT_FILTER_SAVES_WHILE_REFRESHING"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
@@ -786,11 +791,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1463
 msgid "CELLULOSE"
 msgstr "Cellulosa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -803,7 +808,7 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:109
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändra symmetrin"
 
@@ -826,44 +831,44 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:368
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1024
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:770
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:772
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:395
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:397
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:396
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -874,7 +879,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "Kemosyntes"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1528
 msgid "CHITIN"
 msgstr "Kitin"
 
@@ -887,20 +892,20 @@ msgstr "Kitinas"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1529
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:576
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:945
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:946
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
@@ -913,7 +918,7 @@ msgstr ""
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatisk Aberration:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:356
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -927,16 +932,16 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} konsumtion"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:803
 msgid "CILIA"
 msgstr "Flimmerhår"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:805
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -949,7 +954,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismstatistik"
 
-#: ../src/saving/SaveManagerGUI.tscn:79
+#: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
@@ -1346,7 +1351,7 @@ msgstr "Skapad:"
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:127
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Skapa en ny mikrob"
 
@@ -1434,11 +1439,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "Anpassat Användarnamn:"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:607
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:244
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
@@ -1446,7 +1451,7 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Cytoplasm Glycolys"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -1516,7 +1521,7 @@ msgstr "Standard utgångsenhet"
 msgid "DELETE"
 msgstr "Radera"
 
-#: ../src/saving/SaveManagerGUI.cs:264
+#: ../src/saving/SaveManagerGUI.cs:297
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
@@ -1525,7 +1530,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "Skriv över aktuell sparfil:"
 
-#: ../src/saving/SaveManagerGUI.tscn:190
+#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
 
@@ -1537,15 +1542,15 @@ msgstr "Ta bort organell"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:71
+#: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
 msgstr "Radera Valda"
 
-#: ../src/saving/SaveManagerGUI.tscn:183
+#: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:254
+#: ../src/saving/SaveManagerGUI.cs:287
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
@@ -1667,7 +1672,7 @@ msgstr "Svår"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1263
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
@@ -1676,7 +1681,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "UTROTNING"
@@ -1812,7 +1817,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
 msgid "DOUBLE"
 msgstr "Dubbel"
 
@@ -1820,7 +1825,7 @@ msgstr "Dubbel"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -2199,7 +2204,7 @@ msgstr "dog ut på planeten"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "dog ut på planeten"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:394
+#: ../src/general/base_stage/CreatureStageBase.cs:397
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "dog ut på planeten"
@@ -2226,12 +2231,12 @@ msgstr "Självmord"
 msgid "FAILED"
 msgstr "Misslyckades"
 
-#: ../src/saving/SaveManagerGUI.tscn:209
+#: ../src/saving/SaveManagerGUI.tscn:221
 #, fuzzy
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:219
 #, fuzzy
 msgid "FAILED_SAVE_DELETION"
 msgstr "Error: Misslyckades att spara nya intällningar till konfigurationsfil."
@@ -2245,7 +2250,7 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 msgid "FEARFUL"
 msgstr "Rädd"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:202
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
@@ -2294,7 +2299,7 @@ msgstr "Avbryt denna handling"
 msgid "FINISHED_DOT"
 msgstr "Färdig."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Slutför redigering och återvänd till omgivning"
 
@@ -2318,15 +2323,15 @@ msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Självmord"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:650
 msgid "FLAGELLUM"
 msgstr "Flagell"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:652
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:651
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -2371,7 +2376,7 @@ msgstr "Mjukhet / Hårdhet"
 msgid "FOCUSED"
 msgstr "Fokuserad"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:218
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
@@ -2605,7 +2610,7 @@ msgstr "Grafik"
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1891
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -2618,13 +2623,13 @@ msgstr "{0} K"
 msgid "GUI_VOLUME"
 msgstr "GUI-volym"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1501
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1629
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1694
 msgid "HEALTH"
 msgstr "Hälsa"
 
@@ -3502,7 +3507,7 @@ msgstr "Lipas"
 msgid "LIPASE_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "Ladda"
 
@@ -3596,16 +3601,16 @@ msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "LYSOSOME"
 msgstr "Lysosom"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -3691,7 +3696,7 @@ msgstr "Miljoner År"
 msgid "MEMBRANE"
 msgstr "Membrantyper"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membran Hårdhet"
 
@@ -3708,15 +3713,15 @@ msgid "MESOPELAGIC"
 msgstr "Mesopelagisk"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "METABOLOSOMES"
 msgstr "Metabolosomer"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:288
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -3733,7 +3738,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:139
+#: ../src/saving/SaveManagerGUI.cs:154
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -3824,7 +3829,7 @@ msgstr "Mikrob Fri Byggredigerare"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismstatistik"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:236
+#: ../src/microbe_stage/MicrobeSpecies.cs:237
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stadie[/b]\n"
@@ -4033,15 +4038,15 @@ msgid "MISSING_TITLE"
 msgstr "DU HAR FRODATS!"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:918
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:919
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -4322,7 +4327,7 @@ msgstr "Protanope (Röd-Grön)"
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Protanope (Röd-Grön)"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:594
+#: ../src/late_multicellular_stage/MulticellularStage.cs:598
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "Protanope (Röd-Grön)"
@@ -4496,7 +4501,7 @@ msgstr "Hastighet:"
 msgid "NEXT_CAPITAL"
 msgstr "NÄSTA"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:103
 #, fuzzy
 msgid "NEXT_EDITOR_TAB"
 msgstr "Aktivera Cellredigeraren"
@@ -4507,29 +4512,29 @@ msgid "NITROGEN"
 msgstr "Kväve"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:102
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:500
 msgid "NITROGENASE"
 msgstr "Kvävegenas"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:502
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:501
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:300
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1050
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Kväve-Fixande Plastid"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1052
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
@@ -4542,11 +4547,11 @@ msgid "NONE"
 msgstr "Ingen"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1351
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -4554,7 +4559,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr "Ingenting här"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:513
+#: ../src/late_multicellular_stage/MulticellularStage.cs:517
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4570,12 +4575,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:960
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:962
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:952
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:954
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4619,7 +4624,7 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "NO_MODS_ENABLED"
 msgstr "Avstängt"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:991
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
@@ -4629,7 +4634,7 @@ msgstr "Placera organell"
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:197
+#: ../src/saving/SaveManagerGUI.tscn:209
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
@@ -4642,7 +4647,7 @@ msgid "NO_SELECTED_MOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:677
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:878
 msgid "NUCLEUS"
 msgstr "Kärna"
 
@@ -4650,11 +4655,11 @@ msgstr "Kärna"
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Möjliggör utveckligen av komplexare membranbundna organeller. Kostar en stor mängd ATP att underhålla. Denna utveckling går inte att ångra."
 
@@ -4757,7 +4762,7 @@ msgstr "Öppna organell meny"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "Öppna hjälpmenyn"
 
-#: ../src/saving/SaveManagerGUI.tscn:90
+#: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr ""
 
@@ -4783,7 +4788,7 @@ msgstr "Hjälp Översätta Spelet"
 msgid "OPERATION_PAUSED_DOT"
 msgstr "Avbruten."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
@@ -4807,12 +4812,12 @@ msgid "ORGANELLES"
 msgstr "Organeller"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:933
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1299
 #, fuzzy
 msgid "ORGANELLE_AXON"
 msgstr "Organeller"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1300
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -4823,26 +4828,26 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Placera organell"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:975
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Rov Tagg"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
 msgid "ORGANELLE_PILUS"
 msgstr "Rov Tagg"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:738
 #, fuzzy
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -4855,36 +4860,36 @@ msgstr "Organismstatistik"
 msgid "OSMOREGULATION"
 msgstr "Osmoregulering"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:269
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:525
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:682
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1076
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1558
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1686
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoreguleringskost"
 
@@ -4930,15 +4935,15 @@ msgid "OXYGEN"
 msgstr "Syre"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:202
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:541
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisom"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:543
 msgid "OXYTOXISOME_DESC"
 msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
@@ -5025,7 +5030,7 @@ msgstr "UTROTNING"
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Självmord"
@@ -5150,9 +5155,9 @@ msgstr "Fotosyntes"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fysisk Mående"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
@@ -5194,7 +5199,7 @@ msgstr ""
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:326
+#: ../src/general/base_stage/CreatureStageBase.cs:329
 msgid "PLAYER_DIED"
 msgstr "spelare dog"
 
@@ -5212,7 +5217,7 @@ msgstr "Duplicera Spelare"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Duplicera Spelare"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:270
+#: ../src/general/base_stage/CreatureStageBase.cs:273
 msgid "PLAYER_REPRODUCED"
 msgstr "spelare fortplantad"
 
@@ -5361,7 +5366,7 @@ msgstr ""
 "Är du säker på att du vill avsluta spelet?\n"
 "Du kommer att förlora alla osparade framsteg."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Slumpa artnamn"
 
@@ -5404,11 +5409,11 @@ msgstr "Fortsätt"
 msgid "REDO"
 msgstr "Gör om"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Gör om den senaste handlingen"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
 msgstr "Ladda om"
 
@@ -5494,8 +5499,8 @@ msgstr "Default"
 msgid "RESET_TO_DEFAULTS"
 msgstr "Nollställ till default?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1514
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1579
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -5503,12 +5508,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr "Upplösning:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
@@ -5594,7 +5599,7 @@ msgstr "Högerklick"
 msgid "RIGID"
 msgstr "Stel"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:143
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Ett hårdare membran är mer resistant till skada, men kommer göre det svårare för cellen att röra sig omkring."
 
@@ -5654,16 +5659,16 @@ msgstr "Hjälp"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:70
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:460
 msgid "RUSTICYANIN"
 msgstr "Rosticyanin"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:462
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:461
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
@@ -5689,11 +5694,11 @@ msgstr "Spara"
 msgid "SAVE_AND_CONTINUE"
 msgstr "Spara och fortsätt"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:22 ../src/saving/SaveManagerGUI.cs:115
 msgid "SAVE_AUTOSAVE"
 msgstr "Autospar"
 
-#: ../src/saving/SaveList.cs:252
+#: ../src/saving/SaveList.cs:289
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 
@@ -5751,15 +5756,15 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/SaveInformation.cs:16
+#: ../src/saving/SaveInformation.cs:16 ../src/saving/SaveManagerGUI.cs:114
 msgid "SAVE_MANUAL"
 msgstr "Instruktionsbok"
 
-#: ../src/saving/SaveInformation.cs:28
+#: ../src/saving/SaveInformation.cs:28 ../src/saving/SaveManagerGUI.cs:116
 msgid "SAVE_QUICKSAVE"
 msgstr "Snabbspar"
 
-#: ../src/saving/SaveManagerGUI.tscn:142
+#: ../src/saving/SaveManagerGUI.tscn:154
 msgid "SAVE_SPACE_USED"
 msgstr "Använt utrymme:"
 
@@ -5876,7 +5881,7 @@ msgstr "Slem sekretion"
 msgid "SEED_LABEL"
 msgstr "Omgivning: {0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:162
+#: ../src/saving/SaveManagerGUI.tscn:174
 msgid "SELECTED_COLON"
 msgstr "Vald:"
 
@@ -5962,7 +5967,7 @@ msgstr "September"
 msgid "SESSILE"
 msgstr "Stillastående"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1885
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6006,7 +6011,7 @@ msgstr "Visa hjälp (i nya spel)"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Visa osparade framstegsvarning"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
@@ -6018,7 +6023,7 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:764
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1174
 msgid "SIGNALING_AGENT"
 msgstr "Signaleringsmedel"
 
@@ -6027,12 +6032,12 @@ msgstr "Signaleringsmedel"
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1176
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1175
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
@@ -6068,11 +6073,11 @@ msgstr ""
 "Vill du ta bort inputen från {1}?"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1656
 msgid "SILICA"
 msgstr "Kiseldioxid"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1657
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -6090,16 +6095,16 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
 msgid "SLIME_JET"
 msgstr "Slemmstråle"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:699
 #, fuzzy
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
 #, fuzzy
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
@@ -6170,7 +6175,7 @@ msgstr "Spawna ammoniak"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:985
+#: ../src/microbe_stage/MicrobeStage.cs:988
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6200,7 +6205,7 @@ msgstr "Artlista"
 msgid "SPECIES_COLON"
 msgstr "Arter:"
 
-#: ../src/general/Species.cs:290
+#: ../src/general/Species.cs:291
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Arter[/b]\n"
@@ -6259,7 +6264,7 @@ msgstr "Arter:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Artbefolkning"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
 msgid "SPEED"
 msgstr "Hastighet"
 
@@ -6383,27 +6388,27 @@ msgstr "Stam"
 msgid "STOP"
 msgstr "Stopp"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "STORAGE"
 msgstr "Förråd"
 
@@ -6496,7 +6501,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Självmord"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6615,12 +6620,12 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:871
+#: ../src/late_multicellular_stage/MulticellularStage.cs:875
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1912
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6661,30 +6666,30 @@ msgid "THEORY_TEAM"
 msgstr "Teori"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "THERMOSYNTHASE"
 msgstr "Termosyntes"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 #, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 #, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
@@ -6750,7 +6755,7 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:355
 msgid "THYLAKOID"
 msgstr "THYLAKOID"
 
@@ -6758,7 +6763,7 @@ msgstr "THYLAKOID"
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:357
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
@@ -6786,8 +6791,8 @@ msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
-#: ../src/microbe_stage/MicrobeStage.cs:450
+#: ../src/microbe_stage/MicrobeStage.cs:449
+#: ../src/microbe_stage/MicrobeStage.cs:453
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6911,33 +6916,33 @@ msgstr ""
 msgid "TOTAL_POPULATION_COLON"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:122
+#: ../src/saving/SaveManagerGUI.tscn:134
 msgid "TOTAL_SAVES"
 msgstr "Totala sparningar:"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1133
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Gift\n"
 "vakuol"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1135
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1134
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1217
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Ej implementerat än."
 
@@ -6963,7 +6968,7 @@ msgstr "Öka Treble"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "Testa att ta några screenshots!"
 
-#: ../src/saving/SaveManagerGUI.tscn:199
+#: ../src/saving/SaveManagerGUI.tscn:211
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
@@ -7127,7 +7132,7 @@ msgstr "Undervattensgrotta"
 msgid "UNDO"
 msgstr "Ångra"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:115
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
 
@@ -7265,11 +7270,11 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1092
 msgid "VACUOLE"
 msgstr "Vakuol"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1094
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
@@ -7282,7 +7287,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1093
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."

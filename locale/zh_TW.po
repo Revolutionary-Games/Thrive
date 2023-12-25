@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-13 11:46+0200\n"
+"POT-Creation-Date: 2023-12-25 21:23+0100\n"
 "PO-Revision-Date: 2023-12-15 11:27+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -95,7 +95,7 @@ msgstr "活躍"
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "當前線程："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:210
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "活躍型微生物在周圍無事發生時會四處移動。\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "額外驗證檢測到了一個問題：{0}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1879
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "新增按鍵綁定"
 
@@ -134,7 +134,7 @@ msgstr "作用劑："
 msgid "AGENT_NAME"
 msgstr "{0} 作用劑"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:186
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "激進型微生物會在更遠的距離追捕獵物，\n"
@@ -156,6 +156,7 @@ msgstr "（AI 物種突變的速度）"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
+#: ../src/saving/SaveManagerGUI.cs:119
 msgid "ALL"
 msgstr "全部"
 
@@ -288,7 +289,7 @@ msgstr "啟用自動 Harmony 時需要模組 assembly"
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假設 CPU 已啟用超線程"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1897
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "遊戲無法自動檢測是否啟用超線程。\n"
@@ -427,7 +428,7 @@ msgstr "意識階段"
 #: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
-#: ../src/saving/SaveManagerGUI.tscn:110
+#: ../src/saving/SaveManagerGUI.tscn:122
 msgid "BACK"
 msgstr "返回"
 
@@ -439,13 +440,13 @@ msgstr "\\"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1369
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1545
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1608
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1617
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1682
 msgid "BASE_MOBILITY"
 msgstr "基礎移動能力"
 
@@ -560,15 +561,15 @@ msgid "BILLION_ABBREVIATION"
 msgstr "{0}E+9"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:828
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "BINDING_AGENT"
 msgstr "連接器"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:839
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "允許與其他細胞結合。這是邁向多細胞的第一步。當您的細胞是群落的一部分時，化合物在細胞之間共享。當您作為群落的一部分時，您無法進入編輯器，因此您需要在收集到足夠的化合物後離開細胞群以進行分裂。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:829
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:838
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按下 [thrive:input]g_toggle_binding[/thrive:input] 切換結合模式。在結合模式下，您可以透過接觸同物種的細胞讓其成為您群體中的一員。要離開群落，請按 [thrive:input]g_unbind_all[/thrive:input]。您無法在與其他細胞結合時進入編輯器。"
 
@@ -593,7 +594,7 @@ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "增加生物多樣性的物種會在被創造時突變"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1216
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
 
@@ -640,11 +641,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由 Revolutionary Games Studio 製作"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1593
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1594
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "這種膜具有由碳酸鈣構成的堅固外殼。它可以輕鬆地抵禦破壞，並且花費較少的能量維持外形。擁有如此沉重外殼的缺點是細胞的速度大幅下降，並且需要一段時間來吸收資源。"
 
@@ -670,7 +671,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
 #: ../simulation_parameters/common/input_options.json:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "取消當前操作"
 
@@ -684,12 +685,16 @@ msgstr "在軀體設計中正被使用的細胞類型無法被刪除"
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "無法刪除已使用的細胞類型"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1565
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1632
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1697
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1706
 msgid "CANNOT_ENGULF"
 msgstr "無法吞噬"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+msgid "CANNOT_FILTER_SAVES_WHILE_REFRESHING"
+msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:791
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
@@ -766,11 +771,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr "纖維素酶使細胞能夠分解纖維素膜。每次添加都會增加其有效性。"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1463
 msgid "CELLULOSE"
 msgstr "纖維素"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被捕食者吞噬。"
 
@@ -782,7 +787,7 @@ msgstr "細胞類型名稱"
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "更改注釋過長"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:109
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改變對稱"
 
@@ -805,41 +810,41 @@ msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏細胞代謝過程"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:368
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
 msgid "CHEMOPLAST"
 msgstr "化學質體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "化學質體是一種雙層膜結構，能夠在一個稱為[b]硫化氫化學合成[/b]的過程中將 [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]、氣態 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 和水轉化為 [thrive:compound type=\"glucose\"][/thrive:compound]。其 [thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1015
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1024
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 轉換為 [thrive:compound type=\"glucose\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:761
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:770
 msgid "CHEMORECEPTOR"
 msgstr "化學感受器"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:772
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "所有細胞只能透過化學感受來「看」。這就是細胞獲取周圍環境資訊的方式。添加這種細胞器代表著進化出更精細的化學感受。由於即使在細胞階段玩家也能獲得視覺，這將表現為一條指向螢幕可見區域外的線，顯示玩家尚未看到的附近化合物。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:762
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化學感受器可以探測更遠距離的化合物。放置後進行修改以選擇化合物類型和引導線顏色。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:395
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化學合成蛋白"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:397
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "化學合成蛋白是細胞質中的小蛋白質叢，能夠在一個稱為[b]硫化氫化學合成[/b]的過程中將 [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]、氣態 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 和水轉化為 [thrive:compound type=\"glucose\"][/thrive:compound]。其 [thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。由於化學合成蛋白直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:396
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 轉換為 [thrive:compound type=\"glucose\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。同時也將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -849,7 +854,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr "化學合成"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1528
 msgid "CHITIN"
 msgstr "幾丁質"
 
@@ -861,20 +866,20 @@ msgstr "幾丁質酶"
 msgid "CHITINASE_DESCRIPTION"
 msgstr "幾丁質酶使細胞能夠分解幾丁質膜。每次添加都會增加其有效性。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1520
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1529
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對毒素的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]幾丁質酶可以消化這堵牆[/b]，使其容易被捕食者吞噬。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:576
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:936
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:945
 msgid "CHLOROPLAST"
 msgstr "葉綠體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "葉綠體是一種雙層膜結構，包含在膜囊中堆疊起來的光敏色素。它是一種被其真核宿主同化的原核生物。葉綠體中的色素能夠透過[b]光合作用[/b]從氣態二氧化碳和水中產生 [thrive:compound type=\"glucose\"][/thrive:compound]。這些色素也是賦予其獨特顏色的原因。其 [thrive:compound type=\"glucose\"][/thrive:compound] 生產速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 濃度和 [thrive:compound type=\"sunlight\"][/thrive:compound] 強度成正比。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:937
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:946
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "生產 [thrive:compound type=\"glucose\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和 [thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
 
@@ -886,7 +891,7 @@ msgstr "目標檔案名稱（{0}）已存在。是否要覆蓋？"
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:356
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "生產 [thrive:compound type=\"glucose\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和 [thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
 
@@ -899,15 +904,15 @@ msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} 消耗"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:855
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:803
 msgid "CILIA"
 msgstr "纖毛"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:805
 msgid "CILIA_DESCRIPTION"
 msgstr "纖毛與鞭毛相似，但它們不提供定向推力，而是提供旋轉力來幫助細胞轉動。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "增加大體型細胞的轉向速度。"
 
@@ -918,7 +923,7 @@ msgstr "增加大體型細胞的轉向速度。"
 msgid "CITY_SHORT_STATISTICS"
 msgstr "人口：{0} 食物：{1} 科學：{2}"
 
-#: ../src/saving/SaveManagerGUI.tscn:79
+#: ../src/saving/SaveManagerGUI.tscn:80
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
 
@@ -1303,7 +1308,7 @@ msgstr "建立於："
 msgid "CREATED_ON_PLATFORM"
 msgstr "創建平台："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:127
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "創造一種新微生物"
 
@@ -1400,11 +1405,11 @@ msgid "CUSTOM_USERNAME"
 msgstr "自訂使用者名稱："
 
 #: ../simulation_parameters/microbe_stage/organelles.json:607
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:235
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:244
 msgid "CYTOPLASM"
 msgstr "細胞質"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "細胞的黏稠內臟。細胞質是溶解在水中的離子、蛋白質和其他物質的基本混合物，充滿細胞內部。它的其中一个功能是[b]糖解[/b]，將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。對於缺少細胞器而不能進行更高級代謝活動的細胞而言就是它們能量的來源。它也用於在細胞中儲存分子並增加細胞的大小。"
 
@@ -1412,7 +1417,7 @@ msgstr "細胞的黏稠內臟。細胞質是溶解在水中的離子、蛋白質
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "細胞質糖解"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -1477,7 +1482,7 @@ msgstr "預設輸出設備"
 msgid "DELETE"
 msgstr "刪除"
 
-#: ../src/saving/SaveManagerGUI.cs:264
+#: ../src/saving/SaveManagerGUI.cs:297
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "刪除所有自動和快速存檔將無法撤消，確定要永久刪除這些存檔嗎？\n"
@@ -1489,7 +1494,7 @@ msgstr ""
 msgid "DELETE_FOSSIL_CONFIRMATION"
 msgstr "刪除此化石將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:190
+#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "刪除舊存檔？"
 
@@ -1501,15 +1506,15 @@ msgstr "刪除細胞器"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
-#: ../src/saving/SaveManagerGUI.tscn:71
+#: ../src/saving/SaveManagerGUI.tscn:72
 msgid "DELETE_SELECTED"
 msgstr "刪除選取的"
 
-#: ../src/saving/SaveManagerGUI.tscn:183
+#: ../src/saving/SaveManagerGUI.tscn:195
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "刪除選取的存檔？"
 
-#: ../src/saving/SaveManagerGUI.cs:254
+#: ../src/saving/SaveManagerGUI.cs:287
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "刪除被選取的存檔將無法撤消，確定要永久刪除 {0} 個存檔嗎？"
 
@@ -1635,7 +1640,7 @@ msgstr "困難"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "普通"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1263
 msgid "DIGESTION_EFFICIENCY"
 msgstr "消化效率"
 
@@ -1643,7 +1648,7 @@ msgstr "消化效率"
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1254
 msgid "DIGESTION_SPEED"
 msgstr "消化速度"
 
@@ -1766,7 +1771,7 @@ msgid "DOT_DOT_DOT"
 msgstr "…"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1403
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1412
 msgid "DOUBLE"
 msgstr "雙層"
 
@@ -1774,7 +1779,7 @@ msgstr "雙層"
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "雙擊即可全螢幕檢視"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1404
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
@@ -2131,7 +2136,7 @@ msgstr "從這個區域滅絕了"
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "從這個星球滅絕了"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:394
+#: ../src/general/base_stage/CreatureStageBase.cs:397
 msgid "EXTINCT_IN_PATCH"
 msgstr "在這個區域滅絕了"
 
@@ -2155,11 +2160,11 @@ msgstr "造訪我們的 Facebook 頁面"
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../src/saving/SaveManagerGUI.tscn:209
+#: ../src/saving/SaveManagerGUI.tscn:221
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
 msgstr "錯誤：無法刪除一個或多個存檔。"
 
-#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:207
+#: ../src/saving/SaveList.tscn:137 ../src/saving/SaveManagerGUI.tscn:219
 msgid "FAILED_SAVE_DELETION"
 msgstr "錯誤：存檔刪除失敗"
 
@@ -2171,7 +2176,7 @@ msgstr "無法刪除存檔。"
 msgid "FEARFUL"
 msgstr "膽小"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:202
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "膽小型微生物會逃到更遠的地方\n"
@@ -2221,7 +2226,7 @@ msgstr "尋找當前區域"
 msgid "FINISHED_DOT"
 msgstr "已完成。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:98
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "完成編輯並返回環境"
 
@@ -2244,15 +2249,15 @@ msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "如果啟用僅限已知生命形式，某些選項將不可用"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:650
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:643
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:652
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "鞭毛是一種從細胞膜延伸出的鞭狀蛋白纖維束，利用 [thrive:compound type=\"atp\"][/thrive:compound] 使細胞向某個方向波動並推動細胞。鞭毛的位置決定了它為細胞運動提供推力的方向。推力方向與鞭毛指向的方向相反，例如位於細胞左側的鞭毛在向右移動時提供推力。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:651
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用 [thrive:compound type=\"atp\"][/thrive:compound] 來提高細胞的移動速度。"
 
@@ -2294,7 +2299,7 @@ msgstr "流動性／剛性"
 msgid "FOCUSED"
 msgstr "專注"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:218
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "專注型微生物會在更遠的距離追擊獵物或物質塊\n"
@@ -2508,7 +2513,7 @@ msgstr "圖形團隊"
 msgid "GUI"
 msgstr "GUI"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1891
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "啟用 GUI 的燈光閃爍效果（例如編輯器中的按鈕閃爍）。\n"
@@ -2524,13 +2529,13 @@ msgstr "使用者介面分頁引導"
 msgid "GUI_VOLUME"
 msgstr "GUI 音量"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1390
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1492
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1501
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1629
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1694
 msgid "HEALTH"
 msgstr "生命值"
 
@@ -3359,7 +3364,7 @@ msgstr "脂肪酶"
 msgid "LIPASE_DESCRIPTION"
 msgstr "脂肪酶使細胞能夠分解大多數類型的膜。您的細胞能在沒有溶酶體的情況下產生一些這種酶，但透過選擇這種類型，您將提高其效率。"
 
-#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:51
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:52
 msgid "LOAD"
 msgstr "載入"
 
@@ -3460,15 +3465,15 @@ msgstr ""
 "您現在希望這樣做嗎？"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:904
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "LYSOSOME"
 msgstr "溶酶體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1231
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "含有消化酶。可以進行修改以改變其所含酶的類型。每個溶酶體一次只能利用一種酶。酶加速並提高消化效率。"
 
@@ -3551,7 +3556,7 @@ msgstr "百萬年"
 msgid "MEMBRANE"
 msgstr "細胞膜"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:133
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:142
 msgid "MEMBRANE_RIGIDITY"
 msgstr "細胞膜剛性"
 
@@ -3568,15 +3573,15 @@ msgid "MESOPELAGIC"
 msgstr "中層帶"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:286
 msgid "METABOLOSOMES"
 msgstr "代謝體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:288
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "代謝體是包裹在蛋白質殼中的蛋白質叢。它們能夠將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉化為 [thrive:compound type=\"atp\"][/thrive:compound]，其速度比在細胞質中快得多，這個過程稱為[b]有氧呼吸[/b]。然而，它需要 [thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，低含量的 [thrive:compound type=\"oxygen\"][/thrive:compound] 會降低其 [thrive:compound type=\"atp\"][/thrive:compound] 生產速度。由於代謝體直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:287
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。速率與 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -3608,7 +3613,7 @@ msgstr ""
 "{18}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
-#: ../src/saving/SaveManagerGUI.cs:139
+#: ../src/saving/SaveManagerGUI.cs:154
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
@@ -3713,7 +3718,7 @@ msgstr "微生物階段自由編輯器"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:236
+#: ../src/microbe_stage/MicrobeSpecies.cs:237
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]階段[/b]\n"
@@ -3925,15 +3930,15 @@ msgid "MISSING_TITLE"
 msgstr "缺少標題"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:918
 msgid "MITOCHONDRION"
 msgstr "粒線體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "細胞的發電廠。粒線體是一種充滿蛋白質和酶的雙層膜結構。它是一種被其真核宿主同化的原核生物。它能夠在一個稱為[b]有氧呼吸[/b]的過程中將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉化為 [thrive:compound type=\"atp\"][/thrive:compound]，效率比在細胞質中高得多。然而，它需要 [thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，環境中低含量的 [thrive:compound type=\"oxygen\"][/thrive:compound] 會降低其 [thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:919
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。速率與 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -4212,7 +4217,7 @@ msgstr ""
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "移動至陸地？"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:594
+#: ../src/late_multicellular_stage/MulticellularStage.cs:598
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr "社會化中…"
 
@@ -4380,7 +4385,7 @@ msgstr "新名稱："
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:103
 msgid "NEXT_EDITOR_TAB"
 msgstr "進入下一個編輯器分頁"
 
@@ -4390,28 +4395,28 @@ msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:102
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:500
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:502
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "固氮酶是一種蛋白質，能夠利用氣態 [thrive:compound type=\"nitrogen\"][/thrive:compound] 和 [thrive:compound type=\"atp\"][/thrive:compound] 形式的細胞能量來生產 [thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。這個過程被稱為[b]厭氧固氮[/b]。由於固氮酶直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:492
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:501
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"ammonia\"][/thrive:compound]。速率與 [thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:300
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1050
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮質體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1052
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "固氮質體是一種能夠使用氣態 [thrive:compound type=\"nitrogen\"][/thrive:compound]、[thrive:compound type=\"oxygen\"][/thrive:compound] 和 [thrive:compound type=\"atp\"][/thrive:compound] 生產 [thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。這個過程被稱為[b]有氧固氮[/b]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1051
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"ammonia\"][/thrive:compound]。速率與 [thrive:compound type=\"nitrogen\"][/thrive:compound] 和 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -4423,11 +4428,11 @@ msgid "NONE"
 msgstr "無"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1351
 msgid "NORMAL"
 msgstr "正常"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "最基本的細胞膜形式，它幾乎沒有抵抗傷害的能力。同時還需要更多的能量才能維持外型。優點是它可以讓細胞更迅速地移動並吸收營養。"
 
@@ -4435,7 +4440,7 @@ msgstr "最基本的細胞膜形式，它幾乎沒有抵抗傷害的能力。同
 msgid "NOTHING_HERE"
 msgstr "這裡什麼都沒有"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:513
+#: ../src/late_multicellular_stage/MulticellularStage.cs:517
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr "沒有可以互動的物件"
 
@@ -4451,12 +4456,12 @@ msgstr "因攝入物質中的毒素而損傷"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "缺少 {0} 來吞噬目標"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:960
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:962
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "目前細胞大小不足以吞噬目標"
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:952
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:954
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
 
@@ -4497,7 +4502,7 @@ msgstr "找不到化石目錄"
 msgid "NO_MODS_ENABLED"
 msgstr "未啟用任何模組"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:991
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:219
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "無代謝過程"
@@ -4506,7 +4511,7 @@ msgstr "無代謝過程"
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:197
+#: ../src/saving/SaveManagerGUI.tscn:209
 msgid "NO_SAVE_DIRECTORY"
 msgstr "找不到存檔目錄"
 
@@ -4519,7 +4524,7 @@ msgid "NO_SELECTED_MOD"
 msgstr "無選取模組"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:677
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:878
 msgid "NUCLEUS"
 msgstr "細胞核"
 
@@ -4529,11 +4534,11 @@ msgstr ""
 "無法刪除細胞核，因為這是不可逆的演化。\n"
 "然而，如果是在本次編輯中放置的，仍然允許撤消或重做。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:880
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "真核細胞的決定性特徵。細胞核也包括內質網和高基氏體。這是原核細胞演化出內膜系統的過程，透過同化自身內部的另一種原核生物來完成。這使它們能在細胞內完成不同的代謝過程，並防止它們互相重疊干擾。這使得它們的新有膜細胞器比自由漂浮在細胞質中的細胞器更加複雜、高效和專門化。然而，這麼做的代價是使細胞變得更大並且需要大量的細胞能量來維護。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:879
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "允許演化出更複雜的有膜細胞器，並將受到的傷害減少 50%。需要花費大量 ATP 來維護。這是一種不可逆的演化。"
 
@@ -4633,7 +4638,7 @@ msgstr "開啟細胞器選單"
 msgid "OPEN_RESEARCH_SCREEN"
 msgstr "開啟研究頁面"
 
-#: ../src/saving/SaveManagerGUI.tscn:90
+#: ../src/saving/SaveManagerGUI.tscn:91
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "開啟存檔目錄"
 
@@ -4657,7 +4662,7 @@ msgstr "幫助翻譯此遊戲"
 msgid "OPERATION_PAUSED_DOT"
 msgstr "暫停中。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "投機型微生物會與競爭對手爭奪物質塊\n"
@@ -4683,11 +4688,11 @@ msgid "ORGANELLES"
 msgstr "細胞器"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:933
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1299
 msgid "ORGANELLE_AXON"
 msgstr "軸突"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1300
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "軸突是神經元用來相互連結和溝通的神經纖維。放置這種細胞器會將該細胞類型轉變為腦組織。"
 
@@ -4696,24 +4701,24 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多細胞生物"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:975
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纖維"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr "允許創建肌肉細胞。在目前遊戲原型中無效果。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:737
 msgid "ORGANELLE_PILUS"
 msgstr "掠食性菌毛"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr "菌毛存在於許多微生物的表面，類似於細毛。一個微生物表面可能存在數十至數百個菌毛，並用於多種目的之一，包括在捕食中的作用。病原微生物利用菌毛提高毒性，或者附著並結合宿主組織，或者穿透外膜侵入細胞質。有許多相似的菌毛存在，但在演化上並不相關，而是趨同演化的結果。單一生物體可能具有表達多種類型菌毛的能力，並且表面上存在的菌毛通常會不斷被改變和替換。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:738
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "可用於刺傷其他細胞或防禦其毒素。"
 
@@ -4725,36 +4730,36 @@ msgstr "生物統計"
 msgid "OSMOREGULATION"
 msgstr "滲透調節"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:746
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:779
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1549
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1612
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:269
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:525
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:566
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:682
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:722
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:938
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1076
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1558
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1686
 msgid "OSMOREGULATION_COST"
 msgstr "滲透調節成本"
 
@@ -4798,15 +4803,15 @@ msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:202
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:532
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:541
 msgid "OXYTOXISOME"
 msgstr "氧化毒酶體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:543
 msgid "OXYTOXISOME_DESC"
 msgstr "一種被修飾的代謝體，負責產生原始形式的有毒物質 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:533
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:542
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"atp\"][/thrive:compound] 轉換為 [thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下 [thrive:input]g_fire_toxin[/thrive:input] 釋放毒素。當 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
@@ -4887,7 +4892,7 @@ msgstr "區域滅絕"
 msgid "PATCH_MAP"
 msgstr "區域地圖"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "點擊、拖曳和縮放以四處移動"
 
@@ -5002,9 +5007,9 @@ msgstr "光合作用"
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理條件"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物理抗性"
 
@@ -5048,7 +5053,7 @@ msgstr "玩家死亡種群數量懲罰"
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "（當玩家死亡時玩家物種數量減少的係數）"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:326
+#: ../src/general/base_stage/CreatureStageBase.cs:329
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -5064,7 +5069,7 @@ msgstr "玩家已滅絕"
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "相對於玩家"
 
-#: ../src/general/base_stage/CreatureStageBase.cs:270
+#: ../src/general/base_stage/CreatureStageBase.cs:273
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
@@ -5212,7 +5217,7 @@ msgstr ""
 "您確定要退出遊戲嗎？\n"
 "您將遺失所有未儲存的進度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "隨機化物種名稱"
 
@@ -5251,11 +5256,11 @@ msgstr "造訪我們的 subreddit 頁面"
 msgid "REDO"
 msgstr "重做"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:121
 msgid "REDO_THE_LAST_ACTION"
 msgstr "重做上一個動作"
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:63
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:64
 msgid "REFRESH"
 msgstr "重新整理"
 
@@ -5333,8 +5338,8 @@ msgstr "預設"
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為預設值？"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1514
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1579
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "抵抗基本吞噬"
 
@@ -5342,12 +5347,12 @@ msgstr "抵抗基本吞噬"
 msgid "RESOLUTION"
 msgstr "解析度："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1488
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1392
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物質吸收速度"
 
@@ -5425,7 +5430,7 @@ msgstr "滑鼠右鍵"
 msgid "RIGID"
 msgstr "剛體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:143
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更堅硬的膜有助於抵抗損傷，但會使細胞更難移動。"
 
@@ -5483,16 +5488,16 @@ msgstr "運行一定數量的世界，每個世界運行的代數由上方的顯
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:70
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:460
 msgid "RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:453
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:462
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "鐵硫菌藍蛋白是一種蛋白質，能夠使用 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 和 [thrive:compound type=\"oxygen\"][/thrive:compound] 氧化 [thrive:compound type=\"iron\"][/thrive:compound]。這個過程稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:461
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"iron\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。速率與 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 和 [thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -5520,11 +5525,11 @@ msgstr "存檔"
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
-#: ../src/saving/SaveInformation.cs:22
+#: ../src/saving/SaveInformation.cs:22 ../src/saving/SaveManagerGUI.cs:115
 msgid "SAVE_AUTOSAVE"
 msgstr "自動存檔"
 
-#: ../src/saving/SaveList.cs:252
+#: ../src/saving/SaveList.cs:289
 msgid "SAVE_DELETE_WARNING"
 msgstr "刪除的存檔無法復原，您確定要永久刪除 {0} 嗎？"
 
@@ -5583,15 +5588,15 @@ msgstr ""
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "。無法釋放已載入的資源：{0}"
 
-#: ../src/saving/SaveInformation.cs:16
+#: ../src/saving/SaveInformation.cs:16 ../src/saving/SaveManagerGUI.cs:114
 msgid "SAVE_MANUAL"
 msgstr "手動"
 
-#: ../src/saving/SaveInformation.cs:28
+#: ../src/saving/SaveInformation.cs:28 ../src/saving/SaveManagerGUI.cs:116
 msgid "SAVE_QUICKSAVE"
 msgstr "快速存檔"
 
-#: ../src/saving/SaveManagerGUI.tscn:142
+#: ../src/saving/SaveManagerGUI.tscn:154
 msgid "SAVE_SPACE_USED"
 msgstr "已使用空間："
 
@@ -5697,7 +5702,7 @@ msgstr "分泌粘液"
 msgid "SEED_LABEL"
 msgstr "星球種子：{0}"
 
-#: ../src/saving/SaveManagerGUI.tscn:162
+#: ../src/saving/SaveManagerGUI.tscn:174
 msgid "SELECTED_COLON"
 msgstr "選取的："
 
@@ -5774,7 +5779,7 @@ msgstr "九月"
 msgid "SESSILE"
 msgstr "沉着"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1885
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "這個數值只對你改變選項後新開的存檔有效"
 
@@ -5814,7 +5819,7 @@ msgstr "顯示教學（在新遊戲中）"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "顯示未保存的進度警告"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1902
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告彈出框。"
 
@@ -5823,7 +5828,7 @@ msgid "SHOW_WEB_NEWS_FEED"
 msgstr "顯示 Thrive 新聞（從互聯網上下載）"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:764
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1174
 msgid "SIGNALING_AGENT"
 msgstr "信號劑"
 
@@ -5832,11 +5837,11 @@ msgstr "信號劑"
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr "信號劑允許細胞產生其他細胞可以反應的化學物質。信號化學物質可用於吸引其他細胞或警告它們有危險以使它們逃跑。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1176
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "信號劑允許細胞產生其他細胞可以反應的化學物質。信號化學物質可用於吸引其他細胞或警告它們有危險以使它們逃跑。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1175
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "按住 [thrive:input]g_pack_commands[/thrive:input] 開啟一個用以向你的物種的其他成員發出命令的選單。"
 
@@ -5865,11 +5870,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "要發出的信號"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1656
 msgid "SILICA"
 msgstr "二氧化矽"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1657
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "這種膜有一層堅固的二氧化矽細胞壁。它能很好地抵抗整體的損害，對物理損害的抵抗力很強。它還需要更少的能量來維持其形態。然而，它使細胞的速度降低了一大截，細胞吸收資源的速度也降低了。"
 
@@ -5887,15 +5892,15 @@ msgid "SLIDESHOW"
 msgstr "展覽"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
 msgid "SLIME_JET"
 msgstr "黏液噴射器"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:699
 msgid "SLIME_JET_DESCRIPTION"
 msgstr "許多生物體會產生多醣體黏液狀物質，黏液就是其中一種。雖然許多物種使用黏液進行移動，但某些類型的細菌會以高壓發射這些物質。這些黏液噴嘴就像火箭引擎一樣，以令人難以置信的速度推動細胞前進。黏液還可以用來阻礙掠食者，將它們困在只有擁有黏液噴嘴的生物才能自由移動的物質中。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉化為 [thrive:compound type=\"mucilage\"][/thrive:compound]。按下 [thrive:input]g_secrete_slime[/thrive:input] 釋放儲存的 [thrive:compound type=\"mucilage\"][/thrive:compound]，提高該細胞的速度並減慢捕食者的速度。"
 
@@ -5961,7 +5966,7 @@ msgstr "生成氨"
 msgid "SPAWN_ENEMY"
 msgstr "生成敵人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:985
+#: ../src/microbe_stage/MicrobeStage.cs:988
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
@@ -5990,7 +5995,7 @@ msgstr "物種"
 msgid "SPECIES_COLON"
 msgstr "物種："
 
-#: ../src/general/Species.cs:290
+#: ../src/general/Species.cs:291
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]物種[/b]\n"
@@ -6046,7 +6051,7 @@ msgstr "尋找物種："
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} 的種群數量：{1}"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:657
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:666
 msgid "SPEED"
 msgstr "速度"
 
@@ -6166,27 +6171,27 @@ msgstr "幹細胞"
 msgid "STOP"
 msgstr "停止"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:320
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:548
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:603
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:845
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:885
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:947
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1025
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1141
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1182
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:557
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:854
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:956
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:999
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1067
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "STORAGE"
 msgstr "儲存"
 
@@ -6276,7 +6281,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自殺"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:447
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
@@ -6392,12 +6397,12 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr "蒸氣動力"
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:871
+#: ../src/late_multicellular_stage/MulticellularStage.cs:875
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr "已解鎖科技：{0}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1912
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:290
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:280
@@ -6438,28 +6443,28 @@ msgid "THEORY_TEAM"
 msgstr "理論團隊"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:822
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "THERMOPLAST"
 msgstr "熱能體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "熱能體是一種雙層膜結構，包含在膜囊中堆疊在一起的熱敏色素。它是一種被其真核宿主同化的原核生物。熱能體中的色素能夠利用周圍環境的熱能梯度產生能量，在稱為[b]熱合成[/b]的過程中從水中產生 [thrive:compound type=\"atp\"][/thrive:compound]。其 [thrive:compound type=\"atp\"][/thrive:compound] 生產速率隨 [thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "產出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的濃度與環境溫度成正比。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:582
 msgid "THERMOSYNTHASE"
 msgstr "熱合成酶"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "熱合成酶是一種利用熱對流改變其形式的蛋白質，使其在受熱時折疊並與 ADP 結合，然後在降溫時展開並生成 [thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]熱合成[/b]。其 [thrive:compound type=\"atp\"][/thrive:compound] 生產速率隨 [thrive:compound type=\"temperature\"][/thrive:compound] 變化。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "使用溫度梯度生產 [thrive:compound type=\"atp\"][/thrive:compound]。速率與 [thrive:compound type=\"temperature\"][/thrive:compound] 成正比。"
 
@@ -6533,7 +6538,7 @@ msgstr "區域地圖"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的許可證書"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:355
 msgid "THYLAKOID"
 msgstr "類囊體"
 
@@ -6541,7 +6546,7 @@ msgstr "類囊體"
 msgid "THYLAKOIDS"
 msgstr "類囊體"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:357
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "類囊體是蛋白質和光敏色素的集合體。這些色素能夠利用 [thrive:compound type=\"sunlight\"][/thrive:compound] 的能量從水和氣態 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 中生產 [thrive:compound type=\"glucose\"][/thrive:compound]，這個過程稱為[b]光合作用[/b]。這些色素也賦予了它們獨特的顏色。它們的 [thrive:compound type=\"glucose\"][/thrive:compound] 生產速率隨 [thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和 [thrive:compound type=\"sunlight\"][/thrive:compound] 的強度而變化。由於類囊體直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
 
@@ -6569,8 +6574,8 @@ msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分離出來，作為一個�
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] 由於不同的演化壓力，從 [b][u]{1}[/u][/b] 作為一個新物種分離出來"
 
-#: ../src/microbe_stage/MicrobeStage.cs:446
-#: ../src/microbe_stage/MicrobeStage.cs:450
+#: ../src/microbe_stage/MicrobeStage.cs:449
+#: ../src/microbe_stage/MicrobeStage.cs:453
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr "[b][u]{0}[/u][/b] 成為多細胞生物"
 
@@ -6678,30 +6683,30 @@ msgstr "手斧"
 msgid "TOTAL_POPULATION_COLON"
 msgstr "總人口："
 
-#: ../src/saving/SaveManagerGUI.tscn:122
+#: ../src/saving/SaveManagerGUI.tscn:134
 msgid "TOTAL_SAVES"
 msgstr "存檔數："
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1561
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
 msgid "TOXIN_RESISTANCE"
 msgstr "抗毒素"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1133
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1135
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "毒素液泡是一個專門用於生產、儲存和分泌氧化毒素的液泡。更多的毒素液泡將增加釋放毒素的速度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1134
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的濃度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以釋放毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1217
 msgid "TO_BE_IMPLEMENTED"
 msgstr "等待實現。"
 
@@ -6725,7 +6730,7 @@ msgstr "Treble Up"
 msgid "TRY_FOSSILISING_SOME_SPECIES"
 msgstr "嘗試將一些物種變成化石！"
 
-#: ../src/saving/SaveManagerGUI.tscn:199
+#: ../src/saving/SaveManagerGUI.tscn:211
 msgid "TRY_MAKING_A_SAVE"
 msgstr "試著存個檔吧！"
 
@@ -6947,7 +6952,7 @@ msgstr "水下洞穴"
 msgid "UNDO"
 msgstr "撤銷"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:115
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "撤銷上一個動作"
 
@@ -7072,11 +7077,11 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "使用虛擬視窗大小"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1092
 msgid "VACUOLE"
 msgstr "液泡"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1094
 msgid "VACUOLE_DESCRIPTION"
 msgstr "液泡是一個內部膜質細胞器，用於在細胞內儲存。它們由幾個囊泡組成，囊泡是在細胞中廣泛用於儲存的較小的膜結構，它們融合在一起。它充滿了水，用來容納分子、酶、固體和其他物質。它們的形狀是不固定的，在不同的細胞之間可以有所不同。"
 
@@ -7088,7 +7093,7 @@ msgstr "特化型液泡"
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr "液泡將儲存 {0} 單位的所有化合物"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1093
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "增加細胞的存儲空間。"
 

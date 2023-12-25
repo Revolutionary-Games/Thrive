@@ -71,6 +71,15 @@ visible = false
 Description = "WILL_YOU_THRIVE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/mainMenu/thriveLogoEasterEgg/MarginContainer/VBoxContainer/Description")
 
+[node name="saveManager" type="Control" parent="GroupHolder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="cannotFilterSavesWhileRefreshing" parent="GroupHolder/saveManager" instance=ExtResource( 1 )]
+Description = "CANNOT_FILTER_SAVES_WHILE_REFRESHING"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
 [node name="editor" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
