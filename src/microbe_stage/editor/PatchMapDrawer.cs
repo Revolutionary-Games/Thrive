@@ -886,19 +886,18 @@ public class PatchMapDrawer : Control
             if (vis1 == MapElementVisibility.Unknown)
             {
                 additionalConnectionLines
-                    .AddRange(BuildAdditionalUnknownRegionConnection(line, region1, region2, color, false));
+                    .AddRange(BuildUnknownRegionConnections(line, region1, region2, color, false));
             }
 
             if (vis2 == MapElementVisibility.Unknown)
             {
                 additionalConnectionLines
-                    .AddRange(BuildAdditionalUnknownRegionConnection(line, region2, region1, color, true));
+                    .AddRange(BuildUnknownRegionConnections(line, region2, region1, color, true));
             }
-
         }
     }
 
-    private Line2D[] BuildAdditionalUnknownRegionConnection(Line2D startingConnection, PatchRegion targetRegion,
+    private Line2D[] BuildUnknownRegionConnections(Line2D startingConnection, PatchRegion targetRegion,
         PatchRegion startRegion, Color color, bool reversed)
     {
         var startingPoint = reversed ? startingConnection.Points[startingConnection.Points.Length - 1]
@@ -911,11 +910,11 @@ public class PatchMapDrawer : Control
             .Where(p => p.Visibility == MapElementVisibility.Unknown)
             .Where(p => adjacencies.Contains(p));
 
+        var connections = new Line2D[patches.Count()];
+
+        var i = 0;
         foreach (var targetPatch in patches)
         {
-            if (targetPatch == null)
-                throw new InvalidOperationException("Attempted to draw additional connections for invalid region");
-
             var halfNodeSize = Constants.PATCH_NODE_RECT_LENGTH / 2;
             var endingPoint = targetPatch.ScreenCoordinates + Vector2.One * halfNodeSize;
 
@@ -927,7 +926,8 @@ public class PatchMapDrawer : Control
                     endingPoint,
                 };
 
-                CreateConnectionLine(straightPoints, color);
+                connections[i++] = CreateConnectionLine(straightPoints, color);
+                continue;
             }
 
             var intermediate = new Vector2(endingPoint.x, startingPoint.y);
@@ -939,9 +939,10 @@ public class PatchMapDrawer : Control
                 endingPoint,
             };
 
-            CreateConnectionLine(points, color);
+            connections[i++] = CreateConnectionLine(points, color);
         }
 
+        return connections;
     }
 
     private void UpdateNodeSelections()
