@@ -316,7 +316,7 @@ public class PatchMapDrawer : Control
             pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
     }
 
-    private Line2D CreateRegionConnectionLine(Vector2[] points, Color connectionColor)
+    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor)
     {
         var link = new Line2D
         {
@@ -871,7 +871,7 @@ public class PatchMapDrawer : Control
             var highlight = CheckHighlightedAdjacency(region1, region2);
             var color = highlight ? HighlightedConnectionColor : DefaultConnectionColor;
 
-            var line = CreateRegionConnectionLine(points, color);
+            var line = CreateConnectionLine(points, color);
             regionConnectionLines.Add(entry.Key, line);
 
             if (vis1 == MapElementVisibility.Hidden && vis2 == MapElementVisibility.Shown)
@@ -886,58 +886,62 @@ public class PatchMapDrawer : Control
             if (vis1 == MapElementVisibility.Unknown)
             {
                 additionalConnectionLines
-                    .Add(BuildAdditionalUnknownRegionConnection(line, region1, color, false));
+                    .AddRange(BuildAdditionalUnknownRegionConnection(line, region1, region2, color, false));
             }
 
             if (vis2 == MapElementVisibility.Unknown)
             {
                 additionalConnectionLines
-                    .Add(BuildAdditionalUnknownRegionConnection(line, region2, color, true));
+                    .AddRange(BuildAdditionalUnknownRegionConnection(line, region2, region1, color, true));
             }
 
         }
     }
 
-    private Line2D BuildAdditionalUnknownRegionConnection(Line2D startingConnection, PatchRegion region,
-        Color color, bool reversed)
+    private Line2D[] BuildAdditionalUnknownRegionConnection(Line2D startingConnection, PatchRegion targetRegion,
+        PatchRegion startRegion, Color color, bool reversed)
     {
         var startingPoint = reversed ? startingConnection.Points[startingConnection.Points.Length - 1]
             : startingConnection.Points[0];
 
-        // Choose the closest patch to connect to
-        var targetPatch = region.Patches
+        var adjacencies = startRegion.PatchAdjacencies[targetRegion.ID];
+
+        // Generate a list of patches to connect to
+        var patches = targetRegion.Patches
             .Where(p => p.Visibility == MapElementVisibility.Unknown)
-            .OrderBy(p => p.ScreenCoordinates.DistanceSquaredTo(startingPoint))
-            .First();
+            .Where(p => adjacencies.Contains(p));
 
-        if (targetPatch == null)
-            throw new InvalidOperationException("Attempted to draw additional connections for invalid region");
-
-        var halfNodeSize = Constants.PATCH_NODE_RECT_LENGTH / 2;
-
-        var endingPoint = targetPatch.ScreenCoordinates + Vector2.One * halfNodeSize;
-
-        if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
+        foreach (var targetPatch in patches)
         {
-            var straightPoints = new Vector2[]
+            if (targetPatch == null)
+                throw new InvalidOperationException("Attempted to draw additional connections for invalid region");
+
+            var halfNodeSize = Constants.PATCH_NODE_RECT_LENGTH / 2;
+            var endingPoint = targetPatch.ScreenCoordinates + Vector2.One * halfNodeSize;
+
+            if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
+            {
+                var straightPoints = new Vector2[]
+                {
+                    startingPoint,
+                    endingPoint,
+                };
+
+                CreateConnectionLine(straightPoints, color);
+            }
+
+            var intermediate = new Vector2(endingPoint.x, startingPoint.y);
+
+            var points = new Vector2[]
             {
                 startingPoint,
+                intermediate,
                 endingPoint,
             };
 
-            return CreateRegionConnectionLine(straightPoints, color);
+            CreateConnectionLine(points, color);
         }
 
-        var intermediate = new Vector2(endingPoint.x, startingPoint.y);
-
-        var points = new Vector2[]
-        {
-            startingPoint,
-            intermediate,
-            endingPoint,
-        };
-
-        return CreateRegionConnectionLine(points, color);
     }
 
     private void UpdateNodeSelections()

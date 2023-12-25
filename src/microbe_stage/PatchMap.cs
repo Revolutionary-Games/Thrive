@@ -492,6 +492,12 @@ public class PatchMap : ISaveLoadable
 
             patch1.AddNeighbour(patch2);
             patch2.AddNeighbour(patch1);
+
+            var region1 = patch1.Region;
+            var region2 = patch2.Region;
+
+            region1.AddPatchAdjacency(region2, patch2);
+            region2.AddPatchAdjacency(region1, patch1);
         }
 
         foreach (var (id1, id2) in RegionAdjacencies)

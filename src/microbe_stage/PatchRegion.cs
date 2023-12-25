@@ -52,6 +52,9 @@ public class PatchRegion
     [JsonIgnore]
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
+    [JsonIgnore]
+    public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; } = new Dictionary<int, HashSet<Patch>>();
+
     [JsonProperty]
     public float Height { get; set; }
 
@@ -106,5 +109,23 @@ public class PatchRegion
     public bool AddNeighbour(PatchRegion region)
     {
         return Adjacent.Add(region);
+    }
+
+    public void AddPatchAdjacency(PatchRegion region, Patch patch)
+    {
+        var id = region.ID;
+
+        // Don't do this if the patch is in this region
+        // (This check is done here to minimize repetition)
+        if (id == ID)
+            return;
+
+        if (!PatchAdjacencies.TryGetValue(id, out var set))
+        {
+            PatchAdjacencies[id] = new HashSet<Patch> { patch };
+            return;
+        }
+
+        set.Add(patch);
     }
 }
