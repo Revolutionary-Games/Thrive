@@ -53,7 +53,7 @@ public class PatchRegion
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
     [JsonIgnore]
-    public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; } = new Dictionary<int, HashSet<Patch>>();
+    public Dictionary<int, HashSet<Patch>> PatchAdjacencies { get; } = new();
 
     [JsonProperty]
     public float Height { get; set; }

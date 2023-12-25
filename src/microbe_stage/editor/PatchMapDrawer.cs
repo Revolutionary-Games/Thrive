@@ -908,9 +908,10 @@ public class PatchMapDrawer : Control
         // Generate a list of patches to connect to
         var patches = targetRegion.Patches
             .Where(p => p.Visibility == MapElementVisibility.Unknown)
-            .Where(p => adjacencies.Contains(p));
+            .Where(p => adjacencies.Contains(p))
+            .ToArray();
 
-        var connections = new Line2D[patches.Count()];
+        var connections = new Line2D[patches.Length];
 
         var i = 0;
         foreach (var targetPatch in patches)
@@ -921,7 +922,7 @@ public class PatchMapDrawer : Control
             // Draw a straight line if possible
             if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
             {
-                var straightPoints = new Vector2[]
+                var straightPoints = new[]
                 {
                     startingPoint,
                     endingPoint,
@@ -933,7 +934,7 @@ public class PatchMapDrawer : Control
 
             var intermediate = new Vector2(endingPoint.x, startingPoint.y);
 
-            var points = new Vector2[]
+            var points = new[]
             {
                 startingPoint,
                 intermediate,
