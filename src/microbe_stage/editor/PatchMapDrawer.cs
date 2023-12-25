@@ -867,21 +867,17 @@ public class PatchMapDrawer : Control
                 continue;
             }
 
-            var points = entry.Value;
-            var highlight = CheckHighlightedAdjacency(region1, region2);
+            var highlight = CheckHighlightedAdjacency(region1, region2) &&
+                SelectedPatch?.Visibility == MapElementVisibility.Shown;
+
             var color = highlight ? HighlightedConnectionColor : DefaultConnectionColor;
 
+            var points = entry.Value;
             var line = CreateConnectionLine(points, color);
             regionConnectionLines.Add(entry.Key, line);
 
-            if (vis1 == MapElementVisibility.Hidden && vis2 == MapElementVisibility.Shown)
-            {
-                ApplyFadeToLine(line, true);
-            }
-            else if (vis1 == MapElementVisibility.Shown && vis2 == MapElementVisibility.Hidden)
-            {
-                ApplyFadeToLine(line, false);
-            }
+            ApplyFadeIfNeeded(region1, region2, line, false);
+            ApplyFadeIfNeeded(region2, region1, line, true);
 
             if (vis1 == MapElementVisibility.Unknown)
             {
@@ -918,6 +914,7 @@ public class PatchMapDrawer : Control
             var halfNodeSize = Constants.PATCH_NODE_RECT_LENGTH / 2;
             var endingPoint = targetPatch.ScreenCoordinates + Vector2.One * halfNodeSize;
 
+            // Draw a straight line if possible
             if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
             {
                 var straightPoints = new Vector2[]
@@ -943,6 +940,36 @@ public class PatchMapDrawer : Control
         }
 
         return connections;
+    }
+
+    private void ApplyFadeIfNeeded(PatchRegion startingRegion, PatchRegion endingRegion,
+        Line2D line, bool reversed)
+    {
+        // Do not apply fade from hidden or unknown region
+        if (startingRegion.Visibility != MapElementVisibility.Shown)
+            return;
+
+        // Do not apply fade if target region is visible
+        if (endingRegion.Visibility == MapElementVisibility.Shown)
+            return;
+
+        // Apply fade if target region is hidden
+        if (endingRegion.Visibility == MapElementVisibility.Hidden)
+        {
+            ApplyFadeToLine(line, reversed);
+            return;
+        }
+
+        // Apply fade only if no connecting patches are visible in the target region
+
+        var adjacencies = startingRegion.PatchAdjacencies[endingRegion.ID];
+
+        var patches = endingRegion.Patches
+            .Where(p => p.Visibility == MapElementVisibility.Unknown)
+            .Where(p => adjacencies.Contains(p));
+
+        if (!patches.Any())
+            ApplyFadeToLine(line, reversed);
     }
 
     private void UpdateNodeSelections()
