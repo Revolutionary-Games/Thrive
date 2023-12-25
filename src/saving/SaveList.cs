@@ -105,7 +105,7 @@ public class SaveList : ScrollContainer
     public delegate void OnSaveLoaded(string saveName);
 
     [Signal]
-    public delegate void OnItemsDataLoadedCompleted();
+    public delegate void OnAllSaveDataLoaded();
 
     public override void _Ready()
     {
@@ -225,24 +225,26 @@ public class SaveList : ScrollContainer
         EmitSignal(nameof(OnItemsChanged));
     }
 
-    public void Filter(SaveInformation.SaveType? saveTypeFilter, bool showAll = false)
+    public void Filter(SaveInformation.SaveType? saveTypeFilter)
     {
         foreach (var item in savesList.GetChildren())
         {
-            SaveListItem? saveItem = item as SaveListItem;
-
-            if (saveItem != null && saveTypeFilter != null)
+            if (item is SaveListItem saveItem)
             {
-                if (showAll)
+                if (saveTypeFilter == null)
                 {
                     saveItem.Show();
                 }
                 else
                 {
                     if (saveItem.SaveType != saveTypeFilter)
+                    {
                         saveItem.Hide();
+                    }
                     else
+                    {
                         saveItem.Show();
+                    }
                 }
             }
         }
@@ -494,7 +496,7 @@ public class SaveList : ScrollContainer
 
         if (loadedItems == allItemsCount)
         {
-            EmitSignal(nameof(OnItemsDataLoadedCompleted));
+            EmitSignal(nameof(OnAllSaveDataLoaded));
         }
     }
 }

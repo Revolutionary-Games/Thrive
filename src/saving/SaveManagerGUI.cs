@@ -341,9 +341,10 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Check if we want to fileter for all types
         if (index == 3)
         {
-            saveList.Filter(null!, true);
+            saveList.Filter(null);
             return;
         }
 
