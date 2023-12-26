@@ -25,6 +25,10 @@
         public abstract bool Satisfied();
 
         public abstract void GenerateTooltip(LocalizedStringBuilder builder);
+
+        public virtual void Check(string name)
+        {
+        }
     }
 
     /// <summary>
@@ -33,14 +37,14 @@
     public class AtpProductionAbove : WorldBasedUnlockCondition
     {
         [JsonProperty]
-        public float Minimum;
+        public float Atp;
 
         public override bool Satisfied()
         {
             if (EnergyBalance == null)
                 return false;
 
-            return EnergyBalance.TotalProduction >= Minimum;
+            return EnergyBalance.TotalProduction >= Atp;
         }
 
         public override void GenerateTooltip(LocalizedStringBuilder builder)
@@ -48,7 +52,7 @@
             if (EnergyBalance == null)
                 return;
 
-            builder.Append(new LocalizedString("APT_ABOVE", Minimum, EnergyBalance.TotalProduction));
+            builder.Append(new LocalizedString("ATP_PRODUCTION_ABOVE", Atp));
         }
     }
 
@@ -73,7 +77,7 @@
             if (EnergyBalance == null)
                 return;
 
-            builder.Append(new LocalizedString("EXCESS_APT_ABOVE", Atp, EnergyBalance.FinalBalance));
+            builder.Append(new LocalizedString("EXCESS_ATP_ABOVE", Atp));
         }
     }
 
@@ -86,7 +90,7 @@
         public float Threshold;
 
         [JsonIgnore]
-        private float baseSpeed;
+        private float speed;
 
         public override void UpdateData(GameWorld? gameWorld, ICellProperties? playerData,
             EnergyBalanceInfo? energyBalance)
@@ -102,17 +106,17 @@
                 PlayerData.IsBacteria);
 
             // This needs to be user readable as it is shown by the tooltip
-            baseSpeed = (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
+            speed = (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
         }
 
         public override bool Satisfied()
         {
-            return baseSpeed < Threshold;
+            return speed < Threshold;
         }
 
         public override void GenerateTooltip(LocalizedStringBuilder builder)
         {
-            builder.Append(new LocalizedString("BASE_SPEED_BELOW", Threshold, baseSpeed));
+            builder.Append(new LocalizedString("SPEED_BELOW", Threshold));
         }
     }
 
@@ -149,6 +153,13 @@
             current = GameWorld.Map.CurrentPatch!.GetCompoundAmount(compound);
         }
 
+        public override bool Satisfied()
+        {
+            var minSatisfied = !Min.HasValue || current >= Min;
+            var maxSatisfied = !Max.HasValue || current <= Max;
+            return minSatisfied && maxSatisfied;
+        }
+
         public override void GenerateTooltip(LocalizedStringBuilder builder)
         {
             if (compound == null)
@@ -157,18 +168,20 @@
             var compoundName = compound.InternalName;
 
             if (Min.HasValue && Max.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_BETWEEN", compoundName, Min, Max, current));
+                builder.Append(new LocalizedString("COMPOUND_IS_BETWEEN", compoundName, Min, Max));
             else if (Min.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_ABOVE", compoundName, Min, current));
+                builder.Append(new LocalizedString("COMPOUND_IS_ABOVE", compoundName, Min));
             else if (Max.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_BELOW", compoundName, Max, current));
+                builder.Append(new LocalizedString("COMPOUND_IS_BELOW", compoundName, Max));
         }
 
-        public override bool Satisfied()
+        public override void Check(string name)
         {
-            var minSatisfied = !Min.HasValue || current >= Min;
-            var maxSatisfied = !Max.HasValue || current <= Max;
-            return minSatisfied && maxSatisfied;
+            if (string.IsNullOrEmpty(RawCompound))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Compound is empty");
+            }
         }
     }
 }

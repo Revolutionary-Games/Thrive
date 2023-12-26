@@ -2,8 +2,10 @@
 {
     public interface IUnlockCondition
     {
-        bool Satisfied();
+        public bool Satisfied();
 
-        void GenerateTooltip(LocalizedStringBuilder builder);
+        public void GenerateTooltip(LocalizedStringBuilder builder);
+
+        public void Check(string name);
     }
 }

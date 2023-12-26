@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnlockConstraints;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Relays statistics about the world and the player to the organelle unlocks system (and later achievements)
@@ -8,19 +6,22 @@ using UnlockConstraints;
 [UseThriveSerializer]
 public class WorldStatsTracker
 {
+    [JsonProperty]
     public SimpleStatistic TotalEngulfedByPlayer { get; private set; } = new(StatsTrackerEvent.PlayerEngulfedOther);
 
+    [JsonProperty]
     public SimpleStatistic TotalPlayerDeaths { get; private set; } = new(StatsTrackerEvent.PlayerDied);
 
+    [JsonProperty]
     public ReproductionStatistic PlayerReproductionStatistic { get; private set; } = new();
 
     public IStatistic[] CollectStatistics()
     {
         return new IStatistic[]
         {
-           TotalEngulfedByPlayer,
-           TotalPlayerDeaths,
-           PlayerReproductionStatistic,
+            TotalEngulfedByPlayer,
+            TotalPlayerDeaths,
+            PlayerReproductionStatistic,
         };
     }
 }

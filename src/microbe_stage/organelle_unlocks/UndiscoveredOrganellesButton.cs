@@ -3,7 +3,7 @@
 /// <summary>
 ///   A button to display the undiscovered organelles in each group.
 /// </summary>
-public class UndiscoveredOrganelles : MarginContainer
+public class UndiscoveredOrganellesButton : MarginContainer
 {
 #pragma warning disable CA2213
     [Export]

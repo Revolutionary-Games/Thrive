@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -9,6 +8,9 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class UnlockProgress
 {
+    [JsonProperty]
+    public bool UnlockAll;
+
     /// <summary>
     ///   The organelles that the player can use.
     /// </summary>
@@ -31,7 +33,7 @@ public class UnlockProgress
     /// </summary>
     public bool UnlockOrganelle(OrganelleDefinition organelle, GameProperties game)
     {
-        if (organelle.UnlockConditions == null || game.FreeBuild)
+        if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
             return false;
 
         var firstTimeUnlocking = unlockedOrganelles.Add(organelle);
@@ -45,13 +47,16 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, GameProperties game)
+    public bool IsUnlocked(OrganelleDefinition organelle, GameProperties game, bool autoUnlock)
     {
-        if (organelle.UnlockConditions == null || game.FreeBuild)
+        if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
             return true;
 
-        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied()))
+        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied()) && autoUnlock)
+        {
             UnlockOrganelle(organelle, game);
+            return true;
+        }
 
         return unlockedOrganelles.Contains(organelle);
     }

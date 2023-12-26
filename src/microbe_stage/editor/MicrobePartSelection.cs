@@ -33,6 +33,8 @@ public class MicrobePartSelection : MarginContainer
     [Signal]
     public delegate void OnPartSelected(string name);
 
+    public bool Undiscovered { get; set; }
+
     [Export]
     public int MPCost
     {

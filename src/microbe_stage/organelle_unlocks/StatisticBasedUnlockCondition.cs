@@ -1,11 +1,9 @@
 ﻿namespace UnlockConstraints
 {
-    using System.Collections.Generic;
-    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
-    ///   An unlock condition that relies on a certain <see cref="GenericStatistic{T}"/> to track progress
+    ///   An unlock condition that relies on a certain <see cref="IStatistic"/> to track progress
     /// </summary>
     public abstract class StatisticBasedUnlockCondition : IUnlockCondition
     {
@@ -15,14 +13,17 @@
         [JsonIgnore]
         public IStatistic? RelevantStatistic { get; set; }
 
-        public virtual void OnInit()
-        {
-            return;
-        }
-
         public abstract bool Satisfied();
 
         public abstract void GenerateTooltip(LocalizedStringBuilder builder);
+
+        public virtual void Check(string name)
+        {
+        }
+
+        public virtual void Resolve(SimulationParameters parameters)
+        {
+        }
     }
 
     /// <summary>
@@ -92,32 +93,18 @@
 
         public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerReproduced;
 
-        public string Biome { get; set; } = string.Empty;
+        [JsonProperty("Biome")]
+        public string RawBiome { get; set; } = string.Empty;
 
         [JsonIgnore]
         public ReproductionStatistic? ReproductionStatistc => (ReproductionStatistic?)RelevantStatistic;
-
-        public override void OnInit()
-        {
-            if (string.IsNullOrEmpty(Biome))
-                throw new InvalidRegistryDataException("ReproduceInBiome unlock condition Biome field is empty");
-
-            try
-            {
-                biome = SimulationParameters.Instance.GetBiome(Biome);
-            }
-            catch (KeyNotFoundException)
-            {
-                throw new InvalidRegistryDataException("ReproduceInBiome unlock condition has invalid biome");
-            }
-        }
 
         public override void GenerateTooltip(LocalizedStringBuilder builder)
         {
             if (ReproductionStatistc == null)
                 return;
 
-            builder.Append(new LocalizedString("REPRODUCE_IN_BIOME", biome));
+            builder.Append(new LocalizedString("REPRODUCE_IN_BIOME", biome.Name));
         }
 
         public override bool Satisfied()
@@ -125,10 +112,24 @@
             if (ReproductionStatistc == null)
                 return false;
 
-            if (!ReproductionStatistc.ReproducedInBiomes.TryGetValue(Biome, out var count))
+            if (!ReproductionStatistc.ReproducedInBiomes.TryGetValue(RawBiome, out var count))
                 return false;
 
             return count >= 1;
+        }
+
+        public override void Check(string name)
+        {
+            if (string.IsNullOrEmpty(RawBiome))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Biome is empty");
+            }
+        }
+
+        public override void Resolve(SimulationParameters parameters)
+        {
+            biome = parameters.GetBiome(RawBiome);
         }
     }
 
@@ -139,7 +140,8 @@
 
         public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerReproduced;
 
-        public string Organelle { get; set; } = string.Empty;
+        [JsonProperty("Organelle")]
+        public string RawOrganelle { get; set; } = string.Empty;
 
         [JsonProperty]
         public int Generations { get; set; } = 1;
@@ -147,27 +149,12 @@
         [JsonIgnore]
         public ReproductionStatistic? ReproductionStatistic => (ReproductionStatistic?)RelevantStatistic;
 
-        public override void OnInit()
-        {
-            if (string.IsNullOrEmpty(Organelle))
-                throw new InvalidRegistryDataException("ReproduceWithOrganelle unlock condition Organelle field is empty");
-
-            try
-            {
-                organelle = SimulationParameters.Instance.GetOrganelleType(Organelle);
-            }
-            catch (KeyNotFoundException)
-            {
-                throw new InvalidRegistryDataException("ReproduceWithOrganelle unlock condition has invalid organelle");
-            }
-        }
-
         public override void GenerateTooltip(LocalizedStringBuilder builder)
         {
             if (ReproductionStatistic == null)
                 return;
 
-            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(Organelle, out var count))
+            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(RawOrganelle, out var count))
                 count = 0;
 
             builder.Append(new LocalizedString("REPRODUCED_WITH", organelle, Generations, count));
@@ -178,10 +165,24 @@
             if (ReproductionStatistic == null)
                 return false;
 
-            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(Organelle, out var count))
+            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(RawOrganelle, out var count))
                 return false;
 
             return count >= Generations;
+        }
+
+        public override void Check(string name)
+        {
+            if (string.IsNullOrEmpty(RawOrganelle))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Organelle is empty");
+            }
+        }
+
+        public override void Resolve(SimulationParameters parameters)
+        {
+            organelle = parameters.GetOrganelleType(RawOrganelle);
         }
     }
 }

@@ -120,6 +120,18 @@ public class CollapsibleList : VBoxContainer
         items.Remove(found);
     }
 
+    public void RemoveAllOfType<T>()
+        where T : Control
+    {
+        var found = items.FindAll(item => item is T);
+
+        foreach (var item in found)
+        {
+            item.DetachAndQueueFree();
+            items.Remove(item);
+        }
+    }
+
     public void ClearItems()
     {
         if (items.Count == 0)

@@ -64,6 +64,7 @@ FogOfWarModeDescriptionPath = NodePath("CenterContainer/VBoxContainer/AdvancedOp
 FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
 PassiveReproductionButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress")
 LimitGrowthRateButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate")
+OrganelleUnlocksEnabledPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
@@ -349,12 +350,12 @@ margin_bottom = 583.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer"]
 margin_right = 668.0
-margin_bottom = 631.0
+margin_bottom = 686.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 margin_right = 648.0
-margin_bottom = 631.0
+margin_bottom = 686.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -850,10 +851,31 @@ custom_fonts/font = ExtResource( 3 )
 text = "LIMIT_GROWTH_RATE_EXPLANATION"
 autowrap = true
 
+[node name="VBoxContainer12" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+margin_top = 641.0
+margin_right = 648.0
+margin_bottom = 686.0
+
+[node name="OrganelleUnlocksEnabled" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12" instance=ExtResource( 4 )]
+margin_right = 337.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+pressed = true
+text = "ORGANELLE_UNLOCKS_ENABLED"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12"]
+margin_top = 29.0
+margin_right = 648.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
+autowrap = true
+
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer"]
 margin_left = 652.0
 margin_right = 662.0
-margin_bottom = 631.0
+margin_bottom = 686.0
 rect_min_size = Vector2( 10, 0 )
 theme = ExtResource( 1 )
 custom_styles/separator = SubResource( 7 )
@@ -1260,6 +1282,7 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10/LimitGrowthRate" to="." method="OnGrowthRateToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12/OrganelleUnlocksEnabled" to="." method="OnOrganelleUnlocksToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2/DayNightCycleEnabled" to="." method="OnDayNightCycleToggled"]

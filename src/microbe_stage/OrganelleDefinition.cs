@@ -423,6 +423,13 @@ public class OrganelleDefinition : IRegistryType
                 "Multiple default upgrades specified");
         }
 
+        // Check unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Check(name);
+        }
+
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
@@ -477,6 +484,13 @@ public class OrganelleDefinition : IRegistryType
             }
         }
 
+        // Resolve unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Resolve(parameters);
+        }
+
         if (Unimplemented)
             return;
 
@@ -514,7 +528,10 @@ public class OrganelleDefinition : IRegistryType
             foreach (var unlockCondition in UnlockConditions)
             {
                 if (!first)
+                {
                     unlockRequirements.Append(new LocalizedString("UNLOCK_OR"));
+                    unlockRequirements.Append(" ");
+                }
 
                 unlockCondition.GenerateTooltip(unlockRequirements);
                 first = false;

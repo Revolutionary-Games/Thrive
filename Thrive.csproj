@@ -22,6 +22,11 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockHelpers.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />
+    <Compile Include="src\statistics_tracking\IStatistic.cs" />
     <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />
@@ -615,7 +620,7 @@
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\UnlockProgress.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\UndiscoveredOrganelles.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\UndiscoveredOrganellesButton.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\UndiscoveredOrganellesTooltip.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />

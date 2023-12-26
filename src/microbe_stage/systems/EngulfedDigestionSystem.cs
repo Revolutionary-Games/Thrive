@@ -249,7 +249,7 @@
                     engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
                     if (entity.Has<PlayerMarker>() && engulfedObject.Has<MicrobeControl>())
-                        gameWorld?.StatisticsTracker.TotalEngulfedByPlayer.Increment();
+                        gameWorld?.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
                 }
 
                 // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract

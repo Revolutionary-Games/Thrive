@@ -378,7 +378,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             return;
 
         GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReporduction(Player,
-            GameWorld.Map?.CurrentPatch?.BiomeTemplate);
+            GameWorld.Map.CurrentPatch?.BiomeTemplate);
     }
 
     /// <summary>
@@ -527,6 +527,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             throw new Exception("failed to keep the current scene root");
         }
+
+        // Temporary
+        GameWorld.UnlockProgress.UnlockAll = true;
 
         MovingToEditor = false;
     }

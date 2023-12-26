@@ -19,29 +19,41 @@ InfiniteMpPath = NodePath("VBoxContainer/InfiniteMP")
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 margin_right = 106.0
 margin_bottom = 17.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InfiniteMP" parent="VBoxContainer" index="0" instance=ExtResource( 4 )]
-margin_right = 175.0
+margin_right = 193.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_MP"
 
 [node name="MoveToAnyPatch" parent="VBoxContainer" index="1" instance=ExtResource( 4 )]
 margin_top = 21.0
-margin_right = 175.0
+margin_right = 193.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOVE_TO_ANY_PATCH"
 
-[node name="RevealAllPatches" type="Button" parent="VBoxContainer" index="2"]
-margin_top = 144.0
-margin_right = 202.0
-margin_bottom = 171.0
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="2"]
+margin_top = 42.0
+margin_right = 193.0
+margin_bottom = 46.0
+
+[node name="RevealAllPatches" type="Button" parent="VBoxContainer" index="3"]
+margin_top = 50.0
+margin_right = 193.0
+margin_bottom = 77.0
 custom_fonts/font = ExtResource( 3 )
 text = "REVEAL_ALL_PATCHES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnlockAllOrganelles" type="Button" parent="VBoxContainer" index="4"]
+margin_top = 81.0
+margin_right = 193.0
+margin_bottom = 108.0
+custom_fonts/font = ExtResource( 3 )
+text = "UNLOCK_ALL_ORGANELLES"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,3 +61,4 @@ __meta__ = {
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
 [connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]
+[connection signal="pressed" from="VBoxContainer/UnlockAllOrganelles" to="." method="OnUnlockAllOrganellesPressed"]

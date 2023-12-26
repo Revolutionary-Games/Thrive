@@ -258,7 +258,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     public override void RecordPlayerReproduction()
     {
         // TODO: Player reproduction can't be recorded as Player is not an entity
-        return;
     }
 
     public override void MoveToEditor()

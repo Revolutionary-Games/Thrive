@@ -1,4 +1,7 @@
-﻿public interface IStatistic
+﻿/// <summary>
+///   A statitsic about the player or world tracked by <see cref="WorldStatsTracker"/>.
+/// </summary>
+public interface IStatistic
 {
-    public StatsTrackerEvent Event { get; set; }
+    public StatsTrackerEvent LinkedEvent { get; set; }
 }

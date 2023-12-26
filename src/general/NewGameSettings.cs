@@ -108,6 +108,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath LimitGrowthRateButtonPath = null!;
 
     [Export]
+    public NodePath OrganelleUnlocksEnabledPath = null!;
+
+    [Export]
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
@@ -186,6 +189,7 @@ public class NewGameSettings : ControlWithInput
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
     private Button limitGrowthRateButton = null!;
+    private Button organelleUnlocksEnabled = null!;
 
     // Planet controls
     private OptionButton lifeOriginButton = null!;
@@ -270,6 +274,7 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
+        organelleUnlocksEnabled = GetNode<Button>(OrganelleUnlocksEnabledPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
@@ -384,10 +389,13 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = difficulty.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
+        fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
         freeGlucoseCloudButton.Pressed = difficulty.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = difficulty.PassiveReproduction;
         limitGrowthRateButton.Pressed = difficulty.LimitGrowthRate;
+        organelleUnlocksEnabled.Pressed = difficulty.OrganelleUnlocksEnabled;
 
+        UpdateFogOfWarModeDescription(difficulty.FogOfWarMode);
         UpdateSelectedDifficultyPresetControl();
 
         lifeOriginButton.Selected = (int)settings.Origin;
@@ -467,6 +475,7 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
+                OrganelleUnlocksEnabledPath.Dispose();
                 LifeOriginButtonPath.Dispose();
                 LifeOriginButtonAdvancedPath.Dispose();
                 LAWKButtonPath.Dispose();
@@ -562,10 +571,11 @@ public class NewGameSettings : ControlWithInput
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
                 OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
+                FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
                 PassiveReproduction = passiveReproductionButton.Pressed,
                 LimitGrowthRate = limitGrowthRateButton.Pressed,
-                FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
+                OrganelleUnlocksEnabled = organelleUnlocksEnabled.Pressed,
             };
 
             settings.Difficulty = customDifficulty;
@@ -696,10 +706,11 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
+        fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = preset.PassiveReproduction;
         limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
-        fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
+        organelleUnlocksEnabled.Pressed = preset.OrganelleUnlocksEnabled;
 
         UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
@@ -733,6 +744,9 @@ public class NewGameSettings : ControlWithInput
             if (Math.Abs((float)osmoregulationMultiplier.Value - preset.OsmoregulationMultiplier) > MathUtils.EPSILON)
                 continue;
 
+            if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
+                continue;
+
             if (freeGlucoseCloudButton.Pressed != preset.FreeGlucoseCloud)
                 continue;
 
@@ -742,7 +756,7 @@ public class NewGameSettings : ControlWithInput
             if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
                 continue;
 
-            if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
+            if (organelleUnlocksEnabled.Pressed != preset.OrganelleUnlocksEnabled)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -844,6 +858,12 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnGrowthRateToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnOrganelleUnlocksToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

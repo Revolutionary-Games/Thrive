@@ -6,13 +6,15 @@ using Newtonsoft.Json;
 
 public class ReproductionStatistic : IStatistic
 {
-    public StatsTrackerEvent Event { get; set; } = StatsTrackerEvent.PlayerReproduced;
+    public StatsTrackerEvent LinkedEvent { get; set; } = StatsTrackerEvent.PlayerReproduced;
 
     [JsonProperty]
     public int TimesReproduced { get; set; }
 
+    [JsonProperty]
     public Dictionary<string, int> ReproducedInBiomes { get; set; } = new();
 
+    [JsonProperty]
     public Dictionary<string, int> ReproducedWithOrganelle { get; set; } = new();
 
     public void RecordPlayerReporduction(in Entity player, Biome? biome)

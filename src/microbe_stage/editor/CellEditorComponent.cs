@@ -548,7 +548,7 @@ public partial class CellEditorComponent :
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
 
         undiscoveredOrganellesScene =
-            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganelles.tscn");
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn");
         undiscoveredOrganellesTooltipScene =
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
@@ -661,12 +661,18 @@ public partial class CellEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                // Update the organelle unlock system now as the GUI is also updated
-                OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
-                    Editor.EditedCellProperties, energyBalanceInfo);
+                var properties = Editor.EditedCellProperties;
 
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
-                CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
+                // Calculate the energy balance here as it is needed for some unlock conditions
+                CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles,
+                    properties.MembraneType, Editor.CurrentPatch.Biome);
+
+                // Update the organelle unlock system here as the GUI is also updated
+                OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
+                    properties, energyBalanceInfo);
+
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+                CreateUndiscoveredOrganellesButtons();
                 CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
             }
@@ -832,11 +838,7 @@ public partial class CellEditorComponent :
         CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles,
             properties.MembraneType, Editor.CurrentPatch.Biome);
 
-        OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
-            properties, energyBalanceInfo);
-
-        CreateUndiscoveredOrganellesButtons(FindGroupsWithUndiscoveredOrganelles());
-        UpdateOrganelleUnlockTooltips();
+        UpdateOrganelleUnlockTooltips(true);
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
 
@@ -1935,7 +1937,6 @@ public partial class CellEditorComponent :
         UpdateArrow();
 
         UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
-        UpdateOrganelleUnlockTooltips();
 
         UpdatePatchDependentBalanceData();
 
@@ -1948,6 +1949,9 @@ public partial class CellEditorComponent :
         StartAutoEvoPrediction();
 
         UpdateFinishButtonWarningVisibility();
+
+        // Updated here to make sure everything else has been updated first so tooltips are accurate
+        UpdateOrganelleUnlockTooltips(false);
     }
 
     /// <summary>

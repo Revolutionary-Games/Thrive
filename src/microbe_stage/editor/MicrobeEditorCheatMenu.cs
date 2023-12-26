@@ -34,4 +34,9 @@ public class MicrobeEditorCheatMenu : CheatMenu
     {
         CheatManager.RevealAllPatches();
     }
+
+    private void OnUnlockAllOrganellesPressed()
+    {
+        CheatManager.UnlockAllOrganelles();
+    }
 }

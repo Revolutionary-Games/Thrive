@@ -75,6 +75,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base._EnterTree();
 
         CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles += OnUnlockAllOrganellesCheatUsed;
     }
 
     public override void _ExitTree()
@@ -82,6 +83,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base._ExitTree();
 
         CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -345,6 +347,15 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     {
         CurrentGame.GameWorld.Map.RevealAllPatches();
         patchMapTab.MarkDrawerDirty();
+    }
+
+    private void OnUnlockAllOrganellesCheatUsed(object? sender, EventArgs args)
+    {
+        if (CurrentGame.GameWorld.UnlockProgress.UnlockAll)
+            return;
+
+        CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
+        cellEditorTab.UnlockAllOrganelles();
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

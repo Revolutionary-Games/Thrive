@@ -105,6 +105,8 @@ public class GameWorld : ISaveLoadable
             UpdateGlobalAverageSunlight();
         }
 
+        UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
+
         // Initialize the tracking for organelle unlock conditions
         OrganelleUnlockHelpers.InitConditionTracking(this);
     }
@@ -651,7 +653,7 @@ public class GameWorld : ISaveLoadable
 
         LightCycle.CalculateDependentLightData(WorldSettings);
 
-        // Initialize organelle unlock tracking here, aftter StatisticsTracker has loaded
+        // Initialize organelle unlock tracking here, after StatisticsTracker has loaded
         OrganelleUnlockHelpers.InitConditionTracking(this);
     }
 

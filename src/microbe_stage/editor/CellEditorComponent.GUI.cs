@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using GroupsWithUndiscoveredOrganelles = System.Collections.Generic.Dictionary<
-    OrganelleDefinition.OrganelleGroup,
-    (LocalizedStringBuilder UnlockText, int Count)>;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -55,6 +52,16 @@ public partial class CellEditorComponent
     {
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
             1.5f);
+    }
+
+    public void UnlockAllOrganelles()
+    {
+        foreach (var entry in allPartSelectionElements)
+            entry.Value.Show();
+
+        UpdateOrganelleLAWKSettings();
+
+        RemoveUndisoveredOrganelleButtons();
     }
 
     protected override void RegisterTooltips()
@@ -291,7 +298,7 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleUnlockTooltips()
+    private void UpdateOrganelleUnlockTooltips(bool autoUnlockOrganelles)
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
         foreach (var organelle in organelles)
@@ -305,11 +312,16 @@ public partial class CellEditorComponent
                 tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
             }
         }
+
+        // This refreshes the tooltips
+        OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
+            Editor.EditedCellProperties, energyBalanceInfo);
+
+        CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);
     }
 
     private void UpdateOrganelleLAWKSettings()
     {
-        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
             if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK)
@@ -317,9 +329,11 @@ public partial class CellEditorComponent
         }
     }
 
-    private GroupsWithUndiscoveredOrganelles FindGroupsWithUndiscoveredOrganelles()
+    private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
     {
-        GroupsWithUndiscoveredOrganelles groupsWithUndiscoveredOrganelles = new();
+        // Find groups with undiscovered organelles
+        var groupsWithUndiscoveredOrganelles =
+            new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -327,22 +341,25 @@ public partial class CellEditorComponent
             var control = entry.Value;
 
             // Skip already unlocked organelles
-            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame))
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame, autoUnlock))
+            {
+                control.Undiscovered = false;
+                continue;
+            }
+
+            // Skip hidden organelles unless they are hidden because of missing requirements
+            if (!control.Visible && !control.Undiscovered)
                 continue;
 
-            // Skip hidden organelles
-            if (!control.Visible)
-                continue;
-
-            placeablePartSelectionElements.Remove(organelle);
             control.Hide();
+            control.Undiscovered = true;
 
             var buttonGroup = organelle.EditorButtonGroup;
             var unlockRequirements = organelle.GenerateUnlockRequirementsText(Editor.CurrentGame);
             var unlockTextString = new LocalizedString("UNLOCK_WHEN", organelle.Name, unlockRequirements);
 
-            (LocalizedStringBuilder UnlockText, int Count) group;
-            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out group))
+            // Create unlock text
+            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out var group))
             {
                 group.Count += 1;
                 group.UnlockText.Append("\n\n");
@@ -351,30 +368,40 @@ public partial class CellEditorComponent
             }
             else
             {
-                LocalizedStringBuilder unlockText = new();
+                var unlockText = new LocalizedStringBuilder();
                 unlockText.Append(unlockTextString);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
 
-        return groupsWithUndiscoveredOrganelles;
-    }
+        // Remove any buttons that might've been created before
+        if (refresh)
+            RemoveUndisoveredOrganelleButtons();
 
-    private void CreateUndiscoveredOrganellesButtons(GroupsWithUndiscoveredOrganelles groupsWithUndiscoveredOrganelles)
-    {
+        // Generate undiscovered organelle buttons
         foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
         {
             var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
             var (unlockText, count) = groupWithUndiscovered.Value;
 
-            var button = (UndiscoveredOrganelles)undiscoveredOrganellesScene.Instance();
+            var button = (UndiscoveredOrganellesButton)undiscoveredOrganellesScene.Instance();
             button.Count = count;
             group.AddItem(button);
 
-            var toolTip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
-            toolTip.UnlockText = unlockText;
-            ToolTipManager.Instance.AddToolTip(toolTip, "lockedOrganelles");
-            button.RegisterToolTipForControl(toolTip, true);
+            // Register tooltip
+            var tooltip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
+            tooltip.UnlockText = unlockText;
+            ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
+            button.RegisterToolTipForControl(tooltip, true);
+        }
+    }
+
+    private void RemoveUndisoveredOrganelleButtons()
+    {
+        foreach (var child in partsSelectionContainer.GetChildren())
+        {
+            if (child is CollapsibleList list)
+                list.RemoveAllOfType<UndiscoveredOrganellesButton>();
         }
     }
 
