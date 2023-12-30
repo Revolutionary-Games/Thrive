@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-21 12:07+0200\n"
-"PO-Revision-Date: 2023-11-20 14:10+0000\n"
+"PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2303,36 +2303,32 @@ msgstr ""
 "Бдительные микробы будут быстрее переключаться на новые цели."
 
 #: ../src/microbe_stage/FogOfWarMode.cs:5
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "Отключено"
+msgstr "Туман войны отключен"
 
 #: ../src/general/NewGameSettings.cs:821
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr "Файл окаменелости не может быть удалён"
+msgstr "Все биомы будут раскрыты"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:11
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Сильный туман войны"
 
 #: ../src/general/NewGameSettings.cs:827
-#, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "(Игрок будет обладать информацией лишь о тех биомах в коих он был)"
 
 #: ../src/general/NewGameSettings.tscn:770
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Режим тумана войны"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:8
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Обычный Туман Войны"
 
 #: ../src/general/NewGameSettings.cs:824
-#, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr "Аксоны - нервные волокна, что используются нейронами для подключения друг к другу и общению между собой. Размещение этой органеллы превращает тип клетки в ткань мозга."
+msgstr "(Игрок будет обладать информацией лишь о тех биомах,в коих он был, а так же соседним к ним биомам)"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
@@ -5451,9 +5447,8 @@ msgstr ""
 "Весь несохраненный прогресс будет утерян."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:44
-#, fuzzy
 msgid "REVEAL_ALL_PATCHES"
-msgstr "распространяется в биомы:"
+msgstr "Открыть все биомы"
 
 #: ../src/general/MainMenu.tscn:786
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
@@ -6835,14 +6830,13 @@ msgstr ""
 "Чтобы продолжить, выберите органеллу на панели слева. Затем щелкните левой кнопкой мыши чтобы поместить её. Вы можете вращать органеллы кнопками [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:269
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
-"Это редактор клеток, в котором вы можете добавлять или удалять органеллы из вашего вида, тратя очки мутации (ОМ). В каждом поколении вам будет доступно 100 ОМ, очки не сохраняются, поэтому не бойтесь тратить!\n"
+"Вы можете добавить органеллу [b]Хеморецептор[/b] в вашу клетку.\n"
 "\n"
-"Шестиугольник в центре экрана — это ваша клетка, которая сейчас состоит из одной ячейки цитоплазмы.\n"
+"Хеморецепторы представляют собой возможность вашего вида ощущать определённые соединения.\n"
 "\n"
-"Чтобы продолжить, выберите органеллу на панели слева. Затем щелкните левой кнопкой мыши чтобы поместить её. Вы можете вращать органеллы кнопками [thrive:input]e_rotate_left[/thrive:input] и [thrive:input]e_rotate_right[/thrive:input]."
+"Поставив один хеморецептор вы сможете обнаруживать такие соединения, как, например, [thrive:compound type=\"glucose\"][/thrive:compound]. Так же появится стрелка, что укажет путь к ним. Хеморецептор, помимо соединений, может обнаруживать и другие клетки."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:132
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -7929,230 +7923,205 @@ msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:466
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "Эффекты отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:450
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
-msgstr "Метаболосомы"
+msgstr "Метаболосомы участвуют в процессе, именуемым [b]Белковым дыханием[/b], формой [b]Аэробного дыхания[/b], уступающая <a href=\"/wiki/Mitochondrion\" title=\"Mitochondrion\"> Клеточному дыханию митохондрии. Это являет собой конверсию [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с использованием [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/wiki.json:462
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "Модификации отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:458
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"[b]Белковое Дыхание[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] @ [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
+"\n"
+"Белковое Дыханик - метод производства энергии, использующийся метаболосомами. Для этого необходимо поступление глюкозы, и скорость процесса зависит от количества кислорода в окружающей среде."
 
 #: ../simulation_parameters/common/wiki.json:454
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "Требования Отсутствуют"
 
 #: ../simulation_parameters/common/wiki.json:478
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr ""
+"В отличии от эукариотов, органеллы прокариотов не обладают мембранами. Заместо этого, прокариоты, как, например, бактерии, создаёт отделения из белков. Метаболосома - пример подобного отделения, именуемой официально называется бактериальным микрокомпартментом (БМК). БМК состоят из многогранной белковой оболочки размером в примерно 100-200 нанометров, что похожи на капсиды вирусов. Белки, создающие оболочку, обычно имеет полупроницаемые поры, которые позволяют различным соединениям (субстратам и продуктам) входить и выходить из органеллы. Они концентрируют ферменты и белки, участвующие в определенных метаболических процессах, в одном месте, обеспечивая их успех. Протеиновая оболочка так же действует как физический барьер, позволяющий БМК  проведения метаболических реакций, создающих токсичные или нестабильные промежуточные соединения.\n"
+"\n"
+"Метаболосомы являются катаболическим типом BMC и участвуют в разложении различных источников углерода, таких как глицерин и аминокислоты. Нет четких доказательств того, что процесс расщепления глюкозы происходит в метаболосомах, однако вполне разумно предположить, что это возможно."
 
 #: ../simulation_parameters/common/wiki.json:474
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:470
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они способны преобразовывать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]с гораздо большей скоростью, чем это может быть сделано в цитоплазме, в процессе называемом [b]Аэробным Дыханием[/b]. Однако для его функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], а более низкий уровень [thrive:compound type=\"oxygen\"][/thrive:compound] в окружающей среде замедлит скорость производства [thrive:compound type=\"atp\"][/thrive:compound]. Поскольку метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "Улучшения отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:509
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Эффекты отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:493
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
-msgstr "Митохондрия"
+msgstr "Электростанция клетки. Митохондрия  способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/wiki.json:505
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Модификации отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:501
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr ""
+"[b]Аэробное дыхание [/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] @ [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
+"\n"
+"Аэробное дыхание -- один из основных методов производства энергии. Оно требует постоянный приток глюкозы, а так же его эффективность зависит от количества кислорода в окружающей среде. Чем больше кислорода - тем более эффективно кислородное дыхание."
 
 #: ../simulation_parameters/common/wiki.json:497
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Клетка должна иметь <a href=\"/wiki/Nucleus\" title=\"Nucleus\"> для приобретения Митохондрии."
 
 #: ../simulation_parameters/common/wiki.json:521
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:517
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:513
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "Электростанция клетки. Митохондрия — двумембранная органелла, заполненная белками и ферментами. Это прокариота, которая была ассимилирована для использования её эукариотическим хозяином. Она способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Улучшения отсутствуют."
 
 #: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:532
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:544
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:540
-#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
-msgstr "Клеточные процессы не происходят"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:536
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:560
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:556
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:552
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:626
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Азотфиксирующая пластида"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:610
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Азотфиксирующая пластида"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:622
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:618
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:614
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Азотфиксирующая пластида"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:638
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:634
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Азотфиксирующая пластида"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:630
-#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Азотфиксирующая пластида"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:587
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:571
-#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:583
-#, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:579
-#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
-msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:575
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:599
-#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:595
-#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:591
-#, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
-msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:665
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:649
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:661
-#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr "Определяющая особенность эукариотических клеток. Ядро также включает эндоплазматический ретикулум и комплекс Гольджи. Это эволюция прокариотических клеток, направленная на развитие системы внутренних мембран, осуществляемая путем ассимиляции другого прокариота внутри своей клетки. Это позволяет клетке разделить или изолировать различные процессы, происходящие внутри клетки, и предотвратить их перекрытие. Это позволяет новым мембранным органеллам быть гораздо более сложными, эффективными и специализированными, чем если бы они свободно плавали в цитоплазме. Однако это происходит за счет того, что клетка становится намного больше и для поддержания нового приобретения требуется намного больше энергии."
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:657
-#, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
-msgstr "Клеточные процессы не происходят"
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:653
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:677
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:673
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:669
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "TBA"
 
 #: ../simulation_parameters/common/wiki.json:9
 #, fuzzy
