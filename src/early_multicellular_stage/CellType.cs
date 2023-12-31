@@ -94,6 +94,19 @@ public class CellType : ICellProperties, ICloneable
         return false;
     }
 
+    public bool IsMuscularTissueType()
+    {
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Myofibril))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
         CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);

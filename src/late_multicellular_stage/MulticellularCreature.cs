@@ -208,7 +208,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             if (MovementDirection != Vector3.Zero)
             {
                 // TODO: movement force calculation
-                ApplyCentralImpulse(Mass * MovementDirection * delta);
+                ApplyCentralImpulse(Mass * MovementDirection * delta * (5 * Species.MuscularPower + 1));
             }
         }
         else
@@ -216,7 +216,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             if (MovementDirection != Vector3.Zero)
             {
                 // TODO: movement force calculation
-                ApplyCentralImpulse(Mass * MovementDirection * delta * 50);
+                ApplyCentralImpulse(Mass * MovementDirection * delta * 50 * (Species.MuscularPower + 1));
             }
         }
 
