@@ -26,7 +26,7 @@ theme = ExtResource( 9 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 7 )
 __meta__ = {
-"_editor_description_": "NOTE: processes description string should only be set here on the ProcessesDescription property and not directly on the rich text label node as it will be overidden otherwise."
+"_editor_description_": ""
 }
 NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
 UnlockTextPath = NodePath("MarginContainer/VBoxContainer/UnlockText")

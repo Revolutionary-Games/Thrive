@@ -663,14 +663,6 @@ public partial class CellEditorComponent :
             {
                 var properties = Editor.EditedCellProperties;
 
-                // Calculate the energy balance here as it is needed for some unlock conditions
-                CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles,
-                    properties.MembraneType, Editor.CurrentPatch.Biome);
-
-                // Update the organelle unlock system here as the GUI is also updated
-                OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
-                    properties, energyBalanceInfo);
-
                 UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
                 CreateUndiscoveredOrganellesButtons();
                 CreatePreviewMicrobeIfNeeded();
@@ -833,10 +825,6 @@ public partial class CellEditorComponent :
         }
 
         newName = properties.FormattedName;
-
-        // Calculate the energy balance here as it is needed for some unlock conditions
-        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles,
-            properties.MembraneType, Editor.CurrentPatch.Biome);
 
         UpdateOrganelleUnlockTooltips(true);
 
@@ -2100,7 +2088,6 @@ public partial class CellEditorComponent :
     /// </remarks>
     private void SetupMicrobePartSelections()
     {
-        GD.Print("Setup selection");
         var simulationParameters = SimulationParameters.Instance;
 
         var organelleButtonGroup = new ButtonGroup();

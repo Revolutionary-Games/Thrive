@@ -1,61 +1,44 @@
 ﻿namespace UnlockConstraints
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
-    public class ConditionSet : IUnlockCondition
+    [JsonConverter(typeof(ConditionSetConverter))]
+    public class ConditionSet
     {
-        [JsonConstructor]
-        public ConditionSet(Dictionary<string, JObject> conditions)
+        public ConditionSet(IUnlockCondition[] conditions)
         {
-            // TODO: This could probably be done with a json converter
-            Requirements = new IUnlockCondition[conditions.Count];
-
-            int i = 0;
-            foreach (var entry in conditions)
-            {
-                var name = entry.Key;
-                var classType = Type.GetType($"{nameof(UnlockConstraints)}.{name}") ??
-                    throw new InvalidRegistryDataException($"Unlock condition {name} does not exist");
-
-                var jsonObject = entry.Value;
-
-                if (jsonObject.ToObject(classType) is not IUnlockCondition unlockCondition)
-                    throw new InvalidRegistryDataException("Failed to parse unlock condition");
-
-                Requirements[i] = unlockCondition;
-
-                i++;
-            }
+            Requirements = conditions;
         }
 
         [JsonIgnore]
-        public IUnlockCondition[] Requirements { get; private set; }
+        public IUnlockCondition[] Requirements { get; set; }
 
-        public bool Satisfied()
+        public bool Satisfied(WorldAndPlayerEventArgs worldAndPlayerArgs)
         {
-            return Requirements.All(c => c.Satisfied());
+            var statisticArgs = new StatisticTrackerEventArgs(worldAndPlayerArgs.World.StatisticsTracker);
+
+            return Requirements.All(c => IsSatisfied(c, worldAndPlayerArgs, statisticArgs));
         }
 
-        public void GenerateTooltip(LocalizedStringBuilder builder)
+        public void GenerateTooltip(LocalizedStringBuilder builder, WorldAndPlayerEventArgs worldAndPlayerArgs)
         {
+            var statisticArgs = new StatisticTrackerEventArgs(worldAndPlayerArgs.World.StatisticsTracker);
+
             var first = true;
             foreach (var entry in Requirements)
             {
                 if (!first)
                 {
-                    builder.Append(new LocalizedString("UNLOCK_AND"));
+                    builder.Append(new LocalizedString("AND_UNLOCK_CONDITION"));
                     builder.Append(" ");
                 }
 
-                var color = entry.Satisfied() ? "green" : "red";
-
+                var color = IsSatisfied(entry, worldAndPlayerArgs, statisticArgs) ? "green" : "red";
                 builder.Append($"[color={color}]");
 
-                entry.GenerateTooltip(builder);
+                entry.GenerateTooltip(builder,
+                    entry is WorldBasedUnlockCondition ? worldAndPlayerArgs : statisticArgs);
 
                 builder.Append("[/color]");
 
@@ -72,10 +55,18 @@
         public void Resolve(SimulationParameters parameters)
         {
             foreach (var requirement in Requirements)
+                requirement.Resolve(parameters);
+        }
+
+        private bool IsSatisfied(IUnlockCondition condition, WorldAndPlayerEventArgs worldAndPlayerArgs,
+            StatisticTrackerEventArgs statisticArgs)
+        {
+            if (condition is WorldBasedUnlockCondition)
             {
-                if (requirement is StatisticBasedUnlockCondition statBased)
-                    statBased.Resolve(parameters);
+                return condition.Satisfied(worldAndPlayerArgs);
             }
+
+            return condition.Satisfied(statisticArgs);
         }
     }
 }

@@ -1,21 +1,17 @@
 ﻿namespace UnlockConstraints
 {
+    using System;
+    using System.Linq;
     using Newtonsoft.Json;
 
     /// <summary>
     ///   An unlock condition that relies on a certain <see cref="IStatistic"/> to track progress
     /// </summary>
-    public abstract class StatisticBasedUnlockCondition : IUnlockCondition
+    public abstract class StatisticBasedUnlockCondition
     {
-        [JsonIgnore]
-        public abstract StatsTrackerEvent RelevantEvent { get; }
+        public abstract bool Satisfied(EventArgs args);
 
-        [JsonIgnore]
-        public IStatistic? RelevantStatistic { get; set; }
-
-        public abstract bool Satisfied();
-
-        public abstract void GenerateTooltip(LocalizedStringBuilder builder);
+        public abstract void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args);
 
         public virtual void Check(string name)
         {
@@ -31,28 +27,55 @@
     /// </summary>
     public class EngulfedMicrobesAbove : StatisticBasedUnlockCondition
     {
-        public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerEngulfedOther;
-
         [JsonProperty]
         public int Required { get; set; }
 
-        [JsonIgnore]
-        public SimpleStatistic? Engulfed => (SimpleStatistic?)RelevantStatistic;
-
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (Engulfed == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return false;
 
-            return Engulfed.Value >= Required;
+            var engulfed = trackerArgs.StatsTracker.TotalEngulfedByPlayer;
+
+            return engulfed.Value >= Required;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (Engulfed == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return;
 
-            builder.Append(new LocalizedString("ENGULFED_MICROBES_ABOVE", Required, Engulfed.Value));
+            var engulfed = trackerArgs.StatsTracker.TotalEngulfedByPlayer;
+
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE", Required,
+                engulfed.Value));
+        }
+    }
+
+    public class DigestedMicrobesAbove : StatisticBasedUnlockCondition
+    {
+        [JsonProperty]
+        public int Required { get; set; }
+
+        public override bool Satisfied(EventArgs args)
+        {
+            if (args is not StatisticTrackerEventArgs trackerArgs)
+                return false;
+
+            var digested = trackerArgs.StatsTracker.TotalDigestedByPlayer;
+
+            return digested.Value >= Required;
+        }
+
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        {
+            if (args is not StatisticTrackerEventArgs trackerArgs)
+                return;
+
+            var digested = trackerArgs.StatsTracker.TotalDigestedByPlayer;
+
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE", Required,
+                digested.Value));
         }
     }
 
@@ -61,58 +84,52 @@
     /// </summary>
     public class PlayerDeathsAbove : StatisticBasedUnlockCondition
     {
-        public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerDied;
-
         [JsonProperty]
         public int Required { get; set; }
 
-        [JsonIgnore]
-        public SimpleStatistic? Deaths => (SimpleStatistic?)RelevantStatistic;
-
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (Deaths == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return false;
 
-            return Deaths.Value >= Required;
+            var deaths = trackerArgs.StatsTracker.TotalPlayerDeaths;
+
+            return deaths.Value >= Required;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (Deaths == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return;
 
-            builder.Append(new LocalizedString("PLAYER_DEATH_COUNT_ABOVE", Required, Deaths.Value));
+            var deaths = trackerArgs.StatsTracker.TotalPlayerDeaths;
+
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE", Required,
+                deaths.Value));
         }
     }
 
+    /// <summary>
+    ///   The player has reproduced in a certain biome
+    /// </summary>
     public class ReproduceInBiome : StatisticBasedUnlockCondition
     {
-        [JsonIgnore]
-        private Biome biome = null!;
+        [JsonProperty]
+        public Biome? Biome { get; set; }
 
-        public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerReproduced;
-
-        [JsonProperty("Biome")]
-        public string RawBiome { get; set; } = string.Empty;
-
-        [JsonIgnore]
-        public ReproductionStatistic? ReproductionStatistc => (ReproductionStatistic?)RelevantStatistic;
-
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (ReproductionStatistc == null)
-                return;
-
-            builder.Append(new LocalizedString("REPRODUCE_IN_BIOME", biome.Name));
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_REPRODUCE_IN_BIOME", Biome!.Name));
         }
 
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (ReproductionStatistc == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return false;
 
-            if (!ReproductionStatistc.ReproducedInBiomes.TryGetValue(RawBiome, out var count))
+            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
+
+            if (!reproductionStat.ReproducedInBiomes.TryGetValue(Biome!, out var count))
                 return false;
 
             return count >= 1;
@@ -120,55 +137,76 @@
 
         public override void Check(string name)
         {
-            if (string.IsNullOrEmpty(RawBiome))
+            if (Biome == null)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Biome is empty");
+                    "Biome is null");
             }
-        }
-
-        public override void Resolve(SimulationParameters parameters)
-        {
-            biome = parameters.GetBiome(RawBiome);
         }
     }
 
+    /// <summary>
+    ///   The player has evolved a certain number of times with a certain amount of an organelle
+    /// </summary>
     public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
     {
         [JsonIgnore]
         private OrganelleDefinition organelle = null!;
 
-        public override StatsTrackerEvent RelevantEvent => StatsTrackerEvent.PlayerReproduced;
-
+        /// <summary>
+        ///   The name of the organelle. This needs to be a string as having it be a definition would
+        ///   cause a circular dependency, as unlock conditions are defined in organelles.
+        /// </summary>
         [JsonProperty("Organelle")]
         public string RawOrganelle { get; set; } = string.Empty;
 
         [JsonProperty]
         public int Generations { get; set; } = 1;
 
-        [JsonIgnore]
-        public ReproductionStatistic? ReproductionStatistic => (ReproductionStatistic?)RelevantStatistic;
+        [JsonProperty]
+        public int MinimumCount { get; set; } = 1;
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        [JsonProperty]
+        public bool InARow { get; set; }
+
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (ReproductionStatistic == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return;
 
-            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(RawOrganelle, out var count))
-                count = 0;
+            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
 
-            builder.Append(new LocalizedString("REPRODUCED_WITH", organelle, Generations, count));
+            var count = 0;
+            if (reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
+                count = CalculateCount(data);
+
+            var formattedOrganelleName = MinimumCount <= 1 ?
+                new LocalizedString("ORGANELLE_SINGULAR", organelle.Name) :
+                new LocalizedString("ORGANELLE_PLURAL", organelle.Name);
+
+            if (InARow)
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW",
+                    formattedOrganelleName, MinimumCount, Generations, count));
+            }
+            else
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_REPRODUCED_WITH",
+                    formattedOrganelleName, MinimumCount, Generations, count));
+            }
         }
 
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (ReproductionStatistic == null)
+            if (args is not StatisticTrackerEventArgs trackerArgs)
                 return false;
 
-            if (!ReproductionStatistic.ReproducedWithOrganelle.TryGetValue(RawOrganelle, out var count))
+            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
+
+            if (!reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
                 return false;
 
-            return count >= Generations;
+            return CalculateCount(data) >= Generations;
         }
 
         public override void Check(string name)
@@ -178,11 +216,42 @@
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "Organelle is empty");
             }
+
+            if (MinimumCount < 1)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "MinimumCount cannot be less than one");
+            }
+
+            if (Generations < 1)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Generations cannot be less than one");
+            }
         }
 
         public override void Resolve(SimulationParameters parameters)
         {
             organelle = parameters.GetOrganelleType(RawOrganelle);
+        }
+
+        private int CalculateCount(ReproductionStatistic.ReproductionOrganelleData data)
+        {
+            if (MinimumCount > 1)
+            {
+                if (InARow)
+                {
+                    var list = data.CountInGenerations;
+                    int old = Math.Max(list.Count - Generations, 0);
+                    var elements = list.Skip(old).Reverse().TakeWhile(c => c >= MinimumCount);
+
+                    return elements.Count();
+                }
+
+                return data.CountInGenerations.Count(c => c >= MinimumCount);
+            }
+
+            return InARow ? data.GenerationsInARow : data.TotalGenerations;
         }
     }
 }

@@ -2,13 +2,10 @@
 
 public abstract class GenericStatistic<T> : IStatistic
 {
-    public GenericStatistic(T value, StatsTrackerEvent linkedEvent)
+    public GenericStatistic(T value)
     {
         Value = value;
-        LinkedEvent = linkedEvent;
     }
-
-    public StatsTrackerEvent LinkedEvent { get; set; }
 
     public T Value { get; protected set; }
 
@@ -17,14 +14,12 @@ public abstract class GenericStatistic<T> : IStatistic
 
 public class SimpleStatistic : GenericStatistic<int>
 {
-    public SimpleStatistic(StatsTrackerEvent @event)
-        : base(0, @event)
+    public SimpleStatistic() : this(0)
     {
     }
 
     [JsonConstructor]
-    public SimpleStatistic(int value, StatsTrackerEvent linkedEvent)
-        : base(value, linkedEvent)
+    public SimpleStatistic(int value) : base(value)
     {
     }
 

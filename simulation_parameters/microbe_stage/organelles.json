@@ -41,17 +41,13 @@
     },
     "UnlockConditions": [
       {
-        "Conditions": {
-          "EngulfedMicrobesAbove": {
-            "Required": 5
-          }
+        "EngulfedMicrobesAbove": {
+          "Required": 5
         }
       },
       {
-        "Conditions": {
-          "PlayerDeathsAbove": {
-            "Required": 5
-          }
+        "PlayerDeathsAbove": {
+          "Required": 5
         }
       }
     ]
@@ -121,11 +117,9 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "PatchCompound": {
-            "Compound": "ammonia",
-            "Max": 13
-          }
+        "PatchCompound": {
+          "Compound": "ammonia",
+          "Max": 13
         }
       }
     ],
@@ -239,10 +233,8 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "EngulfedMicrobesAbove": {
-            "Required": 5
-          }
+        "EngulfedMicrobesAbove": {
+          "Required": 5
         }
       }
     ],
@@ -288,11 +280,9 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "PatchCompound": {
-            "Compound": "sunlight",
-            "Min": 20
-          }
+        "PatchCompound": {
+          "Compound": "sunlight",
+          "Min": 20
         }
       }
     ],
@@ -404,11 +394,9 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "PatchCompound": {
-            "Compound": "temperature",
-            "Min": "5000"
-          }
+        "PatchCompound": {
+          "Compound": "temperature",
+          "Min": "5000"
         }
       }
     ],
@@ -493,17 +481,13 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "SpeedBelow": {
-            "Threshold": 20
-          }
+        "SpeedBelow": {
+          "Threshold": 15
         }
       },
       {
-        "Conditions": {
-          "ExcessAtpAbove": {
-            "Atp": 10
-          }
+        "ExcessAtpAbove": {
+          "Atp": 10
         }
       }
     ],
@@ -582,14 +566,13 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "AtpProductionAbove": {
-            "Atp": 20
-          },
-          "ReproduceWithOrganelle": {
-            "Organelle": "metabolosome",
-            "Generations": 7
-          }
+        "AtpProductionAbove": {
+          "Atp": 20
+        },
+        "ReproduceWithOrganelle": {
+          "Organelle": "metabolosome",
+          "Generations": 7,
+          "InARow": true
         }
       }
     ],
@@ -640,14 +623,12 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "EngulfedMicrobesAbove": {
-            "Required": 8
-          },
-          "ReproduceWithOrganelle": {
-            "Organelle": "oxytoxyProteins",
-            "Generations": 5
-          }
+        "EngulfedMicrobesAbove": {
+          "Required": 10
+        },
+        "ReproduceWithOrganelle": {
+          "Organelle": "oxytoxyProteins",
+          "Generations": 5
         }
       }
     ],
@@ -684,11 +665,12 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "ReproduceWithOrganelle": {
-            "Organelle": "nucleus",
-            "Generations": 5
-          }
+        "ReproduceWithOrganelle": {
+          "Organelle": "nucleus",
+          "Generations": 5
+        },
+        "ExcessAtpAbove": {
+          "Atp": 15
         }
       }
     ],
@@ -733,11 +715,11 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "ReproduceWithOrganelle": {
-            "Organelle": "chromatophore",
-            "Generations": 5
-          }
+        "ReproduceWithOrganelle": {
+          "Organelle": "chromatophore",
+          "Generations": 7,
+          "InARow": true,
+          "MinimumCount": 5
         }
       }
     ],
@@ -960,22 +942,6 @@
     "ChanceToCreate": 0,
     "Name": "BIOLUMINESCENT_VACUOLE",
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
-    "UnlockConditions": [
-      {
-        "Conditions": {
-          "ReproduceInBiome": {
-            "Biome": "underwater_cave"
-          }
-        }
-      },
-      {
-        "Conditions": {
-          "ReproduceInBiome": {
-            "Biome": "abyssopelagic"
-          }
-        }
-      }
-    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 11,
@@ -1023,11 +989,11 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "ReproduceWithOrganelle": {
-            "Organelle": "thermosynthase",
-            "Generations": 5
-          }
+        "ReproduceWithOrganelle": {
+          "Organelle": "thermosynthase",
+          "Generations": 5,
+          "InARow": true,
+          "MinimumCount": 3
         }
       }
     ],
@@ -1113,10 +1079,13 @@
     "IconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
     "UnlockConditions": [
       {
-        "Conditions": {
-          "EngulfedMicrobesAbove": {
-            "Required": 10
-          }
+        "EngulfedMicrobesAbove": {
+          "Required": 20
+        }
+      },
+      {
+        "DigestedMicrobesAbove": {
+          "Required": 10
         }
       }
     ],

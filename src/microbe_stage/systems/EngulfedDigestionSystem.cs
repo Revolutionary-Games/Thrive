@@ -48,6 +48,14 @@
             gameWorld = world;
         }
 
+        protected override void PreUpdate(float state)
+        {
+            base.PreUpdate(state);
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
+        }
+
         protected override void Update(float delta, in Entity entity)
         {
             ref var engulfer = ref entity.Get<Engulfer>();
@@ -70,6 +78,8 @@
             // Skip if enzymes aren't calculated yet
             if (organelles.AvailableEnzymes == null)
                 return;
+
+            var engulferIsPlayer = entity.Has<PlayerMarker>();
 
             float usedCapacity = 0;
 
@@ -248,8 +258,8 @@
                 {
                     engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 
-                    if (entity.Has<PlayerMarker>() && engulfedObject.Has<MicrobeControl>())
-                        gameWorld?.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
+                    if (engulferIsPlayer && engulfedObject.Has<CellProperties>())
+                        gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
                 }
 
                 // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract

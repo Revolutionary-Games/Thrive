@@ -116,7 +116,7 @@ public class CollapsibleList : VBoxContainer
     public void RemoveItem(string name)
     {
         var found = items.Find(item => item.Name == name);
-        found.DetachAndQueueFree();
+        found.QueueFree();
         items.Remove(found);
     }
 
@@ -127,7 +127,7 @@ public class CollapsibleList : VBoxContainer
 
         foreach (var item in found)
         {
-            item.DetachAndQueueFree();
+            item.QueueFree();
             items.Remove(item);
         }
     }

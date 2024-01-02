@@ -8,23 +8,13 @@
     /// </summary>
     public abstract class WorldBasedUnlockCondition : IUnlockCondition
     {
-        protected ICellProperties? PlayerData { get; set; }
+        public abstract bool Satisfied(EventArgs args);
 
-        protected EnergyBalanceInfo? EnergyBalance { get; set; }
+        public abstract void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args);
 
-        protected GameWorld? GameWorld { get; set; }
-
-        public virtual void UpdateData(GameWorld? gameWorld, ICellProperties? playerData,
-            EnergyBalanceInfo? energyBalance)
+        public virtual void Resolve(SimulationParameters parameters)
         {
-            PlayerData = playerData;
-            EnergyBalance = energyBalance;
-            GameWorld = gameWorld;
         }
-
-        public abstract bool Satisfied();
-
-        public abstract void GenerateTooltip(LocalizedStringBuilder builder);
 
         public virtual void Check(string name)
         {
@@ -39,20 +29,22 @@
         [JsonProperty]
         public float Atp;
 
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (EnergyBalance == null)
+            if (args is not WorldAndPlayerEventArgs worldArgs)
                 return false;
 
-            return EnergyBalance.TotalProduction >= Atp;
+            var energyBalance = worldArgs.EnergyBalance;
+
+            if (energyBalance == null)
+                return false;
+
+            return energyBalance.TotalProduction >= Atp;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (EnergyBalance == null)
-                return;
-
-            builder.Append(new LocalizedString("ATP_PRODUCTION_ABOVE", Atp));
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE", Atp));
         }
     }
 
@@ -64,20 +56,22 @@
         [JsonProperty]
         public float Atp;
 
-        public override bool Satisfied()
+        public override bool Satisfied(EventArgs args)
         {
-            if (EnergyBalance == null)
+            if (args is not WorldAndPlayerEventArgs worldArgs)
                 return false;
 
-            return EnergyBalance.FinalBalance >= Atp;
+            var energyBalance = worldArgs.EnergyBalance;
+
+            if (energyBalance == null)
+                return false;
+
+            return energyBalance.FinalBalance >= Atp;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (EnergyBalance == null)
-                return;
-
-            builder.Append(new LocalizedString("EXCESS_ATP_ABOVE", Atp));
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_EXCESS_ATP_ABOVE", Atp));
         }
     }
 
@@ -89,34 +83,33 @@
         [JsonProperty]
         public float Threshold;
 
-        [JsonIgnore]
-        private float speed;
-
-        public override void UpdateData(GameWorld? gameWorld, ICellProperties? playerData,
-            EnergyBalanceInfo? energyBalance)
+        public override bool Satisfied(EventArgs args)
         {
-            base.UpdateData(gameWorld, playerData, energyBalance);
+            if (args is not WorldAndPlayerEventArgs worldArgs)
+                return false;
 
-            if (PlayerData == null)
-                return;
+            var playerData = worldArgs.PlayerData;
 
-            var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(PlayerData.Organelles.Organelles,
-                PlayerData.MembraneType,
-                PlayerData.MembraneRigidity,
-                PlayerData.IsBacteria);
+            if (playerData == null)
+                return false;
+
+            return GetPlayerSpeed(playerData) < Threshold;
+        }
+
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        {
+            builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
+        }
+
+        private float GetPlayerSpeed(ICellProperties playerData)
+        {
+            var rawSpeed = MicrobeInternalCalculations.CalculateSpeed(playerData.Organelles.Organelles,
+                playerData.MembraneType,
+                playerData.MembraneRigidity,
+                playerData.IsBacteria);
 
             // This needs to be user readable as it is shown by the tooltip
-            speed = (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
-        }
-
-        public override bool Satisfied()
-        {
-            return speed < Threshold;
-        }
-
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
-        {
-            builder.Append(new LocalizedString("SPEED_BELOW", Threshold));
+            return (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(rawSpeed), 1);
         }
     }
 
@@ -125,62 +118,58 @@
     /// </summary>
     public class PatchCompound : WorldBasedUnlockCondition
     {
-        [JsonProperty("Compound")]
-        public string RawCompound = string.Empty;
-
         [JsonProperty]
         public int? Min;
 
         [JsonProperty]
         public int? Max;
 
-        [JsonIgnore]
-        private Compound? compound;
+        [JsonProperty]
+        public Compound? Compound;
 
-        [JsonIgnore]
-        private float current;
-
-        public override void UpdateData(GameWorld? gameWorld, ICellProperties? playerData,
-            EnergyBalanceInfo? energyBalance)
+        public override bool Satisfied(EventArgs args)
         {
-            base.UpdateData(gameWorld, playerData, energyBalance);
+            if (args is not WorldAndPlayerEventArgs worldArgs)
+                return false;
 
-            compound ??= SimulationParameters.Instance.GetCompound(RawCompound);
+            var current = worldArgs.World.Map.CurrentPatch!.GetCompoundAmount(Compound!,
+                CompoundAmountType.Biome);
 
-            if (GameWorld == null)
-                return;
-
-            current = GameWorld.Map.CurrentPatch!.GetCompoundAmount(compound);
-        }
-
-        public override bool Satisfied()
-        {
             var minSatisfied = !Min.HasValue || current >= Min;
             var maxSatisfied = !Max.HasValue || current <= Max;
             return minSatisfied && maxSatisfied;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
         {
-            if (compound == null)
-                return;
-
-            var compoundName = compound.InternalName;
+            var compoundName = Compound!.InternalName;
 
             if (Min.HasValue && Max.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_BETWEEN", compoundName, Min, Max));
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BETWEEN", compoundName, Min, Max));
+            }
             else if (Min.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_ABOVE", compoundName, Min));
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_ABOVE", compoundName, Min));
+            }
             else if (Max.HasValue)
-                builder.Append(new LocalizedString("COMPOUND_IS_BELOW", compoundName, Max));
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BELOW", compoundName, Max));
+            }
         }
 
         public override void Check(string name)
         {
-            if (string.IsNullOrEmpty(RawCompound))
+            if (Compound == null)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Compound is empty");
+                    "Compound is null");
+            }
+
+            if (Min == null && Max == null)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Min and Max are both null");
             }
         }
     }

@@ -519,9 +519,9 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   A bbcode string containing all the unlock conditions for this organelle.
     /// </summary>
-    public LocalizedStringBuilder GenerateUnlockRequirementsText(GameProperties game)
+    public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
+        WorldAndPlayerEventArgs worldAndPlayerArgs)
     {
-        LocalizedStringBuilder unlockRequirements = new();
         if (UnlockConditions != null)
         {
             bool first = true;
@@ -529,16 +529,14 @@ public class OrganelleDefinition : IRegistryType
             {
                 if (!first)
                 {
-                    unlockRequirements.Append(new LocalizedString("UNLOCK_OR"));
-                    unlockRequirements.Append(" ");
+                    builder.Append(new LocalizedString("OR_UNLOCK_CONDITION"));
+                    builder.Append(" ");
                 }
 
-                unlockCondition.GenerateTooltip(unlockRequirements);
+                unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
                 first = false;
             }
         }
-
-        return unlockRequirements;
     }
 
     public void ApplyTranslations()

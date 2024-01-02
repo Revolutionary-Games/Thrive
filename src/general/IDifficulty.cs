@@ -56,6 +56,7 @@ public interface IDifficulty : IRegistryAssignable
 
     /// <summary>
     ///   Whether organelle unlocks are enabled or not
+    ///   If not, all organelles are unlocked by default
     /// </summary>
     public bool OrganelleUnlocksEnabled { get; }
 }

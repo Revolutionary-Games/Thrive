@@ -19,8 +19,6 @@ public interface ICreatureStage : IStageBase, IReturnableGameState
 
     public void OnSuicide();
 
-    public void RecordPlayerReproduction();
-
     public void MoveToEditor();
 
     public void MoveToPatch(Patch patch);

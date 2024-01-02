@@ -106,9 +106,6 @@ public class GameWorld : ISaveLoadable
         }
 
         UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
-
-        // Initialize the tracking for organelle unlock conditions
-        OrganelleUnlockHelpers.InitConditionTracking(this);
     }
 
     /// <summary>
@@ -652,9 +649,6 @@ public class GameWorld : ISaveLoadable
             throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
 
         LightCycle.CalculateDependentLightData(WorldSettings);
-
-        // Initialize organelle unlock tracking here, after StatisticsTracker has loaded
-        OrganelleUnlockHelpers.InitConditionTracking(this);
     }
 
     public void BuildEvolutionaryTree(EvolutionaryTree tree)

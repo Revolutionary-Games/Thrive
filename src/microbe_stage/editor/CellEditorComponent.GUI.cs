@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using UnlockConstraints;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -313,10 +314,6 @@ public partial class CellEditorComponent
             }
         }
 
-        // This refreshes the tooltips
-        OrganelleUnlockHelpers.UpdateUnlockConditionWorldData(Editor.CurrentGame.GameWorld,
-            Editor.EditedCellProperties, energyBalanceInfo);
-
         CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);
     }
 
@@ -335,13 +332,17 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
+        var worldAndPlayerArgs = new WorldAndPlayerEventArgs(Editor.CurrentGame.GameWorld, energyBalanceInfo,
+            Editor.EditedCellProperties);
+
         foreach (var entry in allPartSelectionElements)
         {
             var organelle = entry.Key;
             var control = entry.Value;
 
             // Skip already unlocked organelles
-            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, Editor.CurrentGame, autoUnlock))
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
+                    Editor.CurrentGame, autoUnlock))
             {
                 control.Undiscovered = false;
                 continue;
@@ -355,21 +356,29 @@ public partial class CellEditorComponent
             control.Undiscovered = true;
 
             var buttonGroup = organelle.EditorButtonGroup;
-            var unlockRequirements = organelle.GenerateUnlockRequirementsText(Editor.CurrentGame);
-            var unlockTextString = new LocalizedString("UNLOCK_WHEN", organelle.Name, unlockRequirements);
+
+            // This needs to be done as some organelles like the Toxin Vacuole have newlines in the translations
+            var formattedName = organelle.Name.Replace("\n", " ");
+            var unlockTextString = new LocalizedString("UNLOCK_WITH_EITHER_OF_FOLLOWING", formattedName);
 
             // Create unlock text
             if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out var group))
             {
+                // Add a new organelle to the group
                 group.Count += 1;
                 group.UnlockText.Append("\n\n");
                 group.UnlockText.Append(unlockTextString);
+                group.UnlockText.Append(" ");
+                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
                 groupsWithUndiscoveredOrganelles[buttonGroup] = group;
             }
             else
             {
+                // Add the first organelle to the group
                 var unlockText = new LocalizedStringBuilder();
                 unlockText.Append(unlockTextString);
+                unlockText.Append(" ");
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
                 groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
             }
         }
@@ -403,6 +412,8 @@ public partial class CellEditorComponent
             if (child is CollapsibleList list)
                 list.RemoveAllOfType<UndiscoveredOrganellesButton>();
         }
+
+        ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)

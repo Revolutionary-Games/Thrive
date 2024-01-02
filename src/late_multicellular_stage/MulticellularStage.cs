@@ -91,6 +91,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
 
+    public override MainGameState GameState => MainGameState.MulticellularStage;
+
     // TODO: change when there is dying implemented
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer;
@@ -253,11 +255,6 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         {
             HUD.PauseButtonPressed(!HUD.Paused);
         }
-    }
-
-    public override void RecordPlayerReproduction()
-    {
-        // TODO: Player reproduction can't be recorded as Player is not an entity
     }
 
     public override void MoveToEditor()

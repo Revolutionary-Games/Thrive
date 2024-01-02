@@ -24,9 +24,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockHelpers.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />
-    <Compile Include="src\statistics_tracking\IStatistic.cs" />
+    <Compile Include="src\general\statistics_tracking\IStatistic.cs" />
+    <Compile Include="src\saving\serializers\ConditionSetConverter.cs" />
     <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />
@@ -647,11 +647,10 @@
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
-    <Compile Include="src\statistics_tracking\ReproductionStatistic.cs" />
-    <Compile Include="src\statistics_tracking\GenericStatistic.cs" />
-    <Compile Include="src\statistics_tracking\WorldStatsTracker.cs" />
+    <Compile Include="src\general\statistics_tracking\ReproductionStatistic.cs" />
+    <Compile Include="src\general\statistics_tracking\GenericStatistic.cs" />
+    <Compile Include="src\general\statistics_tracking\WorldStatsTracker.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
-    <Compile Include="src\statistics_tracking\StatsTrackerEvent.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
     <Compile Include="src\microbe_stage\ProcessStatistics.cs" />

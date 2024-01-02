@@ -29,9 +29,10 @@ AssemblyModAutoHarmonyPath = NodePath("CustomWindow/ScrollContainer/MarginContai
 ErrorDisplayPath = NodePath("CustomWindow/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomWindow" parent="." instance=ExtResource( 1 )]
-ExclusiveAllowCloseOnEscape = false
+popup_exclusive = true
 WindowTitle = "CREATE_NEW_MOD"
 Resizable = true
+ExclusiveAllowCloseOnEscape = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CustomWindow"]
 margin_left = 15.0

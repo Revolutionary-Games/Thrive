@@ -47,6 +47,8 @@ public class ThriveJsonConverter : IDisposable
 
             new CallbackConverter(),
 
+            new ConditionSetConverter(),
+
             // Specific Godot Node converter types
 
             // Fallback Godot Node converter, this is before default serializer to make Node types with scene loaded

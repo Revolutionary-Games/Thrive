@@ -33,7 +33,7 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnRevealAllPatches;
 
     /// <summary>
-    ///   Fired whenever the pleyer uses the "Unlock All Organelles" cheat
+    ///   Fired whenever the player uses the "Unlock All Organelles" cheat
     /// </summary>
     public static event EventHandler<EventArgs>? OnUnlockAllOrganelles;
 

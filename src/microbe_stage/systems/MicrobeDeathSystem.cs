@@ -343,7 +343,7 @@
             // Record player death in statistics
             if (entity.Has<PlayerMarker>())
             {
-                gameWorld?.StatisticsTracker.TotalPlayerDeaths.Increment(1);
+                gameWorld!.StatisticsTracker.TotalPlayerDeaths.Increment(1);
             }
 
             ref var engulfable = ref entity.Get<Engulfable>();

@@ -41,7 +41,9 @@ public class UndiscoveredOrganellesButton : MarginContainer
             return;
 
         countLabel.Visible = count > 1;
-        countLabel.Text = "x" + count;
+
+        var text = new LocalizedString("N_TIMES", count);
+        countLabel.Text = text.ToString();
     }
 
     private void UpdateButton()

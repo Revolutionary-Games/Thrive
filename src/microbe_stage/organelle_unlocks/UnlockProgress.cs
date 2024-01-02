@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using UnlockConstraints;
 
 /// <summary>
 ///   Stores which organelles have been unlocked by the player.
@@ -8,18 +9,13 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class UnlockProgress
 {
-    [JsonProperty]
-    public bool UnlockAll;
-
     /// <summary>
     ///   The organelles that the player can use.
+    ///   The default value is the by default unlocked organelles (ones without a condition)
     /// </summary>
     [JsonProperty]
     private readonly HashSet<OrganelleDefinition> unlockedOrganelles =
-        SimulationParameters
-            .Instance
-            .GetAllOrganelles()
-            .Where(organelle => organelle.UnlockConditions == null)
+        SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.UnlockConditions == null)
             .ToHashSet();
 
     /// <summary>
@@ -27,6 +23,17 @@ public class UnlockProgress
     /// </summary>
     [JsonProperty]
     private readonly HashSet<OrganelleDefinition> recentlyUnlocked = new();
+
+    /// <summary>
+    ///   If true, <see cref="IsUnlocked"/> will always return true
+    /// </summary>
+    [JsonProperty]
+    public bool UnlockAll { get; set; }
+
+    public static bool SupportsGameState(MainGameState state)
+    {
+        return state == MainGameState.MicrobeStage;
+    }
 
     /// <summary>
     ///   Unlock an organelle, returning true if this is the first time it has been unlocked.
@@ -47,12 +54,13 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, GameProperties game, bool autoUnlock)
+    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerEventArgs worldAndPlayerArgs,
+        GameProperties game, bool autoUnlock)
     {
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
             return true;
 
-        if (organelle.UnlockConditions.Any(unlock => unlock.Satisfied()) && autoUnlock)
+        if (autoUnlock && organelle.UnlockConditions.Any(unlock => unlock.Satisfied(worldAndPlayerArgs)))
         {
             UnlockOrganelle(organelle, game);
             return true;
