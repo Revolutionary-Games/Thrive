@@ -10,3 +10,10 @@ updates:
     open-pull-requests-limit: 3
     reviewers:
       - "Revolutionary-Games/programming"
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+        interval: "daily"
+    labels:
+      - "review"
+      - "dependencies"

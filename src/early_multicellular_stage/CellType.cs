@@ -109,12 +109,12 @@ public class CellType : ICellProperties, ICloneable
 
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)

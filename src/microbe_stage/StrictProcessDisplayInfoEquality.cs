@@ -49,14 +49,14 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (our.EnvironmentalInputs != null && !our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs!))
             return false;
 
-        if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) != ReferenceEquals(
-                theirs.FullSpeedRequiredEnvironmentalInputs, null))
+        if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
+            ReferenceEquals(theirs.FullSpeedRequiredEnvironmentalInputs, null))
         {
             return false;
         }
 
-        if (our.FullSpeedRequiredEnvironmentalInputs != null && !our.FullSpeedRequiredEnvironmentalInputs.SequenceEqual(
-                theirs.FullSpeedRequiredEnvironmentalInputs!))
+        if (our.FullSpeedRequiredEnvironmentalInputs != null &&
+            !our.FullSpeedRequiredEnvironmentalInputs.SequenceEqual(theirs.FullSpeedRequiredEnvironmentalInputs!))
         {
             return false;
         }

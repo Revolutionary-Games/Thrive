@@ -42,6 +42,9 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private Compound sunlight = null!;
 
+    [JsonProperty]
+    private FogOfWarMode fogOfWar;
+
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
@@ -82,6 +85,23 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         base.Init(owningEditor, fresh);
 
+        fogOfWar = Editor.CurrentGame.FreeBuild ?
+            FogOfWarMode.Ignored :
+            Editor.CurrentGame.GameWorld.WorldSettings.FogOfWarMode;
+
+        var map = Editor.CurrentGame.GameWorld.Map;
+
+        if (map != mapDrawer.Map)
+            throw new InvalidOperationException("Map is not set correctly on this component");
+
+        if (fogOfWar == FogOfWarMode.Ignored)
+        {
+            map.RevealAllPatches();
+        }
+
+        // Make sure the map setting of fog of war always matches the world
+        map.FogOfWar = fogOfWar;
+
         if (!fresh)
         {
             UpdatePlayerPatch(targetPatch);
@@ -90,7 +110,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         {
             targetPatch = null;
 
-            playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
+            playerPatchOnEntry = map.CurrentPatch ??
                 throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
             UpdatePlayerPatch(playerPatchOnEntry);
@@ -260,7 +280,14 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void UpdatePlayerPatch(Patch? patch)
     {
+        if (mapDrawer.Map == null)
+            throw new InvalidOperationException("Map needs to be set on the drawer first");
+
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
+
+        if (mapDrawer.Map.UpdatePatchVisibility(mapDrawer.PlayerPatch))
+            mapDrawer.MarkDirty();
+
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here

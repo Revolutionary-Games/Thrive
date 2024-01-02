@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Container = Godot.Container;
 
 public class NewGameSettings : ControlWithInput
 {
@@ -91,6 +93,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath OsmoregulationMultiplierReadoutPath = null!;
 
     [Export]
+    public NodePath FogOfWarModeDropdownPath = null!;
+
+    [Export]
+    public NodePath FogOfWarModeDescriptionPath = null!;
+
+    [Export]
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
@@ -173,6 +181,8 @@ public class NewGameSettings : ControlWithInput
     private LineEdit glucoseDecayRateReadout = null!;
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
+    private OptionButton fogOfWarModeDropdown = null!;
+    private Label fogOfWarModeDescription = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
     private Button limitGrowthRateButton = null!;
@@ -255,6 +265,8 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
         osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
         osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
+        fogOfWarModeDropdown = GetNode<OptionButton>(FogOfWarModeDropdownPath);
+        fogOfWarModeDescription = GetNode<Label>(FogOfWarModeDescriptionPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         passiveReproductionButton = GetNode<Button>(PassiveReproductionButtonPath);
         limitGrowthRateButton = GetNode<Button>(LimitGrowthRateButtonPath);
@@ -299,6 +311,13 @@ public class NewGameSettings : ControlWithInput
             // The untranslated name will be translated automatically by Godot during runtime
             difficultyPresetButton.AddItem(preset.UntranslatedName);
             difficultyPresetAdvancedButton.AddItem(preset.UntranslatedName);
+        }
+
+        // Add items to the fog of war dropdown
+        foreach (var mode in new[] { FogOfWarMode.Ignored, FogOfWarMode.Regular, FogOfWarMode.Intense })
+        {
+            fogOfWarModeDropdown.AddItem(
+                TranslationServer.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
         }
 
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
@@ -443,6 +462,8 @@ public class NewGameSettings : ControlWithInput
                 GlucoseDecayRateReadoutPath.Dispose();
                 OsmoregulationMultiplierPath.Dispose();
                 OsmoregulationMultiplierReadoutPath.Dispose();
+                FogOfWarModeDropdownPath.Dispose();
+                FogOfWarModeDescriptionPath.Dispose();
                 FreeGlucoseCloudButtonPath.Dispose();
                 PassiveReproductionButtonPath.Dispose();
                 LimitGrowthRateButtonPath.Dispose();
@@ -544,6 +565,7 @@ public class NewGameSettings : ControlWithInput
                 FreeGlucoseCloud = freeGlucoseCloudButton.Pressed,
                 PassiveReproduction = passiveReproductionButton.Pressed,
                 LimitGrowthRate = limitGrowthRateButton.Pressed,
+                FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
             };
 
             settings.Difficulty = customDifficulty;
@@ -586,21 +608,22 @@ public class NewGameSettings : ControlWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 1.5f), () =>
-            {
-                // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
-                EmitSignal(nameof(OnNewGameVideoStarted));
-            });
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f), () =>
+                {
+                    // Notify that the video now starts to allow the main menu to hide its expensive 3D rendering
+                    EmitSignal(nameof(OnNewGameVideoStarted));
+                });
 
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame, true, false);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f), OnStartGame,
+                true, false);
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddSequence(TransitionManager.Instance.CreateScreenFade(
-                ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f), OnStartGame);
         }
     }
 
@@ -676,6 +699,9 @@ public class NewGameSettings : ControlWithInput
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.Pressed = preset.PassiveReproduction;
         limitGrowthRateButton.Pressed = preset.LimitGrowthRate;
+        fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
+
+        UpdateFogOfWarModeDescription(preset.FogOfWarMode);
 
         UpdateSelectedDifficultyPresetControl();
     }
@@ -714,6 +740,9 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (limitGrowthRateButton.Pressed != preset.LimitGrowthRate)
+                continue;
+
+            if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
@@ -773,6 +802,33 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
 
         UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnFogOfWarModeChanged(int index)
+    {
+        var mode = (FogOfWarMode)index;
+        UpdateFogOfWarModeDescription(mode);
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void UpdateFogOfWarModeDescription(FogOfWarMode mode)
+    {
+        var description = string.Empty;
+
+        switch (mode)
+        {
+            case FogOfWarMode.Ignored:
+                description = TranslationServer.Translate("FOG_OF_WAR_DISABLED_DESCRIPTION");
+                break;
+            case FogOfWarMode.Regular:
+                description = TranslationServer.Translate("FOG_OF_WAR_REGULAR_DESCRIPTION");
+                break;
+            case FogOfWarMode.Intense:
+                description = TranslationServer.Translate("FOG_OF_WAR_INTENSE_DESCRIPTION");
+                break;
+        }
+
+        fogOfWarModeDescription.Text = description;
     }
 
     private void OnFreeGlucoseCloudToggled(bool pressed)

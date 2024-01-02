@@ -69,6 +69,11 @@ public enum TutorialEventType
     MicrobePlayerReadyToEdit,
 
     /// <summary>
+    ///   Player presses the button the exit the microbe editor but has made no changes
+    /// </summary>
+    MicrobeEditorNoChangesMade,
+
+    /// <summary>
     ///   Player entered the microbe stage
     /// </summary>
     EnteredMicrobeStage,
@@ -104,9 +109,14 @@ public enum TutorialEventType
     MicrobeEditorOrganelleToPlaceChanged,
 
     /// <summary>
-    ///   Player placed an organelle
+    ///   Player placed an organelle, args is <see cref="OrganellePlacedEventArgs"/>
     /// </summary>
     MicrobeEditorOrganellePlaced,
+
+    /// <summary>
+    ///   Player modified an organelle (modification was started, not finished yet)
+    /// </summary>
+    MicrobeEditorOrganelleModified,
 
     /// <summary>
     ///   Player undid an action in the editor
@@ -147,4 +157,9 @@ public enum TutorialEventType
     ///   Player energy balance has been changed
     /// </summary>
     MicrobeEditorPlayerEnergyBalanceChanged,
+
+    /// <summary>
+    ///   Triggers when the first non-cytoplasm organelle divided
+    /// </summary>
+    MicrobeNonCytoplasmOrganelleDivided,
 }

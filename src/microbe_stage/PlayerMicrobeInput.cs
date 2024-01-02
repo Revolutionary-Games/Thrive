@@ -276,7 +276,7 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         var command = stage.HUD.SelectSignalCommandIfOpen();
 
-        if (stage.HasPlayer)
+        if (command != null && stage.HasPlayer)
             stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 

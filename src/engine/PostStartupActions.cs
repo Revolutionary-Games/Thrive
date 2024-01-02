@@ -31,8 +31,7 @@ public class PostStartupActions : Node
         else
         {
 #if DEBUG
-            GD.Print(
-                "This is a debug version of the game (not exported) build info may not be updated so take " +
+            GD.Print("This is a debug version of the game (not exported) build info may not be updated so take " +
                 "the following with a huge bag of salt:");
 #endif
             if (info.DevBuild)

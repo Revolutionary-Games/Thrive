@@ -288,8 +288,7 @@ public abstract class Species : ICloneable
 
     public virtual string GetDetailString()
     {
-        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(
-            FormattedNameBbCode,
+        return TranslationServer.Translate("SPECIES_DETAIL_TEXT").FormatSafe(FormattedNameBbCode,
             ID,
             Generation,
             Population,

@@ -82,7 +82,7 @@ public class MovementComponent : IOrganelleComponent
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
-            delta = Components.CellPropertiesHelpers.DefaultVisualPos;
+            delta = CellPropertiesHelpers.DefaultVisualPos;
         return delta.Normalized() * momentum;
     }
 

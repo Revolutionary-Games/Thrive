@@ -10,7 +10,8 @@
     "OsmoregulationMultiplier": 0.8,
     "FreeGlucoseCloud": true,
     "PassiveReproduction": true,
-    "LimitGrowthRate": false
+    "LimitGrowthRate": false,
+    "FogOfWarMode": "Regular"
   },
   "normal": {
     "Name": "DIFFICULTY_PRESET_NORMAL",
@@ -23,7 +24,8 @@
     "OsmoregulationMultiplier": 1,
     "FreeGlucoseCloud": true,
     "PassiveReproduction": true,
-    "LimitGrowthRate": true
+    "LimitGrowthRate": true,
+    "FogOfWarMode": "Regular"
   },
   "hard": {
     "Name": "DIFFICULTY_PRESET_HARD",
@@ -36,7 +38,8 @@
     "OsmoregulationMultiplier": 1.2,
     "FreeGlucoseCloud": false,
     "PassiveReproduction": true,
-    "LimitGrowthRate": true
+    "LimitGrowthRate": true,
+    "FogOfWarMode": "Regular"
   },
   "custom": {
     "Name": "DIFFICULTY_PRESET_CUSTOM",

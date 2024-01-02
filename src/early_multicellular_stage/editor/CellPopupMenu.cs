@@ -64,10 +64,9 @@ public class CellPopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(
-                SelectedCells
-                    .Select(o =>
-                        (EditorCombinableActionData)new CellRemoveActionData(o))) ??
+        var mpCost = GetActionPrice?.Invoke(SelectedCells
+                .Select(o =>
+                    (EditorCombinableActionData)new CellRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

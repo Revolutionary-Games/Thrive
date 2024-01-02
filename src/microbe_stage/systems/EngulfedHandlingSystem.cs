@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -16,14 +15,30 @@
     [With(typeof(Engulfer))]
     [With(typeof(Health))]
     [With(typeof(SoundEffectPlayer))]
+    [WritesToComponent(typeof(CompoundAbsorber))]
+    [WritesToComponent(typeof(UnneededCompoundVenter))]
+    [WritesToComponent(typeof(RenderPriorityOverride))]
+    [WritesToComponent(typeof(SpatialInstance))]
+    [WritesToComponent(typeof(CompoundStorage))]
+    [WritesToComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(OrganelleContainer))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
+        private readonly IWorldSimulation worldSimulation;
+        private readonly ISpawnSystem spawnSystem;
+
+        // TODO: these two might be good to save to save the player some extra waiting time when loading an unluckily
+        // timed save
         private float playerEngulfedDeathTimer;
         private float previousPlayerEngulfedDeathTimer;
 
-        public EngulfedHandlingSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public EngulfedHandlingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
+            IParallelRunner parallelRunner) : base(world, parallelRunner)
         {
+            this.worldSimulation = worldSimulation;
+            this.spawnSystem = spawnSystem;
         }
 
         protected override void PreUpdate(float delta)
@@ -84,11 +99,16 @@
                 // triggered
                 if (!engulfable.HostileEngulfer.IsAlive)
                 {
-                    GD.PrintErr("Entity is stuck inside a dead engulfer!");
+                    GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
-#if DEBUG
-                    throw new InvalidOperationException("Entity is inside a dead engulfer (not ejected)");
-#endif
+                    engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+
+                    var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                    var entityRecord = recorder.Record(entity);
+                    entityRecord.Remove<AttachedToEntity>();
+
+                    worldSimulation.FinishRecordingEntityCommands(recorder);
                 }
             }
         }

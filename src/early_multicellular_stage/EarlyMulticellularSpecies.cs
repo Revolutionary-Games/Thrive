@@ -52,8 +52,7 @@ public class EarlyMulticellularSpecies : Species
             // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
             if (cellType.RepositionToOrigin())
             {
-                GD.Print(
-                    "Repositioned an early multicellular species' cell type. This might break / crash the " +
+                GD.Print("Repositioned an early multicellular species' cell type. This might break / crash the " +
                     "body plan layout.");
             }
         }

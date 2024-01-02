@@ -68,12 +68,11 @@ public class OrganellePopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(
-                SelectedOrganelles
-                    .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
-                    {
-                        CostMultiplier = CostMultiplier,
-                    })) ??
+        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles
+                .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
+                {
+                    CostMultiplier = CostMultiplier,
+                })) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

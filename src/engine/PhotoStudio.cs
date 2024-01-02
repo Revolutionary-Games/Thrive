@@ -271,8 +271,9 @@ public class PhotoStudio : Viewport
             {
                 if (TaskUsesWorldSimulation)
                 {
-                    camera.Translation = currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
-                        previouslyUsedWorldSimulation!);
+                    camera.Translation =
+                        currentTask!.SimulationPhotographable!.CalculatePhotographDistance(
+                            previouslyUsedWorldSimulation!);
                 }
                 else
                 {
