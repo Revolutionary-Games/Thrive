@@ -911,8 +911,8 @@ public class PatchMapDrawer : Control
 
         foreach (var targetPatch in patches)
         {
-            var halfNodeSize = Constants.PATCH_NODE_RECT_LENGTH / 2;
-            var endingPoint = targetPatch.ScreenCoordinates + Vector2.One * halfNodeSize;
+            var patchSize = Vector2.One * Constants.PATCH_NODE_RECT_LENGTH;
+            var endingPoint = targetPatch.ScreenCoordinates + patchSize / 2;
 
             // Draw a straight line if possible
             if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
@@ -928,6 +928,11 @@ public class PatchMapDrawer : Control
             }
 
             var intermediate = new Vector2(endingPoint.x, startingPoint.y);
+
+            // Make sure the new point is not covered by the patch itself
+            var targetPatchRect = new Rect2(targetPatch.ScreenCoordinates, patchSize);
+            if (targetPatchRect.HasPoint(intermediate))
+                intermediate = new Vector2(startingPoint.x, endingPoint.y);
 
             var points = new[]
             {

@@ -18,10 +18,10 @@ PatchNodeContainerPath = NodePath("PatchNodeContainer")
 LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource( 1 )
 
-[node name="PatchNodeContainer" type="Control" parent="."]
+[node name="LineContainer" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="LineContainer" type="Control" parent="."]
+[node name="PatchNodeContainer" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
