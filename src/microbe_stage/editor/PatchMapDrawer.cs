@@ -38,8 +38,6 @@ public class PatchMapDrawer : Control
     /// </summary>
     private readonly Dictionary<Int2, Vector2[]> connections = new();
 
-    private readonly Dictionary<Int2, Line2D> regionConnectionLines = new();
-
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
     private Control patchNodeContainer = null!;
@@ -856,7 +854,6 @@ public class PatchMapDrawer : Control
     {
         // Clear exisiting connection lines
         lineContainer.FreeChildren();
-        regionConnectionLines.Clear();
 
         foreach (var entry in connections)
         {
@@ -880,7 +877,6 @@ public class PatchMapDrawer : Control
             // Create the main connection line
             var points = entry.Value;
             var line = CreateConnectionLine(points, color);
-            regionConnectionLines.Add(entry.Key, line);
 
             // Fade the connection line if need be
             ApplyFadeIfNeeded(region1, region2, line, false);
@@ -967,8 +963,8 @@ public class PatchMapDrawer : Control
         var adjacencies = startingRegion.PatchAdjacencies[endingRegion.ID];
 
         if (!endingRegion.Patches
-            .Where(p => p.Visibility == MapElementVisibility.Unknown)
-            .Any(p => adjacencies.Contains(p)))
+                .Where(p => p.Visibility == MapElementVisibility.Unknown)
+                .Any(p => adjacencies.Contains(p)))
         {
             ApplyFadeToLine(line, reversed);
         }
