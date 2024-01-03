@@ -121,6 +121,14 @@ public abstract class InputAttribute : Attribute
     /// <returns>Returns whether the event was consumed or not. Methods returning a boolean can control this.</returns>
     protected bool CallMethod(params object[] parameters)
     {
-        return InputManager.CallMethod(this, parameters);
+        return InputManager.CallMethod(this, false, parameters);
+    }
+
+    /// <summary>
+    ///   Calls the associated method and gives an error if it tries to control the consuming of input.
+    /// </summary>
+    protected void CallDelayedMethod(params object[] parameters)
+    {
+        InputManager.CallMethod(this, true, parameters);
     }
 }
