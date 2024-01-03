@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-21 12:07+0200\n"
-"PO-Revision-Date: 2023-11-27 17:42+0000\n"
+"PO-Revision-Date: 2023-12-29 06:14+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2060,12 +2060,11 @@ msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
 #: ../src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.tscn:66
-#, fuzzy
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
-"Поки не відображається в вільного режиму або збереженнях до версії 0.6.0.\n"
+"Не вдалося побудувати дерево еволюції.\n"
 "\n"
-"Якщо нічого не підходить, то сталася помилка. Будь-ласка , повідомте розробницьку команду та внесіть це до журналу гри."
+"Будь ласка, повідомте розробницьку команду та внесіть це до журналу гри."
 
 #: ../src/general/OptionsMenu.tscn:1964
 msgid "EXACT_VERSION_COLON"
@@ -2305,36 +2304,32 @@ msgstr ""
 "Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
 #: ../src/microbe_stage/FogOfWarMode.cs:5
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "Вимкнути"
+msgstr "Туман війни вимкнено"
 
 #: ../src/general/NewGameSettings.cs:821
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr "Файл скам'янілості немодливо видалити"
+msgstr "(усі ділянки буде розкрито)"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:11
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Інтенсивний туман війни"
 
 #: ../src/general/NewGameSettings.cs:827
-#, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+msgstr "(тільки ділянки, де був гравець, буде розкрито)"
 
 #: ../src/general/NewGameSettings.tscn:770
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Режим туману війни"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:8
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Звичайний туман війни"
 
 #: ../src/general/NewGameSettings.cs:824
-#, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
-msgstr "Аксони є нервовими тканинами, що використовуються нейронами для з'єднання й комунікації один з одним. Розміщення цієї органели на клітині перетворює її на мозкову тканину."
+msgstr "(ділянки, де був гравець, і суміжні з ними буде розкрито)"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:237
 msgid "FOOD_CHAIN"
@@ -2529,7 +2524,7 @@ msgstr "Відслідкований Текст ліцензії GPL:"
 
 #: ../src/general/OptionsMenu.tscn:491
 msgid "GPU_NAME"
-msgstr "ЦПУ:"
+msgstr "Відеокарта:"
 
 #: ../src/general/OptionsMenu.tscn:177
 msgid "GRAPHICS"
@@ -3303,7 +3298,7 @@ msgstr "Теплий маленький ставок"
 #: ../src/general/NewGameSettings.tscn:207
 #: ../src/general/NewGameSettings.tscn:935
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Деякі налаштування можуть бути вимкнені, коли вімкнений тільки ЗАКОН"
+msgstr "Деякі налаштування можуть бути вимкнені, коли увімкнено тільки ЗАКОН"
 
 #: ../src/general/NewGameSettings.tscn:209
 #: ../src/general/NewGameSettings.tscn:210
@@ -3537,7 +3532,7 @@ msgstr "Максимум видів в ділянці"
 
 #: ../src/general/OptionsMenu.tscn:375
 msgid "MAX_FPS"
-msgstr "МАКСимальні кількість FPS:"
+msgstr "Макс. FPS:"
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "MAX_FPS_NO_LIMIT"
@@ -5381,7 +5376,7 @@ msgstr "Стійкий до базового поглинання"
 
 #: ../src/general/OptionsMenu.tscn:351
 msgid "RESOLUTION"
-msgstr "Резолюції:"
+msgstr "Роздільна здатність:"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
@@ -7303,7 +7298,7 @@ msgstr "Підсилити звук"
 
 #: ../src/general/OptionsMenu.tscn:282
 msgid "VSYNC"
-msgstr "Вертикальна синхронізація(VSync)"
+msgstr "Вертикальна синхронізація (VSync)"
 
 #: ../src/general/base_stage/EditorBase.cs:258
 msgid "WAITING_FOR_AUTO_EVO"
