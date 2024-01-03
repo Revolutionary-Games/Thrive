@@ -445,7 +445,8 @@ Ref<PhysicsBody> PhysicalWorld::CreateSensor(const JPH::RefConst<JPH::Shape>& sh
         auto underlyingBody = physicsSystem->GetBodyLockInterface().TryGetBody(body->GetId());
         if (underlyingBody != nullptr)
         {
-            underlyingBody->SetSensorDetectsStatic(true);
+            // TODO: test that this works (the documentation says the body needs to be kinematic)
+            underlyingBody->SetCollideKinematicVsNonDynamic(true);
         }
     }
 

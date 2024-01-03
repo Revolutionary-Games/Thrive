@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-21 12:07+0200\n"
-"PO-Revision-Date: 2023-11-14 20:10+0000\n"
-"Last-Translator: Bi2Nb9O3 <1022780532@qq.com>\n"
+"PO-Revision-Date: 2023-12-29 06:14+0000\n"
+"Last-Translator: qqthy360 <2531083870@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2242,9 +2242,8 @@ msgstr "发射毒素"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
 #: ../src/microbe_stage/MicrobeHUD.tscn:1963
-#, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
-msgstr "如果LAWK启用，部分选项将不可用"
+msgstr "发射毒素投射物对命中细胞造成伤害"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:403
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
@@ -2305,18 +2304,16 @@ msgstr ""
 "应变型微生物将更快的转向新的目标。"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:5
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED"
-msgstr "已禁用"
+msgstr "战争迷雾已禁用"
 
 #: ../src/general/NewGameSettings.cs:821
-#, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
-msgstr "未能删除化石文件"
+msgstr "(所有补丁都将显示)"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:11
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "强烈战争迷雾"
 
 #: ../src/general/NewGameSettings.cs:827
 #, fuzzy
@@ -2325,11 +2322,11 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 
 #: ../src/general/NewGameSettings.tscn:770
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "战争迷雾模式"
 
 #: ../src/microbe_stage/FogOfWarMode.cs:8
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "常规的战争迷雾"
 
 #: ../src/general/NewGameSettings.cs:824
 #, fuzzy
@@ -3802,13 +3799,14 @@ msgstr ""
 "尝试所有按键几秒钟以继续。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:221
+#, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
 "注意环境面板上的光强变化。\n"
 "\n"
 "随着环境变暗，夜晚来临。\n"
 "光合作用在夜间无效。\n"
-"因此，请确保您有足够的存储空间来过夜。"
+"因此，请确保您存储了足够的能量来过夜。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -5683,9 +5681,8 @@ msgid "SCALING_ON_INVERSE"
 msgstr "成反比"
 
 #: ../src/general/OptionsMenu.tscn:1928
-#, fuzzy
 msgid "SCREEN_EFFECT"
-msgstr "外部影响"
+msgstr "画面效果"
 
 #: ../simulation_parameters/common/screen_effects.json:13
 #, fuzzy
@@ -5738,9 +5735,8 @@ msgstr "喷射黏液"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
 #: ../src/microbe_stage/MicrobeHUD.tscn:2013
-#, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
-msgstr "喷射黏液"
+msgstr "喷射黏液以提高速度并减缓困在黏液中细胞的速度"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:299
@@ -6667,9 +6663,8 @@ msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
 #: ../src/microbe_stage/MicrobeHUD.tscn:1975
-#, fuzzy
 msgid "TOGGLE_BINDING_TOOLTIP"
-msgstr "切换连接模式"
+msgstr "切换连接模式，触碰其他细胞以建立群落"
 
 #: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_DEBUG_PANEL"
@@ -7055,9 +7050,8 @@ msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
 #: ../src/microbe_stage/Patch.cs:22
-#, fuzzy
 msgid "UNDISCOVERED_PATCH"
-msgstr "找到当前的地区"
+msgstr "未发现的地区"
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "UNDO"
