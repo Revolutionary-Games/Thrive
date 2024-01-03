@@ -273,9 +273,7 @@ public class Program
         return tool.Run(tokenSource.Token).Result;
     }
 
-    public class CheckOptions : CheckOptionsBase
-    {
-    }
+    public class CheckOptions : CheckOptionsBase;
 
     [Verb("native", HelpText = "Handling for native libraries needed by Thrive")]
     public class NativeLibOptions : SymbolUploadOptionsBase
@@ -374,9 +372,7 @@ public class Program
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]
-    public class TestOptions : ScriptOptionsBase
-    {
-    }
+    public class TestOptions : ScriptOptionsBase;
 
     public class ChangesOptions : ChangesOptionsBase
     {
@@ -384,9 +380,7 @@ public class Program
         public override string RemoteBranch { get; set; } = "master";
     }
 
-    public class LocalizationOptions : LocalizationOptionsBase
-    {
-    }
+    public class LocalizationOptions : LocalizationOptionsBase;
 
     [Verb("cleanup", HelpText = "Cleanup Godot temporary files. WARNING: will lose uncommitted changes")]
     public class CleanupOptions : ScriptOptionsBase
@@ -456,24 +450,16 @@ public class Program
     }
 
     [Verb("godot-templates", HelpText = "Tool to automatically install Godot templates")]
-    public class GodotTemplateOptions : ScriptOptionsBase
-    {
-    }
+    public class GodotTemplateOptions : ScriptOptionsBase;
 
     [Verb("translation-progress", HelpText = "Updates the translation progress file")]
-    public class TranslationProgressOptions : ScriptOptionsBase
-    {
-    }
+    public class TranslationProgressOptions : ScriptOptionsBase;
 
     [Verb("credits", HelpText = "Updates credits with some automatically (and some needing manual) retrieved files")]
-    public class CreditsOptions : ScriptOptionsBase
-    {
-    }
+    public class CreditsOptions : ScriptOptionsBase;
 
     [Verb("wiki", HelpText = "Updates the Thriveopedia with content from the online wiki")]
-    public class WikiOptions : ScriptOptionsBase
-    {
-    }
+    public class WikiOptions : ScriptOptionsBase;
 
     [Verb("generate", HelpText = "Generates various kinds of files")]
     public class GeneratorOptions : ScriptOptionsBase
@@ -484,7 +470,5 @@ public class Program
     }
 
     [Verb("make-project-valid", HelpText = "Makes the Godot project valid for C# compile")]
-    public class GodotProjectValidMakerOptions : ScriptOptionsBase
-    {
-    }
+    public class GodotProjectValidMakerOptions : ScriptOptionsBase;
 }
