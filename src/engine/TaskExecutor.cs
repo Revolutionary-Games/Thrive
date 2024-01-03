@@ -145,7 +145,7 @@ public class TaskExecutor : IParallelRunner
     /// </summary>
     public void AddTask(Task task, bool wakeWorkerThread = true)
     {
-        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Task, task));
+        queuedTasks.Enqueue(new ThreadCommand(task));
 
         if (wakeWorkerThread)
             NotifyNewTasksAdded(1);
@@ -244,7 +244,7 @@ public class TaskExecutor : IParallelRunner
                 // If we take out a quit command here, we need to put it back for the actual threads to get and break
                 if (command.CommandType == ThreadCommand.Type.Quit)
                 {
-                    queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit, null));
+                    queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit));
                     break;
                 }
 
@@ -316,7 +316,7 @@ public class TaskExecutor : IParallelRunner
         if (currentThreadCount <= 0)
             return;
 
-        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit, null));
+        queuedTasks.Enqueue(new ThreadCommand(ThreadCommand.Type.Quit));
         NotifyNewTasksAdded(1);
 
         --currentThreadCount;
@@ -411,6 +411,19 @@ public class TaskExecutor : IParallelRunner
                 GD.Print("Background task failed due to thread exiting: ", exception.Message);
                 return true;
             }
+            catch (Exception e)
+            {
+                // This shouldn't hit in normal circumstances, but people have been submitting crash reports where
+                // an exception likely directly is caused by the run synchronously call
+
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+#endif
+
+                GD.PrintErr("Trying to run background task failed with exception: ", e);
+                return true;
+            }
 
             // Make sure task exceptions aren't ignored.
             // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
@@ -450,9 +463,14 @@ public class TaskExecutor : IParallelRunner
                 Interlocked.Decrement(ref queuedParallelRunnableCount);
             }
         }
+        else if (command.CommandType == ThreadCommand.Type.Invalid)
+        {
+            GD.PrintErr("Something has queued a task of invalid type. " +
+                "Ignoring it, but the underlying bug needs to be fixed.");
+        }
         else
         {
-            throw new Exception("invalid task type");
+            throw new Exception("Task command type value out of range");
         }
 
         return false;
@@ -467,11 +485,27 @@ public class TaskExecutor : IParallelRunner
         public readonly int ParallelIndex;
         public readonly int MaxIndex;
 
-        public ThreadCommand(Type commandType, Task? task)
+        public ThreadCommand(Task task)
         {
-            CommandType = commandType;
+            CommandType = Type.Task;
             Task = task;
 
+            if (Task == null)
+                throw new ArgumentNullException(nameof(task), "Task must be provided to this constructor");
+
+            ParallelRunnable = null;
+            ParallelIndex = 0;
+            MaxIndex = 0;
+        }
+
+        public ThreadCommand(Type commandType)
+        {
+            CommandType = commandType;
+
+            if (CommandType != Type.Quit)
+                throw new ArgumentException("This constructor is only allowed to create quit type commands");
+
+            Task = null;
             ParallelRunnable = null;
             ParallelIndex = 0;
             MaxIndex = 0;
@@ -484,11 +518,24 @@ public class TaskExecutor : IParallelRunner
             ParallelIndex = index;
             MaxIndex = maxIndex;
 
+            // This is inside a debug block as there's never been a crash report with the parallel runnable being
+            // null
+#if DEBUG
+            if (ParallelRunnable == null)
+            {
+                throw new ArgumentNullException(nameof(parallelRunnable),
+                    "Parallel runnable must be provided to this constructor");
+            }
+#endif
+
             Task = null;
         }
 
         public enum Type
         {
+            // Default initialize type to invalid in order to catch errors caused by default initialization of
+            // this class
+            Invalid = 0,
             Task,
             ParallelRunnable,
             Quit,

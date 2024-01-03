@@ -70,6 +70,20 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI.Visible = true;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+    }
+
     public void SendAutoEvoResultsToReportComponent()
     {
         reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
@@ -147,8 +161,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
-        // Send undo button to the tutorial system
-        cellEditorTab.SendUndoRedoToTutorial(TutorialState);
+        // Send highlighted controls to the tutorial system
+        cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
     }
 
     protected override void InitEditorGUI(bool fresh)
@@ -325,6 +339,12 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         }
 
         base.Dispose(disposing);
+    }
+
+    private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
+    {
+        CurrentGame.GameWorld.Map.RevealAllPatches();
+        patchMapTab.MarkDrawerDirty();
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

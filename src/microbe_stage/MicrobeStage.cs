@@ -21,6 +21,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
+    private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
     // a save
@@ -130,8 +131,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         ResolveNodeReferences();
 
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
+        var simulationParameters = SimulationParameters.Instance;
+        glucose = simulationParameters.GetCompound("glucose");
+        phosphate = simulationParameters.GetCompound("phosphates");
+        cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -323,8 +326,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
-            TutorialState.SendEvent(
-                TutorialEventType.EnteredMicrobeStage,
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
                 new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
         }
         else
@@ -445,8 +447,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         previousSpecies.Obsolete = true;
 
         // Log becoming multicellular in the timeline
-        GameWorld.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
@@ -773,8 +774,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (spawnedPlayer)
         {
             // Random location on respawn
-            spawnLocation = new Vector3(
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            spawnLocation = new Vector3(random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             WorldSimulation.ClearPlayerLocationDependentCaches();
@@ -796,6 +796,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             OnSuccessfulEngulfment = OnPlayerIngesting,
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
             OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
+
+            OnOrganelleDuplicated = OnPlayerOrganelleDuplicated,
 
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
@@ -998,8 +1000,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
-        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity,
-            Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+            weight);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
@@ -1137,6 +1139,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerOrganelleDuplicated(Entity player, PlacedOrganelle organelle)
+    {
+        if (organelle.Definition.InternalName == cytoplasm.InternalName)
+            return;
+
+        Invoke.Instance.QueueForObject(() =>
+                TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this),
+            this);
     }
 
     [DeserializedCallbackAllowed]

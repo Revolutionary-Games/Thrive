@@ -398,6 +398,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showToxin;
         bool showSlime;
 
+        bool engulfing;
+
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
@@ -408,17 +410,21 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
+
+            engulfing = colony.ColonyState == MicrobeState.Engulf;
         }
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
+
+            engulfing = control.State == MicrobeState.Engulf;
         }
 
-        // TODO: should this read the engulf state from colony as the player cell might be unable to engulf but some
+        // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, control.State == MicrobeState.Engulf);
+            organelles.HasSignalingAgent, engulfing);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -575,8 +581,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
             {
-                stage.CurrentGame.TutorialState.SendEvent(
-                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+                stage.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeBecomeMulticellularAvailable,
+                    EventArgs.Empty, this);
             }
         }
 

@@ -187,8 +187,8 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                     DrawCircle(RectSize / 2, Size / 2, MarkerFillerColour);
                 }
 
-                DrawTextureRect(graphMarkerCircle, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, MarkerColour);
+                DrawTextureRect(graphMarkerCircle, new Rect2(RectSize / 2 - vectorSize / 2, vectorSize), false,
+                    MarkerColour);
 
                 break;
             }
@@ -200,8 +200,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     color = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerCross, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, color);
+                DrawTextureRect(graphMarkerCross, new Rect2(RectSize / 2 - vectorSize / 2, vectorSize), false, color);
                 break;
             }
 
@@ -212,8 +211,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 if (isMouseOver)
                     colour = MarkerColour.Lightened(0.5f);
 
-                DrawTextureRect(graphMarkerSkull, new Rect2(
-                    RectSize / 2 - vectorSize / 2, vectorSize), false, colour);
+                DrawTextureRect(graphMarkerSkull, new Rect2(RectSize / 2 - vectorSize / 2, vectorSize), false, colour);
                 break;
             }
 
@@ -241,8 +239,8 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         }
         else
         {
-            tween.InterpolateProperty(
-                this, "rect_position", RectPosition, coordinate - RectSize / 2, duration, transitionType, easeType);
+            tween.InterpolateProperty(this, "rect_position", RectPosition, coordinate - RectSize / 2, duration,
+                transitionType, easeType);
             tween.Start();
         }
     }

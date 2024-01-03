@@ -39,8 +39,7 @@
 
             if (bodyPlanIndex < 0 || bodyPlanIndex >= species.Cells.Count)
             {
-                GD.PrintErr(
-                    $"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
+                GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
                     "a valid value");
                 bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
             }
@@ -61,8 +60,7 @@
 
             // Register with the spawn system to allow this entity to despawn if it gets cut off from the colony later
             // or attaching fails
-            notifySpawnTo.NotifyExternalEntitySpawned(member,
-                Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+            notifySpawnTo.NotifyExternalEntitySpawned(member, Constants.MICROBE_DESPAWN_RADIUS_SQUARED, weight);
 
             member.Set(attachPosition);
 

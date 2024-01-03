@@ -36,5 +36,16 @@ margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOVE_TO_ANY_PATCH"
 
+[node name="RevealAllPatches" type="Button" parent="VBoxContainer" index="2"]
+margin_top = 144.0
+margin_right = 202.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 3 )
+text = "REVEAL_ALL_PATCHES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="VBoxContainer/InfiniteMP" to="." method="SetInfiniteMP"]
 [connection signal="toggled" from="VBoxContainer/MoveToAnyPatch" to="." method="SetMoveToAnyPatch"]
+[connection signal="pressed" from="VBoxContainer/RevealAllPatches" to="." method="OnRevealAllPatchesPressed"]

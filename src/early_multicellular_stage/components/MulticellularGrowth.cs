@@ -155,8 +155,7 @@
 
             if (lostPartIndex >= species.Cells.Count)
             {
-                GD.PrintErr(
-                    "Multicellular colony lost a cell at index that is no longer valid for the species, " +
+                GD.PrintErr("Multicellular colony lost a cell at index that is no longer valid for the species, " +
                     "ignoring this for regrowing");
 
                 // TODO: does this need to  adjust multicellularGrowth.CompoundsUsedForMulticellularGrowth?

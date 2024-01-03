@@ -150,8 +150,7 @@
             }
 
             // Material is initialized in _Ready so this is after AddChild of membrane
-            tempMaterialsList.Add(
-                cellProperties.CreatedMembrane!.MaterialToEdit ??
+            tempMaterialsList.Add(cellProperties.CreatedMembrane!.MaterialToEdit ??
                 throw new Exception("Membrane didn't set material to edit"));
 
             // TODO: should this hide organelles when the microbe is dead? (hiding / deleting organelle instances is

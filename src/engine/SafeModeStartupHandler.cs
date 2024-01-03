@@ -126,8 +126,7 @@ public static class SafeModeStartupHandler
             if (previous == null)
                 return null;
 
-            GD.Print(
-                $"Found failed Thrive start at {previous.StartedAt.ToLocalTime():G}, " +
+            GD.Print($"Found failed Thrive start at {previous.StartedAt.ToLocalTime():G}, " +
                 "will likely enter safe mode for this launch");
 
             return previous;

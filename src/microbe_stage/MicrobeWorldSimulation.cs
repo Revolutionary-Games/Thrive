@@ -185,7 +185,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         damageSoundSystem = new DamageSoundSystem(EntitySystem, couldParallelize);
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
-        engulfedHandlingSystem = new EngulfedHandlingSystem(EntitySystem, couldParallelize);
+        engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
@@ -328,6 +328,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         fluidCurrentsSystem.Update(delta);
 
+        colonyCompoundDistributionSystem.Update(delta);
+
         engulfingSystem.Update(delta);
         engulfedDigestionSystem.Update(delta);
         engulfedHandlingSystem.Update(delta);
@@ -346,8 +348,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         pilusDamageSystem.Update(delta);
 
         ProcessSystem.Update(delta);
-
-        colonyCompoundDistributionSystem.Update(delta);
 
         osmoregulationAndHealingSystem.Update(delta);
 

@@ -25,7 +25,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
     private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool =
         ArrayPool<PhysicsCollision>.Create(Constants.MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE,
-            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT);
+            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH);
 
     private static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
 

@@ -29,4 +29,9 @@ public class MicrobeEditorCheatMenu : CheatMenu
 
         base.Dispose(disposing);
     }
+
+    private void OnRevealAllPatchesPressed()
+    {
+        CheatManager.RevealAllPatches();
+    }
 }

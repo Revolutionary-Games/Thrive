@@ -112,8 +112,7 @@ public class PlayerMulticellularInput : NodeWithInput
         stage.Player?.SwimDownOrCrouch(delta);
     }
 
-    [RunOnAxis(
-        new[]
+    [RunOnAxis(new[]
         {
             RunOnKeyAttribute.CAPTURED_MOUSE_AS_AXIS_PREFIX +
             nameof(RunOnRelativeMouseAttribute.CapturedMouseAxis.Right),

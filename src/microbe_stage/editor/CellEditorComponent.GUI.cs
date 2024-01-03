@@ -36,18 +36,22 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoRedoToTutorial(TutorialState tutorial)
+    public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+
+        tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
+
+        gui.RightPanelScrollContainer = rightPanelScrollContainer;
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
-        ToolTipManager.Instance.ShowPopup(
-            TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            1.5f);
     }
 
     protected override void RegisterTooltips()
@@ -386,8 +390,11 @@ public partial class CellEditorComponent
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
-        TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-            new EnergyBalanceEventArgs(energyBalance), this);
+        if (Visible)
+        {
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+                new EnergyBalanceEventArgs(energyBalance), this);
+        }
 
         UpdateEnergyBalanceToolTips(energyBalance);
     }
@@ -440,8 +447,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION").FormatSafe(
-                displayName, energyBalance.Consumption[subBar.Name]);
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
+                .FormatSafe(displayName, energyBalance.Consumption[subBar.Name]);
         }
     }
 

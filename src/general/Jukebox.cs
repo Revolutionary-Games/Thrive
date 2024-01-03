@@ -614,9 +614,9 @@ public class Jukebox : Node
                         track.WasPlaying = true;
 
                         // Store the position to resume from
-                        track.PreviousPlayedPosition = audioPlayers.Where(
-                            player => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
-                            player => player.Player.GetPlaybackPosition()).First();
+                        track.PreviousPlayedPosition = audioPlayers
+                            .Where(player => player.Playing && player.CurrentTrack == track.ResourcePath)
+                            .Select(player => player.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {
