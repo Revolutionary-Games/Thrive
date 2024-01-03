@@ -1,6 +1,6 @@
-FROM fedora:37
+FROM fedora:39
 
-RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-7.0 \
+RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-8.0 \
     gettext p7zip && dnf clean all
 RUN git lfs install
 
@@ -26,7 +26,7 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot
 COPY editor_settings-3.tres /root/.config/godot/editor_settings-3.tres
 
 # Godot pck tool
-ENV PCK_TOOL_VERSION "v1.8"
+ENV PCK_TOOL_VERSION "v1.9"
 
 RUN wget https://github.com/hhyyrylainen/GodotPckTool/releases/download/${PCK_TOOL_VERSION}/godotpcktool -O /usr/bin/godotpcktool && \
     chmod +x /usr/bin/godotpcktool
