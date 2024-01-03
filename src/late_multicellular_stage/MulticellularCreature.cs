@@ -209,7 +209,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             {
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * delta * 2 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 5 * Mass) + 1));
+                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
         else
@@ -218,7 +218,7 @@ public class MulticellularCreature : RigidBody, ISaveLoadedTracked, ICharacterIn
             {
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * delta * 15 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 5 * Mass) + 1));
+                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
 
