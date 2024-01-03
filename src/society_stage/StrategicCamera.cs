@@ -138,11 +138,13 @@ public class StrategicCamera : Camera
         return true;
     }
 
-    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
-    public bool PanCameraWithMouse(float dummy)
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, UsesPriming = false)]
+    public void PanCameraWithMouse(float dummy)
     {
+        _ = dummy;
+
         if (!Visible)
-            return false;
+            return;
 
         if (mousePanningStart == null)
         {
@@ -151,16 +153,15 @@ public class StrategicCamera : Camera
         else
         {
             var movement = mousePanningStart.Value - CursorWorldPos;
-            ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier * dummy / -10);
+            ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier / -100);
         }
-
-        return false;
     }
 
-    [RunOnKeyUp("e_pan_mouse")]
-    public void ReleasePanCameraWithMouse()
+    [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
+    public bool ReleasePanCameraWithMouse()
     {
         mousePanningStart = null;
+        return false;
     }
 
     private void ReadEdgePanMode(bool newValue)
