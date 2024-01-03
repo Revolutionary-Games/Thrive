@@ -85,7 +85,7 @@
             {
                 ref var colony = ref entity.Get<MicrobeColony>();
 
-                colony.CanEngulf();
+                return colony.CanEngulf();
             }
 
             return cellProperties.MembraneType.CanEngulf;
