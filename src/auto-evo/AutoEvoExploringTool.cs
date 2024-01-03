@@ -482,7 +482,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
-        worldsList.Add(new AutoEvoExploringToolWorld(configuration));
+        var newWorld = new AutoEvoExploringToolWorld(configuration);
+        newWorld.GameProperties.GameWorld.Map.RevealAllPatches();
+        worldsList.Add(newWorld);
         WorldsListMenuIndexChanged(worldsList.Count - 1);
 
         worldsListMenu.AddItem((worldsList.Count - 1).ToString(CultureInfo.CurrentCulture), false, Colors.White);
