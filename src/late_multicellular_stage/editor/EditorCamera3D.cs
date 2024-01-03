@@ -183,14 +183,14 @@ public class EditorCamera3D : Camera
         return true;
     }
 
-    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
-    public bool RotateOrPanCameraWithMouse(float delta)
+    [RunOnKey("e_pan_mouse", Priority = -2, OnlyUnhandled = false)]
+    public void RotateOrPanCameraWithMouse(float delta)
     {
         if (!Current || !Visible)
-            return false;
+            return;
 
         if (mousePanningStart == null)
-            return false;
+            return;
 
         var viewPort = GetViewport();
 
@@ -200,7 +200,7 @@ public class EditorCamera3D : Camera
         var newPosition = viewPort.GetMousePosition();
 
         if (mousePanningStart == newPosition)
-            return false;
+            return;
 
         if (panning)
         {
@@ -225,14 +225,12 @@ public class EditorCamera3D : Camera
         }
 
         mousePanningStart = newPosition;
-
-        return true;
     }
 
-    [RunOnKeyDown("e_pan_mouse", Priority = -1)]
+    [RunOnKeyDown("e_pan_mouse", Priority = -1, OnlyUnhandled = false)]
     public bool StartRotateOrPanCameraWithMouse()
     {
-        if (!Current || !Visible)
+        if (!Current || !Visible || mousePanningStart != null)
             return false;
 
         var viewPort = GetViewport();
@@ -242,15 +240,12 @@ public class EditorCamera3D : Camera
 
         mousePanningStart = viewPort.GetMousePosition();
         panning = IsPanModeWanted();
-        return true;
+        return false;
     }
 
     [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
     public bool ReleaseRotateOrPanCameraWithMouse()
     {
-        if (!Current || !Visible)
-            return false;
-
         mousePanningStart = null;
         return false;
     }
