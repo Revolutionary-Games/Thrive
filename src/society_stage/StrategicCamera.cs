@@ -10,6 +10,7 @@ public class StrategicCamera : Camera
 
     private bool cursorDirty = true;
     private Vector3 cursorWorldPos;
+    private Vector3? mousePanningStart;
 
     /// <summary>
     ///   The position the camera is over
@@ -135,6 +136,31 @@ public class StrategicCamera : Camera
         ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier * delta);
 
         return true;
+    }
+
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
+    public bool PanCameraWithMouse(float dummy)
+    {
+        if (!Visible)
+            return false;
+
+        if (mousePanningStart == null)
+        {
+            mousePanningStart = CursorWorldPos;
+        }
+        else
+        {
+            var movement = mousePanningStart.Value - CursorWorldPos;
+            ApplyPan(movement * CameraPanSpeed * ZoomLevel * ZoomLevelMovementSpeedModifier * dummy / -10);
+        }
+
+        return false;
+    }
+
+    [RunOnKeyUp("e_pan_mouse")]
+    public void ReleasePanCameraWithMouse()
+    {
+        mousePanningStart = null;
     }
 
     private void ReadEdgePanMode(bool newValue)
