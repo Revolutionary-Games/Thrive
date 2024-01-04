@@ -50,6 +50,13 @@ public class RunOnKeyAttribute : InputAttribute
     public bool CallbackRequiresElapsedTime { get; set; } = true;
 
     /// <summary>
+    ///   When true the input is primed when it is pressed and can trigger callback after releasing. If there is an
+    ///   action very sensitive to this potential last input method call, this can be set to false to disable priming
+    ///   and only perform actions if the key is really currently held.
+    /// </summary>
+    public bool UsesPriming { get; set; } = true;
+
+    /// <summary>
     ///   Should OnInput run the callback method instantly
     /// </summary>
     protected virtual bool CallMethodInOnInput => true;
@@ -97,8 +104,11 @@ public class RunOnKeyAttribute : InputAttribute
 
         if (@event.IsActionReleased(InputName, false))
         {
-            result = true;
-            HeldDown = false;
+            if (HeldDown)
+            {
+                result = true;
+                HeldDown = false;
+            }
         }
 
         return result;
@@ -106,10 +116,25 @@ public class RunOnKeyAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        if (HeldDown || primed)
-        {
-            primed = false;
+        if (!HeldDown && !primed)
+            return;
 
+        primed = false;
+
+        if (!CallMethodInOnInput || CallbackRequiresElapsedTime)
+        {
+            // Warnings for methods that only trigger here and not early in OnInput allowing ignoring input
+            if (TrackInputMethod)
+            {
+                CallDelayedMethod(delta, LastUsedInputMethod);
+            }
+            else
+            {
+                CallDelayedMethod(delta);
+            }
+        }
+        else
+        {
             if (TrackInputMethod)
             {
                 CallMethod(delta, LastUsedInputMethod);
@@ -128,6 +153,9 @@ public class RunOnKeyAttribute : InputAttribute
 
     protected void Prime()
     {
+        if (!UsesPriming)
+            return;
+
         primed = true;
     }
 }

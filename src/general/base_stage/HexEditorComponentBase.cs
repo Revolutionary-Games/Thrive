@@ -405,9 +405,11 @@ public abstract class HexEditorComponentBase<TEditor, TCombinedAction, TAction, 
         return true;
     }
 
-    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
-    public bool PanCameraWithMouse(float delta)
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, OnlyUnhandled = false)]
+    public bool PanCameraWithMouse(float dummy)
     {
+        _ = dummy;
+
         // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
         // workaround
         if (!Visible)
@@ -420,20 +422,17 @@ public abstract class HexEditorComponentBase<TEditor, TCombinedAction, TAction, 
         else
         {
             var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
-            MoveCamera(mousePanDirection * delta * 10);
+            MoveCamera(mousePanDirection);
         }
 
         return false;
     }
 
-    [RunOnKeyUp("e_pan_mouse")]
+    [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
     public bool ReleasePanCameraWithMouse()
     {
-        if (!Visible)
-            return false;
-
         mousePanningStart = null;
-        return true;
+        return false;
     }
 
     [RunOnKeyDown("e_reset_camera")]

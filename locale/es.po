@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-21 12:07+0200\n"
+"POT-Creation-Date: 2024-01-03 18:43+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -23,11 +23,11 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "estilo de movimiento 2D:"
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
 
-#: ../simulation_parameters/common/input_options.json:194
+#: ../simulation_parameters/common/input_options.json:198
 msgid "3D_MOVEMENT"
 msgstr "Movimiento 3D"
 
@@ -52,11 +52,11 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abisopelágico"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1592
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1593
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1587
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Avanzar al Estadio del Despertar. Solo disponible una vez tengas suficiente poder cerebral (tejido con axones)"
 
@@ -121,7 +121,7 @@ msgstr "Abre las opciones avanzadas"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fijación de Nitrógeno Aeróbica"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1402
 #: ../src/microbe_stage/MicrobeHUD.tscn:1432
 msgid "AGENTS"
 msgstr "Agentes"
@@ -171,7 +171,7 @@ msgstr "Permitir que las especies no tengan mutaciones (en caso que no se encuen
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1006
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
@@ -202,7 +202,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr "Volumen de ambiente"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1178
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1179
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:694
 #: ../src/microbe_stage/MicrobeHUD.tscn:1174
 msgid "AMMONIA"
@@ -382,7 +382,7 @@ msgstr "Explorar Auto-Evolución"
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo falló"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:910
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados de auto-evo:"
@@ -424,7 +424,7 @@ msgstr "Estadio del despertar"
 msgid "AWARE_STAGE"
 msgstr "Etapa de microbio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:999
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1182
@@ -453,7 +453,7 @@ msgstr "Retroceso"
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:439
 msgid "BASE_MOVEMENT"
 msgstr "Movimiento Base"
 
@@ -481,12 +481,12 @@ msgstr "Subir los graves"
 msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.cs:651
 #: ../src/microbe_stage/MicrobeHUD.tscn:1623
 msgid "BECOME_MACROSCOPIC"
 msgstr "Conviértete Macroscópico ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.cs:607
 #: ../src/microbe_stage/MicrobeHUD.tscn:1611
 msgid "BECOME_MULTICELLULAR"
 msgstr "Conviértete Multicelular ({0}/{1})"
@@ -635,7 +635,7 @@ msgstr "Estructura"
 msgid "BUILD_QUEUE"
 msgstr "Estructura"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1943
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 #, fuzzy
 msgid "BUILD_STRUCTURE"
@@ -798,7 +798,7 @@ msgstr "Las notas de cambios son demasiado largas"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambiar la simetría"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
@@ -808,7 +808,7 @@ msgstr "Trucos"
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats activados"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "CHEAT_MENU"
 msgstr "Menu de trucos"
 
@@ -1065,7 +1065,7 @@ msgstr "Visita nuestra wiki comunitaria"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilado en:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1029
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
@@ -1129,7 +1129,7 @@ msgstr "CONFIRMAR"
 msgid "CONFIRM_DELETE"
 msgstr "Confirmar salída"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
@@ -1403,7 +1403,7 @@ msgstr "Abrir pantalla de ayuda"
 msgid "CURRENT_WORLD"
 msgstr "Desarrolladores actuales"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:963
+#: ../src/auto-evo/AutoEvoExploringTool.cs:965
 #, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Estadísticas del Organismo"
@@ -1964,7 +1964,7 @@ msgstr "Activar Mods"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Activar todos los mods compatibles"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "ENABLE_EDITOR"
 msgstr "Activar editor"
 
@@ -1972,11 +1972,11 @@ msgstr "Activar editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectos de luz GUI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:447
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:450
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:410
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:413
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2004,7 +2004,7 @@ msgstr "Introducir ID de Workshop existente"
 msgid "ENTITY_LABEL"
 msgstr "Etiqueta de entidades"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:562
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:563
 #: ../src/microbe_stage/MicrobeHUD.tscn:571
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
@@ -2076,7 +2076,7 @@ msgstr "Engullición evadida"
 msgid "ESTUARY"
 msgstr "Estuario"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:958
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:957
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbol Evolutivo"
 
@@ -2129,7 +2129,7 @@ msgstr "Exportar todos los mundos"
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr "Únete a nuestro servidor de Discord"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1014
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
 #, fuzzy
 msgid "EXPORT_SUCCESS"
 msgstr "Depredación de {0}"
@@ -2282,7 +2282,7 @@ msgstr "Terminar de editar y volver al juego"
 msgid "FINISH_ONE_GENERATION"
 msgstr "Completa Una Generación"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:683
+#: ../src/auto-evo/AutoEvoExploringTool.cs:685
 msgid "FINISH_X_GENERATIONS"
 msgstr "Completa {0} Generaciones"
 
@@ -2290,7 +2290,7 @@ msgstr "Completa {0} Generaciones"
 msgid "FIRE_TOXIN"
 msgstr "Lanzar toxinas"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1969
 #: ../src/microbe_stage/MicrobeHUD.tscn:1963
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
@@ -2539,7 +2539,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte de la población de [b][u]{0}[/u][/b] ha migrado desde{1} hasta {2}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1127
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:729
 #: ../src/microbe_stage/MicrobeHUD.tscn:1128
 msgid "GLUCOSE"
@@ -2609,7 +2609,7 @@ msgstr ""
 "Si experimenta un bug (como la desaparición de una parte de los botones),\n"
 "puede intentar deshabilitar este efecto y comprobar si el problema desaparece."
 
-#: ../simulation_parameters/common/input_options.json:261
+#: ../simulation_parameters/common/input_options.json:265
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} K"
@@ -2644,19 +2644,24 @@ msgstr "(valores más altos mejoran el rendimiento)"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores más altos empeoran el rendimiento)"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
+msgstr "Mantiene apretado para cambiar entre modo de desplazamiento y rotación"
+
+#: ../simulation_parameters/common/input_options.json:189
+#, fuzzy
+msgid "HOLD_FOR_PAN_WITH_MOUSE"
 msgstr "Mantiene apretado para cambiar entre modo de desplazamiento y rotación"
 
 #: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Mantener pulsado para abrir el menú de comandos"
 
-#: ../simulation_parameters/common/input_options.json:214
+#: ../simulation_parameters/common/input_options.json:218
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Mantén pulsado para mostrar el cursor"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:499
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:500
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Mantener [thrive:input]g_free_cursor[/thrive:input] para mostrar el cursor"
 
@@ -2692,7 +2697,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1282
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1283
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:659
 #: ../src/microbe_stage/MicrobeHUD.tscn:1275
 msgid "HYDROGEN_SULFIDE"
@@ -2846,7 +2851,7 @@ msgstr "Velocidad de mutación de la AI"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Velocidad de mutación de la AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:458
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:460
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr "Terminar construcción (Faltan materiales necesarios)"
@@ -2861,7 +2866,7 @@ msgstr "Velocidad de mutación de la AI"
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Velocidad de mutación de la AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:448
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:450
 #, fuzzy
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr "Depositar Materiales (no llevas ningún objeto adecuado)"
@@ -2881,7 +2886,7 @@ msgstr "Velocidad de mutación de la AI"
 msgid "INTERACTION_HARVEST"
 msgstr "Velocidad de mutación de la AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:434
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:436
 #, fuzzy
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr "Cosechar (FALTA EQUIPAMIENTO:{0})"
@@ -2891,7 +2896,7 @@ msgstr "Cosechar (FALTA EQUIPAMIENTO:{0})"
 msgid "INTERACTION_PICK_UP"
 msgstr "Coger"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:411
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:413
 #, fuzzy
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Coger (LLENO)"
@@ -2974,7 +2979,7 @@ msgstr ""
 "Algunas partes de los prototipos pueden permitir guardado."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1334
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1335
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:800
 #: ../src/microbe_stage/MicrobeHUD.tscn:1321
 msgid "IRON"
@@ -3403,7 +3408,7 @@ msgstr "Ciertas opciones serán deshabilitadas si \"Solo usar VCLC\" está activ
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Fuentes hidrotermales"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:886
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:887
 #: ../src/microbe_stage/MicrobeHUD.tscn:893
 msgid "LIGHT"
 msgstr "Luz"
@@ -3841,8 +3846,8 @@ msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, d
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor libre de microbios"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:976
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
+#: ../src/auto-evo/AutoEvoExploringTool.cs:978
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1022
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Estadísticas del Organismo"
@@ -4036,12 +4041,12 @@ msgstr "¡No se pueden mostrar menos de {0} dataset(s)!"
 msgid "MISC"
 msgstr "Misc."
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:322
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Diverso"
 
-#: ../simulation_parameters/common/input_options.json:210
+#: ../simulation_parameters/common/input_options.json:214
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Estadio 3D diverso"
 
@@ -4280,7 +4285,7 @@ msgstr "Intentos de migración por especie"
 msgid "MOVE_BACKWARDS"
 msgstr "Moverse hacia atrás"
 
-#: ../simulation_parameters/common/input_options.json:202
+#: ../simulation_parameters/common/input_options.json:206
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Moverse hacia Abajo o Agacharse"
 
@@ -4304,7 +4309,7 @@ msgstr "Moverse a la derecha"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Ir a Cualquier Zona"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1572
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1573
 msgid "MOVE_TO_LAND"
 msgstr "Moverse a tierra"
 
@@ -4321,11 +4326,11 @@ msgstr "Avanza a la siguiente etapa del juego (multicelular). Disponible una vez
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moverse a este bioma"
 
-#: ../simulation_parameters/common/input_options.json:198
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Moverse hacia Arriba o Saltar"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2030
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2031
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -4335,11 +4340,11 @@ msgstr ""
 "\n"
 "El plan es que el movimiento a tierra sea gradual y no un cambio abrupto."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2029
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2030
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr "¿Moverse al Estadio del Despertar?"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2025
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 "Estás a punto de moverte a tierra. Esto es necesario para avanzar en un futuro en el juego. Una vez que estés en tierra ya no vas a poder volver.\n"
@@ -4348,7 +4353,7 @@ msgstr ""
 "\n"
 "El plan es que el movimiento a tierra sea gradual y no un cambio abrupto."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2024
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2025
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr "Ir a tierra?"
 
@@ -4367,7 +4372,7 @@ msgid "MP_COST"
 msgstr "{0} PM"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1512
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1513
 #: ../src/microbe_stage/MicrobeHUD.tscn:1537
 msgid "MUCILAGE"
 msgstr "Mucílago"
@@ -4599,13 +4604,13 @@ msgstr "Dañado por toxinas en la materia ingerida"
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Falta {0} para engullir al objetivo"
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:965
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:966
 #, fuzzy
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "El tamaño actual de la célula es demasiado pequeño para engullir al objetivo"
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:957
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:958
 #, fuzzy
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "No hay espacio suficiente en el almacenamiento de materia ingerida para engullir al objetivo"
@@ -4699,7 +4704,7 @@ msgstr "Bloq Num"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2373
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:448
+#: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "N_A"
 msgstr "N/A"
 
@@ -4707,7 +4712,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:502
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4794,7 +4799,7 @@ msgstr "Abrir pantalla de ayuda"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Abrir directorio de guardado"
 
-#: ../simulation_parameters/common/input_options.json:250
+#: ../simulation_parameters/common/input_options.json:254
 #, fuzzy
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Abrir el menú"
@@ -4884,7 +4889,7 @@ msgstr "Puede usarse para atacar a otras células o para defenderse de sus toxin
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:433
 msgid "OSMOREGULATION"
 msgstr "Osmorregulación"
 
@@ -4974,7 +4979,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión es proporcional a la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. Puede liberar toxinas presionando [thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo posible pero con un daño reducido."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1461
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
 #: ../src/microbe_stage/MicrobeHUD.tscn:1489
 msgid "OXYTOXY_NT"
 msgstr "OxiToxi NT"
@@ -5157,7 +5162,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1231
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:765
 #: ../src/microbe_stage/MicrobeHUD.tscn:1223
 msgid "PHOSPHATE"
@@ -5206,7 +5211,7 @@ msgstr "Generación de Planeta próximamente!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Semilla de generación del Planeta"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:472
+#: ../src/microbe_stage/MicrobeHUD.cs:478
 #, fuzzy
 msgid "PLAYER"
 msgstr "Célula del jugador"
@@ -5273,7 +5278,7 @@ msgstr "Reproducir cinemática de entrada del estadio de Microbio en nueva parti
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Jugar con la configuración actual"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1612
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1613
 #: ../src/microbe_stage/MicrobeHUD.tscn:1643
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
@@ -5303,7 +5308,7 @@ msgstr "Ver información detallada sobre la predicción"
 msgid "PRESSURE"
 msgstr "Presión"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:941
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:942
 #: ../src/microbe_stage/MicrobeHUD.tscn:948
 msgid "PRESSURE_SHORT"
 msgstr "Pres."
@@ -5364,11 +5369,11 @@ msgstr "Protoplasma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / programación"
 
-#: ../simulation_parameters/common/input_options.json:342
+#: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
 msgstr "Carga rápida"
 
-#: ../simulation_parameters/common/input_options.json:338
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_SAVE"
 msgstr "Guardado rápido"
 
@@ -5409,7 +5414,7 @@ msgstr "Valor bruto:"
 msgid "READING_SAVE_DATA"
 msgstr "Leyendo datos de guardado"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:826
+#: ../src/auto-evo/AutoEvoExploringTool.cs:828
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Listo"
@@ -5583,7 +5588,7 @@ msgstr "Volver al Menú"
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Volver al menú principal"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1010
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
 #: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -5659,7 +5664,7 @@ msgstr "separarse de {0}"
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "La població en algunas zonas se divide para formar nuevas especies {0}:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:699
+#: ../src/auto-evo/AutoEvoExploringTool.cs:701
 #, fuzzy
 msgid "RUN_X_WORLDS"
 msgstr "Ejecutar {0} Mundos"
@@ -5878,7 +5883,7 @@ msgstr "Relieve oceánico"
 msgid "SECRETE_SLIME"
 msgstr "Secretar mucílago"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1992
 #: ../src/microbe_stage/MicrobeHUD.tscn:2013
 #, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
@@ -5984,7 +5989,7 @@ msgstr "Volumen de efectos"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:350
+#: ../simulation_parameters/common/input_options.json:354
 msgid "SHOW_HELP"
 msgstr "Mostrar ayuda"
 
@@ -6159,7 +6164,7 @@ msgstr "Construyendo: {0}"
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
 msgstr "Construyendo: {0}"
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_AMMONIA"
 msgstr "Crear amoníaco"
 
@@ -6171,11 +6176,11 @@ msgstr "Enemigo aparecido"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No puedes usar el comando ya que el medio actual no contiene especies enemigas"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_GLUCOSE"
 msgstr "Crear glucosa"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "SPAWN_PHOSPHATES"
 msgstr "Crear fosfato"
 
@@ -6406,7 +6411,7 @@ msgstr "Almacenamiento:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Conectado como: {0}"
 
-#: ../simulation_parameters/common/input_options.json:246
+#: ../simulation_parameters/common/input_options.json:250
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Etapa de microbio"
@@ -6513,15 +6518,15 @@ msgstr "Súper derecha"
 msgid "SUPPORTER_PATRONS"
 msgstr "Colaboradores"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Cambia a cámara frontal"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Cambia a camera de perfil derecho"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:242
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Cambia a camera desde arriba"
 
@@ -6529,20 +6534,20 @@ msgstr "Cambia a camera desde arriba"
 msgid "SYSREQ"
 msgstr "SysRq"
 
-#: ../simulation_parameters/common/input_options.json:273
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:277
+#: ../simulation_parameters/common/input_options.json:281
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:265
+#: ../simulation_parameters/common/input_options.json:269
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Girar a la izquierda"
 
-#: ../simulation_parameters/common/input_options.json:269
+#: ../simulation_parameters/common/input_options.json:273
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Girar a la derecha"
@@ -6551,7 +6556,7 @@ msgstr "Girar a la derecha"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "No se ha indicado ninguna etiqueta"
 
-#: ../simulation_parameters/common/input_options.json:346
+#: ../simulation_parameters/common/input_options.json:350
 msgid "TAKE_SCREENSHOT"
 msgstr "Tomar una captura de pantalla"
 
@@ -6638,7 +6643,7 @@ msgstr "Tecnología desbloqueada: {0}"
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:830
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:831
 #: ../src/microbe_stage/MicrobeHUD.tscn:837
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
@@ -6857,13 +6862,13 @@ msgstr "Alternar unión"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Alternar unión"
 
-#: ../simulation_parameters/common/input_options.json:326
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Activa el panel de depuración"
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1918
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1919
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1955
 msgid "TOGGLE_ENGULF"
 msgstr "Alternar engullir"
 
@@ -6872,24 +6877,24 @@ msgstr "Alternar engullir"
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Alternar engullir"
 
-#: ../simulation_parameters/common/input_options.json:330
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:354
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Pantalla Completa"
 
-#: ../simulation_parameters/common/input_options.json:358
+#: ../simulation_parameters/common/input_options.json:362
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activar HUD"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1932
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1933
 #, fuzzy
 msgid "TOGGLE_INVENTORY"
 msgstr "Alternar unión"
 
-#: ../simulation_parameters/common/input_options.json:334
+#: ../simulation_parameters/common/input_options.json:338
 msgid "TOGGLE_METRICS"
 msgstr "Activar monitor FPS"
 
@@ -6897,7 +6902,7 @@ msgstr "Activar monitor FPS"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Activar/desactivar árbol de navegación"
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
