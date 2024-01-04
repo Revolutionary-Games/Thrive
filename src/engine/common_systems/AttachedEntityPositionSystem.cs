@@ -14,8 +14,12 @@
     [RunsBefore(typeof(SpatialPositionSystem))]
     public sealed class AttachedEntityPositionSystem : AEntitySetSystem<float>
     {
-        public AttachedEntityPositionSystem(World world, IParallelRunner runner) : base(world, runner)
+        private readonly IWorldSimulation worldSimulation;
+
+        public AttachedEntityPositionSystem(IWorldSimulation worldSimulation, World world, IParallelRunner runner) :
+            base(world, runner)
         {
+            this.worldSimulation = worldSimulation;
         }
 
         protected override void Update(float state, in Entity entity)
@@ -26,9 +30,13 @@
             {
                 // This can happen if the entity is dead now
 
-                if (!attachInfo.AttachedTo.IsAlive)
+                if (attachInfo.AttachedTo != default(Entity) && !attachInfo.AttachedTo.IsAlive)
                 {
-                    // TODO: should this queue a clear of the data (using entity command recorder), or entity delete?
+                    // Delete this dependent entity if configured to do so
+                    if (attachInfo.DeleteIfTargetIsDeleted)
+                    {
+                        worldSimulation.DestroyEntity(entity);
+                    }
                 }
 
                 return;

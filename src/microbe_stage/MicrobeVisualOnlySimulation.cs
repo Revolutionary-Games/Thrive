@@ -51,7 +51,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         var runner = new DefaultParallelRunner(1);
 
         animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, runner);
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, runner);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, runner);
 
         entityMaterialFetchSystem = new EntityMaterialFetchSystem(EntitySystem);
