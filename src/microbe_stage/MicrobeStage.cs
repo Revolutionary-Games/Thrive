@@ -99,17 +99,21 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
 
+    /// <summary>
+    ///   Makes saving information related to the patch manager work. This checks the patch manager against null to
+    ///   make saves made in the editor after loading a save made in the editor work.
+    /// </summary>
     [JsonProperty]
     public Patch? SavedPatchManagerPatch
     {
-        get => patchManager.ReadPreviousPatchForSave();
+        get => patchManager == null! ? tempPatchManagerCurrentPatch : patchManager.ReadPreviousPatchForSave();
         set => tempPatchManagerCurrentPatch = value;
     }
 
     [JsonProperty]
     public float SavedPatchManagerBrightness
     {
-        get => patchManager.ReadBrightnessForSave();
+        get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
         set => tempPatchManagerBrightness = value;
     }
 

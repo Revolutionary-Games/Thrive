@@ -52,7 +52,7 @@ public class StartupActions : Node
                 GD.PrintErr("Native library is missing (or unloadable). If you downloaded a compiled Thrive " +
                     "version, this version is broken. If you are trying to compile Thrive you need to compile the " +
                     "native modules as well");
-                GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless" +
+                GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
                 throw;
             }

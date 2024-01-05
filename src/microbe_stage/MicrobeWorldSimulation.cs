@@ -145,7 +145,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // Systems stored in fields
         animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, couldParallelize);
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, couldParallelize);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, couldParallelize);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, couldParallelize);
