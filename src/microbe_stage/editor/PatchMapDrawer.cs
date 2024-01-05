@@ -114,6 +114,9 @@ public class PatchMapDrawer : Control
     {
         base._Ready();
 
+        patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
+        lineContainer = GetNode<Control>(LineContainerPath);
+
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
@@ -121,9 +124,6 @@ public class PatchMapDrawer : Control
             GD.Print("Generating and showing a new patch map for testing in PatchMapDrawer");
             Map = new GameWorld(new WorldGenerationSettings()).Map;
         }
-
-        patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
-        lineContainer = GetNode<Control>(LineContainerPath);
     }
 
     public override void _Process(float delta)
