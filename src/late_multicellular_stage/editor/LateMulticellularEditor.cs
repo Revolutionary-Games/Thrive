@@ -335,7 +335,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.Hide();
         noCellTypeSelected.Hide();
 
-        // Remember environment
         RememberEnvironment();
 
         // Show selected
@@ -442,6 +441,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 WorldEnvironmentNodePath.Dispose();
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
+            }
+
+            if (environment != null)
+            {
+                environment.Dispose();
             }
         }
 
