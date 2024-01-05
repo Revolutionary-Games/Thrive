@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 14:15+0200\n"
+"POT-Creation-Date: 2024-01-05 15:11+0200\n"
 "PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1468
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D стиль движения:"
 
@@ -31,7 +31,7 @@ msgstr "3D Редактор"
 msgid "3D_MOVEMENT"
 msgstr "3D Перемещение"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D стиль движения:"
 
@@ -91,7 +91,7 @@ msgstr "Телепортировать"
 msgid "ACTIVE"
 msgstr "Активный"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Число потоков:"
 
@@ -196,7 +196,7 @@ msgstr "Вы уже вознеслись"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:754
+#: ../src/general/OptionsMenu.tscn:756
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость окружения"
 
@@ -207,11 +207,11 @@ msgstr "Громкость окружения"
 msgid "AMMONIA"
 msgstr "Аммиак"
 
-#: ../src/general/OptionsMenu.tscn:1680
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1708
+#: ../src/general/OptionsMenu.tscn:1758
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
@@ -236,11 +236,11 @@ msgstr "Применить изменения"
 msgid "APRIL"
 msgstr "Апрель"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2145
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Вы действительно хотите сбросить настройки ввода до значений по умолчанию?"
 
@@ -284,7 +284,7 @@ msgstr "Класс сборки необходим для мода, если у�
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Сборка мода требуется c Harmony"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Предположить, что в процессоре включена гиперпоточность"
 
@@ -326,7 +326,7 @@ msgstr "Не удалось сохранить файл. Возможно, им�
 msgid "AT_CURSOR"
 msgstr "Вы смотрите на:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:873
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода звука:"
 
@@ -334,8 +334,8 @@ msgstr "Устройство вывода звука:"
 msgid "AUGUST"
 msgstr "Август"
 
-#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1536
 msgid "AUTO"
 msgstr "Авто"
 
@@ -362,7 +362,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
 
-#: ../src/general/OptionsMenu.tscn:1669
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
@@ -399,7 +399,7 @@ msgstr "Статус Авто-Эво:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Авто движение вперед"
 
-#: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1063 ../src/general/OptionsMenu.tscn:366
 msgid "AUTO_RESOLUTION"
 msgstr "Авто ({0}x{1})"
 
@@ -424,7 +424,7 @@ msgstr "Стадия Сознания"
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1182
-#: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2073 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -572,7 +572,7 @@ msgstr "Позволяет связываться с другими клетка
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Нажмите [thrive:input]g_toggle_binding[/thrive:input] чтобы включить режим связывания. В режиме связывания вы можете присоединить другие клетки вашего вида к вашей колонии касаясь их. Чтобы покинуть колонию нажмите [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1451
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Общее значение для осей"
 
@@ -654,7 +654,7 @@ msgstr "Камера"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2174
+#: ../src/general/OptionsMenu.tscn:2224
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -792,7 +792,7 @@ msgstr "Изменить симметрию"
 msgid "CHEATS"
 msgstr "Читы"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1812
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
@@ -882,7 +882,7 @@ msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:446
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
 
@@ -923,7 +923,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Удалить устаревшие сохранения"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2299
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -938,15 +938,15 @@ msgstr "Удалить устаревшие сохранения"
 msgid "CLOSE"
 msgstr "Закрыть"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2154
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1028
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облака:"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мин. интервал симуляции облаков:"
 
@@ -962,7 +962,7 @@ msgstr "Создавать сущности с коллизией"
 msgid "COLOUR"
 msgstr "Окраска"
 
-#: ../src/general/OptionsMenu.tscn:406
+#: ../src/general/OptionsMenu.tscn:408
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для дальтоников:"
 
@@ -1047,7 +1047,7 @@ msgstr "Wiki Сообщества"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Зайти на нашу Wiki"
 
-#: ../src/general/OptionsMenu.tscn:1992
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "COMPILED_AT_COLON"
 msgstr "Собрано в:"
 
@@ -1074,7 +1074,7 @@ msgstr "Соединения:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака веществ"
 
@@ -1197,7 +1197,7 @@ msgstr "Продолжить на прототипах следующих ста
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Визуализаторы осей контроллера:"
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1508
 msgid "CONTROLLER_DEADZONES"
 msgstr "Настройка мёртвых зон контроллера"
 
@@ -1212,11 +1212,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Мёртвая зона:"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:594
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Кнопка контроллера подсказывает тип:"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1438
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Чувствительность контроллера"
 
@@ -1228,11 +1228,11 @@ msgstr "Копировать Ошибку в Буфер Обмена"
 msgid "COPY_RESULTS"
 msgstr "Копировать Результаты"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_PROTANOPE"
 msgstr "Протанопия (Крас.-Зел.)"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_TRITANOPE"
 msgstr "Тританопия (Син.-Жел.)"
 
@@ -1398,7 +1398,7 @@ msgstr ""
 "  Средний размер цитоплазмы: {9}\n"
 "[b]Средняя информация об органеллах:[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1781
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "CUSTOM_USERNAME"
 msgstr "Псевдоним пользователя:"
 
@@ -1474,7 +1474,7 @@ msgstr "Консоль Отладки"
 msgid "DECEMBER"
 msgstr "Декабрь"
 
-#: ../src/general/OptionsMenu.cs:1517
+#: ../src/general/OptionsMenu.cs:1532
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
@@ -1557,7 +1557,7 @@ msgstr "Описание слишком длинное"
 msgid "DESPAWN_ENTITIES"
 msgstr "Удалить все сущности"
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "DETECTED_CPU_COUNT"
 msgstr "Число обнаруженных ядер процессора:"
 
@@ -1670,7 +1670,7 @@ msgstr "Налево"
 msgid "DIRECTIONR"
 msgstr "Направо"
 
-#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
 msgid "DISABLED"
 msgstr "Отключено"
 
@@ -1678,7 +1678,7 @@ msgstr "Отключено"
 msgid "DISABLE_ALL"
 msgstr "Отключить все"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
@@ -1720,11 +1720,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
 
-#: ../src/general/OptionsMenu.tscn:1856
+#: ../src/general/OptionsMenu.tscn:1906
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отклоненные всплывающие окна:"
 
-#: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1913
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Это показывает, сколько всплывающих окон было навсегда отклонено пользователем.\n"
@@ -1738,19 +1738,19 @@ msgstr "Не показывать это снова"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Не сообщать об этом снова"
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:483
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Отображать трёхмерные задние фоны в меню"
 
-#: ../src/general/OptionsMenu.tscn:625
+#: ../src/general/OptionsMenu.tscn:627
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Показать панель способностей"
 
-#: ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:474
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Отображение фоновых частиц"
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:644
 msgid "DISPLAY_PART_NAMES"
 msgstr "Показать названия кнопок при выборе частей"
 
@@ -1914,7 +1914,7 @@ msgstr "Включить пасхальные яйца"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(случайно расположенные секреты в игре)"
 
-#: ../src/general/OptionsMenu.tscn:1545
+#: ../src/general/OptionsMenu.tscn:1595
 msgid "EDGE_PAN_SPEED"
 msgstr "Скорость Вращения:"
 
@@ -1938,7 +1938,7 @@ msgstr ""
 "\n"
 "Когда вы будете готовы, нажмите кнопку \"далее\" в правом нижнем углу, чтобы продолжить."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1954,7 +1954,7 @@ msgstr "Включить все совместимые моды"
 msgid "ENABLE_EDITOR"
 msgstr "Включить редактор"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:635
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включить световые эффекты GUI"
 
@@ -2015,7 +2015,7 @@ msgstr "Эпипелагический"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Топор"
 
-#: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
+#: ../src/general/OptionsMenu.tscn:2235 ../src/general/OptionsMenu.tscn:2243
 msgid "ERROR"
 msgstr "Ошибка"
 
@@ -2027,7 +2027,7 @@ msgstr "Ошибка создания папки для мода"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Ошибка создания info файла мода"
 
-#: ../src/general/OptionsMenu.tscn:2195
+#: ../src/general/OptionsMenu.tscn:2245
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
 
@@ -2070,11 +2070,11 @@ msgstr ""
 "\n"
 "Пожалуйста, уведомите команду разработчиков об этом, да подправьте это логами игры."
 
-#: ../src/general/OptionsMenu.tscn:1964
+#: ../src/general/OptionsMenu.tscn:2014
 msgid "EXACT_VERSION_COLON"
 msgstr "Точная версия Thrive:"
 
-#: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:2012 ../src/general/OptionsMenu.tscn:2023
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Код коммита, с которого была скомпилирована эта версия Thrive"
 
@@ -2392,7 +2392,7 @@ msgstr "Удаление окаменелости провалилось"
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "Файл окаменелости не может быть удалён"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2423,7 +2423,7 @@ msgstr "Бесплатное облако глюкозы при выходе и�
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(начало с облаком глюкозы возле каждого поколения)"
 
-#: ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.tscn:292
 msgid "FULLSCREEN"
 msgstr "Полный экран"
 
@@ -2455,7 +2455,7 @@ msgstr "Поколение:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Посетить наш Github-репозиторий"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2467,7 +2467,7 @@ msgstr "Предупреждение режима GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/OptionsMenu.cs:1067
+#: ../src/general/OptionsMenu.cs:1082
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2525,11 +2525,11 @@ msgstr "Всё понятно"
 msgid "GPL_LICENSE_HEADING"
 msgstr "Текст лицензии GPL:"
 
-#: ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:493
 msgid "GPU_NAME"
 msgstr "Видеокарта:"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:179
 msgid "GRAPHICS"
 msgstr "Графика"
 
@@ -2537,7 +2537,7 @@ msgstr "Графика"
 msgid "GRAPHICS_TEAM"
 msgstr "Графическая Команда"
 
-#: ../src/general/OptionsMenu.tscn:575
+#: ../src/general/OptionsMenu.tscn:577
 msgid "GUI"
 msgstr "Графический интерфейс"
 
@@ -2553,7 +2553,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "Навигация в интерфейсе"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:826
 msgid "GUI_VOLUME"
 msgstr "Громкость пользовательского интерфейса"
 
@@ -2575,11 +2575,11 @@ msgstr "Помощь"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Как играть в эту игру"
 
-#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:987 ../src/general/OptionsMenu.tscn:1037
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
@@ -2612,7 +2612,7 @@ msgstr "Задержите для пропуска"
 msgid "HOME"
 msgstr "Дом"
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1355 ../src/general/OptionsMenu.tscn:1463
 msgid "HORIZONTAL_COLON"
 msgstr "По горизонтали:"
 
@@ -2736,7 +2736,7 @@ msgstr "Поглощённая материя"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Создать новый мир"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:212
 msgid "INPUTS"
 msgstr "Клавиши"
 
@@ -2873,8 +2873,8 @@ msgstr "Ремесло"
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr "Поверхность"
 
-#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
-#: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1497
 msgid "INVERTED"
 msgstr "Инвертировать"
 
@@ -2905,19 +2905,19 @@ msgstr "Посетить нашу страницу на itch.io"
 msgid "JANUARY"
 msgstr "Январь"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1939
 msgid "JSON_DEBUG_MODE"
 msgstr "Режим отладки JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Всегда"
 
-#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1954 ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
@@ -3099,19 +3099,19 @@ msgstr "Num."
 msgid "KPSUBTRACT"
 msgstr "Num-"
 
-#: ../src/general/OptionsMenu.tscn:900
+#: ../src/general/OptionsMenu.tscn:902
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.cs:1569
+#: ../src/general/OptionsMenu.cs:1584
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Этот язык на {0}% завершён"
 
-#: ../src/general/OptionsMenu.cs:1565
+#: ../src/general/OptionsMenu.cs:1580
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Этот язык всё ещё находится в стадии разработки ({0}% завершено)"
 
-#: ../src/general/OptionsMenu.cs:1561
+#: ../src/general/OptionsMenu.cs:1576
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
@@ -3345,7 +3345,7 @@ msgstr "Ночь"
 msgid "LIGHT_MAX"
 msgstr "Максимум света"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_EXTREME"
 msgstr "Экстремальное"
 
@@ -3357,31 +3357,31 @@ msgstr "Ограничить использование соединений р�
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(При включенном ограничении вещества роста будут постепенно наполняться и уже затем использоваться, при выключенной функции вещества роста будут автоматически использованы)"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_HUGE"
 msgstr "Огромное"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_LARGE"
 msgstr "Большое"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_NORMAL"
 msgstr "Нормальное"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_SMALL"
 msgstr "Маленькое"
 
-#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_TINY"
 msgstr "Крохотное"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_LARGE"
 msgstr "Очень большое"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_SMALL"
 msgstr "Очень маленькое"
 
@@ -3530,7 +3530,7 @@ msgstr "Март"
 msgid "MARINE_SNOW"
 msgstr "Морской снег"
 
-#: ../src/general/OptionsMenu.tscn:668
+#: ../src/general/OptionsMenu.tscn:670
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
@@ -3538,15 +3538,15 @@ msgstr "Общая громкость"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Максимум видов в биоме перед искусственным вымиранием"
 
-#: ../src/general/OptionsMenu.tscn:375
+#: ../src/general/OptionsMenu.tscn:377
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:392
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Бесконечно"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальное количество сущностей:"
 
@@ -3942,7 +3942,7 @@ msgstr "Минимальная версия:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Невозможно показать меньше, чем {0} наборов данных!"
 
-#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:223
 msgid "MISC"
 msgstr "Дополнительное"
 
@@ -3955,7 +3955,7 @@ msgstr "Разное"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Разное на трёхмерном этапе"
 
-#: ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1967
 msgid "MISC_FUN"
 msgstr "Смищные)) Штуки"
 
@@ -4159,15 +4159,15 @@ msgstr "Версия мода:"
 msgid "MORE_INFO"
 msgstr "Показать больше информации"
 
-#: ../src/general/OptionsMenu.tscn:1535
+#: ../src/general/OptionsMenu.tscn:1585
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr "Вращать стратегический вид когда курсор на границе экрана"
 
-#: ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Чувствительность обзора мышью"
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1394
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Изменять чувствительность мыши в зависимости от размера окна"
 
@@ -4306,7 +4306,7 @@ msgstr "Группа метасфер"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Разместить Органеллу"
 
-#: ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.tscn:316
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
@@ -4321,7 +4321,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Музыка"
 
-#: ../src/general/OptionsMenu.tscn:719
+#: ../src/general/OptionsMenu.tscn:721
 msgid "MUSIC_VOLUME"
 msgstr "Громкость музыки"
 
@@ -4341,9 +4341,9 @@ msgstr "(стоимость органелл, мембран и т. д. в ре�
 msgid "MUTATION_POINTS"
 msgstr "Очки мутации"
 
-#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
-#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:699 ../src/general/OptionsMenu.tscn:750
+#: ../src/general/OptionsMenu.tscn:785 ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:855
 msgid "MUTE"
 msgstr "Заглушить"
 
@@ -4363,6 +4363,11 @@ msgstr "{0} (ЭНРГ:{1})"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}(Н)"
+
+#: ../src/general/OptionsMenu.tscn:1175
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "Число потоков:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4461,7 +4466,7 @@ msgstr "Азотфиксирующий пластид — белок, спосо
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:425
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
@@ -4556,7 +4561,7 @@ msgstr "Не Найдено Сохранений"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папка сохранений не найдена"
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2253
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
@@ -4659,7 +4664,7 @@ msgstr "Открыть экран помощи"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Открыть в свободном редакторе клеток"
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1866
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть папку с логами"
 
@@ -4687,7 +4692,7 @@ msgstr "Открыть папку сохранений"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Открыть меню науки"
 
-#: ../src/general/OptionsMenu.tscn:1808
+#: ../src/general/OptionsMenu.tscn:1858
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть папку со скриншотами"
 
@@ -4695,7 +4700,7 @@ msgstr "Открыть папку со скриншотами"
 msgid "OPEN_THE_MENU"
 msgstr "Открыть меню"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:939
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите перевести эту игру"
 
@@ -4950,7 +4955,7 @@ msgstr "Последний раз вы играли в Thrive версии {0} ,
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "Вы играли в Thrive последний раз {0} , с того момента доступно {1} новых обновлений"
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2263
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 msgid "PATCH_NOTES_TITLE"
 msgstr "Заметки обновлений"
@@ -5018,7 +5023,7 @@ msgstr "Мирный"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:201
 msgid "PERFORMANCE"
 msgstr "Производительность"
 
@@ -5106,7 +5111,7 @@ msgstr "Клонировать Игрока"
 msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1536
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Родственник игрока"
 
@@ -5120,23 +5125,23 @@ msgstr ""
 "Скорость\n"
 "Игрока"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_3"
 msgstr "PlayStation 3"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_4"
 msgstr "PlayStation 4"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_5"
 msgstr "PlayStation 5"
 
-#: ../src/general/OptionsMenu.tscn:1645
+#: ../src/general/OptionsMenu.tscn:1695
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1653
+#: ../src/general/OptionsMenu.tscn:1703
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать вступление микроба при новой игре"
 
@@ -5351,7 +5356,7 @@ msgstr "Требуется ядро"
 msgid "RESEARCH"
 msgstr "Исследование"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
+#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2084
 msgid "RESET"
 msgstr "Сбросить"
 
@@ -5359,23 +5364,23 @@ msgstr "Сбросить"
 msgid "RESET_DEADZONES"
 msgstr "Сбросить мёртвые зоны"
 
-#: ../src/general/OptionsMenu.tscn:1879
+#: ../src/general/OptionsMenu.tscn:1929
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Сброс отклоненных всплывающих окон"
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2144
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Сбросить настройки ввода до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1604
+#: ../src/general/OptionsMenu.tscn:1654
 msgid "RESET_KEYBINDINGS"
 msgstr "Сбросить настройки клавиш"
 
-#: ../src/general/OptionsMenu.tscn:2074
+#: ../src/general/OptionsMenu.tscn:2124
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2135
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
@@ -5384,7 +5389,7 @@ msgstr "Сбросить по умолчанию?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Устойчива к базовому поглощению клетками"
 
-#: ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.tscn:353
 msgid "RESOLUTION"
 msgstr "Разрешение:"
 
@@ -5491,7 +5496,7 @@ msgstr "Повернуть вправо"
 msgid "ROTATION_COLON"
 msgstr "Поворот:"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1072
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать Авто-Эво во время игры"
 
@@ -5562,11 +5567,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive запущен в безопасном режиме"
 
-#: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2098 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:2147
+#: ../src/general/OptionsMenu.tscn:2197
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
@@ -5673,19 +5678,19 @@ msgstr "Сохранение сейчас невозможно по причин
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
-#: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1406 ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_NONE"
 msgstr "Не изменять"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_ON"
 msgstr "Увеличивать"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_ON_INVERSE"
 msgstr "Уменьшать"
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1978
 msgid "SCREEN_EFFECT"
 msgstr "Эффекты экрана"
 
@@ -5705,8 +5710,8 @@ msgstr "Оттенки Серого"
 msgid "SCREEN_EFFECT_NONE"
 msgstr "Отсутствуют"
 
-#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1536 ../src/general/OptionsMenu.tscn:1569
+#: ../src/general/OptionsMenu.tscn:1570
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "Относительно экрана"
 
@@ -5827,7 +5832,7 @@ msgstr "Оседлый"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Это значение начнёт работать при старте новой игры"
 
-#: ../src/general/OptionsMenu.tscn:789
+#: ../src/general/OptionsMenu.tscn:791
 msgid "SFX_VOLUME"
 msgstr "Громкость звуковых эффектов"
 
@@ -5839,11 +5844,11 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Показать помощь"
 
-#: ../src/general/OptionsMenu.tscn:1833
+#: ../src/general/OptionsMenu.tscn:1883
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Показывать новые заметки релизов автоматически"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1881
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Показывать заметки обновлений новых релизов Thrive автоматически в главном меню"
 
@@ -5851,15 +5856,15 @@ msgstr "Показывать заметки обновлений новых ре
 msgid "SHOW_TUTORIALS"
 msgstr "Показать Обучение"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показывать руководства (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1785
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать руководства (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Показать предупреждение о несохраненном прогрессе"
 
@@ -5867,7 +5872,7 @@ msgstr "Показать предупреждение о несохраненн�
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Включает / отключает предупреждение о несохраненном прогрессе, когда игрок пытается выйти из игры."
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1874
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Показать ленту новостей Thrive (загрузка из интернета)"
 
@@ -5921,7 +5926,7 @@ msgstr "Кремнезём"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет прочную стенку из кремнезема. Она может хорошо противостоять общим повреждениям и очень устойчива к физическим повреждениям. Она также требует меньше энергии для поддержания своей формы. Но клетка не может быстро поглощать ресурсы и двигается медленнее."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5965,7 +5970,7 @@ msgstr "Маленький кусок железа"
 msgid "SOCIETY_STAGE"
 msgstr "Стадия Общества"
 
-#: ../src/general/OptionsMenu.tscn:188
+#: ../src/general/OptionsMenu.tscn:190
 msgid "SOUND"
 msgstr "Звук"
 
@@ -6532,7 +6537,7 @@ msgstr "Это локально установленный мод"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Этот мод загружен из Мастерской Steam"
 
-#: ../src/general/OptionsMenu.tscn:1139
+#: ../src/general/OptionsMenu.tscn:1141 ../src/general/OptionsMenu.tscn:1188
 msgid "THREADS"
 msgstr "Потоки:"
 
@@ -6779,7 +6784,7 @@ msgstr "Попробуйте сохранить окаменелости нек�
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Попробуйте сделать сохранение!"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2255
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
@@ -7012,7 +7017,7 @@ msgstr "Обучение"
 msgid "TWITTER_TOOLTIP"
 msgstr "Посетите нашу ленту в Twitter"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -7040,7 +7045,7 @@ msgstr "Отвязать все клетки в колонии"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Режим Развязки"
 
-#: ../src/general/OptionsMenu.cs:1630
+#: ../src/general/OptionsMenu.cs:1655
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Это отладочная сборка, где приведенная ниже информация, вероятно, не актуальна"
 
@@ -7077,7 +7082,7 @@ msgstr "Базовая Ракета"
 msgid "UNKNOWN"
 msgstr "Неизвестная кнопка мыши"
 
-#: ../src/general/OptionsMenu.cs:1072
+#: ../src/general/OptionsMenu.cs:1087
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Неизвестно"
 
@@ -7100,7 +7105,7 @@ msgstr "Неизвестная кнопка мыши"
 msgid "UNKNOWN_SHORT"
 msgstr "Неизвестная кнопка мыши"
 
-#: ../src/general/OptionsMenu.cs:1637
+#: ../src/general/OptionsMenu.cs:1662
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестная версия"
 
@@ -7108,7 +7113,7 @@ msgstr "Неизвестная версия"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестный Workshop ID для этого мода"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2174
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "У вас есть несохранённые изменения, которые будут утрачены.\n"
@@ -7160,7 +7165,7 @@ msgstr "Загрузка выполнена успешно"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Лицензии и использованные библиотеки"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:523
 msgid "USED_RENDERER_NAME"
 msgstr "Движок отрисовки:"
 
@@ -7176,7 +7181,7 @@ msgstr "Использовать автозагрузку Harmony"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Автоматически загружать патчи для сборки модов от Harmony(Специальный мод не требуется)"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
@@ -7184,11 +7189,16 @@ msgstr "Использовать кастомное имя пользовате�
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Создание вида для увеличения биоразнообразия забирает часть популяции существующего вида"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#: ../src/general/OptionsMenu.tscn:1371
+#: ../src/general/OptionsMenu.tscn:1178
+#, fuzzy
+msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
+msgstr "Установить вручную количество фоновых потоков"
+
+#: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Используйте размер виртуального окна"
 
@@ -7227,7 +7237,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Версия:"
 
-#: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
+#: ../src/general/OptionsMenu.tscn:1373 ../src/general/OptionsMenu.tscn:1481
 msgid "VERTICAL_COLON"
 msgstr "По вертикали:"
 
@@ -7236,11 +7246,11 @@ msgstr "По вертикали:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "По вертикали (ось: {0})"
 
-#: ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY"
 msgstr "Используемая видеопамять:"
 
-#: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1096 ../src/general/OptionsMenu.tscn:563
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} МиБ"
 
@@ -7257,11 +7267,11 @@ msgstr "Просмотреть всё"
 msgid "VIEW_ONLINE"
 msgstr "Просмотреть онлайн"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1892
 msgid "VIEW_PATCH_NOTES"
 msgstr "Просмотреть Заметки Обновления"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1889
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Просмотреть последние или все заметки обновлений Thrive"
 
@@ -7297,7 +7307,7 @@ msgstr "VolumeMute"
 msgid "VOLUMEUP"
 msgstr "VolumeUp"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:284
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
@@ -8779,7 +8789,7 @@ msgstr ""
 "Включить прототипы поздних стадий: {0}\n"
 "Включить пасхальные яйца: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1570
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
@@ -8787,15 +8797,15 @@ msgstr "Относительно мира"
 msgid "WORST_PATCH_COLON"
 msgstr "Худший биом:"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX360"
 msgstr "Xbox 360"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_ONE"
 msgstr "Xbox One"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_SERIES"
 msgstr "Xbox Series X"
 

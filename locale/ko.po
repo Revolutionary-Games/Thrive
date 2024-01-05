@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 14:15+0200\n"
+"POT-Creation-Date: 2024-01-05 15:11+0200\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1468
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr "3차원 편집기"
 msgid "3D_MOVEMENT"
 msgstr "3차원 이동"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr "나가기 확인"
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1109
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "저장 및 계속"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:754
+#: ../src/general/OptionsMenu.tscn:756
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
@@ -202,11 +202,11 @@ msgstr "배경 음량"
 msgid "AMMONIA"
 msgstr "암모니아"
 
-#: ../src/general/OptionsMenu.tscn:1680
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:1708
+#: ../src/general/OptionsMenu.tscn:1758
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
 
@@ -231,11 +231,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2145
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -316,7 +316,7 @@ msgstr "자동 진화 실행 실패"
 msgid "AT_CURSOR"
 msgstr "커서 위치에서:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:873
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -324,8 +324,8 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1536
 msgid "AUTO"
 msgstr "자동"
 
@@ -352,7 +352,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 
-#: ../src/general/OptionsMenu.tscn:1669
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
@@ -391,7 +391,7 @@ msgstr "실행 상태:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "자동 앞으로 이동"
 
-#: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1063 ../src/general/OptionsMenu.tscn:366
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
@@ -418,7 +418,7 @@ msgstr "미생물 단계"
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1182
-#: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2073 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -580,7 +580,7 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1451
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -665,7 +665,7 @@ msgstr "카메라"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2174
+#: ../src/general/OptionsMenu.tscn:2224
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -809,7 +809,7 @@ msgstr "연대 변경"
 msgid "CHEATS"
 msgstr "치트"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1812
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
@@ -907,7 +907,7 @@ msgstr "엽록체는 감광성 안료가 막낭에 쌓여있는 이중 막 구�
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "선택한 파일명 ({0}) 은 이미 존재합니다. 덮어쓰겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:446
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
@@ -953,7 +953,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2299
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -968,15 +968,15 @@ msgstr "이전 저장 정리"
 msgid "CLOSE"
 msgstr "닫기"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2154
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
-#: ../src/general/OptionsMenu.tscn:1028
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "구름 해상도 인자:"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "최소 구름 시뮬레이션\n"
@@ -994,7 +994,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr "색"
 
-#: ../src/general/OptionsMenu.tscn:406
+#: ../src/general/OptionsMenu.tscn:408
 msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
@@ -1083,7 +1083,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1992
+#: ../src/general/OptionsMenu.tscn:2042
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "화합물:"
@@ -1113,7 +1113,7 @@ msgstr "화합물:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
@@ -1233,7 +1233,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1508
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1248,11 +1248,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:594
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1438
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1265,11 +1265,11 @@ msgstr "클립보드에 오류 복사"
 msgid "COPY_RESULTS"
 msgstr "Auto-evo 결과:"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
@@ -1431,7 +1431,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/general/OptionsMenu.tscn:1781
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
@@ -1508,7 +1508,7 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1517
+#: ../src/general/OptionsMenu.cs:1532
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1595,7 +1595,7 @@ msgstr "설명:"
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1092
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "선택됨:"
@@ -1703,7 +1703,7 @@ msgstr "설명:"
 msgid "DIRECTIONR"
 msgstr "설명:"
 
-#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
 msgid "DISABLED"
 msgstr ""
 
@@ -1711,7 +1711,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
@@ -1759,12 +1759,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1856
+#: ../src/general/OptionsMenu.tscn:1906
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "속도:"
 
-#: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1913
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -1777,20 +1777,20 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:483
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:625
+#: ../src/general/OptionsMenu.tscn:627
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:474
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:644
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "능력"
@@ -1959,7 +1959,7 @@ msgstr "농담 하나, 강섬모충속과 짚신벌레속은 수십 년 간 연�
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(게임 안에서 무작위로 생성되는 비밀)"
 
-#: ../src/general/OptionsMenu.tscn:1545
+#: ../src/general/OptionsMenu.tscn:1595
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "자원 흡수 속도"
@@ -1985,7 +1985,7 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "마우스 오른쪽 버튼"
@@ -2004,7 +2004,7 @@ msgstr "선택된 저장은 호환되지 않습니다"
 msgid "ENABLE_EDITOR"
 msgstr "편집기 활성화"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:635
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "외부 효과:"
@@ -2069,7 +2069,7 @@ msgstr "표해수층"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
+#: ../src/general/OptionsMenu.tscn:2235 ../src/general/OptionsMenu.tscn:2243
 msgid "ERROR"
 msgstr "오류"
 
@@ -2082,7 +2082,7 @@ msgstr "저장 오류"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195
+#: ../src/general/OptionsMenu.tscn:2245
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
 
@@ -2125,12 +2125,12 @@ msgstr "진화 계보"
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1964
+#: ../src/general/OptionsMenu.tscn:2014
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "세대:"
 
-#: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:2012 ../src/general/OptionsMenu.tscn:2023
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -2470,7 +2470,7 @@ msgstr "자동 진화 실행 실패"
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2503,7 +2503,7 @@ msgstr ""
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.tscn:292
 msgid "FULLSCREEN"
 msgstr "전체화면"
 
@@ -2536,7 +2536,7 @@ msgstr "세대:"
 msgid "GITHUB_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "GLES2"
 msgstr ""
 
@@ -2548,7 +2548,7 @@ msgstr "GLES2 모드 경고"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.cs:1067
+#: ../src/general/OptionsMenu.cs:1082
 msgid "GLES3"
 msgstr ""
 
@@ -2607,12 +2607,12 @@ msgstr "알겠습니다"
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:493
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:179
 msgid "GRAPHICS"
 msgstr "그래픽"
 
@@ -2621,7 +2621,7 @@ msgstr "그래픽"
 msgid "GRAPHICS_TEAM"
 msgstr "그래픽"
 
-#: ../src/general/OptionsMenu.tscn:575
+#: ../src/general/OptionsMenu.tscn:577
 msgid "GUI"
 msgstr ""
 
@@ -2635,7 +2635,7 @@ msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 �
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} 천"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:826
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
@@ -2658,11 +2658,11 @@ msgstr "도움말"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:987 ../src/general/OptionsMenu.tscn:1037
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(높은 값일수록 더 나은 성능)"
 
-#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
@@ -2696,7 +2696,7 @@ msgstr "눌러서 커서 보이기"
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1355 ../src/general/OptionsMenu.tscn:1463
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "세대:"
@@ -2832,7 +2832,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:212
 msgid "INPUTS"
 msgstr "입력"
 
@@ -2985,8 +2985,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
-#: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1497
 msgid "INVERTED"
 msgstr ""
 
@@ -3014,19 +3014,19 @@ msgstr "새로운 키 배치 추가"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1939
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1954 ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -3215,20 +3215,20 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:900
+#: ../src/general/OptionsMenu.tscn:902
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.cs:1569
+#: ../src/general/OptionsMenu.cs:1584
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.cs:1565
+#: ../src/general/OptionsMenu.cs:1580
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1561
+#: ../src/general/OptionsMenu.cs:1576
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -3468,7 +3468,7 @@ msgstr "휠 오른쪽으로"
 msgid "LIGHT_MAX"
 msgstr "빛"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "추가요소"
@@ -3482,32 +3482,32 @@ msgstr "확인"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "확인"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3664,7 +3664,7 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "바다눈"
 
-#: ../src/general/OptionsMenu.tscn:668
+#: ../src/general/OptionsMenu.tscn:670
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
@@ -3672,16 +3672,16 @@ msgstr "주 음량"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "강제 멸종이 일어나기 전에 지역에 존재할 수 있는 최대 종 수"
 
-#: ../src/general/OptionsMenu.tscn:375
+#: ../src/general/OptionsMenu.tscn:377
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:392
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -4062,7 +4062,7 @@ msgstr "버전:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
-#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:223
 msgid "MISC"
 msgstr "기타"
 
@@ -4075,7 +4075,7 @@ msgstr "기타"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "기타 3D 단계"
 
-#: ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1967
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "기타"
@@ -4292,15 +4292,15 @@ msgstr "버전:"
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1535
+#: ../src/general/OptionsMenu.tscn:1585
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1394
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4435,7 +4435,7 @@ msgstr "세포 기관 배치"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "세포 기관 배치"
 
-#: ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.tscn:316
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
@@ -4447,7 +4447,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "음악"
 
-#: ../src/general/OptionsMenu.tscn:719
+#: ../src/general/OptionsMenu.tscn:721
 msgid "MUSIC_VOLUME"
 msgstr "음악 음량"
 
@@ -4467,9 +4467,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "변이 점수"
 
-#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
-#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:699 ../src/general/OptionsMenu.tscn:750
+#: ../src/general/OptionsMenu.tscn:785 ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:855
 msgid "MUTE"
 msgstr "음소거"
 
@@ -4491,6 +4491,11 @@ msgstr "생태계: {0}"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1175
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "저장 및 계속"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4596,7 +4601,7 @@ msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
-#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:425
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
@@ -4697,7 +4702,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2253
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "스크린샷 폴더 열기"
@@ -4808,7 +4813,7 @@ msgstr "도움말 열기"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "자유 구성"
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1866
 msgid "OPEN_LOGS_FOLDER"
 msgstr "로그 폴더 열기"
 
@@ -4839,7 +4844,7 @@ msgstr "저장 폴더 열기"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "메뉴 열기"
 
-#: ../src/general/OptionsMenu.tscn:1808
+#: ../src/general/OptionsMenu.tscn:1858
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "스크린샷 폴더 열기"
 
@@ -4847,7 +4852,7 @@ msgstr "스크린샷 폴더 열기"
 msgid "OPEN_THE_MENU"
 msgstr "메뉴 열기"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:939
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "게임을 번역하는 것을 도와주세요"
 
@@ -5116,7 +5121,7 @@ msgstr "세포 진행률"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2263
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5190,7 +5195,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:201
 msgid "PERFORMANCE"
 msgstr "성능"
 
@@ -5277,7 +5282,7 @@ msgstr "플레이어 사망함"
 msgid "PLAYER_EXTINCT"
 msgstr "플레이어 사망함"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1536
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "플레이어 사망함"
@@ -5291,23 +5296,23 @@ msgstr "플레이어 복제됨"
 msgid "PLAYER_SPEED"
 msgstr "플레이어 사망함"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1645
+#: ../src/general/OptionsMenu.tscn:1695
 msgid "PLAY_INTRO_VIDEO"
 msgstr "인트로 영상 재생"
 
-#: ../src/general/OptionsMenu.tscn:1653
+#: ../src/general/OptionsMenu.tscn:1703
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "새 게임 시 미생물 인트로 재생"
 
@@ -5536,7 +5541,7 @@ msgstr "핵"
 msgid "RESEARCH"
 msgstr "초기화"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
+#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2084
 msgid "RESET"
 msgstr "초기화"
 
@@ -5545,24 +5550,24 @@ msgstr "초기화"
 msgid "RESET_DEADZONES"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1879
+#: ../src/general/OptionsMenu.tscn:1929
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2144
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1604
+#: ../src/general/OptionsMenu.tscn:1654
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:2074
+#: ../src/general/OptionsMenu.tscn:2124
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2135
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
@@ -5571,7 +5576,7 @@ msgstr "기본값으로 초기화하시겠습니까?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.tscn:353
 msgid "RESOLUTION"
 msgstr "해상도:"
 
@@ -5689,7 +5694,7 @@ msgstr "오른쪽으로 회전"
 msgid "ROTATION_COLON"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1072
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 
@@ -5762,11 +5767,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2098 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:2147
+#: ../src/general/OptionsMenu.tscn:2197
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
@@ -5877,22 +5882,22 @@ msgstr "저장 실패! 예외 발생"
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1406 ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 #, fuzzy
 msgid "SCALING_ON"
 msgstr ""
 "{0}에서 충돌이 있습니다.\n"
 "{1}에서 입력을 제거하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1978
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "외부 효과:"
@@ -5916,8 +5921,8 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1536 ../src/general/OptionsMenu.tscn:1569
+#: ../src/general/OptionsMenu.tscn:1570
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
@@ -6050,7 +6055,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:789
+#: ../src/general/OptionsMenu.tscn:791
 msgid "SFX_VOLUME"
 msgstr "효과음 음량"
 
@@ -6062,12 +6067,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "도움말 보기"
 
-#: ../src/general/OptionsMenu.tscn:1833
+#: ../src/general/OptionsMenu.tscn:1883
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1881
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
@@ -6077,17 +6082,17 @@ msgstr "동굴"
 msgid "SHOW_TUTORIALS"
 msgstr "튜토리얼 보기"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1793
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1785
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1800
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -6101,7 +6106,7 @@ msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1874
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -6164,7 +6169,7 @@ msgstr "이산화규소"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
@@ -6211,7 +6216,7 @@ msgstr "작은 철 덩어리"
 msgid "SOCIETY_STAGE"
 msgstr "미생물 단계"
 
-#: ../src/general/OptionsMenu.tscn:188
+#: ../src/general/OptionsMenu.tscn:190
 msgid "SOUND"
 msgstr "소리"
 
@@ -6788,7 +6793,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1139
+#: ../src/general/OptionsMenu.tscn:1141 ../src/general/OptionsMenu.tscn:1188
 msgid "THREADS"
 msgstr ""
 
@@ -7039,7 +7044,7 @@ msgstr "스크린샷 촬영"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2255
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
@@ -7281,7 +7286,7 @@ msgstr "튜토리얼"
 msgid "TWITTER_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -7312,7 +7317,7 @@ msgstr "모두 결합 해제하기"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1630
+#: ../src/general/OptionsMenu.cs:1655
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -7354,7 +7359,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:1072
+#: ../src/general/OptionsMenu.cs:1087
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "능력"
@@ -7379,7 +7384,7 @@ msgstr "마우스 미확인 키"
 msgid "UNKNOWN_SHORT"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.cs:1637
+#: ../src/general/OptionsMenu.cs:1662
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "버전:"
@@ -7389,7 +7394,7 @@ msgstr "버전:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "마우스 미확인 키"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2174
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
@@ -7449,7 +7454,7 @@ msgstr "저장 성공"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:523
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -7467,7 +7472,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
@@ -7475,11 +7480,15 @@ msgstr "임의 사용자 이름 사용"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "생물 다양성을 증진하는 종의 생성 시 기존 종의 개체수를 빼앗음"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1371
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7522,7 +7531,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "세대:"
 
-#: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
+#: ../src/general/OptionsMenu.tscn:1373 ../src/general/OptionsMenu.tscn:1481
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "세대:"
@@ -7533,11 +7542,11 @@ msgstr "세대:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "속도:"
 
-#: ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1096 ../src/general/OptionsMenu.tscn:563
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -7555,12 +7564,12 @@ msgstr ""
 msgid "VIEW_ONLINE"
 msgstr "연대"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1892
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "동굴"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1889
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "동굴"
@@ -7600,7 +7609,7 @@ msgstr "효과음 음량"
 msgid "VOLUMEUP"
 msgstr "효과음 음량"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:284
 msgid "VSYNC"
 msgstr "수직동기화"
 
@@ -9154,7 +9163,7 @@ msgstr "생체 상태창"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1570
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "이동 속도 향상"
@@ -9164,15 +9173,15 @@ msgstr "이동 속도 향상"
 msgid "WORST_PATCH_COLON"
 msgstr "종:"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_SERIES"
 msgstr ""
 

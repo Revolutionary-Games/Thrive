@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 14:15+0200\n"
+"POT-Creation-Date: 2024-01-05 15:11+0200\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../src/general/OptionsMenu.tscn:1468
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr "3D Editor"
 msgid "3D_MOVEMENT"
 msgstr "3D Pohyb"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr "Potvrdiť ukončenie"
 msgid "ACTIVE"
 msgstr "Aktívny"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Súčasné vlákna:"
 
@@ -191,7 +191,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:754
+#: ../src/general/OptionsMenu.tscn:756
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitosť prostredia"
 
@@ -202,11 +202,11 @@ msgstr "Hlasitosť prostredia"
 msgid "AMMONIA"
 msgstr "Amoniak"
 
-#: ../src/general/OptionsMenu.tscn:1680
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet automatických uložení k zachovaniu:"
 
-#: ../src/general/OptionsMenu.tscn:1708
+#: ../src/general/OptionsMenu.tscn:1758
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rýchlych uložení k zachovaniu:"
 
@@ -231,11 +231,11 @@ msgstr "Použiť zmeny"
 msgid "APRIL"
 msgstr "Apríl"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Naozaj chceš obnoviť VŠETKY predvolené nastavenia?"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2145
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Naozaj chceš obnoviť predvolené nastavenia ovládania?"
 
@@ -274,7 +274,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Predpokladať, že CPU má povolené hypervlákna"
 
@@ -314,7 +314,7 @@ msgstr ""
 msgid "AT_CURSOR"
 msgstr "Na kurzore:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:873
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Výstupné zvukové zariadenie:"
 
@@ -322,8 +322,8 @@ msgstr "Výstupné zvukové zariadenie:"
 msgid "AUGUST"
 msgstr "August"
 
-#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1536
 #, fuzzy
 msgid "AUTO"
 msgstr "Automatická evolúcia"
@@ -350,7 +350,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % hotovo. {1:n0}/{2:n0} krokov."
 
-#: ../src/general/OptionsMenu.tscn:1669
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukladanie počas hry"
 
@@ -389,7 +389,7 @@ msgstr "stav spustenia:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb dopredu"
 
-#: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1063 ../src/general/OptionsMenu.tscn:366
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
@@ -415,7 +415,7 @@ msgstr "Fáza Mikróbov"
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1182
-#: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2073 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -573,7 +573,7 @@ msgstr ""
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1451
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -658,7 +658,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2174
+#: ../src/general/OptionsMenu.tscn:2224
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -797,7 +797,7 @@ msgstr "Zmeniť symetriu"
 msgid "CHEATS"
 msgstr "Cheaty"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1812
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheaty povolené"
 
@@ -887,7 +887,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:446
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberácia:"
 
@@ -929,7 +929,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2299
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -944,15 +944,15 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Zavrieť"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2154
 msgid "CLOSE_OPTIONS"
 msgstr "Zatvoriť možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1028
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Oddeľovač rozlíšenia oblakov:"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimálny interval simulácie oblakov:"
 
@@ -969,7 +969,7 @@ msgstr "Umiestniť entity s kolíznymi tvarmi"
 msgid "COLOUR"
 msgstr "Farba"
 
-#: ../src/general/OptionsMenu.tscn:406
+#: ../src/general/OptionsMenu.tscn:408
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekcia farieb:"
 
@@ -1057,7 +1057,7 @@ msgstr "naša Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/OptionsMenu.tscn:1992
+#: ../src/general/OptionsMenu.tscn:2042
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Zlúčeniny:"
@@ -1086,7 +1086,7 @@ msgstr "Zlúčeniny:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "COMPOUND_CLOUDS"
 msgstr "Oblaky zlúčenín"
 
@@ -1201,7 +1201,7 @@ msgstr ""
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1508
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1215,11 +1215,11 @@ msgstr "(koeficient populácie druhu, ktorý klesne zakaždým keď hráč zomri
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:594
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1438
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1232,11 +1232,11 @@ msgstr "Kopírovať chybu do schránky"
 msgid "COPY_RESULTS"
 msgstr "Výsledok automatickej evolúcie:"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopia (červeno-zelená)"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (modro-žltá)"
 
@@ -1392,7 +1392,7 @@ msgstr "Súčasní vývojári"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Štatistika organizmu"
 
-#: ../src/general/OptionsMenu.tscn:1781
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "CUSTOM_USERNAME"
 msgstr "Vlastné používateľské meno:"
 
@@ -1469,7 +1469,7 @@ msgstr "Debugovací panel"
 msgid "DECEMBER"
 msgstr "December"
 
-#: ../src/general/OptionsMenu.cs:1517
+#: ../src/general/OptionsMenu.cs:1532
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Predvolené výstupné zariadenie"
 
@@ -1546,7 +1546,7 @@ msgstr "Popis je príliš dlhý"
 msgid "DESPAWN_ENTITIES"
 msgstr "Odstrániť všetky entity"
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "DETECTED_CPU_COUNT"
 msgstr "Zistený počet CPU:"
 
@@ -1653,7 +1653,7 @@ msgstr "Doľava"
 msgid "DIRECTIONR"
 msgstr "Doprava"
 
-#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
 msgid "DISABLED"
 msgstr "Vypnuté"
 
@@ -1661,7 +1661,7 @@ msgstr "Vypnuté"
 msgid "DISABLE_ALL"
 msgstr "Zakázať všetko"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodiť a pokračovať"
 
@@ -1698,12 +1698,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
-#: ../src/general/OptionsMenu.tscn:1856
+#: ../src/general/OptionsMenu.tscn:1906
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rýchlosť trávenia:"
 
-#: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1913
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "(začiatočná poloha)"
@@ -1716,20 +1716,20 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:483
 #, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Zobraziť častice v pozadí"
 
-#: ../src/general/OptionsMenu.tscn:625
+#: ../src/general/OptionsMenu.tscn:627
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Zobraziť panel schopností"
 
-#: ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:474
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobraziť častice v pozadí"
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:644
 msgid "DISPLAY_PART_NAMES"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
@@ -1894,7 +1894,7 @@ msgstr "Zahrnúť Easter eggy"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodne umiestnené tajomstvá v hre)"
 
-#: ../src/general/OptionsMenu.tscn:1545
+#: ../src/general/OptionsMenu.tscn:1595
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Rýchlosť trávenia"
@@ -1912,7 +1912,7 @@ msgstr "Vstúpte do editora a upravte svoj druh"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1929,7 +1929,7 @@ msgstr "Povoliť všetky kompatibilné módy"
 msgid "ENABLE_EDITOR"
 msgstr "Zapni editor"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:635
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povoliť svetelné efekty GUI"
 
@@ -1992,7 +1992,7 @@ msgstr "Epipelagiál"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
+#: ../src/general/OptionsMenu.tscn:2235 ../src/general/OptionsMenu.tscn:2243
 msgid "ERROR"
 msgstr "Chyba"
 
@@ -2004,7 +2004,7 @@ msgstr "Chyba pri vytváraní priečinka pre mód"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2195
+#: ../src/general/OptionsMenu.tscn:2245
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodarilo sa uložiť nové nastavenia."
 
@@ -2049,12 +2049,12 @@ msgstr "Od Revolutionary Games Studio"
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr "Od Revolutionary Games Studio"
 
-#: ../src/general/OptionsMenu.tscn:1964
+#: ../src/general/OptionsMenu.tscn:2014
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verzia:"
 
-#: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:2012 ../src/general/OptionsMenu.tscn:2023
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
@@ -2407,7 +2407,7 @@ msgstr "Vytvorenie modu zlyhalo"
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "Môj úžasný mod"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2438,7 +2438,7 @@ msgstr "Po opustení editora sa vytvorí oblak glukózy"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(začni s oblakom glukózy v blízkosti každou generáciou)"
 
-#: ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.tscn:292
 msgid "FULLSCREEN"
 msgstr "Celá obrazovka"
 
@@ -2472,7 +2472,7 @@ msgstr "Generácia:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Opustiť hru"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "GLES2"
 msgstr ""
 
@@ -2484,7 +2484,7 @@ msgstr "Varovanie režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spúšťaš Thrive pomocou vykresľovača GLES2. Táto možnosť nie je otestovaná a môže spôsobiť problémy. Skús si aktualizovať svoje grafické ovládače alebo vynútiť použitie AMD alebo Nvidia grafiky pre spustenie Thrive."
 
-#: ../src/general/OptionsMenu.cs:1067
+#: ../src/general/OptionsMenu.cs:1082
 msgid "GLES3"
 msgstr ""
 
@@ -2543,11 +2543,11 @@ msgstr "Rozumiem"
 msgid "GPL_LICENSE_HEADING"
 msgstr "Text licencie GPL je nasledujúci:"
 
-#: ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:493
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:179
 msgid "GRAPHICS"
 msgstr "Grafika"
 
@@ -2555,7 +2555,7 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
-#: ../src/general/OptionsMenu.tscn:575
+#: ../src/general/OptionsMenu.tscn:577
 msgid "GUI"
 msgstr "GUI"
 
@@ -2568,7 +2568,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} tis"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:826
 msgid "GUI_VOLUME"
 msgstr "Hlasitosť GUI"
 
@@ -2590,11 +2590,11 @@ msgstr "Pomoc"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ako hrať hru"
 
-#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:987 ../src/general/OptionsMenu.tscn:1037
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(vyššie hodnoty zvyšujú výkon)"
 
-#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(vyššie hodnoty zhoršujú výkon)"
 
@@ -2627,7 +2627,7 @@ msgstr ""
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1355 ../src/general/OptionsMenu.tscn:1463
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Verzia:"
@@ -2760,7 +2760,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:212
 msgid "INPUTS"
 msgstr "Ovládanie"
 
@@ -2907,8 +2907,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
-#: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1497
 msgid "INVERTED"
 msgstr ""
 
@@ -2936,19 +2936,19 @@ msgstr "Opustiť hru"
 msgid "JANUARY"
 msgstr "Január"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1939
 msgid "JSON_DEBUG_MODE"
 msgstr "Debugovací režim JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Vždy"
 
-#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1954 ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticky"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
@@ -3131,19 +3131,19 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:900
+#: ../src/general/OptionsMenu.tscn:902
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.cs:1569
+#: ../src/general/OptionsMenu.cs:1584
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je dokončený na {0}%"
 
-#: ../src/general/OptionsMenu.cs:1565
+#: ../src/general/OptionsMenu.cs:1580
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na preklade tohto jazyka sa ešte pracuje ({0}% hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1561
+#: ../src/general/OptionsMenu.cs:1576
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento preklad nie je dokončený ({0}% hotovo) prosím pomôž nám s ním!"
 
@@ -3383,7 +3383,7 @@ msgstr "Skrolovať doprava"
 msgid "LIGHT_MAX"
 msgstr "Svetlo"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_EXTREME"
 msgstr "Extrémny"
 
@@ -3397,31 +3397,31 @@ msgstr "Normálny"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_HUGE"
 msgstr "Obrovský"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_LARGE"
 msgstr "Veľký"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_NORMAL"
 msgstr "Normálny"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_SMALL"
 msgstr "Malý"
 
-#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_TINY"
 msgstr "Maličký"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_LARGE"
 msgstr "Veľmi veľký"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_SMALL"
 msgstr "Veľmi malý"
 
@@ -3562,7 +3562,7 @@ msgstr "Marec"
 msgid "MARINE_SNOW"
 msgstr "Morský sneh"
 
-#: ../src/general/OptionsMenu.tscn:668
+#: ../src/general/OptionsMenu.tscn:670
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitosť"
 
@@ -3571,15 +3571,15 @@ msgstr "Celková hlasitosť"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "vyhynul v tejto oblasti"
 
-#: ../src/general/OptionsMenu.tscn:375
+#: ../src/general/OptionsMenu.tscn:377
 msgid "MAX_FPS"
 msgstr "Maximálny počet snímkov za sekundu:"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:392
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neobmedzené"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximálny počet entít:"
 
@@ -3934,7 +3934,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nie je povolené zobraziť menej ako {0} dátových súborov!"
 
-#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:223
 msgid "MISC"
 msgstr "Rôzne"
 
@@ -3948,7 +3948,7 @@ msgstr "Rôzne"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Rôzne"
 
-#: ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1967
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Rôzne"
@@ -4157,15 +4157,15 @@ msgstr "Verzia modu:"
 msgid "MORE_INFO"
 msgstr "Zobraziť viac informácií"
 
-#: ../src/general/OptionsMenu.tscn:1535
+#: ../src/general/OptionsMenu.tscn:1585
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1394
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4300,7 +4300,7 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.tscn:316
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Viacvzorové vyhladzovanie:"
 
@@ -4312,7 +4312,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Hudba"
 
-#: ../src/general/OptionsMenu.tscn:719
+#: ../src/general/OptionsMenu.tscn:721
 msgid "MUSIC_VOLUME"
 msgstr "Hlasitosť hudby"
 
@@ -4333,9 +4333,9 @@ msgstr "(náklady na organely, membrány a ďalšie predmety v editore)"
 msgid "MUTATION_POINTS"
 msgstr "Body mutácie"
 
-#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
-#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:699 ../src/general/OptionsMenu.tscn:750
+#: ../src/general/OptionsMenu.tscn:785 ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:855
 msgid "MUTE"
 msgstr "Stlmiť"
 
@@ -4357,6 +4357,11 @@ msgstr "Bióm: {0}"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1175
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "Súčasné vlákna:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 #, fuzzy
@@ -4453,7 +4458,7 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:425
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
@@ -4552,7 +4557,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2253
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Priečinok snímkov obrazovky nebol nájdený"
 
@@ -4653,7 +4658,7 @@ msgstr "Otvoriť nápovedu"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Voľná stavba"
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1866
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otvoriť priečinok protokolov"
 
@@ -4685,7 +4690,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Otvoriť menu"
 
-#: ../src/general/OptionsMenu.tscn:1808
+#: ../src/general/OptionsMenu.tscn:1858
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otvoriť priečinok snímiek obrazovky"
 
@@ -4693,7 +4698,7 @@ msgstr "Otvoriť priečinok snímiek obrazovky"
 msgid "OPEN_THE_MENU"
 msgstr "Otvoriť menu"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:939
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomôž preložiť hru"
 
@@ -4956,7 +4961,7 @@ msgstr "Odstrániť lokálne údaje"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2263
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5027,7 +5032,7 @@ msgstr "Mierumilovný"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:201
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
@@ -5113,7 +5118,7 @@ msgstr "Duplikovať hráča"
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1536
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
@@ -5128,23 +5133,23 @@ msgstr ""
 "Hráč\n"
 "Rýchlosť"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1645
+#: ../src/general/OptionsMenu.tscn:1695
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Prehrať úvodné video"
 
-#: ../src/general/OptionsMenu.tscn:1653
+#: ../src/general/OptionsMenu.tscn:1703
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Prehrať úvodné video do mikróbov v novej hre"
 
@@ -5364,7 +5369,7 @@ msgstr "Vyžaduje jadro"
 msgid "RESEARCH"
 msgstr "Hľadať"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
+#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2084
 msgid "RESET"
 msgstr "Resetovať"
 
@@ -5373,24 +5378,24 @@ msgstr "Resetovať"
 msgid "RESET_DEADZONES"
 msgstr "Obnoviť predvolené nastavenia?"
 
-#: ../src/general/OptionsMenu.tscn:1879
+#: ../src/general/OptionsMenu.tscn:1929
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2144
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia ovládania?"
 
-#: ../src/general/OptionsMenu.tscn:1604
+#: ../src/general/OptionsMenu.tscn:1654
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetovať ovládanie"
 
-#: ../src/general/OptionsMenu.tscn:2074
+#: ../src/general/OptionsMenu.tscn:2124
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predvolené"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2135
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnoviť predvolené nastavenia?"
 
@@ -5399,7 +5404,7 @@ msgstr "Obnoviť predvolené nastavenia?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.tscn:353
 msgid "RESOLUTION"
 msgstr "Rozlíšenie:"
 
@@ -5513,7 +5518,7 @@ msgstr "Otočiť doprava"
 msgid "ROTATION_COLON"
 msgstr "Rotácia:"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1072
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustiť automatickú evolúciu počas hry"
 
@@ -5581,11 +5586,11 @@ msgstr "(začiatočná poloha)"
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstrániť lokálne údaje"
 
-#: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2098 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Uložiť"
 
-#: ../src/general/OptionsMenu.tscn:2147
+#: ../src/general/OptionsMenu.tscn:2197
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložiť a pokračovať"
 
@@ -5689,20 +5694,20 @@ msgstr "Ukladanie momentálne nie je možné z dôvodu:"
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1406 ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Bunková signalizácia"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1978
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -5725,8 +5730,8 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
 
-#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1536 ../src/general/OptionsMenu.tscn:1569
+#: ../src/general/OptionsMenu.tscn:1570
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -5854,7 +5859,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:789
+#: ../src/general/OptionsMenu.tscn:791
 msgid "SFX_VOLUME"
 msgstr "Hlasitosť SFX"
 
@@ -5866,12 +5871,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Zobraziť nápovedu"
 
-#: ../src/general/OptionsMenu.tscn:1833
+#: ../src/general/OptionsMenu.tscn:1883
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1881
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5881,15 +5886,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Zobraziť návody"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobraziť tutoriál (v aktuálnej hre)"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1785
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobraziť tutoriál (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobraziť upozornenie na neuložený postup"
 
@@ -5897,7 +5902,7 @@ msgstr "Zobraziť upozornenie na neuložený postup"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1874
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5953,7 +5958,7 @@ msgstr "Oxid kremičitý"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -5999,7 +6004,7 @@ msgstr "Malý kus železa"
 msgid "SOCIETY_STAGE"
 msgstr "Fáza Mikróbov"
 
-#: ../src/general/OptionsMenu.tscn:188
+#: ../src/general/OptionsMenu.tscn:190
 msgid "SOUND"
 msgstr "Zvuk"
 
@@ -6573,7 +6578,7 @@ msgstr "Toto je lokálne nainštalovaný mód"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1139
+#: ../src/general/OptionsMenu.tscn:1141 ../src/general/OptionsMenu.tscn:1188
 msgid "THREADS"
 msgstr "Vlákna:"
 
@@ -6815,7 +6820,7 @@ msgstr "Skús spraviť zopár snímiek obrazovky!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2255
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Skús spraviť zopár snímiek obrazovky!"
 
@@ -6935,7 +6940,7 @@ msgstr ""
 msgid "TWITTER_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6965,7 +6970,7 @@ msgstr "Rozpojiť všetky"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1630
+#: ../src/general/OptionsMenu.cs:1655
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -7003,7 +7008,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Neznáme"
 
-#: ../src/general/OptionsMenu.cs:1072
+#: ../src/general/OptionsMenu.cs:1087
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Zobraziť názvy tlačidiel pri výbere častí"
@@ -7027,7 +7032,7 @@ msgstr "Neznáme"
 msgid "UNKNOWN_SHORT"
 msgstr "Neznáme"
 
-#: ../src/general/OptionsMenu.cs:1637
+#: ../src/general/OptionsMenu.cs:1662
 msgid "UNKNOWN_VERSION"
 msgstr "Neznáma verzia"
 
@@ -7035,7 +7040,7 @@ msgstr "Neznáma verzia"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznáme Workshop ID pre tento mód"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2174
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené zmeny, ktoré budú zahodené.\n"
@@ -7091,7 +7096,7 @@ msgstr "Nahrávanie bolo úspešné"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licencie a použité knižnice"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:523
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -7107,7 +7112,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použiť vlastné používateľské meno"
 
@@ -7115,11 +7120,16 @@ msgstr "Použiť vlastné používateľské meno"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ručne nastaviť počet vlákien na pozadí"
 
-#: ../src/general/OptionsMenu.tscn:1371
+#: ../src/general/OptionsMenu.tscn:1178
+#, fuzzy
+msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
+msgstr "Ručne nastaviť počet vlákien na pozadí"
+
+#: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7160,7 +7170,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Verzia:"
 
-#: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
+#: ../src/general/OptionsMenu.tscn:1373 ../src/general/OptionsMenu.tscn:1481
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Verzia:"
@@ -7170,11 +7180,11 @@ msgstr "Verzia:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Vertikálne(Osa: {0})"
 
-#: ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1096 ../src/general/OptionsMenu.tscn:563
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -7194,12 +7204,12 @@ msgstr "Zakázať všetko"
 msgid "VIEW_ONLINE"
 msgstr "Zakázať všetko"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1892
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1889
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -7236,7 +7246,7 @@ msgstr "Stlmenie hlasitosti"
 msgid "VOLUMEUP"
 msgstr "Zvýšiť hlasitosť"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:284
 msgid "VSYNC"
 msgstr "VSync"
 
@@ -8753,7 +8763,7 @@ msgstr "Štatistika organizmu"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1570
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Základný pohyb"
@@ -8762,15 +8772,15 @@ msgstr "Základný pohyb"
 msgid "WORST_PATCH_COLON"
 msgstr "Najhoršia oblasť:"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_SERIES"
 msgstr ""
 
