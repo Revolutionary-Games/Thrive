@@ -1,5 +1,7 @@
 ﻿namespace Components
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///   Entity uses a predefined visual
     /// </summary>
@@ -12,8 +14,10 @@
         public VisualResourceIdentifier VisualIdentifier;
 
         /// <summary>
-        ///   Don't touch this, used by the system for handling this
+        ///   Don't touch this, used by the system for handling this. Not saved so that after load the visual is
+        ///   properly reloaded.
         /// </summary>
+        [JsonIgnore]
         public VisualResourceIdentifier LoadedInstance;
     }
 }
