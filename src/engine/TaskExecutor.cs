@@ -27,6 +27,7 @@ public class TaskExecutor : IParallelRunner
 
     private bool running = true;
     private int currentThreadCount;
+    private int usedNativeTaskCount;
 
     private int queuedParallelRunnableCount;
 
@@ -46,6 +47,7 @@ public class TaskExecutor : IParallelRunner
         if (overrideParallelCount >= 0)
         {
             ParallelTasks = overrideParallelCount;
+            SetNativeThreadCount(overrideParallelCount);
         }
         else
         {
@@ -109,6 +111,20 @@ public class TaskExecutor : IParallelRunner
     /// </summary>
     public int DegreeOfParallelism => Math.Min(currentThreadCount + 1, ECSThrottling);
 
+    public int NativeTasks
+    {
+        get => usedNativeTaskCount;
+        set
+        {
+            if (usedNativeTaskCount == value)
+                return;
+
+            usedNativeTaskCount = Mathf.Clamp(value, 1, MaximumThreadCount);
+
+            NativeInterop.NotifyWantedThreadCountChanged();
+        }
+    }
+
     /// <summary>
     ///   Computes how many threads there should be by default
     /// </summary>
@@ -135,6 +151,19 @@ public class TaskExecutor : IParallelRunner
         {
             targetTaskCount = 2;
         }
+
+        return targetTaskCount;
+    }
+
+    public static int CalculateNativeThreadCountFromManagedThreads(int managedCount)
+    {
+        var cpuCount = CPUCount;
+
+        int targetTaskCount = Mathf.Clamp((int)Math.Round(managedCount * 0.35f), 2, cpuCount - managedCount);
+
+        // Reduce thread count on CPUs with very few threads
+        if (cpuCount < 4)
+            targetTaskCount = 1;
 
         return targetTaskCount;
     }
@@ -285,6 +314,8 @@ public class TaskExecutor : IParallelRunner
             ParallelTasks = GetWantedThreadCount(settings.AssumeCPUHasHyperthreading.Value,
                 settings.RunAutoEvoDuringGamePlay.Value);
         }
+
+        SetNativeThreadCount(ParallelTasks);
     }
 
     public void Dispose()
@@ -320,6 +351,24 @@ public class TaskExecutor : IParallelRunner
         NotifyNewTasksAdded(1);
 
         --currentThreadCount;
+    }
+
+    private void SetNativeThreadCount(int parallelTasks)
+    {
+        var settings = Settings.Instance;
+
+        int result;
+
+        if (settings.UseManualNativeThreadCount.Value)
+        {
+            result = settings.NativeThreadCount.Value;
+        }
+        else
+        {
+            result = CalculateNativeThreadCountFromManagedThreads(parallelTasks);
+        }
+
+        NativeTasks = result;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

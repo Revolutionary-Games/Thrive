@@ -50,8 +50,7 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
-        // TODO: allow controlling native executor thread count (automatically and through the GUI)
-        NativeMethods.SetNativeExecutorThreads(3);
+        NativeMethods.SetNativeExecutorThreads(TaskExecutor.Instance.NativeTasks);
 
 #if DEBUG
         CheckSizesOfInteropTypes();
@@ -133,6 +132,14 @@ public static class NativeInterop
         OnTriangleDrawHandler = null;
 
         NativeMethods.DisableDebugDrawerCallbacks();
+    }
+
+    public static void NotifyWantedThreadCountChanged()
+    {
+        if (!nativeLoadSucceeded)
+            return;
+
+        NativeMethods.SetNativeExecutorThreads(TaskExecutor.Instance.NativeTasks);
     }
 
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
