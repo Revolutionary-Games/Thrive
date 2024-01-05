@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = Godot.Environment;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
@@ -63,7 +64,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private Light bodyEditorLight = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
-    private Godot.Environment? environment = null;
+    private Environment? environment;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
