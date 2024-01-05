@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-21 12:07+0200\n"
+"POT-Creation-Date: 2024-01-05 15:11+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -19,19 +19,19 @@ msgstr ""
 "X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1468
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 2D:"
 
-#: ../simulation_parameters/common/input_options.json:222
+#: ../simulation_parameters/common/input_options.json:226
 msgid "3D_EDITOR"
 msgstr "3D Editor"
 
-#: ../simulation_parameters/common/input_options.json:194
+#: ../simulation_parameters/common/input_options.json:198
 msgid "3D_MOVEMENT"
 msgstr "3D Pohyb"
 
-#: ../src/general/OptionsMenu.tscn:1500
+#: ../src/general/OptionsMenu.tscn:1550
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 3D:"
 
@@ -52,11 +52,11 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:288
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1592
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1593
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1587
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1588
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou sílu mozku (typ tkáně s axony)."
 
@@ -91,7 +91,7 @@ msgstr "Teleportace"
 msgid "ACTIVE"
 msgstr "Aktivní"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Současná vlákna:"
 
@@ -121,7 +121,7 @@ msgstr "Otevřít náhled pokročilého nastavení"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobní fixace dusíku"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1401
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1402
 #: ../src/microbe_stage/MicrobeHUD.tscn:1432
 msgid "AGENTS"
 msgstr "Činidlo"
@@ -172,7 +172,7 @@ msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná do
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Obecné statistiky všech světů"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1004
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1006
 #, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika organizmu"
@@ -185,22 +185,22 @@ msgstr "Jste již povzneseni"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:754
+#: ../src/general/OptionsMenu.tscn:756
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitost prostředí"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1178
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1179
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:694
 #: ../src/microbe_stage/MicrobeHUD.tscn:1174
 msgid "AMMONIA"
 msgstr "Amoniak"
 
-#: ../src/general/OptionsMenu.tscn:1680
+#: ../src/general/OptionsMenu.tscn:1730
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet autosave k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:1708
+#: ../src/general/OptionsMenu.tscn:1758
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rychlouložení k zachování:"
 
@@ -225,11 +225,11 @@ msgstr "Použít změny"
 msgid "APRIL"
 msgstr "Duben"
 
-#: ../src/general/OptionsMenu.tscn:2086
+#: ../src/general/OptionsMenu.tscn:2136
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
 
-#: ../src/general/OptionsMenu.tscn:2095
+#: ../src/general/OptionsMenu.tscn:2145
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý/á, že chceš resetovat ovládání ?"
 
@@ -274,7 +274,7 @@ msgstr "Třída sestavy modu je potřebná když je soustava specifikovaná"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Sestava modu je potřebná když je povoleno auto Harmony"
 
-#: ../src/general/OptionsMenu.tscn:1121
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Předpokládat, že CPU má povolený hyperthreading"
 
@@ -316,7 +316,7 @@ msgstr "Pokus o zapsání úložného souboru selhalo. Jméno uložené hry mů�
 msgid "AT_CURSOR"
 msgstr "Na kurzoru:"
 
-#: ../src/general/OptionsMenu.tscn:871
+#: ../src/general/OptionsMenu.tscn:873
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Výstupní audio zařízení:"
 
@@ -324,8 +324,8 @@ msgstr "Výstupní audio zařízení:"
 msgid "AUGUST"
 msgstr "Srpen"
 
-#: ../src/general/OptionsMenu.tscn:610 ../src/general/OptionsMenu.tscn:611
-#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1536
 msgid "AUTO"
 msgstr "Automaticky"
 
@@ -352,7 +352,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
 
-#: ../src/general/OptionsMenu.tscn:1669
+#: ../src/general/OptionsMenu.tscn:1719
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
 
@@ -370,7 +370,7 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Nezdařilo se spustit Auto-evo"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:910
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:909
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:305
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledky Auto-evo:"
@@ -390,7 +390,7 @@ msgstr "status spuštění:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatický pohyb kupředu"
 
-#: ../src/general/OptionsMenu.cs:1048 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.cs:1063 ../src/general/OptionsMenu.tscn:366
 msgid "AUTO_RESOLUTION"
 msgstr "Automatické ({0}x{1})"
 
@@ -412,11 +412,11 @@ msgstr "Fáze Probuzení"
 msgid "AWARE_STAGE"
 msgstr "Mikrobiální Období"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:999
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
 #: ../src/general/NewGameSettings.tscn:1182
-#: ../src/general/OptionsMenu.tscn:2023 ../src/general/PauseMenu.tscn:274
+#: ../src/general/OptionsMenu.tscn:2073 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -441,7 +441,7 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:436
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:439
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
@@ -469,12 +469,12 @@ msgstr "Přidat basy"
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:645
+#: ../src/microbe_stage/MicrobeHUD.cs:651
 #: ../src/microbe_stage/MicrobeHUD.tscn:1623
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stát se makroskopickým ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:601
+#: ../src/microbe_stage/MicrobeHUD.cs:607
 #: ../src/microbe_stage/MicrobeHUD.tscn:1611
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stát se mnohobuněčným ({0}/{1})"
@@ -565,7 +565,7 @@ msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mno
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Stiskněte [thrive:input]g_toggle_binding[/thrive:input] pro zapnutí spojovacího režimu. Ve spojovacím režimu můžete spojit svou buňku s jinými buňkami stejného druhu tím, že do nich narazíte. Pro opuštění kolonie stiskněte [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1293 ../src/general/OptionsMenu.tscn:1401
+#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1451
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Svázat osy k sobě"
 
@@ -620,7 +620,7 @@ msgstr "Postavit město"
 msgid "BUILD_QUEUE"
 msgstr "Sestavení fronty"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1943
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1944
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr "Vybudování struktury"
@@ -648,7 +648,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2174
+#: ../src/general/OptionsMenu.tscn:2224
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -780,17 +780,17 @@ msgstr "Poznámky ke změnám jsou příliš dlouhé"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Změnit symetrii"
 
-#: ../simulation_parameters/common/input_options.json:286
+#: ../simulation_parameters/common/input_options.json:290
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Cheaty"
 
-#: ../src/general/OptionsMenu.tscn:1762
+#: ../src/general/OptionsMenu.tscn:1812
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Povolit podvádění (cheaty)"
 
-#: ../simulation_parameters/common/input_options.json:306
+#: ../simulation_parameters/common/input_options.json:310
 msgid "CHEAT_MENU"
 msgstr "Cheat menu"
 
@@ -876,7 +876,7 @@ msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Soubor se jménem ({0}) již existuje. Přejete si jej nahradit?"
 
-#: ../src/general/OptionsMenu.tscn:444
+#: ../src/general/OptionsMenu.tscn:446
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
 
@@ -918,7 +918,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2249
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2299
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -933,15 +933,15 @@ msgstr "Vyčistit stará uložení"
 msgid "CLOSE"
 msgstr "Zavřít"
 
-#: ../src/general/OptionsMenu.tscn:2104
+#: ../src/general/OptionsMenu.tscn:2154
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1028
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Oddělovač rozlišení mraků:"
 
-#: ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:980
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Minimální interval simulace mračen:"
 
@@ -957,7 +957,7 @@ msgstr "Spawnování entit s tvary kolizí"
 msgid "COLOUR"
 msgstr "Barva"
 
-#: ../src/general/OptionsMenu.tscn:406
+#: ../src/general/OptionsMenu.tscn:408
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekce barev:"
 
@@ -1042,11 +1042,11 @@ msgstr "Komunitní Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Navštivte naši komunitní wiki"
 
-#: ../src/general/OptionsMenu.tscn:1992
+#: ../src/general/OptionsMenu.tscn:2042
 msgid "COMPILED_AT_COLON"
 msgstr "Postaveno v:"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1028
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1029
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:704
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:738
@@ -1069,7 +1069,7 @@ msgstr "Sloučeniny:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
-#: ../src/general/OptionsMenu.tscn:963
+#: ../src/general/OptionsMenu.tscn:965
 msgid "COMPOUND_CLOUDS"
 msgstr "Mračna sloučenin"
 
@@ -1109,7 +1109,7 @@ msgstr "POTVRDIT"
 msgid "CONFIRM_DELETE"
 msgstr "Potvrzení Odstranit"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
 #: ../src/general/PauseMenu.tscn:311
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:145
 msgid "CONFIRM_EXIT"
@@ -1192,7 +1192,7 @@ msgstr "Pokračovat k prototypům období?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Vizualizéry osy ovladače:"
 
-#: ../src/general/OptionsMenu.tscn:1458
+#: ../src/general/OptionsMenu.tscn:1508
 msgid "CONTROLLER_DEADZONES"
 msgstr "Dezónové zóny ovladače"
 
@@ -1207,11 +1207,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Mrtvá zóna:"
 
-#: ../src/general/OptionsMenu.tscn:592
+#: ../src/general/OptionsMenu.tscn:594
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Tlačítko Controller zobrazí výzvu typu:"
 
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1438
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Citlivost ovladače"
 
@@ -1224,11 +1224,11 @@ msgstr "Kopírovat chybu do schránky"
 msgid "COPY_RESULTS"
 msgstr "Výsledky Auto-evo:"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopie (Červená-Zelená)"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:425
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopie (Modrá-Žlutá)"
 
@@ -1378,7 +1378,7 @@ msgstr "Otevřít nápovědu"
 msgid "CURRENT_WORLD"
 msgstr "Současní vývojáři"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:963
+#: ../src/auto-evo/AutoEvoExploringTool.cs:965
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generace:[/b]\n"
@@ -1401,7 +1401,7 @@ msgstr ""
 "     Průměrná velikost hexu: {9}\n"
 "[b]Základní údaje o organelách:[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1781
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "CUSTOM_USERNAME"
 msgstr "Vlastní uživatelské jméno:"
 
@@ -1467,6 +1467,10 @@ msgstr ""
 "Souřadnice polohy: {0}\n"
 "Při pohledu na souřadnice: {1}"
 
+#: ../src/engine/DebugOverlays.cs:208
+msgid "DEBUG_DRAW_NOT_AVAILABLE"
+msgstr ""
+
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
 msgstr "Debugovací Panel"
@@ -1475,7 +1479,7 @@ msgstr "Debugovací Panel"
 msgid "DECEMBER"
 msgstr "Prosinec"
 
-#: ../src/general/OptionsMenu.cs:1517
+#: ../src/general/OptionsMenu.cs:1532
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Výchozí výstupní zařízení"
 
@@ -1561,7 +1565,7 @@ msgstr "Popis je příliš dlouhý"
 msgid "DESPAWN_ENTITIES"
 msgstr "Zlikvidovat všechny věci"
 
-#: ../src/general/OptionsMenu.tscn:1090
+#: ../src/general/OptionsMenu.tscn:1092
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detekovaný počet CPU:"
 
@@ -1676,7 +1680,7 @@ msgstr "Vlevo"
 msgid "DIRECTIONR"
 msgstr "Vpravo"
 
-#: ../src/general/OptionsMenu.tscn:336 ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
 msgid "DISABLED"
 msgstr "Vypnuto"
 
@@ -1684,7 +1688,7 @@ msgstr "Vypnuto"
 msgid "DISABLE_ALL"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:2157
+#: ../src/general/OptionsMenu.tscn:2207
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
@@ -1726,12 +1730,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../src/general/OptionsMenu.tscn:1856
+#: ../src/general/OptionsMenu.tscn:1906
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/general/OptionsMenu.tscn:1854 ../src/general/OptionsMenu.tscn:1863
+#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1913
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1747,20 +1751,20 @@ msgstr "Už to neukazujte"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Už na to nevarovat"
 
-#: ../src/general/OptionsMenu.tscn:481
+#: ../src/general/OptionsMenu.tscn:483
 #, fuzzy
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr "Zobrazení částic v pozadí"
 
-#: ../src/general/OptionsMenu.tscn:625
+#: ../src/general/OptionsMenu.tscn:627
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Zobrazit panel schopností"
 
-#: ../src/general/OptionsMenu.tscn:472
+#: ../src/general/OptionsMenu.tscn:474
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:644
 msgid "DISPLAY_PART_NAMES"
 msgstr "Zobrazit jména tlačítek výběru částí"
 
@@ -1925,7 +1929,7 @@ msgstr "Zahrnout Easter Eggy"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/OptionsMenu.tscn:1545
+#: ../src/general/OptionsMenu.tscn:1595
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Rychlost trávení"
@@ -1950,7 +1954,7 @@ msgstr ""
 "\n"
 "Až budete chtít pokračovat, zmáčkněte tlačítko \"Další\" v pravém dolním rohu."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1962,19 +1966,19 @@ msgstr "Povolené mody"
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Povolit všechny kompatibilní mody"
 
-#: ../simulation_parameters/common/input_options.json:290
+#: ../simulation_parameters/common/input_options.json:294
 msgid "ENABLE_EDITOR"
 msgstr "Zapnout editor"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:635
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:447
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:450
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:410
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:413
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
@@ -2002,7 +2006,7 @@ msgstr "Zadejte existující Workshop ID"
 msgid "ENTITY_LABEL"
 msgstr "Štítek entity"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:562
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:563
 #: ../src/microbe_stage/MicrobeHUD.tscn:571
 msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
@@ -2028,7 +2032,7 @@ msgstr "Epipelagický"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Sekera"
 
-#: ../src/general/OptionsMenu.tscn:2185 ../src/general/OptionsMenu.tscn:2193
+#: ../src/general/OptionsMenu.tscn:2235 ../src/general/OptionsMenu.tscn:2243
 msgid "ERROR"
 msgstr "Chyba"
 
@@ -2040,7 +2044,7 @@ msgstr "Chyba při vytváření složky pro mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Chyba při vytváření souboru mod info"
 
-#: ../src/general/OptionsMenu.tscn:2195
+#: ../src/general/OptionsMenu.tscn:2245
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 
@@ -2065,7 +2069,7 @@ msgstr "Chyba při ukládání"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1272
+#: ../src/microbe_stage/MicrobeStage.cs:1276
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
@@ -2073,7 +2077,7 @@ msgstr "uniknout pohlcení"
 msgid "ESTUARY"
 msgstr "Ústí"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:958
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:957
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
 
@@ -2082,12 +2086,12 @@ msgstr "Evoluční strom"
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr "Evoluční strom"
 
-#: ../src/general/OptionsMenu.tscn:1964
+#: ../src/general/OptionsMenu.tscn:2014
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verze:"
 
-#: ../src/general/OptionsMenu.tscn:1962 ../src/general/OptionsMenu.tscn:1973
+#: ../src/general/OptionsMenu.tscn:2012 ../src/general/OptionsMenu.tscn:2023
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
@@ -2124,7 +2128,7 @@ msgstr "Exportovat všechny světy"
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1014
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1013
 #, fuzzy
 msgid "EXPORT_SUCCESS"
 msgstr "Predace {0}"
@@ -2277,7 +2281,7 @@ msgstr "Dokončit úpravy a vrátit se do prostředí"
 msgid "FINISH_ONE_GENERATION"
 msgstr "Dokončit jednu generaci"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:683
+#: ../src/auto-evo/AutoEvoExploringTool.cs:685
 msgid "FINISH_X_GENERATIONS"
 msgstr "Dokončení {0} Generací"
 
@@ -2285,7 +2289,7 @@ msgstr "Dokončení {0} Generací"
 msgid "FIRE_TOXIN"
 msgstr "Ohnivé toxiny"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1968
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1969
 #: ../src/microbe_stage/MicrobeHUD.tscn:1963
 #, fuzzy
 msgid "FIRE_TOXIN_TOOLTIP"
@@ -2453,13 +2457,13 @@ msgstr "Vytvoření módu se nezdařilo"
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "FOUR_TIMES"
 msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
@@ -2468,7 +2472,7 @@ msgstr "FPS: {0}"
 msgid "FPS_DISPLAY"
 msgstr "Ukazatel FPS"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:75
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
@@ -2484,7 +2488,7 @@ msgstr "Bonusový oblak glukózy při opuštění editoru"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(začnete s bonusovým oblakem glukózy poblíž každé generace)"
 
-#: ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.tscn:292
 msgid "FULLSCREEN"
 msgstr "Celá obrazovka"
 
@@ -2516,7 +2520,7 @@ msgstr "Generace:"
 msgid "GITHUB_TOOLTIP"
 msgstr "Navštiv náš GitHub repozitář"
 
-#: ../src/general/OptionsMenu.cs:1062
+#: ../src/general/OptionsMenu.cs:1077
 msgid "GLES2"
 msgstr "GLES2"
 
@@ -2528,7 +2532,7 @@ msgstr "Varování režimu GLES2"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
-#: ../src/general/OptionsMenu.cs:1067
+#: ../src/general/OptionsMenu.cs:1082
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2541,7 +2545,7 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala z {2} do {1}"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1126
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1127
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:729
 #: ../src/microbe_stage/MicrobeHUD.tscn:1128
 msgid "GLUCOSE"
@@ -2587,11 +2591,11 @@ msgstr "Rozumím"
 msgid "GPL_LICENSE_HEADING"
 msgstr "Následuje text GPL licence:"
 
-#: ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:493
 msgid "GPU_NAME"
 msgstr "GPU:"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:179
 msgid "GRAPHICS"
 msgstr "Grafika"
 
@@ -2599,7 +2603,7 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
-#: ../src/general/OptionsMenu.tscn:575
+#: ../src/general/OptionsMenu.tscn:577
 msgid "GUI"
 msgstr "GUI"
 
@@ -2611,12 +2615,12 @@ msgstr ""
 "Pokud se objeví problém, kdy část tlačítka editoru mizí,\n"
 "zkuste tuto možnost vypnout."
 
-#: ../simulation_parameters/common/input_options.json:261
+#: ../simulation_parameters/common/input_options.json:265
 #, fuzzy
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} k"
 
-#: ../src/general/OptionsMenu.tscn:824
+#: ../src/general/OptionsMenu.tscn:826
 msgid "GUI_VOLUME"
 msgstr "Hlasitost GUI"
 
@@ -2638,27 +2642,32 @@ msgstr "Nápověda"
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
-#: ../src/general/OptionsMenu.tscn:985 ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:987 ../src/general/OptionsMenu.tscn:1037
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(vyšší hodnoty zvyšují výkon)"
 
-#: ../src/general/OptionsMenu.tscn:321 ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Vyšší hodnota může zhoršit výkon)"
 
-#: ../simulation_parameters/common/input_options.json:226
+#: ../simulation_parameters/common/input_options.json:230
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
+msgstr "Podržte pro změnu mezi módem panorama a rotace"
+
+#: ../simulation_parameters/common/input_options.json:189
+#, fuzzy
+msgid "HOLD_FOR_PAN_WITH_MOUSE"
 msgstr "Podržte pro změnu mezi módem panorama a rotace"
 
 #: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Podržte na zobrazení menu se skupinovými rozkazy"
 
-#: ../simulation_parameters/common/input_options.json:214
+#: ../simulation_parameters/common/input_options.json:218
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:499
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:500
 #, fuzzy
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
@@ -2673,7 +2682,7 @@ msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1413
+#: ../src/general/OptionsMenu.tscn:1355 ../src/general/OptionsMenu.tscn:1463
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Verze:"
@@ -2696,7 +2705,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1282
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1283
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:659
 #: ../src/microbe_stage/MicrobeHUD.tscn:1275
 msgid "HYDROGEN_SULFIDE"
@@ -2807,7 +2816,7 @@ msgstr "Strávená hmota"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:212
 msgid "INPUTS"
 msgstr "Ovládání"
 
@@ -2850,7 +2859,7 @@ msgstr "Rychlost mutace AI"
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Rychlost mutace AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:458
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:460
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -2864,7 +2873,7 @@ msgstr "Rychlost mutace AI"
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Rychlost mutace AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:448
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:450
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -2883,7 +2892,7 @@ msgstr "Rychlost mutace AI"
 msgid "INTERACTION_HARVEST"
 msgstr "Rychlost mutace AI"
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:434
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:436
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -2891,7 +2900,7 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:411
+#: ../src/late_multicellular_stage/MulticellularCreature.cs:413
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
@@ -2957,8 +2966,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1317 ../src/general/OptionsMenu.tscn:1338
-#: ../src/general/OptionsMenu.tscn:1425 ../src/general/OptionsMenu.tscn:1447
+#: ../src/general/OptionsMenu.tscn:1367 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1497
 msgid "INVERTED"
 msgstr ""
 
@@ -2971,7 +2980,7 @@ msgstr ""
 "Některé části prototypů mohou umožňovat limitované ukládání."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:109
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1334
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1335
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:800
 #: ../src/microbe_stage/MicrobeHUD.tscn:1321
 msgid "IRON"
@@ -2990,19 +2999,19 @@ msgstr "Opustit hru"
 msgid "JANUARY"
 msgstr "Leden"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1939
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mod:"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Vždy"
 
-#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1954 ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticky"
 
-#: ../src/general/OptionsMenu.tscn:1905
+#: ../src/general/OptionsMenu.tscn:1955
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
@@ -3184,19 +3193,19 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:900
+#: ../src/general/OptionsMenu.tscn:902
 msgid "LANGUAGE"
 msgstr "Jazyk:"
 
-#: ../src/general/OptionsMenu.cs:1569
+#: ../src/general/OptionsMenu.cs:1584
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Tento jazyk je přeložen z {0}%"
 
-#: ../src/general/OptionsMenu.cs:1565
+#: ../src/general/OptionsMenu.cs:1580
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Na překladu do tohoto jazyku se ještě pracuje ({0} hotovo)"
 
-#: ../src/general/OptionsMenu.cs:1561
+#: ../src/general/OptionsMenu.cs:1576
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento překlad není kompletní ({0}% dokončeno) prosím, pomozte nám s ním!"
 
@@ -3402,7 +3411,7 @@ msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermální průduch"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:886
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:887
 #: ../src/microbe_stage/MicrobeHUD.tscn:893
 msgid "LIGHT"
 msgstr "Světlo"
@@ -3434,7 +3443,7 @@ msgstr "Kolečkem vpravo"
 msgid "LIGHT_MAX"
 msgstr "Světlo"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_EXTREME"
 msgstr "Extrémní"
 
@@ -3446,31 +3455,31 @@ msgstr "Limit využití růstových sloučenin"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_HUGE"
 msgstr "Obří"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_LARGE"
 msgstr "Velký"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_NORMAL"
 msgstr "Normální"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_SMALL"
 msgstr "Malý"
 
-#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_TINY"
 msgstr "Drobný"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_LARGE"
 msgstr "Obrovský"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1260
 msgid "LIMIT_VERY_SMALL"
 msgstr "Maličký"
 
@@ -3619,7 +3628,7 @@ msgstr "Březen"
 msgid "MARINE_SNOW"
 msgstr "Mořský sníh"
 
-#: ../src/general/OptionsMenu.tscn:668
+#: ../src/general/OptionsMenu.tscn:670
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
@@ -3627,15 +3636,15 @@ msgstr "Celková hlasitost"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maximální počet druhů v daném prostředí před nuceným vyhynutím"
 
-#: ../src/general/OptionsMenu.tscn:375
+#: ../src/general/OptionsMenu.tscn:377
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:392
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neomezené"
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximální počet entit:"
 
@@ -3712,7 +3721,7 @@ msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound
 msgid "METRICS"
 msgstr "Metriky výkonu"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -3734,7 +3743,7 @@ msgstr ""
 "Totalální čas CPU:\n"
 "{18}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -3824,8 +3833,8 @@ msgstr "Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:976
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1020
+#: ../src/auto-evo/AutoEvoExploringTool.cs:978
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1022
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika organizmu"
@@ -4019,20 +4028,20 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Není povoleno zobrazit méně než {0} datových sad!"
 
-#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:221
+#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:223
 msgid "MISC"
 msgstr "Ostatní"
 
-#: ../simulation_parameters/common/input_options.json:318
+#: ../simulation_parameters/common/input_options.json:322
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:91
 msgid "MISCELLANEOUS"
 msgstr "Různé"
 
-#: ../simulation_parameters/common/input_options.json:210
+#: ../simulation_parameters/common/input_options.json:214
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Různé 3D Fáze"
 
-#: ../src/general/OptionsMenu.tscn:1917
+#: ../src/general/OptionsMenu.tscn:1967
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Ostatní"
@@ -4235,15 +4244,15 @@ msgstr "Verze modu:"
 msgid "MORE_INFO"
 msgstr "Zobrazit více info"
 
-#: ../src/general/OptionsMenu.tscn:1535
+#: ../src/general/OptionsMenu.tscn:1585
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1272
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1344
+#: ../src/general/OptionsMenu.tscn:1394
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4264,7 +4273,7 @@ msgstr "Počet pokusů o pohyb každého druhu"
 msgid "MOVE_BACKWARDS"
 msgstr "Pohyb dozadu"
 
-#: ../simulation_parameters/common/input_options.json:202
+#: ../simulation_parameters/common/input_options.json:206
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr "Pohyb dolů nebo skrčení"
 
@@ -4288,7 +4297,7 @@ msgstr "Pohyb vpravo"
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Přesunout na jakékoliv místo"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1572
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1573
 #, fuzzy
 msgid "MOVE_TO_LAND"
 msgstr "Mod k nahrání:"
@@ -4306,11 +4315,11 @@ msgstr "Přejití k dalšímu období (mnohobuněčné). Je k dispozici jakmile 
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Přesunout na toto místo"
 
-#: ../simulation_parameters/common/input_options.json:198
+#: ../simulation_parameters/common/input_options.json:202
 msgid "MOVE_UP_OR_JUMP"
 msgstr "Pohyb nahoru nebo skok"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2030
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2031
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
@@ -4321,7 +4330,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2029
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2030
 #, fuzzy
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
@@ -4332,7 +4341,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2025
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2026
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
@@ -4343,7 +4352,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2024
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:2025
 #, fuzzy
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
@@ -4375,7 +4384,7 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1512
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1513
 #: ../src/microbe_stage/MicrobeHUD.tscn:1537
 msgid "MUCILAGE"
 msgstr "Sliz"
@@ -4410,7 +4419,7 @@ msgstr "Více metaballů"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Více organel"
 
-#: ../src/general/OptionsMenu.tscn:314
+#: ../src/general/OptionsMenu.tscn:316
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vícevzorové vyhlazování:"
 
@@ -4422,7 +4431,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Hudba"
 
-#: ../src/general/OptionsMenu.tscn:719
+#: ../src/general/OptionsMenu.tscn:721
 msgid "MUSIC_VOLUME"
 msgstr "Hlasitost hudby"
 
@@ -4442,9 +4451,9 @@ msgstr "(cena organel, membrán a jiných věcí v editoru)"
 msgid "MUTATION_POINTS"
 msgstr "Body mutace"
 
-#: ../src/general/OptionsMenu.tscn:697 ../src/general/OptionsMenu.tscn:748
-#: ../src/general/OptionsMenu.tscn:783 ../src/general/OptionsMenu.tscn:818
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:699 ../src/general/OptionsMenu.tscn:750
+#: ../src/general/OptionsMenu.tscn:785 ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:855
 msgid "MUTE"
 msgstr "Ztišit"
 
@@ -4466,6 +4475,11 @@ msgstr "Biom: {0}"
 #: ../src/space_stage/gui/SpaceStructureNameLabel.cs:57
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1175
+#, fuzzy
+msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
+msgstr "Současná vlákna:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 msgid "NEGATIVE_ATP_BALANCE"
@@ -4564,7 +4578,7 @@ msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:c
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424 ../src/general/OptionsMenu.tscn:425
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:206
 #: ../src/thriveopedia/pages/wiki/OrganelleInfoBox.cs:215
@@ -4600,12 +4614,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:965
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:966
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:957
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:958
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4661,7 +4675,7 @@ msgstr "Nebyly nalezeny žádné uložené hry"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 
-#: ../src/general/OptionsMenu.tscn:2203
+#: ../src/general/OptionsMenu.tscn:2253
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Složka se snímky obrazovky nebyla nalezena"
 
@@ -4698,7 +4712,7 @@ msgstr "Num Lock"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2373
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:448
+#: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "N_A"
 msgstr "N/A"
 
@@ -4706,7 +4720,7 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:502
+#: ../src/microbe_stage/MicrobeHUD.cs:508
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4767,7 +4781,7 @@ msgstr "Otevřít nápovědu"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Volné stavění"
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1866
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otevřít složku protokolů"
 
@@ -4793,12 +4807,12 @@ msgstr "Otevřít nápovědu"
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Otevřít složku uložení"
 
-#: ../simulation_parameters/common/input_options.json:250
+#: ../simulation_parameters/common/input_options.json:254
 #, fuzzy
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Otevřít menu"
 
-#: ../src/general/OptionsMenu.tscn:1808
+#: ../src/general/OptionsMenu.tscn:1858
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otevřít screenshoty"
 
@@ -4806,7 +4820,7 @@ msgstr "Otevřít screenshoty"
 msgid "OPEN_THE_MENU"
 msgstr "Otevřít menu"
 
-#: ../src/general/OptionsMenu.tscn:937
+#: ../src/general/OptionsMenu.tscn:939
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Pomozte přeložit hru"
 
@@ -4883,7 +4897,7 @@ msgstr "Tímto bodneš ostatní buňky."
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:433
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
@@ -4972,7 +4986,7 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1461
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1462
 #: ../src/microbe_stage/MicrobeHUD.tscn:1489
 msgid "OXYTOXY_NT"
 msgstr "OxyToxyn NT"
@@ -5069,7 +5083,7 @@ msgstr "Odstranit místní data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2213
+#: ../src/general/OptionsMenu.tscn:2263
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5141,7 +5155,7 @@ msgstr "Mírumilovnost"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:201
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
@@ -5155,7 +5169,7 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekund"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1230
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1231
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:765
 #: ../src/microbe_stage/MicrobeHUD.tscn:1223
 msgid "PHOSPHATE"
@@ -5201,7 +5215,7 @@ msgstr "Generováni planet již brzy!"
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:472
+#: ../src/microbe_stage/MicrobeHUD.cs:478
 #, fuzzy
 msgid "PLAYER"
 msgstr "Hráčská buňka"
@@ -5226,7 +5240,7 @@ msgstr "Duplicitní hráč"
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/OptionsMenu.tscn:1486
+#: ../src/general/OptionsMenu.tscn:1536
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
@@ -5241,23 +5255,23 @@ msgstr ""
 "Hráč\n"
 "Rychlost"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1645
+#: ../src/general/OptionsMenu.tscn:1695
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Přehrát úvodní video"
 
-#: ../src/general/OptionsMenu.tscn:1653
+#: ../src/general/OptionsMenu.tscn:1703
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit úvod do mikrobů v nové hře"
 
@@ -5265,7 +5279,7 @@ msgstr "Spustit úvod do mikrobů v nové hře"
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr "Hrát s vybraným nastavením"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1612
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1613
 #: ../src/microbe_stage/MicrobeHUD.tscn:1643
 #: ../src/society_stage/gui/SocietyHUD.tscn:214
 msgid "POPULATION_CAPITAL"
@@ -5295,7 +5309,7 @@ msgstr "Zobrazit podrobné informace o předpovědi"
 msgid "PRESSURE"
 msgstr "Tlak"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:941
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:942
 #: ../src/microbe_stage/MicrobeHUD.tscn:948
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
@@ -5356,11 +5370,11 @@ msgstr "Protoplazma"
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
 
-#: ../simulation_parameters/common/input_options.json:342
+#: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
 msgstr "Rychlé načtení"
 
-#: ../simulation_parameters/common/input_options.json:338
+#: ../simulation_parameters/common/input_options.json:342
 msgid "QUICK_SAVE"
 msgstr "Rychlé uložení"
 
@@ -5401,7 +5415,7 @@ msgstr "Suroví:"
 msgid "READING_SAVE_DATA"
 msgstr "Načítám uložená data"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:826
+#: ../src/auto-evo/AutoEvoExploringTool.cs:828
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:340
 msgid "READY"
 msgstr "Připraveno"
@@ -5474,7 +5488,7 @@ msgstr "Potřebuje jádro"
 msgid "RESEARCH"
 msgstr "Hledat"
 
-#: ../src/general/OptionsMenu.tscn:918 ../src/general/OptionsMenu.tscn:2034
+#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2084
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -5482,24 +5496,24 @@ msgstr "Resetovat"
 msgid "RESET_DEADZONES"
 msgstr "Resetovat Mrtvý Úhel"
 
-#: ../src/general/OptionsMenu.tscn:1879
+#: ../src/general/OptionsMenu.tscn:1929
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2094
+#: ../src/general/OptionsMenu.tscn:2144
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1604
+#: ../src/general/OptionsMenu.tscn:1654
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:2074
+#: ../src/general/OptionsMenu.tscn:2124
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
 
-#: ../src/general/OptionsMenu.tscn:2085
+#: ../src/general/OptionsMenu.tscn:2135
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
 
@@ -5508,7 +5522,7 @@ msgstr "Obnovit výchozí nastavení?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:351
+#: ../src/general/OptionsMenu.tscn:353
 msgid "RESOLUTION"
 msgstr "Rozlišení:"
 
@@ -5577,7 +5591,7 @@ msgstr "Návrat do menu"
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Návrat do hlavního menu"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:1010
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
 #: ../src/general/PauseMenu.cs:399
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
@@ -5622,7 +5636,7 @@ msgstr "Otočit doprava"
 msgid "ROTATION_COLON"
 msgstr "Rotace:"
 
-#: ../src/general/OptionsMenu.tscn:1070
+#: ../src/general/OptionsMenu.tscn:1072
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Spustit automatickou evoluci běhen hry"
 
@@ -5654,7 +5668,7 @@ msgstr "oddělen od {0}"
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populace se v některých oblastech oddělila a vytvořila nové druhy {0}:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:699
+#: ../src/auto-evo/AutoEvoExploringTool.cs:701
 msgid "RUN_X_WORLDS"
 msgstr ""
 
@@ -5692,11 +5706,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/general/OptionsMenu.tscn:2048 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2098 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:2147
+#: ../src/general/OptionsMenu.tscn:2197
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
@@ -5804,20 +5818,20 @@ msgstr "Uložení není momentálně k dispozici z důvodu:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 
-#: ../src/general/OptionsMenu.tscn:1356 ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1406 ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Signalizující Prvek"
 
-#: ../src/general/OptionsMenu.tscn:1357
+#: ../src/general/OptionsMenu.tscn:1407
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1978
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Vedlejší účinky:"
@@ -5841,8 +5855,8 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr "Zobrazit panel schopností"
 
-#: ../src/general/OptionsMenu.tscn:1486 ../src/general/OptionsMenu.tscn:1519
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1536 ../src/general/OptionsMenu.tscn:1569
+#: ../src/general/OptionsMenu.tscn:1570
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
@@ -5871,7 +5885,7 @@ msgstr "Mořské dno"
 msgid "SECRETE_SLIME"
 msgstr "Vyměšuj sliz"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1991
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1992
 #: ../src/microbe_stage/MicrobeHUD.tscn:2013
 #, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
@@ -5968,7 +5982,7 @@ msgstr "Přisedlost"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Tato hodnota se aplikuje pouze na nové hry započaté až po změně"
 
-#: ../src/general/OptionsMenu.tscn:789
+#: ../src/general/OptionsMenu.tscn:791
 msgid "SFX_VOLUME"
 msgstr "Hlasitost SFX"
 
@@ -5976,16 +5990,16 @@ msgstr "Hlasitost SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
-#: ../simulation_parameters/common/input_options.json:350
+#: ../simulation_parameters/common/input_options.json:354
 msgid "SHOW_HELP"
 msgstr "Zobrazit nápovědu"
 
-#: ../src/general/OptionsMenu.tscn:1833
+#: ../src/general/OptionsMenu.tscn:1883
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1881
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -5994,15 +6008,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Zobrazit tutoriál"
 
-#: ../src/general/OptionsMenu.tscn:1743
+#: ../src/general/OptionsMenu.tscn:1793
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriály (v aktuální hře)"
 
-#: ../src/general/OptionsMenu.tscn:1735
+#: ../src/general/OptionsMenu.tscn:1785
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriály (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1800
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobrazení upozornění na neuložený postup"
 
@@ -6010,7 +6024,7 @@ msgstr "Zobrazení upozornění na neuložený postup"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Povoluje / zakazuje vyskakovací okno s upozorněním na neuložený postup, když se hráč pokusí ukončit hru."
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1874
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -6065,7 +6079,7 @@ msgstr "Oxid křemičitý"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou křemičitou stěnu. Dokáže dobře odolat celkovému poškození a je velmi odolný proti fyzickému poškození. Pro udržení své formy vyžaduje také méně energie. Avšak velice zpomaluje buňku a buňka absorbuje zdroje sníženou rychlostí."
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
@@ -6112,7 +6126,7 @@ msgstr "Malý kus železa"
 msgid "SOCIETY_STAGE"
 msgstr "Mikrobiální Období"
 
-#: ../src/general/OptionsMenu.tscn:188
+#: ../src/general/OptionsMenu.tscn:190
 msgid "SOUND"
 msgstr "Zvuky"
 
@@ -6151,7 +6165,7 @@ msgstr "Struktura"
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:298
+#: ../simulation_parameters/common/input_options.json:302
 msgid "SPAWN_AMMONIA"
 msgstr "Spawnout Amoniak"
 
@@ -6159,15 +6173,15 @@ msgstr "Spawnout Amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeStage.cs:990
+#: ../src/microbe_stage/MicrobeStage.cs:994
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nelze využít cheat ke spawnutí nepřítele, jelikož v tomto prostředí se nenachází žádné nepřátelské druhy"
 
-#: ../simulation_parameters/common/input_options.json:294
+#: ../simulation_parameters/common/input_options.json:298
 msgid "SPAWN_GLUCOSE"
 msgstr "Spawnout Glukózu"
 
-#: ../simulation_parameters/common/input_options.json:302
+#: ../simulation_parameters/common/input_options.json:306
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawnout Fosfát"
 
@@ -6401,7 +6415,7 @@ msgstr "Úložný prostor:"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
-#: ../simulation_parameters/common/input_options.json:246
+#: ../simulation_parameters/common/input_options.json:250
 #, fuzzy
 msgid "STRATEGY_STAGES"
 msgstr "Mikrobiální Období"
@@ -6464,11 +6478,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1270
+#: ../src/microbe_stage/MicrobeStage.cs:1274
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1271
+#: ../src/microbe_stage/MicrobeStage.cs:1275
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "úspěšné prohledání"
 
@@ -6500,15 +6514,15 @@ msgstr "Pravá klávesa Windows/Command"
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelé"
 
-#: ../simulation_parameters/common/input_options.json:230
+#: ../simulation_parameters/common/input_options.json:234
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Přepnout na pohled z přední kamery"
 
-#: ../simulation_parameters/common/input_options.json:234
+#: ../simulation_parameters/common/input_options.json:238
 msgid "SWITCH_TO_RIGHT_CAMERA"
 msgstr "Přepnout na pohled z pravé kamery"
 
-#: ../simulation_parameters/common/input_options.json:238
+#: ../simulation_parameters/common/input_options.json:242
 msgid "SWITCH_TO_TOP_CAMERA"
 msgstr "Přepnout na pohled z horní kamery"
 
@@ -6516,20 +6530,20 @@ msgstr "Přepnout na pohled z horní kamery"
 msgid "SYSREQ"
 msgstr "SysRq"
 
-#: ../simulation_parameters/common/input_options.json:273
+#: ../simulation_parameters/common/input_options.json:277
 msgid "TAB_SECONDARY_SWITCH_LEFT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:277
+#: ../simulation_parameters/common/input_options.json:281
 msgid "TAB_SECONDARY_SWITCH_RIGHT"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:265
+#: ../simulation_parameters/common/input_options.json:269
 #, fuzzy
 msgid "TAB_SWITCH_LEFT"
 msgstr "Otočit doleva"
 
-#: ../simulation_parameters/common/input_options.json:269
+#: ../simulation_parameters/common/input_options.json:273
 #, fuzzy
 msgid "TAB_SWITCH_RIGHT"
 msgstr "Otočit doprava"
@@ -6538,7 +6552,7 @@ msgstr "Otočit doprava"
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Štítky pouze obsahují whitespace"
 
-#: ../simulation_parameters/common/input_options.json:346
+#: ../simulation_parameters/common/input_options.json:350
 msgid "TAKE_SCREENSHOT"
 msgstr "Udělat screenshot"
 
@@ -6612,7 +6626,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr "Teplota"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:830
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:831
 #: ../src/microbe_stage/MicrobeHUD.tscn:837
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
@@ -6692,7 +6706,7 @@ msgstr "Jedná se o lokálně nainstalovaný mod"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Tento mod si můžete stáhnout ze služby Steam Workshop"
 
-#: ../src/general/OptionsMenu.tscn:1139
+#: ../src/general/OptionsMenu.tscn:1141 ../src/general/OptionsMenu.tscn:1188
 msgid "THREADS"
 msgstr "Vlákna:"
 
@@ -6768,8 +6782,8 @@ msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby 
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
-#: ../src/microbe_stage/MicrobeStage.cs:450
 #: ../src/microbe_stage/MicrobeStage.cs:454
+#: ../src/microbe_stage/MicrobeStage.cs:458
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6824,13 +6838,13 @@ msgstr "Přepnout spojování"
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr "Přepnout spojování"
 
-#: ../simulation_parameters/common/input_options.json:326
+#: ../simulation_parameters/common/input_options.json:330
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Přepnutí debugovacího panelu"
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1918
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1954
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1919
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1955
 msgid "TOGGLE_ENGULF"
 msgstr "Přepnout pohlcování"
 
@@ -6839,24 +6853,24 @@ msgstr "Přepnout pohlcování"
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr "Přepnout pohlcování"
 
-#: ../simulation_parameters/common/input_options.json:330
+#: ../simulation_parameters/common/input_options.json:334
 msgid "TOGGLE_FPS"
 msgstr "Přepnout ukazatel FPS"
 
-#: ../simulation_parameters/common/input_options.json:354
+#: ../simulation_parameters/common/input_options.json:358
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Přepínání na celou obrazovku"
 
-#: ../simulation_parameters/common/input_options.json:358
+#: ../simulation_parameters/common/input_options.json:362
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Přepínání HUD"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1932
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1933
 #, fuzzy
 msgid "TOGGLE_INVENTORY"
 msgstr "Přepnout spojování"
 
-#: ../simulation_parameters/common/input_options.json:334
+#: ../simulation_parameters/common/input_options.json:338
 msgid "TOGGLE_METRICS"
 msgstr "Přepnutí displaye metrik"
 
@@ -6864,7 +6878,7 @@ msgstr "Přepnutí displaye metrik"
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:322
+#: ../simulation_parameters/common/input_options.json:326
 msgid "TOGGLE_PAUSE"
 msgstr "Pozastavit"
 
@@ -6938,7 +6952,7 @@ msgstr "Zkuste udělat snímek obrazovky!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Zkus vytvořit uloženou pozici!"
 
-#: ../src/general/OptionsMenu.tscn:2205
+#: ../src/general/OptionsMenu.tscn:2255
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
@@ -7170,7 +7184,7 @@ msgstr "Podívat se na tutoriál"
 msgid "TWITTER_TOOLTIP"
 msgstr "Navštiv náš Twitter"
 
-#: ../src/general/OptionsMenu.tscn:337
+#: ../src/general/OptionsMenu.tscn:339
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -7199,7 +7213,7 @@ msgstr "Rozpojit všechny"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1630
+#: ../src/general/OptionsMenu.cs:1655
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -7241,7 +7255,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr "Neznámý"
 
-#: ../src/general/OptionsMenu.cs:1072
+#: ../src/general/OptionsMenu.cs:1087
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Neznámý"
 
@@ -7249,7 +7263,7 @@ msgstr "Neznámý"
 msgid "UNKNOWN_MOUSE"
 msgstr "Neznámá myš"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:98
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windows"
 
@@ -7264,7 +7278,7 @@ msgstr "Neznámý"
 msgid "UNKNOWN_SHORT"
 msgstr "Neznámý"
 
-#: ../src/general/OptionsMenu.cs:1637
+#: ../src/general/OptionsMenu.cs:1662
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Verze modu:"
@@ -7273,7 +7287,7 @@ msgstr "Verze modu:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznámé Workshop ID pro tento mod"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2174
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
@@ -7329,7 +7343,7 @@ msgstr "Nahrání bylo úspěšné"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licence a použité knihovny"
 
-#: ../src/general/OptionsMenu.tscn:521
+#: ../src/general/OptionsMenu.tscn:523
 msgid "USED_RENDERER_NAME"
 msgstr "Použitý renderer:"
 
@@ -7345,7 +7359,7 @@ msgstr "Použít Auto Harmony Loading"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
-#: ../src/general/OptionsMenu.tscn:1770
+#: ../src/general/OptionsMenu.tscn:1820
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
 
@@ -7353,11 +7367,16 @@ msgstr "Použij vlastní jméno"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Druhy zvyšující biodiverzitu kradou populaci existujícím druhům"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
 
-#: ../src/general/OptionsMenu.tscn:1371
+#: ../src/general/OptionsMenu.tscn:1178
+#, fuzzy
+msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
+msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
+
+#: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -7398,7 +7417,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Verze:"
 
-#: ../src/general/OptionsMenu.tscn:1323 ../src/general/OptionsMenu.tscn:1431
+#: ../src/general/OptionsMenu.tscn:1373 ../src/general/OptionsMenu.tscn:1481
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Verze:"
@@ -7408,11 +7427,11 @@ msgstr "Verze:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Vertikální (Osa: {0})"
 
-#: ../src/general/OptionsMenu.tscn:548
+#: ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY"
 msgstr "Právě využitá video paměť:"
 
-#: ../src/general/OptionsMenu.cs:1081 ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.cs:1096 ../src/general/OptionsMenu.tscn:563
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -7431,12 +7450,12 @@ msgstr "Zakázat vše"
 msgid "VIEW_ONLINE"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:1842
+#: ../src/general/OptionsMenu.tscn:1892
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1839
+#: ../src/general/OptionsMenu.tscn:1889
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -7473,7 +7492,7 @@ msgstr "Ztlumit"
 msgid "VOLUMEUP"
 msgstr "Zhlasit"
 
-#: ../src/general/OptionsMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:284
 msgid "VSYNC"
 msgstr "VSync"
 
@@ -9026,7 +9045,7 @@ msgstr "Statistika organizmu"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520
+#: ../src/general/OptionsMenu.tscn:1570
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
@@ -9035,15 +9054,15 @@ msgstr "ke zvýšení pohyblivosti"
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:611
+#: ../src/general/OptionsMenu.tscn:613
 msgid "XBOX_SERIES"
 msgstr ""
 

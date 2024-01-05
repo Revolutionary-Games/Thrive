@@ -145,7 +145,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // Systems stored in fields
         animationControlSystem = new AnimationControlSystem(EntitySystem);
-        attachedEntityPositionSystem = new AttachedEntityPositionSystem(EntitySystem, couldParallelize);
+        attachedEntityPositionSystem = new AttachedEntityPositionSystem(this, EntitySystem, couldParallelize);
         colourAnimationSystem = new ColourAnimationSystem(EntitySystem, couldParallelize);
         countLimitedDespawnSystem = new CountLimitedDespawnSystem(this, EntitySystem);
         damageCooldownSystem = new DamageCooldownSystem(EntitySystem, couldParallelize);
@@ -328,6 +328,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         fluidCurrentsSystem.Update(delta);
 
+        colonyCompoundDistributionSystem.Update(delta);
+
         engulfingSystem.Update(delta);
         engulfedDigestionSystem.Update(delta);
         engulfedHandlingSystem.Update(delta);
@@ -346,8 +348,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         pilusDamageSystem.Update(delta);
 
         ProcessSystem.Update(delta);
-
-        colonyCompoundDistributionSystem.Update(delta);
 
         osmoregulationAndHealingSystem.Update(delta);
 

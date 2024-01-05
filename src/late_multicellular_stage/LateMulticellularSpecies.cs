@@ -31,6 +31,9 @@ public class LateMulticellularSpecies : Species
     [JsonProperty]
     public float BrainPower { get; private set; }
 
+    [JsonProperty]
+    public float MuscularPower { get; private set; }
+
     /// <summary>
     ///   Where this species reproduces, used to control also where individuals of this species spawn and where the
     ///   player spawns
@@ -76,6 +79,7 @@ public class LateMulticellularSpecies : Species
         RepositionToOrigin();
         UpdateInitialCompounds();
         CalculateBrainPower();
+        CalculateMuscularPower();
 
         // Note that a few stage transitions are explicit for the player so the editor will override this
         SetTypeFromBrainPower();
@@ -190,6 +194,22 @@ public class LateMulticellularSpecies : Species
         return result;
     }
 
+    private static float CalculateMuscularPowerFromLayout(MetaballLayout<MulticellularMetaball> layout, float scale)
+    {
+        float result = 0;
+
+        foreach (var metaball in layout)
+        {
+            if (metaball.CellType.IsMuscularTissueType())
+            {
+                // TODO: check that volume scaling in physically sensible way (using GetVolume) is what we want here
+                result += metaball.GetVolume(scale);
+            }
+        }
+
+        return result;
+    }
+
     private void SetTypeFromBrainPower()
     {
         MulticellularType = CalculateMulticellularTypeFromLayout(BodyLayout, Scale);
@@ -219,5 +239,10 @@ public class LateMulticellularSpecies : Species
     private void CalculateBrainPower()
     {
         BrainPower = CalculateBrainPowerFromLayout(BodyLayout, Scale);
+    }
+
+    private void CalculateMuscularPower()
+    {
+        MuscularPower = CalculateMuscularPowerFromLayout(BodyLayout, Scale);
     }
 }

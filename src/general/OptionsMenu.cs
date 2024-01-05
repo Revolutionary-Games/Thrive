@@ -181,6 +181,12 @@ public class OptionsMenu : ControlWithInput
     public NodePath ThreadCountSliderPath = null!;
 
     [Export]
+    public NodePath UseManualNativeThreadCountPath = null!;
+
+    [Export]
+    public NodePath NativeThreadCountSliderPath = null!;
+
+    [Export]
     public NodePath MaxSpawnedEntitiesPath = null!;
 
     // Inputs tab.
@@ -386,6 +392,8 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
+    private CustomCheckBox useManualNativeThreadCount = null!;
+    private Slider nativeThreadCountSlider = null!;
     private OptionButton maxSpawnedEntities = null!;
 
     // Inputs tab
@@ -589,6 +597,8 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
+        useManualNativeThreadCount = GetNode<CustomCheckBox>(UseManualNativeThreadCountPath);
+        nativeThreadCountSlider = GetNode<Slider>(NativeThreadCountSliderPath);
         maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
         // Inputs
@@ -793,6 +803,9 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
+        useManualNativeThreadCount.Pressed = settings.UseManualNativeThreadCount;
+        nativeThreadCountSlider.Value = settings.NativeThreadCount;
+        nativeThreadCountSlider.Editable = settings.UseManualNativeThreadCount;
         maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
 
         UpdateDetectedCPUCount();
@@ -941,6 +954,8 @@ public class OptionsMenu : ControlWithInput
                 AssumeHyperthreadingPath.Dispose();
                 UseManualThreadCountPath.Dispose();
                 ThreadCountSliderPath.Dispose();
+                UseManualNativeThreadCountPath.Dispose();
+                NativeThreadCountSliderPath.Dispose();
                 MaxSpawnedEntitiesPath.Dispose();
                 InputsTabPath.Dispose();
                 MouseAxisSensitivitiesBoundPath.Dispose();
@@ -1600,21 +1615,39 @@ public class OptionsMenu : ControlWithInput
     {
         detectedCPUCount.Text = TaskExecutor.CPUCount.ToString(CultureInfo.CurrentCulture);
 
+        threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
+        threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+        nativeThreadCountSlider.MinValue = 1;
+        nativeThreadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+
+        int threads;
+
         if (Settings.Instance.UseManualThreadCount)
         {
-            activeThreadCount.Text = Settings.Instance.ThreadCount.Value.ToString(CultureInfo.CurrentCulture);
+            threads = Settings.Instance.ThreadCount;
         }
         else
         {
-            int threads = TaskExecutor.GetWantedThreadCount(Settings.Instance.AssumeCPUHasHyperthreading,
+            threads = TaskExecutor.GetWantedThreadCount(Settings.Instance.AssumeCPUHasHyperthreading,
                 Settings.Instance.RunAutoEvoDuringGamePlay);
 
             activeThreadCount.Text = threads.ToString(CultureInfo.CurrentCulture);
             threadCountSlider.Value = threads;
         }
 
-        threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
-        threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+        int nativeThreads;
+
+        if (!Settings.Instance.UseManualNativeThreadCount.Value)
+        {
+            nativeThreads = TaskExecutor.CalculateNativeThreadCountFromManagedThreads(threads);
+            nativeThreadCountSlider.Value = nativeThreads;
+        }
+        else
+        {
+            nativeThreads = Settings.Instance.NativeThreadCount;
+        }
+
+        activeThreadCount.Text = $"{threads}+{nativeThreads}";
     }
 
     private void UpdateDismissedNoticeCount()
@@ -2023,6 +2056,34 @@ public class OptionsMenu : ControlWithInput
 
         int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualNativeThreadsToggled(bool pressed)
+    {
+        Settings.Instance.UseManualNativeThreadCount.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        nativeThreadCountSlider.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+
+        if (pressed)
+        {
+            nativeThreadCountSlider.Value = Settings.Instance.NativeThreadCount.Value;
+        }
+    }
+
+    private void OnManualNativeThreadCountChanged(float value)
+    {
+        if (!Settings.Instance.UseManualNativeThreadCount.Value)
+            return;
+
+        Settings.Instance.NativeThreadCount.Value = (int)value;
         Settings.Instance.ApplyThreadSettings();
 
         UpdateResetSaveButtonState();

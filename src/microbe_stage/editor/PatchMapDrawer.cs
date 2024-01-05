@@ -23,9 +23,6 @@ public class PatchMapDrawer : Control
     [Export]
     public NodePath LineContainerPath = null!;
 
-    [Export]
-    public bool IgnoreFogOfWar;
-
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -132,14 +129,6 @@ public class PatchMapDrawer : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
-
-        // When set to ignore fog of war automatically reveal the entire map set to us
-        if (IgnoreFogOfWar && Map != null)
-        {
-            Map.RevealAllPatches();
-            dirty = true;
-            IgnoreFogOfWar = false;
-        }
 
         CheckForDirtyNodes();
 

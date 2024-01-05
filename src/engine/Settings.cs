@@ -250,6 +250,16 @@ public class Settings
     [JsonProperty]
     public SettingValue<int> ThreadCount { get; private set; } = new(4);
 
+    [JsonProperty]
+    public SettingValue<bool> UseManualNativeThreadCount { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Manually set number of native threads to use. Applies similarly to the C# side of things (i.e. only when
+    ///   manual count is enabled)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> NativeThreadCount { get; private set; } = new(3);
+
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
     /// </summary>

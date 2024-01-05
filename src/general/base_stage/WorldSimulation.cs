@@ -504,6 +504,10 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             entitiesToNotSave.Remove(entity);
         }
 
+        // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
+        if (!entity.IsAlive)
+            return;
+
         OnEntityDestroyed(entity);
 
         // Destroy the entity from the ECS system
