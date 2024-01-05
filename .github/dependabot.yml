@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: gitsubmodule
     directory: "/"
     schedule:
-        interval: "daily"
+        interval: "weekly"
     labels:
       - "review"
       - "dependencies"
