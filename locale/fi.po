@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 11:08+0200\n"
+"POT-Creation-Date: 2024-01-05 14:15+0200\n"
 "PO-Revision-Date: 2023-12-25 11:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -2524,7 +2524,7 @@ msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
@@ -2534,7 +2534,7 @@ msgstr "FPS: {0}"
 msgid "FPS_DISPLAY"
 msgstr "Toista"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:75
 msgid "FRAME_DURATION"
 msgstr "Ruutuaika: {0}"
 
@@ -3800,12 +3800,12 @@ msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [t
 msgid "METRICS"
 msgstr "Näytä FPS-laskuri"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -7405,7 +7405,7 @@ msgstr "Näytä kykypalkki"
 msgid "UNKNOWN_MOUSE"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:98
 #, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tuntematon hiiren painike"

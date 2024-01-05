@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 11:08+0200\n"
-"PO-Revision-Date: 2023-12-21 08:45+0000\n"
+"POT-Creation-Date: 2024-01-05 14:15+0200\n"
+"PO-Revision-Date: 2024-01-05 06:18+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.2.1\n"
+"X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../src/general/OptionsMenu.tscn:1468
@@ -2398,7 +2398,7 @@ msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS：{0}"
@@ -2407,7 +2407,7 @@ msgstr "FPS：{0}"
 msgid "FPS_DISPLAY"
 msgstr "FPS 顯示"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:75
 msgid "FRAME_DURATION"
 msgstr "影格時長：{0}"
 
@@ -2588,9 +2588,8 @@ msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr "按住以在平移與旋轉模式間切換"
 
 #: ../simulation_parameters/common/input_options.json:189
-#, fuzzy
 msgid "HOLD_FOR_PAN_WITH_MOUSE"
-msgstr "按住以在平移與旋轉模式間切換"
+msgstr "按住滑鼠平移"
 
 #: ../simulation_parameters/common/input_options.json:53
 msgid "HOLD_PACK_COMMANDS_MENU"
@@ -3623,7 +3622,7 @@ msgstr "將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉化為 [thri
 msgid "METRICS"
 msgstr "性能指標"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -3645,7 +3644,7 @@ msgstr ""
 "總 CPU 時間：\n"
 "{18}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -4748,7 +4747,7 @@ msgstr "肌原纖維"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "允許創建肌肉細胞。在目前遊戲原型中無效果。"
+msgstr "允許創建肌肉細胞。在目前遊戲原型中可以提高生物的速度。"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:728
@@ -7078,7 +7077,7 @@ msgstr "未知"
 msgid "UNKNOWN_MOUSE"
 msgstr "未知滑鼠鍵"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:98
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "在 Windows 上未知"
 

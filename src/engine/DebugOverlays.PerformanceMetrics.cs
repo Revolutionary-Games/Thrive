@@ -30,8 +30,8 @@ public partial class DebugOverlays
     private Label metricsText = null!;
 #pragma warning restore CA2213
 
-    private float entities;
-    private int children;
+    private float entityWeight;
+    private int entityCount;
     private float currentSpawned;
     private float currentDespawned;
 
@@ -47,10 +47,16 @@ public partial class DebugOverlays
         }
     }
 
-    public void ReportEntities(float totalEntities, int otherChildren)
+    public void ReportEntities(float totalWeight, int rawCount)
     {
-        entities = totalEntities;
-        children = otherChildren;
+        entityWeight = totalWeight;
+        entityCount = rawCount;
+    }
+
+    public void ReportEntities(int count)
+    {
+        entityWeight = count;
+        entityCount = count;
     }
 
     public void ReportSpawns(float newSpawns)
@@ -85,7 +91,7 @@ public partial class DebugOverlays
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
-                    Math.Round(entities, 1), children,
+                    entityCount, Math.Round(entityWeight, 1),
                     Math.Round(spawnHistory.Sum(), 1), Math.Round(despawnHistory.Sum(), 1),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
                     OS.GetName() == Constants.OS_WINDOWS_NAME ?
@@ -102,8 +108,8 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
                 .ToString();
 
-        entities = 0.0f;
-        children = 0;
+        entityWeight = 0.0f;
+        entityCount = 0;
 
         spawnHistory.AddToBack(currentSpawned);
         despawnHistory.AddToBack(currentDespawned);

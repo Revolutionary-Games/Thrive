@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 11:08+0200\n"
+"POT-Creation-Date: 2024-01-05 14:15+0200\n"
 "PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -2398,7 +2398,7 @@ msgstr "4x"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
@@ -2407,7 +2407,7 @@ msgstr "FPS: {0}"
 msgid "FPS_DISPLAY"
 msgstr "Показать FPS"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:75
 msgid "FRAME_DURATION"
 msgstr "FPS: {0}"
 
@@ -3623,7 +3623,7 @@ msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound
 msgid "METRICS"
 msgstr "Включить показ производительности"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -3645,7 +3645,7 @@ msgstr ""
 "Общее время процессора:\n"
 "{18}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} МиБ"
@@ -4748,7 +4748,7 @@ msgstr "Миофибрилла"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
-msgstr "Позволяет создавать клетки мускул. Пока что в данном прототипе ничего не делает."
+msgstr "Позволяет создавать клетки мускул. Пока что в данном прототипе лишь повышает скорость вашего организма."
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:728
@@ -7085,7 +7085,7 @@ msgstr "Неизвестно"
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестная кнопка мыши"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:98
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестно для Windows"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 11:08+0200\n"
+"POT-Creation-Date: 2024-01-05 14:15+0200\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1468
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Gaya Gerakan 2D:"
 
 #: ../simulation_parameters/common/input_options.json:226
 msgid "3D_EDITOR"
@@ -33,7 +33,7 @@ msgstr "Gerakan 3D"
 
 #: ../src/general/OptionsMenu.tscn:1500
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "Gaya Gerakan 3D:"
 
 #: ../simulation_parameters/common/input_options.json:37
 msgid "ABILITIES"
@@ -69,33 +69,31 @@ msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Tindakan diblokir saat yang lain sedang berlangsung"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:77
-#, fuzzy
 msgid "ACTION_DELETE"
-msgstr "Konfirmasi Keluar"
+msgstr "Hapus"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:67
 #, fuzzy
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "Populasi Spesies"
+msgstr "Populasi Dobel"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:64
 #, fuzzy
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Konfirmasi Keluar"
+msgstr "Duplikasi Unit"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:68
 #, fuzzy
 msgid "ACTION_HALF_POPULATION"
-msgstr "{0} dengan populasi: {1}"
+msgstr "Belah dua populasi"
 
 #: ../src/ascension_stage/gui/GodToolsPopup.cs:74
-#, fuzzy
 msgid "ACTION_TELEPORT"
-msgstr "Konfirmasi Keluar"
+msgstr "Teleportasi"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
 msgid "ACTIVE"
-msgstr ""
+msgstr "Aktif"
 
 #: ../src/general/OptionsMenu.tscn:1107
 #, fuzzy
@@ -105,19 +103,21 @@ msgstr "Simpan dan lanjut"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:201
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Mikroba aktif akan mengembara ketika tidak ada hal menarik yang terjadi.\n"
+"Mikroba sesil akan menjadi stasioner dan menunggu perubahan lingkungan sebelum bertindak."
 
 #: ../src/modding/NewModGUI.cs:322
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Auto-evo gagal bekerja"
+msgstr "Validasi tambahan mendeteksi isu: {0}"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #: ../src/general/NewGameSettings.tscn:1219
+#, fuzzy
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Lanjutan"
 
 #: ../src/general/NewGameSettings.tscn:1214
 #, fuzzy
@@ -136,30 +136,33 @@ msgstr "Agen"
 #: ../src/microbe_stage/MicrobeHUD.cs:106
 #, fuzzy
 msgid "AGENTS_COLON"
-msgstr "Status:"
+msgstr "Agen:"
 
 #: ../src/microbe_stage/AgentProperties.cs:23
 #, fuzzy
 msgid "AGENT_NAME"
-msgstr "Gua"
+msgstr "{0} Agen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:177
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Mikroba agresif akan mengejar mangsa pada jarak yang lebih besar\n"
+"dan akan mungkin sekali untuk berkelahi dengan pemangsa jika terserang.\n"
+"Mikroba damai tidak akan melawan yang lain pada jarak yang lebih besar\n"
+"dan tidak mungkin untuk menggunakan toksin lawan pemangsa."
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agresif"
 
 #: ../src/general/NewGameSettings.tscn:477
 #, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Poin Mutasi"
+msgstr "Kecepatan Mutasi AI"
 
 #: ../src/general/NewGameSettings.tscn:517
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "{0} populasi berubah {1} karena: {2}"
+msgstr "(kecepatan mutasi spesies AI)"
 
 #: ../simulation_parameters/common/gallery.json:257
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:402
@@ -175,22 +178,34 @@ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:182
-#, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
-msgstr "Statistika Organisme"
+msgstr "Statistika Umum untuk Semua Dunia"
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1006
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
-msgstr "Statistika Organisme"
+msgstr ""
+"[b]Generasi:[/b]\n"
+"  {0}\n"
+"[b]Spesies Total:[/b]\n"
+"  Rata-rata {1}; Deviasi standar {2}\n"
+"[b]Species masih hidup:[/b]\n"
+"  Rata-rata {3}; Deviasi standar {4}\n"
+"[b]Jumlah spesies per-patch:[/b]\n"
+"  Rata-rata {5}; Deviasi standar {6}\n"
+"[b]Total populasi per-patch:[/b]\n"
+"  Rata-rata {7}; Deviasi standar{8}\n"
+"[b]Rata-rata ukuran hexa di mikroba spesies:[/b]\n"
+"  Rata-rata {9}; Deviasi standar {10}\n"
+"[b]Data umum organel:[/b]"
 
 #: ../src/space_stage/SpaceStage.cs:410
+#, fuzzy
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Kamu sudah menaik"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:231
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/general/OptionsMenu.tscn:754
 msgid "AMBIANCE_VOLUME"
@@ -216,9 +231,8 @@ msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fiksasi Anaerob Nitrogen"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
-#, fuzzy
 msgid "APPEARANCE"
-msgstr "Performa"
+msgstr "Penampilan"
 
 #: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
@@ -227,11 +241,11 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:575
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Terapkan perubahan"
 
 #: ../src/gui_common/CreditsScroll.cs:544
 msgid "APRIL"
-msgstr ""
+msgstr "April"
 
 #: ../src/general/OptionsMenu.tscn:2086
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
@@ -259,18 +273,24 @@ msgid "ART_GALLERY"
 msgstr "Galeri Seni"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
-#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr "Populasi Spesies"
+msgstr "Selamat!"
 
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.cs:10
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:11
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Kamu sudah menaik dan menyelasai game. Selamat untuk mencapai terkahir game!\n"
+"\n"
+"Kamu bisa lanjut bermain di Tahap Angkasa dengan dibukanya God Tools untuk bermain-main .\n"
+"\n"
+"Dimungkinkan juga untuk turun dan kembali ke Tahap Mikroba di save ini dan mainkan lagi semua tahap dengan fasilitas ekstra.\n"
+"\n"
+"Waktu total naik dalam save ini: {0}"
 
 #: ../src/modding/ModManager.cs:325
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Susunan kelas mod dibutuhkan jika sebuah susunan ditentukan"
 
 #: ../src/modding/ModManager.cs:336
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
@@ -2486,7 +2506,7 @@ msgstr ""
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
@@ -2495,7 +2515,7 @@ msgstr "FPS: {0}"
 msgid "FPS_DISPLAY"
 msgstr "Tampilan FPS"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:69
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:75
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
@@ -3762,7 +3782,7 @@ msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [t
 msgid "METRICS"
 msgstr "Metrik Performa"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:86
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
 #: ../src/engine/DebugOverlays.tscn:83 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -3784,7 +3804,7 @@ msgstr ""
 "Waktu CPU Total:\n"
 "{18}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:78
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:84
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
@@ -7359,7 +7379,7 @@ msgstr "Tampilkan Bilah Kemampuan Sel"
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:92
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:98
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Tidak diketahui di Windows"
 
