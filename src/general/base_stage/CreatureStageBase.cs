@@ -144,15 +144,15 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
             foreach (var entity in WorldSimulation.EntitySystem)
             {
+                ++totalEntityCount;
+
                 if (!entity.Has<Spawned>())
                     continue;
 
                 totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-                ++totalEntityCount;
             }
 
-            var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
+            debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
 
         if (CheatManager.ManuallySetTime)
