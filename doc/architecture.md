@@ -18,8 +18,8 @@ functionality GUI Nodes, and other smaller helper methods. These can
 be learned by reading the documents in this folder (if available about
 a specific system) or by reading other Thrive code and using the same
 approach. That second way is also a good way to get familiar with the
-Thrive style and become familiar with various parts of the codebase
-that provide commonly needed operations.
+[Thrive style](style_guide.md) and become familiar with various parts
+of the codebase that provide commonly needed operations.
 
 The remainder of this document describes the overall code architecture
 of Thrive. For GUI Thrive uses Godot as intended, but for gameplay
