@@ -443,10 +443,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 BodyEditorLightPath.Dispose();
             }
 
-            if (environment != null)
-            {
-                environment.Dispose();
-            }
+            environment?.Dispose();
         }
 
         base.Dispose(disposing);
