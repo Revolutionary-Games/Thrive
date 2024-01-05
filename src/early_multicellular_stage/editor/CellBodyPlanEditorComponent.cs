@@ -237,7 +237,7 @@ public partial class CellBodyPlanEditorComponent :
         if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount);
         }
 
         if (cellDataDirty)
