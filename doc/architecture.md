@@ -136,7 +136,7 @@ time.
 
 The ECS architecture simplifies savign and loading as it is just a
 matter of writing the component data to disk and loading it back
-later. The saving system atuomatically handles converting entity
+later. The saving system automatically handles converting entity
 references to point to newly created instances after loading a save.
 
 One thing that needs to be considered is which properties of a
@@ -182,7 +182,7 @@ classes (the external method definitions are split up in multiple
 files to be next to the C# side class that needs them). When calling
 the native side methods the goal is to avoid as many memory copies as
 possible, that's why many of the external method signatures are pretty
-mangled and not very clear from C# viewpoint.
+mangled and not very clear from a C# viewpoint.
 
 P/Invoke can be learned more about by reading the Microsoft
 documentation on that C# feature:
