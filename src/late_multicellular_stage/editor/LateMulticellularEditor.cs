@@ -63,6 +63,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private Light bodyEditorLight = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+    private Godot.Environment? environment = null;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -333,6 +334,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.Hide();
         noCellTypeSelected.Hide();
 
+        // Remember environment
+        RememberEnvironment();
+
         // Show selected
         switch (selectedEditorTab)
         {
@@ -371,6 +375,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                 SetWorldSceneObjectVisibilityWeControl();
 
+                ResetEnvironment();
+
                 break;
             }
 
@@ -392,6 +398,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                     SetWorldSceneObjectVisibilityWeControl();
                 }
+
+                worldEnvironmentNode.Environment = null;
 
                 break;
             }
@@ -607,5 +615,21 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void RememberEnvironment()
+    {
+        if (worldEnvironmentNode.Environment != null)
+        {
+            environment = worldEnvironmentNode.Environment;
+        }
+    }
+
+    private void ResetEnvironment()
+    {
+        if (environment != null)
+        {
+            worldEnvironmentNode.Environment = environment;
+        }
     }
 }
