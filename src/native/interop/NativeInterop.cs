@@ -50,7 +50,7 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
-        NativeMethods.SetNativeExecutorThreads(TaskExecutor.Instance.NativeTasks);
+        // TaskExecutor sets the number of used background threads on the native side
 
 #if DEBUG
         CheckSizesOfInteropTypes();
@@ -134,12 +134,12 @@ public static class NativeInterop
         NativeMethods.DisableDebugDrawerCallbacks();
     }
 
-    public static void NotifyWantedThreadCountChanged()
+    public static void NotifyWantedThreadCountChanged(int threads)
     {
         if (!nativeLoadSucceeded)
             return;
 
-        NativeMethods.SetNativeExecutorThreads(TaskExecutor.Instance.NativeTasks);
+        NativeMethods.SetNativeExecutorThreads(threads);
     }
 
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)

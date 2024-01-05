@@ -121,7 +121,7 @@ public class TaskExecutor : IParallelRunner
 
             usedNativeTaskCount = Mathf.Clamp(value, 1, MaximumThreadCount);
 
-            NativeInterop.NotifyWantedThreadCountChanged();
+            NativeInterop.NotifyWantedThreadCountChanged(usedNativeTaskCount);
         }
     }
 
@@ -157,13 +157,23 @@ public class TaskExecutor : IParallelRunner
 
     public static int CalculateNativeThreadCountFromManagedThreads(int managedCount)
     {
-        var cpuCount = CPUCount;
+        // Reduce thread count when low number of threads are used
+        // TODO: tweak these low task number threads if necessary
+        if (managedCount <= 3)
+            return 1;
 
-        int targetTaskCount = Mathf.Clamp((int)Math.Round(managedCount * 0.35f), 2, cpuCount - managedCount);
+        if (managedCount <= 4)
+            return 2;
 
-        // Reduce thread count on CPUs with very few threads
-        if (cpuCount < 4)
-            targetTaskCount = 1;
+        if (managedCount <= 6)
+            return 3;
+
+        int targetTaskCount = Mathf.Clamp((int)Math.Round(managedCount * 0.5f), 2, CPUCount);
+
+        // Cap the maximum threads as there isn't that much benefit from too many threads
+        // And in fact in the benchmark these hurt the first part score
+        if (targetTaskCount > 8)
+            return 8;
 
         return targetTaskCount;
     }
