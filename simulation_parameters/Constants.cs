@@ -183,6 +183,10 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
+    public const float SPRINTING_ATP_MULTIPLIER = 3.0f;
+
+    public const float SPRINTING_FORCE_MULTIPLIER = 1.2f;
+
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 35.0f;

@@ -54,6 +54,11 @@
         public bool SlowedBySlime;
 
         /// <summary>
+        ///   Whether this microbe is currenyly sprinting
+        /// </summary>
+        public bool Sprinting;
+
+        /// <summary>
         ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
         /// </summary>
         /// <param name="startingPosition">World position this entity is starting at</param>
@@ -67,6 +72,7 @@
             AgentEmissionCooldown = 0;
             State = MicrobeState.Normal;
             SlowedBySlime = false;
+            Sprinting = false;
         }
     }
 
@@ -182,6 +188,16 @@
                 // Randomise the time spent ejecting slime, from 0 to 3 seconds
                 control.QueuedSlimeSecretionTime = 3 * random.NextFloat();
             }
+        }
+
+        public static void StartSprint(this ref MicrobeControl control)
+        {
+            control.Sprinting = true;
+        }
+
+        public static void EndSprint(this ref MicrobeControl control)
+        {
+            control.Sprinting = false;
         }
     }
 }
