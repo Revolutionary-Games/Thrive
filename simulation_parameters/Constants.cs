@@ -185,21 +185,25 @@ public static class Constants
 
     public const float BASE_MOVEMENT_FORCE = 900.0f;
 
-    public const float MAX_STRAIN_PER_CELL = 50.0f;
+    public const float MAX_STRAIN_PER_CELL = 100.0f;
 
-    public const float PASSIVE_STRAIN_DECREASE_PER_UPDATE = 0.75f;
+    public const float PASSIVE_STRAIN_DECREASE_PER_UPDATE = 0.5f;
 
     /// <summary>
     ///   This is multiplied by the strain fraction to get the ATP usage multiplier
     /// </summary>
     public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.5f;
 
+    public const float PASSIVE_STRAIN_TO_ATP_USAGE = 2.0f;
+
     /// <summary>
     ///   How much strain does not affect ATP usage at first
     /// </summary>
-    public const float CANCELED_STRAIN = 2.5f;
+    public const float CANCELED_STRAIN = 10.0f;
 
-    public const float SPRINTING_STRAIN_INCREASE_PER_UPDATE = 1.0f;
+    public const float STRAIN_DECREASE_COOLDOWN_SECONDS = 0.5f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_UPDATE = 1.2f;
 
     public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
 
