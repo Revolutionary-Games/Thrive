@@ -96,6 +96,8 @@
         /// </summary>
         private readonly List<KeyValuePair<Entity, float>> tempWorkSpaceForTimeReduction = new();
 
+        private bool endosomeDebugAlreadyPrinted;
+
         public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
             base(world, null)
         {
@@ -1573,7 +1575,12 @@
                 // This can happen when the engulfed entity's visual instance has already been destroyed and
                 // that resulted in the endosome graphics node to be deleted as it is parented there
 
-                GD.Print("Endosome was already disposed");
+                // Only print this message once as otherwise it gets printed quite a lot (at least in the benchmark)
+                if (!endosomeDebugAlreadyPrinted)
+                {
+                    GD.Print("Endosome was already disposed");
+                    endosomeDebugAlreadyPrinted = true;
+                }
 
                 // If caching is added already destroyed endosomes have to be skipped here
                 // return;
