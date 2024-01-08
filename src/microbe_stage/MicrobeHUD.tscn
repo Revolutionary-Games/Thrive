@@ -485,6 +485,7 @@ MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic"
 IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
+StrainColor = Color( 1, 1, 0, 1 )
 WinBoxScene = ExtResource( 53 )
 
 [node name="TopRight" type="MarginContainer" parent="."]

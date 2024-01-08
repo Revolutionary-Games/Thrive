@@ -183,15 +183,29 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float SPRINTING_ATP_MULTIPLIER = 3.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
-    public const float SPRINTING_FORCE_MULTIPLIER = 1.2f;
+    public const float TOTAL_STRAIN_PER_CELL = 50.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PER_UPDATE = 0.75f;
+
+    /// <summary>
+    ///   This is multiplied by the strain fraction to get the ATP usage multiplier
+    /// </summary>
+    public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.0f;
+
+    /// <summary>
+    ///   How much strain does not affect ATP usage at first
+    /// </summary>
+    public const float CANCELED_STRAIN = 5.0f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_UPDATE = 1.0f;
+
+    public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
 
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 35.0f;
-
-    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that

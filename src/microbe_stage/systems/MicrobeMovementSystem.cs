@@ -165,17 +165,12 @@
             float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
                 cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
-            var sprinting = control.Sprinting;
-
-            if (entity.Has<PlayerMarker>())
-                GD.Print(sprinting);
+            var strainFraction = control.CalculateStrainFraction();
+            var strainMultiplier = strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
-            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta;
-
-            if (sprinting)
-                cost *= Constants.SPRINTING_ATP_MULTIPLIER;
+            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
             var got = compounds.TakeCompound(atp, cost);
 
@@ -199,8 +194,16 @@
             force *= cellProperties.MembraneType.MovementFactor -
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
-            if (sprinting)
+            if (control.Sprinting)
+            {
                 force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+                control.CurrentStrain += Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
+            }
+            else
+            {
+                // TODO: Maby this should be it's own separate system, as perhaps in the future more things will affect strain
+                control.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE;
+            }
 
             bool hasColony = entity.Has<MicrobeColony>();
 

@@ -30,6 +30,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Export]
     public NodePath UnbindAllHotkeyPath = null!;
 
+    [Export]
+    public Color StrainColor;
+
 #pragma warning disable CA2213
     [Export]
     public PackedScene WinBoxScene = null!;
@@ -53,6 +56,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ProgressBar ingestedMatterBar = null!;
 
     private CustomWindow? winBox;
+
+    private Gradient strainGradient = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -114,6 +119,17 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
+
+        strainGradient = new()
+        {
+            Colors = new[]
+            {
+                atpBar.TintProgress,
+                StrainColor,
+            },
+        };
+
+        strainGradient.InterpolationMode = Gradient.InterpolationModeEnum.Linear;
     }
 
     public override void _Process(float delta)
@@ -127,6 +143,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         {
             UpdateMulticellularButton(stage.Player);
             UpdateMacroscopicButton(stage.Player);
+            UpdateStrain(stage.Player);
         }
         else
         {
@@ -525,6 +542,13 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateStrain(Entity player)
+    {
+        var strainFraction = player.Get<MicrobeControl>().CalculateStrainFraction();
+
+        atpBar.TintProgress = strainGradient.Interpolate(strainFraction);
     }
 
     private void OnRadialItemSelected(int itemId)

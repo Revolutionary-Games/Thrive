@@ -59,6 +59,11 @@
         public bool Sprinting;
 
         /// <summary>
+        ///   The current amount of strain, the maximum is calculated based on the hex size
+        /// </summary>
+        public float CurrentStrain;
+
+        /// <summary>
         ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
         /// </summary>
         /// <param name="startingPosition">World position this entity is starting at</param>
@@ -73,6 +78,7 @@
             State = MicrobeState.Normal;
             SlowedBySlime = false;
             Sprinting = false;
+            CurrentStrain = 0;
         }
     }
 
@@ -198,6 +204,11 @@
         public static void EndSprint(this ref MicrobeControl control)
         {
             control.Sprinting = false;
+        }
+
+        public static float CalculateStrainFraction(this ref MicrobeControl control)
+        {
+            return Math.Max(0, control.CurrentStrain - Constants.CANCELED_STRAIN) / Constants.TOTAL_STRAIN_PER_CELL;
         }
     }
 }
