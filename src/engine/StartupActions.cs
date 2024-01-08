@@ -10,6 +10,8 @@ using Path = System.IO.Path;
 /// </summary>
 public class StartupActions : Node
 {
+    private bool preventStartup;
+
     private StartupActions()
     {
         // Print game version
@@ -64,7 +66,7 @@ public class StartupActions : Node
 
                 GD.PrintErr(e);
 
-                SceneManager.QuitDueToProblem(this);
+                preventStartup = true;
                 return;
             }
         }
@@ -93,7 +95,7 @@ public class StartupActions : Node
                     GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
                         "required instruction set extensions is required");
 
-                    SceneManager.QuitDueToProblem(this);
+                    preventStartup = true;
                 }
                 else
                 {
@@ -105,6 +107,16 @@ public class StartupActions : Node
                 GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
                     "instruction problems (as that indicates missing CPU feature this check would test)");
             }
+        }
+    }
+
+    public override void _Ready()
+    {
+        // We need to specifically only access the scene tree after ready is called as otherwise it is just null
+        if (preventStartup)
+        {
+            GD.Print("Preventing startup due to StartupActions failing");
+            SceneManager.QuitDueToProblem(this);
         }
     }
 }
