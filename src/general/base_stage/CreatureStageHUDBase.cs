@@ -126,6 +126,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     public NodePath HotBarPath = null!;
 
     [Export]
+    public NodePath SprintHotkeyPath = null!;
+
+    [Export]
     public NodePath EngulfHotkeyPath = null!;
 
     [Export]
@@ -212,6 +215,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected MouseHoverPanel mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
     protected GridContainer? environmentPanelBarContainer;
+    protected ActionButton sprintHotkey = null!;
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
     protected ActionButton signalingAgentsHotkey = null!;
@@ -402,6 +406,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
         bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
 
+        sprintHotkey = GetNode<ActionButton>(SprintHotkeyPath);
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
@@ -1042,13 +1047,14 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected abstract void UpdateAbilitiesHotBar();
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn)
+        bool showingSignaling, bool engulfOn, bool sprintOn)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
 
+        sprintHotkey.Pressed = sprintOn;
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
@@ -1127,6 +1133,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
                 ProcessPanelPath.Dispose();
                 HintTextPath.Dispose();
                 HotBarPath.Dispose();
+                SprintHotkeyPath.Dispose();
                 EngulfHotkeyPath.Dispose();
                 SecreteSlimeHotkeyPath.Dispose();
                 SignallingAgentsHotkeyPath.Dispose();

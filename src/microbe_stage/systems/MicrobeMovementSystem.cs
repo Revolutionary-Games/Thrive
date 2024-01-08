@@ -21,7 +21,7 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
-    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+    [RunsAfter(typeof(StrainSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -174,11 +174,16 @@
 
             var got = compounds.TakeCompound(atp, cost);
 
+            var canSprint = true;
+
             // Halve base movement speed if out of ATP
             if (got < cost)
             {
                 // Not enough ATP to move at full speed
                 force *= 0.5f;
+
+                // Disable sprinting when low ATP
+                canSprint = false;
             }
 
             // Speed from flagella (these also take ATP otherwise they won't work)
@@ -194,16 +199,8 @@
             force *= cellProperties.MembraneType.MovementFactor -
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
-            if (control.Sprinting)
-            {
+            if (control.Sprinting && canSprint)
                 force *= Constants.SPRINTING_FORCE_MULTIPLIER;
-                control.CurrentStrain += Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
-            }
-            else
-            {
-                // TODO: Maby this should be it's own separate system, as perhaps in the future more things will affect strain
-                control.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE;
-            }
 
             bool hasColony = entity.Has<MicrobeColony>();
 

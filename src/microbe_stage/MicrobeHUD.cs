@@ -77,6 +77,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public new delegate void OnOpenMenuToHelp();
 
     [Signal]
+    public delegate void OnSprintButtonPressed();
+
+    [Signal]
     public delegate void OnToggleEngulfButtonPressed();
 
     [Signal]
@@ -441,7 +444,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing);
+            organelles.HasSignalingAgent, engulfing, control.Sprinting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -755,6 +758,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
+    }
+
+    private void OnSprintPressed()
+    {
+        EmitSignal(nameof(OnSprintButtonPressed));
     }
 
     private void OnEngulfmentPressed()

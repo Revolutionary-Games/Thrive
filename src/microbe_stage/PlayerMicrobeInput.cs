@@ -287,9 +287,6 @@ public class PlayerMicrobeInput : NodeWithInput
             return true;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
-
-        GD.Print("Sprinting!");
-
         control.StartSprint();
 
         // We need to not consume the input, otherwise the key up for this will not run
@@ -299,13 +296,29 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyUp("g_sprint")]
     public void EndSprint()
     {
-        GD.Print("Stopped!");
         if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
         control.EndSprint();
+    }
+
+    public void ToggleSprint()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        if (control.Sprinting)
+        {
+            control.EndSprint();
+        }
+        else
+        {
+            control.StartSprint();
+        }
     }
 
     [RunOnKeyDown("g_cheat_editor")]

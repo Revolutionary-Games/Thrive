@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\microbe_stage\systems\StrainSystem.cs" />
     <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />

@@ -208,7 +208,7 @@
 
         public static float CalculateStrainFraction(this ref MicrobeControl control)
         {
-            return Math.Max(0, control.CurrentStrain - Constants.CANCELED_STRAIN) / Constants.TOTAL_STRAIN_PER_CELL;
+            return Math.Max(0, control.CurrentStrain - Constants.CANCELED_STRAIN) / Constants.MAX_STRAIN_PER_CELL;
         }
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/baseMovementIcon.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=10]
@@ -459,6 +460,7 @@ EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 HotBarPath = NodePath("ScrollContainer/HotBar")
+SprintHotkeyPath = NodePath("ScrollContainer/HotBar/Sprint")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
@@ -1820,9 +1822,6 @@ energy = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BarBackground" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
 modulate = Color( 0, 0, 0, 1 )
@@ -1935,6 +1934,7 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 550.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -1942,10 +1942,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF_TOOLTIP"
+focus_mode = 2
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/disabled = SubResource( 43 )
+custom_styles/normal = SubResource( 46 )
+toggle_mode = true
+ActionIcon = ExtResource( 7 )
+ActionName = "g_sprint"
+
 [node name="Engulfment" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
 visible = false
-margin_left = 277.0
-margin_right = 323.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF_TOOLTIP"
 custom_styles/hover = SubResource( 1 )
@@ -2056,6 +2074,7 @@ __meta__ = {
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="hide" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/Sprint" to="." method="OnSprintPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]

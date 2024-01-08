@@ -93,6 +93,7 @@ __meta__ = {
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnSecreteSlimeButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="SecreteSlime" binds= [ 1.0 ]]
+[connection signal="OnSprintButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleSprint"]
 [connection signal="OnToggleBindingButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="OnUnbindAllButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="UnbindAll"]
