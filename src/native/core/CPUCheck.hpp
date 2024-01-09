@@ -3,17 +3,26 @@
 // CPU feature checking. Code approach is combined from the various answers here:
 // https://stackoverflow.com/questions/6121792/how-to-check-if-a-cpu-supports-the-sse3-instruction-set
 
-// TODO: check this works when cross compiling (this used to be _WIN32 check)
+#ifdef _WIN32
 #ifdef _MSC_VER
+#include <immintrin.h>
 
 #define cpuid(info, x) __cpuidex(info, x, 0)
+#else
+// MinGW
+#include <intrin.h>
+void cpuid(int info[4], unsigned int infoType)
+{
+    __cpuid(info, infoType);
+}
+#endif
 
 #else
 #include <cpuid.h>
 
-void cpuid(int info[4], unsigned int InfoType)
+void cpuid(int info[4], unsigned int infoType)
 {
-    __cpuid_count(InfoType, 0, info[0], info[1], info[2], info[3]);
+    __cpuid_count(infoType, 0, info[0], info[1], info[2], info[3]);
 }
 
 #endif
