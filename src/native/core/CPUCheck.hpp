@@ -5,7 +5,7 @@
 
 #ifdef _WIN32
 #ifdef _MSC_VER
-#include <immintrin.h>
+#include <intrin.h>
 
 #define cpuid(info, x) __cpuidex(info, x, 0)
 #else
