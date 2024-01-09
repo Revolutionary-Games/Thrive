@@ -668,6 +668,10 @@ public class NativeLibs
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
         }
+        else
+        {
+            shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+        }
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
@@ -678,7 +682,11 @@ public class NativeLibs
         shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=ON ");
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
-        shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+
+        // ReSharper disable once CommentTypo
+        // Specify the CPU type to tune for and make available instructions for checking the available instructions
+        // (_xgetbv)
+        shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=sandybridge ");
 
         switch (platform)
         {

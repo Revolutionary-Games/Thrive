@@ -98,6 +98,22 @@ public static class NativeInterop
     }
 
     /// <summary>
+    ///   Checks that current CPU is sufficiently new (has the required instruction set extensions) for running the
+    ///   Thrive native module
+    /// </summary>
+    /// <returns>True if everything is fine and load can proceed</returns>
+    public static bool CheckCPU()
+    {
+        if (!nativeLoadSucceeded)
+        {
+            GD.Print("Can't check CPU features without native library loaded");
+            return false;
+        }
+
+        return NativeMethods.CheckRequiredCPUFeatures();
+    }
+
+    /// <summary>
     ///   Releases all native resources and prepares the library for process exit
     /// </summary>
     public static void Shutdown()
@@ -232,6 +248,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern bool CheckRequiredCPUFeatures();
 
     [DllImport("thrive_native")]
     internal static extern void SetLogLevel(LogLevel level);

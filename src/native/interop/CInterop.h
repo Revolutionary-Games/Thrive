@@ -30,6 +30,9 @@ extern "C"
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
+    /// \brief Checks that current CPU has required features to run Thrive
+    [[maybe_unused]] THRIVE_NATIVE_API bool CheckRequiredCPUFeatures();
+
     // ------------------------------------ //
     // Logging
 
