@@ -912,7 +912,14 @@ public class Settings
                 settings = new Settings();
             }
 
-            settings.ApplyAll(true);
+            if (!SceneManager.QuitOrQuitting)
+            {
+                settings.ApplyAll(true);
+            }
+            else
+            {
+                GD.PrintErr("Skipping settings apply as the game should close soon");
+            }
 
             return settings;
         }

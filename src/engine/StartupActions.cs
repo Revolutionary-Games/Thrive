@@ -42,9 +42,11 @@ public class StartupActions : Node
         {
             NativeInterop.Load();
         }
-        catch (DllNotFoundException e)
+        catch (Exception e)
         {
-            if (Engine.EditorHint)
+            GD.Print($"Thrive native library load failed due to: {e.Message}");
+
+            if (Engine.EditorHint && e is DllNotFoundException)
             {
                 skipNative = true;
                 GD.Print("Skipping native library load in editor as it is not available");
@@ -67,6 +69,7 @@ public class StartupActions : Node
                 GD.PrintErr(e);
 
                 preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
                 return;
             }
         }
@@ -96,6 +99,7 @@ public class StartupActions : Node
                         "required instruction set extensions is required");
 
                     preventStartup = true;
+                    SceneManager.NotifyEarlyQuit();
                 }
                 else
                 {

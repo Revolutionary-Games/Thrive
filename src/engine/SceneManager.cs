@@ -9,6 +9,7 @@ public class SceneManager : Node
     private static SceneManager? instance;
 
     private static bool alreadyQuit;
+    private static bool shouldQuitSoon;
 
 #pragma warning disable CA2213
     private Node internalRootNode = null!;
@@ -24,8 +25,11 @@ public class SceneManager : Node
 
     public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
+    public static bool QuitOrQuitting => alreadyQuit || shouldQuitSoon;
+
     public static void QuitDueToProblem(Node callingNode)
     {
+        NotifyEarlyQuit();
         GD.PrintErr("Closing Thrive \"normally\" due to a detected problem");
 
         if (instance == null)
@@ -38,6 +42,14 @@ public class SceneManager : Node
         }
 
         alreadyQuit = true;
+    }
+
+    /// <summary>
+    ///   Notify that <see cref="QuitDueToProblem"/> is going to be called soon
+    /// </summary>
+    public static void NotifyEarlyQuit()
+    {
+        shouldQuitSoon = true;
     }
 
     public override void _Ready()
