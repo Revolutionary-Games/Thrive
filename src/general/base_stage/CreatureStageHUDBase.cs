@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Components;
 using Godot;
 using Newtonsoft.Json;
-using static FossilisationDialog;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
 
@@ -433,7 +432,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
-        fossilisationDialog.Connect(nameof(OnSpeciesFossilised), this,
+        fossilisationDialog.Connect(nameof(FossilisationDialog.OnSpeciesFossilised), this,
             nameof(UpdateFossilisationButtonsFossilisation));
 
         allAgents.Add(oxytoxy);
