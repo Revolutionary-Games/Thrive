@@ -92,7 +92,7 @@ public partial class CellEditorComponent :
     public NodePath AutoEvoPredictionPanelPath = null!;
 
     [Export]
-    public NodePath TotalPopulationLabelPath = null!;
+    public NodePath TotalEnergyLabelPath = null!;
 
     [Export]
     public NodePath AutoEvoPredictionFailedLabelPath = null!;
@@ -202,7 +202,7 @@ public partial class CellEditorComponent :
 
     private Label generationLabel = null!;
 
-    private CellStatsIndicator totalPopulationLabel = null!;
+    private CellStatsIndicator totalEnergyLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
@@ -593,7 +593,7 @@ public partial class CellEditorComponent :
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
-        totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
+        totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
@@ -1334,7 +1334,7 @@ public partial class CellEditorComponent :
                 DigestionEfficiencyLabelPath.Dispose();
                 GenerationLabelPath.Dispose();
                 AutoEvoPredictionPanelPath.Dispose();
-                TotalPopulationLabelPath.Dispose();
+                TotalEnergyLabelPath.Dispose();
                 AutoEvoPredictionFailedLabelPath.Dispose();
                 WorstPatchLabelPath.Dispose();
                 BestPatchLabelPath.Dispose();
@@ -2359,7 +2359,7 @@ public partial class CellEditorComponent :
     {
         if (autoEvoPredictionRunSuccessful is false)
         {
-            totalPopulationLabel.Value = float.NaN;
+            totalEnergyLabel.Value = float.NaN;
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -2426,10 +2426,23 @@ public partial class CellEditorComponent :
         autoEvoPredictionRunSuccessful = true;
 
         // Set the initial value
-        totalPopulationLabel.ResetInitialValue();
-        totalPopulationLabel.Value = run.PlayerSpeciesOriginal.Population;
+        totalEnergyLabel.ResetInitialValue();
+        totalEnergyLabel.Value = run.PlayerSpeciesOriginal.Population;
 
-        totalPopulationLabel.Value = newPopulation;
+        results.GetPatchEnergyResults(run.PlayerSpeciesNew).TryGetValue(
+            Editor.CurrentPatch, out var newTotalPatchEnergyGathered);
+        var totalEnergyLabelText = totalEnergyLabel.GetNode<Label>(totalEnergyLabel.ValuePath);
+
+        if (newTotalPatchEnergyGathered != null)
+        {
+            totalEnergyLabel.Value = newTotalPatchEnergyGathered.TotalEnergyGathered;
+            if (totalEnergyLabelText != null)
+            {
+                totalEnergyLabelText.Text =
+                    @$"{StringUtils.ThreeDigitFormat(
+                        newTotalPatchEnergyGathered.TotalEnergyGathered)} ({newPopulation})";
+            }
+        }
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
 

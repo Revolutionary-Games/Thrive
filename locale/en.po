@@ -6753,9 +6753,9 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
-msgid "TOTAL_POPULATION_COLON"
-msgstr "Total Population:"
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+msgid "TOTAL_GATHERED_ENERGY_COLON"
+msgstr "Gathered Energy"
 
 #: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
@@ -6852,11 +6852,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"This panel shows a prediction of your future population. These numbers are from the population simulation of [b]auto-evo[/b].\n"
+"This panel shows a prediction of your future total energy gathered (and population in parentheses). These numbers are from the simulation of [b]auto-evo[/b].\n"
 "\n"
 "They don't take into account your individual performance. So in your current patch you are going to perform better when you enter the editor.\n"
 "\n"
-"But you should try to keep your population up even when you aren't directly involved.\n"
+"But you should try to keep it up even when you aren't directly involved.\n"
 "\n"
 "You can view more detailed information behind the prediction by pressing the question mark button in the panel. Press it to continue."
 
@@ -8997,9 +8997,6 @@ msgstr "Zoom out"
 
 #~ msgid "CURRENT_GENERATION_COLON"
 #~ msgstr "Current Generation:"
-
-#~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "Total time used:"
 
 #~ msgid "DAY"
 #~ msgstr "Day"
