@@ -43,6 +43,9 @@ public class FossilisationDialog : CustomWindow
 
     private bool saveQueued;
 
+    [Signal]
+    public delegate void OnSpeciesFossilised();
+
     /// <summary>
     ///   The species currently open in the dialog.
     /// </summary>
@@ -246,6 +249,8 @@ public class FossilisationDialog : CustomWindow
             GD.PrintErr("Failed to save fossil file: ", e);
             return;
         }
+
+        EmitSignal(nameof(OnSpeciesFossilised));
 
         Hide();
     }

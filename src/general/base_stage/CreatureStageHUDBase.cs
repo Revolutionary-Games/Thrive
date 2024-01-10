@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Components;
 using Godot;
 using Newtonsoft.Json;
+using static FossilisationDialog;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
 
@@ -432,6 +433,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
+        fossilisationDialog.Connect(nameof(OnSpeciesFossilised), this,
+            nameof(UpdateFossilisationButtonsFossilisation));
+
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
 
@@ -675,6 +679,22 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
     public abstract void ShowFossilisationButtons();
+
+    /// <summary>
+    ///   Updates all fossilisation buttons' status of fossilisation
+    /// </summary>
+    public void UpdateFossilisationButtonsFossilisation()
+    {
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+
+        int buttonCount = fossilisationButtonLayer.GetChildCount();
+        for (int i = 0; i < buttonCount; i++)
+        {
+            var button = fossilisationButtonLayer.GetChild<FossilisationButton>(i);
+            bool fossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(button.AttachedEntity.Get<SpeciesMember>().Species.FormattedName, fossils);
+            button.AlreadyFossilised = fossilised;
+        }
+    }
 
     /// <summary>
     ///   Destroys all fossilisation buttons on screen.
