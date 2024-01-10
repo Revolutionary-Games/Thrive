@@ -19,6 +19,11 @@ public class CompoundBag : ICompoundStorage
 {
     private readonly HashSet<Compound> usefulCompounds = new();
 
+    /// <summary>
+    ///   Temporary data holder used to avoid extraneous allocations each game update
+    /// </summary>
+    private readonly List<Compound> tempCompounds = new();
+
     [JsonProperty]
     private Dictionary<Compound, float>? compoundCapacities;
 
@@ -230,12 +235,21 @@ public class CompoundBag : ICompoundStorage
 
     public void ClampNegativeCompoundAmounts()
     {
-        var negative = Compounds.Where(c => c.Value < 0.0f).ToList();
-
-        foreach (var entry in negative)
+        foreach (var entry in Compounds)
         {
-            Compounds[entry.Key] = 0;
+            if (entry.Value < 0.0f)
+                tempCompounds.Add(entry.Key);
         }
+
+        if (tempCompounds.Count < 1)
+            return;
+
+        foreach (var entry in tempCompounds)
+        {
+            Compounds[entry] = 0;
+        }
+
+        tempCompounds.Clear();
     }
 
     /// <summary>
@@ -244,13 +258,23 @@ public class CompoundBag : ICompoundStorage
     /// </summary>
     public void FixNaNCompounds()
     {
-        var nan = Compounds.Where(c => float.IsNaN(c.Value)).ToList();
-
-        foreach (var entry in nan)
+        foreach (var entry in Compounds)
         {
-            // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
-            Compounds[entry.Key] = 0;
+            if (float.IsNaN(entry.Value))
+                tempCompounds.Add(entry.Key);
         }
+
+        if (tempCompounds.Count < 1)
+            return;
+
+        foreach (var entry in tempCompounds)
+        {
+            // TODO: should maybe re-enable this print to track this issue happening?
+            // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
+            Compounds[entry] = 0;
+        }
+
+        tempCompounds.Clear();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
