@@ -166,7 +166,6 @@
                     var additionalAmount = 0.0f;
                     additionalCompounds?.TryGetValue(compound, out additionalAmount);
 
-
                     if (additionalAmount < 0)
                     {
 #if DEBUG
@@ -177,7 +176,6 @@
                         additionalAmount = 0;
                         GD.PrintErr("Additional compound amount is negative");
                     }
-
 
                     var totalAvailable = storageAmount + additionalAmount;
                     totalAmountLeft += totalAvailable;
