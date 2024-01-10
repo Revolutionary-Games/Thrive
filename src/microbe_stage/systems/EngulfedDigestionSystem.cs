@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -149,6 +150,8 @@
                 var additionalCompounds = engulfable.AdditionalEngulfableCompounds;
 
                 // TODO: this seems not possible to run in parallel
+                // This is maybe now no longer required as engulfed things keep running the process system and that
+                // should clamp and fix NaN values.
                 // Workaround to avoid NaN compounds in engulfed objects, leading to glitches like infinite compound
                 // ejection and incorrect ingested matter display
                 // https://github.com/Revolutionary-Games/Thrive/issues/3548
@@ -162,6 +165,16 @@
 
                     var additionalAmount = 0.0f;
                     additionalCompounds?.TryGetValue(compound, out additionalAmount);
+
+#if DEBUG
+                    if (additionalAmount < 0)
+                    {
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+
+                        GD.PrintErr("Additional compound amount is negative");
+                    }
+#endif
 
                     var totalAvailable = storageAmount + additionalAmount;
                     totalAmountLeft += totalAvailable;
@@ -205,7 +218,12 @@
                     }
 
                     if (additionalCompounds?.ContainsKey(compound) == true)
+                    {
                         additionalCompounds[compound] -= taken;
+
+                        if (additionalCompounds[compound] < 0)
+                            additionalCompounds[compound] = 0;
+                    }
 
                     if (engulfedObject.Has<CompoundStorage>())
                     {

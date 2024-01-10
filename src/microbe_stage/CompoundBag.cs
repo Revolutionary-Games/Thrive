@@ -27,6 +27,8 @@ public class CompoundBag : ICompoundStorage
     [JsonProperty]
     private Dictionary<Compound, float>? compoundCapacities;
 
+    private float nominalCapacity;
+
     public CompoundBag(float nominalCapacity)
     {
         NominalCapacity = nominalCapacity;
@@ -37,7 +39,17 @@ public class CompoundBag : ICompoundStorage
     ///   not have a specific capacity set in <see cref="compoundCapacities"/>
     /// </summary>
     [JsonProperty]
-    public float NominalCapacity { get; set; }
+    public float NominalCapacity
+    {
+        get => nominalCapacity;
+        set
+        {
+            nominalCapacity = value;
+
+            if (nominalCapacity < 0)
+                throw new ArgumentException("Capacity can't be negative", nameof(NominalCapacity));
+        }
+    }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -78,6 +90,9 @@ public class CompoundBag : ICompoundStorage
     /// </remarks>
     public void AddSpecificCapacityForCompound(Compound compound, float capacityToAdd)
     {
+        if (capacityToAdd < 0)
+            throw new ArgumentException("Capacity to set can't be negative", nameof(capacityToAdd));
+
         compoundCapacities ??= new Dictionary<Compound, float>();
 
         if (!compoundCapacities.TryGetValue(compound, out var existing))

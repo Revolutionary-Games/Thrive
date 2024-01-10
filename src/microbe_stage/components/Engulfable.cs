@@ -370,6 +370,13 @@
             glucose ??= SimulationParameters.Instance.GetCompound("glucose");
 
             result.TryGetValue(glucose, out float existingGlucose);
+
+            if (existingGlucose < 0)
+            {
+                GD.PrintErr("Stored glucose was negative for bonus digestible glucose calculation");
+                existingGlucose = 0;
+            }
+
             result[glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(glucose) *
                 Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
         }
