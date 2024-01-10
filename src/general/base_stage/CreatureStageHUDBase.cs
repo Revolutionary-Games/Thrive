@@ -433,7 +433,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         fossilisationDialog = GetNode<FossilisationDialog>(FossilisationDialogPath);
 
         fossilisationDialog.Connect(nameof(FossilisationDialog.OnSpeciesFossilised), this,
-            nameof(UpdateFossilisationButtonsFossilisation));
+            nameof(RefreshFossilisationButtonsFossilStatus));
 
         allAgents.Add(oxytoxy);
         allAgents.Add(mucilage);
@@ -682,15 +682,15 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     /// <summary>
     ///   Updates all fossilisation buttons' status of fossilisation
     /// </summary>
-    public void UpdateFossilisationButtonsFossilisation()
+    public void RefreshFossilisationButtonsFossilStatus()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        int buttonCount = fossilisationButtonLayer.GetChildCount();
+        var buttonCount = fossilisationButtonLayer.GetChildCount();
         for (int i = 0; i < buttonCount; i++)
         {
             var button = fossilisationButtonLayer.GetChild<FossilisationButton>(i);
-            bool fossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(button.AttachedEntity.Get<SpeciesMember>().Species.FormattedName, fossils);
+            var fossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(button.AttachedEntity.Get<SpeciesMember>().Species.FormattedName, fossils);
             button.AlreadyFossilised = fossilised;
         }
     }
