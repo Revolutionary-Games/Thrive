@@ -686,10 +686,8 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
-        var buttonCount = fossilisationButtonLayer.GetChildCount();
-        for (int i = 0; i < buttonCount; i++)
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
         {
-            var button = fossilisationButtonLayer.GetChild<FossilisationButton>(i);
             var fossilised = FossilisedSpecies.IsSpeciesAlreadyFossilised(button.AttachedEntity.Get<SpeciesMember>().Species.FormattedName, fossils);
             button.AlreadyFossilised = fossilised;
         }
