@@ -539,7 +539,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     }
 
     /// <summary>
-    /// Sets button's texture and hint based on its status of fossilisation
+    ///   Sets button's texture and hint based on its status of fossilisation
     /// </summary>
     private void SetupFossilisationButtonVisuals(FossilisationButton button, bool alreadyFossilised)
     {
