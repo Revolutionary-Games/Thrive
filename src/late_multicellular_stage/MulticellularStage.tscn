@@ -103,5 +103,5 @@ __meta__ = {
 [connection signal="OnOpenInventoryPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="OpenInventory"]
 [connection signal="OnOpenMenu" from="MulticellularHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MulticellularHUD" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnSpeciesFossilised" from="MulticellularHUD/FossilisationDialog" to="MulticellularHUD" method="_on_FossilisationDialog_OnSpeciesFossilised"]
+[connection signal="OnSpeciesFossilised" from="MulticellularHUD/FossilisationDialog" to="MulticellularHUD" method="UpdateFossilisationButtonStates"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
