@@ -841,7 +841,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (ReturnToStage == null)
         {
-            GD.Print("Creating new stage of type", typeof(TStage).Name, " as there isn't one yet");
+            GD.Print("Creating new stage of type ", typeof(TStage).Name, " as there isn't one yet");
 
             var scene = SceneManager.Instance.LoadScene(typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
 
