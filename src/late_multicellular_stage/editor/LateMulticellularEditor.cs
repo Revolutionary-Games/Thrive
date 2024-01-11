@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = Godot.Environment;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
@@ -63,6 +64,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private Light bodyEditorLight = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+    private Environment? environment;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -333,6 +335,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.Hide();
         noCellTypeSelected.Hide();
 
+        RememberEnvironment();
+
         // Show selected
         switch (selectedEditorTab)
         {
@@ -371,6 +375,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                 SetWorldSceneObjectVisibilityWeControl();
 
+                ResetEnvironment();
+
                 break;
             }
 
@@ -392,6 +398,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                     SetWorldSceneObjectVisibilityWeControl();
                 }
+
+                worldEnvironmentNode.Environment = null;
 
                 break;
             }
@@ -434,6 +442,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
+
+            environment?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -607,5 +617,21 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void RememberEnvironment()
+    {
+        if (worldEnvironmentNode.Environment != null)
+        {
+            environment = worldEnvironmentNode.Environment;
+        }
+    }
+
+    private void ResetEnvironment()
+    {
+        if (environment != null)
+        {
+            worldEnvironmentNode.Environment = environment;
+        }
     }
 }
