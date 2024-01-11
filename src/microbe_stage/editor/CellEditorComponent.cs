@@ -251,11 +251,16 @@ public partial class CellEditorComponent :
 
     private string? bestPatchName;
 
+    // This and worstPatchPopulation used to be displayed but are now kept for potential future use
     private long bestPatchPopulation;
+
+    private float bestPatchEnergyGathered;
 
     private string? worstPatchName;
 
     private long worstPatchPopulation;
+
+    private float worstPatchEnergyGathered;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
@@ -2371,8 +2376,10 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(bestPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
+
             bestPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
+                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), formatted);
         }
         else
         {
@@ -2381,8 +2388,10 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
+
             worstPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
+                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), formatted);
         }
         else
         {
@@ -2427,31 +2436,45 @@ public partial class CellEditorComponent :
 
         // Set the initial value
         totalEnergyLabel.ResetInitialValue();
-        totalEnergyLabel.Value = run.PlayerSpeciesOriginal.Population;
 
-        results.GetPatchEnergyResults(run.PlayerSpeciesNew).TryGetValue(
-            Editor.CurrentPatch, out var newTotalPatchEnergyGathered);
+        results.GetPatchEnergyResults(run.PlayerSpeciesNew).TryGetValue(Editor.CurrentPatch,
+            out var newTotalPatchEnergyGathered);
+
         var totalEnergyLabelText = totalEnergyLabel.GetNode<Label>(totalEnergyLabel.ValuePath);
 
         if (newTotalPatchEnergyGathered != null)
         {
             totalEnergyLabel.Value = newTotalPatchEnergyGathered.TotalEnergyGathered;
-            if (totalEnergyLabelText != null)
-            {
-                totalEnergyLabelText.Text =
-                    @$"{StringUtils.ThreeDigitFormat(
-                        newTotalPatchEnergyGathered.TotalEnergyGathered)} ({newPopulation})";
-            }
+
+            var formatted = StringUtils.ThreeDigitFormat(newTotalPatchEnergyGathered.TotalEnergyGathered);
+            totalEnergyLabelText.Text =
+                $"{formatted} ({newPopulation})";
+        }
+        else
+        {
+            // TODO: Make indicator not show NaN when moved to a new patch
+            GD.PrintErr("Failed to get total patch energy gathered");
+            totalEnergyLabel.Value = float.NaN;
         }
 
-        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
+        var sortedEnergyGathered =
+            results.GetPatchEnergyResults(run.PlayerSpeciesNew).OrderByDescending(p => p.Value.TotalEnergyGathered)
+                .ToList();
+        var populationInPatches = results.GetPopulationInPatches(run.PlayerSpeciesNew).ToList();
 
         // Best
-        if (sorted.Count > 0)
+        if (sortedEnergyGathered.Count > 0)
         {
-            var patch = sorted[0];
+            var patch = sortedEnergyGathered[0];
             bestPatchName = patch.Key.Name.ToString();
-            bestPatchPopulation = patch.Value;
+
+            foreach (var patchByPopulation in populationInPatches)
+            {
+                if (patchByPopulation.Key == patch.Key)
+                    bestPatchPopulation = patch.Value.UnadjustedPopulation;
+            }
+
+            bestPatchEnergyGathered = patch.Value.TotalEnergyGathered;
         }
         else
         {
@@ -2459,11 +2482,18 @@ public partial class CellEditorComponent :
         }
 
         // And worst patch
-        if (sorted.Count > 1)
+        if (sortedEnergyGathered.Count > 1)
         {
-            var patch = sorted[sorted.Count - 1];
+            var patch = sortedEnergyGathered[sortedEnergyGathered.Count - 1];
             worstPatchName = patch.Key.Name.ToString();
-            worstPatchPopulation = patch.Value;
+
+            foreach (var patchByPopulation in populationInPatches)
+            {
+                if (patchByPopulation.Key == patch.Key)
+                    worstPatchPopulation = patch.Value.UnadjustedPopulation;
+            }
+
+            worstPatchEnergyGathered = patch.Value.TotalEnergyGathered;
         }
         else
         {

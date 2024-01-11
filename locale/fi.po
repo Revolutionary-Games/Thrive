@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:53+0200\n"
+"POT-Creation-Date: 2024-01-14 15:18+0100\n"
 "PO-Revision-Date: 2023-12-25 11:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -306,7 +306,7 @@ msgstr "Ilmakehän kaasut"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1140
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1137
 msgid "ATP_BALANCE"
 msgstr "ATP Tasapaino"
 
@@ -341,7 +341,7 @@ msgstr "Elokuu"
 msgid "AUTO"
 msgstr "automaattinen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1559
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
@@ -350,12 +350,12 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} populaatio muuttui {1} syystä: {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1514
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evon simuloitu ennuste"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1253
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
@@ -508,7 +508,7 @@ msgstr "Aloita selviytyminen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:691
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:688
 msgid "BEHAVIOUR"
 msgstr "Käyttäytyminen"
 
@@ -556,7 +556,7 @@ msgstr "Suorituskykytestin vaihe:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Tulokset:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1342
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Lajit:"
@@ -689,7 +689,7 @@ msgstr "Peruuta"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1436
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "PERU"
 
@@ -802,7 +802,7 @@ msgstr "Selluloosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:691
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
 
@@ -964,7 +964,7 @@ msgstr "Siivoa vanhat tallennukset"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1568
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -995,7 +995,7 @@ msgstr "Rantavyöhyke"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:911
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:908
 msgid "COLOUR"
 msgstr "Väri"
 
@@ -1694,7 +1694,7 @@ msgstr "Normaali"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Sulatuksen Tehokkuus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1077
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1074
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Kuvaus on liian pitkä"
@@ -1704,7 +1704,7 @@ msgstr "Kuvaus on liian pitkä"
 msgid "DIGESTION_SPEED"
 msgstr "Resurssien imeytymisen nopeus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1070
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1067
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Nopeus:"
@@ -1762,11 +1762,11 @@ msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1499
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole yhtydessä muihin.\n"
@@ -2047,15 +2047,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2500
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
 msgid "ENERGY_SOURCES"
 msgstr "Energianlähteet:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2493
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2209,7 +2209,7 @@ msgstr "Lisää uusi syöte"
 msgid "EXPORT_SUCCESS"
 msgstr "Lajin {0} saalistus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:768
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:765
 msgid "EXTERNAL"
 msgstr "Ulkoinen"
 
@@ -2259,7 +2259,7 @@ msgstr "Lisäasetukset"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1323
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
 #, fuzzy
 msgid "FAILED"
 msgstr "Tallennus epäonnistui"
@@ -2402,11 +2402,11 @@ msgstr "Pyöriminen:"
 msgid "FLOATING_HAZARD"
 msgstr "Kelluva vaara"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:862
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:845
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:842
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Valuvuus / jäykkyys"
 
@@ -2457,7 +2457,7 @@ msgstr "Pistä muita soluja tällä."
 msgid "FOOD_CHAIN"
 msgstr "Ruokaketju"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2506
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
 
@@ -2575,6 +2575,11 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr "Pelisuunnittelutiimi"
 
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#, fuzzy
+msgid "GATHERED_ENERGY_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 #: ../simulation_parameters/common/gallery.json:86
 msgid "GENERAL"
 msgstr "Yleiset"
@@ -2584,7 +2589,7 @@ msgstr "Yleiset"
 msgid "GENERATIONS"
 msgstr "Sukupolvi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1095
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1092
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
 
@@ -2759,7 +2764,7 @@ msgstr "Horisontaalinen:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1022
 msgid "HP_COLON"
 msgstr "Terv.:"
 
@@ -3274,7 +3279,7 @@ msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen kanssa!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1445
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3766,7 +3771,7 @@ msgstr "Pysäytä"
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:669
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:666
 msgid "MEMBRANE"
 msgstr "Solukalvo"
 
@@ -3774,7 +3779,7 @@ msgstr "Solukalvo"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Kalvon jäykkyys"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:827
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:824
 msgid "MEMBRANE_TYPES"
 msgstr "Solukalvotyypit"
 
@@ -4568,11 +4573,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Nykyinen suorittajien määrä:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatiivinen ATP:n tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1491
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobi ei tuota tarpeeksi ATP:tä selviytyäkseen!\n"
@@ -4626,7 +4631,7 @@ msgstr "Uusi nimi:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1452
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4735,7 +4740,7 @@ msgid "NO_AI"
 msgstr "Ei tekoälyä"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2521
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
@@ -4781,7 +4786,7 @@ msgstr "Ei valittua Modia"
 msgid "NUCLEUS"
 msgstr "Tuma"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1444
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4800,8 +4805,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2379
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
@@ -4939,7 +4944,7 @@ msgstr "Asetukset"
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:777
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 #: ../src/thriveopedia/pages/ThriveopediaWikiRootPage.tscn:81
 #: ../src/thriveopedia/pages/wiki/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
@@ -4956,7 +4961,7 @@ msgstr "Soluelin"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:786
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:783
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Lisää soluelin"
@@ -5008,7 +5013,7 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:979
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:976
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
@@ -5420,7 +5425,7 @@ msgstr "populaatio:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populaatio alueilla:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2370
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5428,7 +5433,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Lajin {0} saalistus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Jatka"
@@ -5486,7 +5491,7 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:759
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
 msgid "PROTEINS"
 msgstr "Proteiini"
 
@@ -5754,7 +5759,7 @@ msgstr "Hiiren oikea painike"
 msgid "RIGHT_MOUSE"
 msgstr "Hiiren oikea painike"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:878
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:875
 msgid "RIGID"
 msgstr ""
 
@@ -5770,7 +5775,7 @@ msgstr "Käännä vasemmalle"
 msgid "ROTATE_RIGHT"
 msgstr "Käännä oikealle"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1058
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1055
 msgid "ROTATION_COLON"
 msgstr "Pyöriminen:"
 
@@ -6003,7 +6008,7 @@ msgstr "Suhteellinen peli-ikkunaan"
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:743
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Hae..."
 
@@ -6237,7 +6242,7 @@ msgstr ""
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1032
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1029
 msgid "SIZE_COLON"
 msgstr "Koko:"
 
@@ -6425,7 +6430,7 @@ msgstr "{0}:n populaatio: {1}"
 msgid "SPEED"
 msgstr "Nopeus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1051
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1048
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
@@ -6572,7 +6577,7 @@ msgstr "Stop"
 msgid "STORAGE"
 msgstr "Varastotila"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1039
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1036
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
 
@@ -6596,13 +6601,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:747
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:647
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:644
 msgid "STRUCTURE"
 msgstr "Rakenne"
 
@@ -7074,9 +7079,10 @@ msgstr "Työkalut"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1329
-msgid "TOTAL_POPULATION_COLON"
-msgstr "Kanta:"
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#, fuzzy
+msgid "TOTAL_GATHERED_ENERGY_COLON"
+msgstr "edellinen:"
 
 #: ../src/saving/SaveManagerGUI.tscn:122
 msgid "TOTAL_SAVES"
@@ -9298,7 +9304,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Suhteellinen maailmaan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1367
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Lajit:"
@@ -9345,6 +9351,9 @@ msgstr "Zoomaa sisään"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#~ msgid "TOTAL_POPULATION_COLON"
+#~ msgstr "Kanta:"
 
 #~ msgid "QUESTION"
 #~ msgstr "?"
@@ -9401,10 +9410,6 @@ msgstr "Zoomaa ulospäin"
 #, fuzzy
 #~ msgid "CURRENT_GENERATION_COLON"
 #~ msgstr "Sukupolvi:"
-
-#, fuzzy
-#~ msgid "TOTAL_TIME_USED_COLON"
-#~ msgstr "edellinen:"
 
 #, fuzzy
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
