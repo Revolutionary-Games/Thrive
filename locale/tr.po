@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-05 15:11+0200\n"
-"PO-Revision-Date: 2024-01-05 06:18+0000\n"
+"PO-Revision-Date: 2024-01-06 16:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -956,7 +956,7 @@ msgstr "Sahil"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "COLLISION_SHAPE"
-msgstr "Çarpışan şekillerle varlıklar oluştur"
+msgstr "Fizik hata ayıklama şekillerini göster"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:911
 msgid "COLOUR"
@@ -1464,7 +1464,7 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.cs:208
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Fizik hata ayıklama çizimi bu sürüm türünde mevcut değil"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -3628,7 +3628,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 "İşlem Süresi: {0} s\n"
 "Fizik Süresi: {1} s\n"
-"Varlıklar: {2} Diğer: {3}\n"
+"Varlıklar: {2} (ağırlık: {3})\n"
 "Oluşan: {4} Kaybolan: {5}\n"
 "Kullanılan Düğümler: {6}\n"
 "Kullanılan Bellek: {7}\n"
@@ -4364,9 +4364,11 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Y)"
 
 #: ../src/general/OptionsMenu.tscn:1175
-#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "Mevcut iş parçacıkları:"
+msgstr ""
+"Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
+"Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
+"Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 msgid "NEGATIVE_ATP_BALANCE"
@@ -7186,9 +7188,8 @@ msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
 
 #: ../src/general/OptionsMenu.tscn:1178
-#, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
-msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
+msgstr "Yerel yan çalıştırıcı iş parçacığı sayısını manuel olarak ayarla"
 
 #: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
