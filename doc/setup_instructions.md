@@ -355,7 +355,10 @@ dotnet run --project Scripts -- native Fetch Install
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
-recommended. On Windows Visual Studio probably works best, but
+recommended (and used by default). Also the build is configured to use
+the gold linker which might not be installed by default so that also
+needs to be installed (package name is probably something like
+`binutils-gold`). On Windows Visual Studio probably works best, but
 technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
 should be used.
