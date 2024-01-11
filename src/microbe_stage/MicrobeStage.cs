@@ -831,6 +831,27 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
+        // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay
+        // In freebuild checks need to be skipped to not block the normal freebuild editor availability logic
+        if (!IsPlayerAlive())
+        {
+            canEdit = false;
+        }
+        else if (Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            canEdit = false;
+        }
+        else if (CurrentGame?.FreeBuild != true)
+        {
+            if (Player.Has<MicrobeColony>() && GameWorld.PlayerSpecies is MicrobeSpecies)
+            {
+                canEdit = false;
+            }
+
+            if (!Player.Get<OrganelleContainer>().AllOrganellesDivided)
+                canEdit = false;
+        }
+
         base.OnCanEditStatusChanged(canEdit);
 
         if (!canEdit)
