@@ -220,6 +220,20 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
+    public override void UpdateFossilisationButtonStates()
+    {
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            var species = button.AttachedEntity.Get<SpeciesMember>().Species;
+            var alreadyFossilised =
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
+        }
+    }
+
     public override void ShowFossilisationButtons()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
@@ -237,13 +251,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
-            // Display a faded button with a different hint if the species has been fossilised.
             var alreadyFossilised =
                 FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
-            button.AlreadyFossilised = alreadyFossilised;
-            button.HintTooltip = alreadyFossilised ?
-                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
-                TranslationServer.Translate("FOSSILISATION_HINT");
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
             fossilisationButtonLayer.AddChild(button);
         }
@@ -525,6 +536,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Sets button's texture and hint based on its status of fossilisation
+    /// </summary>
+    private void SetupFossilisationButtonVisuals(FossilisationButton button, bool alreadyFossilised)
+    {
+        // Display a faded button with a different hint if the species has been fossilised.
+        button.AlreadyFossilised = alreadyFossilised;
+        button.HintTooltip = alreadyFossilised ?
+            TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+            TranslationServer.Translate("FOSSILISATION_HINT");
     }
 
     private void OnRadialItemSelected(int itemId)

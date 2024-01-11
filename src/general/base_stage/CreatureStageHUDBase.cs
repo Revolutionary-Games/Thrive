@@ -677,6 +677,11 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     public abstract void ShowFossilisationButtons();
 
     /// <summary>
+    ///   Updates all fossilisation buttons' status of fossilisation
+    /// </summary>
+    public abstract void UpdateFossilisationButtonStates();
+
+    /// <summary>
     ///   Destroys all fossilisation buttons on screen.
     /// </summary>
     public void HideFossilisationButtons()

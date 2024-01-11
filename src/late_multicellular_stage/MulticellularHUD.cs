@@ -114,6 +114,10 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         }
     }
 
+    public override void UpdateFossilisationButtonStates()
+    {
+    }
+
     public override void ShowFossilisationButtons()
     {
     }
