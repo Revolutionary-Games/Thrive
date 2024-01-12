@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -217,7 +217,7 @@ msgstr "כמות שמירה מהירה שניתן לשמור:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "קיבוע חנקן אנאירובי"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "מצב פיזי"
@@ -4882,7 +4882,7 @@ msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5358,11 +5358,6 @@ msgstr "פרוטופלזמה"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "רזולוציה:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7261,6 +7256,11 @@ msgstr "לחצן עכבר לא יודע"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "לא מוכר לWindows"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "הוסף אברון"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 #, fuzzy
@@ -9148,6 +9148,10 @@ msgstr "להתמקד"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "רזולוציה:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

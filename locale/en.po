@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
-"PO-Revision-Date: 2024-01-12 11:30+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
+"PO-Revision-Date: 2024-01-12 12:53+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -219,9 +219,9 @@ msgstr "Amount of quicksaves to keep:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobic Nitrogen Fixation"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 msgid "AND_UNLOCK_CONDITION"
-msgstr " and"
+msgstr "and"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
@@ -4794,9 +4794,9 @@ msgstr "(Some organelles will have unlock conditions needed to place them)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
-msgstr " or"
+msgstr "or"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:536
 msgid "OSMOREGULATION"
@@ -5265,10 +5265,6 @@ msgstr "Protoplasm"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programming"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-msgid "QUESTION"
-msgstr "?"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7124,6 +7120,10 @@ msgstr "Unknown mouse"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Unknown on Windows"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "?"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 msgid "UNKNOWN_PATCH"
@@ -8919,6 +8919,9 @@ msgstr "Zoom in"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "QUESTION"
+#~ msgstr "?"
 
 #~ msgid "SPEED_BELOW"
 #~ msgstr "speed falls below {0}"

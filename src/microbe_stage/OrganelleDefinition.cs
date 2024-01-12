@@ -529,6 +529,7 @@ public class OrganelleDefinition : IRegistryType
             {
                 if (!first)
                 {
+                    builder.Append(" ");
                     builder.Append(new LocalizedString("OR_UNLOCK_CONDITION"));
                     builder.Append(" ");
                 }

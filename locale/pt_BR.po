@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2023-12-05 07:44+0000\n"
 "Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -219,7 +219,7 @@ msgstr "Quantidade de salvamentos rápidos para manter:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fixação Anaeróbica de Nitrogênio"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Condições Físicas"
@@ -4850,7 +4850,7 @@ msgstr "(AVISO: a fotossíntese se tornará menos viável)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5321,11 +5321,6 @@ msgstr "Protoplasma"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programação"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "Resolução:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7227,6 +7222,11 @@ msgstr "Botão do mouse desconhecido"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Desconhecido no Windows"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "Colocar organela"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 #, fuzzy
@@ -9122,6 +9122,10 @@ msgstr "Aumentar o zoom"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Resolução:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

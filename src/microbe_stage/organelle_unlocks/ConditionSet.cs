@@ -28,6 +28,7 @@
             {
                 if (!first)
                 {
+                    builder.Append(" ");
                     builder.Append(new LocalizedString("AND_UNLOCK_CONDITION"));
                     builder.Append(" ");
                 }

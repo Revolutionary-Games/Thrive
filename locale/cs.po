@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -208,7 +208,7 @@ msgstr "Počet rychlouložení k zachování:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobní fixace dusíku"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fyzické podmínky"
@@ -4923,7 +4923,7 @@ msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5399,11 +5399,6 @@ msgstr "Protoplazma"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "Rozlišení:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7308,6 +7303,11 @@ msgstr "Neznámá myš"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Neznáme na Windows"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "Umístit organelu"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 #, fuzzy
@@ -9199,6 +9199,10 @@ msgstr "Přiblížit"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

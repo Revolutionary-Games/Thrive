@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -215,7 +215,7 @@ msgstr "Megtartható gyorsmentések száma:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fizikai körülmények"
@@ -4941,7 +4941,7 @@ msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5420,11 +5420,6 @@ msgstr "Protoplazma"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull requestek / Programozás"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "Felbontás:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7336,6 +7331,11 @@ msgstr "Ismeretlen egér"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Ismeretlen a Windows-on"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "Sejtszervecske elhelyezése"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 #, fuzzy
@@ -9217,6 +9217,10 @@ msgstr "Közelítés"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Felbontás:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

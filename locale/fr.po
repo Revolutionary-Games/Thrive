@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2023-11-15 07:28+0000\n"
 "Last-Translator: Marc Theriault <marc.55@live.ca>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -219,7 +219,7 @@ msgstr "Nombre de sauvegardes rapide à conserver :"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Fixation Anaérobique d'Azote"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Conditions Physique"
@@ -4845,7 +4845,7 @@ msgstr "(ATTENTION : la photosynthèse devient beaucoup moins viable)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiques de l'Organisme"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5318,11 +5318,6 @@ msgstr "Protoplasme"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmation"
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "Résolution :"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7229,6 +7224,11 @@ msgstr "Souris inconnue"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Inconnu sur Windows"
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "Placer organite"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 #, fuzzy
@@ -9125,6 +9125,10 @@ msgstr "Zoomer"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Résolution :"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

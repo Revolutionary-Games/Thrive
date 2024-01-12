@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:49+0200\n"
+"POT-Creation-Date: 2024-01-12 12:53+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -221,7 +221,7 @@ msgstr "Ātru saglabāšanas failu daudzums:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobiskā slāpekļa fiksācija"
 
-#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:32
 #, fuzzy
 msgid "AND_UNLOCK_CONDITION"
 msgstr "Fiziskie apstākļi"
@@ -4898,7 +4898,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma statistika"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:532
+#: ../src/microbe_stage/OrganelleDefinition.cs:533
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5387,11 +5387,6 @@ msgstr "Protoplazma"
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
-
-#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
-#, fuzzy
-msgid "QUESTION"
-msgstr "Izšķirtspēja:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -7306,6 +7301,11 @@ msgstr ""
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr ""
 
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "UNKNOWN_ORGANELLE_SYMBOL"
+msgstr "Novietot organoīdu"
+
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:138
 #: ../src/microbe_stage/Patch.cs:21
 msgid "UNKNOWN_PATCH"
@@ -9175,6 +9175,10 @@ msgstr "Pietuvināt"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Izšķirtspēja:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
