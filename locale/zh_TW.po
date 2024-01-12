@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-05 15:11+0200\n"
-"PO-Revision-Date: 2024-01-05 06:18+0000\n"
+"PO-Revision-Date: 2024-01-06 16:32+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -1464,7 +1464,7 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.cs:208
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "物理偵錯繪製在此構建類型中不可用"
 
 #: ../src/engine/DebugOverlays.tscn:88
 msgid "DEBUG_PANEL"
@@ -4364,9 +4364,11 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}（未完成）"
 
 #: ../src/general/OptionsMenu.tscn:1175
-#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
-msgstr "當前線程："
+msgstr ""
+"本機執行緒用於與託管執行緒不同的任務。\n"
+"多核心 CPU 上的更多執行緒通常會將效能提高到極限\n"
+"太多的總線程數將會降低效能。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1490
 msgid "NEGATIVE_ATP_BALANCE"
@@ -7184,9 +7186,8 @@ msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台線程數"
 
 #: ../src/general/OptionsMenu.tscn:1178
-#, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
-msgstr "手動設定後台線程數"
+msgstr "手動設定本機端執行器執行緒數"
 
 #: ../src/general/OptionsMenu.tscn:1421
 msgid "USE_VIRTUAL_WINDOW_SIZE"
