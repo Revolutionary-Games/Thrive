@@ -450,7 +450,9 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             nonParallelRunner.Dispose();
 
-            // If disposed before Init is called problems will happen without this check
+            // If disposed before Init is called problems will happen without this check. This happens for example if
+            // loading a save made in the editor and quitting the game without exiting the editor first to the microbe
+            // stage.
             if (animationControlSystem != null!)
             {
                 animationControlSystem.Dispose();
