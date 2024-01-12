@@ -14,4 +14,5 @@ public class CustomDifficulty : IDifficulty
     public bool PassiveReproduction { get; set; }
     public bool LimitGrowthRate { get; set; }
     public FogOfWarMode FogOfWarMode { get; set; }
+    public bool OrganelleUnlocksEnabled { get; set; }
 }

@@ -22,6 +22,11 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />
+    <Compile Include="src\general\statistics_tracking\IStatistic.cs" />
+    <Compile Include="src\saving\serializers\ConditionSetConverter.cs" />
     <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />
@@ -609,6 +614,9 @@
     <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SlimeJetComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\UnlockProgress.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\UndiscoveredOrganellesButton.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\UndiscoveredOrganellesTooltip.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
@@ -634,6 +642,9 @@
     <Compile Include="src\microbe_stage\PatchNameOverlay.cs" />
     <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
+    <Compile Include="src\general\statistics_tracking\ReproductionStatistic.cs" />
+    <Compile Include="src\general\statistics_tracking\GenericStatistic.cs" />
+    <Compile Include="src\general\statistics_tracking\WorldStatsTracker.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
@@ -754,6 +765,7 @@
     <Compile Include="src\modding\ModUploader.cs" />
     <Compile Include="src\modding\NewModGUI.cs" />
     <Compile Include="src\modding\WorkshopData.cs" />
+    <Compile Include="src\microbe_stage\organelle_unlocks\StatisticBasedUnlockCondition.cs" />
     <Compile Include="src\native\interop\JVec3.cs" />
     <Compile Include="src\native\interop\NativeInterop.cs" />
     <Compile Include="src\native\NativeConstants.cs" />

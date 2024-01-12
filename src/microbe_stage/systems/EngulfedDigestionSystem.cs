@@ -31,6 +31,8 @@
 
         private readonly Enzyme lipase;
 
+        private GameWorld? gameWorld;
+
         public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
             IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
@@ -39,6 +41,19 @@
             oxytoxy = simulationParameters.GetCompound("oxytoxy");
             digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).ToList();
             lipase = simulationParameters.GetEnzyme("lipase");
+        }
+
+        public void SetWorld(GameWorld world)
+        {
+            gameWorld = world;
+        }
+
+        protected override void PreUpdate(float state)
+        {
+            base.PreUpdate(state);
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -63,6 +78,8 @@
             // Skip if enzymes aren't calculated yet
             if (organelles.AvailableEnzymes == null)
                 return;
+
+            var engulferIsPlayer = entity.Has<PlayerMarker>();
 
             float usedCapacity = 0;
 
@@ -240,6 +257,9 @@
                 if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
                 {
                     engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
+
+                    if (engulferIsPlayer && engulfedObject.Has<CellProperties>())
+                        gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
                 }
 
                 // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract

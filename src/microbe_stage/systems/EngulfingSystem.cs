@@ -96,6 +96,8 @@
         /// </summary>
         private readonly List<KeyValuePair<Entity, float>> tempWorkSpaceForTimeReduction = new();
 
+        private GameWorld? gameWorld;
+
         private bool endosomeDebugAlreadyPrinted;
 
         public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
@@ -120,6 +122,11 @@
             return true;
         }
 
+        public void SetWorld(GameWorld world)
+        {
+            gameWorld = world;
+        }
+
         /// <summary>
         ///   Eject all engulfables of a destroyed entity (if it is an engulfer). Or if the entity is an engulfable
         ///   force eject if from an engulfer if it is inside any.
@@ -142,6 +149,14 @@
                 return;
 
             EjectEngulfablesOnDeath(entity);
+        }
+
+        protected override void PreUpdate(float state)
+        {
+            base.PreUpdate(state);
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -1040,6 +1055,11 @@
                     GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
                     return false;
                 }
+            }
+
+            if (engulferEntity.Has<PlayerMarker>() && targetEntity.Has<CellProperties>())
+            {
+                gameWorld!.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
             }
 
             var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,

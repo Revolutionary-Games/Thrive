@@ -57,6 +57,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     [JsonProperty]
     public FogOfWarMode FogOfWarMode { get; private set; }
 
+    [JsonProperty]
+    public bool OrganelleUnlocksEnabled { get; private set; }
+
     public string InternalName { get; set; } = null!;
 
     [JsonIgnore]

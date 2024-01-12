@@ -117,6 +117,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         set => tempPatchManagerBrightness = value;
     }
 
+    public override MainGameState GameState => MainGameState.MicrobeStage;
+
     protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
@@ -372,6 +374,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
     }
 
+    public void RecordPlayerReproduction()
+    {
+        GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReproduction(Player,
+            GameWorld.Map.CurrentPatch!.BiomeTemplate);
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -423,6 +431,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
 
         GiveReproductionPopulationBonus();
+
+        RecordPlayerReproduction();
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
@@ -518,6 +528,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             throw new Exception("failed to keep the current scene root");
         }
+
+        // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
+        GameWorld.UnlockProgress.UnlockAll = true;
 
         MovingToEditor = false;
     }

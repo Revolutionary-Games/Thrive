@@ -19,6 +19,12 @@ using Newtonsoft.Json;
 public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
+    public UnlockProgress UnlockProgress = new();
+
+    [JsonProperty]
+    public WorldStatsTracker StatisticsTracker = new();
+
+    [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
     [JsonProperty]
@@ -98,6 +104,8 @@ public class GameWorld : ISaveLoadable
             // Make sure average light levels are computed already
             UpdateGlobalAverageSunlight();
         }
+
+        UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
 
     /// <summary>

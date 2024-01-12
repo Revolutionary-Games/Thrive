@@ -249,6 +249,8 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
         multicellularGrowthSystem.SetWorld(currentGame.GameWorld);
+        engulfingSystem.SetWorld(currentGame.GameWorld);
+        engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }

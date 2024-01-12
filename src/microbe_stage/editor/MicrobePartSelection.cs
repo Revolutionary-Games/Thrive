@@ -14,6 +14,7 @@ public class MicrobePartSelection : MarginContainer
     private Label? mpLabel;
     private Button? button;
     private TextureRect? iconRect;
+    private Control? recentlyUnlockedControl;
     private Label? nameLabel;
 #pragma warning restore CA2213
 
@@ -21,6 +22,7 @@ public class MicrobePartSelection : MarginContainer
     private Texture? partIcon;
     private string name = "Error: unset";
     private bool locked;
+    private bool recentlyUnlocked;
     private bool alwaysShowLabel;
     private bool selected;
 
@@ -30,6 +32,8 @@ public class MicrobePartSelection : MarginContainer
     /// </summary>
     [Signal]
     public delegate void OnPartSelected(string name);
+
+    public bool Undiscovered { get; set; }
 
     [Export]
     public int MPCost
@@ -116,12 +120,24 @@ public class MicrobePartSelection : MarginContainer
         }
     }
 
+    public bool RecentlyUnlocked
+    {
+        get => recentlyUnlocked;
+        set
+        {
+            recentlyUnlocked = value;
+
+            UpdateRecentlyUnlocked();
+        }
+    }
+
     public override void _Ready()
     {
         contentContainer = GetChild<Control>(0);
         mpLabel = GetNode<Label>("VBoxContainer/HBoxContainer/MP");
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
+        recentlyUnlockedControl = GetNode<Control>("VBoxContainer/Button/RecentlyUnlocked");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
 
         OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
@@ -130,6 +146,7 @@ public class MicrobePartSelection : MarginContainer
         UpdateButton();
         UpdateLabels();
         UpdateIcon();
+        UpdateRecentlyUnlocked();
     }
 
     public override void _ExitTree()
@@ -195,6 +212,14 @@ public class MicrobePartSelection : MarginContainer
 
         if (Locked)
             iconRect.Modulate = Colors.Gray;
+    }
+
+    private void UpdateRecentlyUnlocked()
+    {
+        if (recentlyUnlockedControl == null)
+            return;
+
+        recentlyUnlockedControl.Visible = recentlyUnlocked;
     }
 
     private void UpdateButton()

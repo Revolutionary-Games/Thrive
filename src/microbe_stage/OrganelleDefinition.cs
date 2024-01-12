@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using UnlockConstraints;
 
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
@@ -182,6 +183,11 @@ public class OrganelleDefinition : IRegistryType
     ///   The upgrades that are available for this organelle type
     /// </summary>
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
+
+    /// <summary>
+    ///   The possible conditions where a player can unlock this organelle.
+    /// </summary>
+    public List<ConditionSet>? UnlockConditions;
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -417,6 +423,13 @@ public class OrganelleDefinition : IRegistryType
                 "Multiple default upgrades specified");
         }
 
+        // Check unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Check(name);
+        }
+
 #if DEBUG
         if (!string.IsNullOrEmpty(CorpseChunkScene))
         {
@@ -471,6 +484,13 @@ public class OrganelleDefinition : IRegistryType
             }
         }
 
+        // Resolve unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Resolve(parameters);
+        }
+
         if (Unimplemented)
             return;
 
@@ -493,6 +513,30 @@ public class OrganelleDefinition : IRegistryType
         foreach (var availableUpgrade in AvailableUpgrades.Values)
         {
             availableUpgrade.Resolve();
+        }
+    }
+
+    /// <summary>
+    ///   A bbcode string containing all the unlock conditions for this organelle.
+    /// </summary>
+    public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
+        WorldAndPlayerDataSource worldAndPlayerArgs)
+    {
+        if (UnlockConditions != null)
+        {
+            bool first = true;
+            foreach (var unlockCondition in UnlockConditions)
+            {
+                if (!first)
+                {
+                    builder.Append(" ");
+                    builder.Append(new LocalizedString("OR_UNLOCK_CONDITION"));
+                    builder.Append(" ");
+                }
+
+                unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
+                first = false;
+            }
         }
     }
 
