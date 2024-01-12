@@ -1,11 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
+using UnlockConstraints;
 
 /// <summary>
 ///   Relays statistics about the world and the player to the organelle unlocks system (and later achievements)
 /// </summary>
 [UseThriveSerializer]
-public class WorldStatsTracker
+public class WorldStatsTracker : IUnlockStateDataSource
 {
     public WorldStatsTracker()
     {

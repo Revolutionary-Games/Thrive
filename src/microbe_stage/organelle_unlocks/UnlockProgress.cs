@@ -54,7 +54,7 @@ public class UnlockProgress
     /// <summary>
     ///   Is the organelle unlocked?
     /// </summary>
-    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerEventArgs worldAndPlayerArgs,
+    public bool IsUnlocked(OrganelleDefinition organelle, WorldAndPlayerDataSource worldAndPlayerArgs,
         GameProperties game, bool autoUnlock)
     {
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)

@@ -1489,6 +1489,9 @@ public static class Constants
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
+    public const string CONDITION_GREEN_COLOUR = "#70f423";
+    public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>

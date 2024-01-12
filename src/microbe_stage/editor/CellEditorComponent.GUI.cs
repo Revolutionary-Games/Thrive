@@ -332,7 +332,7 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = new WorldAndPlayerEventArgs(Editor.CurrentGame.GameWorld, energyBalanceInfo,
+        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, energyBalanceInfo,
             Editor.EditedCellProperties);
 
         foreach (var entry in allPartSelectionElements)
@@ -359,7 +359,7 @@ public partial class CellEditorComponent
 
             // This needs to be done as some organelles like the Toxin Vacuole have newlines in the translations
             var formattedName = organelle.Name.Replace("\n", " ");
-            var unlockTextString = new LocalizedString("UNLOCK_WITH_EITHER_OF_FOLLOWING", formattedName);
+            var unlockTextString = new LocalizedString("UNLOCK_WITH_ANY_OF_FOLLOWING", formattedName);
 
             // Create unlock text
             if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out var group))

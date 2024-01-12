@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-05 15:11+0200\n"
+"POT-Creation-Date: 2024-01-12 12:49+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1517
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 2D:"
 
@@ -31,7 +31,7 @@ msgstr "3D Editor"
 msgid "3D_MOVEMENT"
 msgstr "3D Pohyb"
 
-#: ../src/general/OptionsMenu.tscn:1550
+#: ../src/general/OptionsMenu.tscn:1549
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 3D:"
 
@@ -51,7 +51,7 @@ msgstr "Přerušeno."
 msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:288
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:292
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1593
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
@@ -62,8 +62,8 @@ msgstr "Přejděte do fáze Probuzení. Dostupné, jakmile máte dostatečnou s�
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
 #: ../src/general/base_stage/EditorBase.cs:702
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:490
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:53
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:500
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Akce je zablokována zatímco probíhá jiná akce"
 
@@ -109,11 +109,11 @@ msgstr "Při dodatečných validacích byl zjištěn problém: {0}"
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/general/NewGameSettings.tscn:1219
+#: ../src/general/NewGameSettings.tscn:1241
 msgid "ADVANCED_VIEW"
 msgstr "Pokročilé"
 
-#: ../src/general/NewGameSettings.tscn:1214
+#: ../src/general/NewGameSettings.tscn:1236
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Otevřít náhled pokročilého nastavení"
 
@@ -147,11 +147,11 @@ msgstr ""
 msgid "AGGRESSIVE"
 msgstr "Agresivnost"
 
-#: ../src/general/NewGameSettings.tscn:477
+#: ../src/general/NewGameSettings.tscn:478
 msgid "AI_MUTATION_RATE"
 msgstr "Rychlost mutace AI"
 
-#: ../src/general/NewGameSettings.tscn:517
+#: ../src/general/NewGameSettings.tscn:518
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(rychlost mutací AI druhů)"
 
@@ -177,7 +177,7 @@ msgstr "Obecné statistiky všech světů"
 msgid "ALL_WORLDS_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/space_stage/SpaceStage.cs:410
+#: ../src/space_stage/SpaceStage.cs:412
 msgid "ALREADY_ASCENDED"
 msgstr "Jste již povzneseni"
 
@@ -196,17 +196,22 @@ msgstr "Hlasitost prostředí"
 msgid "AMMONIA"
 msgstr "Amoniak"
 
-#: ../src/general/OptionsMenu.tscn:1730
+#: ../src/general/OptionsMenu.tscn:1729
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Počet autosave k zachování:"
 
-#: ../src/general/OptionsMenu.tscn:1758
+#: ../src/general/OptionsMenu.tscn:1757
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Počet rychlouložení k zachování:"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:101
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobní fixace dusíku"
+
+#: ../src/microbe_stage/organelle_unlocks/ConditionSet.cs:31
+#, fuzzy
+msgid "AND_UNLOCK_CONDITION"
+msgstr "Fyzické podmínky"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 msgid "APPEARANCE"
@@ -225,11 +230,11 @@ msgstr "Použít změny"
 msgid "APRIL"
 msgstr "Duben"
 
-#: ../src/general/OptionsMenu.tscn:2136
+#: ../src/general/OptionsMenu.tscn:2135
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
 
-#: ../src/general/OptionsMenu.tscn:2145
+#: ../src/general/OptionsMenu.tscn:2144
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Jseš si jistý/á, že chceš resetovat ovládání ?"
 
@@ -299,12 +304,12 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Zůstatek ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:476
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:481
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:379
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:482
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
@@ -325,7 +330,7 @@ msgid "AUGUST"
 msgstr "Srpen"
 
 #: ../src/general/OptionsMenu.tscn:612 ../src/general/OptionsMenu.tscn:613
-#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1536
+#: ../src/general/OptionsMenu.tscn:1534 ../src/general/OptionsMenu.tscn:1535
 msgid "AUTO"
 msgstr "Automaticky"
 
@@ -352,7 +357,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
 
-#: ../src/general/OptionsMenu.tscn:1719
+#: ../src/general/OptionsMenu.tscn:1718
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatické ukládání během hry"
 
@@ -365,8 +370,8 @@ msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Nástroj Průzkumu Auto-Evo"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:271
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:210
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
 msgid "AUTO_EVO_FAILED"
 msgstr "Nezdařilo se spustit Auto-evo"
 
@@ -376,8 +381,8 @@ msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledky Auto-evo:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:272
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:211
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status spuštění:"
 
@@ -403,11 +408,11 @@ msgstr "Dostupné Stavební Projekty"
 msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
-#: ../simulation_parameters/common/gallery.json:430
+#: ../simulation_parameters/common/gallery.json:436
 msgid "AWAKENING_STAGE"
 msgstr "Fáze Probuzení"
 
-#: ../simulation_parameters/common/gallery.json:419
+#: ../simulation_parameters/common/gallery.json:425
 #, fuzzy
 msgid "AWARE_STAGE"
 msgstr "Mikrobiální Období"
@@ -415,8 +420,8 @@ msgstr "Mikrobiální Období"
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
 #: ../src/general/MainMenu.tscn:473 ../src/general/MainMenu.tscn:569
 #: ../src/general/MainMenu.tscn:625 ../src/general/MainMenu.tscn:948
-#: ../src/general/NewGameSettings.tscn:1182
-#: ../src/general/OptionsMenu.tscn:2073 ../src/general/PauseMenu.tscn:274
+#: ../src/general/NewGameSettings.tscn:1204
+#: ../src/general/OptionsMenu.tscn:2072 ../src/general/PauseMenu.tscn:274
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
@@ -441,15 +446,15 @@ msgstr "Backspace"
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:439
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:542
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/general/NewGameSettings.tscn:1204
+#: ../src/general/NewGameSettings.tscn:1226
 msgid "BASIC_VIEW"
 msgstr "Základní"
 
-#: ../src/general/NewGameSettings.tscn:1199
+#: ../src/general/NewGameSettings.tscn:1221
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Návrat k náhledu základního nastavení"
 
@@ -469,12 +474,12 @@ msgstr "Přidat basy"
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:651
+#: ../src/microbe_stage/MicrobeHUD.cs:674
 #: ../src/microbe_stage/MicrobeHUD.tscn:1623
 msgid "BECOME_MACROSCOPIC"
 msgstr "Stát se makroskopickým ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:607
+#: ../src/microbe_stage/MicrobeHUD.cs:630
 #: ../src/microbe_stage/MicrobeHUD.tscn:1611
 msgid "BECOME_MULTICELLULAR"
 msgstr "Stát se mnohobuněčným ({0}/{1})"
@@ -552,7 +557,7 @@ msgstr "Velký kus železa"
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:537
+#: ../simulation_parameters/microbe_stage/organelles.json:615
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:828
 msgid "BINDING_AGENT"
 msgstr "Pojící médium"
@@ -565,7 +570,7 @@ msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mno
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Stiskněte [thrive:input]g_toggle_binding[/thrive:input] pro zapnutí spojovacího režimu. Ve spojovacím režimu můžete spojit svou buňku s jinými buňkami stejného druhu tím, že do nich narazíte. Pro opuštění kolonie stiskněte [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1343 ../src/general/OptionsMenu.tscn:1451
+#: ../src/general/OptionsMenu.tscn:1342 ../src/general/OptionsMenu.tscn:1450
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Svázat osy k sobě"
 
@@ -585,7 +590,7 @@ msgstr "Druhy zvyšující biodiverzitu ze sousedícího prostředí dostávají
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "Druhy zvyšující biodiverzitu se mutují při vytvoření"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:787
+#: ../simulation_parameters/microbe_stage/organelles.json:886
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscenční vakuola"
@@ -648,7 +653,7 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2224
+#: ../src/general/OptionsMenu.tscn:2223
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:15
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:76
 #: ../src/modding/NewModGUI.tscn:472
@@ -714,27 +719,27 @@ msgstr "Caps Lock"
 msgid "CARBON_DIOXIDE"
 msgstr "Oxid uhličitý"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:879
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:884
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:883
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:888
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:887
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:892
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:881
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:886
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:885
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:890
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:889
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:894
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
@@ -768,7 +773,7 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště fyzickému poškození. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Celuláza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:679
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:691
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
 
@@ -786,7 +791,7 @@ msgstr "Změnit symetrii"
 msgid "CHEATS"
 msgstr "Cheaty"
 
-#: ../src/general/OptionsMenu.tscn:1812
+#: ../src/general/OptionsMenu.tscn:1811
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Povolit podvádění (cheaty)"
 
@@ -798,7 +803,7 @@ msgstr "Cheat menu"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:368
+#: ../simulation_parameters/microbe_stage/organelles.json:411
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1014
 msgid "CHEMOPLAST"
 msgstr "Chemoplasty"
@@ -811,7 +816,7 @@ msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
+#: ../simulation_parameters/microbe_stage/organelles.json:803
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:761
 msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
@@ -824,7 +829,7 @@ msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto z
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:166
+#: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosyntetizující proteiny"
@@ -859,7 +864,7 @@ msgstr "Chitináza umožnuje buňce rozkládat chitinovou membránu. Každá ext
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště poškození toxiny. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Chitináza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:576
+#: ../simulation_parameters/microbe_stage/organelles.json:665
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:936
 msgid "CHLOROPLAST"
 msgstr "Chloroplasty"
@@ -892,7 +897,7 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:855
+#: ../simulation_parameters/microbe_stage/organelles.json:964
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:794
 msgid "CILIA"
 msgstr "Řasinky"
@@ -918,7 +923,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:169
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2299
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2298
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
@@ -933,7 +938,7 @@ msgstr "Vyčistit stará uložení"
 msgid "CLOSE"
 msgstr "Zavřít"
 
-#: ../src/general/OptionsMenu.tscn:2154
+#: ../src/general/OptionsMenu.tscn:2153
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
@@ -1042,7 +1047,7 @@ msgstr "Komunitní Wiki"
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Navštivte naši komunitní wiki"
 
-#: ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:2041
 msgid "COMPILED_AT_COLON"
 msgstr "Postaveno v:"
 
@@ -1073,11 +1078,11 @@ msgstr "Balanc sloučenin"
 msgid "COMPOUND_CLOUDS"
 msgstr "Mračna sloučenin"
 
-#: ../src/general/NewGameSettings.tscn:536
+#: ../src/general/NewGameSettings.tscn:537
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Hustota oblaků sloučenin"
 
-#: ../src/general/NewGameSettings.tscn:576
+#: ../src/general/NewGameSettings.tscn:577
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "(hustota oblak sloučenin v prostředí)"
 
@@ -1153,12 +1158,12 @@ msgstr ""
 "\n"
 "Zrušení startu zničí jednotku kosmické lodi. Vypustit kosmickou loď?"
 
-#: ../src/general/NewGameSettings.cs:423
-#: ../src/general/NewGameSettings.tscn:1235
+#: ../src/general/NewGameSettings.cs:431
+#: ../src/general/NewGameSettings.tscn:1257
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít hru s tímto nastavením"
 
-#: ../src/general/NewGameSettings.cs:430
+#: ../src/general/NewGameSettings.cs:438
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Některá nastavení nejsou platná"
 
@@ -1192,7 +1197,7 @@ msgstr "Pokračovat k prototypům období?"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Vizualizéry osy ovladače:"
 
-#: ../src/general/OptionsMenu.tscn:1508
+#: ../src/general/OptionsMenu.tscn:1507
 msgid "CONTROLLER_DEADZONES"
 msgstr "Dezónové zóny ovladače"
 
@@ -1211,7 +1216,7 @@ msgstr "Mrtvá zóna:"
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr "Tlačítko Controller zobrazí výzvu typu:"
 
-#: ../src/general/OptionsMenu.tscn:1438
+#: ../src/general/OptionsMenu.tscn:1437
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Citlivost ovladače"
 
@@ -1401,11 +1406,11 @@ msgstr ""
 "     Průměrná velikost hexu: {9}\n"
 "[b]Základní údaje o organelách:[/b]"
 
-#: ../src/general/OptionsMenu.tscn:1831
+#: ../src/general/OptionsMenu.tscn:1830
 msgid "CUSTOM_USERNAME"
 msgstr "Vlastní uživatelské jméno:"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:607
+#: ../simulation_parameters/microbe_stage/organelles.json:706
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:235
 msgid "CYTOPLASM"
 msgstr "Cytoplazma"
@@ -1422,20 +1427,20 @@ msgstr "Cytoplazmatická Glykolýza"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:1004
 msgid "DAY_LENGTH"
 msgstr "Délka dne"
 
-#: ../src/general/NewGameSettings.tscn:1025
+#: ../src/general/NewGameSettings.tscn:1047
 #, fuzzy
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/NewGameSettings.tscn:953
+#: ../src/general/NewGameSettings.tscn:975
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Povolení cyklu den/noc"
 
-#: ../src/general/NewGameSettings.tscn:962
+#: ../src/general/NewGameSettings.tscn:984
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 
@@ -1602,7 +1607,7 @@ msgstr "Vývojáři"
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:278
+#: ../src/microbe_stage/MicrobeHUD.cs:289
 msgid "DEVOURED"
 msgstr "Sežrán"
 
@@ -1610,7 +1615,7 @@ msgstr "Sežrán"
 msgid "DEV_BUILD_PATRONS"
 msgstr "Sponzoři Devbuild"
 
-#: ../src/general/NewGameSettings.tscn:305
+#: ../src/general/NewGameSettings.tscn:306
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:35
 msgid "DIFFICULTY"
 msgstr "Obtížnost"
@@ -1630,12 +1635,12 @@ msgstr ""
 "Pasivní příjem reprodukčního postupu: {8}\n"
 "Omezit použití růstové sloučeniny: {9}"
 
-#: ../src/general/NewGameSettings.tscn:129
-#: ../src/general/NewGameSettings.tscn:377
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:378
 msgid "DIFFICULTY_PRESET"
 msgstr "Přednastavení obtížnosti"
 
-#: ../simulation_parameters/common/difficulty_presets.json:45
+#: ../simulation_parameters/common/difficulty_presets.json:48
 #: ../src/general/WorldGenerationSettings.cs:141
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Vlastní"
@@ -1644,11 +1649,11 @@ msgstr "Vlastní"
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr "Lehká"
 
-#: ../simulation_parameters/common/difficulty_presets.json:31
+#: ../simulation_parameters/common/difficulty_presets.json:33
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr "Obtížná"
 
-#: ../simulation_parameters/common/difficulty_presets.json:17
+#: ../simulation_parameters/common/difficulty_presets.json:18
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normální"
 
@@ -1668,7 +1673,7 @@ msgstr "Rychlost trávení"
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:223
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:234
 msgid "DIGESTION_SPEED_VALUE"
 msgstr "{0}/s"
 
@@ -1688,7 +1693,7 @@ msgstr "Vypnuto"
 msgid "DISABLE_ALL"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:2207
+#: ../src/general/OptionsMenu.tscn:2206
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
@@ -1730,12 +1735,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
-#: ../src/general/OptionsMenu.tscn:1906
+#: ../src/general/OptionsMenu.tscn:1905
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rychlost trávení:"
 
-#: ../src/general/OptionsMenu.tscn:1904 ../src/general/OptionsMenu.tscn:1913
+#: ../src/general/OptionsMenu.tscn:1903 ../src/general/OptionsMenu.tscn:1912
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
@@ -1921,15 +1926,15 @@ msgstr "Tip - Bakterie můžou být silnější než se zdá, velikostně sice n
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Tip - Můžeš lovit ostatní druhy až do jejich vyhynutí, ale pokud nejsi dost opatrný(á), mohou zahubit oni tebe."
 
-#: ../src/general/NewGameSettings.tscn:1159
+#: ../src/general/NewGameSettings.tscn:1181
 msgid "EASTER_EGGS"
 msgstr "Zahrnout Easter Eggy"
 
-#: ../src/general/NewGameSettings.tscn:1167
+#: ../src/general/NewGameSettings.tscn:1189
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/OptionsMenu.tscn:1595
+#: ../src/general/OptionsMenu.tscn:1594
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Rychlost trávení"
@@ -1974,23 +1979,23 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:450
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:553
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:413
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:516
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2473
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2489
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2484
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2500
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2477
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2493
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
@@ -2011,11 +2016,11 @@ msgstr "Štítek entity"
 msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
 
-#: ../src/general/NewGameSettings.tscn:654
+#: ../src/general/NewGameSettings.tscn:655
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retence glukózy v prostředí"
 
-#: ../src/general/NewGameSettings.tscn:693
+#: ../src/general/NewGameSettings.tscn:694
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "(poměr glukózy ponecháno v prostředí za každou generaci)"
 
@@ -2032,7 +2037,7 @@ msgstr "Epipelagický"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr "Sekera"
 
-#: ../src/general/OptionsMenu.tscn:2235 ../src/general/OptionsMenu.tscn:2243
+#: ../src/general/OptionsMenu.tscn:2234 ../src/general/OptionsMenu.tscn:2242
 msgid "ERROR"
 msgstr "Chyba"
 
@@ -2044,16 +2049,16 @@ msgstr "Chyba při vytváření složky pro mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Chyba při vytváření souboru mod info"
 
-#: ../src/general/OptionsMenu.tscn:2245
+#: ../src/general/OptionsMenu.tscn:2244
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 
-#: ../src/general/ThriveNewsFeed.cs:97
+#: ../src/general/ThriveNewsFeed.cs:104
 #, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
 msgstr "(náhodně spawnuté překvapení ve hře)"
 
-#: ../src/general/ThriveNewsFeed.cs:96
+#: ../src/general/ThriveNewsFeed.cs:103
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Chyba při načítání zpráv"
 
@@ -2069,7 +2074,7 @@ msgstr "Chyba při ukládání"
 msgid "ESCAPE"
 msgstr "Esc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1276
+#: ../src/microbe_stage/MicrobeStage.cs:1310
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
@@ -2086,12 +2091,12 @@ msgstr "Evoluční strom"
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr "Evoluční strom"
 
-#: ../src/general/OptionsMenu.tscn:2014
+#: ../src/general/OptionsMenu.tscn:2013
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Verze:"
 
-#: ../src/general/OptionsMenu.tscn:2012 ../src/general/OptionsMenu.tscn:2023
+#: ../src/general/OptionsMenu.tscn:2011 ../src/general/OptionsMenu.tscn:2022
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
@@ -2224,12 +2229,12 @@ msgstr "Povolit podvádění (cheaty)"
 msgid "FEBRUARY"
 msgstr "Únor"
 
-#: ../src/general/ThriveNewsFeed.cs:183
+#: ../src/general/ThriveNewsFeed.cs:190
 #, fuzzy
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
 msgstr "Inicializace knihovny klienta služby Steam se nezdařila"
 
-#: ../src/general/ThriveNewsFeed.cs:166 ../src/general/ThriveNewsFeed.cs:191
+#: ../src/general/ThriveNewsFeed.cs:173 ../src/general/ThriveNewsFeed.cs:198
 #, fuzzy
 msgid "FEED_ITEM_MISSING_CONTENT"
 msgstr ""
@@ -2251,11 +2256,11 @@ msgstr ""
 "Totalální čas CPU:\n"
 "{18}"
 
-#: ../src/general/ThriveNewsFeed.cs:227
+#: ../src/general/ThriveNewsFeed.cs:234
 msgid "FEED_ITEM_PUBLISHED_AT"
 msgstr "Zveřejněno na {0}"
 
-#: ../src/general/ThriveNewsFeed.cs:233
+#: ../src/general/ThriveNewsFeed.cs:240
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Tato položka byla zkrácena z důvodu přílišné délky, celý obsah si prosím přečtěte v originále. {0}"
 
@@ -2295,7 +2300,7 @@ msgstr "Ohnivé toxiny"
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:403
+#: ../simulation_parameters/microbe_stage/organelles.json:446
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "FLAGELLUM"
 msgstr "Bičík"
@@ -2361,7 +2366,7 @@ msgstr ""
 msgid "FOG_OF_WAR_DISABLED"
 msgstr "Vypnuto"
 
-#: ../src/general/NewGameSettings.cs:821
+#: ../src/general/NewGameSettings.cs:835
 #, fuzzy
 msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
@@ -2370,12 +2375,12 @@ msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli násled
 msgid "FOG_OF_WAR_INTENSE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:827
+#: ../src/general/NewGameSettings.cs:841
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
-#: ../src/general/NewGameSettings.tscn:770
+#: ../src/general/NewGameSettings.tscn:771
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -2383,7 +2388,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR"
 msgstr ""
 
-#: ../src/general/NewGameSettings.cs:824
+#: ../src/general/NewGameSettings.cs:838
 #, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
@@ -2392,7 +2397,7 @@ msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikro
 msgid "FOOD_CHAIN"
 msgstr "Potravní řetězec"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2490
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2506
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková zdatnost: {4})"
 
@@ -2432,12 +2437,12 @@ msgstr "populace:"
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:246
+#: ../src/microbe_stage/MicrobeHUD.cs:550
 #: ../src/thriveopedia/fossilisation/FossilisationButton.tscn:15
 msgid "FOSSILISATION_HINT"
 msgstr "Zkamenění tohoto druhu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:245
+#: ../src/microbe_stage/MicrobeHUD.cs:549
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
 msgstr ""
 
@@ -2461,7 +2466,7 @@ msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli násled
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:184
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:195
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:74
 #: ../src/engine/DebugOverlays.tscn:66 ../src/engine/PerformanceMetrics.tscn:59
@@ -2480,11 +2485,11 @@ msgstr "Delta: {0}"
 msgid "FREEBUILDING"
 msgstr "Volné stavění"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:801
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Bonusový oblak glukózy při opuštění editoru"
 
-#: ../src/general/NewGameSettings.tscn:808
+#: ../src/general/NewGameSettings.tscn:809
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(začnete s bonusovým oblakem glukózy poblíž každé generace)"
 
@@ -2646,7 +2651,7 @@ msgstr "Nápověda"
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(vyšší hodnoty zvyšují výkon)"
 
-#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1243
+#: ../src/general/OptionsMenu.tscn:323 ../src/general/OptionsMenu.tscn:1242
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Vyšší hodnota může zhoršit výkon)"
 
@@ -2682,7 +2687,7 @@ msgstr "Podržte [thrive:input]g_free_cursor[/thrive:input] pro kurzor"
 msgid "HOME"
 msgstr "Home"
 
-#: ../src/general/OptionsMenu.tscn:1355 ../src/general/OptionsMenu.tscn:1463
+#: ../src/general/OptionsMenu.tscn:1354 ../src/general/OptionsMenu.tscn:1462
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Verze:"
@@ -2735,15 +2740,15 @@ msgstr "ID není platné číslo"
 msgid "ID_NUMBER"
 msgstr "ID číslo"
 
-#: ../src/general/NewGameSettings.tscn:1138
+#: ../src/general/NewGameSettings.tscn:1160
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Zahrnout prototypy pozdějších období"
 
-#: ../src/general/NewGameSettings.tscn:1146
+#: ../src/general/NewGameSettings.tscn:1168
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
 
-#: ../simulation_parameters/common/gallery.json:458
+#: ../simulation_parameters/common/gallery.json:464
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -2751,7 +2756,7 @@ msgstr ""
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nekonečné sloučeniny"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:30
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:27
 msgid "INFINITE_MP"
 msgstr "Nekonečné MP"
 
@@ -2933,7 +2938,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Název uložené hry nesmí obsahovat speciální znaky (<>:\"/\\|?*)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:288
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:156
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:159
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Název druhu musí odpovídat binomickému systému pojmenování (rod a epiteton)!"
 
@@ -2966,8 +2971,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1367 ../src/general/OptionsMenu.tscn:1388
-#: ../src/general/OptionsMenu.tscn:1475 ../src/general/OptionsMenu.tscn:1497
+#: ../src/general/OptionsMenu.tscn:1366 ../src/general/OptionsMenu.tscn:1387
+#: ../src/general/OptionsMenu.tscn:1474 ../src/general/OptionsMenu.tscn:1496
 msgid "INVERTED"
 msgstr ""
 
@@ -2999,19 +3004,19 @@ msgstr "Opustit hru"
 msgid "JANUARY"
 msgstr "Leden"
 
-#: ../src/general/OptionsMenu.tscn:1939
+#: ../src/general/OptionsMenu.tscn:1938
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mod:"
 
-#: ../src/general/OptionsMenu.tscn:1955
+#: ../src/general/OptionsMenu.tscn:1954
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Vždy"
 
-#: ../src/general/OptionsMenu.tscn:1954 ../src/general/OptionsMenu.tscn:1955
+#: ../src/general/OptionsMenu.tscn:1953 ../src/general/OptionsMenu.tscn:1954
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticky"
 
-#: ../src/general/OptionsMenu.tscn:1955
+#: ../src/general/OptionsMenu.tscn:1954
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nikdy"
 
@@ -3209,7 +3214,7 @@ msgstr "Na překladu do tohoto jazyku se ještě pracuje ({0} hotovo)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Tento překlad není kompletní ({0}% dokončeno) prosím, pomozte nám s ním!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1432
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1445
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nelze smazat poslední organelu"
 
@@ -3290,13 +3295,13 @@ msgstr "Mail"
 msgid "LAUNCHMEDIA"
 msgstr "Média"
 
-#: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:891
+#: ../src/general/NewGameSettings.tscn:158
+#: ../src/general/NewGameSettings.tscn:913
 msgid "LAWK_ONLY"
 msgstr "Realistický režim"
 
-#: ../src/general/NewGameSettings.tscn:164
-#: ../src/general/NewGameSettings.tscn:899
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:921
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(limituje části a schopnosti pouze na život jak ho známe)"
 
@@ -3376,37 +3381,37 @@ msgstr "Licence"
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licence pokrývající části systému Thrive jsou uvedeny zde"
 
-#: ../src/general/NewGameSettings.tscn:183
-#: ../src/general/NewGameSettings.tscn:918
+#: ../src/general/NewGameSettings.tscn:184
+#: ../src/general/NewGameSettings.tscn:940
 msgid "LIFE_ORIGIN"
 msgstr "Původ života"
 
-#: ../src/general/NewGameSettings.tscn:192
-#: ../src/general/NewGameSettings.tscn:927
+#: ../src/general/NewGameSettings.tscn:193
+#: ../src/general/NewGameSettings.tscn:949
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(počáteční lokace)"
 
-#: ../src/general/NewGameSettings.tscn:210
-#: ../src/general/NewGameSettings.tscn:938
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:960
 #: ../src/general/WorldGenerationSettings.cs:47
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermie (náhodné)"
 
-#: ../src/general/NewGameSettings.tscn:210
-#: ../src/general/NewGameSettings.tscn:938
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:960
 #: ../src/general/WorldGenerationSettings.cs:44
 msgid "LIFE_ORIGIN_POND"
 msgstr "Malé teplé jezírko"
 
-#: ../src/general/NewGameSettings.tscn:207
-#: ../src/general/NewGameSettings.tscn:935
+#: ../src/general/NewGameSettings.tscn:208
+#: ../src/general/NewGameSettings.tscn:957
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
-#: ../src/general/NewGameSettings.tscn:209
 #: ../src/general/NewGameSettings.tscn:210
-#: ../src/general/NewGameSettings.tscn:937
-#: ../src/general/NewGameSettings.tscn:938
+#: ../src/general/NewGameSettings.tscn:211
+#: ../src/general/NewGameSettings.tscn:959
+#: ../src/general/NewGameSettings.tscn:960
 #: ../src/general/WorldGenerationSettings.cs:41
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrotermální průduch"
@@ -3443,43 +3448,43 @@ msgstr "Kolečkem vpravo"
 msgid "LIGHT_MAX"
 msgstr "Světlo"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_EXTREME"
 msgstr "Extrémní"
 
-#: ../src/general/NewGameSettings.tscn:842
+#: ../src/general/NewGameSettings.tscn:843
 msgid "LIMIT_GROWTH_RATE"
 msgstr "Limit využití růstových sloučenin"
 
-#: ../src/general/NewGameSettings.tscn:850
+#: ../src/general/NewGameSettings.tscn:851
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_HUGE"
 msgstr "Obří"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_LARGE"
 msgstr "Velký"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_NORMAL"
 msgstr "Normální"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_SMALL"
 msgstr "Malý"
 
-#: ../src/general/OptionsMenu.tscn:1259 ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1258 ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_TINY"
 msgstr "Drobný"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_VERY_LARGE"
 msgstr "Obrovský"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1259
 msgid "LIMIT_VERY_SMALL"
 msgstr "Maličký"
 
@@ -3521,7 +3526,7 @@ msgstr "Načítání hry"
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:110
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:112
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Načítání mnohobuněčného editoru"
 
@@ -3595,7 +3600,7 @@ msgstr "Výkon"
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:904
+#: ../simulation_parameters/microbe_stage/organelles.json:1013
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1229
 msgid "LYSOSOME"
 msgstr "Lysozom"
@@ -3644,7 +3649,7 @@ msgstr "Maximální FPS:"
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neomezené"
 
-#: ../src/general/OptionsMenu.tscn:1236
+#: ../src/general/OptionsMenu.tscn:1235
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximální počet entit:"
 
@@ -3703,7 +3708,7 @@ msgstr "Menu"
 msgid "MESOPELAGIC"
 msgstr "Mezopelagiál (hloubka oceánu do 1000m)"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
+#: ../simulation_parameters/microbe_stage/organelles.json:300
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "METABOLOSOMES"
 msgstr "Metabolozomy"
@@ -3764,7 +3769,7 @@ msgstr "Mikrobiální Období"
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrobiální Editor"
 
-#: ../simulation_parameters/common/gallery.json:332
+#: ../simulation_parameters/common/gallery.json:338
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobiální Editor"
 
@@ -4028,7 +4033,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Není povoleno zobrazit méně než {0} datových sad!"
 
-#: ../src/general/NewGameSettings.tscn:325 ../src/general/OptionsMenu.tscn:223
+#: ../src/general/NewGameSettings.tscn:326 ../src/general/OptionsMenu.tscn:223
 msgid "MISC"
 msgstr "Ostatní"
 
@@ -4041,7 +4046,7 @@ msgstr "Různé"
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr "Různé 3D Fáze"
 
-#: ../src/general/OptionsMenu.tscn:1967
+#: ../src/general/OptionsMenu.tscn:1966
 #, fuzzy
 msgid "MISC_FUN"
 msgstr "Ostatní"
@@ -4058,7 +4063,7 @@ msgstr "Chybějící nebo nesprávný formát povinného pole: {0}"
 msgid "MISSING_TITLE"
 msgstr "Chybí název"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:468
+#: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "MITOCHONDRION"
 msgstr "Mitochondrie"
@@ -4071,7 +4076,7 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:236
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:247
 #, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
 msgstr "..."
@@ -4244,15 +4249,15 @@ msgstr "Verze modu:"
 msgid "MORE_INFO"
 msgstr "Zobrazit více info"
 
-#: ../src/general/OptionsMenu.tscn:1585
+#: ../src/general/OptionsMenu.tscn:1584
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1394
+#: ../src/general/OptionsMenu.tscn:1393
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4293,7 +4298,7 @@ msgstr "Přemístit organelu"
 msgid "MOVE_RIGHT"
 msgstr "Pohyb vpravo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:37
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:34
 msgid "MOVE_TO_ANY_PATCH"
 msgstr "Přesunout na jakékoliv místo"
 
@@ -4363,7 +4368,7 @@ msgstr ""
 "\n"
 "Pokud se rozhodnete pokračovat, prosím pochopte, že pozdější období jsou prototypy a prosím nechoďte si za námi stěžovat, že jsou nedokončené."
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:598
+#: ../src/late_multicellular_stage/MulticellularStage.cs:600
 #, fuzzy
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
@@ -4393,7 +4398,7 @@ msgstr "Sliz"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Syntéza slizů"
 
-#: ../simulation_parameters/common/gallery.json:408
+#: ../simulation_parameters/common/gallery.json:414
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mnohobuněčný Editor"
 
@@ -4403,7 +4408,7 @@ msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Mnohobuněčný Editor"
 
 #: ../simulation_parameters/common/gallery.json:61
-#: ../simulation_parameters/common/gallery.json:367
+#: ../simulation_parameters/common/gallery.json:373
 msgid "MULTICELLULAR_STAGE"
 msgstr "Mnohobuněčné Období"
 
@@ -4439,11 +4444,11 @@ msgstr "Hlasitost hudby"
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Počet pokusů o mutaci každého druhu"
 
-#: ../src/general/NewGameSettings.tscn:418
+#: ../src/general/NewGameSettings.tscn:419
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Násobení ceny mutace"
 
-#: ../src/general/NewGameSettings.tscn:458
+#: ../src/general/NewGameSettings.tscn:459
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cena organel, membrán a jiných věcí v editoru)"
 
@@ -4517,7 +4522,7 @@ msgstr "Nová hra"
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Začít novou hru"
 
-#: ../src/general/NewGameSettings.tscn:287
+#: ../src/general/NewGameSettings.tscn:288
 msgid "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 msgstr ""
 
@@ -4552,7 +4557,7 @@ msgstr "Přejít do následující záložky editoru"
 msgid "NITROGEN"
 msgstr "Dusík"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:102
+#: ../simulation_parameters/microbe_stage/organelles.json:114
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:491
 msgid "NITROGENASE"
 msgstr "Nitrogenáza"
@@ -4565,7 +4570,7 @@ msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:300
+#: ../simulation_parameters/microbe_stage/organelles.json:335
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1041
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastid fixující dusík"
@@ -4598,7 +4603,7 @@ msgstr "Nejzákladnější forma membrány, má malou ochranu proti poškození.
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:517
+#: ../src/late_multicellular_stage/MulticellularStage.cs:519
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -4606,20 +4611,20 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:202
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:131
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:966
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:983
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:100
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:958
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4644,7 +4649,7 @@ msgid "NO_AI"
 msgstr "Žádné AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2505
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2521
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
@@ -4675,7 +4680,7 @@ msgstr "Nebyly nalezeny žádné uložené hry"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 
-#: ../src/general/OptionsMenu.tscn:2253
+#: ../src/general/OptionsMenu.tscn:2252
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Složka se snímky obrazovky nebyla nalezena"
 
@@ -4683,12 +4688,12 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:677
+#: ../simulation_parameters/microbe_stage/organelles.json:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "NUCLEUS"
 msgstr "Jádro"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1431
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1444
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Nelze vymazat jádro, jelikož toto je nevratná evoluce.\n"
@@ -4709,10 +4714,10 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2363
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2373
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2379
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2389
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "N/A"
 
@@ -4720,7 +4725,8 @@ msgstr "N/A"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:508
+#: ../src/microbe_stage/MicrobeHUD.cs:519
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.cs:45
 #, fuzzy
 msgid "N_TIMES"
 msgstr "2x"
@@ -4781,7 +4787,7 @@ msgstr "Otevřít nápovědu"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Volné stavění"
 
-#: ../src/general/OptionsMenu.tscn:1866
+#: ../src/general/OptionsMenu.tscn:1865
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Otevřít složku protokolů"
 
@@ -4812,7 +4818,7 @@ msgstr "Otevřít složku uložení"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Otevřít menu"
 
-#: ../src/general/OptionsMenu.tscn:1858
+#: ../src/general/OptionsMenu.tscn:1857
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Otevřít screenshoty"
 
@@ -4853,7 +4859,7 @@ msgstr "Změna nastavení"
 msgid "ORGANELLES"
 msgstr "Organely"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:933
+#: ../simulation_parameters/microbe_stage/organelles.json:1054
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
 #, fuzzy
 msgid "ORGANELLE_AXON"
@@ -4869,7 +4875,7 @@ msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikro
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Umístit organelu"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:975
+#: ../simulation_parameters/microbe_stage/organelles.json:1096
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1314
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4893,11 +4899,35 @@ msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikro
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Tímto bodneš ostatní buňky."
 
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:185
+#, fuzzy
+msgid "ORGANELLE_PLURAL"
+msgstr "Dravý/útočný Pilus"
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:184
+#, fuzzy
+msgid "ORGANELLE_SINGULAR"
+msgstr "Dravý/útočný Pilus"
+
+#: ../src/general/NewGameSettings.tscn:864
+#, fuzzy
+msgid "ORGANELLE_UNLOCKS_ENABLED"
+msgstr "Organely"
+
+#: ../src/general/NewGameSettings.tscn:872
+#, fuzzy
+msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
+msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:979
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:433
+#: ../src/microbe_stage/OrganelleDefinition.cs:532
+msgid "OR_UNLOCK_CONDITION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:536
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
@@ -4934,11 +4964,11 @@ msgstr "Osmoregulace"
 msgid "OSMOREGULATION_COST"
 msgstr "Náklady na osmoregulaci"
 
-#: ../src/general/NewGameSettings.tscn:712
+#: ../src/general/NewGameSettings.tscn:713
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Násobitel ceny osmoregulace"
 
-#: ../src/general/NewGameSettings.tscn:752
+#: ../src/general/NewGameSettings.tscn:753
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cena osmoregulace hráčova druhu)"
 
@@ -4962,7 +4992,7 @@ msgstr "Nahradit existující uloženou pozici:"
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Přejete si přepsat uloženou hru?"
 
-#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:186
+#: ../src/thriveopedia/fossilisation/FossilisationDialog.cs:189
 #, fuzzy
 msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
@@ -4972,7 +5002,7 @@ msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale
 msgid "OXYGEN"
 msgstr "Kyslík"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../simulation_parameters/microbe_stage/organelles.json:222
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:532
 msgid "OXYTOXISOME"
 msgstr "Oxytoxizom"
@@ -5039,11 +5069,11 @@ msgstr "Posuň se doprava"
 msgid "PAN_CAMERA_UP"
 msgstr "Posuň se nahoru"
 
-#: ../src/general/NewGameSettings.tscn:821
+#: ../src/general/NewGameSettings.tscn:822
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Pasivní příjem pokroku reprodukce"
 
-#: ../src/general/NewGameSettings.tscn:829
+#: ../src/general/NewGameSettings.tscn:830
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
@@ -5069,7 +5099,7 @@ msgstr "Mapa lokací"
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Klikejte, tahejte, přibližujte a oddalujte kameru pro pohyb"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:811
+#: ../src/microbe_stage/PatchMapGenerator.cs:817
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -5083,7 +5113,7 @@ msgstr "Odstranit místní data"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2263
+#: ../src/general/OptionsMenu.tscn:2262
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -5142,15 +5172,15 @@ msgstr "Mírumilovnost"
 
 #: ../src/general/base_stage/CreatureStageHUDBase.cs:634
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:96
-#: ../src/general/NewGameSettings.cs:794
+#: ../src/general/NewGameSettings.cs:808
 #: ../src/general/WorldGenerationSettings.cs:148
 #: ../src/gui_common/CompoundAmount.cs:177
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:231
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:257
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:242
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:405
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:322
-#: ../src/microbe_stage/MicrobeHUD.cs:284
+#: ../src/microbe_stage/MicrobeHUD.cs:295
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -5195,7 +5225,7 @@ msgstr "Fyzická odolnost"
 msgid "PLACE_ORGANELLE"
 msgstr "Umístit organelu"
 
-#: ../src/general/NewGameSettings.tscn:315
+#: ../src/general/NewGameSettings.tscn:316
 #: ../src/thriveopedia/pages/ThriveopediaCurrentWorldPage.tscn:63
 msgid "PLANET"
 msgstr "Planeta"
@@ -5206,25 +5236,25 @@ msgstr "Planeta"
 msgid "PLANET_DETAILS_STRING"
 msgstr "Otevřít složku záznamů"
 
-#: ../src/general/NewGameSettings.tscn:1104
+#: ../src/general/NewGameSettings.tscn:1126
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Generováni planet již brzy!"
 
-#: ../src/general/NewGameSettings.tscn:225
-#: ../src/general/NewGameSettings.tscn:1038
+#: ../src/general/NewGameSettings.tscn:226
+#: ../src/general/NewGameSettings.tscn:1060
 msgid "PLANET_RANDOM_SEED"
 msgstr "Náhodný seed planety"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:478
+#: ../src/microbe_stage/MicrobeHUD.cs:489
 #, fuzzy
 msgid "PLAYER"
 msgstr "Hráčská buňka"
 
-#: ../src/general/NewGameSettings.tscn:595
+#: ../src/general/NewGameSettings.tscn:596
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "Populační penalta za smrt hráče"
 
-#: ../src/general/NewGameSettings.tscn:635
+#: ../src/general/NewGameSettings.tscn:636
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(součinitel snížení populace hráčova druhu za každou smrt hráče)"
 
@@ -5240,7 +5270,7 @@ msgstr "Duplicitní hráč"
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/general/OptionsMenu.tscn:1536
+#: ../src/general/OptionsMenu.tscn:1535
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Hráč vyhynul"
@@ -5267,11 +5297,11 @@ msgstr ""
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1695
+#: ../src/general/OptionsMenu.tscn:1694
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Přehrát úvodní video"
 
-#: ../src/general/OptionsMenu.tscn:1703
+#: ../src/general/OptionsMenu.tscn:1702
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spustit úvod do mikrobů v nové hře"
 
@@ -5293,7 +5323,7 @@ msgstr "populace:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populace v prostředích:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2354
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2370
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -5362,13 +5392,18 @@ msgstr "Ochrana limitu počtu druhů pro druhy, které byly právě vytvořeny"
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:134
+#: ../simulation_parameters/microbe_stage/organelles.json:154
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
 #: ../src/gui_common/CreditsScroll.cs:530
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
+
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:93
+#, fuzzy
+msgid "QUESTION"
+msgstr "Rozlišení:"
 
 #: ../simulation_parameters/common/input_options.json:346
 msgid "QUICK_LOAD"
@@ -5397,8 +5432,8 @@ msgstr ""
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Náhodné jméno druhu"
 
-#: ../src/general/NewGameSettings.tscn:244
-#: ../src/general/NewGameSettings.tscn:1051
+#: ../src/general/NewGameSettings.tscn:245
+#: ../src/general/NewGameSettings.tscn:1073
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
@@ -5488,7 +5523,7 @@ msgstr "Potřebuje jádro"
 msgid "RESEARCH"
 msgstr "Hledat"
 
-#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2084
+#: ../src/general/OptionsMenu.tscn:920 ../src/general/OptionsMenu.tscn:2083
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -5496,24 +5531,24 @@ msgstr "Resetovat"
 msgid "RESET_DEADZONES"
 msgstr "Resetovat Mrtvý Úhel"
 
-#: ../src/general/OptionsMenu.tscn:1929
+#: ../src/general/OptionsMenu.tscn:1928
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2144
+#: ../src/general/OptionsMenu.tscn:2143
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovat ovládání ?"
 
-#: ../src/general/OptionsMenu.tscn:1654
+#: ../src/general/OptionsMenu.tscn:1653
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Resetovat ovládání"
 
-#: ../src/general/OptionsMenu.tscn:2124
+#: ../src/general/OptionsMenu.tscn:2123
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Výchozí"
 
-#: ../src/general/OptionsMenu.tscn:2135
+#: ../src/general/OptionsMenu.tscn:2134
 msgid "RESET_TO_DEFAULTS"
 msgstr "Obnovit výchozí nastavení?"
 
@@ -5598,7 +5633,7 @@ msgstr ""
 "Jste si jistý, že chcete odejít do hlavního menu?\n"
 "Ztratíte veškerý neuložený postup."
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:44
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:46
 #, fuzzy
 msgid "REVEAL_ALL_PATCHES"
 msgstr "rozšířen do prostředí:"
@@ -5678,7 +5713,7 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
-#: ../simulation_parameters/microbe_stage/organelles.json:70
+#: ../simulation_parameters/microbe_stage/organelles.json:82
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:451
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin (protein mědi)"
@@ -5706,11 +5741,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr "Odstranit místní data"
 
-#: ../src/general/OptionsMenu.tscn:2098 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2097 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Uložit"
 
-#: ../src/general/OptionsMenu.tscn:2197
+#: ../src/general/OptionsMenu.tscn:2196
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
@@ -5818,20 +5853,20 @@ msgstr "Uložení není momentálně k dispozici z důvodu:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 
-#: ../src/general/OptionsMenu.tscn:1406 ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1405 ../src/general/OptionsMenu.tscn:1406
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1406
 #, fuzzy
 msgid "SCALING_ON"
 msgstr "Signalizující Prvek"
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1406
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1978
+#: ../src/general/OptionsMenu.tscn:1977
 #, fuzzy
 msgid "SCREEN_EFFECT"
 msgstr "Vedlejší účinky:"
@@ -5855,8 +5890,8 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr "Zobrazit panel schopností"
 
-#: ../src/general/OptionsMenu.tscn:1536 ../src/general/OptionsMenu.tscn:1569
-#: ../src/general/OptionsMenu.tscn:1570
+#: ../src/general/OptionsMenu.tscn:1535 ../src/general/OptionsMenu.tscn:1568
+#: ../src/general/OptionsMenu.tscn:1569
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
@@ -5994,12 +6029,12 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Zobrazit nápovědu"
 
-#: ../src/general/OptionsMenu.tscn:1883
+#: ../src/general/OptionsMenu.tscn:1882
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1881
+#: ../src/general/OptionsMenu.tscn:1880
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -6008,15 +6043,15 @@ msgstr "{0} {1}"
 msgid "SHOW_TUTORIALS"
 msgstr "Zobrazit tutoriál"
 
-#: ../src/general/OptionsMenu.tscn:1793
+#: ../src/general/OptionsMenu.tscn:1792
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Zobrazit tutoriály (v aktuální hře)"
 
-#: ../src/general/OptionsMenu.tscn:1785
+#: ../src/general/OptionsMenu.tscn:1784
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Zobrazit tutoriály (v nových hrách)"
 
-#: ../src/general/OptionsMenu.tscn:1800
+#: ../src/general/OptionsMenu.tscn:1799
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Zobrazení upozornění na neuložený postup"
 
@@ -6024,11 +6059,11 @@ msgstr "Zobrazení upozornění na neuložený postup"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Povoluje / zakazuje vyskakovací okno s upozorněním na neuložený postup, když se hráč pokusí ukončit hru."
 
-#: ../src/general/OptionsMenu.tscn:1874
+#: ../src/general/OptionsMenu.tscn:1873
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:764
+#: ../simulation_parameters/microbe_stage/organelles.json:863
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "SIGNALING_AGENT"
 msgstr "Signalizující Prvek"
@@ -6092,7 +6127,7 @@ msgstr "Velikost:"
 msgid "SLIDESHOW"
 msgstr "Prezentace"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:738
+#: ../simulation_parameters/microbe_stage/organelles.json:837
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:688
 msgid "SLIME_JET"
 msgstr "Slizová tryska"
@@ -6121,7 +6156,7 @@ msgstr "Zvyšuje rychlost otáčení velkých buněk."
 msgid "SMALL_IRON_CHUNK"
 msgstr "Malý kus železa"
 
-#: ../simulation_parameters/common/gallery.json:441
+#: ../simulation_parameters/common/gallery.json:447
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr "Mikrobiální Období"
@@ -6146,7 +6181,7 @@ msgstr "Vedoucí zvukaři"
 msgid "SPACE"
 msgstr "Mezerník"
 
-#: ../simulation_parameters/common/gallery.json:469
+#: ../simulation_parameters/common/gallery.json:475
 #, fuzzy
 msgid "SPACE_STAGE"
 msgstr "Mikrobiální Období"
@@ -6173,7 +6208,7 @@ msgstr "Spawnout Amoniak"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeStage.cs:994
+#: ../src/microbe_stage/MicrobeStage.cs:1028
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nelze využít cheat ke spawnutí nepřítele, jelikož v tomto prostředí se nenachází žádné nepřátelské druhy"
 
@@ -6284,7 +6319,7 @@ msgstr "Začínání"
 msgid "START_CALIBRATION"
 msgstr "Spusť Kalibraci"
 
-#: ../src/general/NewGameSettings.tscn:1238
+#: ../src/general/NewGameSettings.tscn:1260
 #, fuzzy
 msgid "START_GAME"
 msgstr "Uložit hru"
@@ -6478,11 +6513,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1274
+#: ../src/microbe_stage/MicrobeStage.cs:1308
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1275
+#: ../src/microbe_stage/MicrobeStage.cs:1309
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "úspěšné prohledání"
 
@@ -6614,7 +6649,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:184
-#: ../src/late_multicellular_stage/MulticellularStage.cs:875
+#: ../src/late_multicellular_stage/MulticellularStage.cs:877
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -6659,7 +6694,7 @@ msgstr "PROSPERUJEŠ!"
 msgid "THEORY_TEAM"
 msgstr "Teoretici"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:822
+#: ../simulation_parameters/microbe_stage/organelles.json:921
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:963
 msgid "THERMOPLAST"
 msgstr "Termoplast"
@@ -6672,7 +6707,7 @@ msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:332
+#: ../simulation_parameters/microbe_stage/organelles.json:367
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:573
 msgid "THERMOSYNTHASE"
 msgstr "Termosyntáza"
@@ -6750,7 +6785,7 @@ msgstr "Thrive Licence"
 msgid "THYLAKOID"
 msgstr "Thylakoid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:234
+#: ../simulation_parameters/microbe_stage/organelles.json:261
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
 
@@ -6782,8 +6817,8 @@ msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh, aby 
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
 
-#: ../src/microbe_stage/MicrobeStage.cs:454
-#: ../src/microbe_stage/MicrobeStage.cs:458
+#: ../src/microbe_stage/MicrobeStage.cs:464
+#: ../src/microbe_stage/MicrobeStage.cs:468
 #, fuzzy
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
@@ -6908,7 +6943,7 @@ msgstr "Celkem uloženo:"
 msgid "TOXIN_RESISTANCE"
 msgstr "Rezistence vůči toxinům"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:504
+#: ../simulation_parameters/microbe_stage/organelles.json:571
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -6952,7 +6987,7 @@ msgstr "Zkuste udělat snímek obrazovky!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Zkus vytvořit uloženou pozici!"
 
-#: ../src/general/OptionsMenu.tscn:2255
+#: ../src/general/OptionsMenu.tscn:2254
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
@@ -7213,7 +7248,7 @@ msgstr "Rozpojit všechny"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
-#: ../src/general/OptionsMenu.cs:1655
+#: ../src/general/OptionsMenu.cs:1663
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -7223,6 +7258,12 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1554
 msgid "UNDERWATERCAVE"
 msgstr "Podvodní jeskyně"
+
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn:114
+#: ../src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn:65
+#, fuzzy
+msgid "UNDISCOVERED_ORGANELLES"
+msgstr "Odpojené organely"
 
 #: ../src/microbe_stage/Patch.cs:22
 #, fuzzy
@@ -7278,7 +7319,7 @@ msgstr "Neznámý"
 msgid "UNKNOWN_SHORT"
 msgstr "Neznámý"
 
-#: ../src/general/OptionsMenu.cs:1662
+#: ../src/general/OptionsMenu.cs:1670
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Verze modu:"
@@ -7287,7 +7328,70 @@ msgstr "Verze modu:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznámé Workshop ID pro tento mod"
 
-#: ../src/general/OptionsMenu.tscn:2174
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#, fuzzy
+msgid "UNLOCKED_NEW_ORGANELLE"
+msgstr "Umístit organelu"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:56
+#, fuzzy
+msgid "UNLOCK_ALL_ORGANELLES"
+msgstr "Více organel"
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:47
+msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:153
+msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
+msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:149
+msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:77
+msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:50
+msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:74
+msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:107
+msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:194
+msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:189
+msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/StatisticBasedUnlockCondition.cs:122
+msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
+msgstr ""
+
+#: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:101
+#, fuzzy
+msgid "UNLOCK_CONDITION_SPEED_BELOW"
+msgstr "Rychlost trávení:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:362
+msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:2173
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
@@ -7297,32 +7401,32 @@ msgstr ""
 msgid "UNTITLED"
 msgstr "Bez názvu"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:869
+#: ../simulation_parameters/microbe_stage/organelles.json:978
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../simulation_parameters/microbe_stage/organelles.json:979
 #, fuzzy
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:33
-#: ../simulation_parameters/microbe_stage/organelles.json:866
+#: ../simulation_parameters/microbe_stage/organelles.json:45
+#: ../simulation_parameters/microbe_stage/organelles.json:975
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:32
-#: ../simulation_parameters/microbe_stage/organelles.json:865
+#: ../simulation_parameters/microbe_stage/organelles.json:44
+#: ../simulation_parameters/microbe_stage/organelles.json:974
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:36
+#: ../simulation_parameters/microbe_stage/organelles.json:48
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
 
-#: ../simulation_parameters/microbe_stage/organelles.json:37
+#: ../simulation_parameters/microbe_stage/organelles.json:49
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
@@ -7359,7 +7463,7 @@ msgstr "Použít Auto Harmony Loading"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
-#: ../src/general/OptionsMenu.tscn:1820
+#: ../src/general/OptionsMenu.tscn:1819
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
 
@@ -7376,11 +7480,11 @@ msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
 
-#: ../src/general/OptionsMenu.tscn:1421
+#: ../src/general/OptionsMenu.tscn:1420
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:433
+#: ../simulation_parameters/microbe_stage/organelles.json:488
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1083
 msgid "VACUOLE"
 msgstr "Vakuola"
@@ -7417,7 +7521,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Verze:"
 
-#: ../src/general/OptionsMenu.tscn:1373 ../src/general/OptionsMenu.tscn:1481
+#: ../src/general/OptionsMenu.tscn:1372 ../src/general/OptionsMenu.tscn:1480
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Verze:"
@@ -7450,12 +7554,12 @@ msgstr "Zakázat vše"
 msgid "VIEW_ONLINE"
 msgstr "Zakázat vše"
 
-#: ../src/general/OptionsMenu.tscn:1892
+#: ../src/general/OptionsMenu.tscn:1891
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1889
+#: ../src/general/OptionsMenu.tscn:1888
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
@@ -9045,7 +9149,7 @@ msgstr "Statistika organizmu"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1570
+#: ../src/general/OptionsMenu.tscn:1569
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "ke zvýšení pohyblivosti"
@@ -9381,10 +9485,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "SEMICOLON"
 #~ msgstr "Velikost:"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "AT"

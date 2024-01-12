@@ -7,11 +7,11 @@
     /// <summary>
     ///   An unlock condition that relies on a certain <see cref="IStatistic"/> to track progress
     /// </summary>
-    public abstract class StatisticBasedUnlockCondition
+    public abstract class StatisticBasedUnlockCondition : IUnlockCondition
     {
-        public abstract bool Satisfied(EventArgs args);
+        public abstract bool Satisfied(IUnlockStateDataSource data);
 
-        public abstract void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args);
+        public abstract void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data);
 
         public virtual void Check(string name)
         {
@@ -30,22 +30,22 @@
         [JsonProperty]
         public int Required { get; set; }
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return false;
 
-            var engulfed = trackerArgs.StatsTracker.TotalEngulfedByPlayer;
+            var engulfed = tracker.TotalEngulfedByPlayer;
 
             return engulfed.Value >= Required;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return;
 
-            var engulfed = trackerArgs.StatsTracker.TotalEngulfedByPlayer;
+            var engulfed = tracker.TotalEngulfedByPlayer;
 
             builder.Append(new LocalizedString("UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE", Required,
                 engulfed.Value));
@@ -57,22 +57,22 @@
         [JsonProperty]
         public int Required { get; set; }
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return false;
 
-            var digested = trackerArgs.StatsTracker.TotalDigestedByPlayer;
+            var digested = tracker.TotalDigestedByPlayer;
 
             return digested.Value >= Required;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return;
 
-            var digested = trackerArgs.StatsTracker.TotalDigestedByPlayer;
+            var digested = tracker.TotalDigestedByPlayer;
 
             builder.Append(new LocalizedString("UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE", Required,
                 digested.Value));
@@ -87,22 +87,22 @@
         [JsonProperty]
         public int Required { get; set; }
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return false;
 
-            var deaths = trackerArgs.StatsTracker.TotalPlayerDeaths;
+            var deaths = tracker.TotalPlayerDeaths;
 
             return deaths.Value >= Required;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return;
 
-            var deaths = trackerArgs.StatsTracker.TotalPlayerDeaths;
+            var deaths = tracker.TotalPlayerDeaths;
 
             builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE", Required,
                 deaths.Value));
@@ -117,17 +117,17 @@
         [JsonProperty]
         public Biome? Biome { get; set; }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
             builder.Append(new LocalizedString("UNLOCK_CONDITION_REPRODUCE_IN_BIOME", Biome!.Name));
         }
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data is not WorldStatsTracker tracker)
                 return false;
 
-            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
+            var reproductionStat = tracker.PlayerReproductionStatistic;
 
             if (!reproductionStat.ReproducedInBiomes.TryGetValue(Biome!, out var count))
                 return false;
@@ -169,12 +169,12 @@
         [JsonProperty]
         public bool InARow { get; set; }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data1)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data1 is not WorldStatsTracker tracker)
                 return;
 
-            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
+            var reproductionStat = tracker.PlayerReproductionStatistic;
 
             var count = 0;
             if (reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
@@ -196,12 +196,12 @@
             }
         }
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data1)
         {
-            if (args is not StatisticTrackerEventArgs trackerArgs)
+            if (data1 is not WorldStatsTracker tracker)
                 return false;
 
-            var reproductionStat = trackerArgs.StatsTracker.PlayerReproductionStatistic;
+            var reproductionStat = tracker.PlayerReproductionStatistic;
 
             if (!reproductionStat.ReproducedWithOrganelle.TryGetValue(organelle, out var data))
                 return false;

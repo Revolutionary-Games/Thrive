@@ -11,19 +11,17 @@
             Requirements = conditions;
         }
 
-        [JsonIgnore]
-        public IUnlockCondition[] Requirements { get; set; }
+        public IUnlockCondition[] Requirements { get; }
 
-        public bool Satisfied(WorldAndPlayerEventArgs worldAndPlayerArgs)
+        public bool Satisfied(WorldAndPlayerDataSource worldAndPlayerData)
         {
-            var statisticArgs = new StatisticTrackerEventArgs(worldAndPlayerArgs.World.StatisticsTracker);
-
-            return Requirements.All(c => IsSatisfied(c, worldAndPlayerArgs, statisticArgs));
+            return Requirements.All(c =>
+                IsSatisfied(c, worldAndPlayerData, worldAndPlayerData.World.StatisticsTracker));
         }
 
-        public void GenerateTooltip(LocalizedStringBuilder builder, WorldAndPlayerEventArgs worldAndPlayerArgs)
+        public void GenerateTooltip(LocalizedStringBuilder builder, WorldAndPlayerDataSource worldAndPlayerData)
         {
-            var statisticArgs = new StatisticTrackerEventArgs(worldAndPlayerArgs.World.StatisticsTracker);
+            var tracker = worldAndPlayerData.World.StatisticsTracker;
 
             var first = true;
             foreach (var entry in Requirements)
@@ -34,11 +32,13 @@
                     builder.Append(" ");
                 }
 
-                var color = IsSatisfied(entry, worldAndPlayerArgs, statisticArgs) ? "green" : "red";
-                builder.Append($"[color={color}]");
+                var colour = IsSatisfied(entry, worldAndPlayerData, tracker) ?
+                    Constants.CONDITION_GREEN_COLOUR :
+                    Constants.CONDITION_RED_COLOUR;
+                builder.Append($"[color={colour}]");
 
                 entry.GenerateTooltip(builder,
-                    entry is WorldBasedUnlockCondition ? worldAndPlayerArgs : statisticArgs);
+                    entry is WorldBasedUnlockCondition ? worldAndPlayerData : tracker);
 
                 builder.Append("[/color]");
 
@@ -58,15 +58,15 @@
                 requirement.Resolve(parameters);
         }
 
-        private bool IsSatisfied(IUnlockCondition condition, WorldAndPlayerEventArgs worldAndPlayerArgs,
-            StatisticTrackerEventArgs statisticArgs)
+        private bool IsSatisfied(IUnlockCondition condition, WorldAndPlayerDataSource worldAndPlayerData,
+            WorldStatsTracker worldStatistics)
         {
             if (condition is WorldBasedUnlockCondition)
             {
-                return condition.Satisfied(worldAndPlayerArgs);
+                return condition.Satisfied(worldAndPlayerData);
             }
 
-            return condition.Satisfied(statisticArgs);
+            return condition.Satisfied(worldStatistics);
         }
     }
 }

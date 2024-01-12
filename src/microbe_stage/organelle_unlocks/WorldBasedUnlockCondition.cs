@@ -8,9 +8,9 @@
     /// </summary>
     public abstract class WorldBasedUnlockCondition : IUnlockCondition
     {
-        public abstract bool Satisfied(EventArgs args);
+        public abstract bool Satisfied(IUnlockStateDataSource data);
 
-        public abstract void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args);
+        public abstract void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data);
 
         public virtual void Resolve(SimulationParameters parameters)
         {
@@ -29,9 +29,9 @@
         [JsonProperty]
         public float Atp;
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not WorldAndPlayerEventArgs worldArgs)
+            if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
             var energyBalance = worldArgs.EnergyBalance;
@@ -42,7 +42,7 @@
             return energyBalance.TotalProduction >= Atp;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
             builder.Append(new LocalizedString("UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE", Atp));
         }
@@ -56,9 +56,9 @@
         [JsonProperty]
         public float Atp;
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not WorldAndPlayerEventArgs worldArgs)
+            if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
             var energyBalance = worldArgs.EnergyBalance;
@@ -69,7 +69,7 @@
             return energyBalance.FinalBalance >= Atp;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
             builder.Append(new LocalizedString("UNLOCK_CONDITION_EXCESS_ATP_ABOVE", Atp));
         }
@@ -83,9 +83,9 @@
         [JsonProperty]
         public float Threshold;
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not WorldAndPlayerEventArgs worldArgs)
+            if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
             var playerData = worldArgs.PlayerData;
@@ -96,7 +96,7 @@
             return GetPlayerSpeed(playerData) < Threshold;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
             builder.Append(new LocalizedString("UNLOCK_CONDITION_SPEED_BELOW", Threshold));
         }
@@ -127,9 +127,9 @@
         [JsonProperty]
         public Compound? Compound;
 
-        public override bool Satisfied(EventArgs args)
+        public override bool Satisfied(IUnlockStateDataSource data)
         {
-            if (args is not WorldAndPlayerEventArgs worldArgs)
+            if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
             var current = worldArgs.World.Map.CurrentPatch!.GetCompoundAmount(Compound!,
@@ -140,7 +140,7 @@
             return minSatisfied && maxSatisfied;
         }
 
-        public override void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args)
+        public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
         {
             var compoundName = Compound!.InternalName;
 

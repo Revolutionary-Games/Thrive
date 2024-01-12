@@ -1,35 +1,46 @@
 ﻿namespace UnlockConstraints
 {
-    using System;
-
     public interface IUnlockCondition
     {
-        public bool Satisfied(EventArgs args);
+        /// <summary>
+        ///   Checks if the current state of the game satisfies this unlock condition
+        /// </summary>
+        /// <param name="data">
+        ///   The data about the world, if this condition doesn't handle the data of the given type this always
+        ///   returns false
+        /// </param>
+        /// <returns>True if condition satisfied</returns>
+        public bool Satisfied(IUnlockStateDataSource data);
 
-        public void GenerateTooltip(LocalizedStringBuilder builder, EventArgs args);
+        /// <summary>
+        ///   Generates a tooltip describing how close this unlock condition is to be unlocked
+        /// </summary>
+        /// <param name="builder">Where to put the result text</param>
+        /// <param name="data">Where to get info on how close to the condition is to be satisfied</param>
+        public void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data);
 
+        /// <inheritdoc cref="IRegistryType.Check"/>
         public void Check(string name);
 
+        /// <inheritdoc cref="OrganelleDefinition.Resolve"/>
         public void Resolve(SimulationParameters parameters);
     }
 
-    public class StatisticTrackerEventArgs : EventArgs
+    /// <summary>
+    ///   Interface that marks the various sources of data that <see cref="IUnlockCondition"/> uses to unlock itself
+    ///   when the data matches the required conditions
+    /// </summary>
+    public interface IUnlockStateDataSource
     {
-        public WorldStatsTracker StatsTracker;
-
-        public StatisticTrackerEventArgs(WorldStatsTracker statsTracker)
-        {
-            StatsTracker = statsTracker;
-        }
     }
 
-    public class WorldAndPlayerEventArgs : EventArgs
+    public class WorldAndPlayerDataSource : IUnlockStateDataSource
     {
-        public GameWorld World;
-        public EnergyBalanceInfo? EnergyBalance;
-        public ICellProperties? PlayerData;
+        public readonly GameWorld World;
+        public readonly EnergyBalanceInfo? EnergyBalance;
+        public readonly ICellProperties? PlayerData;
 
-        public WorldAndPlayerEventArgs(GameWorld world, EnergyBalanceInfo? energyBalance, ICellProperties? playerData)
+        public WorldAndPlayerDataSource(GameWorld world, EnergyBalanceInfo? energyBalance, ICellProperties? playerData)
         {
             World = world;
             EnergyBalance = energyBalance;

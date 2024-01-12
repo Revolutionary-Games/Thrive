@@ -234,6 +234,7 @@ public partial class CellEditorComponent :
     private PackedScene organelleSelectionButtonScene = null!;
 
     private PackedScene undiscoveredOrganellesScene = null!;
+
     private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Spatial? cellPreviewVisualsRoot;

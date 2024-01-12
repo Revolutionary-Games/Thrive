@@ -597,11 +597,6 @@
     <Compile Include="src\microbe_stage\ISpeciesMemberLocationData.cs" />
     <Compile Include="src\microbe_stage\FogOfWarMode.cs" />
     <Compile Include="src\microbe_stage\MapElementVisibility.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockHelpers.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />
-    <Compile Include="src\statistics_tracking\IStatistic.cs" />
     <Compile Include="src\microbe_stage\MembranePointData.cs" />
     <Compile Include="src\microbe_stage\MembraneShapeGenerator.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -774,8 +769,6 @@
     <Compile Include="src\native\interop\JVec3.cs" />
     <Compile Include="src\native\interop\NativeInterop.cs" />
     <Compile Include="src\native\NativeConstants.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\OrganelleUnlockConstraints.cs" />
-    <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockConstraint.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />

@@ -31,7 +31,12 @@ public class ConditionSetConverter : JsonConverter
         return new ConditionSet(ReadConditionSet(reader, serializer).ToArray());
     }
 
-    public IEnumerable<IUnlockCondition> ReadConditionSet(JsonReader reader, JsonSerializer serializer)
+    public override bool CanConvert(Type objectType)
+    {
+        return objectType == typeof(ConditionSet);
+    }
+
+    private IEnumerable<IUnlockCondition> ReadConditionSet(JsonReader reader, JsonSerializer serializer)
     {
         while (reader.TokenType != JsonToken.EndObject)
         {
@@ -44,6 +49,8 @@ public class ConditionSetConverter : JsonConverter
 
             var fullyQualifiedName = $"{nameof(UnlockConstraints)}.{className}";
 
+            // When loading the registry types the used serialization binder here allows using any type, but as we
+            // use a namespace above this should be perfectly safe
             var type = serializer.SerializationBinder.BindToType("Thrive", fullyQualifiedName) ??
                 throw new JsonException("Invalid type");
 
@@ -54,21 +61,16 @@ public class ConditionSetConverter : JsonConverter
             if (reader.TokenType != JsonToken.StartObject)
                 throw new JsonException("Expected object start");
 
-            var @object = serializer.Deserialize(reader, type) as IUnlockCondition;
+            var condition = serializer.Deserialize(reader, type) as IUnlockCondition;
 
-            if (@object == null)
+            if (condition == null)
             {
                 throw new JsonException("Expected object of type IUnlockCondition");
             }
 
-            yield return @object;
+            yield return condition;
 
             reader.Read();
         }
-    }
-
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(ConditionSet);
     }
 }

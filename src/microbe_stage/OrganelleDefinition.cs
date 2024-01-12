@@ -520,7 +520,7 @@ public class OrganelleDefinition : IRegistryType
     ///   A bbcode string containing all the unlock conditions for this organelle.
     /// </summary>
     public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
-        WorldAndPlayerEventArgs worldAndPlayerArgs)
+        WorldAndPlayerDataSource worldAndPlayerArgs)
     {
         if (UnlockConditions != null)
         {
