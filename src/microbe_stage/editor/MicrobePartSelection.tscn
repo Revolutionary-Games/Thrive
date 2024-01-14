@@ -110,10 +110,12 @@ visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Button/RecentlyUnlocked"]
 margin_right = 189.0
 margin_bottom = 14.0
+mouse_filter = 2
 theme = ExtResource( 5 )
 custom_styles/panel = SubResource( 6 )
 
