@@ -18,6 +18,8 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     public bool Processing { get; }
 
+    public void ResolveNodeReferences();
+
     /// <summary>
     ///   Thread safe variant of <see cref="IEntityContainer.CreateEmptyEntity"/>
     /// </summary>
@@ -59,4 +61,13 @@ public interface IWorldSimulation : IEntityContainer, IDisposable
     /// </summary>
     /// <param name="recorder">The recorder to return</param>
     public void FinishRecordingEntityCommands(EntityCommandRecorder recorder);
+
+    public bool ProcessAll(float delta);
+    public bool ProcessLogic(float delta);
+
+    /// <summary>
+    ///   Returns true when this simulation has pending
+    /// </summary>
+    /// <returns>True when pending operations exit</returns>
+    public bool HasSystemsWithPendingOperations();
 }

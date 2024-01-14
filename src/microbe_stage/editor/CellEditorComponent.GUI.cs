@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using UnlockConstraints;
 
 /// <summary>
 ///   Partial class to mostly separate the GUI interacting parts from the cell editor
@@ -36,18 +37,32 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoRedoToTutorial(TutorialState tutorial)
+    public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+
+        tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
+
+        gui.RightPanelScrollContainer = rightPanelScrollContainer;
     }
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
-        ToolTipManager.Instance.ShowPopup(
-            TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+            1.5f);
+    }
+
+    public void UnlockAllOrganelles()
+    {
+        foreach (var entry in allPartSelectionElements)
+            entry.Value.Show();
+
+        UpdateOrganelleLAWKSettings();
+
+        RemoveUndisoveredOrganelleButtons();
     }
 
     protected override void RegisterTooltips()
@@ -161,7 +176,7 @@ public partial class CellEditorComponent
 
     private void UpdateSpeed(float speed)
     {
-        speedLabel.Value = (float)Math.Round(speed, 1);
+        speedLabel.Value = (float)Math.Round(MicrobeInternalCalculations.SpeedToUserReadableNumber(speed), 1);
     }
 
     private void UpdateRotationSpeed(float speed)
@@ -284,7 +299,7 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleUnlockTooltips()
+    private void UpdateOrganelleUnlockTooltips(bool autoUnlockOrganelles)
     {
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
         foreach (var organelle in organelles)
@@ -298,15 +313,107 @@ public partial class CellEditorComponent
                 tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
             }
         }
+
+        CreateUndiscoveredOrganellesButtons(true, autoUnlockOrganelles);
     }
 
     private void UpdateOrganelleLAWKSettings()
     {
-        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !entry.Key.LAWK)
+                entry.Value.Hide();
         }
+    }
+
+    private void CreateUndiscoveredOrganellesButtons(bool refresh = false, bool autoUnlock = true)
+    {
+        // Find groups with undiscovered organelles
+        var groupsWithUndiscoveredOrganelles =
+            new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
+
+        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, energyBalanceInfo,
+            Editor.EditedCellProperties);
+
+        foreach (var entry in allPartSelectionElements)
+        {
+            var organelle = entry.Key;
+            var control = entry.Value;
+
+            // Skip already unlocked organelles
+            if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
+                    Editor.CurrentGame, autoUnlock))
+            {
+                control.Undiscovered = false;
+                continue;
+            }
+
+            // Skip hidden organelles unless they are hidden because of missing requirements
+            if (!control.Visible && !control.Undiscovered)
+                continue;
+
+            control.Hide();
+            control.Undiscovered = true;
+
+            var buttonGroup = organelle.EditorButtonGroup;
+
+            // This needs to be done as some organelles like the Toxin Vacuole have newlines in the translations
+            var formattedName = organelle.Name.Replace("\n", " ");
+            var unlockTextString = new LocalizedString("UNLOCK_WITH_ANY_OF_FOLLOWING", formattedName);
+
+            // Create unlock text
+            if (groupsWithUndiscoveredOrganelles.TryGetValue(buttonGroup, out var group))
+            {
+                // Add a new organelle to the group
+                group.Count += 1;
+                group.UnlockText.Append("\n\n");
+                group.UnlockText.Append(unlockTextString);
+                group.UnlockText.Append(" ");
+                organelle.GenerateUnlockRequirementsText(group.UnlockText, worldAndPlayerArgs);
+                groupsWithUndiscoveredOrganelles[buttonGroup] = group;
+            }
+            else
+            {
+                // Add the first organelle to the group
+                var unlockText = new LocalizedStringBuilder();
+                unlockText.Append(unlockTextString);
+                unlockText.Append(" ");
+                organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
+                groupsWithUndiscoveredOrganelles.Add(buttonGroup, (unlockText, 1));
+            }
+        }
+
+        // Remove any buttons that might've been created before
+        if (refresh)
+            RemoveUndisoveredOrganelleButtons();
+
+        // Generate undiscovered organelle buttons
+        foreach (var groupWithUndiscovered in groupsWithUndiscoveredOrganelles)
+        {
+            var group = partsSelectionContainer.GetNode<CollapsibleList>(groupWithUndiscovered.Key.ToString());
+            var (unlockText, count) = groupWithUndiscovered.Value;
+
+            var button = (UndiscoveredOrganellesButton)undiscoveredOrganellesScene.Instance();
+            button.Count = count;
+            group.AddItem(button);
+
+            // Register tooltip
+            var tooltip = (UndiscoveredOrganellesTooltip)undiscoveredOrganellesTooltipScene.Instance();
+            tooltip.UnlockText = unlockText;
+            ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
+            button.RegisterToolTipForControl(tooltip, true);
+        }
+    }
+
+    private void RemoveUndisoveredOrganelleButtons()
+    {
+        foreach (var child in partsSelectionContainer.GetChildren())
+        {
+            if (child is CollapsibleList list)
+                list.RemoveAllOfType<UndiscoveredOrganellesButton>();
+        }
+
+        ToolTipManager.Instance.ClearToolTips("lockedOrganelles", false);
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -386,8 +493,11 @@ public partial class CellEditorComponent
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
-        TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-            new EnergyBalanceEventArgs(energyBalance), this);
+        if (Visible)
+        {
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+                new EnergyBalanceEventArgs(energyBalance), this);
+        }
 
         UpdateEnergyBalanceToolTips(energyBalance);
     }
@@ -440,8 +550,8 @@ public partial class CellEditorComponent
                 }
             }
 
-            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION").FormatSafe(
-                displayName, energyBalance.Consumption[subBar.Name]);
+            tooltip.Description = TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
+                .FormatSafe(displayName, energyBalance.Consumption[subBar.Name]);
         }
     }
 

@@ -25,6 +25,9 @@
     [With(typeof(BioProcesses))]
     [Without(typeof(AttachedToEntity))]
     [Without(typeof(EarlyMulticellularSpeciesMember))]
+    [WritesToComponent(typeof(Engulfable))]
+    [WritesToComponent(typeof(Engulfer))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -37,7 +40,7 @@
         private float reproductionDelta;
 
         public MicrobeReproductionSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
-            IParallelRunner parallelRunner) : base(world, parallelRunner)
+            IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             this.worldSimulation = worldSimulation;
             this.spawnSystem = spawnSystem;
@@ -246,11 +249,7 @@
                 }
                 else
                 {
-                    // TODO: handle this somehow... (probably caching the position and rotation from last call in
-                    // the visuals system?)
-                    throw new NotImplementedException();
-
-                    // nodeToScale.Transform = organelle.CalculateVisualsTransformExternal();
+                    nodeToScale.Transform = organelle.CalculateVisualsTransformExternalCached();
                 }
             }
         }
@@ -345,6 +344,7 @@
                 {
                     // Mark this organelle as done and return to its normal size.
                     organelle.ResetGrowth();
+                    organellesNeedingScaleUpdate.Push(organelle);
 
                     // This doesn't need to update individual scales as a full organelles change is queued below for
                     // a different system to handle
@@ -357,7 +357,17 @@
                     organelle2.IsDuplicate = true;
                     organelle2.SisterOrganelle = organelle;
 
-                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>());
+                    // These are fetched here as most of the time only one organelle will divide per step so it doesn't
+                    // help to complicate things by trying to fetch these before the loop
+                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
+                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(), ref entity.Get<CellProperties>());
+
+                    if (entity.Has<MicrobeEventCallbacks>())
+                    {
+                        ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                        callbacks.OnOrganelleDuplicated?.Invoke(entity, organelle2);
+                    }
                 }
             }
 
@@ -502,7 +512,7 @@
 
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                 organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                    entity, species, species);
+                    entity, species, species, worldSimulation);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
             }

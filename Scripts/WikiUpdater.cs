@@ -65,8 +65,7 @@ public static class WikiUpdater
         var organelles = ProcessOrganellePages(organellesRaw);
         ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
-        var untranslatedWiki = new Wiki(
-            organellesRoot.UntranslatedPage,
+        var untranslatedWiki = new Wiki(organellesRoot.UntranslatedPage,
             organelles.Select(o => o.UntranslatedPage).ToList());
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
@@ -150,13 +149,11 @@ public static class WikiUpdater
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
 
-            var untranslatedPage = new Wiki.Page(
-                $"WIKI_PAGE_{untranslatedOrganelleName}",
+            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}",
                 internalName,
                 url,
                 untranslatedSections);
-            var translatedPage = new Wiki.Page(
-                name,
+            var translatedPage = new Wiki.Page(name,
                 internalName,
                 url,
                 sections);
@@ -284,8 +281,7 @@ public static class WikiUpdater
         foreach (var compound in CustomBbcodeCompounds)
         {
             var compoundText = compound.ToLowerInvariant().Replace(" ", string.Empty);
-            paragraph = paragraph.Replace(
-                $"<b>{compound}</b>",
+            paragraph = paragraph.Replace($"<b>{compound}</b>",
                 $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
         }
 

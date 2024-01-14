@@ -7,6 +7,7 @@
     /// <summary>
     ///   Entity that can play sound effects (short sounds). Requires a <see cref="WorldPosition"/> to function.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct SoundEffectPlayer
     {
         public SoundEffectSlot[]? SoundEffectSlots;

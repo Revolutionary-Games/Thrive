@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
+using World = DefaultEcs.World;
 
 /// <summary>
 ///   World simulation that uses the external physics engine in the native code module
@@ -13,6 +15,15 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
     ///   All created physics bodies. Must be tracked to correctly destroy them all
     /// </summary>
     protected readonly List<NativePhysicsBody> createdBodies = new();
+
+    public WorldSimulationWithPhysics()
+    {
+    }
+
+    [JsonConstructor]
+    public WorldSimulationWithPhysics(World entities) : base(entities)
+    {
+    }
 
     ~WorldSimulationWithPhysics()
     {
@@ -43,6 +54,14 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         return body;
     }
 
+    public NativePhysicsBody CreateSensor(PhysicsShape sensorShape, Vector3 position, Quat rotation,
+        bool detectSleepingBodies = false, bool detectStaticBodies = false)
+    {
+        var body = physics.CreateSensor(sensorShape, position, rotation, detectSleepingBodies, detectStaticBodies);
+        createdBodies.Add(body);
+        return body;
+    }
+
     public void DestroyBody(NativePhysicsBody body)
     {
         if (!createdBodies.Remove(body))
@@ -62,20 +81,16 @@ public abstract class WorldSimulationWithPhysics : WorldSimulation, IWorldSimula
         body.Dispose();
     }
 
+    protected abstract override void InitSystemsEarly();
+
     protected override void WaitForStartedPhysicsRun()
     {
-        // TODO: implement multithreading
-    }
-
-    protected override bool RunPhysicsIfBehind()
-    {
-        // TODO: implement this once multithreaded running is added
-        return false;
+        physics.WaitUntilPhysicsRunEnds();
     }
 
     protected override void OnStartPhysicsRunIfTime(float delta)
     {
-        physics.ProcessPhysics(delta);
+        physics.ProcessPhysicsOnBackgroundThread(delta);
     }
 
     protected override void Dispose(bool disposing)

@@ -9,6 +9,8 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "core/CPUCheck.hpp"
+#include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
@@ -54,19 +56,53 @@ int32_t InitThriveLibrary()
 
     JPH::RegisterTypes();
 
+    // Start up the task system
+    Thrive::TaskSystem::Get();
+
     LOG_DEBUG("Native library init succeeded");
     return 0;
 }
 
 void ShutdownThriveLibrary()
 {
+    Thrive::TaskSystem::AssertIsMainThread();
+
     // Unregister physics
     JPH::UnregisterTypes();
 
     delete JPH::Factory::sInstance;
     JPH::Factory::sInstance = nullptr;
 
+    Thrive::TaskSystem::Get().Shutdown();
+
     SetLogForwardingCallback(nullptr);
+}
+
+bool CheckRequiredCPUFeatures()
+{
+    if (!Thrive::CPUCheck::HasRequiredFeatures())
+    {
+        if (!Thrive::CPUCheck::HasAVX())
+        {
+            LOG_ERROR("Missing CPU AVX support");
+        }
+        else if (!Thrive::CPUCheck::HasSSE42())
+        {
+            LOG_ERROR("Missing CPU SSE 4.2 support");
+        }
+        else if (!Thrive::CPUCheck::HasSSE41())
+        {
+            LOG_ERROR("Missing CPU SSE 4.1 support");
+        }
+        else
+        {
+            LOG_ERROR("Unknown missing CPU feature");
+        }
+
+        return false;
+    }
+
+    return true;
 }
 
 // ------------------------------------ //
@@ -109,6 +145,16 @@ bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta)
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->Process(delta);
 }
 
+void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->ProcessInBackground(delta);
+}
+
+bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)->WaitForPhysicsToComplete();
+}
+
 PhysicsBody* PhysicalWorldCreateMovingBody(
     PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position, JQuat rotation, bool addToWorld)
 {
@@ -143,6 +189,21 @@ PhysicsBody* PhysicalWorldCreateStaticBody(
     const auto body = reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
                           ->CreateStaticBody(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
                               Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), addToWorld);
+
+    if (body)
+        body->AddRef();
+
+    return reinterpret_cast<PhysicsBody*>(body.get());
+}
+
+PhysicsBody* PhysicalWorldCreateSensor(PhysicalWorld* physicalWorld, PhysicsShape* shape, JVec3 position,
+    JQuat rotation, bool detectSleepingBodies, bool detectStaticBodies)
+{
+    const auto body =
+        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+            ->CreateSensor(reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(),
+                Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation),
+                detectSleepingBodies ? JPH::EMotionType::Kinematic : JPH::EMotionType::Static, detectStaticBodies);
 
     if (body)
         body->AddRef();
@@ -283,6 +344,14 @@ void SetBodyPosition(PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 posi
             reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::DVec3FromCAPI(position), activate);
 }
 
+void SetBodyPositionAndRotation(
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate)
+{
+    reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+        ->SetPositionAndRotation(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), activate);
+}
+
 void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
@@ -319,7 +388,7 @@ bool FixBodyYCoordinateToZero(PhysicalWorld* physicalWorld, PhysicsBody* body)
 void ChangeBodyShape(PhysicalWorld* physicalWorld, PhysicsBody* body, PhysicsShape* shape, bool activate)
 {
     return reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->ChangeBodyShape(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+        ->ChangeBodyShape(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
             reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape(), activate);
 }
 
@@ -461,6 +530,11 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
     reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->Release();
 }
 
+bool PhysicsBodyIsDetached(PhysicsBody* body)
+{
+    return reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
+}
+
 void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength)
 {
     if (!reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->SetUserData(data, dataLength))
@@ -562,6 +636,23 @@ float ShapeGetMass(PhysicsShape* shape)
     return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetShape()->GetMassProperties().mMass;
 }
 
+uint32_t ShapeGetSubShapeIndex(PhysicsShape* shape, uint32_t subShapeData)
+{
+    JPH::SubShapeID unusedRemainder;
+
+    return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetSubShapeFromID(
+        std::bit_cast<JPH::SubShapeID>(subShapeData), unusedRemainder);
+}
+
+uint32_t ShapeGetSubShapeIndexWithRemainder(PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder)
+{
+    static_assert(sizeof(remainder) == sizeof(JPH::SubShapeID));
+
+    return reinterpret_cast<Thrive::Physics::ShapeWrapper*>(shape)->GetSubShapeFromID(
+        std::bit_cast<JPH::SubShapeID>(subShapeData), reinterpret_cast<JPH::SubShapeID&>(remainder));
+}
+
+// ------------------------------------ //
 JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime)
 {
     // This approach is created by combining MotionProperties::ApplyForceTorqueAndDragInternal and
@@ -582,6 +673,18 @@ JVecF3 ShapeCalculateResultingAngularVelocity(PhysicsShape* shape, JVecF3 applie
     auto result = rotation.Multiply3x3(mInvInertiaDiagonal * rotation.Multiply3x3Transposed(accumulatedTorque));
 
     return Thrive::Vec3ToCAPI(deltaTime * result);
+}
+
+// ------------------------------------ //
+void SetNativeExecutorThreads(int32_t count)
+{
+    LOG_DEBUG("Set native thread count: " + std::to_string(count));
+    Thrive::TaskSystem::Get().SetThreads(count);
+}
+
+int32_t GetNativeExecutorThreads()
+{
+    return Thrive::TaskSystem::Get().GetThreads();
 }
 
 // ------------------------------------ //

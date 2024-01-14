@@ -71,6 +71,21 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public new delegate void OnOpenMenuToHelp();
 
+    [Signal]
+    public delegate void OnToggleEngulfButtonPressed();
+
+    [Signal]
+    public delegate void OnFireToxinButtonPressed();
+
+    [Signal]
+    public delegate void OnSecreteSlimeButtonPressed();
+
+    [Signal]
+    public delegate void OnToggleBindingButtonPressed();
+
+    [Signal]
+    public delegate void OnUnbindAllButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -205,6 +220,20 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
+    public override void UpdateFossilisationButtonStates()
+    {
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            var species = button.AttachedEntity.Get<SpeciesMember>().Species;
+            var alreadyFossilised =
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
+        }
+    }
+
     public override void ShowFossilisationButtons()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
@@ -222,13 +251,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
-            // Display a faded button with a different hint if the species has been fossilised.
             var alreadyFossilised =
                 FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
-            button.AlreadyFossilised = alreadyFossilised;
-            button.HintTooltip = alreadyFossilised ?
-                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
-                TranslationServer.Translate("FOSSILISATION_HINT");
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
             fossilisationButtonLayer.AddChild(button);
         }
@@ -248,7 +274,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             throw new InvalidOperationException("UpdateHealth called before stage is set");
 
         // Normal health update if there is a player and the player was not engulfed
-        if (stage.HasPlayer && stage.Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.Ingested)
+        if (stage.HasPlayer &&
+            stage.Player.Get<Engulfable>().PhagocytosisStep is PhagocytosisPhase.None or PhagocytosisPhase.Ingestion)
         {
             playerWasDigested = false;
             healthBar.TintProgress = defaultHealthBarColour;
@@ -268,7 +295,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
             // Show the digestion progress to the player
-            hp = 1 - (stage.Player.Get<Engulfable>().DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+            hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
             hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
             playerWasDigested = true;
@@ -299,10 +326,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             var compounds = stage.Player.Get<CompoundStorage>().Compounds;
             return compound => compounds.IsUseful(compound);
         }
-
-        throw new NotImplementedException();
-
-        // return compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound));
+        else
+        {
+            var compounds = stage.Player.Get<MicrobeColony>().GetCompounds();
+            return compound => compounds.IsUsefulInAnyCompoundBag(compound);
+        }
     }
 
     protected override bool SpecialHandleBar(ProgressBar bar)
@@ -323,10 +351,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return GetPlayerUsefulCompounds()!.AreAnySpecificallySetUseful(allAgents);
         }
 
-        throw new NotImplementedException();
-
-        // return colony.ColonyMembers.Any(
-        //     c => c.Compounds.AreAnySpecificallySetUseful(allAgents));
+        return stage.Player.Get<MicrobeColony>().GetCompounds().AnyIsUsefulInAnyCompoundBag(allAgents);
     }
 
     protected override ICompoundStorage GetPlayerStorage()
@@ -336,23 +361,24 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return stage.Player.Get<CompoundStorage>().Compounds;
         }
 
-        throw new NotImplementedException();
-
-        // return stage!.Player!.Colony?.ColonyCompounds;
+        return stage.Player.Get<MicrobeColony>().GetCompounds();
     }
 
     protected override void UpdateCompoundBars(float delta)
     {
         base.UpdateCompoundBars(delta);
 
+        float maxSize;
         if (stage!.Player.Has<MicrobeColony>())
         {
-            // TODO: calculate total engulf size (probably don't need to cache this as only the GUI needs this
-            // currently)
-            throw new NotImplementedException();
+            maxSize = stage.Player.Get<MicrobeColony>().CalculateTotalEngulfStorageSize();
+        }
+        else
+        {
+            maxSize = stage.Player.Get<Engulfer>().EngulfStorageSize;
         }
 
-        ingestedMatterBar.MaxValue = stage.Player.Get<Engulfer>().EngulfStorageSize;
+        ingestedMatterBar.MaxValue = maxSize;
         GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
@@ -363,7 +389,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     }
 
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds)
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
     {
         stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(
             ref stage.Player.Get<ReproductionStatus>(), ref stage.Player.Get<SpeciesMember>(),
@@ -383,23 +409,33 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showToxin;
         bool showSlime;
 
+        bool engulfing;
+
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
-            throw new NotImplementedException();
+            ref var colony = ref player.Get<MicrobeColony>();
 
-            // showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
-            // showSlime = player.Colony.ColonyMembers.Any(c => c.SlimeJets.Count > 0);
+            // TODO: does this need a variant that just returns a bool and has an early exit?
+            colony.CalculateColonySpecialOrganelles(out var vacuoles, out var slimeJets);
+
+            showToxin = vacuoles > 0;
+            showSlime = slimeJets > 0;
+
+            engulfing = colony.ColonyState == MicrobeState.Engulf;
         }
-
-        /* TODO: else */
+        else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
+
+            engulfing = control.State == MicrobeState.Engulf;
         }
 
+        // Read the engulf state from the colony as the player cell might be unable to engulf but some
+        // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, control.State == MicrobeState.Engulf);
+            organelles.HasSignalingAgent, engulfing);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -502,6 +538,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         base.Dispose(disposing);
     }
 
+    /// <summary>
+    ///   Sets button's texture and hint based on its status of fossilisation
+    /// </summary>
+    private void SetupFossilisationButtonVisuals(FossilisationButton button, bool alreadyFossilised)
+    {
+        // Display a faded button with a different hint if the species has been fossilised.
+        button.AlreadyFossilised = alreadyFossilised;
+        button.HintTooltip = alreadyFossilised ?
+            TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+            TranslationServer.Translate("FOSSILISATION_HINT");
+    }
+
     private void OnRadialItemSelected(int itemId)
     {
         if (signalingAgentMenuOpenForMicrobe != null)
@@ -516,12 +564,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-        {
-            // TODO: calculate total used ingestion capacity
-            throw new NotImplementedException();
-
-            // return ?
-        }
+            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
 
         return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
     }
@@ -561,8 +604,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
             {
-                stage.CurrentGame.TutorialState.SendEvent(
-                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+                stage.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeBecomeMulticellularAvailable,
+                    EventArgs.Empty, this);
             }
         }
 
@@ -711,5 +754,30 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
+    }
+
+    private void OnEngulfmentPressed()
+    {
+        EmitSignal(nameof(OnToggleEngulfButtonPressed));
+    }
+
+    private void OnFireToxinPressed()
+    {
+        EmitSignal(nameof(OnFireToxinButtonPressed));
+    }
+
+    private void OnBindingModePressed()
+    {
+        EmitSignal(nameof(OnToggleBindingButtonPressed));
+    }
+
+    private void OnUnbindAllPressed()
+    {
+        EmitSignal(nameof(OnUnbindAllButtonPressed));
+    }
+
+    private void OnSecreteSlimePressed()
+    {
+        EmitSignal(nameof(OnSecreteSlimeButtonPressed));
     }
 }

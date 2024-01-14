@@ -12,6 +12,7 @@
     ///   Base properties of a microbe (separate from the species info as early multicellular species object couldn't
     ///   work there)
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CellProperties
     {
         /// <summary>
@@ -84,7 +85,7 @@
             {
                 ref var colony = ref entity.Get<MicrobeColony>();
 
-                colony.CanEngulf();
+                return colony.CanEngulf();
             }
 
             return cellProperties.MembraneType.CanEngulf;
@@ -152,7 +153,8 @@
         /// </remarks>
         public static void Divide(this ref CellProperties cellProperties, ref OrganelleContainer organelles,
             in Entity entity, Species species, IWorldSimulation worldSimulation, ISpawnSystem spawnerToRegisterWith,
-            ModifyDividedCellCallback? customizeCallback)
+            ModifyDividedCellCallback? customizeCallback,
+            MulticellularSpawnState multicellularSpawnState = MulticellularSpawnState.Bud)
         {
             if (organelles.Organelles == null)
                 throw new InvalidOperationException("Organelles not initialized");
@@ -181,13 +183,74 @@
             {
                 // Bigger separation for cell colonies
 
-                throw new NotImplementedException();
+                // TODO: (check after resolving the above TODO) there is still a problem with colonies being able to
+                // spawn inside each other
 
-                // TODO: there is still a problem with colonies being able to spawn inside each other
+                ref var colony = ref entity.Get<MicrobeColony>();
+                var members = colony.ColonyMembers;
+
+                foreach (var member in members)
+                {
+                    // Lead cell is already handled by the non-colony logic
+                    if (member == colony.Leader)
+                        continue;
+
+                    ref var memberOrganelles = ref member.Get<OrganelleContainer>();
+
+                    if (memberOrganelles.Organelles == null)
+                    {
+                        GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
+                            "calculation as they aren't available");
+                        continue;
+                    }
+
+                    ref var memberPosition = ref member.Get<AttachedToEntity>();
+
+                    // TODO: before switching to the membrane based, check is it fine to just check one direction here?
+                    // For now this multiplies the distance by 1.5 to account it being halved below
+                    // Using negative relative position is done here as the organelle calculations happen as if they
+                    // are around 0,0 but that isn't the case in colony members as they are offset from the center.
+                    var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
+                        -memberPosition.RelativePosition,
+                        memberOrganelles.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
+
+                    if (distance > distanceRight)
+                    {
+                        distanceRight = distance;
+                    }
+                }
 
                 // var colonyMembers = Colony.ColonyMembers.Select(c => c.GlobalTransform.origin);
                 //
-                // distanceRight += MathUtils.GetMaximumDistanceInDirection(direction, currentPosition, colonyMembers);
+                // distanceRight += ;
+            }
+            else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                     multicellularSpawnState != MulticellularSpawnState.Bud)
+            {
+                // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
+                bool first = true;
+
+                foreach (var eventualMember in earlyMulticellularSpecies.Cells)
+                {
+                    // Skip lead cell
+                    if (first)
+                    {
+                        first = false;
+                        continue;
+                    }
+
+                    var memberPosition = Hex.AxialToCartesian(eventualMember.Position);
+
+                    // TODO: should the 1.5f multiplier be kept here
+                    var distance = MathUtils.GetMaximumDistanceInDirection(Vector3.Right,
+                        -memberPosition,
+                        eventualMember.Organelles.Select(o => Hex.AxialToCartesian(o.Position))) * 1.5f;
+
+                    if (distance > distanceRight)
+                    {
+                        distanceRight = distance;
+                    }
+                }
             }
 
             float width = distanceLeft + distanceRight + Constants.DIVIDE_EXTRA_DAUGHTER_OFFSET;
@@ -211,7 +274,7 @@
 
             // Create the one daughter cell.
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-                true, null, out var copyEntity);
+                true, (null, 0), out var copyEntity, multicellularSpawnState);
 
             // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
             // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
@@ -221,8 +284,8 @@
             // TODO: should this also set an initial look direction that is the same?
 
             // Make it despawn like normal
-            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity,
-                Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+                weight);
 
             // Remove the compounds from the created cell
             var originalCompounds = entity.Get<CompoundStorage>().Compounds;
@@ -230,6 +293,9 @@
             // Copying the capacity should be fine like this as the original cell should be reset to the normal
             // capacity already so
             var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
+
+            // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
+            copyEntityCompounds.CopyUsefulFrom(originalCompounds);
 
             var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 
@@ -451,14 +517,21 @@
         ///   (<see cref="newProperties"/> applies instead). Note if species object instance changes from what it
         ///   was before, the code calling this method must do that adjustment manually.
         /// </param>
+        /// <param name="worldSimulation">
+        ///   Needed when resetting multicellular growth as that needs to delete colony cells
+        /// </param>
         public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
-            ICellProperties newProperties, Species baseReproductionCostFrom)
+            ICellProperties newProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
             // Copy new cell type properties
             cellProperties.MembraneType = newProperties.MembraneType;
             cellProperties.IsBacteria = newProperties.IsBacteria;
             cellProperties.Colour = newProperties.Colour;
             cellProperties.MembraneRigidity = newProperties.MembraneRigidity;
+
+            // Update the enzyme required for digestion
+            entity.Get<Engulfable>().RequisiteEnzymeToDigest =
+                SimulationParameters.Instance.GetEnzyme(cellProperties.MembraneType.DissolverEnzyme);
 
             ref var spatial = ref entity.Get<SpatialInstance>();
 
@@ -469,7 +542,7 @@
             // Reset all the duplicates organelles / reproduction progress of the entity
             // This also resets multicellular creature's reproduction progress
             organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                entity, newProperties, baseReproductionCostFrom);
+                entity, newProperties, baseReproductionCostFrom, worldSimulation);
 
             // Reset runtime colour
             if (entity.Has<ColourAnimation>())
@@ -478,6 +551,15 @@
                 colourAnimation.DefaultColour = Membrane.MembraneTintFromSpeciesColour(newProperties.Colour);
 
                 colourAnimation.UpdateAnimationForNewDefaultColour();
+            }
+
+            // Reset multicellular cost if this is multicellular
+            if (baseReproductionCostFrom is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+                entity.Has<MulticellularGrowth>())
+            {
+                ref var growth = ref entity.Get<MulticellularGrowth>();
+
+                growth.CalculateTotalBodyPlanCompounds(earlyMulticellularSpecies);
             }
         }
 

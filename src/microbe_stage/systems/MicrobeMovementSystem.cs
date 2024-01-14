@@ -21,13 +21,14 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
         private readonly Compound atp;
 
         public MicrobeMovementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(world,
-            runner)
+            runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
         {
             this.physicalWorld = physicalWorld;
 
@@ -38,7 +39,7 @@
         {
             ref var physics = ref entity.Get<Physics>();
 
-            if (physics.BodyDisabled || physics.Body == null)
+            if (!physics.IsBodyEffectivelyEnabled())
                 return;
 
             // Skip dead microbes being allowed to move, this is now needed as the death system keeps the physics body
@@ -46,7 +47,13 @@
             if (entity.Get<Health>().Dead)
             {
                 // Disable control to not have the dead microbes maintain rotation or anything like that
-                physicalWorld.DisableMicrobeBodyControl(physics.Body);
+                physicalWorld.DisableMicrobeBodyControl(physics.Body!);
+                return;
+            }
+
+            if (entity.Has<MicrobeColonyMember>())
+            {
+                GD.PrintErr("Colony members shouldn't run movement system");
                 return;
             }
 
@@ -80,7 +87,9 @@
 
             var up = Vector3.Up;
 
-            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra
+            // Math loaned from Godot.Transform.SetLookAt adapted to fit here and removed one extra operation
+            // For some reason this results in an inverse quaternion, so for simplicity this is just flipped
+            lookVector *= -1;
             var column0 = up.Cross(lookVector);
             var column1 = lookVector.Cross(column0);
             var wantedRotation = new Basis(column0.Normalized(), column1.Normalized(), lookVector).Quat();
@@ -88,6 +97,9 @@
 #if DEBUG
             if (!wantedRotation.IsNormalized())
                 throw new Exception("Created target microbe rotation is not normalized");
+
+            if (physics.Body!.IsDetached)
+                throw new Exception("Trying to run microbe control on detached body");
 #endif
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
@@ -99,7 +111,7 @@
                 CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                     delta);
 
-            physicalWorld.ApplyBodyMicrobeControl(physics.Body, movementImpulse, wantedRotation, rotationSpeed);
+            physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
         }
 
         private static float CalculateRotationSpeed(in Entity entity, ref OrganelleContainer organelles)
@@ -109,53 +121,14 @@
             // Note that cilia taking ATP is actually calculated later, this is the max speed rotation calculation
             // only
 
-            // Lower value is faster rotation
-            if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
-                rotationSpeed /= CheatManager.Speed;
-
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
-
-                /*// Calculate help and extra inertia caused by the colony member cells
-                if (cachedColonyRotationMultiplier == null)
-                {
-                    // TODO: move this to MicrobeInternalCalculations once this is needed to be shown in
-                    // the multicellular editor
-                    float colonyInertia = 0.1f;
-                    float colonyRotationHelp = 0;
-
-                    foreach (var colonyMember in Colony.ColonyMembers)
-                    {
-                        if (colonyMember == this)
-                            continue;
-
-                        var distance = colonyMember.Transform.origin.LengthSquared();
-
-                        if (distance < MathUtils.EPSILON)
-                            continue;
-
-                        colonyInertia += distance * colonyMember.MassFromOrganelles *
-                            Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
-
-                        // TODO: should this use the member rotation speed (which is dependent on its size and
-                        // how many cilia there are that far away) or just a count of cilia and the distance
-                        colonyRotationHelp += colonyMember.RotationSpeed *
-                            Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distance);
-                    }
-
-                    var multiplier = colonyRotationHelp / colonyInertia;
-
-                    cachedColonyRotationMultiplier = Mathf.Clamp(multiplier,
-                        Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
-                        Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
-                }
-
-                speed *= cachedColonyRotationMultiplier.Value;
-
-                speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
-                    Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));*/
+                rotationSpeed = entity.Get<MicrobeColony>().ColonyRotationSpeed;
             }
+
+            // Lower value is faster rotation
+            if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
+                rotationSpeed /= CheatManager.Speed * 2;
 
             return rotationSpeed;
         }
@@ -165,7 +138,15 @@
             ref OrganelleContainer organelles, CompoundBag compounds, float delta)
         {
             if (control.MovementDirection == Vector3.Zero)
-                return Vector3.Zero;
+            {
+                // Slime jets work even when not holding down any movement keys
+                var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
+
+                if (jetMovement == Vector3.Zero)
+                    return Vector3.Zero;
+
+                return position.Rotation.Xform(jetMovement);
+            }
 
             // Ensure no cells attempt to move on the y-axis
             control.MovementDirection.y = 0;
@@ -181,7 +162,8 @@
             }
 
             // Base movement force
-            float force = Constants.BASE_MOVEMENT_FORCE;
+            float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
+                cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
@@ -201,42 +183,71 @@
             {
                 foreach (var flagellum in organelles.ThrustComponents)
                 {
-                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity, delta);
+                    force += flagellum.UseForMovement(control.MovementDirection, compounds, Quat.Identity,
+                        cellProperties.IsBacteria, delta);
                 }
             }
 
-            if (control.MovementDirection != Vector3.Zero && entity.Has<MicrobeColony>())
+            force *= cellProperties.MembraneType.MovementFactor -
+                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
+
+            bool hasColony = entity.Has<MicrobeColony>();
+
+            if (control.MovementDirection != Vector3.Zero && hasColony)
             {
-                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection, delta,
-                    ref force);
+                CalculateColonyImpactOnMovementForce(ref entity.Get<MicrobeColony>(), control.MovementDirection,
+                    cellProperties.IsBacteria, delta, ref force);
             }
 
             if (control.SlowedBySlime)
                 force /= Constants.MUCILAGE_IMPEDE_FACTOR;
 
             // Movement modifier from engulf (this used to be handled in the engulfing code, now it's here)
+            // TODO: should colony member engulf states be separately calculated for movement? Right now this makes it
+            // very powerful to not have the primary cell type able to engulf but having other engulfing cells.
             if (control.State == MicrobeState.Engulf)
                 force *= Constants.ENGULFING_MOVEMENT_MULTIPLIER;
 
-            force *= cellProperties.MembraneType.MovementFactor -
-                (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
-
             if (CheatManager.Speed > 1 && entity.Has<PlayerMarker>())
             {
-                float mass = 1000;
-
-                if (entity.Has<PhysicsShapeHolder>())
-                {
-                    entity.Get<PhysicsShapeHolder>().TryGetShapeMass(out mass);
-                }
-
-                force *= mass / 1000.0f * CheatManager.Speed;
+                force *= CheatManager.Speed;
             }
 
             var movementVector = control.MovementDirection * force;
 
             // Speed from jets (these are related to a non-rotated state of the cell so this is done before rotating
             // by the transform)
+            movementVector += CalculateMovementFromSlimeJets(ref organelles);
+
+            // Handle colony jets
+            if (hasColony)
+            {
+                // This is a duplicate fetch of this component, but this method would get pretty ugly / would need to
+                // be split into many methods to allow sharing the variable
+                ref var colony = ref entity.Get<MicrobeColony>();
+
+                foreach (var colonyMember in colony.ColonyMembers)
+                {
+                    // This doesn't really hurt as the slime jets were consumed above but for consistency with
+                    // basically all other places code like this is needed we skip the leader here
+                    if (colonyMember == entity)
+                        continue;
+
+                    ref var memberOrganelles = ref colonyMember.Get<OrganelleContainer>();
+
+                    movementVector += CalculateMovementFromSlimeJets(ref memberOrganelles);
+                }
+            }
+
+            // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
+            // vector to work correctly
+            return position.Rotation.Xform(movementVector);
+        }
+
+        private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
+        {
+            var movementVector = Vector3.Zero;
+
             if (organelles.SlimeJets is { Count: > 0 })
             {
                 foreach (var jet in organelles.SlimeJets)
@@ -251,21 +262,19 @@
                 }
             }
 
-            // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
-            // vector to work correctly
-            return position.Rotation.Xform(movementVector);
+            return movementVector;
         }
 
         private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
-            float delta,
-            ref float force)
+            bool isBacteria, float delta, ref float force)
         {
             // Multiplies the movement factor as if the colony has the normal microbe speed
             // Then it subtracts movement speed from 100% up to 75%(soft cap),
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-            // int memberCount;
-            force *= microbeColony.ColonyMembers.Length;
+            // Note that the multiplier below was added as a workaround for colonies being faster than individual cells
+            // TODO: a proper rebalance of the algorithm would be excellent to do
+            force *= microbeColony.ColonyMembers.Length * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
             var seriesValue = 1 - 1 / (float)Math.Pow(2, microbeColony.ColonyMembers.Length - 1);
             force -= (force * 0.15f) * seriesValue;
 
@@ -292,7 +301,7 @@
                     foreach (var flagellum in organelles.ThrustComponents)
                     {
                         force += flagellum.UseForMovement(movementDirection, compounds,
-                            relativeRotation, delta);
+                            relativeRotation, isBacteria, delta) * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
                     }
                 }
             }

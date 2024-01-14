@@ -25,7 +25,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
 
     private static readonly ArrayPool<PhysicsCollision> CollisionDataBufferPool =
         ArrayPool<PhysicsCollision>.Create(Constants.MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE,
-            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT);
+            Constants.MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH);
 
     private static readonly int EntityDataSize = Marshal.SizeOf<Entity>();
 
@@ -71,6 +71,7 @@ public class NativePhysicsBody : IDisposable, IEquatable<NativePhysicsBody>
     public bool MicrobeControlEnabled { get; set; }
 
     public bool IsDisposed => disposed;
+    public bool IsDetached => NativeMethods.PhysicsBodyIsDetached(AccessBodyInternal());
 
     public static bool operator ==(NativePhysicsBody? left, NativePhysicsBody? right)
     {
@@ -199,6 +200,9 @@ internal static partial class NativeMethods
 {
     [DllImport("thrive_native")]
     internal static extern void ReleasePhysicsBodyReference(IntPtr body);
+
+    [DllImport("thrive_native")]
+    internal static extern bool PhysicsBodyIsDetached(IntPtr body);
 
     [DllImport("thrive_native")]
     internal static extern void PhysicsBodySetUserData(IntPtr body, in Entity userData, int userDataSize);

@@ -7,6 +7,7 @@
     /// <summary>
     ///   Control variables for specifying how a microbe wants to move / behave
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeControl
     {
         /// <summary>
@@ -42,7 +43,8 @@
         public float AgentEmissionCooldown;
 
         /// <summary>
-        ///   This is an overall state of the Microbe
+        ///   This is an overall state of the Microbe. Use <see cref="MicrobeControlHelpers.SetStateColonyAware"/> to
+        ///   apply state for a colony lead cell in a way that also applies it to other colony members.
         /// </summary>
         public MicrobeState State;
 
@@ -71,6 +73,42 @@
     public static class MicrobeControlHelpers
     {
         /// <summary>
+        ///   Sets microbe state in a way that also applies the state to a colony if the entity is a lead cell
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Applies a colony-wide state (for example makes all cells that can be in engulf mode in the colony be in
+        ///     engulf mode even if the lead cell cannot engulf)
+        ///   </para>
+        /// </remarks>
+        public static void SetStateColonyAware(this ref MicrobeControl control, in Entity entity,
+            MicrobeState targetState)
+        {
+            if (entity.Has<MicrobeColony>())
+            {
+                ref var colony = ref entity.Get<MicrobeColony>();
+
+                if (colony.ColonyState != targetState)
+                {
+                    colony.ColonyState = targetState;
+
+                    foreach (var colonyMember in colony.ColonyMembers)
+                    {
+                        // The IsAlive check should be unnecessary here but as this is a general method there's this
+                        // extra safety against crashing due to colony bugs
+                        if (colonyMember != entity && colonyMember.IsAlive)
+                        {
+                            ref var memberControl = ref colonyMember.Get<MicrobeControl>();
+                            memberControl.State = targetState;
+                        }
+                    }
+                }
+            }
+
+            control.State = targetState;
+        }
+
+        /// <summary>
         ///   Queues a toxin emit if possible. Only one can be queued at a time.
         /// </summary>
         public static bool EmitToxin(this ref MicrobeControl control, ref OrganelleContainer organelles,
@@ -84,9 +122,12 @@
 
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                // PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
+                colony.PerformForOtherColonyMembersThanLeader(member =>
+                    member.Get<MicrobeControl>()
+                        .EmitToxin(ref member.Get<OrganelleContainer>(), member.Get<CompoundStorage>().Compounds,
+                            member, agentType));
             }
 
             if (control.AgentEmissionCooldown > 0)
@@ -117,9 +158,12 @@
         {
             if (entity.Has<MicrobeColony>())
             {
-                throw new NotImplementedException();
+                ref var colony = ref entity.Get<MicrobeColony>();
 
-                // PerformForOtherColonyMembersIfWeAreLeader(m => m.QueueSecreteSlime(duration));
+                // TODO: is it a good idea to allocate a delegate here?
+                colony.PerformForOtherColonyMembersThanLeader(member =>
+                    member.Get<MicrobeControl>()
+                        .QueueSecreteSlime(ref member.Get<OrganelleContainer>(), member, duration));
             }
 
             if (organelleInfo.SlimeJets == null || organelleInfo.SlimeJets.Count < 1)

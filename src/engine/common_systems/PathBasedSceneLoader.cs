@@ -105,8 +105,8 @@
             }
             catch (Exception e)
             {
-                GD.PrintErr(
-                    $"Godot scene ({sceneVisuals.LastLoadedScene}) doesn't have a Spatial root node visual: ", e);
+                GD.PrintErr($"Godot scene ({sceneVisuals.LastLoadedScene}) doesn't have a Spatial root node visual: ",
+                    e);
             }
         }
 

@@ -37,6 +37,9 @@ void PhysicsBody::SetCollisionRecordingTarget(CollisionRecordListType target, in
     collisionRecordingTarget = target;
     maxCollisionsToRecord = maxCount;
     activeRecordedCollisionCount = 0;
+
+    if (collisionRecordingTarget == nullptr && maxCollisionsToRecord > 0)
+        LOG_ERROR("Collision recording will record into null pointer");
 }
 
 void PhysicsBody::ClearCollisionRecordingTarget() noexcept
@@ -44,6 +47,9 @@ void PhysicsBody::ClearCollisionRecordingTarget() noexcept
     collisionRecordingTarget = nullptr;
     maxCollisionsToRecord = 0;
     activeRecordedCollisionCount = 0;
+
+    if (activeUserPointerFlags & PHYSICS_BODY_RECORDING_FLAG)
+        LOG_ERROR("Collision recording was cleared while flag is still active");
 }
 
 // ------------------------------------ //
@@ -74,7 +80,8 @@ bool PhysicsBody::RemoveCollisionIgnore(const PhysicsBody& noLongerIgnored) noex
     const auto end = ignoredCollisions.end();
     for (auto iter = ignoredCollisions.begin(); iter != end; ++iter)
     {
-        if (*iter == idToRemove){
+        if (*iter == idToRemove)
+        {
             ignoredCollisions.erase(iter);
             return true;
         }
@@ -129,10 +136,13 @@ bool PhysicsBody::DisableBodyControl() noexcept
 // ------------------------------------ //
 void PhysicsBody::MarkUsedInWorld(PhysicalWorld* world) noexcept
 {
-    if (containedInWorld)
-        LOG_ERROR("PhysicsBody marked used when already in use");
+    if (containedInWorld != world)
+    {
+        if (containedInWorld)
+            LOG_ERROR("PhysicsBody marked used when already in use by different world");
 
-    containedInWorld = world;
+        containedInWorld = world;
+    }
 
     // Calling this method is the way that bodies become attached again (if detached previously)
     detached = false;

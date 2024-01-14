@@ -1,5 +1,4 @@
-﻿using System;
-using Components;
+﻿using Components;
 using DefaultEcs;
 using Godot;
 
@@ -11,7 +10,7 @@ public class SlimeJetComponent : IOrganelleComponent
     private bool animationActive;
     private bool animationDirty = true;
 
-    private AnimationPlayer animation = null!;
+    private PlacedOrganelle parentOrganelle = null!;
 
     private Vector3 organellePosition;
     private Vector3 queuedForce = Vector3.Zero;
@@ -36,13 +35,14 @@ public class SlimeJetComponent : IOrganelleComponent
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        animation = organelle.OrganelleAnimation ??
-            throw new InvalidOperationException("Slime jet requires animation player on organelle");
+        // See comment in MovementComponent.OnAttachToCell
+        parentOrganelle = organelle;
 
         organellePosition = Hex.AxialToCartesian(organelle.Position);
     }
 
-    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity, float delta)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+        IWorldSimulation worldSimulation, float delta)
     {
         // All of the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...
@@ -50,8 +50,11 @@ public class SlimeJetComponent : IOrganelleComponent
 
     public void UpdateSync(in Entity microbeEntity, float delta)
     {
+        if (parentOrganelle.OrganelleAnimation == null)
+            return;
+
         // Play the animation if active, and vice versa
-        animation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
+        parentOrganelle.OrganelleAnimation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
         animationDirty = false;
     }
 
@@ -80,7 +83,7 @@ public class SlimeJetComponent : IOrganelleComponent
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
-            delta = Components.CellPropertiesHelpers.DefaultVisualPos;
+            delta = CellPropertiesHelpers.DefaultVisualPos;
         return delta.Normalized();
     }
 

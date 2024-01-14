@@ -9,13 +9,24 @@
     ///   Entity that triggers various microbe event callbacks when things happens to it. This is mostly used for
     ///   connecting the player cell to the GUI and game stage.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct MicrobeEventCallbacks
     {
+        /// <summary>
+        ///   Triggers whenever the player enters unbind mode
+        ///   <remarks>
+        ///     <para>
+        ///       Only works for the player
+        ///     </para>
+        ///   </remarks>
+        /// </summary>
         public Action<Entity>? OnUnbindEnabled;
 
         public Action<Entity>? OnUnbound;
 
         public Action<Entity, Entity>? OnIngestedByHostile;
+
+        public Action<Entity>? OnEjectedFromHostileEngulfer;
 
         public Action<Entity, Entity>? OnSuccessfulEngulfment;
 
@@ -34,6 +45,11 @@
         /// </summary>
         public Action<Entity, List<(Compound Compound, Color Colour, Vector3 Target)>?,
             List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>?>? OnChemoreceptionInfo;
+
+        /// <summary>
+        ///   Called when an organelle duplicates in this microbe in preparation for reproduction
+        /// </summary>
+        public Action<Entity, PlacedOrganelle>? OnOrganelleDuplicated;
     }
 
     public static class MicrobeEventCallbackHelpers

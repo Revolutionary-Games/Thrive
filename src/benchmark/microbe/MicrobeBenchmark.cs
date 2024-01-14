@@ -52,13 +52,24 @@ public class MicrobeBenchmark : Node
     private const float AI_MUTATION_MULTIPLIER = 1;
     private const float MAX_SPAWN_DISTANCE = 110;
     private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
+
+    // The starting spawn interval
     private const float SPAWN_INTERVAL = 0.121f;
+    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 100;
+    private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0007f;
+    private const float MIN_SPAWN_INTERVAL = 0.01f;
+
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
     private const float GLUCOSE_CLOUD_AMOUNT = 20000;
     private const float AMMONIA_PHOSPHATE_CLOUD_AMOUNT = 10000;
     private const float AI_FIGHT_TIME = 30;
+
     private const int TARGET_FPS_FOR_SPAWNING = 60;
     private const float STRESS_TEST_END_THRESHOLD = 9;
+    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 200;
+    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.20f;
+    private const float STRESS_TEST_END_THRESHOLD_MIN = 0.5f;
+
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
     private const int RANDOM_SEED = 256345464;
@@ -234,9 +245,6 @@ public class MicrobeBenchmark : Node
 
             case 1:
             {
-                // TODO: remove debug code
-                // break;
-
                 // Need to pass some time between each spawn
                 if (timer < SPAWN_INTERVAL)
                     break;
@@ -331,7 +339,9 @@ public class MicrobeBenchmark : Node
             case 9:
             {
                 // Spawn cells and measure FPS constantly
-                if (timer < SPAWN_INTERVAL)
+                float interval = Math.Max(MIN_SPAWN_INTERVAL,
+                    SPAWN_INTERVAL - spawnCounter / SPAWN_INTERVAL_REDUCE_EVERY_N * SPAWN_INTERVAL_REDUCE_AMOUNT);
+                if (timer < interval)
                     break;
 
                 timer = 0;
@@ -343,8 +353,12 @@ public class MicrobeBenchmark : Node
 
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
+                float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
+                    STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
+                    STRESS_TEST_THRESHOLD_REDUCE);
+
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 3000)
+                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) || fpsValues.Count > 3000)
                 {
                     microbeStressTestResult = spawnCounter;
                     microbeStressTestMinFPS = fpsValues.Min();

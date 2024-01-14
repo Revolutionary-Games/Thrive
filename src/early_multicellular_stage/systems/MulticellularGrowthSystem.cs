@@ -19,12 +19,19 @@
     [With(typeof(MicrobeStatus))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(Health))]
+    [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(WorldPosition))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
+        private readonly IWorldSimulation worldSimulation;
+        private readonly ISpawnSystem spawnSystem;
         private GameWorld? gameWorld;
 
-        public MulticellularGrowthSystem(World world, IParallelRunner runner) : base(world, runner)
+        public MulticellularGrowthSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
+            IParallelRunner runner) : base(world, runner, Constants.SYSTEM_LOW_ENTITIES_PER_THREAD)
         {
+            this.worldSimulation = worldSimulation;
+            this.spawnSystem = spawnSystem;
         }
 
         public void SetWorld(GameWorld world)
@@ -50,9 +57,6 @@
 
             ref var growth = ref entity.Get<MulticellularGrowth>();
             HandleMulticellularReproduction(ref growth, entity, delta);
-
-            // TODO: when spawning a new cell to add to colony it needs to be ensured that its membrane is ready before
-            // attach to calculate the attach position
         }
 
         private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
@@ -87,7 +91,15 @@
 
                     // Grow from the first cell to grow back, in the body plan grow order
                     multicellularGrowth.NextBodyPlanCellToGrowIndex = multicellularGrowth.LostPartsOfBodyPlan.Min();
+
+                    if (multicellularGrowth.NextBodyPlanCellToGrowIndex <= 0)
+                        throw new InvalidOperationException("Loaded bad next body plan index from regrow lost");
+
                     multicellularGrowth.LostPartsOfBodyPlan.Remove(multicellularGrowth.NextBodyPlanCellToGrowIndex);
+
+                    // TODO: should this skip regrowing cells that already exist for some reason in the body?
+                    // That can happen due to a problem elsewhere but then this will cause a duplicate cell to appear
+                    // which will get reported by anyone seeing it
                 }
                 else if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
                 {
@@ -103,7 +115,8 @@
                     // We have completed our body plan and can (once enough resources) reproduce
                     if (multicellularGrowth.EnoughResourcesForBudding)
                     {
-                        ReadyToReproduce(ref organelleContainer, entity);
+                        ReadyToReproduce(ref organelleContainer, ref multicellularGrowth, ref baseReproduction, entity,
+                            speciesData.Species);
                     }
                     else
                     {
@@ -196,7 +209,12 @@
                 // Except in the case that we were just getting resources for budding, skip in that case
                 if (!multicellularGrowth.IsFullyGrownMulticellular)
                 {
-                    multicellularGrowth.AddMulticellularGrowthCell();
+                    var recorder = worldSimulation.StartRecordingEntityCommands();
+
+                    multicellularGrowth.AddMulticellularGrowthCell(entity, speciesData.Species, worldSimulation,
+                        recorder, spawnSystem);
+
+                    worldSimulation.FinishRecordingEntityCommands(recorder);
                 }
                 else
                 {
@@ -207,7 +225,8 @@
             }
         }
 
-        private void ReadyToReproduce(ref OrganelleContainer organelles, in Entity entity)
+        private void ReadyToReproduce(ref OrganelleContainer organelles, ref MulticellularGrowth multicellularGrowth,
+            ref ReproductionStatus baseReproduction, in Entity entity, EarlyMulticellularSpecies species)
         {
             Action<Entity, bool>? reproductionCallback;
             if (entity.Has<MicrobeEventCallbacks>())
@@ -230,15 +249,48 @@
             }
             else
             {
-                throw new NotImplementedException();
+                multicellularGrowth.EnoughResourcesForBudding = false;
 
-                // enoughResourcesForBudding = false;
-                //
-                // // Let's require the base reproduction cost to be fulfilled again as well, to keep down the
-                // colony
-                // // spam, and for consistency with non-multicellular microbes
-                // SetupRequiredBaseReproductionCompounds();
-                // baseReproduction.MissingCompoundsForBaseReproduction
+                // Let's require the base reproduction cost to be fulfilled again as well, to keep down the colony
+                // spam, and for consistency with non-multicellular microbes
+                baseReproduction.SetupRequiredBaseReproductionCompounds(species);
+
+                // Total cost may have changed so recalculate that
+                multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
+
+                SpawnEarlyMulticellularOffspring(ref organelles, in entity, species);
+            }
+        }
+
+        private void SpawnEarlyMulticellularOffspring(ref OrganelleContainer organelles, in Entity entity,
+            EarlyMulticellularSpecies species)
+        {
+            // Skip reproducing if we would go too much over the entity limit
+            if (!spawnSystem.IsUnderEntityLimitForReproducing())
+            {
+                // For now this just loses the progress resources towards the reproduction and this will be checked
+                // again when the budding cost is fulfilled again
+                return;
+            }
+
+            if (!species.PlayerSpecies)
+            {
+                gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
+            }
+
+            ref var cellProperties = ref entity.Get<CellProperties>();
+
+            try
+            {
+                // Create the colony bud (for now this is the only reproduction type)
+                cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+            }
+            catch (Exception e)
+            {
+                // This catch helps if a colony member somehow got processed for the reproduction system and causes
+                // an exception due to not being allowed to divide
+                GD.PrintErr("Early multicellular cell divide failed: ", e);
             }
         }
     }

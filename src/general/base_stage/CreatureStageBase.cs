@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Components;
 using Godot;
@@ -34,19 +33,37 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonProperty]
     protected bool playerExtinctInCurrentPatch;
 
+    public CreatureStageBase()
+    {
+    }
+
+    [JsonConstructor]
+    public CreatureStageBase(TSimulation worldSimulation)
+    {
+        WorldSimulation = worldSimulation;
+    }
+
     // TODO: eventually convert this just to a Entity without having any generic type configurability here
     /// <summary>
     ///   The current player or null.
     /// </summary>
-    [JsonProperty]
+    /// <remarks>
+    ///   <para>
+    ///     This is JSON ignored as the entity reference can't be loaded currently, see why here:
+    ///     <see cref="SaveContext.OldToNewEntityMapping"/>
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
     public TPlayer? Player { get; protected set; }
 
     [JsonIgnore]
     public abstract bool HasPlayer { get; }
 
+    [JsonIgnore]
+    public abstract bool HasAlivePlayer { get; }
+
     [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    public TSimulation WorldSimulation { get; private set; } = new();
+    public TSimulation WorldSimulation { get; private set; } = null!;
 
     /// <summary>
     ///   True when transitioning to the editor. Note this should only be unset *after* switching scenes to the editor
@@ -54,64 +71,6 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     /// </summary>
     [JsonIgnore]
     public bool MovingToEditor { get; set; }
-
-    /// <summary>
-    ///   List access to the dynamic entities in the stage. This is used for saving and loading
-    /// </summary>
-    public List<Node> DynamicEntities
-    {
-        get
-        {
-            var results = new HashSet<Node>();
-
-            foreach (var node in rootOfDynamicallySpawned.GetChildren())
-            {
-                bool disposed = false;
-
-                var casted = (Spatial)node;
-
-                // Objects that cause disposed exceptions. Seems still pretty important to protect saving against
-                // very rare issues
-                try
-                {
-                    // Skip objects that will be deleted. This might help with Microbe saving as it might be that
-                    // the contained organelles are already disposed whereas the Microbe is just only queued for
-                    // deletion
-                    if (casted.IsQueuedForDeletion())
-                    {
-                        disposed = true;
-                    }
-                    else
-                    {
-                        if (casted.Transform.origin == Vector3.Zero)
-                        {
-                        }
-                    }
-                }
-                catch (ObjectDisposedException e)
-                {
-                    disposed = true;
-
-                    // TODO: remove the disposed checks entirely once we confirm this never happens anymore
-                    GD.PrintErr("Detected a disposed object to be saved: ", e);
-                }
-
-                if (!disposed)
-                    results.Add(casted);
-            }
-
-            return results.ToList();
-        }
-        set
-        {
-            rootOfDynamicallySpawned.FreeChildren();
-
-            foreach (var entity in value)
-            {
-                rootOfDynamicallySpawned.AddChild(entity);
-            }
-        }
-    }
 
     [JsonIgnore]
     protected abstract ICreatureStageHUD BaseHUD { get; }
@@ -185,15 +144,15 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
             foreach (var entity in WorldSimulation.EntitySystem)
             {
+                ++totalEntityCount;
+
                 if (!entity.Has<Spawned>())
                     continue;
 
                 totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-                ++totalEntityCount;
             }
 
-            var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
+            debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
 
         if (CheatManager.ManuallySetTime)
@@ -279,6 +238,23 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         SpawnPlayer();
     }
 
+    protected override void SetupStage()
+    {
+        EnsureWorldSimulationIsCreated();
+
+        base.SetupStage();
+    }
+
+    protected void EnsureWorldSimulationIsCreated()
+    {
+        // When loading a save the world simulation is loaded from the save, otherwise it needs to be created
+        if (WorldSimulation == null!)
+        {
+            WorldSimulation = new TSimulation();
+            WorldSimulation.ResolveNodeReferences();
+        }
+    }
+
     protected override void StartGUIStageTransition(bool longDuration, bool returnFromEditor)
     {
         BaseHUD.OnEnterStageTransition(longDuration, returnFromEditor);
@@ -292,8 +268,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(playerSpecies,
+            Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
@@ -347,8 +323,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
@@ -397,6 +372,18 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         BaseHUD.ShowPatchExtinctionBox();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            // Guard against uninitialized stage object created temporarily in Godot from crashing
+            if (WorldSimulation != null!)
+                WorldSimulation.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void PatchExtinctionResolved()
     {
         playerExtinctInCurrentPatch = false;
@@ -404,8 +391,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         // Decrease the population by the constant for the player dying out in a patch
         // If the player does not have sufficient population in the new patch then the population drops to 0 and
         // they have to select a new patch if they die again.
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
+            Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("EXTINCT_IN_PATCH"),
             true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);

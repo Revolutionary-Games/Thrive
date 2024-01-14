@@ -68,6 +68,9 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
+    [JsonIgnore]
+    public abstract MainGameState GameState { get; }
+
     /// <summary>
     ///   True once stage fade-in is complete
     /// </summary>
@@ -207,6 +210,12 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
             {
                 OnGameStarted();
             }
+        }
+
+        // Unlock everything if the stage is unsupported
+        if (!UnlockProgress.SupportsGameState(GameState))
+        {
+            CurrentGame!.GameWorld.UnlockProgress.UnlockAll = true;
         }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);

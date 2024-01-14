@@ -7,6 +7,12 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: determine if this is now actually used in multiple places in saves or not (as this is marked as having
+///     an ID)
+///   </para>
+/// </remarks>
 [UseThriveSerializer]
 [JsonObject(IsReference = true)]
 public class CompoundBag : ICompoundStorage
@@ -175,6 +181,19 @@ public class CompoundBag : ICompoundStorage
     public bool AreAnySpecificallySetUseful(IEnumerable<Compound> compounds)
     {
         return compounds.Any(usefulCompounds.Contains);
+    }
+
+    /// <summary>
+    ///   Copies the useful data from another bag
+    /// </summary>
+    public void CopyUsefulFrom(CompoundBag other)
+    {
+        ClearUseful();
+
+        foreach (var useful in other.usefulCompounds)
+        {
+            usefulCompounds.Add(useful);
+        }
     }
 
     /// <summary>

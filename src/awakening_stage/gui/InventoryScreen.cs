@@ -718,10 +718,10 @@ public class InventoryScreen : ControlWithInput
             // ReSharper disable once ReplaceWithSingleAssignment.True
             bool isAllowed = true;
 
-            if (to is { Transient: true, Item: { ShownAsGhostIn: { } } })
+            if (to is { Transient: true, Item: { ShownAsGhostIn: not null } })
                 isAllowed = false;
 
-            if (from is { Transient: true, Item: { ShownAsGhostIn: { } } })
+            if (from is { Transient: true, Item: { ShownAsGhostIn: not null } })
                 isAllowed = false;
 
             if (isAllowed)
@@ -735,10 +735,10 @@ public class InventoryScreen : ControlWithInput
             return;
 
         // Sanity check that preprocess has run correctly
-        if (from.Item is { ShownAsGhostIn: { } } || from.Transient)
+        if (from.Item is { ShownAsGhostIn: not null } || from.Transient)
             GD.PrintErr("Ghost item / transient status not unset correctly in from item");
 
-        if (to.Item is { ShownAsGhostIn: { } } || to.Transient)
+        if (to.Item is { ShownAsGhostIn: not null } || to.Transient)
             GD.PrintErr("Ghost item / transient status not unset correctly in to item");
 
         // Moving within a single category (when on ground) requires no action
@@ -852,7 +852,7 @@ public class InventoryScreen : ControlWithInput
     {
         // Skip if ghost data doesn't exist, the data missing is a valid case when something is moved to a transient
         // slot for the first time
-        if (original.Item is not { ShownAsGhostIn: { } } ||
+        if (original.Item is not { ShownAsGhostIn: not null } ||
             !original.Item.ShownAsGhostIn.TryGetTarget(out var originalNonTransient))
         {
             // This was not a transient slot needing handling
@@ -967,7 +967,7 @@ public class InventoryScreen : ControlWithInput
         OnSlotSwapHappened(fromSlot, toSlot);
 
         // Update ghost items in slots
-        if (fromSlot is { Transient: true, Item: { } } && !toSlot.Transient)
+        if (fromSlot is { Transient: true, Item: not null } && !toSlot.Transient)
         {
             if (toSlot.GhostItem != null)
                 GD.PrintErr("Overriding ghost item incorrectly for from slot");
@@ -976,7 +976,7 @@ public class InventoryScreen : ControlWithInput
             toSlot.GhostItem = fromSlot.Item;
         }
 
-        if (toSlot is { Transient: true, Item: { } } && !fromSlot.Transient)
+        if (toSlot is { Transient: true, Item: not null } && !fromSlot.Transient)
         {
             if (fromSlot.GhostItem != null)
                 GD.PrintErr("Overriding ghost item incorrectly for to slot");
@@ -1156,8 +1156,7 @@ public class InventoryScreen : ControlWithInput
         if (error)
         {
             SetCraftingError(TranslationServer.Translate("CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"));
-            GD.PrintErr(
-                "Ran into an item consume problem before crafting, some items may have already permanently " +
+            GD.PrintErr("Ran into an item consume problem before crafting, some items may have already permanently " +
                 "disappeared. This is a bug");
             return;
         }

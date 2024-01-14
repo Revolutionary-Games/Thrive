@@ -4,13 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using DevCenterCommunication.Models;
+using DevCenterCommunication.Models.Enums;
 using ScriptsBase.Utilities;
 using SharedBase.Models;
 using SharedBase.Utilities;
+using ThriveDevCenter.Shared.Forms;
 
 /// <summary>
 ///   Handles the native C++ modules needed by Thrive
@@ -22,13 +32,22 @@ public class NativeLibs
     private const string GodotEditorLibraryFolder = ".mono/temp/bin/Debug";
     private const string GodotReleaseLibraryFolder = ".mono/assemblies/Release";
 
+    private const string BuilderImageName = "localhost/thrive/native-builder:latest";
+    private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
+    private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
+
     private readonly Program.NativeLibOptions options;
 
     private readonly IList<PackagePlatform> platforms;
 
+    private readonly SymbolHandler symbolHandler = new(null, null);
+
+    private readonly Lazy<Task<long>> thriveNativePrecompiledId;
+
     public NativeLibs(Program.NativeLibOptions options)
     {
         this.options = options;
+        thriveNativePrecompiledId = new Lazy<Task<long>>(GetThriveNativeLibraryId);
 
         if (options.Libraries is { Count: < 1 })
         {
@@ -46,8 +65,8 @@ public class NativeLibs
 
         if (options.DebugLibrary)
         {
-            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not available " +
-                "for download usually)");
+            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not always " +
+                "available for download)");
         }
 
         // Explicitly selected platforms override defaults
@@ -201,13 +220,33 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Install:
                 return await OperateOnAllLibraries(InstallLibraryForEditor, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Fetch:
-                throw new NotImplementedException("TODO: implement downloading");
+                return await OperateOnAllLibraries(DownloadLibraryIfMissing, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Build:
                 return await OperateOnAllLibraries(BuildLocally, cancellationToken);
             case Program.NativeLibOptions.OperationMode.Package:
-                throw new NotImplementedException("TODO: implement packaging");
+                if (!OperatingSystem.IsMacOS())
+                {
+                    ColourConsole.WriteInfoLine("Making distributable package and symbols for Linux and Windows");
+
+                    return await OperateOnAllPlatforms(BuildPackageWithPodman, cancellationToken);
+                }
+
+                throw new NotImplementedException("Creating release packages for mac is not done");
+
             case Program.NativeLibOptions.OperationMode.Upload:
-                throw new NotImplementedException("TODO: implement uploading (and package / symbol extract)");
+                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken))
+                {
+                    ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
+                    return await UploadMissingSymbolsToServer(cancellationToken);
+                }
+
+                // Check and upload step failed / or didn't upload anything
+                return false;
+
+            case Program.NativeLibOptions.OperationMode.Symbols:
+                ColourConsole.WriteNormalLine("Checking for any symbols missing from the server");
+                return await UploadMissingSymbolsToServer(cancellationToken);
+
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -223,19 +262,111 @@ public class NativeLibs
         {
             ColourConsole.WriteDebugLine($"Operating on library: {library}");
 
-            foreach (var platform in platforms)
+            if (!await OperateOnAllPlatforms(library, operation, cancellationToken))
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
-
-                if (!await operation.Invoke(library, platform, cancellationToken))
-                {
-                    ColourConsole.WriteErrorLine($"Operation failed on: {library} for platform: {platform}");
-                    return false;
-                }
+                ColourConsole.WriteErrorLine($"Operation failed for {library}");
+                return false;
             }
 
             ColourConsole.WriteSuccessLine($"Successfully performed operation on library: {library}");
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Variant that always operates on all libraries and returns a result value
+    /// </summary>
+    /// <param name="operation">Operation to perform</param>
+    /// <param name="cancellationToken">Cancellation for the operation</param>
+    /// <returns>The result value</returns>
+    private async Task<T> OperateOnAllLibrariesWithResult<T>(
+        Func<Library, PackagePlatform, CancellationToken, Task<T>> operation,
+        CancellationToken cancellationToken)
+    {
+        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+
+        bool resultSet = false;
+        T result = default!;
+
+        foreach (var library in libraries)
+        {
+            ColourConsole.WriteDebugLine($"Operating on library: {library}");
+
+            var currentResult = await OperateOnAllPlatformsWithResult(library, operation, cancellationToken);
+            if (!resultSet)
+            {
+                result = currentResult;
+                resultSet = true;
+            }
+            else if (currentResult is false)
+            {
+                // TODO: not the cleanest way to specially overload this for false like this
+                result = currentResult;
+            }
+        }
+
+        return result;
+    }
+
+    private async Task<bool> OperateOnAllPlatforms(Library library,
+        Func<Library, PackagePlatform, CancellationToken, Task<bool>> operation, CancellationToken cancellationToken)
+    {
+        foreach (var platform in platforms)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+
+            if (!await operation.Invoke(library, platform, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Operation failed on library: {library} for platform: {platform}");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private async Task<T> OperateOnAllPlatformsWithResult<T>(Library library,
+        Func<Library, PackagePlatform, CancellationToken, Task<T>> operation, CancellationToken cancellationToken)
+    {
+        bool resultSet = false;
+        T result = default!;
+
+        foreach (var platform in platforms)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+
+            var currentResult = await operation.Invoke(library, platform, cancellationToken);
+            if (!resultSet)
+            {
+                result = currentResult;
+                resultSet = true;
+            }
+            else if (currentResult is false)
+            {
+                // TODO: not the cleanest way to specially overload this for false like this
+                result = currentResult;
+            }
+        }
+
+        return result;
+    }
+
+    private async Task<bool> OperateOnAllPlatforms(Func<PackagePlatform, CancellationToken, Task<bool>> operation,
+        CancellationToken cancellationToken)
+    {
+        foreach (var platform in platforms)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+
+            if (!await operation.Invoke(platform, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Operation failed for platform: {platform}");
+                return false;
+            }
         }
 
         return true;
@@ -274,12 +405,14 @@ public class NativeLibs
             Directory.CreateDirectory(target);
         }
 
+        ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
         var linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), false);
         var originalLinkTo = linkTo;
 
         if (!File.Exists(linkTo))
         {
             // Fall back to distributable version
+            ColourConsole.WriteNormalLine("Falling back to attempting distributable version");
             linkTo = GetPathToLibraryDll(library, platform, GetLibraryVersion(library), true);
 
             if (!File.Exists(linkTo))
@@ -289,6 +422,8 @@ public class NativeLibs
                 ColourConsole.WriteNormalLine("Distributable version also didn't exist");
                 return Task.FromResult(false);
             }
+
+            ColourConsole.WriteSuccessLine("Distributable version of library detected");
         }
 
         var linkFile = Path.Join(target, GetLibraryDllName(library, platform));
@@ -339,6 +474,14 @@ public class NativeLibs
         ColourConsole.WriteInfoLine(
             $"Building {library} for local use ({platform}) with CMake (hopefully all native dependencies " +
             "are installed)");
+
+        // Give a nicer error message with missing cmake
+        if (string.IsNullOrEmpty(ExecutableFinder.Which("cmake")))
+        {
+            ColourConsole.WriteErrorLine("cmake not found. CMake is required for this build to work. " +
+                "Make sure it is installed and added to PATH before trying again.");
+            return false;
+        }
 
         var buildFolder = GetNativeBuildFolder();
 
@@ -419,8 +562,7 @@ public class NativeLibs
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteErrorLine(
-                $"CMake configuration failed (exit: {result.ExitCode}). " +
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
                 "Do you have the required build tools installed?");
 
             return false;
@@ -479,6 +621,595 @@ public class NativeLibs
         return true;
     }
 
+    private async Task<bool> BuildPackageWithPodman(PackagePlatform platform, CancellationToken cancellationToken)
+    {
+        var image = platform is PackagePlatform.Windows or PackagePlatform.Windows32 ?
+            BuilderImageNameCross :
+            BuilderImageName;
+
+        ColourConsole.WriteNormalLine($"Using builder image: {image} hopefully it has been built");
+
+        var compileInstallFolder = GetDistributableBuildFolderBase(platform);
+
+        Directory.CreateDirectory(compileInstallFolder);
+
+        var startInfo = new ProcessStartInfo("podman");
+
+        startInfo.ArgumentList.Add("run");
+        startInfo.ArgumentList.Add("--rm");
+        startInfo.ArgumentList.Add("-t");
+
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
+
+        if (options.Verbose)
+        {
+            startInfo.ArgumentList.Add("-e=VERBOSE=1");
+        }
+
+        startInfo.ArgumentList.Add(image);
+
+        startInfo.ArgumentList.Add("sh");
+        startInfo.ArgumentList.Add("-c");
+
+        var shCommandBuilder = new StringBuilder();
+
+        shCommandBuilder.Append("mkdir /build && cd build && ");
+
+        // Cmake configure inside the container
+        shCommandBuilder.Append("cmake /thrive ");
+        shCommandBuilder.Append("-G Ninja ");
+
+        // ReSharper disable StringLiteralTypo
+        var buildType = "Distribution";
+
+        if (options.DebugLibrary)
+        {
+            ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
+            buildType = "Debug";
+        }
+        else
+        {
+            shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+        }
+
+        shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
+
+        // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
+        // of flags
+        // TODO: figure out how to get the Jolt interprocedural check to work (now fails with trying to link the wrong
+        // standard library). Might be related to the compiler checks that fail below.
+        shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=ON ");
+
+        shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
+
+        // ReSharper disable once CommentTypo
+        // Specify the CPU type to tune for and make available instructions for checking the available instructions
+        // (_xgetbv)
+        shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=sandybridge ");
+
+        switch (platform)
+        {
+            case PackagePlatform.Linux:
+            {
+                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER=clang++ ");
+                shCommandBuilder.Append("-DCMAKE_C_COMPILER=clang ");
+                shCommandBuilder.Append("-DCMAKE_CXX_COMPILER_AR=/usr/bin/llvm-ar ");
+
+                break;
+            }
+
+            case PackagePlatform.Windows:
+            {
+                // Cross compiling to windows
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_NAME=Windows ");
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_PROCESSOR=x86 ");
+
+                shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName} ");
+                shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName} ");
+
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
+
+                break;
+            }
+
+            case PackagePlatform.Windows32:
+            {
+                // TODO: it's not really tested but it should work the same (with slightly tweaked tool names as the
+                // 64-bit version)
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_NAME=Windows ");
+                shCommandBuilder.Append("-DCMAKE_SYSTEM_PROCESSOR=x86 ");
+
+                shCommandBuilder.Append($"-DCMAKE_CXX_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
+                shCommandBuilder.Append($"-DCMAKE_C_COMPILER={ContainerTool.CrossCompilerClangName32Bit} ");
+
+                shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
+
+                throw new NotImplementedException("TODO: test (this was written based on the 64-bit windows version)");
+            }
+
+            case PackagePlatform.Mac:
+                throw new NotSupportedException("Mac builds must be made natively on a mac");
+            case PackagePlatform.Web:
+                throw new NotImplementedException("This is not done yet");
+            default:
+                throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+        }
+
+        // ReSharper restore StringLiteralTypo
+
+        // Cmake build inside the container
+        shCommandBuilder.Append("&& cmake ");
+        shCommandBuilder.Append("--build ");
+        shCommandBuilder.Append(". ");
+        shCommandBuilder.Append("--config ");
+
+        shCommandBuilder.Append(buildType);
+
+        shCommandBuilder.Append(" --target ");
+        shCommandBuilder.Append("install ");
+
+        shCommandBuilder.Append("-j ");
+
+        // TODO: add option to not use all cores
+        shCommandBuilder.Append(Environment.ProcessorCount.ToString());
+
+        startInfo.ArgumentList.Add(shCommandBuilder.ToString());
+
+        ColourConsole.WriteNormalLine("Compiling inside the container...");
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Failed to run compile in container (exit: {result.ExitCode}). " +
+                "Is the container built and available or did an unexpected error happen inside the container?");
+
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Build inside container succeeded");
+        var libraries = options.Libraries ?? Enum.GetValues<Library>();
+
+        if (!options.DebugLibrary)
+        {
+            ColourConsole.WriteInfoLine(
+                "Extracting symbols (requires compiled Breakpad on the host) and stripping binaries");
+
+            foreach (var library in libraries)
+            {
+                var source = GetPathToDistributableTempDll(library, platform);
+
+                ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
+
+                if (!await symbolHandler.ExtractSymbols(source, "./",
+                        platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+                {
+                    ColourConsole.WriteErrorLine(
+                        "Symbol extraction failed. Are breakpad tools installed at the expected path?");
+
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("Skipping symbol extraction for debug build");
+        }
+
+        ColourConsole.WriteInfoLine("Copying built libraries to the right folder");
+
+        foreach (var library in libraries)
+        {
+            var version = GetLibraryVersion(library);
+
+            var source = GetPathToDistributableTempDll(library, platform);
+            var target = GetPathToLibraryDll(library, platform, version, true);
+
+            var targetFolder = Path.GetDirectoryName(target);
+
+            if (string.IsNullOrEmpty(targetFolder))
+                throw new Exception("Couldn't get folder from library install path");
+
+            Directory.CreateDirectory(targetFolder);
+
+            File.Copy(source, target, true);
+
+            ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
+
+            if (!options.DebugLibrary)
+            {
+                await BinaryHelpers.Strip(target, cancellationToken);
+
+                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+            }
+            else
+            {
+                ColourConsole.WriteDebugLine("Not stripping a debug library");
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
+
+        return true;
+    }
+
+    private async Task<bool> CheckAndUpload(Library library, PackagePlatform platform,
+        CancellationToken cancellationToken)
+    {
+        var version = GetLibraryVersion(library);
+        var file = GetPathToLibraryDll(library, platform, version, true);
+
+        if (!File.Exists(file))
+        {
+            ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
+
+            // For now this is not considered an error
+            return true;
+        }
+
+        bool debug = options.DebugLibrary;
+
+        if (string.IsNullOrEmpty(options.Key))
+        {
+            ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+            return false;
+        }
+
+        PrecompiledTag tags = 0;
+
+        if (debug)
+        {
+            ColourConsole.WriteNormalLine("Uploading a debug version of the library");
+            tags = PrecompiledTag.Debug;
+        }
+
+        using var httpClient = GetDevCenterClient();
+
+        ColourConsole.WriteDebugLine($"Checking if we should upload {library}:{version}:{platform}:{tags}");
+
+        var checkUrl = new Uri(await GetBaseRemoteUrlForLibrary(library), "offerVersion");
+
+        var precompiledInitialData = new PrecompiledObjectVersionDTO
+        {
+            Version = version,
+            Platform = platform,
+            Tags = tags,
+        };
+
+        // Check if the library already exists
+        ColourConsole.WriteDebugLine($"Checking if should upload, requesting: {checkUrl}");
+        var response = await httpClient.PostAsJsonAsync(checkUrl, precompiledInitialData, cancellationToken);
+
+        response.EnsureSuccessStatusCode();
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+        {
+            ColourConsole.WriteDebugLine("Server already has this");
+            return false;
+        }
+
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            ColourConsole.WriteInfoLine(
+                $"About to start uploading {library} for {platform} (file: {file}) that is missing from the server");
+
+            ColourConsole.WriteNormalLine("Library uncompressed size is: " + new FileInfo(file).Length.BytesToMiB(3));
+
+            if (!await ConsoleHelpers.WaitForInputToContinue(cancellationToken))
+            {
+                ColourConsole.WriteNormalLine("Canceling upload");
+                return false;
+            }
+
+            ColourConsole.WriteNormalLine("Upload accepted");
+
+            if (!await UploadLibraryToServer(library, platform, file, precompiledInitialData, cancellationToken))
+            {
+                throw new Exception("Uploading library to the server failed");
+            }
+
+            return true;
+        }
+
+        throw new Exception($"Unknown result code from offer response: {response.StatusCode}");
+    }
+
+    private async Task<Uri> GetBaseRemoteUrlForLibrary(Library library)
+    {
+        switch (library)
+        {
+            case Library.ThriveNative:
+            {
+                var nativeId = await thriveNativePrecompiledId.Value;
+
+                return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(library), library, null);
+        }
+    }
+
+    private async Task<long> GetThriveNativeLibraryId()
+    {
+        using var httpClient = GetDevCenterClient();
+
+        var data = await httpClient.GetFromJsonAsync<PrecompiledObjectDTO>(
+            "api/v1/PrecompiledObject/byName/ThriveNative");
+
+        if (data == null)
+            throw new NullDecodedJsonException();
+
+        ColourConsole.WriteDebugLine($"Determined that ThriveNative's precompiled ID is {data.Id}");
+
+        return data.Id;
+    }
+
+    private async Task<bool> UploadLibraryToServer(Library library, PackagePlatform platform, string filePath,
+        PrecompiledObjectVersionDTO precompiledData, CancellationToken cancellationToken)
+    {
+        // Prepare a compressed version for upload
+        ColourConsole.WriteInfoLine("Preparing a compressed version of the library for upload");
+
+        var compressedLocation = filePath + ".br";
+
+        await CompressLibrary(filePath, compressedLocation, cancellationToken);
+
+        precompiledData.Size = new FileInfo(compressedLocation).Length;
+        ColourConsole.WriteDebugLine($"Size of compressed library: {precompiledData.Size}");
+
+        ColourConsole.WriteWarningLine("Beginning upload... Canceling is no longer possible, otherwise a " +
+            "non-uploaded library will persist on the DevCenter");
+
+        ColourConsole.WriteNormalLine("Deleting such an item requires going to the DevCenter web app and " +
+            "doing it manually");
+
+        ColourConsole.WriteNormalLine("Fetching an upload URL");
+
+        using var devCenterClient = GetDevCenterClient();
+
+        var baseUrl = await GetBaseRemoteUrlForLibrary(library);
+        var uploadRequestUrl = new Uri(baseUrl, "startUpload");
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        // We no longer want to cancel once we have reserved the precompiled object version
+        // ReSharper disable once MethodSupportsCancellation
+        var response = await devCenterClient.PostAsJsonAsync(uploadRequestUrl, precompiledData);
+
+        // ReSharper disable once MethodSupportsCancellation
+        var content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            ColourConsole.WriteErrorLine($"Failed to request upload start for a library, response: {content}");
+            ColourConsole.WriteNormalLine(
+                "No precompiled object version should have been created yet so retry is possible");
+            return false;
+        }
+
+        var uploadResponse = JsonSerializer.Deserialize<UploadRequestResponse>(content,
+            new JsonSerializerOptions(JsonSerializerDefaults.Web)) ?? throw new NullDecodedJsonException();
+
+        ColourConsole.WriteNormalLine("Got URL to upload to");
+
+        ColourConsole.WriteNormalLine("Uploading data, this may take a while if the precompiled object is large");
+
+        using var normalClient = new HttpClient();
+
+        bool uploaded = false;
+
+        for (int i = 0; i < 10; ++i)
+        {
+            if (i > 0)
+            {
+                ColourConsole.WriteNormalLine("Will retry upload in 15 seconds...");
+
+                // Again, don't want to pass cancellation token to not cancel out of the retry
+                // ReSharper disable once MethodSupportsCancellation
+                await Task.Delay(TimeSpan.FromSeconds(i * 15));
+            }
+
+            // We have created the item already, do not cancel
+            // ReSharper disable once MethodSupportsCancellation
+            response = await normalClient.PutAsync(uploadResponse.UploadUrl,
+                new StreamContent(File.OpenRead(compressedLocation)));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ColourConsole.WriteErrorLine("Failed to send file to remote storage. Will retry a few times");
+
+                // We want to read the error without canceling out of the retry process
+                // ReSharper disable once MethodSupportsCancellation
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                ColourConsole.WriteWarningLine(
+                    $"Put of file content to URL failed: {uploadResponse.UploadUrl}, {response.StatusCode}, " +
+                    $"response: {responseContent}");
+
+                continue;
+            }
+
+            uploaded = true;
+            ColourConsole.WriteNormalLine("Uploaded to storage. Reporting success...");
+            break;
+        }
+
+        if (!uploaded)
+        {
+            ColourConsole.WriteErrorLine("Ran out of retries to upload to remote storage. Precompiled object is " +
+                "already reserved and requires manual action on the DevCenter to clear for a retry.");
+            return false;
+        }
+
+        // Report upload success
+        ColourConsole.WriteInfoLine("Reporting our upload success to the DevCenter");
+        var successReportUrl = new Uri(baseUrl, "finishUpload");
+
+        // Definitely don't cancel after uploading to the remote storage
+        // ReSharper disable once MethodSupportsCancellation
+        response = await devCenterClient.PostAsJsonAsync(successReportUrl, new TokenForm
+        {
+            Token = uploadResponse.VerifyToken,
+        });
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            ColourConsole.WriteWarningLine($"Response: {responseContent}");
+
+            ColourConsole.WriteErrorLine("The DevCenter didn't accept our report of upload success. As the object " +
+                "is already created retrying request manual deleting of the previous attempt on the DevCenter");
+
+            return false;
+        }
+
+        if (cancellationToken.IsCancellationRequested)
+        {
+            ColourConsole.WriteSuccessLine("Upload succeeded, but cancellation was requested, stopping now");
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        ColourConsole.WriteSuccessLine(
+            $"Successfully uploaded {library} for {platform} with size of: {precompiledData.Size.BytesToMiB()}");
+        return true;
+    }
+
+    private async Task CompressLibrary(string filePath, string compressedLocation, CancellationToken cancellationToken)
+    {
+        var folder = Path.GetDirectoryName(compressedLocation);
+
+        if (!string.IsNullOrEmpty(folder))
+        {
+            ColourConsole.WriteDebugLine($"Compressing {filePath} to a location in folder: {folder}");
+            Directory.CreateDirectory(folder);
+        }
+
+        await using var writer = File.Create(compressedLocation);
+
+        await using var reader = File.OpenRead(filePath);
+
+        await using var compressor = new BrotliStream(writer, CompressionLevel.Optimal);
+
+        await reader.CopyToAsync(compressor, cancellationToken);
+
+        ColourConsole.WriteSuccessLine($"Created compressed file: {compressedLocation}");
+    }
+
+    private Task<bool> UploadMissingSymbolsToServer(CancellationToken cancellationToken)
+    {
+        var uploader = new SymbolUploader(options, "./");
+
+        return uploader.Run(cancellationToken);
+    }
+
+    private async Task<bool> DownloadLibraryIfMissing(Library library, PackagePlatform platform,
+        CancellationToken cancellationToken)
+    {
+        var version = GetLibraryVersion(library);
+        var file = GetPathToLibraryDll(library, platform, version, true);
+
+        if (File.Exists(file))
+        {
+            ColourConsole.WriteNormalLine($"Library already exists, skipping download of: {file}");
+            return true;
+        }
+
+        var directory = Path.GetDirectoryName(file);
+
+        if (string.IsNullOrEmpty(directory))
+            throw new Exception("Failed to determine the folder the library should be in");
+
+        Directory.CreateDirectory(directory);
+
+        bool debug = options.DebugLibrary;
+
+        PrecompiledTag tags = 0;
+
+        if (debug)
+        {
+            ColourConsole.WriteNormalLine("Will try to download a debug version of the library");
+            tags = PrecompiledTag.Debug;
+        }
+
+        using var httpClient = GetDevCenterClient();
+
+        ColourConsole.WriteNormalLine(
+            $"Checking if the precompiled object {library}:{version}:{platform}:{tags} is available");
+
+        // Use the link endpoint to not get auto redirect
+        var fetchUrl = new Uri(await GetBaseRemoteUrlForLibrary(library),
+            $"{version}/{(int)platform}/{(int)tags}/link");
+
+        var response = await httpClient.GetAsync(fetchUrl, cancellationToken);
+
+        var content = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Library is not available for download, or a server error occurred, response: {content}");
+            return false;
+        }
+
+        var downloadUrl = content;
+
+        ColourConsole.WriteInfoLine($"Downloading {library} for {platform} version: {version}");
+
+        // Download the file without sending the authentication headers used for the DevCenter
+        using var normalClient = new HttpClient();
+
+        // Retry a few times in case the storage is not available
+        for (int i = 0; i < 10; ++i)
+        {
+            if (i > 0)
+            {
+                ColourConsole.WriteNormalLine("Will retry download in 15 seconds...");
+                await Task.Delay(TimeSpan.FromSeconds(i * 15), cancellationToken);
+            }
+
+            try
+            {
+                using var download = await httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead,
+                    cancellationToken);
+
+                download.EnsureSuccessStatusCode();
+
+                // Write asynchronously while downloading data to not need to store the entire thing in memory
+                await using var writer = File.Create(file);
+
+                await using var readStream = await download.Content.ReadAsStreamAsync(cancellationToken);
+
+                // And also compress while downloading as a compressed form of the data is not needed on disk for
+                // anything so it would just take up unnecessary space
+                await using var decompressor = new BrotliStream(readStream, CompressionMode.Decompress);
+
+                await decompressor.CopyToAsync(writer, cancellationToken);
+
+                await writer.FlushAsync(cancellationToken);
+
+                var size = new FileInfo(file).Length;
+                if (size < 1)
+                    throw new Exception("Downloaded file is empty");
+
+                ColourConsole.WriteSuccessLine(
+                    $"Successfully downloaded and decompressed the file (size: {size.BytesToMiB()})");
+                return true;
+            }
+            catch (Exception e)
+            {
+                ColourConsole.WriteErrorLine($"Error downloading, will retry a few times: {e}");
+            }
+        }
+
+        ColourConsole.WriteErrorLine("Ran out of download retries");
+        return false;
+    }
+
     /// <summary>
     ///   Path to the library's root where all version specific folders are added
     /// </summary>
@@ -517,11 +1248,30 @@ public class NativeLibs
         return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
     }
 
+    private string GetPathToDistributableTempDll(Library library, PackagePlatform platform)
+    {
+        var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
+            options.DebugLibrary ? "debug" : "release");
+
+        if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
+        {
+            return Path.Combine(basePath, "bin", GetLibraryDllName(library, platform));
+        }
+
+        // This is for Linux
+        return Path.Combine(basePath, "lib", GetLibraryDllName(library, platform));
+    }
+
+    private string GetDistributableBuildFolderBase(PackagePlatform platform)
+    {
+        return Path.Join(FolderToWriteDistributableBuildIn, platform.ToString().ToLowerInvariant());
+    }
+
     private void CreateLinkTo(string linkFile, string linkTo)
     {
         if (File.Exists(linkFile))
         {
-            ColourConsole.WriteDebugLine($"Removing existing library file: {linkFile}");
+            ColourConsole.WriteDebugLine($"Removing existing link file: {linkFile}");
             File.Delete(linkFile);
         }
 
@@ -561,6 +1311,8 @@ public class NativeLibs
                 File.Copy(linkTo, linkFile);
             }
         }
+
+        ColourConsole.WriteDebugLine($"Created link {linkFile} -> {linkTo}");
     }
 
     private string GetNativeBuildFolder()
@@ -569,6 +1321,22 @@ public class NativeLibs
             return "build-debug";
 
         return "build";
+    }
+
+    private HttpClient GetDevCenterClient()
+    {
+        var client = new HttpClient
+        {
+            BaseAddress = new Uri(options.Url),
+            Timeout = TimeSpan.FromMinutes(1),
+        };
+
+        if (!string.IsNullOrEmpty(options.Key))
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", options.Key);
+        }
+
+        return client;
     }
 
     private static class NativeMethods

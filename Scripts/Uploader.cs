@@ -523,7 +523,5 @@ public class Uploader
         public string? ExtraDelete { get; init; }
     }
 
-    private class DevBuildOverwriteFailedException : Exception
-    {
-    }
+    private class DevBuildOverwriteFailedException : Exception;
 }

@@ -27,6 +27,9 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [Export]
     public NodePath WorldEnvironmentNodePath = null!;
 
+    [Export]
+    public NodePath WorldLightNodePath = null!;
+
     private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
 
     [JsonProperty]
@@ -42,6 +45,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     private SelectBuildingPopup selectBuildingPopup = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+
+    private DirectionalLight worldLightNode = null!;
 
     private Camera? animationCamera;
 #pragma warning restore CA2213
@@ -86,6 +91,12 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
 
+    public override MainGameState GameState => MainGameState.MulticellularStage;
+
+    // TODO: change when there is dying implemented
+    [JsonIgnore]
+    public override bool HasAlivePlayer => HasPlayer;
+
     [JsonIgnore]
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -125,6 +136,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
         selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
+        worldLightNode = GetNode<DirectionalLight>(WorldLightNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -635,6 +647,31 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
         animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
+    public void UpdateBackgroundPanorama()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            // Panoramas don't exist yet when above water so we need this null check
+            if (worldEnvironmentNode.Environment != null)
+            {
+                var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+                worldPanoramaSky.Panorama =
+                    GD.Load<Texture>(CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Panorama);
+            }
+        }
+
+        UpdateAmbientLight();
+    }
+
+    public void UpdateAmbientLight()
+    {
+        if (CurrentGame?.GameWorld.Map.CurrentPatch != null)
+        {
+            worldLightNode.LightColor = CurrentGame.GameWorld.Map.CurrentPatch.BiomeTemplate.Sunlight.Colour;
+        }
+    }
+
     protected override void SetupStage()
     {
         base.SetupStage();
@@ -658,26 +695,30 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 // TODO: change the view
             }
 
-            // TODO: reimplement this
-            throw new NotImplementedException();
-
-            /*// TODO: remove
+            // TODO: remove (this is just temporary prototype code)
             // Spawn a chunk to give the player some navigation reference
-            var mesh = new ChunkConfiguration.ChunkScene
+
+            var rigidBody = new RigidBody
             {
-                ScenePath = "res://assets/models/Iron5.tscn",
-                ConvexShapePath = "res://assets/models/Iron5.shape",
+                AxisLockLinearY = true,
             };
-            SpawnHelpers.SpawnChunk(new ChunkConfiguration
-                {
-                    Name = "test",
-                    Size = 10000,
-                    Radius = 10,
-                    Mass = 100,
-                    ChunkScale = 1,
-                    Meshes = new List<ChunkConfiguration.ChunkScene> { mesh },
-                }, new Vector3(3, 0, -15), rootOfDynamicallySpawned, SpawnHelpers.LoadChunkScene(),
-                random);*/
+
+            var owner = rigidBody.CreateShapeOwner(rigidBody);
+            rigidBody.ShapeOwnerAddShape(owner, new SphereShape
+            {
+                Radius = 10,
+            });
+
+            rigidBody.Mass = 100;
+
+            var visualsParent = new Spatial();
+            rigidBody.AddChild(visualsParent);
+
+            visualsParent.AddChild(GD.Load<PackedScene>("res://assets/models/Iron5.tscn").Instance<Spatial>());
+
+            rigidBody.Translation = new Vector3(3, 0, -15);
+
+            rootOfDynamicallySpawned.AddChild(rigidBody);
         }
 
         // patchManager.CurrentGame = CurrentGame;
@@ -710,7 +751,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
-        // TODO: load background graphics
+        UpdateBackgroundPanorama();
     }
 
     protected override void SpawnPlayer()
@@ -773,6 +814,7 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
                 ProgressBarSystemPath.Dispose();
                 SelectBuildingPopupPath.Dispose();
                 WorldEnvironmentNodePath.Dispose();
+                WorldLightNodePath.Dispose();
 
                 interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
             }

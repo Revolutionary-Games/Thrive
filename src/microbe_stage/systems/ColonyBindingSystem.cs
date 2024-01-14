@@ -1,6 +1,5 @@
 ﻿namespace Systems
 {
-    using System;
     using Components;
     using DefaultEcs;
     using DefaultEcs.Command;
@@ -24,8 +23,10 @@
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [RunsAfter(typeof(MicrobeMovementSystem))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
+    [WritesToComponent(typeof(MicrobeColony))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -44,11 +45,14 @@
 
             if (control.State == MicrobeState.Unbinding)
             {
-                throw new NotImplementedException();
-            }
+                // Just stop movement while doing unbinding (other systems and microbe input handle the rest)
+                control.MovementDirection = Vector3.Zero;
 
-            /*TODO: else */
-            if (control.State == MicrobeState.Binding)
+                ref var position = ref entity.Get<WorldPosition>();
+
+                control.LookAtPoint = position.Position + position.Rotation.Xform(Vector3.Forward);
+            }
+            else if (control.State == MicrobeState.Binding)
             {
                 HandleBindingMode(ref control, entity, delta);
             }
@@ -79,7 +83,7 @@
 
             if (compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
-                control.State = MicrobeState.Normal;
+                control.SetStateColonyAware(entity, MicrobeState.Normal);
                 return;
             }
 
@@ -88,6 +92,10 @@
             // To simplify the logic this audio is now played non-looping
             // TODO: if this sounds too bad with the sound volume no longer fading then this will need to change
             soundPlayer.PlaySoundEffectIfNotPlayingAlready(Constants.MICROBE_BINDING_MODE_SOUND, 0.6f);
+
+            // For colony members no collisions can happen as the colony leader only has physics
+            if (entity.Has<MicrobeColonyMember>())
+                return;
 
             var count = entity.Get<CollisionManagement>().GetActiveCollisions(out var collisions);
 
@@ -146,7 +154,7 @@
                     // Binding can proceed
                     if (BeginBind(ref control, entity, indexOfMemberToBindTo, collision.SecondEntity))
                     {
-                        // Try to bind at most once per frame
+                        // Try to bind at most once per update
                         break;
                     }
                 }
@@ -170,27 +178,51 @@
             // Create a colony if there isn't one yet
             if (!primaryEntity.Has<MicrobeColony>())
             {
-                if (indexOfMemberToBindTo != 0)
+                if (!primaryEntity.Has<MicrobeColonyMember>())
                 {
-                    // This should never happen as the colony is not yet created, the parent cell is by itself so the
-                    // index should always be 0
-                    GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
-                    indexOfMemberToBindTo = 0;
+                    if (indexOfMemberToBindTo != 0)
+                    {
+                        // This should never happen as the colony is not yet created, the parent cell is by itself so
+                        // the index should always be 0
+                        GD.PrintErr("Initial colony creation doesn't have parent entity index in colony of 0");
+                        indexOfMemberToBindTo = 0;
+                    }
+
+                    // As the state is forced to normal when binding succeeds, set the initial colony state to normal
+                    // here
+                    var colony = new MicrobeColony(primaryEntity, MicrobeState.Normal, primaryEntity, other);
+
+                    if (colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
+                    {
+                        // Add the colony component to the lead cell
+                        recorder.Record(primaryEntity).Set(colony);
+
+                        // Report not being able to reproduce by the lead cell
+                        MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);
+
+                        success = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Setting up data of initial colony member failed, canceling colony creation");
+                        success = false;
+                    }
                 }
-
-                var colony = new MicrobeColony(primaryEntity, control.State, other);
-
-                MicrobeColonyHelpers.OnColonyMemberAdded(primaryEntity);
-
-                success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
-
-                recorder.Record(primaryEntity).Set(colony);
+                else
+                {
+                    // This shouldn't happen as colony members shouldn't be able to collide
+                    GD.PrintErr("Entity that is part of another microbe colony can't become a colony leader");
+                    success = false;
+                }
             }
             else
             {
                 ref var colony = ref primaryEntity.Get<MicrobeColony>();
 
                 success = HandleAddToColony(ref colony, primaryEntity, indexOfMemberToBindTo, other, recorder);
+
+                if (success)
+                    control.SetStateColonyAware(primaryEntity, MicrobeState.Normal);
             }
 
             if (!success)
@@ -201,8 +233,7 @@
                 return false;
             }
 
-            // Move out of binding state before adding the colony member to avoid accidental collisions being able to
-            // recursively trigger colony attachment
+            // Colony aware set is used above if it can be
             control.State = MicrobeState.Normal;
 
             // Other cell control is set by MicrobeColonyHelpers.OnColonyMemberAdded

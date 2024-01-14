@@ -11,11 +11,10 @@
     using Newtonsoft.Json;
     using Nito.Collections;
 
-    // TODO: need to reimplement saving of the properties here
     /// <summary>
     ///   Spawns AI cells and other environmental things as the player moves around
     /// </summary>
-    [JsonObject(IsReference = true)]
+    [JsonObject(MemberSerialization.OptIn, IsReference = true)]
     public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         private readonly EntitySet spawnedEntitiesSet;
@@ -39,7 +38,7 @@
         private ShuffleBag<Spawner> spawnTypes;
 
         [JsonProperty]
-        private Random random = new();
+        private Random random;
 
         /// <summary>
         ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
@@ -72,7 +71,24 @@
             this.world = world;
             spawnedEntitiesSet = world.EntitySystem.GetEntities().With<Spawned>().With<WorldPosition>().AsSet();
 
+            random = new Random();
+
             spawnTypes = new ShuffleBag<Spawner>(random);
+        }
+
+        /// <summary>
+        ///   Used to construct temporary instance to copy data from to the real instance when loading from a save
+        /// </summary>
+        [JsonConstructor]
+        public SpawnSystem(Random random)
+        {
+            this.random = random;
+
+            // This is meant for just copying data to the real instance when loading a save, so we don't initialize
+            // these key things
+            spawnedEntitiesSet = null!;
+            world = null!;
+            spawnTypes = null!;
         }
 
         public bool IsEnabled { get; set; } = true;

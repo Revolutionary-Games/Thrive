@@ -215,13 +215,11 @@
                         // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
                         // by exaggerating fitness differences
                         thisSpeciesFitness =
-                            Mathf.Max(Mathf.Pow(niche.FitnessScore(
-                                currentSpecies, cache, worldSettings), 2.5f), 0.0f);
+                            Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache, worldSettings), 2.5f), 0.0f);
                     }
                     else
                     {
-                        thisSpeciesFitness = Mathf.Max(
-                            niche.FitnessScore(currentSpecies, cache, worldSettings), 0.0f);
+                        thisSpeciesFitness = Mathf.Max(niche.FitnessScore(currentSpecies, cache, worldSettings), 0.0f);
                     }
 
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;

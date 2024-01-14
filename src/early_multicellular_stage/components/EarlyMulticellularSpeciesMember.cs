@@ -5,6 +5,7 @@
     /// <summary>
     ///   Entity is an early multicellular thing. Still exists in the microbial environment.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct EarlyMulticellularSpeciesMember
     {
         public EarlyMulticellularSpecies Species;
@@ -26,21 +27,16 @@
         // /// </summary>
         // public bool SpeciesApplied;
 
-        public EarlyMulticellularSpeciesMember(EarlyMulticellularSpecies species, CellType cellType)
+        public EarlyMulticellularSpeciesMember(EarlyMulticellularSpecies species, CellType cellType,
+            int cellBodyPlanIndex)
         {
+            if (cellBodyPlanIndex < 0 || cellBodyPlanIndex >= species.Cells.Count)
+                throw new ArgumentException("Bad body plan index given");
+
             Species = species;
             MulticellularCellType = cellType;
 
-            MulticellularBodyPlanPartIndex = species.CellTypes.FindIndex(c => c == cellType);
-
-            if (MulticellularBodyPlanPartIndex == -1)
-            {
-                MulticellularBodyPlanPartIndex = 0;
-
-#if DEBUG
-                throw new ArgumentException("Multicellular growth given invalid first cell type");
-#endif
-            }
+            MulticellularBodyPlanPartIndex = cellBodyPlanIndex;
         }
     }
 }

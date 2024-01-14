@@ -5,6 +5,7 @@
     /// <summary>
     ///   Marks entities as being player reproduced copies
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct PlayerOffspring
     {
         /// <summary>

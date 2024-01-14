@@ -110,8 +110,7 @@ public static class SaveUpgrader
 
     public static string RemoveBackupSuffix(string saveName)
     {
-        return saveName.Remove(
-            saveName.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
+        return saveName.Remove(saveName.IndexOf(Constants.SAVE_BACKUP_SUFFIX, StringComparison.InvariantCulture),
             Constants.SAVE_BACKUP_SUFFIX.Length) + Constants.SAVE_EXTENSION_WITH_DOT;
     }
 

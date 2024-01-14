@@ -5,6 +5,7 @@
     /// <summary>
     ///   Defines toxin damage dealt by an entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ToxinDamageSource
     {
         /// <summary>

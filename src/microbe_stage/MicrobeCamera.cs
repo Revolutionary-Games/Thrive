@@ -8,6 +8,13 @@ using Newtonsoft.Json;
 public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked, IGameCamera
 {
     /// <summary>
+    ///   Automatically process the camera position while game is paused (used to still process zooming easily while
+    ///   microbe stage is paused)
+    /// </summary>
+    [Export]
+    public bool AutoProcessWhilePaused;
+
+    /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
@@ -151,6 +158,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
             ResetHeight();
 
         UpdateBackgroundVisibility();
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public void ResolveNodeReferences()
@@ -190,6 +199,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
         {
             UpdateLightLevel(delta);
         }
+
+        if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
+        {
+            UpdateCameraPosition(delta, null);
+        }
     }
 
     public void UpdateCameraPosition(float delta, Vector3? followedObject)
@@ -200,8 +214,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
 
         if (followedObject != null)
         {
-            var newFloorPosition = new Vector3(
-                followedObject.Value.x, 0, followedObject.Value.z);
+            var newFloorPosition = new Vector3(followedObject.Value.x, 0, followedObject.Value.z);
 
             Vector3 target;
 
@@ -232,8 +245,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked,
         {
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
-            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateZoomSpeed);
+            backgroundPlane.Translation = backgroundPlane.Translation.LinearInterpolate(target, InterpolateZoomSpeed);
         }
 
         cursorDirty = true;

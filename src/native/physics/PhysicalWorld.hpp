@@ -17,7 +17,6 @@ namespace JPH
 {
 class PhysicsSystem;
 class TempAllocator;
-class JobSystemThreadPool;
 class BodyID;
 class Shape;
 
@@ -45,12 +44,22 @@ public:
     PhysicalWorld();
     ~PhysicalWorld();
 
-    // TODO: multithread this and allow physics to run while other stuff happens
     /// \brief Process physics
     /// \returns True when enough time has passed and physics was stepped
     bool Process(float delta);
 
-    // TODO: physics debug drawing
+    /// \brief Processes as many physics steps as needed in the background
+    ///
+    /// Note that WaitForPhysicsToCompete must be called after this to ensure that the physics has finished
+    void ProcessInBackground(float delta);
+
+    /// \brief Waits for ProcessInBackground started run to finish. This must be called before other world operations
+    /// are safe to use again
+    ///
+    /// It is safe to call this multiple times, this will just return if no physics run has happened or at worst this
+    /// does a tiny bit of extra debug drawing processing (if even enabled)
+    /// \returns True when a physics run was performed, False if not enough time had passed
+    bool WaitForPhysicsToComplete();
 
     // ------------------------------------ //
     // Bodies
@@ -62,6 +71,11 @@ public:
 
     Ref<PhysicsBody> CreateStaticBody(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
         JPH::Quat rotation = JPH::Quat::sIdentity(), bool addToWorld = true);
+
+    /// \brief Create a sensor that doesn't react to physics forces but still can record active collisions (overlaps)
+    Ref<PhysicsBody> CreateSensor(const JPH::RefConst<JPH::Shape>& shape, JPH::RVec3Arg position,
+        JPH::Quat rotation = JPH::Quat::sIdentity(), JPH::EMotionType motionType = JPH::EMotionType::Static,
+        bool detectStaticBodies = false);
 
     /// \brief Add a body that has been created but not added to the physics simulation in this world
     void AddBody(PhysicsBody& body, bool activate);
@@ -98,13 +112,16 @@ public:
 
     void SetPosition(JPH::BodyID bodyId, JPH::DVec3Arg position, bool activate = true);
 
+    void SetPositionAndRotation(
+        JPH::BodyID bodyId, JPH::DVec3Arg position, JPH::QuatArg rotation, bool activate = true);
+
     void SetBodyAllowSleep(JPH::BodyID bodyId, bool allowSleeping);
 
     /// \brief Ensures body's Y coordinate is 0, if not moves it so that it is 0
     /// \returns True if the body's position changed, false if no fix was needed
     bool FixBodyYCoordinateToZero(JPH::BodyID bodyId);
 
-    void ChangeBodyShape(JPH::BodyID bodyId, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
+    void ChangeBodyShape(PhysicsBody& body, const JPH::RefConst<JPH::Shape>& shape, bool activate = true);
 
     // ------------------------------------ //
     // Collisions
@@ -204,11 +221,14 @@ private:
     /// \brief Creates the physics system
     void InitPhysicsWorld();
 
-    void StepPhysics(JPH::JobSystemThreadPool& jobs, float time);
+    /// \brief Steps away all pending time. Needs to be ran in a background thread
+    void StepAllPhysicsStepsInBackground();
+
+    void StepPhysics(float time);
 
     Ref<PhysicsBody> CreateBody(const JPH::Shape& shape, JPH::EMotionType motionType, JPH::ObjectLayer layer,
         JPH::RVec3Arg position, JPH::Quat rotation = JPH::Quat::sIdentity(),
-        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All);
+        JPH::EAllowedDOFs allowedDegreesOfFreedom = JPH::EAllowedDOFs::All, bool isSensor = false);
 
     /// \brief Called after body has been created
     Ref<PhysicsBody> OnBodyCreated(Ref<PhysicsBody>&& body, bool addToWorld);
@@ -238,6 +258,8 @@ private:
     float latestPhysicsTime = 0;
     float averagePhysicsTime = 0;
 
+    float backgroundSimulatedTime = 0;
+
     /// \brief Debug draw level (0 is disabled)
     ///
     /// 1 is just bodies
@@ -256,10 +278,6 @@ private:
     std::unique_ptr<BodyActivationListener> activationListener;
     std::unique_ptr<StepListener> stepListener;
 
-    // TODO: switch to this custom one
-    // std::unique_ptr<TaskSystem> jobSystem;
-    std::unique_ptr<JPH::JobSystemThreadPool> jobSystem;
-
     std::unique_ptr<JPH::TempAllocator> tempAllocator;
 
     // Simulation configuration
@@ -267,6 +285,12 @@ private:
     int collisionStepsPerUpdate = 1;
 
     int simulationsBetweenBroadPhaseOptimization = 67;
+
+    /// When running multiple physics steps with a single call to the simulation update methods this is used to not
+    /// discard collision recording information after the first step allowing application logic to read it
+    bool nextStepIsFresh = true;
+
+    std::atomic<bool> runningBackgroundSimulation{false};
 
     // Settings that only apply when creating a new physics system
 

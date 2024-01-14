@@ -42,11 +42,9 @@ public class TimelineTab : PanelContainer
 
     public TimelineTab()
     {
-        customRichTextLabelScene = GD.Load<PackedScene>(
-            "res://src/gui_common/CustomRichTextLabel.tscn");
+        customRichTextLabelScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
 
-        eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
-            "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
+        eventHighlightStyleBox = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineEventHighlight.tres");
     }
 
     public enum Filters
@@ -102,8 +100,8 @@ public class TimelineTab : PanelContainer
 
             foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
             {
-                var section = new TimelineSection(
-                    customRichTextLabelScene, eventHighlightStyleBox, (entry.Key, entry.Value));
+                var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
+                    (entry.Key, entry.Value));
 
                 cachedGlobalTimelineElements.Add(section);
                 globalEventsContainer.AddChild(section);
@@ -118,8 +116,8 @@ public class TimelineTab : PanelContainer
         for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = targetPatch.History[i];
-            var section = new TimelineSection(
-                customRichTextLabelScene, eventHighlightStyleBox, (snapshot.TimePeriod, snapshot.EventsLog));
+            var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
+                (snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
             localEventsContainer.AddChild(section);

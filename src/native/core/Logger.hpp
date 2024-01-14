@@ -10,7 +10,10 @@ enum class LogLevel : int8_t
     Debug = 0,
     Info = 1,
     Warning = 2,
-    Error = 3
+    Error = 3,
+
+    // Just write to log without formatting
+    Write,
 };
 
 /// \brief Provides native side logging support. Forwards logging to the usual Godot log
@@ -44,10 +47,16 @@ public:
         Log(message, LogLevel::Error);
     }
 
+    THRIVE_NATIVE_API inline void Write(std::string_view message)
+    {
+        Log(message, LogLevel::Write);
+    }
+
     THRIVE_NATIVE_API void Log(std::string_view message, LogLevel level);
 
     /// \brief Sets the log level which controls what log messages actually get passed
-    THRIVE_NATIVE_API void SetLogLevel(LogLevel level){
+    THRIVE_NATIVE_API void SetLogLevel(LogLevel level)
+    {
         currentLoggingLevel = level;
     }
 
@@ -58,7 +67,8 @@ public:
     THRIVE_NATIVE_API void SetLogTargetOverride(std::function<void(std::string_view, LogLevel)>&& logReceiver);
 
     /// \brief When flush on error is on, the output is flushed on each error message
-    THRIVE_NATIVE_API void SetFlushOnError(bool flush){
+    THRIVE_NATIVE_API void SetFlushOnError(bool flush)
+    {
         flushOnError = flush;
     }
 
@@ -77,3 +87,4 @@ private:
 #define LOG_INFO(x) Thrive::Logger::Get().LogInfo(x)
 #define LOG_WARNING(x) Thrive::Logger::Get().LogWarning(x)
 #define LOG_ERROR(x) Thrive::Logger::Get().LogError(x)
+#define LOG_WRITE(x) Thrive::Logger::Get().Write(x)

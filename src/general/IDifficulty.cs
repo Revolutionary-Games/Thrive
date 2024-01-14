@@ -48,6 +48,17 @@ public interface IDifficulty : IRegistryAssignable
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
     /// </summary>
     public bool LimitGrowthRate { get; }
+
+    /// <summary>
+    ///   How intense should the fog-of-war be
+    /// </summary>
+    public FogOfWarMode FogOfWarMode { get; }
+
+    /// <summary>
+    ///   Whether organelle unlocks are enabled or not
+    ///   If not, all organelles are unlocked by default
+    /// </summary>
+    public bool OrganelleUnlocksEnabled { get; }
 }
 
 public static class DifficultyHelpers
@@ -65,6 +76,8 @@ public static class DifficultyHelpers
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             PassiveReproduction = difficulty.PassiveReproduction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
+            FogOfWarMode = difficulty.FogOfWarMode,
+            OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
         };
     }
 
@@ -81,6 +94,8 @@ public static class DifficultyHelpers
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
-            $", Limit Growth Rate: {difficulty.LimitGrowthRate}";
+            $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
+            $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
+            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
     }
 }

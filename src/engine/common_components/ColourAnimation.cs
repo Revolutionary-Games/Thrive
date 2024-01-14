@@ -6,6 +6,7 @@
     /// <summary>
     ///   Specifies simple colour changing animations
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ColourAnimation
     {
         /// <summary>
@@ -132,14 +133,25 @@
         /// </summary>
         public static void UpdateAnimationForNewDefaultColour(this ref ColourAnimation animation)
         {
+            // Do a general mark that colour is not applied to be symmetric in usage with ResetColour
+            animation.ColourApplied = false;
+
+            animation.AnimationTargetColour = animation.DefaultColour;
+
             if (!animation.Animating)
+            {
+                // TODO: should this instead smoothly animate to the new colour or just do it like this? (see the
+                // variable assignment above for how it is set)
                 return;
+            }
+
+            // Prevent any animations from overriding this (which would cause the new default colour to not stick)
+            animation.AnimationUserInfo = int.MaxValue;
 
             // Replace current animation with one going to the new base colour
             animation.AutoReverseAnimation = false;
 
             animation.AnimationStartColour = animation.CurrentColour;
-            animation.AnimationTargetColour = animation.DefaultColour;
             animation.AnimationElapsed = 0;
             animation.AnimationUserInfo = 0;
         }

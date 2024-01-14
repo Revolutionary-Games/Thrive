@@ -18,7 +18,7 @@
         private readonly CompoundCloudSystem compoundCloudSystem;
 
         public CompoundAbsorptionSystem(CompoundCloudSystem compoundCloudSystem, World world, IParallelRunner runner) :
-            base(world, runner)
+            base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             this.compoundCloudSystem = compoundCloudSystem;
         }

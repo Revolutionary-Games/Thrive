@@ -45,6 +45,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         "revision.txt",
         "ThriveAssetsLICENSE.txt",
         "GodotLicense.txt",
+        "runtime_licenses.txt",
         "gpl.txt",
         "LICENSE.txt",
         "README.txt",
@@ -55,6 +56,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         new("assets/LICENSE.txt", "ThriveAssetsLICENSE.txt"),
         new("assets/README.txt", "ThriveAssetsREADME.txt"),
         new("doc/GodotLicense.txt", "GodotLicense.txt"),
+        new("doc/RuntimeLicenses.txt", "RuntimeLicenses.txt"),
     };
 
     private static readonly IReadOnlyCollection<FileToPackage> NonSteamLicenseFiles = new List<FileToPackage>
@@ -65,6 +67,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private static readonly IReadOnlyCollection<string> SourceItemsToPackage = new List<string>
     {
+        // Need a renamed git submodule file to include it in the package
+        "gitmodules",
         "default_bus_layout.tres",
         "default_env.tres",
         "Directory.Build.props",
@@ -119,8 +123,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac && p != PackagePlatform.Web)
-                    .ToList();
+                DefaultPlatforms = ThrivePlatforms.Where(p =>
+                    p != PackagePlatform.Mac && p != PackagePlatform.Web && p != PackagePlatform.Windows32).ToList();
             }
         }
 
@@ -289,8 +293,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             if (!File.Exists(expectedWebFile))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected web file ({expectedWebFile}) was not created on export. " +
+                ColourConsole.WriteErrorLine($"Expected web file ({expectedWebFile}) was not created on export. " +
                     "Are export templates installed?");
                 return false;
             }
@@ -403,6 +406,19 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         ColourConsole.WriteSuccessLine("Native library operations succeeded");
 
         return true;
+    }
+
+    protected override async Task<bool> CompressSourceCode(CancellationToken cancellationToken)
+    {
+        // Prepare git modules before compressing (see the comment on the file list why this is like this)
+        File.Copy(".gitmodules", "gitmodules", true);
+
+        var result = await base.CompressSourceCode(cancellationToken);
+
+        // Remove the copied file to not have it hang around
+        File.Delete("gitmodules");
+
+        return result;
     }
 
     protected override async Task<bool> Compress(PackagePlatform platform, string folder, string archiveFile,
@@ -618,8 +634,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (version != requiredVersion)
         {
-            ColourConsole.WriteErrorLine(
-                $"Godot is available but it is the wrong version (installed) {version} != " +
+            ColourConsole.WriteErrorLine($"Godot is available but it is the wrong version (installed) {version} != " +
                 $"{requiredVersion} (required)");
             return false;
         }
@@ -663,6 +678,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         await using var revision = File.CreateText(RevisionFile);
 
         await revision.WriteLineAsync(await GitRunHelpers.Log("./", 1, cancellationToken));
+        await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync(await GitRunHelpers.SubmoduleInfo("./", cancellationToken));
+        await revision.WriteLineAsync(string.Empty);
+        await revision.WriteLineAsync("Submodules used by native libraries may be newer than what precompiled files " +
+            "were used. Please cross reference the reported native library version with Thrive repository to see " +
+            "exact used submodule version");
         await revision.WriteLineAsync(string.Empty);
 
         var diff = (await GitRunHelpers.Diff("./", cancellationToken, false, false)).Trim();

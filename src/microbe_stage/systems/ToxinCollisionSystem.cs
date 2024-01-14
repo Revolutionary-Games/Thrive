@@ -73,6 +73,9 @@
                 // And make sure the flag we check for is set immediately to not process this projectile again
                 // (this is just extra safety against the time over callback configuration not working correctly)
                 damageSource.ProjectileUsed = true;
+
+                // Only deal damage at most to a single thing
+                break;
             }
         }
 
@@ -82,29 +85,39 @@
         /// <returns>False when should pass through</returns>
         private static bool FilterCollisions(ref PhysicsCollision collision)
         {
-            // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
-            // periodically)
-
-            // Toxin is always the first entity as it is what registers this collision callback
-            if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
-            {
-                // Hit something other than a microbe
-                return true;
-            }
-
-            ref var speciesComponent = ref collision.SecondEntity.Get<MicrobeSpeciesMember>();
-
             try
             {
-                ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
+                // TODO: maybe this could cache something for slight speed up? (though the cache would need clearing
+                // periodically)
 
-                // Don't hit microbes of the same species as the toxin shooter
-                if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
-                    return false;
+                // Toxin is always the first entity as it is what registers this collision callback
+                if (!collision.SecondEntity.Has<MicrobeSpeciesMember>())
+                {
+                    // Hit something other than a microbe
+                    return true;
+                }
+
+                ref var speciesComponent = ref collision.SecondEntity.Get<MicrobeSpeciesMember>();
+
+                try
+                {
+                    ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
+
+                    // Don't hit microbes of the same species as the toxin shooter
+                    if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
+                        return false;
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr($"Entity that collided as a toxin is missing {nameof(ToxinDamageSource)} component: ",
+                        e);
+                }
             }
             catch (Exception e)
             {
-                GD.PrintErr($"Entity that collided as a toxin is missing {nameof(ToxinDamageSource)} component: ", e);
+                // Catch any exceptions to not let them escape up to the native code calling side which would blow up
+                // everything
+                GD.PrintErr("Unexpected error in collision filter: ", e);
             }
 
             // No reason why this shouldn't collie
@@ -120,19 +133,41 @@
 
             var damageTarget = collision.SecondEntity;
 
+            // TODO: there is a pretty rare bug where the collision data has random entities in it
+
             // Skip if hit something that's not a microbe (we don't know how to damage other things currently)
-            if (!damageTarget.Has<MicrobeSpeciesMember>())
+            if (!damageTarget.Has<SpeciesMember>())
                 return false;
 
-            ref var speciesComponent = ref damageTarget.Get<MicrobeSpeciesMember>();
+            ref var speciesComponent = ref damageTarget.Get<SpeciesMember>();
 
             try
             {
                 ref var damageSource = ref collision.FirstEntity.Get<ToxinDamageSource>();
 
                 // Disallow friendly fire
-                if (speciesComponent.Species == damageSource.ToxinProperties.Species)
+                if (speciesComponent.Species.ID == damageSource.ToxinProperties.Species.ID)
                     return false;
+
+                // Pilus and colony handling requires extra data
+                if (damageTarget.Has<MicrobePhysicsExtraData>())
+                {
+                    ref var extraData = ref damageTarget.Get<MicrobePhysicsExtraData>();
+
+                    // Skip damage if hit a pilus
+                    if (extraData.IsSubShapePilus(collision.SecondSubShapeData))
+                        return false;
+
+                    if (damageTarget.Has<MicrobeColony>())
+                    {
+                        // Hit a microbe colony, forward the damage to the exact colony member that was hit
+                        if (damageTarget.Get<MicrobeColony>().GetMicrobeFromSubShape(ref extraData,
+                                collision.SecondSubShapeData, out var hitEntity))
+                        {
+                            damageTarget = hitEntity;
+                        }
+                    }
+                }
 
                 ref var health = ref damageTarget.Get<Health>();
 
@@ -140,13 +175,6 @@
                 {
                     // Consume this even though this won't deal damage
                     return true;
-                }
-
-                if (damageTarget.Has<MicrobeColony>())
-                {
-                    // Hit a microbe colony, forward the damage to the exact colony member that was hit
-                    // TODO: forward damage to specific microbe
-                    throw new NotImplementedException();
                 }
 
                 if (damageTarget.Has<CellProperties>())

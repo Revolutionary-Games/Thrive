@@ -52,10 +52,10 @@ public class MutationPointsBar : HBoxContainer
     {
         if (tween)
         {
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsSubtractBar, currentMutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+            GUICommon.Instance.TweenBarValue(mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS,
+                0.5f);
+            GUICommon.Instance.TweenBarValue(mutationPointsSubtractBar, currentMutationPoints,
+                Constants.BASE_MUTATION_POINTS, 0.7f);
         }
         else
         {

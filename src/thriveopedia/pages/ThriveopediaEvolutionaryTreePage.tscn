@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/SpeciesDetailsPanelWithFossilisation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/auto-evo/EvolutionaryTree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/thriveopedia/ThriveopediaPage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/thriveopedia/pages/ThriveopediaEvolutionaryTreePage.cs" type="Script" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=9]
 
 [node name="ThriveopediaEvolutionaryTreePage" instance=ExtResource( 6 )]
 script = ExtResource( 8 )
 DisplayBackground = false
-DisabledInFreebuildPath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild")
+ErrorContainerPath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer")
 EvolutionaryTreePath = NodePath("Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 SpeciesDetailsPanelPath = NodePath("Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 
@@ -50,25 +49,21 @@ margin_top = 10.0
 margin_right = 533.0
 margin_bottom = 586.0
 
-[node name="DisabledInFreebuild" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="ErrorContainer" type="VBoxContainer" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 visible = false
-margin_top = 24.0
-margin_right = 540.0
-margin_bottom = 65.0
+margin_right = 523.0
+margin_bottom = 49.0
 
-[node name="Control" type="Control" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild" index="0"]
-margin_right = 540.0
+[node name="Control" type="Control" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="0"]
+margin_right = 523.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="DisabledInFreebuildLabel" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/DisabledInFreebuild" index="1"]
+[node name="GenericErrorText" type="Label" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorContainer" index="1"]
 margin_top = 24.0
-margin_right = 540.0
-margin_bottom = 41.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_fonts/font = ExtResource( 9 )
-text = "EVOLUTIONARY_TREE_DISABLED_LABEL"
-autowrap = true
+margin_right = 523.0
+margin_bottom = 49.0
+text = "EVOLUTIONARY_TREE_BUILD_FAILED"
 
 [node name="EvolutionaryTree" parent="Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0

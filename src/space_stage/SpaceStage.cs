@@ -84,6 +84,8 @@ public class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
 
+    public override MainGameState GameState => MainGameState.SpaceStage;
+
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
 

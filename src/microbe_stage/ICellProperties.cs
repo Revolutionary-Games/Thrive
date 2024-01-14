@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Generic interface to allow working with microbe species and also multicellular species' individual cell types
 /// </summary>
-public interface ICellProperties
+public interface ICellProperties : ISimulationPhotographable
 {
     public OrganelleLayout<OrganelleTemplate> Organelles { get; }
     public MembraneType MembraneType { get; set; }
@@ -12,9 +12,6 @@ public interface ICellProperties
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
 
-    // TODO: this is a bit expensive property now as this uses MicrobeInternalCalculations.CalculateRotationSpeed which
-    // now needs to generate the full physics shape to calculate inertia. Maybe the users of this could be switched
-    // to a lazy method to ensure that species generation and modification is faster?
     public float BaseRotationSpeed { get; set; }
 
     /// <summary>
@@ -27,14 +24,18 @@ public interface ICellProperties
     /// <summary>
     ///   Repositions the cell to the origin and recalculates any properties dependant on its position.
     /// </summary>
-    public void RepositionToOrigin();
+    /// <returns>True when changes were made, false if everything was positioned well already</returns>
+    public bool RepositionToOrigin();
 
     public void UpdateNameIfValid(string newName);
 }
 
-public static class CellPropertiesHelpers
+/// <summary>
+///   General helpers for working with a general <see cref="ICellProperties"/> type.
+///   <see cref="Components.CellPropertiesHelpers"/> are related to ECS component operations.
+/// </summary>
+public static class GeneralCellPropertiesHelpers
 {
-    // TODO: this can probably be deleted entirely as unused old code
     /// <summary>
     ///   The total compounds in the composition of all organelles
     /// </summary>
@@ -48,5 +49,32 @@ public static class CellPropertiesHelpers
         }
 
         return result;
+    }
+
+    public static void SetupWorldEntities(this ICellProperties properties, IWorldSimulation worldSimulation)
+    {
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), properties).SetupWorldEntities(
+            worldSimulation);
+    }
+
+    public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
+    }
+
+    public static int GetVisualHashCode(this ICellProperties properties)
+    {
+        int hash = properties.Colour.GetHashCode() * 607;
+
+        hash ^= (properties.MembraneType.GetHashCode() * 5743) ^ (properties.MembraneRigidity.GetHashCode() * 5749) ^
+            ((properties.IsBacteria ? 1 : 0) * 5779) ^ (properties.Organelles.Count * 131);
+
+        int counter = 0;
+        foreach (var organelle in properties.Organelles)
+        {
+            hash ^= counter++ * 13 * organelle.GetHashCode();
+        }
+
+        return hash;
     }
 }

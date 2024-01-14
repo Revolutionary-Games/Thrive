@@ -6,6 +6,7 @@
     /// <summary>
     ///   Entities that despawn after a certain amount of time
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct TimedLife
     {
         /// <summary>
@@ -28,9 +29,23 @@
         ///   If not null then this entity is fading out and the timed despawn system will wait until this time is up
         ///   as well
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: switch to a separate bool and float to avoid having to box this variable in and produce garbage
+        ///   </para>
+        /// </remarks>
         public float? FadeTimeRemaining;
 
         public bool OnTimeOverTriggered;
+
+        public TimedLife(float timeToLiveRemaining)
+        {
+            CustomTimeOverCallback = null;
+            TimeToLiveRemaining = timeToLiveRemaining;
+
+            FadeTimeRemaining = null;
+            OnTimeOverTriggered = false;
+        }
 
         public delegate bool OnTimeOver(Entity entity, ref TimedLife timedLife);
     }

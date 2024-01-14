@@ -250,6 +250,16 @@ public class Settings
     [JsonProperty]
     public SettingValue<int> ThreadCount { get; private set; } = new(4);
 
+    [JsonProperty]
+    public SettingValue<bool> UseManualNativeThreadCount { get; private set; } = new(false);
+
+    /// <summary>
+    ///   Manually set number of native threads to use. Applies similarly to the C# side of things (i.e. only when
+    ///   manual count is enabled)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> NativeThreadCount { get; private set; } = new(3);
+
     /// <summary>
     ///   Sets the maximum number of entities that can exist at one time.
     /// </summary>
@@ -530,8 +540,7 @@ public class Settings
     {
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
-                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(
-                    x => new SpecifiedInputKey(x)).ToList())!);
+                p => InputMap.GetActionList(p).OfType<InputEvent>().Select(x => new SpecifiedInputKey(x)).ToList())!);
     }
 
     /// <summary>
@@ -903,7 +912,14 @@ public class Settings
                 settings = new Settings();
             }
 
-            settings.ApplyAll(true);
+            if (!SceneManager.QuitOrQuitting)
+            {
+                settings.ApplyAll(true);
+            }
+            else
+            {
+                GD.PrintErr("Skipping settings apply as the game should close soon");
+            }
 
             return settings;
         }

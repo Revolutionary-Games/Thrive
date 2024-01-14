@@ -120,6 +120,34 @@ public class ColonyCompoundBag : ICompoundStorage
             .GetEnumerator();
     }
 
+    public void ClampNegativeCompoundAmounts()
+    {
+        foreach (var bag in GetCompoundBags())
+            bag.ClampNegativeCompoundAmounts();
+    }
+
+    public bool IsUsefulInAnyCompoundBag(Compound compound)
+    {
+        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
+    }
+
+    public bool AnyIsUsefulInAnyCompoundBag(IEnumerable<Compound> compounds)
+    {
+        // Just in case the compound bag method gets turned back into an iterator, this is fetched just once
+        var bags = GetCompoundBags();
+
+        foreach (var compound in compounds)
+        {
+            foreach (var bag in bags)
+            {
+                if (bag.IsUseful(compound))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
@@ -170,12 +198,6 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClearCompounds();
     }
 
-    public void ClampNegativeCompoundAmounts()
-    {
-        foreach (var bag in GetCompoundBags())
-            bag.ClampNegativeCompoundAmounts();
-    }
-
     private static bool IsUsefulInAnyCompoundBag(Compound compound, IEnumerable<CompoundBag> compoundBags)
     {
         return compoundBags.Any(p => p.IsUseful(compound));
@@ -184,10 +206,5 @@ public class ColonyCompoundBag : ICompoundStorage
     private ICollection<CompoundBag> GetCompoundBags()
     {
         return colonyBags;
-    }
-
-    private bool IsUsefulInAnyCompoundBag(Compound compound)
-    {
-        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
     }
 }

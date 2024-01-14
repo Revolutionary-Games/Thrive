@@ -64,10 +64,9 @@ public class MetaballPopupMenu : HexPopupMenu
         if (deleteButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(
-                SelectedMetaballs
-                    .Select(o =>
-                        (EditorCombinableActionData)new MetaballRemoveActionData<MulticellularMetaball>(o, null))) ??
+        var mpCost = GetActionPrice?.Invoke(SelectedMetaballs
+                .Select(o =>
+                    (EditorCombinableActionData)new MetaballRemoveActionData<MulticellularMetaball>(o, null))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

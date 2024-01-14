@@ -4,6 +4,7 @@
     ///   Marks an entity as the one for the game's camera to follow. Also requires a <see cref="WorldPosition"/>
     ///   component.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CameraFollowTarget
     {
         /// <summary>

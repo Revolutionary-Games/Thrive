@@ -347,9 +347,8 @@ public class Mutations
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
-            foreach (var organelle in mutatedOrganelles.Where(
-                         o => islandHexes.Any(h =>
-                             o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            foreach (var organelle in mutatedOrganelles.Where(o => islandHexes.Any(h =>
+                         o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
             {
                 organelle.Position -= minSubHex;
             }

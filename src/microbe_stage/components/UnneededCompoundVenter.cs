@@ -3,6 +3,7 @@
     /// <summary>
     ///   Makes entities vent excess (or not-useful) compounds from
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct UnneededCompoundVenter
     {
         /// <summary>

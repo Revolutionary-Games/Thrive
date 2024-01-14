@@ -410,7 +410,7 @@ public class CreditsScroll : Container
         var assetLicenseText = CreateFileLoadedPart(offset, Constants.ASSETS_README);
         offset += (int)assetLicenseText.Height + ExtraOffsetAfterTeam;
 
-        // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+        // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse RedundantIfElseBlock
 #pragma warning disable 162
         if (ShowFullLicenseTexts)
         {
@@ -418,12 +418,14 @@ public class CreditsScroll : Container
             var fullLicensesHeading = CreateDynamicPart(offset, "Full license texts follow");
             fullLicensesHeading.OnBecomeVisible += LoadFullLicenseTexts;
         }
+        else
+        {
+            var fullLicensesInfo = CreateDynamicPart(offset, "You can find full licenses in the \"extras\" menu");
+            fullLicensesInfo.OnBecomeVisible += LoadEndRemarks;
+        }
 
-        var fullLicensesInfo = CreateDynamicPart(offset, "You can find full licenses in the \"extras\" menu");
-        fullLicensesInfo.OnBecomeVisible += LoadEndRemarks;
+        // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse RedundantIfElseBlock
 #pragma warning restore 162
-
-        // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
     }
 
     private void LoadFullLicenseTexts()
@@ -474,9 +476,23 @@ public class CreditsScroll : Container
 
             endOfLicensesMarker.OnBecomeVisible += () =>
             {
-                // Restore normal speed after licenses are pretty much over
-                ScrollSpeed = normalScrollSpeed;
-                LoadEndRemarks();
+                // Show the runtime licenses
+                var runtimeLicenseLabel =
+                    CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart,
+                        Constants.RUNTIME_LICENSE_FILE);
+
+                runtimeLicenseLabel.OnBecomeVisible += () =>
+                {
+                    int offset2 = GetNextDynamicSectionOffset();
+                    var secondEndMarker = CreateDynamicPart(offset2, " ");
+
+                    secondEndMarker.OnBecomeVisible += () =>
+                    {
+                        // Restore normal speed after licenses are pretty much over
+                        ScrollSpeed = normalScrollSpeed;
+                        LoadEndRemarks();
+                    };
+                };
             };
         };
     }
@@ -494,33 +510,56 @@ public class CreditsScroll : Container
     {
         switch (team)
         {
-            case ProgrammingTeamName: return TranslationServer.Translate("PROGRAMMING_TEAM");
-            case TheoryTeamName: return TranslationServer.Translate("THEORY_TEAM");
-            case GraphicsTeamName: return TranslationServer.Translate("GRAPHICS_TEAM");
-            case SoundTeamName: return TranslationServer.Translate("SOUND_TEAM");
-            case OutreachTeamName: return TranslationServer.Translate("OUTREACH_TEAM");
-            case GameDesignTeamName: return TranslationServer.Translate("GAME_DESIGN_TEAM");
-            case TestingTeamName: return TranslationServer.Translate("TESTING_TEAM");
-            case ProjectManagementTeamName: return TranslationServer.Translate("PROJECT_MANAGEMENT_TEAM");
-            case "Pull Requests / Programming": return TranslationServer.Translate("PULL_REQUESTS_PROGRAMMING");
-            case "VIP_PATRONS": return TranslationServer.Translate("VIP_PATRONS");
-            case "DEV_BUILD_PATRONS": return TranslationServer.Translate("DEV_BUILD_PATRONS");
-            case "SUPPORTER_PATRONS": return TranslationServer.Translate("SUPPORTER_PATRONS");
-            case "January": return TranslationServer.Translate("JANUARY");
-            case "February": return TranslationServer.Translate("FEBRUARY");
-            case "March": return TranslationServer.Translate("MARCH");
-            case "April": return TranslationServer.Translate("APRIL");
-            case "May": return TranslationServer.Translate("MAY");
-            case "June": return TranslationServer.Translate("JUNE");
-            case "July": return TranslationServer.Translate("JULY");
-            case "August": return TranslationServer.Translate("AUGUST");
-            case "September": return TranslationServer.Translate("SEPTEMBER");
-            case "October": return TranslationServer.Translate("OCTOBER");
-            case "November": return TranslationServer.Translate("NOVEMBER");
-            case "December": return TranslationServer.Translate("DECEMBER");
+            case ProgrammingTeamName:
+                return TranslationServer.Translate("PROGRAMMING_TEAM");
+            case TheoryTeamName:
+                return TranslationServer.Translate("THEORY_TEAM");
+            case GraphicsTeamName:
+                return TranslationServer.Translate("GRAPHICS_TEAM");
+            case SoundTeamName:
+                return TranslationServer.Translate("SOUND_TEAM");
+            case OutreachTeamName:
+                return TranslationServer.Translate("OUTREACH_TEAM");
+            case GameDesignTeamName:
+                return TranslationServer.Translate("GAME_DESIGN_TEAM");
+            case TestingTeamName:
+                return TranslationServer.Translate("TESTING_TEAM");
+            case ProjectManagementTeamName:
+                return TranslationServer.Translate("PROJECT_MANAGEMENT_TEAM");
+            case "Pull Requests / Programming":
+                return TranslationServer.Translate("PULL_REQUESTS_PROGRAMMING");
+            case "VIP_PATRONS":
+                return TranslationServer.Translate("VIP_PATRONS");
+            case "DEV_BUILD_PATRONS":
+                return TranslationServer.Translate("DEV_BUILD_PATRONS");
+            case "SUPPORTER_PATRONS":
+                return TranslationServer.Translate("SUPPORTER_PATRONS");
+            case "January":
+                return TranslationServer.Translate("JANUARY");
+            case "February":
+                return TranslationServer.Translate("FEBRUARY");
+            case "March":
+                return TranslationServer.Translate("MARCH");
+            case "April":
+                return TranslationServer.Translate("APRIL");
+            case "May":
+                return TranslationServer.Translate("MAY");
+            case "June":
+                return TranslationServer.Translate("JUNE");
+            case "July":
+                return TranslationServer.Translate("JULY");
+            case "August":
+                return TranslationServer.Translate("AUGUST");
+            case "September":
+                return TranslationServer.Translate("SEPTEMBER");
+            case "October":
+                return TranslationServer.Translate("OCTOBER");
+            case "November":
+                return TranslationServer.Translate("NOVEMBER");
+            case "December":
+                return TranslationServer.Translate("DECEMBER");
             default:
-                GD.Print(
-                    $"unknown heading '{team}' needs to be added to " +
+                GD.Print($"unknown heading '{team}' needs to be added to " +
                     $"{nameof(CreditsScroll)}.{nameof(GetTranslatedHeading)}");
                 return team;
         }

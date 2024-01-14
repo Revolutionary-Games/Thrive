@@ -3,6 +3,7 @@
     /// <summary>
     ///   An entity that constantly leaks compounds into the environment. Requires <see cref="CompoundStorage"/>.
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CompoundVenter
     {
         /// <summary>

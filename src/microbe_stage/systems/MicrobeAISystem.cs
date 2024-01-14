@@ -30,6 +30,7 @@
     [With(typeof(CellProperties))]
     [With(typeof(Engulfer))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeColony))]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
     {
         private readonly Compound atp;
@@ -76,7 +77,7 @@
         private bool skipAI;
 
         public MicrobeAISystem(IReadonlyCompoundClouds cloudSystem, World world, IParallelRunner runner) :
-            base(world, runner)
+            base(world, runner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
             clouds = cloudSystem;
 
@@ -270,7 +271,7 @@
             if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value) <
                 (1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR))
             {
-                FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, predator.Value,
+                FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, predator.Value,
                     speciesFocus, speciesActivity, speciesAggression, speciesFear, random);
                 return;
             }
@@ -303,10 +304,12 @@
                 {
                     case MicrobeSignalCommand.MoveToMe:
                     {
+                        // TODO: should these use signaling.ReceivedCommandSource ? As that's where the chemical signal
+                        // was smelled from
                         if (signaling.ReceivedCommandFromEntity.Has<WorldPosition>())
                         {
                             ai.MoveToLocation(signaling.ReceivedCommandFromEntity.Get<WorldPosition>().Position,
-                                ref control);
+                                ref control, entity);
                             return;
                         }
 
@@ -321,7 +324,7 @@
                             if (position.Position.DistanceSquaredTo(signalerPosition) >
                                 Constants.AI_FOLLOW_DISTANCE_SQUARED)
                             {
-                                ai.MoveToLocation(signalerPosition, ref control);
+                                ai.MoveToLocation(signalerPosition, ref control, entity);
                                 return;
                             }
 
@@ -339,7 +342,7 @@
                             if (position.Position.DistanceSquaredTo(signalerPosition) <
                                 Constants.AI_FLEE_DISTANCE_SQUARED)
                             {
-                                control.State = MicrobeState.Normal;
+                                control.SetStateColonyAware(entity, MicrobeState.Normal);
                                 control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
                                 // Direction is calculated to be the opposite from where we should flee
@@ -367,7 +370,7 @@
                         Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f &&
                         !isSessile)
                     {
-                        ai.MoveToLocation(potentiallyKnownPlayerPosition.Value, ref control);
+                        ai.MoveToLocation(potentiallyKnownPlayerPosition.Value, ref control, entity);
                         return;
                     }
 
@@ -383,8 +386,8 @@
                     speciesFocus, speciesOpportunism, random);
                 if (targetChunk != null)
                 {
-                    PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, targetChunk.Value.Position,
-                        speciesActivity, random);
+                    PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, entity,
+                        targetChunk.Value.Position, speciesActivity, random);
                     return;
                 }
             }
@@ -411,13 +414,13 @@
                     EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
                     10.0f * engulfer.EngulfingSize;
 
-                EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, prey, engulfPrey,
+                EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, entity, prey, engulfPrey,
                     speciesAggression, speciesFocus, speciesActivity, random);
                 return;
             }
 
             // There is no reason to be engulfing at this stage
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
 
             // Otherwise just wander around and look for compounds
             if (!isSessile)
@@ -646,12 +649,12 @@
         }
 
         private void PursueAndConsumeChunks(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-            ref Engulfer engulfer, Vector3 chunk, float speciesActivity, Random random)
+            ref Engulfer engulfer, in Entity entity, Vector3 chunk, float speciesActivity, Random random)
         {
             // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
             ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
             control.LookAtPoint = ai.TargetPosition;
-            SetEngulfIfClose(ref control, ref engulfer, ref position, chunk);
+            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
 
             // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
             if (random.NextDouble() < 0.05)
@@ -671,10 +674,10 @@
         }
 
         private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-            ref OrganelleContainer organelles, CompoundBag ourCompounds, Vector3 predatorLocation, float speciesFocus,
-            float speciesActivity, float speciesAggression, float speciesFear, Random random)
+            ref OrganelleContainer organelles, CompoundBag ourCompounds, in Entity entity, Vector3 predatorLocation,
+            float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear, Random random)
         {
-            control.State = MicrobeState.Normal;
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
 
             ai.TargetPosition = (2 * (position.Position - predatorLocation)) + position.Position;
 
@@ -710,10 +713,11 @@
         }
 
         private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
-            ref WorldPosition position, CompoundBag ourCompounds, Vector3 target, bool engulf, float speciesAggression,
+            ref WorldPosition position, CompoundBag ourCompounds, in Entity entity, Vector3 target, bool engulf,
+            float speciesAggression,
             float speciesFocus, float speciesActivity, Random random)
         {
-            control.State = engulf ? MicrobeState.Engulf : MicrobeState.Normal;
+            control.SetStateColonyAware(entity, engulf ? MicrobeState.Engulf : MicrobeState.Normal);
             ai.TargetPosition = target;
             control.LookAtPoint = ai.TargetPosition;
             if (CanShootToxin(ourCompounds, speciesFocus))
@@ -934,17 +938,17 @@
         }
 
         private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,
-            Vector3 targetPosition)
+            in Entity entity, Vector3 targetPosition)
         {
             // Turn on engulf mode if close
             // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
             if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * 2.0f)
             {
-                control.State = MicrobeState.Engulf;
+                control.SetStateColonyAware(entity, MicrobeState.Engulf);
             }
             else
             {
-                control.State = MicrobeState.Normal;
+                control.SetStateColonyAware(entity, MicrobeState.Normal);
             }
         }
 

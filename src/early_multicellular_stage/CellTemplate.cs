@@ -57,9 +57,13 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     [JsonIgnore]
     public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;
 
-    public void RepositionToOrigin()
+    [JsonIgnore]
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public bool RepositionToOrigin()
     {
-        CellType.RepositionToOrigin();
+        return CellType.RepositionToOrigin();
     }
 
     public void UpdateNameIfValid(string newName)
@@ -70,6 +74,21 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     public bool MatchesDefinition(IActionHex other)
     {
         return CellType == ((CellTemplate)other).CellType;
+    }
+
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
+    {
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+    }
+
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
+    }
+
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public object Clone()

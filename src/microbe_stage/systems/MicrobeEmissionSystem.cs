@@ -107,13 +107,6 @@
             if (engulfed)
                 return;
 
-            if (entity.Has<MicrobeColony>())
-            {
-                throw new NotImplementedException();
-
-                // PerformForOtherColonyMembersIfWeAreLeader(m => m.EmitToxin(agentType));
-            }
-
             if (control.AgentEmissionCooldown > 0)
                 return;
 

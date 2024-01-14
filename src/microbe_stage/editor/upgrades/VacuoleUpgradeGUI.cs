@@ -23,6 +23,8 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213
 
+    private Compound mucilage = null!;
+
     private List<Compound>? shownChoices;
 
     public override void _Ready()
@@ -33,12 +35,14 @@ public class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         compoundSelection = GetNode<VBoxContainer>(CompoundSelectionPath);
 
         compounds.Clear();
+
+        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame)
     {
         shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && !c.IsAgent).ToList();
+            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.InternalName == mucilage.InternalName)).ToList();
 
         foreach (var compound in shownChoices)
             compounds.AddItem(compound.Name);

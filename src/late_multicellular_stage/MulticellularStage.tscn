@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/awakening_stage/gui/SelectBuildingPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/late_multicellular_stage/ProgressBarSystem.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [sub_resource type="PanoramaSky" id=1]
 resource_local_to_scene = true
@@ -37,6 +36,7 @@ InteractionPopupPath = NodePath("InteractablePopup")
 ProgressBarSystemPath = NodePath("ProgressBarSystem")
 SelectBuildingPopupPath = NodePath("SelectBuildingPopup")
 WorldEnvironmentNodePath = NodePath("World/WorldEnvironment")
+WorldLightNodePath = NodePath("World/WorldLight")
 
 [node name="World" type="Node" parent="."]
 
@@ -65,7 +65,6 @@ pause_mode = 1
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
 MenuPath = NodePath("../PauseMenu")
-MicrobeControlRadialPath = NodePath("../RadialPopup")
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
 FossilisationDialogPath = NodePath("FossilisationDialog")
 
@@ -86,8 +85,6 @@ margin_bottom = 540.0
 
 [node name="SelectBuildingPopup" parent="." instance=ExtResource( 10 )]
 
-[node name="RadialPopup" parent="." instance=ExtResource( 87 )]
-
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -106,4 +103,5 @@ __meta__ = {
 [connection signal="OnOpenInventoryPressed" from="MulticellularHUD" to="PlayerMulticellularInput" method="OpenInventory"]
 [connection signal="OnOpenMenu" from="MulticellularHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MulticellularHUD" to="PauseMenu" method="OpenToHelp"]
+[connection signal="OnSpeciesFossilised" from="MulticellularHUD/FossilisationDialog" to="MulticellularHUD" method="UpdateFossilisationButtonStates"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

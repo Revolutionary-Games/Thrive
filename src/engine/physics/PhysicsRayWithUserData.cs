@@ -20,12 +20,30 @@ public struct PhysicsRayWithUserData
     public readonly IntPtr Body;
 
     /// <summary>
-    ///   Sub-shape that was hit. Equals <see cref="PhysicsCollision.COLLISION_UNKNOWN_SUB_SHAPE"/> if unknown.
+    ///   Sub-shape hit data. Equals <see cref="PhysicsCollision.COLLISION_UNKNOWN_SUB_SHAPE"/> if unknown. Note that
+    ///   this is the unresolved form, you need to use <see cref="PhysicsShape.GetSubShapeIndexFromData"/> to get the
+    ///   real sub-shape from this data.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: maybe default to resolving things on the C++ side automatically (maybe with a ray parameter?)
+    ///   </para>
+    /// </remarks>
     public readonly uint SubShapeData;
 
     /// <summary>
     ///   How far along the cast ray this hit was (as a fraction of the total ray length)
     /// </summary>
     public readonly float HitFraction;
+
+    /// <summary>
+    ///   Copies a hit but replaces the entity. Used to resolve microbe hits to real microbe entities.
+    /// </summary>
+    public PhysicsRayWithUserData(PhysicsRayWithUserData copyFrom, Entity replaceEntity)
+    {
+        BodyEntity = replaceEntity;
+        Body = copyFrom.Body;
+        SubShapeData = copyFrom.SubShapeData;
+        HitFraction = copyFrom.HitFraction;
+    }
 }

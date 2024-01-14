@@ -1,12 +1,15 @@
 ﻿namespace Components
 {
     using Newtonsoft.Json;
+    using Systems;
 
     /// <summary>
     ///   Overrides rendering order for an entity with <see cref="EntityMaterial"/>. Used for some specific rendering
-    ///   effects that can't be done otherwise.
+    ///   effects that can't be done otherwise. Microbe stage specifically uses
+    ///   <see cref="MicrobeRenderPrioritySystem"/>
     /// </summary>
-    public struct RenderOrderOverride
+    [JSONDynamicTypeAllowed]
+    public struct RenderPriorityOverride
     {
         /// <summary>
         ///   Overrides the render priority of this Spatial. Use
@@ -20,11 +23,17 @@
         /// </summary>
         [JsonIgnore]
         public bool RenderPriorityApplied;
+
+        public RenderPriorityOverride(int renderPriority)
+        {
+            RenderPriority = renderPriority;
+            RenderPriorityApplied = false;
+        }
     }
 
     public static class RenderOrderOverrideHelpers
     {
-        public static void SetRenderPriority(this ref RenderOrderOverride spatialInstance, int priority)
+        public static void SetRenderPriority(this ref RenderPriorityOverride spatialInstance, int priority)
         {
             spatialInstance.RenderPriorityApplied = false;
             spatialInstance.RenderPriority = priority;

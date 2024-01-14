@@ -30,6 +30,9 @@ extern "C"
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
+    /// \brief Checks that current CPU has required features to run Thrive
+    [[maybe_unused]] THRIVE_NATIVE_API bool CheckRequiredCPUFeatures();
+
     // ------------------------------------ //
     // Logging
 
@@ -44,6 +47,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API bool ProcessPhysicalWorld(PhysicalWorld* physicalWorld, float delta);
 
+    [[maybe_unused]] THRIVE_NATIVE_API void ProcessPhysicalWorldInBackground(PhysicalWorld* physicalWorld, float delta);
+    [[maybe_unused]] THRIVE_NATIVE_API bool WaitForPhysicsToCompleteInPhysicalWorld(PhysicalWorld* physicalWorld);
+
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateMovingBodyWithAxisLock(
@@ -52,6 +58,10 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateStaticBody(PhysicalWorld* physicalWorld,
         PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool addToWorld = true);
+
+    [[maybe_unused]] THRIVE_NATIVE_API PhysicsBody* PhysicalWorldCreateSensor(PhysicalWorld* physicalWorld,
+        PhysicsShape* shape, JVec3 position, JQuat rotation = QuatIdentity, bool detectSleepingBodies = false,
+        bool detectStaticBodies = false);
 
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicalWorldAddBody(
         PhysicalWorld* physicalWorld, PhysicsBody* body, bool activate);
@@ -87,6 +97,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPositionAndRotation(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate = true);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity);
@@ -161,6 +174,8 @@ extern "C"
     // Body functions
     [[maybe_unused]] THRIVE_NATIVE_API void ReleasePhysicsBodyReference(PhysicsBody* body);
 
+    [[maybe_unused]] THRIVE_NATIVE_API bool PhysicsBodyIsDetached(PhysicsBody* body);
+
     /// Set user data for a physics body, note that currently all data needs to be the same size to fully work,
     /// which is specified by Thrive::PHYSICS_USER_DATA_SIZE
     [[maybe_unused]] THRIVE_NATIVE_API void PhysicsBodySetUserData(
@@ -195,8 +210,16 @@ extern "C"
     [[maybe_unused]] THRIVE_NATIVE_API JVecF3 ShapeCalculateResultingAngularVelocity(
         PhysicsShape* shape, JVecF3 appliedTorque, float deltaTime = 1);
 
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeIndex(PhysicsShape* shape, uint32_t subShapeData);
+
+    [[maybe_unused]] THRIVE_NATIVE_API uint32_t ShapeGetSubShapeIndexWithRemainder(
+        PhysicsShape* shape, uint32_t subShapeData, uint32_t& remainder);
+
     // ------------------------------------ //
     // Misc
+    [[maybe_unused]] THRIVE_NATIVE_API void SetNativeExecutorThreads(int32_t count);
+    [[maybe_unused]] THRIVE_NATIVE_API int32_t GetNativeExecutorThreads();
+
     [[maybe_unused]] THRIVE_NATIVE_API bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
     [[maybe_unused]] THRIVE_NATIVE_API void DisableDebugDrawerCallbacks();
 }

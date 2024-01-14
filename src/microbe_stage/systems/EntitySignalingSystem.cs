@@ -15,6 +15,7 @@
     /// </summary>
     [With(typeof(CommandSignaler))]
     [With(typeof(WorldPosition))]
+    [JsonObject(MemberSerialization.OptIn)]
     public sealed class EntitySignalingSystem : AEntitySetSystem<float>
     {
         private readonly Dictionary<ulong, List<(Entity Entity, Vector3 Position)>> entitiesOnChannels = new();
@@ -24,8 +25,16 @@
 
         private bool timeToUpdate;
 
-        public EntitySignalingSystem(World world, IParallelRunner runner) : base(world, runner)
+        public EntitySignalingSystem(World world, IParallelRunner runner) :
+            base(world, runner, Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
         {
+        }
+
+        [JsonConstructor]
+        public EntitySignalingSystem(float elapsedSinceUpdate) :
+            base(TemporarySystemHelper.GetDummyWorldForLoad(), null)
+        {
+            this.elapsedSinceUpdate = elapsedSinceUpdate;
         }
 
         protected override void PreUpdate(float state)

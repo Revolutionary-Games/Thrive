@@ -13,7 +13,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties, IPhotographable
+public class MicrobeSpecies : Species, ICellProperties
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -53,6 +53,11 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     public float MembraneRigidity { get; set; }
 
+    /// <summary>
+    ///   Organelles this species consist of. This is saved last to ensure organelle data that may refer back to this
+    ///   species can be loaded (for example cell-detecting chemoreceptors).
+    /// </summary>
+    [JsonProperty(Order = 1)]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
@@ -84,7 +89,15 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public bool CanEngulf => !MembraneType.CellWall;
 
     [JsonIgnore]
-    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
+
+    public static bool StateHasStabilizedImpl(IWorldSimulation worldSimulation)
+    {
+        // This is stabilized as long as the default no background operations check passes
+        // If this is changed CellType also needs changes
+        return true;
+    }
 
     public override void OnEdited()
     {
@@ -94,10 +107,11 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         UpdateInitialCompounds();
     }
 
-    public override void RepositionToOrigin()
+    public override bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public override void UpdateInitialCompounds()
@@ -166,25 +180,19 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
         MembraneRigidity = casted.MembraneRigidity;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        throw new NotImplementedException("need to reimplement photographing cells");
-
-        // var microbe = (Microbe)instancedScene;
-        // microbe.IsForPreviewOnly = true;
-        //
-        // // We need to call _Ready here as the object may not be attached to the scene yet by the photo studio
-        // microbe._Ready();
-        //
-        // microbe.ApplySpecies(this);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        throw new NotImplementedException();
+        ((MicrobeVisualOnlySimulation)worldSimulation).CreateVisualisationMicrobe(this);
+    }
 
-        // return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-        //     Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return StateHasStabilizedImpl(worldSimulation);
     }
 
     public override object Clone()
@@ -226,8 +234,7 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
     public override string GetDetailString()
     {
         return base.GetDetailString() + "\n" +
-            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(
-                MembraneType.Name,
+            TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT").FormatSafe(MembraneType.Name,
                 MembraneRigidity,
                 BaseSpeed,
                 BaseRotationSpeed,
@@ -236,7 +243,6 @@ public class MicrobeSpecies : Species, ICellProperties, IPhotographable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

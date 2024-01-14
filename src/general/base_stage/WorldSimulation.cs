@@ -13,12 +13,20 @@ using World = DefaultEcs.World;
 ///   types implementing this interface are in charge of running the gameplay simulation side of things. For example
 ///   microbe moving around, processing compounds, colliding, rendering etc.
 /// </summary>
-public abstract class WorldSimulation : IWorldSimulation
+[UseThriveSerializer]
+public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 {
-    protected readonly World entities = new();
+    /// <summary>
+    ///   Stores entities that are ignored on save. This field must be before <see cref="entities"/> for saving
+    ///   to work correctly.
+    /// </summary>
+    [JsonProperty]
+    protected readonly UnsavedEntities entitiesToNotSave;
 
-    // TODO: did these protected property loading work? Loading / saving for the entities
-    protected readonly List<Entity> queuedForDelete = new();
+    [JsonProperty]
+    protected readonly World entities;
+
+    protected readonly Queue<Entity> queuedForDelete = new();
 
     /// <summary>
     ///   Used to tell a few systems the approximate player position which might not always exist
@@ -31,15 +39,28 @@ public abstract class WorldSimulation : IWorldSimulation
 
     protected float accumulatedLogicTime;
 
-    // TODO: implement saving
-    // ReSharper disable once CollectionNeverQueried.Local
-    private readonly List<Entity> entitiesToNotSave = new();
-
+    // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
 
     private readonly Queue<EntityCommandRecorder> availableRecorders = new();
     private readonly HashSet<EntityCommandRecorder> nonEmptyRecorders = new();
     private int totalCreatedRecorders;
+
+    private float timeSinceLastEntityEstimate = 1;
+    private int ecsThreadsToUse = 1;
+
+    public WorldSimulation()
+    {
+        entities = new World();
+        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
+    }
+
+    [JsonConstructor]
+    public WorldSimulation(World entities)
+    {
+        this.entities = entities;
+        entitiesToNotSave = new UnsavedEntities(queuedForDelete);
+    }
 
     /// <summary>
     ///   Access to this world's entity system directly.
@@ -58,12 +79,7 @@ public abstract class WorldSimulation : IWorldSimulation
     [JsonIgnore]
     public World EntitySystem => entities;
 
-    /// <summary>
-    ///   Count of entities (with simulation heaviness weight) in the simulation.
-    ///   Spawning can be limited when over some limit to ensure performance doesn't degrade too much.
-    /// </summary>
-    [JsonProperty]
-    public float EntityCount { get; protected set; }
+    // TODO: if required add a property that exposes the spawn system total entity weight here
 
     /// <summary>
     ///   When set to false disables AI running
@@ -82,6 +98,18 @@ public abstract class WorldSimulation : IWorldSimulation
 
     [JsonIgnore]
     public bool Processing { get; private set; }
+
+    [JsonIgnore]
+    public bool NodeReferencesResolved { get; private set; }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+        InitSystemsEarly();
+    }
 
     /// <summary>
     ///   Process everything that needs to be done in a neat single method call
@@ -119,6 +147,9 @@ public abstract class WorldSimulation : IWorldSimulation
         if (accumulatedLogicTime < minimumTimeBetweenLogicUpdates)
             return false;
 
+        // Allow this time to actually reflect realtime
+        timeSinceLastEntityEstimate += accumulatedLogicTime;
+
         if (accumulatedLogicTime > Constants.SIMULATION_MAX_DELTA_TIME)
         {
             // Prevent lag spikes from messing with game logic too bad. The downside here is that at extremely low
@@ -128,10 +159,19 @@ public abstract class WorldSimulation : IWorldSimulation
 
         Processing = true;
 
-        OnCheckPhysicsBeforeProcessStart();
-
         // Make sure all commands are flushed if someone added some in the time between updates
         ApplyRecordedCommands();
+
+        if (timeSinceLastEntityEstimate > Constants.SIMULATION_OPTIMIZE_THREADS_INTERVAL)
+        {
+            timeSinceLastEntityEstimate = 0;
+            ecsThreadsToUse = EstimateThreadsUtilizedBySystems();
+        }
+
+        ApplyECSThreadCount(ecsThreadsToUse);
+
+        // Make sure physics is not running while the systems are
+        WaitForStartedPhysicsRun();
 
         OnProcessFixedLogic(accumulatedLogicTime);
 
@@ -163,6 +203,13 @@ public abstract class WorldSimulation : IWorldSimulation
     ///   for GUI animation quality. Needs to be called after <see cref="ProcessLogic"/> for a frame when this occurs
     ///   (if a logic update was also performed this frame).
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this may not read any physics state as the next physics run may already be in progress on a
+    ///     different thread. Fixed process must be used to read / write physics data, and copy it in case any would be
+    ///     needed here.
+    ///   </para>
+    /// </remarks>
     public abstract void ProcessFrameLogic(float delta);
 
     public Entity CreateEmptyEntity()
@@ -170,8 +217,7 @@ public abstract class WorldSimulation : IWorldSimulation
         // Ensure thread unsafe operation doesn't happen
         if (Processing)
         {
-            throw new InvalidOperationException(
-                "Can't use entity create at this time, use deferred create");
+            throw new InvalidOperationException("Can't use entity create at this time, use deferred create");
         }
 
         return entities.CreateEntity();
@@ -184,35 +230,61 @@ public abstract class WorldSimulation : IWorldSimulation
 
     public bool DestroyEntity(Entity entity)
     {
-        if (queuedForDelete.Contains(entity))
+        lock (queuedForDelete)
         {
-            // Already queued for delete
-            return true;
+            if (queuedForDelete.Contains(entity))
+            {
+                // Already queued for delete
+                return true;
+            }
+
+            queuedForDelete.Enqueue(entity);
         }
 
-        queuedForDelete.Add(entity);
         return true;
     }
 
     public void DestroyAllEntities(Entity? skip = null)
     {
+        if (Processing)
+            throw new InvalidOperationException("Cannot destroy all entities while processing");
+
+        // Apply all commands first to clear these out to prevent these causing something to spawn after the clear
+        ApplyRecordedCommands();
+
         ProcessDestroyQueue();
 
-        // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
-        foreach (var entity in entities.ToList())
+        // This loop is here to ensure that no entities are left after destroy callbacks have been used
+        while (true)
         {
-            if (entity == skip)
-                continue;
+            bool despawned = false;
 
-            PerformEntityDestroy(entity);
+            // If destroy all is used a lot then this temporary memory use (ToList) here should be solved
+            foreach (var entity in entities.ToList())
+            {
+                if (entity == skip)
+                    continue;
+
+                PerformEntityDestroy(entity);
+                despawned = true;
+            }
+
+            if (!despawned || skip != null)
+                break;
         }
 
-        queuedForDelete.Clear();
+        lock (queuedForDelete)
+        {
+            queuedForDelete.Clear();
+        }
     }
 
     public void ReportEntityDyingSoon(in Entity entity)
     {
-        entitiesToNotSave.Add(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Add(entity);
+        }
     }
 
     /// <summary>
@@ -220,7 +292,10 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     public bool IsQueuedForDeletion(Entity entity)
     {
-        return queuedForDelete.Contains(entity);
+        lock (queuedForDelete)
+        {
+            return queuedForDelete.Contains(entity);
+        }
     }
 
     public EntityCommandRecorder StartRecordingEntityCommands()
@@ -265,13 +340,23 @@ public abstract class WorldSimulation : IWorldSimulation
     /// <returns>True when the entity is in this world and is not queued for deletion</returns>
     public bool IsEntityInWorld(Entity entity)
     {
-        return entity.IsAlive && !queuedForDelete.Contains(entity);
+        // TODO: check WorldId first somehow to ensure this doesn't access things out of bounds in the list of worlds?
+
+        if (!entity.IsAlive)
+            return false;
+
+        lock (queuedForDelete)
+        {
+            return !queuedForDelete.Contains(entity);
+        }
     }
 
-    public virtual void ReportPlayerPosition(Vector3 position)
+    public void ReportPlayerPosition(Vector3 position)
     {
         PlayerPosition = position;
         reportedPlayerPosition = position;
+
+        OnPlayerPositionSet(PlayerPosition);
     }
 
     /// <summary>
@@ -325,6 +410,8 @@ public abstract class WorldSimulation : IWorldSimulation
         minimumTimeBetweenLogicUpdates = 1 / logicFPS;
     }
 
+    public abstract bool HasSystemsWithPendingOperations();
+
     public virtual void FreeNodeResources()
     {
     }
@@ -340,21 +427,14 @@ public abstract class WorldSimulation : IWorldSimulation
     }
 
     /// <summary>
-    ///   Checks that previously started (on previous update) physics runs are complete before running this update.
-    ///   Also if the physics simulation is behind by too much then this steps the simulation extra times.
+    ///   Called just after resolving node references to allow the earliest systems to be created that for example need
+    ///   to have save properties applied to them.
     /// </summary>
-    protected virtual void OnCheckPhysicsBeforeProcessStart()
-    {
-        WaitForStartedPhysicsRun();
-
-        while (RunPhysicsIfBehind())
-        {
-        }
-    }
+    protected abstract void InitSystemsEarly();
 
     protected virtual void OnProcessPhysics(float delta)
     {
-        OnCheckPhysicsBeforeProcessStart();
+        WaitForStartedPhysicsRun();
         OnStartPhysicsRunIfTime(delta);
     }
 
@@ -363,28 +443,70 @@ public abstract class WorldSimulation : IWorldSimulation
     /// </summary>
     protected void OnInitialized()
     {
+        if (!NodeReferencesResolved)
+            throw new InvalidOperationException("Node reference resolve as not called");
+
         if (Initialized)
             throw new InvalidOperationException("This simulation was already initialized");
 
         Initialized = true;
+
+        // This is only really needed on load, but doesn't hurt to be here always
+        OnPlayerPositionSet(PlayerPosition);
     }
 
-    protected abstract void WaitForStartedPhysicsRun();
-    protected abstract void OnStartPhysicsRunIfTime(float delta);
-
     /// <summary>
-    ///   Should run the physics simulation if it is falling behind
+    ///   Checks that previously started (on previous update) physics runs are complete before running this update.
     /// </summary>
-    /// <returns>
-    ///   Should return true when behind and a step was run, this will be executed until this returns false
-    /// </returns>
-    protected abstract bool RunPhysicsIfBehind();
+    protected abstract void WaitForStartedPhysicsRun();
+
+    protected abstract void OnStartPhysicsRunIfTime(float delta);
 
     protected abstract void OnProcessFixedLogic(float delta);
 
+    protected virtual void OnPlayerPositionSet(Vector3 playerPosition)
+    {
+    }
+
+    /// <summary>
+    ///   Provides an estimate based on the number of entities (that are the most prevalent type) how many threads the
+    ///   ECS system should use when processing entities. This needs to be a bit lower than what maximally would give
+    ///   more performance to ensure systems with more thread switching overhead don't suffer from lowered performance.
+    /// </summary>
+    /// <returns>The number of simultaneous single entity system tasks there should be processed</returns>
+    protected virtual int EstimateThreadsUtilizedBySystems()
+    {
+        // By default no multithreading, just use main thread
+        return 1;
+    }
+
+    /// <summary>
+    ///   Sets the number of ECS threads to use by <see cref="TaskExecutor"/>. It's not the best to have this be
+    ///   a global property in the executor, but this works well enough with the worlds setting the number of threads
+    ///   to use just before running.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is overridable so that simulations that don't use threading can skip this operation to not mess with
+    ///     simulations that do use this (for example pure visuals simulations don't use threading).
+    ///   </para>
+    /// </remarks>
+    /// <param name="ecsThreadsToUse">Number of threads to use</param>
+    protected virtual void ApplyECSThreadCount(int ecsThreadsToUse)
+    {
+        TaskExecutor.Instance.ECSThrottling = ecsThreadsToUse;
+    }
+
     protected void PerformEntityDestroy(Entity entity)
     {
-        entitiesToNotSave.Remove(entity);
+        lock (entitiesToNotSave)
+        {
+            entitiesToNotSave.Remove(entity);
+        }
+
+        // Skip multiple destruction of entities that were already destroyed but were queued to be destroyed again
+        if (!entity.IsAlive)
+            return;
 
         OnEntityDestroyed(entity);
 
@@ -427,14 +549,18 @@ public abstract class WorldSimulation : IWorldSimulation
 
     private void ProcessDestroyQueue()
     {
-        foreach (var entity in queuedForDelete)
+        // We ensure that no processing operation can be in progress while this is called so this should be completely
+        // fine to use without a lock here
+        lock (queuedForDelete)
         {
-            PerformEntityDestroy(entity);
+            // This uses a while loop to allow entity destroy callbacks to queue more entities to be destroyed
+            while (queuedForDelete.Count > 0)
+            {
+                PerformEntityDestroy(queuedForDelete.Dequeue());
+            }
+
+            // TODO: would it make sense to switch entity count reporting to this class?
         }
-
-        // TODO: would it make sense to switch entity count reporting to this class?
-
-        queuedForDelete.Clear();
     }
 
     private void ApplyRecordedCommands()

@@ -11,6 +11,7 @@
     /// <summary>
     ///   Allows modifying <see cref="Physics"/> collisions of this entity
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct CollisionManagement
     {
         /// <summary>
@@ -72,9 +73,6 @@
         public bool StateApplied;
 
         // The following variables are internal for the collision management system and should not be modified
-        [JsonIgnore]
-        public bool CurrentCollisionState;
-
         [JsonIgnore]
         public bool CollisionFilterCallbackRegistered;
 

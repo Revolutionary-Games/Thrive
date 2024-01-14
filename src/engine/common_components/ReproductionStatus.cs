@@ -5,6 +5,7 @@
     /// <summary>
     ///   General info about the reproduction status of a creature
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct ReproductionStatus
     {
         public Dictionary<Compound, float>? MissingCompoundsForBaseReproduction;
@@ -32,9 +33,6 @@
 
             reproductionStatus.MissingCompoundsForBaseReproduction.Clear();
             reproductionStatus.MissingCompoundsForBaseReproduction.Merge(species.BaseReproductionCost);
-
-            // TODO: there was a line here to reset the multicellular growth needed totals, so whatever calls this will
-            // need to handle that in the future
         }
 
         public static void CalculateAlreadyUsedBaseReproductionCompounds(this ref ReproductionStatus reproductionStatus,

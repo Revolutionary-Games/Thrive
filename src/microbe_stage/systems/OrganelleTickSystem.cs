@@ -25,14 +25,18 @@
     [ReadsComponent(typeof(MicrobeControl))]
     [ReadsComponent(typeof(Physics))]
     [ReadsComponent(typeof(WorldPosition))]
+    [WritesToComponent(typeof(ManualPhysicsControl))]
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [RunsOnMainThread]
     public sealed class OrganelleTickSystem : AEntitySetSystem<float>
     {
+        private readonly IWorldSimulation worldSimulation;
         private readonly ConcurrentStack<(IOrganelleComponent Component, Entity Entity)> queuedSyncRuns = new();
 
-        public OrganelleTickSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)
+        public OrganelleTickSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
+            base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
+            this.worldSimulation = worldSimulation;
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -50,7 +54,7 @@
             {
                 foreach (var component in organelle.Components)
                 {
-                    component.UpdateAsync(ref organelleContainer, entity, delta);
+                    component.UpdateAsync(ref organelleContainer, entity, worldSimulation, delta);
 
                     if (component.UsesSyncProcess)
                         queuedSyncRuns.Push((component, entity));

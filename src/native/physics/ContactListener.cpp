@@ -3,6 +3,8 @@
 
 #include "Jolt/Physics/Body/Body.h"
 #include "Jolt/Physics/Collision/CollideShape.h"
+#include "Jolt/Physics/Collision/Shape/CompoundShape.h"
+#include "Jolt/Physics/Collision/Shape/SubShapeID.h"
 
 #include "DebugDrawForwarder.hpp"
 #include "PhysicsBody.hpp"
@@ -15,15 +17,29 @@ ContactListener::ContactListener()
     if (COLLISION_UNKNOWN_SUB_SHAPE != JPH::SubShapeID().GetValue())
     {
         LOG_ERROR("Incorrectly configured unknown collision value compared to what Jolt has");
-        abort();
+        std::abort();
     }
 }
 
 // ------------------------------------ //
+FORCE_INLINE float PreprocessPenetrationDepth(float penetration)
+{
+    // Seems like penetration can be negative (maybe when movement direction for collision resolving is negative), we
+    // always just want positive penetration for penetration amount calculations
+    return std::abs(penetration);
+}
+
 inline void PrepareBasicCollisionInfo(PhysicsCollision& collision, const PhysicsBody* body1, const PhysicsBody* body2)
 {
     collision.FirstBody = body1;
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<const PhysicsBody*> secondBodyAtomic{collision.SecondBody};
+
+    secondBodyAtomic.store(body2, std::memory_order::release);
+#else
     collision.SecondBody = body2;
+#endif
 
     if (body1->HasUserData()) [[likely]]
     {
@@ -53,8 +69,14 @@ inline void ClearUnknownDataForCollisionFilter(PhysicsCollision& collision)
     collision.PenetrationAmount = -1;
 }
 
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
+    const JPH::Body& joltBody1, const PhysicsBody* body2, const JPH::Body& joltBody2,
+    const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
+#else
 inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const PhysicsBody* body1,
     const PhysicsBody* body2, const JPH::ContactManifold& manifold, bool justStarted, bool swapOrder)
+#endif
 {
     if (swapOrder)
     {
@@ -65,6 +87,18 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
         PrepareBasicCollisionInfo(collision, body1, body2);
     }
 
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
+    if (swapOrder)
+    {
+        collision.SecondSubShapeData = ResolveTopLevelSubShapeId(&joltBody1, manifold.mSubShapeID1);
+        collision.FirstSubShapeData = ResolveTopLevelSubShapeId(&joltBody2, manifold.mSubShapeID2);
+    }
+    else
+    {
+        collision.FirstSubShapeData = ResolveTopLevelSubShapeId(&joltBody1, manifold.mSubShapeID1);
+        collision.SecondSubShapeData = ResolveTopLevelSubShapeId(&joltBody2, manifold.mSubShapeID2);
+    }
+#else
     if (swapOrder)
     {
         collision.SecondSubShapeData = manifold.mSubShapeID1.GetValue();
@@ -75,24 +109,56 @@ inline void PrepareCollisionInfoFromManifold(PhysicsCollision& collision, const 
         collision.FirstSubShapeData = manifold.mSubShapeID1.GetValue();
         collision.SecondSubShapeData = manifold.mSubShapeID2.GetValue();
     }
+#endif
 
-    collision.PenetrationAmount = manifold.mPenetrationDepth;
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<float> penetrationAtomic{collision.PenetrationAmount};
+
+    penetrationAtomic.store(PreprocessPenetrationDepth(manifold.mPenetrationDepth), std::memory_order::release);
+
+    const std::atomic_ref<bool> startedAtomic{collision.JustStarted};
+    startedAtomic.store(justStarted, std::memory_order::release);
+#else
+    collision.PenetrationAmount = PreprocessPenetrationDepth(manifold.mPenetrationDepth);
 
     collision.JustStarted = justStarted;
+#endif
+}
+
+/// \brief Updates just the properties of the collision that can change (i.e. collision entity IDs should have been set
+/// before as this will not touch them)
+inline void UpdateCollisionInfoFromManifold(
+    PhysicsCollision& collision, const JPH::ContactManifold& manifold, bool justStarted)
+{
+    // Just started status is written on top of the previous data if this
+    if (justStarted)
+    {
+#ifdef USE_ATOMIC_COLLISION_WRITE
+        const std::atomic_ref<bool> startedAtomic{collision.JustStarted};
+        startedAtomic.store(justStarted, std::memory_order::release);
+#else
+        collision.JustStarted = true;
+#endif
+    }
+
+    // Keep the highest penetration of the merged collisions
+
+#ifdef USE_ATOMIC_COLLISION_WRITE
+    const std::atomic_ref<float> penetrationAtomic{collision.PenetrationAmount};
+
+    penetrationAtomic.store(std::max(PreprocessPenetrationDepth(manifold.mPenetrationDepth),
+                                penetrationAtomic.load(std::memory_order::acquire)),
+        std::memory_order::release);
+#else
+    collision.PenetrationAmount =
+        std::max(PreprocessPenetrationDepth(manifold.mPenetrationDepth), collision.PenetrationAmount);
+#endif
 }
 
 JPH::ValidateResult ContactListener::OnContactValidate(const JPH::Body& body1, const JPH::Body& body2,
     JPH::RVec3Arg baseOffset, const JPH::CollideShapeResult& collisionResult)
 {
-    JPH::ValidateResult result;
-    if (chainedListener != nullptr)
-    {
-        result = chainedListener->OnContactValidate(body1, body2, baseOffset, collisionResult);
-    }
-    else
-    {
-        result = JPH::ContactListener::OnContactValidate(body1, body2, baseOffset, collisionResult);
-    }
+    JPH::ValidateResult result = JPH::ContactListener::OnContactValidate(body1, body2, baseOffset, collisionResult);
 
     // Body-specific filtering. Likely is used here as the base method always allows contact, and we don't use chained
     // listeners
@@ -214,16 +280,16 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
     const JPH::ContactManifold& manifold, JPH::ContactSettings& settings)
 {
     // Note the bodies are sorted (`body1.GetID() < body2.GetID()`)
+    UNUSED(settings);
 
+#ifdef JPH_DEBUG_RENDERER
     // Add the new collision
     {
         Lock lock(currentCollisionsMutex);
         JPH::SubShapeIDPair key(body1.GetID(), manifold.mSubShapeID1, body2.GetID(), manifold.mSubShapeID2);
         currentCollisions[key] = CollisionPair(manifold.mBaseOffset, manifold.mRelativeContactPointsOn1);
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactAdded(body1, body2, manifold, settings);
+#endif
 
     // TODO: should relative velocities be stored somehow here? The Jolt documentation mentions that can be used to
     // determine how hard the collision is
@@ -236,32 +302,85 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
     if (userData1 & PHYSICS_BODY_RECORDING_FLAG)
     {
         const auto body1Object = PhysicsBody::FromJoltBody(userData1);
+        const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        // Get target location to directly write the collision info to, this saves one memory copy per recorded
-        // collision
-        auto* writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
+        PhysicsCollision* writeTarget;
+
+        if (!persistCollisions)
+        {
+            // Get target location to directly write the collision info to, this saves one memory copy per recorded
+            // collision
+            writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
+        }
+        else
+        {
+            // Potentially a target that was written to already
+            bool existing;
+            writeTarget = body1Object->GetNextOrExistingCollisionRecordLocation(physicsStep, body2Object, existing);
+
+            if (existing)
+            {
+                UpdateCollisionInfoFromManifold(*writeTarget, manifold, true);
+
+                // Feels a bit dirty to use a goto but this seems about the cleanest way to early exit from here
+                // without splitting this into multiple methods
+                goto object1HandlingEnd;
+            }
+        }
 
         // Likely is used here as we are optimistic the collision counts are in control in terms of how many recording
         // slots there are
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
             PrepareCollisionInfoFromManifold(
-                *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, true, false);
+                *writeTarget, body1Object, body1, body2Object, body2, manifold, true, false);
+#else
+            PrepareCollisionInfoFromManifold(*writeTarget, body1Object, body2Object, manifold, true, false);
+#endif
         }
     }
+
+object1HandlingEnd:
 
     if (userData2 & PHYSICS_BODY_RECORDING_FLAG)
     {
+        const auto body1Object = PhysicsBody::FromJoltBody(userData1);
         const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        auto* writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+        PhysicsCollision* writeTarget;
+
+        if (!persistCollisions)
+        {
+            writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+        }
+        else
+        {
+            bool existing;
+            writeTarget = body2Object->GetNextOrExistingCollisionRecordLocation(physicsStep, body1Object, existing);
+
+            if (existing)
+            {
+                UpdateCollisionInfoFromManifold(*writeTarget, manifold, true);
+
+                goto object2HandlingEnd;
+            }
+        }
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
             PrepareCollisionInfoFromManifold(
-                *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, true, true);
+                *writeTarget, body1Object, body1, body2Object, body2, manifold, true, true);
+#else
+            PrepareCollisionInfoFromManifold(*writeTarget, body1Object, body2Object, manifold, true, true);
+#endif
         }
     }
+
+    // This needs to immediately end as otherwise this doesn't compile as apparently that is a C++20 extension to have
+    // a label with an empty statement
+object2HandlingEnd:;
 
 #ifdef JPH_DEBUG_RENDERER
     if (debugDrawer != nullptr)
@@ -279,6 +398,9 @@ void ContactListener::OnContactAdded(const JPH::Body& body1, const JPH::Body& bo
 void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body& body2,
     const JPH::ContactManifold& manifold, JPH::ContactSettings& settings)
 {
+    UNUSED(settings);
+
+#ifdef JPH_DEBUG_RENDERER
     // Update existing collision info
     {
         Lock lock(currentCollisionsMutex);
@@ -291,9 +413,7 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
             iter->second = CollisionPair(manifold.mBaseOffset, manifold.mRelativeContactPointsOn1);
         }
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactPersisted(body1, body2, manifold, settings);
+#endif
 
     // Contact recording
     const auto userData1 = body1.GetUserData();
@@ -302,30 +422,77 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
     if (userData1 & PHYSICS_BODY_RECORDING_FLAG)
     {
         const auto body1Object = PhysicsBody::FromJoltBody(userData1);
+        const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        // TODO: if we ever move to an approach where multiple physics steps can happen and collisions need to be
-        // recorded persistently over a few physics updates we might need to somehow implement filtering here
-        auto* writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
+        PhysicsCollision* writeTarget;
+
+        if (!persistCollisions)
+        {
+            writeTarget = body1Object->GetNextCollisionRecordLocation(physicsStep);
+        }
+        else
+        {
+            bool existing;
+            writeTarget = body1Object->GetNextOrExistingCollisionRecordLocation(physicsStep, body2Object, existing);
+
+            if (existing)
+            {
+                UpdateCollisionInfoFromManifold(*writeTarget, manifold, false);
+
+                goto object1HandlingEnd;
+            }
+        }
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
             PrepareCollisionInfoFromManifold(
-                *writeTarget, body1Object, PhysicsBody::FromJoltBody(userData2), manifold, false, false);
+                *writeTarget, body1Object, body1, body2Object, body2, manifold, false, false);
+#else
+
+            PrepareCollisionInfoFromManifold(*writeTarget, body1Object, body2Object, manifold, false, false);
+#endif
         }
     }
+
+object1HandlingEnd:
 
     if (userData2 & PHYSICS_BODY_RECORDING_FLAG)
     {
+        const auto body1Object = PhysicsBody::FromJoltBody(userData1);
         const auto body2Object = PhysicsBody::FromJoltBody(userData2);
 
-        auto* writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+        PhysicsCollision* writeTarget;
+
+        if (!persistCollisions)
+        {
+            writeTarget = body2Object->GetNextCollisionRecordLocation(physicsStep);
+        }
+        else
+        {
+            bool existing;
+            writeTarget = body2Object->GetNextOrExistingCollisionRecordLocation(physicsStep, body1Object, existing);
+
+            if (existing)
+            {
+                UpdateCollisionInfoFromManifold(*writeTarget, manifold, false);
+
+                goto object2HandlingEnd;
+            }
+        }
 
         if (writeTarget) [[likely]]
         {
+#ifdef AUTO_RESOLVE_FIRST_LEVEL_SHAPE_INDEX
             PrepareCollisionInfoFromManifold(
-                *writeTarget, PhysicsBody::FromJoltBody(userData1), body2Object, manifold, false, true);
+                *writeTarget, body1Object, body1, body2Object, body2, manifold, false, true);
+#else
+            PrepareCollisionInfoFromManifold(*writeTarget, body1Object, body2Object, manifold, false, true);
+#endif
         }
     }
+
+object2HandlingEnd:;
 
 #ifdef JPH_DEBUG_RENDERER
     if (!drawOnlyNew && debugDrawer != nullptr)
@@ -342,6 +509,7 @@ void ContactListener::OnContactPersisted(const JPH::Body& body1, const JPH::Body
 
 void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
 {
+#ifdef JPH_DEBUG_RENDERER
     // Remove the contact
     {
         Lock lock(currentCollisionsMutex);
@@ -350,9 +518,9 @@ void ContactListener::OnContactRemoved(const JPH::SubShapeIDPair& subShapePair)
         if (iter != currentCollisions.end())
             currentCollisions.erase(iter);
     }
-
-    if (chainedListener != nullptr)
-        chainedListener->OnContactRemoved(subShapePair);
+#else
+    UNUSED(subShapePair);
+#endif
 }
 
 // ------------------------------------ //
@@ -369,4 +537,39 @@ void ContactListener::DrawActiveContacts(JPH::DebugRenderer& debugRenderer)
     }
 }
 #endif
+
+// ------------------------------------ //
+uint32_t ResolveTopLevelSubShapeId(const JPH::Body* body, JPH::SubShapeID subShapeId)
+{
+    JPH::SubShapeID unusedRemainder;
+    return ResolveSubShapeId(body->GetShape(), subShapeId, unusedRemainder);
+}
+
+// This checks the type before casting
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cppcoreguidelines-pro-type-static-cast-downcast"
+
+uint32_t ResolveSubShapeId(const JPH::Shape* shape, JPH::SubShapeID subShapeId, JPH::SubShapeID& remainder)
+{
+    switch (shape->GetType())
+    {
+        case JPH::EShapeType::Compound:
+            return static_cast<const JPH::CompoundShape*>(shape)->GetSubShapeIndexFromID(subShapeId, remainder);
+        // Could add the following in the future
+        /*case JPH::EShapeType::Decorated:
+            break;
+        case JPH::EShapeType::Mesh:
+            break;
+        case JPH::EShapeType::HeightField:
+            break;
+        case JPH::EShapeType::SoftBody:
+            break;*/
+        default:
+            // Type that doesn't have sub-shapes
+            return 0;
+    }
+}
+
+#pragma clang diagnostic pop
+
 } // namespace Thrive::Physics

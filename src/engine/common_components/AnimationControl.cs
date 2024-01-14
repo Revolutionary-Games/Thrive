@@ -6,6 +6,7 @@
     ///   Allows controlling <see cref="Godot.AnimationPlayer"/> in a <see cref="SpatialInstance"/> (note that if
     ///   spatial is recreated <see cref="AnimationApplied"/> needs to be set to false for the animation to reapply)
     /// </summary>
+    [JSONDynamicTypeAllowed]
     public struct AnimationControl
     {
         // TODO: add speed / animation to play fields to make this generally useful

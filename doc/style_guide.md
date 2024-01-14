@@ -350,6 +350,11 @@ Code style rules
   when checking if a species is extinct, instead of checking
   `population == 0`, it is recommended to do `population <= 0` to guard
   against negative population bugs.
+  
+- When writing conditions checking booleans, don't explicitly write
+  out `true` or `false` (unless the variable is nullable in which case
+  the explicit compare is required). So write code like this: `if
+  (thing)` and not: `if (thing == true)`.
 
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
