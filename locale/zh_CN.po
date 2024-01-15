@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-12 12:53+0200\n"
+"POT-Creation-Date: 2024-01-15 00:33+0000\n"
 "PO-Revision-Date: 2023-12-29 06:14+0000\n"
 "Last-Translator: qqthy360 <2531083870@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -5293,7 +5293,7 @@ msgstr "退出"
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "退出游戏"
 
-#: ../src/general/PauseMenu.cs:418
+#: ../src/general/PauseMenu.cs:426
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "你确定要退出游戏吗？\n"
@@ -5490,7 +5490,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "退回主菜单"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:399
+#: ../src/general/PauseMenu.cs:407
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "你确定要退出到主菜单吗？\n"
@@ -6289,7 +6289,7 @@ msgstr "存储"
 msgid "STORAGE_COLON"
 msgstr "存储："
 
-#: ../src/general/MainMenu.cs:661
+#: ../src/general/MainMenu.cs:669
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
@@ -6508,7 +6508,7 @@ msgstr "温度"
 msgid "TESTING_TEAM"
 msgstr "测试团队"
 
-#: ../src/general/MainMenu.cs:269 ../src/general/MainMenu.tscn:1004
+#: ../src/general/MainMenu.cs:277 ../src/general/MainMenu.tscn:1004
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "感谢你的游玩！如果你喜欢这款游戏，请记得也向你的朋友们推荐一下。\n"
@@ -7845,10 +7845,6 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:481
-msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:36
 #: ../simulation_parameters/common/wiki.json:75
 #: ../simulation_parameters/common/wiki.json:114
@@ -7861,37 +7857,6 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:387
 #: ../simulation_parameters/common/wiki.json:426
 #: ../simulation_parameters/common/wiki.json:465
-#: ../simulation_parameters/common/wiki.json:508
-#: ../simulation_parameters/common/wiki.json:547
-#: ../simulation_parameters/common/wiki.json:586
-#: ../simulation_parameters/common/wiki.json:625
-#: ../simulation_parameters/common/wiki.json:664
-#: ../simulation_parameters/common/wiki.json:703
-#: ../simulation_parameters/common/wiki.json:742
-#: ../simulation_parameters/common/wiki.json:781
-#: ../simulation_parameters/common/wiki.json:820
-#: ../simulation_parameters/common/wiki.json:859
-#: ../simulation_parameters/common/wiki.json:898
-#: ../simulation_parameters/common/wiki.json:937
-#: ../simulation_parameters/common/wiki.json:976
-#: ../simulation_parameters/common/wiki.json:1015
-#: ../simulation_parameters/common/wiki.json:1054
-#: ../simulation_parameters/common/wiki.json:1093
-msgid "WIKI_HEADING_EFFECTS"
-msgstr "影响与效果"
-
-#: ../simulation_parameters/common/wiki.json:32
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:149
-#: ../simulation_parameters/common/wiki.json:188
-#: ../simulation_parameters/common/wiki.json:227
-#: ../simulation_parameters/common/wiki.json:266
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:344
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:422
-#: ../simulation_parameters/common/wiki.json:461
 #: ../simulation_parameters/common/wiki.json:504
 #: ../simulation_parameters/common/wiki.json:543
 #: ../simulation_parameters/common/wiki.json:582
@@ -7908,21 +7873,21 @@ msgstr "影响与效果"
 #: ../simulation_parameters/common/wiki.json:1011
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1089
-msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr "修改选项"
+msgid "WIKI_HEADING_EFFECTS"
+msgstr "影响与效果"
 
-#: ../simulation_parameters/common/wiki.json:28
-#: ../simulation_parameters/common/wiki.json:67
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:145
-#: ../simulation_parameters/common/wiki.json:184
-#: ../simulation_parameters/common/wiki.json:223
-#: ../simulation_parameters/common/wiki.json:262
-#: ../simulation_parameters/common/wiki.json:301
-#: ../simulation_parameters/common/wiki.json:340
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:457
+#: ../simulation_parameters/common/wiki.json:32
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:149
+#: ../simulation_parameters/common/wiki.json:188
+#: ../simulation_parameters/common/wiki.json:227
+#: ../simulation_parameters/common/wiki.json:266
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:344
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:422
+#: ../simulation_parameters/common/wiki.json:461
 #: ../simulation_parameters/common/wiki.json:500
 #: ../simulation_parameters/common/wiki.json:539
 #: ../simulation_parameters/common/wiki.json:578
@@ -7939,21 +7904,21 @@ msgstr "修改选项"
 #: ../simulation_parameters/common/wiki.json:1007
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1085
-msgid "WIKI_HEADING_PROCESSES"
-msgstr "代谢过程"
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "修改选项"
 
-#: ../simulation_parameters/common/wiki.json:24
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:141
-#: ../simulation_parameters/common/wiki.json:180
-#: ../simulation_parameters/common/wiki.json:219
-#: ../simulation_parameters/common/wiki.json:258
-#: ../simulation_parameters/common/wiki.json:297
-#: ../simulation_parameters/common/wiki.json:336
-#: ../simulation_parameters/common/wiki.json:375
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:28
+#: ../simulation_parameters/common/wiki.json:67
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:145
+#: ../simulation_parameters/common/wiki.json:184
+#: ../simulation_parameters/common/wiki.json:223
+#: ../simulation_parameters/common/wiki.json:262
+#: ../simulation_parameters/common/wiki.json:301
+#: ../simulation_parameters/common/wiki.json:340
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:457
 #: ../simulation_parameters/common/wiki.json:496
 #: ../simulation_parameters/common/wiki.json:535
 #: ../simulation_parameters/common/wiki.json:574
@@ -7970,6 +7935,37 @@ msgstr "代谢过程"
 #: ../simulation_parameters/common/wiki.json:1003
 #: ../simulation_parameters/common/wiki.json:1042
 #: ../simulation_parameters/common/wiki.json:1081
+msgid "WIKI_HEADING_PROCESSES"
+msgstr "代谢过程"
+
+#: ../simulation_parameters/common/wiki.json:24
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:141
+#: ../simulation_parameters/common/wiki.json:180
+#: ../simulation_parameters/common/wiki.json:219
+#: ../simulation_parameters/common/wiki.json:258
+#: ../simulation_parameters/common/wiki.json:297
+#: ../simulation_parameters/common/wiki.json:336
+#: ../simulation_parameters/common/wiki.json:375
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:453
+#: ../simulation_parameters/common/wiki.json:492
+#: ../simulation_parameters/common/wiki.json:531
+#: ../simulation_parameters/common/wiki.json:570
+#: ../simulation_parameters/common/wiki.json:609
+#: ../simulation_parameters/common/wiki.json:648
+#: ../simulation_parameters/common/wiki.json:687
+#: ../simulation_parameters/common/wiki.json:726
+#: ../simulation_parameters/common/wiki.json:765
+#: ../simulation_parameters/common/wiki.json:804
+#: ../simulation_parameters/common/wiki.json:843
+#: ../simulation_parameters/common/wiki.json:882
+#: ../simulation_parameters/common/wiki.json:921
+#: ../simulation_parameters/common/wiki.json:960
+#: ../simulation_parameters/common/wiki.json:999
+#: ../simulation_parameters/common/wiki.json:1038
+#: ../simulation_parameters/common/wiki.json:1077
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "解锁条件"
 
@@ -7985,37 +7981,6 @@ msgstr "解锁条件"
 #: ../simulation_parameters/common/wiki.json:399
 #: ../simulation_parameters/common/wiki.json:438
 #: ../simulation_parameters/common/wiki.json:477
-#: ../simulation_parameters/common/wiki.json:520
-#: ../simulation_parameters/common/wiki.json:559
-#: ../simulation_parameters/common/wiki.json:598
-#: ../simulation_parameters/common/wiki.json:637
-#: ../simulation_parameters/common/wiki.json:676
-#: ../simulation_parameters/common/wiki.json:715
-#: ../simulation_parameters/common/wiki.json:754
-#: ../simulation_parameters/common/wiki.json:793
-#: ../simulation_parameters/common/wiki.json:832
-#: ../simulation_parameters/common/wiki.json:871
-#: ../simulation_parameters/common/wiki.json:910
-#: ../simulation_parameters/common/wiki.json:949
-#: ../simulation_parameters/common/wiki.json:988
-#: ../simulation_parameters/common/wiki.json:1027
-#: ../simulation_parameters/common/wiki.json:1066
-#: ../simulation_parameters/common/wiki.json:1105
-msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr "科学背景"
-
-#: ../simulation_parameters/common/wiki.json:44
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:161
-#: ../simulation_parameters/common/wiki.json:200
-#: ../simulation_parameters/common/wiki.json:239
-#: ../simulation_parameters/common/wiki.json:278
-#: ../simulation_parameters/common/wiki.json:317
-#: ../simulation_parameters/common/wiki.json:356
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:434
-#: ../simulation_parameters/common/wiki.json:473
 #: ../simulation_parameters/common/wiki.json:516
 #: ../simulation_parameters/common/wiki.json:555
 #: ../simulation_parameters/common/wiki.json:594
@@ -8032,21 +7997,21 @@ msgstr "科学背景"
 #: ../simulation_parameters/common/wiki.json:1023
 #: ../simulation_parameters/common/wiki.json:1062
 #: ../simulation_parameters/common/wiki.json:1101
-msgid "WIKI_HEADING_STRATEGY"
-msgstr "游戏策略"
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr "科学背景"
 
-#: ../simulation_parameters/common/wiki.json:40
-#: ../simulation_parameters/common/wiki.json:79
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:157
-#: ../simulation_parameters/common/wiki.json:196
-#: ../simulation_parameters/common/wiki.json:235
-#: ../simulation_parameters/common/wiki.json:274
-#: ../simulation_parameters/common/wiki.json:313
-#: ../simulation_parameters/common/wiki.json:352
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:44
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:200
+#: ../simulation_parameters/common/wiki.json:239
+#: ../simulation_parameters/common/wiki.json:278
+#: ../simulation_parameters/common/wiki.json:317
+#: ../simulation_parameters/common/wiki.json:356
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:434
+#: ../simulation_parameters/common/wiki.json:473
 #: ../simulation_parameters/common/wiki.json:512
 #: ../simulation_parameters/common/wiki.json:551
 #: ../simulation_parameters/common/wiki.json:590
@@ -8063,6 +8028,37 @@ msgstr "游戏策略"
 #: ../simulation_parameters/common/wiki.json:1019
 #: ../simulation_parameters/common/wiki.json:1058
 #: ../simulation_parameters/common/wiki.json:1097
+msgid "WIKI_HEADING_STRATEGY"
+msgstr "游戏策略"
+
+#: ../simulation_parameters/common/wiki.json:40
+#: ../simulation_parameters/common/wiki.json:79
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:157
+#: ../simulation_parameters/common/wiki.json:196
+#: ../simulation_parameters/common/wiki.json:235
+#: ../simulation_parameters/common/wiki.json:274
+#: ../simulation_parameters/common/wiki.json:313
+#: ../simulation_parameters/common/wiki.json:352
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:469
+#: ../simulation_parameters/common/wiki.json:508
+#: ../simulation_parameters/common/wiki.json:547
+#: ../simulation_parameters/common/wiki.json:586
+#: ../simulation_parameters/common/wiki.json:625
+#: ../simulation_parameters/common/wiki.json:664
+#: ../simulation_parameters/common/wiki.json:703
+#: ../simulation_parameters/common/wiki.json:742
+#: ../simulation_parameters/common/wiki.json:781
+#: ../simulation_parameters/common/wiki.json:820
+#: ../simulation_parameters/common/wiki.json:859
+#: ../simulation_parameters/common/wiki.json:898
+#: ../simulation_parameters/common/wiki.json:937
+#: ../simulation_parameters/common/wiki.json:976
+#: ../simulation_parameters/common/wiki.json:1015
+#: ../simulation_parameters/common/wiki.json:1054
+#: ../simulation_parameters/common/wiki.json:1093
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "可用升级"
 
@@ -8110,10 +8106,6 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:482
-msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:466
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -8154,189 +8146,189 @@ msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:509
+#: ../simulation_parameters/common/wiki.json:505
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:493
+#: ../simulation_parameters/common/wiki.json:489
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "线粒体"
 
-#: ../simulation_parameters/common/wiki.json:505
+#: ../simulation_parameters/common/wiki.json:501
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:501
+#: ../simulation_parameters/common/wiki.json:497
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:497
+#: ../simulation_parameters/common/wiki.json:493
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:517
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:517
+#: ../simulation_parameters/common/wiki.json:513
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:513
+#: ../simulation_parameters/common/wiki.json:509
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../simulation_parameters/common/wiki.json:548
+#: ../simulation_parameters/common/wiki.json:544
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:532
+#: ../simulation_parameters/common/wiki.json:528
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:544
+#: ../simulation_parameters/common/wiki.json:540
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:540
+#: ../simulation_parameters/common/wiki.json:536
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "不参与细胞过程"
 
-#: ../simulation_parameters/common/wiki.json:536
+#: ../simulation_parameters/common/wiki.json:532
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:560
+#: ../simulation_parameters/common/wiki.json:556
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:556
+#: ../simulation_parameters/common/wiki.json:552
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:552
+#: ../simulation_parameters/common/wiki.json:548
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:622
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:606
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:618
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过程被称为[b]有氧固氮[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:618
+#: ../simulation_parameters/common/wiki.json:614
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:610
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:638
+#: ../simulation_parameters/common/wiki.json:634
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过程被称为[b]有氧固氮[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:634
+#: ../simulation_parameters/common/wiki.json:630
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:630
+#: ../simulation_parameters/common/wiki.json:626
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:587
+#: ../simulation_parameters/common/wiki.json:583
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:571
+#: ../simulation_parameters/common/wiki.json:567
 #, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:583
+#: ../simulation_parameters/common/wiki.json:579
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:579
+#: ../simulation_parameters/common/wiki.json:575
 #, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:575
+#: ../simulation_parameters/common/wiki.json:571
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:599
+#: ../simulation_parameters/common/wiki.json:595
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:595
+#: ../simulation_parameters/common/wiki.json:591
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:591
+#: ../simulation_parameters/common/wiki.json:587
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:665
+#: ../simulation_parameters/common/wiki.json:661
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:645
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:657
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "真核细胞的定义特征。你看见的这个细胞核同时还包括了内质网和高尔基体。这种进化本质上是原核细胞通过吸收自身内部的另一种原核生物来发展内部膜系统。以允许它们在细胞内的不同隔间完成不同的生化过程，并防止它们相互重叠干扰。因此，膜细胞器比那些直接浮在细胞质里的玩意要复杂，高效与专业的多。无论如何，它也会让细胞变得更大并需要消耗超多的ATP维护。"
 
-#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:653
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "不参与细胞过程"
 
-#: ../simulation_parameters/common/wiki.json:653
+#: ../simulation_parameters/common/wiki.json:649
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:677
+#: ../simulation_parameters/common/wiki.json:673
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:673
+#: ../simulation_parameters/common/wiki.json:669
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:669
+#: ../simulation_parameters/common/wiki.json:665
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -8351,41 +8343,41 @@ msgstr ""
 "\n"
 "在下方列表中选择一个细胞器以了解更多。"
 
-#: ../simulation_parameters/common/wiki.json:704
+#: ../simulation_parameters/common/wiki.json:700
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../simulation_parameters/common/wiki.json:688
+#: ../simulation_parameters/common/wiki.json:684
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "毒素体"
 
-#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:696
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../simulation_parameters/common/wiki.json:696
+#: ../simulation_parameters/common/wiki.json:692
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
-#: ../simulation_parameters/common/wiki.json:692
+#: ../simulation_parameters/common/wiki.json:688
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../simulation_parameters/common/wiki.json:716
+#: ../simulation_parameters/common/wiki.json:712
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:712
+#: ../simulation_parameters/common/wiki.json:708
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../simulation_parameters/common/wiki.json:708
+#: ../simulation_parameters/common/wiki.json:704
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
@@ -8438,23 +8430,23 @@ msgstr "溶酶体"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代谢体"
 
-#: ../simulation_parameters/common/wiki.json:487
+#: ../simulation_parameters/common/wiki.json:483
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "线粒体"
 
-#: ../simulation_parameters/common/wiki.json:526
+#: ../simulation_parameters/common/wiki.json:522
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纤维"
 
-#: ../simulation_parameters/common/wiki.json:604
+#: ../simulation_parameters/common/wiki.json:600
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/common/wiki.json:565
+#: ../simulation_parameters/common/wiki.json:561
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:643
+#: ../simulation_parameters/common/wiki.json:639
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "细胞核"
 
@@ -8462,114 +8454,114 @@ msgstr "细胞核"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "细胞器"
 
-#: ../simulation_parameters/common/wiki.json:682
+#: ../simulation_parameters/common/wiki.json:678
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "毒素体"
 
-#: ../simulation_parameters/common/wiki.json:721
+#: ../simulation_parameters/common/wiki.json:717
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
 
-#: ../simulation_parameters/common/wiki.json:760
+#: ../simulation_parameters/common/wiki.json:756
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "原生质"
 
-#: ../simulation_parameters/common/wiki.json:799
+#: ../simulation_parameters/common/wiki.json:795
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
-#: ../simulation_parameters/common/wiki.json:838
+#: ../simulation_parameters/common/wiki.json:834
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "信号剂"
 
-#: ../simulation_parameters/common/wiki.json:877
+#: ../simulation_parameters/common/wiki.json:873
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "黏液喷嘴"
 
-#: ../simulation_parameters/common/wiki.json:916
+#: ../simulation_parameters/common/wiki.json:912
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "热能体"
 
-#: ../simulation_parameters/common/wiki.json:955
+#: ../simulation_parameters/common/wiki.json:951
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "热合成酶"
 
-#: ../simulation_parameters/common/wiki.json:994
+#: ../simulation_parameters/common/wiki.json:990
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "类囊体"
 
-#: ../simulation_parameters/common/wiki.json:1033
+#: ../simulation_parameters/common/wiki.json:1029
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#: ../simulation_parameters/common/wiki.json:1072
+#: ../simulation_parameters/common/wiki.json:1068
 msgid "WIKI_PAGE_VACUOLE"
 msgstr "液泡"
 
-#: ../simulation_parameters/common/wiki.json:743
+#: ../simulation_parameters/common/wiki.json:739
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:727
+#: ../simulation_parameters/common/wiki.json:723
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:739
+#: ../simulation_parameters/common/wiki.json:735
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:735
+#: ../simulation_parameters/common/wiki.json:731
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:731
+#: ../simulation_parameters/common/wiki.json:727
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:755
+#: ../simulation_parameters/common/wiki.json:751
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:751
+#: ../simulation_parameters/common/wiki.json:747
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:747
+#: ../simulation_parameters/common/wiki.json:743
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:782
+#: ../simulation_parameters/common/wiki.json:778
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "原生质"
 
-#: ../simulation_parameters/common/wiki.json:766
+#: ../simulation_parameters/common/wiki.json:762
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "原生质"
 
-#: ../simulation_parameters/common/wiki.json:778
+#: ../simulation_parameters/common/wiki.json:774
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:774
+#: ../simulation_parameters/common/wiki.json:770
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#: ../simulation_parameters/common/wiki.json:770
+#: ../simulation_parameters/common/wiki.json:766
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:794
+#: ../simulation_parameters/common/wiki.json:790
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:790
+#: ../simulation_parameters/common/wiki.json:786
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:786
+#: ../simulation_parameters/common/wiki.json:782
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -8586,310 +8578,310 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "游戏内Thrive百科"
 
-#: ../simulation_parameters/common/wiki.json:821
+#: ../simulation_parameters/common/wiki.json:817
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:805
+#: ../simulation_parameters/common/wiki.json:801
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:817
+#: ../simulation_parameters/common/wiki.json:813
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:813
+#: ../simulation_parameters/common/wiki.json:809
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:809
+#: ../simulation_parameters/common/wiki.json:805
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:829
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:825
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:825
+#: ../simulation_parameters/common/wiki.json:821
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
-#: ../simulation_parameters/common/wiki.json:860
+#: ../simulation_parameters/common/wiki.json:856
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "信号剂"
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:840
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "信号剂"
 
-#: ../simulation_parameters/common/wiki.json:856
+#: ../simulation_parameters/common/wiki.json:852
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
-#: ../simulation_parameters/common/wiki.json:852
+#: ../simulation_parameters/common/wiki.json:848
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "按[thrive:input]g_pack_commands[/thrive:input]来打开一个用于给你的物种中其它成员发号施令的菜单。"
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:844
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
-#: ../simulation_parameters/common/wiki.json:872
+#: ../simulation_parameters/common/wiki.json:868
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
-#: ../simulation_parameters/common/wiki.json:868
+#: ../simulation_parameters/common/wiki.json:864
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "信号剂"
 
-#: ../simulation_parameters/common/wiki.json:864
+#: ../simulation_parameters/common/wiki.json:860
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "信号剂"
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:895
 #, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
 
-#: ../simulation_parameters/common/wiki.json:883
+#: ../simulation_parameters/common/wiki.json:879
 #, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
 
-#: ../simulation_parameters/common/wiki.json:895
+#: ../simulation_parameters/common/wiki.json:891
 #, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
 
-#: ../simulation_parameters/common/wiki.json:891
+#: ../simulation_parameters/common/wiki.json:887
 #, fuzzy
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"mucilage\"][/thrive:compound]. 点击 [thrive:input]g_secrete_slime[/thrive:input] 以喷射储存的 [thrive:compound type=\"mucilage\"][/thrive:compound], 增加该细胞的速度并减慢被困在黏液里的捕食者的速度."
 
-#: ../simulation_parameters/common/wiki.json:887
+#: ../simulation_parameters/common/wiki.json:883
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:911
+#: ../simulation_parameters/common/wiki.json:907
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:899
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:938
+#: ../simulation_parameters/common/wiki.json:934
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:922
+#: ../simulation_parameters/common/wiki.json:918
 #, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:934
+#: ../simulation_parameters/common/wiki.json:930
 #, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:930
+#: ../simulation_parameters/common/wiki.json:926
 #, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:922
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:950
+#: ../simulation_parameters/common/wiki.json:946
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:946
+#: ../simulation_parameters/common/wiki.json:942
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:942
+#: ../simulation_parameters/common/wiki.json:938
 #, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
 
-#: ../simulation_parameters/common/wiki.json:977
+#: ../simulation_parameters/common/wiki.json:973
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "热合成酶"
 
-#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:957
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "热合成酶"
 
-#: ../simulation_parameters/common/wiki.json:973
+#: ../simulation_parameters/common/wiki.json:969
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
-#: ../simulation_parameters/common/wiki.json:969
+#: ../simulation_parameters/common/wiki.json:965
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "利用温度梯度生产[thrive:compound type=\"atp\"][/thrive:compound]。速度与[thrive:compound type=\"temperature\"][/thrive:compound]有关。"
 
-#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:961
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
-#: ../simulation_parameters/common/wiki.json:989
+#: ../simulation_parameters/common/wiki.json:985
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
-#: ../simulation_parameters/common/wiki.json:985
+#: ../simulation_parameters/common/wiki.json:981
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
-#: ../simulation_parameters/common/wiki.json:981
+#: ../simulation_parameters/common/wiki.json:977
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
-#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1012
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1000
+#: ../simulation_parameters/common/wiki.json:996
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1008
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1004
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1004
+#: ../simulation_parameters/common/wiki.json:1000
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1028
+#: ../simulation_parameters/common/wiki.json:1024
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1020
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1016
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1051
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1035
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "毒素液泡"
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1047
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1043
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1039
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1067
+#: ../simulation_parameters/common/wiki.json:1063
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1063
+#: ../simulation_parameters/common/wiki.json:1059
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1059
+#: ../simulation_parameters/common/wiki.json:1055
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1094
+#: ../simulation_parameters/common/wiki.json:1090
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1078
+#: ../simulation_parameters/common/wiki.json:1074
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1090
+#: ../simulation_parameters/common/wiki.json:1086
 #, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
-#: ../simulation_parameters/common/wiki.json:1086
+#: ../simulation_parameters/common/wiki.json:1082
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
 
-#: ../simulation_parameters/common/wiki.json:1082
+#: ../simulation_parameters/common/wiki.json:1078
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1106
+#: ../simulation_parameters/common/wiki.json:1102
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1102
+#: ../simulation_parameters/common/wiki.json:1098
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1094
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 

@@ -21,27 +21,13 @@ public static class WikiUpdater
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
 
     /// <summary>
-    ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
+    ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
-    private static readonly string[] CustomBbcodeCompounds =
-    {
-        // TODO: get these values from English translations of the names in organelles.json
-        "ATP",
-        "Ammonia",
-        "Carbon Dioxide",
-        "Glucose",
-        "Hydrogen Sulfide",
-        "Iron",
-        "Mucilage",
-        "Nitrogen",
-        "Oxygen",
-
-        // ReSharper disable once StringLiteralTypo
-        "OxyToxy",
-        "Phosphates",
-        "Sunlight",
-        "Temperature",
-    };
+    private static readonly Regex[] WhitelistedDomains =
+    [
+        new(@".*\.wikipedia\.org\/.*"),
+        new(@".*\.revolutionarygamesstudio\.com\/.*"),
+    ];
 
     /// <summary>
     ///   Mapping from English page names to internal page names, required for inter-page linking in game.
@@ -238,8 +224,23 @@ public static class WikiUpdater
             {
                 bbcode.Append(ConvertLinkToBbcode(link));
             }
+            else if (child is IHtmlImageElement image)
+            {
+                // In-game compound BBCode already has bold text label, so remove the extra one
+                bbcode.RemoveLastBoldText();
+                bbcode.Append(ConvertImageToBbcode(image));
+            }
             else if (child is IElement element)
             {
+                if (element.TagName == "B" && element.Children.Length > 0)
+                {
+                    // Deal with items inside bold tags, e.g. links
+                    bbcode.Append("[b]");
+                    bbcode.Append(ConvertParagraphToBbcode(element));
+                    bbcode.Append("[/b]");
+                    continue;
+                }
+
                 bbcode.Append(ConvertTextToBbcode(element.OuterHtml));
             }
             else
@@ -252,6 +253,19 @@ public static class WikiUpdater
     }
 
     /// <summary>
+    ///   Removes the last bold text label and all subsequent text from this string.
+    /// </summary>
+    private static void RemoveLastBoldText(this StringBuilder bbcode)
+    {
+        var boldTextIndex = bbcode.ToString().LastIndexOf("[b]");
+
+        if (boldTextIndex < 0)
+            return;
+
+        bbcode.Remove(boldTextIndex, bbcode.Length - boldTextIndex);
+    }
+
+    /// <summary>
     ///   Converts an HTML link element into BBCode (external or pointing at another page).
     /// </summary>
     private static string ConvertLinkToBbcode(IHtmlAnchorElement link)
@@ -260,6 +274,10 @@ public static class WikiUpdater
 
         if (isExternalLink)
         {
+            // Use text if the link isn't whitelisted
+            if (!WhitelistedDomains.Any(d => d.IsMatch(link.Href)))
+                return ConvertTextToBbcode(link.InnerHtml);
+
             return $"[color=#3796e1][url={link.Href}]{ConvertTextToBbcode(link.InnerHtml)}[/url][/color]";
         }
 
@@ -273,26 +291,22 @@ public static class WikiUpdater
     }
 
     /// <summary>
+    ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
+    /// </summary>
+    private static string ConvertImageToBbcode(IHtmlImageElement image) =>
+        $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+
+    /// <summary>
     ///   Converts formatted HTML text into BBCode.
     /// </summary>
-    private static string ConvertTextToBbcode(string paragraph)
-    {
-        // Process our custom BBCode first
-        foreach (var compound in CustomBbcodeCompounds)
-        {
-            var compoundText = compound.ToLowerInvariant().Replace(" ", string.Empty);
-            paragraph = paragraph.Replace($"<b>{compound}</b>",
-                $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
-        }
-
-        return paragraph
+    private static string ConvertTextToBbcode(string paragraph) =>
+        paragraph
             .Replace("\n", string.Empty)
             .Replace("<b>", "[b]")
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
             .Replace("</i>", "[/i]")
             .Replace("\"", "\\\"");
-    }
 
     /// <summary>
     ///   Inserts into en.po the English translations for all the translation keys in a list of wiki pages.
