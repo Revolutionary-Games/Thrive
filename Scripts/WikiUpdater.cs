@@ -25,8 +25,8 @@ public static class WikiUpdater
     /// </summary>
     private static readonly Regex[] WhitelistedDomains =
     [
-        new(@".*\.wikipedia\.org\/.*"),
-        new(@".*\.revolutionarygamesstudio\.com\/.*"),
+        new Regex(@".*\.wikipedia\.org\/.*"),
+        new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
     ];
 
     /// <summary>
@@ -257,7 +257,7 @@ public static class WikiUpdater
     /// </summary>
     private static void RemoveLastBoldText(this StringBuilder bbcode)
     {
-        var boldTextIndex = bbcode.ToString().LastIndexOf("[b]");
+        var boldTextIndex = bbcode.ToString().LastIndexOf("[b]", StringComparison.Ordinal);
 
         if (boldTextIndex < 0)
             return;
@@ -293,20 +293,24 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
     /// </summary>
-    private static string ConvertImageToBbcode(IHtmlImageElement image) =>
-        $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+    private static string ConvertImageToBbcode(IHtmlImageElement image)
+    {
+        return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+    }
 
     /// <summary>
     ///   Converts formatted HTML text into BBCode.
     /// </summary>
-    private static string ConvertTextToBbcode(string paragraph) =>
-        paragraph
+    private static string ConvertTextToBbcode(string paragraph)
+    {
+        return paragraph
             .Replace("\n", string.Empty)
             .Replace("<b>", "[b]")
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
             .Replace("</i>", "[/i]")
             .Replace("\"", "\\\"");
+    }
 
     /// <summary>
     ///   Inserts into en.po the English translations for all the translation keys in a list of wiki pages.
