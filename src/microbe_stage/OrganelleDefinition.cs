@@ -370,6 +370,21 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
         }
 
+        foreach (var entry in InitialComposition)
+        {
+            if (entry.Value <= MathUtils.EPSILON)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has negative or really small value");
+            }
+
+            if (!entry.Key.IsCloud)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has a compound that can't be a cloud");
+            }
+        }
+
         if (Hexes == null || Hexes.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "Hexes is empty");
