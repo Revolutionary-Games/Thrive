@@ -1,10 +1,12 @@
-﻿using Godot;
+﻿using System.ComponentModel;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
+[TypeConverter(typeof(BiomeStringConverter))]
 public class Biome : IRegistryType
 {
     /// <summary>
@@ -100,7 +102,7 @@ public class Biome : IRegistryType
 
     public override string ToString()
     {
-        return "Patch: " + Name;
+        return "Biome type: " + Name;
     }
 
     public class LightDetails
