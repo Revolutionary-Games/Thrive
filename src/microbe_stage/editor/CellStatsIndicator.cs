@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -129,6 +130,26 @@ public class CellStatsIndicator : HBoxContainer
     {
         initialValue = null;
         UpdateValue();
+    }
+
+    /// <summary>
+    ///   Displays a multipart value on this indicator. Use when setting <see cref="Value"/> is not enough
+    /// </summary>
+    /// <param name="formattedValue">The text to display on this indicator</param>
+    /// <param name="rawValueForComparison">Value used to compare this indicator value against</param>
+    public void SetMultipartValue(string formattedValue, float rawValueForComparison)
+    {
+        if (!float.IsNaN(rawValueForComparison))
+            initialValue ??= rawValueForComparison;
+
+        value = rawValueForComparison;
+
+        if (valueLabel == null)
+            throw new InvalidOperationException("This method can only be called after adding to the scene tree");
+
+        UpdateChangeIndicator();
+
+        valueLabel.Text = formattedValue;
     }
 
     protected override void Dispose(bool disposing)

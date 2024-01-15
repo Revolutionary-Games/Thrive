@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2022-11-11 17:58+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -340,7 +340,7 @@ msgstr "Augusztus"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ez a panel mutatja azokat a számokat, amelyek alapján az auto-evo becslés működik. Az a teljes energia, amelyet egy faj képes befogadni, és a faj egy egyedére jutó költség határozza meg a végső populációt. Az Auto-evo a valóság egyszerűsített modelljét használja, hogy kiszámítsa, mennyire jól teljesítenek a fajok az általuk összegyűjthető energia alapján. Minden egyes táplálékforrás esetében meg van adva, hogy a faj mennyi energiát nyer belőle. Emellett az adott forrásból rendelkezésre álló teljes energia is megjelenik. Az, hogy a faj mekkora hányadot nyer a teljes energiából, azon alapul, hogy a teljes alkalmassághoz képest mekkora az ő alkalmasságuk. Az alkalmasság annak mérőszáma, hogy a faj mennyire jól tudja hasznosítani az adott táplálékforrást."
 
@@ -349,11 +349,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel,{2}-n belül, mert: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-evo becslés"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által megbecsült populációinak egyedszámait.\n"
@@ -377,7 +377,7 @@ msgstr "Auto-Evo felfedező eszköz"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
@@ -388,7 +388,7 @@ msgstr "Auto-Evo eredmények:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "futtatási státusz:"
 
@@ -539,7 +539,7 @@ msgstr "Teljesítmény teszt fázis:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Eredméynek:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "Legjobb patch:"
 
@@ -670,7 +670,7 @@ msgstr "Mégse"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKCIÓ VISSZAVONÁSA"
 
@@ -783,7 +783,7 @@ msgstr "Cellulóz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
 
@@ -941,7 +941,7 @@ msgstr "Régi mentések törlése"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1713,11 +1713,11 @@ msgstr ""
 "Vannak olyan sejtek, melyek nem kötődnek egymáshoz.\n"
 "Kérlek kapcsold össze a sejteket egymással a folytatáshoz."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Levált sejtszervecskék"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Vannak olyan sejtszervecskék, melyek nem kötődnek egymáshoz.\n"
@@ -1981,15 +1981,20 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "{0} ({1})"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "Energia forrásai:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2185,7 +2190,7 @@ msgstr "Extra opciók"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Hiba"
 
@@ -2402,7 +2407,7 @@ msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom s
 msgid "FOOD_CHAIN"
 msgstr "Tápláléklánc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2517,7 +2522,7 @@ msgstr "Galéria nézet"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Játék szüneteltetése"
@@ -3222,7 +3227,7 @@ msgstr "A játéknak erre a nyelvre való lefordítása még mindig készülőbe
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, hogy segíts nekünk ez ügyben te is!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3539,7 +3544,7 @@ msgstr "Többsejtes szerkesztő betöltése"
 msgid "LOADING_GAME"
 msgstr "A játék betöltése"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
 
@@ -4507,11 +4512,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Észlelhető szálak:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatív ATP egyensúly"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "A sejted nem termel annyi ATP-t, hogy képes legyen túlélni!\n"
@@ -4563,7 +4568,7 @@ msgstr "Új név:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4632,11 +4637,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4644,7 +4649,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -4671,7 +4676,7 @@ msgid "NO_AI"
 msgstr "Nincs MI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nincs adat"
 
@@ -4715,7 +4720,7 @@ msgstr "Egy mod sincs kijelölve"
 msgid "NUCLEUS"
 msgstr "Sejtmag"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4735,9 +4740,9 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "N/A"
@@ -4946,7 +4951,7 @@ msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5349,7 +5354,7 @@ msgstr "Populáció:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Populáció a patch-ekben:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6971,7 +6976,7 @@ msgstr "Eszközök"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Készítő:"
@@ -7362,7 +7367,7 @@ msgstr "Mod verzió:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Mod műhely ID-je ismeretlen"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Sejtszervecske elhelyezése"
@@ -9178,7 +9183,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Alap mozgás"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "Legrosszabb patch:"
 

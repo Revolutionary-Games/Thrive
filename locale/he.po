@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2022-11-17 16:00+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -336,7 +336,7 @@ msgstr "אוגוסט"
 msgid "AUTO"
 msgstr "אוטומטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "חלונית זו מייצגת את המספרים שהמפתח האוטומטי חוזה כמה היו. את כמות האנרגיה שהמין מסוגל לתפוס ועלות לפרט של המין, קובעות את אכלוסייה הסופית. המפתח האוטומטי משתמש במודל פשוט של המציאות כדי לחשב את ביצועי המינים על סמך כמות האנרגיה שהם מסוגלים לאסוף. עבור כל מקור מזון, מוצגת כמה אנרגיה המין מרוויח ממנו. בנוסף, מוצגת האנרגיה הכוללת הזמינה מאותו מקור. החלק שהמין מרוויח מתוך האנרגיה הכוללת מבוסס על גודל הכשירות העצמית בהשוואה לכשירות הכוללת. כשירות הוא מדד הקובע עד כמה המין מנצל את מקור המזון זה."
 
@@ -345,11 +345,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "חיזוי של המפתח האוטומטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "לוח זה מראה את מספרי האוכלוסייה הצפויים מהמפתח האוטומטי עבור מינים ערוכים.\n"
@@ -373,7 +373,7 @@ msgstr "כלים חקר של מפתח-אוטומטי"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
@@ -384,7 +384,7 @@ msgstr "תוצאות מפתח אוטומטי:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -537,7 +537,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "האזור הטוב ביותר:"
 
@@ -668,7 +668,7 @@ msgstr "ביטול"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "בטל פעולה"
 
@@ -777,7 +777,7 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -931,7 +931,7 @@ msgstr "נקה שמירות ישנות"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1693,11 +1693,11 @@ msgstr ""
 "ישנם כדורי-בשר מונחים, שאינם מחוברים לשאר.\n"
 "בבקשה חבר את כל כדורי-בשר אחד עם השני על מנת להמשיך."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "אברונים מנותקים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "ישנם אברונים שאינם מחוברים לשאר.\n"
@@ -1959,15 +1959,20 @@ msgstr "{0}: {1}- ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "אנרגיה מ{0} ל{1}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
@@ -2154,7 +2159,7 @@ msgstr "אפשרויות נוספות"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "בקרו באתר הפייסבוק שלנו"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "נכשל"
 
@@ -2367,7 +2372,7 @@ msgstr "דקור תאים אחרים בעזרתו."
 msgid "FOOD_CHAIN"
 msgstr "שרשרת המזון"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
@@ -2479,7 +2484,7 @@ msgstr "מציג גלריה"
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "ראו את דף הפטריון שלנו"
@@ -3186,7 +3191,7 @@ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
 
@@ -3494,7 +3499,7 @@ msgstr "טוען עורך הקדם רב-תאי"
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -4449,11 +4454,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "נושאים נוכחים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "מאזן ATP שלילי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "המיקרוב שלך איננו מייצר מספיק ATP בשביל לשרוד!\n"
@@ -4505,7 +4510,7 @@ msgstr "שם חדש:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4574,11 +4579,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4586,7 +4591,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -4612,7 +4617,7 @@ msgid "NO_AI"
 msgstr "מצב בודד"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -4655,7 +4660,7 @@ msgstr "לא נבחר מוד"
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "לא ניתן להסיר גרעין שכן זהו התפתחות בלתי-ניתנת להפיכה.\n"
@@ -4676,9 +4681,9 @@ msgstr "מקש Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "לא זמין"
@@ -4887,7 +4892,7 @@ msgstr "(מתחיל עם ענן גלוקוז חופשי קרוב בכל דור)"
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5287,7 +5292,7 @@ msgstr "אוכלוסיה:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "אכלוסיה באזורים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6880,7 +6885,7 @@ msgstr "כלים"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "מצב:"
@@ -7286,7 +7291,7 @@ msgstr "גרסה לא יודעה"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Workshop ID לא יודע בשביל מוד זה"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "הוסף אברון"
@@ -9109,7 +9114,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "להגדלת התנועה"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -347,7 +347,7 @@ msgstr "august"
 msgid "AUTO"
 msgstr "Automaatne"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
@@ -357,11 +357,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo ennustus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "See paneel näitab redigeeritud liikide eeldatavat auto-evo populatsiooni arvu.\n"
@@ -386,7 +386,7 @@ msgstr "käitamise olek:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo käivitamine ebaõnnestus"
 
@@ -397,7 +397,7 @@ msgstr "Auto-evo tulemused:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "käitamise olek:"
 
@@ -565,7 +565,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "Parim plaaster:"
 
@@ -696,7 +696,7 @@ msgstr "Tühista"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "TÜHISTAGE TEGEVUS"
 
@@ -807,7 +807,7 @@ msgstr "Tselluloos"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -965,7 +965,7 @@ msgstr "Vanade salvestuste puhastamine"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1755,11 +1755,11 @@ msgstr ""
 "Seal on paigutatud rakud, mis ei ole ülejäänud osadega ühendatud.\n"
 "Jätkamiseks ühendage kõik paigutatud lahtrid üksteisega."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Katkestatud organellid"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Seal on paigutatud organellid, mis ei ole ülejäänud osaga ühendatud.\n"
@@ -2029,15 +2029,20 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "Energia: {0}, {1}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "Energiaallikad:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
 
@@ -2236,7 +2241,7 @@ msgstr "Lisavalikud"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Peata mäng"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Ebaõnnestunud"
 
@@ -2437,7 +2442,7 @@ msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenuta
 msgid "FOOD_CHAIN"
 msgstr "Toiduahel"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (fitness: {2}) kogu saadaolev energia: {3} (kogu fitness: {4})"
 
@@ -2566,7 +2571,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr "Mängu disainimeeskond"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Peata mäng"
@@ -3280,7 +3285,7 @@ msgstr "See keel on veel pooleli ({0}% valmis)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3605,7 +3610,7 @@ msgstr "Mikroobide redaktori laadimine"
 msgid "LOADING_GAME"
 msgstr "Mängu laadimine"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
@@ -4611,11 +4616,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Praegused lõimed:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatiivne ATP Tasakaal"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Teie mikroob ei tooda piisavalt ATP-d, et see ellu jääda!\n"
@@ -4668,7 +4673,7 @@ msgstr "Uus nimi:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4737,11 +4742,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4749,7 +4754,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -4776,7 +4781,7 @@ msgid "NO_AI"
 msgstr "AI puudub"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Kuvatavaid andmeid pole"
 
@@ -4820,7 +4825,7 @@ msgstr "Modifikatsiooni pole valitud"
 msgid "NUCLEUS"
 msgstr "Tuum"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4839,9 +4844,9 @@ msgstr "Numeratsioonilukk"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "ei ole kohaldatav"
@@ -5053,7 +5058,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5459,7 +5464,7 @@ msgstr "elanikkond:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "populatsioon laikudena:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -7103,7 +7108,7 @@ msgstr "Tööriistad"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "eelmine:"
@@ -7509,7 +7514,7 @@ msgstr "Modifikatsiooni versioon:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Tundmatu töökoja ID selle modifikatsiooni jaoks"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Asetage organell"
@@ -9334,7 +9339,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Aluse liikumine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "Halvim plaaster:"
 

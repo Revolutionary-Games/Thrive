@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -341,7 +341,7 @@ msgstr ""
 msgid "AUTO"
 msgstr "аутоматски"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -352,12 +352,12 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
@@ -381,7 +381,7 @@ msgstr "статус покретања:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
@@ -392,7 +392,7 @@ msgstr "Резултати аутоматске-еволуције:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 
@@ -563,7 +563,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Врсте:"
@@ -700,7 +700,7 @@ msgstr "Отказати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ПОТВРДИ"
@@ -815,7 +815,7 @@ msgstr "Целулоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има зид, што резултира бољом заштитом од укупних оштећења, а посебно од физичких оштећења. Такође кошта мање енергије да би задржао облик, али не може брзо да апсорбује ресурсе и спорији је."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -983,7 +983,7 @@ msgstr "Очистите Старе Чување"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1770,11 +1770,11 @@ msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Искључене Органеле"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
@@ -2043,15 +2043,20 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "ПОПУЛАЦИЈА:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2250,7 +2255,7 @@ msgstr "Додатне Опције"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 #, fuzzy
 msgid "FAILED"
 msgstr "Сачување није успело"
@@ -2441,7 +2446,7 @@ msgstr "Избодите друге ћелије са ово."
 msgid "FOOD_CHAIN"
 msgstr "Ланац Исхране"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2552,7 +2557,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3269,7 +3274,7 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3588,7 +3593,7 @@ msgstr "Учитавање Уређивача Микроба"
 msgid "LOADING_GAME"
 msgstr "Учитавање Игре"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
@@ -4569,11 +4574,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Сачувај и настави"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативан ATP Биланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производи довољно ATP-а да би преживео!\n"
@@ -4629,7 +4634,7 @@ msgstr "Брзина:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4701,11 +4706,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4713,7 +4718,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -4742,7 +4747,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4790,7 +4795,7 @@ msgstr "Одабрано:"
 msgid "NUCLEUS"
 msgstr "Ћелијско Језгро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4813,9 +4818,9 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 #, fuzzy
 msgid "N_A"
@@ -5021,7 +5026,7 @@ msgstr "Избодите друге ћелије са ово."
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5434,7 +5439,7 @@ msgstr "популација:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
@@ -7108,7 +7113,7 @@ msgstr "Алати"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Врсте:"
@@ -7531,7 +7536,7 @@ msgstr "Верзија:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Непознати миш"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Поставите органелу"
@@ -9381,7 +9386,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за повећање кретања"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Врсте:"

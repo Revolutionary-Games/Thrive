@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2024-01-06 16:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -344,7 +344,7 @@ msgstr "Ağustos"
 msgid "AUTO"
 msgstr "Otomatik"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
 
@@ -353,11 +353,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} popülasyonu {2} arazisinde {1} defa değişti çünkü: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Oto-Evrim Tahmini"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Bu panel, düzenlenen türler için oto-evrimden çıkan beklenilen popülasyon rakamlarını gösterir.\n"
@@ -381,7 +381,7 @@ msgstr "Oto-Evrim Keşif Aracı"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
@@ -392,7 +392,7 @@ msgstr "Oto-evrim sonuçları:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
@@ -542,7 +542,7 @@ msgstr "Performans aşaması:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Sonuçlar:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "En İyi Arazi:"
 
@@ -670,7 +670,7 @@ msgstr "İptal"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
@@ -779,7 +779,7 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
@@ -932,7 +932,7 @@ msgstr "Eski Kayıtları Temizle"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1711,11 +1711,11 @@ msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş damla formları var.\n"
 "Devam etmek için lütfen yerleştirdiğiniz bütün damla formlarını birbirine bağlayın."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
@@ -1971,15 +1971,20 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "{1} için {0} arazisinde bulunan enerji miktarı"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
@@ -2162,7 +2167,7 @@ msgstr "Ek Seçenekler"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Facebook sayfamızı ziyaret edin"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Başarısız"
 
@@ -2343,7 +2348,7 @@ msgstr "(oyuncunun bulunmuş olduğu ve komşu olan araziler gösterilir)"
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji miktarı: {1} (uyum başarısı: {2}) mevcut toplam enerji miktarı: {3} (toplam uyum başarısı: {4})"
 
@@ -2444,7 +2449,7 @@ msgstr "Galeri Görüntüleyicisi"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Patreon sayfamızı ziyaret edin"
@@ -3124,7 +3129,7 @@ msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı olun!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
 
@@ -3428,7 +3433,7 @@ msgstr "İlk Çok Hücreli Düzenleyicisi Yükleniyor"
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Düzenleyicisi Yükleniyor"
 
@@ -4380,11 +4385,11 @@ msgstr ""
 "Çok çekirdekli işlemcilerde daha fazla iş parçacığı genellikle performansı belli bir sınıra kadar arttırır.\n"
 "Toplam iş parçacığı aşırı fazla ise performans azalmaya başlar."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobunuz, hayatta kalmak için yeterli ATP üretmemektedir!\n"
@@ -4436,7 +4441,7 @@ msgstr "Yeni İsim:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4505,11 +4510,11 @@ msgstr "Etkileşim kurulacak bir şey yok"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "ATP kalmadığından dolayı hasar alınıyor"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "İçeri alınan maddedeki toksinler yüzünden hasar alınıyor"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Hedefi yutmak için gerekli olan {0} eksik"
 
@@ -4517,7 +4522,7 @@ msgstr "Hedefi yutmak için gerekli olan {0} eksik"
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "İçeri alınan maddelere ait depoda, hedefi yutmak için yeterli alan yok"
@@ -4543,7 +4548,7 @@ msgid "NO_AI"
 msgstr "AI Yok"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -4585,7 +4590,7 @@ msgstr "Seçilen Mod Yok"
 msgid "NUCLEUS"
 msgstr "Çekirdek"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Çekirdek, geri dönüşü olmayan bir evrim olduğu için çekirdeği silme işlemi gerçekleştirilemiyor.\n"
@@ -4606,9 +4611,9 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "Bilinmeyen"
@@ -4807,7 +4812,7 @@ msgstr "(UYARI: fotosentez daha elverişsiz hale gelir)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5202,7 +5207,7 @@ msgstr "popülasyonu:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "arazideki popülasyon:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6766,7 +6771,7 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Toplam geçen süre:"
@@ -7157,7 +7162,7 @@ msgstr "Bilinmeyen sürüm"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Organel yerleştir (veya başka yerleştirilen şey)"
@@ -9012,7 +9017,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Dünyaya bağlı"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2024-01-11 07:19+0000\n"
 "Last-Translator: William <William.berger@outlook.be>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -347,7 +347,7 @@ msgstr "Augustus"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Dit paneel toont de waarden die de auto-evo voorspelling gebruikt. De totale energie die een soort kan verzamelen en de kosten per individu van de soort bepalen de uiteindelijke bevolkingsaantal. Auto-evo gebruikt een versimpeld beeld van de werkelijkheid om te berekenen hoe goed een soort presteert op basis van de energie die ze kunnen verzamelen. Voor elke voedselbron wordt er getoond hoeveel energie een soort daar van krijgt. Verder wordt de totale hoeveelheid energie die van die bron beschikbaar is getoond. Het deel dat de soort uit de totale energie krijgt is gebaseerd op hoe groot de geschiktheid is in vergelijking tot de totale geschiktheid. Geschiktheid is een metriek die toont hoe goed een soort die voedselbron kan gebruiken."
 
@@ -356,11 +356,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} bevolkingsaantal veranderd met {1} in: {2}vanwege: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo voorspelling"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dit paneel toont de verwachte populatie van auto-evo voor de bewerkte soort.\n"
@@ -385,7 +385,7 @@ msgstr "loopstatus:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
@@ -396,7 +396,7 @@ msgstr "Auto-evo resultaten:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "loopstatus:"
 
@@ -551,7 +551,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "Beste Zone:"
 
@@ -679,7 +679,7 @@ msgstr "Annuleer"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULEER ACTIE"
 
@@ -790,7 +790,7 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, wat resulteert in een betere bescherming tegen algemene schade en vooral tegen fysieke schade. Het kost ook minder energie om zijn vorm te behouden, maar kan stoffen niet snel absorberen en is langzamer."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -951,7 +951,7 @@ msgstr "Ruim oude opgeslagen bestanden op"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1745,11 +1745,11 @@ msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
 "Connecteer a.u.b. alle geplaatste organellen met elkaar of maak aanpassingen ongedaan."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Niet-geconnecteerde Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Er zijn geplaatste organellen die niet geconnecteerd zijn met de rest.\n"
@@ -2020,15 +2020,20 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "{0} ({1})"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2231,7 +2236,7 @@ msgstr "Extra opties"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Pauzeer het spel"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Mislukt"
 
@@ -2429,7 +2434,7 @@ msgstr "Steek hiermee andere cellen."
 msgid "FOOD_CHAIN"
 msgstr "Voedselketen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2548,7 +2553,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr "Game-ontwerpteam"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Pauzeer het spel"
@@ -3258,7 +3263,7 @@ msgstr "Aan deze taal wordt nog gewerkt ({0}% voltooid)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Deze vertaling is erg onvolledig ({0}% klaar) help ons alstublieft!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3584,7 +3589,7 @@ msgstr "Microbe editor laden"
 msgid "LOADING_GAME"
 msgstr "Spel laden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe editor laden"
 
@@ -4509,11 +4514,11 @@ msgstr ""
 "Meer discussies aan CPUs met veel kernen vergroten algemeen prestatie tot een limiet\n"
 "te veel totale discussies gaan prestatie verslechten."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatieve ATP Balans"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Jouw microbe maakt niet genoeg ATP aan het te laten overleven!\n"
@@ -4565,7 +4570,7 @@ msgstr "Nieuwe Naam:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4634,11 +4639,11 @@ msgstr "Niets om te interageren"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Beschadigd door een gebrek aan ATP"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Beschadigd door gifstoffen in opgeslokte materie"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Mist {0} om doelwit op te slokken"
 
@@ -4646,7 +4651,7 @@ msgstr "Mist {0} om doelwit op te slokken"
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Grootte van huidige cel is te klein om doelwit op te slokken"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Niet genoeg plaats in opslag voor ingeslikte materie om doelwit op te slokken"
@@ -4673,7 +4678,7 @@ msgid "NO_AI"
 msgstr "Geen AI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Geen data om te tonen"
 
@@ -4715,7 +4720,7 @@ msgstr "Geen geselecteerde mod"
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4734,9 +4739,9 @@ msgstr "Num Lock(toets)"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "N/A"
@@ -4952,7 +4957,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5363,7 +5368,7 @@ msgstr "Totale populatie:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -7006,7 +7011,7 @@ msgstr "Hulpmiddelen"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Soorten:"
@@ -7428,7 +7433,7 @@ msgstr "Mod Versie:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Onbekende Workshop ID voor deze mod"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Organel plaatsen"
@@ -9254,7 +9259,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Relatief aan de wereld"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "Slechtste Zone:"
 

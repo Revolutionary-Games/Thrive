@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -344,7 +344,7 @@ msgstr "Август"
 msgid "AUTO"
 msgstr "Авто"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "На данной панели показаны числа, на основе которых работает предсказание Авто-Эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-Эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его адаптация по сравнению с общей адаптацией. Адаптация - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
@@ -353,11 +353,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Популяция {0} изменена на {1} к {2}, по причине: {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Предсказание Авто-Эво"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Эта панель показывает ожидаемую численность Авто-Эво для редактируемых видов.\n"
@@ -381,7 +381,7 @@ msgstr "Инструмент изучения Авто-Эво"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Не удалось запустить Авто-Эво"
 
@@ -392,7 +392,7 @@ msgstr "Результаты Авто-Эво:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -542,7 +542,7 @@ msgstr "Фаза тестирования:"
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Результаты:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "Лучший биом:"
 
@@ -670,7 +670,7 @@ msgstr "Отмена"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 
@@ -779,7 +779,7 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
@@ -932,7 +932,7 @@ msgstr "Удалить устаревшие сохранения"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1711,11 +1711,11 @@ msgstr ""
 "Среди размещённых клеток имеются метасферы что не объединены с остальными.\n"
 "Пожалуйста, соедините все размещённые метасферы с другими для продолжения."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Отсоединённые Органеллы"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
@@ -1971,15 +1971,20 @@ msgstr "{0}: -{1} АТФ"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "Энергия в {0} для {1}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, результатом чего является нескорректированная популяция количеством в {2}"
 
@@ -2162,7 +2167,7 @@ msgstr "Дополнительные Настройки"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Посетить нашу страницу на Facebook"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Неудачно"
 
@@ -2343,7 +2348,7 @@ msgstr "(Игрок будет обладать информацией лишь 
 msgid "FOOD_CHAIN"
 msgstr "Пищевая Цепочка"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 
@@ -2444,7 +2449,7 @@ msgstr "Просмотр Галереи"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Команда Игрового Дизайна"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Зайти на нашу страницу на Patreon"
@@ -3125,7 +3130,7 @@ msgstr "Этот язык всё ещё находится в стадии ра�
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, помогите нам с этим!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
@@ -3429,7 +3434,7 @@ msgstr "Загрузка Раннего Многоклеточного Реда�
 msgid "LOADING_GAME"
 msgstr "Загрузка Игры"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
 
@@ -4379,11 +4384,11 @@ msgstr "{0}(Н)"
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Число потоков:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный АТФ Баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производит нужное количество АТФ для выживания!\n"
@@ -4435,7 +4440,7 @@ msgstr "Новое Название Колонии:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4504,11 +4509,11 @@ msgstr "Не с чем взаимодействовать"
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr "Вы теряете здоровье из-за отсутствия АТФ"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr "Вы теряете здоровье из-за токсинов в поглощенном организме"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr "Не хватает {0} для поглощения организма"
 
@@ -4516,7 +4521,7 @@ msgstr "Не хватает {0} для поглощения организма"
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Нынешний размер клетки слишком мал для поглощения объекта"
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Недостаточно вместимости поглощенной материи для поглощения данного объекта"
@@ -4542,7 +4547,7 @@ msgid "NO_AI"
 msgstr "Выключить ИИ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -4584,7 +4589,7 @@ msgstr "Ни одного мода не выбрано"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Нельзя удалить ядро, это необратимая эволюция.\n"
@@ -4605,9 +4610,9 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "Нет данных"
@@ -4806,7 +4811,7 @@ msgstr "(ВНИМАНИЕ: фотосинтез становится гораз�
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5201,7 +5206,7 @@ msgstr "популяция:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Популяция в биомах:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6765,7 +6770,7 @@ msgstr "Инструменты"
 msgid "TOOL_HAND_AXE"
 msgstr "Ручной Топор"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Создатель:"
@@ -7163,7 +7168,7 @@ msgstr "Неизвестная версия"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестный Workshop ID для этого мода"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Разместить органеллу (или другую вещь)"
@@ -8906,7 +8911,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "Относительно мира"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "Худший биом:"
 

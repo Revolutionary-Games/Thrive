@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-14 15:18+0100\n"
+"POT-Creation-Date: 2024-01-15 17:31+0200\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: RolandAckerl <roland.ackerl@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -338,7 +338,7 @@ msgstr "August"
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1557
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1556
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
@@ -347,11 +347,11 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} Population ist in {2} um {1} gewachsen, aufgrund von {3}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1512
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1511
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo-Vorhersage"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1250
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dieses Feld zeigt die von Auto-Evo erwarteten Populationszahlen für die bearbeitete Art an.\n"
@@ -375,7 +375,7 @@ msgstr "Auto-Evo Exploration"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-Evo fehlgeschlagen"
 
@@ -386,7 +386,7 @@ msgstr "Auto-Evo Ergebnisse:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
@@ -538,7 +538,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Ergebnisse:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1340
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1339
 msgid "BEST_PATCH_COLON"
 msgstr "Bestes Gebiet:"
 
@@ -669,7 +669,7 @@ msgstr "Abbrechen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1434
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1433
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTION ABBRECHEN"
 
@@ -778,7 +778,7 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:703
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
@@ -932,7 +932,7 @@ msgstr "Alte Speicherstände aufräumen"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1565
 #: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:309
@@ -1696,11 +1696,11 @@ msgstr ""
 "Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Zellen miteinander oder mach deine Änderungen rückgängig."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1495
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1494
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Getrennte Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1497
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1496
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Es gibt Organellen, die nicht mit dem Rest verbunden sind.\n"
@@ -1960,15 +1960,20 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2532
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2540
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2543
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2382
+#, fuzzy
+msgid "ENERGY_IN_PATCH_SHORT"
+msgstr "Energie in {0} für {1}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2551
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2536
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2544
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
@@ -2155,7 +2160,7 @@ msgstr "Zusätzliche Optionen"
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Besuche unsere Facebook Seite"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1320
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1321
 msgid "FAILED"
 msgstr "Gescheitert"
 
@@ -2370,7 +2375,7 @@ msgstr "Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler Mikroorg
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2549
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2557
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -2479,7 +2484,7 @@ msgstr "Kunstgalerie"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spieldesigner Team"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Besuche unsere Patreon Seite"
@@ -3185,7 +3190,7 @@ msgstr "Diese Übersetzung ist noch in Arbeit ({0}% vollständig)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Diese Übersetzung ist sehr unvollständig ({0}% fertig). Bitte helfe uns dabei!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1457
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Letztes Organell kann nicht gelöscht werden"
 
@@ -3491,7 +3496,7 @@ msgstr "Lädt frühen Mehrzellereditor"
 msgid "LOADING_GAME"
 msgstr "Lade Spiel"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:63
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Lade Mikrobeneditor"
 
@@ -4436,11 +4441,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Aktuelle Threads:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1487
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativer ATP-Saldo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1488
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Deine Mikrobe produziert nicht genug ATP zum überleben!\n"
@@ -4492,7 +4497,7 @@ msgstr "Neuer Name:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1449
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4561,11 +4566,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:219
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:233
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:148
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:149
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4573,7 +4578,7 @@ msgstr ""
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:117
+#: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
 #: ../src/microbe_stage/systems/EngulfingSystem.cs:975
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
@@ -4599,7 +4604,7 @@ msgid "NO_AI"
 msgstr "Keine KI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:690
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2564
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2572
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -4641,7 +4646,7 @@ msgstr "Kein Mod ausgewählt"
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1449
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1456
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Der Zellkern kann nicht gelöscht werden, da es sich um eine irreversible Evolution handelt.\n"
@@ -4662,9 +4667,9 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:26
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2386
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2398
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2393
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2405
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:166
 #: ../src/microbe_stage/MicrobeHUD.cs:465
 msgid "N_A"
 msgstr "N/V"
@@ -4873,7 +4878,7 @@ msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:533
+#: ../src/microbe_stage/OrganelleDefinition.cs:548
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5275,7 +5280,7 @@ msgstr "Gesamtbevölkerung:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Bevölkerung in Gebieten:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2375
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2412
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -6882,7 +6887,7 @@ msgstr "Werkzeuge"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1327
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Status:"
@@ -7290,7 +7295,7 @@ msgstr "Unbekannte Version"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Unbekannte Workshop-ID für diesen Mod"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:123
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:125
 #, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "Organelle platzieren"
@@ -9113,7 +9118,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
 msgid "WORST_PATCH_COLON"
 msgstr "Schlechtestes Gebiet:"
 
