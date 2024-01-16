@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
+[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
 public class OrganelleDefinition : IRegistryType
 {
     /// <summary>
@@ -368,6 +370,21 @@ public class OrganelleDefinition : IRegistryType
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
+        }
+
+        foreach (var entry in InitialComposition)
+        {
+            if (entry.Value <= MathUtils.EPSILON)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has negative or really small value");
+            }
+
+            if (!entry.Key.IsCloud)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has a compound that can't be a cloud");
+            }
         }
 
         if (Hexes == null || Hexes.Count < 1)

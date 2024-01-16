@@ -564,7 +564,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalPopulationLabel.Value = float.NaN;
+        totalEnergyLabel.Value = float.NaN;
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 

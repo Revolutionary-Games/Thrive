@@ -91,18 +91,28 @@ public class SimulationParameters : Node
             {
                 new DirectTypeLoadOverride(typeof(Compound), null),
                 new DirectTypeLoadOverride(typeof(Enzyme), null),
+                new DirectTypeLoadOverride(typeof(Biome), null),
             };
 
             compounds = LoadRegistry<Compound>("res://simulation_parameters/microbe_stage/compounds.json",
                 deserializers);
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
+            biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json", deserializers);
+
+            // These later things already depend on the earlier things so another phase of direct loaders are needed
+
+            deserializers = new JsonConverter[]
+            {
+                new DirectTypeLoadOverride(typeof(OrganelleDefinition), null),
+            };
+
+            organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json",
+                deserializers);
         }
 
         membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
-        biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
-        organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>("res://simulation_parameters/microbe_stage/species_names.json");
 

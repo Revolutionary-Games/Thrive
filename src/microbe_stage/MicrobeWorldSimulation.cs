@@ -450,72 +450,80 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             nonParallelRunner.Dispose();
 
-            animationControlSystem.Dispose();
-            attachedEntityPositionSystem.Dispose();
-            colourAnimationSystem.Dispose();
-            countLimitedDespawnSystem.Dispose();
-            damageCooldownSystem.Dispose();
-            damageOnTouchSystem.Dispose();
-            disallowPlayerBodySleepSystem.Dispose();
-            entityMaterialFetchSystem.Dispose();
-            fadeOutActionSystem.Dispose();
-            pathBasedSceneLoader.Dispose();
-            physicsBodyControlSystem.Dispose();
-            physicsBodyCreationSystem.Dispose();
-            physicsBodyDisablingSystem.Dispose();
-            physicsCollisionManagementSystem.Dispose();
-            physicsSensorSystem.Dispose();
-            physicsUpdateAndPositionSystem.Dispose();
-            collisionShapeLoaderSystem.Dispose();
-            predefinedVisualLoaderSystem.Dispose();
-            simpleShapeCreatorSystem.Dispose();
-            soundEffectSystem.Dispose();
-            soundListenerSystem.Dispose();
-            spatialAttachSystem.Dispose();
-            spatialPositionSystem.Dispose();
+            // If disposed before Init is called problems will happen without this check. This happens for example if
+            // loading a save made in the editor and quitting the game without exiting the editor first to the microbe
+            // stage.
+            if (animationControlSystem != null!)
+            {
+                animationControlSystem.Dispose();
+                attachedEntityPositionSystem.Dispose();
+                colourAnimationSystem.Dispose();
+                countLimitedDespawnSystem.Dispose();
+                damageCooldownSystem.Dispose();
+                damageOnTouchSystem.Dispose();
+                disallowPlayerBodySleepSystem.Dispose();
+                entityMaterialFetchSystem.Dispose();
+                fadeOutActionSystem.Dispose();
+                pathBasedSceneLoader.Dispose();
+                physicsBodyControlSystem.Dispose();
+                physicsBodyCreationSystem.Dispose();
+                physicsBodyDisablingSystem.Dispose();
+                physicsCollisionManagementSystem.Dispose();
+                physicsSensorSystem.Dispose();
+                physicsUpdateAndPositionSystem.Dispose();
+                collisionShapeLoaderSystem.Dispose();
+                predefinedVisualLoaderSystem.Dispose();
+                simpleShapeCreatorSystem.Dispose();
+                soundEffectSystem.Dispose();
+                soundListenerSystem.Dispose();
+                spatialAttachSystem.Dispose();
+                spatialPositionSystem.Dispose();
 
-            allCompoundsVentingSystem.Dispose();
-            cellBurstEffectSystem.Dispose();
-            colonyBindingSystem.Dispose();
-            colonyCompoundDistributionSystem.Dispose();
-            colonyStatsUpdateSystem.Dispose();
-            compoundAbsorptionSystem.Dispose();
-            damageSoundSystem.Dispose();
-            engulfedDigestionSystem.Dispose();
-            engulfedHandlingSystem.Dispose();
-            engulfingSystem.Dispose();
-            entitySignalingSystem.Dispose();
-            fluidCurrentsSystem.Dispose();
-            microbeAI.Dispose();
-            microbeCollisionSoundSystem.Dispose();
-            microbeDeathSystem.Dispose();
-            microbeEmissionSystem.Dispose();
-            microbeEventCallbackSystem.Dispose();
-            microbeFlashingSystem.Dispose();
-            microbeMovementSoundSystem.Dispose();
-            microbeMovementSystem.Dispose();
-            microbeShaderSystem.Dispose();
-            microbeVisualsSystem.Dispose();
-            organelleComponentFetchSystem.Dispose();
-            organelleTickSystem.Dispose();
-            osmoregulationAndHealingSystem.Dispose();
-            pilusDamageSystem.Dispose();
-            slimeSlowdownSystem.Dispose();
-            microbePhysicsCreationAndSizeSystem.Dispose();
-            microbeRenderPrioritySystem.Dispose();
-            microbeReproductionSystem.Dispose();
-            tintColourAnimationSystem.Dispose();
-            toxinCollisionSystem.Dispose();
-            unneededCompoundVentingSystem.Dispose();
-            delayedColonyOperationSystem.Dispose();
-            multicellularGrowthSystem.Dispose();
+                allCompoundsVentingSystem.Dispose();
+                cellBurstEffectSystem.Dispose();
+                colonyBindingSystem.Dispose();
+                colonyCompoundDistributionSystem.Dispose();
+                colonyStatsUpdateSystem.Dispose();
+                compoundAbsorptionSystem.Dispose();
+                damageSoundSystem.Dispose();
+                engulfedDigestionSystem.Dispose();
+                engulfedHandlingSystem.Dispose();
+                engulfingSystem.Dispose();
+                entitySignalingSystem.Dispose();
+                fluidCurrentsSystem.Dispose();
+                microbeAI.Dispose();
+                microbeCollisionSoundSystem.Dispose();
+                microbeDeathSystem.Dispose();
+                microbeEmissionSystem.Dispose();
+                microbeEventCallbackSystem.Dispose();
+                microbeFlashingSystem.Dispose();
+                microbeMovementSoundSystem.Dispose();
+                microbeMovementSystem.Dispose();
+                microbeShaderSystem.Dispose();
+                microbeVisualsSystem.Dispose();
+                organelleComponentFetchSystem.Dispose();
+                organelleTickSystem.Dispose();
+                osmoregulationAndHealingSystem.Dispose();
+                pilusDamageSystem.Dispose();
+                slimeSlowdownSystem.Dispose();
+                microbePhysicsCreationAndSizeSystem.Dispose();
+                microbeRenderPrioritySystem.Dispose();
+                microbeReproductionSystem.Dispose();
+                tintColourAnimationSystem.Dispose();
+                toxinCollisionSystem.Dispose();
+                unneededCompoundVentingSystem.Dispose();
+                delayedColonyOperationSystem.Dispose();
+                multicellularGrowthSystem.Dispose();
 
-            CameraFollowSystem.Dispose();
-            ProcessSystem.Dispose();
-            TimedLifeSystem.Dispose();
-            SpawnSystem.Dispose();
+                CameraFollowSystem.Dispose();
+                ProcessSystem.Dispose();
+                TimedLifeSystem.Dispose();
 
-            cellCountingEntitySet.Dispose();
+                cellCountingEntitySet.Dispose();
+            }
+
+            if (SpawnSystem != null!)
+                SpawnSystem.Dispose();
         }
 
         base.Dispose(disposing);
