@@ -75,7 +75,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="OnOpenStatistics" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

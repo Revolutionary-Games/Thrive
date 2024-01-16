@@ -1305,7 +1305,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     private void StatisticsButtonPressed()
     {
-        menu.OpenToStatistics();
+        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void OnEditorButtonMouseEnter()

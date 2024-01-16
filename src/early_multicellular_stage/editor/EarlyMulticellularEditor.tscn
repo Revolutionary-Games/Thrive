@@ -82,7 +82,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
 [connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
-[connection signal="OnOpenStatistics" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToStatistics"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

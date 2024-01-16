@@ -292,25 +292,10 @@ public class PauseMenu : TopLevelContainer
         helpScreen.RandomizeEasterEgg();
     }
 
-    public void ShowThriveopedia(string pageName)
-    {
-        if (ActiveMenu == ActiveMenuType.Thriveopedia)
-            return;
-
-        ActiveMenu = ActiveMenuType.Thriveopedia;
-        thriveopedia.ChangePage(pageName);
-    }
-
     public void OpenToHelp()
     {
         Open();
         ShowHelpScreen();
-    }
-
-    public void OpenToStatistics()
-    {
-        Open();
-        ShowThriveopedia("CurrentWorld");
     }
 
     public void SetNewSaveName(string name)
@@ -469,6 +454,7 @@ public class PauseMenu : TopLevelContainer
 
     private void OnThriveopediaOpened(string pageName)
     {
+        Open();
         OpenThriveopediaPressed();
         thriveopedia.ChangePage(pageName);
     }
