@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Utility for universally accessible Thriveopedia actions, such as opening a page by its name.
@@ -8,12 +7,14 @@ public class ThriveopediaManager
 {
     private static readonly ThriveopediaManager ManagerInstance = new();
 
+    public delegate void OnPageOpened(string pageName);
+
     public static ThriveopediaManager Instance => ManagerInstance;
 
     /// <summary>
     ///   Action to open the Thriveopedia in the current game context, e.g. from the main menu or from the pause menu.
     /// </summary>
-    public Action<string>? OpenCallback { get; set; }
+    public OnPageOpened? OnPageOpenedHandler { get; set; }
 
     /// <summary>
     ///   Opens a page in the Thriveopedia via the appropriate menu context. Name must match the PageName property
@@ -21,12 +22,12 @@ public class ThriveopediaManager
     /// </summary>
     public static void OpenPage(string pageName)
     {
-        if (Instance.OpenCallback == null)
+        if (Instance.OnPageOpenedHandler == null)
         {
             GD.PrintErr($"Attempted to open page {pageName} before Thriveopedia was initialised");
             return;
         }
 
-        Instance.OpenCallback(pageName);
+        Instance.OnPageOpenedHandler(pageName);
     }
 }

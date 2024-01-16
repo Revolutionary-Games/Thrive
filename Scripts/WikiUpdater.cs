@@ -13,7 +13,7 @@ using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 
-public static class WikiUpdater
+public class WikiUpdater
 {
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
@@ -23,7 +23,7 @@ public static class WikiUpdater
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
-    private static readonly Regex[] WhitelistedDomains =
+    private readonly Regex[] whitelistedDomains =
     [
         new Regex(@".*\.wikipedia\.org\/.*"),
         new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
@@ -32,13 +32,13 @@ public static class WikiUpdater
     /// <summary>
     ///   Mapping from English page names to internal page names, required for inter-page linking in game.
     /// </summary>
-    private static Dictionary<string, string> pageNames = new();
+    private Dictionary<string, string> pageNames = new();
 
     /// <summary>
     ///   Inserts selected content from the online wiki into the game files. See
     ///   https://wiki.revolutionarygamesstudio.com/wiki/Thriveopedia for instructions.
     /// </summary>
-    public static async Task<bool> Run(CancellationToken cancellationToken)
+    public async Task<bool> Run(CancellationToken cancellationToken)
     {
         var organellesRootTask = FetchOrganellesRootPage(cancellationToken);
         var organellesTask = FetchOrganellePages(cancellationToken);
@@ -69,7 +69,7 @@ public static class WikiUpdater
         return true;
     }
 
-    private static async Task<IHtmlElement> FetchOrganellesRootPage(CancellationToken cancellationToken)
+    private async Task<IHtmlElement> FetchOrganellesRootPage(CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine("Fetching organelles root page");
         var body = (await HtmlReader.RetrieveHtmlDocument(ORGANELLE_CATEGORY, cancellationToken)).Body!;
@@ -77,7 +77,7 @@ public static class WikiUpdater
         return body;
     }
 
-    private static async Task<List<IHtmlElement>> FetchOrganellePages(CancellationToken cancellationToken)
+    private async Task<List<IHtmlElement>> FetchOrganellePages(CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine("Fetching organelle pages");
         var organellePages = new List<IHtmlElement>();
@@ -103,7 +103,7 @@ public static class WikiUpdater
         return organellePages;
     }
 
-    private static TranslationPair ProcessOrganellesRootPage(IHtmlElement page)
+    private TranslationPair ProcessOrganellesRootPage(IHtmlElement page)
     {
         var sections = GetMainBodySections(page);
         var untranslatedSections = sections.Select(section => UntranslateSection(section, "ORGANELLES_ROOT")).ToList();
@@ -117,7 +117,7 @@ public static class WikiUpdater
         return new TranslationPair(untranslatedPage, translatedPage);
     }
 
-    private static List<TranslationPair> ProcessOrganellePages(List<IHtmlElement> pages)
+    private List<TranslationPair> ProcessOrganellePages(List<IHtmlElement> pages)
     {
         var organellePages = new List<TranslationPair>();
 
@@ -157,7 +157,7 @@ public static class WikiUpdater
     ///   which are taken as the headings (or null for the first section).
     /// </summary>
     /// <param name="body">Body content of the whole page</param>
-    private static List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
+    private List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
     {
         var sections = new List<Wiki.Page.Section> { new(null, string.Empty) };
 
@@ -201,7 +201,7 @@ public static class WikiUpdater
     ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate
     ///   translation keys.
     /// </summary>
-    private static Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
+    private Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
     {
         var sectionName = section.SectionHeading?.ToUpperInvariant().Replace(" ", "_");
         var heading = sectionName != null ? $"WIKI_HEADING_{sectionName}" : null;
@@ -213,7 +213,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts HTML for a single paragraph into BBCode. Paragraph must not contain lists, headings, etc.
     /// </summary>
-    private static string ConvertParagraphToBbcode(IElement paragraph)
+    private string ConvertParagraphToBbcode(IElement paragraph)
     {
         var bbcode = new StringBuilder();
 
@@ -227,7 +227,7 @@ public static class WikiUpdater
             else if (child is IHtmlImageElement image)
             {
                 // In-game compound BBCode already has bold text label, so remove the extra one
-                bbcode.RemoveLastBoldText();
+                RemoveLastBoldText(bbcode);
                 bbcode.Append(ConvertImageToBbcode(image));
             }
             else if (child is IElement element)
@@ -255,7 +255,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Removes the last bold text label and all subsequent text from this string.
     /// </summary>
-    private static void RemoveLastBoldText(this StringBuilder bbcode)
+    private void RemoveLastBoldText(StringBuilder bbcode)
     {
         var boldTextIndex = bbcode.ToString().LastIndexOf("[b]", StringComparison.Ordinal);
 
@@ -268,14 +268,14 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts an HTML link element into BBCode (external or pointing at another page).
     /// </summary>
-    private static string ConvertLinkToBbcode(IHtmlAnchorElement link)
+    private string ConvertLinkToBbcode(IHtmlAnchorElement link)
     {
         var isExternalLink = link.ClassName == "external text";
 
         if (isExternalLink)
         {
             // Use text if the link isn't whitelisted
-            if (!WhitelistedDomains.Any(d => d.IsMatch(link.Href)))
+            if (!whitelistedDomains.Any(d => d.IsMatch(link.Href)))
                 return ConvertTextToBbcode(link.InnerHtml);
 
             return $"[color=#3796e1][url={link.Href}]{ConvertTextToBbcode(link.InnerHtml)}[/url][/color]";
@@ -293,7 +293,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
     /// </summary>
-    private static string ConvertImageToBbcode(IHtmlImageElement image)
+    private string ConvertImageToBbcode(IHtmlImageElement image)
     {
         return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
     }
@@ -301,7 +301,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts formatted HTML text into BBCode.
     /// </summary>
-    private static string ConvertTextToBbcode(string paragraph)
+    private string ConvertTextToBbcode(string paragraph)
     {
         return paragraph
             .Replace("\n", string.Empty)
@@ -315,7 +315,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Inserts into en.po the English translations for all the translation keys in a list of wiki pages.
     /// </summary>
-    private static async Task InsertTranslatedPageContent(IEnumerable<TranslationPair> pages,
+    private async Task InsertTranslatedPageContent(IEnumerable<TranslationPair> pages,
         CancellationToken cancellationToken)
     {
         // Create the whole list of values to replace first, then replace asynchronously based on read lines

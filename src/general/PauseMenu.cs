@@ -219,11 +219,7 @@ public class PauseMenu : TopLevelContainer
 
         GetTree().AutoAcceptQuit = false;
 
-        ThriveopediaManager.Instance.OpenCallback = pageName =>
-        {
-            OpenThriveopediaPressed();
-            thriveopedia.ChangePage(pageName);
-        };
+        ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
 
         base._EnterTree();
     }
@@ -237,7 +233,7 @@ public class PauseMenu : TopLevelContainer
 
         GetTree().AutoAcceptQuit = true;
 
-        ThriveopediaManager.Instance.OpenCallback = null;
+        ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
     public override void _Notification(int notification)
@@ -469,6 +465,12 @@ public class PauseMenu : TopLevelContainer
     private void Quit()
     {
         SceneManager.Instance.QuitThrive();
+    }
+
+    private void OnThriveopediaOpened(string pageName)
+    {
+        OpenThriveopediaPressed();
+        thriveopedia.ChangePage(pageName);
     }
 
     private void OpenThriveopediaPressed()
