@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -2035,7 +2035,7 @@ msgstr "Przechwycenie wiadomości się nie powiodło przez błąd: {0}"
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Błąd wczytywania"
 
@@ -2072,11 +2072,11 @@ msgstr "Dokładna Wersja Thrive:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Podczas wczytywania danych zapisu nastąpił wyjątek"
 
@@ -2914,7 +2914,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr "Odwrócony"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Grasz w prototypy późniejszych etapów, które znajdują się w grze.\n"
@@ -3452,7 +3452,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
 
@@ -3469,7 +3469,7 @@ msgstr "Wczytywanie Edytora Wielokomórkowca"
 msgid "LOADING_TIP"
 msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Wczytywanie zakończone"
 
@@ -4849,7 +4849,7 @@ msgstr "(UWAGA: fotosynteza staje się znacznie mniej wartościowa)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Statystyki Organizmu"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5182,7 +5182,7 @@ msgstr "gracz zginął"
 msgid "PLAYER_DUPLICATE"
 msgstr "Powiel Gracza"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "gracz wyginął"
 
@@ -5275,7 +5275,7 @@ msgstr "Podgląd jest za duży"
 msgid "PREVIOUS_COLON"
 msgstr "poprzedni:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Przetwarzanie wczytanych obiektów"
 
@@ -5688,7 +5688,7 @@ msgstr ""
 "Wersja zapisu który próbujesz wczytać nie zgadza się z wersją gry.\n"
 "Proszę załadować zapis manualnie w menu."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
 
@@ -5696,7 +5696,7 @@ msgstr "Plik zapisu ma nieprawidłowy stan sceny gry"
 msgid "SAVE_INVALID"
 msgstr "Nieważny"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Nieprawidłowy zapis"
 
@@ -5708,7 +5708,7 @@ msgstr ""
 "Jeśli pominiesz aktualizację, nastąpi próba wczytania zapisu normalnie.\n"
 "Spróbować aktualizacji tego zapisu?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Nie udało się odblokować już załadowanych zasobów: {0}"
 
@@ -5740,15 +5740,15 @@ msgstr "Zapisywanie informacji nie powiodło się z powodu wyjątku: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Zapisywanie..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Zapisywanie nie powiodło się! Zdarzył się wyjątek"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Zapis niemożliwy z powodu:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Powodzenie zapisu"
 

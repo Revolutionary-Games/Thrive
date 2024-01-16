@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -2070,7 +2070,7 @@ msgstr "(Crea secretor en el juego aleatoriamente)"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Error al crear el archivo de información del mod"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Error al cargar"
 
@@ -2110,11 +2110,11 @@ msgstr "Versión exacta de Thrive:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Esta es la commit exacta desde la cual esta versión de Thrive fue compilada"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Una excepción ha ocurrido al procesar objetos cargados"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Una excepción ha ocurrido al cargar los datos guardados"
 
@@ -2990,7 +2990,7 @@ msgstr "Suelo"
 msgid "INVERTED"
 msgstr "Invertido"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estas jugando las ultimas etapas desarrolladas incluidas en el juego en este momento.\n"
@@ -3532,7 +3532,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Cargando editor de Microbios Multicelulares"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Cargando Partida"
 
@@ -3549,7 +3549,7 @@ msgstr "Cargando Editor de Microbio Multicelular"
 msgid "LOADING_TIP"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Carga terminada"
 
@@ -4937,7 +4937,7 @@ msgstr "(ADVERTENCIA: la fotosíntesis se vuelve mucho menos viable)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5284,7 +5284,7 @@ msgstr "El jugador murió"
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador duplicado"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "El jugador se extinguió"
 
@@ -5381,7 +5381,7 @@ msgstr "El archivo de la imagen de previsualización es demasiado grande"
 msgid "PREVIOUS_COLON"
 msgstr "anterior:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Procesando objetos cargados"
 
@@ -5805,7 +5805,7 @@ msgstr ""
 "La versión de la partida guardada no corresponde a la versión del juego.\n"
 "Por favor cargue la partida manualmente desde el menú."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "La partida tiene un estado del juego inválido"
 
@@ -5813,7 +5813,7 @@ msgstr "La partida tiene un estado del juego inválido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "La partida guardada es inválida"
 
@@ -5825,7 +5825,7 @@ msgstr ""
 "Si te saltas la actualización, se intentara cargar el archivo de guardado con normalidad.\n"
 "¿Deseas intentar actualizar el archivo de guardado?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". No pudo liberar los recursos ya cargados: {0}"
 
@@ -5857,15 +5857,15 @@ msgstr "¡Guardado fallido! Ha ocurrido la excepción siguiente: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Guardando..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "¡Error al guardar!  Ocurrió una excepción"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "No se pudo guardar debido a:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado con éxito"
 

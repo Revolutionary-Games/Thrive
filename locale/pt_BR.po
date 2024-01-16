@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-12-05 07:44+0000\n"
 "Last-Translator: Koala Dourado <edooardoluz@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -2051,7 +2051,7 @@ msgstr "As notícias não foram carregadas devido a um erro: {0}"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Erro ao Carregar Notícias"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
@@ -2090,11 +2090,11 @@ msgstr "Versão exata de Thrive:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Esta é a commit na qual essa versão de Thrive foi compilada"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Uma exceção ocorreu ao processar objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Uma exceção ocorreu ao carregar os dados salvos"
 
@@ -2895,7 +2895,7 @@ msgstr "Chão"
 msgid "INVERTED"
 msgstr "Invertido"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Você está jogando os protótipos dos estágios posteriores que estão incluídos no jogo.\n"
@@ -3432,7 +3432,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Carregando Editor Multicelular Inicial"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
 
@@ -3449,7 +3449,7 @@ msgstr "Carregando Editor Multicelular"
 msgid "LOADING_TIP"
 msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
@@ -4809,7 +4809,7 @@ msgstr "(AVISO: a fotossíntese se tornará menos viável)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas do Organismo"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5148,7 +5148,7 @@ msgstr "jogador morreu"
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicar Jogador"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
 
@@ -5241,7 +5241,7 @@ msgstr "A imagem de pré-visualização é muito grande"
 msgid "PREVIOUS_COLON"
 msgstr "anterior:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processando objetos carregados"
 
@@ -5656,7 +5656,7 @@ msgstr ""
 "A versão do arquivo salvo que você está tentando carregar não corresponde à versão do jogo.\n"
 "Por favor carregue o salvamento manualmente através do menu."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Salvamento tem save game scene inválida"
 
@@ -5664,7 +5664,7 @@ msgstr "Salvamento tem save game scene inválida"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo salvo é inválido"
 
@@ -5676,7 +5676,7 @@ msgstr ""
 "Se pular a atualização, o jogo tentará executar o arquivo normalmente.\n"
 "Tentar atualizar esse arquivo salvo?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Não foi possível liberar recursos já livres: {0}"
 
@@ -5708,15 +5708,15 @@ msgstr "O salvamento de informações falhou por conta de uma exceção: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvando…"
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Falha ao salvar! Uma exceção ocorreu"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Atualmente, não é possível salvar porque:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvo com sucesso"
 

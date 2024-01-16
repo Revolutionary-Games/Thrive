@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-11-27 17:42+0000\n"
 "Last-Translator: Giulio Pacetti <giulio.peach@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -2057,7 +2057,7 @@ msgstr "(segreti che possono apparire casualmente nel gioco)"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Si è verificato un errore nella creazione del file di info"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Errore di caricamento"
 
@@ -2096,11 +2096,11 @@ msgstr "Versione:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Si è verificata un'eccezione nell'elaborazione degli oggetti caricati"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Si è verificata un'eccezione nel caricamento dei dati di salvataggio"
 
@@ -2977,7 +2977,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Stai giocando ai prototipi delle fasi future di gioco, inclusi nella versione attuale.\n"
@@ -3520,7 +3520,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Caricamento dell'Editor Multicellulare Iniziale"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Caricamento della Partita"
 
@@ -3537,7 +3537,7 @@ msgstr "Caricamento dell'Editor Multicellulare"
 msgid "LOADING_TIP"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Caricamento completato"
 
@@ -4937,7 +4937,7 @@ msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiche dell'organismo"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5282,7 +5282,7 @@ msgstr "il giocatore è morto"
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplica giocatore"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "Il giocatore si è estinto"
 
@@ -5376,7 +5376,7 @@ msgstr "Il file dell'immagine di anteprima è troppo grande"
 msgid "PREVIOUS_COLON"
 msgstr "precedente:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Elaborazione degli oggetti caricati"
 
@@ -5804,7 +5804,7 @@ msgstr ""
 "La versione del salvataggio che stai cercando di caricare non corrisponde a quella del gioco.\n"
 "Carica il salvataggio manualmente dal menù."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Il salvataggio contiene uno stato di gioco non valido"
 
@@ -5812,7 +5812,7 @@ msgstr "Il salvataggio contiene uno stato di gioco non valido"
 msgid "SAVE_INVALID"
 msgstr "Non valido"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Il salvataggio non è valido"
 
@@ -5824,7 +5824,7 @@ msgstr ""
 "In caso di mancato aggiornamento, avverrà un tentativo di caricare il salvataggio normalmente.\n"
 "Provare ad aggiornare il salvataggio?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Liberazione delle risorse già caricate non riuscita: {0}"
 
@@ -5856,15 +5856,15 @@ msgstr "Salvataggio delle informazioni non riuscito a causa di un'eccezione: {0}
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvataggio..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Impossibile salvare, al momento, per questo motivo:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvataggio riuscito"
 

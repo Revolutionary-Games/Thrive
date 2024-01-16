@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -2116,7 +2116,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Viga mod teabefaili loomisel"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Viga laadimisel"
 
@@ -2156,11 +2156,11 @@ msgstr "Versioon:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Laaditud objektide töötlemisel juhtus erand"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Salvestusandmete laadimisel juhtus erand"
 
@@ -3048,7 +3048,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
@@ -3606,7 +3606,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Mängu laadimine"
 
@@ -3624,7 +3624,7 @@ msgstr "Mikroobide redaktori laadimine"
 msgid "LOADING_TIP"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Laadimine lõpetatud"
 
@@ -5058,7 +5058,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismi statistika"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5407,7 +5407,7 @@ msgstr "mängija suri"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dubleeri pleier"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
@@ -5501,7 +5501,7 @@ msgstr "Pildi eelvaate fail on liiga suur"
 msgid "PREVIOUS_COLON"
 msgstr "eelmine:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Laaditud objektide töötlemine"
 
@@ -5936,7 +5936,7 @@ msgstr ""
 "Salvestuse versioon, mida proovite laadida, ei ühti mängu versiooniga.\n"
 "Palun laadige salvestus käsitsi menüü kaudu."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Salvestamisel on kehtetu mänguseisundi stseen"
 
@@ -5944,7 +5944,7 @@ msgstr "Salvestamisel on kehtetu mänguseisundi stseen"
 msgid "SAVE_INVALID"
 msgstr "Kehtetu"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Salvestamine on kehtetu"
 
@@ -5956,7 +5956,7 @@ msgstr ""
 "Kui jätate uuendamise vahele, proovitakse salvestust tavapäraselt laadida.\n"
 "Kas proovite seda salvestust uuendada?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Juba laaditud ressursside vabastamine ebaõnnestus: {0}"
 
@@ -5990,15 +5990,15 @@ msgstr "Teabe salvestamine ebaõnnestus erandi tõttu: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Salvestamine..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvestamine ebaõnnestus! Juhtus erand"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 

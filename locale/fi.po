@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-12-25 11:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -2136,7 +2136,7 @@ msgstr ""
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Virhe tallennettaessa"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Virhe ladattaessa"
 
@@ -2176,12 +2176,12 @@ msgstr "Sukupolvi:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Poikkeus tapahtui prosessoidessa ladattuja objekteja"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Poikkeus tapahtui ladattaessa tallennuksen tietoja"
@@ -3050,7 +3050,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr "Käänteinen"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 
@@ -3606,7 +3606,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Ladataan mikrobieditoria"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Ladataan peliä"
 
@@ -3624,7 +3624,7 @@ msgstr "Ladataan mikrobieditoria"
 msgid "LOADING_TIP"
 msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Lataus on valmistunut"
 
@@ -5022,7 +5022,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5373,7 +5373,7 @@ msgstr "pelaaja kuoli"
 msgid "PLAYER_DUPLICATE"
 msgstr "pelaaja kuoli"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "pelaaja kuoli"
@@ -5468,7 +5468,7 @@ msgstr ""
 msgid "PREVIOUS_COLON"
 msgstr "edellinen:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Prosessoidaan ladattuja objekteja"
 
@@ -5903,7 +5903,7 @@ msgstr ""
 "Tallennus, jota yrität ladata, ei vastaa pelin nykyistä versiota.\n"
 "Tämä tallennus pitää ladata manuaalisesti valikon kautta."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Tallennuksessa on virheellinen pelin tilan skene"
 
@@ -5911,7 +5911,7 @@ msgstr "Tallennuksessa on virheellinen pelin tilan skene"
 msgid "SAVE_INVALID"
 msgstr "Virheellinen"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Tallennus on virheellinen"
 
@@ -5920,7 +5920,7 @@ msgstr "Tallennus on virheellinen"
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
@@ -5955,16 +5955,16 @@ msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Tallennetaan..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 #, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 

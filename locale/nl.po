@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: Tim Kuppens <t.m.kuppens@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -2049,7 +2049,7 @@ msgstr "Het ophalen van nieuws is mislukt door fout: {0}"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Fout Met Ophalen Nieuws"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Fout met het Laden"
 
@@ -2089,11 +2089,11 @@ msgstr "Exacte Thrive Versie:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dit is de exacte code commit die gebruikt is bij het compileren van deze versie van Thrive"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Er heeft zich een uitzondering voorgedaan tijdens het verwerken van geladen objecten"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Er heeft zich een uitzondering voorgedaan tijdens het laden van opgeslagen data"
 
@@ -2902,7 +2902,7 @@ msgstr "Grond"
 msgid "INVERTED"
 msgstr "Omgekeerd"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Je speelt de latere faseprototypen die met het spel zijn meegeleverd.\n"
@@ -3439,7 +3439,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Vroege Multicellulaire bewerker laden"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Spel Wordt Geladen"
 
@@ -3456,7 +3456,7 @@ msgstr "Multicellulaire Bewerker Laden"
 msgid "LOADING_TIP"
 msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Laden afgerond"
 
@@ -4818,7 +4818,7 @@ msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5157,7 +5157,7 @@ msgstr "speler stierf"
 msgid "PLAYER_DUPLICATE"
 msgstr "Dupliceer Speler"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "Speler is uitgestorven"
 
@@ -5250,7 +5250,7 @@ msgstr "Bestand voorbeeldplaatje is te groot"
 msgid "PREVIOUS_COLON"
 msgstr "vorige:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Geladen objecten worden verwerkt"
 
@@ -5664,7 +5664,7 @@ msgstr ""
 "De versie van het spel wat je probeert te laden komt niet overeen met de meest recente versie van Thrive.\n"
 "Laad het spel handmatig via het menu."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Opslagbestand heeft foutieve spelstaatscene"
 
@@ -5672,7 +5672,7 @@ msgstr "Opslagbestand heeft foutieve spelstaatscene"
 msgid "SAVE_INVALID"
 msgstr "Ongeldig"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Opslagbestand is incorrect"
 
@@ -5684,7 +5684,7 @@ msgstr ""
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Het vrijmaken van al geladen bronnen is niet gelukt: {0}"
 
@@ -5716,15 +5716,15 @@ msgstr "Het opslaan van informatie is mislukt door uitzondering: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Opslaan..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Opslaan mislukt! Er heeft zich een uitzondering voorgedaan"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Opslaan is op dit moment niet mogelijk door:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Opslaan is gelukt"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -2067,7 +2067,7 @@ msgstr "(náhodně spawnuté překvapení ve hře)"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Chyba při načítání zpráv"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Chyba v načítání"
 
@@ -2106,11 +2106,11 @@ msgstr "Verze:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Při zpracování načtených objektů došlo k výjimce"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
 
@@ -2986,7 +2986,7 @@ msgstr ""
 msgid "INVERTED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Hrajete prototypy pozdějších období, které jsou zahrnuty se hrou.\n"
@@ -3528,7 +3528,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Načítání editoru brzkých mnohobuněčných živočichů"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Načítání hry"
 
@@ -3545,7 +3545,7 @@ msgstr "Načítání mnohobuněčného editoru"
 msgid "LOADING_TIP"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Načítání dokončeno"
 
@@ -4933,7 +4933,7 @@ msgstr "(POZOR: fotosyntéza se stává mnohem méně životaschopnou)"
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5276,7 +5276,7 @@ msgstr "hráč zemřel"
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicitní hráč"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
@@ -5370,7 +5370,7 @@ msgstr "Soubor náhledu obrázku je příliš velký"
 msgid "PREVIOUS_COLON"
 msgstr "předchozí:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
 
@@ -5794,7 +5794,7 @@ msgstr ""
 "Uložená verze, kterou se pokoušíte načíst, neodpovídá verzi hry.\n"
 "Načti ji ručně přes menu."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Uložená hra má neplatný stav herní scény"
 
@@ -5802,7 +5802,7 @@ msgstr "Uložená hra má neplatný stav herní scény"
 msgid "SAVE_INVALID"
 msgstr "Uložená pozice je neplatná"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Uložená pozice je neplatná"
 
@@ -5814,7 +5814,7 @@ msgstr ""
 "Pokud převod přeskočíte, hra se pokusí načíst uloženou pozici normálně.\n"
 "Chcete se pokusit o převod na novou verzi?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Nepodařilo se uvolnit již načtené prostředky: {0}"
 
@@ -5846,15 +5846,15 @@ msgstr "Uložení informací se nezdařilo kvůli výjimce: {0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Ukládání..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Uložení selhalo! Došlo k výjimce"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Uložení není momentálně k dispozici z důvodu:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 

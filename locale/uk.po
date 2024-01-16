@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2023-12-29 06:14+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -2049,7 +2049,7 @@ msgstr "Отримання новин не вдалося через помил�
 msgid "ERROR_FETCHING_NEWS"
 msgstr "Помилка отримання новин"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "Помилка завантаження"
 
@@ -2088,11 +2088,11 @@ msgstr "Точна версія Thrive:"
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "З'явилося заперечення, коли завантажувались дані"
 
@@ -2894,7 +2894,7 @@ msgstr "Земля"
 msgid "INVERTED"
 msgstr "Перевернутий"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Ви граєте в прототипи пізнішої стадії, що включені до гри.\n"
@@ -3431,7 +3431,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Завантаження раннього багатоклітинного редактору"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "Завантаження гри"
 
@@ -3448,7 +3448,7 @@ msgstr "Завантаження багатоклітинного редакто
 msgid "LOADING_TIP"
 msgstr "Натисніть на кнопку скасувати, аби виправити помилку"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "Завантаження завершено"
 
@@ -4810,7 +4810,7 @@ msgstr "(УВАГА: фотосинтез стає дуже нежиттєзаб
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5149,7 +5149,7 @@ msgstr "гравець помер"
 msgid "PLAYER_DUPLICATE"
 msgstr "Дублікат гравця"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "Гравець вимер"
 
@@ -5242,7 +5242,7 @@ msgstr "Файл зображення попереднього перегляд�
 msgid "PREVIOUS_COLON"
 msgstr "попередній:"
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка об'єктів завантаження"
 
@@ -5657,7 +5657,7 @@ msgstr ""
 "Версія збереження,яку ви хочете завантажити не співпадає з версією гри.\n"
 "Будь-ласка завантажте його самостійно в меню."
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Збереження містить недійсне місце дії в грі"
 
@@ -5665,7 +5665,7 @@ msgstr "Збереження містить недійсне місце дії �
 msgid "SAVE_INVALID"
 msgstr "Невірне"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "Помилка збереження"
 
@@ -5677,7 +5677,7 @@ msgstr ""
 "Якщо Ви пропустите оновлення, то ми спробуємо завантажити збереження в нормальному режимі.\n"
 "Спробувати оновити це збереження?"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Невдача при звільнені вже завантажені ресурсів: {0}"
 
@@ -5709,15 +5709,15 @@ msgstr "Інформацію невдалось зберегти, за виня�
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Збереження..."
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Не вдалося зберегти! Сталося виключення"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Наразі збереження неможливе через:"
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "Вдале збереження"
 

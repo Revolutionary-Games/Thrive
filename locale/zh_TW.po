@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-15 17:31+0200\n"
+"POT-Creation-Date: 2024-01-16 11:04+0200\n"
 "PO-Revision-Date: 2024-01-06 16:32+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -2049,7 +2049,7 @@ msgstr "由於以下錯誤，載入新聞失敗：{0}"
 msgid "ERROR_FETCHING_NEWS"
 msgstr "載入新聞發生錯誤"
 
-#: ../src/saving/InProgressLoad.cs:206
+#: ../src/saving/InProgressLoad.cs:211
 msgid "ERROR_LOADING"
 msgstr "載入時發生錯誤"
 
@@ -2088,11 +2088,11 @@ msgstr "確切的 Thrive 版本："
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "這是編譯此版本 Thrive 的確切程式碼提交"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:176
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "處理載入的物件時發生異常"
 
-#: ../src/saving/InProgressLoad.cs:116
+#: ../src/saving/InProgressLoad.cs:121
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "載入存檔資料時發生異常"
 
@@ -2892,7 +2892,7 @@ msgstr "地面"
 msgid "INVERTED"
 msgstr "已反轉"
 
-#: ../src/saving/SaveHelper.cs:540
+#: ../src/saving/SaveHelper.cs:541
 msgid "IN_PROTOTYPE"
 msgstr ""
 "您正在玩的是遊戲中包含的後期階段原型。\n"
@@ -3429,7 +3429,7 @@ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "載入早期多細胞編輯器中"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
-#: ../src/saving/InProgressLoad.cs:154
+#: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
 msgstr "載入遊戲中"
 
@@ -3446,7 +3446,7 @@ msgstr "載入多細胞編輯器中"
 msgid "LOADING_TIP"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#: ../src/saving/InProgressLoad.cs:177
+#: ../src/saving/InProgressLoad.cs:182
 msgid "LOAD_FINISHED"
 msgstr "載入完成"
 
@@ -4812,7 +4812,7 @@ msgstr "（警告：光合作用會被削弱）"
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:548
+#: ../src/microbe_stage/OrganelleDefinition.cs:550
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5151,7 +5151,7 @@ msgstr "玩家死亡"
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家分裂"
 
-#: ../src/saving/SaveHelper.cs:521
+#: ../src/saving/SaveHelper.cs:522
 msgid "PLAYER_EXTINCT"
 msgstr "玩家已滅絕"
 
@@ -5244,7 +5244,7 @@ msgstr "預覽圖像檔案過大"
 msgid "PREVIOUS_COLON"
 msgstr "之前："
 
-#: ../src/saving/InProgressLoad.cs:156
+#: ../src/saving/InProgressLoad.cs:161
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "處理載入的物件中"
 
@@ -5658,7 +5658,7 @@ msgstr ""
 "您嘗試載入的存檔版本與遊戲版本不匹配。\n"
 "請透過選單手動載入存檔。"
 
-#: ../src/saving/InProgressLoad.cs:143
+#: ../src/saving/InProgressLoad.cs:148
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "存檔具有無效的遊戲狀態場景"
 
@@ -5666,7 +5666,7 @@ msgstr "存檔具有無效的遊戲狀態場景"
 msgid "SAVE_INVALID"
 msgstr "無效"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "SAVE_IS_INVALID"
 msgstr "存檔無效"
 
@@ -5678,7 +5678,7 @@ msgstr ""
 "如果您跳過更新，遊戲會嘗試直接載入存檔。\n"
 "要更新此存檔嗎？"
 
-#: ../src/saving/InProgressLoad.cs:244
+#: ../src/saving/InProgressLoad.cs:249
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "。無法釋放已載入的資源：{0}"
 
@@ -5710,15 +5710,15 @@ msgstr "由於以下錯誤，保存資訊失敗：{0}"
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "保存中…"
 
-#: ../src/saving/SaveHelper.cs:511 ../src/saving/SaveHelper.cs:562
+#: ../src/saving/SaveHelper.cs:512 ../src/saving/SaveHelper.cs:568
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "保存失敗！發生錯誤"
 
-#: ../src/saving/SaveHelper.cs:520 ../src/saving/SaveHelper.cs:539
+#: ../src/saving/SaveHelper.cs:521 ../src/saving/SaveHelper.cs:540
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "目前無法保存，原因如下："
 
-#: ../src/saving/SaveHelper.cs:552
+#: ../src/saving/SaveHelper.cs:553
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
