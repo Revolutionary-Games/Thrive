@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ using UnlockConstraints;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
+[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
 public class OrganelleDefinition : IRegistryType
 {
     /// <summary>
