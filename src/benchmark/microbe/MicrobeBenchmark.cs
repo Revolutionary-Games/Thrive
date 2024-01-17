@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -38,6 +40,9 @@ public class MicrobeBenchmark : Node
     [Export]
     public NodePath DynamicRootPath = null!;
 
+    [Export]
+    public NodePath BenchmarkCameraPath = null!;
+
     // Benchmark configuration, should only be changed if there's really important reasons as then older benchmark
     // results are no longer comparable
     private const int FIRST_PHASE_CELL_COUNT = 150;
@@ -47,13 +52,24 @@ public class MicrobeBenchmark : Node
     private const float AI_MUTATION_MULTIPLIER = 1;
     private const float MAX_SPAWN_DISTANCE = 110;
     private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
+
+    // The starting spawn interval
     private const float SPAWN_INTERVAL = 0.121f;
+    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 100;
+    private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0007f;
+    private const float MIN_SPAWN_INTERVAL = 0.01f;
+
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
     private const float GLUCOSE_CLOUD_AMOUNT = 20000;
     private const float AMMONIA_PHOSPHATE_CLOUD_AMOUNT = 10000;
     private const float AI_FIGHT_TIME = 30;
+
     private const int TARGET_FPS_FOR_SPAWNING = 60;
     private const float STRESS_TEST_END_THRESHOLD = 9;
+    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 200;
+    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.20f;
+    private const float STRESS_TEST_END_THRESHOLD_MIN = 0.5f;
+
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
     private const int RANDOM_SEED = 256345464;
@@ -76,7 +92,7 @@ public class MicrobeBenchmark : Node
     // to be added
     private readonly DummySpawnSystem dummySpawnSystem = new();
 
-    private readonly List<EntityReference<Microbe>> spawnedMicrobes = new();
+    private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
 
     private readonly List<float> fpsValues = new();
@@ -93,7 +109,7 @@ public class MicrobeBenchmark : Node
     private Node worldRoot = null!;
     private Node dynamicRoot = null!;
 
-    private PackedScene microbeScene = null!;
+    private MicrobeCamera benchmarkCamera = null!;
 
     private CompoundCloudSystem? cloudSystem;
 #pragma warning restore CA2213
@@ -104,21 +120,17 @@ public class MicrobeBenchmark : Node
 
     private GameWorld? world;
     private GameProperties? gameProperties;
-    private FluidSystem? fluidSystem;
-    private MicrobeSystem? microbeSystem;
-    private ProcessSystem? processSystem;
-    private MicrobeAISystem? microbeAI;
-    private FloatingChunkSystem? chunkSystem;
-    private TimedLifeSystem? timedLifeSystem;
+
+    private MicrobeWorldSimulation? microbeSimulation;
+
+    private EntitySet? microbeEntities;
 
     private Random random = new(RANDOM_SEED);
-    private Random aiRandom = new();
 
     private int aiGroup1Seed;
     private int aiGroup2Seed;
 
     private bool preventDying;
-    private bool runAI;
 
     private int internalPhaseCounter;
     private float timer;
@@ -127,6 +139,7 @@ public class MicrobeBenchmark : Node
     private double spawnAngle;
     private float spawnDistance;
     private float timeSinceSpawn;
+    private bool spawnedSomething;
 
     private float microbeStationaryResult;
     private float microbeAIResult;
@@ -155,8 +168,7 @@ public class MicrobeBenchmark : Node
 
         worldRoot = GetNode<Node>(WorldRootPath);
         dynamicRoot = GetNode<Node>(DynamicRootPath);
-
-        microbeScene = SpawnHelpers.LoadMicrobeScene();
+        benchmarkCamera = GetNode<MicrobeCamera>(BenchmarkCameraPath);
 
         guiContainer.Visible = true;
         benchmarkFinishedText.Visible = false;
@@ -183,8 +195,13 @@ public class MicrobeBenchmark : Node
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
 
+        benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
+
         timer += delta;
         timeSinceSpawn += delta;
+
+        if (spawnedSomething)
+            CheckSpawnedMicrobes();
 
         PruneDeadMicrobes();
 
@@ -193,26 +210,15 @@ public class MicrobeBenchmark : Node
             // Force health back up for cells to prevent them from dying
             foreach (var entityReference in spawnedMicrobes)
             {
-                var microbe = entityReference.Value;
+                ref var health = ref entityReference.Get<Health>();
 
-                microbe?.TestOverrideHitpoints(microbe.MaxHitpoints);
+                health.CurrentHealth = health.MaxHealth;
             }
         }
 
-        processSystem?.Process(delta);
+        microbeEntities?.Complete();
 
-        // Run the microbe system to process microbes
-        microbeSystem?.Process(delta);
-
-        chunkSystem?.Process(delta, new Vector3(0, 0, 0));
-        timedLifeSystem?.Process(delta);
-
-        if (runAI)
-        {
-            // The AI thinking randomly adds some randomness
-            // Update AI for the cells
-            microbeAI?.Process(delta, aiRandom);
-        }
+        microbeSimulation?.ProcessAll(delta);
 
         switch (internalPhaseCounter)
         {
@@ -223,11 +229,14 @@ public class MicrobeBenchmark : Node
                 BenchmarkHelpers.PerformBenchmarkSetup(storedSettings);
 
                 GenerateWorldAndSpecies();
-                SetupEnoughGameSystemsToRun();
+                SetupSimulation();
+
+                if (microbeSimulation == null)
+                    throw new InvalidOperationException("Microbe sim not setup");
 
                 spawnAngle = 0;
                 spawnDistance = 1;
-                runAI = false;
+                microbeSimulation.RunAI = false;
                 preventDying = true;
 
                 IncrementPhase();
@@ -236,9 +245,6 @@ public class MicrobeBenchmark : Node
 
             case 1:
             {
-                // TODO: remove debug code
-                // break;
-
                 // Need to pass some time between each spawn
                 if (timer < SPAWN_INTERVAL)
                     break;
@@ -279,8 +285,8 @@ public class MicrobeBenchmark : Node
             case 4:
             {
                 // Enable AI
-                runAI = true;
-                aiRandom = new Random(aiGroup1Seed);
+                microbeSimulation!.RunAI = true;
+                microbeSimulation.OverrideMicrobeAIRandomSeed(aiGroup1Seed);
 
                 IncrementPhase();
                 break;
@@ -311,13 +317,13 @@ public class MicrobeBenchmark : Node
                 preventDying = false;
                 spawnCounter = 0;
 
-                dynamicRoot.FreeChildren();
+                microbeSimulation!.DestroyAllEntities();
                 spawnedMicrobes.Clear();
                 cloudSystem!.EmptyAllClouds();
 
                 spawnAngle = 0;
                 spawnDistance = 1;
-                aiRandom = new Random(aiGroup2Seed);
+                microbeSimulation.OverrideMicrobeAIRandomSeed(aiGroup2Seed);
 
                 IncrementPhase();
                 break;
@@ -333,7 +339,9 @@ public class MicrobeBenchmark : Node
             case 9:
             {
                 // Spawn cells and measure FPS constantly
-                if (timer < SPAWN_INTERVAL)
+                float interval = Math.Max(MIN_SPAWN_INTERVAL,
+                    SPAWN_INTERVAL - spawnCounter / SPAWN_INTERVAL_REDUCE_EVERY_N * SPAWN_INTERVAL_REDUCE_AMOUNT);
+                if (timer < interval)
                     break;
 
                 timer = 0;
@@ -345,8 +353,12 @@ public class MicrobeBenchmark : Node
 
                 fpsValues.Add(Engine.GetFramesPerSecond());
 
+                float endThreshold = Math.Max(STRESS_TEST_END_THRESHOLD_MIN,
+                    STRESS_TEST_END_THRESHOLD - spawnCounter / STRESS_TEST_THRESHOLD_REDUCE_EVERY_N *
+                    STRESS_TEST_THRESHOLD_REDUCE);
+
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > STRESS_TEST_END_THRESHOLD && fpsValues.Count > 0) || fpsValues.Count > 3000)
+                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) || fpsValues.Count > 3000)
                 {
                     microbeStressTestResult = spawnCounter;
                     microbeStressTestMinFPS = fpsValues.Min();
@@ -403,6 +415,9 @@ public class MicrobeBenchmark : Node
     {
         if (disposing)
         {
+            microbeSimulation?.Dispose();
+            microbeEntities?.Dispose();
+
             if (GUIContainerPath != null)
             {
                 GUIContainerPath.Dispose();
@@ -414,6 +429,7 @@ public class MicrobeBenchmark : Node
                 CopyResultsButtonPath.Dispose();
                 WorldRootPath.Dispose();
                 DynamicRootPath.Dispose();
+                BenchmarkCameraPath.Dispose();
             }
         }
 
@@ -464,26 +480,20 @@ public class MicrobeBenchmark : Node
         }
     }
 
-    private void SetupEnoughGameSystemsToRun()
+    private void SetupSimulation()
     {
-        fluidSystem = new FluidSystem(worldRoot);
-
         cloudSystem = new CompoundCloudSystem();
         worldRoot.AddChild(cloudSystem);
 
-        cloudSystem.Init(fluidSystem);
+        microbeSimulation = new MicrobeWorldSimulation();
+        microbeSimulation.Init(dynamicRoot, cloudSystem);
+        microbeSimulation.InitForCurrentGame(gameProperties ?? throw new Exception("game properties not set"));
 
-        microbeSystem = new MicrobeSystem(dynamicRoot);
-        microbeAI = new MicrobeAISystem(dynamicRoot, cloudSystem);
-
-        processSystem = new ProcessSystem(dynamicRoot);
+        microbeEntities = microbeSimulation.EntitySystem.GetEntities().With<MicrobeSpeciesMember>().With<Health>()
+            .AsSet();
 
         // ReSharper disable once StringLiteralTypo
-        processSystem.SetBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
-
-        chunkSystem = new FloatingChunkSystem(dynamicRoot, cloudSystem);
-
-        timedLifeSystem = new TimedLifeSystem(dynamicRoot);
+        microbeSimulation.SetSimulationBiome(SimulationParameters.Instance.GetBiome("aavolcanic_vent").Conditions);
     }
 
     private void SpawnAndUpdatePositionState()
@@ -507,10 +517,10 @@ public class MicrobeBenchmark : Node
 
     private void SpawnMicrobe(Vector3 position)
     {
-        var microbe = SpawnHelpers.SpawnMicrobe(generatedSpecies[spawnCounter % generatedSpecies.Count], position,
-            dynamicRoot, microbeScene, true, cloudSystem!, dummySpawnSystem, gameProperties!);
+        SpawnHelpers.SpawnMicrobe(microbeSimulation!, generatedSpecies[spawnCounter % generatedSpecies.Count], position,
+            true);
 
-        spawnedMicrobes.Add(new EntityReference<Microbe>(microbe));
+        spawnedSomething = true;
         ++spawnCounter;
 
         // Spawning also gives a glucose cloud to ensure the spawned microbe doesn't instantly just die
@@ -520,9 +530,27 @@ public class MicrobeBenchmark : Node
         cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
     }
 
+    private void CheckSpawnedMicrobes()
+    {
+        // Find the spawned microbes. This needs to be done separately from SpawnMicrobe because they are only queued
+        // spawns at that point
+        foreach (var existingMicrobe in microbeEntities!.GetEntities())
+        {
+            if (existingMicrobe.Get<Health>().Dead)
+                continue;
+
+            if (spawnedMicrobes.Any(m => m == existingMicrobe))
+                continue;
+
+            spawnedMicrobes.Add(existingMicrobe);
+        }
+
+        spawnedSomething = false;
+    }
+
     private void PruneDeadMicrobes()
     {
-        spawnedMicrobes.RemoveAll(r => !r.IsAlive);
+        spawnedMicrobes.RemoveAll(r => !r.IsAlive || r.Get<Health>().Dead);
     }
 
     private void WaitForStableFPS()

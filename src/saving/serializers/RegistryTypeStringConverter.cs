@@ -55,6 +55,16 @@ public class RegistryTypeStringConverter : TypeConverter
                 new SupportedRegistryType(typeof(SpaceStructureDefinition), "spaceStructure",
                     name => SimulationParameters.Instance.GetSpaceStructure(name))
             },
+            {
+                "biome",
+                new SupportedRegistryType(typeof(Biome), "biome",
+                    name => SimulationParameters.Instance.GetBiome(name))
+            },
+            {
+                "organelle",
+                new SupportedRegistryType(typeof(OrganelleDefinition), "organelle",
+                    name => SimulationParameters.Instance.GetOrganelleType(name))
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -225,4 +235,20 @@ public class UnitTypeStringConverter : RegistryTypeStringSingleTypeConverter<Uni
 public class SpaceStructureStringConverter : RegistryTypeStringSingleTypeConverter<SpaceStructureDefinition>
 {
     protected override string TypeName => "spaceStructure";
+}
+
+/// <summary>
+///   Specific converter for <see cref="Biome"/>
+/// </summary>
+public class BiomeStringConverter : RegistryTypeStringSingleTypeConverter<Biome>
+{
+    protected override string TypeName => "biome";
+}
+
+/// <summary>
+///   Specific converter for <see cref="OrganelleDefinition"/>
+/// </summary>
+public class OrganelleDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<OrganelleDefinition>
+{
+    protected override string TypeName => "organelle";
 }

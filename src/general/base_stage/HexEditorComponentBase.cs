@@ -7,10 +7,9 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
-public abstract class
-    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
-        EditorComponentWithActionsBase<TEditor, TCombinedAction>,
-        ISaveLoadedTracked, IChildPropertiesLoadCallback
+public abstract class HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove, TContext> :
+    EditorComponentWithActionsBase<TEditor, TCombinedAction>,
+    ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
@@ -232,8 +231,6 @@ public abstract class
                 "This editor component was loaded from a save and is not fully functional");
         }
 
-        camera.ObjectToFollow = cameraFollow;
-
         if (fresh)
         {
             placementRotation = 0;
@@ -304,6 +301,8 @@ public abstract class
 
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+
+        camera.UpdateCameraPosition(delta, cameraFollow.GlobalTranslation);
     }
 
     public void ResetSymmetryButton()
@@ -406,9 +405,11 @@ public abstract class
         return true;
     }
 
-    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
-    public bool PanCameraWithMouse(float delta)
+    [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false, OnlyUnhandled = false)]
+    public bool PanCameraWithMouse(float dummy)
     {
+        _ = dummy;
+
         // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
         // workaround
         if (!Visible)
@@ -421,20 +422,17 @@ public abstract class
         else
         {
             var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
-            MoveCamera(mousePanDirection * delta * 10);
+            MoveCamera(mousePanDirection);
         }
 
         return false;
     }
 
-    [RunOnKeyUp("e_pan_mouse")]
+    [RunOnKeyUp("e_pan_mouse", OnlyUnhandled = false)]
     public bool ReleasePanCameraWithMouse()
     {
-        if (!Visible)
-            return false;
-
         mousePanningStart = null;
-        return true;
+        return false;
     }
 
     [RunOnKeyDown("e_reset_camera")]

@@ -12,20 +12,73 @@ using Path = System.IO.Path;
 public static class Constants
 {
     /// <summary>
+    ///   Used to prevent lag causing massive simulation instability spikes (due to resource consumption etc. scaling
+    ///   but storage not scaling)
+    /// </summary>
+    public const float SIMULATION_MAX_DELTA_TIME = 0.2f;
+
+    /// <summary>
+    ///   How often entity simulation optimizes the number of used threads (should be less than 1)
+    /// </summary>
+    public const float SIMULATION_OPTIMIZE_THREADS_INTERVAL = 0.3f;
+
+    /// <summary>
+    ///   Controls the number of threads used by the entity systems. The number of cells is divided by this and that is
+    ///   the max number of threads.
+    /// </summary>
+    public const int SIMULATION_CELLS_PER_THREAD_ESTIMATE = 25;
+
+    // The following variables define the number of entities each thread running a system of that category needs to be
+    // able to process for threading to be used at all. For example if there are 40 entities and 4 threads to be used
+    // and a system specifies 10 entities per thread, that system will run multithreaded (4 * 10 {40} <= 40).
+    // But if there was a system that wanted at least 15 entities per thread, that would run purely *single threaded*
+    // (4 * 15 {60} <= 40)
+    public const int SYSTEM_LOW_ENTITIES_PER_THREAD = 8;
+    public const int SYSTEM_NORMAL_ENTITIES_PER_THREAD = 12;
+    public const int SYSTEM_HIGHER_ENTITIES_PER_THREAD = 18;
+    public const int SYSTEM_HIGH_ENTITIES_PER_THREAD = 24;
+    public const int SYSTEM_EXTREME_ENTITIES_PER_THREAD = 40;
+
+    /// <summary>
+    ///   Makes sure that at least this many task threads are left idle when creating membrane generation background
+    ///   tasks.
+    /// </summary>
+    public const int MEMBRANE_TASKS_LEAVE_EMPTY_THREADS = 2;
+
+    /// <summary>
     ///   Default length in seconds for an in-game day. If this is changed, the placeholder values in
     ///   NewGameSettings.tscn should also be changed.
     /// </summary>
     public const int DEFAULT_DAY_LENGTH = 180;
 
     /// <summary>
-    ///   How long the player stays dead before respawning
+    ///   How long the player stays dead before respawning (this is after the animation of dying ends)
     /// </summary>
-    public const float PLAYER_RESPAWN_TIME = 5.0f;
+    public const float PLAYER_RESPAWN_TIME = 2.0f;
+
+    /// <summary>
+    ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
+    ///   softlocks.
+    /// </summary>
+    public const float MAX_PLAYER_DYING_TIME = 10;
 
     /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    /// <summary>
+    ///   Needed to get the cell positions when creating the actual colonies to line up where they should.
+    ///   TODO: figure out a better approach to multicellular cell positioning than this to avoid gaps (or maybe a post
+    ///   process step when membranes are ready to pull cells closer to close up any gaps?)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Lowering this makes up/down direction cells closer to touching, but increases overlap on horizontally next
+    ///     to each other.
+    ///   </para>
+    /// </remarks>
+    public const float MULTICELLULAR_CELL_DISTANCE_MULTIPLIER = 1.55f;
 
     public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
 
@@ -44,6 +97,8 @@ public static class Constants
     ///   Size of "chunks" used for spawning entities
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
+
+    public const float MIN_DISTANCE_FROM_PLAYER_FOR_SPAWN = SPAWN_SECTOR_SIZE - 10;
 
     /// <summary>
     ///   Scale factor for density of compound cloud spawns
@@ -128,27 +183,56 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 75.7f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float CELL_BASE_THRUST = 50.6f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    /// <summary>
+    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
+    /// </summary>
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
+
+    /// <summary>
+    ///   How much extra base movement is given per hex. Only applies between
+    ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
+    /// </summary>
+    public const float BASE_MOVEMENT_PER_HEX = 130;
+
+    public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
+
+    /// <summary>
+    ///   This is used to slightly debuff colony movement
+    /// </summary>
+    public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
+
+    /// <summary>
+    ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
+    ///   additional organelles impact the cell. A normal organelle has a weight of 1 so if this value is 4 then the
+    ///   base density has as much impact on the average density as 4 organelles.
+    /// </summary>
+    public const float BASE_CELL_DENSITY_VOLUME = 4;
+
+    public const float BASE_CELL_DENSITY = 1000;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const float MICROBE_DIGESTION_UPDATE_INTERVAL = 0.0333f;
+    // Note that the rotation speed is reversed, i.e. lower values mean faster
+    public const float CELL_MAX_ROTATION = 8.0f;
+    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
+    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
-    public const float CELL_BASE_ROTATION = 0.2f;
-    public const float CELL_MAX_ROTATION = 0.40f;
-    public const float CELL_MIN_ROTATION = 0.005f;
-    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.5f;
-    public const float CILIA_ROTATION_FACTOR = 0.008f;
-    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
-
-    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
-    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
+    // TODO: remove if these stay unused
+    // // These speed values are also reversed like the above
+    // public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    // public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    // public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    // public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -158,17 +242,35 @@ public static class Constants
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
     public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+
+    /// <summary>
+    ///   Limits how often the cilia samples the rotation speed it should be at. Also rate limits how often the cilia
+    ///   pull physics is applied.
+    /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
-    public const float CILIA_PULLING_FORCE_GROW_STEP = 2.0f;
-    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
+
+    /// <summary>
+    ///   How much each cilia increase <see cref="CILIA_PULLING_FORCE_FIELD_RADIUS"/>. This is now done like this to
+    ///   avoid having to create a ton of physics sensors.
+    /// </summary>
+    public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
+
+    /// <summary>
+    ///   1 means that each cilia counts as 1 in the pulling force
+    /// </summary>
+    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 15;
-
     public const int MICROBE_SPAWN_RADIUS = 350;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
+
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
@@ -192,7 +294,7 @@ public static class Constants
     ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
     ///   heavier than normal microbes, as such this is set pretty high.
     /// </summary>
-    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 1.15f;
+    public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -200,32 +302,12 @@ public static class Constants
     /// </summary>
     public const int DESPAWN_RADIUS_OFFSET = 50;
 
-    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
-        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
-
-    public const float STARTING_SPAWN_DENSITY = 70000.0f;
-    public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
-
-    /// <summary>
-    ///   Radius of the zone where the player is considered immobile as he remains inside.
-    ///   Used to not overgenerate when the player doesn't move.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The value is squared for faster computation.
-    ///   </para>
-    ///   <para>
-    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
-    ///     to make spawn zone match when moving.
-    ///   </para>
-    /// </remarks>
-    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -238,12 +320,11 @@ public static class Constants
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     /// <summary>
-    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
-    ///   This is set pretty high to reduce the performance impact.
+    ///   This is how often entities for emitted signals from other entities.
+    ///   This is set relatively high to reduce the performance impact. This is used for example for AI microbes to
+    ///   detect signaling agents.
     /// </summary>
-    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
-
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
+    public const float ENTITY_SIGNAL_UPDATE_INTERVAL = 0.15f;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -259,22 +340,43 @@ public static class Constants
     /// </summary>
     public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
 
+    public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
+    public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
+    public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
+
+    public const float MICROBE_MOVEMENT_SOUND_MAX_VOLUME = 0.4f;
+
+    // TODO: should this volume be actually 0?
+    public const float MICROBE_MOVEMENT_SOUND_START_VOLUME = 1;
+
     /// <summary>
-    ///   Max number of concurrent audio players that may be spawned per entity.
+    ///   Max number of concurrent audio players that may be used per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    public const float MICROBE_SOUND_MAX_DISTANCE = 300;
+    public const float MICROBE_SOUND_MAX_DISTANCE_SQUARED = MICROBE_SOUND_MAX_DISTANCE * MICROBE_SOUND_MAX_DISTANCE;
+
+    public const int MAX_CONCURRENT_SOUNDS = 100;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned for UI sounds.
     /// </summary>
     public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
-    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+    public const float CONTACT_PENETRATION_TO_BUMP_SOUND = 0.1f;
+
+    public const float INTERVAL_BETWEEN_SOUND_CACHE_CLEAR = 0.321f;
 
     /// <summary>
-    ///   Controls with how much force agents are fired
+    ///   How long to keep a played sound in memory in case it will be shortly played again
     /// </summary>
-    public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
+    public const float DEFAULT_SOUND_CACHE_TIME = 30;
+
+    /// <summary>
+    ///   Controls with how much speed agents are fired
+    /// </summary>
+    public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -286,7 +388,7 @@ public static class Constants
     /// <summary>
     ///   How much a cell's speed is increased when secreting slime (scaling with secreted compound amount)
     /// </summary>
-    public const float MUCILAGE_JET_FACTOR = 600.0f;
+    public const float MUCILAGE_JET_FACTOR = 100000.0f;
 
     /// <summary>
     ///   Minimum stored slime needed to start secreting
@@ -298,14 +400,29 @@ public static class Constants
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
 
+    public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
+
+    public const float TOXIN_PROJECTILE_PHYSICS_DENSITY = 700;
+
+    public const float CHUNK_PHYSICS_DAMPING = 0.2f;
+    public const float MICROBE_PHYSICS_DAMPING = 0.99f;
+
+    /// <summary>
+    ///   This only really matters when cells are dead
+    /// </summary>
+    public const float MICROBE_PHYSICS_DAMPING_ANGULAR = 0.9f;
+
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
     ///   fade so this must always be at least as long as how long the despawn effect takes visually
     /// </summary>
-    public const float PROJECTILE_DESPAWN_DELAY = 3;
+    public const float EMITTER_DESPAWN_DELAY = 3;
 
     public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
 
+    /// <summary>
+    ///   How long a toxin projectile can fly for before despawning if it doesn't hit anything before that
+    /// </summary>
     public const float EMITTED_AGENT_LIFETIME = 5.0f;
 
     public const int MAX_EMITTED_AGENTS_ON_DEATH = 5;
@@ -318,10 +435,38 @@ public static class Constants
 
     public const float COMPOUND_RELEASE_FRACTION = 0.9f;
 
+    public const float PHYSICS_ALLOWED_Y_AXIS_DRIFT = 0.1f;
+
     /// <summary>
-    ///   Base mass all microbes have on top of their organelle masses
+    ///   Buffers bigger than this number of elements will never be cached so if many entities track more than this
+    ///   many collisions that's going to be bad in terms of memory allocations
     /// </summary>
-    public const float MICROBE_BASE_MASS = 0.7f;
+    public const int MAX_COLLISION_CACHE_BUFFER_RETURN_SIZE = 50;
+
+    /// <summary>
+    ///   How many buffers of similar length can be in the collision cache. This is quite high to ensure that basically
+    ///   all entities' buffers can go to the cache for example when loading a save while in game. That is required
+    ///   because most entities have the exact same buffer length.
+    /// </summary>
+    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH = 500;
+
+    /// <summary>
+    ///   How many collisions each normal entity can detect at once (if more collisions happen during an update the
+    ///   rest are lost and can't be detected by the game logic)
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SMALL = 8;
+
+    /// <summary>
+    ///   A very small limit of collisions for entities that don't need to be able to detect many collisions. Note
+    ///   that this is specifically picked to be lower by a power of two than the small limit to make collision
+    ///   recording buffer cache work better (as it should hopefully put these two categories to separate buckets)
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
+
+    /// <summary>
+    ///   How many collision a default sensor can detect at once
+    /// </summary>
+    public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -358,13 +503,11 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
-    /// <summary>
-    ///   Limits how often floating chunks are processed to save on some performance
-    /// </summary>
-    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+    public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
+    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
     /// </summary>
     public const int FLOATING_CHUNK_MAX_COUNT = 35;
 
@@ -410,28 +553,26 @@ public static class Constants
     public const float NAME_LABEL_VISIBILITY_DISTANCE = 300.0f;
 
     /// <summary>
-    ///   This is used just as the default value for health and max
-    ///   health of a microbe. The default membrane actually
-    ///   determines the default health.
+    ///   Maximum number of damage events allowed for an entity. Any more are not recorded and is an error.
     /// </summary>
-    public const float DEFAULT_HEALTH = 100.0f;
+    public const int MAX_DAMAGE_EVENTS = 1000;
 
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.5f;
+    public const float HEALTH_REGENERATION_RATE = 1.5f;
+
+    /// <summary>
+    ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
+    ///   with 1 storage to regenerate health. As reaching exactly full storage of ATP is not really possible due to
+    ///   constant osmoregulation and processes running.
+    /// </summary>
+    public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
-
-    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
-
-    /// <summary>
-    ///   Used to prevent lag / loading causing big jumps in reproduction progress
-    /// </summary>
-    public const float MICROBE_REPRODUCTION_MAX_DELTA_FRAME = 0.2f;
 
     /// <summary>
     ///   Because reproduction progress is most often time limited,
@@ -515,21 +656,23 @@ public static class Constants
     public const float ENGULFING_ATP_COST_PER_SECOND = 1.5f;
 
     /// <summary>
-    ///   The speed reduction when a cell is in engulfing mode.
+    ///   The speed reduction (multiplies the movement force) when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
+    public const float ENGULFING_MOVEMENT_MULTIPLIER = 0.588f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
-    public const float ENGULF_EJECTION_FORCE = 20.0f;
+    public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
     /// <summary>
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
@@ -544,7 +687,8 @@ public static class Constants
     public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
 
     /// <summary>
-    ///   The maximum digestion progress in which an engulfable is considered fully digested.
+    ///   The maximum digestion progress in which an engulfable is considered fully digested. Do not change this.
+    ///   It is assumed elsewhere that 1 means fully digested so this will break a bunch of stuff if you change this.
     /// </summary>
     public const float FULLY_DIGESTED_LIMIT = 1.0f;
 
@@ -601,36 +745,62 @@ public static class Constants
     public const float BINDING_ATP_COST_PER_SECOND = 2.0f;
 
     /// <summary>
-    ///   Damage a single pilus stab does
+    ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 20.0f;
+    public const float PILUS_BASE_DAMAGE = 235.0f;
+
+    /// <summary>
+    ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
+    /// </summary>
+    public const float PILUS_MAX_DAMAGE = 45;
+
+    public const float PILUS_PHYSICS_SIZE = 4.6f;
+
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
 
     /// <summary>
     ///   Damage a single injectisome stab does
     /// </summary>
     public const float INJECTISOME_BASE_DAMAGE = 20.0f;
 
+    public const string PILUS_INJECTISOME_UPGRADE_NAME = "injectisome";
+
     /// <summary>
-    ///   How much time (in seconds) a pilus applies invulnerability upon damage.
+    ///   How much time (in seconds) an injectisome applies invulnerability upon damage. Note the invulnerability is
+    ///   not against all other damage types, but just the pilus.
     /// </summary>
-    public const float PILUS_INVULNERABLE_TIME = 0.25f;
+    public const float INJECTISOME_INVULNERABLE_TIME = 0.35f;
+
+    /// <summary>
+    ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
+    ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
+    /// </summary>
+    public const float PILUS_MIN_COOLDOWN = 0.2f;
+
+    public const float PILUS_MAX_COOLDOWN = 0.45f;
+
+    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MAX_DAMAGE * 0.6f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
-    /// <summary>
-    ///   The default contact store count for objects using contact reporting
-    /// </summary>
-    public const int DEFAULT_STORE_CONTACTS_COUNT = 4;
+    public const float MICROBE_FLASH_DURATION = 0.6f;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
     public const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
-    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
     public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+
+    /// <summary>
+    ///   How often a microbe can get the engulf escape population bonus
+    /// </summary>
+    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int PLAYER_DEATH_POPULATION_LOSS_CONSTANT = -20;
     public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
@@ -638,11 +808,6 @@ public static class Constants
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
-
-    /// <summary>
-    ///   How often a microbe can get the engulf escape population bonus
-    /// </summary>
-    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int BASE_MUTATION_POINTS = 100;
 
@@ -665,6 +830,8 @@ public static class Constants
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
+    // TODO: remove the drag variables if https://github.com/Revolutionary-Games/Thrive/issues/4719 is not decided to
+    // be implemented
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
     ///   and multiplying it by this. This must be negative!
@@ -733,24 +900,26 @@ public static class Constants
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
     /// <summary>
-    ///   Minimum extra microbes to spawn
+    ///   Minimum extra bacteria to spawn
     /// </summary>
-    public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+    public const int MIN_BACTERIAL_SWARM_SIZE = 0;
 
     /// <summary>
-    ///   Maximum extra microbes to spawn
+    ///   Maximum extra bacteria to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_SWARM_SIZE = 3;
 
-    // What is divided during fear and aggression calculations in the AI
-    public const float AGGRESSION_DIVISOR = 25.0f;
-    public const float FEAR_DIVISOR = 25.0f;
-    public const float ACTIVITY_DIVISOR = 100.0f;
-    public const float FOCUS_DIVISOR = 100.0f;
-    public const float OPPORTUNISM_DIVISOR = 100.0f;
+    /// <summary>
+    ///   If a species has this many hexes then <see cref="MAX_BACTERIAL_SWARM_SIZE"/> is debuffed by one for this
+    ///   species. This value is divided by 2 as the hex size of bacteria only count for half of a "full" hex. When
+    ///   tweaking only change the first number for future readability (and not the division by 2 part).
+    /// </summary>
+    public const float REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 6 / 2.0f;
 
-    // Cooldown for AI for toggling engulfing
-    public const float AI_ENGULF_INTERVAL = 300;
+    /// <summary>
+    ///   Even more reduces the bacteria swarm size of a species that is this big when spawning
+    /// </summary>
+    public const float FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 10 / 2.0f;
 
     /// <summary>
     ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
@@ -761,16 +930,12 @@ public static class Constants
     // Average number of calls to think method before doing expensive cloud-finding calculations
     public const int AI_STEPS_PER_SMELL = 20;
 
-    // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
-    public const float AI_COMPOUND_BIAS = -10.0f;
-
     /// <summary>
     ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
     /// </summary>
     public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
 
     public const float AI_BASE_MOVEMENT = 1.0f;
-    public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
@@ -860,7 +1025,11 @@ public static class Constants
     /// <summary>
     ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
     /// </summary>
-    public const float ORGANELLE_ENTITY_WEIGHT = 0.5f;
+    public const float ORGANELLE_ENTITY_WEIGHT = 0.1f;
+
+    public const float MICROBE_BASE_ENTITY_WEIGHT = 2;
+
+    public const float FLOATING_CHUNK_ENTITY_WEIGHT = 1;
 
     /// <summary>
     ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
@@ -882,6 +1051,7 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
@@ -894,6 +1064,8 @@ public static class Constants
     /// </summary>
     public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
 
+    public const int MAX_RAY_HITS_FOR_INSPECT = 20;
+
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
     public const float TOOLTIP_FADE_SPEED = 0.25f;
@@ -903,14 +1075,9 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
-
-    /// <summary>
-    ///   Scale used for one frame while membrane data is not ready yet
-    /// </summary>
-    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
     /// <summary>
     ///   Multiplier for cell editor actions in multicellular editor
@@ -968,73 +1135,18 @@ public static class Constants
     public const int GLOBAL_EVENT_LOG_CAP = 20;
 
     /// <summary>
-    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
-    ///   to see what small cells are.
-    ///   Specifically for use with LengthSquared.
+    ///   Buffs small bacteria
     /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
+    public const float MICROBE_MIN_ABSORB_RADIUS = 3;
 
     public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
     public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
+    public const float PROCEDURAL_CACHE_MICROBE_SHAPE_TIME = 7000;
+    public const float PROCEDURAL_CACHE_LOADED_SHAPE_KEEP_TIME = 1000;
 
-    /// <summary>
-    ///   All Nodes tagged with this are handled by the spawn system for despawning
-    /// </summary>
-    public const string SPAWNED_GROUP = "spawned";
-
-    /// <summary>
-    ///   All Nodes tagged with this are handled by the timed life system for despawning
-    /// </summary>
-    public const string TIMED_GROUP = "timed";
-
-    /// <summary>
-    ///   All RigidBody nodes tagged with this are affected by currents by the fluid system
-    /// </summary>
-    public const string FLUID_EFFECT_GROUP = "fluid_effect";
-
-    /// <summary>
-    ///   All Nodes tagged with this are handled by the process system. Can't be just "process" as that conflicts with
-    ///   godot idle_process and process, at least I think it does.
-    /// </summary>
-    public const string PROCESS_GROUP = "run_processes";
-
-    /// <summary>
-    ///   All Nodes tagged with this are handled by the ai system
-    /// </summary>
-    public const string AI_GROUP = "ai";
-
-    /// <summary>
-    ///   Microbes tagged with this are handled by the <see cref="MicrobeSystem"/> to be processed.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     NOTE: This is not related to <see cref="PROCESS_GROUP"/> which is in the context of in-game compounds
-    ///     processes, this is related to the engine's <see cref="Node._Process(float)"/> on the nodes.
-    ///   </para>
-    /// </remarks>
-    public const string RUNNABLE_MICROBE_GROUP = "microbe_runnable";
-
-    /// <summary>
-    ///   All Nodes tagged with this are considered Microbes that the AI can react to
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
-    ///     find relevant entities for things that aren't the AI system
-    ///   </para>
-    /// </remarks>
-    public const string AI_TAG_MICROBE = "microbe";
+    // TODO: convert prototypes over to an ECS system as well
 
     public const string ENTITY_TAG_CREATURE = "creature";
-
-    /// <summary>
-    ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
-    /// </summary>
-    public const string AI_TAG_CHUNK = "chunk";
-
-    public const string PLAYER_GROUP = "player";
-
-    public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
 
     public const string INTERACTABLE_GROUP = "interactable";
 
@@ -1090,6 +1202,7 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+    public const string RUNTIME_LICENSE_FILE = "res://doc/RuntimeLicenses.txt";
 
     public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
@@ -1097,6 +1210,8 @@ public static class Constants
     public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
     public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
+
+    public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
 
     public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
 
@@ -1140,6 +1255,11 @@ public static class Constants
 
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
+
+    /// <summary>
+    ///   Max bytes to allocate on the stack, any bigger data needs to allocate heap memory
+    /// </summary>
+    public const int MAX_STACKALLOC = 1024;
 
     /// <summary>
     ///   Delay for the compound row to hide when standing still and compound amount is 0.
@@ -1204,6 +1324,13 @@ public static class Constants
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
+    public const int HEX_MAX_RENDER_PRIORITY = HEX_RENDER_PRIORITY_DISTANCE * HEX_RENDER_PRIORITY_DISTANCE;
+
+    /// <summary>
+    ///   If membrane scene is updated this should be updated as well
+    /// </summary>
+    public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
+
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     // TODO: combine to a common module with launcher as these are there as well
@@ -1211,6 +1338,8 @@ public static class Constants
     public const string OPENED_THROUGH_LAUNCHER_OPTION = "--thrive-started-by-launcher";
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
+
+    public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
 
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
@@ -1236,6 +1365,19 @@ public static class Constants
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    /// <summary>
+    ///   If set to true then physics debug draw gets enabled when the game starts
+    /// </summary>
+    public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;
+
+    /// <summary>
+    ///   How far away from the world origin debug draw works. When farther away no debug drawing happens. Setting this
+    ///   too far seems to trigger a problem in Godot where a grey overlay is over all 3D content blocking everything.
+    ///   TODO: if we need bigger worlds then the <see cref="DebugDrawer"/> will need to be updated to reposition its
+    ///   meshes to get a smaller bounding box working
+    /// </summary>
+    public const float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000;
 
     /// <summary>
     ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
@@ -1347,6 +1489,9 @@ public static class Constants
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
+    public const string CONDITION_GREEN_COLOUR = "#70f423";
+    public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -1376,8 +1521,7 @@ public static class Constants
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
         OS.HasFeature("standalone") ?
-            Path.Combine(
-                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+            Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
                 throw new InvalidOperationException("no current executable path"), "mods") :
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",
@@ -1424,11 +1568,14 @@ public static class Constants
     private const uint FreeCompoundAmountIsLessThanUsePerSecond =
         (MICROBE_REPRODUCTION_FREE_COMPOUNDS < MICROBE_REPRODUCTION_MAX_COMPOUND_USE) ? 0 : -42;
 
-    private const uint ReproductionProgressIntervalLessThanMaxDelta =
-        (MICROBE_REPRODUCTION_PROGRESS_INTERVAL < MICROBE_REPRODUCTION_MAX_DELTA_FRAME) ? 0 : -42;
-
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
+        (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
+
+    private const uint FurtherSwarmReductionIsHigherThanSmallReduction =
+        (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;

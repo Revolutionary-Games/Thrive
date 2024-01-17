@@ -14,6 +14,8 @@ public class GUICommon : Node
 
 #pragma warning disable CA2213
     private AudioStream buttonPressSound = null!;
+    private Texture? requirementFulfilledIcon;
+    private Texture? requirementInsufficientIcon;
 #pragma warning restore CA2213
 
     private GUICommon()
@@ -37,6 +39,16 @@ public class GUICommon : Node
     public Rect2 ViewportRect { get; private set; }
 
     public Vector2 ViewportSize => ViewportRect.Size;
+
+    /// <summary>
+    ///   Path for the generic icon representing a condition fulfilled.
+    /// </summary>
+    public string RequirementFulfilledIconPath => "res://assets/textures/gui/bevel/RequirementFulfilled.png";
+
+    /// <summary>
+    ///   Path for the generic icon representing a condition unfulfilled.
+    /// </summary>
+    public string RequirementInsufficientIconPath => "res://assets/textures/gui/bevel/RequirementInsufficient.png";
 
     /// <summary>
     ///   The audio players for UI sound effects.
@@ -106,8 +118,7 @@ public class GUICommon : Node
         // Keep this node running even while paused
         PauseMode = PauseModeEnum.Process;
 
-        buttonPressSound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+        buttonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
     /// <summary>
@@ -217,6 +228,19 @@ public class GUICommon : Node
         };
 
         return element;
+    }
+
+    /// <summary>
+    ///   Loads a cached version of the generic icon texture representing a condition fulfilled or unfulfilled.
+    /// </summary>
+    public Texture GetRequirementFulfillmentIcon(bool fulfilled)
+    {
+        if (fulfilled)
+        {
+            return requirementFulfilledIcon ??= GD.Load<Texture>(RequirementFulfilledIconPath);
+        }
+
+        return requirementInsufficientIcon ??= GD.Load<Texture>(RequirementInsufficientIconPath);
     }
 
     /// <summary>

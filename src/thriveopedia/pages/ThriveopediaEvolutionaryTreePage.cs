@@ -15,7 +15,7 @@ using Godot;
 public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 {
     [Export]
-    public NodePath? DisabledInFreebuildPath;
+    public NodePath? ErrorContainerPath;
 
     [Export]
     public NodePath EvolutionaryTreePath = null!;
@@ -26,7 +26,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     private readonly List<Dictionary<uint, Species>> speciesHistoryList = new();
 
 #pragma warning disable CA2213
-    private VBoxContainer disabledWarning = null!;
+    private VBoxContainer errorContainer = null!;
     private EvolutionaryTree evolutionaryTree = null!;
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 #pragma warning restore CA2213
@@ -42,7 +42,7 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     {
         base._Ready();
 
-        disabledWarning = GetNode<VBoxContainer>(DisabledInFreebuildPath);
+        errorContainer = GetNode<VBoxContainer>(ErrorContainerPath);
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
         speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
@@ -73,9 +73,9 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
     {
         if (disposing)
         {
-            if (DisabledInFreebuildPath != null)
+            if (ErrorContainerPath != null)
             {
-                DisabledInFreebuildPath.Dispose();
+                ErrorContainerPath.Dispose();
                 EvolutionaryTreePath.Dispose();
                 SpeciesDetailsPanelPath.Dispose();
             }
@@ -115,9 +115,11 @@ public class ThriveopediaEvolutionaryTreePage : ThriveopediaPage
 
     private void OnTreeFailedToBuild(string error)
     {
+        // TODO: if the failures happen relatively often it'd be good to show the actual error to the player as
+        // otherwise we specifically need to get users to give us their logs
         GD.PrintErr($"Evolutionary tree failed to build with error: {error}");
         evolutionaryTree.Visible = false;
-        disabledWarning.Visible = true;
+        errorContainer.Visible = true;
     }
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)

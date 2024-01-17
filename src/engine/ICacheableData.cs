@@ -4,7 +4,13 @@ using Godot;
 /// <summary>
 ///   Interface for data that can be stored in <see cref="ProceduralDataCache"/>
 /// </summary>
-public interface ICacheableData
+/// <remarks>
+///   <para>
+///     This is disposable to allow releasing extra resources that were allocated when removed from the cache.
+///     Note that after dispose this cache data instance is not safe to use at all.
+///   </para>
+/// </remarks>
+public interface ICacheableData : IDisposable
 {
     /// <summary>
     ///   Used to check that data returned from cache didn't suffer a hash collision
@@ -30,8 +36,7 @@ public static class CacheableDataExtensions
 
         if (!currentParameters.MatchesCacheParameters(fetchedFromCache))
         {
-            GD.PrintErr("Hash collision for procedural cache data. Losing performance due to recomputation! ",
-                "Multiple ", typeof(T).Name, " have hash of ", currentHash);
+            OnCacheHashCollision<T>(currentHash);
             return null;
         }
 
@@ -42,5 +47,11 @@ public static class CacheableDataExtensions
         where T : class, ICacheableData
     {
         return FetchDataFromCache<T, T>(currentParameters, dataFetch);
+    }
+
+    public static void OnCacheHashCollision<T>(long hash)
+    {
+        GD.PrintErr("Hash collision for procedural cache data. Losing performance due to recomputation! ",
+            "Multiple ", typeof(T).Name, " have hash of ", hash);
     }
 }

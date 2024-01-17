@@ -114,6 +114,10 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         }
     }
 
+    public override void UpdateFossilisationButtonStates()
+    {
+    }
+
     public override void ShowFossilisationButtons()
     {
     }
@@ -164,7 +168,7 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     }
 
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out Dictionary<Compound, float> totalNeededCompounds)
+        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
     {
         // TODO: reproduction process for multicellular
         gatheredCompounds = new Dictionary<Compound, float>

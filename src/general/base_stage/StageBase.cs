@@ -68,13 +68,16 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
+    [JsonIgnore]
+    public abstract MainGameState GameState { get; }
+
     /// <summary>
     ///   True once stage fade-in is complete
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This used to have an internal set (<see cref="CreatureStageBase{TPlayer}.MovingToEditor"/> had that as
-    ///     well) but with the needed <see cref="ICreatureStage"/> that seems no longer possible
+    ///     This used to have an internal set (<see cref="CreatureStageBase{TPlayer,TSimulation}.MovingToEditor"/>
+    ///     had that as well) but with the needed <see cref="ICreatureStage"/> that seems no longer possible
     ///   </para>
     /// </remarks>
     [JsonIgnore]
@@ -207,6 +210,12 @@ public abstract class StageBase : NodeWithInput, IStageBase, IGodotEarlyNodeReso
             {
                 OnGameStarted();
             }
+        }
+
+        // Unlock everything if the stage is unsupported
+        if (!UnlockProgress.SupportsGameState(GameState))
+        {
+            CurrentGame!.GameWorld.UnlockProgress.UnlockAll = true;
         }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);

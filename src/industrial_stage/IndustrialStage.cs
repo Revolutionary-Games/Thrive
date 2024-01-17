@@ -65,6 +65,8 @@ public class IndustrialStage : StrategyStageBase, ISocietyStructureDataAccess
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
 
+    public override MainGameState GameState => MainGameState.IndustrialStage;
+
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
 

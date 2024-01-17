@@ -1,5 +1,5 @@
 Thrive Game
-Copyright (C) 2013-2023  Revolutionary Games
+Copyright (C) 2013-2024  Revolutionary Games
 
 Thrive is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,3 +55,21 @@ AngleSharp: The MIT License (MIT) Copyright (c) 2013 - 2023 AngleSharp
 
 YamlDotNet: MIT License Copyright (c) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Antoine Aubry and contributors
 
+JoltPhysics: MIT License Copyright 2021 Jorrit Rouwe
+
+Boost C++ Libraries: Boost Software License - Version 1.0
+
+concurrentqueue: Simplified BSD license: Copyright (c) 2013-2020, Cameron Desrochers.
+
+Thrive native code modules for Linux (this doesn't refer to the Godot
+Engine) are compiled with clang and linked against glibc and GCC C++
+libraries in the official releases. Please see any potentially
+included extra notes for other Thrive versions.
+
+These standard runtime libraries are licensed under the LGPLv3 license
+with a linking exception. The full license text is included with
+Thrive.
+
+Thrive native code modules for Windows are compiled with clang and
+linked with the MinGW project's libraries. See the included license
+text for licenses of parts of the libraries.

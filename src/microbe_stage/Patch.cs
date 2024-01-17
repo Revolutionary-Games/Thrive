@@ -16,6 +16,13 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
+    // Needed for translation extraction
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
+    private static readonly LocalizedString UnknownPatchName = new LocalizedString("UNKNOWN_PATCH");
+    private static readonly LocalizedString HiddenPatchName = new LocalizedString("UNDISCOVERED_PATCH");
+
+    // ReSharper restore ArrangeObjectCreationWhenTypeEvident
+
     private readonly Compound sunlight;
 
     /// <summary>
@@ -89,6 +96,18 @@ public class Patch
     public int[] Depth { get; private set; } = { -1, -1 };
 
     /// <summary>
+    ///   The visibility of this patch on the map
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Generally, this should not be set directly, instead <see cref="ApplyVisibility"/> should be used to
+    ///     perform additional checks and apply visibility to the region
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
+
+    /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
     public Vector2 ScreenCoordinates { get; set; } = new(0, 0);
@@ -122,6 +141,28 @@ public class Patch
     ///   Logged events that specifically occurred in this patch.
     /// </summary>
     public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
+
+    /// <summary>
+    ///   The name of the patch the player should see; this accounts for fog of war and <see cref="Visibility"/>
+    /// </summary>
+    [JsonIgnore]
+    public LocalizedString VisibleName
+    {
+        get
+        {
+            switch (Visibility)
+            {
+                case MapElementVisibility.Shown:
+                    return Name;
+                case MapElementVisibility.Unknown:
+                    return UnknownPatchName;
+                case MapElementVisibility.Hidden:
+                    return HiddenPatchName;
+                default:
+                    throw new InvalidOperationException("Invalid Patch Visibility");
+            }
+        }
+    }
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
@@ -327,6 +368,7 @@ public class Patch
         switch (compound.InternalName)
         {
             case "sunlight":
+            case "temperature":
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
@@ -455,6 +497,32 @@ public class Patch
             return;
 
         currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
+    }
+
+    /// <summary>
+    ///   Runs <see cref="ApplyVisibility"/> on all of the patches neighbours
+    /// </summary>
+    /// <param name="visibility">The visibility to be set</param>
+    public void ApplyVisibilityToNeighbours(MapElementVisibility visibility)
+    {
+        foreach (var patch in Adjacent)
+        {
+            patch.ApplyVisibility(visibility);
+        }
+    }
+
+    /// <summary>
+    ///   Sets <see cref="Visibility"/> and the visibility of the region if more visible than current
+    /// </summary>
+    /// <param name="visibility">The visibility to be set</param>
+    public void ApplyVisibility(MapElementVisibility visibility)
+    {
+        // Only update visibility if the new visibility is more visible than the current one
+        if ((int)Visibility >= (int)visibility)
+            Visibility = visibility;
+
+        if ((int)Region.Visibility >= (int)visibility)
+            Region.Visibility = visibility;
     }
 
     public override string ToString()

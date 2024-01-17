@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -14,36 +15,75 @@ public class PlayerInspectInfo : Node
     [Export]
     public float RaycastDistance = 1000;
 
-    private readonly List<RaycastResult> hits = new();
-    private readonly HashSet<RaycastResult> previousHits = new();
+    private readonly PhysicsRayWithUserData[] hits = new PhysicsRayWithUserData[Constants.MAX_RAY_HITS_FOR_INSPECT];
+    private readonly HashSet<Entity> previousHits = new();
+
+    private int validHits;
 
     /// <summary>
-    ///   All inspectable entities the player is pointing at.
+    ///   Needs to be set to the physical world to use
     /// </summary>
-    public IEnumerable<IInspectableEntity> InspectableEntities =>
-        hits.Select(h => h.Collider).OfType<IInspectableEntity>();
+    public PhysicalWorld? PhysicalWorld { get; set; }
+
+    /// <summary>
+    ///   All (physics) entities the player is pointing at.
+    /// </summary>
+    public IEnumerable<Entity> Entities =>
+        hits.Take(validHits).Where(h => h.BodyEntity != default).Select(h => h.BodyEntity);
 
     public virtual void Process(float delta)
     {
         var viewport = GetViewport();
-        var space = viewport.World.DirectSpaceState;
         var mousePos = viewport.GetMousePosition();
         var camera = viewport.GetCamera();
 
+        // Safety check to disable this node when there's no active camera
+        if (camera == null)
+            return;
+
+        if (PhysicalWorld == null)
+        {
+            GD.PrintErr($"{nameof(PlayerInspectInfo)} doesn't have physics world set");
+            return;
+        }
+
         var from = camera.ProjectRayOrigin(mousePos);
-        var to = from + camera.ProjectRayNormal(mousePos) * RaycastDistance;
+        var offsetToEnd = camera.ProjectRayNormal(mousePos) * RaycastDistance;
 
-        hits.Clear();
+        validHits = PhysicalWorld.CastRayGetAllHits(from, offsetToEnd, hits);
 
-        space.IntersectRay(hits, from, to);
+        // Process hits to real microbes (as in colonies the body hit is the colony leader always)
+        for (int i = 0; i < validHits; ++i)
+        {
+            var originalHitEntity = hits[i].BodyEntity;
+            if (originalHitEntity.Has<MicrobeColony>() && originalHitEntity.Has<PhysicsShapeHolder>())
+            {
+                var shape = originalHitEntity.Get<PhysicsShapeHolder>().Shape;
+
+                if (shape == null)
+                {
+                    GD.PrintErr("Ray hit entity with unknown shape");
+                    continue;
+                }
+
+                ref var colony = ref originalHitEntity.Get<MicrobeColony>();
+                if (colony.GetMicrobeFromSubShape(ref originalHitEntity.Get<MicrobePhysicsExtraData>(),
+                        shape.GetSubShapeIndexFromData(hits[i].SubShapeData), out var actualMicrobe))
+                {
+                    hits[i] = new PhysicsRayWithUserData(hits[i], actualMicrobe);
+                }
+            }
+        }
 
         previousHits.RemoveWhere(m =>
         {
-            if (!hits.Contains(m))
+            if (hits.Take(validHits).All(h => h.BodyEntity != m))
             {
-                if (m.Collider is IInspectableEntity entity)
+                // Hit removed
+                if (m.IsAlive && m.Has<Selectable>())
                 {
-                    entity.OnMouseExit(m);
+                    ref var selectable = ref m.Get<Selectable>();
+                    selectable.Selected = false;
                 }
 
                 return true;
@@ -52,31 +92,40 @@ public class PlayerInspectInfo : Node
             return false;
         });
 
-        foreach (var hit in hits)
+        foreach (var hit in hits.Take(validHits))
         {
-            if (!previousHits.Add(hit))
+            if (!previousHits.Add(hit.BodyEntity))
                 continue;
 
-            if (hit.Collider is IInspectableEntity entity)
+            // New hit added
+
+            if (hit.BodyEntity.IsAlive && hit.BodyEntity.Has<Selectable>())
             {
-                entity.OnMouseEnter(hit);
+                ref var selectable = ref hit.BodyEntity.Get<Selectable>();
+                selectable.Selected = true;
             }
         }
     }
 
     /// <summary>
-    ///   Returns the raycast data of the given raycast inspectable entity.
+    ///   Returns the raycast data of the given raycast hit entity. Note that the ray data doesn't have sub-shape index
+    ///   resolved. Except for microbe colonies those are already processed at this point.
     /// </summary>
-    /// <returns>The raycast data or null if not found.</returns>
-    public RaycastResult? GetRaycastData(IInspectableEntity entity)
+    /// <param name="entity">Entity to get the data for</param>
+    /// <param name="rayData">Where to put the found ray data, initialized to default if not found</param>
+    /// <returns>True when the data was found</returns>
+    public bool GetRaycastData(Entity entity, out PhysicsRayWithUserData rayData)
     {
-        try
+        for (int i = 0; i < validHits; ++i)
         {
-            return hits.First(h => h.Collider == entity);
+            if (hits[i].BodyEntity == entity)
+            {
+                rayData = hits[i];
+                return true;
+            }
         }
-        catch (InvalidOperationException)
-        {
-            return null;
-        }
+
+        rayData = default;
+        return false;
     }
 }

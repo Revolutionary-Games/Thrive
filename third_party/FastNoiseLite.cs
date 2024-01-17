@@ -1278,7 +1278,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -1295,14 +1295,20 @@ public class FastNoiseLite
         float n0, n1, n2;
 
         float a = 0.5f - x0 * x0 - y0 * y0;
-        if (a <= 0) n0 = 0;
+        if (a <= 0)
+        {
+            n0 = 0;
+        }
         else
         {
             n0 = (a * a) * (a * a) * GradCoord(seed, i, j, x0, y0);
         }
 
         float c = (float)(2 * (1 - 2 * G2) * (1 / G2 - 2)) * t + ((float)(-2 * (1 - 2 * G2) * (1 - 2 * G2)) + a);
-        if (c <= 0) n2 = 0;
+        if (c <= 0)
+        {
+            n2 = 0;
+        }
         else
         {
             float x2 = x0 + (2 * (float)G2 - 1);
@@ -1315,7 +1321,10 @@ public class FastNoiseLite
             float x1 = x0 + (float)G2;
             float y1 = y0 + ((float)G2 - 1);
             float b = 0.5f - x1 * x1 - y1 * y1;
-            if (b <= 0) n1 = 0;
+            if (b <= 0)
+            {
+                n1 = 0;
+            }
             else
             {
                 n1 = (b * b) * (b * b) * GradCoord(seed, i, j + PrimeY, x1, y1);
@@ -1326,7 +1335,10 @@ public class FastNoiseLite
             float x1 = x0 + ((float)G2 - 1);
             float y1 = y0 + (float)G2;
             float b = 0.5f - x1 * x1 - y1 * y1;
-            if (b <= 0) n1 = 0;
+            if (b <= 0)
+            {
+                n1 = 0;
+            }
             else
             {
                 n1 = (b * b) * (b * b) * GradCoord(seed, i + PrimeX, j, x1, y1);
@@ -1345,7 +1357,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastRound(x);
         int j = FastRound(y);
@@ -1404,7 +1416,8 @@ public class FastNoiseLite
                 }
             }
 
-            if (l == 1) break;
+            if (l == 1)
+                break;
 
             ax0 = 0.5f - ax0;
             ay0 = 0.5f - ay0;
@@ -1444,7 +1457,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -1571,7 +1584,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -2142,8 +2155,8 @@ public class FastNoiseLite
         int x3 = x1 + unchecked(PrimeX * 2);
         int y3 = y1 + unchecked(PrimeY * 2);
 
-        return CubicLerp(
-            CubicLerp(ValCoord(seed, x0, y0), ValCoord(seed, x1, y0), ValCoord(seed, x2, y0), ValCoord(seed, x3, y0),
+        return CubicLerp(CubicLerp(ValCoord(seed, x0, y0), ValCoord(seed, x1, y0), ValCoord(seed, x2, y0),
+                ValCoord(seed, x3, y0),
                 xs),
             CubicLerp(ValCoord(seed, x0, y1), ValCoord(seed, x1, y1), ValCoord(seed, x2, y1), ValCoord(seed, x3, y1),
                 xs),
@@ -2178,9 +2191,8 @@ public class FastNoiseLite
         int y3 = y1 + unchecked(PrimeY * 2);
         int z3 = z1 + unchecked(PrimeZ * 2);
 
-        return CubicLerp(
-            CubicLerp(
-                CubicLerp(ValCoord(seed, x0, y0, z0), ValCoord(seed, x1, y0, z0), ValCoord(seed, x2, y0, z0),
+        return CubicLerp(CubicLerp(CubicLerp(ValCoord(seed, x0, y0, z0), ValCoord(seed, x1, y0, z0),
+                    ValCoord(seed, x2, y0, z0),
                     ValCoord(seed, x3, y0, z0), xs),
                 CubicLerp(ValCoord(seed, x0, y1, z0), ValCoord(seed, x1, y1, z0), ValCoord(seed, x2, y1, z0),
                     ValCoord(seed, x3, y1, z0), xs),
@@ -2189,8 +2201,7 @@ public class FastNoiseLite
                 CubicLerp(ValCoord(seed, x0, y3, z0), ValCoord(seed, x1, y3, z0), ValCoord(seed, x2, y3, z0),
                     ValCoord(seed, x3, y3, z0), xs),
                 ys),
-            CubicLerp(
-                CubicLerp(ValCoord(seed, x0, y0, z1), ValCoord(seed, x1, y0, z1), ValCoord(seed, x2, y0, z1),
+            CubicLerp(CubicLerp(ValCoord(seed, x0, y0, z1), ValCoord(seed, x1, y0, z1), ValCoord(seed, x2, y0, z1),
                     ValCoord(seed, x3, y0, z1), xs),
                 CubicLerp(ValCoord(seed, x0, y1, z1), ValCoord(seed, x1, y1, z1), ValCoord(seed, x2, y1, z1),
                     ValCoord(seed, x3, y1, z1), xs),
@@ -2199,8 +2210,7 @@ public class FastNoiseLite
                 CubicLerp(ValCoord(seed, x0, y3, z1), ValCoord(seed, x1, y3, z1), ValCoord(seed, x2, y3, z1),
                     ValCoord(seed, x3, y3, z1), xs),
                 ys),
-            CubicLerp(
-                CubicLerp(ValCoord(seed, x0, y0, z2), ValCoord(seed, x1, y0, z2), ValCoord(seed, x2, y0, z2),
+            CubicLerp(CubicLerp(ValCoord(seed, x0, y0, z2), ValCoord(seed, x1, y0, z2), ValCoord(seed, x2, y0, z2),
                     ValCoord(seed, x3, y0, z2), xs),
                 CubicLerp(ValCoord(seed, x0, y1, z2), ValCoord(seed, x1, y1, z2), ValCoord(seed, x2, y1, z2),
                     ValCoord(seed, x3, y1, z2), xs),
@@ -2209,8 +2219,7 @@ public class FastNoiseLite
                 CubicLerp(ValCoord(seed, x0, y3, z2), ValCoord(seed, x1, y3, z2), ValCoord(seed, x2, y3, z2),
                     ValCoord(seed, x3, y3, z2), xs),
                 ys),
-            CubicLerp(
-                CubicLerp(ValCoord(seed, x0, y0, z3), ValCoord(seed, x1, y0, z3), ValCoord(seed, x2, y0, z3),
+            CubicLerp(CubicLerp(ValCoord(seed, x0, y0, z3), ValCoord(seed, x1, y0, z3), ValCoord(seed, x2, y0, z3),
                     ValCoord(seed, x3, y0, z3), xs),
                 CubicLerp(ValCoord(seed, x0, y1, z3), ValCoord(seed, x1, y1, z3), ValCoord(seed, x2, y1, z3),
                     ValCoord(seed, x3, y1, z3), xs),
@@ -2532,7 +2541,7 @@ public class FastNoiseLite
          * const FNfloat F2 = 0.5f * (SQRT3 - 1);
          * FNfloat s = (x + y) * F2;
          * x += s; y += s;
-        */
+         */
 
         int i = FastFloor(x);
         int j = FastFloor(y);
@@ -2628,7 +2637,7 @@ public class FastNoiseLite
          * const FNfloat R3 = (FNfloat)(2.0 / 3.0);
          * FNfloat r = (x + y + z) * R3; // Rotation, not skew
          * x = r - x; y = r - y; z = r - z;
-        */
+         */
 
         int i = FastRound(x);
         int j = FastRound(y);
@@ -2709,7 +2718,8 @@ public class FastNoiseLite
                 vz += bbbb * zo;
             }
 
-            if (l == 1) break;
+            if (l == 1)
+                break;
 
             ax0 = 0.5f - ax0;
             ay0 = 0.5f - ay0;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
-using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
-///   Manages applying patch data and setting up spawns
+///   Manages applying patch data and setting up spawns in a <see cref="MicrobeWorldSimulation"/>
 /// </summary>
 public class PatchManager : IChildPropertiesLoadCallback
 {
@@ -21,10 +21,8 @@ public class PatchManager : IChildPropertiesLoadCallback
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
 
-    [JsonProperty]
     private Patch? previousPatch;
 
-    [JsonProperty]
     private float compoundCloudBrightness = 1.0f;
 
     /// <summary>
@@ -33,15 +31,13 @@ public class PatchManager : IChildPropertiesLoadCallback
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties? currentGame)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
-        CurrentGame = currentGame;
     }
 
     public GameProperties? CurrentGame { get; set; }
@@ -140,6 +136,22 @@ public class PatchManager : IChildPropertiesLoadCallback
         gameWorld.UpdateGlobalLightLevels();
     }
 
+    public void ApplySaveState(Patch? patch, float brightness)
+    {
+        previousPatch = patch;
+        compoundCloudBrightness = brightness;
+    }
+
+    public Patch? ReadPreviousPatchForSave()
+    {
+        return previousPatch;
+    }
+
+    public float ReadBrightnessForSave()
+    {
+        return compoundCloudBrightness;
+    }
+
     private void HandleChunkSpawns(BiomeConditions biome)
     {
         if (CurrentGame == null)
@@ -210,15 +222,13 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Max(
-                Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
+            var density = Mathf.Max(Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
                 Constants.MICROBE_SPAWN_DENSITY_SCALE_FACTOR, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
-                    compoundCloudSystem, CurrentGame), Constants.MICROBE_SPAWN_RADIUS),
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species), Constants.MICROBE_SPAWN_RADIUS),
                 new MicrobeSpawnerComparer());
         }
     }

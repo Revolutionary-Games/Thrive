@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = Godot.Environment;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
@@ -36,6 +37,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [Export]
     public NodePath BodyEditorLightPath = null!;
 
+    [Export]
+    public NodePath WorldEnvironmentNodePath = null!;
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -58,6 +62,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     private Camera body3DEditorCamera = null!;
     private Light bodyEditorLight = null!;
+
+    private WorldEnvironment worldEnvironmentNode = null!;
+    private Environment? environment;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -130,25 +137,18 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         UpdateBackgrounds(patch);
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
-    {
-        return history.WhatWouldActionsCost(actions);
-    }
-
-    public override bool EnqueueAction(EditorAction action)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> actions)
     {
         // If a cell type is being edited, add its type to each action data
         // so we can use it for undoing and redoing later
         if (selectedEditorTab == EditorTab.CellTypeEditor && selectedCellTypeToEdit != null)
         {
-            foreach (var actionData in action.Data)
+            foreach (var actionData in actions)
             {
-                if (actionData is EditorCombinableActionData<CellType> cellTypeData)
+                if (actionData is EditorCombinableActionData<CellType> cellTypeData && cellTypeData.Context == null)
                     cellTypeData.Context = selectedCellTypeToEdit;
             }
         }
-
-        return base.EnqueueAction(action);
     }
 
     public override bool CancelCurrentAction()
@@ -199,6 +199,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
         cellEditorLight = GetNode<Light>(CellEditorLightPath);
+
+        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
         bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
@@ -333,6 +335,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.Hide();
         noCellTypeSelected.Hide();
 
+        RememberEnvironment();
+
         // Show selected
         switch (selectedEditorTab)
         {
@@ -371,6 +375,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                 SetWorldSceneObjectVisibilityWeControl();
 
+                ResetEnvironment();
+
                 break;
             }
 
@@ -392,6 +398,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                     SetWorldSceneObjectVisibilityWeControl();
                 }
+
+                worldEnvironmentNode.Environment = null;
 
                 break;
             }
@@ -430,9 +438,12 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 NoCellTypeSelectedPath.Dispose();
                 CellEditorCameraPath.Dispose();
                 CellEditorLightPath.Dispose();
+                WorldEnvironmentNodePath.Dispose();
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
+
+            environment?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -447,7 +458,17 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
 
-        // TODO: 3D editor backgrounds for patches
+        UpdateBackgroundPanorama(patch.BiomeTemplate);
+    }
+
+    private void UpdateBackgroundPanorama(Biome biome)
+    {
+        var worldPanoramaSky = (PanoramaSky)worldEnvironmentNode.Environment.BackgroundSky;
+
+        worldPanoramaSky.Panorama = GD.Load<Texture>(biome.Panorama);
+
+        // TODO: update colour properties if really wanted (right now white ambient light is used to see things better
+        // in the editor)
     }
 
     private void SetWorldSceneObjectVisibilityWeControl()
@@ -476,8 +497,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         if (CanCancelAction)
         {
-            ToolTipManager.Instance.ShowPopup(
-                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"),
+                1.5f);
             return;
         }
 
@@ -596,5 +617,21 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void RememberEnvironment()
+    {
+        if (worldEnvironmentNode.Environment != null)
+        {
+            environment = worldEnvironmentNode.Environment;
+        }
+    }
+
+    private void ResetEnvironment()
+    {
+        if (environment != null)
+        {
+            worldEnvironmentNode.Environment = environment;
+        }
     }
 }

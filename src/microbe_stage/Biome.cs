@@ -1,10 +1,12 @@
-﻿using Godot;
+﻿using System.ComponentModel;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
+[TypeConverter(typeof(BiomeStringConverter))]
 public class Biome : IRegistryType
 {
     /// <summary>
@@ -19,6 +21,11 @@ public class Biome : IRegistryType
     public string Background = null!;
 
     /// <summary>
+    ///   References a panorama resource path. The panorama images are backgrounds for 3D.
+    /// </summary>
+    public string Panorama = null!;
+
+    /// <summary>
     ///   Icon of the biome to be used in the patch map
     /// </summary>
     public string Icon = null!;
@@ -29,6 +36,8 @@ public class Biome : IRegistryType
     public LightDetails Sunlight = new();
 
     public float CompoundCloudBrightness = 1.0f;
+
+    public MusicContext[]? ActiveMusicContexts = null;
 
     [JsonIgnore]
     public Texture? LoadedIcon;
@@ -43,10 +52,10 @@ public class Biome : IRegistryType
 
     public void Check(string name)
     {
-        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Background))
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Background) || string.IsNullOrEmpty(Panorama))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Empty normal or damaged texture");
+                "Empty name background texture or panorama texture path");
         }
 
         if (Conditions == null)
@@ -83,8 +92,6 @@ public class Biome : IRegistryType
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
-        Conditions.Resolve(parameters);
-
         LoadedIcon = GD.Load<Texture>(Icon);
     }
 
@@ -95,7 +102,7 @@ public class Biome : IRegistryType
 
     public override string ToString()
     {
-        return "Patch: " + Name;
+        return "Biome type: " + Name;
     }
 
     public class LightDetails

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -70,6 +71,22 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI.Visible = true;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles += OnUnlockAllOrganellesCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
+    }
+
     public void SendAutoEvoResultsToReportComponent()
     {
         reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
@@ -102,9 +119,9 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override void AddContextToActions(IEnumerable<CombinableActionData> editorActions)
     {
-        return history.WhatWouldActionsCost(actions);
+        // Microbe editor doesn't require any context data in actions
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -138,6 +155,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
             reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
         }
 
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
+
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
 
         // Make tutorials run
@@ -145,8 +164,8 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
-        // Send undo button to the tutorial system
-        cellEditorTab.SendUndoRedoToTutorial(TutorialState);
+        // Send highlighted controls to the tutorial system
+        cellEditorTab.SendObjectsToTutorials(TutorialState, tutorialGUI);
     }
 
     protected override void InitEditorGUI(bool fresh)
@@ -193,6 +212,15 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         {
             reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
                 TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+        }
+        else
+        {
+            // Need to pass the auto-evo
+            // TODO: in the future when the report tab is redone, it will need the full info so this is for now a bit
+            // non-extendable way to get this one piece of data stored
+
+            cellEditorTab.PreviousPlayerGatheredEnergy = run.Results.GetPatchEnergyResults(EditedBaseSpecies)
+                .Sum(p => p.Value.TotalEnergyGathered);
         }
 
         base.OnEditorReady();
@@ -323,6 +351,21 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         }
 
         base.Dispose(disposing);
+    }
+
+    private void OnRevealAllPatchesCheatUsed(object? sender, EventArgs args)
+    {
+        CurrentGame.GameWorld.Map.RevealAllPatches();
+        patchMapTab.MarkDrawerDirty();
+    }
+
+    private void OnUnlockAllOrganellesCheatUsed(object? sender, EventArgs args)
+    {
+        if (CurrentGame.GameWorld.UnlockProgress.UnlockAll)
+            return;
+
+        CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
+        cellEditorTab.UnlockAllOrganelles();
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

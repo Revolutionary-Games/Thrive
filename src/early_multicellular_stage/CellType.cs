@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,7 +6,7 @@ using Newtonsoft.Json;
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
-public class CellType : ICellProperties, IPhotographable, ICloneable
+public class CellType : ICellProperties, ICloneable
 {
     [JsonConstructor]
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
@@ -53,22 +52,18 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public float BaseRotationSpeed { get; set; }
     public bool CanEngulf { get; }
 
-    /// <summary>
-    ///   Total mass of all the organelles in this cell type
-    /// </summary>
-    [JsonIgnore]
-    public float TotalMass => Organelles.Sum(o => o.Definition.Mass);
-
     [JsonIgnore]
     public string FormattedName => TypeName;
 
     [JsonIgnore]
-    public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+    public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
+        ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public void UpdateNameIfValid(string newName)
@@ -90,7 +85,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     {
         foreach (var organelle in Organelles)
         {
-            if (organelle.Definition.HasComponentFactory<AxonComponentFactory>())
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Axon))
             {
                 return true;
             }
@@ -99,16 +94,32 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         return false;
     }
 
-    public void ApplySceneParameters(Spatial instancedScene)
+    public bool IsMuscularTissueType()
     {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), this)
-            .ApplySceneParameters(instancedScene);
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Myofibril))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public float CalculatePhotographDistance(Spatial instancedScene)
+    public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
-            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+    }
+
+    public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
+    {
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+    }
+
+    public bool StateHasStabilized(IWorldSimulation worldSimulation)
+    {
+        return MicrobeSpecies.StateHasStabilizedImpl(worldSimulation);
     }
 
     public object Clone()
@@ -148,6 +159,6 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

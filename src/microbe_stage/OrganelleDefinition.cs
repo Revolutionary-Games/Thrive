@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using UnlockConstraints;
 
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
@@ -15,36 +17,9 @@ using Newtonsoft.Json;
 ///     organelles.json.
 ///   </para>
 /// </remarks>
+[TypeConverter(typeof(OrganelleDefinitionStringConverter))]
 public class OrganelleDefinition : IRegistryType
 {
-    // TODO: split the following comment to the actual properties in this class:
-    /*
-    Organelle attributes:
-    mass:   How heavy an organelle is. Affects speed, mostly.
-
-    mpCost: The cost (in mutation points) an organelle costs in the
-    microbe editor.
-
-    mesh:   The name of the mesh file of the organelle.
-    It has to be in the models folder.
-
-    texture: The name of the texture file to use
-
-    hexes:  A table of the hexes that the organelle occupies.
-
-    chanceToCreate: The (relative) chance this organelle will appear in a
-    randomly generated or mutated microbe (to do roulette selection).
-
-    prokaryoteChance: The (relative) chance this organelle will appear in a
-    randomly generated or mutated prokaryotes (to do roulette selection).
-
-    processes:  A table with all the processes this organelle does,
-    and the capacity of the process
-
-    upgradeGUI:  path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not
-    modifiable
-    */
-
     /// <summary>
     ///   User readable name
     /// </summary>
@@ -72,16 +47,16 @@ public class OrganelleDefinition : IRegistryType
     public string? DisplaySceneAnimation;
 
     /// <summary>
+    ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
+    ///   point outside from the cell)
+    /// </summary>
+    public bool PositionedExternally;
+
+    /// <summary>
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     [JsonIgnore]
     public PackedScene? LoadedScene;
-
-    /// <summary>
-    ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
-    /// </summary>
-    [JsonIgnore]
-    public PackedScene? LoadedCorpseChunkScene;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
@@ -89,15 +64,28 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public Texture? LoadedIcon;
 
-    public float Mass;
+    /// <summary>
+    ///   Density of this organelle. Note that densities should fall into just a few categories to ensure that cached
+    ///   microbe collision shapes can be reused more widely
+    /// </summary>
+    public float Density = 1000;
 
     /// <summary>
-    ///   The chance this organelle is placed in an eukaryote when applying mutations
+    ///   How much the density of this organelle contributes. Should be set to 0 for pilus and other organelles that
+    ///   have separate physics shapes created for them. Bigger organelles should have larger values to make them
+    ///   impact the overall physics mass more. Similarly to <see cref="Density"/> this should also have only a few
+    ///   used values among all organelles to make shape caching more effective (as the cache depends on density).
+    /// </summary>
+    public float RelativeDensityVolume = 1;
+
+    /// <summary>
+    ///   The (relative) chance this organelle is placed in an eukaryote when applying mutations or generating random
+    ///   species (to do roulette selection).
     /// </summary>
     public float ChanceToCreate;
 
     /// <summary>
-    ///   Same as ChanceToCreate but for prokaryotes (bacteria)
+    ///   Same as <see cref="ChanceToCreate"/> but for prokaryotes (bacteria)
     /// </summary>
     public float ProkaryoteChance;
 
@@ -117,8 +105,13 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int EditorButtonOrder;
 
-    [JsonRequired]
-    public OrganelleComponentFactoryInfo Components = null!;
+    public OrganelleComponentFactoryInfo Components = new();
+
+    /// <summary>
+    ///   Lightweight feature tags that this organelle has. This is used for simple features that don't need the full
+    ///   features that <see cref="Components"/> provides.
+    /// </summary>
+    public OrganelleFeatureTag[] FeatureTags = Array.Empty<OrganelleFeatureTag>();
 
     /// <summary>
     ///   Defines the processes this organelle does and their speed multipliers
@@ -130,7 +123,13 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public List<Hex> Hexes = null!;
 
-    public Dictionary<string, int>? Enzymes;
+    [JsonProperty(PropertyName = "enzymes")]
+    public Dictionary<string, int>? RawEnzymes;
+
+    /// <summary>
+    ///   Enzymes contained in this organelle
+    /// </summary>
+    public Dictionary<Enzyme, int> Enzymes = new();
 
     /// <summary>
     ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
@@ -153,7 +152,7 @@ public class OrganelleDefinition : IRegistryType
     public string? IconPath;
 
     /// <summary>
-    ///   Cost of placing this organelle in the editor
+    ///   Cost of placing this organelle in the editor (in mutation points)
     /// </summary>
     public int MPCost;
 
@@ -178,7 +177,7 @@ public class OrganelleDefinition : IRegistryType
     public bool LAWK = true;
 
     /// <summary>
-    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
+    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable.
     /// </summary>
     public string? UpgradeGUI;
 
@@ -188,6 +187,11 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<string, AvailableUpgrade> AvailableUpgrades = new();
 
     /// <summary>
+    ///   The possible conditions where a player can unlock this organelle.
+    /// </summary>
+    public List<ConditionSet>? UnlockConditions;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -195,6 +199,8 @@ public class OrganelleDefinition : IRegistryType
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649
+
+    private Vector3 modelOffset;
 
     public enum OrganelleGroup
     {
@@ -235,12 +241,26 @@ public class OrganelleDefinition : IRegistryType
     [JsonIgnore]
     public int HexCount => Hexes.Count;
 
+    [JsonIgnore]
+    public Vector3 ModelOffset => modelOffset;
+
     public string InternalName { get; set; } = null!;
 
     // Faster checks for specific components
     public bool HasPilusComponent { get; private set; }
     public bool HasMovementComponent { get; private set; }
     public bool HasCiliaComponent { get; private set; }
+
+    /// <summary>
+    ///   True if this is an agent vacuole. Number of agent vacuoles determine how often a cell can shoot toxins.
+    /// </summary>
+    public bool HasAgentVacuoleComponent { get; private set; }
+
+    public bool HasSlimeJetComponent { get; private set; }
+
+    public bool HasBindingFeature { get; private set; }
+
+    public bool HasSignalingFeature { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -280,26 +300,6 @@ public class OrganelleDefinition : IRegistryType
         return rotated;
     }
 
-    public Vector3 CalculateCenterOffset()
-    {
-        var offset = new Vector3(0, 0, 0);
-
-        foreach (var hex in Hexes)
-        {
-            offset += Hex.AxialToCartesian(hex);
-        }
-
-        offset /= Hexes.Count;
-        return offset;
-    }
-
-    public Vector3 CalculateModelOffset()
-    {
-        var temp = CalculateCenterOffset();
-        temp /= HexCount;
-        return temp * Constants.DEFAULT_HEX_SIZE;
-    }
-
     /// <summary>
     ///   Returns true when this has the specified component factory.
     ///   For example <see cref="MovementComponentFactory"/>.
@@ -324,6 +324,22 @@ public class OrganelleDefinition : IRegistryType
         return false;
     }
 
+    /// <summary>
+    ///   Returns true when this has the specified organelle feature tag. These are lightweight alternative markers for
+    ///   supported features compared to <see cref="HasComponentFactory{T}"/>
+    /// </summary>
+    /// <returns>True when this has the feature</returns>
+    public bool HasFeatureTag(OrganelleFeatureTag featureTag)
+    {
+        foreach (var feature in FeatureTags)
+        {
+            if (featureTag == feature)
+                return true;
+        }
+
+        return false;
+    }
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
@@ -336,21 +352,13 @@ public class OrganelleDefinition : IRegistryType
         if (Unimplemented)
             return;
 
-        if (Components == null)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
-        }
-
         Components.Check(name);
 
-        if (Components.Count < 1)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
-        }
+        // Components list is now allowed to be empty as some organelles do not need any components
 
-        if (Mass <= 0.0f)
+        if (Density < 100)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
+            throw new InvalidRegistryDataException(name, GetType().Name, "Density is unset or unrealistically low");
         }
 
         if (ProkaryoteChance != 0 && RequiresNucleus)
@@ -362,6 +370,21 @@ public class OrganelleDefinition : IRegistryType
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
+        }
+
+        foreach (var entry in InitialComposition)
+        {
+            if (entry.Value <= MathUtils.EPSILON)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has negative or really small value");
+            }
+
+            if (!entry.Key.IsCloud)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "InitialComposition has a compound that can't be a cloud");
+            }
         }
 
         if (Hexes == null || Hexes.Count < 1)
@@ -416,6 +439,25 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Multiple default upgrades specified");
         }
+
+        // Check unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Check(name);
+        }
+
+#if DEBUG
+        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            using var directory = new Directory();
+            if (!directory.FileExists(CorpseChunkScene))
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Corpse chunk scene path doesn't exist");
+            }
+        }
+#endif
     }
 
     /// <summary>
@@ -423,17 +465,14 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
+        CalculateModelOffset();
+
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
         if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
-        }
-
-        if (!string.IsNullOrEmpty(CorpseChunkScene))
-        {
-            LoadedCorpseChunkScene = GD.Load<PackedScene>(CorpseChunkScene);
         }
 
         if (!string.IsNullOrEmpty(IconPath))
@@ -449,6 +488,24 @@ public class OrganelleDefinition : IRegistryType
                 RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
                     process.Value));
             }
+        }
+
+        // Resolve enzymes from strings to Enzyme objects
+        if (RawEnzymes != null)
+        {
+            foreach (var entry in RawEnzymes)
+            {
+                var enzyme = parameters.GetEnzyme(entry.Key);
+
+                Enzymes[enzyme] = entry.Value;
+            }
+        }
+
+        // Resolve unlock conditions
+        if (UnlockConditions != null)
+        {
+            foreach (var set in UnlockConditions)
+                set.Resolve(parameters);
         }
 
         if (Unimplemented)
@@ -476,6 +533,30 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
+    /// <summary>
+    ///   A bbcode string containing all the unlock conditions for this organelle.
+    /// </summary>
+    public void GenerateUnlockRequirementsText(LocalizedStringBuilder builder,
+        WorldAndPlayerDataSource worldAndPlayerArgs)
+    {
+        if (UnlockConditions != null)
+        {
+            bool first = true;
+            foreach (var unlockCondition in UnlockConditions)
+            {
+                if (!first)
+                {
+                    builder.Append(" ");
+                    builder.Append(new LocalizedString("OR_UNLOCK_CONDITION"));
+                    builder.Append(" ");
+                }
+
+                unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
+                first = false;
+            }
+        }
+    }
+
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
@@ -493,26 +574,45 @@ public class OrganelleDefinition : IRegistryType
 
     private void ComputeFactoryCache()
     {
-        HasPilusComponent = HasComponentFactory<PilusComponentFactory>();
+        HasPilusComponent = HasFeatureTag(OrganelleFeatureTag.Pilus);
         HasMovementComponent = HasComponentFactory<MovementComponentFactory>();
         HasCiliaComponent = HasComponentFactory<CiliaComponentFactory>();
+        HasAgentVacuoleComponent = HasComponentFactory<AgentVacuoleComponentFactory>();
+        HasSlimeJetComponent = HasComponentFactory<SlimeJetComponentFactory>();
+
+        HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
+        HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
+    }
+
+    private void CalculateModelOffset()
+    {
+        var temp = CalculateCenterOffset();
+        temp /= HexCount;
+        modelOffset = temp * Constants.DEFAULT_HEX_SIZE;
+    }
+
+    private Vector3 CalculateCenterOffset()
+    {
+        var offset = new Vector3(0, 0, 0);
+
+        foreach (var hex in Hexes)
+        {
+            offset += Hex.AxialToCartesian(hex);
+        }
+
+        offset /= Hexes.Count;
+        return offset;
     }
 
     public class OrganelleComponentFactoryInfo
     {
-        public NucleusComponentFactory? Nucleus;
         public StorageComponentFactory? Storage;
         public AgentVacuoleComponentFactory? AgentVacuole;
-        public BindingAgentComponentFactory? BindingAgent;
         public MovementComponentFactory? Movement;
         public SlimeJetComponentFactory? SlimeJet;
-        public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
-        public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
         public LysosomeComponentFactory? Lysosome;
-        public AxonComponentFactory? Axon;
-        public MyofibrilComponentFactory? Myofibril;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -533,13 +633,6 @@ public class OrganelleDefinition : IRegistryType
         {
             count = 0;
 
-            if (Nucleus != null)
-            {
-                Nucleus.Check(name);
-                allFactories.Add(Nucleus);
-                ++count;
-            }
-
             if (Storage != null)
             {
                 Storage.Check(name);
@@ -551,13 +644,6 @@ public class OrganelleDefinition : IRegistryType
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
-                ++count;
-            }
-
-            if (BindingAgent != null)
-            {
-                BindingAgent.Check(name);
-                allFactories.Add(BindingAgent);
                 ++count;
             }
 
@@ -575,24 +661,10 @@ public class OrganelleDefinition : IRegistryType
                 ++count;
             }
 
-            if (Pilus != null)
-            {
-                Pilus.Check(name);
-                allFactories.Add(Pilus);
-                ++count;
-            }
-
             if (Chemoreceptor != null)
             {
                 Chemoreceptor.Check(name);
                 allFactories.Add(Chemoreceptor);
-                ++count;
-            }
-
-            if (SignalingAgent != null)
-            {
-                SignalingAgent.Check(name);
-                allFactories.Add(SignalingAgent);
                 ++count;
             }
 
@@ -607,20 +679,6 @@ public class OrganelleDefinition : IRegistryType
             {
                 Lysosome.Check(name);
                 allFactories.Add(Lysosome);
-                ++count;
-            }
-
-            if (Axon != null)
-            {
-                Axon.Check(name);
-                allFactories.Add(Axon);
-                ++count;
-            }
-
-            if (Myofibril != null)
-            {
-                Myofibril.Check(name);
-                allFactories.Add(Myofibril);
                 ++count;
             }
         }

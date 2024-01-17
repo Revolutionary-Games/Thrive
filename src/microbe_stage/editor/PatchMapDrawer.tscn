@@ -14,6 +14,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
 DrawDefaultMapIfEmpty = true
-PatchNodeWidth = 60.0
-PatchNodeHeight = 60.0
+PatchNodeContainerPath = NodePath("PatchNodeContainer")
+LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource( 1 )
+
+[node name="LineContainer" type="Control" parent="."]
+
+[node name="PatchNodeContainer" type="Control" parent="."]

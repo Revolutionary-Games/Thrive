@@ -9,6 +9,7 @@ public static class MathUtils
 {
     public const float EPSILON = 0.00000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
+    public const float RADIANS_TO_DEGREES = 180 / Mathf.Pi;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = Mathf.Pi / 2;
 
@@ -55,15 +56,6 @@ public static class MathUtils
     {
         return new Quat(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
             new Quat(new Vector3(0, 1, 0), angle * DEGREES_TO_RADIANS);
-    }
-
-    /// <summary>
-    ///   Rotation for the pilus physics cone
-    /// </summary>
-    public static Quat CreateRotationForPhysicsOrganelle(float angle)
-    {
-        return new Quat(new Vector3(-1, 0, 0), 90 * DEGREES_TO_RADIANS) *
-            new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
     }
 
     /// <summary>
@@ -166,5 +158,21 @@ public static class MathUtils
         }
 
         return distance;
+    }
+
+    public static float NormalToWithNegativesRadians(float radian)
+    {
+        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
+    }
+
+    public static float WithNegativesToNormalRadians(float radian)
+    {
+        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
+    }
+
+    public static float DistanceBetweenRadians(float p1, float p2)
+    {
+        float distance = Math.Abs(p1 - p2);
+        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 }

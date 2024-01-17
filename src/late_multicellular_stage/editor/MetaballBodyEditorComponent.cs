@@ -229,7 +229,7 @@ public partial class MetaballBodyEditorComponent :
         if (debugOverlays.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            debugOverlays.ReportEntities(roughCount, 0);
+            debugOverlays.ReportEntities(roughCount);
         }
 
         if (metaballDisplayDataDirty)
@@ -819,11 +819,11 @@ public partial class MetaballBodyEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the cells symmetrical to the clicked cell.
-            StartHexMoveWithSymmetry(metaballPopupMenu.SelectedMetaballs);
+            StartMetaballMoveWithSymmetry(metaballPopupMenu.SelectedMetaballs);
         }
         else
         {
-            StartHexMove(metaballPopupMenu.SelectedMetaballs.First());
+            StartMetaballMove(metaballPopupMenu.SelectedMetaballs.First());
         }
 
         // Once an cell move has begun, the button visibility should be updated so it becomes visible

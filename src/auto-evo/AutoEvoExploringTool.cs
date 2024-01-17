@@ -482,7 +482,9 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
     private void InitNewWorld(IAutoEvoConfiguration configuration)
     {
-        worldsList.Add(new AutoEvoExploringToolWorld(configuration));
+        var newWorld = new AutoEvoExploringToolWorld(configuration);
+        newWorld.GameProperties.GameWorld.Map.RevealAllPatches();
+        worldsList.Add(newWorld);
         WorldsListMenuIndexChanged(worldsList.Count - 1);
 
         worldsListMenu.AddItem((worldsList.Count - 1).ToString(CultureInfo.CurrentCulture), false, Colors.White);
@@ -925,6 +927,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         {
             TimePeriod = selectedPatch.TimePeriod,
             Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+            Visibility = selectedPatch.Visibility,
         };
 
         patchDetailsPanel.SelectedPatch = patch;
@@ -959,8 +962,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
     {
         world.UpdateWorldStatistics();
 
-        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(
-            world.CurrentGeneration,
+        var bbcode = TranslationServer.Translate("CURRENT_WORLD_STATISTICS").FormatSafe(world.CurrentGeneration,
             world.PatchesCount,
             world.TotalTimeUsed.ToString("g", CultureInfo.CurrentCulture),
             world.TotalSpeciesCount,

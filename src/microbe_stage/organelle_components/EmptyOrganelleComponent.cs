@@ -1,27 +1,26 @@
-﻿using Godot;
+﻿using System;
+using Components;
+using DefaultEcs;
 
 /// <summary>
-///   An organelle component that doesn't do anything
+///   An organelle component that doesn't do anything. Used to allow organelle components that store data in their
+///   object instances to exist.
 /// </summary>
 public abstract class EmptyOrganelleComponent : IOrganelleComponent
 {
+    public bool UsesSyncProcess => false;
+
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
     }
 
-    public void OnDetachFromCell(PlacedOrganelle organelle)
+    public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
+        IWorldSimulation worldSimulation, float delta)
     {
     }
 
-    public void UpdateAsync(float delta)
+    public void UpdateSync(in Entity microbeEntity, float delta)
     {
-    }
-
-    public void UpdateSync()
-    {
-    }
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
+        throw new NotSupportedException();
     }
 }

@@ -157,6 +157,7 @@ PageContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Margi
 PageTreeContainerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2")
 PageTreeContainerAnimPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/AnimationPlayer")
 PageTitlePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/PageTitle")
+ViewOnlineButtonPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton")
 PageTreePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree")
 HomePagePath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/ThriveopediaHomePage")
 
@@ -278,9 +279,20 @@ align = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 383.0
-margin_right = 1207.0
+margin_right = 1064.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
+
+[node name="ViewOnlineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 1068.0
+margin_right = 1207.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+focus_neighbour_bottom = NodePath(".")
+text = "VIEW_ONLINE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FocusGrabber" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 26 )]
 margin_left = 1211.0
@@ -383,6 +395,7 @@ margin_bottom = 650.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ForwardButton" to="." method="OnForwardPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/HomeButton" to="." method="OnHomePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ViewOnlineButton" to="." method="OnViewOnlinePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="OnClosePressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
 [connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]

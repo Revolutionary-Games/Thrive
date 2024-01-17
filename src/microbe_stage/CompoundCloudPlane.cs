@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 
@@ -37,9 +38,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     // JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
-    private Image image = null!;
+    private Image? image;
     private ImageTexture texture = null!;
-    private FluidSystem? fluidSystem;
+    private FluidCurrentsSystem? fluidSystem;
 
     private Vector4 decayRates;
 
@@ -82,10 +83,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, int renderPriority, Compound cloud1, Compound? cloud2,
+    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
-        this.fluidSystem = fluidSystem;
+        fluidSystem = turbulenceSource;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
@@ -347,7 +348,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        image.Lock();
+        image!.Lock();
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
@@ -366,7 +367,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void UpdateTexture()
     {
-        image.Unlock();
+        image!.Unlock();
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
     }
 
@@ -492,8 +493,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         // Integer calculations are intentional here
         // ReSharper disable PossibleLossOfFraction
-        return new Vector3(
-            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+        return new Vector3(cloudX * Resolution +
+            ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_WIDTH,
             0,
             cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
@@ -506,7 +507,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-        Dictionary<Compound, float> totals, float delta, float rate)
+        Dictionary<Compound, float>? totals, float delta, float rate)
     {
         if (rate < 0)
             throw new ArgumentException("Rate can't be negative");
@@ -549,9 +550,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
             storage.AddCompound(compound, taken);
 
-            // Keep track of total compounds absorbed for the cell
-            totals.TryGetValue(compound, out var existingValue);
-            totals[compound] = existingValue + taken;
+            if (totals != null)
+            {
+                // Keep track of total compounds absorbed for the cell
+                totals.TryGetValue(compound, out var existingValue);
+                totals[compound] = existingValue + taken;
+            }
         }
     }
 
@@ -577,8 +581,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         if (disposing)
         {
-            texture.Dispose();
-            image.Dispose();
+            if (image != null)
+            {
+                image.Dispose();
+                texture.Dispose();
+            }
         }
 
         base.Dispose(disposing);
@@ -608,8 +615,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     private Vector4 CalculateCloudToAdd(Compound compound, float density)
     {
-        return new Vector4(
-            Compounds[0] == compound ? density : 0.0f,
+        return new Vector4(Compounds[0] == compound ? density : 0.0f,
             Compounds[1] == compound ? density : 0.0f,
             Compounds[2] == compound ? density : 0.0f,
             Compounds[3] == compound ? density : 0.0f);
@@ -659,8 +665,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
@@ -698,8 +703,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem!.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                    var velocity = fluidSystem!.VelocityAt(pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
@@ -724,7 +728,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             for (int y = y0; y < y0 + height; y++)
             {
                 var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
-                image.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
+                image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
             }
         }
     }
@@ -753,10 +757,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         switch (index)
         {
-            case 0: return vector.X;
-            case 1: return vector.Y;
-            case 2: return vector.Z;
-            case 3: return vector.W;
+            case 0:
+                return vector.X;
+            case 1:
+                return vector.Y;
+            case 2:
+                return vector.Z;
+            case 3:
+                return vector.W;
         }
 
         return 0;

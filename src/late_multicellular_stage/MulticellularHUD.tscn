@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://src/awakening_stage/gui/InventoryScreen.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
+[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=46]
@@ -450,6 +451,7 @@ HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Eating")
 SecreteSlimeHotkeyPath = NodePath("ScrollContainer/HotBar/SecreteSlime")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
+MicrobeControlRadialPath = NodePath("RadialPopup")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
@@ -1964,7 +1966,7 @@ anchor_bottom = 0.0
 margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
-hint_tooltip = "FIRE_TOXIN"
+hint_tooltip = "FIRE_TOXIN_TOOLTIP"
 ActionIcon = ExtResource( 19 )
 ActionName = "g_fire_toxin"
 
@@ -1987,7 +1989,7 @@ anchor_bottom = 0.0
 margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
-hint_tooltip = "SECRETE_SLIME"
+hint_tooltip = "SECRETE_SLIME_TOOLTIP"
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
@@ -2015,6 +2017,8 @@ margin_left = 270.0
 margin_top = 90.0
 margin_right = -270.0
 margin_bottom = -525.0
+
+[node name="RadialPopup" parent="." instance=ExtResource( 32 )]
 
 [node name="MoveToLandConfirmation" parent="." instance=ExtResource( 17 )]
 rect_min_size = Vector2( 450, 0 )

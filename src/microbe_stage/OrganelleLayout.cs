@@ -23,6 +23,9 @@ public class OrganelleLayout<T> : HexLayout<T>
     [JsonIgnore]
     public IReadOnlyList<T> Organelles => existingHexes;
 
+    [JsonIgnore]
+    public int HexCount => existingHexes.Sum(h => h.Definition.HexCount);
+
     /// <summary>
     ///   The center of mass of the contained organelles.
     /// </summary>
@@ -31,23 +34,26 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
         get
         {
-            float totalMass = 0;
+            // TODO: this used to weigh the center position based on the organelle masses, this is no longer possible
+            // to do as simply
+            // float totalMass = 0;
+            int count = 0;
             Vector3 weightedSum = Vector3.Zero;
+
+            // TODO: shouldn't this take multihex organelles into account?
             foreach (var organelle in Organelles)
             {
-                totalMass += organelle.Definition.Mass;
-                weightedSum += Hex.AxialToCartesian(organelle.Position) * organelle.Definition.Mass;
+                // totalMass += organelle.Definition.Mass;
+                ++count;
+                weightedSum += Hex.AxialToCartesian(organelle.Position) /* * organelle.Definition.Mass*/;
             }
 
-            return Hex.CartesianToAxial(weightedSum / totalMass);
+            if (count == 0)
+                return new Hex(0, 0);
+
+            return Hex.CartesianToAxial(weightedSum / count);
         }
     }
-
-    /// <summary>
-    ///   The highest assigned render priority from all of the organelles.
-    /// </summary>
-    [JsonIgnore]
-    public int MaxRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
 
     public override bool CanPlace(T hex)
     {
@@ -94,15 +100,21 @@ public class OrganelleLayout<T> : HexLayout<T>
         return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
     }
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
         var centerOfMass = CenterOfMass;
+
+        // Skip if center of mass is already correct
+        if (centerOfMass.Q == 0 && centerOfMass.R == 0)
+            return false;
 
         foreach (var organelle in Organelles)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
             organelle.Position -= centerOfMass;
         }
+
+        return true;
     }
 
     protected override IEnumerable<Hex> GetHexComponentPositions(T hex)

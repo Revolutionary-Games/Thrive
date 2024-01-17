@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   See FloatingChunk for what many of the fields here do
@@ -15,11 +13,15 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public List<ChunkScene> Meshes;
 
+    /// <summary>
+    ///   This is the spawn density of the chunk
+    /// </summary>
     public float Density;
+
     public bool Dissolves;
     public float Radius;
     public float ChunkScale;
-    public float Mass;
+    public float PhysicsDensity;
     public float Size;
 
     /// <summary>
@@ -83,7 +85,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Dissolves == other.Dissolves &&
             Radius == other.Radius &&
             ChunkScale == other.ChunkScale &&
-            Mass == other.Mass &&
+            PhysicsDensity == other.PhysicsDensity &&
             Size == other.Size &&
             VentAmount == other.VentAmount &&
             Damages == other.Damages &&
@@ -133,7 +135,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// <summary>
     ///   Don't modify instances of this class
     /// </summary>
-    public class ChunkScene : ISaveLoadable
+    public class ChunkScene
     {
         public string ScenePath = null!;
 
@@ -152,26 +154,20 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// </summary>
         public string? SceneAnimationPath;
 
-        [JsonIgnore]
-        public PackedScene? LoadedScene;
+        /// <summary>
+        ///   Need to be set to true on particle type visuals as those need special handling
+        /// </summary>
+        public bool IsParticles;
 
-        [JsonIgnore]
-        public ConvexPolygonShape? LoadedConvexShape;
+        /// <summary>
+        ///   If true animations won't be stopped on this scene when this is spawned as a chunk
+        /// </summary>
+        public bool PlayAnimation;
 
-        public void LoadScene()
-        {
-            if (string.IsNullOrEmpty(ScenePath))
-                throw new InvalidOperationException($"{nameof(ScenePath)} is required for a ChunkScene");
-
-            LoadedScene = GD.Load<PackedScene>(ScenePath);
-
-            if (!string.IsNullOrEmpty(ConvexShapePath))
-                LoadedConvexShape = GD.Load<ConvexPolygonShape>(ConvexShapePath);
-        }
-
-        public void FinishLoading(ISaveContext? context)
-        {
-            LoadScene();
-        }
+        /// <summary>
+        ///   If true then the default shader (material retrieve) is not done and it is assumed that normal shader
+        ///   operations like dissolving is unavailable
+        /// </summary>
+        public bool MissingDefaultShaderSupport;
     }
 }

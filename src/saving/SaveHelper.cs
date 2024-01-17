@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -24,6 +25,7 @@ public static class SaveHelper
         "0.5.3.1",
         "0.5.5.0-alpha",
         "0.5.9.0-alpha",
+        "0.6.4.0-alpha",
     };
 
     private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
@@ -552,6 +554,11 @@ public static class SaveHelper
         }
         catch (Exception e)
         {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
             // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
             if (!Constants.CATCH_SAVE_ERRORS)
 #pragma warning disable 162

@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://test/PhysicsTest.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Normals.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/environment/Terrain_01_Albedo.png" type="Texture" id=4]
+[ext_resource path="res://src/gui_common/dialogs/CustomWindow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=6]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 200, 200 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
+uv1_scale = Vector3( 40, 40, 40 )
+
+[node name="PhysicsTest" type="Node"]
+script = ExtResource( 2 )
+WorldVisualsPath = NodePath("RenderingRoot")
+CameraPath = NodePath("RenderingRoot/Camera")
+GUIWindowRootPath = NodePath("GUI/CustomWindow")
+DeltaLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/Frametime")
+PhysicsTimingLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/PhysicsTiming")
+TestNameLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer/TestType")
+TestExtraInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/ExtraTestTypeInfo")
+PhysicsBodiesCountLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer2/BodyCount")
+SpawnPatternInfoLabelPath = NodePath("GUI/CustomWindow/VBoxContainer/HFlowContainer3/Pattern")
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="CustomWindow" parent="GUI" instance=ExtResource( 5 )]
+Resizable = true
+ShowCloseButton = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/CustomWindow"]
+margin_right = 80.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 80, 50 )
+
+[node name="HFlowContainer" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Test type:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="TestType" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
+
+[node name="ExtraTestTypeInfo" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+autowrap = true
+
+[node name="PhysicsTiming" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+autowrap = true
+
+[node name="Frametime" type="Label" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Bodies:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="BodyCount" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer2"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
+
+[node name="HFlowContainer3" type="HFlowContainer" parent="GUI/CustomWindow/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 5.38925e+08
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
+text = "Spawn pattern:"
+
+[node name="Control" type="Control" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Pattern" type="Label" parent="GUI/CustomWindow/VBoxContainer/HFlowContainer3"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+align = 2
+
+[node name="RenderingRoot" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="RenderingRoot"]
+transform = Transform( 1, 0, 0, 0, 0.834617, 0.55083, 0, -0.55083, 0.834617, 0, 5.382, 9.099 )
+current = true
+fov = 90.0
+near = 0.01
+far = 200.0
+
+[node name="Listener" type="Listener" parent="RenderingRoot/Camera"]
+
+[node name="MeshInstance" type="MeshInstance" parent="RenderingRoot"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="RenderingRoot"]
+transform = Transform( -0.737759, -0.346953, -0.579081, -0.241905, -0.664974, 0.706606, -0.630233, 0.661388, 0.406661, -2.47007, 1.82427, 1.47146 )

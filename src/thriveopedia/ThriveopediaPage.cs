@@ -20,7 +20,8 @@ public abstract class ThriveopediaPage : PanelContainer
     public delegate void OnSceneChanged();
 
     /// <summary>
-    ///   The internal name of this page. Must be PascalCase to open the Godot scene correctly.
+    ///   The internal name of this page. If this page is the only instance of a specific Godot scene, must be
+    ///   PascalCase to open the scene correctly.
     /// </summary>
     public abstract string PageName { get; }
 
@@ -33,6 +34,11 @@ public abstract class ThriveopediaPage : PanelContainer
     ///   The internal name of the parent of this page in the tree, or null if this page is at the top level.
     /// </summary>
     public abstract string? ParentPageName { get; }
+
+    /// <summary>
+    ///   Whether this page is initially collapsed in the page tree to save space.
+    /// </summary>
+    public virtual bool StartsCollapsed => false;
 
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu. When set, runs any
@@ -69,12 +75,16 @@ public abstract class ThriveopediaPage : PanelContainer
     /// <summary>
     ///   Performs intensive page-specific logic to rebuild views when the Thriveopedia is opened.
     /// </summary>
-    public abstract void OnThriveopediaOpened();
+    public virtual void OnThriveopediaOpened()
+    {
+    }
 
     /// <summary>
     ///   Runs any page-specific logic relating to a newly set game in progress.
     /// </summary>
-    public abstract void UpdateCurrentWorldDetails();
+    public virtual void UpdateCurrentWorldDetails()
+    {
+    }
 
     /// <summary>
     ///   Runs any page-specific logic when the page tree is collapsed/expanded.

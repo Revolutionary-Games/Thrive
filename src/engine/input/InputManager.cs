@@ -283,7 +283,7 @@ public class InputManager : Node
         OnInput(false, @event);
     }
 
-    internal static bool CallMethod(InputAttribute attribute, object[] parameters)
+    internal static bool CallMethod(InputAttribute attribute, bool warnIfTriesToConsume, object[] parameters)
     {
         var method = attribute.Method;
 
@@ -303,6 +303,9 @@ public class InputManager : Node
             if (invokeResult is bool asBool)
             {
                 result = asBool;
+
+                if (warnIfTriesToConsume)
+                    PrintConsumeAttemptDelayedError(method);
             }
             else
             {
@@ -346,6 +349,9 @@ public class InputManager : Node
                 if (invokeResult is bool asBool)
                 {
                     thisInstanceResult = asBool;
+
+                    if (warnIfTriesToConsume)
+                        PrintConsumeAttemptDelayedError(method);
                 }
                 else
                 {
@@ -363,6 +369,12 @@ public class InputManager : Node
         DestroyedListeners.Clear();
 
         return result;
+    }
+
+    private static void PrintConsumeAttemptDelayedError(MethodBase method)
+    {
+        GD.PrintErr("A method with delayed call from input manager tried to control input consuming: ",
+            method.DeclaringType?.Name ?? "global", ".", method.Name);
     }
 
     /// <summary>

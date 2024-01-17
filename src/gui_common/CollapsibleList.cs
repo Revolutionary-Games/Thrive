@@ -116,8 +116,20 @@ public class CollapsibleList : VBoxContainer
     public void RemoveItem(string name)
     {
         var found = items.Find(item => item.Name == name);
-        found.DetachAndQueueFree();
+        found.QueueFree();
         items.Remove(found);
+    }
+
+    public void RemoveAllOfType<T>()
+        where T : Control
+    {
+        var found = items.FindAll(item => item is T);
+
+        foreach (var item in found)
+        {
+            item.QueueFree();
+            items.Remove(item);
+        }
     }
 
     public void ClearItems()

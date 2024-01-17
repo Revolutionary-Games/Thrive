@@ -294,8 +294,7 @@ public class AutoEvoRun
             // This *probably* can't overflow, but just in case check for that case
             if (change > int.MaxValue)
             {
-                GD.PrintErr(
-                    "Converting external effect caused a data overflow! We need to change " +
+                GD.PrintErr("Converting external effect caused a data overflow! We need to change " +
                     "external effects to use longs.");
                 change = int.MaxValue;
             }
@@ -446,7 +445,8 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
+            { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
@@ -475,35 +475,34 @@ public class AutoEvoRun
         if (playerSpecies == null)
             return;
 
-        steps.Enqueue(new LambdaStep(
-            result =>
+        steps.Enqueue(new LambdaStep(result =>
+        {
+            if (!result.SpeciesHasResults(playerSpecies))
             {
-                if (!result.SpeciesHasResults(playerSpecies))
-                {
-                    GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
-                    result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
-                }
+                GD.Print("Player species has no auto-evo results, creating blank results to avoid problems");
+                result.AddPlayerSpeciesBlankResult(playerSpecies, map.Patches.Values);
+            }
 
-                foreach (var entry in map.Patches)
-                {
-                    var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
+            foreach (var entry in map.Patches)
+            {
+                var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
 
-                    // Going extinct in patch is not adjusted, because the minimum viable population clamping is
-                    // performed already so we don't want to undo that
-                    if (resultPopulation is null or 0)
-                        continue;
+                // Going extinct in patch is not adjusted, because the minimum viable population clamping is
+                // performed already so we don't want to undo that
+                if (resultPopulation is null or 0)
+                    continue;
 
-                    // Adjust to the specified fraction of the full population change
-                    var previousPopulation =
-                        entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
+                // Adjust to the specified fraction of the full population change
+                var previousPopulation =
+                    entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
 
-                    var change = resultPopulation.Value - previousPopulation;
+                var change = resultPopulation.Value - previousPopulation;
 
-                    change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
+                change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
 
-                    result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
-                }
-            }));
+                result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
+            }
+        }));
     }
 
     /// <summary>
@@ -681,8 +680,8 @@ public class AutoEvoRun
 
                     long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
 
-                    results.AddPopulationResultForSpecies(
-                        entry.Species, entry.Patch, currentPopulation + entry.Constant);
+                    results.AddPopulationResultForSpecies(entry.Species, entry.Patch,
+                        currentPopulation + entry.Constant);
                 }
                 catch (Exception e)
                 {

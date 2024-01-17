@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Components;
+using DefaultEcs;
 using Godot;
 
 /// <summary>
@@ -50,14 +52,18 @@ public class PlayerMicrobeInput : NodeWithInput
             autoMove = false;
         }
 
-        var player = stage.Player;
-        if (player != null)
+        if (stage.HasPlayer)
         {
-            if (player.State == MicrobeState.Unbinding)
+            var player = stage.Player;
+
+            ref var position = ref player.Get<WorldPosition>();
+            ref var control = ref player.Get<MicrobeControl>();
+
+            if (control.State == MicrobeState.Unbinding)
             {
                 // It's probably fine to not update the tutorial state here with events as this state doesn't last
                 // that long and the player needs a pretty long time to get so far in the game as to get here
-                player.MovementDirection = Vector3.Zero;
+                // Unbinding mode movement is canceled by the binding system now
                 return;
             }
 
@@ -75,128 +81,175 @@ public class PlayerMicrobeInput : NodeWithInput
             if (inputMethod == ActiveInputMethod.Controller)
             {
                 // TODO: look direction for controller input  https://github.com/Revolutionary-Games/Thrive/issues/4034
-                player.LookAtPoint = player.GlobalTranslation + new Vector3(0, 0, -10);
+                control.LookAtPoint = position.Position + new Vector3(0, 0, -10);
             }
             else
             {
-                player.LookAtPoint = stage.Camera.CursorWorldPos;
+                control.LookAtPoint = stage.Camera.CursorWorldPos;
             }
 
             // Rotate the inputs when we want to use screen relative movement to make it happen
             if (screenRelative)
             {
-                // Rotate the opposite of the player orientation to get back to screen
-                movement = player.GlobalTransform.basis.Quat().Inverse().Xform(movement);
+                // Rotate the opposite of the player orientation to get back to screen (as when applying movement
+                // vector the normal rotation is used to rotate the movement direction so these two operations cancel
+                // out)
+                movement = position.Rotation.Inverse().Xform(movement);
             }
 
             if (autoMove)
             {
-                player.MovementDirection = new Vector3(0, 0, -1);
+                control.MovementDirection = new Vector3(0, 0, -1);
             }
             else
             {
                 // We only normalize when the length is over to make moving slowly with a controller work
-                player.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
+                control.MovementDirection = movement.Length() > 1 ? movement.Normalized() : movement;
             }
 
             stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
-                new MicrobeMovementEventArgs(screenRelative, player.MovementDirection,
-                    player.LookAtPoint - player.GlobalTranslation), this);
+                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection), this);
         }
     }
 
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
-        stage.Player?.EmitToxin();
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+        ref var compoundStorage = ref stage.Player.Get<CompoundStorage>();
+
+        control.EmitToxin(ref stage.Player.Get<OrganelleContainer>(), compoundStorage.Compounds, stage.Player);
     }
 
     [RunOnKey("g_secrete_slime")]
     public void SecreteSlime(float delta)
     {
-        stage.Player?.QueueSecreteSlime(delta);
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, delta);
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
     public void ToggleEngulf()
     {
-        if (stage.Player == null)
+        if (!stage.HasPlayer)
             return;
 
-        if (stage.Player.State == MicrobeState.Engulf)
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+        ref var cellProperties = ref stage.Player.Get<CellProperties>();
+
+        var currentState = control.State;
+
+        if (stage.Player.Has<MicrobeColony>())
         {
-            stage.Player.State = MicrobeState.Normal;
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
+
+            currentState = colony.ColonyState;
         }
-        else if (stage.Player.CanEngulfInColony())
+
+        if (currentState == MicrobeState.Engulf)
         {
-            stage.Player.State = MicrobeState.Engulf;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
+        }
+        else if (cellProperties.CanEngulfInColony(stage.Player))
+        {
+            control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
         }
     }
 
     [RunOnKeyDown("g_toggle_binding")]
     public void ToggleBinding()
     {
-        if (stage.Player == null)
+        if (!stage.HasPlayer)
             return;
 
-        if (stage.Player.State == MicrobeState.Binding)
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+        ref var organelles = ref stage.Player.Get<OrganelleContainer>();
+
+        // This doesn't check colony data as the player cell is always able to bind when in a colony so the state
+        // should not be able to be out of sync
+
+        if (control.State == MicrobeState.Binding)
         {
-            stage.Player.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
-        else if (stage.Player.CanBind)
+        else if (organelles.HasBindingAgent)
         {
-            stage.Player.State = MicrobeState.Binding;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Binding);
         }
     }
 
     [RunOnKeyDown("g_toggle_unbinding")]
     public void ToggleUnbinding()
     {
-        if (stage.Player == null)
+        if (!stage.HasPlayer)
             return;
 
-        if (stage.Player.State == MicrobeState.Unbinding)
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        if (control.State == MicrobeState.Unbinding)
         {
             stage.HUD.HintText = string.Empty;
-            stage.Player.State = MicrobeState.Normal;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
-        else if (stage.Player.Colony != null && !stage.Player.IsMulticellular)
+        else if (stage.Player.Has<MicrobeColony>() && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
-            stage.Player.State = MicrobeState.Unbinding;
+            control.SetStateColonyAware(stage.Player, MicrobeState.Unbinding);
+
+            ref var callbacks = ref stage.Player.Get<MicrobeEventCallbacks>();
+
+            callbacks.OnUnbindEnabled?.Invoke(stage.Player);
         }
     }
 
     [RunOnKeyDown("g_unbind_all")]
     public void UnbindAll()
     {
-        stage.Player?.UnbindAll();
+        if (!stage.HasPlayer)
+            return;
+
+        if (stage.Player.Has<MicrobeColony>())
+        {
+            if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(stage.Player, stage.WorldSimulation))
+            {
+                GD.PrintErr("Failed to unbind the player");
+            }
+        }
     }
 
     [RunOnKeyDown("g_perform_unbinding", Priority = 1)]
     public bool AcceptUnbind()
     {
-        if (stage.Player?.State != MicrobeState.Unbinding)
+        if (!stage.HasPlayer)
             return false;
 
-        var inspectables = stage.HoverInfo.InspectableEntities.ToList();
-        if (inspectables.Count == 0)
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        if (control.State != MicrobeState.Unbinding)
             return false;
 
-        var target = inspectables[0];
-        if (target is not Microbe microbe)
+        var target = stage.HoverInfo.Entities.FirstOrDefault();
+        if (target == default || !target.IsAlive)
             return false;
 
-        var raycastData = stage.HoverInfo.GetRaycastData(target);
-        if (raycastData == null)
+        if (!target.IsAlive || !target.Has<MicrobeSpeciesMember>())
             return false;
 
-        var actualMicrobe = microbe.GetMicrobeFromShape(raycastData.Value.Shape);
-        if (actualMicrobe == null)
+        // If didn't hit a cell colony, can't do anything
+        if (!target.Has<MicrobeColony>() && !target.Has<MicrobeColonyMember>())
             return false;
 
-        RemoveCellFromColony(actualMicrobe);
+        RemoveCellFromColony(target);
 
+        // Removing a colony member should reset the microbe mode so this text should be hidden anyway soon, but
+        // apparently we wanted extra guarantee here
         stage.HUD.HintText = string.Empty;
         return true;
     }
@@ -204,7 +257,12 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_pack_commands")]
     public bool ShowSignalingCommandsMenu()
     {
-        if (stage.Player?.HasSignalingAgent != true)
+        if (!stage.HasPlayer)
+            return false;
+
+        ref var organelles = ref stage.Player.Get<OrganelleContainer>();
+
+        if (!organelles.HasSignalingAgent)
             return false;
 
         stage.HUD.ShowSignalingCommandsMenu(stage.Player);
@@ -218,7 +276,7 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         var command = stage.HUD.SelectSignalCommandIfOpen();
 
-        if (stage.Player != null)
+        if (command != null && stage.HasPlayer)
             stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 
@@ -258,15 +316,12 @@ public class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void RemoveCellFromColony(Microbe target)
+    private void RemoveCellFromColony(Entity target)
     {
-        if (target.Colony == null)
+        if (!MicrobeColonyHelpers.UnbindAllOutsideGameUpdate(target, stage.WorldSimulation))
         {
-            GD.PrintErr("Target microbe is not a part of colony");
-            return;
+            GD.PrintErr("Target microbe failed to unbind");
         }
-
-        target.Colony.RemoveFromColony(target);
     }
 
     private void SpawnCheatCloud(string name, float delta)
@@ -274,7 +329,7 @@ public class PlayerMicrobeInput : NodeWithInput
         float multiplier = 1.0f;
 
         // To make cheating easier in multicellular with large cell layouts
-        if (stage.Player?.IsMulticellular == true)
+        if (stage.GameWorld.PlayerSpecies is not MicrobeSpecies)
             multiplier = 4;
 
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),

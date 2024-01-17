@@ -27,6 +27,12 @@ public class SceneDisplayer : Spatial
     public Node? InstancedNode => currentlyShown;
 
     /// <summary>
+    ///   Can be used to store anything. For example can be used to know if the visual hash of this item is the same
+    ///   as what is desired to be loaded.
+    /// </summary>
+    public long UserData { get; set; }
+
+    /// <summary>
     ///   Get the material of this scene's model.
     /// </summary>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>

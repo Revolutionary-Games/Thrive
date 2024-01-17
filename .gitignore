@@ -2,6 +2,7 @@
 /.import
 export.cfg
 /builds
+/cmake-build*
 
 /inspect_results.xml
 /files_to_check.txt
@@ -67,7 +68,6 @@ _ReSharper*/
 *.vssscc
 $tf*/
 [Bb]in
-[Dd]ebug*/
 
 # Libraries
 *.lib
@@ -139,11 +139,12 @@ package-lock.json
 /fast_build_mode.json
 
 *.temp_check
-/docker/*.tar.xz
+*.tar.xz
 /Scripts/patrons.json
 /Scripts/translators.json
 /steam_appid.txt
 simulation_parameters/revision.json
+/gitmodules
 
 /mods
 
@@ -151,3 +152,5 @@ simulation_parameters/revision.json
 out.txt
 output.png
 *.DS_Store
+
+*.mo

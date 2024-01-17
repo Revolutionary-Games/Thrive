@@ -184,8 +184,8 @@ public class StrategicEntityNameLabelSystem : Control
                 }
 
                 var entityTransform = entity.EntityNode.GlobalTransform;
-                var position = entityTransform.origin + InteractableEntityHelpers.RotateExtraInteractionOffset(
-                    entity.LabelOffset, entityTransform.basis);
+                var position = entityTransform.origin +
+                    InteractableEntityHelpers.RotateExtraInteractionOffset(entity.LabelOffset, entityTransform.basis);
 
                 if (camera!.IsPositionBehind(position))
                 {

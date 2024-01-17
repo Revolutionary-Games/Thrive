@@ -40,7 +40,9 @@ archive and run the Godot executable in it.
 Git with LFS
 ------------
 
-To clone the Thrive repository properly you need Git with Git LFS.
+To clone the Thrive repository properly you need Git with Git
+LFS. Note that the GitHub option to download as .zip will not work
+(unless that is updated in the future to include LFS assets).
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
@@ -77,12 +79,12 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 7.0, but a
+Next you need, .NET SDK. Recommended version currently is 8.0, but a
 newer version may also work.
 
 On Linux you can use your package manager to install that. The package
-might be called `dotnet-sdk-7.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-7.0`
+might be called `dotnet-sdk-8.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-8.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
@@ -187,7 +189,7 @@ _C#_, _Mono Debug_, and _C# Tools for Godot_.
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
-MSBuild (VS Build Tools).
+dotnet CLI.
 
 If you want to setup live debugging with Godot follow the instructions here:
 https://docs.godotengine.org/en/3.3/getting_started/scripting/c_sharp/c_sharp_basics.html#visual-studio-code
@@ -338,13 +340,54 @@ Compiling
 ---------
 
 Now you should be able to return to the Godot editor and hit the build
-button in the top right corner. If that succeeds then you should be
-good to go.
+button in the top right corner. If that succeeds then the C# side of
+things should be working.
 
-You can also compile from your development
-environment (and not the Godot editor) to see warnings and get
-highlighting of errors in the source code. However running the game
-from Visual Studio is a bit complicated.
+## Native Libraries
+
+Thrive depends on some native libraries which must be present before
+the game can be ran.
+
+The easiest way to get these is to download precompiled ones by running:
+```sh
+dotnet run --project Scripts -- native Fetch Install
+```
+
+You can compile these libraries locally after installing C++
+development tools: cmake, and a compiler. On Linux clang is
+recommended (and used by default). Also the build is configured to use
+the gold linker which might not be installed by default so that also
+needs to be installed (package name is probably something like
+`binutils-gold`). On Windows Visual Studio probably works best, but
+technically clang should work (please send us a PR if you can tweak it
+to work). On Mac Xcode (or at least the command line tools for it)
+should be used.
+
+You can compile and install the native libraries for the Godot Editor
+in the Thrive folder with the following script:
+```sh
+dotnet run --project Scripts -- native Build Install
+```
+
+Debug versions for easier native code development / more robust error
+condition checking can be built and installed by adding `-d` to the
+end of the previous command to specify debug versions of the libraries
+to be used. Sometimes debug versions of the libraries are available
+for download and in those cases `-d` can be added to the end of the
+`Fetch` command as well.
+
+Note that for release making you need the native libraries for all
+platforms:
+```sh
+dotnet run --project Scripts -- native Fetch
+```
+
+## Using Development Environments
+
+You can also compile from your development environment (and not the
+Godot editor) to see warnings and get highlighting of errors in the
+source code. However running the game from Visual Studio is a bit
+complicated.
 
 If the compile fails with a bunch of `Godot.something` or `Node` not
 found, undefined references, you need to compile the game from the
@@ -377,7 +420,8 @@ configuration editor.
 Done
 ----
 
-If the build in Godot editor succeeded, you should be now good to go.
+If the build in Godot editor succeeded and the native library install
+step succeeded without errors, you should be now good to go.
 
 You can run the game by pressing the play button in the top right of
 the Godot editor or by pressing F5. Additionally if you open different
@@ -554,6 +598,21 @@ example
 `RevolutionaryGamesCommon\DevCenterCommunication\DevCenterCommunication.csproj`
 or other csproj or .cs files missing), first try initializing and
 updating git submodules and building again.
+
+If you get errors from any files in the Scripts folder, for example
+`Thrive\Scripts\Program.cs`, then you likely have an outdated version
+of the submodules. Running the above submodule update command should
+fix these kind of errors as well.
+
+### Godot asset import fails / images can't be opened
+
+The most likely case with Godot not being able to import the binary
+assets and none of the game images being able to be opened with an
+image viewer, is that the Thrive repository was not cloned with the
+LFS data. Please see above the LFS instructions and try doing it again
+with those instructions until the downloaded image files can be
+opened. After that Godot should be able to import all the assets
+properly.
 
 ### Troubleshooting regarding Godot automatically breaking
 

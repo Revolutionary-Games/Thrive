@@ -34,12 +34,32 @@ public abstract class EditorCombinableActionData<TContext> : EditorCombinableAct
     public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If the other action was performed on a different context, we can't combine with it
-        if (other is not EditorCombinableActionData<TContext> editorActionData || editorActionData.Context is null ||
-            !editorActionData.Context.Equals(Context))
+        if (other is EditorCombinableActionData<TContext> editorActionData)
         {
-            return ActionInterferenceMode.NoInterference;
+            // Null context is the same as another null context but any existing context value doesn't equal null
+            if ((Context is not null && editorActionData.Context is null) ||
+                (Context is null && editorActionData.Context is not null))
+            {
+                return ActionInterferenceMode.NoInterference;
+            }
+
+            if (Context is not null && !Context.Equals(editorActionData.Context))
+            {
+                return ActionInterferenceMode.NoInterference;
+            }
         }
 
         return base.GetInterferenceModeWith(other);
+    }
+
+    public override CombinableActionData Combine(CombinableActionData other)
+    {
+        var combined = (EditorCombinableActionData<TContext>)base.Combine(other);
+
+        // We need to pass the context along to the combined data. This is fine to just copy our side of the context
+        // as it was checked before allowing combine that the context matches.
+        combined.Context = Context;
+
+        return combined;
     }
 }

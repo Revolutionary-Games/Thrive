@@ -195,7 +195,23 @@ public partial class DebugOverlays : Control
 
     private void OnCollisionShapeCheckBoxToggled(bool state)
     {
+        // Standard Godot physics debug
         GetTree().DebugCollisionsHint = state;
+
+        // Custom physics debug
+        if (state)
+        {
+            DebugDrawer.Instance.EnablePhysicsDebug();
+
+            if (!DebugDrawer.Instance.PhysicsDebugDrawAvailable)
+            {
+                ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("DEBUG_DRAW_NOT_AVAILABLE"), 4);
+            }
+        }
+        else
+        {
+            DebugDrawer.Instance.DisablePhysicsDebugLevel();
+        }
     }
 
     private void OnEntityLabelCheckBoxToggled(bool state)
@@ -205,13 +221,9 @@ public partial class DebugOverlays : Control
 
         ShowEntityLabels = state;
 
-        if (state)
+        if (!state)
         {
-            InitiateEntityLabels();
-        }
-        else
-        {
-            CleanEntityLabels();
+            ClearEntityLabels();
         }
     }
 

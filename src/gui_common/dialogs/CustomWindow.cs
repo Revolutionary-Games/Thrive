@@ -300,17 +300,17 @@ public class CustomWindow : TopLevelContainer
             return;
 
         // Draw background panels
-        DrawStyleBox(customPanel, new Rect2(
-            new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
+        DrawStyleBox(customPanel,
+            new Rect2(new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
 
-        DrawStyleBox(titleBarPanel, new Rect2(
-            new Vector2(3, -titleBarHeight + 3), new Vector2(RectSize.x - 6, titleBarHeight - 3)));
+        DrawStyleBox(titleBarPanel,
+            new Rect2(new Vector2(3, -titleBarHeight + 3), new Vector2(RectSize.x - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
         var fontHeight = titleFont!.GetHeight() - titleFont.GetDescent() * 2;
 
-        var titlePosition = new Vector2(
-            (RectSize.x - titleFont.GetStringSize(translatedWindowTitle).x) / 2, (-titleHeight + fontHeight) / 2);
+        var titlePosition = new Vector2((RectSize.x - titleFont.GetStringSize(translatedWindowTitle).x) / 2,
+            (-titleHeight + fontHeight) / 2);
 
         DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
             (int)(RectSize.x - customPanel.GetMinimumSize().x));
@@ -394,8 +394,7 @@ public class CustomWindow : TopLevelContainer
 
             var childMinSize = child.GetCombinedMinimumSize();
 
-            contentSize = new Vector2(
-                Mathf.Max(childMinSize.x, contentSize.x),
+            contentSize = new Vector2(Mathf.Max(childMinSize.x, contentSize.x),
                 Mathf.Max(childMinSize.y, contentSize.y));
         }
 
@@ -420,8 +419,7 @@ public class CustomWindow : TopLevelContainer
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            rect = new Rect2(
-                new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
+            rect = new Rect2(new Vector2(rect.Position.x - scaleBorderSize, rect.Position.y - scaleBorderSize),
                 new Vector2(rect.Size.x + scaleBorderSize * 2, rect.Size.y + scaleBorderSize * 2));
         }
 
@@ -459,16 +457,15 @@ public class CustomWindow : TopLevelContainer
         if (BoundToScreenArea)
         {
             // Clamp position to ensure window stays inside the screen
-            RectPosition = new Vector2(
-                Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+            RectPosition = new Vector2(Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
                 Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
         }
 
         if (Resizable)
         {
             // Size can't be bigger than the viewport
-            RectSize = new Vector2(
-                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
+            RectSize = new Vector2(Mathf.Min(RectSize.x, screenSize.x),
+                Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
     }
 
@@ -515,8 +512,7 @@ public class CustomWindow : TopLevelContainer
 
         foreach (var (reorderingNode, nodeSibling) in windowReorderingAncestors)
         {
-            reorderingNode.ConnectWindow(
-                this, nodeSibling, usedAllowWindowReorderingRecursion);
+            reorderingNode.ConnectWindow(this, nodeSibling, usedAllowWindowReorderingRecursion);
             windowReorderingNodes.Add(reorderingNode);
         }
     }
@@ -678,8 +674,7 @@ public class CustomWindow : TopLevelContainer
 
         closeButton.SetAnchorsPreset(LayoutPreset.TopRight);
 
-        closeButton.RectPosition = new Vector2(
-            -GetConstant("custom_close_h_ofs", "WindowDialog"),
+        closeButton.RectPosition = new Vector2(-GetConstant("custom_close_h_ofs", "WindowDialog"),
             -GetConstant("custom_close_v_ofs", "WindowDialog"));
 
         closeButton.Connect("mouse_entered", this, nameof(OnCloseButtonMouseEnter));

@@ -7,8 +7,15 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned cells. Verifies that they don't overlap
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is a JSON reference so that <see cref="Components.MulticellularGrowth"/> can reference this from a
+///     species.
+///   </para>
+/// </remarks>
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]
+[JsonObject(IsReference = true)]
 public class CellLayout<T> : HexLayout<T>
     where T : class, IPositionedCell
 {
@@ -20,9 +27,11 @@ public class CellLayout<T> : HexLayout<T>
     {
     }
 
-    // TODO: remove if this doesn't end up being necessary
-    /*[JsonIgnore]
-    public IReadOnlyList<T> Cells => existingHexes;*/
+    [JsonConstructor]
+    public CellLayout(List<T> existingHexes, Action<T>? onAdded, Action<T>? onRemoved) : base(existingHexes, onAdded,
+        onRemoved)
+    {
+    }
 
     /// <summary>
     ///   The center of mass of the contained organelles in all cells
@@ -32,15 +41,20 @@ public class CellLayout<T> : HexLayout<T>
     {
         get
         {
-            float totalMass = 0;
+            // TODO: with the new physics its no longer possible to easily calculate the center of mass exactly
+            // this instead has to rely on just hex positions (for now). See OrganelleLayout.CenterOfMass
             Vector3 weightedSum = Vector3.Zero;
+            int count = 0;
             foreach (var organelle in existingHexes.SelectMany(c => c.Organelles))
             {
-                totalMass += organelle.Definition.Mass;
-                weightedSum += Hex.AxialToCartesian(organelle.Position) * organelle.Definition.Mass;
+                ++count;
+                weightedSum += Hex.AxialToCartesian(organelle.Position);
             }
 
-            return Hex.CartesianToAxial(weightedSum / totalMass);
+            if (count == 0)
+                return new Hex(0, 0);
+
+            return Hex.CartesianToAxial(weightedSum / count);
         }
     }
 

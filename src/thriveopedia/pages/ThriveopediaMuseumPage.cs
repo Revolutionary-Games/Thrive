@@ -89,10 +89,6 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
         }
     }
 
-    public override void UpdateCurrentWorldDetails()
-    {
-    }
-
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -177,8 +173,8 @@ public class ThriveopediaMuseumPage : ThriveopediaPage
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             // Start freebuild game with the selected species
-            editor.CurrentGame = GameProperties.StartNewMicrobeGame(
-                new WorldGenerationSettings(), true, (Species)startingSpecies.Clone());
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true,
+                (Species)startingSpecies.Clone());
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

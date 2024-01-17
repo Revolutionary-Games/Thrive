@@ -86,6 +86,15 @@ public class TutorialState : ITutorialInput
     public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     [JsonProperty]
+    public ChemoreceptorPlacementTutorial ChemoreceptorPlacementTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public NegativeAtpBalanceTutorial NegativeAtpBalanceTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public AtpBalanceIntroduction AtpBalanceIntroduction { get; private set; } = new();
+
+    [JsonProperty]
     public LeaveColonyTutorial LeaveColonyTutorial { get; private set; } = new();
 
     /// <summary>
@@ -100,6 +109,18 @@ public class TutorialState : ITutorialInput
 
     [JsonProperty]
     public DayNightTutorial DayNightTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public OrganelleDivisionTutorial OrganelleDivisionTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public MadeNoChangesTutorial MadeNoChangesTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public FlagellumPlacementTutorial FlagellumPlacementTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public ModifyOrganelleTutorial ModifyOrganelleTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
@@ -379,10 +400,17 @@ public class TutorialState : ITutorialInput
             EditorTutorialEnd,
             AutoEvoPrediction,
             StaySmallTutorial,
+            ChemoreceptorPlacementTutorial,
+            NegativeAtpBalanceTutorial,
             LeaveColonyTutorial,
             BecomeMulticellularTutorial,
             EarlyMulticellularWelcome,
             DayNightTutorial,
+            MadeNoChangesTutorial,
+            OrganelleDivisionTutorial,
+            FlagellumPlacementTutorial,
+            ModifyOrganelleTutorial,
+            AtpBalanceIntroduction,
         };
     }
 }

@@ -19,6 +19,12 @@ using Newtonsoft.Json;
 public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
+    public UnlockProgress UnlockProgress = new();
+
+    [JsonProperty]
+    public WorldStatsTracker StatisticsTracker = new();
+
+    [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
     [JsonProperty]
@@ -71,7 +77,7 @@ public class GameWorld : ISaveLoadable
             startingSpecies.OnEdited();
 
             // Need to update the species ID in case it was different in a previous game
-            startingSpecies.OnBecomePartOfWorld(++speciesIdCounter);
+            startingSpecies.OnBecomePartOfWorld(GetNextSpeciesID());
             worldSpecies[startingSpecies.ID] = startingSpecies;
 
             PlayerSpecies = startingSpecies;
@@ -90,8 +96,7 @@ public class GameWorld : ISaveLoadable
 
         // Create the initial generation by adding only the player species
         var initialSpeciesRecord = new SpeciesRecordLite((Species)PlayerSpecies.Clone(), PlayerSpecies.Population);
-        GenerationHistory.Add(0, new GenerationRecord(
-            0,
+        GenerationHistory.Add(0, new GenerationRecord(0,
             new Dictionary<uint, SpeciesRecordLite> { { PlayerSpecies.ID, initialSpeciesRecord } }));
 
         if (WorldSettings.DayNightCycleEnabled)
@@ -99,6 +104,8 @@ public class GameWorld : ISaveLoadable
             // Make sure average light levels are computed already
             UpdateGlobalAverageSunlight();
         }
+
+        UnlockProgress.UnlockAll = !settings.Difficulty.OrganelleUnlocksEnabled;
     }
 
     /// <summary>
@@ -185,8 +192,8 @@ public class GameWorld : ISaveLoadable
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
-        species.Organelles.Add(new OrganelleTemplate(
-            SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+        species.Organelles.Add(new OrganelleTemplate(SimulationParameters.Instance.GetOrganelleType("cytoplasm"),
+            new Hex(0, 0), 0));
 
         species.OnEdited();
     }
@@ -211,8 +218,7 @@ public class GameWorld : ISaveLoadable
         }
 
         var generation = PlayerSpecies.Generation - 1;
-        GenerationHistory.Add(generation, new GenerationRecord(
-            TotalPassedTime,
+        GenerationHistory.Add(generation, new GenerationRecord(TotalPassedTime,
             autoEvo.Results.GetSpeciesRecords()));
     }
 
@@ -221,7 +227,7 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public MicrobeSpecies NewMicrobeSpecies(string genus, string epithet)
     {
-        var species = new MicrobeSpecies(++speciesIdCounter, genus, epithet);
+        var species = new MicrobeSpecies(GetNextSpeciesID(), genus, epithet);
 
         worldSpecies[species.ID] = species;
         return species;
@@ -295,7 +301,8 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Registers a species created by auto-evo in this world. Updates the ID
+    ///   Registers a species created by auto-evo in this world. Updates the ID to ensure it is unique and valid for
+    ///   this world.
     /// </summary>
     /// <param name="species">The species to register</param>
     public void RegisterAutoEvoCreatedSpecies(Species species)
@@ -303,7 +310,7 @@ public class GameWorld : ISaveLoadable
         if (worldSpecies.Any(p => p.Value == species))
             throw new ArgumentException("Species is already in this world");
 
-        species.OnBecomePartOfWorld(++speciesIdCounter);
+        species.OnBecomePartOfWorld(GetNextSpeciesID());
         worldSpecies[species.ID] = species;
     }
 
@@ -386,8 +393,7 @@ public class GameWorld : ISaveLoadable
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print(
-                $"Applying immediate population effect to {species.FormattedIdentifier}, constant: " +
+            GD.Print($"Applying immediate population effect to {species.FormattedIdentifier}, constant: " +
                 $"{constant}, coefficient: {coefficient}, reason: {description}");
 
             species.ApplyImmediatePopulationChange(constant, coefficient, patch);
@@ -669,8 +675,7 @@ public class GameWorld : ISaveLoadable
             }
 
             // Recover all omitted species data for this generation so we can fill the tree
-            var updatedSpeciesData = record.AllSpeciesData.ToDictionary(
-                s => s.Key,
+            var updatedSpeciesData = record.AllSpeciesData.ToDictionary(s => s.Key,
                 s => GenerationRecord.GetFullSpeciesRecord(s.Key, generation.Key, GenerationHistory));
 
             tree.Update(updatedSpeciesData, generation.Key, record.TimeElapsed, PlayerSpecies.ID);
@@ -683,6 +688,22 @@ public class GameWorld : ISaveLoadable
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+    }
+
+    private uint GetNextSpeciesID()
+    {
+        var speciesId = ++speciesIdCounter;
+
+        // Guard against running out of IDs
+        if (speciesId == uint.MaxValue)
+        {
+            // TODO: implement species ID sequence reset (need to find unused ranges of species ID numbers for this
+            // world
+            throw new NotImplementedException(
+                "World ran out of species ID numbers and restarting sequence is not implemented");
+        }
+
+        return speciesId;
     }
 
     private void SwitchSpecies(Species old, Species newSpecies)

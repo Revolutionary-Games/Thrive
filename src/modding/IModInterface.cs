@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using DefaultEcs;
+using DefaultEcs.Command;
+using Godot;
 
 /// <summary>
 ///   This interface provides an interface for mods to interact with the game through an API that will try to stay
@@ -20,17 +22,17 @@ public interface IModInterface
 {
     public delegate void OnSceneChangedHandler(Node newScene);
 
-    public delegate void OnDamageReceivedHandler(Node damageReceiver, float amount, bool isPlayer);
+    public delegate void OnDamageReceivedHandler(Entity damageReceiver, float amount, bool isPlayer);
 
-    public delegate void OnPlayerMicrobeSpawnedHandler(Microbe player);
+    public delegate void OnPlayerMicrobeSpawnedHandler(Entity player);
 
-    public delegate void OnMicrobeSpawnedHandler(Microbe microbe);
+    public delegate void OnMicrobeSpawnedHandler(EntityRecord microbe);
 
-    public delegate void OnChunkSpawnedHandler(FloatingChunk chunk, bool environmental);
+    public delegate void OnChunkSpawnedHandler(EntityRecord chunk, bool environmental);
 
-    public delegate void OnToxinEmittedHandler(AgentProjectile toxin);
+    public delegate void OnToxinEmittedHandler(EntityRecord toxin);
 
-    public delegate void OnMicrobeDiedHandler(Microbe microbe, bool isPlayer);
+    public delegate void OnMicrobeDiedHandler(Entity microbe, bool isPlayer);
 
     // Game events mods can listen to
     // If something you'd want to use is missing, please request it:

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
 /// </summary>
 [UseThriveSerializer]
-public class BiomeConditions : ICloneable, ISaveLoadable
+public class BiomeConditions : ICloneable
 {
     // TODO: make this also a property / private
     public Dictionary<string, ChunkConfiguration> Chunks = null!;
@@ -161,6 +161,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
                 "Chunks missing");
         }
 
+        float sumOfGasses = 0;
+
         foreach (var compound in compounds)
         {
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
@@ -168,6 +170,22 @@ public class BiomeConditions : ICloneable, ISaveLoadable
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     $"Density {compound.Value.Density} invalid for {compound.Key} " +
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
+            }
+
+            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
+            {
+                sumOfGasses += compound.Value.Ambient;
+            }
+        }
+
+        if (sumOfGasses > 0)
+        {
+            // Make sure gasses add up to 100% to make sure they make sense. 0.005 is here to allow being off by up to
+            // half a percent
+            if (Math.Abs(sumOfGasses - 1) >= 0.005f)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Gas compounds should add up to 1 to have 100% of air composition covered");
             }
         }
 
@@ -184,17 +202,12 @@ public class BiomeConditions : ICloneable, ISaveLoadable
             {
                 throw new InvalidRegistryDataException(name, GetType().Name, "Missing name for chunk type");
             }
+
+            if (chunk.Value.PhysicsDensity <= 0)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name, "Missing physics density for chunk type");
+            }
         }
-    }
-
-    public void Resolve(SimulationParameters parameters)
-    {
-        LoadChunkScenes();
-    }
-
-    public void FinishLoading(ISaveContext? context)
-    {
-        LoadChunkScenes();
     }
 
     public object Clone()
@@ -208,16 +221,5 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         };
 
         return result;
-    }
-
-    private void LoadChunkScenes()
-    {
-        foreach (var entry in Chunks)
-        {
-            foreach (var meshEntry in entry.Value.Meshes)
-            {
-                meshEntry.LoadScene();
-            }
-        }
     }
 }
