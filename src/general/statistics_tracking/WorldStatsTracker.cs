@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using UnlockConstraints;
 
 /// <summary>
@@ -8,26 +7,6 @@ using UnlockConstraints;
 [UseThriveSerializer]
 public class WorldStatsTracker : IUnlockStateDataSource
 {
-    public WorldStatsTracker()
-    {
-        AllStatistics = new Lazy<IStatistic[]>(() =>
-        {
-            return new IStatistic[]
-            {
-                TotalEngulfedByPlayer,
-                TotalDigestedByPlayer,
-                TotalPlayerDeaths,
-                PlayerReproductionStatistic,
-            };
-        });
-    }
-
-    /// <summary>
-    ///   All the statistics recorded in <see cref="WorldStatsTracker"/>
-    /// </summary>
-    [JsonProperty]
-    public Lazy<IStatistic[]> AllStatistics { get; private set; }
-
     [JsonProperty]
     public SimpleStatistic TotalEngulfedByPlayer { get; private set; } = new();
 

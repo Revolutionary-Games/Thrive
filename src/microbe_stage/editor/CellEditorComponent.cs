@@ -92,7 +92,7 @@ public partial class CellEditorComponent :
     public NodePath AutoEvoPredictionPanelPath = null!;
 
     [Export]
-    public NodePath TotalPopulationLabelPath = null!;
+    public NodePath TotalEnergyLabelPath = null!;
 
     [Export]
     public NodePath AutoEvoPredictionFailedLabelPath = null!;
@@ -202,7 +202,7 @@ public partial class CellEditorComponent :
 
     private Label generationLabel = null!;
 
-    private CellStatsIndicator totalPopulationLabel = null!;
+    private CellStatsIndicator totalEnergyLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
@@ -251,11 +251,16 @@ public partial class CellEditorComponent :
 
     private string? bestPatchName;
 
+    // This and worstPatchPopulation used to be displayed but are now kept for potential future use
     private long bestPatchPopulation;
+
+    private float bestPatchEnergyGathered;
 
     private string? worstPatchName;
 
     private long worstPatchPopulation;
+
+    private float worstPatchEnergyGathered;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
@@ -466,6 +471,13 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public TutorialState? TutorialState { get; set; }
 
+    /// <summary>
+    ///   Needed for auto-evo prediction to be able to compare the new energy to the old energy
+    /// </summary>
+    [JsonProperty]
+    public float? PreviousPlayerGatheredEnergy { get; set; }
+
+    [JsonIgnore]
     public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
         .Where(p => p.Definition.Unique)
         .Select(p => p.Definition);
@@ -593,7 +605,7 @@ public partial class CellEditorComponent :
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
-        totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
+        totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
@@ -1334,7 +1346,7 @@ public partial class CellEditorComponent :
                 DigestionEfficiencyLabelPath.Dispose();
                 GenerationLabelPath.Dispose();
                 AutoEvoPredictionPanelPath.Dispose();
-                TotalPopulationLabelPath.Dispose();
+                TotalEnergyLabelPath.Dispose();
                 AutoEvoPredictionFailedLabelPath.Dispose();
                 WorstPatchLabelPath.Dispose();
                 BestPatchLabelPath.Dispose();
@@ -2357,9 +2369,9 @@ public partial class CellEditorComponent :
 
     private void UpdateAutoEvoPredictionTranslations()
     {
-        if (autoEvoPredictionRunSuccessful is false)
+        if (autoEvoPredictionRunSuccessful == false)
         {
-            totalPopulationLabel.Value = float.NaN;
+            totalEnergyLabel.Value = float.NaN;
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -2367,12 +2379,14 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
-        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+        var energyFormat = TranslationServer.Translate("ENERGY_IN_PATCH_SHORT");
 
         if (!string.IsNullOrEmpty(bestPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
+
             bestPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
+                energyFormat.FormatSafe(TranslationServer.Translate(bestPatchName), formatted);
         }
         else
         {
@@ -2381,13 +2395,21 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
+
             worstPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
+                energyFormat.FormatSafe(TranslationServer.Translate(worstPatchName), formatted);
         }
         else
         {
             worstPatchLabel.Text = TranslationServer.Translate("N_A");
         }
+    }
+
+    private void DummyKeepTranslation()
+    {
+        // This keeps this translation string existing if we ever still want to use worst and best population numbers
+        TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
     }
 
     private void OpenAutoEvoPredictionDetails()
@@ -2425,36 +2447,65 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionRunSuccessful = true;
 
-        // Set the initial value
-        totalPopulationLabel.ResetInitialValue();
-        totalPopulationLabel.Value = run.PlayerSpeciesOriginal.Population;
+        // Gather energy details
+        float totalEnergy = 0;
+        Patch? bestPatch = null;
+        float bestPatchEnergy = 0;
+        Patch? worstPatch = null;
+        float worstPatchEnergy = 0;
 
-        totalPopulationLabel.Value = newPopulation;
-
-        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
-
-        // Best
-        if (sorted.Count > 0)
+        foreach (var entry in results.GetPatchEnergyResults(run.PlayerSpeciesNew))
         {
-            var patch = sorted[0];
-            bestPatchName = patch.Key.Name.ToString();
-            bestPatchPopulation = patch.Value;
+            // Best
+            if (bestPatch == null || bestPatchEnergy < entry.Value.TotalEnergyGathered)
+            {
+                bestPatchEnergy = entry.Value.TotalEnergyGathered;
+                bestPatch = entry.Key;
+            }
+
+            if (worstPatch == null || worstPatchEnergy > entry.Value.TotalEnergyGathered)
+            {
+                worstPatchEnergy = entry.Value.TotalEnergyGathered;
+                worstPatch = entry.Key;
+            }
+
+            totalEnergy += entry.Value.TotalEnergyGathered;
+        }
+
+        // Set the initial value to compare against the original species
+        totalEnergyLabel.ResetInitialValue();
+
+        if (PreviousPlayerGatheredEnergy != null)
+        {
+            totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
         }
         else
         {
-            bestPatchName = null;
+            GD.PrintErr("Previously gathered energy is unknown, can't compare them (this will happen with " +
+                "older saves)");
         }
 
-        // And worst patch
-        if (sorted.Count > 1)
+        var formatted = StringUtils.ThreeDigitFormat(totalEnergy);
+
+        totalEnergyLabel.SetMultipartValue($"{formatted} ({newPopulation})", totalEnergy);
+
+        // Set best and worst patch displays
+        worstPatchName = worstPatch?.Name.ToString();
+        worstPatchEnergyGathered = worstPatchEnergy;
+
+        if (worstPatch != null)
         {
-            var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name.ToString();
-            worstPatchPopulation = patch.Value;
+            worstPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew).First(p => p.Key == worstPatch)
+                .Value;
         }
-        else
+
+        bestPatchName = bestPatch?.Name.ToString();
+        bestPatchEnergyGathered = bestPatchEnergy;
+
+        if (bestPatch != null)
         {
-            worstPatchName = null;
+            bestPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew).First(p => p.Key == bestPatch)
+                .Value;
         }
 
         CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),

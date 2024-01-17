@@ -110,6 +110,11 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
+#if DEBUG
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+#endif
+
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,

@@ -732,6 +732,11 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
                 catch (TargetInvocationException e)
                 {
+#if DEBUG
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+#endif
+
                     // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
                     if (!Constants.CATCH_SAVE_ERRORS)
 #pragma warning disable 162

@@ -219,6 +219,8 @@ public class PauseMenu : TopLevelContainer
 
         GetTree().AutoAcceptQuit = false;
 
+        ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
+
         base._EnterTree();
     }
 
@@ -230,6 +232,8 @@ public class PauseMenu : TopLevelContainer
         Paused = false;
 
         GetTree().AutoAcceptQuit = true;
+
+        ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
     public override void _Notification(int notification)
@@ -288,25 +292,10 @@ public class PauseMenu : TopLevelContainer
         helpScreen.RandomizeEasterEgg();
     }
 
-    public void ShowThriveopedia(string pageName)
-    {
-        if (ActiveMenu == ActiveMenuType.Thriveopedia)
-            return;
-
-        ActiveMenu = ActiveMenuType.Thriveopedia;
-        thriveopedia.ChangePage(pageName);
-    }
-
     public void OpenToHelp()
     {
         Open();
         ShowHelpScreen();
-    }
-
-    public void OpenToStatistics()
-    {
-        Open();
-        ShowThriveopedia("CurrentWorld");
     }
 
     public void SetNewSaveName(string name)
@@ -461,6 +450,13 @@ public class PauseMenu : TopLevelContainer
     private void Quit()
     {
         SceneManager.Instance.QuitThrive();
+    }
+
+    private void OnThriveopediaOpened(string pageName)
+    {
+        Open();
+        OpenThriveopediaPressed();
+        thriveopedia.ChangePage(pageName);
     }
 
     private void OpenThriveopediaPressed()

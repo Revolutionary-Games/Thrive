@@ -239,6 +239,7 @@ public class MainMenu : NodeWithInput
         base._EnterTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
+        ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
     }
 
     public override void _ExitTree()
@@ -246,6 +247,7 @@ public class MainMenu : NodeWithInput
         base._ExitTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
+        ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
     public override void _Process(float delta)
@@ -1143,6 +1145,12 @@ public class MainMenu : NodeWithInput
             // Hide the background again when playing a video as the 3D backgrounds are performance intensive
             created3DBackground.Visible = false;
         }
+    }
+
+    private void OnThriveopediaOpened(string pageName)
+    {
+        thriveopedia.OpenFromMainMenu();
+        thriveopedia.ChangePage(pageName);
     }
 
     private void ResetPerformanceTracking()
