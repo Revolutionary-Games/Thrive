@@ -244,7 +244,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        return WikiUpdater.Run(tokenSource.Token).Result ? 0 : 1;
+        var tool = new WikiUpdater();
+
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunFileGenerator(GeneratorOptions options)

@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A page that can be opened in the Thriveopedia.
@@ -19,11 +18,6 @@ public abstract class ThriveopediaPage : PanelContainer
 
     [Signal]
     public delegate void OnSceneChanged();
-
-    /// <summary>
-    ///   Method to call to change to another page. Must receive that page's PageName as the argument.
-    /// </summary>
-    public Action<string> ChangePage { get; set; } = null!;
 
     /// <summary>
     ///   The internal name of this page. If this page is the only instance of a specific Godot scene, must be
