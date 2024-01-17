@@ -563,7 +563,10 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     private void SwapEditorTabIfNeeded(EditorAction? editorAction)
     {
-        var actionData = editorAction?.Data.FirstOrDefault();
+        if (editorAction == null)
+            return;
+
+        var actionData = editorAction.Data.FirstOrDefault();
 
         var targetTab = actionData switch
         {
