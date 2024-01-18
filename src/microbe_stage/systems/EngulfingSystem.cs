@@ -1058,6 +1058,11 @@
             {
                 recorder ??= worldSimulation.StartRecordingEntityCommands();
 
+                // TODO: make sure that engulfing cells out of a colony don't cause issues
+                // When testing I saw some bugs with cells just becoming ghosts when engulfing was attempted to be
+                // started but that may have been caused by my testing method of overriding the required size ratio (
+                // in just one place so maybe some other later check then immediately canceled the engulf)
+                // - hhyyrylainen
                 if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
                 {
                     GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
