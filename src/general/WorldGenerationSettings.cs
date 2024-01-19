@@ -102,6 +102,7 @@ public class WorldGenerationSettings
         get => Difficulty.LimitGrowthRate;
         set => Difficulty.LimitGrowthRate = value;
     }
+
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled
     /// </summary>
