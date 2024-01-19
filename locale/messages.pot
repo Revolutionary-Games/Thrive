@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-16 21:56+0000\n"
+"POT-Creation-Date: 2024-01-19 15:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,9 +58,9 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:426
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:432
 #: ../src/general/base_stage/EditorBase.cs:702
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:500
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:506
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -346,8 +346,8 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:248
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:273
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:254
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:279
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr ""
@@ -357,8 +357,8 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:249
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:274
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:255
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:280
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
@@ -647,12 +647,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:724
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:838
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:722
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:836
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:834
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
@@ -667,11 +667,11 @@ msgstr ""
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:843
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:841
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:839
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -687,7 +687,7 @@ msgstr ""
 msgid "CAPSLOCK"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/compounds.json:138
+#: ../simulation_parameters/microbe_stage/compounds.json:139
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:550
 msgid "CARBON_DIOXIDE"
 msgstr ""
@@ -1274,11 +1274,11 @@ msgstr ""
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:847
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:845
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:862
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:860
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1595,11 +1595,11 @@ msgstr ""
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:829
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:833
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:831
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
@@ -1941,7 +1941,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1310
+#: ../src/microbe_stage/MicrobeStage.cs:1317
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -4128,12 +4128,12 @@ msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:765
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:882
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:880
 msgid "NEW_NAME"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:758
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:875
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:873
 msgid "NEW_NAME_COLON"
 msgstr ""
 
@@ -4149,7 +4149,7 @@ msgstr ""
 msgid "NEXT_EDITOR_TAB"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/compounds.json:152
+#: ../simulation_parameters/microbe_stage/compounds.json:154
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:523
 msgid "NITROGEN"
 msgstr ""
@@ -4216,12 +4216,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:983
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:998
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:118
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:975
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:990
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4970,7 +4970,7 @@ msgstr ""
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:422
+#: ../src/general/PauseMenu.cs:407
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
@@ -5165,7 +5165,7 @@ msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:403
+#: ../src/general/PauseMenu.cs:388
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -5995,11 +5995,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1308
+#: ../src/microbe_stage/MicrobeStage.cs:1315
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1309
+#: ../src/microbe_stage/MicrobeStage.cs:1316
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -6011,7 +6011,7 @@ msgstr ""
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/compounds.json:166
+#: ../simulation_parameters/microbe_stage/compounds.json:169
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:449
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
@@ -6132,7 +6132,7 @@ msgstr ""
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/compounds.json:180
+#: ../simulation_parameters/microbe_stage/compounds.json:183
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:293
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:640
