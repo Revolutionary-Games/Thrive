@@ -1156,6 +1156,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             try
             {
+                if (!player.IsAlive)
+                {
+                    GD.PrintErr("Got player engulfed callback but player entity is dead");
+                    OnCanEditStatusChanged(false);
+                    return;
+                }
+
                 ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
                 ref var engulfable = ref player.Get<Engulfable>();
@@ -1302,7 +1309,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         try
         {
-            return !Player.Get<Health>().Dead;
+            return HasPlayer && !Player.Get<Health>().Dead;
         }
         catch (Exception e)
         {
