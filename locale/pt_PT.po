@@ -4,20 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-19 15:09+0200\n"
-"PO-Revision-Date: 2024-01-11 07:19+0000\n"
-"Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
-"Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
-"Language: pt_PT\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.3.1\n"
-"Generated-By: Babel 2.8.0\n"
+msgstr "Project-Id-Version: PROJECT VERSION\nReport-Msgid-Bugs-To: EMAIL@ADDRESS\nPOT-Creation-Date: 2024-01-16 21:56+0000\nPO-Revision-Date: 2024-01-18 22:40+0000\nLast-Translator: AegisTTN <gamemastermine042004@gmail.com>\nLanguage-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\nLanguage: pt_PT\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n > 1;\nX-Generator: Weblate 5.3.1\nGenerated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Estilo de movimento 2D:"
@@ -1132,10 +1119,10 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Eficácia da Digestão"
 
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Eficácia da digestão:"
+msgstr "Eficácia da Digestão:"
 
 msgid "DIGESTION_SPEED"
 msgstr "Velocidade de Digestão"
@@ -1218,9 +1205,8 @@ msgstr "Mostrar barra de habilidades"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
 
-#, fuzzy
 msgid "DISPLAY_PART_NAMES"
-msgstr "Mostrar barra de habilidades"
+msgstr "Mostrar nomes de botões de seleção de peças"
 
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr "Espalhar uniformemente a fonte de comida ambiental de {0}"
@@ -1382,9 +1368,8 @@ msgstr "{0}: +{1} ATP"
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#, fuzzy
 msgid "ENERGY_IN_PATCH_SHORT"
-msgstr "Energia em {0} para {1}"
+msgstr "{0}, {1}"
 
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de energia:"
@@ -2422,9 +2407,8 @@ msgstr "Cor da linha:"
 msgid "LIPASE"
 msgstr "Lipase"
 
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
+msgstr "A lipase permite à célula decompor a maior parte dos tipos de membranas. A tua célula já produz uma parte desta enzima sem lisossoma, mas ao selecionares este tipo aumentarás a sua eficácia."
 
 msgid "LOAD"
 msgstr "Carregar"
@@ -2504,13 +2488,11 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:c
 msgid "LYSOSOME"
 msgstr "Lisossoma"
 
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolossomas são conjuntos de proteínas envoltos no invólucro das proteínas. Eles são capazes de converter glicose em ATP a uma velocidade muito mais alta do que pode ser feito no citoplasma num processo chamado Respiração Aeróbica. No entanto, ele requer oxigênio para funcionar, e níveis mais baixos de oxigênio no ambiente diminuirão a taxa de produção de ATP. Uma vez que os metabolossomas estão suspensos diretamente no citoplasma, o fluido circundante realiza alguma glicólise."
+msgstr "O lisossoma é um organelo ligado à membrana que contém enzimas hidrolíticas capazes de decompor várias biomoléculas. Os lisossomas permitem à célula digerir materiais ingeridos por endocitose e limpar os resíduos da célula num processo chamado [b]autofagia[/b]."
 
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
+msgstr "Contém enzimas digestivas. Pode ser modificado para alterar o tipo de enzima que contém. Apenas uma enzima por lisossoma pode ser utilizada de cada vez. As enzimas aceleram e melhoram a eficiência da digestão."
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir manualmente a hora do dia"
@@ -2527,9 +2509,8 @@ msgstr "Neve marinha"
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#, fuzzy
 msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Extinguiram-se na região"
+msgstr "Máximo de espécies numa região antes de extinções forçadas"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -3650,9 +3631,8 @@ msgstr "Duplicar Jogador"
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador está extinto"
 
-#, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
-msgstr "O jogador está extinto"
+msgstr "Relativo ao jogador"
 
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduzido"
@@ -3922,9 +3902,8 @@ msgstr "Rodar para a esquerda"
 msgid "ROTATE_RIGHT"
 msgstr "Rodar para a direita"
 
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "População:"
+msgstr "Rotação:"
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
@@ -4087,7 +4066,7 @@ msgid "SCREEN_EFFECT_NONE"
 msgstr "Nenhum"
 
 msgid "SCREEN_RELATIVE_MOVEMENT"
-msgstr ""
+msgstr "Relativo ao ecrã"
 
 msgid "SCROLLLOCK"
 msgstr "Scroll Lock"
@@ -4144,7 +4123,7 @@ msgid "SELECT_A_TECHNOLOGY"
 msgstr "Seleciona uma região para mostrar detalhes"
 
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Selecione um tipo de célula para editar aqui a partir do separador do editor"
 
 msgid "SELECT_ENZYME"
 msgstr "Selecionar Enzima:"
@@ -4162,7 +4141,7 @@ msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Selecionar Estrutura a Colocar"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Selecione um tipo de tecido para editar aqui através do editor"
 
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr "Selecionar o composto que o vacúolo irá armazenar:"
@@ -4506,7 +4485,7 @@ msgid "STRUCTURE_REQUIRED_RESOURCES_TO_FINISH"
 msgstr ""
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY"
-msgstr ""
+msgstr "{0} (custo inicial: {1}, total:{2})"
 
 msgid "STRUCTURE_SELECTION_MENU_ENTRY_NOT_ENOUGH_RESOURCES"
 msgstr ""
@@ -5500,9 +5479,8 @@ msgstr "Todas as células apenas \"vêem\" através da quimiorrecepção. É ass
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
 msgstr "Todas as células apenas \"vêem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição desta organela representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
 
-#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr "Todas as células apenas \"vêem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição desta organela representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
+msgstr "Sem melhorias."
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr "Sem efeitos especiais."
@@ -5511,9 +5489,8 @@ msgstr "Sem efeitos especiais."
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
 msgstr "Proteínas Quimiossintetizantes"
 
-#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr "Proteínas quimiossintetizantes são pequenos conjuntos de proteínas no citoplasma capazes de converter sulfeto de hidrogénio, água e gás carbónico em glicose num processo chamado quimiossíntese de sulfeto de hidrogénio. A taxa de produção de glicose aumenta com a concentração de dióxido de carbono. Uma vez que as proteínas quimiossintetizantes estão suspensas diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
@@ -5597,9 +5574,8 @@ msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
 
-#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
@@ -5615,7 +5591,7 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Sem melhorias."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5717,21 +5693,18 @@ msgstr "Metabolossomas são conjuntos de proteínas envoltos no invólucro das p
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr "Metabolossomas são conjuntos de proteínas envoltos no invólucro das proteínas. Eles são capazes de converter glicose em ATP a uma velocidade muito mais alta do que pode ser feito no citoplasma num processo chamado Respiração Aeróbica. No entanto, ele requer oxigênio para funcionar, e níveis mais baixos de oxigênio no ambiente diminuirão a taxa de produção de ATP. Uma vez que os metabolossomas estão suspensos diretamente no citoplasma, o fluido circundante realiza alguma glicólise."
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_UPGRADES"
-msgstr "Metabolossomas são conjuntos de proteínas envoltos no invólucro das proteínas. Eles são capazes de converter glicose em ATP a uma velocidade muito mais alta do que pode ser feito no citoplasma num processo chamado Respiração Aeróbica. No entanto, ele requer oxigênio para funcionar, e níveis mais baixos de oxigênio no ambiente diminuirão a taxa de produção de ATP. Uma vez que os metabolossomas estão suspensos diretamente no citoplasma, o fluido circundante realiza alguma glicólise."
+msgstr "Sem melhorias."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
-msgstr "A central de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido pelo seu hospedeiro eucariótico para uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma num processo chamado Respiração Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e níveis menores de oxigénio no ambiente irão diminuir a taxa da produção de ATP."
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitocôndria"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr "A central de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido pelo seu hospedeiro eucariótico para uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma num processo chamado Respiração Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e níveis menores de oxigénio no ambiente irão diminuir a taxa da produção de ATP."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
@@ -5748,9 +5721,8 @@ msgstr "A central de energia da célula. A mitocôndria é uma estrutura de memb
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "A central de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido pelo seu hospedeiro eucariótico para uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma num processo chamado Respiração Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e níveis menores de oxigénio no ambiente irão diminuir a taxa da produção de ATP."
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
-msgstr "A central de energia da célula. A mitocôndria é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procariota que foi reconhecido pelo seu hospedeiro eucariótico para uso. É capaz de converter Glicose em ATP com maior eficiência do que feito no citoplasma num processo chamado Respiração Aeróbica. Precisa, no entanto, de oxigénio para funcionar, e níveis menores de oxigénio no ambiente irão diminuir a taxa da produção de ATP."
+msgstr "Sem melhorias."
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -5878,9 +5850,8 @@ msgstr "Um metabolossoma modificado responsável pela produção da forma primit
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxitoxissoma"
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr "Um metabolossoma modificado responsável pela produção da forma primitiva do agente tóxico OxiToxi NT."
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
@@ -5897,9 +5868,8 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "Um metabolossoma modificado responsável pela produção da forma primitiva do agente tóxico OxiToxi NT."
 
-#, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
-msgstr "Um metabolossoma modificado responsável pela produção da forma primitiva do agente tóxico OxiToxi NT."
+msgstr "Sem melhorias."
 
 msgid "WIKI_PAGE_AXON"
 msgstr ""
@@ -6040,23 +6010,22 @@ msgstr ""
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
-msgstr "Protoplasma"
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Sem modificações."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "O jogador não pode evoluir [b]Protoplasma[/b]. As espécies que não sejam o jogador podem, sem restrições."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6065,13 +6034,13 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Sem melhorias."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
 
 msgid "WIKI_ROOT_HEADING"
-msgstr ""
+msgstr "Wiki do Thrive (dentro do jogo)"
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
@@ -6227,9 +6196,8 @@ msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos t
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
-msgstr "Tilacoides são conjuntos de proteínas e pigmentos fotossintéticos. Os pigmentos são capazes de utilizar a energia presente na luz para produzir glicose a parir de água e gás carbónico num processo denominado Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor característica. A sua taxa de produção de glicose aumenta com a concentração de dióxido de carbono e intensidade da luz. Como os tilacoides estão diretamente suspensos no citoplasma, o fluido circundante realiza alguma glicólise."
+msgstr "Sem efeitos especiais."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
@@ -6252,9 +6220,8 @@ msgstr "Tilacoides são conjuntos de proteínas e pigmentos fotossintéticos. Os
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr "Tilacoides são conjuntos de proteínas e pigmentos fotossintéticos. Os pigmentos são capazes de utilizar a energia presente na luz para produzir glicose a parir de água e gás carbónico num processo denominado Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor característica. A sua taxa de produção de glicose aumenta com a concentração de dióxido de carbono e intensidade da luz. Como os tilacoides estão diretamente suspensos no citoplasma, o fluido circundante realiza alguma glicólise."
 
-#, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr "Tilacoides são conjuntos de proteínas e pigmentos fotossintéticos. Os pigmentos são capazes de utilizar a energia presente na luz para produzir glicose a parir de água e gás carbónico num processo denominado Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor característica. A sua taxa de produção de glicose aumenta com a concentração de dióxido de carbono e intensidade da luz. Como os tilacoides estão diretamente suspensos no citoplasma, o fluido circundante realiza alguma glicólise."
+msgstr "Sem melhorias."
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
@@ -6291,7 +6258,7 @@ msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "O vacúolo de toxinas é um vacúolo especialmente modificado para a produção, armazenamento e secreção de oxitoxinas. Um maior número de vacúolos de toxinas aumentará a taxa a que toxinas podem ser libertadas."
 
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Sem efeitos."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6315,7 +6282,7 @@ msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Sem melhorias."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Irás prosperar?"
