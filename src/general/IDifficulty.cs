@@ -47,7 +47,7 @@ public interface IDifficulty : IRegistryAssignable
     /// <summary>
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
     /// </summary>
-    public bool LimitGrowthRate { get; }
+    public bool LimitGrowthRate { get; set; }
 
     /// <summary>
     ///   How intense should the fog-of-war be
