@@ -52,7 +52,7 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public bool PassiveReproduction { get; private set; }
 
     [JsonProperty]
-    public bool LimitGrowthRate { get; private set; }
+    public bool LimitGrowthRate { get; set; }
 
     [JsonProperty]
     public FogOfWarMode FogOfWarMode { get; private set; }
