@@ -889,15 +889,30 @@
                 if (ourExtraData.IsSubShapePilus(collision.FirstSubShapeData))
                     continue;
 
+                var realTarget = collision.SecondEntity;
+
                 // Also can't engulf when the other physics body has a pilus
-                if (collision.SecondEntity.Has<MicrobePhysicsExtraData>() && collision.SecondEntity
-                        .Get<MicrobePhysicsExtraData>().IsSubShapePilus(collision.SecondSubShapeData))
+                if (realTarget.Has<MicrobePhysicsExtraData>())
                 {
-                    continue;
+                    ref var secondExtraData = ref realTarget.Get<MicrobePhysicsExtraData>();
+
+                    if (secondExtraData.IsSubShapePilus(collision.SecondSubShapeData))
+                        continue;
+
+                    // Resolve potential colony for the second entity
+                    if (realTarget.Has<MicrobeColony>())
+                    {
+                        ref var secondColony = ref realTarget.Get<MicrobeColony>();
+                        if (secondColony.GetMicrobeFromSubShape(ref secondExtraData, collision.SecondSubShapeData,
+                                out var adjusted))
+                        {
+                            realTarget = adjusted;
+                        }
+                    }
                 }
 
                 // Can't engulf dead things
-                if (collision.SecondEntity.Has<Health>() && collision.SecondEntity.Get<Health>().Dead)
+                if (realTarget.Has<Health>() && realTarget.Get<Health>().Dead)
                     continue;
 
                 // Pili don't block engulfing, check starting engulfing
@@ -919,7 +934,7 @@
                     ref realEngulfer == entity ? ref cellProperties : ref realEngulfer.Get<CellProperties>();
 
                 if (CheckStartEngulfingOnCandidate(ref actualCellProperties, ref actualEngulfer, ref species,
-                        realEngulfer, collision.SecondEntity))
+                        realEngulfer, realTarget))
                 {
                     // Engulf at most one thing per update, if further collisions still exist next update we'll pull
                     // it in then
@@ -1034,13 +1049,6 @@
             if (engulferCellProperties.IsBacteria)
                 radius *= 0.5f;
 
-            ref var targetEntityPosition = ref targetEntity.Get<WorldPosition>();
-            ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
-
-            AddEngulfableToEngulferDataList(ref engulfer, engulferEntity, ref engulfable, targetEntity);
-
-            CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
-
             EntityCommandRecorder? recorder = null;
 
             // Steal this cell from a colony if it is in a colony currently
@@ -1050,6 +1058,11 @@
             {
                 recorder ??= worldSimulation.StartRecordingEntityCommands();
 
+                // TODO: make sure that engulfing cells out of a colony don't cause issues
+                // When testing I saw some bugs with cells just becoming ghosts when engulfing was attempted to be
+                // started but that may have been caused by my testing method of overriding the required size ratio (
+                // in just one place so maybe some other later check then immediately canceled the engulf)
+                // - hhyyrylainen
                 if (!MicrobeColonyHelpers.RemoveFromColony(targetEntity, recorder))
                 {
                     GD.PrintErr("Failed to engulf a member of a cell colony (can't remove it)");
@@ -1057,10 +1070,17 @@
                 }
             }
 
+            AddEngulfableToEngulferDataList(ref engulfer, engulferEntity, ref engulfable, targetEntity);
+
+            CalculateAdditionalCompoundsInNewlyEngulfedObject(ref engulfable, targetEntity);
+
             if (engulferEntity.Has<PlayerMarker>() && targetEntity.Has<CellProperties>())
             {
                 gameWorld!.StatisticsTracker.TotalEngulfedByPlayer.Increment(1);
             }
+
+            ref var targetEntityPosition = ref targetEntity.Get<WorldPosition>();
+            ref var engulferPosition = ref engulferEntity.Get<WorldPosition>();
 
             var engulfableFinalPosition = CalculateEngulfableTargetPosition(ref engulferCellProperties,
                 ref engulferPosition, radius, ref targetEntityPosition, ref targetSpatial, targetRadius, random,
