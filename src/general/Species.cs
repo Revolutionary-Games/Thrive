@@ -119,7 +119,9 @@ public abstract class Species : ICloneable
     ///   with bolding.
     /// </summary>
     [JsonIgnore]
-    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+    public string FormattedNameBbCode => PlayerSpecies ?
+        $"[url=species:{GUICommon.ConvertToSafeMetaTag(StringCode)}][b][i]{FormattedName}[/i][/b][/url]" :
+        $"[url=species:{GUICommon.ConvertToSafeMetaTag(StringCode)}][i]{FormattedName}[/i][/url]";
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";

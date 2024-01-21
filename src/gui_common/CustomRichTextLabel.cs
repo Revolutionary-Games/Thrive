@@ -17,6 +17,10 @@ public class CustomRichTextLabel : RichTextLabel
     private bool registeredForInputChanges;
     private bool reactToLanguageChange;
 
+#pragma warning disable CA2213
+    private PackedScene? speciesPreviewTooltipScene;
+#pragma warning restore CA2213
+
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
@@ -73,12 +77,20 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    [Export]
+    public bool EnableTooltipsForMetaTags { get; set; } = true;
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
 
+        speciesPreviewTooltipScene = GD.Load<PackedScene>(
+            "res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn");
+
         Connect("meta_clicked", this, nameof(OnMetaClicked));
+        Connect("meta_hover_started", this, nameof(OnMetaHoverStarted));
+        Connect("meta_hover_ended", this, nameof(OnMetaHoverEnded));
     }
 
     public override void _ExitTree()
@@ -629,6 +641,60 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 var pageName = metaString.Split("thriveopedia:")[1];
                 ThriveopediaManager.OpenPage(pageName);
+            }
+        }
+    }
+
+    private void OnMetaHoverStarted(object meta)
+    {
+        if (!EnableTooltipsForMetaTags || speciesPreviewTooltipScene == null)
+            return;
+
+        if (meta is string metaString && metaString.StartsWith("species", StringComparison.Ordinal))
+        {
+            var speciesCode = GUICommon.ConvertFromSafeMetaTag(metaString.Split("species:")[1]);
+            var species = ThriveJsonConverter.Instance.DeserializeObject<Species>(speciesCode);
+
+            if (species is not MicrobeSpecies)
+                return;
+
+            var tooltip = ToolTipManager.Instance
+                .GetToolTipIfExists<SpeciesPreviewTooltip>(species.FormattedName, "speciesPreview");
+            if (tooltip == null)
+            {
+                tooltip = speciesPreviewTooltipScene.Instance<SpeciesPreviewTooltip>();
+                tooltip.Name = species.FormattedName;
+                ToolTipManager.Instance.AddToolTip(tooltip, "speciesPreview");
+            }
+
+            // Might need to refresh species if tooltip has previous generation stored or same name from previous game
+            if (tooltip.PreviewSpecies?.StringCode != speciesCode)
+                tooltip.PreviewSpecies = species;
+
+            ToolTipManager.Instance.MainToolTip = tooltip;
+            ToolTipManager.Instance.Display = true;
+        }
+    }
+
+    private void OnMetaHoverEnded(object meta)
+    {
+        if (!EnableTooltipsForMetaTags)
+            return;
+
+        if (meta is string metaString && metaString.StartsWith("species", StringComparison.Ordinal))
+        {
+            var speciesCode = GUICommon.ConvertFromSafeMetaTag(metaString.Split("species:")[1]);
+            var species = ThriveJsonConverter.Instance.DeserializeObject<Species>(speciesCode);
+
+            if (species is not MicrobeSpecies)
+                return;
+
+            var tooltip = ToolTipManager.Instance
+                .GetToolTipIfExists<SpeciesPreviewTooltip>(species.FormattedName, "speciesPreview");
+            if (ToolTipManager.Instance.MainToolTip == tooltip)
+            {
+                ToolTipManager.Instance.MainToolTip = null;
+                ToolTipManager.Instance.Display = false;
             }
         }
     }
