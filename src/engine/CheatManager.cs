@@ -53,6 +53,11 @@ public static class CheatManager
     public static bool NoAI { get; set; }
 
     /// <summary>
+    ///   Disables limiting growth speed
+    /// </summary>
+    public static bool UnlimitedGrowthSpeed { get; set; }
+
+    /// <summary>
     ///   Stops the time of day from changing
     /// </summary>
     public static bool LockTime { get; set; }
@@ -119,6 +124,7 @@ public static class CheatManager
         InfiniteCompounds = false;
         GodMode = false;
         NoAI = false;
+        UnlimitedGrowthSpeed = false;
         LockTime = false;
         Speed = 1.0f;
 

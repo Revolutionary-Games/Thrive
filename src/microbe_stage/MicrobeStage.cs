@@ -64,6 +64,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonProperty]
     private bool appliedPlayerGodMode;
 
+    private bool appliedUnlimitGrowthSpeed;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -316,6 +318,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     playerHealth.Invulnerable = true;
                     appliedPlayerGodMode = true;
                 }
+            }
+
+            if (appliedUnlimitGrowthSpeed != CheatManager.UnlimitedGrowthSpeed)
+            {
+                appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
+                CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
+                    .UnlimitedGrowthSpeed);
             }
         }
         else
@@ -770,6 +779,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             UpdatePatchSettings();
         }
+
+        // Reset any cheat state if there was some active
+        CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
     }
 
     protected override void OnGameStarted()
