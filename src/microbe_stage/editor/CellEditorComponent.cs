@@ -2495,8 +2495,10 @@ public partial class CellEditorComponent :
 
         if (worstPatch != null)
         {
-            worstPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew).First(p => p.Key == worstPatch)
-                .Value;
+            // For some reason in rare cases the population numbers cannot be found, using FirstOrDefault should ensure
+            // here that missing population numbers get assigned 0
+            worstPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
+                .FirstOrDefault(p => p.Key == worstPatch).Value;
         }
 
         bestPatchName = bestPatch?.Name.ToString();
@@ -2504,8 +2506,8 @@ public partial class CellEditorComponent :
 
         if (bestPatch != null)
         {
-            bestPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew).First(p => p.Key == bestPatch)
-                .Value;
+            bestPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
+                .FirstOrDefault(p => p.Key == bestPatch).Value;
         }
 
         CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
