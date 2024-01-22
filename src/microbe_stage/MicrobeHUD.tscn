@@ -468,6 +468,7 @@ OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBox
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
+EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonLayerPath = NodePath("")
 FossilisationDialogPath = NodePath("")
@@ -1955,6 +1956,17 @@ toggle_mode = true
 ActionIcon = ExtResource( 9 )
 ActionName = "g_toggle_engulf"
 
+[node name="EjectEngulfed" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 298.0
+margin_bottom = 51.0
+hint_tooltip = "TOGGLE_ENGULF_TOOLTIP"
+ActionIcon = ExtResource( 9 )
+ActionName = "g_eject_engulfed"
+
 [node name="FireToxin" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
 visible = false
 margin_left = 277.0
@@ -2056,6 +2068,7 @@ __meta__ = {
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
 [connection signal="hide" from="ProcessPanel" to="." method="OnProcessPanelClosed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/Engulfment" to="." method="OnEngulfmentPressed"]
+[connection signal="pressed" from="ScrollContainer/HotBar/EjectEngulfed" to="." method="OnEjectEngulfedPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/FireToxin" to="." method="OnFireToxinPressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/BindingMode" to="." method="OnBindingModePressed"]
 [connection signal="pressed" from="ScrollContainer/HotBar/UnbindAll" to="." method="OnUnbindAllPressed"]

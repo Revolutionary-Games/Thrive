@@ -86,6 +86,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public delegate void OnUnbindAllButtonPressed();
 
+    [Signal]
+    public delegate void OnEjectEngulfedButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -779,5 +782,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSecreteSlimePressed()
     {
         EmitSignal(nameof(OnSecreteSlimeButtonPressed));
+    }
+
+    private void OnEjectEngulfedPressed()
+    {
+        EmitSignal(nameof(OnEjectEngulfedButtonPressed));
     }
 }
