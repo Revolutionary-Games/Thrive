@@ -18,6 +18,7 @@ Resizable = true
 InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
 GodModePath = NodePath("VBoxContainer/GodMode")
 DisableAIPath = NodePath("VBoxContainer/DisableAI")
+UnlimitGrowthSpeedPath = NodePath("VBoxContainer/UnlimitGrowthSpeed")
 LockTimePath = NodePath("VBoxContainer/LockTime")
 SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
@@ -50,7 +51,14 @@ margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
 
-[node name="Speed" type="HBoxContainer" parent="VBoxContainer" index="3"]
+[node name="UnlimitGrowthSpeed" parent="VBoxContainer" index="3" instance=ExtResource( 4 )]
+margin_top = 63.0
+margin_right = 202.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 3 )
+text = "UNLIMIT_GROWTH_SPEED"
+
+[node name="Speed" type="HBoxContainer" parent="VBoxContainer" index="4"]
 margin_top = 84.0
 margin_right = 202.0
 margin_bottom = 101.0
@@ -78,12 +86,12 @@ max_value = 5.0
 step = 0.5
 value = 1.0
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="4"]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" index="5"]
 margin_top = 105.0
 margin_right = 202.0
 margin_bottom = 109.0
 
-[node name="PlayerDuplicate" type="Button" parent="VBoxContainer" index="5"]
+[node name="PlayerDuplicate" type="Button" parent="VBoxContainer" index="6"]
 margin_top = 113.0
 margin_right = 202.0
 margin_bottom = 140.0
@@ -93,7 +101,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpawnEnemy" type="Button" parent="VBoxContainer" index="6"]
+[node name="SpawnEnemy" type="Button" parent="VBoxContainer" index="7"]
 margin_top = 144.0
 margin_right = 202.0
 margin_bottom = 171.0
@@ -103,36 +111,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DespawnAllEntities" type="Button" parent="VBoxContainer" index="7"]
+[node name="DespawnAllEntities" type="Button" parent="VBoxContainer" index="8"]
 margin_top = 175.0
 margin_right = 202.0
 margin_bottom = 202.0
 custom_fonts/font = ExtResource( 3 )
 text = "DESPAWN_ENTITIES"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="8"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" index="9"]
 margin_top = 206.0
 margin_right = 202.0
 margin_bottom = 210.0
 
-[node name="LockTime" parent="VBoxContainer" index="9" instance=ExtResource( 4 )]
-margin_top = 63.0
-margin_right = 202.0
-margin_bottom = 80.0
-custom_fonts/font = ExtResource( 3 )
-text = "LOCK_DAY_NIGHT_CYCYLE"
-
-[node name="ManuallySetTime" parent="VBoxContainer" index="10" instance=ExtResource( 4 )]
+[node name="LockTime" parent="VBoxContainer" index="10" instance=ExtResource( 4 )]
 margin_top = 214.0
 margin_right = 202.0
 margin_bottom = 231.0
 custom_fonts/font = ExtResource( 3 )
-text = "MANUALLY_SET_TIME"
+text = "LOCK_DAY_NIGHT_CYCYLE"
 
-[node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="11"]
+[node name="ManuallySetTime" parent="VBoxContainer" index="11" instance=ExtResource( 4 )]
 margin_top = 235.0
 margin_right = 202.0
 margin_bottom = 252.0
+custom_fonts/font = ExtResource( 3 )
+text = "MANUALLY_SET_TIME"
+
+[node name="TargetTime" type="HBoxContainer" parent="VBoxContainer" index="12"]
+margin_top = 256.0
+margin_right = 202.0
+margin_bottom = 273.0
 
 [node name="Label" type="Label" parent="VBoxContainer/TargetTime" index="0"]
 margin_right = 93.0
@@ -155,6 +163,7 @@ step = 0.01
 [connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
 [connection signal="toggled" from="VBoxContainer/GodMode" to="." method="SetGodMode"]
 [connection signal="toggled" from="VBoxContainer/DisableAI" to="." method="SetDisableAI"]
+[connection signal="toggled" from="VBoxContainer/UnlimitGrowthSpeed" to="." method="SetUnlimitGrowthSpeed"]
 [connection signal="value_changed" from="VBoxContainer/Speed/SpeedSlider" to="." method="SetSpeed"]
 [connection signal="toggled" from="VBoxContainer/LockTime" to="." method="SetLockTime"]
 [connection signal="toggled" from="VBoxContainer/ManuallySetTime" to="." method="SetManuallySetTime"]

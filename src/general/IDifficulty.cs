@@ -59,6 +59,13 @@ public interface IDifficulty : IRegistryAssignable
     ///   If not, all organelles are unlocked by default
     /// </summary>
     public bool OrganelleUnlocksEnabled { get; }
+
+    /// <summary>
+    ///   Sets a temporary value that overrides the normal growth rate
+    /// </summary>
+    public void SetGrowthRateLimitCheatOverride(bool limitGrowthRate);
+
+    public void ClearGrowthRateLimitOverride();
 }
 
 public static class DifficultyHelpers
