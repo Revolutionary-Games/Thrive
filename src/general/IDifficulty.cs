@@ -47,7 +47,7 @@ public interface IDifficulty : IRegistryAssignable
     /// <summary>
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
     /// </summary>
-    public bool LimitGrowthRate { get; set; }
+    public bool LimitGrowthRate { get; }
 
     /// <summary>
     ///   How intense should the fog-of-war be
@@ -59,6 +59,13 @@ public interface IDifficulty : IRegistryAssignable
     ///   If not, all organelles are unlocked by default
     /// </summary>
     public bool OrganelleUnlocksEnabled { get; }
+
+    /// <summary>
+    ///   Sets a temporary value that overrides the normal growth rate
+    /// </summary>
+    public void SetGrowthRateLimitCheatOverride(bool limitGrowthRate);
+
+    public void ClearGrowthRateLimitOverride();
 }
 
 public static class DifficultyHelpers

@@ -97,11 +97,7 @@ public class WorldGenerationSettings
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
 
     [JsonIgnore]
-    public bool LimitReproductionCompoundUseSpeed
-    {
-        get => Difficulty.LimitGrowthRate;
-        set => Difficulty.LimitGrowthRate = value;
-    }
+    public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;
 
     /// <summary>
     ///   Whether the day/night cycle in this game is enabled

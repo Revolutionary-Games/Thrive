@@ -323,8 +323,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             if (appliedUnlimitGrowthSpeed != CheatManager.UnlimitedGrowthSpeed)
             {
                 appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
-                CurrentGame!.GameWorld.WorldSettings.LimitReproductionCompoundUseSpeed =
-                    !CheatManager.UnlimitedGrowthSpeed;
+                CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
+                    .UnlimitedGrowthSpeed);
             }
         }
         else
@@ -779,6 +779,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             UpdatePatchSettings();
         }
+
+        // Reset any cheat state if there was some active
+        CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
     }
 
     protected override void OnGameStarted()
