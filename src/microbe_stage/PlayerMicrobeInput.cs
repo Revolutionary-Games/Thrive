@@ -170,7 +170,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
         if (engulfer.EngulfedObjects == null || engulfer
             .EngulfedObjects?.Count == 0)
-            return;
+                return;
 
         if (!stage.HasAlivePlayer)
             return;
