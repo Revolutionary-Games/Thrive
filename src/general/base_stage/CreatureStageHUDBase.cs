@@ -1052,13 +1052,13 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected abstract void UpdateAbilitiesHotBar();
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn)
+        bool showingSignaling, bool engulfOn, bool showEject)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
-        ejectEngulfedHotkey.Visible = showEngulf;
+        ejectEngulfedHotkey.Visible = showEject;
 
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);

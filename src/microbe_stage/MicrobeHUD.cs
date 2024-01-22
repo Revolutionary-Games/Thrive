@@ -435,10 +435,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             engulfing = control.State == MicrobeState.Engulf;
         }
 
+        bool isDigesting = false;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects != null && engulfer
+            .EngulfedObjects?.Count != 0)
+            isDigesting = true;
+
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, engulfing);
+            organelles.HasSignalingAgent, engulfing, isDigesting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
