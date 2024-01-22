@@ -168,7 +168,7 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         ref var engulfer = ref stage.Player.Get<Engulfer>();
 
-        if (engulfer.EngulfedObjects == null || engulfer .EngulfedObjects?.Count == 0)
+        if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects?.Count == 0)
             return;
 
         if (!stage.HasAlivePlayer)
