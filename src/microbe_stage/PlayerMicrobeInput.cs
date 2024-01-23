@@ -166,12 +166,12 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_eject_engulfed")]
     public void EjectAllEngulfed()
     {
-        ref var engulfer = ref stage.Player.Get<Engulfer>();
-
-        if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects?.Count == 0)
+        if (!stage.HasAlivePlayer)
             return;
 
-        if (!stage.HasAlivePlayer)
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: <= 0 })
             return;
 
         if (engulfer.EngulfedObjects != null)

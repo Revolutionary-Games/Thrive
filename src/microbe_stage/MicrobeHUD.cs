@@ -439,7 +439,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         ref var engulfer = ref stage.Player.Get<Engulfer>();
 
-        if (engulfer.EngulfedObjects != null && engulfer.EngulfedObjects?.Count != 0)
+        if (engulfer.EngulfedObjects is { Count: > 0 })
             isDigesting = true;
 
         // Read the engulf state from the colony as the player cell might be unable to engulf but some
