@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/actions/BuildStructure.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=32]
+[ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture" id=33]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=46]
@@ -395,6 +396,30 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
+[sub_resource type="StyleBoxFlat" id=41]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 0.784314 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id=42]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.701961, 0.701961, 0.701961, 0.588235 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [node name="MulticellularHUD" type="Control"]
 pause_mode = 2
 process_priority = 4
@@ -457,6 +482,7 @@ OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBox
 MucilageBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer/mucilage")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/AgentsPanel/VBoxContainer/Body/BarContainer")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
+EjectEngulfedHotkeyPath = NodePath("ScrollContainer/HotBar/EjectEngulfed")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 FossilisationButtonScene = ExtResource( 27 )
 MicrobePickupOrganelleSound = ExtResource( 18 )
@@ -1993,6 +2019,17 @@ hint_tooltip = "SECRETE_SLIME_TOOLTIP"
 disabled = true
 ActionIcon = ExtResource( 24 )
 ActionName = "g_secrete_slime"
+
+[node name="EjectEngulfed" parent="ScrollContainer/HotBar" instance=ExtResource( 78 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+hint_tooltip = "EJECT_ENGULFED_TOOLTIP"
+ActionIcon = ExtResource( 33 )
+ActionName = "g_eject_engulfed"
 
 [node name="HintText" type="Label" parent="."]
 anchor_right = 1.0
