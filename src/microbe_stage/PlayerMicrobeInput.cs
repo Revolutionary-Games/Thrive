@@ -171,12 +171,9 @@ public class PlayerMicrobeInput : NodeWithInput
 
         ref var engulfer = ref stage.Player.Get<Engulfer>();
 
-        if (engulfer.EngulfedObjects is { Count: <= 0 })
-            return;
-
-        if (engulfer.EngulfedObjects != null)
+        if (engulfer.EngulfedObjects is { Count: > 0 })
         {
-            foreach (var engulfedObject in engulfer.EngulfedObjects!)
+            foreach (var engulfedObject in engulfer.EngulfedObjects)
             {
                 engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
             }
