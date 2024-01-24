@@ -13,7 +13,8 @@
     [With(typeof(ColourAnimation))]
     public sealed class ColourAnimationSystem : AEntitySetSystem<float>
     {
-        public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner)
+        public ColourAnimationSystem(World world, IParallelRunner runner) : base(world, runner,
+            Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
         {
         }
 
