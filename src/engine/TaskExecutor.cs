@@ -17,6 +17,8 @@ using Thread = System.Threading.Thread;
 public class TaskExecutor : IParallelRunner
 #pragma warning restore CA1001
 {
+    private const int ThreadSleepAfterNoWorkFor = 160;
+
     private static readonly TaskExecutor SingletonInstance = new();
 
     private readonly object threadNotifySync = new();
@@ -429,7 +431,7 @@ public class TaskExecutor : IParallelRunner
         while (running)
         {
             // Wait a bit before going to sleep
-            if (noWorkCounter > 1000)
+            if (noWorkCounter > ThreadSleepAfterNoWorkFor)
             {
                 lock (threadNotifySync)
                 {
