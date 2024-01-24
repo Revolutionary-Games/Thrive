@@ -7,6 +7,8 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : IOrganelleComponent
 {
+    private const string SlimeJetAnimationName = "SlimeJet";
+
     private bool animationActive;
     private bool animationDirty = true;
 
@@ -53,9 +55,18 @@ public class SlimeJetComponent : IOrganelleComponent
         if (parentOrganelle.OrganelleAnimation == null)
             return;
 
-        // Play the animation if active, and vice versa
-        parentOrganelle.OrganelleAnimation.PlaybackSpeed = animationActive ? 1.0f : 0.0f;
-        animationDirty = false;
+        // Start the animation if it should play and otherwise just wait for the animation to stop
+        if (!animationActive)
+        {
+            animationDirty = false;
+            return;
+        }
+
+        if (!parentOrganelle.OrganelleAnimation.IsPlaying())
+            parentOrganelle.OrganelleAnimation.Play(SlimeJetAnimationName);
+
+        // animationDirty is not set false here as otherwise we won't know when the playing stops and we need to
+        // start the animation again to keep playing if the jet is active for long
     }
 
     public void AddQueuedForce(in Entity entity, float slimeAmount)
