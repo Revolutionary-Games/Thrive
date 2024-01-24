@@ -393,6 +393,12 @@
         /// <summary>
         ///   Get the current amount of environmental compound
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: this takes a lot of time during the process system run so improving this performance would help
+        ///     quite a lot to make the process system run faster.
+        ///   </para>
+        /// </remarks>
         public float GetAmbient(Compound compound, CompoundAmountType amountType)
         {
             if (biome == null)
