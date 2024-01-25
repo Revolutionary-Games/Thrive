@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using DefaultEcs.System;
 using Godot;
@@ -25,11 +28,15 @@ public class GenerateThreadedSystems : Node
 
     // private readonly Type systemWithoutAttribute = typeof(WithoutAttribute);
 
-    private Type writesToAttribute = typeof(WritesToComponentAttribute);
-    private Type readsFromAttribute = typeof(ReadsComponentAttribute);
-    private Type runsAfterAttribute = typeof(RunsAfterAttribute);
-    private Type runsBeforeAttribute = typeof(RunsBeforeAttribute);
-    private Type runsOnMainAttribute = typeof(RunsOnMainThreadAttribute);
+    private readonly Type writesToAttribute = typeof(WritesToComponentAttribute);
+    private readonly Type readsFromAttribute = typeof(ReadsComponentAttribute);
+    private readonly Type runsAfterAttribute = typeof(RunsAfterAttribute);
+    private readonly Type runsBeforeAttribute = typeof(RunsBeforeAttribute);
+    private readonly Type runsOnMainAttribute = typeof(RunsOnMainThreadAttribute);
+
+    private readonly Type runsOnFrameAttribute = typeof(RunsOnFrameAttribute);
+
+    private readonly Type compilerGeneratedAttribute = typeof(CompilerGeneratedAttribute);
 
     private bool done;
 
@@ -75,12 +82,71 @@ public class GenerateThreadedSystems : Node
         {
             GD.Print($"Beginning processing class {simulationClass}");
 
+            GetSystemsInCategories(simulationClass, out var frameSystems, out var processSystems);
+
             throw new NotImplementedException();
 
             InsertNewProcessMethods(file, "", "");
 
             GD.Print($"Successfully handled. {file} has been updated");
         }
+    }
+
+    private void GetSystemsInCategories(Type type, out List<SystemToSchedule> frameSystems,
+        out List<SystemToSchedule> processSystems)
+    {
+        var all = GetAllSystemsFromClass(type);
+
+        frameSystems = all.Where(s => s.RunsOnFrame).ToList();
+        processSystems = all.Where(s => !s.RunsOnFrame).ToList();
+    }
+
+    private List<SystemToSchedule> GetAllSystemsFromClass(Type type)
+    {
+        var result = new List<SystemToSchedule>();
+
+        int order = 0;
+
+        foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic))
+        {
+            // Skip automatic property backing fields
+            if (field.CustomAttributes.Any(a => a.AttributeType == compilerGeneratedAttribute))
+                continue;
+
+            if (!field.FieldType.IsAssignableToGenericType(systemBaseType))
+                continue;
+
+            result.Add(new SystemToSchedule(field.FieldType, field.Name, order++));
+        }
+
+        foreach (var property in type.GetProperties(
+                     BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic))
+        {
+            if (!property.PropertyType.IsAssignableToGenericType(systemBaseType))
+                continue;
+
+            // Skip things that are already used through fields
+            if (result.Any(r => r.FieldName.Equals(property.Name, StringComparison.OrdinalIgnoreCase)))
+                continue;
+
+            result.Add(new SystemToSchedule(property.PropertyType, property.Name, order++));
+        }
+
+        foreach (var systemToSchedule in result)
+        {
+            ParseSystemAttributes(systemToSchedule);
+        }
+
+        // Sanity check no duplicate systems found
+        if (result.GroupBy(s => s.Type).Any(g => g.Count() > 1))
+            throw new Exception("Some type of system is included multiple times");
+
+        return result;
+    }
+
+    private void ParseSystemAttributes(SystemToSchedule systemToSchedule)
+    {
+        systemToSchedule.RunsOnFrame = systemToSchedule.Type.GetCustomAttribute(runsOnFrameAttribute) != null;
     }
 
     private void InsertNewProcessMethods(string file, string process, string processFrame)
@@ -104,5 +170,21 @@ public class GenerateThreadedSystems : Node
 
         System.IO.File.Delete(file);
         System.IO.File.Move(tempFile, file);
+    }
+
+    private class SystemToSchedule
+    {
+        public readonly Type Type;
+        public readonly string FieldName;
+        public readonly int OriginalOrder;
+
+        public bool RunsOnFrame;
+
+        public SystemToSchedule(Type type, string name, int order)
+        {
+            Type = type;
+            FieldName = name;
+            OriginalOrder = order;
+        }
     }
 }

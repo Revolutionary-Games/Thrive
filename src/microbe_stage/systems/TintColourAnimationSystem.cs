@@ -10,6 +10,7 @@
     /// </summary>
     [With(typeof(ColourAnimation))]
     [With(typeof(EntityMaterial))]
+    [RunsOnFrame]
     public sealed class TintColourAnimationSystem : AEntitySetSystem<float>
     {
         public TintColourAnimationSystem(World world) : base(world, null)
