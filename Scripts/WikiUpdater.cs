@@ -16,7 +16,7 @@ public static class WikiUpdater
 {
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string STAGES_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Stages";
-    private const string CONCEPTS_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Concepts";
+    private const string MECHANICS_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Mechanics";
     private const string DEVELOPMENT_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Development";
 
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
@@ -57,34 +57,34 @@ public static class WikiUpdater
     {
         var organellesRootTask = FetchRootPage(ORGANELLE_CATEGORY, "Organelles", cancellationToken);
         var stagesRootTask = FetchRootPage(STAGES_CATEGORY, "Stages", cancellationToken);
-        var conceptsRootTask = FetchRootPage(CONCEPTS_CATEGORY, "Concepts", cancellationToken);
+        var mechanicsRootTask = FetchRootPage(MECHANICS_CATEGORY, "Mechanics", cancellationToken);
         var developmentRootTask = FetchRootPage(DEVELOPMENT_CATEGORY, "Development", cancellationToken);
 
         var organellesTask = FetchPagesFromCategory(ORGANELLE_CATEGORY, "Organelle", cancellationToken);
         var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
-        var conceptsTask = FetchPagesFromCategory(CONCEPTS_CATEGORY, "Concept", cancellationToken);
+        var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechainc", cancellationToken);
         var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
 
         var organellesRoot = await organellesRootTask;
         var developmentRoot = await developmentRootTask;
-        var conceptsRoot = await conceptsRootTask;
+        var mechanicsRoot = await mechanicsRootTask;
         var stagesRoot = await stagesRootTask;
 
         var organelles = await organellesTask;
         var developmentPages = await developmentPagesTask;
-        var concepts = await conceptsTask;
+        var mechanics = await mechanicsTask;
         var stages = await stagesTask;
 
         var untranslatedWiki = new Wiki()
         {
             OrganellesRoot = organellesRoot.UntranslatedPage,
             StagesRoot = stagesRoot.UntranslatedPage,
-            ConceptsRoot = conceptsRoot.UntranslatedPage,
+            ConceptsRoot = mechanicsRoot.UntranslatedPage,
             DevelopmentRoot = developmentRoot.UntranslatedPage,
 
             Organelles = organelles.Select(o => o.UntranslatedPage).ToList(),
             Stages = stages.Select(s => s.UntranslatedPage).ToList(),
-            Concepts = concepts.Select(c => c.UntranslatedPage).ToList(),
+            Concepts = mechanics.Select(c => c.UntranslatedPage).ToList(),
             DevelopmentPages = developmentPages.Select(p => p.UntranslatedPage).ToList(),
         };
 
@@ -101,13 +101,13 @@ public static class WikiUpdater
         {
             organellesRoot,
             stagesRoot,
-            conceptsRoot,
+            mechanicsRoot,
             developmentRoot,
         };
 
         pages.AddRange(organelles);
         pages.AddRange(stages);
-        pages.AddRange(concepts);
+        pages.AddRange(mechanics);
         pages.AddRange(developmentPages);
 
         await InsertTranslatedPageContent(pages, cancellationToken);
@@ -159,6 +159,10 @@ public static class WikiUpdater
             ColourConsole.WriteInfoLine($"Found {pageType} {name}");
 
             var body = (await HtmlReader.RetrieveHtmlDocument(pageUrl, cancellationToken)).Body!;
+
+            // Ignore page if specified
+            if (body.QuerySelector(".thriveopedia-ignore") != null)
+                continue;
 
             var translatedInfobox = new List<InfoboxField>();
             var untranslatedInfobox = new List<InfoboxField>();
