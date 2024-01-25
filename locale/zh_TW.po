@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-04 20:51+0100\n"
+"POT-Creation-Date: 2024-01-25 12:54+0100\n"
 "PO-Revision-Date: 2023-12-01 16:12+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: Weblate 5.1.1\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../simulation_parameters/common/wiki.json:2218
+#: ../simulation_parameters/common/wiki.json:2214
 msgid "2D"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2271
+#: ../simulation_parameters/common/wiki.json:2267
 msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
@@ -31,23 +31,23 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D動作樣式："
 
-#: ../simulation_parameters/common/wiki.json:2320
-#: ../simulation_parameters/common/wiki.json:2369
+#: ../simulation_parameters/common/wiki.json:2316
+#: ../simulation_parameters/common/wiki.json:2365
 msgid "3D"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2565
+#: ../simulation_parameters/common/wiki.json:2561
 #, fuzzy
 msgid "3D_COMMA_SANDBOX"
 msgstr "策略"
 
-#: ../simulation_parameters/common/wiki.json:2418
-#: ../simulation_parameters/common/wiki.json:2467
+#: ../simulation_parameters/common/wiki.json:2414
+#: ../simulation_parameters/common/wiki.json:2463
 #, fuzzy
 msgid "3D_COMMA_STRATEGY"
 msgstr "策略"
 
-#: ../simulation_parameters/common/wiki.json:2516
+#: ../simulation_parameters/common/wiki.json:2512
 #, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr "策略階段"
@@ -64,7 +64,7 @@ msgstr "3D移動"
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D動作樣式："
 
-#: ../simulation_parameters/common/wiki.json:2163
+#: ../simulation_parameters/common/wiki.json:2159
 #, fuzzy
 msgid "8_BRACKET_16"
 msgstr "向左旋轉"
@@ -155,7 +155,7 @@ msgstr "開啟進階選單"
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
 
-#: ../simulation_parameters/common/wiki.json:992
+#: ../simulation_parameters/common/wiki.json:988
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "有氧呼吸作用"
@@ -299,7 +299,7 @@ msgstr "由{0}創作"
 msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
-#: ../simulation_parameters/common/wiki.json:2524
+#: ../simulation_parameters/common/wiki.json:2520
 #, fuzzy
 msgid "ASCENSION"
 msgstr "待定"
@@ -457,14 +457,14 @@ msgid "AVAILABLE_MODS"
 msgstr "可用的MOD"
 
 #: ../simulation_parameters/common/gallery.json:430
-#: ../simulation_parameters/common/wiki.json:2328
-#: ../simulation_parameters/common/wiki.json:2422
+#: ../simulation_parameters/common/wiki.json:2324
+#: ../simulation_parameters/common/wiki.json:2418
 msgid "AWAKENING_STAGE"
 msgstr "覺醒階段"
 
 #: ../simulation_parameters/common/gallery.json:419
-#: ../simulation_parameters/common/wiki.json:2279
-#: ../simulation_parameters/common/wiki.json:2373
+#: ../simulation_parameters/common/wiki.json:2275
+#: ../simulation_parameters/common/wiki.json:2369
 msgid "AWARE_STAGE"
 msgstr "意識階段"
 
@@ -654,7 +654,7 @@ msgstr "生物發光液泡"
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../simulation_parameters/common/wiki.json:2283
+#: ../simulation_parameters/common/wiki.json:2279
 msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
@@ -943,7 +943,7 @@ msgstr "目標文件名{0}已存在。確定要改寫嗎？"
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../simulation_parameters/common/wiki.json:1993
+#: ../simulation_parameters/common/wiki.json:1989
 #, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "氧化毒素合成"
@@ -2525,6 +2525,7 @@ msgstr "葡萄糖"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖濃度急劇下降！"
 
+#: ../simulation_parameters/common/wiki.json:1527
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
 msgstr "糖酵解"
@@ -2703,8 +2704,8 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "（進入測試階段後，一些功能可能無法使用）"
 
 #: ../simulation_parameters/common/gallery.json:458
-#: ../simulation_parameters/common/wiki.json:2426
-#: ../simulation_parameters/common/wiki.json:2520
+#: ../simulation_parameters/common/wiki.json:2422
+#: ../simulation_parameters/common/wiki.json:2516
 msgid "INDUSTRIAL_STAGE"
 msgstr "工業階段"
 
@@ -2727,35 +2728,35 @@ msgstr "無限變異點"
 #: ../simulation_parameters/common/wiki.json:671
 #: ../simulation_parameters/common/wiki.json:748
 #: ../simulation_parameters/common/wiki.json:825
-#: ../simulation_parameters/common/wiki.json:906
-#: ../simulation_parameters/common/wiki.json:983
-#: ../simulation_parameters/common/wiki.json:1060
-#: ../simulation_parameters/common/wiki.json:1137
-#: ../simulation_parameters/common/wiki.json:1214
-#: ../simulation_parameters/common/wiki.json:1291
-#: ../simulation_parameters/common/wiki.json:1368
-#: ../simulation_parameters/common/wiki.json:1445
-#: ../simulation_parameters/common/wiki.json:1522
-#: ../simulation_parameters/common/wiki.json:1599
-#: ../simulation_parameters/common/wiki.json:1676
-#: ../simulation_parameters/common/wiki.json:1753
-#: ../simulation_parameters/common/wiki.json:1830
-#: ../simulation_parameters/common/wiki.json:1907
-#: ../simulation_parameters/common/wiki.json:1984
-#: ../simulation_parameters/common/wiki.json:2061
-#: ../simulation_parameters/common/wiki.json:2138
+#: ../simulation_parameters/common/wiki.json:902
+#: ../simulation_parameters/common/wiki.json:979
+#: ../simulation_parameters/common/wiki.json:1056
+#: ../simulation_parameters/common/wiki.json:1133
+#: ../simulation_parameters/common/wiki.json:1210
+#: ../simulation_parameters/common/wiki.json:1287
+#: ../simulation_parameters/common/wiki.json:1364
+#: ../simulation_parameters/common/wiki.json:1441
+#: ../simulation_parameters/common/wiki.json:1518
+#: ../simulation_parameters/common/wiki.json:1595
+#: ../simulation_parameters/common/wiki.json:1672
+#: ../simulation_parameters/common/wiki.json:1749
+#: ../simulation_parameters/common/wiki.json:1826
+#: ../simulation_parameters/common/wiki.json:1903
+#: ../simulation_parameters/common/wiki.json:1980
+#: ../simulation_parameters/common/wiki.json:2057
+#: ../simulation_parameters/common/wiki.json:2134
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:97
 msgid "INFO_BOX_COST"
 msgstr "基本成本（突變點數）"
 
-#: ../simulation_parameters/common/wiki.json:2229
-#: ../simulation_parameters/common/wiki.json:2282
-#: ../simulation_parameters/common/wiki.json:2331
-#: ../simulation_parameters/common/wiki.json:2380
-#: ../simulation_parameters/common/wiki.json:2429
-#: ../simulation_parameters/common/wiki.json:2478
-#: ../simulation_parameters/common/wiki.json:2527
-#: ../simulation_parameters/common/wiki.json:2576
+#: ../simulation_parameters/common/wiki.json:2225
+#: ../simulation_parameters/common/wiki.json:2278
+#: ../simulation_parameters/common/wiki.json:2327
+#: ../simulation_parameters/common/wiki.json:2376
+#: ../simulation_parameters/common/wiki.json:2425
+#: ../simulation_parameters/common/wiki.json:2474
+#: ../simulation_parameters/common/wiki.json:2523
+#: ../simulation_parameters/common/wiki.json:2572
 #: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:137
 #, fuzzy
 msgid "INFO_BOX_EDITORS"
@@ -2772,118 +2773,6 @@ msgstr "基本成本（突變點數）"
 #: ../simulation_parameters/common/wiki.json:683
 #: ../simulation_parameters/common/wiki.json:760
 #: ../simulation_parameters/common/wiki.json:837
-#: ../simulation_parameters/common/wiki.json:918
-#: ../simulation_parameters/common/wiki.json:995
-#: ../simulation_parameters/common/wiki.json:1072
-#: ../simulation_parameters/common/wiki.json:1149
-#: ../simulation_parameters/common/wiki.json:1226
-#: ../simulation_parameters/common/wiki.json:1303
-#: ../simulation_parameters/common/wiki.json:1380
-#: ../simulation_parameters/common/wiki.json:1457
-#: ../simulation_parameters/common/wiki.json:1534
-#: ../simulation_parameters/common/wiki.json:1611
-#: ../simulation_parameters/common/wiki.json:1688
-#: ../simulation_parameters/common/wiki.json:1765
-#: ../simulation_parameters/common/wiki.json:1842
-#: ../simulation_parameters/common/wiki.json:1919
-#: ../simulation_parameters/common/wiki.json:1996
-#: ../simulation_parameters/common/wiki.json:2073
-#: ../simulation_parameters/common/wiki.json:2150
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:189
-msgid "INFO_BOX_ENZYMES"
-msgstr "酵素"
-
-#: ../simulation_parameters/common/wiki.json:2217
-#: ../simulation_parameters/common/wiki.json:2270
-#: ../simulation_parameters/common/wiki.json:2319
-#: ../simulation_parameters/common/wiki.json:2368
-#: ../simulation_parameters/common/wiki.json:2417
-#: ../simulation_parameters/common/wiki.json:2466
-#: ../simulation_parameters/common/wiki.json:2515
-#: ../simulation_parameters/common/wiki.json:2564
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:46
-#, fuzzy
-msgid "INFO_BOX_GAMEPLAY_TYPE"
-msgstr "酵素"
-
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:167
-msgid "INFO_BOX_INTERNAL_NAME"
-msgstr "內部名稱"
-
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:220
-msgid "INFO_BOX_MASS"
-msgstr "質量"
-
-#: ../simulation_parameters/common/wiki.json:2225
-#: ../simulation_parameters/common/wiki.json:2278
-#: ../simulation_parameters/common/wiki.json:2327
-#: ../simulation_parameters/common/wiki.json:2376
-#: ../simulation_parameters/common/wiki.json:2425
-#: ../simulation_parameters/common/wiki.json:2474
-#: ../simulation_parameters/common/wiki.json:2523
-#: ../simulation_parameters/common/wiki.json:2572
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:106
-#, fuzzy
-msgid "INFO_BOX_NEXT_STAGE"
-msgstr "儲存"
-
-#: ../simulation_parameters/common/wiki.json:75
-#: ../simulation_parameters/common/wiki.json:152
-#: ../simulation_parameters/common/wiki.json:229
-#: ../simulation_parameters/common/wiki.json:306
-#: ../simulation_parameters/common/wiki.json:383
-#: ../simulation_parameters/common/wiki.json:460
-#: ../simulation_parameters/common/wiki.json:537
-#: ../simulation_parameters/common/wiki.json:614
-#: ../simulation_parameters/common/wiki.json:691
-#: ../simulation_parameters/common/wiki.json:768
-#: ../simulation_parameters/common/wiki.json:845
-#: ../simulation_parameters/common/wiki.json:926
-#: ../simulation_parameters/common/wiki.json:1003
-#: ../simulation_parameters/common/wiki.json:1080
-#: ../simulation_parameters/common/wiki.json:1157
-#: ../simulation_parameters/common/wiki.json:1234
-#: ../simulation_parameters/common/wiki.json:1311
-#: ../simulation_parameters/common/wiki.json:1388
-#: ../simulation_parameters/common/wiki.json:1465
-#: ../simulation_parameters/common/wiki.json:1542
-#: ../simulation_parameters/common/wiki.json:1619
-#: ../simulation_parameters/common/wiki.json:1696
-#: ../simulation_parameters/common/wiki.json:1773
-#: ../simulation_parameters/common/wiki.json:1850
-#: ../simulation_parameters/common/wiki.json:1927
-#: ../simulation_parameters/common/wiki.json:2004
-#: ../simulation_parameters/common/wiki.json:2081
-#: ../simulation_parameters/common/wiki.json:2158
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:281
-msgid "INFO_BOX_OSMOREGULATION_COST"
-msgstr "滲透調節消耗"
-
-#: ../simulation_parameters/common/wiki.json:2221
-#: ../simulation_parameters/common/wiki.json:2274
-#: ../simulation_parameters/common/wiki.json:2323
-#: ../simulation_parameters/common/wiki.json:2372
-#: ../simulation_parameters/common/wiki.json:2421
-#: ../simulation_parameters/common/wiki.json:2470
-#: ../simulation_parameters/common/wiki.json:2519
-#: ../simulation_parameters/common/wiki.json:2568
-#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:76
-#, fuzzy
-msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "過程"
-
-#: ../simulation_parameters/common/wiki.json:63
-#: ../simulation_parameters/common/wiki.json:140
-#: ../simulation_parameters/common/wiki.json:217
-#: ../simulation_parameters/common/wiki.json:294
-#: ../simulation_parameters/common/wiki.json:371
-#: ../simulation_parameters/common/wiki.json:448
-#: ../simulation_parameters/common/wiki.json:525
-#: ../simulation_parameters/common/wiki.json:602
-#: ../simulation_parameters/common/wiki.json:679
-#: ../simulation_parameters/common/wiki.json:756
-#: ../simulation_parameters/common/wiki.json:833
 #: ../simulation_parameters/common/wiki.json:914
 #: ../simulation_parameters/common/wiki.json:991
 #: ../simulation_parameters/common/wiki.json:1068
@@ -2901,53 +2790,56 @@ msgstr "過程"
 #: ../simulation_parameters/common/wiki.json:1992
 #: ../simulation_parameters/common/wiki.json:2069
 #: ../simulation_parameters/common/wiki.json:2146
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:158
-msgid "INFO_BOX_PROCESSES"
-msgstr "過程"
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:189
+msgid "INFO_BOX_ENZYMES"
+msgstr "酵素"
 
-#: ../simulation_parameters/common/wiki.json:59
-#: ../simulation_parameters/common/wiki.json:136
-#: ../simulation_parameters/common/wiki.json:213
-#: ../simulation_parameters/common/wiki.json:290
-#: ../simulation_parameters/common/wiki.json:367
-#: ../simulation_parameters/common/wiki.json:444
-#: ../simulation_parameters/common/wiki.json:521
-#: ../simulation_parameters/common/wiki.json:598
-#: ../simulation_parameters/common/wiki.json:675
-#: ../simulation_parameters/common/wiki.json:752
-#: ../simulation_parameters/common/wiki.json:829
-#: ../simulation_parameters/common/wiki.json:910
-#: ../simulation_parameters/common/wiki.json:987
-#: ../simulation_parameters/common/wiki.json:1064
-#: ../simulation_parameters/common/wiki.json:1141
-#: ../simulation_parameters/common/wiki.json:1218
-#: ../simulation_parameters/common/wiki.json:1295
-#: ../simulation_parameters/common/wiki.json:1372
-#: ../simulation_parameters/common/wiki.json:1449
-#: ../simulation_parameters/common/wiki.json:1526
-#: ../simulation_parameters/common/wiki.json:1603
-#: ../simulation_parameters/common/wiki.json:1680
-#: ../simulation_parameters/common/wiki.json:1757
-#: ../simulation_parameters/common/wiki.json:1834
-#: ../simulation_parameters/common/wiki.json:1911
-#: ../simulation_parameters/common/wiki.json:1988
-#: ../simulation_parameters/common/wiki.json:2065
-#: ../simulation_parameters/common/wiki.json:2142
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:127
-msgid "INFO_BOX_REQUIRES_NUCLEUS"
-msgstr "需要細胞核"
+#: ../simulation_parameters/common/wiki.json:2213
+#: ../simulation_parameters/common/wiki.json:2266
+#: ../simulation_parameters/common/wiki.json:2315
+#: ../simulation_parameters/common/wiki.json:2364
+#: ../simulation_parameters/common/wiki.json:2413
+#: ../simulation_parameters/common/wiki.json:2462
+#: ../simulation_parameters/common/wiki.json:2511
+#: ../simulation_parameters/common/wiki.json:2560
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:46
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "酵素"
 
-#: ../simulation_parameters/common/wiki.json:71
-#: ../simulation_parameters/common/wiki.json:148
-#: ../simulation_parameters/common/wiki.json:225
-#: ../simulation_parameters/common/wiki.json:302
-#: ../simulation_parameters/common/wiki.json:379
-#: ../simulation_parameters/common/wiki.json:456
-#: ../simulation_parameters/common/wiki.json:533
-#: ../simulation_parameters/common/wiki.json:610
-#: ../simulation_parameters/common/wiki.json:687
-#: ../simulation_parameters/common/wiki.json:764
-#: ../simulation_parameters/common/wiki.json:841
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:404
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:167
+msgid "INFO_BOX_INTERNAL_NAME"
+msgstr "內部名稱"
+
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:220
+msgid "INFO_BOX_MASS"
+msgstr "質量"
+
+#: ../simulation_parameters/common/wiki.json:2221
+#: ../simulation_parameters/common/wiki.json:2274
+#: ../simulation_parameters/common/wiki.json:2323
+#: ../simulation_parameters/common/wiki.json:2372
+#: ../simulation_parameters/common/wiki.json:2421
+#: ../simulation_parameters/common/wiki.json:2470
+#: ../simulation_parameters/common/wiki.json:2519
+#: ../simulation_parameters/common/wiki.json:2568
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:106
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "儲存"
+
+#: ../simulation_parameters/common/wiki.json:75
+#: ../simulation_parameters/common/wiki.json:152
+#: ../simulation_parameters/common/wiki.json:229
+#: ../simulation_parameters/common/wiki.json:306
+#: ../simulation_parameters/common/wiki.json:383
+#: ../simulation_parameters/common/wiki.json:460
+#: ../simulation_parameters/common/wiki.json:537
+#: ../simulation_parameters/common/wiki.json:614
+#: ../simulation_parameters/common/wiki.json:691
+#: ../simulation_parameters/common/wiki.json:768
+#: ../simulation_parameters/common/wiki.json:845
 #: ../simulation_parameters/common/wiki.json:922
 #: ../simulation_parameters/common/wiki.json:999
 #: ../simulation_parameters/common/wiki.json:1076
@@ -2965,6 +2857,115 @@ msgstr "需要細胞核"
 #: ../simulation_parameters/common/wiki.json:2000
 #: ../simulation_parameters/common/wiki.json:2077
 #: ../simulation_parameters/common/wiki.json:2154
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:281
+msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr "滲透調節消耗"
+
+#: ../simulation_parameters/common/wiki.json:2217
+#: ../simulation_parameters/common/wiki.json:2270
+#: ../simulation_parameters/common/wiki.json:2319
+#: ../simulation_parameters/common/wiki.json:2368
+#: ../simulation_parameters/common/wiki.json:2417
+#: ../simulation_parameters/common/wiki.json:2466
+#: ../simulation_parameters/common/wiki.json:2515
+#: ../simulation_parameters/common/wiki.json:2564
+#: ../src/thriveopedia/pages/wiki/stage/StageInfoBox.tscn:76
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "過程"
+
+#: ../simulation_parameters/common/wiki.json:63
+#: ../simulation_parameters/common/wiki.json:140
+#: ../simulation_parameters/common/wiki.json:217
+#: ../simulation_parameters/common/wiki.json:294
+#: ../simulation_parameters/common/wiki.json:371
+#: ../simulation_parameters/common/wiki.json:448
+#: ../simulation_parameters/common/wiki.json:525
+#: ../simulation_parameters/common/wiki.json:602
+#: ../simulation_parameters/common/wiki.json:679
+#: ../simulation_parameters/common/wiki.json:756
+#: ../simulation_parameters/common/wiki.json:833
+#: ../simulation_parameters/common/wiki.json:910
+#: ../simulation_parameters/common/wiki.json:987
+#: ../simulation_parameters/common/wiki.json:1064
+#: ../simulation_parameters/common/wiki.json:1141
+#: ../simulation_parameters/common/wiki.json:1218
+#: ../simulation_parameters/common/wiki.json:1295
+#: ../simulation_parameters/common/wiki.json:1372
+#: ../simulation_parameters/common/wiki.json:1449
+#: ../simulation_parameters/common/wiki.json:1526
+#: ../simulation_parameters/common/wiki.json:1603
+#: ../simulation_parameters/common/wiki.json:1680
+#: ../simulation_parameters/common/wiki.json:1757
+#: ../simulation_parameters/common/wiki.json:1834
+#: ../simulation_parameters/common/wiki.json:1911
+#: ../simulation_parameters/common/wiki.json:1988
+#: ../simulation_parameters/common/wiki.json:2065
+#: ../simulation_parameters/common/wiki.json:2142
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:158
+msgid "INFO_BOX_PROCESSES"
+msgstr "過程"
+
+#: ../simulation_parameters/common/wiki.json:59
+#: ../simulation_parameters/common/wiki.json:136
+#: ../simulation_parameters/common/wiki.json:213
+#: ../simulation_parameters/common/wiki.json:290
+#: ../simulation_parameters/common/wiki.json:367
+#: ../simulation_parameters/common/wiki.json:444
+#: ../simulation_parameters/common/wiki.json:521
+#: ../simulation_parameters/common/wiki.json:598
+#: ../simulation_parameters/common/wiki.json:675
+#: ../simulation_parameters/common/wiki.json:752
+#: ../simulation_parameters/common/wiki.json:829
+#: ../simulation_parameters/common/wiki.json:906
+#: ../simulation_parameters/common/wiki.json:983
+#: ../simulation_parameters/common/wiki.json:1060
+#: ../simulation_parameters/common/wiki.json:1137
+#: ../simulation_parameters/common/wiki.json:1214
+#: ../simulation_parameters/common/wiki.json:1291
+#: ../simulation_parameters/common/wiki.json:1368
+#: ../simulation_parameters/common/wiki.json:1445
+#: ../simulation_parameters/common/wiki.json:1522
+#: ../simulation_parameters/common/wiki.json:1599
+#: ../simulation_parameters/common/wiki.json:1676
+#: ../simulation_parameters/common/wiki.json:1753
+#: ../simulation_parameters/common/wiki.json:1830
+#: ../simulation_parameters/common/wiki.json:1907
+#: ../simulation_parameters/common/wiki.json:1984
+#: ../simulation_parameters/common/wiki.json:2061
+#: ../simulation_parameters/common/wiki.json:2138
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:127
+msgid "INFO_BOX_REQUIRES_NUCLEUS"
+msgstr "需要細胞核"
+
+#: ../simulation_parameters/common/wiki.json:71
+#: ../simulation_parameters/common/wiki.json:148
+#: ../simulation_parameters/common/wiki.json:225
+#: ../simulation_parameters/common/wiki.json:302
+#: ../simulation_parameters/common/wiki.json:379
+#: ../simulation_parameters/common/wiki.json:456
+#: ../simulation_parameters/common/wiki.json:533
+#: ../simulation_parameters/common/wiki.json:610
+#: ../simulation_parameters/common/wiki.json:687
+#: ../simulation_parameters/common/wiki.json:764
+#: ../simulation_parameters/common/wiki.json:841
+#: ../simulation_parameters/common/wiki.json:918
+#: ../simulation_parameters/common/wiki.json:995
+#: ../simulation_parameters/common/wiki.json:1072
+#: ../simulation_parameters/common/wiki.json:1149
+#: ../simulation_parameters/common/wiki.json:1226
+#: ../simulation_parameters/common/wiki.json:1303
+#: ../simulation_parameters/common/wiki.json:1380
+#: ../simulation_parameters/common/wiki.json:1457
+#: ../simulation_parameters/common/wiki.json:1534
+#: ../simulation_parameters/common/wiki.json:1611
+#: ../simulation_parameters/common/wiki.json:1688
+#: ../simulation_parameters/common/wiki.json:1765
+#: ../simulation_parameters/common/wiki.json:1842
+#: ../simulation_parameters/common/wiki.json:1919
+#: ../simulation_parameters/common/wiki.json:1996
+#: ../simulation_parameters/common/wiki.json:2073
+#: ../simulation_parameters/common/wiki.json:2150
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:251
 msgid "INFO_BOX_SIZE"
 msgstr "大小（六邊形）"
@@ -2980,6 +2981,38 @@ msgstr "大小（六邊形）"
 #: ../simulation_parameters/common/wiki.json:695
 #: ../simulation_parameters/common/wiki.json:772
 #: ../simulation_parameters/common/wiki.json:849
+#: ../simulation_parameters/common/wiki.json:926
+#: ../simulation_parameters/common/wiki.json:1003
+#: ../simulation_parameters/common/wiki.json:1080
+#: ../simulation_parameters/common/wiki.json:1157
+#: ../simulation_parameters/common/wiki.json:1234
+#: ../simulation_parameters/common/wiki.json:1311
+#: ../simulation_parameters/common/wiki.json:1388
+#: ../simulation_parameters/common/wiki.json:1465
+#: ../simulation_parameters/common/wiki.json:1542
+#: ../simulation_parameters/common/wiki.json:1619
+#: ../simulation_parameters/common/wiki.json:1696
+#: ../simulation_parameters/common/wiki.json:1773
+#: ../simulation_parameters/common/wiki.json:1850
+#: ../simulation_parameters/common/wiki.json:1927
+#: ../simulation_parameters/common/wiki.json:2004
+#: ../simulation_parameters/common/wiki.json:2081
+#: ../simulation_parameters/common/wiki.json:2158
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:312
+msgid "INFO_BOX_STORAGE"
+msgstr "儲存"
+
+#: ../simulation_parameters/common/wiki.json:83
+#: ../simulation_parameters/common/wiki.json:160
+#: ../simulation_parameters/common/wiki.json:237
+#: ../simulation_parameters/common/wiki.json:314
+#: ../simulation_parameters/common/wiki.json:391
+#: ../simulation_parameters/common/wiki.json:468
+#: ../simulation_parameters/common/wiki.json:545
+#: ../simulation_parameters/common/wiki.json:622
+#: ../simulation_parameters/common/wiki.json:699
+#: ../simulation_parameters/common/wiki.json:776
+#: ../simulation_parameters/common/wiki.json:853
 #: ../simulation_parameters/common/wiki.json:930
 #: ../simulation_parameters/common/wiki.json:1007
 #: ../simulation_parameters/common/wiki.json:1084
@@ -2997,21 +3030,21 @@ msgstr "大小（六邊形）"
 #: ../simulation_parameters/common/wiki.json:2008
 #: ../simulation_parameters/common/wiki.json:2085
 #: ../simulation_parameters/common/wiki.json:2162
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:312
-msgid "INFO_BOX_STORAGE"
-msgstr "儲存"
+#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:343
+msgid "INFO_BOX_UNIQUE"
+msgstr "獨特"
 
-#: ../simulation_parameters/common/wiki.json:83
-#: ../simulation_parameters/common/wiki.json:160
-#: ../simulation_parameters/common/wiki.json:237
-#: ../simulation_parameters/common/wiki.json:314
-#: ../simulation_parameters/common/wiki.json:391
-#: ../simulation_parameters/common/wiki.json:468
-#: ../simulation_parameters/common/wiki.json:545
-#: ../simulation_parameters/common/wiki.json:622
-#: ../simulation_parameters/common/wiki.json:699
-#: ../simulation_parameters/common/wiki.json:776
-#: ../simulation_parameters/common/wiki.json:853
+#: ../simulation_parameters/common/wiki.json:87
+#: ../simulation_parameters/common/wiki.json:164
+#: ../simulation_parameters/common/wiki.json:241
+#: ../simulation_parameters/common/wiki.json:318
+#: ../simulation_parameters/common/wiki.json:395
+#: ../simulation_parameters/common/wiki.json:472
+#: ../simulation_parameters/common/wiki.json:549
+#: ../simulation_parameters/common/wiki.json:626
+#: ../simulation_parameters/common/wiki.json:703
+#: ../simulation_parameters/common/wiki.json:780
+#: ../simulation_parameters/common/wiki.json:857
 #: ../simulation_parameters/common/wiki.json:934
 #: ../simulation_parameters/common/wiki.json:1011
 #: ../simulation_parameters/common/wiki.json:1088
@@ -3029,38 +3062,6 @@ msgstr "儲存"
 #: ../simulation_parameters/common/wiki.json:2012
 #: ../simulation_parameters/common/wiki.json:2089
 #: ../simulation_parameters/common/wiki.json:2166
-#: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:343
-msgid "INFO_BOX_UNIQUE"
-msgstr "獨特"
-
-#: ../simulation_parameters/common/wiki.json:87
-#: ../simulation_parameters/common/wiki.json:164
-#: ../simulation_parameters/common/wiki.json:241
-#: ../simulation_parameters/common/wiki.json:318
-#: ../simulation_parameters/common/wiki.json:395
-#: ../simulation_parameters/common/wiki.json:472
-#: ../simulation_parameters/common/wiki.json:549
-#: ../simulation_parameters/common/wiki.json:626
-#: ../simulation_parameters/common/wiki.json:703
-#: ../simulation_parameters/common/wiki.json:780
-#: ../simulation_parameters/common/wiki.json:857
-#: ../simulation_parameters/common/wiki.json:938
-#: ../simulation_parameters/common/wiki.json:1015
-#: ../simulation_parameters/common/wiki.json:1092
-#: ../simulation_parameters/common/wiki.json:1169
-#: ../simulation_parameters/common/wiki.json:1246
-#: ../simulation_parameters/common/wiki.json:1323
-#: ../simulation_parameters/common/wiki.json:1400
-#: ../simulation_parameters/common/wiki.json:1477
-#: ../simulation_parameters/common/wiki.json:1554
-#: ../simulation_parameters/common/wiki.json:1631
-#: ../simulation_parameters/common/wiki.json:1708
-#: ../simulation_parameters/common/wiki.json:1785
-#: ../simulation_parameters/common/wiki.json:1862
-#: ../simulation_parameters/common/wiki.json:1939
-#: ../simulation_parameters/common/wiki.json:2016
-#: ../simulation_parameters/common/wiki.json:2093
-#: ../simulation_parameters/common/wiki.json:2170
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.tscn:374
 msgid "INFO_BOX_UPGRADES"
 msgstr "升級"
@@ -4002,7 +4003,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "微生物性能基準測試"
 
 #: ../simulation_parameters/common/gallery.json:332
-#: ../simulation_parameters/common/wiki.json:2230
+#: ../simulation_parameters/common/wiki.json:2226
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
@@ -4109,7 +4110,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:141
 #: ../simulation_parameters/common/gallery.json:291
-#: ../simulation_parameters/common/wiki.json:2275
+#: ../simulation_parameters/common/wiki.json:2271
 msgid "MICROBE_STAGE"
 msgstr "微生物階段"
 
@@ -4618,8 +4619,8 @@ msgstr "多細胞自由編輯器"
 
 #: ../simulation_parameters/common/gallery.json:61
 #: ../simulation_parameters/common/gallery.json:367
-#: ../simulation_parameters/common/wiki.json:2226
-#: ../simulation_parameters/common/wiki.json:2324
+#: ../simulation_parameters/common/wiki.json:2222
+#: ../simulation_parameters/common/wiki.json:2320
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
@@ -4693,8 +4694,8 @@ msgstr "{0}（戰力：{1}）"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}（未完成）"
 
-#: ../simulation_parameters/common/wiki.json:2430
-#: ../simulation_parameters/common/wiki.json:2479
+#: ../simulation_parameters/common/wiki.json:2426
+#: ../simulation_parameters/common/wiki.json:2475
 #, fuzzy
 msgid "NATION_EDITOR"
 msgstr "啟用編輯器"
@@ -4803,14 +4804,16 @@ msgstr "將[thrive:compound type=\"atp\"][/thrive:compound]轉換為[thrive:comp
 #: ../simulation_parameters/common/wiki.json:676
 #: ../simulation_parameters/common/wiki.json:700
 #: ../simulation_parameters/common/wiki.json:854
-#: ../simulation_parameters/common/wiki.json:911
-#: ../simulation_parameters/common/wiki.json:935
-#: ../simulation_parameters/common/wiki.json:1012
-#: ../simulation_parameters/common/wiki.json:1373
-#: ../simulation_parameters/common/wiki.json:1397
-#: ../simulation_parameters/common/wiki.json:1989
-#: ../simulation_parameters/common/wiki.json:2013
-#: ../simulation_parameters/common/wiki.json:2167
+#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:931
+#: ../simulation_parameters/common/wiki.json:1008
+#: ../simulation_parameters/common/wiki.json:1369
+#: ../simulation_parameters/common/wiki.json:1393
+#: ../simulation_parameters/common/wiki.json:1523
+#: ../simulation_parameters/common/wiki.json:1547
+#: ../simulation_parameters/common/wiki.json:1985
+#: ../simulation_parameters/common/wiki.json:2009
+#: ../simulation_parameters/common/wiki.json:2163
 #, fuzzy
 msgid "NO"
 msgstr "無"
@@ -4827,18 +4830,20 @@ msgstr "無"
 #: ../simulation_parameters/common/wiki.json:704
 #: ../simulation_parameters/common/wiki.json:834
 #: ../simulation_parameters/common/wiki.json:858
-#: ../simulation_parameters/common/wiki.json:919
-#: ../simulation_parameters/common/wiki.json:939
-#: ../simulation_parameters/common/wiki.json:996
-#: ../simulation_parameters/common/wiki.json:1016
-#: ../simulation_parameters/common/wiki.json:1381
-#: ../simulation_parameters/common/wiki.json:1401
-#: ../simulation_parameters/common/wiki.json:1997
-#: ../simulation_parameters/common/wiki.json:2017
+#: ../simulation_parameters/common/wiki.json:915
+#: ../simulation_parameters/common/wiki.json:935
+#: ../simulation_parameters/common/wiki.json:992
+#: ../simulation_parameters/common/wiki.json:1012
+#: ../simulation_parameters/common/wiki.json:1377
+#: ../simulation_parameters/common/wiki.json:1397
+#: ../simulation_parameters/common/wiki.json:1531
+#: ../simulation_parameters/common/wiki.json:1551
+#: ../simulation_parameters/common/wiki.json:1993
+#: ../simulation_parameters/common/wiki.json:2013
+#: ../simulation_parameters/common/wiki.json:2143
 #: ../simulation_parameters/common/wiki.json:2147
-#: ../simulation_parameters/common/wiki.json:2151
-#: ../simulation_parameters/common/wiki.json:2171
-#: ../simulation_parameters/common/wiki.json:2222
+#: ../simulation_parameters/common/wiki.json:2167
+#: ../simulation_parameters/common/wiki.json:2218
 #: ../src/general/OptionsMenu.tscn:422 ../src/general/OptionsMenu.tscn:423
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:197
 #: ../src/thriveopedia/pages/wiki/organelle/OrganelleInfoBox.cs:206
@@ -4846,7 +4851,7 @@ msgstr "無"
 msgid "NONE"
 msgstr "無"
 
-#: ../simulation_parameters/common/wiki.json:2573
+#: ../simulation_parameters/common/wiki.json:2569
 msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
@@ -5249,7 +5254,7 @@ msgstr "氧化毒素"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "氧化毒素合成"
 
-#: ../simulation_parameters/common/wiki.json:1377
+#: ../simulation_parameters/common/wiki.json:1373
 #, fuzzy
 msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "氧化毒素合成"
@@ -5614,7 +5619,7 @@ msgstr "使剛創造的物種免於受物種上限的影響"
 msgid "PROTEINS"
 msgstr "蛋白質"
 
-#: ../simulation_parameters/common/wiki.json:915
+#: ../simulation_parameters/common/wiki.json:911
 #, fuzzy
 msgid "PROTEIN_RESPIRATION"
 msgstr "有氧呼吸作用"
@@ -6343,8 +6348,8 @@ msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
 
 #: ../simulation_parameters/common/gallery.json:441
-#: ../simulation_parameters/common/wiki.json:2377
-#: ../simulation_parameters/common/wiki.json:2471
+#: ../simulation_parameters/common/wiki.json:2373
+#: ../simulation_parameters/common/wiki.json:2467
 msgid "SOCIETY_STAGE"
 msgstr "社會階段"
 
@@ -6369,8 +6374,8 @@ msgid "SPACE"
 msgstr "空格"
 
 #: ../simulation_parameters/common/gallery.json:469
-#: ../simulation_parameters/common/wiki.json:2475
-#: ../simulation_parameters/common/wiki.json:2569
+#: ../simulation_parameters/common/wiki.json:2471
+#: ../simulation_parameters/common/wiki.json:2565
 msgid "SPACE_STAGE"
 msgstr "太空階段"
 
@@ -6777,10 +6782,10 @@ msgstr "截圖"
 msgid "TARGET_TYPE_COLON"
 msgstr "目標類型："
 
-#: ../simulation_parameters/common/wiki.json:2332
-#: ../simulation_parameters/common/wiki.json:2381
-#: ../simulation_parameters/common/wiki.json:2528
-#: ../simulation_parameters/common/wiki.json:2577
+#: ../simulation_parameters/common/wiki.json:2328
+#: ../simulation_parameters/common/wiki.json:2377
+#: ../simulation_parameters/common/wiki.json:2524
+#: ../simulation_parameters/common/wiki.json:2573
 msgid "TBA"
 msgstr ""
 
@@ -7651,90 +7656,90 @@ msgstr "向上滾輪"
 msgid "WIKI"
 msgstr "Wiki"
 
-#: ../simulation_parameters/common/wiki.json:2559
+#: ../simulation_parameters/common/wiki.json:2555
 #, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "當前開發人員"
 
-#: ../simulation_parameters/common/wiki.json:2551
+#: ../simulation_parameters/common/wiki.json:2547
 #, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2539
+#: ../simulation_parameters/common/wiki.json:2535
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2543
+#: ../simulation_parameters/common/wiki.json:2539
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2547
+#: ../simulation_parameters/common/wiki.json:2543
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "恭喜！"
 
-#: ../simulation_parameters/common/wiki.json:2555
+#: ../simulation_parameters/common/wiki.json:2551
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2363
+#: ../simulation_parameters/common/wiki.json:2359
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "細胞必須有細胞核才能演化出連接器。"
 
-#: ../simulation_parameters/common/wiki.json:2355
+#: ../simulation_parameters/common/wiki.json:2351
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr "覺醒階段"
 
-#: ../simulation_parameters/common/wiki.json:2343
+#: ../simulation_parameters/common/wiki.json:2339
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr "連接器可讓您的細胞和其他同類細胞建立一個細胞群落，其中細胞共享它們彼此吸收和產生的化合物。在群體中時，您無法分裂細胞並進入編輯器，因此您需要在這樣做之前與群體解除連接。大型細胞群落是成為多細胞生物的途徑。"
 
-#: ../simulation_parameters/common/wiki.json:2347
+#: ../simulation_parameters/common/wiki.json:2343
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr "覺醒階段"
 
-#: ../simulation_parameters/common/wiki.json:2351
+#: ../simulation_parameters/common/wiki.json:2347
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr "覺醒階段"
 
-#: ../simulation_parameters/common/wiki.json:2359
+#: ../simulation_parameters/common/wiki.json:2355
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "覺醒階段"
 
-#: ../simulation_parameters/common/wiki.json:2314
+#: ../simulation_parameters/common/wiki.json:2310
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2306
+#: ../simulation_parameters/common/wiki.json:2302
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr "意識階段"
 
-#: ../simulation_parameters/common/wiki.json:2294
+#: ../simulation_parameters/common/wiki.json:2290
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2298
+#: ../simulation_parameters/common/wiki.json:2294
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
 msgstr "意識階段"
 
-#: ../simulation_parameters/common/wiki.json:2302
+#: ../simulation_parameters/common/wiki.json:2298
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:2310
+#: ../simulation_parameters/common/wiki.json:2306
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr "意識階段"
@@ -8009,12 +8014,12 @@ msgstr "待定"
 msgid "WIKI_CILIA_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2610
+#: ../simulation_parameters/common/wiki.json:2606
 #, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "當前開發人員"
 
-#: ../simulation_parameters/common/wiki.json:2602
+#: ../simulation_parameters/common/wiki.json:2598
 #, fuzzy
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr ""
@@ -8022,39 +8027,27 @@ msgstr ""
 "\n"
 "它其中一個功能是[b]糖解[/b]，將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。對於缺少細胞器而不能進行更高級代謝活動的細胞而言就是它們能量的來源。它也用於在細胞中儲存化合物並增加細胞的大小。"
 
-#: ../simulation_parameters/common/wiki.json:2606
+#: ../simulation_parameters/common/wiki.json:2602
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2648
+#: ../simulation_parameters/common/wiki.json:2644
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2636
+#: ../simulation_parameters/common/wiki.json:2632
 #, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
 msgstr "當前開發人員"
 
-#: ../simulation_parameters/common/wiki.json:2644
+#: ../simulation_parameters/common/wiki.json:2640
 #, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:2640
+#: ../simulation_parameters/common/wiki.json:2636
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2589
-#, fuzzy
-msgid "WIKI_CONCEPTS_ROOT_INTRO"
-msgstr ""
-"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
-"\n"
-"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
-"\n"
-"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
-"\n"
-"從下面的清單中選擇一種細胞器以了解更多資訊。"
 
 #: ../simulation_parameters/common/wiki.json:654
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -8094,7 +8087,7 @@ msgstr "待定"
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "無升級。"
 
-#: ../simulation_parameters/common/wiki.json:2623
+#: ../simulation_parameters/common/wiki.json:2619
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr ""
@@ -8138,42 +8131,38 @@ msgstr "待定"
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:900
-msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
-msgstr "有氧呼吸作用（葡萄糖 -> ATP）"
-
-#: ../simulation_parameters/common/wiki.json:2211
+#: ../simulation_parameters/common/wiki.json:2207
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "升級"
 
-#: ../simulation_parameters/common/wiki.json:2647
+#: ../simulation_parameters/common/wiki.json:2643
 #, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr "升級"
 
-#: ../simulation_parameters/common/wiki.json:2260
+#: ../simulation_parameters/common/wiki.json:2256
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "策略"
 
-#: ../simulation_parameters/common/wiki.json:2264
-#: ../simulation_parameters/common/wiki.json:2313
-#: ../simulation_parameters/common/wiki.json:2362
-#: ../simulation_parameters/common/wiki.json:2411
-#: ../simulation_parameters/common/wiki.json:2460
-#: ../simulation_parameters/common/wiki.json:2509
-#: ../simulation_parameters/common/wiki.json:2558
+#: ../simulation_parameters/common/wiki.json:2260
+#: ../simulation_parameters/common/wiki.json:2309
+#: ../simulation_parameters/common/wiki.json:2358
+#: ../simulation_parameters/common/wiki.json:2407
+#: ../simulation_parameters/common/wiki.json:2456
+#: ../simulation_parameters/common/wiki.json:2505
+#: ../simulation_parameters/common/wiki.json:2554
 #, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr "解鎖條件"
 
-#: ../simulation_parameters/common/wiki.json:2609
+#: ../simulation_parameters/common/wiki.json:2605
 #, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
 msgstr "解鎖條件"
 
-#: ../simulation_parameters/common/wiki.json:2203
+#: ../simulation_parameters/common/wiki.json:2199
 #, fuzzy
 msgid "WIKI_HEADING_EDITOR"
 msgstr "效果"
@@ -8190,63 +8179,6 @@ msgstr "效果"
 #: ../simulation_parameters/common/wiki.json:730
 #: ../simulation_parameters/common/wiki.json:807
 #: ../simulation_parameters/common/wiki.json:884
-#: ../simulation_parameters/common/wiki.json:965
-#: ../simulation_parameters/common/wiki.json:1042
-#: ../simulation_parameters/common/wiki.json:1119
-#: ../simulation_parameters/common/wiki.json:1196
-#: ../simulation_parameters/common/wiki.json:1273
-#: ../simulation_parameters/common/wiki.json:1350
-#: ../simulation_parameters/common/wiki.json:1427
-#: ../simulation_parameters/common/wiki.json:1504
-#: ../simulation_parameters/common/wiki.json:1581
-#: ../simulation_parameters/common/wiki.json:1658
-#: ../simulation_parameters/common/wiki.json:1735
-#: ../simulation_parameters/common/wiki.json:1812
-#: ../simulation_parameters/common/wiki.json:1889
-#: ../simulation_parameters/common/wiki.json:1966
-#: ../simulation_parameters/common/wiki.json:2043
-#: ../simulation_parameters/common/wiki.json:2120
-msgid "WIKI_HEADING_EFFECTS"
-msgstr "效果"
-
-#: ../simulation_parameters/common/wiki.json:2252
-#: ../simulation_parameters/common/wiki.json:2305
-#: ../simulation_parameters/common/wiki.json:2354
-#: ../simulation_parameters/common/wiki.json:2403
-#: ../simulation_parameters/common/wiki.json:2452
-#: ../simulation_parameters/common/wiki.json:2501
-#: ../simulation_parameters/common/wiki.json:2550
-#, fuzzy
-msgid "WIKI_HEADING_FEATURES"
-msgstr "效果"
-
-#: ../simulation_parameters/common/wiki.json:2199
-#, fuzzy
-msgid "WIKI_HEADING_GAMEPLAY"
-msgstr "策略"
-
-#: ../simulation_parameters/common/wiki.json:2207
-#, fuzzy
-msgid "WIKI_HEADING_GDD"
-msgstr "升級"
-
-#: ../simulation_parameters/common/wiki.json:2643
-#, fuzzy
-msgid "WIKI_HEADING_MICROBE_STAGE"
-msgstr "固氮酶"
-
-#: ../simulation_parameters/common/wiki.json:33
-#: ../simulation_parameters/common/wiki.json:110
-#: ../simulation_parameters/common/wiki.json:187
-#: ../simulation_parameters/common/wiki.json:264
-#: ../simulation_parameters/common/wiki.json:341
-#: ../simulation_parameters/common/wiki.json:418
-#: ../simulation_parameters/common/wiki.json:495
-#: ../simulation_parameters/common/wiki.json:572
-#: ../simulation_parameters/common/wiki.json:649
-#: ../simulation_parameters/common/wiki.json:726
-#: ../simulation_parameters/common/wiki.json:803
-#: ../simulation_parameters/common/wiki.json:880
 #: ../simulation_parameters/common/wiki.json:961
 #: ../simulation_parameters/common/wiki.json:1038
 #: ../simulation_parameters/common/wiki.json:1115
@@ -8263,33 +8195,47 @@ msgstr "固氮酶"
 #: ../simulation_parameters/common/wiki.json:1962
 #: ../simulation_parameters/common/wiki.json:2039
 #: ../simulation_parameters/common/wiki.json:2116
-msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr "修改選項"
+msgid "WIKI_HEADING_EFFECTS"
+msgstr "效果"
 
-#: ../simulation_parameters/common/wiki.json:2244
-#: ../simulation_parameters/common/wiki.json:2297
-#: ../simulation_parameters/common/wiki.json:2346
-#: ../simulation_parameters/common/wiki.json:2395
-#: ../simulation_parameters/common/wiki.json:2444
-#: ../simulation_parameters/common/wiki.json:2493
-#: ../simulation_parameters/common/wiki.json:2542
+#: ../simulation_parameters/common/wiki.json:2248
+#: ../simulation_parameters/common/wiki.json:2301
+#: ../simulation_parameters/common/wiki.json:2350
+#: ../simulation_parameters/common/wiki.json:2399
+#: ../simulation_parameters/common/wiki.json:2448
+#: ../simulation_parameters/common/wiki.json:2497
+#: ../simulation_parameters/common/wiki.json:2546
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "效果"
+
+#: ../simulation_parameters/common/wiki.json:2195
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "策略"
+
+#: ../simulation_parameters/common/wiki.json:2203
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "升級"
+
 #: ../simulation_parameters/common/wiki.json:2639
 #, fuzzy
-msgid "WIKI_HEADING_OVERVIEW"
-msgstr "代謝過程"
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:29
-#: ../simulation_parameters/common/wiki.json:106
-#: ../simulation_parameters/common/wiki.json:183
-#: ../simulation_parameters/common/wiki.json:260
-#: ../simulation_parameters/common/wiki.json:337
-#: ../simulation_parameters/common/wiki.json:414
-#: ../simulation_parameters/common/wiki.json:491
-#: ../simulation_parameters/common/wiki.json:568
-#: ../simulation_parameters/common/wiki.json:645
-#: ../simulation_parameters/common/wiki.json:722
-#: ../simulation_parameters/common/wiki.json:799
-#: ../simulation_parameters/common/wiki.json:876
+#: ../simulation_parameters/common/wiki.json:33
+#: ../simulation_parameters/common/wiki.json:110
+#: ../simulation_parameters/common/wiki.json:187
+#: ../simulation_parameters/common/wiki.json:264
+#: ../simulation_parameters/common/wiki.json:341
+#: ../simulation_parameters/common/wiki.json:418
+#: ../simulation_parameters/common/wiki.json:495
+#: ../simulation_parameters/common/wiki.json:572
+#: ../simulation_parameters/common/wiki.json:649
+#: ../simulation_parameters/common/wiki.json:726
+#: ../simulation_parameters/common/wiki.json:803
+#: ../simulation_parameters/common/wiki.json:880
 #: ../simulation_parameters/common/wiki.json:957
 #: ../simulation_parameters/common/wiki.json:1034
 #: ../simulation_parameters/common/wiki.json:1111
@@ -8306,21 +8252,33 @@ msgstr "代謝過程"
 #: ../simulation_parameters/common/wiki.json:1958
 #: ../simulation_parameters/common/wiki.json:2035
 #: ../simulation_parameters/common/wiki.json:2112
-msgid "WIKI_HEADING_PROCESSES"
+msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "修改選項"
+
+#: ../simulation_parameters/common/wiki.json:2240
+#: ../simulation_parameters/common/wiki.json:2293
+#: ../simulation_parameters/common/wiki.json:2342
+#: ../simulation_parameters/common/wiki.json:2391
+#: ../simulation_parameters/common/wiki.json:2440
+#: ../simulation_parameters/common/wiki.json:2489
+#: ../simulation_parameters/common/wiki.json:2538
+#: ../simulation_parameters/common/wiki.json:2635
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr "代謝過程"
 
-#: ../simulation_parameters/common/wiki.json:25
-#: ../simulation_parameters/common/wiki.json:102
-#: ../simulation_parameters/common/wiki.json:179
-#: ../simulation_parameters/common/wiki.json:256
-#: ../simulation_parameters/common/wiki.json:333
-#: ../simulation_parameters/common/wiki.json:410
-#: ../simulation_parameters/common/wiki.json:487
-#: ../simulation_parameters/common/wiki.json:564
-#: ../simulation_parameters/common/wiki.json:641
-#: ../simulation_parameters/common/wiki.json:718
-#: ../simulation_parameters/common/wiki.json:795
-#: ../simulation_parameters/common/wiki.json:872
+#: ../simulation_parameters/common/wiki.json:29
+#: ../simulation_parameters/common/wiki.json:106
+#: ../simulation_parameters/common/wiki.json:183
+#: ../simulation_parameters/common/wiki.json:260
+#: ../simulation_parameters/common/wiki.json:337
+#: ../simulation_parameters/common/wiki.json:414
+#: ../simulation_parameters/common/wiki.json:491
+#: ../simulation_parameters/common/wiki.json:568
+#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:722
+#: ../simulation_parameters/common/wiki.json:799
+#: ../simulation_parameters/common/wiki.json:876
 #: ../simulation_parameters/common/wiki.json:953
 #: ../simulation_parameters/common/wiki.json:1030
 #: ../simulation_parameters/common/wiki.json:1107
@@ -8337,6 +8295,37 @@ msgstr "代謝過程"
 #: ../simulation_parameters/common/wiki.json:1954
 #: ../simulation_parameters/common/wiki.json:2031
 #: ../simulation_parameters/common/wiki.json:2108
+msgid "WIKI_HEADING_PROCESSES"
+msgstr "代謝過程"
+
+#: ../simulation_parameters/common/wiki.json:25
+#: ../simulation_parameters/common/wiki.json:102
+#: ../simulation_parameters/common/wiki.json:179
+#: ../simulation_parameters/common/wiki.json:256
+#: ../simulation_parameters/common/wiki.json:333
+#: ../simulation_parameters/common/wiki.json:410
+#: ../simulation_parameters/common/wiki.json:487
+#: ../simulation_parameters/common/wiki.json:564
+#: ../simulation_parameters/common/wiki.json:641
+#: ../simulation_parameters/common/wiki.json:718
+#: ../simulation_parameters/common/wiki.json:795
+#: ../simulation_parameters/common/wiki.json:872
+#: ../simulation_parameters/common/wiki.json:949
+#: ../simulation_parameters/common/wiki.json:1026
+#: ../simulation_parameters/common/wiki.json:1103
+#: ../simulation_parameters/common/wiki.json:1180
+#: ../simulation_parameters/common/wiki.json:1257
+#: ../simulation_parameters/common/wiki.json:1334
+#: ../simulation_parameters/common/wiki.json:1411
+#: ../simulation_parameters/common/wiki.json:1488
+#: ../simulation_parameters/common/wiki.json:1565
+#: ../simulation_parameters/common/wiki.json:1642
+#: ../simulation_parameters/common/wiki.json:1719
+#: ../simulation_parameters/common/wiki.json:1796
+#: ../simulation_parameters/common/wiki.json:1873
+#: ../simulation_parameters/common/wiki.json:1950
+#: ../simulation_parameters/common/wiki.json:2027
+#: ../simulation_parameters/common/wiki.json:2104
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "解鎖條件"
 
@@ -8352,37 +8341,6 @@ msgstr "解鎖條件"
 #: ../simulation_parameters/common/wiki.json:742
 #: ../simulation_parameters/common/wiki.json:819
 #: ../simulation_parameters/common/wiki.json:896
-#: ../simulation_parameters/common/wiki.json:977
-#: ../simulation_parameters/common/wiki.json:1054
-#: ../simulation_parameters/common/wiki.json:1131
-#: ../simulation_parameters/common/wiki.json:1208
-#: ../simulation_parameters/common/wiki.json:1285
-#: ../simulation_parameters/common/wiki.json:1362
-#: ../simulation_parameters/common/wiki.json:1439
-#: ../simulation_parameters/common/wiki.json:1516
-#: ../simulation_parameters/common/wiki.json:1593
-#: ../simulation_parameters/common/wiki.json:1670
-#: ../simulation_parameters/common/wiki.json:1747
-#: ../simulation_parameters/common/wiki.json:1824
-#: ../simulation_parameters/common/wiki.json:1901
-#: ../simulation_parameters/common/wiki.json:1978
-#: ../simulation_parameters/common/wiki.json:2055
-#: ../simulation_parameters/common/wiki.json:2132
-msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr "科學背景"
-
-#: ../simulation_parameters/common/wiki.json:45
-#: ../simulation_parameters/common/wiki.json:122
-#: ../simulation_parameters/common/wiki.json:199
-#: ../simulation_parameters/common/wiki.json:276
-#: ../simulation_parameters/common/wiki.json:353
-#: ../simulation_parameters/common/wiki.json:430
-#: ../simulation_parameters/common/wiki.json:507
-#: ../simulation_parameters/common/wiki.json:584
-#: ../simulation_parameters/common/wiki.json:661
-#: ../simulation_parameters/common/wiki.json:738
-#: ../simulation_parameters/common/wiki.json:815
-#: ../simulation_parameters/common/wiki.json:892
 #: ../simulation_parameters/common/wiki.json:973
 #: ../simulation_parameters/common/wiki.json:1050
 #: ../simulation_parameters/common/wiki.json:1127
@@ -8399,48 +8357,21 @@ msgstr "科學背景"
 #: ../simulation_parameters/common/wiki.json:1974
 #: ../simulation_parameters/common/wiki.json:2051
 #: ../simulation_parameters/common/wiki.json:2128
-msgid "WIKI_HEADING_STRATEGY"
-msgstr "策略"
+msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
+msgstr "科學背景"
 
-#: ../simulation_parameters/common/wiki.json:2248
-#: ../simulation_parameters/common/wiki.json:2301
-#: ../simulation_parameters/common/wiki.json:2350
-#: ../simulation_parameters/common/wiki.json:2399
-#: ../simulation_parameters/common/wiki.json:2448
-#: ../simulation_parameters/common/wiki.json:2497
-#: ../simulation_parameters/common/wiki.json:2546
-#, fuzzy
-msgid "WIKI_HEADING_TRANSITIONS"
-msgstr "修改選項"
-
-#: ../simulation_parameters/common/wiki.json:2605
-#, fuzzy
-msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
-msgstr "升級"
-
-#: ../simulation_parameters/common/wiki.json:2256
-#: ../simulation_parameters/common/wiki.json:2309
-#: ../simulation_parameters/common/wiki.json:2358
-#: ../simulation_parameters/common/wiki.json:2407
-#: ../simulation_parameters/common/wiki.json:2456
-#: ../simulation_parameters/common/wiki.json:2505
-#: ../simulation_parameters/common/wiki.json:2554
-#, fuzzy
-msgid "WIKI_HEADING_UI"
-msgstr "升級"
-
-#: ../simulation_parameters/common/wiki.json:41
-#: ../simulation_parameters/common/wiki.json:118
-#: ../simulation_parameters/common/wiki.json:195
-#: ../simulation_parameters/common/wiki.json:272
-#: ../simulation_parameters/common/wiki.json:349
-#: ../simulation_parameters/common/wiki.json:426
-#: ../simulation_parameters/common/wiki.json:503
-#: ../simulation_parameters/common/wiki.json:580
-#: ../simulation_parameters/common/wiki.json:657
-#: ../simulation_parameters/common/wiki.json:734
-#: ../simulation_parameters/common/wiki.json:811
-#: ../simulation_parameters/common/wiki.json:888
+#: ../simulation_parameters/common/wiki.json:45
+#: ../simulation_parameters/common/wiki.json:122
+#: ../simulation_parameters/common/wiki.json:199
+#: ../simulation_parameters/common/wiki.json:276
+#: ../simulation_parameters/common/wiki.json:353
+#: ../simulation_parameters/common/wiki.json:430
+#: ../simulation_parameters/common/wiki.json:507
+#: ../simulation_parameters/common/wiki.json:584
+#: ../simulation_parameters/common/wiki.json:661
+#: ../simulation_parameters/common/wiki.json:738
+#: ../simulation_parameters/common/wiki.json:815
+#: ../simulation_parameters/common/wiki.json:892
 #: ../simulation_parameters/common/wiki.json:969
 #: ../simulation_parameters/common/wiki.json:1046
 #: ../simulation_parameters/common/wiki.json:1123
@@ -8457,35 +8388,93 @@ msgstr "升級"
 #: ../simulation_parameters/common/wiki.json:1970
 #: ../simulation_parameters/common/wiki.json:2047
 #: ../simulation_parameters/common/wiki.json:2124
+msgid "WIKI_HEADING_STRATEGY"
+msgstr "策略"
+
+#: ../simulation_parameters/common/wiki.json:2244
+#: ../simulation_parameters/common/wiki.json:2297
+#: ../simulation_parameters/common/wiki.json:2346
+#: ../simulation_parameters/common/wiki.json:2395
+#: ../simulation_parameters/common/wiki.json:2444
+#: ../simulation_parameters/common/wiki.json:2493
+#: ../simulation_parameters/common/wiki.json:2542
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "修改選項"
+
+#: ../simulation_parameters/common/wiki.json:2601
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "升級"
+
+#: ../simulation_parameters/common/wiki.json:2252
+#: ../simulation_parameters/common/wiki.json:2305
+#: ../simulation_parameters/common/wiki.json:2354
+#: ../simulation_parameters/common/wiki.json:2403
+#: ../simulation_parameters/common/wiki.json:2452
+#: ../simulation_parameters/common/wiki.json:2501
+#: ../simulation_parameters/common/wiki.json:2550
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "升級"
+
+#: ../simulation_parameters/common/wiki.json:41
+#: ../simulation_parameters/common/wiki.json:118
+#: ../simulation_parameters/common/wiki.json:195
+#: ../simulation_parameters/common/wiki.json:272
+#: ../simulation_parameters/common/wiki.json:349
+#: ../simulation_parameters/common/wiki.json:426
+#: ../simulation_parameters/common/wiki.json:503
+#: ../simulation_parameters/common/wiki.json:580
+#: ../simulation_parameters/common/wiki.json:657
+#: ../simulation_parameters/common/wiki.json:734
+#: ../simulation_parameters/common/wiki.json:811
+#: ../simulation_parameters/common/wiki.json:888
+#: ../simulation_parameters/common/wiki.json:965
+#: ../simulation_parameters/common/wiki.json:1042
+#: ../simulation_parameters/common/wiki.json:1119
+#: ../simulation_parameters/common/wiki.json:1196
+#: ../simulation_parameters/common/wiki.json:1273
+#: ../simulation_parameters/common/wiki.json:1350
+#: ../simulation_parameters/common/wiki.json:1427
+#: ../simulation_parameters/common/wiki.json:1504
+#: ../simulation_parameters/common/wiki.json:1581
+#: ../simulation_parameters/common/wiki.json:1658
+#: ../simulation_parameters/common/wiki.json:1735
+#: ../simulation_parameters/common/wiki.json:1812
+#: ../simulation_parameters/common/wiki.json:1889
+#: ../simulation_parameters/common/wiki.json:1966
+#: ../simulation_parameters/common/wiki.json:2043
+#: ../simulation_parameters/common/wiki.json:2120
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "升級"
 
-#: ../simulation_parameters/common/wiki.json:2461
+#: ../simulation_parameters/common/wiki.json:2457
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "細胞必須有細胞核才能演化出連接器。"
 
-#: ../simulation_parameters/common/wiki.json:2453
+#: ../simulation_parameters/common/wiki.json:2449
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "工業階段"
 
-#: ../simulation_parameters/common/wiki.json:2441
+#: ../simulation_parameters/common/wiki.json:2437
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr "連接器可讓您的細胞和其他同類細胞建立一個細胞群落，其中細胞共享它們彼此吸收和產生的化合物。在群體中時，您無法分裂細胞並進入編輯器，因此您需要在這樣做之前與群體解除連接。大型細胞群落是成為多細胞生物的途徑。"
 
-#: ../simulation_parameters/common/wiki.json:2445
+#: ../simulation_parameters/common/wiki.json:2441
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr "工業階段"
 
-#: ../simulation_parameters/common/wiki.json:2449
+#: ../simulation_parameters/common/wiki.json:2445
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "工業階段"
 
-#: ../simulation_parameters/common/wiki.json:2457
+#: ../simulation_parameters/common/wiki.json:2453
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "工業階段"
@@ -8534,62 +8523,17 @@ msgstr "待定"
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "無升級。"
 
-#: ../simulation_parameters/common/wiki.json:901
-msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+#: ../simulation_parameters/common/wiki.json:2585
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
-"在原核生物和真核生物中，葡萄糖分解為能量的實際過程都分為幾個步驟進行。唯一的區別在於一些酶的位置和組織。以下是各種反應的摘要，包括分子的全名和化學式/縮寫。\n"
+"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
 "\n"
-"<br>[b]糖解（Glycolysis）：[/b]糖解分為多個步驟，由 10 種不同的酶催化，產生 11 種中間化合物。最終結果是一個葡萄糖分子產生兩個丙酮酸分子、兩個 ATP 分子和兩個 NADH 分子（隨後轉化為 4-5 個 ATP 分子）。糖解作用發生在真核生物和原核生物的細胞質中。\n"
+"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
 "\n"
-"淨反應如下：\n"
+"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
 "\n"
-"[i]葡萄糖 + 2 ADP + 2 NAD+ + 2 Pi → 2 丙酮酸 + 2 ATP + 2 NADH + 2 水[/i]\n"
-"\n"
-"<br>\n"
-"\n"
-"如果您想了解有關糖解的更多資訊，請訪問<a rel=\"nofollow\" class=\"external free\" href=\"https://www.tuscany-diet.net/2018/02/06/glycolysis/\">https://www.tuscany-diet.net/2018/02/06/glycolysis/</a>。\n"
-"\n"
-"[b]丙酮酸脫羧（Linker reaction）：[/b]\n"
-"\n"
-"此反應將糖解作用與 ATP 生產中的下一個主要反應循環聯繫起來：克雷布斯循環，也稱為三羧酸循環或檸檬酸循環。\n"
-"\n"
-"[i]2 丙酮酸 + 2 CoA + 2 NAD+ + 2 Pi → 2 乙醯輔酶A + 2 NADH + 2 CO2[/i]\n"
-"\n"
-"[b]三羧酸循環 （Krebs cycle）：[/b]\n"
-"\n"
-"[i]2 乙醯輔酶A + 6 NAD+ + 2 FAD + 2 GDP + 2 Pi + 4 H2O → 2 CoA + 6 NADH + 6 FADH2 + 4 H+ + 2 GTP + 4 CO2[/i]\n"
-"\n"
-"[b]電子傳遞鏈和氧化磷酸化（Electron transport chain and oxidative phosphorylation）：[/b]\n"
-"\n"
-"10 NADH + 10 H+ + 2 FADH2 + 2 GTP + 6 O2 -> 25 ATP + 3 ATP + 2 ATP\n"
-"\n"
-"請記住，糖解作用也會產生 2 個 ATP。這使得[b]產生的 ATP 總量達到 32。[/b]\n"
-"\n"
-"然而，由於電子傳遞鏈泵送穿過粒線體膜的氫離子量存在差異，不同物種和組織之間的最大 ATP 數量實際上可能有所不同。換句話說，每個 NADH 和 FADH2 分子產生的 ATP 量取決於物種。通常認為的總量在 36-38 個 ATP 分子之間。\n"
-"\n"
-"[b]縮寫：[/b]\n"
-"\n"
-"ATP：三磷酸腺苷（Adenosin TriPhosphate）\n"
-"\n"
-"ADP：二磷酸腺苷（Adenosine DiPhosphate）\n"
-"\n"
-"NAD+：菸鹼醯胺腺嘌呤二核苷酸（Nicotinamide Adenine Dinucleotide）\n"
-"\n"
-"NADH：菸鹼醯胺腺嘌呤二核苷酸（水合態）（Nicotinamide Adenine Dinucleotide (Hydrated)）\n"
-"\n"
-"FAD：黃素腺嘌呤二核苷酸（Flavin Adenine Dinucleotide）\n"
-"\n"
-"FADH2：黃素腺嘌呤二核苷酸（水合態）（Flavin Adenine Dinucleotide (Hydrated)）\n"
-"\n"
-"GTP：三磷酸鳥苷（Guanosine TriPhosphate）\n"
-"\n"
-"GDP：二磷酸鳥苷（Guanosine DiPhosphate）\n"
-"\n"
-"Pi：無機磷酸鹽（inorganic Phosphate）\n"
-"\n"
-"CoA：輔酶A（Coenzyme A）\n"
-"\n"
-"CO2：二氧化碳（Carbon Dioxide）"
+"從下面的清單中選擇一種細胞器以了解更多資訊。"
 
 #: ../simulation_parameters/common/wiki.json:885
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -8629,7 +8573,7 @@ msgstr "待定"
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "無升級。"
 
-#: ../simulation_parameters/common/wiki.json:2212
+#: ../simulation_parameters/common/wiki.json:2208
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr ""
@@ -8641,12 +8585,12 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../simulation_parameters/common/wiki.json:2204
+#: ../simulation_parameters/common/wiki.json:2200
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr "微生物編輯器"
 
-#: ../simulation_parameters/common/wiki.json:2200
+#: ../simulation_parameters/common/wiki.json:2196
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
@@ -8658,12 +8602,12 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../simulation_parameters/common/wiki.json:2208
+#: ../simulation_parameters/common/wiki.json:2204
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "微生物階段"
 
-#: ../simulation_parameters/common/wiki.json:2196
+#: ../simulation_parameters/common/wiki.json:2192
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
@@ -8675,47 +8619,47 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../simulation_parameters/common/wiki.json:966
+#: ../simulation_parameters/common/wiki.json:962
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "無效果。"
 
-#: ../simulation_parameters/common/wiki.json:950
+#: ../simulation_parameters/common/wiki.json:946
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "細胞的發電廠。粒線體進行[b]有氧呼吸[/b]，使用 [thrive:compound type=\"oxygen\"][/thrive:compound] 將 [thrive:compound type=\"glucose\"][/thrive:compound] 轉換為 [thrive:compound type=\"atp\"][/thrive:compound]。粒線體能比其他細胞器（例如<a href=\"/wiki/Metabolosomes\" title=\"Metabolosomes\">代謝體</a>）更有效地執行此功能。"
 
-#: ../simulation_parameters/common/wiki.json:962
+#: ../simulation_parameters/common/wiki.json:958
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "無修改。"
 
-#: ../simulation_parameters/common/wiki.json:958
+#: ../simulation_parameters/common/wiki.json:954
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
 "[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] @ [thrive:compound type=\"oxygen\"][/thrive:compound]\n"
 "\n"
 "有氧呼吸是產生能量的主要方法之一。它需要穩定的葡萄糖輸入，並隨著環境中的氧氣量而改變。"
 
-#: ../simulation_parameters/common/wiki.json:954
+#: ../simulation_parameters/common/wiki.json:950
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr "細胞必須有 <a href=\"/wiki/Nucleus\" title=\"Nucleus\">細胞核</a>才能演化出粒線體。"
 
-#: ../simulation_parameters/common/wiki.json:978
+#: ../simulation_parameters/common/wiki.json:974
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:974
+#: ../simulation_parameters/common/wiki.json:970
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:970
+#: ../simulation_parameters/common/wiki.json:966
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "無升級。"
 
-#: ../simulation_parameters/common/wiki.json:2261
+#: ../simulation_parameters/common/wiki.json:2257
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:2265
+#: ../simulation_parameters/common/wiki.json:2261
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
@@ -8729,156 +8673,156 @@ msgstr ""
 "\n"
 "如果您使用出芽生殖（預設繁殖方式），您首先會控制一個牙體，並生長細胞佈局的其餘部分。"
 
-#: ../simulation_parameters/common/wiki.json:2253
+#: ../simulation_parameters/common/wiki.json:2249
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:2241
+#: ../simulation_parameters/common/wiki.json:2237
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:2245
+#: ../simulation_parameters/common/wiki.json:2241
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:2249
+#: ../simulation_parameters/common/wiki.json:2245
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:2257
+#: ../simulation_parameters/common/wiki.json:2253
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:1043
+#: ../simulation_parameters/common/wiki.json:1039
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1027
+#: ../simulation_parameters/common/wiki.json:1023
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1039
+#: ../simulation_parameters/common/wiki.json:1035
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1035
+#: ../simulation_parameters/common/wiki.json:1031
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1031
+#: ../simulation_parameters/common/wiki.json:1027
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1055
+#: ../simulation_parameters/common/wiki.json:1051
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1051
+#: ../simulation_parameters/common/wiki.json:1047
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1047
+#: ../simulation_parameters/common/wiki.json:1043
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1197
+#: ../simulation_parameters/common/wiki.json:1193
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1181
+#: ../simulation_parameters/common/wiki.json:1177
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1193
+#: ../simulation_parameters/common/wiki.json:1189
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1189
+#: ../simulation_parameters/common/wiki.json:1185
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1185
+#: ../simulation_parameters/common/wiki.json:1181
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1209
+#: ../simulation_parameters/common/wiki.json:1205
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1205
+#: ../simulation_parameters/common/wiki.json:1201
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1201
+#: ../simulation_parameters/common/wiki.json:1197
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1120
+#: ../simulation_parameters/common/wiki.json:1116
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1104
+#: ../simulation_parameters/common/wiki.json:1100
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1116
+#: ../simulation_parameters/common/wiki.json:1112
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1112
+#: ../simulation_parameters/common/wiki.json:1108
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1108
+#: ../simulation_parameters/common/wiki.json:1104
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1132
+#: ../simulation_parameters/common/wiki.json:1128
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1128
+#: ../simulation_parameters/common/wiki.json:1124
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1124
+#: ../simulation_parameters/common/wiki.json:1120
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1274
+#: ../simulation_parameters/common/wiki.json:1270
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1258
+#: ../simulation_parameters/common/wiki.json:1254
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1270
+#: ../simulation_parameters/common/wiki.json:1266
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1266
+#: ../simulation_parameters/common/wiki.json:1262
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1262
+#: ../simulation_parameters/common/wiki.json:1258
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1286
+#: ../simulation_parameters/common/wiki.json:1282
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1282
+#: ../simulation_parameters/common/wiki.json:1278
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1278
+#: ../simulation_parameters/common/wiki.json:1274
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr "待定"
 
@@ -8893,49 +8837,49 @@ msgstr ""
 "\n"
 "從下面的清單中選擇一種細胞器以了解更多資訊。"
 
-#: ../simulation_parameters/common/wiki.json:1351
+#: ../simulation_parameters/common/wiki.json:1347
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1335
+#: ../simulation_parameters/common/wiki.json:1331
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1347
+#: ../simulation_parameters/common/wiki.json:1343
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1343
+#: ../simulation_parameters/common/wiki.json:1339
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1339
+#: ../simulation_parameters/common/wiki.json:1335
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1363
+#: ../simulation_parameters/common/wiki.json:1359
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1359
+#: ../simulation_parameters/common/wiki.json:1355
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1355
+#: ../simulation_parameters/common/wiki.json:1351
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2533
+#: ../simulation_parameters/common/wiki.json:2529
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "軸突"
 
-#: ../simulation_parameters/common/wiki.json:2337
+#: ../simulation_parameters/common/wiki.json:2333
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr "覺醒階段"
 
-#: ../simulation_parameters/common/wiki.json:2288
+#: ../simulation_parameters/common/wiki.json:2284
 #, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "意識階段"
@@ -8972,26 +8916,21 @@ msgstr "葉綠體"
 msgid "WIKI_PAGE_CILIA"
 msgstr "纖毛"
 
-#: ../simulation_parameters/common/wiki.json:2596
+#: ../simulation_parameters/common/wiki.json:2592
 #, fuzzy
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "細胞質"
 
-#: ../simulation_parameters/common/wiki.json:2630
+#: ../simulation_parameters/common/wiki.json:2626
 #, fuzzy
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
 msgstr "解鎖條件"
-
-#: ../simulation_parameters/common/wiki.json:2583
-#, fuzzy
-msgid "WIKI_PAGE_CONCEPTS_ROOT"
-msgstr "細胞器"
 
 #: ../simulation_parameters/common/wiki.json:632
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "細胞質"
 
-#: ../simulation_parameters/common/wiki.json:2617
+#: ../simulation_parameters/common/wiki.json:2613
 #, fuzzy
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
 msgstr "細胞器"
@@ -9000,7 +8939,7 @@ msgstr "細胞器"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
-#: ../simulation_parameters/common/wiki.json:2435
+#: ../simulation_parameters/common/wiki.json:2431
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "工業階段"
@@ -9009,37 +8948,42 @@ msgstr "工業階段"
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶體"
 
+#: ../simulation_parameters/common/wiki.json:2579
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "細胞器"
+
 #: ../simulation_parameters/common/wiki.json:863
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代謝體"
 
-#: ../simulation_parameters/common/wiki.json:2190
+#: ../simulation_parameters/common/wiki.json:2186
 #, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:944
+#: ../simulation_parameters/common/wiki.json:940
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "粒線體"
 
-#: ../simulation_parameters/common/wiki.json:2235
+#: ../simulation_parameters/common/wiki.json:2231
 #, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
-#: ../simulation_parameters/common/wiki.json:1021
+#: ../simulation_parameters/common/wiki.json:1017
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纖維"
 
-#: ../simulation_parameters/common/wiki.json:1175
+#: ../simulation_parameters/common/wiki.json:1171
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "固氮質體"
 
-#: ../simulation_parameters/common/wiki.json:1098
+#: ../simulation_parameters/common/wiki.json:1094
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:1252
+#: ../simulation_parameters/common/wiki.json:1248
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "細胞核"
 
@@ -9047,126 +8991,126 @@ msgstr "細胞核"
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr "細胞器"
 
-#: ../simulation_parameters/common/wiki.json:1329
+#: ../simulation_parameters/common/wiki.json:1325
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "氧化毒素酶體"
 
-#: ../simulation_parameters/common/wiki.json:1406
+#: ../simulation_parameters/common/wiki.json:1402
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr "掠食性菌毛"
 
-#: ../simulation_parameters/common/wiki.json:1483
+#: ../simulation_parameters/common/wiki.json:1479
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "原生質"
 
-#: ../simulation_parameters/common/wiki.json:1560
+#: ../simulation_parameters/common/wiki.json:1556
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
-#: ../simulation_parameters/common/wiki.json:1637
+#: ../simulation_parameters/common/wiki.json:1633
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "信號劑"
 
-#: ../simulation_parameters/common/wiki.json:1714
+#: ../simulation_parameters/common/wiki.json:1710
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "黏液噴嘴"
 
-#: ../simulation_parameters/common/wiki.json:2386
+#: ../simulation_parameters/common/wiki.json:2382
 #, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "社會階段"
 
-#: ../simulation_parameters/common/wiki.json:2484
+#: ../simulation_parameters/common/wiki.json:2480
 #, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr "黏液噴嘴"
 
-#: ../simulation_parameters/common/wiki.json:2177
+#: ../simulation_parameters/common/wiki.json:2173
 #, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1791
+#: ../simulation_parameters/common/wiki.json:1787
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "熱能體"
 
-#: ../simulation_parameters/common/wiki.json:1868
+#: ../simulation_parameters/common/wiki.json:1864
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "熱合成酶"
 
-#: ../simulation_parameters/common/wiki.json:1945
+#: ../simulation_parameters/common/wiki.json:1941
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "類囊體"
 
-#: ../simulation_parameters/common/wiki.json:2022
+#: ../simulation_parameters/common/wiki.json:2018
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#: ../simulation_parameters/common/wiki.json:2099
+#: ../simulation_parameters/common/wiki.json:2095
 msgid "WIKI_PAGE_VACUOLE"
 msgstr "液泡"
 
-#: ../simulation_parameters/common/wiki.json:1428
+#: ../simulation_parameters/common/wiki.json:1424
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1412
+#: ../simulation_parameters/common/wiki.json:1408
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1424
+#: ../simulation_parameters/common/wiki.json:1420
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1420
+#: ../simulation_parameters/common/wiki.json:1416
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1416
+#: ../simulation_parameters/common/wiki.json:1412
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1440
+#: ../simulation_parameters/common/wiki.json:1436
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1436
+#: ../simulation_parameters/common/wiki.json:1432
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1432
+#: ../simulation_parameters/common/wiki.json:1428
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1505
+#: ../simulation_parameters/common/wiki.json:1501
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1489
+#: ../simulation_parameters/common/wiki.json:1485
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1501
+#: ../simulation_parameters/common/wiki.json:1497
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1497
+#: ../simulation_parameters/common/wiki.json:1493
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1493
+#: ../simulation_parameters/common/wiki.json:1489
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1517
+#: ../simulation_parameters/common/wiki.json:1513
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1513
+#: ../simulation_parameters/common/wiki.json:1509
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1509
+#: ../simulation_parameters/common/wiki.json:1505
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "待定"
 
@@ -9183,161 +9127,161 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr "遊戲內 Thrive 百科"
 
-#: ../simulation_parameters/common/wiki.json:1582
+#: ../simulation_parameters/common/wiki.json:1578
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1566
+#: ../simulation_parameters/common/wiki.json:1562
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1578
+#: ../simulation_parameters/common/wiki.json:1574
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1574
+#: ../simulation_parameters/common/wiki.json:1570
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1570
+#: ../simulation_parameters/common/wiki.json:1566
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1594
+#: ../simulation_parameters/common/wiki.json:1590
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1590
+#: ../simulation_parameters/common/wiki.json:1586
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1586
+#: ../simulation_parameters/common/wiki.json:1582
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1659
+#: ../simulation_parameters/common/wiki.json:1655
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1643
+#: ../simulation_parameters/common/wiki.json:1639
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1655
+#: ../simulation_parameters/common/wiki.json:1651
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1651
+#: ../simulation_parameters/common/wiki.json:1647
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1647
+#: ../simulation_parameters/common/wiki.json:1643
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1671
+#: ../simulation_parameters/common/wiki.json:1667
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1667
+#: ../simulation_parameters/common/wiki.json:1663
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1663
+#: ../simulation_parameters/common/wiki.json:1659
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1736
+#: ../simulation_parameters/common/wiki.json:1732
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1720
+#: ../simulation_parameters/common/wiki.json:1716
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1732
+#: ../simulation_parameters/common/wiki.json:1728
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1728
+#: ../simulation_parameters/common/wiki.json:1724
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1724
+#: ../simulation_parameters/common/wiki.json:1720
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1748
+#: ../simulation_parameters/common/wiki.json:1744
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1744
+#: ../simulation_parameters/common/wiki.json:1740
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1740
+#: ../simulation_parameters/common/wiki.json:1736
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2412
+#: ../simulation_parameters/common/wiki.json:2408
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2404
+#: ../simulation_parameters/common/wiki.json:2400
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "社會階段"
 
-#: ../simulation_parameters/common/wiki.json:2392
+#: ../simulation_parameters/common/wiki.json:2388
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2396
+#: ../simulation_parameters/common/wiki.json:2392
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr "社會階段"
 
-#: ../simulation_parameters/common/wiki.json:2400
+#: ../simulation_parameters/common/wiki.json:2396
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr "社會階段"
 
-#: ../simulation_parameters/common/wiki.json:2408
+#: ../simulation_parameters/common/wiki.json:2404
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "社會階段"
 
-#: ../simulation_parameters/common/wiki.json:2510
+#: ../simulation_parameters/common/wiki.json:2506
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2502
+#: ../simulation_parameters/common/wiki.json:2498
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "黏液噴嘴"
 
-#: ../simulation_parameters/common/wiki.json:2490
+#: ../simulation_parameters/common/wiki.json:2486
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2494
+#: ../simulation_parameters/common/wiki.json:2490
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr "太空階段"
 
-#: ../simulation_parameters/common/wiki.json:2498
+#: ../simulation_parameters/common/wiki.json:2494
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/common/wiki.json:2506
+#: ../simulation_parameters/common/wiki.json:2502
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "太空階段"
 
-#: ../simulation_parameters/common/wiki.json:2183
+#: ../simulation_parameters/common/wiki.json:2179
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
@@ -9349,98 +9293,98 @@ msgstr ""
 "\n"
 "從下面的清單中選擇一種細胞器以了解更多資訊。"
 
-#: ../simulation_parameters/common/wiki.json:1813
+#: ../simulation_parameters/common/wiki.json:1809
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1797
+#: ../simulation_parameters/common/wiki.json:1793
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1809
+#: ../simulation_parameters/common/wiki.json:1805
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1805
+#: ../simulation_parameters/common/wiki.json:1801
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1801
+#: ../simulation_parameters/common/wiki.json:1797
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1825
+#: ../simulation_parameters/common/wiki.json:1821
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1821
+#: ../simulation_parameters/common/wiki.json:1817
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1817
+#: ../simulation_parameters/common/wiki.json:1813
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1890
+#: ../simulation_parameters/common/wiki.json:1886
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1874
+#: ../simulation_parameters/common/wiki.json:1870
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1886
+#: ../simulation_parameters/common/wiki.json:1882
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1882
+#: ../simulation_parameters/common/wiki.json:1878
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1878
+#: ../simulation_parameters/common/wiki.json:1874
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1902
+#: ../simulation_parameters/common/wiki.json:1898
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1898
+#: ../simulation_parameters/common/wiki.json:1894
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1894
+#: ../simulation_parameters/common/wiki.json:1890
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1967
+#: ../simulation_parameters/common/wiki.json:1963
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "無特殊效果。"
 
-#: ../simulation_parameters/common/wiki.json:1951
+#: ../simulation_parameters/common/wiki.json:1947
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "類囊體是蛋白質和光敏色素的集合體。這些色素能夠利用[b]陽光[/b]的能量，在[b]光合作用[/b]過程中從水和氣態[b]二氧化碳[/b]產生[b]葡萄糖[/b]。這些色素也賦予了它們獨特的顏色。它們的[b]葡萄糖[/b]產生速率與[b]二氧化碳[/b]的濃度和[b]陽光[/b]的強度成正比。由於類囊體直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
 
-#: ../simulation_parameters/common/wiki.json:1963
+#: ../simulation_parameters/common/wiki.json:1959
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "無修改"
 
-#: ../simulation_parameters/common/wiki.json:1959
+#: ../simulation_parameters/common/wiki.json:1955
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 "[b]色素細胞光合作用：[/b][b]陽光 + 二氧化碳[/b] → [b]葡萄糖 + 氧[/b]\n"
 "\n"
 "[b]糖解：[/b][thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../simulation_parameters/common/wiki.json:1955
+#: ../simulation_parameters/common/wiki.json:1951
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr "無要求"
 
-#: ../simulation_parameters/common/wiki.json:1979
+#: ../simulation_parameters/common/wiki.json:1975
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:1975
+#: ../simulation_parameters/common/wiki.json:1971
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
 "類囊體需要光（以 lux 為單位）來生產葡萄糖，因此只能在表層區域中生存，如表層海域或潮池。因此，在依賴光合作用之前，玩家必須確保他們目前生活在一個有效的區域，這一點非常重要。一旦建立，打造一個有效的光合作用器就像確保細胞中有足夠的正凈葡萄糖產生和足夠的能量來維持它一樣簡單。如果您可能無法產生足夠的葡萄糖以維持生命，請不要擔心！細胞的大部分能量消耗來自移動，對於一個不需要尋找食物的細胞來說，靜止不動可以大幅增加淨葡萄糖生產。\n"
@@ -9451,71 +9395,71 @@ msgstr ""
 "\n"
 "強烈建議您在早晨光照強度開始上升時進行繁殖，因為繁殖後您的葡萄糖儲存量將減少一半，這可能會讓您在半夜死亡。"
 
-#: ../simulation_parameters/common/wiki.json:1971
+#: ../simulation_parameters/common/wiki.json:1967
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr "無升級。"
 
-#: ../simulation_parameters/common/wiki.json:2044
+#: ../simulation_parameters/common/wiki.json:2040
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2028
+#: ../simulation_parameters/common/wiki.json:2024
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2040
+#: ../simulation_parameters/common/wiki.json:2036
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2036
+#: ../simulation_parameters/common/wiki.json:2032
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2032
+#: ../simulation_parameters/common/wiki.json:2028
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2056
+#: ../simulation_parameters/common/wiki.json:2052
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2052
+#: ../simulation_parameters/common/wiki.json:2048
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2048
+#: ../simulation_parameters/common/wiki.json:2044
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2121
+#: ../simulation_parameters/common/wiki.json:2117
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2105
+#: ../simulation_parameters/common/wiki.json:2101
 msgid "WIKI_VACUOLE_INTRO"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2117
+#: ../simulation_parameters/common/wiki.json:2113
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2113
+#: ../simulation_parameters/common/wiki.json:2109
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2109
+#: ../simulation_parameters/common/wiki.json:2105
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2133
+#: ../simulation_parameters/common/wiki.json:2129
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2129
+#: ../simulation_parameters/common/wiki.json:2125
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr "待定"
 
-#: ../simulation_parameters/common/wiki.json:2125
+#: ../simulation_parameters/common/wiki.json:2121
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "待定"
 
@@ -9620,9 +9564,10 @@ msgstr "年"
 
 #: ../simulation_parameters/common/wiki.json:137
 #: ../simulation_parameters/common/wiki.json:161
+#: ../simulation_parameters/common/wiki.json:214
 #: ../simulation_parameters/common/wiki.json:830
-#: ../simulation_parameters/common/wiki.json:988
-#: ../simulation_parameters/common/wiki.json:2143
+#: ../simulation_parameters/common/wiki.json:984
+#: ../simulation_parameters/common/wiki.json:2139
 #, fuzzy
 msgid "YES"
 msgstr "年"
@@ -9648,6 +9593,65 @@ msgstr "放大"
 #: ../simulation_parameters/common/input_options.json:106
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+#~ msgstr "有氧呼吸作用（葡萄糖 -> ATP）"
+
+#~ msgid "WIKI_METABOLOSOMES_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
+#~ msgstr ""
+#~ "在原核生物和真核生物中，葡萄糖分解為能量的實際過程都分為幾個步驟進行。唯一的區別在於一些酶的位置和組織。以下是各種反應的摘要，包括分子的全名和化學式/縮寫。\n"
+#~ "\n"
+#~ "<br>[b]糖解（Glycolysis）：[/b]糖解分為多個步驟，由 10 種不同的酶催化，產生 11 種中間化合物。最終結果是一個葡萄糖分子產生兩個丙酮酸分子、兩個 ATP 分子和兩個 NADH 分子（隨後轉化為 4-5 個 ATP 分子）。糖解作用發生在真核生物和原核生物的細胞質中。\n"
+#~ "\n"
+#~ "淨反應如下：\n"
+#~ "\n"
+#~ "[i]葡萄糖 + 2 ADP + 2 NAD+ + 2 Pi → 2 丙酮酸 + 2 ATP + 2 NADH + 2 水[/i]\n"
+#~ "\n"
+#~ "<br>\n"
+#~ "\n"
+#~ "如果您想了解有關糖解的更多資訊，請訪問<a rel=\"nofollow\" class=\"external free\" href=\"https://www.tuscany-diet.net/2018/02/06/glycolysis/\">https://www.tuscany-diet.net/2018/02/06/glycolysis/</a>。\n"
+#~ "\n"
+#~ "[b]丙酮酸脫羧（Linker reaction）：[/b]\n"
+#~ "\n"
+#~ "此反應將糖解作用與 ATP 生產中的下一個主要反應循環聯繫起來：克雷布斯循環，也稱為三羧酸循環或檸檬酸循環。\n"
+#~ "\n"
+#~ "[i]2 丙酮酸 + 2 CoA + 2 NAD+ + 2 Pi → 2 乙醯輔酶A + 2 NADH + 2 CO2[/i]\n"
+#~ "\n"
+#~ "[b]三羧酸循環 （Krebs cycle）：[/b]\n"
+#~ "\n"
+#~ "[i]2 乙醯輔酶A + 6 NAD+ + 2 FAD + 2 GDP + 2 Pi + 4 H2O → 2 CoA + 6 NADH + 6 FADH2 + 4 H+ + 2 GTP + 4 CO2[/i]\n"
+#~ "\n"
+#~ "[b]電子傳遞鏈和氧化磷酸化（Electron transport chain and oxidative phosphorylation）：[/b]\n"
+#~ "\n"
+#~ "10 NADH + 10 H+ + 2 FADH2 + 2 GTP + 6 O2 -> 25 ATP + 3 ATP + 2 ATP\n"
+#~ "\n"
+#~ "請記住，糖解作用也會產生 2 個 ATP。這使得[b]產生的 ATP 總量達到 32。[/b]\n"
+#~ "\n"
+#~ "然而，由於電子傳遞鏈泵送穿過粒線體膜的氫離子量存在差異，不同物種和組織之間的最大 ATP 數量實際上可能有所不同。換句話說，每個 NADH 和 FADH2 分子產生的 ATP 量取決於物種。通常認為的總量在 36-38 個 ATP 分子之間。\n"
+#~ "\n"
+#~ "[b]縮寫：[/b]\n"
+#~ "\n"
+#~ "ATP：三磷酸腺苷（Adenosin TriPhosphate）\n"
+#~ "\n"
+#~ "ADP：二磷酸腺苷（Adenosine DiPhosphate）\n"
+#~ "\n"
+#~ "NAD+：菸鹼醯胺腺嘌呤二核苷酸（Nicotinamide Adenine Dinucleotide）\n"
+#~ "\n"
+#~ "NADH：菸鹼醯胺腺嘌呤二核苷酸（水合態）（Nicotinamide Adenine Dinucleotide (Hydrated)）\n"
+#~ "\n"
+#~ "FAD：黃素腺嘌呤二核苷酸（Flavin Adenine Dinucleotide）\n"
+#~ "\n"
+#~ "FADH2：黃素腺嘌呤二核苷酸（水合態）（Flavin Adenine Dinucleotide (Hydrated)）\n"
+#~ "\n"
+#~ "GTP：三磷酸鳥苷（Guanosine TriPhosphate）\n"
+#~ "\n"
+#~ "GDP：二磷酸鳥苷（Guanosine DiPhosphate）\n"
+#~ "\n"
+#~ "Pi：無機磷酸鹽（inorganic Phosphate）\n"
+#~ "\n"
+#~ "CoA：輔酶A（Coenzyme A）\n"
+#~ "\n"
+#~ "CO2：二氧化碳（Carbon Dioxide）"
 
 #, fuzzy
 #~ msgid "WIKI_PAGE_Stages_ROOT"
