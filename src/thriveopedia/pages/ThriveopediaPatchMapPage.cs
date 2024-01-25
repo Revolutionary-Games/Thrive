@@ -104,6 +104,10 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
     private void UpdatePlayerPatch(Patch? patch)
     {
         mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
+
+        if (mapDrawer.Map!.UpdatePatchVisibility(mapDrawer.PlayerPatch))
+            mapDrawer.MarkDirty();
+
         detailsPanel.CurrentPatch = mapDrawer.PlayerPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
@@ -115,6 +119,11 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         mapDrawer.Map = CurrentGame!.GameWorld.Map;
         playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
             throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
+
+        // Make sure the map setting of fog of war always matches the world,
+        // this needs to be called here in case this page is opened before the editor
+        mapDrawer.Map.FogOfWar = CurrentGame!.GameWorld.WorldSettings.FogOfWarMode;
+
         UpdatePlayerPatch(playerPatchOnEntry);
     }
 
