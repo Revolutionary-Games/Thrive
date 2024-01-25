@@ -180,6 +180,9 @@ public class MainMenu : NodeWithInput
 
     private float averageFrameRate;
 
+    /// <summary>
+    ///   Time tracking related to performance. Note that this is reset when performance tracking is restarted.
+    /// </summary>
     private float secondsInMenu;
 
     private bool canShowLowPerformanceWarning = true;
@@ -236,6 +239,7 @@ public class MainMenu : NodeWithInput
         base._EnterTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged += OnMenuBackgroundTypeChanged;
+        ThriveopediaManager.Instance.OnPageOpenedHandler += OnThriveopediaOpened;
     }
 
     public override void _ExitTree()
@@ -243,6 +247,7 @@ public class MainMenu : NodeWithInput
         base._ExitTree();
 
         Settings.Instance.Menu3DBackgroundEnabled.OnChanged -= OnMenuBackgroundTypeChanged;
+        ThriveopediaManager.Instance.OnPageOpenedHandler -= OnThriveopediaOpened;
     }
 
     public override void _Process(float delta)
@@ -298,7 +303,9 @@ public class MainMenu : NodeWithInput
             {
                 secondsInMenu += delta;
 
-                if (secondsInMenu >= 1)
+                // Don't track performance when the 3D background aren't actually visible. For example when going to
+                // the art gallery
+                if (secondsInMenu >= 1 && created3DBackground?.Visible == true)
                 {
                     averageFrameRate = TrackMenuPerformance();
 
@@ -486,10 +493,9 @@ public class MainMenu : NodeWithInput
         safeModeWarning = GetNode<CustomWindow>(SafeModeWarningPath);
         steamFailedPopup = GetNode<CustomConfirmationDialog>(SteamFailedPopupPath);
 
-        modsInstalledButNotEnabledWarning = GetNode<PermanentlyDismissibleDialog>(
-            ModsInstalledButNotEnabledWarningPath);
-        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(
-            LowPerformanceWarningPath);
+        modsInstalledButNotEnabledWarning =
+            GetNode<PermanentlyDismissibleDialog>(ModsInstalledButNotEnabledWarningPath);
+        lowPerformanceWarning = GetNode<PermanentlyDismissibleDialog>(LowPerformanceWarningPath);
         thanksDialog = GetNode<PermanentlyDismissibleDialog>(ThanksDialogPath);
         menus = GetNode<CenterContainer>(MenusPath);
 
@@ -718,8 +724,8 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddSequence(
-            ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null,
+            false);
 
         // Start music after the video
         StartMusic();
@@ -885,12 +891,11 @@ public class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (EarlyMulticellularEditor)SceneManager.Instance.LoadScene(
-                MainGameState.EarlyMulticellularEditor).Instance();
+            var editor = (EarlyMulticellularEditor)SceneManager.Instance
+                .LoadScene(MainGameState.EarlyMulticellularEditor).Instance();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(
-                new WorldGenerationSettings(), true);
+            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
@@ -1090,6 +1095,8 @@ public class MainMenu : NodeWithInput
         {
             created3DBackground.Visible = true;
         }
+
+        ResetPerformanceTracking();
     }
 
     private void OnWebsitesButtonPressed()
@@ -1138,5 +1145,17 @@ public class MainMenu : NodeWithInput
             // Hide the background again when playing a video as the 3D backgrounds are performance intensive
             created3DBackground.Visible = false;
         }
+    }
+
+    private void OnThriveopediaOpened(string pageName)
+    {
+        thriveopedia.OpenFromMainMenu();
+        thriveopedia.ChangePage(pageName);
+    }
+
+    private void ResetPerformanceTracking()
+    {
+        secondsInMenu = 0;
+        averageFrameRate = 0;
     }
 }

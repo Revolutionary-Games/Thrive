@@ -68,20 +68,19 @@ public class Asset
     {
         if (string.IsNullOrEmpty(ResourcePath))
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "ResourcePath missing");
+            throw new InvalidRegistryDataException("asset", GetType().Name, "ResourcePath missing");
         }
 
         if (!string.IsNullOrEmpty(MeshNodePath) && Type != AssetType.ModelScene)
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "MeshNodePath is specified but asset type is not ModelScene");
+            throw new InvalidRegistryDataException("asset", GetType().Name,
+                "MeshNodePath is specified but asset type is not ModelScene");
         }
 
         if (!string.IsNullOrEmpty(MeshNodePath) && ResourcePath.Extension() != "tscn")
         {
-            throw new InvalidRegistryDataException(
-                "asset", GetType().Name, "MeshNodePath is specified but resource is not a PackedScene");
+            throw new InvalidRegistryDataException("asset", GetType().Name,
+                "MeshNodePath is specified but resource is not a PackedScene");
         }
     }
 

@@ -15,6 +15,9 @@ public class MicrobeCheatMenu : CheatMenu
     public NodePath DisableAIPath = null!;
 
     [Export]
+    public NodePath UnlimitGrowthSpeedPath = null!;
+
+    [Export]
     public NodePath LockTimePath = null!;
 
     [Export]
@@ -39,6 +42,7 @@ public class MicrobeCheatMenu : CheatMenu
     private CustomCheckBox infiniteCompounds = null!;
     private CustomCheckBox godMode = null!;
     private CustomCheckBox disableAI = null!;
+    private CustomCheckBox unlimitGrowthSpeed = null!;
     private CustomCheckBox lockTime = null!;
     private Slider speed = null!;
     private Button playerDivide = null!;
@@ -53,6 +57,7 @@ public class MicrobeCheatMenu : CheatMenu
         infiniteCompounds = GetNode<CustomCheckBox>(InfiniteCompoundsPath);
         godMode = GetNode<CustomCheckBox>(GodModePath);
         disableAI = GetNode<CustomCheckBox>(DisableAIPath);
+        unlimitGrowthSpeed = GetNode<CustomCheckBox>(UnlimitGrowthSpeedPath);
         lockTime = GetNode<CustomCheckBox>(LockTimePath);
         speed = GetNode<Slider>(SpeedSliderPath);
         playerDivide = GetNode<Button>(PlayerDividePath);
@@ -73,6 +78,7 @@ public class MicrobeCheatMenu : CheatMenu
         infiniteCompounds.Pressed = CheatManager.InfiniteCompounds;
         godMode.Pressed = CheatManager.GodMode;
         disableAI.Pressed = CheatManager.NoAI;
+        unlimitGrowthSpeed.Pressed = CheatManager.UnlimitedGrowthSpeed;
         lockTime.Pressed = CheatManager.LockTime;
         speed.Value = CheatManager.Speed;
         manuallySetTime.Pressed = CheatManager.ManuallySetTime;
@@ -88,6 +94,7 @@ public class MicrobeCheatMenu : CheatMenu
                 InfiniteCompoundsPath.Dispose();
                 GodModePath.Dispose();
                 DisableAIPath.Dispose();
+                UnlimitGrowthSpeedPath.Dispose();
                 LockTimePath.Dispose();
                 SpeedSliderPath.Dispose();
                 PlayerDividePath.Dispose();
@@ -114,5 +121,10 @@ public class MicrobeCheatMenu : CheatMenu
     private void OnDespawnAllEntitiesClicked()
     {
         CheatManager.DespawnAllEntities();
+    }
+
+    private void SetUnlimitGrowthSpeed(bool isOn)
+    {
+        CheatManager.UnlimitedGrowthSpeed = isOn;
     }
 }

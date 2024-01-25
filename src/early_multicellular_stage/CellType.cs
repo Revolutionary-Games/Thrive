@@ -59,10 +59,11 @@ public class CellType : ICellProperties, ICloneable
     public ISimulationPhotographable.SimulationType SimulationToPhotograph =>
         ISimulationPhotographable.SimulationType.MicrobeGraphics;
 
-    public void RepositionToOrigin()
+    public bool RepositionToOrigin()
     {
-        Organelles.RepositionToOrigin();
+        var changes = Organelles.RepositionToOrigin();
         CalculateRotationSpeed();
+        return changes;
     }
 
     public void UpdateNameIfValid(string newName)
@@ -93,14 +94,27 @@ public class CellType : ICellProperties, ICloneable
         return false;
     }
 
+    public bool IsMuscularTissueType()
+    {
+        foreach (var organelle in Organelles)
+        {
+            if (organelle.Definition.HasFeatureTag(OrganelleFeatureTag.Myofibril))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void SetupWorldEntities(IWorldSimulation worldSimulation)
     {
-        CellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
+        GeneralCellPropertiesHelpers.SetupWorldEntities(this, worldSimulation);
     }
 
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
-        return CellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
+        return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
     public bool StateHasStabilized(IWorldSimulation worldSimulation)
@@ -145,7 +159,6 @@ public class CellType : ICellProperties, ICloneable
 
     private void CalculateRotationSpeed()
     {
-        BaseRotationSpeed =
-            MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles, MembraneType, IsBacteria);
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles.Organelles);
     }
 }

@@ -236,6 +236,14 @@ public class PhysicalWorld : IDisposable
     public void ApplyBodyMicrobeControl(NativePhysicsBody body, Vector3 movementImpulse, Quat lookDirection,
         float rotationSpeedDivisor)
     {
+#if DEBUG
+        if (!lookDirection.IsNormalized())
+            throw new ArgumentException("Look direction needs to be normalized");
+
+        if (rotationSpeedDivisor <= 0)
+            throw new ArgumentException("Rotation speed can't be zero or negative");
+#endif
+
         // Too low speed divisor causes too fast rotation and instability that way
         if (rotationSpeedDivisor < 0.01f)
             rotationSpeedDivisor = 0.01f;
@@ -262,6 +270,12 @@ public class PhysicalWorld : IDisposable
     public void SetBodyPosition(NativePhysicsBody body, Vector3 position)
     {
         NativeMethods.SetBodyPosition(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position));
+    }
+
+    public void SetBodyPositionAndRotation(NativePhysicsBody body, Vector3 position, Quat rotation)
+    {
+        NativeMethods.SetBodyPositionAndRotation(AccessWorldInternal(), body.AccessBodyInternal(), new JVec3(position),
+            new JQuat(rotation));
     }
 
     /// <summary>
@@ -613,6 +627,10 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyPosition(IntPtr world, IntPtr body, JVec3 position, bool activate = true);
+
+    [DllImport("thrive_native")]
+    internal static extern void SetBodyPositionAndRotation(IntPtr world, IntPtr body, JVec3 position, JQuat rotation,
+        bool activate = true);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyVelocity(IntPtr world, IntPtr body, JVecF3 velocity);

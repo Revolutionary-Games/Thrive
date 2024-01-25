@@ -148,6 +148,8 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     protected override string ProjectName => "Thrive";
     protected override string ProjectOrganization => "Revolutionary Games Studio";
 
+    protected override bool OmitReferenceLinesFromLocales => true;
+
     protected override Task<bool> RunTranslationCreate(string locale, string targetFile,
         CancellationToken cancellationToken)
     {
@@ -183,6 +185,9 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         startInfo.ArgumentList.Add("--update");
         startInfo.ArgumentList.Add("--backup=none");
 
+        if (OmitReferenceLinesFromLocales)
+            startInfo.ArgumentList.Add("--no-location");
+
         AddLineWrapSettings(startInfo);
 
         startInfo.ArgumentList.Add(targetFile);
@@ -207,7 +212,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
 
         // Remove trailing whitespace
         if (!options.Quiet)
-            ColourConsole.WriteInfoLine("Removing trailing whitespace in .po files...");
+            ColourConsole.WriteInfoLine("Removing trailing whitespace and line references if existing in .po files...");
 
         foreach (var locale in Locales)
         {
@@ -220,20 +225,20 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
             // TODO: there doesn't seem to be a simple way to avoid keeping the entire file in memory
             var lines = await File.ReadAllLinesAsync(target, Encoding.UTF8, cancellationToken);
 
-            var trimmed = lines.Select(l => l.TrimEnd()).ToList();
+            var trimmed = lines.Select(l => l.TrimEnd()).Where(l => !l.StartsWith("#: .")).ToList();
 
             if (!lines.SequenceEqual(trimmed))
             {
                 changed = true;
             }
 
-            // Babel generates identically formatted files. So when the first one doesn't have trailing spaces,
-            // nor will the others.
+            // It seems that sometimes the subsequent files only have problems so there is no longer a break here
+            // Instead there's a continue here
             if (!changed)
-                break;
+                continue;
 
             await File.WriteAllLinesAsync(target, trimmed, new UTF8Encoding(false), cancellationToken);
-            ColourConsole.WriteWarningLine($"Removed trailing whitespace in {target}");
+            ColourConsole.WriteWarningLine($"Made changes to {target}");
         }
 
         return true;

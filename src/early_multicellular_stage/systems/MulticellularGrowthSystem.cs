@@ -57,9 +57,6 @@
 
             ref var growth = ref entity.Get<MulticellularGrowth>();
             HandleMulticellularReproduction(ref growth, entity, delta);
-
-            // TODO: when spawning a new cell to add to colony it needs to be ensured that its membrane is ready before
-            // attach to calculate the attach position
         }
 
         private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
@@ -94,7 +91,15 @@
 
                     // Grow from the first cell to grow back, in the body plan grow order
                     multicellularGrowth.NextBodyPlanCellToGrowIndex = multicellularGrowth.LostPartsOfBodyPlan.Min();
+
+                    if (multicellularGrowth.NextBodyPlanCellToGrowIndex <= 0)
+                        throw new InvalidOperationException("Loaded bad next body plan index from regrow lost");
+
                     multicellularGrowth.LostPartsOfBodyPlan.Remove(multicellularGrowth.NextBodyPlanCellToGrowIndex);
+
+                    // TODO: should this skip regrowing cells that already exist for some reason in the body?
+                    // That can happen due to a problem elsewhere but then this will cause a duplicate cell to appear
+                    // which will get reported by anyone seeing it
                 }
                 else if (multicellularGrowth.ResumeBodyPlanAfterReplacingLost != null)
                 {

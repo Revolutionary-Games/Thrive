@@ -154,7 +154,7 @@
                     // Binding can proceed
                     if (BeginBind(ref control, entity, indexOfMemberToBindTo, collision.SecondEntity))
                     {
-                        // Try to bind at most once per frame
+                        // Try to bind at most once per update
                         break;
                     }
                 }
@@ -192,12 +192,7 @@
                     // here
                     var colony = new MicrobeColony(primaryEntity, MicrobeState.Normal, primaryEntity, other);
 
-                    if (!colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
-                    {
-                        GD.PrintErr("Setting up data of initial colony member failed, canceling colony creation");
-                        success = false;
-                    }
-                    else
+                    if (colony.AddInitialColonyMember(primaryEntity, indexOfMemberToBindTo, other, recorder))
                     {
                         // Add the colony component to the lead cell
                         recorder.Record(primaryEntity).Set(colony);
@@ -206,6 +201,11 @@
                         MicrobeColonyHelpers.ReportReproductionStatusOnAddToColony(primaryEntity);
 
                         success = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("Setting up data of initial colony member failed, canceling colony creation");
+                        success = false;
                     }
                 }
                 else

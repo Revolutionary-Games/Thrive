@@ -86,6 +86,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     [Signal]
     public delegate void OnUnbindAllButtonPressed();
 
+    [Signal]
+    public delegate void OnEjectEngulfedButtonPressed();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
@@ -220,6 +223,20 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
+    public override void UpdateFossilisationButtonStates()
+    {
+        var fossils = FossilisedSpecies.CreateListOfFossils(false);
+
+        foreach (FossilisationButton button in fossilisationButtonLayer.GetChildren())
+        {
+            var species = button.AttachedEntity.Get<SpeciesMember>().Species;
+            var alreadyFossilised =
+                FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
+        }
+    }
+
     public override void ShowFossilisationButtons()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
@@ -237,13 +254,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             button.Connect(nameof(FossilisationButton.OnFossilisationDialogOpened), this,
                 nameof(ShowFossilisationDialog));
 
-            // Display a faded button with a different hint if the species has been fossilised.
             var alreadyFossilised =
                 FossilisedSpecies.IsSpeciesAlreadyFossilised(species.FormattedName, fossils);
-            button.AlreadyFossilised = alreadyFossilised;
-            button.HintTooltip = alreadyFossilised ?
-                TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
-                TranslationServer.Translate("FOSSILISATION_HINT");
+
+            SetupFossilisationButtonVisuals(button, alreadyFossilised);
 
             fossilisationButtonLayer.AddChild(button);
         }
@@ -398,6 +412,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showToxin;
         bool showSlime;
 
+        bool engulfing;
+
         // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
         if (player.Has<MicrobeColony>())
         {
@@ -408,17 +424,28 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
+
+            engulfing = colony.ColonyState == MicrobeState.Engulf;
         }
         else
         {
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
+
+            engulfing = control.State == MicrobeState.Engulf;
         }
 
-        // TODO: should this read the engulf state from colony as the player cell might be unable to engulf but some
+        bool isDigesting = false;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: > 0 })
+            isDigesting = true;
+
+        // Read the engulf state from the colony as the player cell might be unable to engulf but some
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
-            organelles.HasSignalingAgent, control.State == MicrobeState.Engulf);
+            organelles.HasSignalingAgent, engulfing, isDigesting);
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -521,6 +548,18 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         base.Dispose(disposing);
     }
 
+    /// <summary>
+    ///   Sets button's texture and hint based on its status of fossilisation
+    /// </summary>
+    private void SetupFossilisationButtonVisuals(FossilisationButton button, bool alreadyFossilised)
+    {
+        // Display a faded button with a different hint if the species has been fossilised.
+        button.AlreadyFossilised = alreadyFossilised;
+        button.HintTooltip = alreadyFossilised ?
+            TranslationServer.Translate("FOSSILISATION_HINT_ALREADY_FOSSILISED") :
+            TranslationServer.Translate("FOSSILISATION_HINT");
+    }
+
     private void OnRadialItemSelected(int itemId)
     {
         if (signalingAgentMenuOpenForMicrobe != null)
@@ -575,8 +614,8 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
             if (stage.CurrentGame.TutorialState.Enabled && canBecomeMulticellular)
             {
-                stage.CurrentGame.TutorialState.SendEvent(
-                    TutorialEventType.MicrobeBecomeMulticellularAvailable, EventArgs.Empty, this);
+                stage.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeBecomeMulticellularAvailable,
+                    EventArgs.Empty, this);
             }
         }
 
@@ -750,5 +789,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void OnSecreteSlimePressed()
     {
         EmitSignal(nameof(OnSecreteSlimeButtonPressed));
+    }
+
+    private void OnEjectEngulfedPressed()
+    {
+        EmitSignal(nameof(OnEjectEngulfedButtonPressed));
     }
 }

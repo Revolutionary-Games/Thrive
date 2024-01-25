@@ -97,8 +97,7 @@ public class PhysicsShape : IDisposable
                 (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
         }
 
-        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(
-            MemoryMarshal.GetReference(organellePositions),
+        return new PhysicsShape(NativeMethods.CreateMicrobeShapeConvex(MemoryMarshal.GetReference(organellePositions),
             (uint)organellePositions.Length, overallDensity, scaleAsBacteria ? 0.5f : 1));
     }
 
@@ -178,8 +177,8 @@ public class PhysicsShape : IDisposable
         // TODO: if different godot imports need different scales add this is a parameter (probably is the case and
         // caused by different real scales of the meshes used for collisions)
         // TODO: base rotations are also problematic here (the rock chunks are rotated differently visually compared to
-        // the physics shape)
-        float scale = 90;
+        // the physics shape, this is now fixed for the big iron)
+        float scale = 100;
 
         // This is probably similar kind of configuration thing for Jolt as the margin is in Godot Bullet integration
         float convexRadius = godotData.Margin > 0 ? godotData.Margin : 0.01f;
@@ -221,7 +220,6 @@ public class PhysicsShape : IDisposable
         return NativeMethods.ShapeCalculateResultingAngularVelocity(AccessShapeInternal(), new JVecF3(torque));
     }
 
-    // TODO: check if this is used sensibly by the rotation rate calculations
     /// <summary>
     ///   Calculates how much of a rotation around the y-axis is kept if applied to this shape
     /// </summary>

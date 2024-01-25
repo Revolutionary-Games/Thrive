@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -7,12 +8,13 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 
-public static class WikiUpdater
+public class WikiUpdater
 {
     private const string ORGANELLE_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Organelles";
     private const string STAGES_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Stages";
@@ -27,33 +29,24 @@ public static class WikiUpdater
     private const string CATEGORY_PAGES_SELECTOR = ".mw-category-group > ul > li";
 
     /// <summary>
-    ///   Compounds to replace with custom BBCode when appearing in bold on wiki pages.
+    ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
-    private static readonly string[] CustomBbcodeCompounds =
-    {
-        // TODO: get these values from English translations of the names in organelles.json
-        "ATP",
-        "Ammonia",
-        "Carbon Dioxide",
-        "Glucose",
-        "Hydrogen Sulfide",
-        "Iron",
-        "Mucilage",
-        "Nitrogen",
-        "Oxygen",
+    private readonly Regex[] whitelistedDomains =
+    [
+        new Regex(@".*\.wikipedia\.org\/.*"),
+        new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
+    ];
 
-        // ReSharper disable once StringLiteralTypo
-        "OxyToxy",
-        "Phosphates",
-        "Sunlight",
-        "Temperature",
-    };
+    /// <summary>
+    ///   Mapping from English page names to internal page names, required for inter-page linking in game.
+    /// </summary>
+    private Dictionary<string, string> pageNames = new();
 
     /// <summary>
     ///   Inserts selected content from the online wiki into the game files. See
     ///   https://wiki.revolutionarygamesstudio.com/wiki/Thriveopedia for instructions.
     /// </summary>
-    public static async Task<bool> Run(CancellationToken cancellationToken)
+    public async Task<bool> Run(CancellationToken cancellationToken)
     {
         var organellesRootTask = FetchRootPage(ORGANELLE_CATEGORY, "Organelles", cancellationToken);
         var stagesRootTask = FetchRootPage(STAGES_CATEGORY, "Stages", cancellationToken);
@@ -88,6 +81,8 @@ public static class WikiUpdater
             DevelopmentPages = developmentPages.Select(p => p.UntranslatedPage).ToList(),
         };
 
+        var untranslatedWiki = new Wiki(organellesRoot.UntranslatedPage,
+            organelles.Select(o => o.UntranslatedPage).ToList());
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
 
@@ -111,7 +106,6 @@ public static class WikiUpdater
         pages.AddRange(developmentPages);
 
         await InsertTranslatedPageContent(pages, cancellationToken);
-
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
 
         return true;
@@ -175,18 +169,16 @@ public static class WikiUpdater
                 (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(body, internalName);
             }
 
-            var sections = GetMainBodySections(body);
+            var sections = GetMainBodySections(page);
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedPageName)).ToList();
 
-            var untranslatedPage = new Wiki.Page(
-                $"WIKI_PAGE_{untranslatedPageName}",
+            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}",
                 internalName,
                 pageUrl,
                 untranslatedSections,
                 untranslatedInfobox);
-            var translatedPage = new Wiki.Page(
-                name,
+            var translatedPage = new Wiki.Page(name,
                 internalName,
                 pageUrl,
                 sections,
@@ -267,7 +259,7 @@ public static class WikiUpdater
     ///   which are taken as the headings (or null for the first section).
     /// </summary>
     /// <param name="body">Body content of the whole page</param>
-    private static List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
+    private List<Wiki.Page.Section> GetMainBodySections(IHtmlElement body)
     {
         var sections = new List<Wiki.Page.Section> { new(null, string.Empty) };
 
@@ -285,14 +277,14 @@ public static class WikiUpdater
             switch (child.TagName)
             {
                 case "P":
-                    text = ConvertTextToBbcode(child.InnerHtml) + "\n\n";
+                    text = ConvertParagraphToBbcode(child) + "\n\n";
                     break;
                 case "UL":
 
                     // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
                         .Where(c => c.TagName == "LI")
-                        .Select(li => $"[indent]—   {ConvertTextToBbcode(li.InnerHtml)}[/indent]")
+                        .Select(li => $"[indent]—   {ConvertParagraphToBbcode(li)}[/indent]")
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 case "H3":
@@ -314,7 +306,7 @@ public static class WikiUpdater
     ///   Returns an equivalent section of a wiki page where the heading and body have been replaced with appropriate
     ///   translation keys.
     /// </summary>
-    private static Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
+    private Wiki.Page.Section UntranslateSection(Wiki.Page.Section section, string pageName)
     {
         var sectionName = section.SectionHeading?.ToUpperInvariant().Replace(" ", "_");
         var heading = sectionName != null ? $"WIKI_HEADING_{sectionName}" : null;
@@ -326,18 +318,97 @@ public static class WikiUpdater
     /// <summary>
     ///   Converts HTML for a single paragraph into BBCode. Paragraph must not contain lists, headings, etc.
     /// </summary>
-    private static string ConvertTextToBbcode(string paragraph)
+    private string ConvertParagraphToBbcode(IElement paragraph)
     {
-        // Process our custom BBCode first
-        foreach (var compound in CustomBbcodeCompounds)
+        var bbcode = new StringBuilder();
+
+        var children = paragraph.ChildNodes;
+        foreach (var child in children)
         {
-            var compoundText = compound.ToLowerInvariant().Replace(" ", string.Empty);
-            paragraph = paragraph.Replace(
-                $"<b>{compound}</b>",
-                $"[thrive:compound type=\"{compoundText}\"][/thrive:compound]");
+            if (child is IHtmlAnchorElement link)
+            {
+                bbcode.Append(ConvertLinkToBbcode(link));
+            }
+            else if (child is IHtmlImageElement image)
+            {
+                // In-game compound BBCode already has bold text label, so remove the extra one
+                RemoveLastBoldText(bbcode);
+                bbcode.Append(ConvertImageToBbcode(image));
+            }
+            else if (child is IElement element)
+            {
+                if (element.TagName == "B" && element.Children.Length > 0)
+                {
+                    // Deal with items inside bold tags, e.g. links
+                    bbcode.Append("[b]");
+                    bbcode.Append(ConvertParagraphToBbcode(element));
+                    bbcode.Append("[/b]");
+                    continue;
+                }
+
+                bbcode.Append(ConvertTextToBbcode(element.OuterHtml));
+            }
+            else
+            {
+                bbcode.Append(ConvertTextToBbcode(child.TextContent));
+            }
         }
 
-        var formatted = paragraph
+        return bbcode.ToString();
+    }
+
+    /// <summary>
+    ///   Removes the last bold text label and all subsequent text from this string.
+    /// </summary>
+    private void RemoveLastBoldText(StringBuilder bbcode)
+    {
+        var boldTextIndex = bbcode.ToString().LastIndexOf("[b]", StringComparison.Ordinal);
+
+        if (boldTextIndex < 0)
+            return;
+
+        bbcode.Remove(boldTextIndex, bbcode.Length - boldTextIndex);
+    }
+
+    /// <summary>
+    ///   Converts an HTML link element into BBCode (external or pointing at another page).
+    /// </summary>
+    private string ConvertLinkToBbcode(IHtmlAnchorElement link)
+    {
+        var isExternalLink = link.ClassName == "external text";
+
+        if (isExternalLink)
+        {
+            // Use text if the link isn't whitelisted
+            if (!whitelistedDomains.Any(d => d.IsMatch(link.Href)))
+                return ConvertTextToBbcode(link.InnerHtml);
+
+            return $"[color=#3796e1][url={link.Href}]{ConvertTextToBbcode(link.InnerHtml)}[/url][/color]";
+        }
+
+        var translatedPageName = link.Title!;
+
+        if (!pageNames.TryGetValue(translatedPageName, out var internalPageName))
+            throw new Exception($"Tried to create link to page {translatedPageName} but it doesn't exist");
+
+        var linkText = ConvertTextToBbcode(link.InnerHtml);
+        return $"[color=#3796e1][url=thriveopedia:{internalPageName}]{linkText}[/url][/color]";
+    }
+
+    /// <summary>
+    ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
+    /// </summary>
+    private string ConvertImageToBbcode(IHtmlImageElement image)
+    {
+        return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+    }
+
+    /// <summary>
+    ///   Converts formatted HTML text into BBCode.
+    /// </summary>
+    private string ConvertTextToBbcode(string paragraph)
+    {
+        return paragraph
             .Replace("\n", string.Empty)
             .Replace("<b>", "[b]")
             .Replace("</b>", "[/b]")
@@ -356,7 +427,7 @@ public static class WikiUpdater
     /// <summary>
     ///   Inserts into en.po the English translations for all the translation keys in a list of wiki pages.
     /// </summary>
-    private static async Task InsertTranslatedPageContent(List<TranslationPair> pages,
+    private async Task InsertTranslatedPageContent(IEnumerable<TranslationPair> pages,
         CancellationToken cancellationToken)
     {
         // Create the whole list of values to replace first, then replace asynchronously based on read lines

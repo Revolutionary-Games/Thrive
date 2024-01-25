@@ -26,6 +26,9 @@ option(USE_LOCK_FREE_QUEUE
 # option(TASK_QUEUE_USES_POINTERS
 #   "If on uses pointers in the task queue instead of the task objects themselves" ON)
 
+option(THRIVE_DISTRIBUTION
+  "Set on when building native libs for Thrive distribution" OFF)
+
 # This is disabled for now as this is not available when cross compiling to
 # Windows
 option(USE_ATOMIC_COLLISION_WRITE

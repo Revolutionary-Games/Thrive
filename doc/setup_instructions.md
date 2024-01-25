@@ -40,7 +40,9 @@ archive and run the Godot executable in it.
 Git with LFS
 ------------
 
-To clone the Thrive repository properly you need Git with Git LFS.
+To clone the Thrive repository properly you need Git with Git
+LFS. Note that the GitHub option to download as .zip will not work
+(unless that is updated in the future to include LFS assets).
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
@@ -77,12 +79,12 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 7.0, but a
+Next you need, .NET SDK. Recommended version currently is 8.0, but a
 newer version may also work.
 
 On Linux you can use your package manager to install that. The package
-might be called `dotnet-sdk-7.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-7.0`
+might be called `dotnet-sdk-8.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-8.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
@@ -353,7 +355,10 @@ dotnet run --project Scripts -- native Fetch Install
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
-recommended. On Windows Visual Studio probably works best, but
+recommended (and used by default). Also the build is configured to use
+the gold linker which might not be installed by default so that also
+needs to be installed (package name is probably something like
+`binutils-gold`). On Windows Visual Studio probably works best, but
 technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
 should be used.
@@ -598,6 +603,16 @@ If you get errors from any files in the Scripts folder, for example
 `Thrive\Scripts\Program.cs`, then you likely have an outdated version
 of the submodules. Running the above submodule update command should
 fix these kind of errors as well.
+
+### Godot asset import fails / images can't be opened
+
+The most likely case with Godot not being able to import the binary
+assets and none of the game images being able to be opened with an
+image viewer, is that the Thrive repository was not cloned with the
+LFS data. Please see above the LFS instructions and try doing it again
+with those instructions until the downloaded image files can be
+opened. After that Godot should be able to import all the assets
+properly.
 
 ### Troubleshooting regarding Godot automatically breaking
 

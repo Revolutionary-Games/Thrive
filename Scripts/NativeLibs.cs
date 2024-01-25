@@ -562,8 +562,7 @@ public class NativeLibs
 
         if (result.ExitCode != 0)
         {
-            ColourConsole.WriteErrorLine(
-                $"CMake configuration failed (exit: {result.ExitCode}). " +
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
                 "Do you have the required build tools installed?");
 
             return false;
@@ -641,8 +640,7 @@ public class NativeLibs
         startInfo.ArgumentList.Add("-t");
 
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:/thrive:ro,z");
-        startInfo.ArgumentList.Add(
-            $"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
+        startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
 
         if (options.Verbose)
         {
@@ -670,6 +668,10 @@ public class NativeLibs
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
         }
+        else
+        {
+            shCommandBuilder.Append("-DTHRIVE_DISTRIBUTION=ON ");
+        }
 
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
@@ -680,6 +682,11 @@ public class NativeLibs
         shCommandBuilder.Append("-DINTERPROCEDURAL_OPTIMIZATION=ON ");
 
         shCommandBuilder.Append("-DCMAKE_INSTALL_PREFIX=/install-target ");
+
+        // ReSharper disable once CommentTypo
+        // Specify the CPU type to tune for and make available instructions for checking the available instructions
+        // (_xgetbv)
+        shCommandBuilder.Append("-DCMAKE_CXX_FLAGS=-march=sandybridge ");
 
         switch (platform)
         {
@@ -718,8 +725,7 @@ public class NativeLibs
 
                 shCommandBuilder.Append("-DCMAKE_SHARED_LINKER_FLAGS='-static -lc++ -lc++abi' ");
 
-                throw new NotImplementedException(
-                    "TODO: test (this was written based on the 64-bit windows version)");
+                throw new NotImplementedException("TODO: test (this was written based on the 64-bit windows version)");
             }
 
             case PackagePlatform.Mac:

@@ -26,8 +26,7 @@ public class LocalizationCheck : LocalizationCheckBase
         {
             runData.ReportError("Translations are not up to date");
 
-            runData.OutputInfoWithMutex(
-                "Please verify your installed gettext tools are new enough and " +
+            runData.OutputInfoWithMutex("Please verify your installed gettext tools are new enough and " +
                 $"rerun {LocalizationCommand}");
         }
     }

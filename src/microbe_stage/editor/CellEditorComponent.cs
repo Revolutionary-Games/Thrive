@@ -92,7 +92,7 @@ public partial class CellEditorComponent :
     public NodePath AutoEvoPredictionPanelPath = null!;
 
     [Export]
-    public NodePath TotalPopulationLabelPath = null!;
+    public NodePath TotalEnergyLabelPath = null!;
 
     [Export]
     public NodePath AutoEvoPredictionFailedLabelPath = null!;
@@ -105,6 +105,9 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath MembraneColorPickerPath = null!;
+
+    [Export]
+    public NodePath ATPBalancePanelPath = null!;
 
     [Export]
     public NodePath ATPBalanceLabelPath = null!;
@@ -141,6 +144,9 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath OrganelleUpgradeGUIPath = null!;
+
+    [Export]
+    public NodePath RightPanelScrollContainerPath = null!;
 
 #pragma warning disable CA2213
 
@@ -196,7 +202,7 @@ public partial class CellEditorComponent :
 
     private Label generationLabel = null!;
 
-    private CellStatsIndicator totalPopulationLabel = null!;
+    private CellStatsIndicator totalEnergyLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
@@ -206,6 +212,7 @@ public partial class CellEditorComponent :
     private Slider rigiditySlider = null!;
     private TweakedColourPicker membraneColorPicker = null!;
 
+    private Control atpBalancePanel = null!;
     private Label atpBalanceLabel = null!;
     private Label atpProductionLabel = null!;
     private Label atpConsumptionLabel = null!;
@@ -222,7 +229,13 @@ public partial class CellEditorComponent :
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
+    private ScrollContainer rightPanelScrollContainer = null!;
+
     private PackedScene organelleSelectionButtonScene = null!;
+
+    private PackedScene undiscoveredOrganellesScene = null!;
+
+    private PackedScene undiscoveredOrganellesTooltipScene = null!;
 
     private Spatial? cellPreviewVisualsRoot;
 #pragma warning restore CA2213
@@ -230,6 +243,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
+    private OrganelleDefinition flagellum = null!;
 
     private Compound sunlight = null!;
 
@@ -237,11 +251,16 @@ public partial class CellEditorComponent :
 
     private string? bestPatchName;
 
+    // This and worstPatchPopulation used to be displayed but are now kept for potential future use
     private long bestPatchPopulation;
+
+    private float bestPatchEnergyGathered;
 
     private string? worstPatchName;
 
     private long worstPatchPopulation;
+
+    private float worstPatchEnergyGathered;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
@@ -452,6 +471,13 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public TutorialState? TutorialState { get; set; }
 
+    /// <summary>
+    ///   Needed for auto-evo prediction to be able to compare the new energy to the old energy
+    /// </summary>
+    [JsonProperty]
+    public float? PreviousPlayerGatheredEnergy { get; set; }
+
+    [JsonIgnore]
     public IEnumerable<OrganelleDefinition> PlacedUniqueOrganelles => editedMicrobeOrganelles
         .Where(p => p.Definition.Unique)
         .Select(p => p.Definition);
@@ -485,8 +511,8 @@ public partial class CellEditorComponent :
 
     public static void UpdateOrganelleDisplayerTransform(SceneDisplayer organelleModel, OrganelleTemplate organelle)
     {
-        organelleModel.Transform = new Transform(
-            MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), organelle.OrganelleModelPosition);
+        organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation),
+            organelle.OrganelleModelPosition);
 
         organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
             Constants.DEFAULT_HEX_SIZE);
@@ -529,9 +555,15 @@ public partial class CellEditorComponent :
         protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
+        flagellum = SimulationParameters.Instance.GetOrganelleType("flagellum");
 
         organelleSelectionButtonScene =
             GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
+
+        undiscoveredOrganellesScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesButton.tscn");
+        undiscoveredOrganellesTooltipScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
@@ -573,7 +605,7 @@ public partial class CellEditorComponent :
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
-        totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
+        totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
@@ -583,6 +615,7 @@ public partial class CellEditorComponent :
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
+        atpBalancePanel = GetNode<Control>(ATPBalancePanelPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
@@ -592,6 +625,8 @@ public partial class CellEditorComponent :
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
         organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
+
+        rightPanelScrollContainer = GetNode<ScrollContainer>(RightPanelScrollContainerPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -620,8 +655,7 @@ public partial class CellEditorComponent :
 
         previewSimulation.Init(cellPreviewVisualsRoot);
 
-        var newLayout = new OrganelleLayout<OrganelleTemplate>(
-            OnOrganelleAdded, OnOrganelleRemoved);
+        var newLayout = new OrganelleLayout<OrganelleTemplate>(OnOrganelleAdded, OnOrganelleRemoved);
 
         if (fresh)
         {
@@ -640,7 +674,10 @@ public partial class CellEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+                var properties = Editor.EditedCellProperties;
+
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
+                CreateUndiscoveredOrganellesButtons();
                 CreatePreviewMicrobeIfNeeded();
                 UpdateArrow(false);
             }
@@ -678,8 +715,6 @@ public partial class CellEditorComponent :
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateMPCost();
 
-        UpdateOrganelleUnlockTooltips();
-
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
 
@@ -704,7 +739,7 @@ public partial class CellEditorComponent :
         if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount);
         }
 
         CheckRunningAutoEvoPrediction();
@@ -773,7 +808,8 @@ public partial class CellEditorComponent :
 
         // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
         // the logic here the first time this is called too early
-        if (Editor.EditedCellProperties == null && IsMulticellularEditor)
+        var properties = Editor.EditedCellProperties;
+        if (properties == null && IsMulticellularEditor)
             return;
 
         if (IsMulticellularEditor)
@@ -788,22 +824,24 @@ public partial class CellEditorComponent :
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
         // that just marks things dirty and we update our stats on the next _Process call)
-        Membrane = Editor.EditedCellProperties!.MembraneType;
-        Rigidity = Editor.EditedCellProperties.MembraneRigidity;
-        Colour = Editor.EditedCellProperties.Colour;
+        Membrane = properties!.MembraneType;
+        Rigidity = properties.MembraneRigidity;
+        Colour = properties.Colour;
 
         if (!IsMulticellularEditor)
             behaviourEditor.OnEditorSpeciesSetup(species);
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in Editor.EditedCellProperties.Organelles.Organelles)
+        foreach (var organelle in properties.Organelles.Organelles)
         {
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        newName = Editor.EditedCellProperties.FormattedName;
+        newName = properties.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+        UpdateOrganelleUnlockTooltips(true);
+
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
 
         // Setup the display cell
         CreatePreviewMicrobeIfNeeded();
@@ -891,6 +929,21 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        // This is triggered when no changes have been made. A more accurate way would be to check the action history
+        // for any undoable action, but that isn't accessible here currently so this is probably good enough.
+        if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
+        {
+            var tutorialState = Editor.CurrentGame.TutorialState;
+
+            if (tutorialState.Enabled)
+            {
+                tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
+
+                if (tutorialState.TutorialActive())
+                    return false;
+            }
+        }
+
         return true;
     }
 
@@ -909,7 +962,7 @@ public partial class CellEditorComponent :
 
     public void UpdatePatchDependentBalanceData()
     {
-        // Skip if not opened in the multicellular editor
+        // Skip if opened in the multicellular editor
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
@@ -1058,14 +1111,13 @@ public partial class CellEditorComponent :
 
     public float CalculateSpeed()
     {
-        return MicrobeInternalCalculations.CalculateSpeed(
-            editedMicrobeOrganelles.Organelles, Membrane, Rigidity, !HasNucleus);
+        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles.Organelles, Membrane, Rigidity,
+            !HasNucleus);
     }
 
     public float CalculateRotationSpeed()
     {
-        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles, Membrane,
-            !HasNucleus);
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles.Organelles);
     }
 
     public float CalculateHitpoints()
@@ -1123,9 +1175,9 @@ public partial class CellEditorComponent :
     {
         actionData.CostMultiplier = CostMultiplier;
 
-        return EnqueueAction(new CombinedEditorAction(
-            new SingleEditorAction<OrganelleUpgradeActionData>(DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
-                actionData)));
+        return EnqueueAction(new CombinedEditorAction(new SingleEditorAction<OrganelleUpgradeActionData>(
+            DoOrganelleUpgradeAction, UndoOrganelleUpgradeAction,
+            actionData)));
     }
 
     protected override int CalculateCurrentActionCost()
@@ -1164,10 +1216,13 @@ public partial class CellEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        if (AddOrganelle(ActiveActionName!))
+        var organelle = ActiveActionName!;
+
+        if (AddOrganelle(organelle))
         {
             // Only trigger tutorial if an organelle was really placed
-            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced,
+                new OrganellePlacedEventArgs(GetOrganelleDefinition(organelle)), this);
         }
     }
 
@@ -1291,11 +1346,12 @@ public partial class CellEditorComponent :
                 DigestionEfficiencyLabelPath.Dispose();
                 GenerationLabelPath.Dispose();
                 AutoEvoPredictionPanelPath.Dispose();
-                TotalPopulationLabelPath.Dispose();
+                TotalEnergyLabelPath.Dispose();
                 AutoEvoPredictionFailedLabelPath.Dispose();
                 WorstPatchLabelPath.Dispose();
                 BestPatchLabelPath.Dispose();
                 MembraneColorPickerPath.Dispose();
+                ATPBalancePanelPath.Dispose();
                 ATPBalanceLabelPath.Dispose();
                 ATPProductionLabelPath.Dispose();
                 ATPConsumptionLabelPath.Dispose();
@@ -1308,6 +1364,7 @@ public partial class CellEditorComponent :
                 AutoEvoPredictionExplanationPopupPath.Dispose();
                 AutoEvoPredictionExplanationLabelPath.Dispose();
                 OrganelleUpgradeGUIPath.Dispose();
+                RightPanelScrollContainerPath.Dispose();
             }
 
             previewSimulation?.Dispose();
@@ -1396,10 +1453,8 @@ public partial class CellEditorComponent :
             organelleMenu.EnableDeleteOption = false;
 
             organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
-                TranslationServer.Translate(
-                    "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
-                TranslationServer.Translate(
-                    "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
+                TranslationServer.Translate("NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                TranslationServer.Translate("LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1634,8 +1689,7 @@ public partial class CellEditorComponent :
 
             var organelleModel = hoverModels[usedHoverModel++];
 
-            organelleModel.Transform = new Transform(
-                MathUtils.CreateRotationForOrganelle(rotation),
+            organelleModel.Transform = new Transform(MathUtils.CreateRotationForOrganelle(rotation),
                 cartesianPosition + shownOrganelle.ModelOffset);
 
             organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
@@ -1725,8 +1779,7 @@ public partial class CellEditorComponent :
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
 
-        return editedMicrobeOrganelles.CanPlaceAndIsTouching(
-            organelle,
+        return editedMicrobeOrganelles.CanPlaceAndIsTouching(organelle,
             notPlacingCytoplasm,
             notPlacingCytoplasm);
     }
@@ -1745,8 +1798,8 @@ public partial class CellEditorComponent :
         var replacedCytoplasmActions =
             GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
 
-        var action = new SingleEditorAction<OrganellePlacementActionData>(
-            DoOrganellePlaceAction, UndoOrganellePlaceAction,
+        var action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
+            UndoOrganellePlaceAction,
             new OrganellePlacementActionData(organelle, organelle.Position, organelle.Orientation)
             {
                 CostMultiplier = CostMultiplier,
@@ -1885,7 +1938,6 @@ public partial class CellEditorComponent :
         UpdateArrow();
 
         UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
-        UpdateOrganelleUnlockTooltips();
 
         UpdatePatchDependentBalanceData();
 
@@ -1898,6 +1950,9 @@ public partial class CellEditorComponent :
         StartAutoEvoPrediction();
 
         UpdateFinishButtonWarningVisibility();
+
+        // Updated here to make sure everything else has been updated first so tooltips are accurate
+        UpdateOrganelleUnlockTooltips(false);
     }
 
     /// <summary>
@@ -1910,9 +1965,8 @@ public partial class CellEditorComponent :
 
         // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
-                Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islands, microbePreviewMode);
+        UpdateAlreadyPlacedHexes(editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
+            Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islands, microbePreviewMode);
 
         int nextFreeOrganelle = 0;
 
@@ -2003,12 +2057,17 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(
-            targetOrganelle, upgradeGUI ?? string.Empty, this, Editor, CostMultiplier, Editor.CurrentGame);
+        if (TutorialState?.Enabled == true)
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganelleModified, EventArgs.Empty, this);
+        }
+
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI ?? string.Empty, this, Editor, CostMultiplier,
+            Editor.CurrentGame);
     }
 
     /// <summary>
-    ///   Lock / unlock a single organelle that need a nucleus
+    ///   Lock / unlock a single organelle that needs a nucleus
     /// </summary>
     private void UpdatePartAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames,
         OrganelleDefinition organelle)
@@ -2019,15 +2078,16 @@ public partial class CellEditorComponent :
         {
             item.Locked = true;
         }
-        else if (organelle.RequiresNucleus)
+        else if (organelle.RequiresNucleus && !placedUniqueOrganelleNames.Contains(nucleus))
         {
-            var hasNucleus = placedUniqueOrganelleNames.Contains(nucleus);
-            item.Locked = !hasNucleus;
+            item.Locked = true;
         }
         else
         {
             item.Locked = false;
         }
+
+        item.RecentlyUnlocked = Editor.CurrentGame.GameWorld.UnlockProgress.RecentlyUnlocked(organelle);
     }
 
     /// <summary>
@@ -2309,9 +2369,9 @@ public partial class CellEditorComponent :
 
     private void UpdateAutoEvoPredictionTranslations()
     {
-        if (autoEvoPredictionRunSuccessful is false)
+        if (autoEvoPredictionRunSuccessful == false)
         {
-            totalPopulationLabel.Value = float.NaN;
+            totalEnergyLabel.Value = float.NaN;
             autoEvoPredictionFailedLabel.Show();
         }
         else
@@ -2319,12 +2379,14 @@ public partial class CellEditorComponent :
             autoEvoPredictionFailedLabel.Hide();
         }
 
-        var populationFormat = TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
+        var energyFormat = TranslationServer.Translate("ENERGY_IN_PATCH_SHORT");
 
         if (!string.IsNullOrEmpty(bestPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(bestPatchEnergyGathered);
+
             bestPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(bestPatchName), bestPatchPopulation);
+                energyFormat.FormatSafe(TranslationServer.Translate(bestPatchName), formatted);
         }
         else
         {
@@ -2333,13 +2395,21 @@ public partial class CellEditorComponent :
 
         if (!string.IsNullOrEmpty(worstPatchName))
         {
+            var formatted = StringUtils.ThreeDigitFormat(worstPatchEnergyGathered);
+
             worstPatchLabel.Text =
-                populationFormat.FormatSafe(TranslationServer.Translate(worstPatchName), worstPatchPopulation);
+                energyFormat.FormatSafe(TranslationServer.Translate(worstPatchName), formatted);
         }
         else
         {
             worstPatchLabel.Text = TranslationServer.Translate("N_A");
         }
+    }
+
+    private void DummyKeepTranslation()
+    {
+        // This keeps this translation string existing if we ever still want to use worst and best population numbers
+        TranslationServer.Translate("POPULATION_IN_PATCH_SHORT");
     }
 
     private void OpenAutoEvoPredictionDetails()
@@ -2377,36 +2447,67 @@ public partial class CellEditorComponent :
 
         autoEvoPredictionRunSuccessful = true;
 
-        // Set the initial value
-        totalPopulationLabel.ResetInitialValue();
-        totalPopulationLabel.Value = run.PlayerSpeciesOriginal.Population;
+        // Gather energy details
+        float totalEnergy = 0;
+        Patch? bestPatch = null;
+        float bestPatchEnergy = 0;
+        Patch? worstPatch = null;
+        float worstPatchEnergy = 0;
 
-        totalPopulationLabel.Value = newPopulation;
-
-        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
-
-        // Best
-        if (sorted.Count > 0)
+        foreach (var entry in results.GetPatchEnergyResults(run.PlayerSpeciesNew))
         {
-            var patch = sorted[0];
-            bestPatchName = patch.Key.Name.ToString();
-            bestPatchPopulation = patch.Value;
+            // Best
+            if (bestPatch == null || bestPatchEnergy < entry.Value.TotalEnergyGathered)
+            {
+                bestPatchEnergy = entry.Value.TotalEnergyGathered;
+                bestPatch = entry.Key;
+            }
+
+            if (worstPatch == null || worstPatchEnergy > entry.Value.TotalEnergyGathered)
+            {
+                worstPatchEnergy = entry.Value.TotalEnergyGathered;
+                worstPatch = entry.Key;
+            }
+
+            totalEnergy += entry.Value.TotalEnergyGathered;
+        }
+
+        // Set the initial value to compare against the original species
+        totalEnergyLabel.ResetInitialValue();
+
+        if (PreviousPlayerGatheredEnergy != null)
+        {
+            totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
         }
         else
         {
-            bestPatchName = null;
+            GD.PrintErr("Previously gathered energy is unknown, can't compare them (this will happen with " +
+                "older saves)");
         }
 
-        // And worst patch
-        if (sorted.Count > 1)
+        var formatted = StringUtils.ThreeDigitFormat(totalEnergy);
+
+        totalEnergyLabel.SetMultipartValue($"{formatted} ({newPopulation})", totalEnergy);
+
+        // Set best and worst patch displays
+        worstPatchName = worstPatch?.Name.ToString();
+        worstPatchEnergyGathered = worstPatchEnergy;
+
+        if (worstPatch != null)
         {
-            var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name.ToString();
-            worstPatchPopulation = patch.Value;
+            // For some reason in rare cases the population numbers cannot be found, using FirstOrDefault should ensure
+            // here that missing population numbers get assigned 0
+            worstPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
+                .FirstOrDefault(p => p.Key == worstPatch).Value;
         }
-        else
+
+        bestPatchName = bestPatch?.Name.ToString();
+        bestPatchEnergyGathered = bestPatchEnergy;
+
+        if (bestPatch != null)
         {
-            worstPatchName = null;
+            bestPatchPopulation = results.GetPopulationInPatches(run.PlayerSpeciesNew)
+                .FirstOrDefault(p => p.Key == bestPatch).Value;
         }
 
         CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),

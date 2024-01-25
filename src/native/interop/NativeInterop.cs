@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Godot;
 
@@ -49,8 +50,7 @@ public static class NativeInterop
             debugDrawIsPossible = false;
         }
 
-        // TODO: allow controlling native executor thread count (automatically and through the GUI)
-        NativeMethods.SetNativeExecutorThreads(3);
+        // TaskExecutor sets the number of used background threads on the native side
 
 #if DEBUG
         CheckSizesOfInteropTypes();
@@ -98,6 +98,22 @@ public static class NativeInterop
     }
 
     /// <summary>
+    ///   Checks that current CPU is sufficiently new (has the required instruction set extensions) for running the
+    ///   Thrive native module
+    /// </summary>
+    /// <returns>True if everything is fine and load can proceed</returns>
+    public static bool CheckCPU()
+    {
+        if (!nativeLoadSucceeded)
+        {
+            GD.Print("Can't check CPU features without native library loaded");
+            return false;
+        }
+
+        return NativeMethods.CheckRequiredCPUFeatures();
+    }
+
+    /// <summary>
     ///   Releases all native resources and prepares the library for process exit
     /// </summary>
     public static void Shutdown()
@@ -134,9 +150,27 @@ public static class NativeInterop
         NativeMethods.DisableDebugDrawerCallbacks();
     }
 
+    public static void NotifyWantedThreadCountChanged(int threads)
+    {
+        if (!nativeLoadSucceeded)
+            return;
+
+        NativeMethods.SetNativeExecutorThreads(threads);
+    }
+
     private static void ForwardMessage(IntPtr messageData, int messageLength, NativeMethods.LogLevel level)
     {
         var message = Marshal.PtrToStringAnsi(messageData, messageLength);
+
+#if DEBUG
+
+        // Pause debugger when detecting a native assertion fail to give some idea as to what's going on
+        if (message.Contains("assert failed"))
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+        }
+#endif
 
         if (level <= NativeMethods.LogLevel.Info)
         {
@@ -214,6 +248,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern bool CheckRequiredCPUFeatures();
 
     [DllImport("thrive_native")]
     internal static extern void SetLogLevel(LogLevel level);

@@ -84,6 +84,8 @@ public class DebugDrawer : ControlWithInput
     public static DebugDrawer Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public int DebugLevel => currentPhysicsDebugLevel;
+    public bool PhysicsDebugDrawAvailable => physicsDebugSupported;
+
     public Vector3 DebugCameraLocation { get; private set; }
 
     public static void DumpPhysicsState(PhysicalWorld world)
@@ -193,8 +195,7 @@ public class DebugDrawer : ControlWithInput
                 // Put some extra buffer in the memory advice
                 extraNeededDrawMemory += SingleTriangleDrawMemoryUse * 100;
 
-                GD.PrintErr(
-                    "Debug drawer hit immediate geometry memory limit (extra needed memory: " +
+                GD.PrintErr("Debug drawer hit immediate geometry memory limit (extra needed memory: " +
                     $"{extraNeededDrawMemory / 1024} KiB), some things were not rendered " +
                     "(this message won't repeat even if the problem occurs again)");
             }
@@ -216,7 +217,7 @@ public class DebugDrawer : ControlWithInput
     [RunOnKeyDown("d_physics_debug", Priority = -2)]
     public void IncrementPhysicsDebugLevel()
     {
-        if (!physicsDebugSupported)
+        if (!PhysicsDebugDrawAvailable)
         {
             if (!warnedAboutNotBeingSupported)
             {
@@ -234,6 +235,24 @@ public class DebugDrawer : ControlWithInput
 
             OnPhysicsDebugLevelChangedHandler?.Invoke(currentPhysicsDebugLevel);
         }
+    }
+
+    public void EnablePhysicsDebug()
+    {
+        if (currentPhysicsDebugLevel == 0)
+            IncrementPhysicsDebugLevel();
+    }
+
+    public void DisablePhysicsDebugLevel()
+    {
+        if (currentPhysicsDebugLevel == 0)
+            return;
+
+        currentPhysicsDebugLevel = 0;
+
+        GD.Print("Disabling physics debug");
+
+        OnPhysicsDebugLevelChangedHandler?.Invoke(currentPhysicsDebugLevel);
     }
 
     protected override void Dispose(bool disposing)

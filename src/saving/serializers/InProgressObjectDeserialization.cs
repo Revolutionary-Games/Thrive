@@ -438,8 +438,7 @@ public class InProgressObjectDeserialization
         instanceCreationStarted = true;
 
         // Detect scene loaded type
-        bool sceneLoad = type.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(SceneLoadedClassAttribute));
+        bool sceneLoad = type.CustomAttributes.Any(attr => attr.AttributeType == typeof(SceneLoadedClassAttribute));
 
         createdInstance = !sceneLoad ?
             CreateDeserializedInstance(type) :
@@ -481,11 +480,10 @@ public class InProgressObjectDeserialization
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
         var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)
-            .Where(
-                c => c.CustomAttributes.Any(a => a.AttributeType == constructorAttribute));
+            .Where(c => c.CustomAttributes.Any(a => a.AttributeType == constructorAttribute));
 
-        var potentialConstructors = objectType.GetConstructors().Concat(
-            privateJsonConstructors).Where(c => !c.ContainsGenericParameters);
+        var potentialConstructors = objectType.GetConstructors().Concat(privateJsonConstructors)
+            .Where(c => !c.ContainsGenericParameters);
 
         // For simplicity regarding the way we read properties now (and to avoid reading *all* properties),
         // we do it similarly as the default Newtonsoft JSON by requiring marking which constructor to use
@@ -545,8 +543,7 @@ public class InProgressObjectDeserialization
             {
                 if (fieldInfo.FieldType != param.ParameterType)
                 {
-                    throw new JsonException(
-                        $"Mismatching field and constructor parameter type for: {param.Name}, " +
+                    throw new JsonException($"Mismatching field and constructor parameter type for: {param.Name}, " +
                         $"class: {objectType.Name}");
                 }
             }
@@ -554,8 +551,7 @@ public class InProgressObjectDeserialization
             {
                 if (propertyInfo.PropertyType != param.ParameterType)
                 {
-                    throw new JsonException(
-                        $"Mismatching property and constructor parameter type for: {param.Name}, " +
+                    throw new JsonException($"Mismatching property and constructor parameter type for: {param.Name}, " +
                         $"class: {objectType.Name}");
                 }
             }
@@ -568,8 +564,7 @@ public class InProgressObjectDeserialization
 
             if (jsonName == null)
             {
-                throw new JsonException(
-                    $"Could not find field in JSON for constructor parameter: {param.Name}, " +
+                throw new JsonException($"Could not find field in JSON for constructor parameter: {param.Name}, " +
                     $"class: {objectType.Name}");
             }
 

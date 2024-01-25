@@ -21,6 +21,11 @@ public class Compound : IRegistryType
     public bool IsCloud;
 
     /// <summary>
+    ///   True when this is a gas type compound
+    /// </summary>
+    public bool IsGas;
+
+    /// <summary>
     ///   Scales the retention rate of this compound as a cloud in the environment
     /// </summary>
     public float DecayRate = 1.0f;
@@ -86,6 +91,9 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound must be provided an icon");
         }
+
+        if (IsGas && IsCloud)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Gas compound cannot be a cloud type as well");
 
         // Guards against uninitialized alpha
 #pragma warning disable RECS0018

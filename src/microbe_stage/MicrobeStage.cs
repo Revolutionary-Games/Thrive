@@ -21,6 +21,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private Compound glucose = null!;
     private Compound phosphate = null!;
+    private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
     // a save
@@ -63,6 +64,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonProperty]
     private bool appliedPlayerGodMode;
 
+    private bool appliedUnlimitGrowthSpeed;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -95,19 +98,28 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonIgnore]
     public override bool HasPlayer => Player.IsAlive;
 
+    [JsonIgnore]
+    public override bool HasAlivePlayer => HasPlayer && IsPlayerAlive();
+
+    /// <summary>
+    ///   Makes saving information related to the patch manager work. This checks the patch manager against null to
+    ///   make saves made in the editor after loading a save made in the editor work.
+    /// </summary>
     [JsonProperty]
     public Patch? SavedPatchManagerPatch
     {
-        get => patchManager.ReadPreviousPatchForSave();
+        get => patchManager == null! ? tempPatchManagerCurrentPatch : patchManager.ReadPreviousPatchForSave();
         set => tempPatchManagerCurrentPatch = value;
     }
 
     [JsonProperty]
     public float SavedPatchManagerBrightness
     {
-        get => patchManager.ReadBrightnessForSave();
+        get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
         set => tempPatchManagerBrightness = value;
     }
+
+    public override MainGameState GameState => MainGameState.MicrobeStage;
 
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -127,8 +139,10 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         ResolveNodeReferences();
 
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
+        var simulationParameters = SimulationParameters.Instance;
+        glucose = simulationParameters.GetCompound("glucose");
+        phosphate = simulationParameters.GetCompound("phosphates");
+        cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -192,7 +206,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             }
         }
 
-        bool playerAlive = IsPlayerAlive();
+        bool playerAlive = HasAlivePlayer;
 
         if (WorldSimulation.ProcessAll(delta))
         {
@@ -203,7 +217,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (gameOver || playerExtinctInCurrentPatch)
             return;
 
-        if (playerAlive != IsPlayerAlive())
+        if (playerAlive != HasAlivePlayer)
         {
             // Player just became dead
             GD.Print("Detected player is no longer alive after last simulation update");
@@ -232,7 +246,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             if (Player.Has<MicrobeColony>())
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
-                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length), this);
+                    new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
+                        Player.Has<EarlyMulticellularSpeciesMember>()), this);
 
                 if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
                 {
@@ -304,6 +319,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     appliedPlayerGodMode = true;
                 }
             }
+
+            if (appliedUnlimitGrowthSpeed != CheatManager.UnlimitedGrowthSpeed)
+            {
+                appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
+                CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
+                    .UnlimitedGrowthSpeed);
+            }
         }
         else
         {
@@ -319,8 +341,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
-            TutorialState.SendEvent(
-                TutorialEventType.EnteredMicrobeStage,
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
                 new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
         }
         else
@@ -362,6 +383,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
     }
 
+    public void RecordPlayerReproduction()
+    {
+        GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReproduction(Player,
+            GameWorld.Map.CurrentPatch!.BiomeTemplate);
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -395,13 +422,11 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
         else
         {
-            // Might be related to saving but somehow the editor button can be enabled while in a colony
-            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
-            // becoming disabled properly
-            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            // This might not be required anymore but just for extra safety this is here
             if (Player.Has<MicrobeColony>())
             {
                 GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+                MovingToEditor = false;
                 return;
             }
 
@@ -415,6 +440,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
 
         GiveReproductionPopulationBonus();
+
+        RecordPlayerReproduction();
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
@@ -443,8 +470,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         previousSpecies.Obsolete = true;
 
         // Log becoming multicellular in the timeline
-        GameWorld.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
             true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
@@ -480,7 +506,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Set(new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0]));
+            microbe.Set(
+                new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
             microbe.Set(new MulticellularGrowth(multicellularSpecies));
 
@@ -510,6 +537,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             throw new Exception("failed to keep the current scene root");
         }
+
+        // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
+        GameWorld.UnlockProgress.UnlockAll = true;
 
         MovingToEditor = false;
     }
@@ -693,6 +723,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     storage.Compounds.ClearCompounds();
                 }
             }
+
+            // Force player despawn to happen if there is a problem that prevented the player timed life from being
+            // added
+            if (!Player.Has<TimedLife>())
+            {
+                Player.Set<TimedLife>();
+            }
+
+            ref var timed = ref Player.Get<TimedLife>();
+            timed.FadeTimeRemaining =
+                Math.Min(Constants.MAX_PLAYER_DYING_TIME, timed.FadeTimeRemaining ?? float.MaxValue);
         }
     }
 
@@ -738,6 +779,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             UpdatePatchSettings();
         }
+
+        // Reset any cheat state if there was some active
+        CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
     }
 
     protected override void OnGameStarted()
@@ -759,15 +803,14 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (spawnedPlayer)
         {
             // Random location on respawn
-            spawnLocation = new Vector3(
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+            spawnLocation = new Vector3(random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
 
             WorldSimulation.ClearPlayerLocationDependentCaches();
         }
 
         var (recorder, _) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, GameWorld.PlayerSpecies,
-            spawnLocation, false, null, out var entityRecord);
+            spawnLocation, false, (null, 0), out var entityRecord);
 
         entityRecord.Set(new MicrobeEventCallbacks
         {
@@ -783,6 +826,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached,
             OnEjectedFromHostileEngulfer = OnPlayerEjectedFromHostileEngulfer,
 
+            OnOrganelleDuplicated = OnPlayerOrganelleDuplicated,
+
             OnNoticeMessage = OnPlayerNoticeMessage,
         });
 
@@ -794,7 +839,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
         Player = WorldSimulation.FindFirstEntityWithComponent<PlayerMarker>();
 
-        if (!IsPlayerAlive())
+        if (!HasAlivePlayer)
             throw new InvalidOperationException("Player spawn didn't create player entity correctly");
 
         // We despawn everything here as either the player just spawned for the first time or died and is being spawned
@@ -811,6 +856,27 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
+        // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay
+        // In freebuild checks need to be skipped to not block the normal freebuild editor availability logic
+        if (!IsPlayerAlive())
+        {
+            canEdit = false;
+        }
+        else if (Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            canEdit = false;
+        }
+        else if (CurrentGame?.FreeBuild != true)
+        {
+            if (Player.Has<MicrobeColony>() && GameWorld.PlayerSpecies is MicrobeSpecies)
+            {
+                canEdit = false;
+            }
+
+            if (!Player.Get<OrganelleContainer>().AllOrganellesDivided)
+                canEdit = false;
+        }
+
         base.OnCanEditStatusChanged(canEdit);
 
         if (!canEdit)
@@ -981,18 +1047,18 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         var playerPosition = Player.Get<WorldPosition>().Position;
 
         var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(WorldSimulation, randomSpecies,
-            playerPosition + Vector3.Forward * 20, true, null, out var entity);
+            playerPosition + Vector3.Forward * 20, true, (null, 0), out var entity);
 
         // Make the cell despawn like normal
-        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity,
-            Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+        WorldSimulation.SpawnSystem.NotifyExternalEntitySpawned(entity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+            weight);
 
         SpawnHelpers.FinalizeEntitySpawn(recorder, WorldSimulation);
     }
 
     private void OnDuplicatePlayerCheatUsed(object sender, EventArgs e)
     {
-        if (!IsPlayerAlive())
+        if (!HasAlivePlayer)
         {
             GD.PrintErr("Can't use duplicate player cheat as player is dead");
             return;
@@ -1093,6 +1159,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             try
             {
+                if (!player.IsAlive)
+                {
+                    GD.PrintErr("Got player engulfed callback but player entity is dead");
+                    OnCanEditStatusChanged(false);
+                    return;
+                }
+
                 ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
                 ref var engulfable = ref player.Get<Engulfable>();
@@ -1123,6 +1196,17 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         Invoke.Instance.QueueForObject(
             () => TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this), this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerOrganelleDuplicated(Entity player, PlacedOrganelle organelle)
+    {
+        if (organelle.Definition.InternalName == cytoplasm.InternalName)
+            return;
+
+        Invoke.Instance.QueueForObject(() =>
+                TutorialState.SendEvent(TutorialEventType.MicrobeNonCytoplasmOrganelleDivided, EventArgs.Empty, this),
+            this);
     }
 
     [DeserializedCallbackAllowed]
@@ -1226,12 +1310,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     private bool IsPlayerAlive()
     {
-        if (!HasPlayer)
-            return false;
-
         try
         {
-            return !Player.Get<Health>().Dead;
+            return HasPlayer && !Player.Get<Health>().Dead;
         }
         catch (Exception e)
         {

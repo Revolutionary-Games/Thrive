@@ -44,10 +44,8 @@
         [JsonIgnore]
         public ColonyCompoundBag? ColonyCompounds;
 
-        public float ColonyRotationMultiplier;
+        public float ColonyRotationSpeed;
 
-        // TODO: this needs to be hooked up everywhere, right now the entire colony state control from the leader
-        // doesn't work
         /// <summary>
         ///   The overall state of the colony, this variable is required to allow colonies where only some cells can
         ///   engulf to properly enter engulf mode etc. and ensure newly added cells pick up the right mode.
@@ -105,7 +103,7 @@
                 ColonyStructure[member] = leader;
             }
 
-            ColonyRotationMultiplier = 1;
+            ColonyRotationSpeed = 1;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -137,7 +135,7 @@
 
             ColonyStructure = new Dictionary<Entity, Entity>();
 
-            ColonyRotationMultiplier = 1;
+            ColonyRotationSpeed = 1;
             ColonyCompounds = null;
 
             HexCount = 0;
@@ -321,14 +319,16 @@
                     throw new InvalidOperationException("Bad calculated microbe index");
 #endif
 
+                var members = colony.ColonyMembers;
+
                 // In case the physics data is not yet up to date compared to the colony members, skip
-                if (microbeIndex > colony.ColonyMembers.Length)
+                if (microbeIndex >= members.Length)
                 {
                     microbe = default;
                     return false;
                 }
 
-                microbe = colony.ColonyMembers[microbeIndex];
+                microbe = members[microbeIndex];
                 return true;
             }
 
@@ -387,7 +387,10 @@
 
         /// <summary>
         ///   Finishes adding a queued colony member. This is used by
-        ///   <see cref="Systems.DelayedColonyOperationSystem"/>
+        ///   <see cref="Systems.DelayedColonyOperationSystem"/>. This automatically adjusts the parent index to +1 if
+        ///   the inserted member index is before the parent index (to make sure the parent index points to the
+        ///   intended member of the colony and won't point to the newly added member which would cause in invalid
+        ///   parent loop)
         /// </summary>
         public static void FinishQueuedMemberAdd(this ref MicrobeColony colony, in Entity colonyEntity, int parentIndex,
             Entity newMember, int intendedNewMemberIndex, EntityCommandRecorder recorder)
@@ -439,6 +442,16 @@
 
             colony.MarkMembersChanged();
 
+            // If the new member is inserted before the parent index, increment the parent index
+            if (parentIndex >= intendedNewMemberIndex)
+                ++parentIndex;
+
+            if (parentIndex == intendedNewMemberIndex)
+            {
+                throw new ArgumentException(
+                    "New member intended index and its parent's index ended up being the same (self would be parent)");
+            }
+
             SetupDelayAddedColonyMemberData(ref colony, colonyEntity, parentIndex, newMember, recorder);
         }
 
@@ -489,6 +502,9 @@
                     colonyEntity.Get<CompoundStorage>().Compounds, colonyEntity, removedMember);
             }
 
+            if (!removedMember.IsAlive)
+                throw new Exception("Cannot process a dead entity remove from a colony");
+
             bool removedMemberIsLeader = false;
 
             // Colony members or leader can be removed by this method
@@ -498,7 +514,7 @@
             }
             else if (!removedMember.Has<MicrobeColonyMember>())
             {
-                throw new ArgumentException("Microbe not a member of a colony");
+                throw new ArgumentException("Microbe not a member of a colony (missing component)");
             }
 
             if (!colony.ColonyMembers.Contains(removedMember))
@@ -543,28 +559,7 @@
                 return false;
             }
 
-            // TODO: pooling (see the TODO in the add method)
-            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
-            // more of these lists...
-            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
-
-            int writeIndex = 0;
-
-            // Copy all members except the removed one
-            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
-            {
-                var member = colony.ColonyMembers[i];
-
-                if (member == removedMember)
-                    continue;
-
-                newMembers[writeIndex++] = member;
-            }
-
-            if (writeIndex != newMembers.Length)
-                throw new Exception("Logic error in new member array copy");
-
-            colony.ColonyMembers = newMembers;
+            RemoveColonyMemberFromMemberList(ref colony, removedMember);
 
             if (!removedMemberIsLeader)
                 QueueRemoveFormerColonyMemberComponents(removedMember, recorder);
@@ -584,6 +579,22 @@
 
                 // This is this way around to support recursive calls also adding things here
                 DependentMembersToRemove.RemoveAt(DependentMembersToRemove.Count - 1);
+
+                if (!next.IsAlive)
+                {
+                    // This entity is already dead, this should hopefully never trigger. If this does then this would
+                    // give some more info on a colony despawn crash problem.
+                    GD.PrintErr("Dependent colony member to remove is already dead, doing only " +
+                        "light fallback cleanup");
+
+                    colony.ColonyStructure.Remove(next);
+
+                    if (colony.ColonyMembers.Contains(next))
+                        RemoveColonyMemberFromMemberList(ref colony, next);
+
+                    // Normal remove can't be performed so the above emergency cleanup needs to be enough
+                    continue;
+                }
 
                 // This might stackoverflow if we have absolute hugely nested cell colonies but there would probably
                 // need to be colonies with thousands of cells, which would already choke the game so that isn't much
@@ -826,14 +837,14 @@
 
             var singleCellWeight = OrganelleContainerHelpers.CalculateCellEntityWeight(organelles.Count);
 
-            weight = CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
+            weight = singleCellWeight +
+                CalculateColonyAdditionalEntityWeight(singleCellWeight, colony.ColonyMembers.Length);
             return true;
         }
 
         public static float CalculateColonyAdditionalEntityWeight(float singleCellWeight, int memberCount)
         {
-            return singleCellWeight + singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER *
-                memberCount;
+            return singleCellWeight * Constants.MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER * memberCount;
         }
 
         /// <summary>
@@ -869,21 +880,20 @@
         }
 
         /// <summary>
-        ///   Calculates the help and extra inertia caused by the colony member cells
+        ///   Calculates the total rotation rate of a colony. Physics shape is not currently used.
         /// </summary>
-        public static void CalculateRotationMultiplier(this ref MicrobeColony colony, PhysicsShape entireColonyShape)
+        public static void CalculateRotationSpeed(this ref MicrobeColony colony)
         {
-            var speedFraction = entireColonyShape.TestYRotationInertiaFactor();
+            // TODO: see the comment in MicrobeInternalCalculations.CalculateRotationSpeed about:
+            // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
+            // be more physically accurate
 
-            // TODO: a better function (should also update MicrobeInternalCalculations.CalculateRotationSpeed)
-            var rotationHindering = 1 + Mathf.Clamp(Mathf.Pow(speedFraction, 1 / 4.0f), 0.0001f, 2.0f);
-
-            float colonyRotationHelp = 0;
+            float colonyRotation = MicrobeInternalCalculations
+                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
-                // Leader uses its own rotation value as the base on top which this rotation multiplier is applied so
-                // this needs to be skipped here
+                // Colony leader is set before the loop
                 if (colonyMember == colony.Leader)
                     continue;
 
@@ -891,31 +901,23 @@
 
                 var distanceSquared = memberPosition.RelativePosition.LengthSquared();
 
-                if (distanceSquared < MathUtils.EPSILON)
-                    continue;
+                // Multiply both the propulsion and mass by the distance from center to simulate leverage
+                // This relies on the bounding of the cell rotation, as a colony can never be faster than the
+                // fastest cell inside it
+                var memberRotation = MicrobeInternalCalculations
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!)
+                    * (1 + 0.03f * distanceSquared);
 
-                // TODO: should this use the member rotation speed (which is dependent on its size and
-                // how many cilia there are that far away, this is the currently used math) or just count of cilia and
-                // the distance
-                // Convert rotation speed from value that when higher reduces rotation speed to one that increases as
-                // rotation is faster
-                var memberRotation = 1 / colonyMember.Get<OrganelleContainer>().RotationSpeed;
-
-                // TODO: tweak the constant here (and probably also adjust the rotation hindering formula)
-                colonyRotationHelp += memberRotation * Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER *
-                    Mathf.Sqrt(distanceSquared);
+                colonyRotation += memberRotation;
             }
 
-            var multiplier = rotationHindering / colonyRotationHelp;
-
-            colony.ColonyRotationMultiplier = Mathf.Clamp(multiplier,
-                Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
-                Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
+            colony.ColonyRotationSpeed = colonyRotation / colony.ColonyMembers.Length;
         }
 
         /// <summary>
         ///   This method calculates the relative rotation and translation this microbe should have to its
         ///   microbe colony parent.
+        ///   Note this explanation image was made for the old version of this method but may still be useful:
         ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
         ///     Visual explanation
         ///   </a>
@@ -931,47 +933,40 @@
             if (cellProperties.CreatedMembrane == null)
                 throw new InvalidOperationException("Cell to add to colony has no membrane set");
 
-            // Gets the global rotation of the parent
-            // TODO: verify that the quaternion math is correct here
-            var globalParentRotation = colonyParentPosition.Rotation;
-
             // A vector from the parent to me
             var vectorFromParent = cellPosition.Position - colonyParentPosition.Position;
 
             // A vector from me to the parent
             var vectorToParent = -vectorFromParent;
 
-            // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right
-            // would be nice
-            // This vector represents the vectorToParent as if I had no rotation.
-            // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
-            // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
-            var vectorToParentWithoutRotation =
-                vectorToParent.Rotated(Vector3.Down, cellPosition.Rotation.GetEuler().y);
+            var parentRotationInverse = colonyParentPosition.Rotation.Inverse();
+            var cellRotationInverse = cellPosition.Rotation.Inverse();
 
-            // This vector represents the vectorFromParent as if the parent had no rotation.
-            var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+            // These are in the local space of the given two cells respectively
+            var vectorFromParentInLocalSpace = parentRotationInverse.Xform(vectorFromParent);
 
-            // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
-            // This gets added to the vector calculated one call before.
-            var correctedVectorFromParent = colonyParentProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
-                    vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
+            var vectorToParentInLocalSpace = cellRotationInverse.Xform(vectorToParent);
 
-            // Calculates the vector from my center to my membrane towards the parent.
-            // This vector gets rotated back to cancel out the rotation applied two calls above.
-            // -= to negate the vector, so that the two membrane vectors amplify
-            correctedVectorFromParent -= cellProperties.CreatedMembrane
-                .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x,
-                    vectorToParentWithoutRotation.z)
-                .Rotated(Vector3.Up, cellPosition.Rotation.GetEuler().y);
+            // Calculate membrane sizes that should be added to the distance between the center's of the cells so that
+            // the cells don't overlap. The membrane points are in local coordinates so they are translated back to
+            // world coordinates.
+            var parentMembranePoint = colonyParentPosition.Rotation.Xform(
+                colonyParentProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(
+                    vectorFromParentInLocalSpace.x, vectorFromParentInLocalSpace.z));
 
-            // Rotated because the rotational scope is different.
-            var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+            var cellMembranePoint = cellPosition.Rotation.Xform(
+                cellProperties.CreatedMembrane.GetVectorTowardsNearestPointOfMembrane(vectorToParentInLocalSpace.x,
+                    vectorToParentInLocalSpace.z));
 
-            // TODO: this used to just negate the euler angles here, check that multiplying by inverse rotation is
-            // correct
-            return (newTranslation, cellPosition.Rotation * globalParentRotation.Inverse());
+            // The cell membrane point is negated here to amplify the distance as it is the opposite sign of the parent
+            // membrane point otherwise.
+            var finalOffsetVector = parentMembranePoint - cellMembranePoint;
+
+            // Rotated because the rotation should be in the local space of the colony parent
+            var newTranslation = parentRotationInverse.Xform(finalOffsetVector);
+
+            // Transform rotation also to work correctly in the parent's local coordinate space
+            return (newTranslation, parentRotationInverse * cellPosition.Rotation);
         }
 
         /// <summary>
@@ -1102,10 +1097,13 @@
                     // Not attaching directly to the colony leader, need to combine the offsets
                     ref var parentsAttachOffset = ref parentMicrobe.Get<AttachedToEntity>();
 
-                    offsetToColonyLeader += parentsAttachOffset.RelativePosition;
+                    var rotationToParentInverse = parentsAttachOffset.RelativeRotation.Inverse();
 
-                    // TODO: check that the multiply order is right here
-                    rotationToLeader = (parentsAttachOffset.RelativeRotation * rotationToLeader).Normalized();
+                    // TODO: figure out why this starts to give bad results once many cells away from the colony leader
+                    offsetToColonyLeader = parentsAttachOffset.RelativePosition +
+                        rotationToParentInverse.Xform(offsetToColonyLeader);
+
+                    rotationToLeader = (rotationToParentInverse * rotationToLeader).Normalized();
                 }
             }
             catch (Exception e)
@@ -1134,8 +1132,7 @@
         }
 
         private static void SetupDelayAddedColonyMemberData(ref MicrobeColony colony, in Entity colonyEntity,
-            int parentIndex,
-            in Entity newMember, EntityCommandRecorder recorder)
+            int parentIndex, in Entity newMember, EntityCommandRecorder recorder)
         {
             OnCommonColonyMemberSetup(ref colony, colonyEntity, parentIndex, newMember, recorder);
 
@@ -1147,6 +1144,9 @@
         private static void OnCommonColonyMemberSetup(ref MicrobeColony colony, Entity colonyEntity, int parentIndex,
             Entity newMember, EntityCommandRecorder recorder)
         {
+            if (parentIndex >= colony.ColonyMembers.Length)
+                throw new ArgumentException("Cannot use out of range parent index for new colony member parent");
+
             ref var cellProperties = ref colonyEntity.Get<CellProperties>();
 
             // Need to recreate the physics body for this colony
@@ -1154,10 +1154,47 @@
 
             var parentMicrobe = colony.ColonyMembers[parentIndex];
 
+            if (newMember == parentMicrobe)
+                throw new ArgumentException("Entity cannot be its own parent in a colony");
+
             colony.ColonyStructure[newMember] = parentMicrobe;
 
             var memberRecord = recorder.Record(newMember);
             memberRecord.Set(new MicrobeColonyMember(colonyEntity));
+        }
+
+        /// <summary>
+        ///   Removes a member from the colony. It is incorrect to call this with an entity that is not contained in
+        ///   the list of members.
+        /// </summary>
+        /// <exception cref="Exception">If this is called with a member not in the members list</exception>
+        private static void RemoveColonyMemberFromMemberList(ref MicrobeColony colony, in Entity removedMember)
+        {
+            // TODO: pooling (see the TODO in the add method)
+            // TODO: when recursively removing members somehow make sure that we don't need to keep creating more and
+            // more of these lists...
+            var newMembers = new Entity[colony.ColonyMembers.Length - 1];
+
+            int writeIndex = 0;
+
+            // Copy all members except the removed one
+            for (int i = 0; i < colony.ColonyMembers.Length; ++i)
+            {
+                var member = colony.ColonyMembers[i];
+
+                if (member == removedMember)
+                    continue;
+
+                newMembers[writeIndex++] = member;
+            }
+
+            if (writeIndex != newMembers.Length)
+            {
+                throw new Exception("Logic error in new member array copy without member " +
+                    "(was it ensured removed member was in the list)");
+            }
+
+            colony.ColonyMembers = newMembers;
         }
 
         private static void MarkMembersChanged(this ref MicrobeColony colony)

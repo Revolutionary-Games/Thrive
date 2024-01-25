@@ -10,6 +10,8 @@ using Path = System.IO.Path;
 /// </summary>
 public class StartupActions : Node
 {
+    private bool preventStartup;
+
     private StartupActions()
     {
         // Print game version
@@ -40,9 +42,11 @@ public class StartupActions : Node
         {
             NativeInterop.Load();
         }
-        catch (DllNotFoundException)
+        catch (Exception e)
         {
-            if (Engine.EditorHint)
+            GD.Print($"Thrive native library load failed due to: {e.Message}");
+
+            if (Engine.EditorHint && e is DllNotFoundException)
             {
                 skipNative = true;
                 GD.Print("Skipping native library load in editor as it is not available");
@@ -50,11 +54,23 @@ public class StartupActions : Node
             else
             {
                 GD.PrintErr("Native library is missing (or unloadable). If you downloaded a compiled Thrive " +
-                    "version, this version is broken. If you are trying to compile Thrive you need to compile the " +
-                    "native modules as well");
-                GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless" +
+                    "version, this version (may be) broken. If you are trying to compile Thrive you need to compile " +
+                    "the native modules as well");
+                GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
-                throw;
+
+                if (FeatureInformation.GetOS() == FeatureInformation.PlatformLinux)
+                {
+                    GD.PrintErr("On Linux please verify you have new enough GLIBC version as otherwise the library " +
+                        "is unloadable. Updating your distro to the latest version should resolve the issue as long " +
+                        "as you are using a supported distro.");
+                }
+
+                GD.PrintErr(e);
+
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+                return;
             }
         }
 
@@ -71,6 +87,40 @@ public class StartupActions : Node
         }
 
         if (!skipNative)
+        {
             NativeInterop.Init(Settings.Instance);
+
+            if (!LaunchOptions.SkipCPUCheck)
+            {
+                if (!NativeInterop.CheckCPU())
+                {
+                    GD.Print("Thrive requires a new enough CPU to have SSE4.1, SSE4.2, and AVX (1)");
+                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
+                        "required instruction set extensions is required");
+
+                    preventStartup = true;
+                    SceneManager.NotifyEarlyQuit();
+                }
+                else
+                {
+                    GD.Print("Checked required CPU features are present");
+                }
+            }
+            else
+            {
+                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                    "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+        }
+    }
+
+    public override void _Ready()
+    {
+        // We need to specifically only access the scene tree after ready is called as otherwise it is just null
+        if (preventStartup)
+        {
+            GD.Print("Preventing startup due to StartupActions failing");
+            SceneManager.QuitDueToProblem(this);
+        }
     }
 }

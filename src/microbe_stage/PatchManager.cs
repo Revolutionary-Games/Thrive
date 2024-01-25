@@ -222,15 +222,13 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Max(
-                Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
+            var density = Mathf.Max(Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
                 Constants.MICROBE_SPAWN_DENSITY_SCALE_FACTOR, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, density,
-                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
-                    compoundCloudSystem, CurrentGame), Constants.MICROBE_SPAWN_RADIUS),
+                () => new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species), Constants.MICROBE_SPAWN_RADIUS),
                 new MicrobeSpawnerComparer());
         }
     }

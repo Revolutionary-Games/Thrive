@@ -123,8 +123,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
             else
             {
-                DefaultPlatforms = ThrivePlatforms.Where(p => p != PackagePlatform.Mac && p != PackagePlatform.Web)
-                    .ToList();
+                DefaultPlatforms = ThrivePlatforms.Where(p =>
+                    p != PackagePlatform.Mac && p != PackagePlatform.Web && p != PackagePlatform.Windows32).ToList();
             }
         }
 
@@ -293,8 +293,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
             if (!File.Exists(expectedWebFile))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected web file ({expectedWebFile}) was not created on export. " +
+                ColourConsole.WriteErrorLine($"Expected web file ({expectedWebFile}) was not created on export. " +
                     "Are export templates installed?");
                 return false;
             }
@@ -635,8 +634,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (version != requiredVersion)
         {
-            ColourConsole.WriteErrorLine(
-                $"Godot is available but it is the wrong version (installed) {version} != " +
+            ColourConsole.WriteErrorLine($"Godot is available but it is the wrong version (installed) {version} != " +
                 $"{requiredVersion} (required)");
             return false;
         }
@@ -681,7 +679,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await revision.WriteLineAsync(await GitRunHelpers.Log("./", 1, cancellationToken));
         await revision.WriteLineAsync(string.Empty);
-        await revision.WriteLineAsync(await GitRunHelpers.SubmoduleInfo("./", cancellationToken));
+
+        var submoduleLines = await GitRunHelpers.SubmoduleStatusInfo("./", cancellationToken);
+
+        foreach (var submoduleLine in submoduleLines)
+        {
+            await revision.WriteLineAsync(submoduleLine);
+        }
+
         await revision.WriteLineAsync(string.Empty);
         await revision.WriteLineAsync("Submodules used by native libraries may be newer than what precompiled files " +
             "were used. Please cross reference the reported native library version with Thrive repository to see " +

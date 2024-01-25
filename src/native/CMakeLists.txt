@@ -11,6 +11,7 @@ add_library(thrive_native SHARED
   core/Spinlock.hpp
   core/TaskSystem.cpp core/TaskSystem.hpp
   core/Time.hpp
+  core/CPUCheck.hpp
   physics/BodyActivationListener.cpp physics/BodyActivationListener.hpp
   physics/BodyControlState.hpp
   physics/ContactListener.cpp physics/ContactListener.hpp
@@ -38,8 +39,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # TODO debug symbols in release for MSVC (and Distribution mode)
 
 else()
-  target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Werror
-    -Wno-unknown-pragmas)
+  target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
 
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)

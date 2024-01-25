@@ -166,8 +166,7 @@ public class DraggableScrollContainer : ScrollContainer
             // vice versa.
             var scaleInverse = 1 / contentScale;
 
-            ImmediatePan(new Vector2(
-                ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
+            ImmediatePan(new Vector2(ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
                 ScrollVertical - (int)(motion.Relative.y * scaleInverse) * DragSensitivity));
         }
     }
@@ -192,8 +191,7 @@ public class DraggableScrollContainer : ScrollContainer
     public void Zoom(float value, float lerpDuration = 0.1f)
     {
         zooming = true;
-        tween.InterpolateMethod(
-            this, nameof(ImmediateZoom), contentScale, value, lerpDuration,
+        tween.InterpolateMethod(this, nameof(ImmediateZoom), contentScale, value, lerpDuration,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
         tween.Start();
     }
@@ -201,8 +199,7 @@ public class DraggableScrollContainer : ScrollContainer
     public void Pan(Vector2 coordinates, Action? onPanned = null, float lerpDuration = 0.1f)
     {
         var initial = new Vector2(ScrollHorizontal, ScrollVertical);
-        tween.InterpolateMethod(
-            this, nameof(ImmediatePan), initial, coordinates, lerpDuration,
+        tween.InterpolateMethod(this, nameof(ImmediatePan), initial, coordinates, lerpDuration,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
         tween.Start();
 

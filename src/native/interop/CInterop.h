@@ -30,6 +30,9 @@ extern "C"
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
+    /// \brief Checks that current CPU has required features to run Thrive
+    [[maybe_unused]] THRIVE_NATIVE_API bool CheckRequiredCPUFeatures();
+
     // ------------------------------------ //
     // Logging
 
@@ -94,6 +97,9 @@ extern "C"
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPosition(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, bool activate);
+
+    [[maybe_unused]] THRIVE_NATIVE_API void SetBodyPositionAndRotation(
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate = true);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocity(
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity);
@@ -167,6 +173,8 @@ extern "C"
     // ------------------------------------ //
     // Body functions
     [[maybe_unused]] THRIVE_NATIVE_API void ReleasePhysicsBodyReference(PhysicsBody* body);
+
+    [[maybe_unused]] THRIVE_NATIVE_API bool PhysicsBodyIsDetached(PhysicsBody* body);
 
     /// Set user data for a physics body, note that currently all data needs to be the same size to fully work,
     /// which is specified by Thrive::PHYSICS_USER_DATA_SIZE

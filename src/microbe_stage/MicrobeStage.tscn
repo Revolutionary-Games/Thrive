@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=85]
-[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
@@ -77,8 +76,6 @@ visible = false
 [node name="PatchNameOverlay" parent="." instance=ExtResource( 85 )]
 visible = false
 
-[node name="RadialPopup" parent="." instance=ExtResource( 87 )]
-
 [node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -92,6 +89,7 @@ __meta__ = {
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 
+[connection signal="OnEjectEngulfedButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EjectAllEngulfed"]
 [connection signal="OnFireToxinButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
@@ -99,4 +97,6 @@ __meta__ = {
 [connection signal="OnToggleBindingButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="OnToggleEngulfButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="OnUnbindAllButtonPressed" from="MicrobeHUD" to="PlayerMicrobeInput" method="UnbindAll"]
+[connection signal="OnSpeciesFossilised" from="MicrobeHUD/FossilisationDialog" to="MicrobeHUD" method="UpdateFossilisationButtonStates"]
+[connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="PauseMenu" method="OpenToHelp"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

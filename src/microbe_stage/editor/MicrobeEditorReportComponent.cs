@@ -141,6 +141,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
         {
+            if (patch.Visibility != MapElementVisibility.Shown)
+                continue;
+
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
@@ -419,15 +422,13 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
         temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
-        atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
-            null, 5);
-        speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            speciesPopDatasetsLegend,
+        atmosphericGassesChart.Plot(TranslationServer.Translate("YEARS"), "%", 5,
+            TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
+        speciesPopulationChart.Plot(TranslationServer.Translate("YEARS"), string.Empty, 5,
+            TranslationServer.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             Editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
-        compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
+        compoundsChart.Plot(TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"),
+            null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
 

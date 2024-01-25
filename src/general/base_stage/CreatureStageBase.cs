@@ -59,6 +59,9 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     [JsonIgnore]
     public abstract bool HasPlayer { get; }
 
+    [JsonIgnore]
+    public abstract bool HasAlivePlayer { get; }
+
     [JsonProperty]
     public TSimulation WorldSimulation { get; private set; } = null!;
 
@@ -141,15 +144,15 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
 
             foreach (var entity in WorldSimulation.EntitySystem)
             {
+                ++totalEntityCount;
+
                 if (!entity.Has<Spawned>())
                     continue;
 
                 totalEntityWeight += entity.Get<Spawned>().EntityWeight;
-                ++totalEntityCount;
             }
 
-            var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(totalEntityWeight, childCount - totalEntityCount);
+            debugOverlay.ReportEntities(totalEntityWeight, totalEntityCount);
         }
 
         if (CheatManager.ManuallySetTime)
@@ -265,8 +268,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
     protected void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(playerSpecies,
+            Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
@@ -320,8 +323,7 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
@@ -389,8 +391,8 @@ public abstract class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICrea
         // Decrease the population by the constant for the player dying out in a patch
         // If the player does not have sufficient population in the new patch then the population drops to 0 and
         // they have to select a new patch if they die again.
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
+            Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("EXTINCT_IN_PATCH"),
             true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);

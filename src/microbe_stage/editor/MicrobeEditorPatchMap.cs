@@ -5,6 +5,11 @@
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {
+    public void MarkDrawerDirty()
+    {
+        mapDrawer.MarkDirty();
+    }
+
     protected override void UpdateShownPatchDetails()
     {
         base.UpdateShownPatchDetails();

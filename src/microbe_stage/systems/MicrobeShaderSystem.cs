@@ -42,7 +42,14 @@
                         shaderParameters.DissolveValue += shaderParameters.DissolveAnimationSpeed * delta;
 
                         if (shaderParameters.DissolveValue > 1)
+                        {
+                            // Animation finished
                             shaderParameters.DissolveValue = 1;
+
+                            // TODO: only set this to false if all animations are finished (if in the future more
+                            // animations are added)
+                            shaderParameters.PlayAnimations = false;
+                        }
                     }
                 }
                 else
@@ -62,11 +69,11 @@
             foreach (var material in entityMaterial.Materials)
             {
                 material.SetShaderParam("dissolveValue", shaderParameters.DissolveValue);
-            }
 
-            // TODO: remove this and the lazy value if unnecessary (if necessary this should be applied just once and
-            // not each frame)
-            // entityMaterial.Material.SetShaderParam("dissolveTexture", noiseTexture);
+                // Dissolve texture must be set in the material set on the object otherwise the dissolve animation
+                // won't play correctly. It used to be the case that the old C# code set the noise texture here but
+                // now it is much simpler to just require it to be set in the scenes.
+            }
 
             shaderParameters.ParametersApplied = true;
         }

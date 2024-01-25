@@ -60,11 +60,13 @@
         /// </summary>
         public CollisionState DisableCollisionState;
 
-        // TODO: flags for teleporting the physics body to current WorldPosition and also overriding velocity + angular
+        // TODO: flags for teleporting the physics body to current WorldPosition
 
         /// <summary>
         ///   When the body is disabled the body state is no longer read into the position variables allowing custom
-        ///   control. And it is removed from the physics system to not interact with anything.
+        ///   control. And it is removed from the physics system to not interact with anything. Note that if the
+        ///   <see cref="Systems.PhysicsBodyDisablingSystem"/> has not run yet the actual state might not match.
+        ///   So use
         /// </summary>
         public bool BodyDisabled;
 
@@ -101,6 +103,15 @@
             physics.DisableCollisionState = disableCollisions ?
                 Physics.CollisionState.DisableCollisions :
                 Physics.CollisionState.EnableCollisions;
+        }
+
+        /// <summary>
+        ///   Returns true only if the body is created and not currently disabled (or waiting to be re-enabled)
+        /// </summary>
+        /// <returns>True when body is fully usable</returns>
+        public static bool IsBodyEffectivelyEnabled(this ref Physics physics)
+        {
+            return physics.Body != null && !physics.BodyDisabled && !physics.InternalDisableState;
         }
 
         public static Physics CreatePhysicsForMicrobe(bool disabledInitially = false)

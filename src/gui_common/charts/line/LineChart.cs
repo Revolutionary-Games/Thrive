@@ -706,8 +706,8 @@ public class LineChart : VBoxContainer
     {
         foreach (Control tick in verticalLabelsContainer.GetChildren())
         {
-            drawArea.DrawTextureRect(hLineTexture, new Rect2(new Vector2(
-                    0, tick.RectPosition.y + (tick.RectSize.y / 2)), drawArea.RectSize.x, 1), false,
+            drawArea.DrawTextureRect(hLineTexture,
+                new Rect2(new Vector2(0, tick.RectPosition.y + (tick.RectSize.y / 2)), drawArea.RectSize.x, 1), false,
                 new Color(1, 1, 1, 0.3f));
         }
     }
@@ -744,8 +744,8 @@ public class LineChart : VBoxContainer
 
                 if (index < dataLine.Points.Length)
                 {
-                    dataLine.InterpolatePointPosition(
-                        index, point.RectPosition + (point.RectSize / 2), point.Coordinate);
+                    dataLine.InterpolatePointPosition(index, point.RectPosition + (point.RectSize / 2),
+                        point.Coordinate);
                 }
                 else
                 {
@@ -828,8 +828,7 @@ public class LineChart : VBoxContainer
         var font = GetFont("jura_small", "Label");
 
         // Values are rounded to make the font not be blurry
-        var position = new Vector2(
-            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(error).x) / 2),
+        var position = new Vector2(Mathf.Round((drawArea.RectSize.x - font.GetStringSize(error).x) / 2),
             Mathf.Round(drawArea.RectSize.y / 2));
 
         drawArea.DrawString(font, position, error);
@@ -939,8 +938,7 @@ public class LineChart : VBoxContainer
                 Align = Label.AlignEnum.Center,
             };
 
-            label.Text = Math.Round(
-                i * (MaxValues.X - MinValues.X) / (XAxisTicks - 1) + MinValues.X, 1).FormatNumber();
+            label.Text = Math.Round(i * (MaxValues.X - MinValues.X) / (XAxisTicks - 1) + MinValues.X, 1).FormatNumber();
 
             horizontalLabelsContainer.AddChild(label);
         }
@@ -955,8 +953,7 @@ public class LineChart : VBoxContainer
                 Valign = Label.VAlign.Center,
             };
 
-            label.Text = Math.Round(
-                i * (MaxValues.Y - MinValues.Y) / (YAxisTicks - 1) + MinValues.Y, 1).FormatNumber();
+            label.Text = Math.Round(i * (MaxValues.Y - MinValues.Y) / (YAxisTicks - 1) + MinValues.Y, 1).FormatNumber();
 
             verticalLabelsContainer.AddChild(label);
         }
@@ -1290,15 +1287,13 @@ public class LineChart : VBoxContainer
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
                     icon.Pressed = false;
-                    ToolTipManager.Instance.ShowPopup(
-                        TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
-                            .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                        .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     icon.Pressed = true;
-                    ToolTipManager.Instance.ShowPopup(
-                        TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
-                            .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                        .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }
@@ -1367,8 +1362,8 @@ public class LineChart : VBoxContainer
                 data.Value.Colour :
                 new Color(1, 1, 1);
 
-            var item = Dropdown.AddItem(
-                data.Key, !chart.dataLines[data.Key].Default, colorToUse, data.Value.Icon, section);
+            var item = Dropdown.AddItem(data.Key, !chart.dataLines[data.Key].Default, colorToUse, data.Value.Icon,
+                section);
             item.Checked = data.Value.Draw;
         }
 
@@ -1377,20 +1372,18 @@ public class LineChart : VBoxContainer
             if (Dropdown?.Popup.IsItemCheckable(index) != true)
                 return;
 
-            var result = chart.UpdateDataSetVisibility(
-                Dropdown.Popup.GetItemText(index), !Dropdown.Popup.IsItemChecked(index));
+            var result = chart.UpdateDataSetVisibility(Dropdown.Popup.GetItemText(index),
+                !Dropdown.Popup.IsItemChecked(index));
 
             switch (result)
             {
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(
-                        TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
-                            .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MAX_VISIBLE_DATASET_WARNING")
+                        .FormatSafe(chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
-                    ToolTipManager.Instance.ShowPopup(
-                        TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
-                            .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
+                    ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("MIN_VISIBLE_DATASET_WARNING")
+                        .FormatSafe(chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }

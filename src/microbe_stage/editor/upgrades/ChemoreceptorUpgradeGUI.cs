@@ -138,8 +138,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             speciesChoice = shownSpeciesChoices[speciesSelector.Selected];
         }
 
-        organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(
-            compoundChoice, speciesChoice,
+        organelleUpgrades.CustomUpgradeData = new ChemoreceptorUpgrades(compoundChoice, speciesChoice,
             (float)maximumDistanceSlider.Value, (float)minimumAmountSlider.Value, colourSelector.Color);
         return true;
     }

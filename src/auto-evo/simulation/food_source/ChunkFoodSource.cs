@@ -26,8 +26,8 @@
                 chunkName = chunk.Name;
 
                 // NOTE: Here we use the heuristic that only iron and glucose are useful in chunks
-                energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose).ToDictionary(
-                    c => c.Key, c => c.Value.Amount);
+                energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose)
+                    .ToDictionary(c => c.Key, c => c.Value.Amount);
 
                 // This computation nerfs big chunks with a large amount,
                 // by adding an "accessibility" component to total energy.
@@ -59,8 +59,8 @@
 
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
-            var score = energyCompounds.Sum(c => CompoundUseScore(
-                microbeSpecies, c.Key, patch, simulationCache, worldSettings) * c.Value);
+            var score = energyCompounds.Sum(c =>
+                CompoundUseScore(microbeSpecies, c.Key, patch, simulationCache, worldSettings) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 

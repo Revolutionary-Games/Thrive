@@ -260,8 +260,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
         // an incompatibility on program shutdown crashing in at exit handlers
         if (!fullOutput.Contains(GLibCReference))
         {
-            ColourConsole.WriteErrorLine(
-                $"Compiled program doesn't dynamically link to glibc, output:\n{fullOutput}");
+            ColourConsole.WriteErrorLine($"Compiled program doesn't dynamically link to glibc, output:\n{fullOutput}");
             return false;
         }
 
@@ -374,8 +373,7 @@ public class ContainerTool : ContainerToolBase<Program.ContainerOptions>
             // Just in case the program compiled but could not run
             if (!fullOutput.Contains(programPrintedText))
             {
-                ColourConsole.WriteErrorLine(
-                    $"Expected test program didn't run with wine, full output:\n{fullOutput}");
+                ColourConsole.WriteErrorLine($"Expected test program didn't run with wine, full output:\n{fullOutput}");
                 return false;
             }
         }

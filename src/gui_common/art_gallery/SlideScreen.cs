@@ -153,10 +153,10 @@ public class SlideScreen : TopLevelContainer
 
             if (toolbarHideTimer < 0)
             {
-                toolbarTween.InterpolateProperty(
-                    toolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-                toolbarTween.InterpolateProperty(
-                    closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                toolbarTween.InterpolateProperty(toolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear,
+                    Tween.EaseType.InOut);
+                toolbarTween.InterpolateProperty(closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear,
+                    Tween.EaseType.InOut);
                 toolbarTween.Start();
                 MouseCaptureManager.SetMouseHideState(true);
             }
@@ -253,10 +253,10 @@ public class SlideScreen : TopLevelContainer
         RectGlobalPosition = currentItemRect.Position;
         RectSize = currentItemRect.Size;
 
-        popupTween.InterpolateProperty(
-            this, "rect_position", null, GetFullRect().Position, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(
-            this, "rect_size", null, GetFullRect().Size, 0.2f, Tween.TransitionType.Sine, Tween.EaseType.Out);
+        popupTween.InterpolateProperty(this, "rect_position", null, GetFullRect().Position, 0.2f,
+            Tween.TransitionType.Sine, Tween.EaseType.Out);
+        popupTween.InterpolateProperty(this, "rect_size", null, GetFullRect().Size, 0.2f, Tween.TransitionType.Sine,
+            Tween.EaseType.Out);
         popupTween.Start();
 
         if (!popupTween.IsConnected("tween_completed", this, nameof(OnScaledUp)))
@@ -278,8 +278,7 @@ public class SlideScreen : TopLevelContainer
 
         popupTween.InterpolateProperty(this, "rect_position", null, currentItemRect.Position, 0.2f,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
-        popupTween.InterpolateProperty(
-            this, "rect_size", null, currentItemRect.Size, 0.2f, Tween.TransitionType.Sine,
+        popupTween.InterpolateProperty(this, "rect_size", null, currentItemRect.Size, 0.2f, Tween.TransitionType.Sine,
             Tween.EaseType.Out);
         popupTween.Start();
 

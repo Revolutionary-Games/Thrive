@@ -82,6 +82,8 @@
                 { "0.6.2.0-rc1", new UpgradeJustVersionNumber("0.6.2.0") },
                 { "0.6.2.0", new UpgradeJustVersionNumber("0.6.3.0-rc1") },
                 { "0.6.3.0-rc1", new UpgradeJustVersionNumber("0.6.3.0") },
+                { "0.6.4.0", new UpgradeJustVersionNumber("0.6.4.1") },
+                { "0.6.4.1", new UpgradeStep0641To065() },
             };
         }
     }
@@ -272,8 +274,7 @@
             var references = CreateObjectReferenceDatabase((JObject?)editor["history"] ??
                 throw new JsonException("editor history object missing"));
 
-            ResolveObjectReferences(
-                (JObject?)cellEditorTab["editedMicrobeOrganelles"] ??
+            ResolveObjectReferences((JObject?)cellEditorTab["editedMicrobeOrganelles"] ??
                 throw new JsonException("edited microbe organelles has disappeared"), references);
 
             editor["selectedEditorTab"] = gui.GetValue("selectedEditorTab");
@@ -305,6 +306,56 @@
                     asObject.Remove("Organelles");
                     asObject["existingHexes"] = organelleList;
                 }
+            }
+        }
+    }
+
+    internal class UpgradeStep0641To065 : BaseRecursiveJSONWalkerStep
+    {
+        /// <summary>
+        ///   This refers to <see cref="Patch.Visibility"/>
+        /// </summary>
+        private const string VISIBILITY = "Visibility";
+
+        protected override string VersionAfter => "0.6.5.0-alpha";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            // The patch map needs to be updated in older versions to show the entire thing,
+            // as 0.6.5 introduces fog-of-war
+
+            // Make patches visible
+            if (property.Name == "Patches")
+            {
+                IEnumerable<JObject> elements;
+
+                if (property.Value is JArray array)
+                {
+                    elements = array.Select(t => (JObject)t);
+                }
+                else if (property.Value is JObject @object)
+                {
+                    elements = @object.Values().Select(t => (JObject)t);
+                }
+                else
+                {
+                    return;
+                }
+
+                foreach (var element in elements)
+                {
+                    if (!element.ContainsKey(nameof(Patch.BiomeType)))
+                        continue;
+
+                    element.Add(VISIBILITY, (int)MapElementVisibility.Shown);
+                }
+            }
+
+            // Make regions visible
+            if (property.Name == "Region")
+            {
+                var dict = (JObject)property.Value;
+                dict.Add(VISIBILITY, (int)MapElementVisibility.Shown);
             }
         }
     }

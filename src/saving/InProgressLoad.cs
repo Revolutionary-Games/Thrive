@@ -110,6 +110,11 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
+#if DEBUG
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+#endif
+
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,
@@ -195,8 +200,8 @@ public class InProgressLoad
                 {
                     MainMenu.OnEnteringGame();
 
-                    TransitionManager.Instance.AddSequence(
-                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f,
+                        () => LoadingScreen.Instance.Hide(), false, false);
 
                     TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
                         () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);

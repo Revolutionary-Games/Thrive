@@ -110,7 +110,13 @@ public class SettingValue<TValueType> : IAssignableSetting
         if (value is not string && value is IEnumerable genericEnumerable)
         {
             var enumerator1 = genericEnumerable.GetEnumerator();
+
+            // Not disposing the enumerators gives a warning. So this is now done like this to dispose the enumerators
+            // if they are disposable.
+            using var dispose1 = enumerator1 as IDisposable;
+
             var enumerator2 = ((IEnumerable)obj.Value!).GetEnumerator();
+            using var dispose2 = enumerator2 as IDisposable;
 
             while (enumerator1.MoveNext())
             {

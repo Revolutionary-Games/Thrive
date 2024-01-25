@@ -85,7 +85,7 @@
             {
                 ref var colony = ref entity.Get<MicrobeColony>();
 
-                colony.CanEngulf();
+                return colony.CanEngulf();
             }
 
             return cellProperties.MembraneType.CanEngulf;
@@ -199,8 +199,7 @@
 
                     if (memberOrganelles.Organelles == null)
                     {
-                        GD.PrintErr(
-                            "Can't use microbe colony member organelle positions for divide separation " +
+                        GD.PrintErr("Can't use microbe colony member organelle positions for divide separation " +
                             "calculation as they aren't available");
                         continue;
                     }
@@ -275,7 +274,7 @@
 
             // Create the one daughter cell.
             var (recorder, weight) = SpawnHelpers.SpawnMicrobeWithoutFinalizing(worldSimulation, species, spawnPosition,
-                true, null, out var copyEntity, multicellularSpawnState);
+                true, (null, 0), out var copyEntity, multicellularSpawnState);
 
             // Since the daughter spawns right next to the cell, it should face the same way to avoid colliding
             // This probably wastes a bit of memory but should be fine to overwrite the WorldPosition component like
@@ -285,8 +284,8 @@
             // TODO: should this also set an initial look direction that is the same?
 
             // Make it despawn like normal
-            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity,
-                Constants.MICROBE_SPAWN_RADIUS * Constants.MICROBE_SPAWN_RADIUS, weight);
+            spawnerToRegisterWith.NotifyExternalEntitySpawned(copyEntity, Constants.MICROBE_DESPAWN_RADIUS_SQUARED,
+                weight);
 
             // Remove the compounds from the created cell
             var originalCompounds = entity.Get<CompoundStorage>().Compounds;
@@ -294,6 +293,9 @@
             // Copying the capacity should be fine like this as the original cell should be reset to the normal
             // capacity already so
             var copyEntityCompounds = new CompoundBag(originalCompounds.NominalCapacity);
+
+            // Also must copy the useful compounds, otherwise the bag will reject all of the compounds
+            copyEntityCompounds.CopyUsefulFrom(originalCompounds);
 
             var keys = new List<Compound>(originalCompounds.Compounds.Keys);
 

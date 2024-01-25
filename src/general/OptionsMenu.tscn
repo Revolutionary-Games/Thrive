@@ -97,6 +97,8 @@ ActiveThreadCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VB
 AssumeHyperthreadingPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading")
 UseManualThreadCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount")
 ThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider")
+UseManualNativeThreadCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseNativeManualThreadCount")
+NativeThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6/VBoxContainer/NativeThreadCountSlider")
 MaxSpawnedEntitiesPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs")
 MouseAxisSensitivitiesBoundPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine/SameBothAxesSensitivity")
@@ -1163,18 +1165,65 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 min_value = 1.0
 max_value = 64.0
-value = 2.0
+value = 4.0
+rounded = true
+
+[node name="UseNativeManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 348.0
+margin_right = 398.0
+margin_bottom = 373.0
+hint_tooltip = "NATIVE_THREAD_ADVICE_TOOLTIP"
+size_flags_horizontal = 0
+pressed = true
+text = "USE_MANUAL_THREAD_COUNT_NATIVE"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 383.0
+margin_right = 718.0
+margin_bottom = 408.0
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6"]
+margin_right = 92.0
+margin_bottom = 25.0
+text = "THREADS"
+align = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6"]
+margin_left = 96.0
+margin_right = 101.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6"]
+margin_left = 105.0
+margin_right = 718.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_right = 613.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 0, 1 )
+
+[node name="NativeThreadCountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_top = 5.0
+margin_right = 613.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 64.0
+value = 4.0
 rounded = true
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 348.0
+margin_top = 418.0
 margin_right = 718.0
-margin_bottom = 352.0
+margin_bottom = 422.0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 362.0
+margin_top = 432.0
 margin_right = 718.0
-margin_bottom = 407.0
+margin_bottom = 477.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
 margin_right = 267.0
@@ -2291,6 +2340,8 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseNativeManualThreadCount" to="." method="OnManualNativeThreadsToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6/VBoxContainer/NativeThreadCountSlider" to="." method="OnManualNativeThreadCountChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine/SameBothAxesSensitivity" to="." method="OnMouseAxesBoundToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Horizontal" to="." method="OnMouseHorizontalSensitivityChanged"]

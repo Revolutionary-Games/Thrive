@@ -41,16 +41,14 @@ public class RotationEventArgs : TutorialEventArgs
 
 public class MicrobeMovementEventArgs : TutorialEventArgs
 {
-    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection, Vector3 lookVector)
+    public MicrobeMovementEventArgs(bool usesScreenRelativeMovement, Vector3 movementDirection)
     {
         UsesScreenRelativeMovement = usesScreenRelativeMovement;
         MovementDirection = movementDirection;
-        LookVector = lookVector;
     }
 
     public bool UsesScreenRelativeMovement { get; }
     public Vector3 MovementDirection { get; }
-    public Vector3 LookVector { get; }
 }
 
 public class EntityPositionEventArgs : TutorialEventArgs
@@ -115,14 +113,16 @@ public class CallbackEventArgs : TutorialEventArgs
 
 public class MicrobeColonyEventArgs : TutorialEventArgs
 {
-    public MicrobeColonyEventArgs(bool hasColony, int memberCount)
+    public MicrobeColonyEventArgs(bool hasColony, int memberCount, bool isMulticellular)
     {
         HasColony = hasColony;
         MemberCount = memberCount;
+        IsMulticellular = isMulticellular;
     }
 
     public bool HasColony { get; }
     public int MemberCount { get; }
+    public bool IsMulticellular { get; }
 }
 
 public class EnergyBalanceEventArgs : TutorialEventArgs
@@ -133,4 +133,14 @@ public class EnergyBalanceEventArgs : TutorialEventArgs
     }
 
     public EnergyBalanceInfo EnergyBalanceInfo { get; }
+}
+
+public class OrganellePlacedEventArgs : TutorialEventArgs
+{
+    public OrganellePlacedEventArgs(OrganelleDefinition definition)
+    {
+        Definition = definition;
+    }
+
+    public OrganelleDefinition Definition { get; }
 }

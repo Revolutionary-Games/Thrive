@@ -57,6 +57,12 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 2.0f;
 
     /// <summary>
+    ///   The player is guaranteed to die within this time when using the suicide button. This exists to prevent total
+    ///   softlocks.
+    /// </summary>
+    public const float MAX_PLAYER_DYING_TIME = 10;
+
+    /// <summary>
     ///   How long the initial compounds should last (in seconds)
     /// </summary>
     public const float INITIAL_COMPOUND_TIME = 40.0f;
@@ -177,20 +183,30 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 60.0f;
+    public const float FLAGELLA_BASE_FORCE = 35.0f;
 
-    public const float BASE_MOVEMENT_FORCE = 1400.0f;
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    /// <summary>
+    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
+    /// </summary>
+    public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   How much extra base movement is given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
-    public const float BASE_MOVEMENT_PER_HEX = 45;
+    public const float BASE_MOVEMENT_PER_HEX = 130;
 
     public const int BASE_MOVEMENT_EXTRA_HEX_START = 2;
-    public const int BASE_MOVEMENT_EXTRA_HEX_END = 30;
+    public const int BASE_MOVEMENT_EXTRA_HEX_END = 40;
+
+    /// <summary>
+    ///   This is used to slightly debuff colony movement
+    /// </summary>
+    public const float CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER = 0.98f;
 
     /// <summary>
     ///   How much the default <see cref="BASE_CELL_DENSITY"/> has volume in a cell. This determines how much
@@ -203,17 +219,20 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    // Note that the speed is reversed, i.e. lower values mean faster
-    public const float CELL_MAX_ROTATION = 3.0f;
-    public const float CELL_MIN_ROTATION = 0.2f;
-    public const float CILIA_ROTATION_FACTOR = 0.08f;
-    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.8f;
+    // Note that the rotation speed is reversed, i.e. lower values mean faster
+    public const float CELL_MAX_ROTATION = 8.0f;
+    public const float CELL_MIN_ROTATION = 0.1f;
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
+    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
 
-    // These speed values are also reversed like the above
-    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
-    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
-    public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
-    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
+    // TODO: remove if these stay unused
+    // // These speed values are also reversed like the above
+    // public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    // public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    // public const float CELL_COLONY_MAX_ROTATION_HELP = 0.5f;
+    // public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 0.2f;
 
     public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
@@ -248,6 +267,10 @@ public static class Constants
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
+
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
@@ -279,27 +302,7 @@ public static class Constants
     /// </summary>
     public const int DESPAWN_RADIUS_OFFSET = 50;
 
-    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
-        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
-
-    public const float STARTING_SPAWN_DENSITY = 70000.0f;
-    public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
-
-    /// <summary>
-    ///   Radius of the zone where the player is considered immobile as he remains inside.
-    ///   Used to not overgenerate when the player doesn't move.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The value is squared for faster computation.
-    ///   </para>
-    ///   <para>
-    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
-    ///     to make spawn zone match when moving.
-    ///   </para>
-    /// </remarks>
-    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
@@ -373,7 +376,7 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 14.0f;
+    public const float AGENT_EMISSION_VELOCITY = 16.0f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
 
@@ -445,7 +448,7 @@ public static class Constants
     ///   all entities' buffers can go to the cache for example when loading a save while in game. That is required
     ///   because most entities have the exact same buffer length.
     /// </summary>
-    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGHT = 500;
+    public const int MAX_COLLISION_CACHE_BUFFERS_OF_SIMILAR_LENGTH = 500;
 
     /// <summary>
     ///   How many collisions each normal entity can detect at once (if more collisions happen during an update the
@@ -571,9 +574,6 @@ public static class Constants
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
-    // TODO: remove if unused with ECS
-    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
-
     /// <summary>
     ///   Because reproduction progress is most often time limited,
     ///   the bars can go to the reproduction ready state way too early, so this being false prevents that.
@@ -665,10 +665,12 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.5f;
 
     public const float ENGULF_EJECTION_VELOCITY = 3.0f;
 
@@ -745,7 +747,7 @@ public static class Constants
     /// <summary>
     ///   Damage a single pilus stab does. Scaled by penetration depth so this is now much higher than before.
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 240.0f;
+    public const float PILUS_BASE_DAMAGE = 235.0f;
 
     /// <summary>
     ///   Maximum damage a single pilus hit does, even if the penetration depth is very high
@@ -753,6 +755,8 @@ public static class Constants
     public const float PILUS_MAX_DAMAGE = 45;
 
     public const float PILUS_PHYSICS_SIZE = 4.6f;
+
+    public const float BACTERIA_PILUS_ATTACH_ADJUSTMENT_MULTIPLIER = 0.575f;
 
     /// <summary>
     ///   Damage a single injectisome stab does
@@ -763,9 +767,19 @@ public static class Constants
 
     /// <summary>
     ///   How much time (in seconds) an injectisome applies invulnerability upon damage. Note the invulnerability is
-    ///   not against all other damage types.
+    ///   not against all other damage types, but just the pilus.
     /// </summary>
-    public const float PILUS_INVULNERABLE_TIME = 0.35f;
+    public const float INJECTISOME_INVULNERABLE_TIME = 0.35f;
+
+    /// <summary>
+    ///   How long the shortest pilus cooldown is after dealing damage. This is applied if the damage just barely
+    ///   crosses <see cref="PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN"/>
+    /// </summary>
+    public const float PILUS_MIN_COOLDOWN = 0.2f;
+
+    public const float PILUS_MAX_COOLDOWN = 0.45f;
+
+    public const float PILUS_MIN_DAMAGE_TRIGGER_COOLDOWN = PILUS_MAX_DAMAGE * 0.6f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
@@ -776,10 +790,17 @@ public static class Constants
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+
+    // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4694
     public const int CREATURE_KILL_POPULATION_GAIN = 50;
     public const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
-    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
     public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+
+    /// <summary>
+    ///   How often a microbe can get the engulf escape population bonus
+    /// </summary>
+    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int PLAYER_DEATH_POPULATION_LOSS_CONSTANT = -20;
     public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
@@ -787,11 +808,6 @@ public static class Constants
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
     public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 1.2f;
-
-    /// <summary>
-    ///   How often a microbe can get the engulf escape population bonus
-    /// </summary>
-    public const float CREATURE_ESCAPE_INTERVAL = 5;
 
     public const int BASE_MUTATION_POINTS = 100;
 
@@ -814,6 +830,8 @@ public static class Constants
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
+    // TODO: remove the drag variables if https://github.com/Revolutionary-Games/Thrive/issues/4719 is not decided to
+    // be implemented
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
     ///   and multiplying it by this. This must be negative!
@@ -882,24 +900,26 @@ public static class Constants
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
     /// <summary>
-    ///   Minimum extra microbes to spawn
+    ///   Minimum extra bacteria to spawn
     /// </summary>
-    public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+    public const int MIN_BACTERIAL_SWARM_SIZE = 0;
 
     /// <summary>
-    ///   Maximum extra microbes to spawn
+    ///   Maximum extra bacteria to spawn
     /// </summary>
-    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
+    public const int MAX_BACTERIAL_SWARM_SIZE = 3;
 
-    // What is divided during fear and aggression calculations in the AI
-    public const float AGGRESSION_DIVISOR = 25.0f;
-    public const float FEAR_DIVISOR = 25.0f;
-    public const float ACTIVITY_DIVISOR = 100.0f;
-    public const float FOCUS_DIVISOR = 100.0f;
-    public const float OPPORTUNISM_DIVISOR = 100.0f;
+    /// <summary>
+    ///   If a species has this many hexes then <see cref="MAX_BACTERIAL_SWARM_SIZE"/> is debuffed by one for this
+    ///   species. This value is divided by 2 as the hex size of bacteria only count for half of a "full" hex. When
+    ///   tweaking only change the first number for future readability (and not the division by 2 part).
+    /// </summary>
+    public const float REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 6 / 2.0f;
 
-    // Cooldown for AI for toggling engulfing
-    public const float AI_ENGULF_INTERVAL = 300;
+    /// <summary>
+    ///   Even more reduces the bacteria swarm size of a species that is this big when spawning
+    /// </summary>
+    public const float FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT = 10 / 2.0f;
 
     /// <summary>
     ///   Probability, rolled at each AI step (which happens very often), that the AI will try to engulf something
@@ -910,16 +930,12 @@ public static class Constants
     // Average number of calls to think method before doing expensive cloud-finding calculations
     public const int AI_STEPS_PER_SMELL = 20;
 
-    // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
-    public const float AI_COMPOUND_BIAS = -10.0f;
-
     /// <summary>
     ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
     /// </summary>
     public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
 
     public const float AI_BASE_MOVEMENT = 1.0f;
-    public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
@@ -1035,6 +1051,7 @@ public static class Constants
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 10;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_DAY_NIGHT_TUTORIAL_AFTER = 20;
+    public const float HIDE_MICROBE_ORGANELLE_DIVISION_TUTORIAL_AFTER = 60;
     public const float HIDE_MICROBE_ENGULFED_TUTORIAL_AFTER = 35;
     public const float OPEN_MICROBE_BECOME_MULTICELLULAR_TUTORIAL_AFTER = 30;
     public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
@@ -1116,13 +1133,6 @@ public static class Constants
     ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
     /// </summary>
     public const int GLOBAL_EVENT_LOG_CAP = 20;
-
-    /// <summary>
-    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
-    ///   to see what small cells are.
-    ///   Specifically for use with LengthSquared.
-    /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
     ///   Buffs small bacteria
@@ -1329,6 +1339,8 @@ public static class Constants
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
+    public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
+
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
@@ -1477,6 +1489,9 @@ public static class Constants
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
 
+    public const string CONDITION_GREEN_COLOUR = "#70f423";
+    public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -1506,8 +1521,7 @@ public static class Constants
     public static readonly IReadOnlyList<string> ModLocations = new[]
     {
         OS.HasFeature("standalone") ?
-            Path.Combine(
-                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+            Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath()) ??
                 throw new InvalidOperationException("no current executable path"), "mods") :
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",
@@ -1556,6 +1570,12 @@ public static class Constants
 
     private const uint ReproductionTutorialDelaysAreSensible =
         (MICROBE_REPRODUCTION_TUTORIAL_DELAY + 1 < MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY) ? 0 : -42;
+
+    private const uint PlayerMaxDyingTimeIsOverDeathAnimationLength =
+        (1 / MEMBRANE_DISSOLVE_SPEED * 2 <= MAX_PLAYER_DYING_TIME) ? 0 : -42;
+
+    private const uint FurtherSwarmReductionIsHigherThanSmallReduction =
+        (FURTHER_REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT > REDUCE_BACTERIAL_SWARM_AFTER_HEX_COUNT) ? 0 : -42;
 
     // Needed to be true by InputManager
     private const uint GodotJoystickAxesStartAtZero = (JoystickList.Axis0 == 0) ? 0 : -42;

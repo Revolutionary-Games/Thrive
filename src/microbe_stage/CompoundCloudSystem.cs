@@ -263,32 +263,28 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
             int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
-            // TODO: try to improve performance here regarding this lock, as we have just 2 clouds so only 2 threads
-            // can even in theory run absorption code at once
-            lock (cloud.MultithreadedLock)
+            // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
+            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
             {
-                for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
+                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                 {
-                    for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                    // Negative coordinates are always outside the cloud area
+                    if (x < 0 || y < 0)
+                        continue;
+
+                    // Circle check
+                    if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                        localGrabRadiusSquared)
                     {
-                        // Negative coordinates are always outside the cloud area
-                        if (x < 0 || y < 0)
-                            continue;
+                        // Not in it
+                        continue;
+                    }
 
-                        // Circle check
-                        if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
-                            localGrabRadiusSquared)
-                        {
-                            // Not in it
-                            continue;
-                        }
-
-                        // Then just need to check that it is within the cloud simulation array
-                        if (x < cloud.Size && y < cloud.Size)
-                        {
-                            // Absorb all compounds in the cloud
-                            cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
-                        }
+                    // Then just need to check that it is within the cloud simulation array
+                    if (x < cloud.Size && y < cloud.Size)
+                    {
+                        // Absorb all compounds in the cloud
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
                     }
                 }
             }
@@ -404,8 +400,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
-        return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+        return new Vector3((int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
             0,
             (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
     }

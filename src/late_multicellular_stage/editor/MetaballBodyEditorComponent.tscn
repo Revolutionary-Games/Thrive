@@ -808,10 +808,8 @@ custom_constants/margin_bottom = 0
 
 [node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
 visible = false
-margin_left = 134.0
-margin_top = -8.58575
-margin_right = 155.0
-margin_bottom = 12.4143
+margin_right = 21.0
+margin_bottom = 21.0
 rect_min_size = Vector2( 21, 21 )
 rect_pivot_offset = Vector2( 0, 10 )
 size_flags_horizontal = 0
@@ -907,6 +905,7 @@ mouse_filter = 2
 [connection signal="OnUndo" from="EditorComponentBottomLeftButtons" to="." method="Undo"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
+[connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_entered" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]

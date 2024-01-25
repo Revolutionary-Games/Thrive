@@ -108,8 +108,7 @@ public class PlayerMicrobeInput : NodeWithInput
             }
 
             stage.TutorialState.SendEvent(TutorialEventType.MicrobePlayerMovement,
-                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection,
-                    control.LookAtPoint - position.Position), this);
+                new MicrobeMovementEventArgs(screenRelative, control.MovementDirection), this);
         }
     }
 
@@ -161,6 +160,23 @@ public class PlayerMicrobeInput : NodeWithInput
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
             control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
+        }
+    }
+
+    [RunOnKeyDown("g_eject_engulfed")]
+    public void EjectAllEngulfed()
+    {
+        if (!stage.HasAlivePlayer)
+            return;
+
+        ref var engulfer = ref stage.Player.Get<Engulfer>();
+
+        if (engulfer.EngulfedObjects is { Count: > 0 })
+        {
+            foreach (var engulfedObject in engulfer.EngulfedObjects)
+            {
+                engulfer.EjectEngulfable(ref engulfedObject.Get<Engulfable>());
+            }
         }
     }
 
@@ -277,7 +293,7 @@ public class PlayerMicrobeInput : NodeWithInput
     {
         var command = stage.HUD.SelectSignalCommandIfOpen();
 
-        if (stage.HasPlayer)
+        if (command != null && stage.HasPlayer)
             stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 

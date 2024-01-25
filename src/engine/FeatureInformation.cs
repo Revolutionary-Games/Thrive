@@ -21,6 +21,7 @@ public static class FeatureInformation
 
     public static string GetOS()
     {
+        // TODO: fix this for Godot 4
         if (OS.HasFeature("X11"))
             return PlatformLinux;
 
