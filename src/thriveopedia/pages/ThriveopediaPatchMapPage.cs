@@ -120,9 +120,14 @@ public class ThriveopediaPatchMapPage : ThriveopediaPage
         playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
             throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
-        // Make sure the map setting of fog of war always matches the world,
-        // this needs to be called here in case this page is opened before the editor
+        // Make sure the map setting of fog of war always matches the world
+        // These need to be called here in case this page is opened before the editor
         mapDrawer.Map.FogOfWar = CurrentGame!.GameWorld.WorldSettings.FogOfWarMode;
+
+        if (mapDrawer.Map.FogOfWar == FogOfWarMode.Ignored)
+        {
+            mapDrawer.Map.RevealAllPatches();
+        }
 
         UpdatePlayerPatch(playerPatchOnEntry);
     }
