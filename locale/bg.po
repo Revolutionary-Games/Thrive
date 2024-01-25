@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2024-01-11 11:42+0000\n"
 "Last-Translator: \"Georgi Georgiev (RacerBG)\" <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Двуизмерно движение:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Подлежи на уточняване"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Триизмерен редактор"
@@ -30,6 +49,10 @@ msgstr "Триизмерно движение"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Триизмерно движение:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "["
 
 msgid "ABILITIES"
 msgstr "Способности"
@@ -97,6 +120,10 @@ msgstr "Отваряне на разширените настройки"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аеробна азотна фиксация"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Аеробно дишане"
 
 msgid "AGENTS"
 msgstr "Химични агенти"
@@ -205,6 +232,10 @@ msgstr "От: {0}"
 
 msgid "ART_GALLERY"
 msgstr "Галерия"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Версия:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Поздравления!"
@@ -321,6 +352,9 @@ msgstr "Обратна наклонена черта"
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Базова подвижност"
 
@@ -426,6 +460,9 @@ msgstr "Биолуминесцентна вакуола"
 
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Неврон"
@@ -622,6 +659,9 @@ msgstr "Наименованието „{0}“ вече съществува. П
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберация:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"sunlight\"]слънчева светлина[/thrive:compound] в околната среда."
 
@@ -786,6 +826,10 @@ msgstr "{0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Обект на търсенето:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Картини"
 
 msgid "CONCEPT_ART"
 msgstr "Картини"
@@ -1146,6 +1190,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Разработчици"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Частна Уикипедия"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Частен форум"
@@ -1993,8 +2041,16 @@ msgstr "Неограничени МТ"
 msgid "INFO_BOX_COST"
 msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Осморегулационен разход"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2004,8 +2060,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Съхранение"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Осморегулационен разход"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Не се осъществяват клетъчни процеси"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3266,6 +3330,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Активиране на редактора"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Текущи нишки:"
 
@@ -3336,8 +3404,15 @@ msgstr "Пластидът за азотна фиксация е протеин,
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
+#, fuzzy
+msgid "NO"
+msgstr "Няма"
+
 msgid "NONE"
 msgstr "Няма"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Обикновена"
@@ -3630,6 +3705,10 @@ msgstr "Окситоксин"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Окситоксиносинтеза"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Окситоксиносинтеза"
+
 msgid "PAGEDOWN"
 msgstr "Клавиш „Page Down“"
 
@@ -3887,6 +3966,10 @@ msgstr "Защитаване на новите създания от макси�
 
 msgid "PROTEINS"
 msgstr "Протеини"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Аеробно дишане"
 
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
@@ -4537,6 +4620,9 @@ msgstr "Скорост:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
@@ -4728,6 +4814,9 @@ msgstr "Снимка на екрана"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Вид:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5544,6 +5633,77 @@ msgstr "Колелце нагоре"
 msgid "WIKI"
 msgstr "нашата Уикипедия"
 
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Подлежи на уточняване"
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Поздравления!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Свързващ агент"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Осъзнаване"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Подлежи на уточняване"
 
@@ -5753,6 +5913,33 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
 
@@ -5768,8 +5955,9 @@ msgstr "Това е вътрешността на клетката. Цитопл
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
@@ -5777,8 +5965,13 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Аксон"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Подлежи на уточняване"
@@ -5804,30 +5997,117 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Пробуждане"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Пробуждане"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Пробуждане"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Пробуждане"
 
-msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Пробуждане"
 
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Пиршество"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_HEADING_UPGRADES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Индустриализация"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Свързващ агент"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Индустриализация"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Индустриализация"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Индустриализация"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5841,8 +6121,9 @@ msgstr "Лизозомата е мембранен органел, съдърж�
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
@@ -5850,8 +6131,13 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5885,6 +6171,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Обикновени микроби обитават дълбините на океана. Вие сте последният универсален общ предшественик (ПУОП) на тази планета.\n"
+"\n"
+"За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Микробен редактор"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Обикновени микроби обитават дълбините на океана. Вие сте последният универсален общ предшественик (ПУОП) на тази планета.\n"
+"\n"
+"За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Микробен етап"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Обикновени микроби обитават дълбините на океана. Вие сте последният универсален общ предшественик (ПУОП) на тази планета.\n"
+"\n"
+"За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
 
@@ -5913,6 +6240,43 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Многоклетъчен етап"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Добре дошли в ранния многоклетъчен етап!\n"
+"\n"
+"Вашите създания процъфтяха по време на микробния етап.\n"
+"\n"
+"Играта следва основните принципи на микробния етап. Трябва да еволюирате Вашите създания и да стигнете до редактора.\n"
+"\n"
+"В този етап, може да промените местоположението на клетките в клетъчната колония и да ги специализирате в редактора. Клетките в колонията не могат да споделят [thrive:compound type=\"atp\"]АТФ[/thrive:compound] помежду си.\n"
+"\n"
+"Ако Вашите създания се възпроизвеждат чрез пъпкуване (по подразбиране), техните клетки постепенно ще се увеличават, докато достигнат максималния си размер."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Многоклетъчен етап"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Многоклетъчен етап"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Многоклетъчен етап"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Многоклетъчен етап"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Многоклетъчен етап"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "Подлежи на уточняване"
@@ -6038,8 +6402,23 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Рустицианин"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Токсична\n"
+"вакуола"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6065,28 +6444,57 @@ msgstr "Хемосинтезиращи протеини"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Хлоропласт"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Цитоплазма"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Камшиче"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Индустриализация"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Лизозома"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболозоми"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Нитрогеназа"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Митохондрия"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Многоклетъчен етап"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6112,8 +6520,9 @@ msgstr "Добавяне на органел или друг обект"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Окситоксизома"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6130,6 +6539,18 @@ msgstr "Сигнализиращ агент"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Порозома"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Цивилизация"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Добавяне на органел или друг обект"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6281,6 +6702,58 @@ msgstr "Подлежи на уточняване"
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Подлежи на уточняване"
 
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Цивилизация"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Цивилизация"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Цивилизация"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Цивилизация"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Аксон"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Подлежи на уточняване"
 
@@ -6341,11 +6814,13 @@ msgstr "Тилакоидите са струпвания от протеини �
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Подлежи на уточняване"
 
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "Подлежи на уточняване"
@@ -6478,6 +6953,10 @@ msgstr "„Xbox Series X“"
 msgid "YEARS"
 msgstr "години"
 
+#, fuzzy
+msgid "YES"
+msgstr "години"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Отваряне на канала ни в „YouTube“"
 
@@ -6494,6 +6973,26 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Пробуждане"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Подлежи на уточняване"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Митохондрия"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в процес, който се нарича [b]аеробно дишане[/b]. За да функционира се нуждае от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Митохондрия"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Обща популация:"
@@ -6657,9 +7156,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "TYPE"
 #~ msgstr "Тип:"
-
-#~ msgid "VERSION"
-#~ msgstr "Версия:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -6884,9 +7380,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "AT"
 #~ msgstr "@"
-
-#~ msgid "BRACKETLEFT"
-#~ msgstr "["
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

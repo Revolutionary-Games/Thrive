@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-12-25 11:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D-liikkumisen tyyli:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Viherhiukkanen"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D-editori"
@@ -30,6 +49,10 @@ msgstr "3D-liikkuminen"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D-liikkumisen tyyli:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "["
 
 msgid "ABILITIES"
 msgstr "Kyvyt"
@@ -99,6 +122,10 @@ msgstr "Pysäytysmenu"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobinen typensidonta"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Soluhengitys"
 
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
@@ -202,6 +229,10 @@ msgstr "Taidetta, jonka tekijä on {0}"
 
 msgid "ART_GALLERY"
 msgstr "Taidegalleria"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Versio:"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -331,6 +362,9 @@ msgstr "Kenoviiva"
 msgid "BACKSPACE"
 msgstr "Askelpalautin"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikkuvuus"
@@ -443,6 +477,9 @@ msgstr "Bioluminesenssivä vakuoli"
 
 msgid "BIOME_LABEL"
 msgstr "Biomi: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuroni"
@@ -648,6 +685,9 @@ msgstr "Valittu tiedostonimi ({0}) on jo olemassa. Kirjoitetaanko yli?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Tuottaa [thrive:compound type=\"glucose\"][/thrive:compound]a. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
 
@@ -808,6 +848,10 @@ msgstr "{0}:n kulutus"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Ympäristön yhdistelmät:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Konseptitaide"
 
 msgid "CONCEPT_ART"
 msgstr "Konseptitaide"
@@ -1170,6 +1214,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr "DevBuild-tukijat"
 
 msgid "DEVELOPERS"
+msgstr "Kehittäjät"
+
+#, fuzzy
+msgid "DEVELOPMENT"
 msgstr "Kehittäjät"
 
 #, fuzzy
@@ -2080,8 +2128,16 @@ msgstr "Loputon MP"
 msgid "INFO_BOX_COST"
 msgstr "OLET SELVIYTYNYT!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "OLET SELVIYTYNYT!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregulaation energiantarve"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2091,8 +2147,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "OLET SELVIYTYNYT!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulaation energiantarve"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Ei toimintoja"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3386,6 +3450,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Avaa editorin lukitus"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Nykyinen suorittajien määrä:"
 
@@ -3459,8 +3527,15 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Ei mitään"
+
 msgid "NONE"
 msgstr "Ei mitään"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normaali"
@@ -3761,6 +3836,10 @@ msgstr "Happimyrkky"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Happimyrkkysynteesi"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Happimyrkkysynteesi"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -4025,6 +4104,10 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Proteiini"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Soluhengitys"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4721,6 +4804,9 @@ msgstr "Nopeus:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "levisi alueille:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
@@ -4927,6 +5013,9 @@ msgstr "Ota ruudunkaappaus"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Terv.:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5751,30 +5840,114 @@ msgid "WIKI"
 msgstr "Wikimme"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Ulkoiset vaikutukset:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Lajien populaatiot"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Havahtumisvaihe"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Kiinnittymisen elimet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Havahtumisvaihe"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Havahtumisvaihe"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Havahtumisvaihe"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Ulkoiset vaikutukset:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5848,24 +6021,29 @@ msgstr "Kemoplasti"
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "Kemoplasti"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]n [thrive:compound type=\"glucose\"]glukoosiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
-msgstr ""
+msgstr "Lämpöplasti"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr ""
+msgstr "Lämpöplasti"
 
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
@@ -5947,11 +6125,13 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. T
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
@@ -5961,30 +6141,64 @@ msgstr "Viherhiukkanen"
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Viherhiukkanen"
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Viherhiukkanen"
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Viherhiukkanen"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Lisää soluelin"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -6002,67 +6216,172 @@ msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiine
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Viherhiukkanen"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Viherhiukkanen"
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Soluelin"
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
-msgstr ""
+msgstr "Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen solun liikkumisnopeutta."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Siima"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen solun liikkumisnopeutta."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Siima"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Siima"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr "Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen solun liikkumisnopeutta."
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Kemoreseptori"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Kiinnittymisen elimet"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Ulkoiset vaikutukset:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Suorita auto-evo pelin aikana"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Kiinnittymisen elimet"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Loputtomat Yhdisteet"
+
+msgid "WIKI_HEADING_UI"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Kiinnittymisen elimet"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Siirrytäänkö teollisuusvaiheeseen?"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Happimyrkkysomi"
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -6076,17 +6395,25 @@ msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimi
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Happimyrkkysomi"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Happimyrkkysomi"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Soluelin"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6121,6 +6448,54 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobieditori"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitokondrio"
 
@@ -6136,11 +6511,13 @@ msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [t
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr ""
+msgstr "Mitokondrio"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
@@ -6150,30 +6527,65 @@ msgstr "Mitokondrio"
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitokondrio"
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ladataan mikrobieditoria"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Monisoluinen vaihe"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Ei toimintoja"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6223,8 +6635,9 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6238,30 +6651,39 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Ei toimintoja"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Ei toimintoja"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6283,11 +6705,13 @@ msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compo
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6297,8 +6721,23 @@ msgstr "Happimyrkkysomi"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Happimyrkkysomi"
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Ruostesyaniini"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Havahtumisvaihe"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Lisää soluelin"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6324,28 +6763,57 @@ msgstr "Kemosyntetisoivat proteiinit"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Viherhiukkanen"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Solulima"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Solulima"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Lisää soluelin"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Solulima"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Siima"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Kiinnittymisen elimet"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Happimyrkkysomi"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomi"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenaasi"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondrio"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Monisoluinen vaihe"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6371,8 +6839,9 @@ msgstr "Lisää soluelin"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Happimyrkkysomi"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6386,8 +6855,28 @@ msgstr "Ruostesyaniini"
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Viestintäkeskus"
 
+#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
+msgstr "Viestintäkeskus"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Lisää soluelin"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6413,29 +6902,37 @@ msgstr ""
 "Myrkky-\n"
 "vakuoli"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Pistä muita soluja tällä."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Viherhiukkanen"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Viherhiukkanen"
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6445,24 +6942,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Viherhiukkanen"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6486,8 +6988,9 @@ msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea mu
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja [thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6549,17 +7052,101 @@ msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiine
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Lisää soluelin"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Soluelin"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6577,11 +7164,13 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. T
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
@@ -6635,11 +7224,13 @@ msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valo
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6673,11 +7264,13 @@ msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:com
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Bioluminesenssivä vakuoli"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Bioluminesenssivä vakuoli"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
@@ -6691,30 +7284,45 @@ msgstr ""
 "Myrkky-\n"
 "vakuoli"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
+"Myrkky-\n"
+"vakuoli"
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Tuletko selviämään?"
@@ -6793,6 +7401,10 @@ msgid "YEARS"
 msgstr "vuotta"
 
 #, fuzzy
+msgid "YES"
+msgstr "vuotta"
+
+#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
@@ -6809,6 +7421,26 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Ruostesyaniini"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Ulkoiset vaikutukset:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitokondrio"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Mitokondrio"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitokondrio"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Kanta:"
@@ -6935,9 +7567,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "TYPE"
 #~ msgstr "Tyyppi:"
-
-#~ msgid "VERSION"
-#~ msgstr "Versio:"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
@@ -7068,9 +7697,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "AT"
 #~ msgstr "@"
-
-#~ msgid "BRACKETLEFT"
-#~ msgstr "["
 
 #~ msgid "BRACKETRIGHT"
 #~ msgstr "]"

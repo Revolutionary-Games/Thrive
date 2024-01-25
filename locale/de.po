@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: RolandAckerl <roland.ackerl@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.1.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D Bewegungsart:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -30,6 +49,10 @@ msgstr "Dreidimensionale Bewegung"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D Bewegungsart:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Nach rechts rotieren"
 
 msgid "ABILITIES"
 msgstr "Fähigkeiten"
@@ -92,6 +115,10 @@ msgstr "Erweiterte Einstellungen anzeigen"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobe Stickstofffixierung"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aerobe Atmung"
 
 msgid "AGENTS"
 msgstr "Mittel"
@@ -201,6 +228,10 @@ msgstr "Grafiken von {0}"
 
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Version:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulation!"
@@ -319,6 +350,9 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Rücktaste"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Basis Mobilität"
 
@@ -423,6 +457,9 @@ msgstr "Biolumineszenz-Vakuole"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -619,6 +656,9 @@ msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Farbabweichung:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -764,6 +804,10 @@ msgstr "{0}-Verbrauch"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Suche nach Substanz:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Konzept Kunst"
 
 msgid "CONCEPT_ART"
 msgstr "Konzept Kunst"
@@ -1108,6 +1152,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Entwickler(innen)"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Entwickler-Wiki"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Entwickler Forum"
@@ -1985,8 +2033,16 @@ msgstr "Unendliche MP"
 msgid "INFO_BOX_COST"
 msgstr "DU HAST DICH ENTWICKELT!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "DU HAST DICH ENTWICKELT!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregulierungskosten"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -1996,8 +2052,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "DU HAST DICH ENTWICKELT!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulierungskosten"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Keine Prozesse"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3249,6 +3313,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Editor aktivieren"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Aktuelle Threads:"
 
@@ -3319,8 +3387,15 @@ msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstof
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
+#, fuzzy
+msgid "NO"
+msgstr "Nichts"
+
 msgid "NONE"
 msgstr "Nichts"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3616,6 +3691,10 @@ msgstr "OxyToxid NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxid-Synthese"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxid-Synthese"
+
 msgid "PAGEDOWN"
 msgstr "Bild Ab"
 
@@ -3874,6 +3953,10 @@ msgstr "Schützt neu kreierte Spezies vor Artensterben"
 
 msgid "PROTEINS"
 msgstr "Proteine"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aerobe Atmung"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4534,6 +4617,9 @@ msgstr "Geschwindigkeit:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause-Menü"
 
@@ -4728,6 +4814,9 @@ msgstr "Screenshot aufnehmen"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Suchziel:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5550,30 +5639,107 @@ msgid "WIKI"
 msgstr "unser Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Externe Effekte:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Gratulation!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Externe Effekte:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5655,8 +5821,9 @@ msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält,
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Verwandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] ab."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5752,8 +5919,9 @@ msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pi
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\"][/thrive:compound]s ab."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5767,30 +5935,64 @@ msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pi
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Erhöht die Wendigkeit von großen Zellen."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren können. Diese Signalmittel können benutzt werden, um andere Zellen anzuziehen oder sie vor Gefahren zu warnen."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Organelle platzieren"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5808,17 +6010,25 @@ msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischun
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organellen"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5836,41 +6046,129 @@ msgstr "Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschena
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Verwendet [thrive:compound type=\"atp\"][/thrive:compound], um die Bewegungsgeschwindigkeit der Zelle zu erhöhen."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschenartiges Bündel von Proteinfasern, das sich von der Zellmembran aus erstreckt und mit Hilfe von ATP die Zelle wellenförmig in eine Richtung treiben kann. Die Position des Flagellums bestimmt die Richtung, in der es den Schub für die Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der Richtung, in die das Flagellum zeigt. Ein Flagellum, das sich auf der linken Seite einer Zelle befindet, gibt beispielsweise Schub, wenn es sich nach rechts bewegt."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren können. Diese Signalmittel können benutzt werden, um andere Zellen anzuziehen oder sie vor Gefahren zu warnen."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschenartiges Bündel von Proteinfasern, das sich von der Zellmembran aus erstreckt und mit Hilfe von ATP die Zelle wellenförmig in eine Richtung treiben kann. Die Position des Flagellums bestimmt die Richtung, in der es den Schub für die Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der Richtung, in die das Flagellum zeigt. Ein Flagellum, das sich auf der linken Seite einer Zelle befindet, gibt beispielsweise Schub, wenn es sich nach rechts bewegt."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr "Verwendet [thrive:compound type=\"atp\"][/thrive:compound], um die Bewegungsgeschwindigkeit der Zelle zu erhöhen."
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Chemorezeptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Bindemittel"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Externe Effekte:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Auto-Evo während des Spielens ausführen"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Unendlich Substanzen"
+
+msgid "WIKI_HEADING_UI"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Bindemittel"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Bindemittel"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5884,17 +6182,25 @@ msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthä
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organellen"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5929,6 +6235,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomen sind Cluster von Proteinen, die in Proteinhüllen verpackt sind. Sie sind in der Lage, Glukose in einem Prozess, der aerobe Atmung genannt wird, mit einer viel höheren Geschwindigkeit in ATP umzuwandeln, als dies im Zytoplasma möglich ist. Für ihre Funktion benötigt sie jedoch Sauerstoff, und ein niedrigerer Sauerstoffgehalt in der Umgebung verlangsamt die Geschwindigkeit ihrer ATP-Produktion. Da die Metabolosomen direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobeneditor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Auf einem weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und die Einschläge etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt:\n"
+"\n"
+"Leben.\n"
+"\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
+"\n"
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
 
@@ -5960,30 +6307,74 @@ msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist e
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Willkommen im frühen multizellulären Stadium!\n"
+"\n"
+"Du hast deine Spezies erfolgreich durch die einzellige Phase geleitet.\n"
+"\n"
+"Das Gameplay hat im Kern die selben Mechaniken, wie das Mikroben Stadium. Du musst genauso deinen Organismus wachsen lassen und dich fortpflanzen um zum Editor zu gelangen. \n"
+"\n"
+"Allerdings kannst du das zelluläre Layout deiner Kolonie im Editor bearbeiten und deine Zellen für bestimmte Rollen spezialisieren. Bedenke, dass die Mitglieder deiner Kolonie [thrive:compound type=\"atp\"][/thrive:compound] nicht teilen können. \n"
+"\n"
+"Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Mehrzelliges Stadium"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Keine Prozesse"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6033,8 +6424,9 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Thermosynthase ist ein Protein, welches Temperaturveränderungen benutzt um seine Form zu ändern. Bei Erwärmung faltet sich das Protein zusammen und bindet sich an ADP. Dieses wird in einem Prozess names [b]Thermosynthese[/b] zu [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt, wenn das Protein sich unter Einwirkung von Kälte wieder entfaltet. Die Rate der [thrive:compound type=\"atp\"][/thrive:compound] Produktion skaliert mit der [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6048,11 +6440,13 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6062,17 +6456,21 @@ msgstr "Das bestimmende Merkmal der eukaryotischen Zellen. Zum Zellkern gehören
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Keine Prozesse"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der Konzentration von Wasser und Kohlendioxid."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Keine Prozesse"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6098,8 +6496,9 @@ msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:comp
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6109,8 +6508,23 @@ msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Bindemittel"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Organelle platzieren"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Toxin-\n"
+"Vakuole"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6136,28 +6550,57 @@ msgstr "Chemosynthetisierende Proteine"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Zytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Zytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Organelle platzieren"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Zytoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Geißeln"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Bindemittel"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolome"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrium"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Mehrzelliges Stadium"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6183,8 +6626,9 @@ msgstr "Organelle platzieren"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxisome"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6201,6 +6645,18 @@ msgstr "Signalorganelle"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Schleimdüse"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Organelle platzieren"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6226,29 +6682,37 @@ msgstr ""
 "Toxin-\n"
 "Vakuole"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6258,24 +6722,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Der Chloroplast ist eine Doppelmembranstruktur mit lichtempfindlichen Pigmenten, die in Membransäckchen gestapelt sind. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Die Pigmente im Chloroplasten sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die dem Chloroplasten seine charakteristische Farbe verleihen. Die Geschwindigkeit der Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6299,8 +6768,9 @@ msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound ty
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] zu nutzen um [thrive:compound type=\"iron\"][/thrive:compound] zu oxidieren. Dieser Prozess, der [b]Eisenatmung[/b] genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6362,17 +6832,73 @@ msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schle
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"mucilage\"][/thrive:compound] um. Drücke [thrive:input]g_secrete_slime[/thrive:input] um gespeicherten [thrive:compound type=\"mucilage\"][/thrive:compound] freizusetzen; dieser erhöht die eigene Geschwindigkeit und verlangsamt Gegner."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren können. Diese Signalmittel können benutzt werden, um andere Zellen anzuziehen oder sie vor Gefahren zu warnen."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren können. Diese Signalmittel können benutzt werden, um andere Zellen anzuziehen oder sie vor Gefahren zu warnen."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schleim. Oft wird dieser zur Fortbewegung benutzt. So auch von einigen Bakterien, welche Substanzen wie diese mit hohem Druck nach hinten schleudern. Dies wirkt wie ein Raketen Antrieb und treibt die Zellen mit unglaublicher Geschwindigkeit vorwärts. Der Schleim wird ebenfalls benutzt, um Räuber zu behindern. Sie werden im Schleim gefangen, den nur andere Organismen mit diesem Antrieb ungehindert durchqueren können."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"mucilage\"][/thrive:compound] um. Drücke [thrive:input]g_secrete_slime[/thrive:input] um gespeicherten [thrive:compound type=\"mucilage\"][/thrive:compound] freizusetzen; dieser erhöht die eigene Geschwindigkeit und verlangsamt Gegner."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Viele Organismen produzieren polysaccharide Substanzen, wie diesen Schleim. Oft wird dieser zur Fortbewegung benutzt. So auch von einigen Bakterien, welche Substanzen wie diese mit hohem Druck nach hinten schleudern. Dies wirkt wie ein Raketen Antrieb und treibt die Zellen mit unglaublicher Geschwindigkeit vorwärts. Der Schleim wird ebenfalls benutzt, um Räuber zu behindern. Sie werden im Schleim gefangen, den nur andere Organismen mit diesem Antrieb ungehindert durchqueren können."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikroben Stadium"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Organelle platzieren"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organellen"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6390,8 +6916,9 @@ msgstr "Der Thermoplast ist eine Doppelmembranstruktur, in der wärmeempfindlich
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Temperatur ab."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Thermosynthase ist ein Protein, welches Temperaturveränderungen benutzt um seine Form zu ändern. Bei Erwärmung faltet sich das Protein zusammen und bindet sich an ADP. Dieses wird in einem Prozess names [b]Thermosynthese[/b] zu [thrive:compound type=\"atp\"][/thrive:compound] umgewandelt, wenn das Protein sich unter Einwirkung von Kälte wieder entfaltet. Die Rate der [thrive:compound type=\"atp\"][/thrive:compound] Produktion skaliert mit der [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6449,11 +6976,13 @@ msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6501,8 +7030,9 @@ msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6516,17 +7046,21 @@ msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, 
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Menge niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Wirst du gedeihen?"
@@ -6600,6 +7134,10 @@ msgstr ""
 msgid "YEARS"
 msgstr "Jahre"
 
+#, fuzzy
+msgid "YES"
+msgstr "Jahre"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besuche unseren YouTube Kanal"
 
@@ -6616,6 +7154,26 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Rusticyanin"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Externe Effekte:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitochondrium"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Das Kraftwerk der Zelle. Das Mitochondrium (Plural: Mitochondrien) ist eine doppelte Membranstruktur, die mit Proteinen und Enzymen gefüllt ist. Es handelt sich um einen Prokaryoten, der für die Verwendung durch seinen eukaryotischen Wirt assimiliert wurde. Es ist in der Lage, Glukose mit einer viel höheren Effizienz in ATP umzuwandeln, als dies im Zytoplasma in einem Prozess namens Aerobe Atmung möglich ist. Es benötigt jedoch Sauerstoff, um zu funktionieren, und niedrigere Sauerstoffkonzentrationen in der Umgebung verlangsamen die Geschwindigkeit seiner ATP-Produktion."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitochondrium"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Gesamtbevölkerung:"
@@ -6744,9 +7302,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "TYPE"
 #~ msgstr "Typ:"
-
-#~ msgid "VERSION"
-#~ msgstr "Version:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -6912,10 +7467,6 @@ msgstr "Herauszoomen"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Nach rechts rotieren"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

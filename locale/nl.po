@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: Tim Kuppens <t.m.kuppens@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.1.1\n"
 "Generated-By: Babel 2.9.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D bewegingsstijl:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D-Bewerker"
@@ -30,6 +49,10 @@ msgstr "3D-beweging"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D bewegingsstijl:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Draai naar links"
 
 msgid "ABILITIES"
 msgstr "Capaciteiten"
@@ -92,6 +115,10 @@ msgstr "Open de weergave voor geavanceerde instellingen"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobe stikstofbinding"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "aërobe ademhaling"
 
 msgid "AGENTS"
 msgstr "Middelen"
@@ -200,6 +227,10 @@ msgstr "Kunst van {0}"
 
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Verheffing"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gefeliciteerd!"
@@ -323,6 +354,9 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Basismobiliteit"
 
@@ -427,6 +461,9 @@ msgstr "Bioluminescente Vacuole"
 
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Zenuwcel"
@@ -620,6 +657,9 @@ msgstr "De gekozen bestandsnaam({0}) is al in gebruik. Overschrijven?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -763,6 +803,10 @@ msgstr "Verbruik van {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Stof om te Vinden:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Conceptkunst"
 
 msgid "CONCEPT_ART"
 msgstr "Conceptkunst"
@@ -1123,6 +1167,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Ontwikkelaars"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Ontwikkelwiki"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Ontwikkelforum"
@@ -1951,8 +1999,16 @@ msgstr "Oneindige MP"
 msgid "INFO_BOX_COST"
 msgstr "Basis Kosten (MP)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Basis Kosten (MP)"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregulatiekosten"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -1961,8 +2017,16 @@ msgstr "Interne (Map) Naam:"
 msgid "INFO_BOX_MASS"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Opslag"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulatiekosten"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Processen"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processen"
@@ -3199,6 +3263,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (U)"
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Schakel de editor in"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Huidige threads:"
 
@@ -3269,8 +3337,15 @@ msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compoun
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Geen"
+
 msgid "NONE"
 msgstr "Geen"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normaal"
@@ -3556,6 +3631,10 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy-synthse"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy-synthse"
+
 msgid "PAGEDOWN"
 msgstr "Pagina naar Beneden"
 
@@ -3807,6 +3886,10 @@ msgstr "Bescherm zojuist gecreëerde soorten van soort cap"
 
 msgid "PROTEINS"
 msgstr "Eiwitten"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "aërobe ademhaling"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4441,6 +4524,9 @@ msgstr "Snelheid:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "verspreid naar patches:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauzeermenu"
 
@@ -4628,6 +4714,9 @@ msgstr "Maak een screenshot"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Doelwittype:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Verheffing"
@@ -5431,31 +5520,107 @@ msgid "WIKI"
 msgstr "Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Effecten van Buiten:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Gefeliciteerd!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Ontwaakfase"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Bindings-middel"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Ontwaakfase"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Ontwaakfase"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Ontwaakfase"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Bewustzijnsfase"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Effecten van Buiten:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
 #, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5537,8 +5702,9 @@ msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zi
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Zet [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] om in [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen informatie over hun omgeving verkrijgen. Het toevoegen van dit organel zorgt voor een beter afgestelde chemoroceptie. Het betere zicht in de celfase wordt vertegenwoordigd door een lijn die naar stoffen buiten het zichtbare scherm wijst."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5632,8 +5798,9 @@ msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen informatie over hun omgeving verkrijgen. Het toevoegen van dit organel zorgt voor een beter afgestelde chemoroceptie. Het betere zicht in de celfase wordt vertegenwoordigd door een lijn die naar stoffen buiten het zichtbare scherm wijst."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5647,30 +5814,64 @@ msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Verhoogt de draaisnelheid van grote cellen."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Signaalgevers maken het mogelijk voor cellen om chemicaliën te maken waar andere cellen op reageren. Signaalchemicaliën kunnen gebruikt wordet om andere cellen aan te trekken of om ze te waarschuwen voor gevaar en te laten vluchten."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Plaats organellen"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5688,17 +5889,25 @@ msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Axon"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5716,42 +5925,133 @@ msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdra
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de bewegingssnelheid van de cel te vergroten."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signaalgevers maken het mogelijk voor cellen om chemicaliën te maken waar andere cellen op reageren. Signaalchemicaliën kunnen gebruikt wordet om andere cellen aan te trekken of om ze te waarschuwen voor gevaar en te laten vluchten."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om de bewegingssnelheid van de cel te vergroten."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Effecten van Buiten:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
-msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Oneindige Stoffen"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_UPGRADES"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Industriële Fase"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Bindings-middel"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Industriële Fase"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Industriële Fase"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Industriële Fase"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5765,17 +6065,25 @@ msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hy
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Axon"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5810,6 +6118,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Microbe Bewerker"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Microbieel Stage"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -5841,30 +6190,74 @@ msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Welkom bij de Vroege Meercellige Fase!\n"
+"\n"
+"Het is je gelukt om je soort door de eencellige fase te leiden.\n"
+"\n"
+"Het spel volgt dezelfde kernmechanieken als de Microbenfase. Je moet nog steeds je organisme laten groeien en reproduceren om de bewerker te openen.\n"
+"\n"
+"Echter, je kunt nu in de bewerker vorm geven aan een celkolonie. Je kunt verschillende cellen specializeren in verschillende rollen. Houdt er rekening mee dat leden van koloniën geen [thrive:compound type=\"atp\"][/thrive:compound] kunnen delen.\n"
+"\n"
+"Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Meercellige Stage"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Geen processen"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -5914,8 +6307,9 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het aan hitte wordt blootgesteld vouwt het zichzelf op en bindt het aan ADP. Wanneer het weer afkoelt ontvouwt het zichzelf en vormt het [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -5929,11 +6323,13 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -5943,17 +6339,21 @@ msgstr "De kenmerkende eigenschap van eukaryotische cellen. De nucleus bevat ook
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Geen processen"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chemoplast is een structuur met dubbele membraan waar eiwitten in zitten die [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], gasvormig [thrive:compound type=\"carbondioxide\"][/thrive:compound], en water om kunnen zetten in [thrive:compound type=\"glucose\"][/thrive:compound]. Dit proces heet [b]waterstofsulfide chemosynthese[/b]. De snelheid van de [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Geen processen"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -5979,8 +6379,9 @@ msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compo
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -5990,8 +6391,23 @@ msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanine"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Ontwaakfase"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Plaats organellen"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Toxine\n"
+"Vacuole"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6017,28 +6433,57 @@ msgstr "Chemosynthetiserende eiwitten"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplast"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Cytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Plaats organellen"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Plaats organellen"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Industriële Fase"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozoom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Plaats organellen"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomen"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Stikstofase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrion"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Meercellige Stage"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6064,8 +6509,9 @@ msgstr "Plaats organellen"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxysoom"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6082,6 +6528,18 @@ msgstr "Signaalgever"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slijmstraal"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Maatschappijfase"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Plaats organellen"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6107,30 +6565,37 @@ msgstr ""
 "Toxine\n"
 "Vacuole"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6140,24 +6605,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Het chloroplast is een structuur met dubbel membraan waar lichtgevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het chloroplast maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6181,8 +6651,9 @@ msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]. Snelheid schaalt met contentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rusticyanine is een eiwat dat [thrive:compound type=\"carbondioxide\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound] gebruikt om [thrive:compound type=\"iron\"][/thrive:compound] van een staat naar een andere to oxideren. Dit proces heeft [b]ijzerademhaling[/b] en maakt energie vrij die de cel kan gebruiken."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6244,17 +6715,73 @@ msgstr "Veel organismen produceren slijmachtige substanties van polysachariden. 
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"mucilage\"][/thrive:compound]. Druk op [thrive:input]g_secrete_slime[/thrive:input] om opgeslagen [thrive:compound type=\"mucilage\"][/thrive:compound] vrij te laten. De cel wordt hierdoor sneller en prooidieren worden vertraagd."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Signaalgevers maken het mogelijk voor cellen om chemicaliën te maken waar andere cellen op reageren. Signaalchemicaliën kunnen gebruikt wordet om andere cellen aan te trekken of om ze te waarschuwen voor gevaar en te laten vluchten."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signaalgevers maken het mogelijk voor cellen om chemicaliën te maken waar andere cellen op reageren. Signaalchemicaliën kunnen gebruikt wordet om andere cellen aan te trekken of om ze te waarschuwen voor gevaar en te laten vluchten."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Veel organismen produceren slijmachtige substanties van polysachariden. Slijmstof is zulks een polysacharide. Veel soorten gebruiken slijm om voort te bewegen. Sommige soorten bacteriën spuiten deze stoffen met hoge druk achter hun uit. Deze slijmstralen werken als rakketmotoren en duwen de cel met enorme snelheid vooruit. Slijm kan ook gebruikt worden om roofdieren te belemmeren door ze in een stof te vangen die alleen organismen met slijmstralen kunnen navigeren."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"mucilage\"][/thrive:compound]. Druk op [thrive:input]g_secrete_slime[/thrive:input] om opgeslagen [thrive:compound type=\"mucilage\"][/thrive:compound] vrij te laten. De cel wordt hierdoor sneller en prooidieren worden vertraagd."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Maatschappijfase"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Veel organismen produceren slijmachtige substanties van polysachariden. Slijmstof is zulks een polysacharide. Veel soorten gebruiken slijm om voort te bewegen. Sommige soorten bacteriën spuiten deze stoffen met hoge druk achter hun uit. Deze slijmstralen werken als rakketmotoren en duwen de cel met enorme snelheid vooruit. Slijm kan ook gebruikt worden om roofdieren te belemmeren door ze in een stof te vangen die alleen organismen met slijmstralen kunnen navigeren."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Maatschappijfase"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Maatschappijfase"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Maatschappijfase"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Axon"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6272,8 +6799,9 @@ msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelig
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] aan de hand van temperatuurverschillen. Snelheid schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Thermosynthase is een eiwit dat thermische convectie gebruikt om zijn vorm aan te passen. Wanneer het aan hitte wordt blootgesteld vouwt het zichzelf op en bindt het aan ADP. Wanneer het weer afkoelt ontvouwt het zichzelf en vormt het [thrive:compound type=\"atp\"][/thrive:compound]. Dit proces heet [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6331,11 +6859,13 @@ msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Thylakoïden zijn clusters van eiwitten en lichtgevoelige pigmenten. De pigmenten maken het mogelijk om het energie van licht te gebruiken om [thrive:compound type=\"glucose\"][/thrive:compound] te maken van gasvorming [thrive:compound type=\"carbondioxide\"][/thrive:compound] en water. Dit proces heet [b]fotosynthese[/b]. De pigmenten zorgen ook voor de karakteristieke kleur. De snelheid van de productie van [thrive:compound type=\"glucose\"][/thrive:compound] schaalt met de concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]. Aangezien thylakoïden in het cytoplasma hangen, voeren de vloeistoffen er om heen enige [b]glycolyse[/b] uit."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6383,8 +6913,9 @@ msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6398,17 +6929,21 @@ msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de 
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Zul jij overleven?"
@@ -6481,6 +7016,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "jaren"
 
+#, fuzzy
+msgid "YES"
+msgstr "jaren"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Bezoek ons YouTube kanaal"
 
@@ -6497,6 +7036,26 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Effecten van Buiten:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitochondrion"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "De krachtbron van de cel. Het mitochondrion (meervoud: mitochondria) is een structuur met dubbele membraan gevuld met eiwitten en enzymen. Het is een prokaryoot wat door een eukaryotische moedercel is geassimileerd voor diens gebruik. Het heeft de mogelijkheid om [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound]. Het doet dit met een veel grotere efficiëntie dan cytoplasma in een proces genaamd [b]aerobe dissimilatie[/b]. Het heeft echter ook [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te doen. Lagere hoeveelheiden [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving vertragen de productie van [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitochondrion"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Totale Bevolking:"
@@ -6690,10 +7249,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Draai naar links"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

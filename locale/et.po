@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -19,7 +19,26 @@ msgstr ""
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
 #, fuzzy
@@ -31,6 +50,9 @@ msgid "3D_MOVEMENT"
 msgstr "Liikumine"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
+msgstr ""
+
+msgid "8_BRACKET_16"
 msgstr ""
 
 msgid "ABILITIES"
@@ -102,6 +124,10 @@ msgstr "Pausi menüü"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aeroobne lämmastiku fikseerimine"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aeroobne hingamine"
 
 msgid "AGENTS"
 msgstr "ained"
@@ -208,6 +234,9 @@ msgstr "Kunst autorilt {0}"
 
 msgid "ART_GALLERY"
 msgstr "Kunstigalerii"
+
+msgid "ASCENSION"
+msgstr ""
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -338,6 +367,9 @@ msgstr "Kaldkriips"
 msgid "BACKSPACE"
 msgstr "Tagasilükkeklahv"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Liikuvus"
@@ -450,6 +482,9 @@ msgstr "Bioluminestseeruv vakuool"
 
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -650,6 +685,9 @@ msgstr "Valitud failinimi ({0}) on juba olemas. Kas kirjutada üle?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaatiline aberratsioon:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja intensiivsusega [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -807,6 +845,9 @@ msgstr "{0} tarbimine"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Leitav ühend:"
+
+msgid "CONCEPTS"
+msgstr ""
 
 msgid "CONCEPT_ART"
 msgstr ""
@@ -1166,6 +1207,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr "Devbuildsi toetajad"
 
 msgid "DEVELOPERS"
+msgstr "Arendajad"
+
+#, fuzzy
+msgid "DEVELOPMENT"
 msgstr "Arendajad"
 
 #, fuzzy
@@ -2078,8 +2123,16 @@ msgstr "Lõpmatu MP"
 msgid "INFO_BOX_COST"
 msgstr "SA OLED ÕIDULIKUD!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "SA OLED ÕIDULIKUD!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoregulatsiooni maksumus"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2089,8 +2142,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "SA OLED ÕIDULIKUD!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoregulatsiooni maksumus"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Protsesse pole"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3424,6 +3485,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Luba redaktor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Praegused lõimed:"
 
@@ -3495,8 +3560,15 @@ msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaas
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
+#, fuzzy
+msgid "NO"
+msgstr "Mitte ühtegi"
+
 msgid "NONE"
 msgstr "Mitte ühtegi"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Tavaline"
@@ -3797,6 +3869,10 @@ msgstr "oksütotsiini nt"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Oksütotsiin"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Oksütotsiin"
+
 msgid "PAGEDOWN"
 msgstr "Lehekülg alla"
 
@@ -4058,6 +4134,10 @@ msgstr ""
 
 msgid "PROTEINS"
 msgstr "Valgud"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aeroobne hingamine"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4745,6 +4825,9 @@ msgstr "Kiirus:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "levinud plaastritele:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
@@ -4951,6 +5034,9 @@ msgstr "Tehke ekraanipilt"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Tüüp:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5774,30 +5860,114 @@ msgid "WIKI"
 msgstr "meie Viki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Välised mõjud:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Liikide populatsioon"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Sideaine"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Sideaine"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Välised mõjud:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5879,8 +6049,9 @@ msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on v�
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound] tüübiks [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5974,8 +6145,9 @@ msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja intensiivsusega [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5989,30 +6161,64 @@ msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud võivad reageerida. Signaalkemikaale saab kasutada teiste rakkude meelitamiseks või ohu eest hoiatamiseks, et nad põgeneksid.st."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -6030,17 +6236,25 @@ msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudes
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -6058,41 +6272,136 @@ msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Kasutab [thrive:compound type=\"atp\"][/thrive:compound] lahtri liikumiskiiruse suurendamiseks."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud võivad reageerida. Signaalkemikaale saab kasutada teiste rakkude meelitamiseks või ohu eest hoiatamiseks, et nad põgeneksid.st."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr "Kasutab [thrive:compound type=\"atp\"][/thrive:compound] lahtri liikumiskiiruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Kemoretseptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Sideaine"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Välised mõjud:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Käivitage mängu ajal auto-evo"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Sideaine"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Lõpmatud ühendid"
+
+msgid "WIKI_HEADING_UI"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Sideaine"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Sideaine"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -6106,17 +6415,25 @@ msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad o
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6151,6 +6468,54 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
@@ -6182,30 +6547,65 @@ msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraa
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Protsesse pole"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6255,8 +6655,9 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6270,11 +6671,13 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6284,17 +6687,21 @@ msgstr "Eukarüootsete rakkude iseloomulik tunnus. Tuum hõlmab ka endoplasmaati
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Protsesse pole"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Kemoplast on kahekordne membraanstruktuur, mis sisaldab valke, mis on võimelised muutma vesiniksulfiidi, vee ja gaasilise süsinikdioksiidi glükoosiks protsessis, mida nimetatakse vesiniksulfiidi kemosünteesiks. Selle glükoosi tootmise kiirus on kooskõlas süsinikdioksiidi kontsentratsiooniga."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Protsesse pole"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6320,8 +6727,9 @@ msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thriv
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6331,8 +6739,23 @@ msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT pri
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "rustitsüaniin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Sideaine"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Asetage organell"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Toksiin\n"
+"Vacuool"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6358,28 +6781,57 @@ msgstr "Kemosünteesivad valgud"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Kloroplast"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Tsütoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Tsütoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Tsütoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Asetage organell"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vibur"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Sideaine"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oksütoksisoom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Asetage organell"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosoomid"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Lämmastik"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondrid"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6405,8 +6857,9 @@ msgstr "Asetage organell"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oksütoksisoom"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6420,8 +6873,28 @@ msgstr "rustitsüaniin"
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Signaaliagent"
 
+#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
+msgstr "Signaaliagent"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6447,29 +6920,37 @@ msgstr ""
 "Toksiin\n"
 "Vacuool"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6479,24 +6960,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kloroplast on kahekordne membraanstruktuur, mis sisaldab valgustundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Kloroplastis olevad pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi. Need pigmendid annavad sellele ka iseloomuliku värvi. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6520,8 +7006,9 @@ msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdio
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja [thrive:compound type=\"hapnik\"][/thrive:ühend]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6583,17 +7070,101 @@ msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudes
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud võivad reageerida. Signaalkemikaale saab kasutada teiste rakkude meelitamiseks või ohu eest hoiatamiseks, et nad põgeneksid.st."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signaalained võimaldavad rakkudel luua kemikaale, millele teised rakud võivad reageerida. Signaalkemikaale saab kasutada teiste rakkude meelitamiseks või ohu eest hoiatamiseks, et nad põgeneksid.st."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6611,8 +7182,9 @@ msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6670,11 +7242,13 @@ msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid 
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6722,8 +7296,9 @@ msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinid
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6737,17 +7312,21 @@ msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinid
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Kas sa õitsed?"
@@ -6822,6 +7401,10 @@ msgid "YEARS"
 msgstr "aastat"
 
 #, fuzzy
+msgid "YES"
+msgstr "aastat"
+
+#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Peata mäng"
 
@@ -6838,6 +7421,26 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "rustitsüaniin"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Välised mõjud:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitokondrid"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Raku jõujaam. Mitokondrid (mitmuses: mitokondrid) on kahekordne membraanstruktuur, mis on täidetud valkude ja ensüümidega. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. See on võimeline muutma glükoosi ATP-ks palju suurema efektiivsusega kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitokondrid"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Rahvaarv kokku:"

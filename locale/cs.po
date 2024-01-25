@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Společné fáze editoru a strategie"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -30,6 +49,10 @@ msgstr "3D Pohyb"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Styl pohybu 3D:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Otočit se doleva"
 
 msgid "ABILITIES"
 msgstr "Schopnosti"
@@ -92,6 +115,10 @@ msgstr "Otevřít náhled pokročilého nastavení"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobní fixace dusíku"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Aerobní dýchání"
 
 msgid "AGENTS"
 msgstr "Činidlo"
@@ -189,6 +216,10 @@ msgstr "Ilustraci vytvořil(a) {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galerie"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Verze:"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -315,6 +346,9 @@ msgstr "Lomítko"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Základní pohyblivost"
 
@@ -420,6 +454,9 @@ msgstr "Bioluminiscenční vakuola"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -614,6 +651,9 @@ msgstr "Soubor se jménem ({0}) již existuje. Přejete si jej nahradit?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -758,6 +798,10 @@ msgstr "Spotřeba {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Sloučenina k nalezení:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Koncepční umění"
 
 msgid "CONCEPT_ART"
 msgstr "Koncepční umění"
@@ -1128,6 +1172,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr "Sponzoři Devbuild"
 
 msgid "DEVELOPERS"
+msgstr "Vývojáři"
+
+#, fuzzy
+msgid "DEVELOPMENT"
 msgstr "Vývojáři"
 
 #, fuzzy
@@ -2017,8 +2065,16 @@ msgstr "Nekonečné MP"
 msgid "INFO_BOX_COST"
 msgstr "PROSPERUJEŠ!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "PROSPERUJEŠ!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Náklady na osmoregulaci"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2028,8 +2084,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "PROSPERUJEŠ!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Náklady na osmoregulaci"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Neprobíhají žádné procesy"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3304,6 +3368,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Zapnout editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Současná vlákna:"
 
@@ -3374,8 +3442,15 @@ msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:c
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Žádná"
+
 msgid "NONE"
 msgstr "Žádná"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normální"
@@ -3670,6 +3745,10 @@ msgstr "OxyToxyn NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Syntéza OxyToxynů"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Syntéza OxyToxynů"
+
 msgid "PAGEDOWN"
 msgstr "PgDown"
 
@@ -3927,6 +4006,10 @@ msgstr "Ochrana limitu počtu druhů pro druhy, které byly právě vytvořeny"
 
 msgid "PROTEINS"
 msgstr "Bílkoviny"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Aerobní dýchání"
 
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
@@ -4590,6 +4673,9 @@ msgstr "Rychlost:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
 
@@ -4785,6 +4871,9 @@ msgstr "Udělat screenshot"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5595,31 +5684,107 @@ msgid "WIKI"
 msgstr "naše Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Vedlejší účinky:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Populace druhů"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Pojící médium"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Vedlejší účinky:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pigmenty jsou schopna využít energii [thrive:compound type=\"sunlight\"][/thrive:compound] k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z vody a plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] v procesu známem jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také to, co dává Thylakoidům jejich osobité zbarvení. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]. Jelikož jsou thylakoidy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 #, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "Společné fáze editoru a strategie"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pigmenty jsou schopna využít energii [thrive:compound type=\"sunlight\"][/thrive:compound] k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z vody a plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] v procesu známem jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také to, co dává Thylakoidům jejich osobité zbarvení. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]. Jelikož jsou thylakoidy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5701,8 +5866,9 @@ msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5798,8 +5964,9 @@ msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní 
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5813,30 +5980,64 @@ msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní 
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Zvyšuje rychlost otáčení velkých buněk."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Signalizující látky umožnují buňkám vytvářet chemikálie na které mohou ostatní buňky reagovat. Tyto signalizující chemikálie mohou být využity na přivolání ostatních buněk, nebo na varování před nebezpečím, což jim signalizuje únik."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Umístit organelu"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5854,17 +6055,25 @@ msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, pr
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5882,42 +6091,132 @@ msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, kte
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Využívá [thrive:compound type=\"atp\"][/thrive:compound] ke zvýšení rychlosti pohybu buňky."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signalizující látky umožnují buňkám vytvářet chemikálie na které mohou ostatní buňky reagovat. Tyto signalizující chemikálie mohou být využity na přivolání ostatních buněk, nebo na varování před nebezpečím, což jim signalizuje únik."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Využívá [thrive:compound type=\"atp\"][/thrive:compound] ke zvýšení rychlosti pohybu buňky."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Vedlejší účinky:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Společné fáze editoru a strategie"
 
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Nekonečné sloučeniny"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Pojící médium"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Umístěním továrny postoupíte do průmyslové fáze. Pokračovat do další fáze?"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Přesun do průmyslové fáze?"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5931,17 +6230,25 @@ msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytick
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Mají schopnost změnit [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] daleko rychleji než cytoplasma skrze proces nazývaný [b]Buněčné dýchání[/b]. Potřebuje na to ale [thrive:compound type=\"oxygen\"][/thrive:compound] aby fungovalo, a nízký objem [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomalí schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]. Jelikož jsou metabolosomy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5976,6 +6283,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Mají schopnost změnit [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] daleko rychleji než cytoplasma skrze proces nazývaný [b]Buněčné dýchání[/b]. Potřebuje na to ale [thrive:compound type=\"oxygen\"][/thrive:compound] aby fungovalo, a nízký objem [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomalí schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]. Jelikož jsou metabolosomy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobiální Editor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6007,30 +6355,65 @@ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná pr
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Načítání editoru mikrobů"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Společné fáze editoru a strategie"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6080,8 +6463,9 @@ msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Termosyntáza je protein který využívá teplotní konvekci ke změně svého tvaru, což mu umožnuje složit a navázat se na ADP když je vystaven teplu, pak jej rozložit a recyklovat na [thrive:compound type=\"atp\"][/thrive:compound] když je vystaven chlazení v procesu známém jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6095,11 +6479,13 @@ msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6109,17 +6495,21 @@ msgstr "Definující rys eukaryotických buněk. Jádro také zahrnuje endoplazm
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Neprobíhají žádné procesy"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chemoplast je struktura dvou membrán obsahující proteiny, které jsou schopné konvertovat [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vodu na [thrive:compound type=\"glucose\"][/thrive:compound], v procesu známém jako [b]chemosyntéza sirovodíku[/b]. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentrace [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Společné fáze editoru a strategie"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Neprobíhají žádné procesy"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6145,8 +6535,9 @@ msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6156,8 +6547,23 @@ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanin (protein mědi)"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Fáze Probuzení"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Umístit organelu"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Toxinová\n"
+"Vakuola"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6183,28 +6589,57 @@ msgstr "Chemosyntetizující proteiny"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplasty"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Cytoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplazma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Umístit organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplazma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Umístit organelu"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bičík"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Pojící médium"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Umístit organelu"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomy"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenáza"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Mnohobuněčné Období"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6230,8 +6665,9 @@ msgstr "Umístit organelu"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxizom"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplazma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6248,6 +6684,18 @@ msgstr "Signalizující Prvek"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slizová tryska"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Umístit organelu"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6273,29 +6721,37 @@ msgstr ""
 "Toxinová\n"
 "Vakuola"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6305,24 +6761,29 @@ msgstr "Protoplazma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Chloroplast je struktura dvou membrán, která obsahuje fotosenzitivní pigmenty složené dohromady v membránových vacích. Jedná se o prokaryotu, který byla asimilována pro využití jejím eukaryotickým hostitelem. Pigmenty v chloroplastu jsou schopny využít světelnou energii k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] a vody, v procesu známém jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také co mu dává jeho typickou barvu. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6346,8 +6807,9 @@ msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6409,17 +6871,73 @@ msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše bu�
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Zvyšuje rychlost otáčení velkých buněk."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Signalizující látky umožnují buňkám vytvářet chemikálie na které mohou ostatní buňky reagovat. Tyto signalizující chemikálie mohou být využity na přivolání ostatních buněk, nebo na varování před nebezpečím, což jim signalizuje únik."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Signalizující látky umožnují buňkám vytvářet chemikálie na které mohou ostatní buňky reagovat. Tyto signalizující chemikálie mohou být využity na přivolání ostatních buněk, nebo na varování před nebezpečím, což jim signalizuje únik."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Zvyšuje rychlost otáčení velkých buněk."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Umístit organelu"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6437,8 +6955,9 @@ msgstr "Termoplast je struktura dvou membrán, která obsahuje termosenzitivní 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Termosyntáza je protein který využívá teplotní konvekci ke změně svého tvaru, což mu umožnuje složit a navázat se na ADP když je vystaven teplu, pak jej rozložit a recyklovat na [thrive:compound type=\"atp\"][/thrive:compound] když je vystaven chlazení v procesu známém jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6496,11 +7015,13 @@ msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pig
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pigmenty jsou schopna využít energii [thrive:compound type=\"sunlight\"][/thrive:compound] k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z vody a plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] v procesu známem jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také to, co dává Thylakoidům jejich osobité zbarvení. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]. Jelikož jsou thylakoidy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pigmenty jsou schopna využít energii [thrive:compound type=\"sunlight\"][/thrive:compound] k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z vody a plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] v procesu známem jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také to, co dává Thylakoidům jejich osobité zbarvení. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]. Jelikož jsou thylakoidy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Thylakoidy jsou shluky proteinů a fotosensitivních pigmentů. Tyto pigmenty jsou schopna využít energii [thrive:compound type=\"sunlight\"][/thrive:compound] k produkci [thrive:compound type=\"glucose\"][/thrive:compound] z vody a plynného [thrive:compound type=\"carbondioxide\"][/thrive:compound] v procesu známem jako [b]fotosyntéza[/b]. Tyto pigmenty jsou také to, co dává Thylakoidům jejich osobité zbarvení. Rychlost produkce [thrive:compound type=\"glucose\"][/thrive:compound] je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzity [thrive:compound type=\"sunlight\"][/thrive:compound]. Jelikož jsou thylakoidy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6548,8 +7069,9 @@ msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produ
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6563,17 +7085,21 @@ msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produ
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Budete prosperovat?"
@@ -6647,6 +7173,10 @@ msgstr ""
 msgid "YEARS"
 msgstr "roky"
 
+#, fuzzy
+msgid "YES"
+msgstr "roky"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Navštiv náš YouTube kanál"
 
@@ -6663,6 +7193,26 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Společné fáze editoru a strategie"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Vedlejší účinky:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitochondrie"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Elektrárna buňky. Mitochondie je struktura dvou membrán vyplněná proteiny a enzymy. Jedná se o prokaryotu, která byla asimilována pro využití svým eukaryotickým hostitelem. Je schopná konvertovat [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] s daleko vyšší účinností než je možno v cytoplazmě, v procesu známém jako [b]buněčné dýchání[/b]. Potřebuje k tomu ale [thrive:compound type=\"oxygen\"][/thrive:compound], a nizké množství [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomaluje její schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitochondrie"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Celková populace:"
@@ -6792,9 +7342,6 @@ msgstr "Oddálit"
 
 #~ msgid "TYPE"
 #~ msgstr "Typ:"
-
-#~ msgid "VERSION"
-#~ msgstr "Verze:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -6956,10 +7503,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Otočit se doleva"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

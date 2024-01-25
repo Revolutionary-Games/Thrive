@@ -20,6 +20,6 @@ public class ThriveopediaWikiRootPage : ThriveopediaPage
 
     public void OnStagesPressed()
     {
-        ChangePage("StagesRoot");
+        ThriveopediaManager.OpenPage("StagesRoot");
     }
 }

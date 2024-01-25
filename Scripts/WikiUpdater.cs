@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using Scripts;
@@ -58,15 +59,28 @@ public class WikiUpdater
         var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechainc", cancellationToken);
         var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
 
-        var organellesRoot = await organellesRootTask;
-        var developmentRoot = await developmentRootTask;
-        var mechanicsRoot = await mechanicsRootTask;
-        var stagesRoot = await stagesRootTask;
+        var organellesRootRaw = await organellesRootTask;
+        var stagesRootRaw = await stagesRootTask;
+        var mechanicsRootRaw = await mechanicsRootTask;
+        var developmentRootRaw = await developmentRootTask;
 
-        var organelles = await organellesTask;
-        var developmentPages = await developmentPagesTask;
-        var mechanics = await mechanicsTask;
-        var stages = await stagesTask;
+        var organellesRaw = await organellesTask;
+        var stagesRaw = await stagesTask;
+        var mechanicsRaw = await mechanicsTask;
+        var developmentPagesRaw = await developmentPagesTask;
+        ColourConsole.WriteSuccessLine("Fetched all wiki pages");
+
+        var organellesRoot = ProcessRootPage(organellesRootRaw, "Organelles", ORGANELLE_CATEGORY);
+        var stagesRoot = ProcessRootPage(stagesRootRaw, "Stages", STAGES_CATEGORY);
+        var mechanicsRoot = ProcessRootPage(mechanicsRootRaw, "Mechanics", MECHANICS_CATEGORY);
+        var developmentRoot = ProcessRootPage(developmentRootRaw, "Development", DEVELOPMENT_CATEGORY);
+
+        var organelles = ProcessPagesFromCategory(organellesRaw);
+        var stages = ProcessPagesFromCategory(stagesRaw);
+        var mechanics = ProcessPagesFromCategory(mechanicsRaw);
+        var developmentPages = ProcessPagesFromCategory(developmentPagesRaw);
+
+        ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
         var untranslatedWiki = new Wiki()
         {
@@ -81,8 +95,6 @@ public class WikiUpdater
             DevelopmentPages = developmentPages.Select(p => p.UntranslatedPage).ToList(),
         };
 
-        var untranslatedWiki = new Wiki(organellesRoot.UntranslatedPage,
-            organelles.Select(o => o.UntranslatedPage).ToList());
         await JsonWriteHelper.WriteJsonWithBom(WIKI_FILE, untranslatedWiki, cancellationToken);
         ColourConsole.WriteSuccessLine($"Updated wiki at {WIKI_FILE}, running translations update");
 
@@ -111,12 +123,55 @@ public class WikiUpdater
         return true;
     }
 
-    private static async Task<TranslationPair> FetchRootPage(string url, string categoryName, CancellationToken cancellationToken)
+    private async Task<IHtmlElement> FetchRootPage(string url, string categoryName, CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine($"Fetching {categoryName.ToLowerInvariant()} root page");
-
         var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+        pageNames.Add(categoryName, $"{categoryName}Root");
+        return body;
+    }
 
+    private async Task<List<IHtmlElement>> FetchPagesFromCategory(string categoryUrl, string pageType, CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteInfoLine($"Fetching {pageType} pages");
+        var allPages = new List<IHtmlElement>();
+
+        var textInfo = CultureInfo.InvariantCulture.TextInfo;
+
+        // Get the list of pages from the category page on the wiki
+        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(categoryUrl, cancellationToken)).Body!;
+        var pages = categoryBody.QuerySelectorAll(CATEGORY_PAGES_SELECTOR);
+
+        foreach (var page in pages)
+        {
+            var name = page.TextContent.Trim();
+            var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
+
+            ColourConsole.WriteInfoLine($"Found {pageType} {name}");
+
+            var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+            var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
+
+            // Ignore page if specified
+            if (body.QuerySelector(".thriveopedia-ignore") != null)
+            {
+                continue;
+            }
+
+            if (body.QuerySelector(".infobox") != null)
+            {
+                internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+            }
+
+            pageNames.Add(name, internalName);
+            allPages.Add(body);
+        }
+
+        return allPages;
+    }
+
+    private TranslationPair ProcessRootPage(IHtmlElement body, string categoryName, string url)
+    {
         var fullPageName = $"{categoryName}Root";
         var translationKey = $"{categoryName.ToUpperInvariant()}_ROOT";
 
@@ -132,48 +187,35 @@ public class WikiUpdater
         return new TranslationPair(untranslatedPage, translatedPage);
     }
 
-    private static async Task<List<TranslationPair>> FetchPagesFromCategory(string url, string pageType, CancellationToken cancellationToken)
+    private List<TranslationPair> ProcessPagesFromCategory(List<IHtmlElement> pages)
     {
-        ColourConsole.WriteInfoLine($"Fetching {pageType} pages");
-
-        // Get the list of pages from a category page on the wiki
-        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
-        var pages = categoryBody.QuerySelectorAll(CATEGORY_PAGES_SELECTOR);
-
         var allPages = new List<TranslationPair>();
         var textInfo = CultureInfo.InvariantCulture.TextInfo;
 
         foreach (var page in pages)
         {
-            var name = page.TextContent.Trim();
+            var name = page.QuerySelector(".mw-page-title-main")!.TextContent;
             var pageUrl = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             var untranslatedPageName = name.ToUpperInvariant().Replace(" ", "_");
-
-            ColourConsole.WriteInfoLine($"Found {pageType} {name}");
-
-            var body = (await HtmlReader.RetrieveHtmlDocument(pageUrl, cancellationToken)).Body!;
-
-            // Ignore page if specified
-            if (body.QuerySelector(".thriveopedia-ignore") != null)
-                continue;
 
             var translatedInfobox = new List<InfoboxField>();
             var untranslatedInfobox = new List<InfoboxField>();
 
             var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
 
-            if (body.QuerySelector(".wikitable") != null)
+            if (page.QuerySelector(".infobox") != null)
             {
-                internalName = body.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
-                (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(body, internalName);
+                Console.WriteLine(internalName);
+                internalName = page.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
+                (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(page, internalName);
             }
 
             var sections = GetMainBodySections(page);
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedPageName)).ToList();
 
-            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}",
+            var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedPageName}",
                 internalName,
                 pageUrl,
                 untranslatedSections,
@@ -186,7 +228,7 @@ public class WikiUpdater
 
             allPages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
-            ColourConsole.WriteSuccessLine($"Populated content for {pageType} with internal name {internalName}");
+            ColourConsole.WriteSuccessLine($"Populated content for page with internal name {internalName}");
         }
 
         return allPages;
@@ -198,20 +240,15 @@ public class WikiUpdater
     /// <param name="body">The body of the page</param>
     /// <param name="internalName">Internal name of the page</param>
     /// <returns>A tuple containing the translated and untranlsated versions of the detected fields</returns>
-    /// <exception cref="System.InvalidOperationException">Thrown when an infobox is not found</exception>
-    private static (List<InfoboxField> Untranslated, List<InfoboxField> Translated)
+    /// <exception cref="InvalidOperationException">Thrown when an infobox is not found</exception>
+    private (List<InfoboxField> Untranslated, List<InfoboxField> Translated)
         GetInfoBoxFields(IHtmlElement body, string internalName)
     {
         ColourConsole.WriteInfoLine($"Extracting infobox content for page with internal name {internalName}");
 
         // Get the infobox element
-        var infobox = body.QuerySelector(INFO_BOX_SELECTOR);
-
-        if (infobox == null)
-        {
-            throw new System.InvalidOperationException(
+        var infobox = body.QuerySelector(INFO_BOX_SELECTOR) ?? throw new InvalidOperationException(
                 $"Did not find infobox on page with internal name {internalName}");
-        }
 
         var translated = new List<InfoboxField>();
         var untranslated = new List<InfoboxField>();
@@ -389,7 +426,11 @@ public class WikiUpdater
         var translatedPageName = link.Title!;
 
         if (!pageNames.TryGetValue(translatedPageName, out var internalPageName))
-            throw new Exception($"Tried to create link to page {translatedPageName} but it doesn't exist");
+        {
+            return ConvertTextToBbcode(link.InnerHtml);
+
+            // throw new Exception($"Tried to create link to page {translatedPageName} but it doesn't exist");
+        }
 
         var linkText = ConvertTextToBbcode(link.InnerHtml);
         return $"[color=#3796e1][url=thriveopedia:{internalPageName}]{linkText}[/url][/color]";
@@ -416,12 +457,6 @@ public class WikiUpdater
             .Replace("</i>", "[/i]")
             .Replace("<br>", "\n")
             .Replace("\"", "\\\"");
-
-        // Remove any HTML tags leftover to not pollute the page
-        return Regex.Replace(formatted, @"<[^>]*>", string.Empty);
-
-            // .Replace("<code>", "[code]")
-            // .Replace("</code>", "[/code]")
     }
 
     /// <summary>

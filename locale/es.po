@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 4.16.4\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "estilo de movimiento 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -30,6 +49,10 @@ msgstr "Movimiento 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "estilo de movimiento 3D:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Girar a la izquierda"
 
 msgid "ABILITIES"
 msgstr "Habilidades"
@@ -92,6 +115,10 @@ msgstr "Abre las opciones avanzadas"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fijación de Nitrógeno Aeróbica"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respiración Aeróbica"
 
 msgid "AGENTS"
 msgstr "Agentes"
@@ -201,6 +228,10 @@ msgstr "Arte por {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galeria de arte"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Versión:"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -327,6 +358,9 @@ msgstr "Barra invertida"
 msgid "BACKSPACE"
 msgstr "Retroceso"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Mobilidad"
 
@@ -433,6 +467,9 @@ msgstr "Vacuola Bioluminiscente"
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
@@ -632,6 +669,9 @@ msgstr "El nombre de archivo ({0}) ya existe. ¿Deseas sobreescribir?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberración cromática:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -777,6 +817,10 @@ msgstr "Consumo de: {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compuestos a encontrar:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Arte conceptual"
 
 msgid "CONCEPT_ART"
 msgstr "Arte conceptual"
@@ -1137,6 +1181,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Desarrolladores"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Wiki de Desarrollo"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Foro de Desarrollo"
@@ -2013,8 +2061,16 @@ msgstr "MP infinito"
 msgid "INFO_BOX_COST"
 msgstr "¡HAS PROSPERADO!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "¡HAS PROSPERADO!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Costo de Osmorregulación"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2024,8 +2080,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "¡HAS PROSPERADO!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Costo de Osmorregulación"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3299,6 +3363,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Activar editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Hilos actuales:"
 
@@ -3369,8 +3437,15 @@ msgstr "El Nitroplasto es una proteína capaz de usar nitrógeno, oxígeno y ATP
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La tasa de conversión depende de la concentración de [thrive:compound type=\"nitrogen\"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Ninguna"
+
 msgid "NONE"
 msgstr "Ninguna"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3675,6 +3750,10 @@ msgstr "OxiToxi NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntesis de OxiToxi"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Síntesis de OxiToxi"
+
 msgid "PAGEDOWN"
 msgstr "Retrasar página (Re Pág)"
 
@@ -3938,6 +4017,10 @@ msgstr "Proteger especies recientemente creadas del limite de población"
 
 msgid "PROTEINS"
 msgstr "Proteínas"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Respiración Aeróbica"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4600,6 +4683,9 @@ msgstr "Velocidad:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "Migró a:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
@@ -4801,6 +4887,9 @@ msgstr "Tomar una captura de pantalla"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipo:"
+
+msgid "TBA"
+msgstr ""
 
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
@@ -5637,30 +5726,107 @@ msgid "WIKI"
 msgstr "nuestro Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Efectos externos:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Población de las Especies"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Agente de unión"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Etapa de microbio"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Efectos externos:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Estadio del despertar"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5742,8 +5908,9 @@ msgstr "Los Quimioplastos son estructuras de membrana doble que contienen prote�
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Convierte [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de conversión depende de la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así es como las células adquieren información sobre su entorno. La adición de este orgánulo representa la evolución de una quimiorrecepción más afinada. Como el jugador tiene visión incluso en la etapa de célula, esto se representa con una línea que apunta fuera del área visible de la pantalla y muestra los compuestos cercanos que el jugador aún no podía ver."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5839,8 +6006,9 @@ msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigme
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así es como las células adquieren información sobre su entorno. La adición de este orgánulo representa la evolución de una quimiorrecepción más afinada. Como el jugador tiene visión incluso en la etapa de célula, esto se representa con una línea que apunta fuera del área visible de la pantalla y muestra los compuestos cercanos que el jugador aún no podía ver."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5854,30 +6022,64 @@ msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigme
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Aumenta la velocidad de rotación de células grandes."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Los agentes de señalización permiten a las células crear sustancias químicas a las que otras células pueden reaccionar. Los productos químicos de señalización se pueden usar para atraer a otras células o advertirles sobre el peligro para que huyan."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5895,17 +6097,25 @@ msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de ione
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5923,42 +6133,133 @@ msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que 
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en la dirección contraria a la que apuntan, efecto similar a la cola de un pez. Así pues, un flagelo del lado izquierdo, dará un impulso hacia la derecha."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los agentes de señalización permiten a las células crear sustancias químicas a las que otras células pueden reaccionar. Los productos químicos de señalización se pueden usar para atraer a otras células o advertirles sobre el peligro para que huyan."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en la dirección contraria a la que apuntan, efecto similar a la cola de un pez. Así pues, un flagelo del lado izquierdo, dará un impulso hacia la derecha."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Estadio del despertar"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Efectos externos:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Estadio del despertar"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Estadio del despertar"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Estadio del despertar"
 
-msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Estadio del despertar"
 
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Compuestos infinitos"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_HEADING_UPGRADES"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite la unión con otras células. Este es el primer paso hacia un ser multicelular. Cuando tu especie forma parte de una colonia, las células comparten sus compuestos. Mientras formes parte de una colonia no puedes entrar al editor, por lo que deberás romper la unión una vez recolectados los compuestos suficientes para dividir tu célula."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Agente de unión"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Estadio Industrial"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Estadio Industrial"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5972,17 +6273,25 @@ msgstr "El lisosoma es un orgánulo integrado a la membrana que contiene enzimas
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Contiene enzimas digestivas. Puede ser modificado para cambiar el tipo de enzima que contiene. Solo se puede usar una enzima por lisosoma. Enzimas aumentan la velocidad y eficiencia de la digestion."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] de forma mucho más eficiente que el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente causarán la ralentización de su producción de [thrive:compound type=\"atp\"][/thrive:compound]. Como los metabolosomas están directamente suspendidos en el citoplasma, este fluido realiza la [b]glucólisis[/b]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6017,6 +6326,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Los metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] de forma mucho más eficiente que el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente causarán la ralentización de su producción de [thrive:compound type=\"atp\"][/thrive:compound]. Como los metabolosomas están directamente suspendidos en el citoplasma, este fluido realiza la [b]glucólisis[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Editor de microbio"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"\n"
+"La vida.\n"
+"\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres el último ancestro universal común (LUCA) en este planeta.\n"
+"\n"
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6048,30 +6398,74 @@ msgstr "La \"central energética\" de la célula. La mitocondria es una estructu
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"¡Bienvenido al estadio multicelular inicial!\n"
+"\n"
+"Conseguiste guiar a tu especie a través de la fase unicelular.\n"
+"\n"
+"El juego continúa con las mecánicas básicas del estadio microbio. Aún necesitas seguir alimentando a tu organismo para reproducirte y entrar en el editor.\n"
+"\n"
+"Sin embargo, ahora puedes diseñar tu colonia celular en el editor y especializar tus células en varios roles. Ten en mente que los miembros de tu colonia no pueden compartir [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si estás utilizando la reproducción por gemación (el método predeterminado), comenzaras controlando una pequeña yema y deberás crecer el resto de tus células."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Etapa multicelular"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Etapa multicelular"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6121,8 +6515,9 @@ msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía c
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Convierte el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La tasa de conversión aumenta con la concentración de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir [thrive:compound type=\"atp\"]ATP[/thrive:compound] en un proceso llamado [b]Termosíntesis[/b]. La producción de glucosa dependerá de la concentración de dióxido de carbono y [thrive:compound type=\"temperature\"]temperatura[/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6136,11 +6531,13 @@ msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía c
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6150,17 +6547,21 @@ msgstr "La característica definitoria de las células eucariotas. El núcleo ta
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Colocar orgánulos"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteínas capaces de convertir Ácido Sulfhídrico, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Ácido Sulfhídrico. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6186,8 +6587,9 @@ msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:co
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6197,8 +6599,23 @@ msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Estadio del despertar"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6224,28 +6641,57 @@ msgstr "Proteinas quimiosintetizadoras"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Estadio Industrial"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosoma"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomas"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Etapa multicelular"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6271,8 +6717,9 @@ msgstr "Colocar orgánulos"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxitoxisoma"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6289,6 +6736,18 @@ msgstr "Agente señalizador"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Jet de Slime"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6314,29 +6773,37 @@ msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así es como las células adquieren información sobre su entorno. La adición de este orgánulo representa la evolución de una quimiorrecepción más afinada. Como el jugador tiene visión incluso en la etapa de célula, esto se representa con una línea que apunta fuera del área visible de la pantalla y muestra los compuestos cercanos que el jugador aún no podía ver."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6346,24 +6813,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6387,8 +6859,9 @@ msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseo
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Convierte [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocidad de conversión es directamente proporcional a la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6450,17 +6923,73 @@ msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Aprete [thrive:input]g_secrete_slime[/thrive:input] para liberar el [thrive:compound type=\"mucilage\"][/thrive:compound] guardado, aumentando la velocidad de esta célula y haciendo más lentos a los depredadores."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Los agentes de señalización permiten a las células crear sustancias químicas a las que otras células pueden reaccionar. Los productos químicos de señalización se pueden usar para atraer a otras células o advertirles sobre el peligro para que huyan."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Los agentes de señalización permiten a las células crear sustancias químicas a las que otras células pueden reaccionar. Los productos químicos de señalización se pueden usar para atraer a otras células o advertirles sobre el peligro para que huyan."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime, y el mucílago es una de ellas. Mientras muchas especies utilizan slime para moverse, ciertos tipos de bacterias liberan estas sustacias a altas velocidades al moverse. Estas \"turbinas de slime\" actúan como motores de cohete, empujando a las células a mucha velocidad. El slime también es utilizado para inmovilizar depredadores, ya que estos son atrapados en una sustacia que solo puede ser navegada por organismos con \"turbinas de slime\"."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Aprete [thrive:input]g_secrete_slime[/thrive:input] para liberar el [thrive:compound type=\"mucilage\"][/thrive:compound] guardado, aumentando la velocidad de esta célula y haciendo más lentos a los depredadores."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Muchos organismos producen sustacias polisacáridas similares a un slime, y el mucílago es una de ellas. Mientras muchas especies utilizan slime para moverse, ciertos tipos de bacterias liberan estas sustacias a altas velocidades al moverse. Estas \"turbinas de slime\" actúan como motores de cohete, empujando a las células a mucha velocidad. El slime también es utilizado para inmovilizar depredadores, ya que estos son atrapados en una sustacia que solo puede ser navegada por organismos con \"turbinas de slime\"."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Etapa de microbio"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Colocar orgánulos"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Orgánulos"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6478,8 +7007,9 @@ msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmento
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir [thrive:compound type=\"atp\"]ATP[/thrive:compound] en un proceso llamado [b]Termosíntesis[/b]. La producción de glucosa dependerá de la concentración de dióxido de carbono y [thrive:compound type=\"temperature\"]temperatura[/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6537,11 +7067,13 @@ msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensible
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6589,8 +7121,9 @@ msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6604,17 +7137,21 @@ msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión escala con la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. Puedes liberar toxinas presionando la tecla [thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo posible pero con un daño reducido."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "¿Prosperarás?"
@@ -6694,6 +7231,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "años"
 
+#, fuzzy
+msgid "YES"
+msgstr "años"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visita nuestro canal de YouTube"
 
@@ -6710,6 +7251,26 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Estadio del despertar"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Efectos externos:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitocondria"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "La \"central energética\" de la célula. La mitocondria es una estructura de doble membrana llena de proteínas y enzimas. Es una célula procariota que ha sido asimilada por su anfitriona eucariota para su uso personal. Es capaz de convertir [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] con una eficiencia mucho mayor que la alcanzada en el citoplasma en un proceso llamado [b]respiración aeróbica[/b]. Sin embargo, requiere [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, y niveles bajos de [thrive:compound type=\"oxygen\"][/thrive:compound] en el ambiente ralentizarán su producción de [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitocondria"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Población Total:"
@@ -6843,9 +7404,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "TYPE"
 #~ msgstr "Tipo:"
-
-#~ msgid "VERSION"
-#~ msgstr "Versión:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -7007,10 +7565,6 @@ msgstr "Alejar el zoom"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Girar a la izquierda"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

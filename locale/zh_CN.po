@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-12-29 06:14+0000\n"
 "Last-Translator: qqthy360 <2531083870@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D移动样式："
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "多功能编辑器和策略规划阶段"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D编辑器"
@@ -30,6 +49,10 @@ msgstr "3D移动"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D移动样式："
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "向左转"
 
 msgid "ABILITIES"
 msgstr "能力"
@@ -92,6 +115,10 @@ msgstr "打开高级菜单"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "有氧呼吸作用"
 
 msgid "AGENTS"
 msgstr "物质"
@@ -200,6 +227,10 @@ msgstr "由{0}创作"
 
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "版本："
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "恭喜！"
@@ -323,6 +354,9 @@ msgstr "反斜杠"
 msgid "BACKSPACE"
 msgstr "退格键"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "基础移动能力"
 
@@ -427,6 +461,9 @@ msgstr "生物发光液泡"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
@@ -620,6 +657,9 @@ msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与[thrive:compound type=\"sunlight\"][/thrive:compound]强度成正比。"
 
@@ -763,6 +803,10 @@ msgstr "{0}消耗"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "寻找的化合物："
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "概念美术"
 
 msgid "CONCEPT_ART"
 msgstr "概念美术"
@@ -1123,6 +1167,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "开发者"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "开发者wiki"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "开发论坛"
@@ -1948,7 +1996,15 @@ msgstr "无限变异点"
 msgid "INFO_BOX_COST"
 msgstr "基础（变异点数）消耗"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "基础（变异点数）消耗"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "酶"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "酶"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -1957,8 +2013,16 @@ msgstr "内部（文件夹）名称："
 msgid "INFO_BOX_MASS"
 msgstr "质量"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "储存空间"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "渗透调节消耗"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "代谢过程"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "代谢过程"
@@ -3194,6 +3258,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} 未完成"
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "启用编辑器"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "当前线程："
 
@@ -3264,8 +3332,15 @@ msgstr "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
+#, fuzzy
+msgid "NO"
+msgstr "无"
+
 msgid "NONE"
 msgstr "无"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "普通"
@@ -3551,6 +3626,10 @@ msgstr "氧化毒素"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "氧化毒素合成"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "氧化毒素合成"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -3803,6 +3882,10 @@ msgstr "保护刚刚创造的物种不受物种上限的影响"
 
 msgid "PROTEINS"
 msgstr "蛋白质"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "有氧呼吸作用"
 
 msgid "PROTOPLASM"
 msgstr "原生质"
@@ -4441,6 +4524,9 @@ msgstr "速度："
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
@@ -4628,6 +4714,9 @@ msgstr "截图"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "目标类型："
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "飞升"
@@ -5421,31 +5510,107 @@ msgid "WIKI"
 msgstr "Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "外部影响："
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "恭喜！"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "允许与其他细胞结合。这是迈向多细胞的第一步。在连接形成的细胞群中，资源是共享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的化合物后离开细胞群再分裂。"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "启蒙阶段"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "连接器"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "启蒙阶段"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "启蒙阶段"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "启蒙阶段"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "知觉阶段"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "外部影响："
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "修改选项"
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "解锁条件"
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "科学背景"
 
 #, fuzzy
 msgid "WIKI_AXON_STRATEGY"
 msgstr "多功能编辑器和策略规划阶段"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "可用升级"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5527,8 +5692,9 @@ msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5624,8 +5790,9 @@ msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"sunlight\"][/thrive:compound]强度成正比。"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5639,30 +5806,70 @@ msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成正比。"
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "任何其他细胞器在取代细胞质时不会消耗额外的变异点数（仅消耗细胞器本身所需要的变异点数）。"
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
 msgstr ""
+"细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。\n"
+"\n"
+"它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "无可用修改。"
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "增加大体型细胞的转向速度。"
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "多功能编辑器和策略规划阶段"
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+"细胞粘稠的内脏。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。\n"
+"\n"
+"它其中一个功能是[b]糖酵解[/b]，作用是将葡萄糖转换成ATP能量。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "细胞器"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "任何其他细胞器在取代细胞质时不会消耗额外的变异点数（仅消耗细胞器本身所需要的变异点数）。"
@@ -5685,14 +5892,28 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
 msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr ""
+"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
+"\n"
+"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
+"\n"
+"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
+"\n"
+"在下方列表中选择一个细胞器以了解更多。"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5710,23 +5931,71 @@ msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "科学背景"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "可用升级"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "代谢过程"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "游戏策略"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "解锁条件"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "解锁条件"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "影响与效果"
 
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "影响与效果"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "影响与效果"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "游戏策略"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "可用升级"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "代谢过程"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "修改选项"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "代谢过程"
 
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "代谢过程"
@@ -5740,8 +6009,44 @@ msgstr "科学背景"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "游戏策略"
 
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "修改选项"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "影响与效果"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "可用升级"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "可用升级"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "允许与其他细胞结合。这是迈向多细胞的第一步。在连接形成的细胞群中，资源是共享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的化合物后离开细胞群再分裂。"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "工业阶段"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "连接器"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "工业阶段"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "工业阶段"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "工业阶段"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5770,14 +6075,28 @@ msgstr "无代谢过程。"
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr "一个细胞必须拥有细胞核才能进化出溶酶体。"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
+"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
+"\n"
+"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
+"\n"
+"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
+"\n"
+"在下方列表中选择一个细胞器以了解更多。"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5812,6 +6131,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "代谢体是包裹在蛋白质外壳中的蛋白质团块。它们能够以比在细胞质中更高的速率将葡萄糖转换成ATP，这个过程称为[b]有氧呼吸[/b]。不管怎样，它需要氧才能运作，低水平的环境氧会导致ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "微生物编辑器"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "微生物阶段"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
@@ -5843,30 +6203,74 @@ msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"欢迎来到早期多细胞生物阶段!\n"
+"\n"
+"你已经成功带领你的物种度过了单细胞生物阶段.\n"
+"\n"
+"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
+"\n"
+"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "多细胞阶段"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "无可用修改。"
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "多功能编辑器和策略规划阶段"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "不参与细胞过程"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -5916,8 +6320,9 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "热合酶是一种利用热对流改变自身形态的蛋白质，它可以在受热时折叠并结合ADP，然后在降温时展开并生成ATP。这一过程被称为[b]热合成[/b]。其ATP生成速率与温度有关。"
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -5931,11 +6336,13 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -5945,17 +6352,21 @@ msgstr "真核细胞的定义特征。你看见的这个细胞核同时还包括
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "不参与细胞过程"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "化学质体是一种双层膜结构，其中包含的蛋白质可以通过[b]硫化氢化合[/b]合成将硫化氢，水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "多功能编辑器和策略规划阶段"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "不参与细胞过程"
 
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr ""
@@ -5987,8 +6398,9 @@ msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:comp
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -5997,6 +6409,18 @@ msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "轴突"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "启蒙阶段"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "细胞器"
 
 msgid "WIKI_PAGE_AXON"
 msgstr "轴突"
@@ -6022,20 +6446,48 @@ msgstr "叶绿体"
 msgid "WIKI_PAGE_CILIA"
 msgstr "纤毛"
 
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "细胞质"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "细胞器"
+
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "细胞质"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "细胞器"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "工业阶段"
+
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "细胞器"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代谢体"
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "固氮酶"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "线粒体"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "多细胞阶段"
 
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纤维"
@@ -6070,6 +6522,18 @@ msgstr "信号剂"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "黏液喷嘴"
 
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "社会阶段"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "细胞器"
+
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "热能体"
 
@@ -6085,29 +6549,37 @@ msgstr "毒素液泡"
 msgid "WIKI_PAGE_VACUOLE"
 msgstr "液泡"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "原生质"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "掠食性菌毛"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成正比。"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成正比。"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "掠食性菌毛"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "掠食性菌毛"
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6117,24 +6589,29 @@ msgstr "原生质"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "原生质"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "无可用修改。"
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成正比。"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿主同化的原核生物。叶绿体中的色素可以通过[b]光合作用[/b]把水和二氧化碳转换成葡萄糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率跟二氧化碳的浓度和光的强度成正比。"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6163,8 +6640,9 @@ msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6226,17 +6704,80 @@ msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"mucilage\"][/thrive:compound]. 点击 [thrive:input]g_secrete_slime[/thrive:input] 以喷射储存的 [thrive:compound type=\"mucilage\"][/thrive:compound], 增加该细胞的速度并减慢被困在黏液里的捕食者的速度."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "信号剂允许细胞产生其它细胞可以响应的化学物质。这些信号化学物质可以用来吸引其它细胞，或警告它们有危险，使它们逃离。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thrive:compound type=\"mucilage\"][/thrive:compound]. 点击 [thrive:input]g_secrete_slime[/thrive:input] 以喷射储存的 [thrive:compound type=\"mucilage\"][/thrive:compound], 增加该细胞的速度并减慢被困在黏液里的捕食者的速度."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "社会阶段"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "许多生物都分泌胶水状的多糖类化合物，而黏液就是其中的一种。许多物种将黏液用于移动，而特定种类的细菌将这些物质以高压发射出去。这些黏液喷嘴如同火箭引擎一般以难以置信的速度推动细胞前进。黏液也可以用来阻挡捕食者，将它们困在一种只有拥有这些喷嘴的生物才能自由移动的物质中。"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "社会阶段"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "社会阶段"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "社会阶段"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
+"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
+"\n"
+"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
+"\n"
+"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
+"\n"
+"在下方列表中选择一个细胞器以了解更多。"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6254,8 +6795,9 @@ msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6313,11 +6855,13 @@ msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过[b]光合作用[/b]将阳光中的能量与环境中的水和二氧化碳来合成葡萄糖。这些色素也是赋予它们独特颜色的原因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "无解锁条件。"
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6363,8 +6907,9 @@ msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6378,17 +6923,21 @@ msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
 
 msgid "WILL_YOU_THRIVE"
 msgstr "你能Thrive（兴盛）吗？"
@@ -6461,6 +7010,10 @@ msgstr "Xbox X 系列"
 msgid "YEARS"
 msgstr "年"
 
+#, fuzzy
+msgid "YES"
+msgstr "年"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
 
@@ -6477,6 +7030,26 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "可用升级"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "影响与效果"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "线粒体"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿主同化的原核生物。能够通过[b]有氧呼吸[/b]以比细胞质高得多的效率将葡萄糖转换成ATP。不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "线粒体"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "种群数量总数："
@@ -6615,9 +7188,6 @@ msgstr "缩小"
 
 #~ msgid "TYPE"
 #~ msgstr "类型："
-
-#~ msgid "VERSION"
-#~ msgstr "版本："
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -6782,10 +7352,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "向左转"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

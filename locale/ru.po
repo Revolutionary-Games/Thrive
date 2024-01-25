@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D стиль движения:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Не готово"
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Редактор"
@@ -30,6 +49,10 @@ msgstr "3D Перемещение"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D стиль движения:"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Поворот влево"
 
 msgid "ABILITIES"
 msgstr "Способности"
@@ -92,6 +115,10 @@ msgstr "Открыть продвинутый вид настроек"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Аэробная азотфиксация"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Аэробное дыхание"
 
 msgid "AGENTS"
 msgstr "Химические Агенты"
@@ -200,6 +227,10 @@ msgstr "Картина от {0}"
 
 msgid "ART_GALLERY"
 msgstr "Галерея"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Версия:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Поздравляем!"
@@ -323,6 +354,9 @@ msgstr "Обратный Слэш"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Базовая Мобильность"
 
@@ -427,6 +461,9 @@ msgstr "Биолюминесцентная вакуоль"
 
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -620,6 +657,9 @@ msgstr "Выбранное имя файла ({0}) уже существует. 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость повышается с увеличением концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -763,6 +803,10 @@ msgstr "{0} потребления"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Соединение, которое нужно найти:"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Набросок клетки"
 
 msgid "CONCEPT_ART"
 msgstr "Набросок клетки"
@@ -1123,6 +1167,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Разработчики"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Wiki Разработчиков"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум Разработчиков"
@@ -1945,7 +1993,15 @@ msgstr "Бесконечные MP"
 msgid "INFO_BOX_COST"
 msgstr "Базовая цена (ОМ)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Базовая цена (ОМ)"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Энзимы"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Энзимы"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -1954,8 +2010,16 @@ msgstr "Внутреннее Имя"
 msgid "INFO_BOX_MASS"
 msgstr "Масса"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Вместимость"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Стоимость Осморегуляции"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Процессы"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Процессы"
@@ -3192,6 +3256,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0}(Н)"
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Включить редактор"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Число потоков:"
 
@@ -3262,8 +3330,15 @@ msgstr "Азотфиксирующий пластид — белок, спосо
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Отсутствует"
+
 msgid "NONE"
 msgstr "Отсутствует"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Обычная"
@@ -3549,6 +3624,10 @@ msgstr "ОксиТоксин НТ"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез ОксиТоксина"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
+
 msgid "PAGEDOWN"
 msgstr "PageDown"
 
@@ -3800,6 +3879,10 @@ msgstr "Защищать только что созданные виды от о
 
 msgid "PROTEINS"
 msgstr "Белки"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Аэробное дыхание"
 
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
@@ -4432,6 +4515,9 @@ msgstr "Скорость:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "распространяется в биомы:"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
 
@@ -4619,6 +4705,9 @@ msgstr "Сделать снимок экрана"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цели:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Вознесение"
@@ -5411,6 +5500,77 @@ msgstr "Колёсико вверх"
 msgid "WIKI"
 msgstr "наша Wiki"
 
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Не готово"
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Поздравляем!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Стадия Сознания"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Не готово"
 
@@ -5603,6 +5763,36 @@ msgstr "Не готово"
 msgid "WIKI_CILIA_UPGRADES"
 msgstr "Не готово"
 
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
+"\n"
+"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Разместить органеллу (или другую вещь)"
+
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Любая органелла может заменить цитоплазму без затраты дополнительных очков мутаций (Исключение - цена самой органеллы)."
 
@@ -5633,6 +5823,10 @@ msgstr "Не готово"
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Аксон"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Не готово"
 
@@ -5657,11 +5851,55 @@ msgstr "Не готово"
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Не готово"
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Процессы"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Требования"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Требования"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Эффекты"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Эффекты"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Стратегия"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Процессы"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Модификации"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Процессы"
 
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "Процессы"
@@ -5675,8 +5913,44 @@ msgstr "Научное описание"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Стратегия"
 
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Модификации"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Эффекты"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Улучшения"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Улучшения"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Индустриальная стадия"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Индустриальная стадия"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5713,6 +5987,10 @@ msgstr "Не готово"
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Аксон"
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Эффекты отсутствуют."
 
@@ -5743,6 +6021,47 @@ msgstr "TBA"
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Одноклеточный редактор"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Одноклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Эффекты отсутствуют."
 
@@ -5769,6 +6088,43 @@ msgstr "TBA"
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Улучшения отсутствуют."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Добро пожаловать в ранний многоклеточный этап!\n"
+"\n"
+"Вы успешно провели свой вид через одноклеточную фазу.\n"
+"\n"
+"Игровой процесс наследует основные механики клеточной стадии. Вам всё ещё надо наращивать свой организм для размножения и редактирования.\n"
+"\n"
+"Однако, теперь вы можете спроектировать дизайн вашей колонии клеток в редакторе и специализировать клетки под определённые роли. Учтите, что члены колонии не могут делиться [thrive:compound type=\"atp\"][/thrive:compound] друг с другом.\n"
+"\n"
+"Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Многоклеточная стадия"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "TBA"
@@ -5890,8 +6246,9 @@ msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Модифицированная метаболосома, ответственная за выработку примитивной формы токсичного агента ОксиТоксин."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -5901,8 +6258,23 @@ msgstr "Модифицированная метаболосома, ответс�
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Модифицированная метаболосома, ответственная за выработку примитивной формы токсичного агента ОксиТоксин."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Рустицианин"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Стадия пробуждения"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Токсиновая\n"
+"вакуоль"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -5928,28 +6300,57 @@ msgstr "Хемосинтезирующие белки"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Хлоропласт"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Цитоплазма"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Цитоплазма"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Жгутик"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Индустриальная стадия"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Лизосома"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболосомы"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Нитрогеназа"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Митохондрия"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Многоклеточная стадия"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -5975,8 +6376,9 @@ msgstr "Разместить органеллу (или другую вещь)"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Окситоксисома"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Протоплазма"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -5993,6 +6395,18 @@ msgstr "Сигнальный агент"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Сопло для слизи"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Разместить органеллу (или другую вещь)"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6018,11 +6432,13 @@ msgstr ""
 "Токсиновая\n"
 "вакуоль"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
 #, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
@@ -6032,17 +6448,21 @@ msgstr "Пили (единственное число: пиль) встреча�
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr "Проткните этим другие клетки."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Проткните этим другие клетки."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6052,24 +6472,29 @@ msgstr "Протоплазма"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Протоплазма"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Модификации отсутствуют."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Требования отсутствуют."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Улучшения отсутствуют."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6093,8 +6518,9 @@ msgstr "Рустицианин - это белок, способный испо�
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6156,17 +6582,73 @@ msgstr "Многие организмы производят склизкую с
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"mucilage\"][/thrive:compound]. Нажмите [thrive:input]g_secrete_slime[/thrive:input] чтобы выделить накопленную [thrive:compound type=\"mucilage\"][/thrive:compound], увеличивающую скорость клетки и замедляющую хищников."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Сигнальные агенты позволяют клеткам создавать химические вещества, на которые могут реагировать другие клетки. Сигнальные химические вещества могут быть использованы для привлечения других клеток или предупреждения их об опасности, заставляя их отступать."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Не готово"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Превращает [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"mucilage\"][/thrive:compound]. Нажмите [thrive:input]g_secrete_slime[/thrive:input] чтобы выделить накопленную [thrive:compound type=\"mucilage\"][/thrive:compound], увеличивающую скорость клетки и замедляющую хищников."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Многие организмы производят склизкую субстанцию из полисахаридов, слизь — один из таких полисахаридов. Многие виды используют слизь для перемещения, некоторые бактерии выстреливают эти вещества под большим давлением. Эти потоки слизи действуют как реактивные двигатели, толкая клетку вперёд на невероятной скорости. Слизь также используется для защиты от хищников, обволакивая их в субстанции, в которой могут передвигаться только организмы с реактивным передвижением."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Стадия Общества"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6184,8 +6666,9 @@ msgstr "Термопласт — двумембранная структура, 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и температуры."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6243,11 +6726,13 @@ msgstr "Тилакоиды - это скопления белков и свет�
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Тилакоиды - это скопления белков и светочувствительных пигментов. Пигменты способны использовать энергию [thrive:compound type=\"sunlight\"][/thrive:compound] для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]Фотосинтезом[/b]. Эти пигменты также придают им особый цвет. Скорость их выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]. Поскольку тилакоиды находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Тилакоиды - это скопления белков и светочувствительных пигментов. Пигменты способны использовать энергию [thrive:compound type=\"sunlight\"][/thrive:compound] для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]Фотосинтезом[/b]. Эти пигменты также придают им особый цвет. Скорость их выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]. Поскольку тилакоиды находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Не готово"
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6295,8 +6780,9 @@ msgstr "Токсинная вакуоль - это вакуоль, котора�
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6310,17 +6796,21 @@ msgstr "Токсинная вакуоль - это вакуоль, котора�
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Токсинная вакуоль - это вакуоль, которая была модифицирована для специфического производства, хранения и секреции ОксиТоксинов. Большее количество токсинных вакуолей увеличит скорость высвобождения токсинов."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Будете ли вы процветать?"
@@ -6393,6 +6883,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "лет"
 
+#, fuzzy
+msgid "YES"
+msgstr "лет"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Зайти на наш Ютуб Канал"
 
@@ -6409,6 +6903,26 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Улучшения"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Эффекты"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Электростанция клетки. Митохондрия  способна превращать [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound] с гораздо более высокой эффективностью, чем это может быть сделано в цитоплазме, в процессе, называемом [b]аэробным дыханием[/b]. Однако для её функционирования требуется [thrive:compound type=\"oxygen\"][/thrive:compound], и более низкое содержание [thrive:compound type=\"oxygen\"][/thrive:compound] в атмосфере замедлят скорость её выработки [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Эффекты отсутствуют."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Митохондрия"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"
@@ -6562,9 +7076,6 @@ msgstr "Уменьшить масштаб"
 #~ msgid "TYPE"
 #~ msgstr "Тип:"
 
-#~ msgid "VERSION"
-#~ msgstr "Версия:"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "Это карта биомов.\n"
@@ -6713,10 +7224,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "АТФ"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Поворот влево"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

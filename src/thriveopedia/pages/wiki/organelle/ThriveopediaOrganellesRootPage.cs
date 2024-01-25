@@ -42,7 +42,7 @@ public class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
             var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
             button.IconPath = organelleDefinition.IconPath!;
             button.DisplayName = organelleDefinition.Name;
-            button.OpenLink = () => ChangePage(organelle.InternalName);
+            button.OpenLink = () => ThriveopediaManager.OpenPage(organelle.InternalName);
             organelleListContainer.AddChild(button);
         }
     }

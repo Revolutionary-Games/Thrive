@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2022-08-18 10:33+0000\n"
 "Last-Translator: Kasterisk <microscube@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Gaya Gerakan 2D:"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -30,6 +49,9 @@ msgstr "Gerakan 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Gaya Gerakan 3D:"
+
+msgid "8_BRACKET_16"
+msgstr ""
 
 msgid "ABILITIES"
 msgstr "Kemampuan"
@@ -99,6 +121,10 @@ msgstr "Tambah keybind baru"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fiksasi Aerob Nitrogen"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respirasi Aerob"
 
 msgid "AGENTS"
 msgstr "Agen"
@@ -212,6 +238,10 @@ msgstr "Seni oleh {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galeri Seni"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Versi:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Selamat!"
@@ -340,6 +370,9 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
@@ -453,6 +486,9 @@ msgstr "Vakuola Bioluminesensi"
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -658,6 +694,9 @@ msgstr "Nama file yang dipilih {0} sudah ada. Timpa?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberasi Kromatik:"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan intensitas [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
@@ -810,6 +849,10 @@ msgstr "konsumsi {0}"
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Awan senyawa"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Konsep Seni"
 
 msgid "CONCEPT_ART"
 msgstr "Konsep Seni"
@@ -1162,6 +1205,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr "Pendukung Devbuilds"
 
 msgid "DEVELOPERS"
+msgstr "Pengembang"
+
+#, fuzzy
+msgid "DEVELOPMENT"
 msgstr "Pengembang"
 
 #, fuzzy
@@ -2064,8 +2111,16 @@ msgstr "PM Tak Terhingga"
 msgid "INFO_BOX_COST"
 msgstr "KAMU TELAH BERKEMBANG!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Harga Osmoregulasi"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2075,8 +2130,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Harga Osmoregulasi"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Tidak ada proses"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3346,6 +3409,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Aktifkan editor"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Simpan dan lanjut"
 
@@ -3418,7 +3485,14 @@ msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nit
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
+#, fuzzy
+msgid "NO"
+msgstr "Batal"
+
 msgid "NONE"
+msgstr ""
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 msgid "NORMAL"
@@ -3721,6 +3795,10 @@ msgstr "OksiToksi NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Sintesis OksiToksi"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Sintesis OksiToksi"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -3989,6 +4067,10 @@ msgstr "Lindungi spesies yang baru saja diciptakan dari batas maksimum banyak sp
 
 msgid "PROTEINS"
 msgstr "Protein"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Respirasi Aerob"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
@@ -4684,6 +4766,9 @@ msgstr "Kecepatan:"
 msgid "SPREAD_TO_PATCHES"
 msgstr "menyebar ke daerah:"
 
+msgid "STAGES"
+msgstr ""
+
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
@@ -4887,6 +4972,9 @@ msgstr "Ambil tangkapan layar"
 #, fuzzy
 msgid "TARGET_TYPE_COLON"
 msgstr "HP:"
+
+msgid "TBA"
+msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -5720,30 +5808,107 @@ msgid "WIKI"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Efek eksternal:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Selamat!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Agen Pelekat"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Agen Pelekat"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Efek eksternal:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5825,8 +5990,9 @@ msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat men
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5920,8 +6086,9 @@ msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif b
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan intensitas [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5935,30 +6102,64 @@ msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif b
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Letakkan organel"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5976,17 +6177,25 @@ msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, p
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organel"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -6004,41 +6213,129 @@ msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk mema
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Menggunakan [thrive:compound type=\"atp\"][/thrive:compound] untuk menambah kecepatan gerak sel"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr "Menggunakan [thrive:compound type=\"atp\"][/thrive:compound] untuk menambah kecepatan gerak sel"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Kemoreseptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Agen Pelekat"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Efek eksternal:"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Jalankan auto-evo selama berlangsungnya permainan"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Agen Pelekat"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Jumlah Senyawa Tak Terhingga"
+
+msgid "WIKI_HEADING_UI"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Agen Pelekat"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Agen Pelekat"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -6052,17 +6349,25 @@ msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Merek
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organel"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6097,6 +6402,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
+"\n"
+"Kehidupan.\n"
+"\n"
+"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah leluhur universal terakhir (LUA) di planet ini.\n"
+"\n"
+"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Editor Mikrob"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
+"\n"
+"Kehidupan.\n"
+"\n"
+"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah leluhur universal terakhir (LUA) di planet ini.\n"
+"\n"
+"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
+"\n"
+"Kehidupan.\n"
+"\n"
+"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah leluhur universal terakhir (LUA) di planet ini.\n"
+"\n"
+"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
 
@@ -6128,30 +6474,65 @@ msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang t
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Memuat Editor Mikroba"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Tidak ada proses"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6201,8 +6582,9 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6216,11 +6598,13 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6230,17 +6614,21 @@ msgstr "Ciri yang mendefinisikan sel eukariota. Nukleus juga mengandung retikulu
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Tidak ada proses"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Tidak ada proses"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6266,8 +6654,9 @@ msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thriv
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6277,8 +6666,23 @@ msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah be
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rustisianin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Agen Pelekat"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Letakkan organel"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Vakuola\n"
+"Racun"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6304,28 +6708,57 @@ msgstr "Protein Pengkemosintesis"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Kloroplas"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Sitoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Sitoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Letakkan organel"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Sitoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Letakkan organel"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagela"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Agen Pelekat"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Letakkan organel"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitokondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Tahapan Multiseluler"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6351,8 +6784,9 @@ msgstr "Letakkan organel"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oksitoksisom"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6366,8 +6800,21 @@ msgstr "Rustisianin"
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr "Agen Persinyalan"
 
+#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
-msgstr ""
+msgstr "Agen Persinyalan"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Letakkan organel"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6393,29 +6840,37 @@ msgstr ""
 "Vakuola\n"
 "Racun"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6425,24 +6880,29 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6466,8 +6926,9 @@ msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida da
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6529,17 +6990,73 @@ msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, p
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organel"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6557,8 +7074,9 @@ msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6616,11 +7134,13 @@ msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6668,8 +7188,9 @@ msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khu
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6683,17 +7204,21 @@ msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khu
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Akankah kamu berkembang?"
@@ -6773,6 +7298,10 @@ msgid "YEARS"
 msgstr "tahun"
 
 #, fuzzy
+msgid "YES"
+msgstr "tahun"
+
+#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Lanjutkan"
 
@@ -6789,6 +7318,26 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Rustisianin"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Efek eksternal:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitokondria"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitokondria"
 
 #, fuzzy
 #~ msgid "TOTAL_POPULATION_COLON"
@@ -6898,9 +7447,6 @@ msgstr "Perkecil"
 
 #~ msgid "TYPE"
 #~ msgstr "Jenis:"
-
-#~ msgid "VERSION"
-#~ msgstr "Versi:"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""

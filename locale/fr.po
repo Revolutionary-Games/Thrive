@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-25 16:18+0100\n"
 "PO-Revision-Date: 2023-11-15 07:28+0000\n"
 "Last-Translator: Marc Theriault <marc.55@live.ca>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -19,8 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.1.1\n"
 "Generated-By: Babel 2.8.0\n"
 
+msgid "2D"
+msgstr ""
+
+msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Style de mouvement 2D :"
+
+msgid "3D"
+msgstr ""
+
+msgid "3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "3D_COMMA_STRATEGY"
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Éditeur tridimensionnel"
@@ -30,6 +49,10 @@ msgstr "Mouvement tridimensionnel"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Style de mouvement 3D :"
+
+#, fuzzy
+msgid "8_BRACKET_16"
+msgstr "Tourner à gauche"
 
 msgid "ABILITIES"
 msgstr "Capacités"
@@ -92,6 +115,10 @@ msgstr "Ouvrir la vue de configuration avancée"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixation Aérobique d'Azote"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respiration aérobie"
 
 msgid "AGENTS"
 msgstr "Agents"
@@ -200,6 +227,10 @@ msgstr "Œuvre de {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galerie d'art"
+
+#, fuzzy
+msgid "ASCENSION"
+msgstr "Version :"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Félicitations !"
@@ -324,6 +355,9 @@ msgstr "Barre oblique inversée"
 msgid "BACKSPACE"
 msgstr "Retour arrière"
 
+msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "BASE_MOBILITY"
 msgstr "Mobilité de base"
 
@@ -428,6 +462,9 @@ msgstr "Vacuole bioluminescente"
 
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
+
+msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
@@ -621,6 +658,9 @@ msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Écraser le fichier 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
 
+msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produit [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et l'[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
@@ -765,6 +805,10 @@ msgstr "Consommation de {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composé à trouver :"
+
+#, fuzzy
+msgid "CONCEPTS"
+msgstr "Art conceptuel"
 
 msgid "CONCEPT_ART"
 msgstr "Art conceptuel"
@@ -1125,6 +1169,10 @@ msgstr ""
 
 msgid "DEVELOPERS"
 msgstr "Développeurs"
+
+#, fuzzy
+msgid "DEVELOPMENT"
+msgstr "Wiki de développement"
 
 msgid "DEVELOPMENT_FORUM"
 msgstr "Forum de développement"
@@ -1960,8 +2008,16 @@ msgstr "MP illimités"
 msgid "INFO_BOX_COST"
 msgstr "VOUS AVEZ PROSPÉRÉ !"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "VOUS AVEZ PROSPÉRÉ !"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Coût en osmorégulation"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -1971,8 +2027,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "VOUS AVEZ PROSPÉRÉ !"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Aucune action"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3225,6 +3289,10 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
+msgid "NATION_EDITOR"
+msgstr "Activer l'éditeur"
+
+#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Threads actuels :"
 
@@ -3295,8 +3363,15 @@ msgstr "Le plaste fixateur d'azote est une protéine capable d'utiliser l'[thriv
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
+msgid "NO"
+msgstr "Aucune"
+
 msgid "NONE"
 msgstr "Aucune"
+
+msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -3593,6 +3668,10 @@ msgstr "NeuroToxyOxy"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Synthèse d'OxyToxy"
 
+#, fuzzy
+msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synthèse d'OxyToxy"
+
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -3846,6 +3925,10 @@ msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
 
 msgid "PROTEINS"
 msgstr "Protéines"
+
+#, fuzzy
+msgid "PROTEIN_RESPIRATION"
+msgstr "Respiration aérobie"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasme"
@@ -4489,6 +4572,9 @@ msgstr "Vitesse :"
 msgid "SPREAD_TO_PATCHES"
 msgstr "s'est propagé dans les secteurs :"
 
+msgid "STAGES"
+msgstr ""
+
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
@@ -4683,6 +4769,9 @@ msgstr "Prendre une capture d'écran"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Type de cible :"
+
+msgid "TBA"
+msgstr ""
 
 #, fuzzy
 msgid "TECHNOLOGY_ASCENSION"
@@ -5517,30 +5606,107 @@ msgid "WIKI"
 msgstr "notre Wiki"
 
 #, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Effets externes :"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et le [thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Félicitations !"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et le [thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "relieur"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Phase Consciente"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Effets externes :"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Phase Réveillant"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5622,8 +5788,9 @@ msgstr "Le chimoplaste est une structure à double membrane contenant des proté
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -5719,8 +5886,9 @@ msgstr "Le chloroplaste est une structure à double membrane contenant des pigme
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
@@ -5734,30 +5902,64 @@ msgstr "Le chloroplaste est une structure à double membrane contenant des pigme
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Augmente la vitesse de rotation des grandes cellules."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Placer organite"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5775,17 +5977,25 @@ msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange bas
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Axone"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
@@ -5803,42 +6013,133 @@ msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour augmenter la vitesse de déplacement de la cellule."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour augmenter la vitesse de déplacement de la cellule."
 
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Phase Réveillant"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Effets externes :"
 
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Phase Réveillant"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Phase Réveillant"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Phase Réveillant"
 
-msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Phase Réveillant"
 
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Composés infinis"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_HEADING_UPGRADES"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer en mode de liaison. En mode de liaison, vous pouvez attacher d’autres cellules de votre espèce à votre colonie en vous y déplaçant. Pour quitter une colonie, appuyez sur [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "relieur"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Phase industrielle"
+
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -5852,17 +6153,25 @@ msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "Contient des enzymes digestives. peut être modifié pour changer le type d'enzyme. Seul une enzyme peut être utilisé par lysosome. Les enzymes augmentent la vitesse et l'efficacité de la digestion."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enveloppes protéiques. Ils sont capables de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] à une vitesse bien supérieure à celle du cytoplasme dans un processus appelé [b]Respiration aérobie[/b]. Elle a toutefois besoin de [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le rythme de sa production de [thrive:compound type=\"atp\"][/thrive:compound]. Comme les métabolosomes sont suspendus directement dans le cytoplasme, le liquide environnant effectue une certaine [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Axone"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -5897,6 +6206,47 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Les métabolosomes sont des amas de protéines enveloppés dans des enveloppes protéiques. Ils sont capables de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] à une vitesse bien supérieure à celle du cytoplasme dans un processus appelé [b]Respiration aérobie[/b]. Elle a toutefois besoin de [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le rythme de sa production de [thrive:compound type=\"atp\"][/thrive:compound]. Comme les métabolosomes sont suspendus directement dans le cytoplasme, le liquide environnant effectue une certaine [b]glycolyse[/b]."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Éditeur de microbes"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Stade microbien"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "La centrale électrique de la cellule. La mitochondrie est une structure à double membrane remplie de protéines et d'enzymes. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Elle est capable de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] avec une efficacité bien supérieure à celle du cytoplasme dans un processus appelé [b]respiration aérobie[/b]. Ce processus nécessite toutefois [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le taux de production de [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -5928,30 +6278,74 @@ msgstr "La centrale électrique de la cellule. La mitochondrie est une structure
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "La centrale électrique de la cellule. La mitochondrie est une structure à double membrane remplie de protéines et d'enzymes. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Elle est capable de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] avec une efficacité bien supérieure à celle du cytoplasme dans un processus appelé [b]respiration aérobie[/b]. Ce processus nécessite toutefois [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le taux de production de [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Bienvenue au début de la phase multicellulaire !\n"
+"\n"
+"Vous avez réussi à guider votre espèce à travers la phase unicellulaire.\n"
+"\n"
+"Le gameplay suit les mécanismes de base de la phase microbienne. Vous devez toujours faire croître votre organisme pour vous reproduire et atteindre l'éditeur.\n"
+"\n"
+"Cependant, vous pouvez maintenant concevoir la disposition des cellules de votre colonie dans l'éditeur et vous pouvez spécialiser vos cellules pour divers rôles. N'oubliez pas que les membres de la colonie ne peuvent pas partager l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si vous utilisez la reproduction par bourgeonnement (la méthode par défaut), vous commencez par contrôler un petit bourgeon et devez faire croître le reste de la disposition des cellules."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Stade multicellulaire"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
 #, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "La centrale électrique de la cellule. La mitochondrie est une structure à double membrane remplie de protéines et d'enzymes. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Elle est capable de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] avec une efficacité bien supérieure à celle du cytoplasme dans un processus appelé [b]respiration aérobie[/b]. Ce processus nécessite toutefois [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le taux de production de [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Aucune action"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6001,8 +6395,9 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -6016,11 +6411,13 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
@@ -6030,17 +6427,21 @@ msgstr "La propriété principale des cellules eucaryotes. Le noyau inclut le r�
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Aucune action"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Le chimoplaste est une structure à double membrane contenant des protéines capables de transformer le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'eau en [thrive:compound type=\"glucose\"][/thrive:compound] dans un processus appelé [b]chimiosynthèse du sulfure d'hydrogène[/b]. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
-msgstr ""
+msgstr "Aucune action"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6066,8 +6467,9 @@ msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6077,8 +6479,23 @@ msgstr "Un métabolosome responsable de la production d'une forme primitive de l
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticyanine"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Phase Réveillant"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Placer organite"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
 msgstr ""
+"Vacuole\n"
+"à toxine"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6104,28 +6521,57 @@ msgstr "Protéine Chimiosynthétisante"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Chloroplaste"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Cytoplasme"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplasme"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Placer organite"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasme"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Placer organite"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Phase industrielle"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Placer organite"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Métabolosomes"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Azotéase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Stade multicellulaire"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6151,8 +6597,9 @@ msgstr "Placer organite"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxisome"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasme"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -6169,6 +6616,18 @@ msgstr "Agent de signalisation"
 #, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Propulseur gélatineuy"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Placer organite"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
@@ -6194,29 +6653,37 @@ msgstr ""
 "Vacuole\n"
 "à toxine"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasme"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasme"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6226,24 +6693,29 @@ msgstr "Protoplasme"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasme"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange basique d'ions, de protéines et d'autres substances dissoutes dans l'eau qui remplit l'intérieur de la cellule. L'une de ses fonctions est la [b]glycolyse[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Pour les cellules dépourvues d'organites aux métabolismes plus avancés, c'est ce qui leur permet d'obtenir de l'énergie. Elle est également utilisée pour stocker des molécules dans la cellule et pour accroître la taille de la cellule."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Le chloroplaste est une structure à double membrane contenant des pigments photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et d'eau dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui lui donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6267,8 +6739,9 @@ msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et le [thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -6330,17 +6803,73 @@ msgstr "De nombreux organismes produisent des substances polysaccharidiques glua
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stockés, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Les agents de signalisation permettent aux cellules de créer des substances chimiques auxquelles d'autres cellules peuvent réagir. Les substances chimiques de signalisation peuvent être utilisées pour attirer d'autres cellules ou les avertir d'un danger pour les faire fuir."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"mucilage\"][/thrive:compound]. Appuyez sur [thrive:input]g_secrete_slime[/thrive:input] pour libérer le [thrive:compound type=\"mucilage\"][/thrive:compound] stockés, augmentant la vitesse de cette cellule et ralentissant les prédateurs."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Placer organite"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Axone"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -6358,8 +6887,9 @@ msgstr "Le thermoplaste est une structure à double membrane contenant des pigme
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
@@ -6417,11 +6947,13 @@ msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibl
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -6469,8 +7001,9 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
@@ -6484,17 +7017,21 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Allez-vous prospérer ?"
@@ -6573,6 +7110,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "années"
 
+#, fuzzy
+msgid "YES"
+msgstr "années"
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visitez notre chaîne YouTube"
 
@@ -6589,6 +7130,26 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_MUSIC"
+#~ msgstr "Phase Réveillant"
+
+#, fuzzy
+#~ msgid "WIKI_HEADING_SOUND_EFFECTS"
+#~ msgstr "Effets externes :"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_INTRO"
+#~ msgstr "Mitochondrie"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_AUDIO_SOUND_EFFECTS"
+#~ msgstr "La centrale électrique de la cellule. La mitochondrie est une structure à double membrane remplie de protéines et d'enzymes. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Elle est capable de convertir le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] avec une efficacité bien supérieure à celle du cytoplasme dans un processus appelé [b]respiration aérobie[/b]. Ce processus nécessite toutefois [thrive:compound type=\"oxygen\"][/thrive:compound] pour fonctionner, et des niveaux inférieurs de [thrive:compound type=\"oxygen\"][/thrive:compound] dans l'environnement ralentiront le taux de production de [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_PAGE_MICROBE_AUDIO"
+#~ msgstr "Mitochondrie"
 
 #~ msgid "TOTAL_POPULATION_COLON"
 #~ msgstr "Population totale :"
@@ -6724,9 +7285,6 @@ msgstr "Dézoomer"
 
 #~ msgid "TYPE"
 #~ msgstr "Type :"
-
-#~ msgid "VERSION"
-#~ msgstr "Version :"
 
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
@@ -6889,10 +7447,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Tourner à gauche"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"
