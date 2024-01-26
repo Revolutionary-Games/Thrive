@@ -31,6 +31,8 @@
     [With(typeof(Engulfer))]
     [Without(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [RunsConditionally("RunAI")]
+    [RunsWithCustomCode("{0}.ReportPotentialPlayerPosition(reportedPlayerPosition);\n{0}.Update(delta);")]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
     {
         private readonly Compound atp;
