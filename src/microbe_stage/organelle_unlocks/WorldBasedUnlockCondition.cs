@@ -132,7 +132,7 @@
             if (data is not WorldAndPlayerDataSource worldArgs)
                 return false;
 
-            var current = worldArgs.World.Map.CurrentPatch!.GetCompoundAmount(Compound!,
+            var current = worldArgs.CurrentPatch!.GetCompoundAmount(Compound!,
                 CompoundAmountType.Biome);
 
             var minSatisfied = !Min.HasValue || current >= Min;
