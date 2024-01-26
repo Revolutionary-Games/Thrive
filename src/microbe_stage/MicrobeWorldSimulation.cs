@@ -78,7 +78,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
-    private TintColourAnimationSystem tintColourAnimationSystem = null!;
+    private TintColourApplyingSystem tintColourApplyingSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
@@ -206,7 +206,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
-        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
+        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
@@ -261,7 +261,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         colourAnimationSystem.Update(delta);
         microbeShaderSystem.Update(delta);
-        tintColourAnimationSystem.Update(delta);
+        tintColourApplyingSystem.Update(delta);
     }
 
     public void SetSimulationBiome(BiomeConditions biomeConditions)
@@ -509,7 +509,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();
-                tintColourAnimationSystem.Dispose();
+                tintColourApplyingSystem.Dispose();
                 toxinCollisionSystem.Dispose();
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
