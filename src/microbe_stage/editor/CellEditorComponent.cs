@@ -839,6 +839,11 @@ public partial class CellEditorComponent :
 
         newName = properties.FormattedName;
 
+        // This needs to be calculated here, otherwise ATP related unlock conditions would
+        // get null as the ATP balance
+        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles, properties.MembraneType,
+            Editor.CurrentPatch.Biome);
+
         UpdateOrganelleUnlockTooltips(true);
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
