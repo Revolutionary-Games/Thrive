@@ -376,6 +376,8 @@ public partial class CellEditorComponent
             {
                 // Add the first organelle to the group
                 var unlockText = new LocalizedStringBuilder();
+                unlockText.Append(new LocalizedString("ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"));
+                unlockText.Append("\n\n");
                 unlockText.Append(unlockTextString);
                 unlockText.Append(" ");
                 organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);
