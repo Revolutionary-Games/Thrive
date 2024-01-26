@@ -41,7 +41,8 @@
         public readonly EnergyBalanceInfo? EnergyBalance;
         public readonly ICellProperties? PlayerData;
 
-        public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, EnergyBalanceInfo? energyBalance, ICellProperties? playerData)
+        public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, EnergyBalanceInfo? energyBalance,
+            ICellProperties? playerData)
         {
             World = world;
             CurrentPatch = currentPatch;
