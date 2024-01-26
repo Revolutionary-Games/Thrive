@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-26 13:18+0100\n"
+"POT-Creation-Date: 2024-01-26 09:23+0200\n"
 "PO-Revision-Date: 2024-01-18 22:40+0000\n"
 "Last-Translator: AegisTTN <gamemastermine042004@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -605,7 +605,7 @@ msgid "CHLOROPLAST"
 msgstr "Cloroplasto"
 
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "O cloroplasto é uma estrutura de membrana dupla que contém pigmentos fotossensíveis. É um procariota que foi reconhecido pelo seu hospedeiro eucariótico para uso. Os pigmentos no cloroplasto conseguem utilizar a energia da luz para produzir glicose da água e gás carbónico num processo denominado Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor característica. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+msgstr "O cloroplasto é uma estrutura de dupla membrana que contém pigmentos fotossensíveis empilhados em sacos membranosos. É um procarionte que foi assimilado para ser utilizado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto são capazes de usar a energia da luz para produzir [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso e água num processo chamado [b]fotossíntese[/b]. Estes pigmentos são também o que lhe dá uma cor distinta. A sua taxa de produção de [thrive:compound type=\"glucose\"][/thrive:compound] é proporcional à concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e à intensidade da [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidade da [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -965,7 +965,7 @@ msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
+msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas em água que preenchem o interior da célula. Uma das funções que desempenha é a [b]glicólise[/b], a conversão de [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Para as células que não têm organelos para ter metabolismos mais avançados, é disto que elas dependem para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr "Glicólise Citoplasmática"
@@ -1404,9 +1404,8 @@ msgstr "Insira um ID existente"
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Inserir um ID Existente da Steam Wrokshop"
 
-#, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Bioma: {0}"
+msgstr "Etiqueta da entidade"
 
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
@@ -1678,11 +1677,8 @@ msgstr "Fossiliza esta espécie para a guardar no museu. Podes aceder o museu at
 msgid "FOSSILISATION_FAILED"
 msgstr "Fossilização Falhou"
 
-#, fuzzy
 msgid "FOSSILISATION_FAILED_DESCRIPTION"
-msgstr ""
-"Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
-"{0}"
+msgstr "O ficheiro de fóssil não pôde ser escrito"
 
 msgid "FOSSILISATION_HINT"
 msgstr "Fossilizar esta espécie"
@@ -1732,9 +1728,8 @@ msgstr "Visualizador de galeria"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipa de Desenho do Jogo"
 
-#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
-msgstr "Visite a nossa pagina de Patreon"
+msgstr "Mostra a energia total prevista recolhida pela sua espécie em todas as regiões e a população resultante (entre parênteses)."
 
 msgid "GENERAL"
 msgstr "Geral"
@@ -1764,7 +1759,7 @@ msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Parte da população de [u]{0}[/u] migrou para {1} de {2}"
+msgstr "Parte da população de [b][u]{0}[/u][/b] migrou de {2} para {1}"
 
 msgid "GLUCOSE"
 msgstr "Glicose"
@@ -1893,7 +1888,7 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Colocar organelo"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(algumas funcionalidades podem ficar indisponíveis ao atingir as fases seguintes)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2003,9 +1998,8 @@ msgstr "Recolher"
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr "Recolher (CHEIO)"
 
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Externo"
+msgstr "Internos"
 
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Já existe um mod com o nome interno especificado"
@@ -2038,7 +2032,7 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Esquema de URL inválido"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Itens no Chão"
 
 msgid "INVENTORY_TITLE"
 msgstr "Inventário"
@@ -2372,7 +2366,7 @@ msgid "LIGHT"
 msgstr "Luz"
 
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Médio"
 
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr "Atual"
@@ -2851,9 +2845,8 @@ msgstr "A central de energia da célula. A mitocôndria é uma estrutura de memb
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
 msgid "MIXED_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Misto..."
 
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "As instruções para o Modding estão disponíveis em"
@@ -3061,7 +3054,7 @@ msgid "MP_COST"
 msgstr "{0} PM"
 
 msgid "MUCILAGE"
-msgstr ""
+msgstr "Mucilagem"
 
 #, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
@@ -3188,7 +3181,7 @@ msgid "NITROGENASE"
 msgstr "Nitrogenase"
 
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+msgstr "Nitrogenase é uma proteína capaz de utilizar o [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso e a energia celular na forma de [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente chave para o crescimento das células. Isto é um processo referido como [b]Fixação Anaeróbica de Nitrogénio[/b]. Uma vez que a Nitrogenase está suspensa diretamente no citoplasma, o fluído envolvente efetua alguma [b]glicólise[/b]."
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
@@ -3197,7 +3190,7 @@ msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastídeo Fixador de Nitrogénio"
 
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
+msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso, [thrive:compound type=\"oxygen\"][/thrive:compound] e [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Este é um processo chamado [b]Fixação Aeróbica de Nitrogénio[/b]."
 
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -3965,7 +3958,7 @@ msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticianina é uma proteína capaz de utilizar gás carbónico e oxigénio para oxidar ferro de um estado químico para outro. Este processo, chamado Quimiossíntese litoautotrófica, liberta energia que a célula pode posteriormente recolher."
+msgstr "Rusticianina é uma proteína capaz de utilizar [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso e [thrive:compound type=\"oxygen\"][/thrive:compound] para oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico para outro. Este processo, chamado [b]Quimiossíntese litoautotrófica[/b], liberta energia que a célula pode posteriormente recolher."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -4109,7 +4102,7 @@ msgid "SEA_FLOOR"
 msgstr "Fundo Oceânico"
 
 msgid "SECRETE_SLIME"
-msgstr ""
+msgstr "Secretar Mucilagem"
 
 #, fuzzy
 msgid "SECRETE_SLIME_TOOLTIP"
@@ -4828,9 +4821,8 @@ msgstr "Ferramentas"
 msgid "TOOL_HAND_AXE"
 msgstr "Machado de mão"
 
-#, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
-msgstr "Anterior:"
+msgstr "Energia Recolhida:"
 
 msgid "TOTAL_SAVES"
 msgstr "Número de jogos guardados:"
@@ -5140,9 +5132,8 @@ msgstr "Versão desconhecida"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "O ID da Steam Workshop é desconhecido para este mod"
 
-#, fuzzy
 msgid "UNLIMIT_GROWTH_SPEED"
-msgstr "CONFIRMAR"
+msgstr "Velocidade de Crescimento Ilimitada"
 
 msgid "UNLOCKED_NEW_ORGANELLE"
 msgstr "NOVO"
@@ -5611,7 +5602,7 @@ msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Sem requerimentos."
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
