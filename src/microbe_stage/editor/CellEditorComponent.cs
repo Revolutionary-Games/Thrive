@@ -2450,6 +2450,7 @@ public partial class CellEditorComponent :
             totalEnergyLabel.HintTooltip =
                 new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
+
         autoEvoPredictionRunSuccessful = true;
 
         // Gather energy details
