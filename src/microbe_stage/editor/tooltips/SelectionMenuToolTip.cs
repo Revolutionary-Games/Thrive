@@ -50,7 +50,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
-    private VBoxContainer moreInfo = null!;
+    private VBoxContainer? moreInfo;
 #pragma warning restore CA2213
 
     private string? displayName;
