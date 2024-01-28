@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-12-29 06:14+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -617,6 +617,10 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор дозволяє відстежувати сполуки на відстані. Модифікуйте один раз, аби вибрати тип сполуки та колір та колір вказівної лінії."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Хемосинтез"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезувальні білки"
 
@@ -802,10 +806,6 @@ msgstr "{0} поглинуто"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Знайдені сполуки:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Концепт-арт"
 
 msgid "CONCEPT_ART"
 msgstr "Концепт-арт"
@@ -1862,6 +1862,10 @@ msgstr "Концентрація глюкози раптово впала!"
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
 msgid "GODMODE"
 msgstr "Режим Бога"
 
@@ -2644,6 +2648,9 @@ msgstr "Не дозволено показувати більше ніж {0} д�
 
 msgid "MAY"
 msgstr "Травень"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Наступні медіа"
@@ -7065,6 +7072,10 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Концепт-арт"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

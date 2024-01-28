@@ -46,14 +46,14 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         GeneratePages<ThriveopediaStagePage>(pages, wiki.Stages,
             "res://src/thriveopedia/pages/wiki/stage/ThriveopediaStagePage.tscn");
 
-        // Generate Concept Pages
+        // Generate Mechanics Pages
 
-        GeneratePage<ThriveopediaConceptsRootPage>(pages, wiki.ConceptsRoot,
-            "res://src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.tscn");
+        GeneratePage<ThriveopediaMechanicsRootPage>(pages, wiki.MechanicsRoot,
+            "res://src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.tscn");
 
-        GeneratePages<SimpleWikiPage>(pages, wiki.Concepts,
+        GeneratePages<SimpleWikiPage>(pages, wiki.Mechanics,
             "res://src/thriveopedia/pages/SimpleWikiPage.tscn",
-            p => p.Parent = "ConceptsRoot");
+            p => p.Parent = "MechanicsRoot");
 
         // Generate Organelle Pages
 
@@ -141,8 +141,8 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
             {
                 var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
                 var noticeInstance = noticeScene.Instance();
-                var articleContainer = pageInstance.GetNode<VBoxContainer>(pageInstance.NoticeContainerPath);
-                articleContainer.AddChild(noticeInstance);
+                var noticeContainer = pageInstance.GetNode<VBoxContainer>(pageInstance.NoticeContainerPath);
+                noticeContainer.AddChild(noticeInstance);
             }
 
             extraDataInit?.Invoke(pageInstance);

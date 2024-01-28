@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2022-10-03 11:25+0000\n"
 "Last-Translator: Markus Forsberg <marqsande@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -641,6 +641,10 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemosyntes"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
 
@@ -845,10 +849,6 @@ msgstr "{0} konsumtion"
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Molekylmoln"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "konceptkonst"
 
 msgid "CONCEPT_ART"
 msgstr "konceptkonst"
@@ -1961,6 +1961,10 @@ msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolys"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
 msgid "GODMODE"
 msgstr "Gudläge"
 
@@ -2786,6 +2790,9 @@ msgstr "Det är inte tillåtet att visa fler än {0} datauppsättningar!"
 
 msgid "MAY"
 msgstr "Maj"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Media Nästa"
@@ -7262,6 +7269,10 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "konceptkonst"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

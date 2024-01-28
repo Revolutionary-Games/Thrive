@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-11-27 17:42+0000\n"
 "Last-Translator: Giulio Pacetti <giulio.peach@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -627,6 +627,10 @@ msgstr "La \"vista\" delle cellule è in realtà chemioricezione. È così che l
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Il chemiorecettore permette di percepire i composti anche a grandi distanze. Una volta posizionato, modificalo per scegliere quale composto tracciare e con quale colore indicare la strada."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemiosintesi"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteine Chemiosintetizzanti"
 
@@ -818,10 +822,6 @@ msgstr "Consumo di {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto da trovare:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Concept art"
 
 msgid "CONCEPT_ART"
 msgstr "Concept art"
@@ -1919,6 +1919,10 @@ msgstr "La concentrazione di glucosio è diminuita drasticamente!"
 msgid "GLYCOLYSIS"
 msgstr "Glicolisi"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
 msgid "GODMODE"
 msgstr "Modalità Dio"
 
@@ -2733,6 +2737,9 @@ msgstr "Impossibile mostrare più di {0} set di dati!"
 
 msgid "MAY"
 msgstr "Maggio"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "⏭ Successivo (tasto multimediale)"
@@ -7246,6 +7253,10 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Concept art"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2024-01-18 07:15+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -617,6 +617,10 @@ msgstr "所有細胞只能透過化學感受來「看」。這就是細胞獲取
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化學感受器可以探測更遠距離的化合物。放置後進行修改以選擇化合物類型和引導線顏色。"
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "化能合成"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化能合成蛋白"
 
@@ -802,10 +806,6 @@ msgstr "{0} 消耗"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "要尋找的化合物："
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "概念美術"
 
 msgid "CONCEPT_ART"
 msgstr "概念美術"
@@ -1859,6 +1859,10 @@ msgstr "葡萄糖濃度急劇下降！"
 msgid "GLYCOLYSIS"
 msgstr "糖解"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "固氮酶是一種蛋白質，能夠利用氣態[thrive:compound type=\"nitrogen\"][/thrive:compound]和[thrive:compound type=\"atp\"][/thrive:compound]形式的細胞能量來生產[thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。此過程被稱為[b]厭氧固氮[/b]。由於固氮酶直接懸浮在細胞質中，周圍的細胞質也能進行一些[b]糖解[/b]。"
+
 msgid "GODMODE"
 msgstr "上帝模式"
 
@@ -2640,6 +2644,9 @@ msgstr "不允許顯示超過 {0} 個資料集！"
 
 msgid "MAY"
 msgstr "五月"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Media Next"
@@ -6977,6 +6984,10 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "概念美術"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

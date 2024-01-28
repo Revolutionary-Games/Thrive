@@ -108,12 +108,12 @@ public class WikiUpdater
         {
             OrganellesRoot = organellesRoot.UntranslatedPage,
             StagesRoot = stagesRoot.UntranslatedPage,
-            ConceptsRoot = mechanicsRoot.UntranslatedPage,
+            MechanicsRoot = mechanicsRoot.UntranslatedPage,
             DevelopmentRoot = developmentRoot.UntranslatedPage,
 
             Organelles = organelles.Select(o => o.UntranslatedPage).ToList(),
             Stages = stages.Select(s => s.UntranslatedPage).ToList(),
-            Concepts = mechanics.Select(c => c.UntranslatedPage).ToList(),
+            Mechanics = mechanics.Select(c => c.UntranslatedPage).ToList(),
             DevelopmentPages = developmentPages.Select(p => p.UntranslatedPage).ToList(),
         };
 
@@ -473,7 +473,7 @@ public class WikiUpdater
     }
 
     /// <summary>
-    ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
+    ///   Converts an HTML image into BBCode. Currently only works for compound and other icons embedded in paragraphs.
     /// </summary>
     private string ConvertImageToBbcode(IHtmlImageElement image, StringBuilder bbcode)
     {
@@ -654,10 +654,10 @@ public class WikiUpdater
         public List<Page> Stages { get; init; } = null!;
 
         [JsonInclude]
-        public Page ConceptsRoot { get; init; } = null!;
+        public Page MechanicsRoot { get; init; } = null!;
 
         [JsonInclude]
-        public List<Page> Concepts { get; init; } = null!;
+        public List<Page> Mechanics { get; init; } = null!;
 
         [JsonInclude]
         public Page DevelopmentRoot { get; init; } = null!;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -852,6 +852,10 @@ msgstr ""
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:299
+msgid "CHEMOSYNTHESIS"
+msgstr ""
+
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:386
 msgid "CHEMOSYNTHESIZING_PROTEINS"
@@ -1112,10 +1116,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "COMPOUND_TO_FIND"
-msgstr ""
-
-#: ../src/thriveopedia/pages/wiki/concept/ThriveopediaConceptsRootPage.cs:11
-msgid "CONCEPTS"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
@@ -2449,6 +2449,10 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1547
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1157
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:45
@@ -3797,6 +3801,10 @@ msgstr ""
 msgid "MAY"
 msgstr ""
 
+#: ../src/thriveopedia/pages/wiki/mechanic/ThriveopediaMechanicsRootPage.cs:11
+msgid "MECHANICS"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
 msgstr ""
@@ -4566,16 +4574,25 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:85
+#: ../simulation_parameters/common/wiki.json:319
 #: ../simulation_parameters/common/wiki.json:373
 #: ../simulation_parameters/common/wiki.json:397
 #: ../simulation_parameters/common/wiki.json:451
 #: ../simulation_parameters/common/wiki.json:475
+#: ../simulation_parameters/common/wiki.json:553
+#: ../simulation_parameters/common/wiki.json:631
 #: ../simulation_parameters/common/wiki.json:685
 #: ../simulation_parameters/common/wiki.json:709
+#: ../simulation_parameters/common/wiki.json:763
+#: ../simulation_parameters/common/wiki.json:787
 #: ../simulation_parameters/common/wiki.json:865
 #: ../simulation_parameters/common/wiki.json:919
 #: ../simulation_parameters/common/wiki.json:943
 #: ../simulation_parameters/common/wiki.json:1021
+#: ../simulation_parameters/common/wiki.json:1099
+#: ../simulation_parameters/common/wiki.json:1153
+#: ../simulation_parameters/common/wiki.json:1177
 #: ../simulation_parameters/common/wiki.json:1387
 #: ../simulation_parameters/common/wiki.json:1411
 #: ../simulation_parameters/common/wiki.json:1543
@@ -4586,22 +4603,40 @@ msgstr ""
 msgid "NO"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:65
+#: ../simulation_parameters/common/wiki.json:69
+#: ../simulation_parameters/common/wiki.json:89
 #: ../simulation_parameters/common/wiki.json:143
 #: ../simulation_parameters/common/wiki.json:147
 #: ../simulation_parameters/common/wiki.json:167
+#: ../simulation_parameters/common/wiki.json:303
+#: ../simulation_parameters/common/wiki.json:323
 #: ../simulation_parameters/common/wiki.json:377
 #: ../simulation_parameters/common/wiki.json:381
 #: ../simulation_parameters/common/wiki.json:401
 #: ../simulation_parameters/common/wiki.json:459
 #: ../simulation_parameters/common/wiki.json:479
+#: ../simulation_parameters/common/wiki.json:537
+#: ../simulation_parameters/common/wiki.json:557
+#: ../simulation_parameters/common/wiki.json:611
+#: ../simulation_parameters/common/wiki.json:615
+#: ../simulation_parameters/common/wiki.json:635
 #: ../simulation_parameters/common/wiki.json:693
 #: ../simulation_parameters/common/wiki.json:713
+#: ../simulation_parameters/common/wiki.json:767
+#: ../simulation_parameters/common/wiki.json:771
+#: ../simulation_parameters/common/wiki.json:791
 #: ../simulation_parameters/common/wiki.json:845
 #: ../simulation_parameters/common/wiki.json:869
 #: ../simulation_parameters/common/wiki.json:927
 #: ../simulation_parameters/common/wiki.json:947
 #: ../simulation_parameters/common/wiki.json:1005
 #: ../simulation_parameters/common/wiki.json:1025
+#: ../simulation_parameters/common/wiki.json:1079
+#: ../simulation_parameters/common/wiki.json:1083
+#: ../simulation_parameters/common/wiki.json:1103
+#: ../simulation_parameters/common/wiki.json:1161
+#: ../simulation_parameters/common/wiki.json:1181
 #: ../simulation_parameters/common/wiki.json:1395
 #: ../simulation_parameters/common/wiki.json:1415
 #: ../simulation_parameters/common/wiki.json:1551
@@ -5204,6 +5239,7 @@ msgstr ""
 msgid "PHOSPHATE"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:533
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:121
 msgid "PHOTOSYNTHESIS"
@@ -9173,11 +9209,16 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:61
 #: ../simulation_parameters/common/wiki.json:139
 #: ../simulation_parameters/common/wiki.json:163
 #: ../simulation_parameters/common/wiki.json:217
+#: ../simulation_parameters/common/wiki.json:295
+#: ../simulation_parameters/common/wiki.json:529
+#: ../simulation_parameters/common/wiki.json:607
 #: ../simulation_parameters/common/wiki.json:841
 #: ../simulation_parameters/common/wiki.json:997
+#: ../simulation_parameters/common/wiki.json:1075
 #: ../simulation_parameters/common/wiki.json:2167
 msgid "YES"
 msgstr ""

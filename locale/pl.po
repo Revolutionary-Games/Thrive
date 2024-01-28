@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-04-25 19:02+0000\n"
 "Last-Translator: Otmar Woźniewski <spliffer4all@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -612,6 +612,10 @@ msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywa
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosynteza siarkowa"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Białka Chemosyntezujące"
 
@@ -797,10 +801,6 @@ msgstr "Konsumpcja {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Związek do Znalezienia:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Grafika Koncepcyjna"
 
 msgid "CONCEPT_ART"
 msgstr "Grafika Koncepcyjna"
@@ -1869,6 +1869,10 @@ msgstr "Stężenie glukozy drastycznie spadło!"
 msgid "GLYCOLYSIS"
 msgstr "Glikoliza"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
 msgid "GODMODE"
 msgstr "Tryb Boga"
 
@@ -2666,6 +2670,9 @@ msgstr "Nie można pokazać więcej niż {0} zbiorów danych!"
 
 msgid "MAY"
 msgstr "Maj"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Następne Media"
@@ -7125,6 +7132,10 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Grafika Koncepcyjna"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

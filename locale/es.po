@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -630,6 +630,10 @@ msgstr "Todas las células solo \"ven\" a través de la quimiorrecepción. Así 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "El quimioreceptor permite detectar compuestos desde más lejos. Modifícalo una vez colocado para seleccionar el tipo de compuesto y el color de la línea de guía."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Quimiosíntesis"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteinas quimiosintetizadoras"
 
@@ -817,10 +821,6 @@ msgstr "Consumo de: {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Compuestos a encontrar:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Arte conceptual"
 
 msgid "CONCEPT_ART"
 msgstr "Arte conceptual"
@@ -1925,6 +1925,10 @@ msgstr "¡Las concentraciones de glucosa han bajado drásticamente!"
 msgid "GLYCOLYSIS"
 msgstr "Glicólisis"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
+
 msgid "GODMODE"
 msgstr "Modo Dios"
 
@@ -2746,6 +2750,9 @@ msgstr "¡No se pueden mostrar más de {0} datasets!"
 
 msgid "MAY"
 msgstr "Mayo"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Siguiente"
@@ -7296,6 +7303,10 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Arte conceptual"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

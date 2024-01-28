@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2024-01-19 11:43+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -622,6 +622,10 @@ msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görü
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemosentez"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosentez Yapan Proteinler"
 
@@ -807,10 +811,6 @@ msgstr "{0} tüketimi"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Aranacak Bileşik:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Konsept Çizimi"
 
 msgid "CONCEPT_ART"
 msgstr "Konsept Çizimi"
@@ -1864,6 +1864,10 @@ msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 msgid "GLYCOLYSIS"
 msgstr "Glikoliz"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem [b]oksijensiz azot fiksasyonu[/b] olarak anılır. Nitrojenaz direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan [b]glikoliz[/b] yapabilir."
+
 msgid "GODMODE"
 msgstr "Tanrı Modu"
 
@@ -2645,6 +2649,9 @@ msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
 msgid "MAY"
 msgstr "Mayıs"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Media Next"
@@ -7138,6 +7145,10 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Konsept Çizimi"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

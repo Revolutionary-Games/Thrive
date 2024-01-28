@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: Tim Kuppens <t.m.kuppens@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -618,6 +618,10 @@ msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "De chemoroceptor maakt het mogelijk om stoffen van verder te detecteren. Eenmaal geplaatst kan de gedetecteerde stoftype en bijbehorende lijnkleur worden gekozen."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosynthese"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosynthetiserende eiwitten"
 
@@ -803,10 +807,6 @@ msgstr "Verbruik van {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Stof om te Vinden:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Conceptkunst"
 
 msgid "CONCEPT_ART"
 msgstr "Conceptkunst"
@@ -1868,6 +1868,10 @@ msgstr "Glucoseconcentratie is drastisch gedaald!"
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
 msgid "GODMODE"
 msgstr "Godmodus"
 
@@ -2653,6 +2657,9 @@ msgstr "Het is niet toegestaan meer dan {0} datasets weer te geven!"
 
 msgid "MAY"
 msgstr "Mei"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Volgende Media"
@@ -7081,6 +7088,10 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Conceptkunst"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

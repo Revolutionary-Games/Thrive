@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-12-30 14:10+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -618,6 +618,10 @@ msgstr "Все клетки \"видят\" только с помощью хем
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор позволяет обнаруживать соединения на большем расстоянии. Модифицируйте после размещения, чтобы выбрать тип соединения и цвет линии направления."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Хемосинтез"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезирующие белки"
 
@@ -803,10 +807,6 @@ msgstr "{0} потребления"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Соединение, которое нужно найти:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Набросок клетки"
 
 msgid "CONCEPT_ART"
 msgstr "Набросок клетки"
@@ -1862,6 +1862,10 @@ msgstr "Концентрация глюкозы резко упала!"
 msgid "GLYCOLYSIS"
 msgstr "Гликолиз"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Нитрогеназа - это белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound] и клеточную энергию в форме [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Этот процесс называется [b]]Анаэробной Азотфиксацией[/b]. Поскольку нитрогеназа находится во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
+
 msgid "GODMODE"
 msgstr "Режим Бога"
 
@@ -2644,6 +2648,9 @@ msgstr "Не разрешается показывать более {0} набо
 
 msgid "MAY"
 msgstr "Май"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "MediaNext"
@@ -6948,6 +6955,10 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Набросок клетки"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

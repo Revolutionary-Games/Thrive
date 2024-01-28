@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-06-24 20:02+0000\n"
 "Last-Translator: Dušan Válek <alex292048@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -612,6 +612,10 @@ msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto z
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chemosyntéza"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosyntetizující proteiny"
 
@@ -798,10 +802,6 @@ msgstr "Spotřeba {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Sloučenina k nalezení:"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Koncepční umění"
 
 msgid "CONCEPT_ART"
 msgstr "Koncepční umění"
@@ -1927,6 +1927,10 @@ msgstr "Koncentrace glukózy drasticky klesla!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolýza"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
 msgid "GODMODE"
 msgstr "Nesmrtelnost"
 
@@ -2742,6 +2746,9 @@ msgstr "Není povoleno zobrazit více než {0} datových sad!"
 
 msgid "MAY"
 msgstr "Květen"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Další"
@@ -7238,6 +7245,10 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Koncepční umění"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"

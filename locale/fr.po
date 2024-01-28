@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-28 16:24+0100\n"
+"POT-Creation-Date: 2024-01-28 16:44+0100\n"
 "PO-Revision-Date: 2023-11-15 07:28+0000\n"
 "Last-Translator: Marc Theriault <marc.55@live.ca>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -619,6 +619,10 @@ msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréceptio
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Le chimiorécepteur permet de détecter le composants de plus loin. Modifier une fois place pour choisir le composant détecté et la couleur de la ligne de guidage."
 
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chimio synthèse"
+
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Protéine Chimiosynthétisante"
 
@@ -805,10 +809,6 @@ msgstr "Consommation de {0}"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composé à trouver :"
-
-#, fuzzy
-msgid "CONCEPTS"
-msgstr "Art conceptuel"
 
 msgid "CONCEPT_ART"
 msgstr "Art conceptuel"
@@ -1875,6 +1875,10 @@ msgstr "La concentration de glucose a baissé drastiquement !"
 msgid "GLYCOLYSIS"
 msgstr "Glycolyse"
 
+#, fuzzy
+msgid "GLYCOLYSIS_COMMA_NITROGENASE_REACTION"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
 msgid "GODMODE"
 msgstr "Mode Tout-Puissant"
 
@@ -2666,6 +2670,9 @@ msgstr "Il n'est pas permit d'afficher plus de {0} datasets !"
 
 msgid "MAY"
 msgstr "Mai"
+
+msgid "MECHANICS"
+msgstr ""
 
 msgid "MEDIANEXT"
 msgstr "Média suivant"
@@ -7175,6 +7182,10 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "CONCEPTS"
+#~ msgstr "Art conceptuel"
 
 #, fuzzy
 #~ msgid "WIKI_HEADING_MUSIC"
