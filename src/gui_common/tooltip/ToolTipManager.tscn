@@ -138,7 +138,7 @@ MutationPointCost = 2
 margin_bottom = 177.0
 
 [node name="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer" index="0"]
-margin_bottom = 161.0
+margin_bottom = 206.0
 
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -236,12 +236,13 @@ DisplayName = "CYTOPLASM"
 ProcessesDescription = "CYTOPLASM_PROCESSES_DESCRIPTION"
 Description = "CYTOPLASM_DESCRIPTION"
 MutationPointCost = 22
+ThriveopediaPageName = "cytoplasm"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/cytoplasm" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -278,6 +279,7 @@ DisplayName = "METABOLOSOMES"
 ProcessesDescription = "METABOLOSOMES_PROCESSES_DESCRIPTION"
 Description = "METABOLOSOMES_DESCRIPTION"
 MutationPointCost = 45
+ThriveopediaPageName = "metabolosome"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/metabolosome" index="0"]
 margin_right = 499.0
@@ -285,7 +287,7 @@ margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer" index="0"]
 margin_right = 483.0
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="Header" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="0"]
 margin_right = 468.0
@@ -347,12 +349,13 @@ DisplayName = "THYLAKOID"
 ProcessesDescription = "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 Description = "THYLAKOIDS_DESCRIPTION"
 MutationPointCost = 50
+ThriveopediaPageName = "chromatophore"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/chromatophore" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -387,6 +390,7 @@ DisplayName = "CHEMOSYNTHESIZING_PROTEINS"
 ProcessesDescription = "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 Description = "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 MutationPointCost = 45
+ThriveopediaPageName = "chemoSynthesizingProteins"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins" index="0"]
 margin_right = 394.0
@@ -394,7 +398,7 @@ margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
 margin_right = 378.0
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="Header" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="0"]
 margin_right = 363.0
@@ -452,12 +456,13 @@ DisplayName = "RUSTICYANIN"
 ProcessesDescription = "RUSTICYANIN_PROCESSES_DESCRIPTION"
 Description = "RUSTICYANIN_DESCRIPTION"
 MutationPointCost = 45
+ThriveopediaPageName = "rusticyanin"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/rusticyanin" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -492,12 +497,13 @@ DisplayName = "NITROGENASE"
 ProcessesDescription = "NITROGENASE_PROCESSES_DESCRIPTION"
 Description = "NITROGENASE_DESCRIPTION"
 MutationPointCost = 55
+ThriveopediaPageName = "nitrogenase"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nitrogenase" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -533,12 +539,13 @@ DisplayName = "OXYTOXISOME"
 ProcessesDescription = "OXYTOXISOME_PROCESSES_DESCRIPTION"
 Description = "OXYTOXISOME_DESC"
 MutationPointCost = 55
+ThriveopediaPageName = "oxytoxyProteins"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -574,12 +581,13 @@ DisplayName = "THERMOSYNTHASE"
 ProcessesDescription = "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 Description = "THERMOSYNTHASE_DESCRIPTION"
 MutationPointCost = 50
+ThriveopediaPageName = "thermosynthase"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/thermosynthase" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="VScrollBar2" type="VScrollBar" parent="GroupHolder/organelleSelection/thermosynthase/MarginContainer/VBoxContainer/ProcessesDescription" index="0"]
 visible = false
@@ -642,12 +650,13 @@ DisplayName = "FLAGELLUM"
 ProcessesDescription = "FLAGELLUM_PROCESSES_DESCRIPTION"
 Description = "FLAGELLUM_DESCRIPTION"
 MutationPointCost = 55
+ThriveopediaPageName = "flagellum"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/flagellum" index="0"]
 margin_bottom = 287.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer" index="0"]
-margin_bottom = 271.0
+margin_bottom = 316.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 200.0
@@ -689,12 +698,13 @@ DisplayName = "SLIME_JET"
 ProcessesDescription = "SLIME_JET_PROCESSES_DESCRIPTION"
 Description = "SLIME_JET_DESCRIPTION"
 MutationPointCost = 60
+ThriveopediaPageName = "slimeJet"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/slimeJet" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/slimeJet/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -729,12 +739,13 @@ DisplayName = "ORGANELLE_PILUS"
 ProcessesDescription = "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 Description = "ORGANELLE_PILUS_DESCRIPTION"
 MutationPointCost = 30
+ThriveopediaPageName = "pilus"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
 margin_bottom = 239.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer" index="0"]
-margin_bottom = 223.0
+margin_bottom = 268.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 152.0
@@ -762,12 +773,13 @@ DisplayName = "CHEMORECEPTOR"
 ProcessesDescription = "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 Description = "CHEMORECEPTOR_DESCRIPTION"
 MutationPointCost = 45
+ThriveopediaPageName = "chemoreceptor"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/chemoreceptor" index="0"]
 margin_bottom = 239.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer" index="0"]
-margin_bottom = 223.0
+margin_bottom = 268.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 152.0
@@ -796,12 +808,13 @@ ProcessesDescription = "CILIA_PROCESSES_DESCRIPTION"
 Description = "CILIA_DESCRIPTION"
 MutationPointCost = 40
 RequiresNucleus = true
+ThriveopediaPageName = "cilia"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/cilia" index="0"]
 margin_bottom = 239.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer" index="0"]
-margin_bottom = 223.0
+margin_bottom = 268.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 152.0
@@ -830,12 +843,13 @@ ProcessesDescription = "BINDING_AGENT_PROCESSES_DESCRIPTION"
 Description = "BINDING_AGENT_DESCRIPTION"
 MutationPointCost = 55
 RequiresNucleus = true
+ThriveopediaPageName = "bindingAgent"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/bindingAgent" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -870,12 +884,13 @@ DisplayName = "NUCLEUS"
 ProcessesDescription = "NUCLEUS_SMALL_DESCRIPTION"
 Description = "NUCLEUS_DESCRIPTION"
 MutationPointCost = 70
+ThriveopediaPageName = "nucleus"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nucleus" index="0"]
 margin_bottom = 263.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 176.0
@@ -911,9 +926,10 @@ ProcessesDescription = "MITOCHONDRION_PROCESSES_DESCRIPTION"
 Description = "MITOCHONDRION_DESCRIPTION"
 MutationPointCost = 45
 RequiresNucleus = true
+ThriveopediaPageName = "mitochondrion"
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="storage" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
 margin_right = 333.0
@@ -938,9 +954,10 @@ ProcessesDescription = "CHLOROPLAST_PROCESSES_DESCRIPTION"
 Description = "CHLOROPLAST_DESCRIPTION"
 MutationPointCost = 50
 RequiresNucleus = true
+ThriveopediaPageName = "chloroplast"
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="storage" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
 margin_right = 333.0
@@ -965,12 +982,13 @@ ProcessesDescription = "THERMOPLAST_PROCESSES_DESCRIPTION"
 Description = "THERMOPLAST_DESCRIPTION"
 MutationPointCost = 40
 RequiresNucleus = true
+ThriveopediaPageName = "thermoplast"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/thermoplast" index="0"]
 margin_bottom = 271.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer" index="0"]
-margin_bottom = 266.0
+margin_bottom = 311.0
 
 [node name="ProcessList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 98.0
@@ -1016,9 +1034,10 @@ ProcessesDescription = "CHEMOPLAST_PROCESSES_DESCRIPTION"
 Description = "CHEMOPLAST_DESCRIPTION"
 MutationPointCost = 45
 RequiresNucleus = true
+ThriveopediaPageName = "chemoplast"
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="storage" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
 margin_right = 333.0
@@ -1043,12 +1062,13 @@ ProcessesDescription = "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 Description = "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 MutationPointCost = 50
 RequiresNucleus = true
+ThriveopediaPageName = "nitrogenfixingplastid"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid" index="0"]
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1085,12 +1105,13 @@ ProcessesDescription = "VACUOLE_PROCESSES_DESCRIPTION"
 Description = "VACUOLE_DESCRIPTION"
 MutationPointCost = 50
 RequiresNucleus = true
+ThriveopediaPageName = "vacuole"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/vacuole" index="0"]
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1126,12 +1147,13 @@ ProcessesDescription = "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 Description = "TOXIN_VACUOLE_DESCRIPTION"
 MutationPointCost = 55
 RequiresNucleus = true
+ThriveopediaPageName = "oxytoxy"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/oxytoxy" index="0"]
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1167,12 +1189,13 @@ ProcessesDescription = "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 Description = "SIGNALING_AGENT_DESCRIPTION"
 MutationPointCost = 45
 RequiresNucleus = true
+ThriveopediaPageName = "signalingAgent"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/signalingAgent" index="0"]
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer" index="0"]
-margin_bottom = 247.0
+margin_bottom = 292.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1207,6 +1230,7 @@ margin_bottom = 173.0
 DisplayName = "BIOLUMINESCENT_VACUOLE"
 Description = "TO_BE_IMPLEMENTED"
 RequiresNucleus = true
+ThriveopediaPageName = "bioluminescentVacuole"
 
 [node name="ProcessesDescription" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -1230,12 +1254,13 @@ DisplayName = "LYSOSOME"
 ProcessesDescription = "LYSOSOME_PROCESSES_DESCRIPTION"
 Description = "LYSOSOME_DESCRIPTION"
 MutationPointCost = 45
+ThriveopediaPageName = "lysosome"
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/lysosome" index="0"]
 margin_bottom = 311.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/lysosome/MarginContainer" index="0"]
-margin_bottom = 295.0
+margin_bottom = 340.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 224.0
@@ -1291,6 +1316,7 @@ DisplayName = "ORGANELLE_AXON"
 Description = "ORGANELLE_AXON_DESCRIPTION"
 MutationPointCost = 60
 RequiresNucleus = true
+ThriveopediaPageName = "axon"
 
 [node name="ProcessesDescription" parent="GroupHolder/organelleSelection/axon/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -1315,6 +1341,7 @@ DisplayName = "ORGANELLE_MYOFIBRIL"
 Description = "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 MutationPointCost = 25
 RequiresNucleus = true
+ThriveopediaPageName = "myofibril"
 
 [node name="ProcessesDescription" parent="GroupHolder/organelleSelection/myofibril/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -1347,7 +1374,7 @@ MutationPointCost = 50
 margin_bottom = 225.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer" index="0"]
-margin_bottom = 209.0
+margin_bottom = 254.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -1408,7 +1435,7 @@ MutationPointCost = 50
 margin_bottom = 225.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer" index="0"]
-margin_bottom = 209.0
+margin_bottom = 254.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -1459,7 +1486,7 @@ MutationPointCost = 50
 margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer" index="0"]
-margin_bottom = 281.0
+margin_bottom = 326.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -1524,7 +1551,7 @@ MutationPointCost = 50
 margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer" index="0"]
-margin_bottom = 281.0
+margin_bottom = 326.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -1589,7 +1616,7 @@ MutationPointCost = 50
 margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer" index="0"]
-margin_bottom = 281.0
+margin_bottom = 326.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -1652,7 +1679,7 @@ MutationPointCost = 50
 margin_bottom = 297.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer" index="0"]
-margin_bottom = 281.0
+margin_bottom = 326.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
 visible = false

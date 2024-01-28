@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/MPNoCircleLight.png" type="Texture" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Tiny.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny-Condensed.tres" type="DynamicFont" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -127,17 +126,6 @@ text = "UNLOCKED_NEW_ORGANELLE"
 align = 1
 valign = 1
 
-[node name="OpenInThriveopediaButton" type="Button" parent="VBoxContainer/Button"]
-visible = false
-margin_left = 62.0
-margin_top = 42.0
-margin_right = 77.0
-margin_bottom = 57.0
-hint_tooltip = "OPEN_IN_THRIVEOPEDIA_HINT"
-theme = ExtResource( 5 )
-custom_fonts/font = ExtResource( 6 )
-text = "OPEN_IN_THRIVEOPEDIA_SYMBOL"
-
 [node name="Name" type="Label" parent="VBoxContainer"]
 margin_top = 61.0
 margin_right = 85.0
@@ -189,4 +177,3 @@ margin_bottom = 15.0
 rect_min_size = Vector2( 14, 0 )
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="OnPressed"]
-[connection signal="pressed" from="VBoxContainer/Button/OpenInThriveopediaButton" to="." method="OnOpenInThriveopediaPressed"]
