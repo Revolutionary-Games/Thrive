@@ -136,6 +136,15 @@ public abstract class ThriveopediaWikiPage : ThriveopediaPage
         {
             var pageInstance = (T)pageScene.Instance();
             pageInstance.PageContent = page;
+
+            if (page.NoticeSceneName != null)
+            {
+                var noticeScene = GD.Load<PackedScene>($"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn");
+                var noticeInstance = noticeScene.Instance();
+                var articleContainer = pageInstance.GetNode<VBoxContainer>(pageInstance.NoticeContainerPath);
+                articleContainer.AddChild(noticeInstance);
+            }
+
             extraDataInit?.Invoke(pageInstance);
             pageList.Add(pageInstance);
         }

@@ -9,9 +9,10 @@ script = ExtResource( 2 )
 MainArticlePath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle")
 InfoBoxPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/StageDetails/StageInfoBox")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+margin_top = 10.0
 margin_right = 864.0
-margin_bottom = 243.0
+margin_bottom = 253.0
 
 [node name="MainArticle" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
 margin_right = 482.0

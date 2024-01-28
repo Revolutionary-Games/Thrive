@@ -34,8 +34,8 @@ public class WikiUpdater
     ///   List of compound names, used to differentate between using the thrive:compound and
     ///   thrive:icon bbcode tags
     /// </summary>
-    private readonly string[] compoundNames =
-    [
+    private readonly string[] compoundNames = new[]
+    {
         "glucose",
         "ammonia",
         "phosphates",
@@ -50,7 +50,7 @@ public class WikiUpdater
         "mucilage",
 
         "atp",
-    ];
+    };
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
@@ -233,6 +233,20 @@ public class WikiUpdater
                 (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(page, internalName);
             }
 
+            var noticeBox = page.QuerySelector(".NoticeBox");
+            string? noticeSceneName = null;
+
+            if (noticeBox != null)
+            {
+                // Get the relevant scene for this notice from the class
+                var noticeClass = noticeBox.ClassList.First(c => c.Contains("thriveopedia"));
+                var sceneNameLowercase = noticeClass
+                    .Replace("thriveopedia-", string.Empty)
+                    .Replace("-", " ");
+
+                noticeSceneName = textInfo.ToTitleCase(sceneNameLowercase).Replace(" ", string.Empty) + "Notice";
+            }
+
             var sections = GetMainBodySections(page);
             var untranslatedSections = sections.Select(
                 section => UntranslateSection(section, untranslatedPageName)).ToList();
@@ -241,12 +255,14 @@ public class WikiUpdater
                 internalName,
                 pageUrl,
                 untranslatedSections,
-                untranslatedInfobox);
+                untranslatedInfobox,
+                noticeSceneName);
             var translatedPage = new Wiki.Page(name,
                 internalName,
                 pageUrl,
                 sections,
-                translatedInfobox);
+                translatedInfobox,
+                noticeSceneName);
 
             allPages.Add(new TranslationPair(untranslatedPage, translatedPage));
 
@@ -652,13 +668,14 @@ public class WikiUpdater
         public class Page
         {
             public Page(string name, string internalName, string url, List<Section> sections,
-                List<InfoboxField> infobox = null!)
+                List<InfoboxField> infobox = null!, string? noticeSceneName = null)
             {
                 Name = name;
                 InternalName = internalName;
                 Url = url;
                 Sections = sections;
                 InfoboxData = infobox ?? new();
+                NoticeSceneName = noticeSceneName;
             }
 
             [JsonInclude]
@@ -675,6 +692,8 @@ public class WikiUpdater
 
             [JsonInclude]
             public List<InfoboxField> InfoboxData { get; }
+
+            public string? NoticeSceneName { get; }
 
             public class Section
             {

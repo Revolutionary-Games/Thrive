@@ -56,6 +56,8 @@ public class GameWiki : IRegistryType
 
         public List<InfoboxField> InfoboxData { get; set; } = new();
 
+        public string? NoticeSceneName { get; set; }
+
         public void Check(string name)
         {
             if (string.IsNullOrEmpty(InternalName))

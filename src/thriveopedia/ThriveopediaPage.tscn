@@ -10,6 +10,7 @@ margin_right = -344.0
 margin_bottom = -120.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+NoticeContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 1.0
@@ -46,3 +47,6 @@ custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Notices" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 864.0

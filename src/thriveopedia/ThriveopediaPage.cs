@@ -5,6 +5,9 @@
 /// </summary>
 public abstract class ThriveopediaPage : PanelContainer
 {
+    [Export]
+    public NodePath? NoticeContainerPath;
+
     /// <summary>
     ///   Whether this page should display the default panel background.
     /// </summary>
