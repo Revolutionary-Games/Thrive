@@ -16,6 +16,7 @@ public class MicrobePartSelection : MarginContainer
     private TextureRect? iconRect;
     private Control? recentlyUnlockedControl;
     private Label? nameLabel;
+    private Button? openInThriveopediaButton;
 #pragma warning restore CA2213
 
     private int mpCost;
@@ -25,6 +26,7 @@ public class MicrobePartSelection : MarginContainer
     private bool recentlyUnlocked;
     private bool alwaysShowLabel;
     private bool selected;
+    private bool hasThriveopediaPage;
 
     /// <summary>
     ///   Emitted whenever the button is selected. Note that this sends the Node's Name as the parameter
@@ -131,6 +133,17 @@ public class MicrobePartSelection : MarginContainer
         }
     }
 
+    public bool HasThriveopediaPage
+    {
+        get => hasThriveopediaPage;
+        set
+        {
+            hasThriveopediaPage = value;
+
+            UpdateOpenInThriveopediaButton();
+        }
+    }
+
     public override void _Ready()
     {
         contentContainer = GetChild<Control>(0);
@@ -139,6 +152,7 @@ public class MicrobePartSelection : MarginContainer
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
         recentlyUnlockedControl = GetNode<Control>("VBoxContainer/Button/RecentlyUnlocked");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
+        openInThriveopediaButton = GetNode<Button>("VBoxContainer/Button/OpenInThriveopediaButton");
 
         OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
         Settings.Instance.DisplayPartNames.OnChanged += OnDisplayPartNamesChanged;
@@ -147,6 +161,7 @@ public class MicrobePartSelection : MarginContainer
         UpdateLabels();
         UpdateIcon();
         UpdateRecentlyUnlocked();
+        UpdateOpenInThriveopediaButton();
     }
 
     public override void _ExitTree()
@@ -232,6 +247,14 @@ public class MicrobePartSelection : MarginContainer
         button.Disabled = Locked;
     }
 
+    private void UpdateOpenInThriveopediaButton()
+    {
+        if (openInThriveopediaButton == null)
+            return;
+
+        openInThriveopediaButton.Visible = hasThriveopediaPage;
+    }
+
     private void OnPressed()
     {
         if (Selected)
@@ -239,5 +262,16 @@ public class MicrobePartSelection : MarginContainer
 
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnPartSelected), Name);
+    }
+
+    private void OnOpenInThriveopediaPressed()
+    {
+        if (!hasThriveopediaPage)
+        {
+            GD.PrintErr("Tried to open non-existent Thriveopedia page");
+            return;
+        }
+
+        ThriveopediaManager.OpenPage(Name);
     }
 }
