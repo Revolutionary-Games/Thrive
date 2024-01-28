@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using Scripts;
@@ -28,6 +28,29 @@ public class WikiUpdater
 
     private const string INFO_BOX_SELECTOR = ".wikitable > tbody";
     private const string CATEGORY_PAGES_SELECTOR = ".mw-category-group > ul > li";
+    private const string IGNORE_PAGE_SELECTOR = "[href=\"/wiki/Category:Only_Online\"]";
+
+    /// <summary>
+    ///   List of compound names, used to differentate between using the thrive:compound and
+    ///   thrive:icon bbcode tags
+    /// </summary>
+    private readonly string[] compoundNames =
+    [
+        "glucose",
+        "ammonia",
+        "phosphates",
+        "iron",
+        "hydrogensulfide",
+
+        "oxygen",
+        "nitrogen",
+        "carbondioxide",
+
+        "oxytoxy",
+        "mucilage",
+
+        "atp",
+    ];
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
@@ -41,7 +64,7 @@ public class WikiUpdater
     /// <summary>
     ///   Mapping from English page names to internal page names, required for inter-page linking in game.
     /// </summary>
-    private Dictionary<string, string> pageNames = new();
+    private readonly Dictionary<string, string> pageNames = new();
 
     /// <summary>
     ///   Inserts selected content from the online wiki into the game files. See
@@ -79,7 +102,6 @@ public class WikiUpdater
         var stages = ProcessPagesFromCategory(stagesRaw);
         var mechanics = ProcessPagesFromCategory(mechanicsRaw);
         var developmentPages = ProcessPagesFromCategory(developmentPagesRaw);
-
         ColourConsole.WriteSuccessLine("Processed all wiki pages");
 
         var untranslatedWiki = new Wiki()
@@ -153,8 +175,9 @@ public class WikiUpdater
             var internalName = textInfo.ToTitleCase(name).Replace(" ", string.Empty);
 
             // Ignore page if specified
-            if (body.QuerySelector(".thriveopedia-ignore") != null)
+            if (body.QuerySelector(IGNORE_PAGE_SELECTOR) != null)
             {
+                ColourConsole.WriteLineWithColour($"Ignored {pageType} {name} due to Only Online category", ConsoleColor.Red);
                 continue;
             }
 
@@ -206,7 +229,6 @@ public class WikiUpdater
 
             if (page.QuerySelector(".infobox") != null)
             {
-                Console.WriteLine(internalName);
                 internalName = page.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
                 (untranslatedInfobox, translatedInfobox) = GetInfoBoxFields(page, internalName);
             }
@@ -368,9 +390,7 @@ public class WikiUpdater
             }
             else if (child is IHtmlImageElement image)
             {
-                // In-game compound BBCode already has bold text label, so remove the extra one
-                RemoveLastBoldText(bbcode);
-                bbcode.Append(ConvertImageToBbcode(image));
+                bbcode.Append(ConvertImageToBbcode(image, bbcode));
             }
             else if (child is IElement element)
             {
@@ -439,9 +459,16 @@ public class WikiUpdater
     /// <summary>
     ///   Converts an HTML image into BBCode. Currently only works for compound icons embedded in paragraphs.
     /// </summary>
-    private string ConvertImageToBbcode(IHtmlImageElement image)
+    private string ConvertImageToBbcode(IHtmlImageElement image, StringBuilder bbcode)
     {
-        return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+        if (compoundNames.Contains(image.AlternativeText))
+        {
+            // In-game compound BBCode already has bold text label, so remove the extra one
+            RemoveLastBoldText(bbcode);
+            return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
+        }
+
+        return $"[thrive:icon]{image.AlternativeText}[/thrive:icon]";
     }
 
     /// <summary>
@@ -455,6 +482,8 @@ public class WikiUpdater
             .Replace("</b>", "[/b]")
             .Replace("<i>", "[i]")
             .Replace("</i>", "[/i]")
+            .Replace("<u>", "[u]")
+            .Replace("</u>", "[/u]")
             .Replace("<br>", "\n")
             .Replace("\"", "\\\"");
     }
@@ -482,8 +511,8 @@ public class WikiUpdater
 
             for (int i = 0; i < untranslatedInfobox.Count; i++)
             {
-                // Skip adding translations for numbers
-                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, @"^[0-9,. ]*$"))
+                // Skip adding translations for numbers or "-"
+                if (Regex.IsMatch(translatedInfobox[i].InfoboxValue, @"^[0-9,. -]*$"))
                     continue;
 
                 translationPairs.TryAdd(untranslatedInfobox[i].InfoboxKey, translatedInfobox[i].InfoboxKey);
