@@ -2126,6 +2126,8 @@ public partial class CellEditorComponent :
             control.SelectionGroup = organelleButtonGroup;
             control.MPCost = organelle.MPCost;
             control.Name = organelle.InternalName;
+
+            // All organelles have Thriveopedia pages
             control.HasThriveopediaPage = true;
 
             // Special case with registering the tooltip here for item with no associated organelle
