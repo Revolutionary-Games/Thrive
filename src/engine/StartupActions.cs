@@ -36,11 +36,46 @@ public class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        bool skipNative = false;
+        // TODO: mono runtime doesn't have intrinsics support for checking AVX
+        // https://learn.microsoft.com/fi-fi/dotnet/api/system.runtime.intrinsics.x86.avx?view=net-8.0
+
+        bool loadNative = true;
 
         try
         {
-            NativeInterop.Load();
+            if (!LaunchOptions.SkipCPUCheck)
+            {
+                if (!NativeInterop.CheckCPU())
+                {
+                    GD.Print("Thrive requires a new enough CPU to have SSE4.1, SSE4.2, and AVX (1)");
+                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
+                        "required instruction set extensions is required");
+
+                    loadNative = false;
+                }
+                else
+                {
+                    GD.Print("Checked that required CPU features are present");
+                }
+            }
+            else
+            {
+                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                    "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+
+            if (loadNative)
+            {
+                NativeInterop.Load();
+            }
+            else
+            {
+                GD.PrintErr("Thrive will now quit due to required native library requiring a newer processor " +
+                    "than is available");
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+                return;
+            }
         }
         catch (Exception e)
         {
@@ -48,7 +83,7 @@ public class StartupActions : Node
 
             if (Engine.EditorHint && e is DllNotFoundException)
             {
-                skipNative = true;
+                loadNative = false;
                 GD.Print("Skipping native library load in editor as it is not available");
             }
             else
@@ -86,31 +121,9 @@ public class StartupActions : Node
             GD.PrintErr("Failed to initialize settings: ", e);
         }
 
-        if (!skipNative)
+        if (loadNative)
         {
             NativeInterop.Init(Settings.Instance);
-
-            if (!LaunchOptions.SkipCPUCheck)
-            {
-                if (!NativeInterop.CheckCPU())
-                {
-                    GD.Print("Thrive requires a new enough CPU to have SSE4.1, SSE4.2, and AVX (1)");
-                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
-                        "required instruction set extensions is required");
-
-                    preventStartup = true;
-                    SceneManager.NotifyEarlyQuit();
-                }
-                else
-                {
-                    GD.Print("Checked required CPU features are present");
-                }
-            }
-            else
-            {
-                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
-                    "instruction problems (as that indicates missing CPU feature this check would test)");
-            }
         }
     }
 

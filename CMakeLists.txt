@@ -126,6 +126,13 @@ if(NOT NATIVE_LIBRARY_VERSION)
   message(FATAL_ERROR "Failed to parse native library version")
 endif()
 
+string(REGEX MATCH "EarlyCheck = ([0-9]+);" _ "${versionFile}")
+set(EARLY_CHECK_LIBRARY_VERSION ${CMAKE_MATCH_1})
+
+if(NOT EARLY_CHECK_LIBRARY_VERSION)
+  message(FATAL_ERROR "Failed to parse native (early check) library version")
+endif()
+
 message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 
 # Configure include file
@@ -135,4 +142,5 @@ include_directories(${PROJECT_BINARY_DIR})
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 
+add_subdirectory(src/native/early_checks)
 add_subdirectory(src/native)
