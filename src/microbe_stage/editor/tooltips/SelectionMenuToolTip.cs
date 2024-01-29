@@ -320,7 +320,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (!Visible || thriveopediaPageName == null)
             return false;
 
-        ThriveopediaManager.OpenPage(Name);
+        ThriveopediaManager.OpenPage(thriveopediaPageName);
         return true;
     }
 
