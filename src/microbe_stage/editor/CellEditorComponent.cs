@@ -2445,12 +2445,6 @@ public partial class CellEditorComponent :
         // Total population
         var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
 
-        if (PreviousPlayerGatheredEnergy != null)
-        {
-            totalEnergyLabel.HintTooltip =
-                new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
-        }
-
         autoEvoPredictionRunSuccessful = true;
 
         // Gather energy details
@@ -2484,6 +2478,8 @@ public partial class CellEditorComponent :
         if (PreviousPlayerGatheredEnergy != null)
         {
             totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
+            totalEnergyLabel.HintTooltip =
+                new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
         else
         {
