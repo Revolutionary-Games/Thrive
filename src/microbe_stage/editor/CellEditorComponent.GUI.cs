@@ -332,8 +332,8 @@ public partial class CellEditorComponent
         var groupsWithUndiscoveredOrganelles =
             new Dictionary<OrganelleDefinition.OrganelleGroup, (LocalizedStringBuilder UnlockText, int Count)>();
 
-        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, energyBalanceInfo,
-            Editor.EditedCellProperties);
+        var worldAndPlayerArgs = new WorldAndPlayerDataSource(Editor.CurrentGame.GameWorld, Editor.CurrentPatch,
+            energyBalanceInfo, Editor.EditedCellProperties);
 
         foreach (var entry in allPartSelectionElements)
         {
@@ -376,6 +376,10 @@ public partial class CellEditorComponent
             {
                 // Add the first organelle to the group
                 var unlockText = new LocalizedStringBuilder();
+
+                unlockText.Append(new LocalizedString("ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"));
+                unlockText.Append("\n\n");
+
                 unlockText.Append(unlockTextString);
                 unlockText.Append(" ");
                 organelle.GenerateUnlockRequirementsText(unlockText, worldAndPlayerArgs);

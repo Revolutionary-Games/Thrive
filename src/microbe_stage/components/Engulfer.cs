@@ -45,7 +45,8 @@
         public float UsedIngestionCapacity;
 
         /// <summary>
-        ///   Total size that all engulfed objects need to fit in
+        ///   Total size that all engulfed objects need to fit in (the max value <see cref="UsedIngestionCapacity"/>
+        ///   should have)
         /// </summary>
         public float EngulfStorageSize;
     }

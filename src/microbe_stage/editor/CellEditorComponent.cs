@@ -839,6 +839,11 @@ public partial class CellEditorComponent :
 
         newName = properties.FormattedName;
 
+        // This needs to be calculated here, otherwise ATP related unlock conditions would
+        // get null as the ATP balance
+        CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles, properties.MembraneType,
+            Editor.CurrentPatch.Biome);
+
         UpdateOrganelleUnlockTooltips(true);
 
         UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, properties);
@@ -967,10 +972,12 @@ public partial class CellEditorComponent :
             return;
 
         topPanel.Visible = Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled &&
-            Editor.CurrentPatch.GetCompoundAmount(sunlight.InternalName, CompoundAmountType.Maximum) > 0.0f;
+            Editor.CurrentPatch.GetCompoundAmount(sunlight, CompoundAmountType.Maximum) > 0.0f;
 
         // Calculate and send energy balance and compound balance to the GUI
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+
+        UpdateOrganelleUnlockTooltips(false);
     }
 
     /// <summary>
@@ -2478,6 +2485,8 @@ public partial class CellEditorComponent :
         if (PreviousPlayerGatheredEnergy != null)
         {
             totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
+            totalEnergyLabel.HintTooltip =
+                new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
         else
         {
