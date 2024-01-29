@@ -2485,6 +2485,8 @@ public partial class CellEditorComponent :
         if (PreviousPlayerGatheredEnergy != null)
         {
             totalEnergyLabel.Value = PreviousPlayerGatheredEnergy.Value;
+            totalEnergyLabel.HintTooltip =
+                new LocalizedString("GATHERED_ENERGY_TOOLTIP", PreviousPlayerGatheredEnergy).ToString();
         }
         else
         {
