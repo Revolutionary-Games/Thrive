@@ -118,13 +118,21 @@
                             new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                     }
 
+                    // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
+                    // accidentally eject *everything* if we go slightly over the limit
+                    engulfer.UsedIngestionCapacity -= engulfable.AdjustedEngulfSize;
                     continue;
                 }
 
                 // Doesn't make sense to digest non ingested objects, i.e. objects that are being engulfed,
                 // being ejected, etc. So skip them.
                 if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
+                {
+                    // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
+                    // pulling in too much
+                    usedCapacity += engulfable.AdjustedEngulfSize;
                     continue;
+                }
 
                 Enzyme usedEnzyme;
 
