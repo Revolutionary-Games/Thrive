@@ -42,24 +42,26 @@ public class WikiUpdater
         "iron",
         "hydrogensulfide",
 
-        "oxygen",
-        "nitrogen",
-        "carbondioxide",
-
         "oxytoxy",
         "mucilage",
 
         "atp",
+
+        "oxygen",
+        "nitrogen",
+        "carbondioxide",
+
+        "sunlight",
     };
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
-    private readonly Regex[] whitelistedDomains =
-    [
+    private readonly Regex[] whitelistedDomains = new[]
+    {
         new Regex(@".*\.wikipedia\.org\/.*"),
         new Regex(@".*\.revolutionarygamesstudio\.com\/.*"),
-    ];
+    };
 
     /// <summary>
     ///   Mapping from English page names to internal page names, required for inter-page linking in game.
