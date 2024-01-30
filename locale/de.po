@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 18:28+0100\n"
+"POT-Creation-Date: 2024-01-29 11:36+0200\n"
 "PO-Revision-Date: 2023-11-14 20:10+0000\n"
 "Last-Translator: RolandAckerl <roland.ackerl@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -101,7 +101,7 @@ msgstr "Agentien:"
 
 #, fuzzy
 msgid "AGENT_NAME"
-msgstr "{0} {1}"
+msgstr "Wirkstoff{0} {1}"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -298,13 +298,13 @@ msgid "AUTO_RESOLUTION"
 msgstr "automatisch ({0}x{1})"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Verfügbare Bauprojekte"
 
 msgid "AVAILABLE_MODS"
 msgstr "Verfügbare Mods"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Phase des Erwachens"
 
 #, fuzzy
 msgid "AWARE_STAGE"
@@ -425,7 +425,7 @@ msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Neuron"
 
 msgid "BRAVE"
 msgstr "Mutig"
@@ -488,7 +488,7 @@ msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Die Gehirnleistung kann nicht reduziert werden um Stufen zurückzugehen"
 
 msgid "CANNOT_WRITE_SAVE"
 msgstr "Kann nicht speichern"
@@ -623,7 +623,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und der Intensität des [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Zellleichenstück"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
@@ -3093,6 +3093,10 @@ msgstr "Modversion:"
 msgid "MORE_INFO"
 msgstr "Mehr Informationen"
 
+#, fuzzy
+msgid "MORE_INFO_PROMPT"
+msgstr "Mehr Informationen"
+
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
@@ -3511,6 +3515,10 @@ msgstr "Einstellungen ändern"
 
 msgid "ORGANELLES"
 msgstr "Organellen"
+
+#, fuzzy
+msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
+msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
 #, fuzzy
 msgid "ORGANELLE_AXON"
