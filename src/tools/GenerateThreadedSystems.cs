@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DefaultEcs.System;
 using Godot;
@@ -130,7 +129,8 @@ public class GenerateThreadedSystems : Node
             GetSystemsInCategories(simulationClass, out var frameSystems, out var processSystems);
 
             // Frame systems are not currently multithreaded, so just sort those
-            frameSystems = SortSingleGroupOfSystems(frameSystems).ToList();
+            SortSingleGroupOfSystems(frameSystems);
+            VerifyOrderOfSystems(frameSystems);
 
             var frameSystemTextLines = new List<string>
             {
@@ -167,16 +167,42 @@ public class GenerateThreadedSystems : Node
         List<string> processSystemTextLines)
     {
         // Make sure main systems are sorted according to when they should run
-        mainSystems = SortSingleGroupOfSystems(mainSystems).ToList();
+        SortSingleGroupOfSystems(mainSystems);
 
         // Create rough ordering for the other systems to run (this is just an initial list and will be used just to
         // create thread groups)
-        otherSystems = SortSingleGroupOfSystems(otherSystems).ToList();
+        SortSingleGroupOfSystems(otherSystems);
+
+        var test = SortSingleGroupOfSystems(mainSystems.Concat(otherSystems).ToList());
+
+        VerifyOrderOfSystems(test);
 
         // First go of execution groups based on each one of the main thread systems (but combine subsequent ones that
         // require the next)
         var groups = new List<ExecutionGroup>();
 
+        // Add systems that are considered equal to the same execution group
+        var comparer = new SystemRequirementsBasedComparer();
+
+        ExecutionGroup currentGroup = new ExecutionGroup();
+        currentGroup.Systems.Add(test[0]);
+        groups.Add(currentGroup);
+
+        for (int i = 1; i < test.Count; ++i)
+        {
+            if (comparer.CompareWeak(currentGroup.Systems.Last(), test[i]) == 0)
+            {
+                currentGroup.Systems.Add(test[i]);
+            }
+            else
+            {
+                currentGroup = new ExecutionGroup();
+                currentGroup.Systems.Add(test[i]);
+                groups.Add(currentGroup);
+            }
+        }
+
+        /*
         foreach (var mainSystem in mainSystems)
         {
             if (groups.Count > 0 && mainSystem.ShouldRunAfter(groups[groups.Count - 1].Systems.Last()))
@@ -227,7 +253,7 @@ public class GenerateThreadedSystems : Node
         {
             groups[groups.Count - 1].Systems.Add(otherSystems[0]);
             otherSystems.RemoveAt(0);
-        }
+        }*/
 
         // Generate the final results
         WriteResultOfThreadedRunning(groups, processSystemTextLines);
@@ -243,17 +269,105 @@ public class GenerateThreadedSystems : Node
         }
     }
 
-    private IOrderedEnumerable<SystemToSchedule> SortSingleGroupOfSystems(IEnumerable<SystemToSchedule> systems)
-    {
-        return systems.OrderBy(s => s, new SystemRequirementsBasedComparer()).ThenBy(s => s.OriginalOrder);
-    }
-
     private void AddSystemSingleGroupRunningLines(IEnumerable<SystemToSchedule> systems, List<string> textOutput,
         int indent)
     {
         foreach (var system in systems)
         {
             system.GetRunningText(textOutput, indent);
+        }
+    }
+
+    /// <summary>
+    ///   Need to use an insertion sort (that doesn't exit early) to make sure that items are fully sorted as the
+    ///   comparer can't pick a relative order for some items causing breaks in the sorting. Sorts in a stable way
+    ///   (i.e. OriginalOrder is respected for equal items, assuming <see cref="systems"/> hasn't been modified in way
+    ///   that doesn't preserve OriginalOrder).
+    /// </summary>
+    /// <param name="systems">Systems to sort in-place</param>
+    /// <returns>The value in <see cref="systems"/></returns>
+    private IList<SystemToSchedule> SortSingleGroupOfSystems(IList<SystemToSchedule> systems)
+    {
+        var comparer = new SystemRequirementsBasedComparer();
+
+        // This is really not efficient but for now the sorting needs to continue until all the constraints are taken
+        // into account and nothing is sorted anymore
+
+        int maxSorts = systems.Count;
+        int sortAttempt = 0;
+        bool sortedSomething;
+        do
+        {
+            sortedSomething = false;
+            ++sortAttempt;
+
+            // Used to prevent infinite loop when trying to sort something that cannot fulfil all the constraints
+            int singleSpotRetries = systems.Count * 10;
+
+            for (int i = 1; i < systems.Count; ++i)
+            {
+                var item = systems[i];
+                int insertPoint = i;
+
+                // Look for any items the current item should be before. This is required as the comparer can encounter
+                // sequences of items it cannot order
+                for (int j = i - 1; j >= 0; --j)
+                {
+                    var other = systems[j];
+
+                    // Stop if encountering a system this should be after
+                    if (comparer.CompareWeak(item, other) > 0)
+                        break;
+
+                    // Keep track of the earliest item this wants to be before
+                    if (comparer.Compare(item, other) < 0)
+                        insertPoint = j;
+                }
+
+                if (insertPoint >= i)
+                {
+                    // Item is already sorted
+                    continue;
+                }
+
+                if (sortAttempt >= maxSorts)
+                {
+                    GD.PrintErr($"Sorting is stuck, still wanting to sort {item.Type.Name} to be before " +
+                        $"{systems[insertPoint].Type.Name}");
+                }
+
+                // Insert to the right index
+                systems.RemoveAt(i);
+                systems.Insert(insertPoint, item);
+
+                // New item at i so this needs to be repeated
+                if (--singleSpotRetries >= 0)
+                    --i;
+
+                sortedSomething = true;
+            }
+        }
+        while (sortedSomething && sortAttempt <= maxSorts);
+
+        if (sortAttempt + 1 >= maxSorts)
+        {
+            VerifyOrderOfSystems(systems);
+        }
+
+        return systems;
+    }
+
+    private void VerifyOrderOfSystems(IList<SystemToSchedule> systems)
+    {
+        var comparer = new SystemRequirementsBasedComparer();
+
+        for (int i = 0; i < systems.Count; ++i)
+        {
+            for (int j = i + 1; j < systems.Count; ++j)
+            {
+                if (comparer.CompareWeak(systems[i], systems[j]) > 0)
+                    throw new Exception("Systems not fully sorted according to rules");
+            }
         }
     }
 
@@ -307,6 +421,28 @@ public class GenerateThreadedSystems : Node
         // Sanity check no duplicate systems found
         if (result.GroupBy(s => s.Type).Any(g => g.Count() > 1))
             throw new Exception("Some type of system is included multiple times");
+
+        // Make sure sorting works sensibly
+        var comparer = new SystemRequirementsBasedComparer();
+        foreach (var item1 in result)
+        {
+            foreach (var item2 in result)
+            {
+                if (ReferenceEquals(item1, item2))
+                    continue;
+
+                int sort1 = comparer.Compare(item1, item2);
+                int sort2 = comparer.Compare(item2, item1);
+
+                if (sort1 == 0 && sort2 == 0)
+                    continue;
+
+                if (Math.Sign(sort1) == Math.Sign(sort2))
+                {
+                    throw new Exception($"Sorter cannot handle systems {item1.Type.Name} and {item2.Type.Name}");
+                }
+            }
+        }
 
         return result;
     }
@@ -379,6 +515,9 @@ public class GenerateThreadedSystems : Node
                 expectedWritesTo.Add(attribute.WritesTo);
         }
 
+        // TODO: should the following be done?:
+        // All writes are also reads for simplicity in checking thread access
+
         systemToSchedule.WritesComponents = expectedWritesTo;
         systemToSchedule.ReadsComponents = expectedReadsFrom;
     }
@@ -398,7 +537,15 @@ public class GenerateThreadedSystems : Node
             {
                 var attribute = (RunsBeforeAttribute)attributeRaw;
 
-                system.RunsBefore.Add(GetSystemByType(attribute.BeforeSystem));
+                var otherSystem = GetSystemByType(attribute.BeforeSystem);
+                system.RunsBefore.Add(otherSystem);
+
+                // TODO: should we instead require explicit attributes on both sides of the relationship?
+                // That would require more lines of code but there would be less hidden things to know about when
+                // reading a class.
+
+                // Add the other side of the relationship automatically
+                otherSystem.RunsAfter.Add(system);
             }
 
             var runsAfterRaw = system.Type.GetCustomAttributes(runsAfterAttribute);
@@ -407,7 +554,9 @@ public class GenerateThreadedSystems : Node
             {
                 var attribute = (RunsAfterAttribute)attributeRaw;
 
-                system.RunsAfter.Add(GetSystemByType(attribute.AfterSystem));
+                var otherSystem = GetSystemByType(attribute.AfterSystem);
+                system.RunsAfter.Add(otherSystem);
+                otherSystem.RunsBefore.Add(system);
             }
         }
 
@@ -417,27 +566,19 @@ public class GenerateThreadedSystems : Node
 
         foreach (var system in systems)
         {
+            if (system.RunsAfter.Any(s => system.RunsBefore.Contains(s)))
+                throw new Exception("A system is set to run both after and before another");
+
+            if (system.RunsBefore.Any(s => system.RunsAfter.Contains(s)))
+                throw new Exception("A system is set to run both after and before another");
+
+            // System dependencies are not allowed to run after itself
+            DoNotAllowSeeingRunsAfter(system, system, seenSystems);
             seenSystems.Clear();
 
-            foreach (var runsAfter in system.RunsAfter)
-            {
-                seenSystems.Add(runsAfter);
-                CollectRunsBefore(runsAfter, seenSystems);
-            }
-
-            if (seenSystems.Contains(system))
-                throw new Exception("System has a circular running before / after relationship");
-
+            // Or before itself
+            DoNotAllowSeeingRunsBefore(system, system, seenSystems);
             seenSystems.Clear();
-
-            foreach (var runsBefore in system.RunsBefore)
-            {
-                seenSystems.Add(runsBefore);
-                CollectRunsAfter(runsBefore, seenSystems);
-            }
-
-            if (seenSystems.Contains(system))
-                throw new Exception("System has a circular running before / after relationship");
         }
 
         // Add recursive dependencies
@@ -459,19 +600,59 @@ public class GenerateThreadedSystems : Node
             if (system.RunsBefore.Contains(system))
                 throw new Exception("System ended up running before itself after recursive resolve");
         }
+    }
 
-        // Make relationships always two-way for easier checking
-        foreach (var system in systems)
+    private void DoNotAllowSeeingRunsAfter(SystemToSchedule systemToNotRunAfter,
+        SystemToSchedule checkFrom, HashSet<SystemToSchedule> alreadyVisited)
+    {
+        foreach (var systemToSchedule in checkFrom.RunsAfter)
         {
-            foreach (var runsAfter in system.RunsAfter)
+            if (!alreadyVisited.Add(systemToSchedule))
+                continue;
+
+            // Check if we found a dependency on a system that is not allowed (but only if processing a list of the
+            // wanted type, otherwise this is just meant to recursively traverse to find more lists of the right type)
+            if (systemToSchedule == systemToNotRunAfter && !systemToNotRunAfter.RunsBefore.Contains(checkFrom))
             {
-                runsAfter.RunsBefore.Add(system);
+                throw new Exception("Seen a system reference a system it shouldn't run after " +
+                    $"({systemToNotRunAfter.Type.Name} depends on {checkFrom.Type.Name})");
             }
 
-            foreach (var runsBefore in system.RunsBefore.ToList())
+            DoNotAllowSeeingRunsAfter(systemToNotRunAfter, systemToSchedule, alreadyVisited);
+        }
+
+        foreach (var systemToSchedule in checkFrom.RunsBefore)
+        {
+            if (!alreadyVisited.Add(systemToSchedule))
+                continue;
+
+            DoNotAllowSeeingRunsAfter(systemToNotRunAfter, systemToSchedule, alreadyVisited);
+        }
+    }
+
+    private void DoNotAllowSeeingRunsBefore(SystemToSchedule systemToNotRunBefore,
+        SystemToSchedule checkFrom, HashSet<SystemToSchedule> alreadyVisited)
+    {
+        foreach (var systemToSchedule in checkFrom.RunsAfter)
+        {
+            if (!alreadyVisited.Add(systemToSchedule))
+                continue;
+
+            DoNotAllowSeeingRunsBefore(systemToNotRunBefore, systemToSchedule, alreadyVisited);
+        }
+
+        foreach (var systemToSchedule in checkFrom.RunsBefore)
+        {
+            if (!alreadyVisited.Add(systemToSchedule))
+                continue;
+
+            if (systemToSchedule == systemToNotRunBefore && !systemToNotRunBefore.RunsAfter.Contains(checkFrom))
             {
-                runsBefore.RunsAfter.Add(system);
+                throw new Exception("Seen a system reference a system it shouldn't run after " +
+                    $"({systemToNotRunBefore.Type.Name} depends on {checkFrom.Type.Name})");
             }
+
+            DoNotAllowSeeingRunsBefore(systemToNotRunBefore, systemToSchedule, alreadyVisited);
         }
     }
 
@@ -603,9 +784,12 @@ public class GenerateThreadedSystems : Node
             if (other.RunsAfter.Contains(this))
                 return true;
 
-            // TODO: component writes should happen before reads
-
             return false;
+        }
+
+        public bool WantsToWriteBefore(SystemToSchedule other)
+        {
+            return WritesComponents.Any(c => other.ReadsComponents.Contains(c) && !other.WritesComponents.Contains(c));
         }
 
         public bool ShouldRunAfter(SystemToSchedule other)
@@ -675,6 +859,8 @@ public class GenerateThreadedSystems : Node
         }
     }
 
+    // NOTE: this doesn't work for a single pass sort as this can consider next to each other items equal, but then
+    // items on either side of that block of non-sortables need to be sorted around the block
     private class SystemRequirementsBasedComparer : IComparer<SystemToSchedule>
     {
         public int Compare(SystemToSchedule x, SystemToSchedule y)
@@ -698,7 +884,45 @@ public class GenerateThreadedSystems : Node
             if (y.ShouldRunAfter(x))
                 return -1;
 
+            // Writes before reads ordering, but only if clean order can be found. Both ways need to be checked as
+            // there are systems that both write to a component type that the other just reads.
+            // Might be fun to debug print info when systems cannot do this cleanly to give potential places to improve
+            // the systems decoupling
+            bool xWantsWrite = x.WantsToWriteBefore(y);
+            bool yWantsWrite = y.WantsToWriteBefore(x);
+            if (xWantsWrite && !yWantsWrite)
+                return -1;
+
+            if (yWantsWrite && !xWantsWrite)
+                return 1;
+
             // No requirement for either system to run before the other
+            return 0;
+        }
+
+        public int CompareWeak(SystemToSchedule x, SystemToSchedule y)
+        {
+            if (ReferenceEquals(x, y))
+                return 0;
+            if (ReferenceEquals(null, y))
+                return 1;
+            if (ReferenceEquals(null, x))
+                return -1;
+
+            if (x.ShouldRunBefore(y))
+                return -1;
+
+            if (y.ShouldRunBefore(x))
+                return 1;
+
+            if (x.ShouldRunAfter(y))
+                return 1;
+
+            if (y.ShouldRunAfter(x))
+                return -1;
+
+            // Weak variant that doesn't enforce write / read relationships
+
             return 0;
         }
     }
