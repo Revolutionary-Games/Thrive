@@ -433,6 +433,11 @@ public class GameWorld : ISaveLoadable
         return worldSpecies[id];
     }
 
+    public bool TryGetSpecies(uint id, out Species? species)
+    {
+        return worldSpecies.TryGetValue(id, out species);
+    }
+
     /// <summary>
     ///   Moves a species to the multicellular stage
     /// </summary>

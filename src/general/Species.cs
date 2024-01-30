@@ -120,8 +120,8 @@ public abstract class Species : ICloneable
     /// </summary>
     [JsonIgnore]
     public string FormattedNameBbCode => PlayerSpecies ?
-        $"[url=species:{GUICommon.ConvertToSafeMetaTag(StringCode)}][b][i]{FormattedName}[/i][/b][/url]" :
-        $"[url=species:{GUICommon.ConvertToSafeMetaTag(StringCode)}][i]{FormattedName}[/i][/url]";
+        $"[url=species:{ID}][b][i]{FormattedName}[/i][/b][/url]" :
+        $"[url=species:{ID}][i]{FormattedName}[/i][/url]";
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";

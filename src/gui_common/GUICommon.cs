@@ -111,32 +111,6 @@ public class GUICommon : Node
         control.Set("custom_colors/font_color", new Color(1, 1, 1));
     }
 
-    /// <summary>
-    ///   Makes a string safe to store as a meta tag in rich text.
-    /// </summary>
-    public static string ConvertToSafeMetaTag(string tagContent)
-    {
-        return tagContent
-            .Replace("[", "LEFT_BRACE").Replace("]", "RIGHT_BRACE")
-            .Replace("{", "LEFT_CURLY_BRACE").Replace("}", "RIGHT_CURLY_BRACE");
-    }
-
-    /// <summary>
-    ///   Gets the original text from the value of a meta tag.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Assumes the text doesn't contain the literal strings LEFT_BRACE, RIGHT_BRACE,
-    ///     LEFT_CURLY_BRACE or RIGHT_CURLY_BRACE.
-    ///   </para>
-    /// </remarks>
-    public static string ConvertFromSafeMetaTag(string tagContent)
-    {
-        return tagContent
-            .Replace("LEFT_BRACE", "[").Replace("RIGHT_BRACE", "]")
-            .Replace("LEFT_CURLY_BRACE", "{").Replace("RIGHT_CURLY_BRACE", "}");
-    }
-
     public override void _Ready()
     {
         base._Ready();

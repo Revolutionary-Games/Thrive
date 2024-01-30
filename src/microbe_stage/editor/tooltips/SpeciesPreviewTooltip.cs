@@ -24,9 +24,7 @@ public class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
                 return;
 
             previewSpecies = value;
-
-            if (previewSpecies != null)
-                UpdateSpeciesPreview();
+            UpdateSpeciesPreview();
         }
     }
 
@@ -75,15 +73,23 @@ public class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
 
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
+        if (PreviewSpecies == null)
+        {
+            hexesPreview.PreviewSpecies = null;
+            return;
+        }
+
+        DisplayName = PreviewSpecies.FormattedName;
+        Description = PreviewSpecies.FormattedName;
+
         if (PreviewSpecies is MicrobeSpecies microbeSpecies)
         {
             hexesPreview.PreviewSpecies = microbeSpecies;
-            DisplayName = PreviewSpecies.FormattedName;
-            Description = PreviewSpecies.FormattedName;
         }
         else
         {
             GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
+            hexesPreview.PreviewSpecies = null;
         }
     }
 }
