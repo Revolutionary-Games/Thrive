@@ -9,7 +9,6 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
-#include "core/CPUCheck.hpp"
 #include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
@@ -76,33 +75,6 @@ void ShutdownThriveLibrary()
     Thrive::TaskSystem::Get().Shutdown();
 
     SetLogForwardingCallback(nullptr);
-}
-
-bool CheckRequiredCPUFeatures()
-{
-    if (!Thrive::CPUCheck::HasRequiredFeatures())
-    {
-        if (!Thrive::CPUCheck::HasAVX())
-        {
-            LOG_ERROR("Missing CPU AVX support");
-        }
-        else if (!Thrive::CPUCheck::HasSSE42())
-        {
-            LOG_ERROR("Missing CPU SSE 4.2 support");
-        }
-        else if (!Thrive::CPUCheck::HasSSE41())
-        {
-            LOG_ERROR("Missing CPU SSE 4.1 support");
-        }
-        else
-        {
-            LOG_ERROR("Unknown missing CPU feature");
-        }
-
-        return false;
-    }
-
-    return true;
 }
 
 // ------------------------------------ //

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CPUCheckResult.h"
+
 // CPU feature checking. Code approach is combined from the various answers here:
 // https://stackoverflow.com/questions/6121792/how-to-check-if-a-cpu-supports-the-sse3-instruction-set
 
@@ -11,6 +13,7 @@
 #else
 // MinGW
 #include <intrin.h>
+
 void cpuid(int info[4], unsigned int infoType)
 {
     __cpuid(info, infoType);
@@ -19,6 +22,7 @@ void cpuid(int info[4], unsigned int infoType)
 
 #else
 #include <cpuid.h>
+#include <immintrin.h>
 
 void cpuid(int info[4], unsigned int infoType)
 {
@@ -33,11 +37,23 @@ class CPUCheck
 {
 public:
     /// \brief Checks current CPU has all the needed features for Thrive library by default
-    [[nodiscard]] static bool HasRequiredFeatures() noexcept
+    [[nodiscard]] static CPU_CHECK_RESULT CheckCurrentCPU() noexcept
     {
         ReadCPUFeatures();
 
-        return avxSupported && sse41Supported && sse42Supported;
+        int32_t result = CPU_CHECK_SUCCESS;
+
+        // Result is built with bitwise operations to return all problems at once
+        if (!avxSupported)
+            result |= CPU_CHECK_MISSING_AVX;
+
+        if (!sse41Supported)
+            result |= CPU_CHECK_MISSING_SSE41;
+
+        if (!sse42Supported)
+            result |= CPU_CHECK_MISSING_SSE42;
+
+        return static_cast<CPU_CHECK_RESULT>(result);
     }
 
     [[nodiscard]] static bool HasAVX() noexcept

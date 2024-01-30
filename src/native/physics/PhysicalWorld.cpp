@@ -198,7 +198,7 @@ public:
 #ifdef JPH_DEBUG_RENDERER
     JPH::BodyManager::DrawSettings bodyDrawSettings;
 
-    JPH::Vec3Arg debugDrawCameraLocation = {};
+    JPH::Vec3 debugDrawCameraLocation = {};
 #endif
 };
 
