@@ -168,14 +168,12 @@ public class GenerateThreadedSystems : Node
     {
         // Make sure main systems are sorted according to when they should run
         SortSingleGroupOfSystems(mainSystems);
+        VerifyOrderOfSystems(mainSystems);
 
         // Create rough ordering for the other systems to run (this is just an initial list and will be used just to
         // create thread groups)
         SortSingleGroupOfSystems(otherSystems);
-
-        var test = SortSingleGroupOfSystems(mainSystems.Concat(otherSystems).ToList());
-
-        VerifyOrderOfSystems(test);
+        VerifyOrderOfSystems(otherSystems);
 
         // First go of execution groups based on each one of the main thread systems (but combine subsequent ones that
         // require the next)
@@ -184,28 +182,9 @@ public class GenerateThreadedSystems : Node
         // Add systems that are considered equal to the same execution group
         var comparer = new SystemRequirementsBasedComparer();
 
-        ExecutionGroup currentGroup = new ExecutionGroup();
-        currentGroup.Systems.Add(test[0]);
-        groups.Add(currentGroup);
-
-        for (int i = 1; i < test.Count; ++i)
-        {
-            if (comparer.CompareWeak(currentGroup.Systems.Last(), test[i]) == 0)
-            {
-                currentGroup.Systems.Add(test[i]);
-            }
-            else
-            {
-                currentGroup = new ExecutionGroup();
-                currentGroup.Systems.Add(test[i]);
-                groups.Add(currentGroup);
-            }
-        }
-
-        /*
         foreach (var mainSystem in mainSystems)
         {
-            if (groups.Count > 0 && mainSystem.ShouldRunAfter(groups[groups.Count - 1].Systems.Last()))
+            if (groups.Count > 0 && comparer.CompareWeak(mainSystem, groups[groups.Count - 1].Systems.Last()) <= 0)
             {
                 groups[groups.Count - 1].Systems.Add(mainSystem);
                 continue;
@@ -229,12 +208,13 @@ public class GenerateThreadedSystems : Node
 
                 bool added = false;
 
-                foreach (var groupSystem in group.Systems)
+                for (var j = 0; j < group.Systems.Count; j++)
                 {
-                    if (current.ShouldRunBefore(groupSystem))
+                    var groupSystem = group.Systems[j];
+                    if (comparer.CompareWeak(current, groupSystem) < 0)
                     {
-                        // Prepend to system
-                        group.Systems.Insert(0, current);
+                        // Insert before the system this needs to be before
+                        group.Systems.Insert(j, current);
                         added = true;
                         break;
                     }
@@ -253,7 +233,16 @@ public class GenerateThreadedSystems : Node
         {
             groups[groups.Count - 1].Systems.Add(otherSystems[0]);
             otherSystems.RemoveAt(0);
-        }*/
+        }
+
+        // Need to sort this as the above loop didn't take sorting into account
+        SortSingleGroupOfSystems(groups[groups.Count - 1].Systems);
+
+        // Verify all group orders are correct
+        foreach (var group in groups)
+        {
+            VerifyOrderOfSystems(group.Systems);
+        }
 
         // Generate the final results
         WriteResultOfThreadedRunning(groups, processSystemTextLines);
@@ -366,7 +355,10 @@ public class GenerateThreadedSystems : Node
             for (int j = i + 1; j < systems.Count; ++j)
             {
                 if (comparer.CompareWeak(systems[i], systems[j]) > 0)
-                    throw new Exception("Systems not fully sorted according to rules");
+                {
+                    throw new Exception($"Systems not fully sorted according to rules ({systems[i].Type.Name}" +
+                        $"> {systems[j].Type.Name})");
+                }
             }
         }
     }
