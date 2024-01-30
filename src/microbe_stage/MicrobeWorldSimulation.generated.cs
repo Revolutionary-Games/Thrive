@@ -6,92 +6,111 @@ public partial class MicrobeWorldSimulation
     {
         // Execution group 1
         animationControlSystem.Update(delta);
+        predefinedVisualLoaderSystem.Update(delta);
+        microbeVisualsSystem.Update(delta);
+        pathBasedSceneLoader.Update(delta);
 
         // Execution group 2
         entityMaterialFetchSystem.Update(delta);
+        simpleShapeCreatorSystem.Update(delta);
+        microbePhysicsCreationAndSizeSystem.Update(delta);
 
         // Execution group 3
-        simpleShapeCreatorSystem.Update(delta);
         physicsBodyCreationSystem.Update(delta);
 
         // Execution group 4
-        microbeReproductionSystem.Update(delta);
-        organelleComponentFetchSystem.Update(delta);
-        microbeMovementSystem.Update(delta);
-        physicsBodyDisablingSystem.Update(delta);
-        physicsSensorSystem.Update(delta);
+        physicsUpdateAndPositionSystem.Update(delta);
 
         // Execution group 5
-        predefinedVisualLoaderSystem.Update(delta);
+        attachedEntityPositionSystem.Update(delta);
+        physicsBodyDisablingSystem.Update(delta);
+        damageCooldownSystem.Update(delta);
+        physicsCollisionManagementSystem.Update(delta);
 
         // Execution group 6
-        osmoregulationAndHealingSystem.Update(delta);
-        microbeFlashingSystem.Update(delta);
-        damageSoundSystem.Update(delta);
-        colonyBindingSystem.Update(delta);
-        soundEffectSystem.Update(delta);
+        damageOnTouchSystem.Update(delta);
+        disallowPlayerBodySleepSystem.Update(delta);
+        colonyCompoundDistributionSystem.Update(delta);
+        pilusDamageSystem.Update(delta);
+        allCompoundsVentingSystem.Update(delta);
 
         // Execution group 7
-        attachedEntityPositionSystem.Update(delta);
-        physicsUpdateAndPositionSystem.Update(delta);
-        spatialPositionSystem.Update(delta);
+        unneededCompoundVentingSystem.Update(delta);
 
         // Execution group 8
-        cellBurstEffectSystem.Update(delta);
+        compoundAbsorptionSystem.Update(delta);
 
         // Execution group 9
-        pilusDamageSystem.Update(delta);
-        microbeDeathSystem.Update(delta);
-        colonyCompoundDistributionSystem.Update(delta);
-        engulfingSystem.Update(delta);
+        ProcessSystem.Update(delta);
 
         // Execution group 10
+        multicellularGrowthSystem.Update(delta);
+        entitySignalingSystem.Update(delta);
+        toxinCollisionSystem.Update(delta);
+        microbeCollisionSoundSystem.Update(delta);
+        osmoregulationAndHealingSystem.Update(delta);
+
+        // Execution group 11
+        microbeReproductionSystem.Update(delta);
+
+        // Execution group 12
+        organelleComponentFetchSystem.Update(delta);
+
+        // Execution group 13
         if (RunAI)
         {
             microbeAI.ReportPotentialPlayerPosition(reportedPlayerPosition);
             microbeAI.Update(delta);
         }
 
-        microbeEventCallbackSystem.Update(delta);
+        // Execution group 14
+        microbeEmissionSystem.Update(delta);
+        slimeSlowdownSystem.Update(delta);
 
-        // Execution group 11
-        microbeVisualsSystem.Update(delta);
+        // Execution group 15
+        microbeMovementSystem.Update(delta);
 
-        // Execution group 12
+        // Execution group 16
+        physicsBodyControlSystem.Update(delta);
+        microbeMovementSoundSystem.Update(delta);
         organelleTickSystem.Update(delta);
 
-        // Execution group 13
+        // Execution group 17
+        physicsSensorSystem.Update(delta);
         microbeRenderPrioritySystem.Update(delta);
+        engulfingSystem.Update(delta);
         countLimitedDespawnSystem.Update(delta);
-        damageCooldownSystem.Update(delta);
-        damageOnTouchSystem.Update(delta);
-        disallowPlayerBodySleepSystem.Update(delta);
-        fadeOutActionSystem.Update(delta);
-        pathBasedSceneLoader.Update(delta);
-        physicsBodyControlSystem.Update(delta);
-        physicsCollisionManagementSystem.Update(delta);
-        collisionShapeLoaderSystem.Update(delta);
-        soundListenerSystem.Update(delta);
         spatialAttachSystem.Update(delta);
-        allCompoundsVentingSystem.Update(delta);
-        colonyStatsUpdateSystem.Update(delta);
-        compoundAbsorptionSystem.Update(delta);
-        engulfedDigestionSystem.Update(delta);
-        engulfedHandlingSystem.Update(delta);
-        entitySignalingSystem.Update(delta);
-        fluidCurrentsSystem.Update(delta);
-        microbeCollisionSoundSystem.Update(delta);
-        microbeEmissionSystem.Update(delta);
-        microbeMovementSoundSystem.Update(delta);
-        slimeSlowdownSystem.Update(delta);
-        microbePhysicsCreationAndSizeSystem.Update(delta);
-        toxinCollisionSystem.Update(delta);
-        unneededCompoundVentingSystem.Update(delta);
-        delayedColonyOperationSystem.Update(delta);
-        multicellularGrowthSystem.Update(delta);
-        CameraFollowSystem.Update(delta);
+
+        // Execution group 18
         SpawnSystem.Update(delta);
-        ProcessSystem.Update(delta);
+
+        // Execution group 19
+        microbeEventCallbackSystem.Update(delta);
+        colonyBindingSystem.Update(delta);
+
+        // Execution group 20
+        microbeFlashingSystem.Update(delta);
+
+        // Execution group 21
+        damageSoundSystem.Update(delta);
+
+        // Execution group 22
+        soundEffectSystem.Update(delta);
+        soundListenerSystem.Update(delta);
+        spatialPositionSystem.Update(delta);
+        cellBurstEffectSystem.Update(delta);
+        CameraFollowSystem.Update(delta);
+        colonyStatsUpdateSystem.Update(delta);
+        engulfedDigestionSystem.Update(delta);
+        microbeDeathSystem.Update(delta);
+
+        // Execution group 23
+        fadeOutActionSystem.Update(delta);
+        collisionShapeLoaderSystem.Update(delta);
+        engulfedHandlingSystem.Update(delta);
+        fluidCurrentsSystem.Update(delta);
+        delayedColonyOperationSystem.Update(delta);
         TimedLifeSystem.Update(delta);
 
         cellCountingEntitySet.Complete();

@@ -10,7 +10,7 @@ using World = DefaultEcs.World;
 ///   Contains all the parts needed to simulate a microbial world. Separate from (but used by) the
 ///   <see cref="MicrobeStage"/> to also allow other parts of the code to easily run a microbe simulation
 /// </summary>
-public class MicrobeWorldSimulation : WorldSimulationWithPhysics
+public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 {
     private readonly IParallelRunner nonParallelRunner = new DefaultParallelRunner(1);
 
@@ -258,10 +258,7 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
     public override void ProcessFrameLogic(float delta)
     {
         ThrowIfNotInitialized();
-
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourApplyingSystem.Update(delta);
+        OnProcessFrameLogic(delta);
     }
 
     public void SetSimulationBiome(BiomeConditions biomeConditions)
@@ -304,110 +301,6 @@ public class MicrobeWorldSimulation : WorldSimulationWithPhysics
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
 
         SpawnSystem = new SpawnSystem(this);
-    }
-
-    protected override void OnProcessFixedLogic(float delta)
-    {
-        TimedLifeSystem.Update(delta);
-
-        microbeVisualsSystem.Update(delta);
-        pathBasedSceneLoader.Update(delta);
-        predefinedVisualLoaderSystem.Update(delta);
-        entityMaterialFetchSystem.Update(delta);
-        animationControlSystem.Update(delta);
-        microbeRenderPrioritySystem.Update(delta);
-
-        simpleShapeCreatorSystem.Update(delta);
-        collisionShapeLoaderSystem.Update(delta);
-        microbePhysicsCreationAndSizeSystem.Update(delta);
-        physicsBodyCreationSystem.Update(delta);
-        physicsBodyDisablingSystem.Update(delta);
-
-        physicsCollisionManagementSystem.Update(delta);
-
-        physicsUpdateAndPositionSystem.Update(delta);
-        attachedEntityPositionSystem.Update(delta);
-
-        fluidCurrentsSystem.Update(delta);
-
-        colonyCompoundDistributionSystem.Update(delta);
-
-        engulfingSystem.Update(delta);
-        engulfedDigestionSystem.Update(delta);
-        engulfedHandlingSystem.Update(delta);
-
-        spatialAttachSystem.Update(delta);
-        spatialPositionSystem.Update(delta);
-
-        allCompoundsVentingSystem.Update(delta);
-        unneededCompoundVentingSystem.Update(delta);
-        compoundAbsorptionSystem.Update(delta);
-        entitySignalingSystem.Update(delta);
-
-        damageCooldownSystem.Update(delta);
-        toxinCollisionSystem.Update(delta);
-        damageOnTouchSystem.Update(delta);
-        pilusDamageSystem.Update(delta);
-
-        ProcessSystem.Update(delta);
-
-        osmoregulationAndHealingSystem.Update(delta);
-
-        microbeReproductionSystem.Update(delta);
-        multicellularGrowthSystem.Update(delta);
-        organelleComponentFetchSystem.Update(delta);
-
-        if (RunAI)
-        {
-            // Update AI for the cells (note that the AI system itself can also be disabled, due to cheats)
-            microbeAI.ReportPotentialPlayerPosition(reportedPlayerPosition);
-            microbeAI.Update(delta);
-        }
-
-        microbeEmissionSystem.Update(delta);
-
-        countLimitedDespawnSystem.Update(delta);
-
-        SpawnSystem.Update(delta);
-
-        colonyStatsUpdateSystem.Update(delta);
-
-        microbeEventCallbackSystem.Update(delta);
-
-        microbeDeathSystem.Update(delta);
-
-        disallowPlayerBodySleepSystem.Update(delta);
-
-        slimeSlowdownSystem.Update(delta);
-        microbeMovementSystem.Update(delta);
-        microbeMovementSoundSystem.Update(delta);
-
-        organelleTickSystem.Update(delta);
-
-        physicsSensorSystem.Update(delta);
-
-        fadeOutActionSystem.Update(delta);
-        physicsBodyControlSystem.Update(delta);
-
-        colonyBindingSystem.Update(delta);
-        delayedColonyOperationSystem.Update(delta);
-
-        cellBurstEffectSystem.Update(delta);
-
-        microbeFlashingSystem.Update(delta);
-
-        damageSoundSystem.Update(delta);
-        microbeCollisionSoundSystem.Update(delta);
-        soundEffectSystem.Update(delta);
-
-        soundListenerSystem.Update(delta);
-
-        // This needs to be here to not visually jitter the player position
-        CameraFollowSystem.Update(delta);
-
-        cellCountingEntitySet.Complete();
-
-        reportedPlayerPosition = null;
     }
 
     protected override void OnEntityDestroyed(in Entity entity)
