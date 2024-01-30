@@ -10,7 +10,6 @@
 #include "Jolt/RegisterTypes.h"
 
 #include "core/TaskSystem.hpp"
-#include "helpers/CPUCheck.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
 #include "physics/PhysicsBody.hpp"
