@@ -46,6 +46,7 @@
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
+    [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsOnMainThread]
     public sealed class EngulfingSystem : AEntitySetSystem<float>
     {

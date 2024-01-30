@@ -22,11 +22,12 @@
     [With(typeof(CellProperties))]
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
-    [RunsBefore(typeof(MicrobeFlashingSystem))]
-    [RunsAfter(typeof(MicrobeMovementSystem))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(Spawned))]
     [WritesToComponent(typeof(MicrobeColony))]
+    [RunsBefore(typeof(MicrobeFlashingSystem))]
+    [RunsAfter(typeof(MicrobeMovementSystem))]
+    [RunsAfter(typeof(EngulfingSystem))]
     public sealed class ColonyBindingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

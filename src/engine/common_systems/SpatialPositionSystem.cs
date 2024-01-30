@@ -11,6 +11,7 @@
     /// </summary>
     [With(typeof(WorldPosition))]
     [With(typeof(SpatialInstance))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsOnMainThread]
     public sealed class SpatialPositionSystem : AEntitySetSystem<float>
     {

@@ -17,6 +17,7 @@
     [With(typeof(SoundEffectPlayer))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsAfter(typeof(MicrobeMovementSystem))]
+    [RunsBefore(typeof(SoundEffectSystem))]
     public sealed class MicrobeMovementSoundSystem : AEntitySetSystem<float>
     {
         public MicrobeMovementSoundSystem(World world, IParallelRunner parallelRunner) :

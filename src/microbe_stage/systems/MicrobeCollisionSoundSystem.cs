@@ -11,6 +11,8 @@
     [With(typeof(CollisionManagement))]
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(SpeciesMember))]
+    [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
+    [RunsBefore(typeof(SoundEffectSystem))]
     public sealed class MicrobeCollisionSoundSystem : AEntitySetSystem<float>
     {
         public MicrobeCollisionSoundSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)

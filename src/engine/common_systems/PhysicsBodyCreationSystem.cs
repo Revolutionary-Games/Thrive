@@ -14,6 +14,8 @@
     [With(typeof(Physics))]
     [With(typeof(PhysicsShapeHolder))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsBefore(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsOnMainThread]
     public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
     {

@@ -27,6 +27,8 @@
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
     [RunsAfter(typeof(MicrobeMovementSystem))]
+    [RunsAfter(typeof(OrganelleComponentFetchSystem))]
+    [RunsBefore(typeof(PhysicsSensorSystem))]
     [RunsOnMainThread]
     public sealed class OrganelleTickSystem : AEntitySetSystem<float>
     {

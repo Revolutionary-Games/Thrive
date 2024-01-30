@@ -15,6 +15,8 @@
     ///   Spawns AI cells and other environmental things as the player moves around
     /// </summary>
     [JsonObject(MemberSerialization.OptIn, IsReference = true)]
+    [RunsAfter(typeof(SpatialAttachSystem))]
+    [RunsAfter(typeof(CountLimitedDespawnSystem))]
     public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
     {
         private readonly EntitySet spawnedEntitiesSet;

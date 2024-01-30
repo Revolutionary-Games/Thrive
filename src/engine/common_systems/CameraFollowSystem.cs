@@ -18,6 +18,10 @@
     /// </remarks>
     [With(typeof(CameraFollowTarget))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+    [RunsAfter(typeof(AttachedEntityPositionSystem))]
+    [RunsOnMainThread]
     public sealed class CameraFollowSystem : AEntitySetSystem<float>
     {
         private bool cameraUsed;
