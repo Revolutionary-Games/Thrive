@@ -300,6 +300,15 @@ public class GameWorld : ISaveLoadable
         }
     }
 
+    /// <inheritdoc cref="RegisterAutoEvoCreatedSpecies"/>
+    public void RegisterAutoEvoCreatedSpeciesIfNotAlready(Species species)
+    {
+        if (worldSpecies.Any(p => p.Value == species))
+            return;
+
+        RegisterAutoEvoCreatedSpecies(species);
+    }
+
     /// <summary>
     ///   Registers a species created by auto-evo in this world. Updates the ID to ensure it is unique and valid for
     ///   this world.

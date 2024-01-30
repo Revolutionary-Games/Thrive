@@ -260,7 +260,8 @@
             {
                 if (entry.Value.NewlyCreated != null)
                 {
-                    world.RegisterAutoEvoCreatedSpecies(entry.Key);
+                    // Summary creation needs to already have species IDs so it might have already registered this
+                    world.RegisterAutoEvoCreatedSpeciesIfNotAlready(entry.Key);
                 }
 
                 if (!skipMutations && entry.Value.MutatedProperties != null)
@@ -564,15 +565,19 @@
         }
 
         /// <summary>
-        ///   Prints to log a summary of the results
+        ///   Summary creation needs to already have species IDs set, so this makes sure all new species are registered
+        ///   and have proper IDs set.
         /// </summary>
-        public void PrintSummary(PatchMap? previousPopulations = null)
+        /// <param name="world">World to register new species in</param>
+        public void RegisterNewSpeciesForSummary(GameWorld world)
         {
-            GD.Print("Start of auto-evo results summary (entries: ", results.Count, ")");
-
-            GD.Print(MakeSummary(previousPopulations));
-
-            GD.Print("End of results summary");
+            foreach (var entry in results.Values)
+            {
+                if (entry.NewlyCreated != null)
+                {
+                    world.RegisterAutoEvoCreatedSpeciesIfNotAlready(entry.Species);
+                }
+            }
         }
 
         /// <summary>
