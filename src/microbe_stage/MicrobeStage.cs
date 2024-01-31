@@ -786,6 +786,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void OnGameStarted()
     {
+        tutorialGUI.CurrentLifeOrigin = GameWorld.WorldSettings.Origin;
+
         patchManager.CurrentGame = CurrentGame;
 
         UpdatePatchSettings(!TutorialState.Enabled);

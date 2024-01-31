@@ -430,6 +430,7 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "CONTINUE_THRIVING"
 
+[connection signal="SetUpGameStartDescription" from="." to="MicrobeWelcome" method="ChangeDescription"]
 [connection signal="hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]

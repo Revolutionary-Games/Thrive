@@ -102,6 +102,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
 
+    [Signal]
+    public delegate void SetUpGameStartDescription();
+
     public ITutorialInput? EventReceiver { get; set; }
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
@@ -114,6 +117,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public bool IsClosingAutomatically { get; set; }
 
+    public WorldGenerationSettings.LifeOrigin CurrentLifeOrigin { get; set; }
+
     public bool MicrobeWelcomeVisible
     {
         get => microbeWelcomeMessage.Visible;
@@ -124,6 +129,21 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
+                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Vent)
+                {
+                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_VENT");
+                }
+
+                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Panspermia)
+                {
+                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_PANSPERMIA");
+                }
+
+                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Pond)
+                {
+                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_POND");
+                }
+
                 microbeWelcomeMessage.PopupCenteredShrink();
             }
             else
@@ -450,6 +470,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public override void _Process(float delta)
     {
         TutorialHelper.ProcessTutorialGUI(this, delta);
+        GD.Print(CurrentLifeOrigin);
     }
 
     public void OnClickedCloseAll()
@@ -508,5 +529,12 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         // Note that this opening while the tutorial box is still visible is a bit problematic due to:
         // https://github.com/Revolutionary-Games/Thrive/issues/2326
         EmitSignal(nameof(OnHelpMenuOpenRequested));
+    }
+
+    private void DummyKeepInitialTextTranslations()
+    {
+        TranslationServer.Translate("MICROBE_STAGE_INITIAL_VENT");
+        TranslationServer.Translate("MICROBE_STAGE_INITIAL_POND");
+        TranslationServer.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
     }
 }

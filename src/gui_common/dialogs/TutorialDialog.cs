@@ -146,4 +146,10 @@ public class TutorialDialog : CustomWindow
 
         UpdateLabel();
     }
+
+    private void ChangeDescription(string newDescription)
+    {
+        Description = newDescription;
+        UpdateLabel();
+    }
 }
