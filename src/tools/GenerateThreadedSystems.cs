@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DefaultEcs.System;
 using Godot;
+using Tools;
 using Environment = System.Environment;
 
 /// <summary>
@@ -208,217 +209,17 @@ public class GenerateThreadedSystems : Node
             group.GroupNumber = count++;
         }
 
-        // Generate barrier points
-        var mainReads = new HashSet<Type>();
-        var mainWrites = new HashSet<Type>();
-        var seenMainSystems = new HashSet<SystemToSchedule>();
+        // TODO: allow configuring more than just one background thread (and then generating plausible execution plans
+        // for different threads)
+        var mainTasks = groups.SelectMany(g => g.Systems.Where(s => s.RunsOnMainThread));
+        var otherTasks = groups.SelectMany(g => g.Systems.Where(s => !s.RunsOnMainThread));
 
-        bool firstMainGroup = true;
-        bool firstOtherGroup = true;
+        // Generate barrier points by simulating the executions of the separate threads
+        var simulator = new ThreadedRunSimulator(mainTasks.ToList(), otherTasks.ToList());
 
-        bool nextMainShouldBlock = false;
-        bool skipOtherBlock = false;
+        simulator.Simulate();
 
-        bool hadOtherBlock = false;
-
-        foreach (var group in groups)
-        {
-            // Probably fine to have inter-group dependencies when adding the blocks
-            // mainReads.Clear();
-            // mainWrites.Clear();
-            // seenMainSystems
-
-            using var mainEnumerator = group.Systems.Where(s => s.RunsOnMainThread).GetEnumerator();
-            using var otherEnumerator = group.Systems.Where(s => !s.RunsOnMainThread).GetEnumerator();
-
-            bool firstMain = true;
-            bool firstOther = true;
-
-            /*foreach (var mainSystem in group.Systems.Where(s => s.RunsOnMainThread))
-            {
-                // Require barrier on first group item (but not required on the first group)
-                if (firstMain && !firstMainGroup)
-                {
-                    firstMain = false;
-
-                    // Also don't require barrier if there hasn't been another thread in between the main threads
-                    if (hadOtherBlock)
-                    {
-                        mainSystem.RequiresBarrierBefore = true;
-                        hadOtherBlock = false;
-                    }
-                }
-
-                foreach (var usedComponent in mainSystem.WritesComponents)
-                {
-                    mainWrites.Add(usedComponent);
-                }
-
-                foreach (var usedComponent in mainSystem.ReadsComponents)
-                {
-                    mainReads.Add(usedComponent);
-                }
-
-                seenMainSystems.Add(mainSystem);
-
-                if (nextMainShouldBlock)
-                {
-                    nextMainShouldBlock = false;
-
-                    // Ensure consistent number of thread waits
-                    if (!mainSystem.RequiresBarrierBefore)
-                    {
-                        mainSystem.RequiresBarrierBefore = true;
-                    }
-                    else
-                    {
-                        skipOtherBlock = true;
-                    }
-                }
-
-                firstMainGroup = false;
-            }
-
-            foreach (var otherSystem in group.Systems.Where(s => !s.RunsOnMainThread))
-            {
-                if (firstOther && !firstOtherGroup)
-                {
-                    firstOther = false;
-                    if (!skipOtherBlock)
-                    {
-                        if (otherSystem.RequiresBarrierBefore)
-                            throw new Exception("This shouldn't be able to be true here");
-
-                        otherSystem.RequiresBarrierBefore = true;
-                    }
-                    else
-                    {
-                        skipOtherBlock = false;
-                    }
-                }
-
-                // If conflicts with a main system needs to block, and main needs to wait after the current main
-                // system has ran
-                if (otherSystem.WritesComponents.Any(c =>
-                        mainReads.Contains(c) || mainWrites.Contains(c)) ||
-                    otherSystem.ReadsComponents.Any(c => mainWrites.Contains(c)) ||
-                    seenMainSystems.Any(s => comparer.CompareWeak(otherSystem, s) < 0))
-                {
-                    if (!otherSystem.RequiresBarrierBefore && !nextMainShouldBlock)
-                    {
-                        otherSystem.RequiresBarrierBefore = true;
-                        nextMainShouldBlock = true;
-
-                        // Clear the interference info as we've decided on a blocking location
-                        mainReads.Clear();
-                        mainWrites.Clear();
-                        seenMainSystems.Clear();
-                    }
-                }
-
-                firstOtherGroup = false;
-                hadOtherBlock = true;
-            }*/
-
-            while (true)
-            {
-                bool seenAnything = false;
-
-                if (mainEnumerator.MoveNext() && mainEnumerator.Current != null)
-                {
-                    // Require barrier on first group item (but not required on the first group)
-                    if (firstMain && !firstMainGroup)
-                    {
-                        firstMain = false;
-
-                        // Also don't require barrier if there hasn't been another thread in between the main threads
-                        if (hadOtherBlock)
-                        {
-                            mainEnumerator.Current.RequiresBarrierBefore = true;
-                            hadOtherBlock = false;
-                        }
-                    }
-
-                    foreach (var usedComponent in mainEnumerator.Current.WritesComponents)
-                    {
-                        mainWrites.Add(usedComponent);
-                    }
-
-                    foreach (var usedComponent in mainEnumerator.Current.ReadsComponents)
-                    {
-                        mainReads.Add(usedComponent);
-                    }
-
-                    seenMainSystems.Add(mainEnumerator.Current);
-
-                    if (nextMainShouldBlock)
-                    {
-                        nextMainShouldBlock = false;
-
-                        // Ensure consistent number of thread waits
-                        if (!mainEnumerator.Current.RequiresBarrierBefore)
-                        {
-                            mainEnumerator.Current.RequiresBarrierBefore = true;
-                        }
-                        else
-                        {
-                            skipOtherBlock = true;
-                        }
-                    }
-
-                    seenAnything = true;
-                }
-
-                if (otherEnumerator.MoveNext() && otherEnumerator.Current != null)
-                {
-                    if (firstOther && !firstOtherGroup)
-                    {
-                        firstOther = false;
-                        if (!skipOtherBlock)
-                        {
-                            if (otherEnumerator.Current.RequiresBarrierBefore)
-                                throw new Exception("This shouldn't be able to be true here");
-
-                            otherEnumerator.Current.RequiresBarrierBefore = true;
-                        }
-                        else
-                        {
-                            skipOtherBlock = false;
-                        }
-                    }
-
-                    // If conflicts with a main system needs to block, and main needs to wait after the current main
-                    // system has ran
-                    if (otherEnumerator.Current.WritesComponents.Any(c =>
-                            mainReads.Contains(c) || mainWrites.Contains(c)) ||
-                        otherEnumerator.Current.ReadsComponents.Any(c => mainWrites.Contains(c)) ||
-                        seenMainSystems.Any(s => comparer.CompareWeak(otherEnumerator.Current, s) < 0))
-                    {
-                        if (!otherEnumerator.Current.RequiresBarrierBefore && !nextMainShouldBlock)
-                        {
-                            otherEnumerator.Current.RequiresBarrierBefore = true;
-                            nextMainShouldBlock = true;
-
-                            // Clear the interference info as we've decided on a blocking location
-                            mainReads.Clear();
-                            mainWrites.Clear();
-                            seenMainSystems.Clear();
-                        }
-                    }
-
-                    seenAnything = true;
-                }
-
-                if (!seenAnything)
-                    break;
-            }
-
-            if (!firstMain)
-                firstMainGroup = false;
-
-            if (!firstOther)
-                firstOtherGroup = false;
-        }
+        // TODO: remove double barriers that can be removed
 
         CheckBarrierCounts(groups);
 
@@ -436,6 +237,18 @@ public class GenerateThreadedSystems : Node
             foreach (var system in group.Systems)
             {
                 if (system.RequiresBarrierBefore)
+                {
+                    if (system.RunsOnMainThread)
+                    {
+                        ++mainBarriers;
+                    }
+                    else
+                    {
+                        ++otherBarriers;
+                    }
+                }
+
+                if (system.RequiresBarrierAfter)
                 {
                     if (system.RunsOnMainThread)
                     {
