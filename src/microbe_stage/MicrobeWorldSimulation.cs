@@ -417,6 +417,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
             if (SpawnSystem != null!)
                 SpawnSystem.Dispose();
+
+            DisposeGenerated();
         }
 
         base.Dispose(disposing);

@@ -107,12 +107,13 @@ public class GenerateThreadedSystems : Node
         return spaceCount;
     }
 
-    private static void EnsureOneBlankLine(List<string> lines)
+    private static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true)
     {
         if (lines.Count < 1)
             return;
 
-        if (!string.IsNullOrWhiteSpace(lines[lines.Count - 1]))
+        var line = lines[lines.Count - 1];
+        if (!string.IsNullOrWhiteSpace(line) && (!acceptBlockStart || !line.EndsWith("{")))
         {
             lines.Add(string.Empty);
         }
@@ -145,7 +146,8 @@ public class GenerateThreadedSystems : Node
 
             var (mainSystems, otherSystems) = SplitSystemsToMainThread(processSystems);
 
-            GenerateThreadedSystemsRun(mainSystems, otherSystems, processSystemTextLines);
+            Dictionary<string, VariableInfo> variables = new();
+            GenerateThreadedSystemsRun(mainSystems, otherSystems, processSystemTextLines, variables);
 
             if (!string.IsNullOrWhiteSpace(processEnd))
             {
@@ -157,14 +159,15 @@ public class GenerateThreadedSystems : Node
                 }
             }
 
-            InsertNewProcessMethods(file, simulationClass.Name, processSystemTextLines, frameSystemTextLines);
+            InsertNewProcessMethods(file, simulationClass.Name, processSystemTextLines, frameSystemTextLines,
+                variables);
 
             GD.Print($"Successfully handled. {file} has been updated");
         }
     }
 
     private void GenerateThreadedSystemsRun(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
-        List<string> processSystemTextLines)
+        List<string> processSystemTextLines, Dictionary<string, VariableInfo> variables)
     {
         // Make sure main systems are sorted according to when they should run
         SortSingleGroupOfSystems(mainSystems);
@@ -196,7 +199,6 @@ public class GenerateThreadedSystems : Node
             });
         }
 
-        // TODO: temporary code
         // Add all other systems to a group it needs to go in
         foreach (var group in groups)
         {
@@ -238,24 +240,166 @@ public class GenerateThreadedSystems : Node
         // Need to sort this as the above loop didn't take sorting into account
         SortSingleGroupOfSystems(groups[groups.Count - 1].Systems);
 
+        int count = 1;
+
         // Verify all group orders are correct
         foreach (var group in groups)
         {
             VerifyOrderOfSystems(group.Systems);
+            group.GroupNumber = count++;
         }
 
-        // Generate the final results
-        WriteResultOfThreadedRunning(groups, processSystemTextLines);
-    }
+        // Generate barrier points
+        var mainReads = new HashSet<Type>();
+        var mainWrites = new HashSet<Type>();
+        var seenMainSystems = new HashSet<SystemToSchedule>();
 
-    private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, List<string> lineReceiver)
-    {
-        int count = 1;
+        bool firstMainGroup = true;
+        bool firstOtherGroup = true;
+
+        bool nextMainShouldBlock = false;
+        bool skipOtherBlock = false;
 
         foreach (var group in groups)
         {
-            group.GenerateCode(lineReceiver, count++);
+            // Probably fine to have inter-group dependencies when adding the blocks
+            // mainReads.Clear();
+            // mainWrites.Clear();
+
+            using var mainEnumerator = group.Systems.Where(s => s.RunsOnMainThread).GetEnumerator();
+            using var otherEnumerator = group.Systems.Where(s => !s.RunsOnMainThread).GetEnumerator();
+
+            bool firstMain = true;
+            bool firstOther = true;
+
+            while (true)
+            {
+                bool seenAnything = false;
+
+                if (mainEnumerator.MoveNext() && mainEnumerator.Current != null)
+                {
+                    // Require barrier on first group item (but not required on the first group)
+                    if (firstMain && !firstMainGroup)
+                    {
+                        firstMain = false;
+                        mainEnumerator.Current.RequiresBarrierBefore = true;
+                    }
+
+                    foreach (var usedComponent in mainEnumerator.Current.WritesComponents)
+                    {
+                        mainWrites.Add(usedComponent);
+                    }
+
+                    foreach (var usedComponent in mainEnumerator.Current.ReadsComponents)
+                    {
+                        mainReads.Add(usedComponent);
+                    }
+
+                    seenMainSystems.Add(mainEnumerator.Current);
+
+                    if (nextMainShouldBlock)
+                    {
+                        nextMainShouldBlock = false;
+
+                        // Ensure consistent number of thread waits
+                        if (!mainEnumerator.Current.RequiresBarrierBefore)
+                        {
+                            mainEnumerator.Current.RequiresBarrierBefore = true;
+                        }
+                        else
+                        {
+                            skipOtherBlock = true;
+                        }
+                    }
+
+                    seenAnything = true;
+                }
+
+                if (otherEnumerator.MoveNext() && otherEnumerator.Current != null)
+                {
+                    if (firstOther && !firstOtherGroup)
+                    {
+                        firstOther = false;
+                        if (!skipOtherBlock)
+                        {
+                            otherEnumerator.Current.RequiresBarrierBefore = true;
+                        }
+                        else
+                        {
+                            skipOtherBlock = false;
+                        }
+                    }
+
+                    // If conflicts with a main system needs to block, and main needs to wait after the current main
+                    // system has ran
+                    if (otherEnumerator.Current.WritesComponents.Any(c =>
+                            mainReads.Contains(c) || mainWrites.Contains(c)) ||
+                        otherEnumerator.Current.ReadsComponents.Any(c => mainWrites.Contains(c)) ||
+                        seenMainSystems.Any(s => comparer.CompareWeak(otherEnumerator.Current, s) < 0))
+                    {
+                        otherEnumerator.Current.RequiresBarrierBefore = true;
+                        nextMainShouldBlock = true;
+
+                        // Clear the interference info as we've decided on a blocking location
+                        mainReads.Clear();
+                        mainWrites.Clear();
+                        seenMainSystems.Clear();
+                    }
+
+                    seenAnything = true;
+                }
+
+                if (!seenAnything)
+                    break;
+            }
+
+            if (!firstMain)
+                firstMainGroup = false;
+
+            if (!firstOther)
+                firstOtherGroup = false;
         }
+
+        // Generate the final results
+        WriteResultOfThreadedRunning(groups, processSystemTextLines, variables);
+    }
+
+    private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, List<string> lineReceiver,
+        Dictionary<string, VariableInfo> variables)
+    {
+        // TODO: make parallel task count configurable
+        int barrierMemberCount = 2;
+
+        // Task for background operations
+        lineReceiver.Add("var background1 = new Task(() =>");
+        lineReceiver.Add($"{GetIndentForText(4)}{{");
+
+        foreach (var group in groups)
+        {
+            group.GenerateCodeThread(lineReceiver, 8);
+        }
+
+        lineReceiver.Add(string.Empty);
+        lineReceiver.Add($"{GetIndentForText(4)}barrier1.SignalAndWait();");
+
+        lineReceiver.Add($"{GetIndentForText(4)}}});");
+
+        lineReceiver.Add(string.Empty);
+        lineReceiver.Add("TaskExecutor.Instance.AddTask(background1);");
+
+        // Main thread operations
+        foreach (var group in groups)
+        {
+            group.GenerateCodeMain(lineReceiver, 0);
+        }
+
+        lineReceiver.Add(string.Empty);
+        lineReceiver.Add("barrier1.SignalAndWait();");
+
+        variables["barrier1"] = new VariableInfo("Barrier", true, $"new({barrierMemberCount})")
+        {
+            Dispose = true,
+        };
     }
 
     private void AddSystemSingleGroupRunningLines(IEnumerable<SystemToSchedule> systems, List<string> textOutput,
@@ -688,7 +832,8 @@ public class GenerateThreadedSystems : Node
         return (main, other);
     }
 
-    private void InsertNewProcessMethods(string file, string className, List<string> process, List<string> processFrame)
+    private void InsertNewProcessMethods(string file, string className, List<string> process, List<string> processFrame,
+        Dictionary<string, VariableInfo> variables)
     {
         GD.Print($"Updating simulation class partial in {file}");
 
@@ -699,12 +844,24 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine("// Automatically generated file. DO NOT EDIT!");
         writer.WriteLine("// Run GenerateThreadedSystems to generate this file");
 
+        writer.WriteLine("using System.Threading;");
+        writer.WriteLine("using System.Threading.Tasks;");
+        writer.WriteLine();
+
         writer.WriteLine($"public partial class {className}");
         writer.WriteLine('{');
 
         indent += 4;
 
-        // TODO: variables
+        foreach (var pair in variables)
+        {
+            var info = pair.Value;
+
+            var initializer = info.Initializer != null ? $" = {info.Initializer}" : string.Empty;
+
+            writer.WriteLine(GetIndentForText(indent) +
+                $"private {(info.IsReadonly ? "readonly " : string.Empty)}{info.Type} {pair.Key}{initializer};");
+        }
 
         writer.WriteLine(GetIndentForText(indent) + "protected override void OnProcessFixedLogic(float delta)");
         indent = WriteBlockContents(writer, process, indent);
@@ -712,6 +869,22 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine();
         writer.WriteLine(GetIndentForText(indent) + "private void OnProcessFrameLogic(float delta)");
         indent = WriteBlockContents(writer, processFrame, indent);
+
+        writer.WriteLine();
+        writer.WriteLine(GetIndentForText(indent) + "private void DisposeGenerated()");
+        writer.WriteLine(GetIndentForText(indent) + "{");
+        indent += 4;
+
+        foreach (var pair in variables)
+        {
+            if (pair.Value.Dispose)
+            {
+                writer.WriteLine(GetIndentForText(indent) + $"{pair.Key}.Dispose();");
+            }
+        }
+
+        indent -= 4;
+        writer.WriteLine(GetIndentForText(indent) + "}");
 
         // End of class
         writer.WriteLine('}');
@@ -760,6 +933,8 @@ public class GenerateThreadedSystems : Node
         public List<Type> ReadsComponents = new();
         public List<Type> WritesComponents = new();
 
+        public bool RequiresBarrierBefore;
+
         public SystemToSchedule(Type type, string name, int order)
         {
             Type = type;
@@ -797,6 +972,11 @@ public class GenerateThreadedSystems : Node
 
         public void GetRunningText(List<string> lineReceiver, int indent)
         {
+            if (RequiresBarrierBefore)
+            {
+                lineReceiver.Add(GetIndentForText(indent) + "barrier1.SignalAndWait();");
+            }
+
             bool closeBrace = false;
 
             if (RunCondition != null)
@@ -838,16 +1018,51 @@ public class GenerateThreadedSystems : Node
     private class ExecutionGroup
     {
         public readonly List<SystemToSchedule> Systems = new();
+        public int GroupNumber;
 
-        public void GenerateCode(List<string> lineReceiver, int groupNumber)
+        public void GenerateCodeMain(List<string> lineReceiver, int indent)
         {
-            EnsureOneBlankLine(lineReceiver);
-            lineReceiver.Add($"// Execution group {groupNumber}");
+            Write(lineReceiver, $"// Execution group {GroupNumber} (on main)", indent,
+                Systems.Where(s => s.RunsOnMainThread));
+        }
 
-            foreach (var system in Systems)
+        public void GenerateCodeThread(List<string> lineReceiver, int indent)
+        {
+            Write(lineReceiver, $"// Execution group {GroupNumber}", indent,
+                Systems.Where(s => !s.RunsOnMainThread));
+        }
+
+        private void Write(List<string> lineReceiver, string comment, int indent,
+            IEnumerable<SystemToSchedule> filteredSystems)
+        {
+            bool first = true;
+
+            foreach (var system in filteredSystems)
             {
-                system.GetRunningText(lineReceiver, 0);
+                if (first)
+                {
+                    first = false;
+                    EnsureOneBlankLine(lineReceiver);
+                    lineReceiver.Add(GetIndentForText(indent) + comment);
+                }
+
+                system.GetRunningText(lineReceiver, indent);
             }
+        }
+    }
+
+    private class VariableInfo
+    {
+        public string Type;
+        public string? Initializer;
+        public bool IsReadonly;
+        public bool Dispose;
+
+        public VariableInfo(string type, bool isReadonly, string? initializer = "new()")
+        {
+            Type = type;
+            Initializer = initializer;
+            IsReadonly = isReadonly;
         }
     }
 
