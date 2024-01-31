@@ -526,6 +526,33 @@ public static class StringUtils
         return builder.ToString();
     }
 
+    public static string GetIndent(int indent)
+    {
+        if (indent < 1)
+            return string.Empty;
+
+        return new string(' ', indent);
+    }
+
+    public static int DetectLineIndentationLevel(string line)
+    {
+        int spaceCount = 0;
+
+        foreach (var character in line)
+        {
+            if (character <= ' ')
+            {
+                ++spaceCount;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return spaceCount;
+    }
+
     // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
     public static void TestRomanNumerals()
     {
