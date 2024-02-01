@@ -16,10 +16,6 @@ using Environment = System.Environment;
 /// </summary>
 public class GenerateThreadedSystems : Node
 {
-    private const int DefaultSeed = 334564234;
-
-    private readonly Random random;
-
     private readonly IReadOnlyList<(Type Class, string File, string EndOfProcess)> simulationTypes =
         new List<(Type Class, string File, string EndOfProcess)>
         {
@@ -35,7 +31,6 @@ public class GenerateThreadedSystems : Node
 
     private GenerateThreadedSystems()
     {
-        random = new Random(DefaultSeed);
     }
 
     public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true)
@@ -344,8 +339,7 @@ public class GenerateThreadedSystems : Node
     ///   that doesn't preserve OriginalOrder).
     /// </summary>
     /// <param name="systems">Systems to sort in-place</param>
-    /// <returns>The value in <see cref="systems"/></returns>
-    private IList<SystemToSchedule> SortSingleGroupOfSystems(IList<SystemToSchedule> systems)
+    private void SortSingleGroupOfSystems(IList<SystemToSchedule> systems)
     {
         var comparer = new SystemToSchedule.SystemRequirementsBasedComparer();
 
@@ -412,8 +406,6 @@ public class GenerateThreadedSystems : Node
         {
             VerifyOrderOfSystems(systems);
         }
-
-        return systems;
     }
 
     private void VerifyOrderOfSystems(IList<SystemToSchedule> systems)

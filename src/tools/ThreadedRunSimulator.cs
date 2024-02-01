@@ -297,13 +297,12 @@
                 executionIndex = 0;
             }
 
-            public bool Step()
+            public void Step()
             {
                 if (Done)
-                    return false;
+                    return;
 
                 ++executionIndex;
-                return true;
             }
 
             public IEnumerable<SystemToSchedule> GetStillUpcomingSystems()
