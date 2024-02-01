@@ -89,30 +89,30 @@
         private class Timeslot
         {
             // All reads / runs need to be stored per-thread so when one thread is blocked another can still
-            public readonly Dictionary<Thread, HashSet<Type>> ComponentReads = new();
-            public readonly Dictionary<Thread, HashSet<Type>> ComponentWrites = new();
-            public readonly Dictionary<Thread, List<SystemToSchedule>> RunSystems = new();
+            private readonly Dictionary<Thread, HashSet<Type>> componentReads = new();
+            private readonly Dictionary<Thread, HashSet<Type>> componentWrites = new();
+            private readonly Dictionary<Thread, List<SystemToSchedule>> runSystems = new();
 
             /// <summary>
             ///   Threads that are blocked and only can resume next timeslot
             /// </summary>
-            public readonly List<Thread> ThreadsToResumeNextTimeslot = new();
+            private readonly List<Thread> threadsToResumeNextTimeslot = new();
 
-            public readonly int Time;
+            private readonly int time;
 
             private readonly SystemToSchedule.SystemRequirementsBasedComparer comparer = new();
 
             public Timeslot(int time)
             {
-                Time = time;
+                this.time = time;
             }
 
             public bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
             {
                 // Check for timing conflicts with *other* threads
-                var otherReads = ComponentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherWrites = ComponentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherSystems = RunSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
 
                 // Read / write conflicts
                 if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
@@ -130,7 +130,7 @@
 
                 // Check that the system is not running before a later system it should come after from a blocked
                 // thread
-                foreach (var blockedThread in ThreadsToResumeNextTimeslot)
+                foreach (var blockedThread in threadsToResumeNextTimeslot)
                 {
                     if (blockedThread == thread)
                         continue;
@@ -155,10 +155,10 @@
 
             public void MarkThreadWaiting(Thread thread)
             {
-                if (ThreadsToResumeNextTimeslot.Contains(thread))
+                if (threadsToResumeNextTimeslot.Contains(thread))
                     return;
 
-                ThreadsToResumeNextTimeslot.Add(thread);
+                threadsToResumeNextTimeslot.Add(thread);
 
                 var system = thread.RunningSystem;
 
@@ -171,16 +171,16 @@
                     throw new ArgumentException("not currently running in thread", nameof(systemToSchedule));
 
                 // Blocked threads cannot run again before the next timeslot
-                if (ThreadsToResumeNextTimeslot.Contains(thread))
+                if (threadsToResumeNextTimeslot.Contains(thread))
                     throw new ArgumentException("Blocked thread cannot resume in this timeslot");
 
                 if (!CanRunSystemInParallel(systemToSchedule, thread))
                     throw new InvalidOperationException("Cannot run the system in parallel");
 
-                if (!RunSystems.TryGetValue(thread, out var threadSystems))
+                if (!runSystems.TryGetValue(thread, out var threadSystems))
                 {
                     threadSystems = new List<SystemToSchedule>();
-                    RunSystems[thread] = threadSystems;
+                    runSystems[thread] = threadSystems;
                 }
 
                 if (threadSystems.Contains(systemToSchedule))
@@ -189,10 +189,10 @@
                 threadSystems.Add(systemToSchedule);
 
                 // Component writes and reads
-                if (!ComponentReads.TryGetValue(thread, out var threadReads))
+                if (!componentReads.TryGetValue(thread, out var threadReads))
                 {
                     threadReads = new HashSet<Type>();
-                    ComponentReads[thread] = threadReads;
+                    componentReads[thread] = threadReads;
                 }
 
                 foreach (var component in systemToSchedule.ReadsComponents)
@@ -200,10 +200,10 @@
                     threadReads.Add(component);
                 }
 
-                if (!ComponentWrites.TryGetValue(thread, out var threadWrites))
+                if (!componentWrites.TryGetValue(thread, out var threadWrites))
                 {
                     threadWrites = new HashSet<Type>();
-                    ComponentWrites[thread] = threadWrites;
+                    componentWrites[thread] = threadWrites;
                 }
 
                 foreach (var component in systemToSchedule.WritesComponents)
@@ -219,9 +219,9 @@
             {
                 AddThreadBarrierForUnblockedThreads();
 
-                var nextSlot = new Timeslot(Time + 1);
+                var nextSlot = new Timeslot(time + 1);
 
-                foreach (var thread in ThreadsToResumeNextTimeslot)
+                foreach (var thread in threadsToResumeNextTimeslot)
                 {
                     if (nextSlot.CanRunSystemInParallel(thread.RunningSystem, thread))
                     {
@@ -239,17 +239,15 @@
 
             public override string ToString()
             {
-                return $"Moment in time: {Time}";
+                return $"Moment in time: {time}";
             }
 
             private void AddThreadBarrierForUnblockedThreads()
             {
-                foreach (var pair in RunSystems)
+                foreach (var pair in runSystems)
                 {
                     // Skip systems that already got blocked and have a barrier set for this timeslot
-                    // This basically means this method doesn't do much as all timeslots are ran until all threads are
-                    // blocked. See instead MarkThreadWaiting.
-                    if (ThreadsToResumeNextTimeslot.Contains(pair.Key))
+                    if (threadsToResumeNextTimeslot.Contains(pair.Key))
                         continue;
 
                     var system = pair.Value.Last();
@@ -266,7 +264,6 @@
             public readonly int ThreadId;
 
             private readonly IReadOnlyList<SystemToSchedule> threadTasks;
-            private readonly SystemToSchedule.SystemRequirementsBasedComparer comparer = new();
 
             private int executionIndex = -1;
 
