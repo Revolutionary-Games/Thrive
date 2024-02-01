@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using DefaultEcs.System;
 using Godot;
 using Tools;
 using Environment = System.Environment;
+using File = System.IO.File;
 
 /// <summary>
 ///   Tool that generates a multithreaded sequence of runs for systems to run in parallel. This is implemented in the
@@ -16,6 +18,8 @@ using Environment = System.Environment;
 /// </summary>
 public class GenerateThreadedSystems : Node
 {
+    public static bool MeasureThreadWaits = false;
+
     private readonly IReadOnlyList<(Type Class, string File, string EndOfProcess)> simulationTypes =
         new List<(Type Class, string File, string EndOfProcess)>
         {
@@ -24,8 +28,6 @@ public class GenerateThreadedSystems : Node
         };
 
     private readonly Type systemBaseType = typeof(ISystem<>);
-
-    // private readonly Type systemWithoutAttribute = typeof(WithoutAttribute);
 
     private bool done;
 
@@ -43,6 +45,33 @@ public class GenerateThreadedSystems : Node
         {
             lines.Add(string.Empty);
         }
+    }
+
+    public static void AddBarrierWait(List<string> lineReceiver, int barrier, int currentThread, int indent)
+    {
+        if (MeasureThreadWaits)
+            lineReceiver.Add(StringUtils.GetIndent(indent) + GetBeforeBarrierMeasure(currentThread));
+
+        lineReceiver.Add($"{StringUtils.GetIndent(indent)}barrier{barrier}.SignalAndWait();");
+
+        if (MeasureThreadWaits)
+            lineReceiver.Add(StringUtils.GetIndent(indent) + GetAfterBarrierMeasure(currentThread));
+    }
+
+    public static string GetBeforeBarrierMeasure(int thread)
+    {
+        if (!MeasureThreadWaits)
+            throw new InvalidOperationException("Should only be called if measuring times");
+
+        return $"timer{thread}.Restart();";
+    }
+
+    public static string GetAfterBarrierMeasure(int thread)
+    {
+        if (!MeasureThreadWaits)
+            throw new InvalidOperationException("Should only be called if measuring times");
+
+        return $"waitTime{thread} += timer{thread}.Elapsed.TotalSeconds;";
     }
 
     public override void _Ready()
@@ -79,10 +108,10 @@ public class GenerateThreadedSystems : Node
         if (string.IsNullOrWhiteSpace(processEnd))
             return;
 
+        EnsureOneBlankLine(processLines);
+
         foreach (var line in processEnd.Split("\n"))
         {
-            EnsureOneBlankLine(processLines);
-
             processLines.Add(line);
         }
     }
@@ -108,7 +137,7 @@ public class GenerateThreadedSystems : Node
                 "// NOTE: not currently ran in parallel due to low frame system count",
             };
 
-            AddSystemSingleGroupRunningLines(frameSystems, frameSystemTextLines, 0);
+            AddSystemSingleGroupRunningLines(frameSystems, frameSystemTextLines, 0, -1);
 
             var processSystemTextLines = new List<string>();
 
@@ -254,7 +283,7 @@ public class GenerateThreadedSystems : Node
 
         foreach (var system in allSystems)
         {
-            system.GetRunningText(processSystemTextLines, 0);
+            system.GetRunningText(processSystemTextLines, 0, -1);
         }
     }
 
@@ -288,7 +317,8 @@ public class GenerateThreadedSystems : Node
     private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, List<string> lineReceiver,
         Dictionary<string, VariableInfo> variables)
     {
-        // TODO: make parallel task count configurable
+        // TODO: make parallel task count configurable (and maybe also emit 2 variants: one for 2 threads, and one for
+        // 3)
         int barrierMemberCount = 2;
 
         // Task for background operations
@@ -297,11 +327,12 @@ public class GenerateThreadedSystems : Node
 
         foreach (var group in groups)
         {
-            group.GenerateCodeThread(lineReceiver, 8);
+            group.GenerateCodeThread(lineReceiver, 8, 2);
         }
 
         lineReceiver.Add(string.Empty);
-        lineReceiver.Add($"{StringUtils.GetIndent(8)}barrier1.SignalAndWait();");
+
+        AddBarrierWait(lineReceiver, 1, 2, 8);
 
         lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
 
@@ -315,20 +346,56 @@ public class GenerateThreadedSystems : Node
         }
 
         lineReceiver.Add(string.Empty);
-        lineReceiver.Add("barrier1.SignalAndWait();");
+        AddBarrierWait(lineReceiver, 1, 1, 0);
 
         variables["barrier1"] = new VariableInfo("Barrier", true, $"new({barrierMemberCount})")
         {
             Dispose = true,
         };
+
+        if (MeasureThreadWaits)
+        {
+            GenerateTimeMeasurementResultsCode(lineReceiver, variables, 2);
+        }
+    }
+
+    private void GenerateTimeMeasurementResultsCode(List<string> lineReceiver,
+        Dictionary<string, VariableInfo> variables, int threadCount)
+    {
+        if (!MeasureThreadWaits)
+            throw new Exception("Only call this when measurement is enabled");
+
+        for (int i = 1; i <= threadCount; ++i)
+        {
+            variables["timer" + i] = new VariableInfo("Stopwatch", true);
+            variables["waitTime" + i] = new VariableInfo("double", false, null);
+        }
+
+        variables["elapsedSinceTimePrint"] = new VariableInfo("float", false, null);
+
+        // Outputting of the measurements
+        EnsureOneBlankLine(lineReceiver);
+        lineReceiver.Add("elapsedSinceTimePrint += delta;");
+        lineReceiver.Add("if (elapsedSinceTimePrint >= 1)");
+        lineReceiver.Add("{");
+        lineReceiver.Add(StringUtils.GetIndent(4) + "elapsedSinceTimePrint = 0;");
+        lineReceiver.Add(StringUtils.GetIndent(4) + @"GD.Print($""Simulation thread wait times: "");");
+
+        for (int i = 1; i <= threadCount; ++i)
+        {
+            lineReceiver.Add(StringUtils.GetIndent(4) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
+            lineReceiver.Add(StringUtils.GetIndent(4) + $"waitTime{i} = 0;");
+        }
+
+        lineReceiver.Add("}");
     }
 
     private void AddSystemSingleGroupRunningLines(IEnumerable<SystemToSchedule> systems, List<string> textOutput,
-        int indent)
+        int indent, int thread)
     {
         foreach (var system in systems)
         {
-            system.GetRunningText(textOutput, indent);
+            system.GetRunningText(textOutput, indent, thread);
         }
     }
 
@@ -526,15 +593,24 @@ public class GenerateThreadedSystems : Node
     {
         GD.Print($"Updating simulation class partial in {file}");
 
-        using var writer = System.IO.File.CreateText(file);
+        using var fileStream = File.Create(file);
+
+        using var writer = new StreamWriter(fileStream, new UTF8Encoding(true));
 
         int indent = 0;
 
         writer.WriteLine("// Automatically generated file. DO NOT EDIT!");
         writer.WriteLine("// Run GenerateThreadedSystems to generate this file");
 
+        if (MeasureThreadWaits)
+            writer.WriteLine("using System.Diagnostics;");
+
         writer.WriteLine("using System.Threading;");
         writer.WriteLine("using System.Threading.Tasks;");
+
+        if (MeasureThreadWaits)
+            writer.WriteLine("using Godot;");
+
         writer.WriteLine();
 
         writer.WriteLine($"public partial class {className}");
@@ -622,17 +698,20 @@ public class GenerateThreadedSystems : Node
         public void GenerateCodeMain(List<string> lineReceiver, int indent)
         {
             Write(lineReceiver, $"// Execution group {GroupNumber} (on main)", indent,
-                Systems.Where(s => s.RunsOnMainThread));
+                Systems.Where(s => s.RunsOnMainThread), 1);
         }
 
-        public void GenerateCodeThread(List<string> lineReceiver, int indent)
+        public void GenerateCodeThread(List<string> lineReceiver, int indent, int thread)
         {
+            if (thread < 2)
+                throw new ArgumentException("Threads should have a valid thread id (above main thread id)");
+
             Write(lineReceiver, $"// Execution group {GroupNumber}", indent,
-                Systems.Where(s => !s.RunsOnMainThread));
+                Systems.Where(s => !s.RunsOnMainThread), thread);
         }
 
         private void Write(List<string> lineReceiver, string comment, int indent,
-            IEnumerable<SystemToSchedule> filteredSystems)
+            IEnumerable<SystemToSchedule> filteredSystems, int thread)
         {
             bool first = true;
 
@@ -645,7 +724,7 @@ public class GenerateThreadedSystems : Node
                     lineReceiver.Add(StringUtils.GetIndent(indent) + comment);
                 }
 
-                system.GetRunningText(lineReceiver, indent);
+                system.GetRunningText(lineReceiver, indent, thread);
             }
         }
     }

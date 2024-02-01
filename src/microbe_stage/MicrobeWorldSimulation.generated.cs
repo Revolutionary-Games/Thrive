@@ -1,4 +1,4 @@
-// Automatically generated file. DO NOT EDIT!
+﻿// Automatically generated file. DO NOT EDIT!
 // Run GenerateThreadedSystems to generate this file
 using System.Threading;
 using System.Threading.Tasks;
@@ -115,7 +115,6 @@ public partial class MicrobeWorldSimulation
         barrier1.SignalAndWait();
 
         cellCountingEntitySet.Complete();
-
         reportedPlayerPosition = null;
     }
 
@@ -189,7 +188,6 @@ public partial class MicrobeWorldSimulation
         TimedLifeSystem.Update(delta);
 
         cellCountingEntitySet.Complete();
-
         reportedPlayerPosition = null;
     }
 

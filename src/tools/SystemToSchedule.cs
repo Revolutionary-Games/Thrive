@@ -232,11 +232,11 @@
             return false;
         }
 
-        public void GetRunningText(List<string> lineReceiver, int indent)
+        public void GetRunningText(List<string> lineReceiver, int indent, int thread)
         {
             for (int i = 0; i < RequiresBarrierBefore; ++i)
             {
-                lineReceiver.Add(StringUtils.GetIndent(indent) + "barrier1.SignalAndWait();");
+                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
             }
 
             bool closeBrace = false;
@@ -265,7 +265,7 @@
 
             for (int i = 0; i < RequiresBarrierAfter; ++i)
             {
-                lineReceiver.Add(StringUtils.GetIndent(indent) + "barrier1.SignalAndWait();");
+                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
             }
 
             if (closeBrace)
