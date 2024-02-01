@@ -673,6 +673,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // that
             run.CalculateAndApplyFinalExternalEffectSizes();
 
+            run.Results.RegisterNewSpeciesForSummary(CurrentGame.GameWorld);
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
