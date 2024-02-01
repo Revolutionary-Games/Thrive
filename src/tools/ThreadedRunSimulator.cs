@@ -14,18 +14,16 @@
 
         public ThreadedRunSimulator(IEnumerable<IReadOnlyList<SystemToSchedule>> threadTasks)
         {
+            int counter = 1;
             foreach (var thread in threadTasks)
             {
-                threads.Add(new Thread(thread));
+                threads.Add(new Thread(thread, counter++));
             }
         }
 
-        public ThreadedRunSimulator(params IReadOnlyList<SystemToSchedule>[] threadTasks)
+        public ThreadedRunSimulator(params IReadOnlyList<SystemToSchedule>[] threadTasks) :
+            this(threadTasks.AsEnumerable())
         {
-            foreach (var thread in threadTasks)
-            {
-                threads.Add(new Thread(thread));
-            }
         }
 
         public void Simulate()
@@ -36,11 +34,14 @@
                 thread.Start();
             }
 
+            var currentTimeslot = new Timeslot(1);
+
             int deadlockCounter = 0;
 
-            // Step simulation until all threads are done
+            // Create time steps until all threads are done
             while (true)
             {
+                bool threadsActive = false;
                 bool systemsActive = false;
 
                 ++deadlockCounter;
@@ -50,77 +51,225 @@
                     if (thread.Done)
                         continue;
 
-                    systemsActive = true;
+                    threadsActive = true;
 
-                    if (thread.IsBlocked())
+                    if (currentTimeslot.CanRunSystemInParallel(thread.RunningSystem, thread))
                     {
-                        if (thread.WaitingFor == null)
-                            throw new Exception("Should have been waiting for something");
-
-                        // Check for unblocking
-                        if (thread.CheckIsStillBlockedBy(thread.WaitingFor))
-                            continue;
+                        currentTimeslot.MarkConcurrentlyRunningSystem(thread.RunningSystem, thread);
+                        deadlockCounter = 0;
+                        systemsActive = true;
                     }
-
-                    foreach (var thread2 in threads)
+                    else
                     {
-                        if (ReferenceEquals(thread, thread2))
-                            continue;
-
-                        // TODO: this probably doesn't work if we add more threads than 2
-                        thread.CheckForInterferenceWith(thread2);
+                        currentTimeslot.MarkThreadWaiting(thread);
                     }
-
-                    // Skip stepping if found interference
-                    if (thread.IsBlocked())
-                        continue;
-
-                    // Step non-blocked / waiting threads
-                    thread.Step();
-                    deadlockCounter = 0;
                 }
 
-                if (!systemsActive)
+                if (!threadsActive)
                 {
                     break;
                 }
 
-                if (deadlockCounter > 10000)
+                if (deadlockCounter > 1000)
                 {
                     throw new Exception("Simulated threads cannot progress, likely deadlocked");
+                }
+
+                if (!systemsActive)
+                {
+                    // Time to move to a new timeslot
+                    currentTimeslot = currentTimeslot.StartNextTimeslot();
                 }
             }
         }
 
-        private class Thread : IDisposable
+        /// <summary>
+        ///   Represents what's allowed to happen at the same moment in time
+        /// </summary>
+        private class Timeslot
         {
-            public readonly IReadOnlyList<SystemToSchedule> ThreadTasks;
-            public readonly List<Type> ActiveReads = new();
-            public readonly List<Type> ActiveWrites = new();
-            public readonly List<SystemToSchedule> RanSystems = new();
+            // All reads / runs need to be stored per-thread so when one thread is blocked another can still
+            public readonly Dictionary<Thread, HashSet<Type>> ComponentReads = new();
+            public readonly Dictionary<Thread, HashSet<Type>> ComponentWrites = new();
+            public readonly Dictionary<Thread, List<SystemToSchedule>> RunSystems = new();
+
+            /// <summary>
+            ///   Threads that are blocked and only can resume next timeslot
+            /// </summary>
+            public readonly List<Thread> ThreadsToResumeNextTimeslot = new();
+
+            public readonly int Time;
 
             private readonly SystemToSchedule.SystemRequirementsBasedComparer comparer = new();
 
-            private IEnumerator<SystemToSchedule> enumerator;
-
-            public Thread(IReadOnlyList<SystemToSchedule> threadTasks)
+            public Timeslot(int time)
             {
-                ThreadTasks = threadTasks;
-                enumerator = threadTasks.GetEnumerator();
+                Time = time;
             }
 
-            public enum RunConflictType
+            public bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
             {
-                NoConflict,
+                // Check for timing conflicts with *other* threads
+                var otherReads = ComponentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherWrites = ComponentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherSystems = RunSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
 
-                // NotInParallel,
-                RunsBefore,
-                RunsAfter,
+                // Read / write conflicts
+                if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
+                    return false;
+
+                if (otherWrites.Any(c =>
+                        systemToSchedule.WritesComponents.Contains(c) || systemToSchedule.ReadsComponents.Contains(c)))
+                {
+                    return false;
+                }
+
+                // Conflicts with hard system ordering (should run after any of the other systems already running)
+                if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
+                    return false;
+
+                // Check that the system is not running before a later system it should come after from a blocked
+                // thread
+                foreach (var blockedThread in ThreadsToResumeNextTimeslot)
+                {
+                    if (blockedThread == thread)
+                        continue;
+
+                    foreach (var futureSystem in blockedThread.GetStillUpcomingSystems())
+                    {
+                        if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
+                        {
+                            // Need to wait for a blocked thread to resume and schedule a system from it before running
+                            return false;
+                        }
+                    }
+                }
+
+                // TODO: should this also check for other future systems from existing threads?
+                // It's probably unnecessary as long as the system general list is sorted fully before being split into
+                // thread tasks
+
+                // No conflicts with other things happening in this timeslot
+                return true;
             }
 
-            public bool Done { get; private set; }
+            public void MarkThreadWaiting(Thread thread)
+            {
+                if (ThreadsToResumeNextTimeslot.Contains(thread))
+                    return;
 
-            public Thread? WaitingFor { get; private set; }
+                ThreadsToResumeNextTimeslot.Add(thread);
+            }
+
+            public void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
+            {
+                if (systemToSchedule != thread.RunningSystem)
+                    throw new ArgumentException("not currently running in thread", nameof(systemToSchedule));
+
+                // Blocked threads cannot run again before the next timeslot
+                if (ThreadsToResumeNextTimeslot.Contains(thread))
+                    throw new ArgumentException("Blocked thread cannot resume in this timeslot");
+
+                if (!CanRunSystemInParallel(systemToSchedule, thread))
+                    throw new InvalidOperationException("Cannot run the system in parallel");
+
+                if (!RunSystems.TryGetValue(thread, out var threadSystems))
+                {
+                    threadSystems = new List<SystemToSchedule>();
+                    RunSystems[thread] = threadSystems;
+                }
+
+                if (threadSystems.Contains(systemToSchedule))
+                    throw new InvalidOperationException("System is already running");
+
+                threadSystems.Add(systemToSchedule);
+
+                // Component writes and reads
+                if (!ComponentReads.TryGetValue(thread, out var threadReads))
+                {
+                    threadReads = new HashSet<Type>();
+                    ComponentReads[thread] = threadReads;
+                }
+
+                foreach (var component in systemToSchedule.ReadsComponents)
+                {
+                    threadReads.Add(component);
+                }
+
+                if (!ComponentWrites.TryGetValue(thread, out var threadWrites))
+                {
+                    threadWrites = new HashSet<Type>();
+                    ComponentWrites[thread] = threadWrites;
+                }
+
+                foreach (var component in systemToSchedule.WritesComponents)
+                {
+                    threadWrites.Add(component);
+                }
+
+                // Current system from thread is ran, step it to the next system
+                thread.Step();
+            }
+
+            public Timeslot StartNextTimeslot()
+            {
+                AddThreadBarrierAfterEachThreadsLastSystem();
+
+                var nextSlot = new Timeslot(Time + 1);
+
+                foreach (var thread in ThreadsToResumeNextTimeslot)
+                {
+                    if (nextSlot.CanRunSystemInParallel(thread.RunningSystem, thread))
+                    {
+                        nextSlot.MarkConcurrentlyRunningSystem(thread.RunningSystem, thread);
+                    }
+                    else
+                    {
+                        // Still need for this thread to wait
+                        nextSlot.MarkThreadWaiting(thread);
+                    }
+                }
+
+                return nextSlot;
+            }
+
+            public override string ToString()
+            {
+                return $"Moment in time: {Time}";
+            }
+
+            private void AddThreadBarrierAfterEachThreadsLastSystem()
+            {
+                foreach (var systemList in RunSystems.Values)
+                {
+                    var system = systemList.Last();
+                    if (system.RequiresBarrierAfter)
+                        throw new Exception("Barrier shouldn't be set already");
+
+                    system.RequiresBarrierAfter = true;
+                }
+            }
+        }
+
+        private class Thread
+        {
+            public readonly int ThreadId;
+
+            private readonly IReadOnlyList<SystemToSchedule> threadTasks;
+            private readonly SystemToSchedule.SystemRequirementsBasedComparer comparer = new();
+
+            private int executionIndex = -1;
+
+            public Thread(IReadOnlyList<SystemToSchedule> threadTasks, int threadId)
+            {
+                if (threadTasks.Count < 1)
+                    throw new ArgumentException("Thread must have at least one task");
+
+                this.threadTasks = threadTasks;
+                ThreadId = threadId;
+            }
+
+            public bool Done => executionIndex >= threadTasks.Count;
 
             public SystemToSchedule RunningSystem
             {
@@ -129,21 +278,13 @@
                     if (Done)
                         throw new InvalidOperationException("Already done");
 
-                    return enumerator.Current!;
+                    return threadTasks[executionIndex];
                 }
             }
 
             public void Start()
             {
-                ActiveReads.Clear();
-                ActiveWrites.Clear();
-                RanSystems.Clear();
-
-                enumerator.Dispose();
-
-                enumerator = ThreadTasks.GetEnumerator();
-                Done = !enumerator.MoveNext();
-                UpdateActiveSystem();
+                executionIndex = 0;
             }
 
             public bool Step()
@@ -151,168 +292,24 @@
                 if (Done)
                     return false;
 
-                if (RunningSystem.RequiresBarrierAfter)
-                {
-                    ActiveWrites.Clear();
-                    ActiveReads.Clear();
-                    RanSystems.Clear();
-                }
-
-                Done = !enumerator.MoveNext();
-
-                if (!Done)
-                {
-                    if (enumerator.Current == null)
-                        throw new Exception("Enumerator item is null");
-                }
-
-                UpdateActiveSystem();
-
+                ++executionIndex;
                 return true;
             }
 
-            public void MarkAsWaitingFor(Thread thread)
-            {
-                if (WaitingFor != null)
-                    throw new InvalidOperationException("Already waiting for something");
-
-                if (ReferenceEquals(thread, this))
-                    throw new ArgumentException("Cannot wait for self");
-
-                WaitingFor = thread;
-            }
-
-            public bool CheckIsStillBlockedBy(Thread thread)
-            {
-                if (WaitingFor != thread)
-                    return true;
-
-                if (HasRunConflictWith(thread) != RunConflictType.NoConflict)
-                    return true;
-
-                // No conflict anymore
-                WaitingFor = null;
-                return false;
-            }
-
-            public bool IsBlocked()
-            {
-                if (WaitingFor != null)
-                    return true;
-
-                return false;
-            }
-
-            public void CheckForInterferenceWith(Thread thread)
-            {
-                // If other thread is already blocked by us, don't need to consider it
-                if (thread.WaitingFor == this)
-                    return;
-
-                var conflict = HasRunConflictWith(thread);
-
-                if (conflict == RunConflictType.RunsBefore)
-                {
-                    // We run before the other one, block it
-                    thread.MarkAsWaitingFor(this);
-                    thread.AddBarrierBeforeCurrentSystem();
-                    AddBarrierAfterCurrentSystem();
-                }
-                else if (conflict == RunConflictType.RunsAfter)
-                {
-                    // We are blocked by the other thread
-                    MarkAsWaitingFor(thread);
-                    thread.AddBarrierAfterCurrentSystem();
-                    AddBarrierBeforeCurrentSystem();
-                }
-                /*else if (conflict == RunConflictType.NotInParallel)
-                {
-                    // For now earlier thread checking in the not parallel case gets priority
-                    thread.MarkAsWaitingFor(this);
-                    thread.AddBarrierBeforeCurrentSystem();
-                    AddBarrierAfterCurrentSystem();
-                }*/
-            }
-
-            public void AddBarrierBeforeCurrentSystem()
-            {
-                if (RunningSystem.RequiresBarrierBefore)
-                    throw new InvalidOperationException("Barrier already added");
-
-                RunningSystem.RequiresBarrierBefore = true;
-                ActiveWrites.Clear();
-                ActiveReads.Clear();
-                RanSystems.Clear();
-            }
-
-            public void AddBarrierAfterCurrentSystem()
-            {
-                if (RunningSystem.RequiresBarrierAfter)
-                    throw new InvalidOperationException("Barrier already added");
-
-                RunningSystem.RequiresBarrierAfter = true;
-            }
-
-            public RunConflictType HasRunConflictWith(Thread thread)
-            {
-                if (thread.Done || Done)
-                    return RunConflictType.NoConflict;
-
-                // Mixed read / write conflict
-                // TODO: should these also have the ordering property?
-                if (ActiveReads.Any(t => thread.ActiveWrites.Contains(t)))
-                    return RunConflictType.RunsAfter;
-
-                if (ActiveWrites.Any(t => thread.ActiveReads.Contains(t)))
-                    return RunConflictType.RunsBefore;
-
-                int comparison;
-
-                // Conflicting system run order
-                foreach (var system1 in RanSystems)
-                {
-                    foreach (var system2 in thread.RanSystems)
-                    {
-                        comparison = comparer.CompareWeak(system1, system2);
-
-                        if (comparison < 0)
-                            return RunConflictType.RunsBefore;
-
-                        if (comparison > 0)
-                            return RunConflictType.RunsAfter;
-                    }
-                }
-
-                // Also check blocked thread systems
-                comparison = comparer.CompareWeak(RunningSystem, thread.RunningSystem);
-
-                if (comparison < 0)
-                    return RunConflictType.RunsBefore;
-
-                if (comparison > 0)
-                    return RunConflictType.RunsAfter;
-
-                return RunConflictType.NoConflict;
-            }
-
-            public void Dispose()
-            {
-                enumerator.Dispose();
-            }
-
-            private void UpdateActiveSystem()
+            public IEnumerable<SystemToSchedule> GetStillUpcomingSystems()
             {
                 if (Done)
-                {
-                    ActiveReads.Clear();
-                    ActiveWrites.Clear();
-                    RanSystems.Clear();
-                    return;
-                }
+                    yield break;
 
-                ActiveReads.AddRange(RunningSystem.ReadsComponents);
-                ActiveWrites.AddRange(RunningSystem.WritesComponents);
-                RanSystems.Add(RunningSystem);
+                for (int i = executionIndex; i < threadTasks.Count; ++i)
+                {
+                    yield return threadTasks[i];
+                }
+            }
+
+            public override string ToString()
+            {
+                return $"Thread {ThreadId}";
             }
         }
     }
