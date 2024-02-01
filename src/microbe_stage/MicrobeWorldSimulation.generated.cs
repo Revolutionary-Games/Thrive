@@ -19,7 +19,6 @@ public partial class MicrobeWorldSimulation
                 physicsUpdateAndPositionSystem.Update(delta);
                 damageCooldownSystem.Update(delta);
                 barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
                 physicsCollisionManagementSystem.Update(delta);
                 damageOnTouchSystem.Update(delta);
                 colonyCompoundDistributionSystem.Update(delta);
@@ -52,7 +51,6 @@ public partial class MicrobeWorldSimulation
 
                 // Execution group 7
                 microbeCollisionSoundSystem.Update(delta);
-                barrier1.SignalAndWait();
                 barrier1.SignalAndWait();
                 attachedEntityPositionSystem.Update(delta);
                 colonyBindingSystem.Update(delta);
@@ -94,7 +92,6 @@ public partial class MicrobeWorldSimulation
 
         // Execution group 4 (on main)
         barrier1.SignalAndWait();
-        barrier1.SignalAndWait();
         organelleTickSystem.Update(delta);
 
         // Execution group 5 (on main)
@@ -107,7 +104,6 @@ public partial class MicrobeWorldSimulation
         microbeEventCallbackSystem.Update(delta);
 
         // Execution group 7 (on main)
-        barrier1.SignalAndWait();
         barrier1.SignalAndWait();
         soundEffectSystem.Update(delta);
         soundListenerSystem.Update(delta);

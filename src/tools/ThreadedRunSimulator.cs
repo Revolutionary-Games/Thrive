@@ -81,6 +81,55 @@
                     currentTimeslot = currentTimeslot.StartNextTimeslot();
                 }
             }
+
+            RemoveUnnecessaryDoubleBarriers();
+        }
+
+        private void RemoveUnnecessaryDoubleBarriers()
+        {
+            // Reset thread points to the start
+            foreach (var thread in threads)
+            {
+                thread.Start();
+            }
+
+            while (true)
+            {
+                bool doubleBarrierMissing = false;
+                bool hasDoubleBarriers = false;
+                bool completed = true;
+
+                foreach (var thread in threads)
+                {
+                    if (thread.Done)
+                        continue;
+
+                    completed = false;
+
+                    if (thread.ScanForNextDoubleBarrier())
+                    {
+                        hasDoubleBarriers = true;
+                    }
+                    else
+                    {
+                        doubleBarrierMissing = true;
+                    }
+                }
+
+                if (hasDoubleBarriers && !doubleBarrierMissing)
+                {
+                    // Can remove a double barrier
+                    foreach (var thread in threads)
+                    {
+                        thread.RemoveDoubleBarrier();
+                    }
+                }
+                else if (completed)
+                {
+                    // No double barriers to remove anymore
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -310,6 +359,85 @@
                 for (int i = executionIndex; i < threadTasks.Count; ++i)
                 {
                     yield return threadTasks[i];
+                }
+            }
+
+            public bool ScanForNextDoubleBarrier()
+            {
+                if (Done)
+                    return false;
+
+                // Multiple barriers between systems
+                bool afterBarrier = RunningSystem.RequiresBarrierAfter > 0;
+
+                while (true)
+                {
+                    // Single system having a double barrier
+                    if (RunningSystem.RequiresBarrierBefore > 1 || RunningSystem.RequiresBarrierAfter > 1)
+                        return true;
+
+                    ++executionIndex;
+
+                    if (Done)
+                        break;
+
+                    bool nextBeforeBarrier = RunningSystem.RequiresBarrierBefore > 0;
+                    bool nextAfterBarrier = RunningSystem.RequiresBarrierAfter > 0;
+
+                    if (afterBarrier && nextBeforeBarrier)
+                    {
+                        // A double barrier
+                        return true;
+                    }
+
+                    afterBarrier = nextAfterBarrier;
+
+                    // If no double barrier was found, stop at the first barrier to not mess up inter-barrier group
+                    // ordering
+                    if (nextBeforeBarrier || nextAfterBarrier)
+                        break;
+                }
+
+                return false;
+            }
+
+            public void RemoveDoubleBarrier()
+            {
+                if (Done)
+                    throw new InvalidOperationException("Thread is already at the end, not at a system");
+
+                if (RunningSystem.RequiresBarrierBefore > 1)
+                {
+                    --RunningSystem.RequiresBarrierBefore;
+
+                    // Allow triple barrier detection (don't move if there are still many barriers here)
+                    if (RunningSystem.RequiresBarrierBefore < 2)
+                        ++executionIndex;
+                }
+                else if (RunningSystem.RequiresBarrierAfter > 1)
+                {
+                    --RunningSystem.RequiresBarrierAfter;
+
+                    // Allow triple barrier detection (don't move if there are still many barriers here)
+                    if (RunningSystem.RequiresBarrierAfter < 2)
+                        ++executionIndex;
+                }
+                else if (RunningSystem.RequiresBarrierBefore > 0)
+                {
+                    // Sanity check
+                    if (threadTasks[executionIndex - 1].RequiresBarrierAfter < 1)
+                    {
+                        throw new Exception(
+                            "Current point should be detected as double barrier between systems, but it was " +
+                            "not found");
+                    }
+
+                    --RunningSystem.RequiresBarrierBefore;
+                    ++executionIndex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Couldn't find the double barrier to remove");
                 }
             }
 
