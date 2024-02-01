@@ -303,6 +303,26 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         SpawnSystem = new SpawnSystem(this);
     }
 
+    protected override void OnProcessFixedLogic(float delta)
+    {
+        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+
+        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+            --availableThreads;
+
+        // For single-threaded testing uncomment the next line:
+        // availableThreads = 1;
+
+        if (availableThreads >= 3)
+        {
+            OnProcessFixedWith3Threads(delta);
+        }
+        else
+        {
+            OnProcessFixedWithoutThreads(delta);
+        }
+    }
+
     protected override void OnEntityDestroyed(in Entity entity)
     {
         base.OnEntityDestroyed(in entity);

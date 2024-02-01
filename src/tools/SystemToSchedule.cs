@@ -29,8 +29,9 @@
         public List<Type> ReadsComponents = new();
         public List<Type> WritesComponents = new();
 
-        public bool RequiresBarrierBefore;
-        public bool RequiresBarrierAfter;
+        // Count of how many barriers are needed
+        public int RequiresBarrierBefore;
+        public int RequiresBarrierAfter;
 
         private static readonly Type SystemWithAttribute = typeof(WithAttribute);
         private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
@@ -233,7 +234,7 @@
 
         public void GetRunningText(List<string> lineReceiver, int indent)
         {
-            if (RequiresBarrierBefore)
+            for (int i = 0; i < RequiresBarrierBefore; ++i)
             {
                 lineReceiver.Add(StringUtils.GetIndent(indent) + "barrier1.SignalAndWait();");
             }
@@ -262,7 +263,7 @@
                 lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
             }
 
-            if (RequiresBarrierAfter)
+            for (int i = 0; i < RequiresBarrierAfter; ++i)
             {
                 lineReceiver.Add(StringUtils.GetIndent(indent) + "barrier1.SignalAndWait();");
             }

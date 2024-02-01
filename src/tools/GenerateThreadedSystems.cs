@@ -79,6 +79,19 @@ public class GenerateThreadedSystems : Node
         }
     }
 
+    private static void AddProcessEndIfConfigured(string? processEnd, List<string> processLines)
+    {
+        if (string.IsNullOrWhiteSpace(processEnd))
+            return;
+
+        foreach (var line in processEnd.Split("\n"))
+        {
+            EnsureOneBlankLine(processLines);
+
+            processLines.Add(line);
+        }
+    }
+
     private void RunInternal()
     {
         GD.Print("Beginning generation of threaded system runs, it might take a while to find valid sequences of runs");
@@ -107,20 +120,18 @@ public class GenerateThreadedSystems : Node
             var (mainSystems, otherSystems) = SplitSystemsToMainThread(processSystems);
 
             Dictionary<string, VariableInfo> variables = new();
-            GenerateThreadedSystemsRun(mainSystems, otherSystems, processSystemTextLines, variables);
 
-            if (!string.IsNullOrWhiteSpace(processEnd))
-            {
-                foreach (var line in processEnd.Split("\n"))
-                {
-                    EnsureOneBlankLine(processSystemTextLines);
+            // This destroys the other systems data so a copy is made
+            GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), processSystemTextLines, variables);
 
-                    processSystemTextLines.Add(line);
-                }
-            }
+            AddProcessEndIfConfigured(processEnd, processSystemTextLines);
 
-            InsertNewProcessMethods(file, simulationClass.Name, processSystemTextLines, frameSystemTextLines,
-                variables);
+            var nonThreadedLines = new List<string>();
+            GenerateNonThreadedSystems(mainSystems, otherSystems, nonThreadedLines);
+            AddProcessEndIfConfigured(processEnd, nonThreadedLines);
+
+            InsertNewProcessMethods(file, simulationClass.Name, processSystemTextLines, nonThreadedLines,
+                frameSystemTextLines, variables);
 
             GD.Print($"Successfully handled. {file} has been updated");
         }
@@ -227,6 +238,31 @@ public class GenerateThreadedSystems : Node
         WriteResultOfThreadedRunning(groups, processSystemTextLines, variables);
     }
 
+    private void GenerateNonThreadedSystems(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
+        List<string> processSystemTextLines)
+    {
+        var allSystems = mainSystems.Concat(otherSystems).ToList();
+        SortSingleGroupOfSystems(allSystems);
+        VerifyOrderOfSystems(allSystems);
+
+        // Clear barriers from a threaded generation
+        foreach (var systemToSchedule in allSystems)
+        {
+            systemToSchedule.RequiresBarrierAfter = 0;
+            systemToSchedule.RequiresBarrierBefore = 0;
+        }
+
+        // Generate simple result text
+        processSystemTextLines.Add("// This variant doesn't use threading, use when not enough threads are " +
+            "available");
+        processSystemTextLines.Add("// or threaded run would be slower (or just for debugging)");
+
+        foreach (var system in allSystems)
+        {
+            system.GetRunningText(processSystemTextLines, 0);
+        }
+    }
+
     private void CheckBarrierCounts(List<ExecutionGroup> groups)
     {
         int mainBarriers = 0;
@@ -236,28 +272,16 @@ public class GenerateThreadedSystems : Node
         {
             foreach (var system in group.Systems)
             {
-                if (system.RequiresBarrierBefore)
-                {
-                    if (system.RunsOnMainThread)
-                    {
-                        ++mainBarriers;
-                    }
-                    else
-                    {
-                        ++otherBarriers;
-                    }
-                }
+                if (system.RequiresBarrierAfter < 0 || system.RequiresBarrierBefore < 0)
+                    throw new Exception("Negative barrier amount detected");
 
-                if (system.RequiresBarrierAfter)
+                if (system.RunsOnMainThread)
                 {
-                    if (system.RunsOnMainThread)
-                    {
-                        ++mainBarriers;
-                    }
-                    else
-                    {
-                        ++otherBarriers;
-                    }
+                    mainBarriers += system.RequiresBarrierAfter + system.RequiresBarrierBefore;
+                }
+                else
+                {
+                    otherBarriers += system.RequiresBarrierAfter + system.RequiresBarrierBefore;
                 }
             }
         }
@@ -505,8 +529,8 @@ public class GenerateThreadedSystems : Node
         return (main, other);
     }
 
-    private void InsertNewProcessMethods(string file, string className, List<string> process, List<string> processFrame,
-        Dictionary<string, VariableInfo> variables)
+    private void InsertNewProcessMethods(string file, string className, List<string> process,
+        List<string> processNonThreaded, List<string> processFrame, Dictionary<string, VariableInfo> variables)
     {
         GD.Print($"Updating simulation class partial in {file}");
 
@@ -542,8 +566,12 @@ public class GenerateThreadedSystems : Node
         if (addedVariables)
             writer.WriteLine();
 
-        writer.WriteLine(StringUtils.GetIndent(indent) + "protected override void OnProcessFixedLogic(float delta)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFixedWith3Threads(float delta)");
         indent = WriteBlockContents(writer, process, indent);
+
+        writer.WriteLine();
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFixedWithoutThreads(float delta)");
+        indent = WriteBlockContents(writer, processNonThreaded, indent);
 
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogic(float delta)");

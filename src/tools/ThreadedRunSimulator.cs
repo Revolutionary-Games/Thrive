@@ -159,6 +159,10 @@
                     return;
 
                 ThreadsToResumeNextTimeslot.Add(thread);
+
+                var system = thread.RunningSystem;
+
+                ++system.RequiresBarrierBefore;
             }
 
             public void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
@@ -213,7 +217,7 @@
 
             public Timeslot StartNextTimeslot()
             {
-                AddThreadBarrierAfterEachThreadsLastSystem();
+                AddThreadBarrierForUnblockedThreads();
 
                 var nextSlot = new Timeslot(Time + 1);
 
@@ -238,15 +242,21 @@
                 return $"Moment in time: {Time}";
             }
 
-            private void AddThreadBarrierAfterEachThreadsLastSystem()
+            private void AddThreadBarrierForUnblockedThreads()
             {
-                foreach (var systemList in RunSystems.Values)
+                foreach (var pair in RunSystems)
                 {
-                    var system = systemList.Last();
-                    if (system.RequiresBarrierAfter)
+                    // Skip systems that already got blocked and have a barrier set for this timeslot
+                    // This basically means this method doesn't do much as all timeslots are ran until all threads are
+                    // blocked. See instead MarkThreadWaiting.
+                    if (ThreadsToResumeNextTimeslot.Contains(pair.Key))
+                        continue;
+
+                    var system = pair.Value.Last();
+                    if (system.RequiresBarrierAfter > 0)
                         throw new Exception("Barrier shouldn't be set already");
 
-                    system.RequiresBarrierAfter = true;
+                    ++system.RequiresBarrierAfter;
                 }
             }
         }
