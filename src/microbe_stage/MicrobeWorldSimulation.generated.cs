@@ -26,11 +26,11 @@ public partial class MicrobeWorldSimulation
                 barrier1.SignalAndWait();
                 physicsCollisionManagementSystem.Update(delta);
                 damageOnTouchSystem.Update(delta);
-                colonyCompoundDistributionSystem.Update(delta);
-                pilusDamageSystem.Update(delta);
                 allCompoundsVentingSystem.Update(delta);
+                colonyCompoundDistributionSystem.Update(delta);
                 unneededCompoundVentingSystem.Update(delta);
                 compoundAbsorptionSystem.Update(delta);
+                pilusDamageSystem.Update(delta);
                 ProcessSystem.Update(delta);
                 multicellularGrowthSystem.Update(delta);
                 entitySignalingSystem.Update(delta);
@@ -48,17 +48,17 @@ public partial class MicrobeWorldSimulation
                 slimeSlowdownSystem.Update(delta);
                 microbeMovementSystem.Update(delta);
 
-                // Execution group 6 on thread 2
+                // Execution group 7 on thread 2
                 countLimitedDespawnSystem.Update(delta);
                 barrier1.SignalAndWait();
-                spatialAttachSystem.Update(delta);
                 SpawnSystem.Update(delta);
 
-                // Execution group 7 on thread 2
+                // Execution group 8 on thread 2
                 microbeCollisionSoundSystem.Update(delta);
                 barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
                 attachedEntityPositionSystem.Update(delta);
+                barrier1.SignalAndWait();
+                barrier1.SignalAndWait();
                 colonyBindingSystem.Update(delta);
                 microbeFlashingSystem.Update(delta);
                 damageSoundSystem.Update(delta);
@@ -105,12 +105,16 @@ public partial class MicrobeWorldSimulation
         physicsSensorSystem.Update(delta);
         microbeRenderPrioritySystem.Update(delta);
         barrier1.SignalAndWait();
+        barrier1.SignalAndWait();
         engulfingSystem.Update(delta);
 
         // Execution group 6 (on main)
-        microbeEventCallbackSystem.Update(delta);
+        spatialAttachSystem.Update(delta);
 
         // Execution group 7 (on main)
+        microbeEventCallbackSystem.Update(delta);
+
+        // Execution group 8 (on main)
         barrier1.SignalAndWait();
         barrier1.SignalAndWait();
         soundEffectSystem.Update(delta);
@@ -172,8 +176,8 @@ public partial class MicrobeWorldSimulation
         physicsSensorSystem.Update(delta);
         microbeRenderPrioritySystem.Update(delta);
         engulfingSystem.Update(delta);
-        countLimitedDespawnSystem.Update(delta);
         spatialAttachSystem.Update(delta);
+        countLimitedDespawnSystem.Update(delta);
         SpawnSystem.Update(delta);
         microbeEventCallbackSystem.Update(delta);
         colonyBindingSystem.Update(delta);
