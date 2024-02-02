@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Utility for universally accessible Thriveopedia actions, such as opening a page by its name.
@@ -6,6 +7,8 @@
 public class ThriveopediaManager
 {
     private static readonly ThriveopediaManager ManagerInstance = new();
+
+    private readonly List<Thriveopedia> activeThriveopedias = new();
 
     public delegate void OnPageOpened(string pageName);
 
@@ -29,5 +32,40 @@ public class ThriveopediaManager
         }
 
         Instance.OnPageOpenedHandler(pageName);
+    }
+
+    public static Species? GetActiveSpeciesData(uint speciesId)
+    {
+        foreach (var thriveopedia in Instance.activeThriveopedias)
+        {
+            var species = thriveopedia.GetActiveSpeciesData(speciesId);
+
+            if (species != null)
+                return species;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    ///   Report an active Thriveopedia instance that can respond to data requests
+    /// </summary>
+    public static void ReportActiveThriveopedia(Thriveopedia thriveopedia)
+    {
+        if (Instance.activeThriveopedias.Contains(thriveopedia))
+        {
+            GD.PrintErr("Duplicate Thriveopedia registration");
+            return;
+        }
+
+        Instance.activeThriveopedias.Add(thriveopedia);
+    }
+
+    public static void RemoveActiveThriveopedia(Thriveopedia thriveopedia)
+    {
+        if (!Instance.activeThriveopedias.Remove(thriveopedia))
+        {
+            GD.PrintErr("Failed to unregister Thriveopedia");
+        }
     }
 }

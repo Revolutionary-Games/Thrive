@@ -108,6 +108,8 @@
                     GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
                     engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+                    engulfable.PhagocytosisStep = PhagocytosisPhase.None;
+                    engulfable.HostileEngulfer = default;
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
