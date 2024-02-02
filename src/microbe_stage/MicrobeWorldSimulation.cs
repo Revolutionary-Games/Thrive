@@ -314,9 +314,12 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // For single-threaded testing uncomment the next line:
         // availableThreads = 1;
 
-        if (availableThreads >= 3)
+        // Need to have more threads than configured to run with to not deadlock on all threads just waiting for
+        // tasks to be able to start
+        // TODO: adjust the min threads threshold here
+        if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)
         {
-            OnProcessFixedWith3Threads(delta);
+            OnProcessFixedWithThreads(delta);
         }
         else
         {

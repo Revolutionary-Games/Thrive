@@ -18,8 +18,27 @@ using File = System.IO.File;
 /// </summary>
 public class GenerateThreadedSystems : Node
 {
+    /// <summary>
+    ///   How many threads to use when generating threaded system run. Needs to be at least 2. Too high number splits
+    ///   task so granularly that it just lowers performance
+    /// </summary>
+    public static int TargetThreadCount = 2;
+
+    /// <summary>
+    ///   When true inserts timing code around barriers to measure how long the wait times are
+    /// </summary>
     public static bool MeasureThreadWaits = false;
-    public static bool DebugGuardComponentWrites = true;
+
+    /// <summary>
+    ///   When true and <see cref="MeasureThreadWaits"/> prints the measured wait times while running
+    /// </summary>
+    public static bool PrintThreadWaits = true;
+
+    /// <summary>
+    ///   When true inserts a lot of debug code to check that no conflicting systems are executed in the same timeslot
+    ///   during runtime. Used to verify that this tool works correctly.
+    /// </summary>
+    public static bool DebugGuardComponentWrites = false;
 
     private const string ThreadComponentCheckCode = @"
         lock (debugWriteLock)
@@ -232,7 +251,8 @@ public class GenerateThreadedSystems : Node
             Dictionary<string, VariableInfo> variables = new();
 
             // This destroys the other systems data so a copy is made
-            GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), 2, processSystemTextLines, variables);
+            GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), TargetThreadCount - 1,
+                processSystemTextLines, variables);
 
             AddProcessEndIfConfigured(processEnd, processSystemTextLines);
 
@@ -452,7 +472,7 @@ public class GenerateThreadedSystems : Node
 
             lineReceiver.Add(string.Empty);
 
-            AddBarrierWait(lineReceiver, 1, 2, 8);
+            AddBarrierWait(lineReceiver, 1, threadNumber, 8);
 
             lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
 
@@ -508,11 +528,14 @@ public class GenerateThreadedSystems : Node
         lineReceiver.Add("if (elapsedSinceTimePrint >= 1)");
         lineReceiver.Add("{");
         lineReceiver.Add(StringUtils.GetIndent(4) + "elapsedSinceTimePrint = 0;");
-        lineReceiver.Add(StringUtils.GetIndent(4) + @"GD.Print($""Simulation thread wait times: "");");
+
+        if (PrintThreadWaits)
+            lineReceiver.Add(StringUtils.GetIndent(4) + @"GD.Print($""Simulation thread wait times: "");");
 
         for (int i = 1; i <= threadCount; ++i)
         {
-            lineReceiver.Add(StringUtils.GetIndent(4) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
+            if (PrintThreadWaits)
+                lineReceiver.Add(StringUtils.GetIndent(4) + $"GD.Print($\"\\t thread{i}:\\t{{waitTime{i}}}\");");
             lineReceiver.Add(StringUtils.GetIndent(4) + $"waitTime{i} = 0;");
         }
 
@@ -790,7 +813,7 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
 
         writer.WriteLine();
-        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFixedWith3Threads(float delta)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFixedWithThreads(float delta)");
         indent = WriteBlockContents(writer, process, indent);
 
         writer.WriteLine();

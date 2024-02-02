@@ -5,27 +5,24 @@ using System.Threading.Tasks;
 
 public partial class MicrobeWorldSimulation
 {
-    private readonly object debugWriteLock = new();
-    private readonly Dictionary<int, HashSet<string>> readsFromComponents = new();
-    private readonly Dictionary<int, HashSet<string>> writesToComponents = new();
-    private Barrier barrier1 = new(3);
+    private readonly Barrier barrier1 = new(2);
 
     private void InitGenerated()
     {
-        barrier1 = new Barrier(3, OnBarrierPhaseCompleted);
     }
 
-    private void OnProcessFixedWith3Threads(float delta)
+    private void OnProcessFixedWithThreads(float delta)
     {
-        var background1 = new Task(() =>
+        var background0 = new Task(() =>
             {
-                // Execution group 2
+                // Execution group 2 on thread 2
                 simpleShapeCreatorSystem.Update(delta);
                 microbePhysicsCreationAndSizeSystem.Update(delta);
 
-                // Execution group 4
+                // Execution group 4 on thread 2
                 physicsUpdateAndPositionSystem.Update(delta);
                 damageCooldownSystem.Update(delta);
+                barrier1.SignalAndWait();
                 barrier1.SignalAndWait();
                 physicsCollisionManagementSystem.Update(delta);
                 damageOnTouchSystem.Update(delta);
@@ -51,14 +48,15 @@ public partial class MicrobeWorldSimulation
                 slimeSlowdownSystem.Update(delta);
                 microbeMovementSystem.Update(delta);
 
-                // Execution group 6
+                // Execution group 6 on thread 2
                 countLimitedDespawnSystem.Update(delta);
                 barrier1.SignalAndWait();
                 spatialAttachSystem.Update(delta);
                 SpawnSystem.Update(delta);
 
-                // Execution group 7
+                // Execution group 7 on thread 2
                 microbeCollisionSoundSystem.Update(delta);
+                barrier1.SignalAndWait();
                 barrier1.SignalAndWait();
                 attachedEntityPositionSystem.Update(delta);
                 colonyBindingSystem.Update(delta);
@@ -75,19 +73,19 @@ public partial class MicrobeWorldSimulation
                 engulfedHandlingSystem.Update(delta);
                 fluidCurrentsSystem.Update(delta);
                 delayedColonyOperationSystem.Update(delta);
-                barrier1.SignalAndWait();
                 TimedLifeSystem.Update(delta);
                 barrier1.SignalAndWait();
 
                 barrier1.SignalAndWait();
             });
 
-        TaskExecutor.Instance.AddTask(background1);
+        TaskExecutor.Instance.AddTask(background0);
 
         // Execution group 1 (on main)
         animationControlSystem.Update(delta);
         pathBasedSceneLoader.Update(delta);
         predefinedVisualLoaderSystem.Update(delta);
+        cellBurstEffectSystem.Update(delta);
         barrier1.SignalAndWait();
         microbeVisualsSystem.Update(delta);
 
@@ -99,6 +97,7 @@ public partial class MicrobeWorldSimulation
         physicsBodyDisablingSystem.Update(delta);
 
         // Execution group 4 (on main)
+        barrier1.SignalAndWait();
         barrier1.SignalAndWait();
         organelleTickSystem.Update(delta);
 
@@ -113,11 +112,10 @@ public partial class MicrobeWorldSimulation
 
         // Execution group 7 (on main)
         barrier1.SignalAndWait();
+        barrier1.SignalAndWait();
         soundEffectSystem.Update(delta);
         soundListenerSystem.Update(delta);
         spatialPositionSystem.Update(delta);
-        barrier1.SignalAndWait();
-        cellBurstEffectSystem.Update(delta);
         CameraFollowSystem.Update(delta);
 
         barrier1.SignalAndWait();
@@ -133,6 +131,7 @@ public partial class MicrobeWorldSimulation
         animationControlSystem.Update(delta);
         pathBasedSceneLoader.Update(delta);
         predefinedVisualLoaderSystem.Update(delta);
+        cellBurstEffectSystem.Update(delta);
         microbeVisualsSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
         simpleShapeCreatorSystem.Update(delta);
@@ -183,7 +182,6 @@ public partial class MicrobeWorldSimulation
         soundEffectSystem.Update(delta);
         soundListenerSystem.Update(delta);
         spatialPositionSystem.Update(delta);
-        cellBurstEffectSystem.Update(delta);
         CameraFollowSystem.Update(delta);
         colonyStatsUpdateSystem.Update(delta);
         microbeDeathSystem.Update(delta);
