@@ -88,9 +88,13 @@
                 }
             }
 
-            RemoveUnnecessaryDoubleBarriers();
+            // TODO: re-enable this if the logic problem with removing needed barriers is removed
+            // RemoveUnnecessaryDoubleBarriers();
         }
 
+        /// <summary>
+        ///   Tries to remove double barriers. Doesn't work currently due to a bug
+        /// </summary>
         private void RemoveUnnecessaryDoubleBarriers()
         {
             // Reset thread points to the start
