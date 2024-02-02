@@ -14,6 +14,7 @@
     /// </summary>
     [With(typeof(PathLoadedSceneVisuals))]
     [With(typeof(SpatialInstance))]
+    [RunsOnMainThread]
     public sealed class PathBasedSceneLoader : AEntitySetSystem<float>
     {
         /// <summary>

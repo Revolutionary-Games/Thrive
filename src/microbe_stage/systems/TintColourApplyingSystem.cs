@@ -10,9 +10,11 @@
     /// </summary>
     [With(typeof(ColourAnimation))]
     [With(typeof(EntityMaterial))]
-    public sealed class TintColourAnimationSystem : AEntitySetSystem<float>
+    [RunsAfter(typeof(ColourAnimationSystem))]
+    [RunsOnFrame]
+    public sealed class TintColourApplyingSystem : AEntitySetSystem<float>
     {
-        public TintColourAnimationSystem(World world) : base(world, null)
+        public TintColourApplyingSystem(World world) : base(world, null)
         {
         }
 

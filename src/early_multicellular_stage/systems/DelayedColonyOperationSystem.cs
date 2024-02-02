@@ -15,6 +15,7 @@
     ///   having <see cref="Entity"/> instances yet
     /// </summary>
     [With(typeof(DelayedMicrobeColony))]
+    [RunsAfter(typeof(ColonyBindingSystem))]
     public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

@@ -15,6 +15,8 @@
     /// </summary>
     [With(typeof(CommandSignaler))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsBefore(typeof(MicrobeAISystem))]
     [JsonObject(MemberSerialization.OptIn)]
     public sealed class EntitySignalingSystem : AEntitySetSystem<float>
     {

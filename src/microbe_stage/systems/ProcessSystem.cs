@@ -15,6 +15,10 @@
     /// </summary>
     [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
+    [RunsAfter(typeof(CompoundAbsorptionSystem))]
+    [RunsAfter(typeof(UnneededCompoundVentingSystem))]
+    [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
+    [RunsBefore(typeof(MicrobeMovementSystem))]
     public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");

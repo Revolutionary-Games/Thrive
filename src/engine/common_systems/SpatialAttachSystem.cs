@@ -11,6 +11,7 @@
     ///   Attaches <see cref="SpatialInstance"/> to the Godot scene and handles freeing unused spatial instances.
     ///   Must run before <see cref="SpatialPositionSystem"/>.
     /// </summary>
+    [RunsBefore(typeof(SpatialPositionSystem))]
     public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstance>
     {
         private readonly Node godotWorldRoot;

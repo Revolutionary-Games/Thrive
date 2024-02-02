@@ -19,9 +19,11 @@
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
     [With(typeof(CompoundStorage))]
+    [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
+    [RunsAfter(typeof(ProcessSystem))]
     public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

@@ -24,6 +24,7 @@
     [WritesToComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(OrganelleContainer))]
+    [RunsAfter(typeof(EngulfingSystem))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {

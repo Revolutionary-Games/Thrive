@@ -21,6 +21,8 @@
     [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(ProcessSystem))]
+    [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
