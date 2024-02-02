@@ -144,3 +144,13 @@ public class OrganellePlacedEventArgs : TutorialEventArgs
 
     public OrganelleDefinition Definition { get; }
 }
+
+public class GameWorldEventArgs : TutorialEventArgs
+{
+    public GameWorldEventArgs(GameWorld world)
+    {
+        World = world;
+    }
+
+    public GameWorld World { get; }
+}

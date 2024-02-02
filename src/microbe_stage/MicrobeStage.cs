@@ -342,7 +342,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
-                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+                new AggregateEventArgs(new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())),
+                    new GameWorldEventArgs(GameWorld)), this);
         }
         else
         {
@@ -786,8 +787,6 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void OnGameStarted()
     {
-        tutorialGUI.CurrentLifeOrigin = GameWorld.WorldSettings.Origin;
-
         patchManager.CurrentGame = CurrentGame;
 
         UpdatePatchSettings(!TutorialState.Enabled);

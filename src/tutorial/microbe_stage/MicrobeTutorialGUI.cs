@@ -76,7 +76,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath EditorButtonHighlightPath = null!;
 
 #pragma warning disable CA2213
-    private CustomWindow microbeWelcomeMessage = null!;
+    private TutorialDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
     private Control microbeMovementKeyLeft = null!;
@@ -102,9 +102,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
 
-    [Signal]
-    public delegate void SetUpGameStartDescription();
-
     public ITutorialInput? EventReceiver { get; set; }
 
     public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
@@ -117,8 +114,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public bool IsClosingAutomatically { get; set; }
 
-    public WorldGenerationSettings.LifeOrigin CurrentLifeOrigin { get; set; }
-
     public bool MicrobeWelcomeVisible
     {
         get => microbeWelcomeMessage.Visible;
@@ -129,21 +124,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
-                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Vent)
-                {
-                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_VENT");
-                }
-
-                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Panspermia)
-                {
-                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_PANSPERMIA");
-                }
-
-                if (CurrentLifeOrigin == WorldGenerationSettings.LifeOrigin.Pond)
-                {
-                    EmitSignal(nameof(SetUpGameStartDescription), "MICROBE_STAGE_INITIAL_POND");
-                }
-
                 microbeWelcomeMessage.PopupCenteredShrink();
             }
             else
@@ -440,7 +420,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomWindow>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<TutorialDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
         microbeMovementPopup = GetNode<CustomWindow>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
@@ -470,7 +450,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public override void _Process(float delta)
     {
         TutorialHelper.ProcessTutorialGUI(this, delta);
-        GD.Print(CurrentLifeOrigin);
     }
 
     public void OnClickedCloseAll()
@@ -486,6 +465,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    public void SetWelcomeTextForLifeOrigin(WorldGenerationSettings.LifeOrigin gameLifeOrigin)
+    {
+        microbeWelcomeMessage.Description = gameLifeOrigin switch
+        {
+            WorldGenerationSettings.LifeOrigin.Vent => "MICROBE_STAGE_INITIAL",
+            WorldGenerationSettings.LifeOrigin.Pond => "MICROBE_STAGE_INITIAL_POND",
+            WorldGenerationSettings.LifeOrigin.Panspermia => "MICROBE_STAGE_INITIAL_PANSPERMIA",
+            _ => throw new ArgumentOutOfRangeException(nameof(gameLifeOrigin), gameLifeOrigin,
+                "Unhandled life origin for tutorial message"),
+        };
     }
 
     protected override void Dispose(bool disposing)
@@ -533,7 +524,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     private void DummyKeepInitialTextTranslations()
     {
-        TranslationServer.Translate("MICROBE_STAGE_INITIAL_VENT");
         TranslationServer.Translate("MICROBE_STAGE_INITIAL_POND");
         TranslationServer.Translate("MICROBE_STAGE_INITIAL_PANSPERMIA");
     }
