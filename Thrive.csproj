@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\general\AggregateEventArgs.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\ConditionSet.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\IUnlockCondition.cs" />
     <Compile Include="src\microbe_stage\organelle_unlocks\WorldBasedUnlockCondition.cs" />

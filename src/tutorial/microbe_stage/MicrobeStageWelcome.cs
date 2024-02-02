@@ -1,6 +1,7 @@
 ﻿namespace Tutorial
 {
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///   A welcome popup to the stage
@@ -8,6 +9,11 @@
     public class MicrobeStageWelcome : TutorialPhase
     {
         private Action? patchNamePopup;
+
+        [JsonProperty]
+        private WorldGenerationSettings.LifeOrigin gameLifeOrigin;
+
+        private WorldGenerationSettings.LifeOrigin appliedGUILifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
 
         public MicrobeStageWelcome()
         {
@@ -18,6 +24,12 @@
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
+            if (ShownCurrently && gameLifeOrigin != appliedGUILifeOrigin)
+            {
+                gui.SetWelcomeTextForLifeOrigin(gameLifeOrigin);
+                appliedGUILifeOrigin = gameLifeOrigin;
+            }
+
             gui.MicrobeWelcomeVisible = ShownCurrently;
         }
 
@@ -28,7 +40,17 @@
             {
                 case TutorialEventType.EnteredMicrobeStage:
                 {
-                    patchNamePopup = ((CallbackEventArgs)args).Data;
+                    foreach (var eventArg in ((AggregateEventArgs)args).Args)
+                    {
+                        if (eventArg is CallbackEventArgs callbackEventArgs)
+                        {
+                            patchNamePopup = callbackEventArgs.Data;
+                        }
+                        else if (eventArg is GameWorldEventArgs gameWorldEventArgs)
+                        {
+                            gameLifeOrigin = gameWorldEventArgs.World.WorldSettings.Origin;
+                        }
+                    }
 
                     if (!HasBeenShown && CanTrigger)
                     {
