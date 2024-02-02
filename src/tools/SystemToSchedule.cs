@@ -33,6 +33,16 @@
         public int RequiresBarrierBefore;
         public int RequiresBarrierAfter;
 
+        /// <summary>
+        ///   Thread that this was simulated to run on
+        /// </summary>
+        public int ThreadId;
+
+        /// <summary>
+        ///   Timeslot this was simulated to run in
+        /// </summary>
+        public int Timeslot;
+
         private static readonly Type SystemWithAttribute = typeof(WithAttribute);
         private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
         private static readonly Type ReadsFromAttribute = typeof(ReadsComponentAttribute);
@@ -249,6 +259,31 @@
                 // Indent inside the condition
                 indent += 4;
                 closeBrace = true;
+            }
+
+            if (GenerateThreadedSystems.DebugGuardComponentWrites)
+            {
+                GenerateThreadedSystems.EnsureOneBlankLine(lineReceiver);
+
+                if (thread == -1)
+                {
+                    lineReceiver.Add(StringUtils.GetIndent(indent) +
+                        "// Omitted component check as not running multithreaded");
+                }
+                else
+                {
+                    foreach (var component in WritesComponents)
+                    {
+                        lineReceiver.Add(StringUtils.GetIndent(indent) +
+                            $"OnThreadAccessComponent(true, \"{component.Name}\",{thread});");
+                    }
+
+                    foreach (var component in ReadsComponents)
+                    {
+                        lineReceiver.Add(StringUtils.GetIndent(indent) +
+                            $"OnThreadAccessComponent(false, \"{component.Name}\",{thread});");
+                    }
+                }
             }
 
             if (CustomRunCode != null)

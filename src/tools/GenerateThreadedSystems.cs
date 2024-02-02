@@ -19,6 +19,77 @@ using File = System.IO.File;
 public class GenerateThreadedSystems : Node
 {
     public static bool MeasureThreadWaits = false;
+    public static bool DebugGuardComponentWrites = true;
+
+    private const string ThreadComponentCheckCode = @"
+        lock (debugWriteLock)
+        {
+            // Check conflict
+            bool conflict = false;
+
+            if (write)
+            {
+                // Writes conflict with reads
+                foreach (var pair in readsFromComponents)
+                {
+                    if (pair.Key == thread)
+                        continue;
+
+                    if (pair.Value.Contains(component))
+                    {
+                        GD.PrintErr(
+                            $""Conflicting component write (new is write: {write}) for {component} on "" + 
+                            $""threads {pair.Key} to {thread}"");
+                        conflict = true;
+                        break;
+                    }
+                }
+            }
+
+            // Potential conflicts with writes
+            foreach (var pair in writesToComponents)
+            {
+                if (pair.Key == thread)
+                    continue;
+
+                if (pair.Value.Contains(component))
+                {
+                    GD.PrintErr(
+                        $""Conflicting component read (new is write: {write}) for {component} on threads "" +
+                        $""{pair.Key} to {thread}"");
+                    conflict = true;
+                    break;
+                }
+            }
+
+            if (conflict)
+            {
+                Debugger.Break();
+                throw new Exception(""Conflicting component use in simulation"");
+            }
+
+            // Add this action
+            if (write)
+            {
+                if (!writesToComponents.TryGetValue(thread, out var usedComponents))
+                {
+                    usedComponents = new HashSet<string>();
+                    writesToComponents[thread] = usedComponents;
+                }
+
+                usedComponents.Add(component);
+            }
+            else
+            {
+                if (!readsFromComponents.TryGetValue(thread, out var usedComponents))
+                {
+                    usedComponents = new HashSet<string>();
+                    readsFromComponents[thread] = usedComponents;
+                }
+
+                usedComponents.Add(component);
+            }
+        }";
 
     private readonly IReadOnlyList<(Type Class, string File, string EndOfProcess)> simulationTypes =
         new List<(Type Class, string File, string EndOfProcess)>
@@ -35,12 +106,27 @@ public class GenerateThreadedSystems : Node
     {
     }
 
-    public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true)
+    public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true, bool acceptComments = true)
     {
         if (lines.Count < 1)
             return;
 
         var line = lines[lines.Count - 1];
+
+        if (acceptComments)
+        {
+            for (int i = 0; i < line.Length; ++i)
+            {
+                if (line[i] <= ' ')
+                    continue;
+
+                if (line[i] == '/' && i + 1 < line.Length && line[i + 1] == '/')
+                    return;
+
+                break;
+            }
+        }
+
         if (!string.IsNullOrWhiteSpace(line) && (!acceptBlockStart || !line.EndsWith("{")))
         {
             lines.Add(string.Empty);
@@ -146,7 +232,7 @@ public class GenerateThreadedSystems : Node
             Dictionary<string, VariableInfo> variables = new();
 
             // This destroys the other systems data so a copy is made
-            GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), processSystemTextLines, variables);
+            GenerateThreadedSystemsRun(mainSystems, otherSystems.ToList(), 2, processSystemTextLines, variables);
 
             AddProcessEndIfConfigured(processEnd, processSystemTextLines);
 
@@ -154,7 +240,7 @@ public class GenerateThreadedSystems : Node
             GenerateNonThreadedSystems(mainSystems, otherSystems, nonThreadedLines);
             AddProcessEndIfConfigured(processEnd, nonThreadedLines);
 
-            InsertNewProcessMethods(file, simulationClass.Name, processSystemTextLines, nonThreadedLines,
+            WriteGeneratedSimulationFile(file, simulationClass.Name, processSystemTextLines, nonThreadedLines,
                 frameSystemTextLines, variables);
 
             GD.Print($"Successfully handled. {file} has been updated");
@@ -162,7 +248,7 @@ public class GenerateThreadedSystems : Node
     }
 
     private void GenerateThreadedSystemsRun(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
-        List<string> processSystemTextLines, Dictionary<string, VariableInfo> variables)
+        int backgroundThreads, List<string> processSystemTextLines, Dictionary<string, VariableInfo> variables)
     {
         // Make sure main systems are sorted according to when they should run
         SortSingleGroupOfSystems(mainSystems);
@@ -244,22 +330,52 @@ public class GenerateThreadedSystems : Node
             group.GroupNumber = count++;
         }
 
-        // TODO: allow configuring more than just one background thread (and then generating plausible execution plans
-        // for different threads)
         var mainTasks = groups.SelectMany(g => g.Systems.Where(s => s.RunsOnMainThread));
         var otherTasks = groups.SelectMany(g => g.Systems.Where(s => !s.RunsOnMainThread));
 
         // Generate barrier points by simulating the executions of the separate threads
-        var simulator = new ThreadedRunSimulator(mainTasks.ToList(), otherTasks.ToList());
+        ThreadedRunSimulator simulator;
+        if (backgroundThreads > 1)
+        {
+            var otherThreads = new List<List<SystemToSchedule>>();
+
+            while (otherThreads.Count < backgroundThreads)
+            {
+                otherThreads.Add(new List<SystemToSchedule>());
+            }
+
+            int threadIndex = 0;
+
+            foreach (var otherTask in otherTasks)
+            {
+                otherThreads[threadIndex % backgroundThreads].Add(otherTask);
+
+                ++threadIndex;
+            }
+
+            var allThreads = new List<List<SystemToSchedule>>
+            {
+                mainTasks.ToList(),
+            };
+
+            foreach (var otherThread in otherThreads)
+            {
+                allThreads.Add(otherThread);
+            }
+
+            simulator = new ThreadedRunSimulator(allThreads);
+        }
+        else
+        {
+            simulator = new ThreadedRunSimulator(mainTasks.ToList(), otherTasks.ToList());
+        }
 
         simulator.Simulate();
-
-        // TODO: remove double barriers that can be removed
 
         CheckBarrierCounts(groups);
 
         // Generate the final results
-        WriteResultOfThreadedRunning(groups, processSystemTextLines, variables);
+        WriteResultOfThreadedRunning(groups, backgroundThreads + 1, processSystemTextLines, variables);
     }
 
     private void GenerateNonThreadedSystems(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
@@ -289,8 +405,7 @@ public class GenerateThreadedSystems : Node
 
     private void CheckBarrierCounts(List<ExecutionGroup> groups)
     {
-        int mainBarriers = 0;
-        int otherBarriers = 0;
+        var barrierCounts = new Dictionary<int, int>();
 
         foreach (var group in groups)
         {
@@ -299,45 +414,51 @@ public class GenerateThreadedSystems : Node
                 if (system.RequiresBarrierAfter < 0 || system.RequiresBarrierBefore < 0)
                     throw new Exception("Negative barrier amount detected");
 
-                if (system.RunsOnMainThread)
-                {
-                    mainBarriers += system.RequiresBarrierAfter + system.RequiresBarrierBefore;
-                }
-                else
-                {
-                    otherBarriers += system.RequiresBarrierAfter + system.RequiresBarrierBefore;
-                }
+                if (system.RequiresBarrierAfter == 0 && system.RequiresBarrierBefore == 0)
+                    continue;
+
+                barrierCounts.TryGetValue(system.ThreadId, out var earlier);
+
+                barrierCounts[system.ThreadId] = earlier + system.RequiresBarrierAfter + system.RequiresBarrierBefore;
             }
         }
 
-        if (mainBarriers != otherBarriers)
-            throw new Exception("Uneven barrier counts, run will get blocked");
+        var expectedCount = barrierCounts.Values.First();
+
+        foreach (var pair in barrierCounts)
+        {
+            if (pair.Value != expectedCount)
+                throw new Exception($"Uneven barrier counts ({pair.Value} != {expectedCount}), run will get blocked");
+        }
     }
 
-    private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, List<string> lineReceiver,
+    private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, int threadCount, List<string> lineReceiver,
         Dictionary<string, VariableInfo> variables)
     {
-        // TODO: make parallel task count configurable (and maybe also emit 2 variants: one for 2 threads, and one for
-        // 3)
-        int barrierMemberCount = 2;
+        int barrierMemberCount = threadCount;
 
         // Task for background operations
-        lineReceiver.Add("var background1 = new Task(() =>");
-        lineReceiver.Add($"{StringUtils.GetIndent(4)}{{");
 
-        foreach (var group in groups)
+        for (int i = 0; i < threadCount - 1; ++i)
         {
-            group.GenerateCodeThread(lineReceiver, 8, 2);
+            int threadNumber = i + 2;
+            lineReceiver.Add($"var background{i} = new Task(() =>");
+            lineReceiver.Add($"{StringUtils.GetIndent(4)}{{");
+
+            foreach (var group in groups)
+            {
+                group.GenerateCodeThread(lineReceiver, 8, threadNumber);
+            }
+
+            lineReceiver.Add(string.Empty);
+
+            AddBarrierWait(lineReceiver, 1, 2, 8);
+
+            lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
+
+            lineReceiver.Add(string.Empty);
+            lineReceiver.Add($"TaskExecutor.Instance.AddTask(background{i});");
         }
-
-        lineReceiver.Add(string.Empty);
-
-        AddBarrierWait(lineReceiver, 1, 2, 8);
-
-        lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
-
-        lineReceiver.Add(string.Empty);
-        lineReceiver.Add("TaskExecutor.Instance.AddTask(background1);");
 
         // Main thread operations
         foreach (var group in groups)
@@ -348,14 +469,22 @@ public class GenerateThreadedSystems : Node
         lineReceiver.Add(string.Empty);
         AddBarrierWait(lineReceiver, 1, 1, 0);
 
-        variables["barrier1"] = new VariableInfo("Barrier", true, $"new({barrierMemberCount})")
+        variables["barrier1"] = new VariableInfo("Barrier", !DebugGuardComponentWrites, $"new({barrierMemberCount})")
         {
             Dispose = true,
+            OriginalConstructorParameters = barrierMemberCount.ToString(),
         };
+
+        if (DebugGuardComponentWrites)
+        {
+            variables["debugWriteLock"] = new VariableInfo("object", true);
+            variables["readsFromComponents"] = new VariableInfo("Dictionary<int, HashSet<string>>", true);
+            variables["writesToComponents"] = new VariableInfo("Dictionary<int, HashSet<string>>", true);
+        }
 
         if (MeasureThreadWaits)
         {
-            GenerateTimeMeasurementResultsCode(lineReceiver, variables, 2);
+            GenerateTimeMeasurementResultsCode(lineReceiver, variables, threadCount);
         }
     }
 
@@ -588,7 +717,7 @@ public class GenerateThreadedSystems : Node
         return (main, other);
     }
 
-    private void InsertNewProcessMethods(string file, string className, List<string> process,
+    private void WriteGeneratedSimulationFile(string file, string className, List<string> process,
         List<string> processNonThreaded, List<string> processFrame, Dictionary<string, VariableInfo> variables)
     {
         GD.Print($"Updating simulation class partial in {file}");
@@ -602,13 +731,19 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine("// Automatically generated file. DO NOT EDIT!");
         writer.WriteLine("// Run GenerateThreadedSystems to generate this file");
 
-        if (MeasureThreadWaits)
+        if (DebugGuardComponentWrites)
+        {
+            writer.WriteLine("using System;");
+            writer.WriteLine("using System.Collections.Generic;");
+        }
+
+        if (MeasureThreadWaits || DebugGuardComponentWrites)
             writer.WriteLine("using System.Diagnostics;");
 
         writer.WriteLine("using System.Threading;");
         writer.WriteLine("using System.Threading.Tasks;");
 
-        if (MeasureThreadWaits)
+        if (MeasureThreadWaits || DebugGuardComponentWrites)
             writer.WriteLine("using Godot;");
 
         writer.WriteLine();
@@ -619,7 +754,7 @@ public class GenerateThreadedSystems : Node
         indent += 4;
         bool addedVariables = false;
 
-        foreach (var pair in variables)
+        foreach (var pair in variables.OrderByDescending(p => p.Value.IsReadonly))
         {
             var info = pair.Value;
 
@@ -634,6 +769,27 @@ public class GenerateThreadedSystems : Node
         if (addedVariables)
             writer.WriteLine();
 
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void InitGenerated()");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        indent += 4;
+
+        if (DebugGuardComponentWrites)
+        {
+            foreach (var variable in variables)
+            {
+                if (variable.Value.Type != "Barrier")
+                    continue;
+
+                writer.WriteLine(StringUtils.GetIndent(indent) +
+                    $"{variable.Key} = new Barrier({variable.Value.OriginalConstructorParameters}, " +
+                    "OnBarrierPhaseCompleted);");
+            }
+        }
+
+        indent -= 4;
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+
+        writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFixedWith3Threads(float delta)");
         indent = WriteBlockContents(writer, process, indent);
 
@@ -644,6 +800,11 @@ public class GenerateThreadedSystems : Node
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogic(float delta)");
         indent = WriteBlockContents(writer, processFrame, indent);
+
+        if (DebugGuardComponentWrites)
+        {
+            indent = WriteWriteCheckHelperMethods(writer, indent);
+        }
 
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) + "private void DisposeGenerated()");
@@ -667,6 +828,64 @@ public class GenerateThreadedSystems : Node
 
         if (indent != 0)
             throw new Exception("Writer didn't end closing all indents");
+    }
+
+    private int WriteWriteCheckHelperMethods(StreamWriter writer, int indent)
+    {
+        // Clear method after complete phase
+        writer.WriteLine();
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnBarrierPhaseCompleted(Barrier barrier)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        indent += 4;
+
+        writer.WriteLine(StringUtils.GetIndent(indent) + "lock (debugWriteLock)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        indent += 4;
+
+        writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in readsFromComponents)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+
+        writer.WriteLine();
+        writer.WriteLine(StringUtils.GetIndent(indent) + "foreach (var entry in writesToComponents)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        writer.WriteLine(StringUtils.GetIndent(indent + 4) + "entry.Value.Clear();");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+
+        indent -= 4;
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+
+        indent -= 4;
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+
+        // Check method
+        writer.WriteLine();
+        writer.WriteLine(StringUtils.GetIndent(indent) +
+            "private void OnThreadAccessComponent(bool write, string component, int thread)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "{");
+        indent += 4;
+
+        bool firstBlank = true;
+
+        foreach (var line in ThreadComponentCheckCode.Split('\n'))
+        {
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                if (!firstBlank)
+                    writer.WriteLine();
+
+                firstBlank = false;
+                continue;
+            }
+
+            // The code is indented here in the source code so a substring is taken to replace the indent sizes
+            writer.WriteLine(StringUtils.GetIndent(indent) + line.Substring(8));
+        }
+
+        indent -= 4;
+        writer.WriteLine(StringUtils.GetIndent(indent) + "}");
+        return indent;
     }
 
     private int WriteBlockContents(StreamWriter writer, List<string> lines, int indent)
@@ -706,8 +925,8 @@ public class GenerateThreadedSystems : Node
             if (thread < 2)
                 throw new ArgumentException("Threads should have a valid thread id (above main thread id)");
 
-            Write(lineReceiver, $"// Execution group {GroupNumber}", indent,
-                Systems.Where(s => !s.RunsOnMainThread), thread);
+            Write(lineReceiver, $"// Execution group {GroupNumber} on thread {thread}", indent,
+                Systems.Where(s => s.ThreadId == thread), thread);
         }
 
         private void Write(List<string> lineReceiver, string comment, int indent,
@@ -735,6 +954,8 @@ public class GenerateThreadedSystems : Node
         public string? Initializer;
         public bool IsReadonly;
         public bool Dispose;
+
+        public string? OriginalConstructorParameters;
 
         public VariableInfo(string type, bool isReadonly, string? initializer = "new()")
         {

@@ -5,7 +5,15 @@ using System.Threading.Tasks;
 
 public partial class MicrobeWorldSimulation
 {
-    private readonly Barrier barrier1 = new(2);
+    private readonly object debugWriteLock = new();
+    private readonly Dictionary<int, HashSet<string>> readsFromComponents = new();
+    private readonly Dictionary<int, HashSet<string>> writesToComponents = new();
+    private Barrier barrier1 = new(3);
+
+    private void InitGenerated()
+    {
+        barrier1 = new Barrier(3, OnBarrierPhaseCompleted);
+    }
 
     private void OnProcessFixedWith3Threads(float delta)
     {

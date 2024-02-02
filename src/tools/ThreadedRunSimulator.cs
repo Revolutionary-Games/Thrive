@@ -38,6 +38,8 @@
 
             int deadlockCounter = 0;
 
+            var doneThreads = new HashSet<Thread>();
+
             // Create time steps until all threads are done
             while (true)
             {
@@ -45,11 +47,15 @@
                 bool systemsActive = false;
 
                 ++deadlockCounter;
+                doneThreads.Clear();
 
                 foreach (var thread in threads)
                 {
                     if (thread.Done)
+                    {
+                        doneThreads.Add(thread);
                         continue;
+                    }
 
                     threadsActive = true;
 
@@ -78,7 +84,7 @@
                 if (!systemsActive)
                 {
                     // Time to move to a new timeslot
-                    currentTimeslot = currentTimeslot.StartNextTimeslot();
+                    currentTimeslot = currentTimeslot.StartNextTimeslot(doneThreads);
                 }
             }
 
@@ -102,7 +108,12 @@
                 foreach (var thread in threads)
                 {
                     if (thread.Done)
+                    {
+                        // TODO: should finished threads not be taken into account and allowing other threads to remove
+                        // double barriers
+                        doubleBarrierMissing = true;
                         continue;
+                    }
 
                     completed = false;
 
@@ -116,12 +127,23 @@
                     }
                 }
 
-                if (hasDoubleBarriers && !doubleBarrierMissing)
+                if (hasDoubleBarriers)
                 {
-                    // Can remove a double barrier
-                    foreach (var thread in threads)
+                    if (!doubleBarrierMissing)
                     {
-                        thread.RemoveDoubleBarrier();
+                        // Can remove a double barrier
+                        foreach (var thread in threads)
+                        {
+                            thread.RemoveDoubleBarrier();
+                        }
+                    }
+                    else
+                    {
+                        // Only some threads could remove a barrier, step threads forward to skip this location
+                        foreach (var thread in threads)
+                        {
+                            thread.Step();
+                        }
                     }
                 }
                 else if (completed)
@@ -260,13 +282,18 @@
                     threadWrites.Add(component);
                 }
 
+                systemToSchedule.Timeslot = time;
+
                 // Current system from thread is ran, step it to the next system
                 thread.Step();
             }
 
-            public Timeslot StartNextTimeslot()
+            public Timeslot StartNextTimeslot(IReadOnlyCollection<Thread> doneThreads)
             {
                 AddThreadBarrierForUnblockedThreads();
+
+                if (doneThreads.Count > 0)
+                    AddBarriersForEarlyExitedThreads(doneThreads);
 
                 var nextSlot = new Timeslot(time + 1);
 
@@ -306,6 +333,28 @@
                     ++system.RequiresBarrierAfter;
                 }
             }
+
+            /// <summary>
+            ///   To keep barrier counts in sync, threads that have ran out of work still need to trigger all the
+            ///   barriers
+            /// </summary>
+            /// <param name="doneThreads">Threads that are complete</param>
+            private void AddBarriersForEarlyExitedThreads(IReadOnlyCollection<Thread> doneThreads)
+            {
+                foreach (var doneThread in doneThreads)
+                {
+                    if (runSystems.ContainsKey(doneThread))
+                    {
+                        // A thread was able to run a system before completing
+                        continue;
+                    }
+
+                    if (threadsToResumeNextTimeslot.Contains(doneThread))
+                        continue;
+
+                    doneThread.AddDummyBarrierAtEnd();
+                }
+            }
         }
 
         private class Thread
@@ -323,6 +372,11 @@
 
                 this.threadTasks = threadTasks;
                 ThreadId = threadId;
+
+                foreach (var systemToSchedule in threadTasks)
+                {
+                    systemToSchedule.ThreadId = ThreadId;
+                }
             }
 
             public bool Done => executionIndex >= threadTasks.Count;
@@ -439,6 +493,11 @@
                 {
                     throw new InvalidOperationException("Couldn't find the double barrier to remove");
                 }
+            }
+
+            public void AddDummyBarrierAtEnd()
+            {
+                ++threadTasks[threadTasks.Count - 1].RequiresBarrierAfter;
             }
 
             public override string ToString()

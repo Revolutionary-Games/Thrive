@@ -132,6 +132,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     /// </param>
     public void Init(Node visualDisplayRoot, CompoundCloudSystem cloudSystem)
     {
+        InitGenerated();
         ResolveNodeReferences();
 
         visualsParent = visualDisplayRoot;
