@@ -336,6 +336,10 @@ If you have nuget in path or you use the Visual Studio command prompt
 you should also be able to restore the packages by running `nuget
 restore` in the Thrive folder.
 
+If there are any errors about missing .csproj files at this point,
+run: `git submodule update --init` to ensure the files coming from
+submodules should all be up to date.
+
 Compiling
 ---------
 
@@ -582,7 +586,7 @@ files to check.
 
 ## Additional Tips
 
-### Build or script running fails
+### Build or script running fails (or nuget restore fails)
 
 First make sure your submodules are up to date:
 ```sh
@@ -603,6 +607,18 @@ If you get errors from any files in the Scripts folder, for example
 `Thrive\Scripts\Program.cs`, then you likely have an outdated version
 of the submodules. Running the above submodule update command should
 fix these kind of errors as well.
+
+### The project file was not found
+
+If you get errors like "The project file ... ScriptsBase.csproj was
+not found", then that is probably caused by git submodules not being
+initialized or being not up to date. Run `git submodule update --init`
+to fix the issue in the cloned folder on your computer. 
+
+Also if you get any other error when trying to restore the nuget
+packages, it might also be caused by the submodules. And the third way
+to get this error is likely when trying to run the scripts in the
+repository without again having the submodules be up to date.
 
 ### Godot asset import fails / images can't be opened
 
