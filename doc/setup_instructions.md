@@ -120,7 +120,7 @@ installing a development environment is the easier route.
 
 Godot currently supports the following development environments:
 
-- Visual Studio 2019
+- Visual Studio 2022
 - Visual Studio Code
 - JetBrains Rider
 - MonoDevelop
@@ -160,11 +160,11 @@ you can also change the build tools used by Rider.
 
 For better experience make sure to install the Godot plugin for Rider.
 
-### Visual Studio 2019
+### Visual Studio 2022
 
-On Windows you can use Visual Studio 2019 to work on Thrive. You can
+On Windows you can use Visual Studio 2022 to work on Thrive. You can
 find download and setup instructions here:
-https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-vs-2019-for-debugging
+https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html#configuring-an-external-editor
 
 ### Visual Studio Code
 
@@ -175,7 +175,7 @@ Visual Studio Code, not to be confused with Visual Studio, doesn't
 come with build tools, so you'll need to install the build tools for
 Visual Studio from here:
 https://visualstudio.microsoft.com/downloads/?q=build+tools You will
-need **at least** VS Build tools 2019 due to the version of C# used by
+need **at least** VS Build tools 2022 due to the version of C# used by
 Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
@@ -632,8 +632,8 @@ then see the section below about cleaning Godot.
 If Godot still can't build the full game after following the
 instructions, you should verify that it's using the proper toolset. Go
 to Editor > Editor Settings > Builds under Mono in the panel on the
-left. For VS2019, you should select MSBuild (VS Build Tools) for the
-build tool option, if it isn't already.
+left. For VS2019 and later, you should select MSBuild (VS Build Tools)
+for the build tool option, if it isn't already.
 
 ### Build problems with unsupported C# version
 
