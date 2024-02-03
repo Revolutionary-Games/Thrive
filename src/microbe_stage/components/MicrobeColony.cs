@@ -807,7 +807,7 @@
             }
 
             // Clear queued slime jet force
-            addedEntity.Get<MicrobeControl>().QueuedSlimeSecretionTime = 0;
+            control.QueuedSlimeSecretionTime = 0;
 
             ReportReproductionStatusOnAddToColony(addedEntity);
         }
