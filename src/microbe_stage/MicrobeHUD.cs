@@ -31,11 +31,20 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     public NodePath UnbindAllHotkeyPath = null!;
 
     [Export]
-    public Color StrainColor;
+    public NodePath StrainBarPanelPath = null!;
+
+    [Export]
+    public NodePath StrainBarPath = null!;
+
+    [Export]
+    public NodePath StrainBarFadeAnimationPlayerPath = null!;
 
 #pragma warning disable CA2213
     [Export]
     public PackedScene WinBoxScene = null!;
+
+    [Export]
+    public Gradient StrainGradient = null!;
 
     // These are category keys for MouseHoverPanel
     private const string COMPOUNDS_CATEGORY = "compounds";
@@ -55,9 +64,11 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private ProgressBar ingestedMatterBar = null!;
 
-    private CustomWindow? winBox;
+    private PanelContainer strainBarPanel = null!;
+    private ProgressBar strainBar = null!;
+    private AnimationPlayer strainBarFadeAnimationPlayer = null!;
 
-    private Gradient strainGradient = null!;
+    private CustomWindow? winBox;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -108,6 +119,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
         unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
 
+        strainBarPanel = GetNode<PanelContainer>(StrainBarPanelPath);
+        strainBar = GetNode<ProgressBar>(StrainBarPath);
+        strainBarFadeAnimationPlayer = GetNode<AnimationPlayer>(StrainBarFadeAnimationPlayerPath);
+
         mouseHoverPanel.AddCategory(COMPOUNDS_CATEGORY, new LocalizedString("COMPOUNDS_COLON"));
         mouseHoverPanel.AddCategory(SPECIES_CATEGORY, new LocalizedString("SPECIES_COLON"));
         mouseHoverPanel.AddCategory(FLOATING_CHUNKS_CATEGORY, new LocalizedString("FLOATING_CHUNKS_COLON"));
@@ -122,17 +137,6 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
-
-        strainGradient = new()
-        {
-            Colors = new[]
-            {
-                atpBar.TintProgress,
-                StrainColor,
-            },
-        };
-
-        strainGradient.InterpolationMode = Gradient.InterpolationModeEnum.Linear;
     }
 
     public override void _Process(float delta)
@@ -541,6 +545,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 IngestedMatterBarPath.Dispose();
                 BindingModeHotkeyPath.Dispose();
                 UnbindAllHotkeyPath.Dispose();
+                StrainBarPanelPath.Dispose();
+                StrainBarPath.Dispose();
+                StrainBarFadeAnimationPlayerPath.Dispose();
             }
         }
 
@@ -550,8 +557,41 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private void UpdateStrain(Entity player)
     {
         var strainFraction = player.Get<MicrobeControl>().CalculateStrainFraction();
+        atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
 
-        atpBar.TintProgress = strainGradient.Interpolate(strainFraction);
+        strainBar.Value = strainFraction;
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            case Settings.StrainBarVisibility.Off:
+                strainBarPanel.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                AnimateStrainPanel(strainFraction, 0.65f);
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                AnimateStrainPanel(strainFraction, 0.05f);
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBarPanel.Show();
+                break;
+        }
+    }
+
+    private void AnimateStrainPanel(float strainFraction, float minimum)
+    {
+        var shouldBeVisible = strainFraction >= minimum;
+
+        GD.Print(shouldBeVisible + "/" + strainBarPanel.Visible);
+
+        if (!strainBarPanel.Visible && shouldBeVisible)
+        {
+            strainBarFadeAnimationPlayer.Play("FadeIn");
+        }
+        else if (strainBarPanel.Visible && !shouldBeVisible)
+        {
+            strainBarFadeAnimationPlayer.Play("FadeOut");
+        }
     }
 
     private void OnRadialItemSelected(int itemId)

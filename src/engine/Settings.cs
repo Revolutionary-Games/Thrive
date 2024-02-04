@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -34,6 +35,21 @@ public class Settings
         // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
+    }
+
+    public enum StrainBarVisibility
+    {
+        [Description("STRAIN_BAR_VISIBILITY_OFF")]
+        Off = 0,
+
+        [Description("STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL")]
+        VisibleWhenCloseToFull = 2,
+
+        [Description("STRAIN_BAR_VISIBILITY_OVER_ZERO")]
+        VisibleWhenOverZero = 1,
+
+        [Description("STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE")]
+        AlwaysVisible = 3,
     }
 
     public static Settings Instance => SingletonInstance;
@@ -488,6 +504,10 @@ public class Settings
         Constants.CONTROLLER_DEFAULT_DEADZONE,
         Constants.CONTROLLER_DEFAULT_DEADZONE,
     });
+
+    // Gameplay and Accessibility settings
+
+    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } = new(StrainBarVisibility.VisibleWhenCloseToFull);
 
     // Settings that are edited from elsewhere than the main options menu
     [JsonProperty]

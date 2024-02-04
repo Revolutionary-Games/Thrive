@@ -23,7 +23,7 @@
         {
             ref var control = ref entity.Get<MicrobeControl>();
 
-            if (control.Sprinting)
+            if (control.Sprinting && control.MovementDirection != Vector3.Zero)
             {
                 control.CurrentStrain += Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
 
@@ -41,6 +41,7 @@
                 else
                 {
                     control.StrainDecreaseCooldown -= delta;
+                    control.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / 3.0f;
                 }
 
                 if (control.CurrentStrain < 0)

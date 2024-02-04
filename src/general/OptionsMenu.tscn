@@ -64,6 +64,7 @@ ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/V
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/ChromaticToggle")
 ControllerPromptTypePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType")
+StrainBarVisibilityModePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarVisibility")
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar")
 DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle")
@@ -261,7 +262,7 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer"]
 margin_right = 712.0
-margin_bottom = 625.0
+margin_bottom = 660.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -269,7 +270,7 @@ custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer"]
 margin_right = 702.0
-margin_bottom = 615.0
+margin_bottom = 650.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -616,10 +617,31 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="HBoxContainer11" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 520.0
-margin_right = 247.0
+margin_right = 702.0
 margin_bottom = 545.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+margin_right = 287.0
+margin_bottom = 25.0
+text = "STRAIN_BAR_VISIBILITY_MODE"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+margin_left = 291.0
+margin_right = 664.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="StrainBarVisibility" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+margin_left = 668.0
+margin_right = 702.0
+margin_bottom = 25.0
+
+[node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 555.0
+margin_right = 247.0
+margin_bottom = 580.0
 rect_pivot_offset = Vector2( -621, -95 )
 focus_neighbour_top = NodePath("../HBoxContainer10/ControllerPromptType")
 size_flags_horizontal = 0
@@ -627,17 +649,17 @@ pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 555.0
+margin_top = 590.0
 margin_right = 300.0
-margin_bottom = 580.0
+margin_bottom = 615.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="DisplayPartNamesToggle" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 590.0
+margin_top = 625.0
 margin_right = 238.0
-margin_bottom = 615.0
+margin_bottom = 650.0
 focus_neighbour_bottom = NodePath("../../../../../../../HBoxContainer/Back")
 focus_next = NodePath("../../../../../../../HBoxContainer/Back")
 size_flags_horizontal = 0
@@ -2317,6 +2339,7 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType" to="." method="OnControllerTypeSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11/StrainBarVisibility" to="." method="OnStrainBarVisibilityModeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayPartNamesToggle" to="." method="OnDisplayPartNamesToggled"]

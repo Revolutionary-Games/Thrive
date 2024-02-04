@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -78,6 +79,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath ControllerPromptTypePath = null!;
+
+    [Export]
+    public NodePath StrainBarVisibilityModePath = null!;
 
     [Export]
     public NodePath DisplayAbilitiesBarTogglePath = null!;
@@ -355,6 +359,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
     private OptionButton controllerPromptType = null!;
+    private OptionButton strainBarVisibilityMode = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
@@ -501,6 +506,12 @@ public class OptionsMenu : ControlWithInput
     {
         ResolveNodeReferences(true);
 
+        foreach (var mode in typeof(Settings.StrainBarVisibility).GetEnumValues().Cast<Settings.StrainBarVisibility>())
+        {
+            strainBarVisibilityMode.AddItem(
+                TranslationServer.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
+        }
+
         if (IsVisibleInTree())
         {
             GD.Print("Immediately loading options menu items as it is visible in _Ready");
@@ -560,6 +571,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         controllerPromptType = GetNode<OptionButton>(ControllerPromptTypePath);
+        strainBarVisibilityMode = GetNode<OptionButton>(StrainBarVisibilityModePath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
@@ -768,6 +780,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
+        strainBarVisibilityMode.Selected = (int)settings.StrainBarVisibilityMode.Value;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
@@ -921,6 +934,7 @@ public class OptionsMenu : ControlWithInput
                 ChromaticAberrationSliderPath.Dispose();
                 ChromaticAberrationTogglePath.Dispose();
                 ControllerPromptTypePath.Dispose();
+                StrainBarVisibilityModePath.Dispose();
                 DisplayAbilitiesBarTogglePath.Dispose();
                 DisplayBackgroundParticlesTogglePath.Dispose();
                 GUILightEffectsTogglePath.Dispose();
@@ -1885,6 +1899,13 @@ public class OptionsMenu : ControlWithInput
     private void OnControllerTypeSelected(int index)
     {
         Settings.Instance.ControllerPromptType.Value = ControllerIndexToPromptType(index);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnStrainBarVisibilityModeSelected(int index)
+    {
+        Settings.Instance.StrainBarVisibilityMode.Value = (Settings.StrainBarVisibility)index;
 
         UpdateResetSaveButtonState();
     }

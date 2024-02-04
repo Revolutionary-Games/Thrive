@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -64,6 +64,108 @@
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=70]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=71]
 [ext_resource path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" type="Texture" id=72]
+
+[sub_resource type="Gradient" id=47]
+offsets = PoolRealArray( 0, 0.65, 0.9 )
+colors = PoolColorArray( 0.439216, 0.956863, 0.137255, 1, 1, 1, 0, 1, 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 1, 1, 0, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.0509804, 0.133333, 0.141176, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Animation" id=50]
+resource_name = "FadeIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrainBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StrainBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.129412, 0.141176, 0.784314 )
@@ -487,14 +589,71 @@ MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic"
 IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsGroup/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
-StrainColor = Color( 1, 1, 0, 1 )
+StrainBarPanelPath = NodePath("Top/StrainBar")
+StrainBarPath = NodePath("Top/StrainBar/HBoxContainer/ProgressBar")
+StrainBarFadeAnimationPlayerPath = NodePath("Top/StrainBarFadeAnimationPlayer")
 WinBoxScene = ExtResource( 53 )
+StrainGradient = SubResource( 47 )
+
+[node name="Top" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 0.02
+margin_left = -300.0
+margin_right = 300.0
+margin_bottom = 20.0
+grow_horizontal = 2
+rect_min_size = Vector2( 600, 20 )
+
+[node name="StrainBar" type="PanelContainer" parent="Top"]
+margin_right = 600.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/StrainBar"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 599.0
+margin_bottom = 19.0
+
+[node name="Control2" type="Control" parent="Top/StrainBar/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Top/StrainBar/HBoxContainer"]
+margin_left = 34.0
+margin_top = 4.0
+margin_right = 564.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/fg = SubResource( 48 )
+custom_styles/bg = SubResource( 49 )
+max_value = 0.9
+step = 0.001
+value = 0.45
+percent_visible = false
+
+[node name="Control" type="Control" parent="Top/StrainBar/HBoxContainer"]
+margin_left = 568.0
+margin_right = 598.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="StrainBarFadeAnimationPlayer" type="AnimationPlayer" parent="Top"]
+anims/FadeIn = SubResource( 50 )
+anims/FadeOut = SubResource( 52 )
+anims/RESET = SubResource( 51 )
 
 [node name="TopRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -260.0
+margin_left = 767.0
 margin_bottom = -641.0
 grow_horizontal = 0
 mouse_filter = 2
