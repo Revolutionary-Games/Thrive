@@ -1,5 +1,4 @@
-[gd_scene load_steps=108 format=2]
-
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -12,6 +11,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/actions/EngulfEject.png" type="Texture" id=12]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=15]
@@ -2095,7 +2095,6 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2104,6 +2103,7 @@ __meta__ = {
 }
 
 [node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 252.0
@@ -2144,7 +2144,7 @@ hint_tooltip = "EJECT_ENGULFED_TOOLTIP"
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 46 )
-ActionIcon = ExtResource( 7 )
+ActionIcon = ExtResource( 12 )
 ActionName = "g_eject_engulfed"
 
 [node name="FireToxin" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]

@@ -46,6 +46,7 @@ public partial class MicrobeWorldSimulation
 
                 microbeEmissionSystem.Update(delta);
                 slimeSlowdownSystem.Update(delta);
+                strainSystem.Update(delta);
                 microbeMovementSystem.Update(delta);
 
                 // Execution group 7 on thread 2
@@ -167,6 +168,7 @@ public partial class MicrobeWorldSimulation
             microbeAI.Update(delta);
         }
 
+        strainSystem.Update(delta);
         microbeEmissionSystem.Update(delta);
         slimeSlowdownSystem.Update(delta);
         microbeMovementSystem.Update(delta);
