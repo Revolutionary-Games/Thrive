@@ -12,20 +12,29 @@
 
 // clang-format off
 #define THRIVE_LIBRARY_VERSION @NATIVE_LIBRARY_VERSION@
+#define EARLY_CHECK_LIBRARY_VERSION @EARLY_CHECK_LIBRARY_VERSION@
 // clang-format on
 
+#ifdef WIN32
+#define API_EXPORT __declspec(dllexport)
+#define API_IMPORT __declspec(dllimport)
+#else
+#define API_EXPORT __attribute__((visibility("default")))
+// TODO: is the following necessary?
+#define API_IMPORT __attribute__((visibility("default")))
+#endif // WIN32
+
 #ifdef THRIVE_NATIVE_BUILD
-#ifdef WIN32
-#define THRIVE_NATIVE_API __declspec(dllexport)
+#define THRIVE_NATIVE_API API_EXPORT
 #else
-#define THRIVE_NATIVE_API __attribute__((visibility("default")))
-#endif // WIN32
+#define THRIVE_NATIVE_API API_IMPORT
+#endif // THRIVE_NATIVE_BUILD
+
+// Equivalent of the above macro block for the early check library
+#ifdef EARLY_CHECK_BUILD
+#define EARLY_NATIVE_API API_EXPORT
 #else
-#ifdef WIN32
-#define THRIVE_NATIVE_API __declspec(dllimport)
-#else
-#define THRIVE_NATIVE_API __attribute__((visibility("default")))
-#endif // WIN32
+#define EARLY_NATIVE_API API_IMPORT
 #endif // THRIVE_NATIVE_BUILD
 
 #cmakedefine USE_OBJECT_POOLS
@@ -106,7 +115,7 @@
 #include <csignal>
 #else
 #include <signal.h>
-#endif
+#endif // __cplusplus
 
 #ifndef DEBUG_BREAK
 #ifdef __cplusplus
@@ -116,14 +125,14 @@
         LOG_WRITE(__FILE__ ":" + std::to_string(__LINE__));       \
         std::raise(SIGINT);                                       \
     }
-#endif
 #else
 #define DEBUG_BREAK                                               \
     {                                                             \
         raise(SIGINT);                                            \
     }
 #endif
-#endif
+#endif // DEBUG_BREAK
+#endif // _WIN32
 
 // This is needed to allow including this in the C interop header
 #ifdef __cplusplus

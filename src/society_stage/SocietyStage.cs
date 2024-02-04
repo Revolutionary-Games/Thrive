@@ -51,6 +51,8 @@ public class SocietyStage : StrategyStageBase, ISocietyStructureDataAccess,
     [JsonIgnore]
     public IResourceContainer SocietyResources => resourceStorage;
 
+    public override MainGameState GameState => MainGameState.SocietyStage;
+
     [JsonIgnore]
     protected override IStrategyStageHUD BaseHUD => HUD;
 

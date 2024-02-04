@@ -4,6 +4,11 @@
 [CustomizedRegistryType]
 public class CustomDifficulty : IDifficulty
 {
+    private bool applyGrowthOverride;
+    private bool growthLimitOverride;
+
+    private bool limitGrowthRate;
+
     public float MPMultiplier { get; set; }
     public float AIMutationMultiplier { get; set; }
     public float CompoundDensity { get; set; }
@@ -12,6 +17,30 @@ public class CustomDifficulty : IDifficulty
     public float OsmoregulationMultiplier { get; set; }
     public bool FreeGlucoseCloud { get; set; }
     public bool PassiveReproduction { get; set; }
-    public bool LimitGrowthRate { get; set; }
+
+    public bool LimitGrowthRate
+    {
+        get
+        {
+            if (applyGrowthOverride)
+                return growthLimitOverride;
+
+            return limitGrowthRate;
+        }
+        set => limitGrowthRate = value;
+    }
+
     public FogOfWarMode FogOfWarMode { get; set; }
+    public bool OrganelleUnlocksEnabled { get; set; }
+
+    public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
+    {
+        applyGrowthOverride = true;
+        growthLimitOverride = newLimitSetting;
+    }
+
+    public void ClearGrowthRateLimitOverride()
+    {
+        applyGrowthOverride = false;
+    }
 }

@@ -11,6 +11,9 @@
     ///   Fetches the materials for <see cref="EntityMaterial"/> that have auto fetch on
     /// </summary>
     [With(typeof(EntityMaterial))]
+    [ReadsComponent(typeof(SpatialInstance))]
+    [RunsAfter(typeof(PathBasedSceneLoader))]
+    [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
     [RunsOnMainThread]
     public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
     {

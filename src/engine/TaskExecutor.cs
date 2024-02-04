@@ -17,6 +17,8 @@ using Thread = System.Threading.Thread;
 public class TaskExecutor : IParallelRunner
 #pragma warning restore CA1001
 {
+    private const int ThreadSleepAfterNoWorkFor = 160;
+
     private static readonly TaskExecutor SingletonInstance = new();
 
     private readonly object threadNotifySync = new();
@@ -191,14 +193,14 @@ public class TaskExecutor : IParallelRunner
     }
 
     /// <summary>
-    ///   Runs an ECS library runnable on the main thread and the available executors
+    ///   Runs an ECS library runnable on the current thread and the available executors (waits for all ECS runnables
+    ///   to complete, even from other threads)
     /// </summary>
     public void Run(IParallelRunnable runnable)
     {
         int maxIndex = DegreeOfParallelism - 1;
 
-        if (Interlocked.Exchange(ref queuedParallelRunnableCount, maxIndex) != 0)
-            throw new Exception("TaskExecutor got into an inconsistent state while running ParallelRunnable tasks");
+        Interlocked.Add(ref queuedParallelRunnableCount, maxIndex);
 
         for (int i = 0; i < maxIndex; ++i)
         {
@@ -207,8 +209,12 @@ public class TaskExecutor : IParallelRunner
 
         NotifyNewTasksAdded(maxIndex);
 
-        // Main thread runs at the max index
+        // Current thread runs at the max index
         runnable.Run(maxIndex, maxIndex);
+
+        // If only ran on the main thread can exit early, no need to try to wait
+        if (maxIndex < 1)
+            return;
 
         Interlocked.MemoryBarrier();
 
@@ -221,8 +227,8 @@ public class TaskExecutor : IParallelRunner
         }
 
 #if DEBUG
-        if (queuedParallelRunnableCount != 0)
-            throw new Exception("After waiting for parallel runnables count got out of sync");
+        if (queuedParallelRunnableCount < 0)
+            throw new Exception("After waiting for parallel runnables count got negative");
 #endif
     }
 
@@ -429,11 +435,11 @@ public class TaskExecutor : IParallelRunner
         while (running)
         {
             // Wait a bit before going to sleep
-            if (noWorkCounter > 1000)
+            if (noWorkCounter > ThreadSleepAfterNoWorkFor)
             {
                 lock (threadNotifySync)
                 {
-                    Monitor.Wait(threadNotifySync, 5);
+                    Monitor.Wait(threadNotifySync, 10);
                 }
             }
 

@@ -17,6 +17,7 @@
     [With(typeof(OrganelleContainer))]
     [RunsOnMainThread]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
+    [RunsAfter(typeof(EntityMaterialFetchSystem))]
     public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
     {
         private readonly List<ShaderMaterial> tempMaterialsList = new();

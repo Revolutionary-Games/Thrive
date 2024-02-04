@@ -157,6 +157,9 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     public NodePath FireToxinHotkeyPath = null!;
 
     [Export]
+    public NodePath EjectEngulfedHotkeyPath = null!;
+
+    [Export]
     public NodePath BottomLeftBarPath = null!;
 
     [Export]
@@ -218,6 +221,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected ActionButton sprintHotkey = null!;
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
+    protected ActionButton ejectEngulfedHotkey = null!;
     protected ActionButton signalingAgentsHotkey = null!;
 
     protected ProgressBar oxygenBar = null!;
@@ -410,6 +414,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         secreteSlimeHotkey = GetNode<ActionButton>(SecreteSlimeHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
+        ejectEngulfedHotkey = GetNode<ActionButton>(EjectEngulfedHotkeyPath);
         signalingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
@@ -680,6 +685,11 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     ///   Creates and displays a fossilisation button above each on-screen organism.
     /// </summary>
     public abstract void ShowFossilisationButtons();
+
+    /// <summary>
+    ///   Updates all fossilisation buttons' status of fossilisation
+    /// </summary>
+    public abstract void UpdateFossilisationButtonStates();
 
     /// <summary>
     ///   Destroys all fossilisation buttons on screen.
@@ -1047,18 +1057,20 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected abstract void UpdateAbilitiesHotBar();
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool sprintOn)
+        bool showingSignaling, bool engulfOn, bool sprintOn, bool showEject)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
+        ejectEngulfedHotkey.Visible = showEject;
 
         sprintHotkey.Pressed = sprintOn;
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         secreteSlimeHotkey.Pressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
         signalingAgentsHotkey.Pressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
+        ejectEngulfedHotkey.Pressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
     }
 
     protected void OpenMenu()
@@ -1135,6 +1147,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
                 HotBarPath.Dispose();
                 SprintHotkeyPath.Dispose();
                 EngulfHotkeyPath.Dispose();
+                EjectEngulfedHotkeyPath.Dispose();
                 SecreteSlimeHotkeyPath.Dispose();
                 SignallingAgentsHotkeyPath.Dispose();
                 MicrobeControlRadialPath.Dispose();
@@ -1307,7 +1320,7 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
 
     private void StatisticsButtonPressed()
     {
-        menu.OpenToStatistics();
+        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void OnEditorButtonMouseEnter()

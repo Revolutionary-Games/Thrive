@@ -16,29 +16,45 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        var result = CommandLineHelpers.CreateParser()
-            .ParseArguments<CheckOptions, NativeLibOptions, TestOptions, ChangesOptions, LocalizationOptions,
-                CleanupOptions,
-                PackageOptions, UploadOptions, ContainerOptions, SteamOptions, GodotTemplateOptions,
-                TranslationProgressOptions, CreditsOptions, WikiOptions, GeneratorOptions,
-                GodotProjectValidMakerOptions>(args)
-            .MapResult((CheckOptions options) => RunChecks(options),
-                (NativeLibOptions options) => RunNativeLibsTool(options),
-                (TestOptions options) => RunTests(options),
-                (ChangesOptions options) => RunChangesFinding(options),
-                (LocalizationOptions options) => RunLocalization(options),
-                (CleanupOptions options) => RunCleanup(options),
-                (PackageOptions options) => RunPackage(options),
-                (UploadOptions options) => RunUpload(options),
-                (ContainerOptions options) => RunContainer(options),
-                (SteamOptions options) => SetSteamOptions(options),
-                (GodotTemplateOptions options) => RunTemplateInstall(options),
-                (TranslationProgressOptions options) => RunTranslationProgress(options),
-                (CreditsOptions options) => RunCreditsUpdate(options),
-                (WikiOptions options) => RunWikiUpdate(options),
-                (GeneratorOptions options) => RunFileGenerator(options),
-                (GodotProjectValidMakerOptions options) => RunProjectValidMaker(options),
-                CommandLineHelpers.PrintCommandLineErrors);
+        // This has too many verbs now so some more manual work is required here as this has ran out of the template
+        // arguments available from the library
+        var parserResult = CommandLineHelpers.CreateParser()
+            .ParseArguments(args, [
+                typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions), typeof(ChangesOptions),
+                typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions), typeof(UploadOptions),
+                typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
+                typeof(TranslationProgressOptions), typeof(CreditsOptions), typeof(WikiOptions),
+                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions),
+            ]);
+
+        int result;
+        if (parserResult is Parsed<object> parsed)
+        {
+            result = parsed.Value switch
+            {
+                CheckOptions value => RunChecks(value),
+                NativeLibOptions value => RunNativeLibsTool(value),
+                TestOptions value => RunTests(value),
+                ChangesOptions value => RunChangesFinding(value),
+                LocalizationOptions value => RunLocalization(value),
+                CleanupOptions value => RunCleanup(value),
+                PackageOptions value => RunPackage(value),
+                UploadOptions value => RunUpload(value),
+                ContainerOptions value => RunContainer(value),
+                SteamOptions value => SetSteamOptions(value),
+                GodotTemplateOptions value => RunTemplateInstall(value),
+                TranslationProgressOptions value => RunTranslationProgress(value),
+                CreditsOptions value => RunCreditsUpdate(value),
+                WikiOptions value => RunWikiUpdate(value),
+                GeneratorOptions value => RunFileGenerator(value),
+                GodotProjectValidMakerOptions value => RunProjectValidMaker(value),
+                _ => throw new InvalidOperationException(),
+            };
+        }
+        else
+        {
+            result = CommandLineHelpers.PrintCommandLineErrors(((NotParsed<object>)parserResult).Errors);
+        }
 
         ConsoleHelpers.CleanConsoleStateForExit();
 
@@ -244,7 +260,9 @@ public class Program
 
         var tokenSource = ConsoleHelpers.CreateSimpleConsoleCancellationSource();
 
-        return WikiUpdater.Run(tokenSource.Token).Result ? 0 : 1;
+        var tool = new WikiUpdater();
+
+        return tool.Run(tokenSource.Token).Result ? 0 : 1;
     }
 
     private static int RunFileGenerator(GeneratorOptions options)

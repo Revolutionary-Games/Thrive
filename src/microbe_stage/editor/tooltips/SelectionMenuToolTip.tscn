@@ -44,12 +44,13 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 ProcessesDescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/ProcessesDescription")
 ModifierListPath = NodePath("MarginContainer/VBoxContainer/ModifierList")
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
+MoreInfoPath = NodePath("MarginContainer/VBoxContainer/MoreInfo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 364.0
-margin_bottom = 219.0
+margin_bottom = 264.0
 mouse_filter = 2
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -60,7 +61,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 348.0
-margin_bottom = 203.0
+margin_bottom = 248.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -149,3 +150,20 @@ custom_styles/separator = SubResource( 2 )
 margin_top = 166.0
 margin_right = 333.0
 margin_bottom = 188.0
+
+[node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 203.0
+margin_right = 333.0
+margin_bottom = 233.0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MoreInfo"]
+margin_right = 333.0
+margin_bottom = 4.0
+mouse_filter = 2
+custom_styles/separator = SubResource( 2 )
+
+[node name="MoreInfoLabel" parent="MarginContainer/VBoxContainer/MoreInfo" instance=ExtResource( 6 )]
+margin_top = 8.0
+margin_right = 333.0
+margin_bottom = 30.0
+ExtendedBbcode = "MORE_INFO_PROMPT"

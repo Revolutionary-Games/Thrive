@@ -91,6 +91,8 @@ public class MulticellularStage : CreatureStageBase<MulticellularCreature, Dummy
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
 
+    public override MainGameState GameState => MainGameState.MulticellularStage;
+
     // TODO: change when there is dying implemented
     [JsonIgnore]
     public override bool HasAlivePlayer => HasPlayer;

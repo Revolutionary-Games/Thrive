@@ -33,6 +33,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs>? OnRevealAllPatches;
 
     /// <summary>
+    ///   Fired whenever the player uses the "Unlock All Organelles" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs>? OnUnlockAllOrganelles;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -46,6 +51,11 @@ public static class CheatManager
     ///   Disables the AI
     /// </summary>
     public static bool NoAI { get; set; }
+
+    /// <summary>
+    ///   Disables limiting growth speed
+    /// </summary>
+    public static bool UnlimitedGrowthSpeed { get; set; }
 
     /// <summary>
     ///   Stops the time of day from changing
@@ -104,11 +114,17 @@ public static class CheatManager
         OnRevealAllPatches?.Invoke(null, EventArgs.Empty);
     }
 
+    public static void UnlockAllOrganelles()
+    {
+        OnUnlockAllOrganelles?.Invoke(null, EventArgs.Empty);
+    }
+
     public static void DisableAllCheats()
     {
         InfiniteCompounds = false;
         GodMode = false;
         NoAI = false;
+        UnlimitedGrowthSpeed = false;
         LockTime = false;
         Speed = 1.0f;
 

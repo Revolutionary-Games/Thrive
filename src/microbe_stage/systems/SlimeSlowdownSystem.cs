@@ -12,6 +12,9 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(OrganelleComponentFetchSystem))]
+    [RunsBefore(typeof(MicrobeMovementSystem))]
     public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
     {
         private readonly IReadonlyCompoundClouds compoundCloudSystem;

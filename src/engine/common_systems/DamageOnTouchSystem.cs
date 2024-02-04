@@ -12,6 +12,7 @@
     /// </summary>
     [With(typeof(DamageOnTouch))]
     [With(typeof(CollisionManagement))]
+    [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
     {
         private readonly WorldSimulation worldSimulation;

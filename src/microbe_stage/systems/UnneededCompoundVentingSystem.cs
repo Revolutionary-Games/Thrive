@@ -16,7 +16,9 @@
     [With(typeof(CellProperties))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
+    [RunsAfter(typeof(AllCompoundsVentingSystem))]
     public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;

@@ -47,6 +47,8 @@ public class ThriveJsonConverter : IDisposable
 
             new CallbackConverter(),
 
+            new ConditionSetConverter(),
+
             // Specific Godot Node converter types
 
             // Fallback Godot Node converter, this is before default serializer to make Node types with scene loaded
@@ -730,6 +732,11 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
                 catch (TargetInvocationException e)
                 {
+#if DEBUG
+                    if (Debugger.IsAttached)
+                        Debugger.Break();
+#endif
+
                     // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
                     if (!Constants.CATCH_SAVE_ERRORS)
 #pragma warning disable 162

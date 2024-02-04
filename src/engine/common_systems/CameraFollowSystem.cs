@@ -10,8 +10,18 @@
     /// <summary>
     ///   Handles moving a camera to follow entity with <see cref="CameraFollowTarget"/> component
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is not a frame run system to not cause massive jitter. Related:
+    ///     https://github.com/Revolutionary-Games/Thrive/issues/4695
+    ///   </para>
+    /// </remarks>
     [With(typeof(CameraFollowTarget))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+    [RunsAfter(typeof(AttachedEntityPositionSystem))]
+    [RunsOnMainThread]
     public sealed class CameraFollowSystem : AEntitySetSystem<float>
     {
         private bool cameraUsed;

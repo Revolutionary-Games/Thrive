@@ -18,10 +18,14 @@
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
     [With(typeof(Health))]
+    [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
     [RunsAfter(typeof(StrainSystem))]
+    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+    [RunsBefore(typeof(PhysicsBodyControlSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

@@ -64,6 +64,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     [JsonProperty]
     private bool appliedPlayerGodMode;
 
+    private bool appliedUnlimitGrowthSpeed;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -116,6 +118,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         get => patchManager == null! ? tempPatchManagerBrightness : patchManager.ReadBrightnessForSave();
         set => tempPatchManagerBrightness = value;
     }
+
+    public override MainGameState GameState => MainGameState.MicrobeStage;
 
     protected override ICreatureStageHUD BaseHUD => HUD;
 
@@ -315,6 +319,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
                     appliedPlayerGodMode = true;
                 }
             }
+
+            if (appliedUnlimitGrowthSpeed != CheatManager.UnlimitedGrowthSpeed)
+            {
+                appliedUnlimitGrowthSpeed = CheatManager.UnlimitedGrowthSpeed;
+                CurrentGame!.GameWorld.WorldSettings.Difficulty.SetGrowthRateLimitCheatOverride(!CheatManager
+                    .UnlimitedGrowthSpeed);
+            }
         }
         else
         {
@@ -331,7 +342,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
         {
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
-                new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
+                new AggregateEventArgs(new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())),
+                    new GameWorldEventArgs(GameWorld)), this);
         }
         else
         {
@@ -370,6 +382,12 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             HUD.PauseButtonPressed(!HUD.Paused);
         }
+    }
+
+    public void RecordPlayerReproduction()
+    {
+        GameWorld.StatisticsTracker.PlayerReproductionStatistic.RecordPlayerReproduction(Player,
+            GameWorld.Map.CurrentPatch!.BiomeTemplate);
     }
 
     /// <summary>
@@ -423,6 +441,8 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         }
 
         GiveReproductionPopulationBonus();
+
+        RecordPlayerReproduction();
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
@@ -518,6 +538,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             throw new Exception("failed to keep the current scene root");
         }
+
+        // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
+        GameWorld.UnlockProgress.UnlockAll = true;
 
         MovingToEditor = false;
     }
@@ -757,6 +780,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             UpdatePatchSettings();
         }
+
+        // Reset any cheat state if there was some active
+        CurrentGame!.GameWorld.WorldSettings.Difficulty.ClearGrowthRateLimitOverride();
     }
 
     protected override void OnGameStarted()
@@ -831,6 +857,27 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
 
     protected override void OnCanEditStatusChanged(bool canEdit)
     {
+        // Ensure the can edit status is still up to date as the change signal is triggered with one frame delay
+        // In freebuild checks need to be skipped to not block the normal freebuild editor availability logic
+        if (!IsPlayerAlive())
+        {
+            canEdit = false;
+        }
+        else if (Player.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            canEdit = false;
+        }
+        else if (CurrentGame?.FreeBuild != true)
+        {
+            if (Player.Has<MicrobeColony>() && GameWorld.PlayerSpecies is MicrobeSpecies)
+            {
+                canEdit = false;
+            }
+
+            if (!Player.Get<OrganelleContainer>().AllOrganellesDivided)
+                canEdit = false;
+        }
+
         base.OnCanEditStatusChanged(canEdit);
 
         if (!canEdit)
@@ -1113,6 +1160,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         {
             try
             {
+                if (!player.IsAlive)
+                {
+                    GD.PrintErr("Got player engulfed callback but player entity is dead");
+                    OnCanEditStatusChanged(false);
+                    return;
+                }
+
                 ref var hostileCell = ref hostile.Get<OrganelleContainer>();
 
                 ref var engulfable = ref player.Get<Engulfable>();
@@ -1259,7 +1313,7 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
     {
         try
         {
-            return !Player.Get<Health>().Dead;
+            return HasPlayer && !Player.Get<Health>().Dead;
         }
         catch (Exception e)
         {

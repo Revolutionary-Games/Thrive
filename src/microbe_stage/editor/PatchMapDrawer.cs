@@ -17,6 +17,12 @@ public class PatchMapDrawer : Control
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
 
+    [Export]
+    public NodePath? PatchNodeContainerPath;
+
+    [Export]
+    public NodePath LineContainerPath = null!;
+
 #pragma warning disable CA2213
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -29,10 +35,10 @@ public class PatchMapDrawer : Control
     /// </summary>
     private readonly Dictionary<Int2, Vector2[]> connections = new();
 
-    private readonly Dictionary<Int2, Line2D> regionConnectionLines = new();
-
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+    private Control patchNodeContainer = null!;
+    private Control lineContainer = null!;
 #pragma warning restore CA2213
 
     private PatchMap map = null!;
@@ -107,6 +113,9 @@ public class PatchMapDrawer : Control
     public override void _Ready()
     {
         base._Ready();
+
+        patchNodeContainer = GetNode<Control>(PatchNodeContainerPath);
+        lineContainer = GetNode<Control>(LineContainerPath);
 
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
 
@@ -195,6 +204,20 @@ public class PatchMapDrawer : Control
     public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
     {
         SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (PatchNodeContainerPath != null)
+            {
+                PatchNodeContainerPath.Dispose();
+                LineContainerPath.Dispose();
+            }
+        }
+
+        base.Dispose(disposing);
     }
 
     private static Vector2 ClosestPoint(Vector2 comparisonPoint, Vector2 point1, Vector2 point2)
@@ -303,7 +326,7 @@ public class PatchMapDrawer : Control
             pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
     }
 
-    private Line2D CreateRegionConnectionLine(Vector2[] points, Color connectionColor)
+    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor)
     {
         var link = new Line2D
         {
@@ -312,7 +335,8 @@ public class PatchMapDrawer : Control
             Width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH,
         };
 
-        AddChild(link);
+        lineContainer.AddChild(link);
+
         return link;
     }
 
@@ -751,11 +775,8 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
-        foreach (var node in nodes.Values)
-            node.Free();
-
+        patchNodeContainer.FreeChildren();
         nodes.Clear();
-
         connections.Clear();
 
         if (Map == null)
@@ -764,22 +785,9 @@ public class PatchMapDrawer : Control
             return;
         }
 
-        var unknownRegions = new HashSet<(PatchRegion, Patch)>();
-
         foreach (var entry in Map.Patches)
         {
-            if (entry.Value.Region.Visibility == MapElementVisibility.Unknown)
-            {
-                unknownRegions.Add((entry.Value.Region, entry.Value));
-                continue;
-            }
-
             AddPatchNode(entry.Value, entry.Value.ScreenCoordinates);
-        }
-
-        foreach (var entry in unknownRegions)
-        {
-            AddPatchNode(entry.Item2, GetUnknownRegionPosition(entry.Item1));
         }
 
         bool runNodeSelectionsUpdate = true;
@@ -827,51 +835,128 @@ public class PatchMapDrawer : Control
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
-        AddChild(node);
+        patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
     }
 
     private void RebuildRegionConnections()
     {
-        foreach (var connection in regionConnectionLines.Values)
-            connection.Free();
-
-        regionConnectionLines.Clear();
+        // Clear exisiting connection lines
+        lineContainer.FreeChildren();
 
         foreach (var entry in connections)
         {
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
-            var region1Shown = region1.Visibility == MapElementVisibility.Shown;
-            var region2Shown = region2.Visibility == MapElementVisibility.Shown;
+            var visibility1 = region1.Visibility;
+            var visibility2 = region2.Visibility;
 
-            if (!region1Shown && !region2Shown)
-            {
+            // Do not draw connections between hidden or unknown regions
+            if (visibility1 != MapElementVisibility.Shown && visibility2 != MapElementVisibility.Shown)
                 continue;
-            }
 
-            var points = entry.Value;
-            var highlight = CheckHighlightedAdjacency(region1, region2);
+            // Check if connections should be highlighted
+            // (Unknown patches should not highlight connections)
+            var highlight = CheckHighlightedAdjacency(region1, region2) &&
+                SelectedPatch?.Visibility == MapElementVisibility.Shown;
+
             var color = highlight ? HighlightedConnectionColor : DefaultConnectionColor;
 
-            var line = CreateRegionConnectionLine(points, color);
-            regionConnectionLines.Add(entry.Key, line);
+            // Create the main connection line
+            var points = entry.Value;
+            var line = CreateConnectionLine(points, color);
 
-            if (region1Shown && !region2Shown)
-            {
-                ApplyFadeToLine(line, false);
-            }
-            else if (!region1Shown && region2Shown)
-            {
-                ApplyFadeToLine(line, true);
-            }
+            // Fade the connection line if need be
+            ApplyFadeIfNeeded(region1, region2, line, false);
+            ApplyFadeIfNeeded(region2, region1, line, true);
+
+            // Create additional lines to connect "floating" patches in unknown regions
+            if (visibility1 == MapElementVisibility.Unknown)
+                BuildUnknownRegionConnections(line, region1, region2, color, false);
+
+            if (visibility2 == MapElementVisibility.Unknown)
+                BuildUnknownRegionConnections(line, region2, region1, color, true);
         }
     }
 
-    private Vector2 GetUnknownRegionPosition(PatchRegion region)
+    private void BuildUnknownRegionConnections(Line2D startingConnection, PatchRegion targetRegion,
+        PatchRegion startRegion, Color color, bool reversed)
     {
-        return RegionCenter(region);
+        var startingPoint = reversed ?
+            startingConnection.Points[startingConnection.Points.Length - 1] :
+            startingConnection.Points[0];
+
+        var adjacencies = startRegion.PatchAdjacencies[targetRegion.ID];
+
+        // Generate a list of patches to connect to
+        var patches = targetRegion.Patches
+            .Where(p => p.Visibility == MapElementVisibility.Unknown)
+            .Where(p => adjacencies.Contains(p));
+
+        foreach (var targetPatch in patches)
+        {
+            var patchSize = Vector2.One * Constants.PATCH_NODE_RECT_LENGTH;
+            var endingPoint = targetPatch.ScreenCoordinates + patchSize / 2;
+
+            // Draw a straight line if possible
+            if (endingPoint.x == startingPoint.x || endingPoint.y == startingPoint.y)
+            {
+                var straightPoints = new[]
+                {
+                    startingPoint,
+                    endingPoint,
+                };
+
+                CreateConnectionLine(straightPoints, color);
+                continue;
+            }
+
+            var intermediate = new Vector2(endingPoint.x, startingPoint.y);
+
+            // Make sure the new point is not covered by the patch itself
+            var targetPatchRect = new Rect2(targetPatch.ScreenCoordinates, patchSize);
+            if (targetPatchRect.HasPoint(intermediate))
+                intermediate = new Vector2(startingPoint.x, endingPoint.y);
+
+            var points = new[]
+            {
+                startingPoint,
+                intermediate,
+                endingPoint,
+            };
+
+            CreateConnectionLine(points, color);
+        }
+    }
+
+    private void ApplyFadeIfNeeded(PatchRegion startingRegion, PatchRegion endingRegion,
+        Line2D line, bool reversed)
+    {
+        // Do not apply fade from hidden or unknown region
+        if (startingRegion.Visibility != MapElementVisibility.Shown)
+            return;
+
+        // Do not apply fade if target region is visible
+        if (endingRegion.Visibility == MapElementVisibility.Shown)
+            return;
+
+        // Apply fade if target region is hidden
+        if (endingRegion.Visibility == MapElementVisibility.Hidden)
+        {
+            ApplyFadeToLine(line, reversed);
+            return;
+        }
+
+        // Apply fade only if no connecting patches are visible in the target region
+        var adjacencies = startingRegion.PatchAdjacencies[endingRegion.ID];
+
+        if (!endingRegion.Patches
+                .Where(p => p.Visibility == MapElementVisibility.Unknown)
+                .Any(p => adjacencies.Contains(p)))
+        {
+            ApplyFadeToLine(line, reversed);
+        }
     }
 
     private void UpdateNodeSelections()

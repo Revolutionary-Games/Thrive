@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -84,6 +85,8 @@ public partial class CellEditorComponent
     {
         if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
         {
+            // TODO: it seems very rarely this can be hit in "normal" microbe freebuild by spamming undo and redo with
+            // new cell button sprinkled in (reproduction steps for the bug are unconfirmed)
             ThrowIfNotMulticellular();
 
             var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
@@ -320,6 +323,13 @@ public partial class CellEditorComponent
     private void ThrowIfNotMulticellular()
     {
         if (!IsMulticellularEditor)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+                Debugger.Break();
+#endif
+
             throw new InvalidOperationException("This operation should only happen in multicellular");
+        }
     }
 }

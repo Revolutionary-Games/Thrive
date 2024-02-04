@@ -13,6 +13,7 @@
     [With(typeof(MicrobePhysicsExtraData))]
     [With(typeof(SpeciesMember))]
     [ReadsComponent(typeof(CellProperties))]
+    [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class PilusDamageSystem : AEntitySetSystem<float>
     {
         public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)

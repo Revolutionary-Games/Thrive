@@ -53,6 +53,19 @@ public interface IDifficulty : IRegistryAssignable
     ///   How intense should the fog-of-war be
     /// </summary>
     public FogOfWarMode FogOfWarMode { get; }
+
+    /// <summary>
+    ///   Whether organelle unlocks are enabled or not
+    ///   If not, all organelles are unlocked by default
+    /// </summary>
+    public bool OrganelleUnlocksEnabled { get; }
+
+    /// <summary>
+    ///   Sets a temporary value that overrides the normal growth rate
+    /// </summary>
+    public void SetGrowthRateLimitCheatOverride(bool limitGrowthRate);
+
+    public void ClearGrowthRateLimitOverride();
 }
 
 public static class DifficultyHelpers
@@ -71,6 +84,7 @@ public static class DifficultyHelpers
             PassiveReproduction = difficulty.PassiveReproduction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
             FogOfWarMode = difficulty.FogOfWarMode,
+            OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
         };
     }
 
@@ -88,6 +102,7 @@ public static class DifficultyHelpers
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
-            $", Fog Of War Mode: {difficulty.FogOfWarMode}";
+            $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
+            $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";
     }
 }

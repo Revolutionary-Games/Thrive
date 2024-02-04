@@ -15,6 +15,7 @@
     [With(typeof(Engulfer))]
     [With(typeof(Health))]
     [With(typeof(SoundEffectPlayer))]
+    [With(typeof(MicrobeControl))]
     [WritesToComponent(typeof(CompoundAbsorber))]
     [WritesToComponent(typeof(UnneededCompoundVenter))]
     [WritesToComponent(typeof(RenderPriorityOverride))]
@@ -23,6 +24,7 @@
     [WritesToComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(OrganelleContainer))]
+    [RunsAfter(typeof(EngulfingSystem))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
@@ -74,6 +76,10 @@
             }
             else
             {
+                // Disallow cells being in any state than normal while engulfed
+                ref var control = ref entity.Get<MicrobeControl>();
+                control.State = MicrobeState.Normal;
+
                 // TODO: it seems that this code is always ran, though with the PARTIALLY_DIGESTED_THRESHOLD check
                 // maybe this shouldn't always run?
 
@@ -102,6 +108,8 @@
                     GD.PrintErr("Entity is stuck inside a dead engulfer, force clearing state to rescue it");
 
                     engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+                    engulfable.PhagocytosisStep = PhagocytosisPhase.None;
+                    engulfable.HostileEngulfer = default;
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 

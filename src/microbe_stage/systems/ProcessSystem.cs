@@ -15,6 +15,10 @@
     /// </summary>
     [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
+    [RunsAfter(typeof(CompoundAbsorptionSystem))]
+    [RunsAfter(typeof(UnneededCompoundVentingSystem))]
+    [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
+    [RunsBefore(typeof(MicrobeMovementSystem))]
     public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
@@ -393,6 +397,12 @@
         /// <summary>
         ///   Get the current amount of environmental compound
         /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: this takes a lot of time during the process system run so improving this performance would help
+        ///     quite a lot to make the process system run faster.
+        ///   </para>
+        /// </remarks>
         public float GetAmbient(Compound compound, CompoundAmountType amountType)
         {
             if (biome == null)

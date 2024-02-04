@@ -319,14 +319,16 @@
                     throw new InvalidOperationException("Bad calculated microbe index");
 #endif
 
+                var members = colony.ColonyMembers;
+
                 // In case the physics data is not yet up to date compared to the colony members, skip
-                if (microbeIndex > colony.ColonyMembers.Length)
+                if (microbeIndex >= members.Length)
                 {
                     microbe = default;
                     return false;
                 }
 
-                microbe = colony.ColonyMembers[microbeIndex];
+                microbe = members[microbeIndex];
                 return true;
             }
 

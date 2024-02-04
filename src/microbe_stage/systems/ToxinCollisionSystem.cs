@@ -15,6 +15,7 @@
     [With(typeof(CollisionManagement))]
     [With(typeof(Physics))]
     [With(typeof(TimedLife))]
+    [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     {
         public ToxinCollisionSystem(World world, IParallelRunner runner) : base(world, runner)

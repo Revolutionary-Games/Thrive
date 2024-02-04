@@ -15,6 +15,6 @@ public class ThriveopediaWikiRootPage : ThriveopediaPage
 
     public void OnOrganellesPressed()
     {
-        ChangePage("OrganellesRoot");
+        ThriveopediaManager.OpenPage("OrganellesRoot");
     }
 }

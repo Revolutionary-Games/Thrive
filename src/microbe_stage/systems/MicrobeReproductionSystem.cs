@@ -28,6 +28,8 @@
     [WritesToComponent(typeof(Engulfable))]
     [WritesToComponent(typeof(Engulfer))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
+    [RunsAfter(typeof(ProcessSystem))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

@@ -17,6 +17,11 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
+    private bool applyGrowthOverride;
+    private bool growthLimitOverride;
+
+    private bool limitGrowthRate;
+
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169,649
@@ -52,16 +57,40 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public bool PassiveReproduction { get; private set; }
 
     [JsonProperty]
-    public bool LimitGrowthRate { get; private set; }
+    public bool LimitGrowthRate
+    {
+        get
+        {
+            if (applyGrowthOverride)
+                return growthLimitOverride;
+
+            return limitGrowthRate;
+        }
+        private set => limitGrowthRate = value;
+    }
 
     [JsonProperty]
     public FogOfWarMode FogOfWarMode { get; private set; }
+
+    [JsonProperty]
+    public bool OrganelleUnlocksEnabled { get; private set; }
 
     public string InternalName { get; set; } = null!;
 
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
+    public void SetGrowthRateLimitCheatOverride(bool newLimitSetting)
+    {
+        applyGrowthOverride = true;
+        growthLimitOverride = newLimitSetting;
+    }
+
+    public void ClearGrowthRateLimitOverride()
+    {
+        applyGrowthOverride = false;
+    }
 
     public void Check(string name)
     {

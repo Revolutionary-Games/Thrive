@@ -12,6 +12,8 @@
     /// </summary>
     [With(typeof(PlayerMarker))]
     [With(typeof(Physics))]
+    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

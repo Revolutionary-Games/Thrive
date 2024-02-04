@@ -19,9 +19,6 @@ public class EditorCommonBottomLeftButtons : MarginContainer
     [Signal]
     public delegate void OnOpenHelp();
 
-    [Signal]
-    public delegate void OnOpenStatistics();
-
     public override void _Ready()
     {
         base._Ready();
@@ -61,7 +58,6 @@ public class EditorCommonBottomLeftButtons : MarginContainer
 
     private void OnStatisticsButtonPressed()
     {
-        // No need to play a sound as changing Thriveopedia page does it anyway
-        EmitSignal(nameof(OnOpenStatistics));
+        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 }

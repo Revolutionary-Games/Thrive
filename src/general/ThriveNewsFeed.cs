@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Godot;
@@ -62,6 +63,12 @@ public static class ThriveNewsFeed
             var items = ExtractFeedItems(feedDocument);
 
             return ParseHtmlItemsToBbCode(items);
+        }
+        catch (ThreadAbortException e)
+        {
+            // This should only happen when game startup fails and that's why the process is exiting so soon
+            GD.Print($"News feed fetch failed due to thread quitting: {e.Message}");
+            return new[] { CreateErrorItem(e.Message) };
         }
         catch (Exception e)
         {

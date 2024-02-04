@@ -436,6 +436,22 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
+    public bool IsMetaballAction(EditorCombinableActionData actionData)
+    {
+        // TODO: add a metaball action base class if that would be easier to handle?
+        switch (actionData)
+        {
+            case MetaballMoveActionData<TMetaball>:
+            case MetaballPlacementActionData<TMetaball>:
+            case MetaballRemoveActionData<TMetaball>:
+            case MetaballResizeActionData<TMetaball>:
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
     public void OnNoPropertiesLoaded()
     {
         // Something is wrong if this is called

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Environment = Godot.Environment;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
@@ -63,6 +64,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private Light bodyEditorLight = null!;
 
     private WorldEnvironment worldEnvironmentNode = null!;
+    private Environment? environment;
 
     private Control noCellTypeSelected = null!;
 #pragma warning restore CA2213
@@ -173,6 +175,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
 
+        // If the action we're redoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToRedo());
+
         base.Redo();
     }
 
@@ -183,6 +188,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // If the action we're undoing should be done on another cell type,
         // save our changes to the current cell type, then switch to the other one
         SwapEditingCellIfNeeded(cellType);
+
+        // If the action we're undoing should be done on another editor tab, switch to that tab
+        SwapEditorTabIfNeeded(history.ActionToUndo());
 
         base.Undo();
     }
@@ -333,6 +341,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.Hide();
         noCellTypeSelected.Hide();
 
+        RememberEnvironment();
+
         // Show selected
         switch (selectedEditorTab)
         {
@@ -371,6 +381,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                 SetWorldSceneObjectVisibilityWeControl();
 
+                ResetEnvironment();
+
                 break;
             }
 
@@ -392,6 +404,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                     SetWorldSceneObjectVisibilityWeControl();
                 }
+
+                worldEnvironmentNode.Environment = null;
 
                 break;
             }
@@ -434,6 +448,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 Body3DEditorCameraPath.Dispose();
                 BodyEditorLightPath.Dispose();
             }
+
+            environment?.Dispose();
         }
 
         base.Dispose(disposing);
@@ -607,5 +623,51 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         // This fixes complex cases where multiple types are undoing and redoing actions
         selectedCellTypeToEdit = newCell;
         cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void SwapEditorTabIfNeeded(EditorAction? editorAction)
+    {
+        if (editorAction == null)
+            return;
+
+        var actionData = editorAction.Data.FirstOrDefault();
+
+        EditorTab targetTab;
+
+        // If the action was performed on a single Cell Type, target the Cell Type Editor tab
+        if (actionData is EditorCombinableActionData<CellType>)
+        {
+            targetTab = EditorTab.CellTypeEditor;
+        }
+        else if (actionData != null && bodyPlanEditorTab.IsMetaballAction(actionData))
+        {
+            targetTab = EditorTab.CellEditor;
+        }
+        else
+        {
+            return;
+        }
+
+        // If we're already on the selected tab, there's no need to do anything
+        if (targetTab == selectedEditorTab)
+            return;
+
+        SetEditorTab(targetTab);
+    }
+
+    private void RememberEnvironment()
+    {
+        if (worldEnvironmentNode.Environment != null)
+        {
+            environment = worldEnvironmentNode.Environment;
+        }
+    }
+
+    private void ResetEnvironment()
+    {
+        if (environment != null)
+        {
+            worldEnvironmentNode.Environment = environment;
+        }
     }
 }

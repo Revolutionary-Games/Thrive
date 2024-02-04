@@ -10,6 +10,8 @@ using Path = System.IO.Path;
 /// </summary>
 public class StartupActions : Node
 {
+    private bool preventStartup;
+
     private StartupActions()
     {
         // Print game version
@@ -34,27 +36,76 @@ public class StartupActions : Node
         GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
-        bool skipNative = false;
+        // TODO: mono runtime doesn't have intrinsics support for checking AVX
+        // https://learn.microsoft.com/fi-fi/dotnet/api/system.runtime.intrinsics.x86.avx?view=net-8.0
+
+        bool loadNative = true;
 
         try
         {
-            NativeInterop.Load();
-        }
-        catch (DllNotFoundException)
-        {
-            if (Engine.EditorHint)
+            if (!LaunchOptions.SkipCPUCheck)
             {
-                skipNative = true;
+                if (!NativeInterop.CheckCPU())
+                {
+                    GD.Print("Thrive requires a new enough CPU to have SSE4.1, SSE4.2, and AVX (1)");
+                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
+                        "required instruction set extensions is required");
+
+                    loadNative = false;
+                }
+                else
+                {
+                    GD.Print("Checked that required CPU features are present");
+                }
+            }
+            else
+            {
+                GD.Print("Skipping CPU type check, please do not report any crashes due to illegal CPU " +
+                    "instruction problems (as that indicates missing CPU feature this check would test)");
+            }
+
+            if (loadNative)
+            {
+                NativeInterop.Load();
+            }
+            else
+            {
+                GD.PrintErr("Thrive will now quit due to required native library requiring a newer processor " +
+                    "than is available");
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+                return;
+            }
+        }
+        catch (Exception e)
+        {
+            GD.Print($"Thrive native library load failed due to: {e.Message}");
+
+            if (Engine.EditorHint && e is DllNotFoundException)
+            {
+                loadNative = false;
                 GD.Print("Skipping native library load in editor as it is not available");
             }
             else
             {
                 GD.PrintErr("Native library is missing (or unloadable). If you downloaded a compiled Thrive " +
-                    "version, this version is broken. If you are trying to compile Thrive you need to compile the " +
-                    "native modules as well");
+                    "version, this version (may be) broken. If you are trying to compile Thrive you need to compile " +
+                    "the native modules as well");
                 GD.PrintErr("Please do not report to us the next unhandled exception error about this, unless " +
                     "this is an official Thrive release that has this issue");
-                throw;
+
+                if (FeatureInformation.GetOS() == FeatureInformation.PlatformLinux)
+                {
+                    GD.PrintErr("On Linux please verify you have new enough GLIBC version as otherwise the library " +
+                        "is unloadable. Updating your distro to the latest version should resolve the issue as long " +
+                        "as you are using a supported distro.");
+                }
+
+                GD.PrintErr(e);
+
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+                return;
             }
         }
 
@@ -70,7 +121,19 @@ public class StartupActions : Node
             GD.PrintErr("Failed to initialize settings: ", e);
         }
 
-        if (!skipNative)
+        if (loadNative)
+        {
             NativeInterop.Init(Settings.Instance);
+        }
+    }
+
+    public override void _Ready()
+    {
+        // We need to specifically only access the scene tree after ready is called as otherwise it is just null
+        if (preventStartup)
+        {
+            GD.Print("Preventing startup due to StartupActions failing");
+            SceneManager.QuitDueToProblem(this);
+        }
     }
 }

@@ -10,6 +10,7 @@
     /// </summary>
     [With(typeof(OrganelleContainer))]
     [RunsAfter(typeof(MicrobeReproductionSystem))]
+    [RunsAfter(typeof(MulticellularGrowthSystem))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
     [RunsBefore(typeof(OrganelleTickSystem))]
     public sealed class OrganelleComponentFetchSystem : AEntitySetSystem<float>

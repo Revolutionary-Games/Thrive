@@ -526,6 +526,33 @@ public static class StringUtils
         return builder.ToString();
     }
 
+    public static string GetIndent(int indent)
+    {
+        if (indent < 1)
+            return string.Empty;
+
+        return new string(' ', indent);
+    }
+
+    public static int DetectLineIndentationLevel(string line)
+    {
+        int spaceCount = 0;
+
+        foreach (var character in line)
+        {
+            if (character <= ' ')
+            {
+                ++spaceCount;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return spaceCount;
+    }
+
     // TODO: proper unit tests: https://github.com/Revolutionary-Games/Thrive/issues/1571
     public static void TestRomanNumerals()
     {
@@ -582,5 +609,31 @@ public static class StringUtils
             throw new Exception();
 
         // ReSharper restore StringLiteralTypo
+    }
+
+    /// <summary>
+    ///   Makes a string safe to store as a meta tag in rich text.
+    /// </summary>
+    public static string ConvertToSafeMetaTag(string tagContent)
+    {
+        return tagContent
+            .Replace("[", "LEFT_BRACE").Replace("]", "RIGHT_BRACE")
+            .Replace("{", "LEFT_CURLY_BRACE").Replace("}", "RIGHT_CURLY_BRACE");
+    }
+
+    /// <summary>
+    ///   Gets the original text from the value of a meta tag.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Assumes the text doesn't contain the literal strings LEFT_BRACE, RIGHT_BRACE,
+    ///     LEFT_CURLY_BRACE or RIGHT_CURLY_BRACE.
+    ///   </para>
+    /// </remarks>
+    public static string ConvertFromSafeMetaTag(string tagContent)
+    {
+        return tagContent
+            .Replace("LEFT_BRACE", "[").Replace("RIGHT_BRACE", "]")
+            .Replace("LEFT_CURLY_BRACE", "{").Replace("RIGHT_CURLY_BRACE", "}");
     }
 }

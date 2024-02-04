@@ -1361,6 +1361,8 @@ public static class Constants
     public const string OPENING_LAUNCHER_IS_HIDDEN = "--thrive-launcher-hidden";
     public const string THRIVE_LAUNCHER_STORE_PREFIX = "--thrive-store=";
 
+    public const string SKIP_CPU_CHECK_OPTION = "--skip-cpu-check";
+
     public const string STARTUP_SUCCEEDED_MESSAGE = "------------ Thrive Startup Succeeded ------------";
     public const string USER_REQUESTED_QUIT = "User requested program exit, Thrive will close shortly";
     public const string REQUEST_LAUNCHER_OPEN = "------------ SHOWING LAUNCHER REQUESTED ------------";
@@ -1508,6 +1510,9 @@ public static class Constants
 
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
+
+    public const string CONDITION_GREEN_COLOUR = "#70f423";
+    public const string CONDITION_RED_COLOUR = "#ff4d4d";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

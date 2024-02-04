@@ -12,6 +12,8 @@
     /// </summary>
     [With(typeof(Physics))]
     [With(typeof(ManualPhysicsControl))]
+    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
+    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class PhysicsBodyControlSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

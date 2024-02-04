@@ -23,6 +23,9 @@
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [RunsAfter(typeof(PilusDamageSystem))]
+    [RunsAfter(typeof(DamageOnTouchSystem))]
+    [RunsAfter(typeof(ToxinCollisionSystem))]
     public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;

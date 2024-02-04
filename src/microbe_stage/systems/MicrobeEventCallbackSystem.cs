@@ -15,8 +15,10 @@
     [With(typeof(MicrobeStatus))]
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsBefore(typeof(DamageSoundSystem))]
     [RunsAfter(typeof(OrganelleTickSystem))]
+    [RunsAfter(typeof(SpawnSystem))]
     [RunsAfter(typeof(MicrobeAISystem))]
     [RunsOnMainThread]
     public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>

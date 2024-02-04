@@ -163,6 +163,20 @@ public class Thriveopedia : ControlWithInput
         SelectedPage = homePage;
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        ThriveopediaManager.ReportActiveThriveopedia(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        ThriveopediaManager.RemoveActiveThriveopedia(this);
+    }
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -237,6 +251,18 @@ public class Thriveopedia : ControlWithInput
         ChangePage(pageName, true, true);
     }
 
+    public Species? GetActiveSpeciesData(uint speciesId)
+    {
+        if (CurrentGame == null)
+        {
+            PrintErrorAboutCurrentGame();
+            return null;
+        }
+
+        CurrentGame.GameWorld.TryGetSpecies(speciesId, out var species);
+        return species;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -309,7 +335,6 @@ public class Thriveopedia : ControlWithInput
         if (page.ParentPageName != null && !allPages.Keys.Any(p => p.PageName == page.ParentPageName))
             throw new InvalidOperationException($"Attempted to add page with name {name} before parent was added");
 
-        page.ChangePage = ChangePage;
         page.Connect(nameof(ThriveopediaPage.OnSceneChanged), this, nameof(HandleSceneChanged));
         pageContainer.AddChild(page);
 
@@ -501,5 +526,10 @@ public class Thriveopedia : ControlWithInput
     private void Exit()
     {
         EmitSignal(nameof(OnThriveopediaClosed));
+    }
+
+    private void PrintErrorAboutCurrentGame()
+    {
+        GD.PrintErr("Thriveopedia doesn't have current game data set yet, but it was already needed");
     }
 }

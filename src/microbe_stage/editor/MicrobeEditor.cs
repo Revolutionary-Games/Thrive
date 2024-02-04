@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -75,6 +76,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base._EnterTree();
 
         CheatManager.OnRevealAllPatches += OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles += OnUnlockAllOrganellesCheatUsed;
     }
 
     public override void _ExitTree()
@@ -82,6 +84,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         base._ExitTree();
 
         CheatManager.OnRevealAllPatches -= OnRevealAllPatchesCheatUsed;
+        CheatManager.OnUnlockAllOrganelles -= OnUnlockAllOrganellesCheatUsed;
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -209,6 +212,15 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         {
             reportTab.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
                 TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+        }
+        else
+        {
+            // Need to pass the auto-evo
+            // TODO: in the future when the report tab is redone, it will need the full info so this is for now a bit
+            // non-extendable way to get this one piece of data stored
+
+            cellEditorTab.PreviousPlayerGatheredEnergy = run.Results.GetPatchEnergyResults(EditedBaseSpecies)
+                .Sum(p => p.Value.TotalEnergyGathered);
         }
 
         base.OnEditorReady();
@@ -345,6 +357,15 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     {
         CurrentGame.GameWorld.Map.RevealAllPatches();
         patchMapTab.MarkDrawerDirty();
+    }
+
+    private void OnUnlockAllOrganellesCheatUsed(object? sender, EventArgs args)
+    {
+        if (CurrentGame.GameWorld.UnlockProgress.UnlockAll)
+            return;
+
+        CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
+        cellEditorTab.UnlockAllOrganelles();
     }
 
     private void OnSelectPatchForReportTab(Patch patch)

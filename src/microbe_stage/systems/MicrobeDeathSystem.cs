@@ -25,9 +25,13 @@
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundAbsorber))]
+    [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
-    [RunsBefore(typeof(EngulfingSystem))]
+    [RunsAfter(typeof(MicrobeEmissionSystem))]
+    [RunsAfter(typeof(ColonyStatsUpdateSystem))]
+    [RunsAfter(typeof(EngulfingSystem))]
+    [RunsBefore(typeof(FadeOutActionSystem))]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
@@ -338,6 +342,12 @@
             {
                 gameWorld!.AlterSpeciesPopulationInCurrentPatch(species,
                     Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
+            }
+
+            // Record player death in statistics
+            if (entity.Has<PlayerMarker>())
+            {
+                gameWorld!.StatisticsTracker.TotalPlayerDeaths.Increment(1);
             }
 
             ref var engulfable = ref entity.Get<Engulfable>();

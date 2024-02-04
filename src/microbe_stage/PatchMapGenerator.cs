@@ -178,6 +178,12 @@ public static class PatchMapGenerator
     {
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
+
+        var region1 = patch1.Region;
+        var region2 = patch2.Region;
+
+        region1.AddPatchAdjacency(region2, patch2);
+        region2.AddPatchAdjacency(region1, patch1);
     }
 
     private static void LinkRegions(PatchRegion region1, PatchRegion region2)

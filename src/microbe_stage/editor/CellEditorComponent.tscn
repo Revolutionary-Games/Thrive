@@ -391,7 +391,7 @@ DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxCont
 DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
 GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
-TotalPopulationLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
+TotalEnergyLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
 AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Failed")
 WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst/Value")
 BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best/Value")
@@ -552,9 +552,6 @@ size_flags_vertical = 0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
 margin_left = 10.0
@@ -1232,6 +1229,7 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 274.0
 margin_bottom = 225.0
+hint_tooltip = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 
 [node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
 margin_right = 273.0
@@ -1250,7 +1248,6 @@ margin_bottom = 62.0
 [node name="Title" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer"]
 margin_right = 229.0
 margin_bottom = 57.0
-hint_tooltip = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 25 )
@@ -1300,7 +1297,7 @@ mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer"]
 margin_right = 263.0
-margin_bottom = 117.0
+margin_bottom = 96.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 5
@@ -1311,11 +1308,12 @@ custom_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer"]
 margin_left = 3.0
 margin_right = 258.0
-margin_bottom = 114.0
+margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Failed" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 margin_right = 255.0
 margin_bottom = 17.0
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
@@ -1323,16 +1321,15 @@ custom_fonts/font = ExtResource( 23 )
 text = "FAILED"
 
 [node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 21.0
 margin_right = 255.0
-margin_bottom = 46.0
-Description = "TOTAL_POPULATION_COLON"
+hint_tooltip = "GATHERED_ENERGY_TOOLTIP"
+Description = "TOTAL_GATHERED_ENERGY_COLON"
 InvalidIcon = ExtResource( 20 )
 
 [node name="Best" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 50.0
+margin_top = 29.0
 margin_right = 255.0
-margin_bottom = 69.0
+margin_bottom = 48.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
 margin_top = 1.0
@@ -1355,9 +1352,9 @@ __meta__ = {
 }
 
 [node name="Worst" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 73.0
+margin_top = 52.0
 margin_right = 255.0
-margin_bottom = 92.0
+margin_bottom = 71.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
 margin_top = 1.0
@@ -1380,15 +1377,15 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 96.0
+margin_top = 75.0
 margin_right = 255.0
-margin_bottom = 100.0
+margin_bottom = 79.0
 rect_min_size = Vector2( 0, 4 )
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 104.0
+margin_top = 83.0
 margin_right = 255.0
-margin_bottom = 114.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 6 )
@@ -1543,6 +1540,7 @@ size_flags_vertical = 3
 
 [node name="ExplanationText" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_right = 48.0
+EnableTooltipsForMetaTags = false
 
 [node name="Spacer" type="Control" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 26.0

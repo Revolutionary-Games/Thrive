@@ -752,6 +752,7 @@ public partial class AutoEvoExploringTool : NodeWithInput
         autoEvoRun.CalculateAndApplyFinalExternalEffectSizes();
 
         // Make summary, this must be called before results are applied so that summary is correct
+        results.RegisterNewSpeciesForSummary(gameWorld);
         world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
 
         // Apply the results

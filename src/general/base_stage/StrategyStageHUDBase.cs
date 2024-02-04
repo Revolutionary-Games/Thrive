@@ -173,7 +173,7 @@ public abstract class StrategyStageHUDBase<TStage> : HUDWithPausing, IStrategySt
 
     private void StatisticsButtonPressed()
     {
-        menu.OpenToStatistics();
+        ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
     private void ResearchScreenClosed()

@@ -14,7 +14,7 @@
     [With(typeof(PhysicsSensor))]
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(WorldPosition))]
-    [RunsAfter(typeof(OrganelleTickSystem))]
+    [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsOnMainThread]
     public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
     {

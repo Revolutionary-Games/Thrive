@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using Components;
     using DefaultEcs;
@@ -31,6 +32,8 @@
 
         private readonly Enzyme lipase;
 
+        private GameWorld? gameWorld;
+
         public EngulfedDigestionSystem(CompoundCloudSystem compoundCloudSystem, World world,
             IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
         {
@@ -39,6 +42,19 @@
             oxytoxy = simulationParameters.GetCompound("oxytoxy");
             digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).ToList();
             lipase = simulationParameters.GetEnzyme("lipase");
+        }
+
+        public void SetWorld(GameWorld world)
+        {
+            gameWorld = world;
+        }
+
+        protected override void PreUpdate(float state)
+        {
+            base.PreUpdate(state);
+
+            if (gameWorld == null)
+                throw new InvalidOperationException("GameWorld not set");
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -63,6 +79,8 @@
             // Skip if enzymes aren't calculated yet
             if (organelles.AvailableEnzymes == null)
                 return;
+
+            var engulferIsPlayer = entity.Has<PlayerMarker>();
 
             float usedCapacity = 0;
 
@@ -100,13 +118,21 @@
                             new SimpleHUDMessage(TranslationServer.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                     }
 
+                    // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
+                    // accidentally eject *everything* if we go slightly over the limit
+                    engulfer.UsedIngestionCapacity -= engulfable.AdjustedEngulfSize;
                     continue;
                 }
 
                 // Doesn't make sense to digest non ingested objects, i.e. objects that are being engulfed,
                 // being ejected, etc. So skip them.
                 if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
+                {
+                    // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
+                    // pulling in too much
+                    usedCapacity += engulfable.AdjustedEngulfSize;
                     continue;
+                }
 
                 Enzyme usedEnzyme;
 
@@ -149,6 +175,8 @@
                 var additionalCompounds = engulfable.AdditionalEngulfableCompounds;
 
                 // TODO: this seems not possible to run in parallel
+                // This is maybe now no longer required as engulfed things keep running the process system and that
+                // should clamp and fix NaN values.
                 // Workaround to avoid NaN compounds in engulfed objects, leading to glitches like infinite compound
                 // ejection and incorrect ingested matter display
                 // https://github.com/Revolutionary-Games/Thrive/issues/3548
@@ -162,6 +190,17 @@
 
                     var additionalAmount = 0.0f;
                     additionalCompounds?.TryGetValue(compound, out additionalAmount);
+
+                    if (additionalAmount < 0)
+                    {
+#if DEBUG
+                        if (Debugger.IsAttached)
+                            Debugger.Break();
+#endif
+
+                        additionalAmount = 0;
+                        GD.PrintErr("Additional compound amount is negative");
+                    }
 
                     var totalAvailable = storageAmount + additionalAmount;
                     totalAmountLeft += totalAvailable;
@@ -205,7 +244,12 @@
                     }
 
                     if (additionalCompounds?.ContainsKey(compound) == true)
+                    {
                         additionalCompounds[compound] -= taken;
+
+                        if (additionalCompounds[compound] < 0)
+                            additionalCompounds[compound] = 0;
+                    }
 
                     if (engulfedObject.Has<CompoundStorage>())
                     {
@@ -240,6 +284,9 @@
                 if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
                 {
                     engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
+
+                    if (engulferIsPlayer && engulfedObject.Has<CellProperties>())
+                        gameWorld!.StatisticsTracker.TotalDigestedByPlayer.Increment(1);
                 }
 
                 // This is always applied, even when digested fully now. This is because EngulfingSystem will subtract

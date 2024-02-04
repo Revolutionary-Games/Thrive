@@ -27,6 +27,9 @@
     [With(typeof(PhysicsShapeHolder))]
     [Without(typeof(AttachedToEntity))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
+    [RunsBefore(typeof(PhysicsBodyCreationSystem))]
+    [RunsBefore(typeof(MicrobeReproductionSystem))]
+    [RunsBefore(typeof(MulticellularGrowthSystem))]
     [WritesToComponent(typeof(CompoundAbsorber))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {

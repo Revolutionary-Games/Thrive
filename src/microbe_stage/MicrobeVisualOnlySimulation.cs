@@ -30,7 +30,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
-    private TintColourAnimationSystem tintColourAnimationSystem = null!;
+    private TintColourApplyingSystem tintColourApplyingSystem = null!;
 
 #pragma warning disable CA2213
     private Node visualsParent = null!;
@@ -79,7 +79,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // if those are used then also OrganelleComponentFetchSystem would be needed
         // organelleTickSystem = new OrganelleTickSystem(EntitySystem, runner);
 
-        tintColourAnimationSystem = new TintColourAnimationSystem(EntitySystem);
+        tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         OnInitialized();
     }
@@ -90,7 +90,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         colourAnimationSystem.Update(delta);
         microbeShaderSystem.Update(delta);
-        tintColourAnimationSystem.Update(delta);
+        tintColourApplyingSystem.Update(delta);
     }
 
     /// <summary>
@@ -348,7 +348,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
             microbeRenderPrioritySystem.Dispose();
             microbeShaderSystem.Dispose();
             microbeVisualsSystem.Dispose();
-            tintColourAnimationSystem.Dispose();
+            tintColourApplyingSystem.Dispose();
         }
 
         base.Dispose(disposing);

@@ -24,6 +24,18 @@
     "PositionedExternally": true,
     "Name": "ORGANELLE_PILUS",
     "IconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
+    "UnlockConditions": [
+      {
+        "EngulfedMicrobesAbove": {
+          "Required": 5
+        }
+      },
+      {
+        "PlayerDeathsAbove": {
+          "Required": 5
+        }
+      }
+    ],
     "EditorButtonGroup": "External",
     "EditorButtonOrder": 2,
     "AvailableUpgrades": {
@@ -103,6 +115,14 @@
     "ProductionColour": "#3feb67",
     "ConsumptionColour": "#ff8425",
     "IconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
+    "UnlockConditions": [
+      {
+        "PatchCompound": {
+          "Compound": "ammonia",
+          "Max": 13
+        }
+      }
+    ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 5
   },
@@ -203,6 +223,13 @@
     "ProductionColour": "#834acb",
     "ConsumptionColour": "#c4303d",
     "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+    "UnlockConditions": [
+      {
+        "EngulfedMicrobesAbove": {
+          "Required": 5
+        }
+      }
+    ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 6
   },
@@ -235,6 +262,14 @@
     "ProductionColour": "#40f0ac",
     "ConsumptionColour": "#fbae3a",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
+    "UnlockConditions": [
+      {
+        "PatchCompound": {
+          "Compound": "sunlight",
+          "Min": 20
+        }
+      }
+    ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 2
   },
@@ -333,6 +368,14 @@
     "ProductionColour": "#6a5cc6",
     "ConsumptionColour": "#ad5161",
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
+    "UnlockConditions": [
+      {
+        "PatchCompound": {
+          "Compound": "temperature",
+          "Min": "5000"
+        }
+      }
+    ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 8,
     "LAWK": false
@@ -404,6 +447,18 @@
     "ProductionColour": "#ff9721",
     "ConsumptionColour": "#ff9721",
     "IconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
+    "UnlockConditions": [
+      {
+        "SpeedBelow": {
+          "Threshold": 15
+        }
+      },
+      {
+        "ExcessAtpAbove": {
+          "Atp": 10
+        }
+      }
+    ],
     "EditorButtonGroup": "External",
     "EditorButtonOrder": 1
   },
@@ -469,6 +524,18 @@
     "ProductionColour": "#26ffce",
     "ConsumptionColour": "#ff2653",
     "IconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
+    "UnlockConditions": [
+      {
+        "AtpProductionAbove": {
+          "Atp": 20
+        },
+        "ReproduceWithOrganelle": {
+          "Organelle": "metabolosome",
+          "Generations": 7,
+          "InARow": true
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 3
@@ -505,6 +572,17 @@
     "ProductionColour": "#624acb",
     "ConsumptionColour": "#c4307b",
     "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
+    "UnlockConditions": [
+      {
+        "EngulfedMicrobesAbove": {
+          "Required": 10
+        },
+        "ReproduceWithOrganelle": {
+          "Organelle": "oxytoxyProteins",
+          "Generations": 5
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 9
@@ -536,6 +614,17 @@
     "DisplayScene": "res://assets/models/organelles/BindingAgent.tscn",
     "Name": "BINDING_AGENT",
     "IconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "nucleus",
+          "Generations": 5
+        },
+        "ExcessAtpAbove": {
+          "Atp": 15
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "Unique": true,
     "EditorButtonGroup": "Organelle",
@@ -575,6 +664,16 @@
     "DisplayScene": "res://assets/models/organelles/Chloroplast.tscn",
     "Name": "CHLOROPLAST",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "chromatophore",
+          "Generations": 7,
+          "InARow": true,
+          "MinimumCount": 5
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 4
@@ -823,6 +922,16 @@
     "ProductionColour": "#9168b5",
     "ConsumptionColour": "#d15378",
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
+    "UnlockConditions": [
+      {
+        "ReproduceWithOrganelle": {
+          "Organelle": "thermosynthase",
+          "Generations": 5,
+          "InARow": true,
+          "MinimumCount": 3
+        }
+      }
+    ],
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 5,
@@ -903,6 +1012,18 @@
     "DisplayScene": "res://assets/models/organelles/Lysosome.tscn",
     "Name": "LYSOSOME",
     "IconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
+    "UnlockConditions": [
+      {
+        "EngulfedMicrobesAbove": {
+          "Required": 20
+        }
+      },
+      {
+        "DigestedMicrobesAbove": {
+          "Required": 10
+        }
+      }
+    ],
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",

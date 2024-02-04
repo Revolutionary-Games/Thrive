@@ -16,6 +16,7 @@
     [WritesToComponent(typeof(Physics))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
     [ReadsComponent(typeof(WorldPosition))]
+    [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsOnMainThread]
     public sealed class PhysicsBodyDisablingSystem : AEntitySetSystem<float>
     {

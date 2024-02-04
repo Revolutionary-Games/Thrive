@@ -9,6 +9,7 @@ public static class LaunchOptions
 {
     private static readonly Lazy<string[]> GodotLaunchOptions = new(OS.GetCmdlineArgs);
     private static readonly Lazy<bool> DisableVideosOption = new(ReadDisableVideo);
+    private static readonly Lazy<bool> SkipCPUCheckOption = new(ReadSkipCPUCheck);
 
     private static readonly Lazy<bool> LaunchedThroughLauncherHolder = new(ReadLaunchedThroughLauncher);
     private static readonly Lazy<bool> LaunchingLauncherIsHiddenHolder = new(ReadLaunchingLauncherIsHidden);
@@ -16,6 +17,8 @@ public static class LaunchOptions
     private static readonly Lazy<string?> StoreNameHolder = new(ReadStoreName);
 
     public static bool VideosEnabled => !DisableVideosOption.Value;
+
+    public static bool SkipCPUCheck => SkipCPUCheckOption.Value;
 
     public static bool LaunchedThroughLauncher => LaunchedThroughLauncherHolder.Value;
 
@@ -39,6 +42,16 @@ public static class LaunchOptions
 
         if (value)
             GD.Print("We were opened through the Thrive Launcher");
+
+        return value;
+    }
+
+    private static bool ReadSkipCPUCheck()
+    {
+        bool value = GodotLaunchOptions.Value.Any(o => o == Constants.SKIP_CPU_CHECK_OPTION);
+
+        if (value)
+            GD.Print("CPU feature check is disabled with a command line option");
 
         return value;
     }

@@ -18,6 +18,7 @@
     /// </remarks>
     [With(typeof(MicrobeColony))]
     [Without(typeof(AttachedToEntity))]
+    [RunsBefore(typeof(EngulfingSystem))]
     public sealed class ColonyCompoundDistributionSystem : AEntitySetSystem<float>
     {
         public ColonyCompoundDistributionSystem(World world, IParallelRunner parallelRunner) : base(world,

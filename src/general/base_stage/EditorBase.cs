@@ -673,6 +673,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // that
             run.CalculateAndApplyFinalExternalEffectSizes();
 
+            run.Results.RegisterNewSpeciesForSummary(CurrentGame.GameWorld);
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
@@ -808,6 +809,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             editorComponent.OnFinishEditing();
         }
 
+        CurrentGame.GameWorld.UnlockProgress.ClearRecentlyUnlocked();
+
         var stage = ReturnToStage!;
 
         // This needs to be reset here to not free this when we exit the tree
@@ -841,7 +844,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (ReturnToStage == null)
         {
-            GD.Print("Creating new stage of type", typeof(TStage).Name, " as there isn't one yet");
+            GD.Print("Creating new stage of type ", typeof(TStage).Name, " as there isn't one yet");
 
             var scene = SceneManager.Instance.LoadScene(typeof(TStage).GetCustomAttribute<SceneLoadedClassAttribute>());
 
