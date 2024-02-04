@@ -588,10 +588,10 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
                 strainBarPanel.Hide();
                 break;
             case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
-                AnimateStrainPanel(strainFraction, 0.65f);
+                AnimateStrainBarPanel(strainFraction, 0.65f);
                 break;
             case Settings.StrainBarVisibility.VisibleWhenOverZero:
-                AnimateStrainPanel(strainFraction, 0.05f);
+                AnimateStrainBarPanel(strainFraction, 0.05f);
                 break;
             case Settings.StrainBarVisibility.AlwaysVisible:
                 strainBarPanel.Show();
@@ -599,11 +599,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    private void AnimateStrainPanel(float strainFraction, float minimum)
+    private void AnimateStrainBarPanel(float strainFraction, float minimum)
     {
         var shouldBeVisible = strainFraction >= minimum;
-
-        GD.Print(shouldBeVisible + "/" + strainBarPanel.Visible);
 
         if (!strainBarPanel.Visible && shouldBeVisible)
         {

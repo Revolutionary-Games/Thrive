@@ -629,14 +629,15 @@ text = "STRAIN_BAR_VISIBILITY_MODE"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
 margin_left = 291.0
-margin_right = 664.0
+margin_right = 498.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="StrainBarVisibility" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
-margin_left = 668.0
+margin_left = 502.0
 margin_right = 702.0
 margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 555.0
