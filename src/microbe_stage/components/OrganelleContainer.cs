@@ -206,7 +206,7 @@
                 (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>());
         }
 
-        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellProperties cellProperties)
+        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellDefinition cellDefinition)
         {
             // Set an initial rotation rate that will be reset after this is properly calculated
             container.RotationSpeed = 0.5f;
@@ -215,7 +215,7 @@
 
             container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
 
-            foreach (var organelleTemplate in cellProperties.Organelles)
+            foreach (var organelleTemplate in cellDefinition.Organelles)
             {
                 container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
                     organelleTemplate.Orientation, organelleTemplate.Upgrades));
@@ -235,11 +235,11 @@
         /// </summary>
         public static void ResetOrganelleLayout(this ref OrganelleContainer container,
             ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
-            ICellProperties cellProperties, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
+            ICellDefinition cellDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
         {
-            container.CreateOrganelleLayout(cellProperties);
+            container.CreateOrganelleLayout(cellDefinition);
             container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                cellProperties.IsBacteria);
+                cellDefinition.IsBacteria);
 
             // Reproduction progress is lost
             container.AllOrganellesDivided = false;
@@ -277,8 +277,8 @@
             ref var health = ref entity.Get<Health>();
             if (!health.Dead && health.CurrentHealth > 0 && health.MaxHealth > 0)
             {
-                health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellProperties.MembraneType,
-                    cellProperties.MembraneRigidity));
+                health.RescaleMaxHealth(HealthHelpers.CalculateMicrobeHealth(cellDefinition.MembraneType,
+                    cellDefinition.MembraneRigidity));
             }
         }
 
