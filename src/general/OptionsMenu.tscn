@@ -92,6 +92,7 @@ CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCo
 CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
+RunGameSimulationMultithreadedPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunMultithreadedSimulation")
 DetectedCPUCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer/CPUCount")
 ActiveThreadCountPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer2/ConfiguredThreads")
 AssumeHyperthreadingPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading")
@@ -1071,15 +1072,32 @@ size_flags_horizontal = 0
 pressed = true
 text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
 
-[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+[node name="RunMultithreadedSimulation" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 194.0
+margin_right = 411.0
+margin_bottom = 219.0
+size_flags_horizontal = 0
+pressed = true
+text = "MULTITHREADED_SIMULATION_ENABLED"
+
+[node name="ThreadedExplanationLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 229.0
 margin_right = 718.0
-margin_bottom = 198.0
+margin_bottom = 245.0
+custom_fonts/font = ExtResource( 4 )
+text = "MULTITHREADED_SIMULATION_EXPLANATION"
+autowrap = true
+max_lines_visible = 2
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 255.0
+margin_right = 718.0
+margin_bottom = 259.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 208.0
+margin_top = 269.0
 margin_right = 718.0
-margin_bottom = 233.0
+margin_bottom = 294.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3"]
 margin_right = 462.0
@@ -1115,25 +1133,25 @@ margin_bottom = 25.0
 text = "0"
 
 [node name="AssumeHyperthreading" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 243.0
+margin_top = 304.0
 margin_right = 288.0
-margin_bottom = 268.0
+margin_bottom = 329.0
 size_flags_horizontal = 0
 pressed = true
 text = "ASSUME_HYPERTHREADING"
 
 [node name="UseManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 278.0
+margin_top = 339.0
 margin_right = 319.0
-margin_bottom = 303.0
+margin_bottom = 364.0
 size_flags_horizontal = 0
 pressed = true
 text = "USE_MANUAL_THREAD_COUNT"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 313.0
+margin_top = 374.0
 margin_right = 718.0
-margin_bottom = 338.0
+margin_bottom = 399.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4"]
 margin_right = 92.0
@@ -1169,18 +1187,18 @@ value = 4.0
 rounded = true
 
 [node name="UseNativeManualThreadCount" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 348.0
+margin_top = 409.0
 margin_right = 398.0
-margin_bottom = 373.0
+margin_bottom = 434.0
 hint_tooltip = "NATIVE_THREAD_ADVICE_TOOLTIP"
 size_flags_horizontal = 0
 pressed = true
 text = "USE_MANUAL_THREAD_COUNT_NATIVE"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 383.0
+margin_top = 444.0
 margin_right = 718.0
-margin_bottom = 408.0
+margin_bottom = 469.0
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer6"]
 margin_right = 92.0
@@ -1216,14 +1234,14 @@ value = 4.0
 rounded = true
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 418.0
+margin_top = 479.0
 margin_right = 718.0
-margin_bottom = 422.0
+margin_bottom = 483.0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
-margin_top = 432.0
+margin_top = 493.0
 margin_right = 718.0
-margin_bottom = 477.0
+margin_bottom = 538.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
 margin_right = 267.0
@@ -2337,6 +2355,7 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay" to="." method="OnAutoEvoToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunMultithreadedSimulation" to="." method="OnRunSimulationMultithreadedToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
