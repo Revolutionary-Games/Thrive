@@ -15,6 +15,12 @@
     ///   Handles microbes dying when they run out of health and also updates the membrane visuals to indicate how
     ///   close to death a microbe is
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
+    ///     eventually that is removed that component should also be removed from the With attribute list below.
+    ///   </para>
+    /// </remarks>
     [With(typeof(Health))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(MicrobeShaderParameters))]

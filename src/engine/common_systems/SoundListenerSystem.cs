@@ -37,8 +37,6 @@
         {
             Dispose(true);
             base.Dispose();
-
-            // GC.SuppressFinalize(this);
         }
 
         protected override void PreUpdate(float state)

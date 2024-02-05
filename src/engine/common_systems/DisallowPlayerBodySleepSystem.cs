@@ -12,6 +12,8 @@
     /// </summary>
     [With(typeof(PlayerMarker))]
     [With(typeof(Physics))]
+    [ReadsComponent(typeof(PlayerMarker))]
+    [ReadsComponent(typeof(Physics))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>

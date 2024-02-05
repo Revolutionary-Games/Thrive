@@ -15,6 +15,12 @@
     ///   Handles digestion of engulfed objects (and starting ejection of indigestible things).
     ///   <see cref="EngulfingSystem"/> for the system responsible for pulling in and ejecting engulfables.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This system has a separate variable in <see cref="MicrobeStatus"/> that this updates, so this is marked as
+    ///     just reading that component.
+    ///   </para>
+    /// </remarks>
     [With(typeof(Engulfer))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(CompoundStorage))]
@@ -22,6 +28,10 @@
     [With(typeof(CellProperties))]
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(MicrobeStatus))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(EngulfingSystem))]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>

@@ -12,12 +12,20 @@
     ///   Microbe specific render priority system that is aware of how to set render priority separately for organelles
     ///   and membrane. Requires <see cref="RenderPriorityOverride"/>
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as just reading the materials and organelle containers as this just modifies the materials
+    ///     for them a bit.
+    ///   </para>
+    /// </remarks>
     [With(typeof(RenderPriorityOverride))]
     [With(typeof(EntityMaterial))]
     [With(typeof(OrganelleContainer))]
-    [RunsOnMainThread]
+    [ReadsComponent(typeof(EntityMaterial))]
+    [ReadsComponent(typeof(OrganelleContainer))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsAfter(typeof(EntityMaterialFetchSystem))]
+    [RunsOnMainThread]
     public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
     {
         private readonly List<ShaderMaterial> tempMaterialsList = new();

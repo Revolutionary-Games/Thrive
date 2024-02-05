@@ -16,6 +16,8 @@
     [With(typeof(CellProperties))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(UnneededCompoundVenter))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsAfter(typeof(AllCompoundsVentingSystem))]

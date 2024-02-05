@@ -10,6 +10,7 @@
     /// </summary>
     [With(typeof(Health))]
     [With(typeof(SoundEffectPlayer))]
+    [ReadsComponent(typeof(Health))]
     [RunsBefore(typeof(SoundEffectSystem))]
     public sealed class DamageSoundSystem : AEntitySetSystem<float>
     {

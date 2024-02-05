@@ -13,6 +13,11 @@
     /// <summary>
     ///   Runs biological processes on entities
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as writing to the processes due to <see cref="BioProcesses.ProcessStatistics"/>
+    ///   </para>
+    /// </remarks>
     [With(typeof(CompoundStorage))]
     [With(typeof(BioProcesses))]
     [RunsAfter(typeof(CompoundAbsorptionSystem))]

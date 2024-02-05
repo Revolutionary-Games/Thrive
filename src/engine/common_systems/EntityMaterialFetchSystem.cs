@@ -12,6 +12,7 @@
     /// </summary>
     [With(typeof(EntityMaterial))]
     [ReadsComponent(typeof(SpatialInstance))]
+    [ReadsComponent(typeof(SpatialInstance))]
     [RunsAfter(typeof(PathBasedSceneLoader))]
     [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
     [RunsOnMainThread]

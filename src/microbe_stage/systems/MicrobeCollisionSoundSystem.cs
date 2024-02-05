@@ -10,7 +10,9 @@
     /// </summary>
     [With(typeof(CollisionManagement))]
     [With(typeof(SoundEffectPlayer))]
-    [With(typeof(SpeciesMember))]
+    [With(typeof(CellProperties))]
+    [ReadsComponent(typeof(CollisionManagement))]
+    [ReadsComponent(typeof(CellProperties))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     [RunsBefore(typeof(SoundEffectSystem))]
     public sealed class MicrobeCollisionSoundSystem : AEntitySetSystem<float>
@@ -39,7 +41,7 @@
 
                 // TODO: should collisions with any physics entities count?
                 // For now collisions with just microbes count
-                if (!collision.SecondEntity.Has<SpeciesMember>())
+                if (!collision.SecondEntity.Has<CellProperties>())
                     continue;
 
                 // Play bump sound if the collision is hard enough (there's enough physics bodies overlap)

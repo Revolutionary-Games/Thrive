@@ -10,6 +10,12 @@
     ///   Handles taking energy from microbes for osmoregulation (staying alive) cost and dealing damage if there's not
     ///   enough energy. If microbe has non-zero ATP then passive health regeneration happens.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as just reading <see cref="MicrobeStatus"/> as this has a reserved variable in it just for
+    ///     this systems use so writing to it doesn't conflict with other systems.
+    ///   </para>
+    /// </remarks>
     [With(typeof(OrganelleContainer))]
     [With(typeof(CellProperties))]
     [With(typeof(MicrobeStatus))]
@@ -18,7 +24,9 @@
     [With(typeof(Engulfable))]
     [With(typeof(SpeciesMember))]
     [With(typeof(Health))]
+    [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(Health))]

@@ -17,6 +17,7 @@
     [With(typeof(Physics))]
     [With(typeof(ManualPhysicsControl))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(CurrentAffected))]
     [ReadsComponent(typeof(Physics))]
     [ReadsComponent(typeof(WorldPosition))]
     [JsonObject(MemberSerialization.OptIn)]

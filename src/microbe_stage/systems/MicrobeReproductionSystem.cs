@@ -15,6 +15,12 @@
     ///   Handles reproduction progress in microbes that are not in aa cell colony. <see cref="AttachedToEntity"/> is
     ///   used to skip reproduction for engulfed cells or cells in colonies.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This just needs an exclusive property for this system that is stored in <see cref="MicrobeStatus"/> so
+    ///     this is marked just as reading that component as it won't conflict with other writes.
+    ///   </para>
+    /// </remarks>
     [With(typeof(ReproductionStatus))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(MicrobeStatus))]
@@ -27,6 +33,10 @@
     [Without(typeof(EarlyMulticellularSpeciesMember))]
     [WritesToComponent(typeof(Engulfable))]
     [WritesToComponent(typeof(Engulfer))]
+    [ReadsComponent(typeof(MicrobeStatus))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobeSpeciesMember))]
+    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]

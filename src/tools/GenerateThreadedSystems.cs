@@ -27,7 +27,7 @@ public class GenerateThreadedSystems : Node
     /// <summary>
     ///   When true inserts timing code around barriers to measure how long the wait times are
     /// </summary>
-    public static bool MeasureThreadWaits = false;
+    public static bool MeasureThreadWaits = true;
 
     /// <summary>
     ///   When true and <see cref="MeasureThreadWaits"/> prints the measured wait times while running

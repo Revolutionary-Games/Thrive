@@ -14,6 +14,7 @@
     [With(typeof(Physics))]
     [With(typeof(PhysicsShapeHolder))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(PhysicsShapeHolder))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsBefore(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsOnMainThread]

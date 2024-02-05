@@ -8,11 +8,15 @@
     /// <summary>
     ///   Handles applying pilus damage to microbes
     /// </summary>
-    [With(typeof(OrganelleContainer))]
     [With(typeof(CollisionManagement))]
     [With(typeof(MicrobePhysicsExtraData))]
     [With(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(CollisionManagement))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
+    [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(Health))]
+    [WritesToComponent(typeof(DamageCooldown))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class PilusDamageSystem : AEntitySetSystem<float>
     {

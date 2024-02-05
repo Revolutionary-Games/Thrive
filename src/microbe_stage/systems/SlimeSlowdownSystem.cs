@@ -12,6 +12,7 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(OrganelleComponentFetchSystem))]
     [RunsBefore(typeof(MicrobeMovementSystem))]

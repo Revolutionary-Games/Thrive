@@ -316,8 +316,9 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         // Need to have more threads than configured to run with to not deadlock on all threads just waiting for
         // tasks to be able to start
-        // TODO: adjust the min threads threshold here
-        if (availableThreads > GenerateThreadedSystems.TargetThreadCount)
+        // TODO: adjust the min threads threshold here (currently +1 for slowest systems to not get hit with the
+        // threading performance penalty)
+        if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)
         {
             OnProcessFixedWithThreads(delta);
         }

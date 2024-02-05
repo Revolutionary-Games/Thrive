@@ -11,10 +11,26 @@
     /// <summary>
     ///   Handles fading out animations on entities
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as reading the physics info as this does just some few simple physics actions on single
+    ///     physics bodies. Same related to the spatial instance as this just can disable particles.
+    ///   </para>
+    /// </remarks>
+    /// <remarks>
+    ///   <para>
+    ///     This is really marked as needing to run on the main thread because this modifies particle emitter emitting
+    ///     setting of Godot.
+    ///   </para>
+    /// </remarks>
     [With(typeof(FadeOutActions))]
     [With(typeof(TimedLife))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(Physics))]
+    [ReadsComponent(typeof(SpatialInstance))]
     [WritesToComponent(typeof(CompoundStorage))]
+    [WritesToComponent(typeof(ManualPhysicsControl))]
+    [RunsOnMainThread]
     public sealed class FadeOutActionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
