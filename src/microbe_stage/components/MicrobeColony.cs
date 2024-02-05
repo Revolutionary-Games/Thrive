@@ -806,6 +806,9 @@
                 organelles.AllOrganellesDivided = false;
             }
 
+            // Clear queued slime jet force
+            control.QueuedSlimeSecretionTime = 0;
+
             ReportReproductionStatusOnAddToColony(addedEntity);
         }
 
