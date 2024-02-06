@@ -308,8 +308,14 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     {
         int availableThreads = TaskExecutor.Instance.ParallelTasks;
 
-        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+        var settings = Settings.Instance;
+        if (settings.RunAutoEvoDuringGamePlay)
             --availableThreads;
+
+        if (!settings.RunGameSimulationMultithreaded)
+        {
+            availableThreads = 1;
+        }
 
         // For single-threaded testing uncomment the next line:
         // availableThreads = 1;

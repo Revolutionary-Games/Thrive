@@ -18,7 +18,8 @@ public static class BenchmarkHelpers
     public static string GetGeneralHardwareInfo()
     {
         return $"CPU: {OS.GetProcessorName()} (used tasks: {TaskExecutor.Instance.ParallelTasks}, " +
-            $"native: {TaskExecutor.Instance.NativeTasks})\n" +
+            $"native: {TaskExecutor.Instance.NativeTasks}, sim threads: " +
+            $"{Settings.Instance.RunGameSimulationMultithreaded.Value})\n" +
             $"GPU: {VisualServer.GetVideoAdapterName()}\nOS: {OS.GetName()}";
     }
 
