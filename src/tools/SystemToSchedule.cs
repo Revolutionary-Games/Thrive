@@ -46,6 +46,7 @@
         private static readonly Type SystemWithAttribute = typeof(WithAttribute);
         private static readonly Type WritesToAttribute = typeof(WritesToComponentAttribute);
         private static readonly Type ReadsFromAttribute = typeof(ReadsComponentAttribute);
+        private static readonly Type ReadByDefaultAttribute = typeof(ComponentIsReadByDefaultAttribute);
         private static readonly Type RunsAfterAttribute = typeof(RunsAfterAttribute);
         private static readonly Type RunsBeforeAttribute = typeof(RunsBeforeAttribute);
         private static readonly Type RunsOnMainAttribute = typeof(RunsOnMainThreadAttribute);
@@ -79,6 +80,9 @@
             }
 
             var expectedWritesTo = new List<Type>();
+            var expectedReadsFrom = new List<Type>();
+
+            var explicitReads = new HashSet<Type>();
 
             var withRaw = systemToSchedule.Type.GetCustomAttributes(SystemWithAttribute);
 
@@ -91,12 +95,17 @@
                 {
                     foreach (var componentType in attribute.ComponentTypes)
                     {
+                        // Handle components that are read by default
+                        if (componentType.GetCustomAttribute(ReadByDefaultAttribute) != null)
+                        {
+                            expectedReadsFrom.Add(componentType);
+                            continue;
+                        }
+
                         expectedWritesTo.Add(componentType);
                     }
                 }
             }
-
-            var expectedReadsFrom = new List<Type>();
 
             var readsRaw = systemToSchedule.Type.GetCustomAttributes(ReadsFromAttribute);
 
@@ -109,6 +118,8 @@
 
                 if (!expectedReadsFrom.Contains(attribute.ReadsFrom))
                     expectedReadsFrom.Add(attribute.ReadsFrom);
+
+                explicitReads.Add(attribute.ReadsFrom);
             }
 
             var writesRaw = systemToSchedule.Type.GetCustomAttributes(WritesToAttribute);
@@ -117,18 +128,18 @@
             {
                 var attribute = (WritesToComponentAttribute)attributeRaw;
 
-                if (expectedReadsFrom.Contains(attribute.WritesTo))
+                if (explicitReads.Contains(attribute.WritesTo))
                 {
                     throw new Exception(
                         "Shouldn't specify a writes to component with already a read attribute for same type");
                 }
 
+                // Convert implicit reads to writes
+                expectedReadsFrom.Remove(attribute.WritesTo);
+
                 if (!expectedWritesTo.Contains(attribute.WritesTo))
                     expectedWritesTo.Add(attribute.WritesTo);
             }
-
-            // TODO: should the following be done?:
-            // All writes are also reads for simplicity in checking thread access
 
             systemToSchedule.WritesComponents = expectedWritesTo;
             systemToSchedule.ReadsComponents = expectedReadsFrom;

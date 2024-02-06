@@ -25,7 +25,6 @@
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
     [With(typeof(CompoundStorage))]
-    [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(Engulfable))]

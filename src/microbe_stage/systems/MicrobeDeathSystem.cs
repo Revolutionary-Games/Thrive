@@ -32,6 +32,7 @@
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(CompoundAbsorber))]
     [ReadsComponent(typeof(WorldPosition))]
+    [WritesToComponent(typeof(Health))]
     [WritesToComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(MicrobeEmissionSystem))]

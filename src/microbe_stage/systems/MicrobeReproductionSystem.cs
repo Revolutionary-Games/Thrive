@@ -35,8 +35,6 @@
     [WritesToComponent(typeof(Engulfer))]
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(CellProperties))]
-    [ReadsComponent(typeof(MicrobeSpeciesMember))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
