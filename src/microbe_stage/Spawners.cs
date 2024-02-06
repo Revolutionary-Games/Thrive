@@ -591,6 +591,8 @@ public static class SpawnHelpers
         entity.Set(new SpatialInstance
         {
             VisualScale = scale,
+
+            // Microbes must always apply visual scale for them to work correctly
             ApplyVisualScale = true,
         });
 
