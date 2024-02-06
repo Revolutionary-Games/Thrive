@@ -49,7 +49,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
-    public ICellProperties EditedCellProperties =>
+    public ICellDefinition EditedCellProperties =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]

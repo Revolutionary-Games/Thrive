@@ -4,7 +4,14 @@ using Godot;
 /// <summary>
 ///   Generic interface to allow working with microbe species and also multicellular species' individual cell types
 /// </summary>
-public interface ICellProperties : ISimulationPhotographable
+/// <remarks>
+///   <para>
+///     This used to be named ICellProperties but that was very closely named to
+///     <see cref="Components.CellProperties"/> so this was renamed to reflect how this is used as a generic
+///     information adapter on a cell type definition (similarly to <see cref="OrganelleDefinition"/>).
+///   </para>
+/// </remarks>
+public interface ICellDefinition : ISimulationPhotographable
 {
     public OrganelleLayout<OrganelleTemplate> Organelles { get; }
     public MembraneType MembraneType { get; set; }
@@ -31,7 +38,7 @@ public interface ICellProperties : ISimulationPhotographable
 }
 
 /// <summary>
-///   General helpers for working with a general <see cref="ICellProperties"/> type.
+///   General helpers for working with a general <see cref="ICellDefinition"/> type.
 ///   <see cref="Components.CellPropertiesHelpers"/> are related to ECS component operations.
 /// </summary>
 public static class GeneralCellPropertiesHelpers
@@ -39,11 +46,11 @@ public static class GeneralCellPropertiesHelpers
     /// <summary>
     ///   The total compounds in the composition of all organelles
     /// </summary>
-    public static Dictionary<Compound, float> CalculateTotalComposition(this ICellProperties properties)
+    public static Dictionary<Compound, float> CalculateTotalComposition(this ICellDefinition definition)
     {
         var result = new Dictionary<Compound, float>();
 
-        foreach (var organelle in properties.Organelles)
+        foreach (var organelle in definition.Organelles)
         {
             result.Merge(organelle.Definition.InitialComposition);
         }
@@ -51,9 +58,9 @@ public static class GeneralCellPropertiesHelpers
         return result;
     }
 
-    public static void SetupWorldEntities(this ICellProperties properties, IWorldSimulation worldSimulation)
+    public static void SetupWorldEntities(this ICellDefinition definition, IWorldSimulation worldSimulation)
     {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), properties).SetupWorldEntities(
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition).SetupWorldEntities(
             worldSimulation);
     }
 
@@ -62,15 +69,15 @@ public static class GeneralCellPropertiesHelpers
         return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }
 
-    public static int GetVisualHashCode(this ICellProperties properties)
+    public static int GetVisualHashCode(this ICellDefinition definition)
     {
-        int hash = properties.Colour.GetHashCode() * 607;
+        int hash = definition.Colour.GetHashCode() * 607;
 
-        hash ^= (properties.MembraneType.GetHashCode() * 5743) ^ (properties.MembraneRigidity.GetHashCode() * 5749) ^
-            ((properties.IsBacteria ? 1 : 0) * 5779) ^ (properties.Organelles.Count * 131);
+        hash ^= (definition.MembraneType.GetHashCode() * 5743) ^ (definition.MembraneRigidity.GetHashCode() * 5749) ^
+            ((definition.IsBacteria ? 1 : 0) * 5779) ^ (definition.Organelles.Count * 131);
 
         int counter = 0;
-        foreach (var organelle in properties.Organelles)
+        foreach (var organelle in definition.Organelles)
         {
             hash ^= counter++ * 13 * organelle.GetHashCode();
         }

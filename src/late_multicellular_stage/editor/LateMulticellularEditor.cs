@@ -104,7 +104,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     [JsonIgnore]
-    public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
+    public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
     protected override string MusicCategory => "LateMulticellularEditor";
 

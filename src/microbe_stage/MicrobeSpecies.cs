@@ -13,7 +13,7 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class MicrobeSpecies : Species, ICellProperties
+public class MicrobeSpecies : Species, ICellDefinition
 {
     [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
@@ -25,23 +25,23 @@ public class MicrobeSpecies : Species, ICellProperties
     ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
     /// </summary>
     /// <param name="cloneOf">Grabs the ID and species name from here</param>
-    /// <param name="withCellProperties">
+    /// <param name="withCellDefinition">
     ///   Properties from here are copied to this (except organelle objects are shared)
     /// </param>
-    public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
+    public MicrobeSpecies(Species cloneOf, ICellDefinition withCellDefinition) : this(cloneOf.ID, cloneOf.Genus,
         cloneOf.Epithet)
     {
         cloneOf.ClonePropertiesTo(this);
 
-        foreach (var organelle in withCellProperties.Organelles)
+        foreach (var organelle in withCellDefinition.Organelles)
         {
             Organelles.Add(organelle);
         }
 
-        MembraneType = withCellProperties.MembraneType;
-        MembraneRigidity = withCellProperties.MembraneRigidity;
-        Colour = withCellProperties.Colour;
-        IsBacteria = withCellProperties.IsBacteria;
+        MembraneType = withCellDefinition.MembraneType;
+        MembraneRigidity = withCellDefinition.MembraneRigidity;
+        Colour = withCellDefinition.Colour;
+        IsBacteria = withCellDefinition.IsBacteria;
     }
 
     public bool IsBacteria { get; set; }
