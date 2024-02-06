@@ -18,6 +18,12 @@
     ///     organelles. Other operations are less time sensitive so they are fine to be detected next frame.
     ///   </para>
     /// </remarks>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as needing a few common components that the organelle component types use but this doesn't
+    ///     reference directly
+    ///   </para>
+    /// </remarks>
     [With(typeof(OrganelleContainer))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]

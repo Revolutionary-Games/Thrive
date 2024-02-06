@@ -13,6 +13,7 @@
     /// </summary>
     [With(typeof(CountLimited))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(CountLimited))]
     [ReadsComponent(typeof(WorldPosition))]
     public sealed class CountLimitedDespawnSystem : AEntitySetSystem<float>
     {

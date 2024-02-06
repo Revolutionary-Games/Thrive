@@ -10,6 +10,7 @@
     /// </summary>
     [With(typeof(AttachedToEntity))]
     [With(typeof(WorldPosition))]
+    [ReadsComponent(typeof(AttachedToEntity))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsBefore(typeof(SpatialPositionSystem))]
     public sealed class AttachedEntityPositionSystem : AEntitySetSystem<float>

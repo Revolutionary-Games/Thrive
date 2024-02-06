@@ -9,8 +9,15 @@
     /// <summary>
     ///   System that handles <see cref="AnimationControl"/>
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This does kind of modify the spatial, but only in very specific circumstances (if cast to animation player
+    ///     succeeds) and even then this just calls a Godot method on it to stop animation playing.
+    ///   </para>
+    /// </remarks>
     [With(typeof(AnimationControl))]
     [With(typeof(SpatialInstance))]
+    [ReadsComponent(typeof(SpatialInstance))]
     [RunsOnMainThread]
     public sealed class AnimationControlSystem : AEntitySetSystem<float>
     {

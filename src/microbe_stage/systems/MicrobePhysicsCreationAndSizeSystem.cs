@@ -26,11 +26,12 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(PhysicsShapeHolder))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [WritesToComponent(typeof(CompoundAbsorber))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsBefore(typeof(PhysicsBodyCreationSystem))]
     [RunsBefore(typeof(MicrobeReproductionSystem))]
     [RunsBefore(typeof(MulticellularGrowthSystem))]
-    [WritesToComponent(typeof(CompoundAbsorber))]
     public sealed class MicrobePhysicsCreationAndSizeSystem : AEntitySetSystem<float>
     {
         private readonly float pilusDensity;

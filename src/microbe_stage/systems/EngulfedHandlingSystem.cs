@@ -22,8 +22,9 @@
     [WritesToComponent(typeof(SpatialInstance))]
     [WritesToComponent(typeof(CompoundStorage))]
     [WritesToComponent(typeof(CellProperties))]
-    [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>

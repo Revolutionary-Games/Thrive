@@ -12,6 +12,12 @@
     /// <summary>
     ///   Handles microbes emitting agents (toxins) or slime
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This technically writes to the <see cref="OrganelleContainer"/> but only to the Slime Jets' active property
+    ///     and nothing else so this shouldn't conflict with other things.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeControl))]
     [With(typeof(SpeciesMember))]
     [With(typeof(OrganelleContainer))]
@@ -19,9 +25,12 @@
     [With(typeof(SoundEffectPlayer))]
     [With(typeof(WorldPosition))]
     [With(typeof(CompoundStorage))]
+    [ReadsComponent(typeof(SpeciesMember))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(AttachedToEntity))]
+    [WritesToComponent(typeof(OrganelleContainer))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
     [RunsAfter(typeof(ProcessSystem))]
     public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>

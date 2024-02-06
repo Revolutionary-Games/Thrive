@@ -13,7 +13,6 @@
     ///   world at all)
     /// </summary>
     [With(typeof(Physics))]
-    [WritesToComponent(typeof(Physics))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]

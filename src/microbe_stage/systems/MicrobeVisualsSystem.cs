@@ -23,6 +23,7 @@
     [With(typeof(RenderPriorityOverride))]
     [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsBefore(typeof(EntityMaterialFetchSystem))]
+    [RunsBefore(typeof(SpatialPositionSystem))]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {

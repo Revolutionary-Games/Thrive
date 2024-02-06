@@ -11,6 +11,7 @@
     /// </summary>
     [With(typeof(MicrobeColony))]
     [WritesToComponent(typeof(Spawned))]
+    [ReadsComponent(typeof(MicrobeColonyMember))]
     [RunsAfter(typeof(SpawnSystem))]
     [RunsAfter(typeof(MulticellularGrowthSystem))]
     public sealed class ColonyStatsUpdateSystem : AEntitySetSystem<float>

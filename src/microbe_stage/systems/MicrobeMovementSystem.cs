@@ -11,6 +11,11 @@
     /// <summary>
     ///   Handles applying <see cref="MicrobeControl"/> to a microbe
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The only write this does to <see cref="MicrobeControl"/> is ensuring the movement direction is normalized.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeControl))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(CellProperties))]
@@ -18,6 +23,7 @@
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
     [With(typeof(Health))]
+    [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
