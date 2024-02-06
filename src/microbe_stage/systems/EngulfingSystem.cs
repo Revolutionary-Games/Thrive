@@ -330,8 +330,7 @@
                             break;
 
                         case PhagocytosisPhase.Digested:
-                            RemoveEngulfedObject(ref engulfer, engulfedEntity, ref engulfable);
-                            worldSimulation.DestroyEntity(engulfedEntity);
+                            RemoveEngulfedObject(ref engulfer, engulfedEntity, ref engulfable, true);
                             break;
 
                         case PhagocytosisPhase.RequestExocytosis:
@@ -1295,7 +1294,7 @@
 
             PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
 
-            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable);
+            RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
 
             // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
             // as the ejection completes
@@ -1411,7 +1410,8 @@
         ///   Doesn't do any ejection actions. This is purely for once data needs to be removed once it is safe to do
         ///   so.
         /// </summary>
-        private void RemoveEngulfedObject(ref Engulfer engulfer, Entity engulfedEntity, ref Engulfable engulfable)
+        private void RemoveEngulfedObject(ref Engulfer engulfer, Entity engulfedEntity, ref Engulfable engulfable,
+            bool destroy)
         {
             if (engulfer.EngulfedObjects == null)
                 throw new InvalidOperationException("Engulfed objects should not be null when this is called");
@@ -1438,10 +1438,25 @@
             engulfable.PhagocytosisStep = PhagocytosisPhase.None;
             engulfable.HostileEngulfer = default;
 
+#if DEBUG
+            if (engulfedEntity.Get<SpatialInstance>().VisualScale != engulfable.OriginalScale && !destroy)
+            {
+                GD.PrintErr("Original scale not applied correctly before eject");
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+            }
+#endif
+
             // Thanks to digestion decreasing the size of engulfed objects, this doesn't match what we took in
-            // originally. This relies on teh digestion system updating this later to make sure this is correct
+            // originally. This relies on the digestion system updating this later to make sure this is correct
             engulfer.UsedIngestionCapacity =
                 Math.Max(0, engulfer.UsedIngestionCapacity - engulfable.AdjustedEngulfSize);
+
+            if (destroy)
+            {
+                worldSimulation.DestroyEntity(engulfedEntity);
+            }
         }
 
         /// <summary>
