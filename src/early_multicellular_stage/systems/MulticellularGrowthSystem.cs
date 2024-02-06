@@ -13,6 +13,14 @@
     /// <summary>
     ///   Handles growth in multicellular cell colonies
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is marked as reading <see cref="MicrobeStatus"/> as this uses one special flag in it. That flag is
+    ///     shared with <see cref="MicrobeReproductionSystem"/> but these systems cannot run on the same entities so
+    ///     there is no conflict.
+    ///   </para>
+    /// </remarks>
+    [With(typeof(ReproductionStatus))]
     [With(typeof(EarlyMulticellularSpeciesMember))]
     [With(typeof(MulticellularGrowth))]
     [With(typeof(CompoundStorage))]
@@ -20,7 +28,9 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(Health))]
     [Without(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(ProcessSystem))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
