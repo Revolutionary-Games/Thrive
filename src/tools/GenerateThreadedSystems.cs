@@ -275,127 +275,19 @@ public class GenerateThreadedSystems : Node
         VerifyOrderOfSystems(mainSystems);
 
         // Create rough ordering for the other systems to run (this is just an initial list and will be used just to
-        // create thread groups)
+        // populate thread threads)
         SortSingleGroupOfSystems(otherSystems);
         VerifyOrderOfSystems(otherSystems);
 
-        // First go of execution groups based on each one of the main thread systems (but combine subsequent ones that
-        // require the next)
-        var groups = new List<ExecutionGroup>();
+        // Run a threaded run simulator to determine a good grouping of systems onto threads
+        var simulator = new ThreadedRunSimulator(mainSystems, otherSystems, backgroundThreads + 1);
 
-        // Add systems that are considered equal to the same execution group
-        var comparer = new SystemToSchedule.SystemRequirementsBasedComparer();
+        var resultingThreads = simulator.Simulate();
 
-        foreach (var mainSystem in mainSystems)
-        {
-            if (groups.Count > 0 && comparer.CompareWeak(mainSystem, groups[groups.Count - 1].Systems.Last()) <= 0)
-            {
-                groups[groups.Count - 1].Systems.Add(mainSystem);
-                continue;
-            }
-
-            groups.Add(new ExecutionGroup
-            {
-                Systems = { mainSystem },
-            });
-        }
-
-        // Add all other systems to a group it needs to go in
-        foreach (var group in groups)
-        {
-            // Add stuff needing to run before the group systems
-
-            for (int i = 0; i < otherSystems.Count; ++i)
-            {
-                var current = otherSystems[i];
-
-                bool added = false;
-
-                for (var j = 0; j < group.Systems.Count; j++)
-                {
-                    var groupSystem = group.Systems[j];
-                    if (comparer.CompareWeak(current, groupSystem) < 0)
-                    {
-                        // Insert before the system this needs to be before
-                        group.Systems.Insert(j, current);
-                        added = true;
-                        break;
-                    }
-                }
-
-                if (added)
-                {
-                    otherSystems.RemoveAt(i);
-                    --i;
-                }
-            }
-        }
-
-        // Add remaining systems to the last group
-        while (otherSystems.Count > 0)
-        {
-            groups[groups.Count - 1].Systems.Add(otherSystems[0]);
-            otherSystems.RemoveAt(0);
-        }
-
-        // Need to sort this as the above loop didn't take sorting into account
-        SortSingleGroupOfSystems(groups[groups.Count - 1].Systems);
-
-        int count = 1;
-
-        // Verify all group orders are correct
-        foreach (var group in groups)
-        {
-            VerifyOrderOfSystems(group.Systems);
-            group.GroupNumber = count++;
-        }
-
-        var mainTasks = groups.SelectMany(g => g.Systems.Where(s => s.RunsOnMainThread));
-        var otherTasks = groups.SelectMany(g => g.Systems.Where(s => !s.RunsOnMainThread));
-
-        // Generate barrier points by simulating the executions of the separate threads
-        ThreadedRunSimulator simulator;
-        if (backgroundThreads > 1)
-        {
-            var otherThreads = new List<List<SystemToSchedule>>();
-
-            while (otherThreads.Count < backgroundThreads)
-            {
-                otherThreads.Add(new List<SystemToSchedule>());
-            }
-
-            int threadIndex = 0;
-
-            foreach (var otherTask in otherTasks)
-            {
-                otherThreads[threadIndex % backgroundThreads].Add(otherTask);
-
-                ++threadIndex;
-            }
-
-            var allThreads = new List<List<SystemToSchedule>>
-            {
-                mainTasks.ToList(),
-            };
-
-            foreach (var otherThread in otherThreads)
-            {
-                allThreads.Add(otherThread);
-            }
-
-            simulator = new ThreadedRunSimulator(allThreads);
-        }
-        else
-        {
-            simulator = new ThreadedRunSimulator(mainTasks.ToList(), otherTasks.ToList());
-        }
-
-        simulator.Simulate();
-
-        CheckBarrierCounts(groups);
+        CheckBarrierCounts(resultingThreads);
 
         // Generate the final results
-        WriteResultOfThreadedRunning(groups, backgroundThreads + 1, processSystemTextLines, variables);
+        WriteResultOfThreadedRunning(resultingThreads, processSystemTextLines, variables);
     }
 
     private void GenerateNonThreadedSystems(List<SystemToSchedule> mainSystems, List<SystemToSchedule> otherSystems,
@@ -423,13 +315,13 @@ public class GenerateThreadedSystems : Node
         }
     }
 
-    private void CheckBarrierCounts(List<ExecutionGroup> groups)
+    private void CheckBarrierCounts(IEnumerable<List<SystemToSchedule>> threads)
     {
         var barrierCounts = new Dictionary<int, int>();
 
-        foreach (var group in groups)
+        foreach (var group in threads)
         {
-            foreach (var system in group.Systems)
+            foreach (var system in group)
             {
                 if (system.RequiresBarrierAfter < 0 || system.RequiresBarrierBefore < 0)
                     throw new Exception("Negative barrier amount detected");
@@ -452,27 +344,24 @@ public class GenerateThreadedSystems : Node
         }
     }
 
-    private void WriteResultOfThreadedRunning(List<ExecutionGroup> groups, int threadCount, List<string> lineReceiver,
+    private void WriteResultOfThreadedRunning(List<List<SystemToSchedule>> threads, List<string> lineReceiver,
         Dictionary<string, VariableInfo> variables)
     {
-        int barrierMemberCount = threadCount;
+        int threadCount = threads.Count;
 
-        // Task for background operations
-
-        for (int i = 0; i < threadCount - 1; ++i)
+        // Tasks for background operations
+        for (int i = 1; i < threadCount; ++i)
         {
-            int threadNumber = i + 2;
+            var thread = threads[i];
+            int threadId = thread.First().ThreadId;
             lineReceiver.Add($"var background{i} = new Task(() =>");
             lineReceiver.Add($"{StringUtils.GetIndent(4)}{{");
 
-            foreach (var group in groups)
-            {
-                group.GenerateCodeThread(lineReceiver, 8, threadNumber);
-            }
+            GenerateCodeForThread(thread, lineReceiver, 8);
 
             lineReceiver.Add(string.Empty);
 
-            AddBarrierWait(lineReceiver, 1, threadNumber, 8);
+            AddBarrierWait(lineReceiver, 1, threadId, 8);
 
             lineReceiver.Add($"{StringUtils.GetIndent(4)}}});");
 
@@ -481,18 +370,17 @@ public class GenerateThreadedSystems : Node
         }
 
         // Main thread operations
-        foreach (var group in groups)
-        {
-            group.GenerateCodeMain(lineReceiver, 0);
-        }
+        var mainThread = threads[0];
+
+        GenerateCodeForThread(mainThread, lineReceiver, 0);
 
         lineReceiver.Add(string.Empty);
-        AddBarrierWait(lineReceiver, 1, 1, 0);
+        AddBarrierWait(lineReceiver, 1, mainThread.First().ThreadId, 0);
 
-        variables["barrier1"] = new VariableInfo("Barrier", !DebugGuardComponentWrites, $"new({barrierMemberCount})")
+        variables["barrier1"] = new VariableInfo("Barrier", !DebugGuardComponentWrites, $"new({threadCount})")
         {
             Dispose = true,
-            OriginalConstructorParameters = barrierMemberCount.ToString(),
+            OriginalConstructorParameters = threadCount.ToString(),
         };
 
         if (DebugGuardComponentWrites)
@@ -505,6 +393,30 @@ public class GenerateThreadedSystems : Node
         if (MeasureThreadWaits)
         {
             GenerateTimeMeasurementResultsCode(lineReceiver, variables, threadCount);
+        }
+    }
+
+    private void GenerateCodeForThread(List<SystemToSchedule> systems, List<string> lineReceiver,
+        int indent)
+    {
+        int timeslot = int.MaxValue;
+        int threadId = int.MaxValue;
+
+        foreach (var system in systems)
+        {
+            if (timeslot != system.Timeslot)
+            {
+                timeslot = system.Timeslot;
+                threadId = system.ThreadId;
+
+                EnsureOneBlankLine(lineReceiver);
+                lineReceiver.Add(StringUtils.GetIndent(indent) + $"// Timeslot {timeslot} on thread {system.ThreadId}");
+            }
+
+            if (threadId != system.ThreadId)
+                throw new Exception("Single system list has systems for multiple threads");
+
+            system.GetRunningText(lineReceiver, indent, system.ThreadId);
         }
     }
 
@@ -930,45 +842,6 @@ public class GenerateThreadedSystems : Node
         indent -= 4;
         writer.WriteLine(StringUtils.GetIndent(indent) + "}");
         return indent;
-    }
-
-    private class ExecutionGroup
-    {
-        public readonly List<SystemToSchedule> Systems = new();
-        public int GroupNumber;
-
-        public void GenerateCodeMain(List<string> lineReceiver, int indent)
-        {
-            Write(lineReceiver, $"// Execution group {GroupNumber} (on main)", indent,
-                Systems.Where(s => s.RunsOnMainThread), 1);
-        }
-
-        public void GenerateCodeThread(List<string> lineReceiver, int indent, int thread)
-        {
-            if (thread < 2)
-                throw new ArgumentException("Threads should have a valid thread id (above main thread id)");
-
-            Write(lineReceiver, $"// Execution group {GroupNumber} on thread {thread}", indent,
-                Systems.Where(s => s.ThreadId == thread), thread);
-        }
-
-        private void Write(List<string> lineReceiver, string comment, int indent,
-            IEnumerable<SystemToSchedule> filteredSystems, int thread)
-        {
-            bool first = true;
-
-            foreach (var system in filteredSystems)
-            {
-                if (first)
-                {
-                    first = false;
-                    EnsureOneBlankLine(lineReceiver);
-                    lineReceiver.Add(StringUtils.GetIndent(indent) + comment);
-                }
-
-                system.GetRunningText(lineReceiver, indent, thread);
-            }
-        }
     }
 
     private class VariableInfo

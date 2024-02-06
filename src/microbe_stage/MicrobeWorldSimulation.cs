@@ -321,7 +321,8 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         // availableThreads = 1;
 
         // Need to have more threads than configured to run with to not deadlock on all threads just waiting for
-        // tasks to be able to start
+        // tasks to be able to start. Apparently with just 1 background task the deadlock never occurs but still
+        // performance is reduced a lot without enough threads
         // TODO: adjust the min threads threshold here (currently +1 for slowest systems to not get hit with the
         // threading performance penalty)
         if (availableThreads > GenerateThreadedSystems.TargetThreadCount + 1)

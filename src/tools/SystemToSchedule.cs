@@ -17,6 +17,9 @@
 
         // public readonly int OriginalOrder;
 
+        // TODO: add a relative cost field here and weight the amount of systems that can be given to a single thread
+        // Also should remember to modify AheadPenaltyPerTask value with the system weight multiplier
+
         public string? RunCondition;
         public string? CustomRunCode;
 
