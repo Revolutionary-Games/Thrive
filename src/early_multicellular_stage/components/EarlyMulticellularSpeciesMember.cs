@@ -5,6 +5,7 @@
     /// <summary>
     ///   Entity is an early multicellular thing. Still exists in the microbial environment.
     /// </summary>
+    [ComponentIsReadByDefault]
     [JSONDynamicTypeAllowed]
     public struct EarlyMulticellularSpeciesMember
     {

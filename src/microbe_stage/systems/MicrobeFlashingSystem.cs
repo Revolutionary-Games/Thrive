@@ -16,7 +16,6 @@
     [With(typeof(Health))]
     [With(typeof(Selectable))]
     [ReadsComponent(typeof(MicrobeControl))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(Selectable))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(DamageSoundSystem))]

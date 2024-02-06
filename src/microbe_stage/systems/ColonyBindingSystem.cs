@@ -23,8 +23,6 @@
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(CollisionManagement))]
-    [ReadsComponent(typeof(MicrobeSpeciesMember))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(CellProperties))]

@@ -13,6 +13,7 @@
     ///     <see cref="ReadsComponentAttribute"/> often when "slight" writes are done to this component.
     ///   </para>
     /// </remarks>
+    [ComponentIsReadByDefault]
     [JSONDynamicTypeAllowed]
     public struct Health
     {

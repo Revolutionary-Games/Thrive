@@ -23,7 +23,6 @@
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [ReadsComponent(typeof(MicrobeStatus))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobeColony))]

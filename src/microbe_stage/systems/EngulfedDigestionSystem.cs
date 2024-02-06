@@ -31,7 +31,6 @@
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(CellProperties))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(EngulfingSystem))]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>

@@ -27,7 +27,6 @@
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
-    [ReadsComponent(typeof(Health))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     [RunsBefore(typeof(PhysicsBodyControlSystem))]

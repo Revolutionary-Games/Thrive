@@ -28,8 +28,6 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(Engulfable))]
-    [ReadsComponent(typeof(SpeciesMember))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(DamageOnTouchSystem))]

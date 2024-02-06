@@ -30,8 +30,6 @@
     [With(typeof(Engulfer))]
     [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
-    [ReadsComponent(typeof(SpeciesMember))]
-    [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(CompoundStorage))]
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(CellProperties))]
