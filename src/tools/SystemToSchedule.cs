@@ -256,6 +256,30 @@
             return false;
         }
 
+        public bool CanRunConcurrently(SystemToSchedule otherSystem)
+        {
+            // System ordering constraints
+            if (ShouldRunAfter(otherSystem) || ShouldRunBefore(otherSystem))
+                return false;
+
+            if (otherSystem.ShouldRunAfter(this) || otherSystem.ShouldRunBefore(this))
+                return false;
+
+            // Write / read conflicts
+            if (ReadsComponents.Any(c =>
+                    otherSystem.ReadsComponents.Contains(c) || otherSystem.WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            if (otherSystem.WritesComponents.Any(c => ReadsComponents.Contains(c) || WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void GetRunningText(List<string> lineReceiver, int indent, int thread)
         {
             for (int i = 0; i < RequiresBarrierBefore; ++i)
