@@ -17,6 +17,9 @@
 
         // public readonly int OriginalOrder;
 
+        // TODO: add a relative cost field here and weight the amount of systems that can be given to a single thread
+        // Also should remember to modify AheadPenaltyPerTask value with the system weight multiplier
+
         public string? RunCondition;
         public string? CustomRunCode;
 
@@ -253,6 +256,30 @@
             return false;
         }
 
+        public bool CanRunConcurrently(SystemToSchedule otherSystem)
+        {
+            // System ordering constraints
+            if (ShouldRunAfter(otherSystem) || ShouldRunBefore(otherSystem))
+                return false;
+
+            if (otherSystem.ShouldRunAfter(this) || otherSystem.ShouldRunBefore(this))
+                return false;
+
+            // Write / read conflicts
+            if (ReadsComponents.Any(c =>
+                    otherSystem.ReadsComponents.Contains(c) || otherSystem.WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            if (otherSystem.WritesComponents.Any(c => ReadsComponents.Contains(c) || WritesComponents.Contains(c)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void GetRunningText(List<string> lineReceiver, int indent, int thread)
         {
             for (int i = 0; i < RequiresBarrierBefore; ++i)
@@ -309,16 +336,18 @@
                 lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
             }
 
-            for (int i = 0; i < RequiresBarrierAfter; ++i)
-            {
-                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
-            }
-
             if (closeBrace)
             {
                 indent -= 4;
                 lineReceiver.Add(StringUtils.GetIndent(indent) + '}');
                 GenerateThreadedSystems.EnsureOneBlankLine(lineReceiver);
+            }
+
+            // Barriers after condition so that barriers aren't conditionally skipped, that would be really hard to
+            // balance across threads
+            for (int i = 0; i < RequiresBarrierAfter; ++i)
+            {
+                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
             }
         }
 

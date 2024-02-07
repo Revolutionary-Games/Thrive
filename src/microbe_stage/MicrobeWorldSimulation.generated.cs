@@ -13,110 +13,128 @@ public partial class MicrobeWorldSimulation
 
     private void OnProcessFixedWithThreads(float delta)
     {
-        var background0 = new Task(() =>
+        var background1 = new Task(() =>
             {
-                // Execution group 1 on thread 2
+                // Timeslot 1 on thread 2
                 simpleShapeCreatorSystem.Update(delta);
-                microbePhysicsCreationAndSizeSystem.Update(delta);
-
-                // Execution group 2 on thread 2
-                damageCooldownSystem.Update(delta);
-                barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
-                physicsCollisionManagementSystem.Update(delta);
-                colonyCompoundDistributionSystem.Update(delta);
-                pilusDamageSystem.Update(delta);
-
-                // Execution group 4 on thread 2
-                physicsUpdateAndPositionSystem.Update(delta);
-                attachedEntityPositionSystem.Update(delta);
                 countLimitedDespawnSystem.Update(delta);
-                damageOnTouchSystem.Update(delta);
-                allCompoundsVentingSystem.Update(delta);
-                unneededCompoundVentingSystem.Update(delta);
-                compoundAbsorptionSystem.Update(delta);
+                damageCooldownSystem.Update(delta);
+                colonyCompoundDistributionSystem.Update(delta);
                 entitySignalingSystem.Update(delta);
+                collisionShapeLoaderSystem.Update(delta);
+                barrier1.SignalAndWait();
+
+                // Timeslot 3 on thread 2
+                physicsCollisionManagementSystem.Update(delta);
+                damageOnTouchSystem.Update(delta);
                 toxinCollisionSystem.Update(delta);
-                ProcessSystem.Update(delta);
-                multicellularGrowthSystem.Update(delta);
+                pilusDamageSystem.Update(delta);
+                disallowPlayerBodySleepSystem.Update(delta);
+                microbeCollisionSoundSystem.Update(delta);
+                barrier1.SignalAndWait();
+                barrier1.SignalAndWait();
+
+                // Timeslot 5 on thread 2
                 osmoregulationAndHealingSystem.Update(delta);
                 microbeReproductionSystem.Update(delta);
                 organelleComponentFetchSystem.Update(delta);
-                if (RunAI)
-                {
-                    microbeAI.ReportPotentialPlayerPosition(reportedPlayerPosition);
-                    microbeAI.Update(delta);
-                }
+                barrier1.SignalAndWait();
 
-                microbeEmissionSystem.Update(delta);
-                barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
-                SpawnSystem.Update(delta);
-                colonyStatsUpdateSystem.Update(delta);
-                microbeDeathSystem.Update(delta);
+                // Timeslot 6 on thread 2
                 slimeSlowdownSystem.Update(delta);
-                microbeMovementSystem.Update(delta);
-
-                // Execution group 5 on thread 2
-                colonyBindingSystem.Update(delta);
-                physicsBodyControlSystem.Update(delta);
-                microbeMovementSoundSystem.Update(delta);
                 barrier1.SignalAndWait();
-                microbeEventCallbackSystem.Update(delta);
+
+                // Timeslot 8 on thread 2
+                colonyBindingSystem.Update(delta);
                 microbeFlashingSystem.Update(delta);
                 barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
-                damageSoundSystem.Update(delta);
-                microbeCollisionSoundSystem.Update(delta);
-                engulfedDigestionSystem.Update(delta);
-                engulfedHandlingSystem.Update(delta);
-                disallowPlayerBodySleepSystem.Update(delta);
-                collisionShapeLoaderSystem.Update(delta);
-                fluidCurrentsSystem.Update(delta);
+
+                // Timeslot 9 on thread 2
                 delayedColonyOperationSystem.Update(delta);
                 barrier1.SignalAndWait();
-                TimedLifeSystem.Update(delta);
+
+                // Timeslot 10 on thread 2
+                microbeMovementSoundSystem.Update(delta);
+                microbeEventCallbackSystem.Update(delta);
                 barrier1.SignalAndWait();
 
                 barrier1.SignalAndWait();
             });
 
-        TaskExecutor.Instance.AddTask(background0);
+        TaskExecutor.Instance.AddTask(background1);
 
-        // Execution group 1 (on main)
+        // Timeslot 1 on thread 1
         pathBasedSceneLoader.Update(delta);
         predefinedVisualLoaderSystem.Update(delta);
-        barrier1.SignalAndWait();
         microbeVisualsSystem.Update(delta);
         animationControlSystem.Update(delta);
         entityMaterialFetchSystem.Update(delta);
+        fluidCurrentsSystem.Update(delta);
+        TimedLifeSystem.Update(delta);
+        barrier1.SignalAndWait();
+
+        // Timeslot 2 on thread 1
+        microbePhysicsCreationAndSizeSystem.Update(delta);
         physicsBodyCreationSystem.Update(delta);
-
-        // Execution group 2 (on main)
         physicsBodyDisablingSystem.Update(delta);
+        physicsUpdateAndPositionSystem.Update(delta);
+
+        // Timeslot 3 on thread 1
+        attachedEntityPositionSystem.Update(delta);
+        allCompoundsVentingSystem.Update(delta);
+        unneededCompoundVentingSystem.Update(delta);
+        compoundAbsorptionSystem.Update(delta);
+        ProcessSystem.Update(delta);
+        multicellularGrowthSystem.Update(delta);
         barrier1.SignalAndWait();
-        barrier1.SignalAndWait();
+
+        // Timeslot 4 on thread 1
         engulfingSystem.Update(delta);
-
-        // Execution group 3 (on main)
         spatialAttachSystem.Update(delta);
+        barrier1.SignalAndWait();
 
-        // Execution group 4 (on main)
+        // Timeslot 5 on thread 1
         spatialPositionSystem.Update(delta);
+        SpawnSystem.Update(delta);
         barrier1.SignalAndWait();
-        barrier1.SignalAndWait();
-        fadeOutActionSystem.Update(delta);
-        barrier1.SignalAndWait();
-        organelleTickSystem.Update(delta);
 
-        // Execution group 5 (on main)
+        // Timeslot 6 on thread 1
+        engulfedDigestionSystem.Update(delta);
+        colonyStatsUpdateSystem.Update(delta);
+        barrier1.SignalAndWait();
+
+        // Timeslot 7 on thread 1
+        engulfedHandlingSystem.Update(delta);
+        if (RunAI)
+        {
+            microbeAI.ReportPotentialPlayerPosition(reportedPlayerPosition);
+            microbeAI.Update(delta);
+        }
+
+        microbeEmissionSystem.Update(delta);
+        microbeMovementSystem.Update(delta);
+
+        // Timeslot 8 on thread 1
+        physicsBodyControlSystem.Update(delta);
+        barrier1.SignalAndWait();
+
+        // Timeslot 9 on thread 1
+        microbeDeathSystem.Update(delta);
+        fadeOutActionSystem.Update(delta);
+        organelleTickSystem.Update(delta);
+        barrier1.SignalAndWait();
+
+        // Timeslot 10 on thread 1
         physicsSensorSystem.Update(delta);
         barrier1.SignalAndWait();
-        barrier1.SignalAndWait();
+
+        // Timeslot 11 on thread 1
+        damageSoundSystem.Update(delta);
         soundEffectSystem.Update(delta);
         soundListenerSystem.Update(delta);
-        barrier1.SignalAndWait();
         cellBurstEffectSystem.Update(delta);
+
+        // Timeslot 12 on thread 1
         microbeRenderPrioritySystem.Update(delta);
         CameraFollowSystem.Update(delta);
 
@@ -201,8 +219,6 @@ public partial class MicrobeWorldSimulation
 
     private void OnProcessFrameLogic(float delta)
     {
-        ThrowIfNotInitialized();
-
         // NOTE: not currently ran in parallel due to low frame system count
         colourAnimationSystem.Update(delta);
         microbeShaderSystem.Update(delta);
