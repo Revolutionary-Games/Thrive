@@ -312,16 +312,18 @@
                 lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
             }
 
-            for (int i = 0; i < RequiresBarrierAfter; ++i)
-            {
-                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
-            }
-
             if (closeBrace)
             {
                 indent -= 4;
                 lineReceiver.Add(StringUtils.GetIndent(indent) + '}');
                 GenerateThreadedSystems.EnsureOneBlankLine(lineReceiver);
+            }
+
+            // Barriers after condition so that barriers aren't conditionally skipped, that would be really hard to
+            // balance across threads
+            for (int i = 0; i < RequiresBarrierAfter; ++i)
+            {
+                GenerateThreadedSystems.AddBarrierWait(lineReceiver, 1, thread, indent);
             }
         }
 
