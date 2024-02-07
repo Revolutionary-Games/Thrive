@@ -217,6 +217,127 @@
                 return nextSlot;
             }
 
+            public override string ToString()
+            {
+                return $"Moment in time: {time}";
+            }
+
+            private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
+            {
+                // Check for timing conflicts with *other* allThreads
+                var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
+                var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
+
+                // Read / write conflicts
+                if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
+                    return false;
+
+                if (otherWrites.Any(c =>
+                        systemToSchedule.WritesComponents.Contains(c) || systemToSchedule.ReadsComponents.Contains(c)))
+                {
+                    return false;
+                }
+
+                // Conflicts with hard system ordering (should run after any of the other systems already running)
+                if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
+                    return false;
+
+                // Check that the system is not running before a later system it should come after from a thread or
+                // the upcoming tasks
+                foreach (var otherThread in allThreads)
+                {
+                    if (otherThread == thread)
+                        continue;
+
+                    foreach (var futureSystem in otherThread.GetStillUpcomingSystems())
+                    {
+                        if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
+                        {
+                            // Need to wait for this thread to manage to run this task
+                            return false;
+                        }
+                    }
+                }
+
+                foreach (var upcomingTask in upcomingTasks)
+                {
+                    if (comparer.CompareWeak(systemToSchedule, upcomingTask) > 0)
+                    {
+                        // Need to wait until some thread takes this upcoming task before the checked task can be run
+                        return false;
+                    }
+                }
+
+                // No conflicts with other things happening in this timeslot
+                return true;
+            }
+
+            private void MarkThreadWaiting(Thread thread)
+            {
+                // Add penalty for other threads if this thread cannot progress so that other threads don't add a ton
+                // of unbalanced systems
+                foreach (var otherThread in allThreads)
+                {
+                    if (thread == otherThread)
+                        continue;
+
+                    otherThread.AheadPenalty += AheadPenaltyPerTask;
+                }
+            }
+
+            private void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
+            {
+                if (!CanRunSystemInParallel(systemToSchedule, thread))
+                    throw new InvalidOperationException("Cannot run the system in parallel");
+
+                AddRunningSystemData(systemToSchedule, thread);
+
+                // Current system from thread is ran, step it to the next system
+                thread.MarkExecutedTask(systemToSchedule);
+
+                upcomingTasks.Remove(systemToSchedule);
+            }
+
+            private void AddRunningSystemData(SystemToSchedule systemToSchedule, Thread thread)
+            {
+                if (!runSystems.TryGetValue(thread, out var threadSystems))
+                {
+                    threadSystems = new List<SystemToSchedule>();
+                    runSystems[thread] = threadSystems;
+                }
+
+                if (threadSystems.Contains(systemToSchedule))
+                    throw new InvalidOperationException("System is already running");
+
+                threadSystems.Add(systemToSchedule);
+
+                // Component writes and reads
+                if (!componentReads.TryGetValue(thread, out var threadReads))
+                {
+                    threadReads = new HashSet<Type>();
+                    componentReads[thread] = threadReads;
+                }
+
+                foreach (var component in systemToSchedule.ReadsComponents)
+                {
+                    threadReads.Add(component);
+                }
+
+                if (!componentWrites.TryGetValue(thread, out var threadWrites))
+                {
+                    threadWrites = new HashSet<Type>();
+                    componentWrites[thread] = threadWrites;
+                }
+
+                foreach (var component in systemToSchedule.WritesComponents)
+                {
+                    threadWrites.Add(component);
+                }
+
+                systemToSchedule.Timeslot = time;
+            }
+
             private void OnCombineWithPrevious()
             {
                 if (previousSlot == null)
@@ -373,127 +494,6 @@
                             throw new Exception("Couldn't find enough barriers to remove from thread");
                     }
                 }
-            }
-
-            public override string ToString()
-            {
-                return $"Moment in time: {time}";
-            }
-
-            private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
-            {
-                // Check for timing conflicts with *other* allThreads
-                var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
-
-                // Read / write conflicts
-                if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
-                    return false;
-
-                if (otherWrites.Any(c =>
-                        systemToSchedule.WritesComponents.Contains(c) || systemToSchedule.ReadsComponents.Contains(c)))
-                {
-                    return false;
-                }
-
-                // Conflicts with hard system ordering (should run after any of the other systems already running)
-                if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
-                    return false;
-
-                // Check that the system is not running before a later system it should come after from a thread or
-                // the upcoming tasks
-                foreach (var otherThread in allThreads)
-                {
-                    if (otherThread == thread)
-                        continue;
-
-                    foreach (var futureSystem in otherThread.GetStillUpcomingSystems())
-                    {
-                        if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
-                        {
-                            // Need to wait for this thread to manage to run this task
-                            return false;
-                        }
-                    }
-                }
-
-                foreach (var upcomingTask in upcomingTasks)
-                {
-                    if (comparer.CompareWeak(systemToSchedule, upcomingTask) > 0)
-                    {
-                        // Need to wait until some thread takes this upcoming task before the checked task can be run
-                        return false;
-                    }
-                }
-
-                // No conflicts with other things happening in this timeslot
-                return true;
-            }
-
-            private void MarkThreadWaiting(Thread thread)
-            {
-                // Add penalty for other threads if this thread cannot progress so that other threads don't add a ton
-                // of unbalanced systems
-                foreach (var otherThread in allThreads)
-                {
-                    if (thread == otherThread)
-                        continue;
-
-                    otherThread.AheadPenalty += AheadPenaltyPerTask;
-                }
-            }
-
-            private void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
-            {
-                if (!CanRunSystemInParallel(systemToSchedule, thread))
-                    throw new InvalidOperationException("Cannot run the system in parallel");
-
-                AddRunningSystemData(systemToSchedule, thread);
-
-                // Current system from thread is ran, step it to the next system
-                thread.MarkExecutedTask(systemToSchedule);
-
-                upcomingTasks.Remove(systemToSchedule);
-            }
-
-            private void AddRunningSystemData(SystemToSchedule systemToSchedule, Thread thread)
-            {
-                if (!runSystems.TryGetValue(thread, out var threadSystems))
-                {
-                    threadSystems = new List<SystemToSchedule>();
-                    runSystems[thread] = threadSystems;
-                }
-
-                if (threadSystems.Contains(systemToSchedule))
-                    throw new InvalidOperationException("System is already running");
-
-                threadSystems.Add(systemToSchedule);
-
-                // Component writes and reads
-                if (!componentReads.TryGetValue(thread, out var threadReads))
-                {
-                    threadReads = new HashSet<Type>();
-                    componentReads[thread] = threadReads;
-                }
-
-                foreach (var component in systemToSchedule.ReadsComponents)
-                {
-                    threadReads.Add(component);
-                }
-
-                if (!componentWrites.TryGetValue(thread, out var threadWrites))
-                {
-                    threadWrites = new HashSet<Type>();
-                    componentWrites[thread] = threadWrites;
-                }
-
-                foreach (var component in systemToSchedule.WritesComponents)
-                {
-                    threadWrites.Add(component);
-                }
-
-                systemToSchedule.Timeslot = time;
             }
         }
 
