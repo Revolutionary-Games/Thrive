@@ -134,7 +134,7 @@ time.
 
 ### Saving and Loading
 
-The ECS architecture simplifies savign and loading as it is just a
+The ECS architecture simplifies saving and loading as it is just a
 matter of writing the component data to disk and loading it back
 later. The saving system automatically handles converting entity
 references to point to newly created instances after loading a save.
