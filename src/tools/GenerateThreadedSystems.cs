@@ -58,7 +58,7 @@ public class GenerateThreadedSystems : Node
                     {
                         GD.PrintErr(
                             $""Conflicting component write (new is write: {write}) for {component} on "" + 
-                            $""threads {pair.Key} to {thread}"");
+                            $""threads {pair.Key} to {thread} when processing {system}"");
                         conflict = true;
                         break;
                     }
@@ -75,7 +75,7 @@ public class GenerateThreadedSystems : Node
                 {
                     GD.PrintErr(
                         $""Conflicting component read (new is write: {write}) for {component} on threads "" +
-                        $""{pair.Key} to {thread}"");
+                        $""{pair.Key} to {thread} when processing {system}"");
                     conflict = true;
                     break;
                 }
@@ -124,6 +124,8 @@ public class GenerateThreadedSystems : Node
     private GenerateThreadedSystems()
     {
     }
+
+    private string BarrierType => DebugGuardComponentWrites ? "Barrier" : "SimpleBarrier";
 
     public static void EnsureOneBlankLine(List<string> lines, bool acceptBlockStart = true, bool acceptComments = true)
     {
@@ -237,8 +239,6 @@ public class GenerateThreadedSystems : Node
 
             var frameSystemTextLines = new List<string>
             {
-                "ThrowIfNotInitialized();",
-                string.Empty,
                 "// NOTE: not currently ran in parallel due to low frame system count",
             };
 
@@ -377,9 +377,9 @@ public class GenerateThreadedSystems : Node
         lineReceiver.Add(string.Empty);
         AddBarrierWait(lineReceiver, 1, mainThread.First().ThreadId, 0);
 
-        variables["barrier1"] = new VariableInfo("Barrier", !DebugGuardComponentWrites, $"new({threadCount})")
+        variables["barrier1"] = new VariableInfo(BarrierType, !DebugGuardComponentWrites, $"new({threadCount})")
         {
-            Dispose = true,
+            Dispose = DebugGuardComponentWrites,
             OriginalConstructorParameters = threadCount.ToString(),
         };
 
@@ -712,11 +712,11 @@ public class GenerateThreadedSystems : Node
         {
             foreach (var variable in variables)
             {
-                if (variable.Value.Type != "Barrier")
+                if (variable.Value.Type != BarrierType)
                     continue;
 
                 writer.WriteLine(StringUtils.GetIndent(indent) +
-                    $"{variable.Key} = new Barrier({variable.Value.OriginalConstructorParameters}, " +
+                    $"{variable.Key} = new {BarrierType}({variable.Value.OriginalConstructorParameters}, " +
                     "OnBarrierPhaseCompleted);");
             }
         }
@@ -769,7 +769,8 @@ public class GenerateThreadedSystems : Node
     {
         // Clear method after complete phase
         writer.WriteLine();
-        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnBarrierPhaseCompleted(Barrier barrier)");
+        writer.WriteLine(StringUtils.GetIndent(indent) +
+            $"private void OnBarrierPhaseCompleted({BarrierType} barrier)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
         indent += 4;
 
@@ -797,7 +798,7 @@ public class GenerateThreadedSystems : Node
         // Check method
         writer.WriteLine();
         writer.WriteLine(StringUtils.GetIndent(indent) +
-            "private void OnThreadAccessComponent(bool write, string component, int thread)");
+            "private void OnThreadAccessComponent(bool write, string component, string system, int thread)");
         writer.WriteLine(StringUtils.GetIndent(indent) + "{");
         indent += 4;
 
