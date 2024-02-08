@@ -31,6 +31,7 @@
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(CellProperties))]
     [RunsAfter(typeof(ProcessSystem))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>

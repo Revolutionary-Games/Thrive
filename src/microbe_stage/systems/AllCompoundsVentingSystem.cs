@@ -12,6 +12,7 @@
     [With(typeof(CompoundVenter))]
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
+    [WritesToComponent(typeof(Physics))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>

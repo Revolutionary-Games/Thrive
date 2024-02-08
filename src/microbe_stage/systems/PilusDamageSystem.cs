@@ -14,6 +14,8 @@
     [ReadsComponent(typeof(CollisionManagement))]
     [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(Health))]
     [WritesToComponent(typeof(DamageCooldown))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class PilusDamageSystem : AEntitySetSystem<float>

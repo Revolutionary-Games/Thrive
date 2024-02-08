@@ -163,7 +163,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
             new PhysicsCollisionManagementSystem(physics, EntitySystem, couldParallelize);
         physicsSensorSystem = new PhysicsSensorSystem(this, EntitySystem);
         physicsUpdateAndPositionSystem = new PhysicsUpdateAndPositionSystem(physics, EntitySystem, couldParallelize);
-        collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem, couldParallelize);
+        collisionShapeLoaderSystem = new CollisionShapeLoaderSystem(EntitySystem);
         predefinedVisualLoaderSystem = new PredefinedVisualLoaderSystem(EntitySystem);
 
         simpleShapeCreatorSystem = new SimpleShapeCreatorSystem(EntitySystem, couldParallelize);

@@ -15,6 +15,11 @@
     [With(typeof(CollisionManagement))]
     [With(typeof(Physics))]
     [With(typeof(TimedLife))]
+    [ReadsComponent(typeof(MicrobeSpeciesMember))]
+    [ReadsComponent(typeof(Health))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
     {

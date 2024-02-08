@@ -14,8 +14,6 @@
     [With(typeof(CompoundStorage))]
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(WorldPosition))]
-    [RunsAfter(typeof(AllCompoundsVentingSystem))]
-    [RunsAfter(typeof(UnneededCompoundVentingSystem))]
     public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;

@@ -36,6 +36,7 @@
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>

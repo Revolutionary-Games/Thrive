@@ -15,6 +15,14 @@
     ///   having <see cref="Entity"/> instances yet
     /// </summary>
     [With(typeof(DelayedMicrobeColony))]
+    [WritesToComponent(typeof(AttachedToEntity))]
+    [WritesToComponent(typeof(MicrobeColony))]
+    [WritesToComponent(typeof(MicrobeControl))]
+    [WritesToComponent(typeof(CellProperties))]
+    [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(EarlyMulticellularSpeciesMember))]
+    [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(ColonyBindingSystem))]
     public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
