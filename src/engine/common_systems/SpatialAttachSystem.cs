@@ -20,6 +20,7 @@
     /// </remarks>
     [RunsBefore(typeof(SpatialPositionSystem))]
     [ReadsComponent(typeof(SpatialInstance))]
+    [RuntimeCost(5)]
     [RunsOnMainThread]
     public sealed class SpatialAttachSystem : AComponentSystem<float, SpatialInstance>
     {

@@ -11,6 +11,12 @@
     /// <summary>
     ///   Handles microbe binding mode for creating microbe colonies
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This could have a pretty low runtime cost set, but the profiling run was done without colony binding
+    ///     happening so it is expected that actual colony binds happening will take much more time.
+    ///   </para>
+    /// </remarks>
     [With(typeof(MicrobeControl))]
     [With(typeof(CollisionManagement))]
     [With(typeof(MicrobeSpeciesMember))]

@@ -15,6 +15,7 @@
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsAfter(typeof(AttachedEntityPositionSystem))]
+    [RuntimeCost(2)]
     [RunsOnMainThread]
     public sealed class SoundListenerSystem : AEntitySetSystem<float>
     {

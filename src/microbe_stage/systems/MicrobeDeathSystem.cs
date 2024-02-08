@@ -20,6 +20,10 @@
     ///     Currently the use of <see cref="ManualPhysicsControl"/> to stop movement when dying is commented out. If
     ///     eventually that is removed that component should also be removed from the With attribute list below.
     ///   </para>
+    ///   <para>
+    ///     As death is pretty rare, this doesn't really show up in profiling, but just to guard against potential lag
+    ///     spikes this is marked with a bit of a runtime cost.
+    ///   </para>
     /// </remarks>
     [With(typeof(Health))]
     [With(typeof(OrganelleContainer))]
@@ -39,6 +43,7 @@
     [RunsAfter(typeof(ColonyStatsUpdateSystem))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RunsBefore(typeof(FadeOutActionSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

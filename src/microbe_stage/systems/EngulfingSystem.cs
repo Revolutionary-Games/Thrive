@@ -50,6 +50,7 @@
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsBefore(typeof(SpatialAttachSystem))]
+    [RuntimeCost(11)]
     [RunsOnMainThread]
     public sealed class EngulfingSystem : AEntitySetSystem<float>
     {

@@ -11,6 +11,7 @@
     ///   Handles updating the state of <see cref="ColourAnimation"/> based on animations triggered elsewhere
     /// </summary>
     [With(typeof(ColourAnimation))]
+    [RuntimeCost(2)]
     [RunsOnFrame]
     public sealed class ColourAnimationSystem : AEntitySetSystem<float>
     {

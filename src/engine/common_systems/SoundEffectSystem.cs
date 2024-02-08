@@ -15,6 +15,7 @@
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(WorldPosition))]
     [WritesToComponent(typeof(SoundEffectPlayer))]
+    [RuntimeCost(29)]
     [RunsOnMainThread]
     public sealed class SoundEffectSystem : AEntitySetSystem<float>
     {

@@ -15,6 +15,7 @@
     [ReadsComponent(typeof(SpatialInstance))]
     [RunsAfter(typeof(PathBasedSceneLoader))]
     [RunsAfter(typeof(PredefinedVisualLoaderSystem))]
+    [RuntimeCost(0.5f)]
     [RunsOnMainThread]
     public sealed class EntityMaterialFetchSystem : AEntitySetSystem<float>
     {

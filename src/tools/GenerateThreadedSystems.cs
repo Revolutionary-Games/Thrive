@@ -40,6 +40,8 @@ public class GenerateThreadedSystems : Node
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
 
+    public static int RandomStartSeed = 234546523;
+
     private const string ThreadComponentCheckCode = @"
         lock (debugWriteLock)
         {

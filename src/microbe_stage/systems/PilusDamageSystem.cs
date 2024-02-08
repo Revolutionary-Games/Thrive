@@ -18,6 +18,7 @@
     [ReadsComponent(typeof(Health))]
     [WritesToComponent(typeof(DamageCooldown))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
+    [RuntimeCost(0.25f)]
     public sealed class PilusDamageSystem : AEntitySetSystem<float>
     {
         public PilusDamageSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)

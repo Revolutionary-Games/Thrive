@@ -17,6 +17,7 @@
     [With(typeof(WorldPosition))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsBefore(typeof(MicrobeAISystem))]
+    [RuntimeCost(0.5f)]
     [JsonObject(MemberSerialization.OptIn)]
     public sealed class EntitySignalingSystem : AEntitySetSystem<float>
     {

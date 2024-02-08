@@ -18,6 +18,7 @@
     [With(typeof(AnimationControl))]
     [With(typeof(SpatialInstance))]
     [ReadsComponent(typeof(SpatialInstance))]
+    [RuntimeCost(0.5f, false)]
     [RunsOnMainThread]
     public sealed class AnimationControlSystem : AEntitySetSystem<float>
     {

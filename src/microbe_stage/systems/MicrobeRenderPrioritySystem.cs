@@ -25,6 +25,7 @@
     [ReadsComponent(typeof(OrganelleContainer))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
     [RunsAfter(typeof(EntityMaterialFetchSystem))]
+    [RuntimeCost(0.5f)]
     [RunsOnMainThread]
     public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
     {

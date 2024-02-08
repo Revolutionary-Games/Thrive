@@ -24,6 +24,7 @@
     [ReadsComponent(typeof(EarlyMulticellularSpeciesMember))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(ColonyBindingSystem))]
+    [RuntimeCost(0.5f, false)]
     public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

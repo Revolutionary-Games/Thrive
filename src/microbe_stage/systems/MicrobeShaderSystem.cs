@@ -18,6 +18,7 @@
     [With(typeof(MicrobeShaderParameters))]
     [With(typeof(EntityMaterial))]
     [ReadsComponent(typeof(EntityMaterial))]
+    [RuntimeCost(13)]
     [RunsOnFrame]
     [RunsOnMainThread]
     public sealed class MicrobeShaderSystem : AEntitySetSystem<float>

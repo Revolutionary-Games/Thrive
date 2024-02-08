@@ -15,6 +15,7 @@
     [WritesToComponent(typeof(Physics))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
+    [RuntimeCost(10)]
     public sealed class AllCompoundsVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
