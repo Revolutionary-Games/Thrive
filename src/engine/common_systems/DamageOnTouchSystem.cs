@@ -12,6 +12,12 @@
     /// </summary>
     [With(typeof(DamageOnTouch))]
     [With(typeof(CollisionManagement))]
+    [WritesToComponent(typeof(Physics))]
+    [WritesToComponent(typeof(MicrobeShaderParameters))]
+    [ReadsComponent(typeof(Health))]
+    [ReadsComponent(typeof(CellProperties))]
+    [ReadsComponent(typeof(MicrobePhysicsExtraData))]
+    [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
     public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
     {

@@ -313,13 +313,13 @@
                     foreach (var component in WritesComponents)
                     {
                         lineReceiver.Add(StringUtils.GetIndent(indent) +
-                            $"OnThreadAccessComponent(true, \"{component.Name}\",{thread});");
+                            $"OnThreadAccessComponent(true, \"{component.Name}\", \"{Type.Name}\",{thread});");
                     }
 
                     foreach (var component in ReadsComponents)
                     {
                         lineReceiver.Add(StringUtils.GetIndent(indent) +
-                            $"OnThreadAccessComponent(false, \"{component.Name}\",{thread});");
+                            $"OnThreadAccessComponent(false, \"{component.Name}\", \"{Type.Name}\",{thread});");
                     }
                 }
             }

@@ -10,6 +10,11 @@
     ///   stuck as microbe movement cannot be applied if the physics world has only sleeping bodies (as the body
     ///   control apply operation will be skipped).
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Marked as just reading the physics as the body property modify locks the body on the native code side.
+    ///   </para>
+    /// </remarks>
     [With(typeof(PlayerMarker))]
     [With(typeof(Physics))]
     [ReadsComponent(typeof(PlayerMarker))]

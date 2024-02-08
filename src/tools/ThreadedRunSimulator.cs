@@ -196,14 +196,15 @@
                 // Combine two consequent slots where only one thread could run
                 if (runThreadCount == 1 && previousSlot is { RunThreadsCount: 1 })
                 {
-                    // Next slot will run with the same time as this one as this slot didn't "happen"
+                    // TODO: broken code
+                    /*// Next slot will run with the same time as this one as this slot didn't "happen"
                     timeOffsetForNextSlot = 0;
                     OnCombineWithPrevious();
 
                     if (previousSlot.RunThreadsCount != 1)
                         throw new Exception("Combine caused run threads count to change");
 
-                    previous = previousSlot;
+                    previous = previousSlot;*/
                 }
 
                 var nextSlot = new Timeslot(time + timeOffsetForNextSlot, allThreads, upcomingTasks)
@@ -338,6 +339,17 @@
                 systemToSchedule.Timeslot = time;
             }
 
+            private IEnumerable<SystemToSchedule> GetSystemsRunForThread(Thread thread)
+            {
+                if (!runSystems.TryGetValue(thread, out var list))
+                    yield break;
+
+                foreach (var systemToSchedule in list)
+                {
+                    yield return systemToSchedule;
+                }
+            }
+
             private void OnCombineWithPrevious()
             {
                 if (previousSlot == null)
@@ -355,25 +367,19 @@
 
                 foreach (var pair in runSystems)
                 {
-                    foreach (var systemToSchedule in pair.Value)
+                    if (pair.Value.Count < 1)
+                        continue;
+
+                    if (runThread == null)
                     {
-                        // Add to previous (this should also reset the timeslot)
-                        previousSlot.AddRunningSystemData(systemToSchedule, pair.Key);
-
-                        if (systemToSchedule.Timeslot != realTime)
-                            throw new Exception("Task timeslot update didn't apply");
-
-                        if (runThread == null)
-                        {
-                            runThread = pair.Key;
-                        }
-                        else if (runThread != pair.Key)
-                        {
-                            throw new Exception("Detected multiple ran threads");
-                        }
+                        runThread = pair.Key;
+                    }
+                    else if (runThread != pair.Key)
+                    {
+                        throw new Exception("Detected multiple ran threads");
                     }
 
-                    // Barrier check
+                    // Barrier removal check
                     if (pair.Value.Last().RequiresBarrierAfter > 0)
                     {
                         // Find systems that would run without the barrier
@@ -384,7 +390,10 @@
                         // is the slot that is not to be combined, so it is left alone
                         int barriersToCheck = 3;
 
-                        foreach (var systemToSchedule in pair.Value.AsEnumerable().Reverse())
+                        // Need to also add systems from the previous timeslot in case there is no barrier between
+
+                        foreach (var systemToSchedule in previousSlot.GetSystemsRunForThread(pair.Key)
+                                     .Concat(pair.Value).Reverse())
                         {
                             if (systemToSchedule.RequiresBarrierAfter > 0)
                             {
@@ -401,7 +410,8 @@
                             throw new Exception("Expected to find at least one new system that would run");
 
                         // Check if removing barrier from other threads would be safe to do so
-                        barriersToCheck = 3;
+                        // This needs to be 1 higher than when previously this variable was set to work correctly
+                        barriersToCheck = 4;
 
                         foreach (var otherThread in allThreads)
                         {
@@ -456,6 +466,15 @@
                     else
                     {
                         canRemoveBarrier = false;
+                    }
+
+                    foreach (var systemToSchedule in pair.Value)
+                    {
+                        // Add to previous (this should also reset the timeslot)
+                        previousSlot.AddRunningSystemData(systemToSchedule, pair.Key);
+
+                        if (systemToSchedule.Timeslot != realTime)
+                            throw new Exception("Task timeslot update didn't apply");
                     }
                 }
 

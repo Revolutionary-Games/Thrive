@@ -10,7 +10,6 @@ public class SimpleBarrier
     private const int READ_TESTS_IN_A_ROW = 5;
 
     private readonly int threadCount;
-    private readonly Action<SimpleBarrier>? onBarrierStepComplete;
 
     private int waitingThreads;
 
@@ -23,17 +22,12 @@ public class SimpleBarrier
     ///   How many threads participate in this barrier. If different number of threads are used this will go extremely
     ///   wrong.
     /// </param>
-    /// <param name="onBarrierStepComplete">
-    ///   Callback to call when all threads have arrived. Note that this is not thread safe, some threads will already
-    ///   have been released from the barrier when the callback is invoked.
-    /// </param>
-    public SimpleBarrier(int threadCount, Action<SimpleBarrier>? onBarrierStepComplete = null)
+    public SimpleBarrier(int threadCount)
     {
         if (threadCount < 1)
             throw new ArgumentException("Threads must be at least 1", nameof(this.threadCount));
 
         this.threadCount = threadCount;
-        this.onBarrierStepComplete = onBarrierStepComplete;
     }
 
     public void SignalAndWait()
@@ -102,10 +96,6 @@ public class SimpleBarrier
             }
 
             Interlocked.MemoryBarrier();
-
-            // Last thread to arrive calls the barrier step complete callback. Note that other threads are already
-            // running free
-            onBarrierStepComplete?.Invoke(this);
         }
     }
 }

@@ -20,7 +20,7 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
-    [RunsAfter(typeof(AllCompoundsVentingSystem))]
+    [RunsAfter(typeof(ProcessSystem))]
     public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
