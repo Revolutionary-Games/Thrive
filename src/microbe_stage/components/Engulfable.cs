@@ -235,6 +235,18 @@
         public static void OnExpelledFromEngulfment(this ref Engulfable engulfable, in Entity entity,
             ISpawnSystem spawnSystem, IWorldSimulation worldSimulation)
         {
+            // Restore scale
+            ref var spatial = ref entity.Get<SpatialInstance>();
+
+#if DEBUG
+            if (engulfable.OriginalScale.Length() < MathUtils.EPSILON)
+            {
+                throw new Exception("Ejected engulfable with zero original scale");
+            }
+#endif
+
+            spatial.VisualScale = engulfable.OriginalScale;
+
             bool alreadyDeathProcessed = false;
 
             if (entity.Has<Health>())
@@ -344,18 +356,6 @@
                 // If recursive engulfing render priority is supported in the future, there might be a need to write
                 // some code here related to that
             }
-
-            // Restore scale
-            ref var spatial = ref entity.Get<SpatialInstance>();
-
-#if DEBUG
-            if (engulfable.OriginalScale.Length() < MathUtils.EPSILON)
-            {
-                throw new Exception("Ejected engulfable with zero original scale");
-            }
-#endif
-
-            spatial.VisualScale = engulfable.OriginalScale;
 
             if (entity.Has<MicrobeEventCallbacks>())
             {
