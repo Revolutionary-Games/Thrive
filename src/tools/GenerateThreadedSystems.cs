@@ -284,7 +284,7 @@ public class GenerateThreadedSystems : Node
         // Run a threaded run simulator to determine a good grouping of systems onto threads
         var simulator = new ThreadedRunSimulator(mainSystems, otherSystems, backgroundThreads + 1);
 
-        var resultingThreads = simulator.Simulate();
+        var resultingThreads = simulator.Simulate(RandomStartSeed);
 
         CheckBarrierCounts(resultingThreads);
 
