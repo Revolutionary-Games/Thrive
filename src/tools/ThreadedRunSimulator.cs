@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Godot;
 
     /// <summary>
@@ -18,18 +20,24 @@
         /// <summary>
         ///   Relative time cost of a barrier to running an average system
         /// </summary>
-        private const double TimeCostPerBarrier = 1.5;
+        private const float TimeCostPerBarrier = 1.5f;
 
         /// <summary>
         ///   After finding a new best result, how long to look at more attempts
         /// </summary>
-        private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(5);
+        private readonly TimeSpan timeToLookForMoreResults = TimeSpan.FromSeconds(10);
+
+        private readonly object resultLock = new();
 
         private readonly IReadOnlyList<SystemToSchedule> freelyAssignableTasks;
         private readonly int threadCount;
         private readonly IReadOnlyList<SystemToSchedule> mainThreadTasks;
 
         private DateTime lastNewBestFound;
+        private float bestThreadTime;
+        private float bestThreadDifference;
+        private SimulationAttempt? bestSimulation;
+        private int attempts;
 
         public ThreadedRunSimulator(IReadOnlyList<SystemToSchedule> mainThreadTasks,
             IReadOnlyList<SystemToSchedule> freelyAssignableTasks, int threadCount)
@@ -46,48 +54,89 @@
         ///   Simulate threads and find a good ordering
         /// </summary>
         /// <returns>The tasks split into threads, first item is always the main thread tasks</returns>
-        public List<List<SystemToSchedule>> Simulate(int initialSeed)
+        public List<List<SystemToSchedule>> Simulate(int initialSeed, int parallelTasks)
         {
+            if (parallelTasks < 1)
+                throw new ArgumentException("Parallel task count needs to be at least 1");
+
             var random = new Random(initialSeed);
 
-            float bestThreadTime = float.MaxValue;
-            float bestThreadDifference = float.MaxValue;
-            SimulationAttempt? best = null;
+            // Reset state in case this is reused
+            bestThreadTime = float.MaxValue;
+            bestThreadDifference = float.MaxValue;
+            bestSimulation = null;
 
+            attempts = 0;
+
+            // Create parallel tasks
+            var tasks = new List<Task>();
+            for (int i = 0; i < parallelTasks; ++i)
+            {
+                int seed = random.Next();
+                tasks.Add(new Task(() => RunSimulationAttempts(seed)));
+            }
+
+            lock (resultLock)
+            {
+                lastNewBestFound = DateTime.UtcNow;
+            }
+
+            // Wait for tasks to end, this is not time critical threading here so this thread can be used to run
+            // a bunch more tasks
+            TaskExecutor.Instance.RunTasks(tasks, true);
+
+            if (bestSimulation == null)
+                throw new Exception("Couldn't find any valid thread orderings");
+
+            GD.Print($"Simulated {attempts} thread orderings to find best one");
+
+            return bestSimulation.ToTaskListResult();
+        }
+
+        private void RunSimulationAttempts(int seed)
+        {
+            var random = new Random(seed);
             SimulationAttempt? currentSimulationAttempt = null;
 
-            lastNewBestFound = DateTime.UtcNow;
-            while (DateTime.UtcNow - lastNewBestFound < timeToLookForMoreResults)
+            while (AttemptMoreSimulations())
             {
                 currentSimulationAttempt ??= new SimulationAttempt(freelyAssignableTasks, mainThreadTasks,
                     threadCount);
 
                 var (currentTime, currentDifference) = currentSimulationAttempt.AttemptOrdering(random.Next());
+                Interlocked.Increment(ref attempts);
 
                 // This is a bit cumbersome condition, but needed due to equal value being good enough if the thread
                 // deviance is smaller
                 if (!(currentTime <= bestThreadTime))
                     continue;
 
-                if (currentTime < bestThreadTime || currentDifference < bestThreadDifference)
+                lock (resultLock)
                 {
-                    bestThreadTime = currentTime;
-                    bestThreadDifference = currentDifference;
-                    lastNewBestFound = DateTime.UtcNow;
+                    if (currentTime < bestThreadTime || currentDifference < bestThreadDifference)
+                    {
+                        bestThreadTime = currentTime;
+                        bestThreadDifference = currentDifference;
+                        lastNewBestFound = DateTime.UtcNow;
 
-                    GD.Print($"Found new best thread simulation: {bestThreadTime} variance: {bestThreadDifference}");
+                        GD.Print($"Found new best thread simulation: {bestThreadTime} " +
+                            $"thread variance: {bestThreadDifference}");
 
-                    // Store the current attempt as the best one, and set it to null as we need to create a new
-                    // object to keep testing attempts
-                    best = currentSimulationAttempt;
-                    currentSimulationAttempt = null;
+                        // Store the current attempt as the best one, and set it to null as we need to create a new
+                        // object to keep testing attempts
+                        bestSimulation = currentSimulationAttempt;
+                        currentSimulationAttempt = null;
+                    }
                 }
             }
+        }
 
-            if (best == null)
-                throw new Exception("Couldn't find any valid thread orderings");
-
-            return best.ToTaskListResult();
+        private bool AttemptMoreSimulations()
+        {
+            lock (resultLock)
+            {
+                return DateTime.UtcNow - lastNewBestFound < timeToLookForMoreResults;
+            }
         }
 
         /// <summary>
@@ -139,8 +188,10 @@
                 if (!HasUpcomingTasks)
                     throw new Exception("Failed to add tasks to simulate");
 
-                // How long since the simulation start
-                double timePoint = 0;
+                // How long since the last barrier (as barriers synchronize the times of threads, this is used instead
+                // of total simulated time)
+                double timeSinceBarrier = 0;
+                float extraTimeCost = 0;
                 int stuckCount = 0;
 
                 while (HasUpcomingTasks)
@@ -152,7 +203,7 @@
 
                     foreach (var thread in allThreads)
                     {
-                        var timeInFuture = thread.Time - timePoint;
+                        var timeInFuture = thread.TimeSinceBarrier - timeSinceBarrier;
 
                         // If thread is still busy at this point in time, can't do anything
                         if (timeInFuture > 0)
@@ -185,7 +236,7 @@
                         // All threads are still busy, jump forward in time to when the next thread is ready to do
                         // something
 
-                        timePoint += neededTimeSkip + MathUtils.EPSILON;
+                        timeSinceBarrier += neededTimeSkip + MathUtils.EPSILON;
 
                         if (random.NextDouble() < ChanceToShuffleThreadOrderOnTimeStep)
                             RandomizeThreadOrder();
@@ -197,10 +248,11 @@
                     if (HasUpcomingTasks)
                     {
                         AddBarrierPoint();
+                        timeSinceBarrier = 0;
                         stuckCount = 0;
 
                         // Barriers cost extra time
-                        timePoint += TimeCostPerBarrier;
+                        extraTimeCost += TimeCostPerBarrier;
                     }
                     else
                     {
@@ -211,7 +263,7 @@
                     }
                 }
 
-                return ((float)timePoint, CalculateThreadTimeDeviance());
+                return (allThreads.Max(t => t.Time) + extraTimeCost, CalculateThreadTimeDeviance());
             }
 
             public List<List<SystemToSchedule>> ToTaskListResult()
