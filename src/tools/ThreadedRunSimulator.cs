@@ -531,12 +531,13 @@
 
                 var pointIndexesToRemove = new List<int>();
 
-                for (int i = 1; i < runningThreadCountsPerSlot.Count - 1; ++i)
+                for (int i = 0; i < runningThreadCountsPerSlot.Count - 1; ++i)
                 {
-                    if (runningThreadCountsPerSlot[i - 1] < 2 && runningThreadCountsPerSlot[i] < 2 &&
-                        runningThreadCountsPerSlot[i + 1] < 2)
+                    if (runningThreadCountsPerSlot[i] < 2 && runningThreadCountsPerSlot[i + 1] < 2)
                     {
-                        // Found three consecutive points where one can be removed
+                        // Found two consecutive barriers where the earlier one should be fine to remove
+                        // The earlier slot either has multiple threads and protects this slot that way, or it is also
+                        // one thread slot and is safe to merge into this one.
                         pointIndexesToRemove.Add(i);
                     }
                 }
