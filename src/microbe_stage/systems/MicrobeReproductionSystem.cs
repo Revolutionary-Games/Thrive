@@ -20,6 +20,10 @@
     ///     This just needs an exclusive property for this system that is stored in <see cref="MicrobeStatus"/> so
     ///     this is marked just as reading that component as it won't conflict with other writes.
     ///   </para>
+    ///   <para>
+    ///     This needs to run on the main thread as this updates scale of organelles as they grow (Godot scale is
+    ///     used directly)
+    ///   </para>
     /// </remarks>
     [With(typeof(ReproductionStatus))]
     [With(typeof(OrganelleContainer))]
@@ -40,6 +44,7 @@
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
     [RuntimeCost(9)]
+    [RunsOnMainThread]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
