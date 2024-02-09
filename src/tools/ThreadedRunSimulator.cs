@@ -22,6 +22,8 @@
         /// </summary>
         private const float TimeCostPerBarrier = 1.5f;
 
+        private static readonly bool ExtraVerifySystemRun = false;
+
         /// <summary>
         ///   After finding a new best result, how long to look at more attempts
         /// </summary>
@@ -427,8 +429,13 @@
 
             private void MarkConcurrentlyRunningSystem(SystemToSchedule systemToSchedule, Thread thread)
             {
-                if (!CanRunSystemInParallel(systemToSchedule, thread))
-                    throw new InvalidOperationException("Cannot run the system in parallel");
+                // This check is not usually required as this is only called after the caller checks that this is
+                // allowed to run
+                if (ExtraVerifySystemRun)
+                {
+                    if (!CanRunSystemInParallel(systemToSchedule, thread))
+                        throw new InvalidOperationException("Cannot run the system in parallel");
+                }
 
                 AddRunningSystemData(systemToSchedule, thread);
 
