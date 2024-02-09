@@ -32,6 +32,8 @@
         public List<Type> ReadsComponents = new();
         public List<Type> WritesComponents = new();
 
+        public float RuntimeCost = 1;
+
         // Count of how many barriers are needed
         public int RequiresBarrierBefore;
         public int RequiresBarrierAfter;
@@ -56,6 +58,7 @@
         private static readonly Type ConditionalRunAttribute = typeof(RunsConditionallyAttribute);
         private static readonly Type CustomRunAttribute = typeof(RunsWithCustomCodeAttribute);
         private static readonly Type RunsOnFrameAttribute = typeof(RunsOnFrameAttribute);
+        private static readonly Type RuntimeCostAttribute = typeof(RuntimeCostAttribute);
 
         public SystemToSchedule(Type type, string name)
         {
@@ -80,6 +83,13 @@
             if (customRun != null)
             {
                 systemToSchedule.CustomRunCode = ((RunsWithCustomCodeAttribute)customRun).CustomCode;
+            }
+
+            var customCost = systemToSchedule.Type.GetCustomAttribute(RuntimeCostAttribute);
+
+            if (customCost != null)
+            {
+                systemToSchedule.RuntimeCost = ((RuntimeCostAttribute)customCost).Cost;
             }
 
             var expectedWritesTo = new List<Type>();
