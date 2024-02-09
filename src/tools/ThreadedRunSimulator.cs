@@ -14,8 +14,14 @@
     public class ThreadedRunSimulator
     {
         private const double ExclusiveTaskChance = 0.90;
-        private const double ChanceForNoWorkPerAheadTime = 0.5;
         private const double ChanceToShuffleThreadOrderOnTimeStep = 0.3;
+        private const double ExclusiveContinueCheckChance = 0.95;
+
+        // TODO: currently this doesn't really impact anything (or very unlikely for this to impact anything)
+        private const double ChanceForNoWorkPerAheadTime = 0.5;
+
+        private const double ChanceToShuffleExclusiveTasks = 0.1;
+        private const double ChanceToShuffleNormalTasks = 0.2;
 
         /// <summary>
         ///   Relative time cost of a barrier to running an average system
@@ -176,16 +182,22 @@
 
             private bool HasUpcomingTasks => upcomingGeneralTasks.Count > 0 || HasThreadsWithExclusiveTasks;
 
-            private bool HasThreadsWithExclusiveTasks => allThreads.Any(t => t.NextExclusiveTask != null);
+            private bool HasThreadsWithExclusiveTasks => allThreads.Any(t => t.HasUpcomingExclusiveTask);
 
             public (float TotalTime, float ThreadDifference) AttemptOrdering(int seed)
             {
-                Reset();
                 random = new Random(seed);
+                Reset(random.NextDouble() < ChanceToShuffleExclusiveTasks);
+
                 upcomingGeneralTasks.Clear();
                 upcomingGeneralTasks.AddRange(originalGeneralTasks);
 
-                // TODO: chance to shuffle or shuffle and weak order the general tasks
+                if (random.NextDouble() < ChanceToShuffleNormalTasks)
+                {
+                    upcomingGeneralTasks.Shuffle(random);
+
+                    // TODO: should this re-apply at least some sorting?
+                }
 
                 if (!HasUpcomingTasks)
                     throw new Exception("Failed to add tasks to simulate");
@@ -286,11 +298,11 @@
                 return result;
             }
 
-            private void Reset()
+            private void Reset(bool shuffleExclusiveTasks)
             {
                 foreach (var thread in allThreads)
                 {
-                    thread.Reset();
+                    thread.Reset(shuffleExclusiveTasks, random);
                 }
 
                 ClearActiveSystemsAndComponentUses();
@@ -341,24 +353,28 @@
                 var ahead = allThreads.Where(t => t != thread)
                     .Average(t => thread.TimeSinceBarrier - t.TimeSinceBarrier);
 
+                // TODO: maybe remove this code entirely as thanks to the thread being executing in the future checks
+                // no threads that are ahead other ones really get even into this method in the first place
                 if (ahead > 0)
                 {
                     if (random.NextDouble() < ChanceForNoWorkPerAheadTime * ahead)
                         return false;
                 }
 
-                var exclusiveTask = thread.NextExclusiveTask;
-
                 // Prioritize running exclusive tasks a bit
-                if (exclusiveTask != null)
+                if (thread.HasUpcomingExclusiveTask && random.NextDouble() < ExclusiveTaskChance)
                 {
-                    if (random.NextDouble() < ExclusiveTaskChance)
+                    foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
                     {
                         if (CanRunSystemInParallel(exclusiveTask, thread))
                         {
                             MarkConcurrentlyRunningSystem(exclusiveTask, thread);
                             return true;
                         }
+
+                        // Chance to stop checking early
+                        if (random.NextDouble() > ExclusiveContinueCheckChance)
+                            break;
                     }
                 }
 
@@ -370,6 +386,8 @@
                         MarkConcurrentlyRunningSystem(task, thread);
                         return true;
                     }
+
+                    // TODO: should this have a chance here to stop checking things for more randomness?
                 }
 
                 // Thread cannot start work
@@ -404,7 +422,7 @@
                     if (otherThread == thread)
                         continue;
 
-                    foreach (var futureSystem in otherThread.GetStillUpcomingSystems())
+                    foreach (var futureSystem in otherThread.GetUpcomingExclusiveTasks())
                     {
                         if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
                         {
@@ -502,16 +520,18 @@
         private class Thread
         {
             private readonly List<SystemToSchedule> threadTasks = new();
-            private readonly IReadOnlyList<SystemToSchedule> exclusiveTasks;
+            private readonly List<SystemToSchedule> upcomingExclusiveTasks = new();
+
+            private readonly IReadOnlyList<SystemToSchedule> originalExclusiveTasks;
 
             private readonly List<int> threadBarrierPoints = new();
-
-            private int nextExclusiveTaskIndex;
 
             public Thread(int threadId, IReadOnlyList<SystemToSchedule> exclusiveTasks)
             {
                 ThreadId = threadId;
-                this.exclusiveTasks = exclusiveTasks;
+                originalExclusiveTasks = exclusiveTasks;
+
+                Reset(false, null);
             }
 
             public int ThreadId { get; }
@@ -523,13 +543,11 @@
             /// </summary>
             public float TimeSinceBarrier { get; private set; }
 
-            public SystemToSchedule? NextExclusiveTask => nextExclusiveTaskIndex < exclusiveTasks.Count ?
-                exclusiveTasks[nextExclusiveTaskIndex] :
-                null;
+            public bool HasUpcomingExclusiveTask => upcomingExclusiveTasks.Count > 0;
 
-            public IEnumerable<SystemToSchedule> GetStillUpcomingSystems()
+            public IEnumerable<SystemToSchedule> GetUpcomingExclusiveTasks()
             {
-                return exclusiveTasks.Skip(nextExclusiveTaskIndex);
+                return upcomingExclusiveTasks;
             }
 
             public void MarkExecutedTask(SystemToSchedule system)
@@ -539,17 +557,10 @@
 
                 threadTasks.Add(system);
 
-                if (exclusiveTasks.Contains(system))
-                {
-                    if (NextExclusiveTask == system)
-                    {
-                        ++nextExclusiveTaskIndex;
-                    }
-                    else
-                    {
-                        throw new Exception("Exclusive task ordering was not followed");
-                    }
-                }
+                bool removedExclusive = upcomingExclusiveTasks.Remove(system);
+
+                if (!removedExclusive && originalExclusiveTasks.Contains(system))
+                    throw new Exception("Exclusive task remove was not done");
 
                 // Move forward in time, this thread is busy for the time the system takes estimated to run
                 Time += system.RuntimeCost;
@@ -597,16 +608,21 @@
                 return threadTasks;
             }
 
-            public void Reset()
+            public void Reset(bool shuffle, Random? random)
             {
                 threadTasks.Clear();
                 threadBarrierPoints.Clear();
 
                 Time = 0;
                 TimeSinceBarrier = 0;
-                nextExclusiveTaskIndex = 0;
 
-                // TODO: chance to shuffle or shuffle and weak order the specific tasks (would need a separate list)?
+                upcomingExclusiveTasks.Clear();
+                upcomingExclusiveTasks.AddRange(originalExclusiveTasks);
+
+                if (shuffle && upcomingExclusiveTasks.Count > 0)
+                {
+                    upcomingExclusiveTasks.Shuffle(random ?? new Random());
+                }
             }
 
             public override string ToString()
