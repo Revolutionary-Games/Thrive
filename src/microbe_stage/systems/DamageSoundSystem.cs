@@ -12,6 +12,7 @@
     [With(typeof(SoundEffectPlayer))]
     [WritesToComponent(typeof(SoundEffectPlayer))]
     [RunsBefore(typeof(SoundEffectSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class DamageSoundSystem : AEntitySetSystem<float>
     {
         public DamageSoundSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner)

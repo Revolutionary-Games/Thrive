@@ -33,6 +33,7 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(EngulfingSystem))]
+    [RuntimeCost(2)]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;

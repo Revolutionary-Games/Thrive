@@ -30,6 +30,7 @@
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     [RunsBefore(typeof(PhysicsBodyControlSystem))]
+    [RuntimeCost(13)]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

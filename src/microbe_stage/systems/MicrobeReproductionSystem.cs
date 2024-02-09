@@ -39,6 +39,7 @@
     [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
+    [RuntimeCost(9)]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

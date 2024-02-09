@@ -21,6 +21,7 @@
     [With(typeof(SpatialInstance))]
     [ReadsComponent(typeof(SpatialInstance))]
     [RunsBefore(typeof(TimedLifeSystem))]
+    [RuntimeCost(0.25f)]
     [RunsOnMainThread]
     public sealed class CellBurstEffectSystem : AEntitySetSystem<float>
     {

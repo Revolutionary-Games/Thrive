@@ -13,6 +13,7 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsBefore(typeof(SpatialPositionSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class AttachedEntityPositionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

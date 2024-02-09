@@ -9,6 +9,7 @@
     ///   System that deletes nodes that are in the timed group after their lifespan expires.
     /// </summary>
     [With(typeof(TimedLife))]
+    [RuntimeCost(0.25f)]
     public sealed class TimedLifeSystem : AEntitySetSystem<float>
     {
         private readonly IEntityContainer entityContainer;

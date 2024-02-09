@@ -40,6 +40,12 @@ public class GenerateThreadedSystems : Node
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
 
+    public static bool UseMultithreadingToDoMoreSimulations = true;
+
+    public static int MaxThreadToUse = 8;
+
+    public static int RandomStartSeed = 234546523;
+
     private const string ThreadComponentCheckCode = @"
         lock (debugWriteLock)
         {
@@ -282,7 +288,15 @@ public class GenerateThreadedSystems : Node
         // Run a threaded run simulator to determine a good grouping of systems onto threads
         var simulator = new ThreadedRunSimulator(mainSystems, otherSystems, backgroundThreads + 1);
 
-        var resultingThreads = simulator.Simulate();
+        int tasks = 1;
+
+        if (UseMultithreadingToDoMoreSimulations)
+        {
+            tasks = Math.Min(Math.Max(1, TaskExecutor.Instance.ParallelTasks - 1), MaxThreadToUse);
+            GD.Print($"Using {tasks} threads to attempt different thread scheduling options");
+        }
+
+        var resultingThreads = simulator.Simulate(RandomStartSeed, tasks);
 
         CheckBarrierCounts(resultingThreads);
 

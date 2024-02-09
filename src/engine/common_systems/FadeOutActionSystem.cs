@@ -30,6 +30,7 @@
     [ReadsComponent(typeof(SpatialInstance))]
     [WritesToComponent(typeof(CompoundStorage))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
+    [RuntimeCost(0.25f)]
     [RunsOnMainThread]
     public sealed class FadeOutActionSystem : AEntitySetSystem<float>
     {

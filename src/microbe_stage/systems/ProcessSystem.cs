@@ -23,6 +23,7 @@
     [RunsAfter(typeof(CompoundAbsorptionSystem))]
     [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
+    [RuntimeCost(50)]
     public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");

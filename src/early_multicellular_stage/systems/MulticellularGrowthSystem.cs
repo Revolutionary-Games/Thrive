@@ -19,6 +19,10 @@
     ///     shared with <see cref="MicrobeReproductionSystem"/> but these systems cannot run on the same entities so
     ///     there is no conflict.
     ///   </para>
+    ///   <para>
+    ///     The runtime cost is purely a guess here based on the fact that this is likely a bit heavy system like
+    ///     microbe reproduction but this does less so should probably have lower cost.
+    ///   </para>
     /// </remarks>
     [With(typeof(ReproductionStatus))]
     [With(typeof(EarlyMulticellularSpeciesMember))]
@@ -34,6 +38,7 @@
     [ReadsComponent(typeof(CellProperties))]
     [RunsAfter(typeof(ProcessSystem))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
+    [RuntimeCost(4, false)]
     public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

@@ -19,6 +19,7 @@
     [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(PhysicsCollisionManagementSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class DamageOnTouchSystem : AEntitySetSystem<float>
     {
         private readonly WorldSimulation worldSimulation;

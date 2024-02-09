@@ -26,6 +26,7 @@
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RunsAfter(typeof(EngulfedDigestionSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;

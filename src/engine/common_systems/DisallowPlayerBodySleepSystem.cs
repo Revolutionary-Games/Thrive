@@ -21,6 +21,7 @@
     [ReadsComponent(typeof(Physics))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+    [RuntimeCost(0.25f)]
     public sealed class DisallowPlayerBodySleepSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;

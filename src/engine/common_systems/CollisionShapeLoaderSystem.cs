@@ -15,6 +15,7 @@
     /// </remarks>
     [With(typeof(CollisionShapeLoader))]
     [With(typeof(PhysicsShapeHolder))]
+    [RuntimeCost(0.5f)]
     [RunsOnMainThread]
     public sealed class CollisionShapeLoaderSystem : AEntitySetSystem<float>
     {

@@ -30,6 +30,7 @@
     [RunsAfter(typeof(OrganelleTickSystem))]
     [RunsAfter(typeof(SpawnSystem))]
     [RunsAfter(typeof(MicrobeAISystem))]
+    [RuntimeCost(0.25f)]
     public sealed class MicrobeEventCallbackSystem : AEntitySetSystem<float>
     {
         private readonly IReadonlyCompoundClouds compoundClouds;

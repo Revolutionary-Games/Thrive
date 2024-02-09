@@ -17,6 +17,7 @@
     [With(typeof(RenderPriorityOverride))]
     [With(typeof(EntityMaterial))]
     [ReadsComponent(typeof(EntityMaterial))]
+    [RuntimeCost(0.5f)]
     [RunsOnMainThread]
     public sealed class RenderPrioritySystem : AEntitySetSystem<float>
     {

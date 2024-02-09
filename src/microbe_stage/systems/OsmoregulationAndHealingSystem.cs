@@ -32,6 +32,7 @@
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(DamageOnTouchSystem))]
     [RunsAfter(typeof(ToxinCollisionSystem))]
+    [RuntimeCost(4)]
     public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;

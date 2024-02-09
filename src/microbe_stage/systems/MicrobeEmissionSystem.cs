@@ -32,6 +32,7 @@
     [WritesToComponent(typeof(OrganelleContainer))]
     [RunsBefore(typeof(MicrobeMovementSystem))]
     [RunsAfter(typeof(ProcessSystem))]
+    [RuntimeCost(0.5f)]
     public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
