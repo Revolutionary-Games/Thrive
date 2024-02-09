@@ -288,6 +288,9 @@
                 if (allThreads[0].ThreadId != 1)
                     throw new Exception("Thread order sort back to normal failed");
 
+                // Remove any extra barriers that can be removed
+                AnalyzeAndRemoveExtraBarriers();
+
                 var result = new List<List<SystemToSchedule>>();
 
                 foreach (var thread in allThreads)
@@ -501,6 +504,57 @@
                 }
             }
 
+            private void AnalyzeAndRemoveExtraBarriers()
+            {
+                var runningThreadCountsPerSlot = new List<int>();
+
+                // Count how many threads are active between which barriers to determine where there are places with
+                // unnecessary barriers that don't guard against anything
+                foreach (var thread in allThreads)
+                {
+                    int index = 0;
+
+                    foreach (var count in thread.CalculateTasksBetweenBarriers())
+                    {
+                        while (runningThreadCountsPerSlot.Count <= index)
+                            runningThreadCountsPerSlot.Add(0);
+
+                        // With more than 0 tasks executed, the thread is considered active
+                        if (count > 0)
+                        {
+                            runningThreadCountsPerSlot[index] += 1;
+                        }
+
+                        ++index;
+                    }
+                }
+
+                var pointIndexesToRemove = new List<int>();
+
+                for (int i = 1; i < runningThreadCountsPerSlot.Count - 1; ++i)
+                {
+                    if (runningThreadCountsPerSlot[i - 1] < 2 && runningThreadCountsPerSlot[i] < 2 &&
+                        runningThreadCountsPerSlot[i + 1] < 2)
+                    {
+                        // Found three consecutive points where one can be removed
+                        pointIndexesToRemove.Add(i);
+                    }
+                }
+
+                // The remove list is reversed so that indexes stay valid as things are being deleted
+                pointIndexesToRemove.Reverse();
+
+                foreach (var barrierToRemove in pointIndexesToRemove)
+                {
+                    GD.Print("Removing extra barrier at barrier index " + barrierToRemove);
+
+                    foreach (var thread in allThreads)
+                    {
+                        thread.RemoveBarrierWithIndex(barrierToRemove);
+                    }
+                }
+            }
+
             private class ThreadIdComparer : IComparer<Thread>
             {
                 public int Compare(Thread x, Thread y)
@@ -606,6 +660,29 @@
                 }
 
                 return threadTasks;
+            }
+
+            public IEnumerable<int> CalculateTasksBetweenBarriers()
+            {
+                if (!threadBarrierPoints.AsEnumerable().OrderBy(i => i).SequenceEqual(threadBarrierPoints))
+                    throw new Exception("Barrier points aren't in sorted order");
+
+                // This has to start at -1 for the count of tasks in the first barrier group to be correct
+                int previousBarrier = -1;
+
+                foreach (var barrierPoint in threadBarrierPoints)
+                {
+                    int tasksBetween = barrierPoint - previousBarrier;
+
+                    yield return tasksBetween;
+
+                    previousBarrier = barrierPoint;
+                }
+            }
+
+            public void RemoveBarrierWithIndex(int barrierIndexToRemove)
+            {
+                threadBarrierPoints.RemoveAt(barrierIndexToRemove);
             }
 
             public void Reset(bool shuffle, Random? random)

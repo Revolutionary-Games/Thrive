@@ -26,9 +26,8 @@ public partial class MicrobeWorldSimulation
                 barrier1.SignalAndWait();
                 barrier1.SignalAndWait();
                 barrier1.SignalAndWait();
-                barrier1.SignalAndWait();
 
-                // Timeslot 6 on thread 2
+                // Timeslot 5 on thread 2
                 engulfedDigestionSystem.Update(delta);
                 multicellularGrowthSystem.Update(delta);
                 microbeReproductionSystem.Update(delta);
@@ -45,23 +44,23 @@ public partial class MicrobeWorldSimulation
                 physicsBodyControlSystem.Update(delta);
                 barrier1.SignalAndWait();
 
-                // Timeslot 7 on thread 2
+                // Timeslot 6 on thread 2
                 colonyStatsUpdateSystem.Update(delta);
                 barrier1.SignalAndWait();
 
-                // Timeslot 8 on thread 2
+                // Timeslot 7 on thread 2
                 microbeDeathSystem.Update(delta);
                 microbeEventCallbackSystem.Update(delta);
                 colonyBindingSystem.Update(delta);
                 barrier1.SignalAndWait();
 
-                // Timeslot 9 on thread 2
+                // Timeslot 8 on thread 2
                 microbeFlashingSystem.Update(delta);
                 damageSoundSystem.Update(delta);
                 microbeMovementSoundSystem.Update(delta);
                 barrier1.SignalAndWait();
 
-                // Timeslot 10 on thread 2
+                // Timeslot 9 on thread 2
                 delayedColonyOperationSystem.Update(delta);
                 allCompoundsVentingSystem.Update(delta);
 
@@ -107,33 +106,30 @@ public partial class MicrobeWorldSimulation
 
         // Timeslot 4 on thread 1
         colonyCompoundDistributionSystem.Update(delta);
-        barrier1.SignalAndWait();
-
-        // Timeslot 5 on thread 1
         engulfingSystem.Update(delta);
         barrier1.SignalAndWait();
 
-        // Timeslot 6 on thread 1
+        // Timeslot 5 on thread 1
         spatialAttachSystem.Update(delta);
         SpawnSystem.Update(delta);
         spatialPositionSystem.Update(delta);
         barrier1.SignalAndWait();
 
-        // Timeslot 7 on thread 1
+        // Timeslot 6 on thread 1
         engulfedHandlingSystem.Update(delta);
         organelleTickSystem.Update(delta);
         barrier1.SignalAndWait();
 
-        // Timeslot 8 on thread 1
+        // Timeslot 7 on thread 1
         physicsSensorSystem.Update(delta);
         barrier1.SignalAndWait();
 
-        // Timeslot 9 on thread 1
+        // Timeslot 8 on thread 1
         fadeOutActionSystem.Update(delta);
         unneededCompoundVentingSystem.Update(delta);
         barrier1.SignalAndWait();
 
-        // Timeslot 10 on thread 1
+        // Timeslot 9 on thread 1
         soundEffectSystem.Update(delta);
 
         barrier1.SignalAndWait();
