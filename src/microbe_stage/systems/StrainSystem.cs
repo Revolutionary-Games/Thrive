@@ -65,7 +65,8 @@
             {
                 var compounds = entity.Get<CompoundStorage>().Compounds;
                 var strainFraction = strain.CalculateStrainFraction();
-                compounds.TakeCompound(atp, Constants.PASSIVE_STRAIN_TO_ATP_USAGE * strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT * delta);
+                compounds.TakeCompound(atp, Constants.PASSIVE_STRAIN_TO_ATP_USAGE * strainFraction *
+                    Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT * delta);
             }
         }
 

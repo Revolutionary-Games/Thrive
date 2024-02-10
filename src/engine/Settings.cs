@@ -507,7 +507,8 @@ public class Settings
 
     // Gameplay and Accessibility settings
 
-    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } = new(StrainBarVisibility.VisibleWhenOverZero);
+    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
+        new(StrainBarVisibility.VisibleWhenOverZero);
 
     // Settings that are edited from elsewhere than the main options menu
     [JsonProperty]
