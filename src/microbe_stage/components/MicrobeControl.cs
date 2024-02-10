@@ -59,16 +59,6 @@
         public bool Sprinting;
 
         /// <summary>
-        ///   The current amount of strain, the maximum is calculated based on the hex size
-        /// </summary>
-        public float CurrentStrain;
-
-        /// <summary>
-        ///   The amount of time the player has to wait before <see cref="CurrentStrain"/> sarts to fall
-        /// </summary>
-        public float StrainDecreaseCooldown;
-
-        /// <summary>
         ///   Constructs an instance with a sensible <see cref="LookAtPoint"/> set
         /// </summary>
         /// <param name="startingPosition">World position this entity is starting at</param>
@@ -83,8 +73,6 @@
             State = MicrobeState.Normal;
             SlowedBySlime = false;
             Sprinting = false;
-            CurrentStrain = 0;
-            StrainDecreaseCooldown = 0;
         }
     }
 
@@ -200,11 +188,6 @@
                 // Randomise the time spent ejecting slime, from 0 to 3 seconds
                 control.QueuedSlimeSecretionTime = 3 * random.NextFloat();
             }
-        }
-
-        public static float CalculateStrainFraction(this ref MicrobeControl control)
-        {
-            return Math.Max(0, control.CurrentStrain - Constants.CANCELED_STRAIN) / Constants.MAX_STRAIN_PER_CELL;
         }
     }
 }

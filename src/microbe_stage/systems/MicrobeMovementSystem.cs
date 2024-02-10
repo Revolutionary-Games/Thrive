@@ -18,6 +18,7 @@
     [With(typeof(Physics))]
     [With(typeof(WorldPosition))]
     [With(typeof(Health))]
+    [With(typeof(StrainAffected))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
@@ -169,7 +170,9 @@
             float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
                 cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
-            var strainFraction = control.CalculateStrainFraction();
+            ref var strain = ref entity.Get<StrainAffected>();
+
+            var strainFraction = strain.CalculateStrainFraction();
             var strainMultiplier = strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
@@ -204,7 +207,14 @@
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
             if (control.Sprinting && canSprint)
+            {
                 force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+                strain.IsUnderStrain = true;
+            }
+            else
+            {
+                strain.IsUnderStrain = false;
+            }
 
             bool hasColony = entity.Has<MicrobeColony>();
 

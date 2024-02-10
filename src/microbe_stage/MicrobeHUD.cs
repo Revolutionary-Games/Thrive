@@ -577,7 +577,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void UpdateStrain(Entity player)
     {
-        var strainFraction = player.Get<MicrobeControl>().CalculateStrainFraction();
+        var strainFraction = player.Get<StrainAffected>().CalculateStrainFraction();
         atpBar.TintProgress = StrainGradient.Interpolate(strainFraction);
 
         strainBar.Value = strainFraction;

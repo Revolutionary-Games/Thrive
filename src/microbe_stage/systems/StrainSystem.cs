@@ -10,6 +10,7 @@
     [With(typeof(CompoundStorage))]
     [With(typeof(OrganelleContainer))]
     [With(typeof(MicrobeControl))]
+    [With(typeof(StrainAffected))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
     public sealed class StrainSystem : AEntitySetSystem<float>
     {
@@ -23,6 +24,7 @@
         protected override void Update(float delta, in Entity entity)
         {
             ref var control = ref entity.Get<MicrobeControl>();
+            ref var strain = ref entity.Get<StrainAffected>();
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
             if (control.Sprinting && control.MovementDirection != Vector3.Zero)
@@ -30,36 +32,52 @@
                 var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
                 strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 
-                if (control.CurrentStrain > Constants.MAX_STRAIN_PER_CELL)
-                    control.CurrentStrain = Constants.MAX_STRAIN_PER_CELL;
+                if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_CELL)
+                {
+                    var difference = strain.CurrentStrain - Constants.MAX_STRAIN_PER_CELL;
+                    strain.ExcessStrain += difference;
 
-                control.CurrentStrain += strainIncrease;
+                    strain.CurrentStrain = Constants.MAX_STRAIN_PER_CELL;
+                }
 
-                control.StrainDecreaseCooldown = Constants.STRAIN_DECREASE_COOLDOWN_SECONDS;
+                strain.CurrentStrain += strainIncrease;
+
+                strain.StrainDecreaseCooldown = Constants.STRAIN_DECREASE_COOLDOWN_SECONDS;
             }
             else
             {
-                if (control.StrainDecreaseCooldown <= Mathf.Epsilon)
+                if (strain.StrainDecreaseCooldown <= Mathf.Epsilon)
                 {
-                    control.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE;
+                    ReduceStrain(ref strain);
                 }
                 else
                 {
-                    control.StrainDecreaseCooldown -= delta;
-                    control.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE /
-                        Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR;
+                    strain.StrainDecreaseCooldown -= delta;
+                    ReduceStrain(ref strain, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR);
                 }
 
-                if (control.CurrentStrain < 0)
-                    control.CurrentStrain = 0;
+                if (strain.CurrentStrain < 0)
+                    strain.CurrentStrain = 0;
             }
 
             // If the entity is not moving, anyway remove some ATP due to strain
             if (control.MovementDirection == Vector3.Zero)
             {
                 var compounds = entity.Get<CompoundStorage>().Compounds;
-                var strainFraction = control.CalculateStrainFraction();
+                var strainFraction = strain.CalculateStrainFraction();
                 compounds.TakeCompound(atp, Constants.PASSIVE_STRAIN_TO_ATP_USAGE * strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT * delta);
+            }
+        }
+
+        private void ReduceStrain(ref StrainAffected strain, float divisor = 1.0f)
+        {
+            if (strain.ExcessStrain <= Mathf.Epsilon)
+            {
+                strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
+            }
+            else
+            {
+                strain.ExcessStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
             }
         }
     }
