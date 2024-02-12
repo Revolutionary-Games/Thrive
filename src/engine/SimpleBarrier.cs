@@ -6,7 +6,7 @@ using System.Threading;
 /// </summary>
 public class SimpleBarrier
 {
-    private const int BUSY_LOOP_COUNT = 100;
+    private const int BUSY_LOOP_COUNT = 25;
     private const int READ_TESTS_IN_A_ROW = 5;
 
     private readonly int threadCount;

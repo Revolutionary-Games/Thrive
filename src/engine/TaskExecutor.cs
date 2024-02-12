@@ -439,6 +439,9 @@ public class TaskExecutor : IParallelRunner
             {
                 lock (threadNotifySync)
                 {
+                    // This timeout here is just for safety to avoid locking up, reducing this doesn't seem to have any
+                    // performance impact. This is set now for a balance of threads not being able to be stuck too long
+                    // in case the wake up thread notify not working
                     Monitor.Wait(threadNotifySync, 10);
                 }
             }

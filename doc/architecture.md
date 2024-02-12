@@ -149,6 +149,26 @@ recreate the data on load, or the data can be loaded through
 `PredefinedVisuals` for example for a save-proof way to load graphics
 for a Spatial instance.
 
+### Simulation Multithreading
+
+The simulation is ran with multiple threads in parallel, all of which
+can further dispatch single systems to run part of their entities on
+even more threads. This improves the game performance a lot. The top
+level multithreading is skipped when there aren't that many available
+processing threads as this part doesn't improve the game performance a
+lot.
+
+To manage the complexity of balancing tasks on multiple threads, the
+systems need to have metadata attributes telling which components they
+access, what systems they need to run before / after, and if they must
+run on the main thread (anything modifying Godot data). With correct
+metadata the threaded run generator tool can be ran through Godot to
+generate the simulation threaded runs: 
+
+```sh
+godot res://src/tools/GenerateThreadedSystems.tscn
+```
+This command must be ran in the Thrive folder to work.
 
 Folder Structure
 ----------------
