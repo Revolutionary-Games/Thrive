@@ -143,7 +143,7 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     }
 
     /// <summary>
-    ///   Places specified amount of compound at position
+    ///   Places specified amount of compound at position using interlocked operations for thread safety
     /// </summary>
     /// <returns>True when placing succeeded, false if out of range</returns>
     public bool AddCloud(Compound compound, float density, Vector3 worldPosition)
@@ -155,12 +155,9 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
             {
                 // Within cloud
 
-                // Skip wrong types
-                if (!cloud.HandlesCompound(compound))
-                    continue;
-
-                cloud.AddCloud(compound, density, x, y);
-                return true;
+                // Add if cloud handles this type
+                if (cloud.AddCloudInterlockedIfHandlesType(compound, x, y, density))
+                    return true;
             }
         }
 
@@ -168,7 +165,8 @@ public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTra
     }
 
     /// <summary>
-    ///   Takes compound at world position
+    ///   Takes compound at world position. This doesn't use locks or interlocked read so this is not thread safe
+    ///   unlike <see cref="AbsorbCompounds"/>, which is basically what should be used instead.
     /// </summary>
     /// <param name="compound">The compound type to take</param>
     /// <param name="worldPosition">World position to take from</param>

@@ -96,7 +96,7 @@
             if (bestSimulation == null)
                 throw new Exception("Couldn't find any valid thread orderings");
 
-            GD.Print($"Simulated {attempts} thread orderings to find best one");
+            GD.Print($"Simulated {attempts} thread orderings to find the best one");
 
             return bestSimulation.ToTaskListResult();
         }
