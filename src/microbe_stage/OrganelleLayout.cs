@@ -72,12 +72,18 @@ public class OrganelleLayout<T> : HexLayout<T>
         bool allowCytoplasmOverlap = false)
     {
         // Check for overlapping hexes with existing organelles
-        foreach (var hex in organelleType.GetRotatedHexes(orientation))
+        var hexes = organelleType.GetRotatedHexes(orientation);
+        int hexCount = hexes.Count;
+
+        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
+        for (int i = 0; i < hexCount; ++i)
         {
-            var overlapping = GetElementAt(hex + position);
+            var overlapping = GetElementAt(hexes[i] + position);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
                     overlapping.Definition.InternalName != "cytoplasm"))
+            {
                 return false;
+            }
         }
 
         // Basic placing doesn't have the restriction that the
@@ -117,9 +123,9 @@ public class OrganelleLayout<T> : HexLayout<T>
         return true;
     }
 
-    protected override IEnumerable<Hex> GetHexComponentPositions(T hex)
+    protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
-        return hex.Definition.GetRotatedHexes(hex.Orientation);
+        result.AddRange(hex.Definition.GetRotatedHexes(hex.Orientation));
     }
 
     /// <summary>

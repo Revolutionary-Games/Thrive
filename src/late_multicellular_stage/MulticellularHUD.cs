@@ -114,14 +114,6 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         }
     }
 
-    public override void UpdateFossilisationButtonStates()
-    {
-    }
-
-    public override void ShowFossilisationButtons()
-    {
-    }
-
     public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects,
         bool playerTechnologies = true)
     {
@@ -137,6 +129,14 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     public void SelectItemForCrafting(IInteractableEntity target)
     {
         inventoryScreen.AddItemToCrafting(target);
+    }
+
+    protected override void UpdateFossilisationButtonStates()
+    {
+    }
+
+    protected override void ShowFossilisationButtons()
+    {
     }
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
@@ -167,20 +167,17 @@ public class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         throw new NotImplementedException();
     }
 
-    protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
+    protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds)
     {
         // TODO: reproduction process for multicellular
-        gatheredCompounds = new Dictionary<Compound, float>
-        {
-            { ammonia, 1 },
-            { phosphates, 1 },
-        };
-        totalNeededCompounds = new Dictionary<Compound, float>
-        {
-            { ammonia, 1 },
-            { phosphates, 1 },
-        };
+        gatheredCompounds.Clear();
+        gatheredCompounds[ammonia] = 1;
+        gatheredCompounds[phosphates] = 1;
+
+        totalNeededCompounds.Clear();
+        totalNeededCompounds[ammonia] = 1;
+        totalNeededCompounds[phosphates] = 1;
     }
 
     protected override ICompoundStorage GetPlayerStorage()

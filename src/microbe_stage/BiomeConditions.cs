@@ -15,62 +15,68 @@ public class BiomeConditions : ICloneable
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts;
 
     [JsonProperty]
-    private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts = new();
+    private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts;
 
     [JsonConstructor]
-    public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds)
-    {
-        this.compounds = compounds;
-    }
-
     public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
         Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts,
         Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts,
         Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts) : this(compounds)
+        Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts)
     {
+        this.compounds = compounds;
+
+        // Initialize the backing stores and the adapters that allow access. This is important to do just once to
+        // save massively on the number of allocated objects.
         this.currentCompoundAmounts = currentCompoundAmounts;
+        CurrentCompoundAmounts =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(currentCompoundAmounts, compounds);
+
         this.averageCompoundAmounts = averageCompoundAmounts;
+        AverageCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(averageCompoundAmounts, compounds);
+
         this.maximumCompoundAmounts = maximumCompoundAmounts;
+        MaximumCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(maximumCompoundAmounts, compounds);
+
         this.minimumCompoundAmounts = minimumCompoundAmounts;
+        MinimumCompounds =
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(minimumCompoundAmounts, compounds);
     }
 
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(currentCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> CurrentCompoundAmounts { get; }
 
     /// <summary>
     ///   Average compounds over an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(averageCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> AverageCompounds { get; }
 
     /// <summary>
     ///   Maximum compounds during an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(maximumCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
     [JsonIgnore]
-    public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds =>
-        new DictionaryWithFallback<Compound, BiomeCompoundProperties>(minimumCompoundAmounts, compounds);
+    public IDictionary<Compound, BiomeCompoundProperties> MinimumCompounds { get; }
 
     /// <summary>
     ///   The normal, large timescale compound amounts

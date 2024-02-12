@@ -303,7 +303,7 @@
             ref BioProcesses bioProcesses)
         {
             if (container.Organelles != null)
-                bioProcesses.ActiveProcesses = ProcessSystem.ComputeActiveProcessList(container.Organelles);
+                ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles, ref bioProcesses.ActiveProcesses);
         }
 
         /// <summary>
@@ -565,15 +565,14 @@
         public static float CalculateReproductionProgress(this ref OrganelleContainer organelleContainer,
             ref ReproductionStatus reproductionStatus, ref SpeciesMember speciesMember, in Entity entity,
             CompoundBag storedCompounds, WorldGenerationSettings worldSettings,
-            out Dictionary<Compound, float> gatheredCompounds, out IReadOnlyDictionary<Compound, float> totalCompounds)
+            Dictionary<Compound, float> gatheredCompounds, Dictionary<Compound, float> totalCompounds)
         {
             // Calculate total compounds needed to split all organelles
-            totalCompounds = organelleContainer.CalculateTotalReproductionCompounds(entity, speciesMember.Species);
+            organelleContainer.CalculateTotalReproductionCompounds(entity, speciesMember.Species, totalCompounds);
 
             // Calculate how many compounds the cell already has absorbed to grow
-            gatheredCompounds = organelleContainer.CalculateAlreadyAbsorbedCompounds(
-                ref entity.Get<ReproductionStatus>(),
-                entity, speciesMember.Species);
+            organelleContainer.CalculateAlreadyAbsorbedCompounds(ref entity.Get<ReproductionStatus>(),
+                entity, speciesMember.Species, gatheredCompounds);
 
             // Add the currently held compounds, but only if configured as this can be pretty confusing for players
             // to have the bars in ready to reproduce state for a while before the time limited reproduction actually
@@ -613,8 +612,8 @@
         ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to
         ///   calculate the fraction done.
         /// </summary>
-        public static IReadOnlyDictionary<Compound, float> CalculateTotalReproductionCompounds(
-            this ref OrganelleContainer organelleContainer, in Entity entity, Species species)
+        public static void CalculateTotalReproductionCompounds(this ref OrganelleContainer organelleContainer,
+            in Entity entity, Species species, Dictionary<Compound, float> result)
         {
             // Multicellular species need to show their total body plan compounds. Other cells and even colonies just
             // use the normal progress calculation for a single cell.
@@ -626,24 +625,26 @@
                 if (growth.TotalNeededForMulticellularGrowth == null)
                     growth.CalculateTotalBodyPlanCompounds(species);
 
-                return growth.TotalNeededForMulticellularGrowth ??
-                    throw new Exception("Total body plan compounds calculation failed");
+                result.Clear();
+
+                result.Merge(growth.TotalNeededForMulticellularGrowth ??
+                    throw new Exception("Total body plan compounds calculation failed"));
+
+                return;
             }
 
-            var result = organelleContainer.CalculateNonDuplicateOrganelleInitialCompositionTotals();
+            organelleContainer.CalculateNonDuplicateOrganelleInitialCompositionTotals(result);
 
             result.Merge(species.BaseReproductionCost);
-
-            return result;
         }
 
-        public static Dictionary<Compound, float> CalculateNonDuplicateOrganelleInitialCompositionTotals(
-            this ref OrganelleContainer organelleContainer)
+        public static void CalculateNonDuplicateOrganelleInitialCompositionTotals(
+            this ref OrganelleContainer organelleContainer, Dictionary<Compound, float> result)
         {
             if (organelleContainer.Organelles == null)
                 throw new InvalidOperationException("OrganelleContainer must be initialized first");
 
-            var result = new Dictionary<Compound, float>();
+            result.Clear();
 
             foreach (var organelle in organelleContainer.Organelles)
             {
@@ -652,21 +653,19 @@
 
                 result.Merge(organelle.Definition.InitialComposition);
             }
-
-            return result;
         }
 
         /// <summary>
         ///   Calculates how much compounds organelles have already absorbed
         /// </summary>
-        public static Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds(
-            this ref OrganelleContainer organelleContainer, ref ReproductionStatus baseReproductionInfo,
-            in Entity entity, Species species)
+        public static void CalculateAlreadyAbsorbedCompounds(this ref OrganelleContainer organelleContainer,
+            ref ReproductionStatus baseReproductionInfo,
+            in Entity entity, Species species, Dictionary<Compound, float> result)
         {
             if (organelleContainer.Organelles == null)
                 throw new InvalidOperationException("OrganelleContainer must be initialized first");
 
-            var result = new Dictionary<Compound, float>();
+            result.Clear();
 
             foreach (var organelle in organelleContainer.Organelles)
             {
@@ -696,8 +695,6 @@
                 // For single microbes the base reproduction cost needs to be calculated here
                 baseReproductionInfo.CalculateAlreadyUsedBaseReproductionCompounds(species, result);
             }
-
-            return result;
         }
 
         public static float CalculateCellEntityWeight(int organelleCount)

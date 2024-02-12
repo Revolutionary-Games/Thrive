@@ -31,10 +31,15 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
             if (TrackInputMethod)
             {
                 LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
-                return CallMethod(Strength, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, Strength);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
+            }
+            else
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, Strength);
             }
 
-            return CallMethod(Strength);
+            return CallMethod(cachedMethodCallParameters!);
         }
 
         return false;

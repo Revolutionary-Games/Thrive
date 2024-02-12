@@ -537,8 +537,11 @@ public class InputManager : Node
         }
 
         // Skip changing input method if the input is an action that shouldn't change input type
-        if (Constants.ActionsThatDoNotChangeInputMethod.Any(a => @event.IsAction(a)))
-            return;
+        foreach (var nonChangingMethod in Constants.ActionsThatDoNotChangeInputMethod)
+        {
+            if (@event.IsAction(nonChangingMethod))
+                return;
+        }
 
         usedInputMethod = wantedInputMethod.Value;
 

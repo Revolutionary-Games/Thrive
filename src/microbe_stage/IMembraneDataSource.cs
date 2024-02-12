@@ -60,9 +60,13 @@ public static class MembraneComputationHelpers
             // organelles
             var entry = organelles[i];
 
-            foreach (var hex in entry.Definition.GetRotatedHexes(entry.Orientation))
+            var rotatedHexes = entry.Definition.GetRotatedHexes(entry.Orientation);
+            int hexCount = rotatedHexes.Count;
+
+            // Manual loop to reduce memory allocations in this often called method
+            for (int j = 0; j < hexCount; ++j)
             {
-                var hexCartesian = Hex.AxialToCartesian(entry.Position + hex);
+                var hexCartesian = Hex.AxialToCartesian(entry.Position + rotatedHexes[j]);
                 result[resultWriteIndex++] = new Vector2(hexCartesian.x, hexCartesian.z);
             }
         }

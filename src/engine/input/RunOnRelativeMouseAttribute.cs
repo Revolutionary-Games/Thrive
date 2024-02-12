@@ -92,7 +92,10 @@ public class RunOnRelativeMouseAttribute : RunOnInputWithStrengthAttribute
     {
         if (HeldDown)
         {
-            CallMethod(delta, Strength);
+            PrepareMethodParameters(ref cachedMethodCallParameters, 2, delta);
+            cachedMethodCallParameters![1] = Strength;
+
+            CallMethod(cachedMethodCallParameters);
 
             MarkMouseMotionRead();
         }

@@ -388,7 +388,22 @@
             // Delete unused endosome graphics. First mark unused things
             foreach (var entry in entityEngulfingEndosomeGraphics)
             {
-                if (!usedTopLevelEngulfers.Contains(entry.Key))
+                // This cannot use a basic .Contains call here as that would allocate a lot of memory as this runs
+                // a bunch on each game update
+                bool contains = false;
+
+                int topLevelCount = usedTopLevelEngulfers.Count;
+
+                for (int i = 0; i < topLevelCount; ++i)
+                {
+                    if (usedTopLevelEngulfers[i] == entry.Key)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+
+                if (!contains)
                 {
                     topLevelEngulfersToDelete.Add(entry.Key);
                     continue;
@@ -397,7 +412,25 @@
                 foreach (var childEntry in entry.Value)
                 {
                     var key = new KeyValuePair<Entity, Entity>(entry.Key, childEntry.Key);
-                    if (!usedEngulfedObjects.Contains(key))
+
+                    int usedEngulfedCount = usedEngulfedObjects.Count;
+
+                    contains = false;
+
+                    for (int i = 0; i < usedEngulfedCount; ++i)
+                    {
+                        var usedEngulfedObject = usedEngulfedObjects[i];
+
+                        // There's no normal compare operator available (which is why this memberwise comparison is
+                        // needed) so this may have been what caused the .Contains calls to blow up the memory here
+                        if (usedEngulfedObject.Key == key.Key && usedEngulfedObject.Value == key.Value)
+                        {
+                            contains = true;
+                            break;
+                        }
+                    }
+
+                    if (!contains)
                     {
                         engulfedObjectsToDelete.Add(key);
                     }

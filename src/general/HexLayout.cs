@@ -131,12 +131,22 @@ public abstract class HexLayout<T> : ICollection<T>
     /// </summary>
     public T? GetElementAt(Hex location)
     {
-        foreach (var existingHex in existingHexes)
+        int count = existingHexes.Count;
+
+        // This uses a manual loop as this method is called a lot so this needs to ensure that this doesn't do any
+        // unnecessary computations
+        for (int i = 0; i < count; ++i)
         {
+            var existingHex = existingHexes[i];
+
             var relative = location - existingHex.Position;
-            foreach (var hex in GetHexComponentPositions(existingHex))
+            var hexes = GetHexComponentPositions(existingHex);
+
+            int hexCount = hexes.Count;
+
+            for (int j = 0; j < hexCount; ++j)
             {
-                if (hex.Equals(relative))
+                if (hexes[j].Equals(relative))
                 {
                     return existingHex;
                 }
@@ -257,7 +267,7 @@ public abstract class HexLayout<T> : ICollection<T>
         return set;
     }
 
-    protected abstract IEnumerable<Hex> GetHexComponentPositions(T hex);
+    protected abstract void GetHexComponentPositions(T hex, List<Hex> result);
 
     /// <summary>
     ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on

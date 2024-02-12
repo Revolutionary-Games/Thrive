@@ -21,10 +21,15 @@ public class RunOnKeyToggleAttribute : RunOnKeyAttribute
             if (TrackInputMethod)
             {
                 LastUsedInputMethod = InputManager.InputMethodFromInput(@event);
-                return CallMethod(ToggleState, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, ToggleState);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
+            }
+            else
+            {
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, ToggleState);
             }
 
-            return CallMethod(ToggleState);
+            return CallMethod(cachedMethodCallParameters!);
         }
 
         return false;

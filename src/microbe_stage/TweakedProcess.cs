@@ -3,7 +3,13 @@
 /// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
-public class TweakedProcess : ICloneable
+/// <remarks>
+///   <para>
+///     This is a struct as this just packs one float and a single object reference in here. This allows much tighter
+///     data packing when this is used in lists.
+///   </para>
+/// </remarks>
+public struct TweakedProcess
 {
     public float Rate;
 
@@ -15,19 +21,31 @@ public class TweakedProcess : ICloneable
 
     public BioProcess Process { get; }
 
+    public static bool operator ==(TweakedProcess left, TweakedProcess right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(TweakedProcess left, TweakedProcess right)
+    {
+        return !(left == right);
+    }
+
     public override bool Equals(object? obj)
     {
-        if (ReferenceEquals(null, obj))
-            return false;
-        if (ReferenceEquals(this, obj))
-            return true;
         if (obj is TweakedProcess casted)
             return Equals(casted);
 
         return false;
     }
 
-    public object Clone()
+    public bool Equals(TweakedProcess other)
+    {
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
+    }
+
+    public TweakedProcess Clone()
     {
         return new TweakedProcess(Process, Rate);
     }
@@ -38,11 +56,5 @@ public class TweakedProcess : ICloneable
         {
             return (Rate.GetHashCode() * 397) ^ Process.GetHashCode();
         }
-    }
-
-    private bool Equals(TweakedProcess other)
-    {
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
     }
 }

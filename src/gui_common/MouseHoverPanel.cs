@@ -40,9 +40,10 @@ public class MouseHoverPanel : PanelContainer
 
         foreach (MouseHoverCategory category in categoryControls)
         {
-            category.Visible = category.TotalEntriesCount > 0;
+            var entriesCount = category.TotalEntriesCount;
+            category.Visible = entriesCount > 0;
             category.SeparatorVisible = firstVisibleCategory != null;
-            visibleEntriesCount += category.TotalEntriesCount;
+            visibleEntriesCount += entriesCount;
 
             if (firstVisibleCategory == null && category.Visible)
                 firstVisibleCategory = category;
@@ -133,6 +134,12 @@ public class MouseHoverPanel : PanelContainer
         private HSeparator separator;
 #pragma warning restore CA2213 // Disposable fields should be disposed
 
+        /// <summary>
+        ///   Cached number of added entity labels. This needs to be used to avoid unnecessary memory allocations each
+        ///   frame.
+        /// </summary>
+        private int totalEntityLabels;
+
         private LocalizedString title;
 
         public MouseHoverCategory(LocalizedString title)
@@ -153,15 +160,7 @@ public class MouseHoverPanel : PanelContainer
         {
             get
             {
-                var totalVisible = 0;
-
-                foreach (Control child in container.GetChildren())
-                {
-                    if (child.Visible)
-                        ++totalVisible;
-                }
-
-                return totalVisible;
+                return totalEntityLabels;
             }
         }
 
@@ -193,11 +192,13 @@ public class MouseHoverPanel : PanelContainer
         public void EmplaceLabel(InspectedEntityLabel label)
         {
             container.AddChild(label);
+            ++totalEntityLabels;
         }
 
         public void ClearEntries()
         {
             container.FreeChildren();
+            totalEntityLabels = 0;
         }
     }
 }
