@@ -18,7 +18,9 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 [TypeConverter(typeof(OrganelleDefinitionStringConverter))]
+#pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
+#pragma warning restore CA1001
 {
     /// <summary>
     ///   User readable name
@@ -39,7 +41,10 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
-    public NodePath? DisplaySceneModelPath;
+    public string? DisplaySceneModelPath;
+
+    [JsonIgnore]
+    public NodePath? DisplaySceneModelNodePath;
 
     /// <summary>
     ///   If this organelle's display scene has animation this needs to be the path to the animation player node
@@ -397,6 +402,9 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
         }
+
+        if (DisplaySceneModelPath != null)
+            DisplaySceneModelNodePath = new NodePath(DisplaySceneModelPath);
 
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)

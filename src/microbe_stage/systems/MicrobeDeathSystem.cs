@@ -72,9 +72,7 @@
 
         public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
             ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
-            Vector3 basePosition, Random random,
-            CustomizeSpawnedChunk? customizeCallback,
-            Compound? glucose)
+            Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, Compound? glucose)
         {
             if (organelleContainer.Organelles == null)
                 throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");

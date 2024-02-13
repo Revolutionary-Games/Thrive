@@ -532,7 +532,7 @@ public partial class CellEditorComponent :
         string displayScene, OrganelleDefinition definition, int renderPriority)
     {
         organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelNodePath);
         if (material != null)
         {
             material.RenderPriority = renderPriority;

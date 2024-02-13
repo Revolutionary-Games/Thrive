@@ -99,7 +99,8 @@
                     }
 
                     var material =
-                        placedOrganelle.OrganelleGraphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelPath);
+                        placedOrganelle.OrganelleGraphics.GetMaterial(placedOrganelle.Definition
+                            .DisplaySceneModelNodePath);
                     material.RenderPriority = organelleRenderOrder;
                 }
             }
