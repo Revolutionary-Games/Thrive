@@ -56,6 +56,11 @@ public class ProcessStatistics
 
     public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
     {
+#if DEBUG
+        if (forProcess == null!)
+            throw new ArgumentException("Invalid process marked used");
+#endif
+
         if (Processes.TryGetValue(forProcess, out var entry))
         {
             entry.Used = true;

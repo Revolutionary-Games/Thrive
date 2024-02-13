@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Newtonsoft.Json;
+
+/// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
 /// <remarks>
@@ -9,9 +11,12 @@
 /// </remarks>
 public struct TweakedProcess
 {
+    [JsonProperty]
     public readonly BioProcess Process;
+
     public float Rate;
 
+    [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)
     {
         Rate = rate;
