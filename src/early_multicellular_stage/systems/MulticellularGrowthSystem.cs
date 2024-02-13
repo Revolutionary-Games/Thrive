@@ -179,6 +179,7 @@
 
             // Consume some compounds for the next cell in the layout
             // Similar logic for "growing" more cells than in PlacedOrganelle growth
+            // TODO: refactor this also to use an external list rather than LINQ to reverse things
             foreach (var entry in microbeStatus.ConsumeReproductionCompoundsReverse ?
                          multicellularGrowth.CompoundsNeededForNextCell.Reverse() :
                          multicellularGrowth.CompoundsNeededForNextCell)

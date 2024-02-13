@@ -59,26 +59,28 @@
 
             // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
             // A basic linear scan over all organelles and their processes with combining duplicates into the result
-            foreach (var organelle in organelles)
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
             {
+                var organelle = organelles[i];
                 var processes = organelle.Definition.RunnableProcesses;
                 int processCount = processes.Count;
 
-                for (int i = 0; i < processCount; ++i)
+                for (int j = 0; j < processCount; ++j)
                 {
-                    var process = processes[i];
+                    var process = processes[j];
                     var processKey = process.Process;
 
                     bool added = false;
 
                     // Try to add to existing result first
                     int resultCount = result.Count;
-                    for (int j = 0; j < resultCount; ++j)
+                    for (int k = 0; k < resultCount; ++k)
                     {
-                        if (result[j].Process == processKey)
+                        if (result[k].Process == processKey)
                         {
                             // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                            result[j] = new TweakedProcess(processKey, process.Rate + result[j].Rate);
+                            result[k] = new TweakedProcess(processKey, process.Rate + result[k].Rate);
                             added = true;
                             break;
                         }

@@ -43,6 +43,7 @@ public class MouseHoverPanel : PanelContainer
 
         MouseHoverCategory? firstVisibleCategory = null;
 
+        // TODO: avoid the enumerator allocation here
         foreach (MouseHoverCategory category in categoryControls)
         {
             var entriesCount = category.TotalEntriesCount;
@@ -161,13 +162,7 @@ public class MouseHoverPanel : PanelContainer
             separator = new HSeparator { RectMinSize = new Vector2(0, 5) };
         }
 
-        public int TotalEntriesCount
-        {
-            get
-            {
-                return totalEntityLabels;
-            }
-        }
+        public int TotalEntriesCount => totalEntityLabels;
 
         public bool SeparatorVisible
         {

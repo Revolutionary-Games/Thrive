@@ -531,7 +531,7 @@
 
             compounds.NominalCapacity = container.OrganellesCapacity;
 
-            MicrobeInternalCalculations.UpdateSpecificCapacities(compounds, container.Organelles);
+            MicrobeInternalCalculations.UpdateSpecificCapacities(compounds, container.Organelles.Organelles);
         }
 
         /// <summary>

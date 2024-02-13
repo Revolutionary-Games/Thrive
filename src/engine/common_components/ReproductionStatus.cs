@@ -10,7 +10,7 @@
     {
         public Dictionary<Compound, float>? MissingCompoundsForBaseReproduction;
 
-        // TODO: remove if unused for now
+        // TODO: remove if unused for now (is currently unused -hhyyrylainen)
         public bool ReadyToReproduce;
 
         public ReproductionStatus(IReadOnlyDictionary<Compound, float> baseReproductionCost)

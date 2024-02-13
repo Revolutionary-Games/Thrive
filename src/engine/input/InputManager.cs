@@ -292,7 +292,6 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var instances = staticInstance!.attributes[attribute];
         var result = false;
 
         if (method.IsStatic)
@@ -314,6 +313,8 @@ public class InputManager : Node
         }
         else
         {
+            var instances = staticInstance!.attributes[attribute];
+
             // Call the method for each instance
             foreach (var instance in instances)
             {
@@ -363,10 +364,17 @@ public class InputManager : Node
                     result = true;
                 }
             }
-        }
 
-        DestroyedListeners.ForEach(p => instances.Remove(p));
-        DestroyedListeners.Clear();
+            if (DestroyedListeners.Count > 0)
+            {
+                foreach (var destroyedListener in DestroyedListeners)
+                {
+                    instances.Remove(destroyedListener);
+                }
+
+                DestroyedListeners.Clear();
+            }
+        }
 
         return result;
     }

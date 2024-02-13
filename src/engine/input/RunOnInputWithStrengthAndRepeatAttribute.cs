@@ -18,6 +18,7 @@ public class RunOnInputWithStrengthAndRepeatAttribute : RunOnInputWithStrengthAt
 
     public override bool OnInput(InputEvent @event)
     {
+        // TODO: this IsActionPressed seems to allocate a bit of memory each time
         // Check key or echo from key being down
         if (@event.IsActionPressed(InputName, true, false))
         {

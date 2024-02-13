@@ -425,7 +425,7 @@
             }
 
             organelleContainer.RotationSpeed =
-                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles);
+                MicrobeInternalCalculations.CalculateRotationSpeed(organelleContainer.Organelles.Organelles);
         }
 
         private PhysicsShape CreatePilusShape(float size)

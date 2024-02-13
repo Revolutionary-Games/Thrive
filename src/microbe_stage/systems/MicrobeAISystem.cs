@@ -296,11 +296,16 @@
 
             if (ai.ATPThreshold > 0.0f)
             {
-                if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold
-                    && compounds.Any(compound => IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f))
+                if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
                 {
-                    control.SetMoveSpeed(0.0f);
-                    return;
+                    foreach (var compound in compounds.Compounds)
+                    {
+                        if (IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f)
+                        {
+                            control.SetMoveSpeed(0.0f);
+                            return;
+                        }
+                    }
                 }
 
                 ai.ATPThreshold = 0.0f;
@@ -471,12 +476,17 @@
                 if (distance > (20000.0 * speciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
                     continue;
 
-                if (chunk.Compounds.Compounds.Any(p => ourCompounds.IsUseful(p.Key) && p.Key.Digestible))
+                foreach (var p in chunk.Compounds.Compounds)
                 {
-                    if (chosenChunk == null)
+                    if (ourCompounds.IsUseful(p.Key) && p.Key.Digestible)
                     {
-                        chosenChunk = chunk;
-                        bestFoundChunkDistance = distance;
+                        if (chosenChunk == null)
+                        {
+                            chosenChunk = chunk;
+                            bestFoundChunkDistance = distance;
+                        }
+
+                        break;
                     }
                 }
             }
