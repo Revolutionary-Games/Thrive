@@ -9,6 +9,7 @@
 /// </remarks>
 public struct TweakedProcess
 {
+    public readonly BioProcess Process;
     public float Rate;
 
     public TweakedProcess(BioProcess process, float rate = 1.0f)
@@ -16,8 +17,6 @@ public struct TweakedProcess
         Rate = rate;
         Process = process;
     }
-
-    public BioProcess Process { get; }
 
     public static bool operator ==(TweakedProcess left, TweakedProcess right)
     {
