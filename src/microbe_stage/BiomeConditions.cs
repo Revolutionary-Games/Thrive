@@ -26,32 +26,43 @@ public class BiomeConditions : ICloneable
     [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts;
 
+    /// <summary>
+    ///   Creates new biome conditions. The other compound amounts are nullable to allow
+    ///   <see cref="SimulationParameters"/> to load this class.
+    /// </summary>
+    /// <param name="compounds">
+    ///   The fallback compound amounts if specific compound amount category doesn't have a value
+    /// </param>
+    /// <param name="currentCompoundAmounts">Value for <see cref="CurrentCompoundAmounts"/></param>
+    /// <param name="averageCompoundAmounts">Value for <see cref="AverageCompounds"/></param>
+    /// <param name="maximumCompoundAmounts">Value for <see cref="MaximumCompounds"/></param>
+    /// <param name="minimumCompoundAmounts">Value for <see cref="MinimumCompounds"/></param>
     [JsonConstructor]
     public BiomeConditions(Dictionary<Compound, BiomeCompoundProperties> compounds,
-        Dictionary<Compound, BiomeCompoundProperties> currentCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> averageCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> maximumCompoundAmounts,
-        Dictionary<Compound, BiomeCompoundProperties> minimumCompoundAmounts)
+        Dictionary<Compound, BiomeCompoundProperties>? currentCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? averageCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? maximumCompoundAmounts,
+        Dictionary<Compound, BiomeCompoundProperties>? minimumCompoundAmounts)
     {
         this.compounds = compounds;
 
         // Initialize the backing stores and the adapters that allow access. This is important to do just once to
         // save massively on the number of allocated objects.
-        this.currentCompoundAmounts = currentCompoundAmounts;
+        this.currentCompoundAmounts = currentCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
         CurrentCompoundAmounts =
-            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(currentCompoundAmounts, compounds);
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.currentCompoundAmounts, compounds);
 
-        this.averageCompoundAmounts = averageCompoundAmounts;
+        this.averageCompoundAmounts = averageCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
         AverageCompounds =
-            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(averageCompoundAmounts, compounds);
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.averageCompoundAmounts, compounds);
 
-        this.maximumCompoundAmounts = maximumCompoundAmounts;
+        this.maximumCompoundAmounts = maximumCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
         MaximumCompounds =
-            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(maximumCompoundAmounts, compounds);
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.maximumCompoundAmounts, compounds);
 
-        this.minimumCompoundAmounts = minimumCompoundAmounts;
+        this.minimumCompoundAmounts = minimumCompoundAmounts ?? new Dictionary<Compound, BiomeCompoundProperties>();
         MinimumCompounds =
-            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(minimumCompoundAmounts, compounds);
+            new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.minimumCompoundAmounts, compounds);
     }
 
     /// <summary>
