@@ -24,6 +24,11 @@ public class MouseHoverPanel : PanelContainer
     /// <summary>
     ///   The array of category controls ordered based on their position in the scene tree.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this being a Godot.Array causes the enumeration of this to allocate memory each time
+    ///   </para>
+    /// </remarks>
     private Array categoryControls = new();
 
     public override void _Ready()

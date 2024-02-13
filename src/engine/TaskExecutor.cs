@@ -304,6 +304,8 @@ public class TaskExecutor : IParallelRunner
         // Wait for all given tasks to complete
         foreach (var task in mainThreadTaskStorage)
         {
+            // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually calls
+            // EnsureLockObjectCreated
             task.Wait();
         }
 

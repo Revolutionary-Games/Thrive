@@ -53,9 +53,16 @@ public static class DictionaryUtils
     {
         foreach (var entry in valuesToAdd)
         {
-            if (!items.TryGetValue(entry.Key, out float existing))
-                existing = 0;
+            items.TryGetValue(entry.Key, out float existing);
+            items[entry.Key] = entry.Value + existing;
+        }
+    }
 
+    public static void Merge<T>(this Dictionary<T, float> items, Dictionary<T, float> valuesToAdd)
+    {
+        foreach (var entry in valuesToAdd)
+        {
+            items.TryGetValue(entry.Key, out float existing);
             items[entry.Key] = entry.Value + existing;
         }
     }

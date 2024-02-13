@@ -76,7 +76,7 @@ public static class MembraneComputationHelpers
 
         // Points are sorted to ensure same shape but different order of organelles results in reusable data
         // TODO: check if this is actually a good idea or it is better to not sort and let duplicate membrane data
-        // just be generated
+        // just be generated. Also this seems to allocate memory a bit.
         Array.Sort(result, 0, length, HexComparer);
 
         return result;

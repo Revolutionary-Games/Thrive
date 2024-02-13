@@ -430,10 +430,20 @@
 
             container.HexCount = container.Organelles.HexCount;
 
-            foreach (var organelle in container.Organelles)
+            var organelles = container.Organelles;
+            int count = organelles.Count;
+
+            for (int i = 0; i < count; ++i)
             {
-                foreach (var organelleComponent in organelle.Components)
+                var organelle = organelles[i];
+
+                var components = organelle.Components;
+                int componentCount = components.Count;
+
+                for (int j = 0; j < componentCount; ++j)
                 {
+                    var organelleComponent = components[j];
+
                     if (organelleComponent is AgentVacuoleComponent)
                     {
                         ++container.AgentVacuoleCount;
@@ -673,8 +683,13 @@
 
             result.Clear();
 
-            foreach (var organelle in organelleContainer.Organelles)
+            var organelles = organelleContainer.Organelles;
+            int count = organelles.Count;
+
+            for (int i = 0; i < count; ++i)
             {
+                var organelle = organelles[i];
+
                 if (organelle.IsDuplicate)
                     continue;
 

@@ -165,6 +165,7 @@ public class DictionaryWithFallback<TKey, TValue> : IDictionary<TKey, TValue>, I
     /// <param name="key">The key to check</param>
     private void ResetPrimaryIfMatchesFallback(TKey key)
     {
+        // TODO: this method shows up in profiling as allocating memory, but I cannot figure out how -hhyyrylainen
         if (primary.TryGetValue(key, out var primaryValue) && fallback.TryGetValue(key, out var fallbackValue) &&
             primaryValue is not null)
         {
