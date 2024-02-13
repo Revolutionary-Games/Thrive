@@ -544,7 +544,13 @@ public static class SpawnHelpers
         // Initialize organelles for the cell type
         {
             var container = default(OrganelleContainer);
-            container.CreateOrganelleLayout(usedCellDefinition);
+
+            // There's probably no clean way to have this temporary memory be passed into here from outside, so we
+            // just need to accept that spawning a microbe allocates a bit of temporary unnecessary memory
+            var workData1 = new List<Hex>();
+            var workData2 = new List<Hex>();
+
+            container.CreateOrganelleLayout(usedCellDefinition, workData1, workData2);
             container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;

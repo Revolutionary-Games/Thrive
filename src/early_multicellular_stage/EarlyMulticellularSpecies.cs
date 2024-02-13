@@ -113,9 +113,12 @@ public class EarlyMulticellularSpecies : Species
 
         Cells.Clear();
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var cellTemplate in casted.Cells)
         {
-            Cells.Add((CellTemplate)cellTemplate.Clone());
+            Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
         CellTypes.Clear();
@@ -132,9 +135,12 @@ public class EarlyMulticellularSpecies : Species
 
         ClonePropertiesTo(result);
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var cellTemplate in Cells)
         {
-            result.Cells.Add((CellTemplate)cellTemplate.Clone());
+            result.Cells.AddFast((CellTemplate)cellTemplate.Clone(), workMemory1, workMemory2);
         }
 
         foreach (var cellType in CellTypes)

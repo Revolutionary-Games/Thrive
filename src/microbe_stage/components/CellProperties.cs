@@ -520,8 +520,11 @@
         /// <param name="worldSimulation">
         ///   Needed when resetting multicellular growth as that needs to delete colony cells
         /// </param>
+        /// <param name="workMemory1">Temporary memory used for organelle copying</param>
+        /// <param name="workMemory2">More temporary memory</param>
         public static void ReApplyCellTypeProperties(this ref CellProperties cellProperties, in Entity entity,
-            ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
+            ICellDefinition newDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
+            List<Hex> workMemory1, List<Hex> workMemory2)
         {
             // Copy new cell type properties
             cellProperties.MembraneType = newDefinition.MembraneType;
@@ -542,7 +545,7 @@
             // Reset all the duplicates organelles / reproduction progress of the entity
             // This also resets multicellular creature's reproduction progress
             organelleContainer.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                entity, newDefinition, baseReproductionCostFrom, worldSimulation);
+                entity, newDefinition, baseReproductionCostFrom, worldSimulation, workMemory1, workMemory2);
 
             // Reset runtime colour
             if (entity.Has<ColourAnimation>())

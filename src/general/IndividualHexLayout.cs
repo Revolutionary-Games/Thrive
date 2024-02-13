@@ -20,6 +20,8 @@ public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
 
     protected override void GetHexComponentPositions(HexWithData<TData> hex, List<Hex> result)
     {
+        result.Clear();
+
         // The single hex is always at 0,0 as it's at the exact position the hex's overall position is
         result.Add(new Hex(0, 0));
     }

@@ -55,6 +55,8 @@
 
         private readonly ThreadLocal<List<PlacedOrganelle>> organellesToSplit = new(() => new List<PlacedOrganelle>());
         private readonly ThreadLocal<List<Compound>> compoundWorkData = new(() => new List<Compound>());
+        private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
+        private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
 
         private GameWorld? gameWorld;
 
@@ -404,8 +406,7 @@
                     if (organelle.GrowthValue < 1.0f)
                     {
                         if (organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
-                                ref remainingFreeCompounds,
-                                consumeInReverseOrder))
+                                ref remainingFreeCompounds, consumeInReverseOrder))
                         {
                             organellesNeedingScaleUpdate.Push(organelle);
                         }
@@ -427,9 +428,7 @@
         }
 
         private void SplitQueuedOrganelles(List<PlacedOrganelle> organellesToAdd,
-            Entity entity,
-            ref OrganelleContainer organelles,
-            ref CompoundStorage storage)
+            Entity entity, ref OrganelleContainer organelles, ref CompoundStorage storage)
         {
             foreach (var organelle in organellesToAdd)
             {
@@ -471,6 +470,9 @@
             // for this organelle
             var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0, organelle.Upgrades);
 
+            var workData1 = hexWorkData.Value;
+            var workData2 = hexWorkData2.Value;
+
             // Spiral search for space for the organelle
             int radius = 1;
             while (true)
@@ -502,9 +504,9 @@
                             // now fixed to actually try the different
                             // rotations.
                             newOrganelle.Orientation = j;
-                            if (organelles.CanPlace(newOrganelle))
+                            if (organelles.CanPlace(newOrganelle, workData1, workData2))
                             {
-                                organelles.Add(newOrganelle);
+                                organelles.AddFast(newOrganelle, workData1, workData2);
                                 return newOrganelle;
                             }
                         }
@@ -559,9 +561,12 @@
 
                 ref var cellProperties = ref entity.Get<CellProperties>();
 
+                var workData1 = hexWorkData.Value;
+                var workData2 = hexWorkData2.Value;
+
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                 organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                    entity, species, species, worldSimulation);
+                    entity, species, species, worldSimulation, workData1, workData2);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
             }
@@ -573,6 +578,8 @@
             {
                 organellesToSplit.Dispose();
                 compoundWorkData.Dispose();
+                hexWorkData.Dispose();
+                hexWorkData2.Dispose();
             }
         }
     }

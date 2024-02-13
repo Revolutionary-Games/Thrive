@@ -469,12 +469,14 @@ public class MicrobeBenchmark : Node
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
         var mutator = new Mutations(random);
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
 
         for (int i = 0; i < SPECIES_COUNT; ++i)
         {
             var species = mutator.CreateRandomSpecies(world.NewMicrobeSpecies(nameGenerator.GenerateNameSection(random),
                     nameGenerator.GenerateNameSection(random, true)), AI_MUTATION_MULTIPLIER, false,
-                random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
+                workMemory1, workMemory2, random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
 
             generatedSpecies.Add(species);
         }

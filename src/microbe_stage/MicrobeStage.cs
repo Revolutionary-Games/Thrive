@@ -618,6 +618,9 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             wonOnce = true;
         }
 
+        var workData1 = new List<Hex>();
+        var workData2 = new List<Hex>();
+
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
         // Update the player's cell
@@ -633,12 +636,13 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation);
+                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
-            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation);
+            cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
+                workData1, workData2);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;

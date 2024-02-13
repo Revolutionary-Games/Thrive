@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
 /// <remarks>

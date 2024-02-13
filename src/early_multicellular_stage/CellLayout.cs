@@ -60,6 +60,8 @@ public class CellLayout<T> : HexLayout<T>
 
     protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
+        result.Clear();
+
         foreach (var organelle in hex.Organelles)
         {
             foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))

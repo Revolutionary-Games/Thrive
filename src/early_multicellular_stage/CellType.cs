@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -25,11 +26,14 @@ public class CellType : ICellDefinition, ICloneable
     ///   Creates a cell type from the cell type of a microbe species
     /// </summary>
     /// <param name="microbeSpecies">The microbe species to take the cell type parameters from</param>
-    public CellType(MicrobeSpecies microbeSpecies) : this(microbeSpecies.MembraneType)
+    /// <param name="workMemory1">Temporary memory needed to copy organelle data</param>
+    /// <param name="workMemory2">More temporary memory</param>
+    public CellType(MicrobeSpecies microbeSpecies, List<Hex> workMemory1, List<Hex> workMemory2) :
+        this(microbeSpecies.MembraneType)
     {
         foreach (var organelle in microbeSpecies.Organelles)
         {
-            Organelles.Add((OrganelleTemplate)organelle.Clone());
+            Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         MembraneRigidity = microbeSpecies.MembraneRigidity;
@@ -133,9 +137,12 @@ public class CellType : ICellDefinition, ICloneable
             IsBacteria = IsBacteria,
         };
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in Organelles)
         {
-            result.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
         }
 
         return result;

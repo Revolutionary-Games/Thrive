@@ -206,7 +206,8 @@
                 (entity.Has<MicrobeColony>() || entity.Has<MicrobeColonyMember>());
         }
 
-        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellDefinition cellDefinition)
+        public static void CreateOrganelleLayout(this ref OrganelleContainer container, ICellDefinition cellDefinition,
+            List<Hex> workMemory1, List<Hex> workMemory2)
         {
             // Set an initial rotation rate that will be reset after this is properly calculated
             container.RotationSpeed = 0.5f;
@@ -217,8 +218,9 @@
 
             foreach (var organelleTemplate in cellDefinition.Organelles)
             {
-                container.Organelles.Add(new PlacedOrganelle(organelleTemplate.Definition, organelleTemplate.Position,
-                    organelleTemplate.Orientation, organelleTemplate.Upgrades));
+                container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
+                    organelleTemplate.Position,
+                    organelleTemplate.Orientation, organelleTemplate.Upgrades), workMemory1, workMemory2);
             }
 
             container.CalculateOrganelleLayoutStatistics();
@@ -235,9 +237,10 @@
         /// </summary>
         public static void ResetOrganelleLayout(this ref OrganelleContainer container,
             ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
-            ICellDefinition cellDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation)
+            ICellDefinition cellDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
+            List<Hex> workMemory1, List<Hex> workMemory2)
         {
-            container.CreateOrganelleLayout(cellDefinition);
+            container.CreateOrganelleLayout(cellDefinition, workMemory1, workMemory2);
             container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
                 cellDefinition.IsBacteria);
 
@@ -303,7 +306,10 @@
             ref BioProcesses bioProcesses)
         {
             if (container.Organelles != null)
-                ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles, ref bioProcesses.ActiveProcesses);
+            {
+                ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles,
+                    ref bioProcesses.ActiveProcesses);
+            }
         }
 
         /// <summary>
