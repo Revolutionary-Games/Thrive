@@ -326,7 +326,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 var x0 = i;
                 var y0 = j;
-                // TODO: fix allocations
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateCenter(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
@@ -350,7 +351,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 var x0 = i;
                 var y0 = j;
-                // TODO: fix allocations
+
+                // TODO: fix task allocations
                 var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
