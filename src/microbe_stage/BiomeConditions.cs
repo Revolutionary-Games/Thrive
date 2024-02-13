@@ -83,6 +83,8 @@ public class BiomeConditions : ICloneable
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> MaximumCompounds { get; }
 
+    // This is kept to be consistent with the other values, in the future this should be updated
+    // ReSharper disable once CollectionNeverQueried.Global
     /// <summary>
     ///   Minimum compounds during an in-game day
     /// </summary>
