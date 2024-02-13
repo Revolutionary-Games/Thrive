@@ -1041,6 +1041,12 @@
 
         private void CleanMicrobeCache()
         {
+            // Skip when cache hasn't been updated in the meantime, this avoid unnecessarily clearing out a bunch of
+            // data from the cache as after we clear the lists, the lists won't be filled again until the cache is
+            // rebuild
+            if (!microbeCacheBuilt)
+                return;
+
             foreach (var entry in microbesBySpecies)
             {
                 if (entry.Value.Count < 1)
