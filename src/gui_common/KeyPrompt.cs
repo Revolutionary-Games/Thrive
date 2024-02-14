@@ -71,6 +71,12 @@ public class KeyPrompt : CenterContainer
 
     public override void _Process(float delta)
     {
+        // Skip processing when not visible to save quite a bit of processing time from any existing prompts
+        // Note this doesn't use IsVisibleInTree as that is also a processing intensive method. Instead this relies on
+        // the tutorial etc. to set this hidden itself.
+        if (!Visible)
+            return;
+
         if (!ShowPress)
         {
             // TODO: reset the pressed status colour if it was previously pressed?

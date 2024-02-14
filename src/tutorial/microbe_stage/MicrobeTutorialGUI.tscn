@@ -167,6 +167,7 @@ __meta__ = {
 }
 
 [node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+visible = false
 margin_left = 620.0
 margin_top = 280.0
 margin_right = -628.0
@@ -175,6 +176,7 @@ rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_forward"
 
 [node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+visible = false
 margin_left = 620.0
 margin_top = 400.0
 margin_right = -628.0
@@ -183,6 +185,7 @@ rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_backwards"
 
 [node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+visible = false
 margin_left = 560.0
 margin_top = 340.0
 margin_right = -688.0
@@ -191,6 +194,7 @@ rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_left"
 
 [node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+visible = false
 margin_left = 680.0
 margin_top = 340.0
 margin_right = -568.0
