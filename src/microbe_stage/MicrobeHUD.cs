@@ -574,9 +574,9 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private float GetPlayerUsedIngestionCapacity()
     {
         if (stage!.Player.Has<MicrobeColony>())
-            return stage.Player.Get<MicrobeColony>().CalculateUsedIngestionCapacity();
+            return stage.Player.Get<MicrobeColony>().CalculateUsedEngulfingCapacity();
 
-        return stage.Player.Get<Engulfer>().UsedIngestionCapacity;
+        return stage.Player.Get<Engulfer>().UsedEngulfingCapacity;
     }
 
     private void UpdateMulticellularButton(Entity player)

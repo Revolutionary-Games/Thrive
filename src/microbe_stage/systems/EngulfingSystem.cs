@@ -628,7 +628,7 @@
 
             // Update used engulfing space, this will be re-calculated by the digestion system (as used space changes
             // as digestion progresses)
-            engulfer.UsedIngestionCapacity += engulfable.AdjustedEngulfSize;
+            engulfer.UsedEngulfingCapacity += engulfable.AdjustedEngulfSize;
         }
 
         private static Vector3 CalculateEngulfableTargetPosition(ref CellProperties engulferCellProperties,
@@ -1484,8 +1484,8 @@
 
             // Thanks to digestion decreasing the size of engulfed objects, this doesn't match what we took in
             // originally. This relies on the digestion system updating this later to make sure this is correct
-            engulfer.UsedIngestionCapacity =
-                Math.Max(0, engulfer.UsedIngestionCapacity - engulfable.AdjustedEngulfSize);
+            engulfer.UsedEngulfingCapacity =
+                Math.Max(0, engulfer.UsedEngulfingCapacity - engulfable.AdjustedEngulfSize);
 
             if (destroy)
             {
