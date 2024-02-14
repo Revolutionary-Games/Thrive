@@ -2,12 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Base class implementing the basic structure for holding layouts composed of hexes (for example microbe's
 ///   organelles)
 /// </summary>
+/// <remarks>
+///   <para>
+///     Various methods here take in a "temporaryStorage" parameter. This is used for storing random stuff during the
+///     method execution to avoid extra memory allocations. Some methods require multiple
+///   </para>
+/// </remarks>
 /// <typeparam name="T">The concrete type of the hex to hold</typeparam>
 [UseThriveSerializer]
 public abstract class HexLayout<T> : ICollection<T>
@@ -56,11 +63,12 @@ public abstract class HexLayout<T> : ICollection<T>
     public T this[int index] => existingHexes[index];
 
     /// <summary>
-    ///   Adds a new hex-based element to this layout. Throws if overlaps or can't be placed
+    ///   Adds a new hex-based element to this layout. Throws if overlaps or can't be placed. This is the preferred
+    ///   add method variant as this doesn't need to allocate extra memory.
     /// </summary>
-    public void Add(T hex)
+    public void AddFast(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
-        if (!CanPlace(hex))
+        if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
             throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
 
         existingHexes.Add(hex);
@@ -68,17 +76,71 @@ public abstract class HexLayout<T> : ICollection<T>
     }
 
     /// <summary>
+    ///   Generic interface implementation of add. Note that this allocates memory and should be avoided.
+    /// </summary>
+    public void Add(T hex)
+    {
+        if (!CanPlaceAllocating(hex))
+            throw new ArgumentException($"{typeof(T).Name} can't be placed at this location");
+
+        existingHexes.Add(hex);
+        onAdded?.Invoke(hex);
+    }
+
+    /// <summary>
+    ///   Explicit name for the slow variant
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AddSlow(T hex)
+    {
+        Add(hex);
+    }
+
+    /// <summary>
     ///   Returns true if hex can be placed at location. Only checks that the location doesn't overlap with any
     ///   existing hexes
     /// </summary>
-    public virtual bool CanPlace(T hex)
+    public virtual bool CanPlace(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
+#if DEBUG
+        if (ReferenceEquals(temporaryStorage, temporaryStorage2))
+            throw new ArgumentException("Temporary storage may not point to the same object");
+#endif
+
         var position = hex.Position;
 
         // Check for overlapping hexes with existing hexes
-        foreach (var newHex in GetHexComponentPositions(hex))
+        GetHexComponentPositions(hex, temporaryStorage);
+
+        int count = temporaryStorage.Count;
+
+        for (int i = 0; i < count; ++i)
         {
-            if (GetElementAt(newHex + position) != null)
+            if (GetElementAt(temporaryStorage[i] + position, temporaryStorage2) != null)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Can place variant that allocates temporary memory
+    /// </summary>
+    public virtual bool CanPlaceAllocating(T hex)
+    {
+        var position = hex.Position;
+
+        var temporaryStorage = new List<Hex>();
+        var temporaryStorage2 = new List<Hex>();
+
+        // Check for overlapping hexes with existing hexes
+        GetHexComponentPositions(hex, temporaryStorage);
+
+        int count = temporaryStorage.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            if (GetElementAt(temporaryStorage[i] + position, temporaryStorage2) != null)
                 return false;
         }
 
@@ -89,22 +151,31 @@ public abstract class HexLayout<T> : ICollection<T>
     ///   Returns true if CanPlace would return true and an existing
     ///   hex touches one of the new hexes, or is the last hex and can be replaced.
     /// </summary>
-    public virtual bool CanPlaceAndIsTouching(T hex)
+    public virtual bool CanPlaceAndIsTouching(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
-        if (!CanPlace(hex))
+        if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
             return false;
 
-        return IsTouchingExistingHex(hex);
+        return IsTouchingExistingHex(hex, temporaryStorage, temporaryStorage);
     }
 
     /// <summary>
     ///   Returns true if the specified hex is touching an already added hex
     /// </summary>
-    public bool IsTouchingExistingHex(T hex)
+    public bool IsTouchingExistingHex(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
     {
-        foreach (var hexComponentPart in GetHexComponentPositions(hex))
+#if DEBUG
+        if (ReferenceEquals(temporaryStorage, temporaryStorage2))
+            throw new ArgumentException("Temporary storage may not point to the same object");
+#endif
+
+        GetHexComponentPositions(hex, temporaryStorage);
+
+        int count = temporaryStorage.Count;
+
+        for (int i = 0; i < count; ++i)
         {
-            if (CheckIfAHexIsNextTo(hexComponentPart + hex.Position))
+            if (CheckIfAHexIsNextTo(temporaryStorage[i] + hex.Position, temporaryStorage2))
                 return true;
         }
 
@@ -115,28 +186,39 @@ public abstract class HexLayout<T> : ICollection<T>
     ///   Returns true if there is some placed hex that has a
     ///   hex next to the specified location.
     /// </summary>
-    public bool CheckIfAHexIsNextTo(Hex location)
+    public bool CheckIfAHexIsNextTo(Hex location, List<Hex> temporaryStorage)
     {
         return
-            GetElementAt(location + new Hex(0, -1)) != null ||
-            GetElementAt(location + new Hex(1, -1)) != null ||
-            GetElementAt(location + new Hex(1, 0)) != null ||
-            GetElementAt(location + new Hex(0, 1)) != null ||
-            GetElementAt(location + new Hex(-1, 1)) != null ||
-            GetElementAt(location + new Hex(-1, 0)) != null;
+            GetElementAt(location + new Hex(0, -1), temporaryStorage) != null ||
+            GetElementAt(location + new Hex(1, -1), temporaryStorage) != null ||
+            GetElementAt(location + new Hex(1, 0), temporaryStorage) != null ||
+            GetElementAt(location + new Hex(0, 1), temporaryStorage) != null ||
+            GetElementAt(location + new Hex(-1, 1), temporaryStorage) != null ||
+            GetElementAt(location + new Hex(-1, 0), temporaryStorage) != null;
     }
 
     /// <summary>
     ///   Searches hex list for an hex at the specified hex
     /// </summary>
-    public T? GetElementAt(Hex location)
+    public T? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
-        foreach (var existingHex in existingHexes)
+        int count = existingHexes.Count;
+
+        // This uses a manual loop as this method is called a lot so this needs to ensure that this doesn't do any
+        // unnecessary computations
+        for (int i = 0; i < count; ++i)
         {
+            var existingHex = existingHexes[i];
+
             var relative = location - existingHex.Position;
-            foreach (var hex in GetHexComponentPositions(existingHex))
+            temporaryHexesStorage.Clear();
+            GetHexComponentPositions(existingHex, temporaryHexesStorage);
+
+            int hexCount = temporaryHexesStorage.Count;
+
+            for (int j = 0; j < hexCount; ++j)
             {
-                if (hex.Equals(relative))
+                if (temporaryHexesStorage[j].Equals(relative))
                 {
                     return existingHex;
                 }
@@ -147,12 +229,12 @@ public abstract class HexLayout<T> : ICollection<T>
     }
 
     /// <summary>
-    ///   Removes hex that contains hex
+    ///   Removes hex that contains a hex position
     /// </summary>
     /// <returns>True when removed, false if there was nothing at this position</returns>
-    public bool RemoveHexAt(Hex location)
+    public bool RemoveHexAt(Hex location, List<Hex> temporaryStorage)
     {
-        var hex = GetElementAt(location);
+        var hex = GetElementAt(location, temporaryStorage);
 
         if (hex == null)
             return false;
@@ -248,16 +330,23 @@ public abstract class HexLayout<T> : ICollection<T>
     public HashSet<Hex> ComputeHexCache()
     {
         var set = new HashSet<Hex>();
+        var temporaryMemory = new List<Hex>();
 
-        foreach (var hex in existingHexes.SelectMany(o => GetHexComponentPositions(o).Select(h => h + o.Position)))
+        foreach (var hex in existingHexes)
         {
-            set.Add(hex);
+            GetHexComponentPositions(hex, temporaryMemory);
+            int count = temporaryMemory.Count;
+
+            for (int i = 0; i < count; ++i)
+            {
+                set.Add(hex.Position + temporaryMemory[i]);
+            }
         }
 
         return set;
     }
 
-    protected abstract IEnumerable<Hex> GetHexComponentPositions(T hex);
+    protected abstract void GetHexComponentPositions(T hex, List<Hex> result);
 
     /// <summary>
     ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
@@ -292,18 +381,5 @@ public abstract class HexLayout<T> : ICollection<T>
         return Hex.HexNeighbourOffset
             .Select(p => hex + p.Value)
             .Where(hexCache.Contains);
-    }
-
-    /// <summary>
-    ///   Gets all neighboring hexes where there is an hex. This doesn't use a cache so for each potential
-    ///   hex this recomputes the positions of all existingHexes because this uses GetElementAt
-    /// </summary>
-    /// <param name="hex">The hex to get the neighbours for</param>
-    /// <returns>A list of neighbors that are part of an hex</returns>
-    private IEnumerable<Hex> GetNeighborHexesSlow(Hex hex)
-    {
-        return Hex.HexNeighbourOffset
-            .Select(p => hex + p.Value)
-            .Where(p => GetElementAt(p) != null);
     }
 }

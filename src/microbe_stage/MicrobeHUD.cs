@@ -223,7 +223,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
-    public override void UpdateFossilisationButtonStates()
+    protected override void UpdateFossilisationButtonStates()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
@@ -237,7 +237,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         }
     }
 
-    public override void ShowFossilisationButtons()
+    protected override void ShowFossilisationButtons()
     {
         var fossils = FossilisedSpecies.CreateListOfFossils(false);
 
@@ -391,13 +391,13 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         return stage!.Player.Get<BioProcesses>().ProcessStatistics;
     }
 
-    protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
-        out IReadOnlyDictionary<Compound, float> totalNeededCompounds)
+    protected override void CalculatePlayerReproductionProgress(Dictionary<Compound, float> gatheredCompounds,
+        Dictionary<Compound, float> totalNeededCompounds)
     {
         stage!.Player.Get<OrganelleContainer>().CalculateReproductionProgress(
             ref stage.Player.Get<ReproductionStatus>(), ref stage.Player.Get<SpeciesMember>(),
             stage.Player, stage.Player.Get<CompoundStorage>().Compounds, stage.GameWorld.WorldSettings,
-            out gatheredCompounds, out totalNeededCompounds);
+            gatheredCompounds, totalNeededCompounds);
     }
 
     protected override void UpdateAbilitiesHotBar()

@@ -978,9 +978,13 @@ public class PatchMapDrawer : Control
 
     private void CheckForDirtyNodes()
     {
-        if (nodes.Values.Any(n => n.IsDirty))
+        foreach (var node in nodes.Values)
         {
-            dirty = true;
+            if (node.IsDirty)
+            {
+                dirty = true;
+                return;
+            }
         }
     }
 }

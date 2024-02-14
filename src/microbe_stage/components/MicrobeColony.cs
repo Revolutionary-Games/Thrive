@@ -892,7 +892,7 @@
             // be more physically accurate
 
             float colonyRotation = MicrobeInternalCalculations
-                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!);
+                .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
 
             foreach (var colonyMember in colony.ColonyMembers)
             {
@@ -908,7 +908,7 @@
                 // This relies on the bounding of the cell rotation, as a colony can never be faster than the
                 // fastest cell inside it
                 var memberRotation = MicrobeInternalCalculations
-                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!)
+                        .CalculateRotationSpeed(colonyMember.Get<OrganelleContainer>().Organelles!.Organelles)
                     * (1 + 0.03f * distanceSquared);
 
                 colonyRotation += memberRotation;

@@ -18,7 +18,9 @@ using UnlockConstraints;
 ///   </para>
 /// </remarks>
 [TypeConverter(typeof(OrganelleDefinitionStringConverter))]
+#pragma warning disable CA1001 // Owns Godot resource that is fine to stay for the program lifetime
 public class OrganelleDefinition : IRegistryType
+#pragma warning restore CA1001
 {
     /// <summary>
     ///   User readable name
@@ -40,6 +42,9 @@ public class OrganelleDefinition : IRegistryType
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
     public string? DisplaySceneModelPath;
+
+    [JsonIgnore]
+    public NodePath? DisplaySceneModelNodePath;
 
     /// <summary>
     ///   If this organelle's display scene has animation this needs to be the path to the animation player node
@@ -280,7 +285,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Returns The hexes but rotated (rotation is the number of 60 degree rotations)
     /// </summary>
-    public IEnumerable<Hex> GetRotatedHexes(int rotation)
+    public IReadOnlyList<Hex> GetRotatedHexes(int rotation)
     {
         // The rotations repeat every 6 steps
         rotation %= 6;
@@ -397,6 +402,9 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Both DisplayScene and CorpseChunkScene are null");
         }
+
+        if (DisplaySceneModelPath != null)
+            DisplaySceneModelNodePath = new NodePath(DisplaySceneModelPath);
 
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)

@@ -38,7 +38,7 @@
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
         private readonly Compound oxytoxy;
-        private readonly IReadOnlyCollection<Compound> digestibleCompounds;
+        private readonly IReadOnlyList<Compound> digestibleCompounds;
 
         private readonly Enzyme lipase;
 
@@ -194,8 +194,13 @@
 
                 var totalAmountLeft = 0.0f;
 
-                foreach (var compound in digestibleCompounds)
+                var digestibleCount = digestibleCompounds.Count;
+
+                // Manual loop to ensure no enumerator allocations
+                for (int j = 0; j < digestibleCount; ++j)
                 {
+                    var compound = digestibleCompounds[j];
+
                     var storageAmount = containedCompounds?.GetCompoundAmount(compound) ?? 0;
 
                     var additionalAmount = 0.0f;

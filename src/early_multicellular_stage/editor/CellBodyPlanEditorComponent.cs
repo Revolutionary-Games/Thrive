@@ -61,6 +61,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
+    private readonly List<Hex> hexTemporaryMemory = new();
+    private readonly List<Hex> hexTemporaryMemory2 = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -204,9 +207,12 @@ public partial class CellBodyPlanEditorComponent :
         {
             // We assume that the loaded save layout did not have anything weird set for the callbacks as we
             // do this rather than use SaveApplyHelpers
+            var workMemory1 = new List<Hex>();
+            var workMemory2 = new List<Hex>();
+
             foreach (var editedMicrobeOrganelle in editedMicrobeCells)
             {
-                newLayout.Add(editedMicrobeOrganelle);
+                newLayout.AddFast(editedMicrobeOrganelle, workMemory1, workMemory2);
             }
 
             editedMicrobeCells = newLayout;
@@ -370,9 +376,9 @@ public partial class CellBodyPlanEditorComponent :
                 var positionVector = direction * distance;
                 hexWithData.Data!.Position = new Hex((int)positionVector.x, (int)positionVector.y);
 
-                if (editedSpecies.Cells.CanPlace(hexWithData.Data))
+                if (editedSpecies.Cells.CanPlace(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2))
                 {
-                    editedSpecies.Cells.Add(hexWithData.Data);
+                    editedSpecies.Cells.AddFast(hexWithData.Data, hexTemporaryMemory, hexTemporaryMemory2);
                     break;
                 }
 
@@ -438,7 +444,7 @@ public partial class CellBodyPlanEditorComponent :
 
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
         {
-            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR));
+            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
             if (cell != null)
                 cells.Add(cell);
@@ -508,12 +514,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(cell);
+        return editedMicrobeCells.CanPlace(cell, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     protected override void OnCurrentActionCanceled()
     {
-        editedMicrobeCells.Add(MovingPlacedHex!);
+        editedMicrobeCells.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
         MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
@@ -525,12 +531,12 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override HexWithData<CellTemplate>? GetHexAt(Hex position)
     {
-        return editedMicrobeCells.GetElementAt(position);
+        return editedMicrobeCells.GetElementAt(position, hexTemporaryMemory);
     }
 
     protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
-        var hexHere = editedMicrobeCells.GetElementAt(location);
+        var hexHere = editedMicrobeCells.GetElementAt(location, hexTemporaryMemory);
         if (hexHere == null)
             return null;
 
@@ -611,9 +617,9 @@ public partial class CellBodyPlanEditorComponent :
     private bool TryAddHexToEditedLayout(HexWithData<CellTemplate> hex, int q, int r)
     {
         hex.Position = new Hex(q, r);
-        if (editedMicrobeCells.CanPlace(hex))
+        if (editedMicrobeCells.CanPlace(hex, hexTemporaryMemory, hexTemporaryMemory2))
         {
-            editedMicrobeCells.Add(hex);
+            editedMicrobeCells.AddFast(hex, hexTemporaryMemory, hexTemporaryMemory2);
             return true;
         }
 
@@ -720,7 +726,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool IsValidPlacement(HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlaceAndIsTouching(cell);
+        return editedMicrobeCells.CanPlaceAndIsTouching(cell, hexTemporaryMemory, hexTemporaryMemory2);
     }
 
     private EditorAction CreateAddCellAction(HexWithData<CellTemplate> cell)

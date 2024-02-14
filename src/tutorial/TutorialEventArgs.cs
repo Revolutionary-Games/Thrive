@@ -47,8 +47,17 @@ public class MicrobeMovementEventArgs : TutorialEventArgs
         MovementDirection = movementDirection;
     }
 
-    public bool UsesScreenRelativeMovement { get; }
-    public Vector3 MovementDirection { get; }
+    public bool UsesScreenRelativeMovement { get; private set; }
+    public Vector3 MovementDirection { get; private set; }
+
+    /// <summary>
+    ///   Reuses this event with new parameters. This method exists to reduce required memory allocations.
+    /// </summary>
+    public void ReuseEvent(bool usesScreenRelativeMovement, Vector3 movementDirection)
+    {
+        UsesScreenRelativeMovement = usesScreenRelativeMovement;
+        MovementDirection = movementDirection;
+    }
 }
 
 public class EntityPositionEventArgs : TutorialEventArgs

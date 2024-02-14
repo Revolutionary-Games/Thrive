@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Components;
 using DefaultEcs;
 using DefaultEcs.Threading;
@@ -10,6 +11,9 @@ using Systems;
 /// </summary>
 public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 {
+    private readonly List<Hex> hexWorkData1 = new();
+    private readonly List<Hex> hexWorkData2 = new();
+
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
     private AttachedEntityPositionSystem attachedEntityPositionSystem = null!;
@@ -144,7 +148,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
     }

@@ -45,9 +45,9 @@ public class GalleryCardModel : GalleryCard
     public class ModelPreview : IScenePhotographable
     {
         private string resourcePath;
-        private string meshNodePath;
+        private NodePath? meshNodePath;
 
-        public ModelPreview(string resourcePath, string meshNodePath)
+        public ModelPreview(string resourcePath, NodePath? meshNodePath)
         {
             this.resourcePath = resourcePath;
             this.meshNodePath = meshNodePath;
@@ -61,7 +61,17 @@ public class GalleryCardModel : GalleryCard
 
         public Vector3 CalculatePhotographDistance(Spatial instancedScene)
         {
-            var instancedMesh = instancedScene.GetNode<MeshInstance>(meshNodePath);
+            MeshInstance instancedMesh;
+
+            if (meshNodePath != null)
+            {
+                instancedMesh = instancedScene.GetNode<MeshInstance>(meshNodePath);
+            }
+            else
+            {
+                instancedMesh = (MeshInstance)instancedScene;
+            }
+
             return new Vector3(0, instancedMesh.GetTransformedAabb().Size.Length(), 0);
         }
     }

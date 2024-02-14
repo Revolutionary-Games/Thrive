@@ -15,6 +15,6 @@ public partial class DebugOverlays
 
     private void UpdateFPS()
     {
-        fpsDisplayLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+        fpsDisplayLabel.Text = TranslationServer.Translate("FPS").FormatSafe(Engine.GetFramesPerSecond());
     }
 }

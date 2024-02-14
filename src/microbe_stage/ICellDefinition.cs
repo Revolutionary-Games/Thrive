@@ -60,8 +60,13 @@ public static class GeneralCellPropertiesHelpers
 
     public static void SetupWorldEntities(this ICellDefinition definition, IWorldSimulation worldSimulation)
     {
-        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition).SetupWorldEntities(
-            worldSimulation);
+        // TODO: would there be a way to avoid this temporary memory allocation? This gets used each time the
+        // photo studio wants to photograph a cell
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
+        new MicrobeSpecies(new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty), definition, workMemory1,
+            workMemory2).SetupWorldEntities(worldSimulation);
     }
 
     public static Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)

@@ -360,7 +360,7 @@
                     organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
                 }
 
-                var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelPath);
+                var material = graphics.GetMaterial(placedOrganelle.Definition.DisplaySceneModelNodePath);
                 tempMaterialsList.Add(material);
 
                 // Apply tint (again) to make sure it is up to date

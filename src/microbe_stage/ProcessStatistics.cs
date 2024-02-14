@@ -34,16 +34,33 @@ public class ProcessStatistics
         }
     }
 
-    public void RemoveUnused()
+    public void RemoveUnused(List<BioProcess> removedItemsStorage)
     {
-        foreach (var item in Processes.Where(p => !p.Value.Used).ToList())
+        removedItemsStorage.Clear();
+
+        foreach (var entry in Processes)
         {
-            Processes.Remove(item.Key);
+            if (!entry.Value.Used)
+                removedItemsStorage.Add(entry.Key);
+        }
+
+        if (removedItemsStorage.Count > 0)
+        {
+            int count = removedItemsStorage.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                Processes.Remove(removedItemsStorage[i]);
+            }
         }
     }
 
     public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
     {
+#if DEBUG
+        if (forProcess == null!)
+            throw new ArgumentException("Invalid process marked used");
+#endif
+
         if (Processes.TryGetValue(forProcess, out var entry))
         {
             entry.Used = true;

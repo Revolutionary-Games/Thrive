@@ -148,6 +148,13 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath RightPanelScrollContainerPath = null!;
 
+    /// <summary>
+    ///   Temporary hex memory for use by the main thread in this component
+    /// </summary>
+    private readonly List<Hex> hexTemporaryMemory = new();
+
+    private readonly List<Hex> hexTemporaryMemory2 = new();
+
 #pragma warning disable CA2213
 
     // Light level controls
@@ -525,7 +532,7 @@ public partial class CellEditorComponent :
         string displayScene, OrganelleDefinition definition, int renderPriority)
     {
         organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelNodePath);
         if (material != null)
         {
             material.RenderPriority = renderPriority;
@@ -667,7 +674,7 @@ public partial class CellEditorComponent :
             // do this rather than use SaveApplyHelpers
             foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
             {
-                newLayout.Add(editedMicrobeOrganelle);
+                newLayout.AddFast(editedMicrobeOrganelle, hexTemporaryMemory, hexTemporaryMemory2);
             }
 
             editedMicrobeOrganelles = newLayout;
@@ -834,7 +841,8 @@ public partial class CellEditorComponent :
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in properties.Organelles.Organelles)
         {
-            editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
+            editedMicrobeOrganelles.AddFast((OrganelleTemplate)organelle.Clone(), hexTemporaryMemory,
+                hexTemporaryMemory2);
         }
 
         newName = properties.FormattedName;
@@ -877,7 +885,7 @@ public partial class CellEditorComponent :
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-            editedProperties.Organelles.Add(organelleToAdd);
+            editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         if (shouldUpdatePosition)
@@ -1008,7 +1016,7 @@ public partial class CellEditorComponent :
 
         foreach (var organelle in editedMicrobeOrganelles)
         {
-            oldEditedMicrobeOrganelles.Add(organelle);
+            oldEditedMicrobeOrganelles.AddFast(organelle, hexTemporaryMemory, hexTemporaryMemory2);
         }
 
         var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
@@ -1103,7 +1111,7 @@ public partial class CellEditorComponent :
 
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
         {
-            var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(symmetryQ, symmetryR));
+            var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(symmetryQ, symmetryR), hexTemporaryMemory);
 
             if (organelle != null)
                 organelles.Add(organelle);
@@ -1254,12 +1262,12 @@ public partial class CellEditorComponent :
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, OrganelleTemplate organelle)
     {
-        return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, false);
+        return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, hexTemporaryMemory, false);
     }
 
     protected override void OnCurrentActionCanceled()
     {
-        editedMicrobeOrganelles.Add(MovingPlacedHex!);
+        editedMicrobeOrganelles.AddFast(MovingPlacedHex!, hexTemporaryMemory, hexTemporaryMemory2);
         MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
@@ -1271,12 +1279,12 @@ public partial class CellEditorComponent :
 
     protected override OrganelleTemplate? GetHexAt(Hex position)
     {
-        return editedMicrobeOrganelles.GetElementAt(position);
+        return editedMicrobeOrganelles.GetElementAt(position, hexTemporaryMemory);
     }
 
     protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
-        var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
+        var organelleHere = editedMicrobeOrganelles.GetElementAt(location, hexTemporaryMemory);
         if (organelleHere == null)
             return null;
 
@@ -1395,7 +1403,8 @@ public partial class CellEditorComponent :
 
         previewMicrobeSpecies = new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
-            throw new InvalidOperationException("can't setup preview before cell properties are known"))
+            throw new InvalidOperationException("can't setup preview before cell properties are known"),
+            hexTemporaryMemory, hexTemporaryMemory2)
         {
             // Force large normal size (instead of showing bacteria as smaller scale than the editor hexes)
             IsBacteria = false,
@@ -1577,7 +1586,8 @@ public partial class CellEditorComponent :
                     };
 
                     var replacedHexes = organelle.RotatedHexes
-                        .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h)).WhereNotNull().ToList();
+                        .Select(h => editedMicrobeOrganelles.GetElementAt(hex + h, hexTemporaryMemory)).WhereNotNull()
+                        .ToList();
 
                     if (replacedHexes.Count > 0)
                         data.ReplacedCytoplasm = replacedHexes;
@@ -1599,7 +1609,7 @@ public partial class CellEditorComponent :
                      .Where(o => o.Definition.InternalName != "cytoplasm")
                      .SelectMany(o => o.RotatedHexes.Select(hex => hex + o.Position)))
         {
-            var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex);
+            var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex, hexTemporaryMemory);
 
             if (existingOrganelle != null && existingOrganelle.Definition.InternalName == "cytoplasm")
             {
@@ -1648,7 +1658,8 @@ public partial class CellEditorComponent :
 
         cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
-            throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"));
+            throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"),
+            hexTemporaryMemory, hexTemporaryMemory2);
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
@@ -1787,7 +1798,7 @@ public partial class CellEditorComponent :
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
 
         return editedMicrobeOrganelles.CanPlaceAndIsTouching(organelle,
-            notPlacingCytoplasm,
+            notPlacingCytoplasm, hexTemporaryMemory, hexTemporaryMemory2,
             notPlacingCytoplasm);
     }
 
@@ -2266,7 +2277,7 @@ public partial class CellEditorComponent :
             if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
-            target.Organelles.Add(entry);
+            target.Organelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
         }
     }
 

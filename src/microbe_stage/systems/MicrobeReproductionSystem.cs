@@ -3,7 +3,8 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
     using Components;
     using DefaultEcs;
     using DefaultEcs.System;
@@ -51,6 +52,11 @@
         private readonly ISpawnSystem spawnSystem;
 
         private readonly ConcurrentStack<PlacedOrganelle> organellesNeedingScaleUpdate = new();
+
+        private readonly ThreadLocal<List<PlacedOrganelle>> organellesToSplit = new(() => new List<PlacedOrganelle>());
+        private readonly ThreadLocal<List<Compound>> compoundWorkData = new(() => new List<Compound>());
+        private readonly ThreadLocal<List<Hex>> hexWorkData = new(() => new List<Hex>());
+        private readonly ThreadLocal<List<Hex>> hexWorkData2 = new(() => new List<Hex>());
 
         private GameWorld? gameWorld;
 
@@ -105,16 +111,23 @@
             gameWorld = world;
         }
 
+        public override void Dispose()
+        {
+            Dispose(true);
+            base.Dispose();
+        }
+
         /// <summary>
         ///   Processes the base cost of reproduction (i.e. non-organelle or placed cell related cost). This is
-        ///   internal to allow <see cref="MulticellularGrowthSystem"/> to access this.
+        ///   internal to allow <see cref="MulticellularGrowthSystem"/> to access this. This requires a working list
+        ///   memory to avoid memory allocations each call (<see cref="tempStorageForProcessing"/>).
         /// </summary>
         /// <returns>True when this stage of reproduction is done</returns>
         internal static bool ProcessBaseReproductionCost(
             Dictionary<Compound, float>? requiredCompoundsForBaseReproduction,
             CompoundBag compounds, ref float remainingAllowedCompoundUse,
             ref float remainingFreeCompounds, bool consumeInReverseOrder,
-            Dictionary<Compound, float>? trackCompoundUse = null)
+            List<Compound> tempStorageForProcessing, Dictionary<Compound, float>? trackCompoundUse = null)
         {
             // If no info created yet we don't know if we are done
             if (requiredCompoundsForBaseReproduction == null)
@@ -125,69 +138,41 @@
                 return false;
             }
 
+            tempStorageForProcessing.Clear();
+
+            // Prepare the compound types to process
+            foreach (var entry in requiredCompoundsForBaseReproduction)
+            {
+                if (entry.Value > 0)
+                {
+                    tempStorageForProcessing.Add(entry.Key);
+                }
+            }
+
             bool reproductionStageComplete = true;
 
-            foreach (var key in consumeInReverseOrder ?
-                         requiredCompoundsForBaseReproduction.Keys.Reverse() :
-                         requiredCompoundsForBaseReproduction.Keys)
+            int count = tempStorageForProcessing.Count;
+
+            if (count > 0)
             {
-                var amountNeeded = requiredCompoundsForBaseReproduction[key];
-
-                if (amountNeeded <= 0.0f)
-                    continue;
-
-                // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
-                float usedAmount = 0;
-
-                float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
-
-                if (remainingFreeCompounds > 0)
+                if (consumeInReverseOrder)
                 {
-                    var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
-                    usedAmount += usedFreeCompounds;
-                    allowedUseAmount -= usedFreeCompounds;
-                    remainingFreeCompounds -= usedFreeCompounds;
+                    for (int i = count - 1; i >= 0; --i)
+                    {
+                        ProcessBaseReproductionForCompoundType(tempStorageForProcessing[i],
+                            requiredCompoundsForBaseReproduction, compounds, ref remainingAllowedCompoundUse,
+                            ref remainingFreeCompounds, trackCompoundUse, ref reproductionStageComplete);
+                    }
                 }
-
-                // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
-                // organelle growth
-                var amountAvailable =
-                    compounds.GetCompoundAmount(key) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
-
-                if (amountAvailable > MathUtils.EPSILON)
+                else
                 {
-                    // We can take some
-                    var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
-
-                    usedAmount += compounds.TakeCompound(key, amountToTake);
+                    for (int i = 0; i < count; ++i)
+                    {
+                        ProcessBaseReproductionForCompoundType(tempStorageForProcessing[i],
+                            requiredCompoundsForBaseReproduction, compounds, ref remainingAllowedCompoundUse,
+                            ref remainingFreeCompounds, trackCompoundUse, ref reproductionStageComplete);
+                    }
                 }
-
-                if (usedAmount < MathUtils.EPSILON)
-                    continue;
-
-                remainingAllowedCompoundUse -= usedAmount;
-
-                if (trackCompoundUse != null)
-                {
-                    trackCompoundUse.TryGetValue(key, out var trackedAlreadyUsed);
-                    trackCompoundUse[key] = trackedAlreadyUsed + usedAmount;
-                }
-
-                var left = amountNeeded - usedAmount;
-
-                if (left < 0.0001f)
-                {
-                    // We don't remove these values even when empty as we rely on detecting this being empty for earlier
-                    // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
-                    left = 0;
-                }
-
-                requiredCompoundsForBaseReproduction[key] = left;
-
-                // As we don't make duplicate lists, we can only process a single type per call
-                // So we can't know here if we are fully ready
-                reproductionStageComplete = false;
-                break;
             }
 
             return reproductionStageComplete;
@@ -271,6 +256,71 @@
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void ProcessBaseReproductionForCompoundType(Compound compound,
+            Dictionary<Compound, float> requiredCompoundsForBaseReproduction,
+            CompoundBag compounds, ref float remainingAllowedCompoundUse, ref float remainingFreeCompounds,
+            Dictionary<Compound, float>? trackCompoundUse, ref bool reproductionStageComplete)
+        {
+            var amountNeeded = requiredCompoundsForBaseReproduction[compound];
+
+            // TODO: the following is very similar code to PlacedOrganelle.GrowOrganelle
+            float usedAmount = 0;
+
+            float allowedUseAmount = Math.Min(amountNeeded, remainingAllowedCompoundUse);
+
+            if (remainingFreeCompounds > 0)
+            {
+                var usedFreeCompounds = Math.Min(allowedUseAmount, remainingFreeCompounds);
+                usedAmount += usedFreeCompounds;
+                allowedUseAmount -= usedFreeCompounds;
+                remainingFreeCompounds -= usedFreeCompounds;
+            }
+
+            // For consistency we apply the ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST constant here like for
+            // organelle growth
+            var amountAvailable =
+                compounds.GetCompoundAmount(compound) - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable > MathUtils.EPSILON)
+            {
+                // We can take some
+                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+
+                usedAmount += compounds.TakeCompound(compound, amountToTake);
+            }
+
+            if (usedAmount < MathUtils.EPSILON)
+            {
+                reproductionStageComplete = false;
+                return;
+            }
+
+            remainingAllowedCompoundUse -= usedAmount;
+
+            if (trackCompoundUse != null)
+            {
+                trackCompoundUse.TryGetValue(compound, out var trackedAlreadyUsed);
+                trackCompoundUse[compound] = trackedAlreadyUsed + usedAmount;
+            }
+
+            var left = amountNeeded - usedAmount;
+
+            if (left < 0.0001f)
+            {
+                // We don't remove these values even when empty as we rely on detecting this being empty for earlier
+                // save compatibility, so we just leave 0 values in requiredCompoundsForBaseReproduction
+                left = 0;
+            }
+            else
+            {
+                // Still something left
+                reproductionStageComplete = false;
+            }
+
+            requiredCompoundsForBaseReproduction[compound] = left;
+        }
+
         /// <summary>
         ///   Handles feeding the organelles in a microbe in order for them to split. After all are split the microbe
         ///   is ready to reproduce. This is allowed to be called only for non-multicellular growth only (and not in
@@ -302,18 +352,23 @@
             bool reproductionStageComplete =
                 ProcessBaseReproductionCost(baseReproduction.MissingCompoundsForBaseReproduction, compounds,
                     ref remainingAllowedCompoundUse, ref remainingFreeCompounds,
-                    consumeInReverseOrder);
+                    consumeInReverseOrder, compoundWorkData.Value);
 
             // For this stage and all others below, reproductionStageComplete tracks whether the previous reproduction
             // stage completed, i.e. whether we should proceed with the next stage
             if (reproductionStageComplete)
             {
                 // Organelles that are ready to split
-                var organellesToAdd = new List<PlacedOrganelle>();
+                var organellesToAdd = organellesToSplit.Value;
 
                 // Grow all the organelles, except the unique organelles which are given compounds last
-                foreach (var organelle in organelles.Organelles)
+                // Manual loops are used here as profiling showed the reproduction system enumerator allocations caused
+                // quite a lot of memory allocations during gameplay
+                var organelleCount = organelles.Organelles.Count;
+                for (int i = 0; i < organelleCount; ++i)
                 {
+                    var organelle = organelles.Organelles[i];
+
                     // Check if already done
                     if (organelle.WasSplit)
                         continue;
@@ -357,41 +412,20 @@
                 }
 
                 // Splitting the queued organelles.
-                foreach (var organelle in organellesToAdd)
+                if (organellesToAdd.Count > 0)
                 {
-                    // Mark this organelle as done and return to its normal size.
-                    organelle.ResetGrowth();
-                    organellesNeedingScaleUpdate.Push(organelle);
-
-                    // This doesn't need to update individual scales as a full organelles change is queued below for
-                    // a different system to handle
-
-                    organelle.WasSplit = true;
-
-                    // Create a second organelle.
-                    var organelle2 = SplitOrganelle(organelles.Organelles!, organelle);
-                    organelle2.WasSplit = true;
-                    organelle2.IsDuplicate = true;
-                    organelle2.SisterOrganelle = organelle;
-
-                    // These are fetched here as most of the time only one organelle will divide per step so it doesn't
-                    // help to complicate things by trying to fetch these before the loop
-                    organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
-                        ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(), ref entity.Get<CellProperties>());
-
-                    if (entity.Has<MicrobeEventCallbacks>())
-                    {
-                        ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
-
-                        callbacks.OnOrganelleDuplicated?.Invoke(entity, organelle2);
-                    }
+                    SplitQueuedOrganelles(organellesToAdd, entity, ref organelles, ref storage);
+                    organellesToAdd.Clear();
                 }
             }
 
             if (reproductionStageComplete)
             {
-                foreach (var organelle in organelles.Organelles!)
+                var organelleCount = organelles.Organelles!.Count;
+                for (int i = 0; i < organelleCount; ++i)
                 {
+                    var organelle = organelles.Organelles[i];
+
                     // In the second phase all unique organelles are given compounds
                     // It used to be that only the nucleus was given compounds here
                     if (!organelle.Definition.Unique)
@@ -408,8 +442,7 @@
                     if (organelle.GrowthValue < 1.0f)
                     {
                         if (organelle.GrowOrganelle(compounds, ref remainingAllowedCompoundUse,
-                                ref remainingFreeCompounds,
-                                consumeInReverseOrder))
+                                ref remainingFreeCompounds, consumeInReverseOrder))
                         {
                             organellesNeedingScaleUpdate.Push(organelle);
                         }
@@ -430,6 +463,40 @@
             }
         }
 
+        private void SplitQueuedOrganelles(List<PlacedOrganelle> organellesToAdd,
+            Entity entity, ref OrganelleContainer organelles, ref CompoundStorage storage)
+        {
+            foreach (var organelle in organellesToAdd)
+            {
+                // Mark this organelle as done and return to its normal size.
+                organelle.ResetGrowth();
+                organellesNeedingScaleUpdate.Push(organelle);
+
+                // This doesn't need to update individual scales as a full organelles change is queued below for
+                // a different system to handle
+
+                organelle.WasSplit = true;
+
+                // Create a second organelle.
+                var organelle2 = SplitOrganelle(organelles.Organelles!, organelle);
+                organelle2.WasSplit = true;
+                organelle2.IsDuplicate = true;
+                organelle2.SisterOrganelle = organelle;
+
+                // These are fetched here as most of the time only one organelle will divide per step so it doesn't
+                // help to complicate things by trying to fetch these before the loop
+                organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
+                    ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(), ref entity.Get<CellProperties>());
+
+                if (entity.Has<MicrobeEventCallbacks>())
+                {
+                    ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
+
+                    callbacks.OnOrganelleDuplicated?.Invoke(entity, organelle2);
+                }
+            }
+        }
+
         private PlacedOrganelle SplitOrganelle(OrganelleLayout<PlacedOrganelle> organelles, PlacedOrganelle organelle)
         {
             var q = organelle.Position.Q;
@@ -438,6 +505,9 @@
             // The position used here will be overridden with the right value when we manage to find a place
             // for this organelle
             var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0, organelle.Upgrades);
+
+            var workData1 = hexWorkData.Value;
+            var workData2 = hexWorkData2.Value;
 
             // Spiral search for space for the organelle
             int radius = 1;
@@ -470,9 +540,9 @@
                             // now fixed to actually try the different
                             // rotations.
                             newOrganelle.Orientation = j;
-                            if (organelles.CanPlace(newOrganelle))
+                            if (organelles.CanPlace(newOrganelle, workData1, workData2))
                             {
-                                organelles.Add(newOrganelle);
+                                organelles.AddFast(newOrganelle, workData1, workData2);
                                 return newOrganelle;
                             }
                         }
@@ -527,11 +597,25 @@
 
                 ref var cellProperties = ref entity.Get<CellProperties>();
 
+                var workData1 = hexWorkData.Value;
+                var workData2 = hexWorkData2.Value;
+
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                 organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
-                    entity, species, species, worldSimulation);
+                    entity, species, species, worldSimulation, workData1, workData2);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);
+            }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                organellesToSplit.Dispose();
+                compoundWorkData.Dispose();
+                hexWorkData.Dispose();
+                hexWorkData2.Dispose();
             }
         }
     }

@@ -54,12 +54,15 @@ public class RunOnInputWithStrengthAttribute : RunOnKeyAttribute
         {
             if (TrackInputMethod)
             {
-                CallMethod(delta, Strength, LastUsedInputMethod);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 2, Strength);
+                cachedMethodCallParameters![1] = LastUsedInputMethod;
             }
             else
             {
-                CallMethod(delta, Strength);
+                PrepareMethodParameters(ref cachedMethodCallParameters, 1, Strength);
             }
+
+            CallMethod(cachedMethodCallParameters!);
         }
     }
 

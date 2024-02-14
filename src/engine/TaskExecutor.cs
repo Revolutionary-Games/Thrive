@@ -236,14 +236,17 @@ public class TaskExecutor : IParallelRunner
     ///   Runs a list of tasks and waits for them to complete. The
     ///   first task is ran on the calling thread before waiting.
     /// </summary>
-    /// <param name="tasks">List of tasks to execute and wait to finish</param>
+    /// <param name="tasks">
+    ///   List of tasks to execute and wait to finish. Not modified but must be List to avoid a memory allocation in
+    ///   the foreach.
+    /// </param>
     /// <param name="runExtraTasksOnCallingThread">
     ///   If true the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
     ///   only for the tasks list to complete. If this is true then this call blocks until all tasks (for example
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
-    public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
+    public void RunTasks(List<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
         Task? firstTask = null;
@@ -304,6 +307,8 @@ public class TaskExecutor : IParallelRunner
         // Wait for all given tasks to complete
         foreach (var task in mainThreadTaskStorage)
         {
+            // TODO: so apparently this Wait call can allocate memory, in SpinThenBlockingWait which eventually calls
+            // EnsureLockObjectCreated
             task.Wait();
         }
 
