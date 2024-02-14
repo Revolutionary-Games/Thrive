@@ -18,7 +18,7 @@
     [With(typeof(EntityMaterial))]
     [ReadsComponent(typeof(EntityMaterial))]
     [RunsAfter(typeof(ColourAnimationSystem))]
-    [RuntimeCost(9)]
+    [RuntimeCost(8)]
     [RunsOnFrame]
     [RunsOnMainThread]
     public sealed class TintColourApplyingSystem : AEntitySetSystem<float>

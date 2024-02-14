@@ -35,7 +35,7 @@
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [RunsAfter(typeof(OrganelleComponentFetchSystem))]
     [RunsBefore(typeof(PhysicsSensorSystem))]
-    [RuntimeCost(13)]
+    [RuntimeCost(14)]
     [RunsOnMainThread]
     public sealed class OrganelleTickSystem : AEntitySetSystem<float>
     {

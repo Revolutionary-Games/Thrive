@@ -25,7 +25,7 @@
     [RunsBefore(typeof(SpatialAttachSystem))]
     [RunsBefore(typeof(EntityMaterialFetchSystem))]
     [RunsBefore(typeof(SpatialPositionSystem))]
-    [RuntimeCost(5)]
+    [RuntimeCost(6)]
     [RunsOnMainThread]
     public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {

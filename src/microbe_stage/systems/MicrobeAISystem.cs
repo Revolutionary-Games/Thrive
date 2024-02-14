@@ -41,7 +41,7 @@
     [RunsBefore(typeof(MicrobeEmissionSystem))]
     [RunsConditionally("RunAI")]
     [RunsWithCustomCode("{0}.ReportPotentialPlayerPosition(reportedPlayerPosition);\n{0}.Update(delta);")]
-    [RuntimeCost(6)]
+    [RuntimeCost(9)]
     public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
     {
         private readonly Compound atp;

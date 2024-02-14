@@ -43,7 +43,7 @@
     [RunsAfter(typeof(ColonyStatsUpdateSystem))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RunsBefore(typeof(FadeOutActionSystem))]
-    [RuntimeCost(0.5f)]
+    [RuntimeCost(1)]
     public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     {
         private readonly IWorldSimulation worldSimulation;
