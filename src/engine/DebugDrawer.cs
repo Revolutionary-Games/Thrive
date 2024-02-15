@@ -178,7 +178,16 @@ public class DebugDrawer : ControlWithInput
     {
         if (timedLineCount > 0)
         {
-            HandleTimedLines(delta);
+            // Only draw the other debug lines if physics lines have been updated to avoid flicker
+            if (!physicsDebugSupported || DebugLevel == 0 || drawnThisFrame)
+            {
+                HandleTimedLines(delta);
+            }
+            else
+            {
+                // To make lines not stick around longer with physics debug
+                OnlyElapseLineTime(delta);
+            }
         }
 
         if (drawnThisFrame)
@@ -396,6 +405,15 @@ public class DebugDrawer : ControlWithInput
             var colour = line.Color.LinearInterpolate(endColour, fraction);
 
             DrawLine(line.From, line.To, colour);
+        }
+    }
+
+    private void OnlyElapseLineTime(float delta)
+    {
+        for (int i = 0; i < timedLineCount; ++i)
+        {
+            ref var line = ref timedLines[i];
+            line.TimePassed += delta;
         }
     }
 
