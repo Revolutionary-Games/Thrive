@@ -39,6 +39,11 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
     protected float accumulatedLogicTime;
 
+    /// <summary>
+    ///   Set this to true for worlds that do not use multithreading / aren't setup for component checks to be enabled
+    /// </summary>
+    protected bool disableComponentChecking;
+
     // TODO: are there situations where invokes not having run yet but a save being made could cause problems?
     private readonly Queue<Action> queuedInvokes = new();
 
@@ -123,8 +128,22 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     /// <returns>True when a game logic update happened. False if it wasn't time yet.</returns>
     public bool ProcessAll(float delta)
     {
+        bool useSpecialPhysicsMode = !disableComponentChecking && GenerateThreadedSystems.UseCheckedComponentAccess;
+
+        // See the comment below about this special physics
+        if (useSpecialPhysicsMode)
+            WaitForStartedPhysicsRun();
+
         bool processed = ProcessLogic(delta);
         ProcessFrameLogic(delta);
+
+        if (useSpecialPhysicsMode)
+        {
+            // Physics only runs after the frame systems to ensure physics callbacks triggered during frame systems
+            // are not detected incorrectly. This slightly changes the characteristics of the physics interactions
+            // with other systems, but is fine for this debugging purpose
+            OnProcessPhysics(delta);
+        }
 
         return processed;
     }
@@ -170,10 +189,20 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
 
         ApplyECSThreadCount(ecsThreadsToUse);
 
+        // See the similar check in ProcessAll to see what this is about (this is about special component debug mode)
+        bool useNormalPhysics = disableComponentChecking || !GenerateThreadedSystems.UseCheckedComponentAccess;
+
         // Make sure physics is not running while the systems are
-        WaitForStartedPhysicsRun();
+        if (useNormalPhysics)
+            WaitForStartedPhysicsRun();
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(true);
 
         OnProcessFixedLogic(accumulatedLogicTime);
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(false);
 
         ApplyRecordedCommands();
 
@@ -187,7 +216,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
             }
         }
 
-        OnProcessPhysics(accumulatedLogicTime);
+        if (useNormalPhysics)
+            OnProcessPhysics(accumulatedLogicTime);
 
         accumulatedLogicTime = 0;
         Processing = false;
@@ -210,7 +240,21 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     ///     needed here.
     ///   </para>
     /// </remarks>
-    public abstract void ProcessFrameLogic(float delta);
+    public void ProcessFrameLogic(float delta)
+    {
+        ThrowIfNotInitialized();
+
+        Processing = true;
+
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(true);
+
+        OnProcessFrameLogic(delta);
+
+        Processing = false;
+        if (!disableComponentChecking)
+            ComponentAccessChecks.ReportSimulationActive(false);
+    }
 
     public Entity CreateEmptyEntity()
     {
@@ -463,6 +507,8 @@ public abstract class WorldSimulation : IWorldSimulation, IGodotEarlyNodeResolve
     protected abstract void OnStartPhysicsRunIfTime(float delta);
 
     protected abstract void OnProcessFixedLogic(float delta);
+
+    protected abstract void OnProcessFrameLogic(float delta);
 
     protected virtual void OnPlayerPositionSet(Vector3 playerPosition)
     {

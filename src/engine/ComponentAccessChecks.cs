@@ -11,9 +11,24 @@ public static class ComponentAccessChecks
 {
     private static readonly ThreadLocal<HashSet<string>> AllowedAccessesPerThread = new(() => new HashSet<string>());
 
+    private static bool enforcing;
+
+    public static void ReportSimulationActive(bool active)
+    {
+        enforcing = active;
+    }
+
     public static void ReportAllowedAccess(string type)
     {
+        if (!enforcing)
+            throw new InvalidOperationException("Can only be done while a simulation is running");
+
         AllowedAccessesPerThread.Value.Add(type);
+    }
+
+    public static void ReportAllowedAccessType<T>()
+    {
+        ReportAllowedAccess(typeof(T).Name);
     }
 
     public static void ClearAccessForCurrentThread()
@@ -23,6 +38,11 @@ public static class ComponentAccessChecks
 
     public static void CheckHasAccess(string type)
     {
+        // When simulation is not running, this should not enforce any checks as all components are safe to access when
+        // not running
+        if (!enforcing)
+            return;
+
         if (AllowedAccessesPerThread.Value.Contains(type))
             return;
 

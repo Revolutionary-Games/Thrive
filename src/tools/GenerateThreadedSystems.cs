@@ -40,6 +40,13 @@ public class GenerateThreadedSystems : Node
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
 
+    /// <summary>
+    ///   When true inserts calls to mark which components systems are allowed to access. With help from
+    ///   <see cref="ComponentFetchHelpers.GetChecked{T}"/> this can be used to ensure all access attributes are
+    ///   correct on systems.
+    /// </summary>
+    public static bool UseCheckedComponentAccess = true;
+
     public static bool UseMultithreadingToDoMoreSimulations = true;
 
     public static int MaxThreadToUse = 8;
@@ -747,7 +754,7 @@ public class GenerateThreadedSystems : Node
         indent = WriteBlockContents(writer, processNonThreaded, indent);
 
         writer.WriteLine();
-        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogic(float delta)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogicGenerated(float delta)");
         indent = WriteBlockContents(writer, processFrame, indent);
 
         if (DebugGuardComponentWrites)

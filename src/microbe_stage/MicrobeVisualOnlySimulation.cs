@@ -46,6 +46,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
     /// <param name="visualDisplayRoot">Root node to place all visuals under</param>
     public void Init(Node visualDisplayRoot)
     {
+        disableComponentChecking = true;
+
         ResolveNodeReferences();
 
         visualsParent = visualDisplayRoot;
@@ -86,15 +88,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         OnInitialized();
-    }
-
-    public override void ProcessFrameLogic(float delta)
-    {
-        ThrowIfNotInitialized();
-
-        colourAnimationSystem.Update(delta);
-        microbeShaderSystem.Update(delta);
-        tintColourApplyingSystem.Update(delta);
     }
 
     /// <summary>
@@ -327,6 +320,13 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         cellBurstEffectSystem.Update(delta);
 
         microbeFlashingSystem.Update(delta);
+    }
+
+    protected override void OnProcessFrameLogic(float delta)
+    {
+        colourAnimationSystem.Update(delta);
+        microbeShaderSystem.Update(delta);
+        tintColourApplyingSystem.Update(delta);
     }
 
     protected override void ApplyECSThreadCount(int ecsThreadsToUse)
