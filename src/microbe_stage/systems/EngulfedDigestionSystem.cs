@@ -120,7 +120,7 @@
 
                 // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
                 // is overloaded
-                if (engulfer.UsedIngestionCapacity > engulfer.EngulfStorageSize)
+                if (engulfer.UsedEngulfingCapacity > engulfer.EngulfStorageSize)
                 {
                     if (engulfer.EjectEngulfable(ref engulfable))
                     {
@@ -130,7 +130,7 @@
 
                     // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
                     // accidentally eject *everything* if we go slightly over the limit
-                    engulfer.UsedIngestionCapacity -= engulfable.AdjustedEngulfSize;
+                    engulfer.UsedEngulfingCapacity -= engulfable.AdjustedEngulfSize;
                     continue;
                 }
 
@@ -311,7 +311,7 @@
                 usedCapacity += engulfable.AdjustedEngulfSize;
             }
 
-            engulfer.UsedIngestionCapacity = usedCapacity;
+            engulfer.UsedEngulfingCapacity = usedCapacity;
         }
     }
 }

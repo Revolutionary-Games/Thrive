@@ -187,15 +187,15 @@
         }
 
         /// <summary>
-        ///   The accumulation of all the colony member's <see cref="Engulfer.UsedIngestionCapacity"/>.
+        ///   The accumulation of all the colony member's <see cref="Engulfer.UsedEngulfingCapacity"/>.
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     This unfortunately is not cached as <see cref="Engulfer.UsedIngestionCapacity"/> can change
+        ///     This unfortunately is not cached as <see cref="Engulfer.UsedEngulfingCapacity"/> can change
         ///     every frame. And this is relatively expensive to calculate as this needs to read a lot of entities.
         ///   </para>
         /// </remarks>
-        public static float CalculateUsedIngestionCapacity(this ref MicrobeColony colony)
+        public static float CalculateUsedEngulfingCapacity(this ref MicrobeColony colony)
         {
 #if DEBUG
             colony.DebugCheckColonyHasNoDeadEntities();
@@ -206,7 +206,7 @@
             foreach (var colonyMember in colony.ColonyMembers)
             {
                 ref var engulfer = ref colonyMember.Get<Engulfer>();
-                usedCapacity += engulfer.UsedIngestionCapacity;
+                usedCapacity += engulfer.UsedEngulfingCapacity;
             }
 
             return usedCapacity;
