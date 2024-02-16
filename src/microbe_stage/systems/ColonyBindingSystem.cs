@@ -32,6 +32,7 @@
     [ReadsComponent(typeof(MicrobePhysicsExtraData))]
     [ReadsComponent(typeof(WorldPosition))]
     [ReadsComponent(typeof(AttachedToEntity))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [WritesToComponent(typeof(Spawned))]
     [WritesToComponent(typeof(MicrobeColony))]
     [WritesToComponent(typeof(MicrobeColonyMember))]

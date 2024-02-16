@@ -34,6 +34,7 @@
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(Engulfer))]
+    [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(WorldPosition))]
     [RunsAfter(typeof(OrganelleComponentFetchSystem))]
