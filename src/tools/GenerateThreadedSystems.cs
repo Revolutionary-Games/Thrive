@@ -25,6 +25,13 @@ public class GenerateThreadedSystems : Node
     public static int TargetThreadCount = 2;
 
     /// <summary>
+    ///   When true inserts calls to mark which components systems are allowed to access. With help from
+    ///   <see cref="ComponentFetchHelpers.GetChecked{T}"/> this can be used to ensure all access attributes are
+    ///   correct on systems.
+    /// </summary>
+    public static bool UseCheckedComponentAccess = false;
+
+    /// <summary>
     ///   When true inserts timing code around barriers to measure how long the wait times are
     /// </summary>
     public static bool MeasureThreadWaits = false;
@@ -39,13 +46,6 @@ public class GenerateThreadedSystems : Node
     ///   during runtime. Used to verify that this tool works correctly.
     /// </summary>
     public static bool DebugGuardComponentWrites = false;
-
-    /// <summary>
-    ///   When true inserts calls to mark which components systems are allowed to access. With help from
-    ///   <see cref="ComponentFetchHelpers.GetChecked{T}"/> this can be used to ensure all access attributes are
-    ///   correct on systems.
-    /// </summary>
-    public static bool UseCheckedComponentAccess = true;
 
     public static bool UseMultithreadingToDoMoreSimulations = true;
 
