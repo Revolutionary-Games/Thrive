@@ -9,6 +9,7 @@ using Systems;
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
+[RuntimeCost(35)]
 public class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
     [JsonProperty]

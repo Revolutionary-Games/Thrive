@@ -44,7 +44,7 @@
     [ReadsComponent(typeof(MicrobeColony))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
-    [RuntimeCost(9)]
+    [RuntimeCost(14)]
     [RunsOnMainThread]
     public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     {

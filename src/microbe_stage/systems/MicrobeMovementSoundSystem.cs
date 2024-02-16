@@ -21,7 +21,7 @@
     [RunsAfter(typeof(PhysicsUpdateAndPositionSystem))]
     [RunsAfter(typeof(MicrobeMovementSystem))]
     [RunsBefore(typeof(SoundEffectSystem))]
-    [RuntimeCost(2)]
+    [RuntimeCost(3)]
     public sealed class MicrobeMovementSoundSystem : AEntitySetSystem<float>
     {
         public MicrobeMovementSoundSystem(World world, IParallelRunner parallelRunner) :

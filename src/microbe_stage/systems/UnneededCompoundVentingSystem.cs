@@ -21,7 +21,7 @@
     [ReadsComponent(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [RunsAfter(typeof(ProcessSystem))]
-    [RuntimeCost(10)]
+    [RuntimeCost(9)]
     public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
     {
         private readonly CompoundCloudSystem compoundCloudSystem;
