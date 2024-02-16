@@ -118,6 +118,12 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
+    ///  When should the strain bar be visible
+    /// </summary>
+    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
+        new(StrainBarVisibility.VisibleWhenOverZero);
+
+    /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
     [JsonProperty]
@@ -504,11 +510,6 @@ public class Settings
         Constants.CONTROLLER_DEFAULT_DEADZONE,
         Constants.CONTROLLER_DEFAULT_DEADZONE,
     });
-
-    // Gameplay and Accessibility settings
-
-    public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
-        new(StrainBarVisibility.VisibleWhenOverZero);
 
     // Settings that are edited from elsewhere than the main options menu
     [JsonProperty]

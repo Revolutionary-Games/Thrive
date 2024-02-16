@@ -14,7 +14,7 @@
         public bool IsUnderStrain;
 
         /// <summary>
-        ///   The current amount of strain, the maximum is calculated based on the hex size
+        ///   The current amount of strain
         /// </summary>
         public float CurrentStrain;
 

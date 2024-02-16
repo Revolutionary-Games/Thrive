@@ -11,7 +11,8 @@
     [With(typeof(OrganelleContainer))]
     [With(typeof(MicrobeControl))]
     [With(typeof(StrainAffected))]
-    [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+    [ReadsComponent(typeof(OrganelleContainer))]
+    [ReadsComponent(typeof(MicrobeControl))]
     public sealed class StrainSystem : AEntitySetSystem<float>
     {
         private readonly Compound atp;
@@ -27,7 +28,7 @@
             ref var strain = ref entity.Get<StrainAffected>();
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
-            if (control.Sprinting && control.MovementDirection != Vector3.Zero)
+            if (strain.IsUnderStrain)
             {
                 var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
                 strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
@@ -67,6 +68,10 @@
                 var strainFraction = strain.CalculateStrainFraction();
                 compounds.TakeCompound(atp, Constants.PASSIVE_STRAIN_TO_ATP_USAGE * strainFraction *
                     Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT * delta);
+
+                // Unset IsUnderStrain when not moving/movement system is not running
+
+                strain.IsUnderStrain = false;
             }
         }
 
