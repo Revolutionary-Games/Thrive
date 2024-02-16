@@ -602,6 +602,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (godot == null)
         {
+            ExecutableFinder.PrintPathInfo(Console.Out);
             ColourConsole.WriteErrorLine("Godot not found in PATH with name \"godot\" please make it available");
             return false;
         }

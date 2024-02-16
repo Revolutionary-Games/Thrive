@@ -502,8 +502,10 @@ public class NativeLibs
         // Give a nicer error message with missing cmake
         if (string.IsNullOrEmpty(ExecutableFinder.Which("cmake")))
         {
+            ExecutableFinder.PrintPathInfo(Console.Out);
             ColourConsole.WriteErrorLine("cmake not found. CMake is required for this build to work. " +
                 "Make sure it is installed and added to PATH before trying again.");
+
             return false;
         }
 
