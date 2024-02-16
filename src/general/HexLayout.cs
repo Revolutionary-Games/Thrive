@@ -156,7 +156,7 @@ public abstract class HexLayout<T> : ICollection<T>
         if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
             return false;
 
-        return IsTouchingExistingHex(hex, temporaryStorage, temporaryStorage);
+        return IsTouchingExistingHex(hex, temporaryStorage, temporaryStorage2);
     }
 
     /// <summary>
