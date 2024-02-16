@@ -105,7 +105,7 @@
 
             var (remainingAllowedCompoundUse, remainingFreeCompounds) =
                 MicrobeReproductionSystem.CalculateFreeCompoundsAndLimits(gameWorld!.WorldSettings,
-                    organelleContainer.HexCount, false, elapsedSinceLastUpdate);
+                    organelleContainer.HexCount, true, elapsedSinceLastUpdate);
 
             if (multicellularGrowth.CompoundsNeededForNextCell == null)
             {
