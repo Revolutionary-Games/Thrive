@@ -237,6 +237,8 @@
         {
             base.PostUpdate(state);
 
+            bool printedError = false;
+
             // Apply scales
             while (organellesNeedingScaleUpdate.TryPop(out var organelle))
             {
@@ -246,7 +248,19 @@
                 // The parent node of the organelle graphics is what needs to be scaled
                 // TODO: check if it would be better to just store this node directly in the PlacedOrganelle to not
                 // re-read it like this
-                var nodeToScale = organelle.OrganelleGraphics.GetParentSpatial();
+                var nodeToScale = organelle.OrganelleGraphics.GetParentSpatialWorking();
+
+                // This should no longer happen with the working spatial fetch, but just for safety this is kept
+                if (nodeToScale == null)
+                {
+                    if (!printedError)
+                    {
+                        GD.PrintErr("Organelle is missing Spatial parent, cannot apply scale change");
+                        printedError = true;
+                    }
+
+                    continue;
+                }
 
                 if (!organelle.Definition.PositionedExternally)
                 {
