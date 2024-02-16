@@ -1230,8 +1230,19 @@ public class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimulation>
         if (microbe != Player)
             GD.PrintErr("Chemoreception data reported for non-player cell");
 
-        int currentLineIndex = 0;
         var position = microbe.Get<WorldPosition>().Position;
+
+        // This must be ran on the main thread. For now this should be fine to allocate a bit of memory capturing
+        // the parameters here.
+        Invoke.Instance.QueueForObject(
+            () => UpdateChemoreceptionLines(activeCompoundDetections, activeSpeciesDetections, position), this);
+    }
+
+    private void UpdateChemoreceptionLines(
+        List<(Compound Compound, Color Colour, Vector3 Target)>? activeCompoundDetections,
+        List<(Species Species, Entity Entity, Color Colour, Vector3 Target)>? activeSpeciesDetections, Vector3 position)
+    {
+        int currentLineIndex = 0;
 
         if (activeCompoundDetections != null)
         {
