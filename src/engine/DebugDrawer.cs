@@ -14,6 +14,9 @@ public class DebugDrawer : ControlWithInput
     public Material TriangleMaterial = null!;
 #pragma warning restore CA2213
 
+    private const float LineLifetime = 8.0f;
+    private const float PointLineWidth = 0.3f;
+
     /// <summary>
     ///   Needs to match what's defined in PhysicalWorld.hpp
     /// </summary>
@@ -46,6 +49,13 @@ public class DebugDrawer : ControlWithInput
 
     private static DebugDrawer? instance;
 
+    private readonly Vector3 pointOffsetLeft = new(-PointLineWidth, 0, 0);
+    private readonly Vector3 pointOffsetUp = new(0, PointLineWidth, 0);
+    private readonly Vector3 pointOffsetRight = new(PointLineWidth, 0, 0);
+    private readonly Vector3 pointOffsetDown = new(0, -PointLineWidth, 0);
+    private readonly Vector3 pointOffsetForward = new(0, 0, -PointLineWidth);
+    private readonly Vector3 pointOffsetBack = new(0, 0, PointLineWidth);
+
 #pragma warning disable CA2213
     private MeshInstance lineDrawer = null!;
     private MeshInstance triangleDrawer = null!;
@@ -65,6 +75,13 @@ public class DebugDrawer : ControlWithInput
     private long extraNeededDrawMemory;
 
     private bool drawnThisFrame;
+
+    private TimedLine[] timedLines = new TimedLine[20];
+
+    /// <summary>
+    ///   How many timed lines there actually are (the array is not resized to exact active count)
+    /// </summary>
+    private int timedLineCount;
 
     // As the data is not drawn each frame, there's a delay before hiding the draw result
     private float timeInactive;
@@ -159,6 +176,20 @@ public class DebugDrawer : ControlWithInput
 
     public override void _Process(float delta)
     {
+        if (timedLineCount > 0)
+        {
+            // Only draw the other debug lines if physics lines have been updated to avoid flicker
+            if (!physicsDebugSupported || DebugLevel == 0 || drawnThisFrame)
+            {
+                HandleTimedLines(delta);
+            }
+            else
+            {
+                // To make lines not stick around longer with physics debug
+                OnlyElapseLineTime(delta);
+            }
+        }
+
         if (drawnThisFrame)
         {
             timeInactive = 0;
@@ -212,6 +243,18 @@ public class DebugDrawer : ControlWithInput
             lineDrawer.Visible = false;
             triangleDrawer.Visible = false;
         }
+    }
+
+    public void DebugLine(Vector3 from, Vector3 to, Color color)
+    {
+        AddTimedLine(new TimedLine(from, to, color));
+    }
+
+    public void DebugPoint(Vector3 position, Color color)
+    {
+        AddTimedLine(new TimedLine(position + pointOffsetLeft, position + pointOffsetRight, color));
+        AddTimedLine(new TimedLine(position + pointOffsetUp, position + pointOffsetDown, color));
+        AddTimedLine(new TimedLine(position + pointOffsetForward, position + pointOffsetBack, color));
     }
 
     [RunOnKeyDown("d_physics_debug", Priority = -2)]
@@ -324,5 +367,71 @@ public class DebugDrawer : ControlWithInput
         extraNeededDrawMemory = 0;
 
         drawnThisFrame = true;
+    }
+
+    private void AddTimedLine(in TimedLine line)
+    {
+        if (timedLineCount >= timedLines.Length)
+        {
+            Array.Resize(ref timedLines, Math.Max(timedLineCount * 2, 8));
+        }
+
+        timedLines[timedLineCount] = line;
+        ++timedLineCount;
+    }
+
+    private void HandleTimedLines(float delta)
+    {
+        for (int i = 0; i < timedLineCount; ++i)
+        {
+            ref var line = ref timedLines[i];
+
+            line.TimePassed += delta;
+
+            var fraction = line.TimePassed / LineLifetime;
+
+            if (fraction >= 1)
+            {
+                // Line time ended
+                // Copy last element here to effectively erase the item at current index without keeping order
+                timedLines[i] = timedLines[timedLineCount - 1];
+                --i;
+                --timedLineCount;
+                continue;
+            }
+
+            var endColour = new Color(line.Color, 0);
+
+            var colour = line.Color.LinearInterpolate(endColour, fraction);
+
+            DrawLine(line.From, line.To, colour);
+        }
+    }
+
+    private void OnlyElapseLineTime(float delta)
+    {
+        for (int i = 0; i < timedLineCount; ++i)
+        {
+            ref var line = ref timedLines[i];
+            line.TimePassed += delta;
+        }
+    }
+
+    private struct TimedLine
+    {
+        public readonly Vector3 From;
+        public readonly Vector3 To;
+
+        // This is not readonly as LinearInterpolate causes a struct copy otherwise
+        public Color Color;
+        public float TimePassed;
+
+        public TimedLine(Vector3 from, Vector3 to, Color color)
+        {
+            From = from;
+            To = to;
+            Color = color;
+            TimePassed = 0;
+        }
     }
 }
