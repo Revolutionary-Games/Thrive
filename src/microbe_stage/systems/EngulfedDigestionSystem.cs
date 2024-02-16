@@ -28,10 +28,12 @@
     [With(typeof(CellProperties))]
     [With(typeof(Health))]
     [With(typeof(WorldPosition))]
+    [WritesToComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [RunsAfter(typeof(EngulfingSystem))]
     [RuntimeCost(2)]
     public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>

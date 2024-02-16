@@ -138,7 +138,13 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         visualsParent = visualDisplayRoot;
 
         // Threading using our task system
-        var parallelRunner = TaskExecutor.Instance;
+        IParallelRunner parallelRunner = TaskExecutor.Instance;
+
+        if (GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            GD.Print("Disallowing threaded execution to allow strict component thread checks to work");
+            parallelRunner = new DefaultParallelRunner(1);
+        }
 
         // Set on systems that can be ran in parallel but aren't currently as there's no real performance improvement
         // / the system entity count per thread needs tweaking before there's any benefit
@@ -256,12 +262,6 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         CloudSystem.Init(fluidCurrentsSystem);
     }
 
-    public override void ProcessFrameLogic(float delta)
-    {
-        ThrowIfNotInitialized();
-        OnProcessFrameLogic(delta);
-    }
-
     public void SetSimulationBiome(BiomeConditions biomeConditions)
     {
         ProcessSystem.SetBiome(biomeConditions);
@@ -296,7 +296,13 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void InitSystemsEarly()
     {
-        var taskExecutor = TaskExecutor.Instance;
+        IParallelRunner taskExecutor = TaskExecutor.Instance;
+
+        // See the similar if in Init to know why this is used
+        if (GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            taskExecutor = new DefaultParallelRunner(1);
+        }
 
         entitySignalingSystem = new EntitySignalingSystem(EntitySystem, taskExecutor);
         fluidCurrentsSystem = new FluidCurrentsSystem(EntitySystem, taskExecutor);
@@ -312,7 +318,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         if (settings.RunAutoEvoDuringGamePlay)
             --availableThreads;
 
-        if (!settings.RunGameSimulationMultithreaded)
+        if (!settings.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
         {
             availableThreads = 1;
         }
@@ -333,6 +339,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             OnProcessFixedWithoutThreads(delta);
         }
+    }
+
+    protected override void OnProcessFrameLogic(float delta)
+    {
+        OnProcessFrameLogicGenerated(delta);
     }
 
     protected override void OnEntityDestroyed(in Entity entity)

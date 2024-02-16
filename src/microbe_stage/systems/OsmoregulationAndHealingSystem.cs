@@ -29,6 +29,7 @@
     [ReadsComponent(typeof(MicrobeStatus))]
     [ReadsComponent(typeof(Engulfable))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(MicrobeColonyMember))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(DamageOnTouchSystem))]
     [RunsAfter(typeof(ToxinCollisionSystem))]

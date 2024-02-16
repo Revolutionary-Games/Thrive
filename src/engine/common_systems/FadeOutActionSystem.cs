@@ -23,12 +23,19 @@
     ///     setting of Godot.
     ///   </para>
     /// </remarks>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: due to the way this accesses things through a callback, all the attributes here might need to be
+    ///     copied to any of the systems that may trigger the callback. Fortunately this doesn't do very extensive
+    ///     writes so for now this is likely fine.
+    ///   </para>
+    /// </remarks>
     [With(typeof(FadeOutActions))]
     [With(typeof(TimedLife))]
     [ReadsComponent(typeof(WorldPosition))]
-    [ReadsComponent(typeof(Physics))]
     [ReadsComponent(typeof(SpatialInstance))]
     [WritesToComponent(typeof(CompoundStorage))]
+    [WritesToComponent(typeof(Physics))]
     [WritesToComponent(typeof(ManualPhysicsControl))]
     [RuntimeCost(0.25f)]
     [RunsOnMainThread]
@@ -61,6 +68,22 @@
 
         private bool PerformTimeOverActions(Entity entity, ref TimedLife timedLife)
         {
+            // This callback is triggered after this system has run already so when debugging component access, this
+            // needs slight modification
+            if (GenerateThreadedSystems.UseCheckedComponentAccess)
+            {
+                // To actually make this work for safety checking the following list *must* match the attributes on
+                // this class
+                // TODO: the following should actually be put as component accesses on any systems that may trigger
+                // the callback. See the TODO comment on this class.
+                ComponentAccessChecks.ReportAllowedAccessType<FadeOutActions>();
+                ComponentAccessChecks.ReportAllowedAccessType<CompoundStorage>();
+                ComponentAccessChecks.ReportAllowedAccessType<WorldPosition>();
+                ComponentAccessChecks.ReportAllowedAccessType<SpatialInstance>();
+                ComponentAccessChecks.ReportAllowedAccessType<Physics>();
+                ComponentAccessChecks.ReportAllowedAccessType<ManualPhysicsControl>();
+            }
+
             try
             {
                 ref var actions = ref entity.Get<FadeOutActions>();

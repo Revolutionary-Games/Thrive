@@ -16,6 +16,7 @@
     [With(typeof(Physics))]
     [With(typeof(TimedLife))]
     [ReadsComponent(typeof(MicrobeSpeciesMember))]
+    [ReadsComponent(typeof(SpeciesMember))]
     [ReadsComponent(typeof(Health))]
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(MicrobeColony))]

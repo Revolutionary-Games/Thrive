@@ -34,6 +34,7 @@
     [With(typeof(MicrobeSpeciesMember))]
     [With(typeof(Health))]
     [With(typeof(BioProcesses))]
+    [With(typeof(WorldPosition))]
     [Without(typeof(AttachedToEntity))]
     [Without(typeof(EarlyMulticellularSpeciesMember))]
     [WritesToComponent(typeof(Engulfable))]
@@ -42,6 +43,8 @@
     [ReadsComponent(typeof(CellProperties))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [ReadsComponent(typeof(MicrobeColony))]
+    [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(SoundEffectPlayer))]
     [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
     [RunsAfter(typeof(ProcessSystem))]
     [RuntimeCost(14)]
@@ -486,7 +489,8 @@
                 // These are fetched here as most of the time only one organelle will divide per step so it doesn't
                 // help to complicate things by trying to fetch these before the loop
                 organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
-                    ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(), ref entity.Get<CellProperties>());
+                    ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
+                    ref entity.Get<CellProperties>());
 
                 if (entity.Has<MicrobeEventCallbacks>())
                 {
@@ -601,7 +605,8 @@
                 var workData2 = hexWorkData2.Value;
 
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
-                organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(), ref entity.Get<BioProcesses>(),
+                organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
+                    ref entity.Get<BioProcesses>(),
                     entity, species, species, worldSimulation, workData1, workData2);
 
                 cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnSystem, null);

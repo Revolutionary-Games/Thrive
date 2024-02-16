@@ -25,6 +25,13 @@ public class GenerateThreadedSystems : Node
     public static int TargetThreadCount = 2;
 
     /// <summary>
+    ///   When true inserts calls to mark which components systems are allowed to access. With help from
+    ///   <see cref="ComponentFetchHelpers.GetChecked{T}"/> this can be used to ensure all access attributes are
+    ///   correct on systems.
+    /// </summary>
+    public static bool UseCheckedComponentAccess = false;
+
+    /// <summary>
     ///   When true inserts timing code around barriers to measure how long the wait times are
     /// </summary>
     public static bool MeasureThreadWaits = false;
@@ -747,7 +754,7 @@ public class GenerateThreadedSystems : Node
         indent = WriteBlockContents(writer, processNonThreaded, indent);
 
         writer.WriteLine();
-        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogic(float delta)");
+        writer.WriteLine(StringUtils.GetIndent(indent) + "private void OnProcessFrameLogicGenerated(float delta)");
         indent = WriteBlockContents(writer, processFrame, indent);
 
         if (DebugGuardComponentWrites)

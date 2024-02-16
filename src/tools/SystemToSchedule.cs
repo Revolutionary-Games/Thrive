@@ -334,6 +334,21 @@
                 }
             }
 
+            if (GenerateThreadedSystems.UseCheckedComponentAccess)
+            {
+                foreach (var component in WritesComponents)
+                {
+                    lineReceiver.Add(StringUtils.GetIndent(indent) +
+                        $"ComponentAccessChecks.ReportAllowedAccess(\"{component.Name}\");");
+                }
+
+                foreach (var component in ReadsComponents)
+                {
+                    lineReceiver.Add(StringUtils.GetIndent(indent) +
+                        $"ComponentAccessChecks.ReportAllowedAccess(\"{component.Name}\");");
+                }
+            }
+
             if (CustomRunCode != null)
             {
                 foreach (var customLine in CustomRunCode.Split("\n"))
@@ -344,6 +359,12 @@
             else
             {
                 lineReceiver.Add(StringUtils.GetIndent(indent) + $"{FieldName}.Update(delta);");
+            }
+
+            if (GenerateThreadedSystems.UseCheckedComponentAccess)
+            {
+                lineReceiver.Add(StringUtils.GetIndent(indent) +
+                    "ComponentAccessChecks.ClearAccessForCurrentThread();");
             }
 
             if (closeBrace)

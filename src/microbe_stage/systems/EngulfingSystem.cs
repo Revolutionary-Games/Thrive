@@ -46,6 +46,7 @@
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobeEventCallbacks))]
     [ReadsComponent(typeof(WorldPosition))]
+    [ReadsComponent(typeof(EntityRadiusInfo))]
     [RunsAfter(typeof(ColonyCompoundDistributionSystem))]
     [RunsAfter(typeof(PilusDamageSystem))]
     [RunsAfter(typeof(MicrobeVisualsSystem))]
