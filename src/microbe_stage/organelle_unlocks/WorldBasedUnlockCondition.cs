@@ -1,6 +1,8 @@
 ﻿namespace UnlockConstraints
 {
     using System;
+    using System.Globalization;
+    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -144,17 +146,46 @@
         {
             var compoundName = Compound!.InternalName;
 
-            if (Min.HasValue && Max.HasValue)
+            var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+            var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
+
+            string? formattedMin;
+            string? formattedMax;
+
+            switch (compoundName)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BETWEEN", compoundName, Min, Max));
+                case "sunlight":
+                    formattedMin = Min.HasValue ? unitFormat.FormatSafe(percentageFormat.FormatSafe(Min), "lx") : null;
+                    formattedMax = Max.HasValue ? unitFormat.FormatSafe(percentageFormat.FormatSafe(Max), "lx") : null;
+                    break;
+                case "temperature":
+                    formattedMin = Min.HasValue ? unitFormat.FormatSafe(Min / 100, Compound.Unit) : null;
+                    formattedMax = Max.HasValue ? unitFormat.FormatSafe(Max / 100, Compound.Unit) : null;
+                    break;
+                case "oxygen":
+                case "carbondioxide":
+                case "nitrogen":
+                    formattedMin = Min.HasValue ? percentageFormat.FormatSafe(Min) : null;
+                    formattedMax = Max.HasValue ? percentageFormat.FormatSafe(Max) : null;
+                    break;
+                default:
+                    formattedMin = Min?.ToString(CultureInfo.CurrentCulture);
+                    formattedMax = Max?.ToString(CultureInfo.CurrentCulture);
+                    break;
             }
-            else if (Min.HasValue)
+
+            if (formattedMin != null && formattedMax != null)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_ABOVE", compoundName, Min));
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BETWEEN", compoundName, formattedMin,
+                    formattedMax));
             }
-            else if (Max.HasValue)
+            else if (formattedMin != null)
             {
-                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BELOW", compoundName, Max));
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_ABOVE", compoundName, formattedMin));
+            }
+            else if (formattedMax != null)
+            {
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_COMPOUND_IS_BELOW", compoundName, formattedMax));
             }
         }
 
