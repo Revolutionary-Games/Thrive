@@ -1490,6 +1490,14 @@
 
             if (destroy)
             {
+                // Set the health to dead to ensure the microbe death system has a chance to see this dying and count
+                // statistics
+                if (engulfedEntity.Has<Health>())
+                {
+                    ref var health = ref engulfedEntity.Get<Health>();
+                    health.Kill();
+                }
+
                 worldSimulation.DestroyEntity(engulfedEntity);
             }
         }
