@@ -57,6 +57,9 @@
         {
             result ??= new List<TweakedProcess>();
 
+            // Very important to clear any existing list to ensure old processes don't hang around
+            result.Clear();
+
             // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
             // A basic linear scan over all organelles and their processes with combining duplicates into the result
             int count = organelles.Count;
