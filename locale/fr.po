@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-16 15:18+0200\n"
-"PO-Revision-Date: 2023-11-15 07:28+0000\n"
-"Last-Translator: Marc Theriault <marc.55@live.ca>\n"
+"PO-Revision-Date: 2024-02-19 08:09+0000\n"
+"Last-Translator: Charles Breillot <cbreillot@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -625,7 +625,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produit [thrive:compound type=\"glucose\"][/thrive:compound]. Effet proportionnel avec la concentration en [thrive:compound type=\"carbondioxide\"][/thrive:compound] et l'[thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Morceau de cadavre cellulaire"
 
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "Consommation de {0}"
@@ -876,7 +876,7 @@ msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Erreur : bogue interne pour la consommation des matériaux"
 
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr ""
+msgstr "Impossible de trouver des éléments d'entrée de fabrication"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Entrée"
@@ -1041,8 +1041,9 @@ msgstr ""
 "Position : {0}\n"
 "Pointeur à : {1}"
 
+#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Le dessin de débogage physique n'est pas disponible dans ce type de build"
 
 msgid "DEBUG_PANEL"
 msgstr "Débogueur"
@@ -1448,7 +1449,7 @@ msgid "ENTER_EXISTING_ID"
 msgstr "Insérez ID existant"
 
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Entrez l'ID du Workshop existant"
 
 msgid "ENTITY_LABEL"
 msgstr "Étiquette de l'entité"
@@ -1483,8 +1484,9 @@ msgstr "Erreur de création du dossier d'information pour le mod"
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier de configuration."
 
+#, fuzzy
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "La récupération des actualités a échoué en raison d'une erreur : {0}"
 
 msgid "ERROR_FETCHING_NEWS"
 msgstr ""
