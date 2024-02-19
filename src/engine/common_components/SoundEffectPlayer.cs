@@ -226,9 +226,9 @@
 
                     slot.InternalAppliedState = false;
                 }
-            }
 
-            soundEffectPlayer.SoundsApplied = false;
+                soundEffectPlayer.SoundsApplied = false;
+            }
         }
 
         /// <summary>
