@@ -415,7 +415,7 @@
                 position.Position, random, null, glucose);
 
             ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
-
+            soundPlayer.StopAllSounds();
             soundPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
             return true;
