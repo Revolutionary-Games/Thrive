@@ -381,8 +381,11 @@
                 }
 
                 // Prioritize running exclusive tasks a bit
+                bool triedExclusive = false;
                 if (thread.HasUpcomingExclusiveTask && random.NextDouble() < ExclusiveTaskChance)
                 {
+                    triedExclusive = true;
+
                     foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
                     {
                         if (CanRunSystemInParallel(exclusiveTask, thread))
@@ -407,6 +410,19 @@
                     }
 
                     // TODO: should this have a chance here to stop checking things for more randomness?
+                }
+
+                // If skipped earlier, try an exclusive task again
+                if (thread.HasUpcomingExclusiveTask && !triedExclusive)
+                {
+                    foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
+                    {
+                        if (CanRunSystemInParallel(exclusiveTask, thread))
+                        {
+                            MarkConcurrentlyRunningSystem(exclusiveTask, thread);
+                            return true;
+                        }
+                    }
                 }
 
                 // Thread cannot start work
