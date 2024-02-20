@@ -27,7 +27,8 @@ public class GenerateThreadedSystems : Node
     /// <summary>
     ///   When true inserts calls to mark which components systems are allowed to access. With help from
     ///   <see cref="ComponentFetchHelpers.GetChecked{T}"/> this can be used to ensure all access attributes are
-    ///   correct on systems.
+    ///   correct on systems. Disables multithreading when enabled so that the checks can pass as this mode is not made
+    ///   to run in multithreaded mode as this would be very difficult to make work with multithreading.
     /// </summary>
     public static bool UseCheckedComponentAccess = false;
 
