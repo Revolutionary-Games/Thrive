@@ -25,7 +25,7 @@ public class CellStatsIndicator : HBoxContainer
     public Texture? Icon;
 
     [Export]
-    public NodePath? ValuePath = null;
+    public NodePath? ValuePath;
 
     private Label? descriptionLabel;
     private Label? valueLabel;
@@ -111,6 +111,10 @@ public class CellStatsIndicator : HBoxContainer
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
 
         iconRect.Texture = Icon;
+
+        // Hide the icon displayer when no icon to save on some horizontal space
+        if (Icon == null)
+            iconRect.Visible = false;
 
         UpdateChangeIndicator();
         UpdateDescription();
