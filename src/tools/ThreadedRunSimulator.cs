@@ -30,7 +30,7 @@
         ///   Relative time cost of a barrier to running an average system (which is 1). For example 1.5 means that a
         ///   barrier is as expensive as running 1.5 other systems.
         /// </summary>
-        private const float TimeCostPerBarrier = 2.0f;
+        private const float TimeCostPerBarrier = 1.5f;
 
         private static readonly bool ExtraVerifySystemRun = false;
 
