@@ -16,6 +16,8 @@
         private const double ExclusiveTaskChance = 0.90;
         private const double ChanceToShuffleThreadOrderOnTimeStep = 0.3;
         private const double ExclusiveContinueCheckChance = 0.95;
+        private const double SkipThreadWorkChance = 0.01;
+        private const double MoveSingleItemToOtherThreadChance = 0.30;
 
         // TODO: currently this doesn't really impact anything (or very unlikely for this to impact anything)
         private const double ChanceForNoWorkPerAheadTime = 0.5;
@@ -24,7 +26,8 @@
         private const double ChanceToShuffleNormalTasks = 0.2;
 
         /// <summary>
-        ///   Relative time cost of a barrier to running an average system
+        ///   Relative time cost of a barrier to running an average system (which is 1). For example 1.5 means that a
+        ///   barrier is as expensive as running 1.5 other systems.
         /// </summary>
         private const float TimeCostPerBarrier = 1.5f;
 
@@ -214,6 +217,7 @@
 
                     double neededTimeSkip = double.MaxValue;
                     bool anyThreadIsAtCurrentTime = false;
+                    bool skippedThread = false;
 
                     foreach (var thread in allThreads)
                     {
@@ -229,6 +233,13 @@
                         }
 
                         anyThreadIsAtCurrentTime = true;
+
+                        // Small chance to skip giving task to a thread to explore more options
+                        if (random.NextDouble() < SkipThreadWorkChance)
+                        {
+                            skippedThread = true;
+                            continue;
+                        }
 
                         // Thread is free, try to schedule work
                         if (ScheduleWorkForThread(thread))
@@ -257,6 +268,11 @@
 
                         continue;
                     }
+
+                    // When skipping threads needs to re-process the current thread situation until no threads are
+                    // skipped
+                    if (skippedThread)
+                        continue;
 
                     // If cannot schedule anything (and there's something to do), need to move to next group of barriers
                     if (HasUpcomingTasks)
