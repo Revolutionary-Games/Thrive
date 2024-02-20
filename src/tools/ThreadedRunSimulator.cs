@@ -18,6 +18,7 @@
         private const double ExclusiveContinueCheckChance = 0.95;
         private const double SkipThreadWorkChance = 0.01;
         private const double MoveSingleItemToOtherThreadChance = 0.30;
+        private const double ChanceToRetryBeforeBarrier = 0.90;
 
         // TODO: currently this doesn't really impact anything (or very unlikely for this to impact anything)
         private const double ChanceForNoWorkPerAheadTime = 0.5;
@@ -280,14 +281,28 @@
                         // If there are other threads with barely any work to do, there's a chance to steal their
                         // work for another thread
                         bool attemptTaskSteal = true;
+                        int activeThreads = 0;
 
+                        // Note that thread order is shuffled so the first thread is not necessarily the main thread
+                        // stealing work here
                         for (int i = 1; i < allThreads.Count; ++i)
                         {
                             if (runSystems.TryGetValue(allThreads[i], out var systems))
                             {
+                                if (systems.Count > 0)
+                                {
+                                    ++activeThreads;
+                                }
+
                                 if (systems.Count > 1)
                                     attemptTaskSteal = false;
                             }
+                        }
+
+                        if (runSystems.TryGetValue(allThreads[0], out var firstThreadSystems) &&
+                            firstThreadSystems.Count > 0)
+                        {
+                            ++activeThreads;
                         }
 
                         if (attemptTaskSteal && random.NextDouble() < MoveSingleItemToOtherThreadChance)
@@ -296,6 +311,10 @@
                             if (StealWorkFromOtherThreads(allThreads[0]))
                                 continue;
                         }
+
+                        // If only a single system is running, don't add a barrier yet but try to pack in more systems
+                        if (activeThreads == 1 && random.NextDouble() < ChanceToRetryBeforeBarrier)
+                            continue;
 
                         AddBarrierPoint();
                         timeSinceBarrier = 0;
@@ -308,7 +327,7 @@
                     {
                         ++stuckCount;
 
-                        if (stuckCount > 100)
+                        if (stuckCount > 150)
                             throw new Exception("Thread simulation is stuck");
                     }
                 }
