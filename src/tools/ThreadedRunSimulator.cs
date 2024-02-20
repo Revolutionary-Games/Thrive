@@ -474,8 +474,8 @@
                 // the upcoming tasks
                 foreach (var otherThread in allThreads)
                 {
-                    if (otherThread == thread)
-                        continue;
+                    // Should not skip checking self as later exclusive systems shouldn't be allowed to run on the
+                    // same thread either
 
                     foreach (var futureSystem in otherThread.GetUpcomingExclusiveTasks())
                     {
