@@ -277,6 +277,26 @@
                     // If cannot schedule anything (and there's something to do), need to move to next group of barriers
                     if (HasUpcomingTasks)
                     {
+                        // If there are other threads with barely any work to do, there's a chance to steal their
+                        // work for another thread
+                        bool attemptTaskSteal = true;
+
+                        for (int i = 1; i < allThreads.Count; ++i)
+                        {
+                            if (runSystems.TryGetValue(allThreads[i], out var systems))
+                            {
+                                if (systems.Count > 1)
+                                    attemptTaskSteal = false;
+                            }
+                        }
+
+                        if (attemptTaskSteal && random.NextDouble() < MoveSingleItemToOtherThreadChance)
+                        {
+                            // Can steal work, don't need to add a barrier (if successful)
+                            if (StealWorkFromOtherThreads(allThreads[0]))
+                                continue;
+                        }
+
                         AddBarrierPoint();
                         timeSinceBarrier = 0;
                         stuckCount = 0;
@@ -536,6 +556,89 @@
                 }
             }
 
+            /// <summary>
+            ///   Removes a system from a thread and recalculates the component data for that system. For use with
+            ///   task stealing.
+            /// </summary>
+            private void RemoveAndRebuildRunningSystemData(SystemToSchedule systemToRemove, Thread thread)
+            {
+                var newSystems = thread.GetTasksSinceLastBarrier();
+
+                if (newSystems.Contains(systemToRemove))
+                    throw new InvalidOperationException("System should already be removed from the thread");
+
+                if (runSystems.TryGetValue(thread, out var threadSystems))
+                {
+                    if (!threadSystems.Remove(systemToRemove))
+                        throw new Exception("Failed to remove system");
+                }
+                else
+                {
+                    throw new Exception("Failed to remove system");
+                }
+
+                // Component writes and reads
+                if (!componentReads.TryGetValue(thread, out var threadReads))
+                {
+                    throw new Exception("No reads to modify");
+                }
+
+                if (!componentWrites.TryGetValue(thread, out var threadWrites))
+                {
+                    throw new Exception("No writes to modify");
+                }
+
+                threadReads.Clear();
+                threadWrites.Clear();
+
+                foreach (var system in newSystems)
+                {
+                    foreach (var component in system.ReadsComponents)
+                    {
+                        threadReads.Add(component);
+                    }
+
+                    foreach (var component in system.WritesComponents)
+                    {
+                        threadWrites.Add(component);
+                    }
+                }
+            }
+
+            private bool StealWorkFromOtherThreads(Thread targetThread)
+            {
+                bool stoleWork = false;
+
+                foreach (var thread in allThreads)
+                {
+                    if (thread == targetThread)
+                        continue;
+
+                    if (!runSystems.TryGetValue(thread, out var potentialSystems) || potentialSystems.Count < 1)
+                        continue;
+
+                    if (potentialSystems.Count > 1)
+                        throw new Exception("Cannot take more than one task");
+
+                    var takenSystem = potentialSystems[0];
+
+                    // Cannot steal an exclusive task
+                    if (thread.IsExclusiveTask(takenSystem))
+                        continue;
+
+                    thread.ReportStolenTask(takenSystem);
+                    RemoveAndRebuildRunningSystemData(takenSystem, thread);
+
+                    if (!CanRunSystemInParallel(takenSystem, targetThread))
+                        throw new Exception("Target thread cannot take stolen task");
+
+                    MarkConcurrentlyRunningSystem(takenSystem, targetThread);
+                    stoleWork = true;
+                }
+
+                return stoleWork;
+            }
+
             private void AnalyzeAndRemoveExtraBarriers()
             {
                 var runningThreadCountsPerSlot = new List<int>();
@@ -654,6 +757,50 @@
                 TimeSinceBarrier += system.RuntimeCost;
             }
 
+            public bool IsExclusiveTask(SystemToSchedule system)
+            {
+                return originalExclusiveTasks.Contains(system);
+            }
+
+            public void ReportStolenTask(SystemToSchedule system)
+            {
+                if (threadTasks.IndexOf(system) != threadTasks.Count - 1)
+                    throw new ArgumentException("Can only steal latest task");
+
+                if (originalExclusiveTasks.Contains(system))
+                    throw new ArgumentException("Cannot steal an exclusive task");
+
+                if (!threadTasks.Remove(system))
+                    throw new ArgumentException("Failed to remove task from executed");
+
+                // Move back in time as if the system never ran
+                Time -= system.RuntimeCost;
+
+                // Recount the time since last barrier
+                if (threadBarrierPoints.Count < 1)
+                {
+                    // When no barriers, all costs are still active and can be adjusted like this
+                    TimeSinceBarrier -= system.RuntimeCost;
+
+                    if (TimeSinceBarrier < 0)
+                        throw new Exception("Time since barrier recalculation problem");
+
+                    return;
+                }
+
+                // If barrier was at the last point (which is now gone), remove it
+                threadBarrierPoints.RemoveAll(p => p == threadTasks.Count);
+
+                int lastBarrier = threadBarrierPoints.Max();
+
+                TimeSinceBarrier = 0;
+
+                for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+                {
+                    TimeSinceBarrier += threadTasks[i].RuntimeCost;
+                }
+            }
+
             public void AddBarrier()
             {
                 TimeSinceBarrier = 0;
@@ -716,6 +863,24 @@
             public void RemoveBarrierWithIndex(int barrierIndexToRemove)
             {
                 threadBarrierPoints.RemoveAt(barrierIndexToRemove);
+            }
+
+            public IReadOnlyList<SystemToSchedule> GetTasksSinceLastBarrier()
+            {
+                // Can just return everything when no barriers
+                if (threadBarrierPoints.Count < 1)
+                    return threadTasks;
+
+                int lastBarrier = threadBarrierPoints.Max();
+
+                var result = new List<SystemToSchedule>();
+
+                for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+                {
+                    result.Add(threadTasks[i]);
+                }
+
+                return result;
             }
 
             public void Reset(bool shuffle, Random? random)
