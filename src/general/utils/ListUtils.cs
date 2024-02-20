@@ -92,4 +92,32 @@ public static class ListUtils
 
         list.RemoveAt(itemCount - 1);
     }
+
+    /// <summary>
+    ///   Finds the closest value in the list of values and returns that
+    /// </summary>
+    /// <param name="valueToSearchFor">The value to look for</param>
+    /// <param name="values">Where to search for the value</param>
+    /// <returns>The closest element in <see cref="values"/> when compared to <see cref="valueToSearchFor"/></returns>
+    public static int FindClosestValue(int valueToSearchFor, params int[] values)
+    {
+        if (values.Length < 1)
+            throw new ArgumentException("Must be given at least one value to match against");
+
+        var closest = values[0];
+        var closestDistance = Math.Abs(valueToSearchFor - closest);
+
+        for (int i = 1; i < values.Length; ++i)
+        {
+            var distance = Math.Abs(valueToSearchFor - values[i]);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = values[i];
+            }
+        }
+
+        return closest;
+    }
 }

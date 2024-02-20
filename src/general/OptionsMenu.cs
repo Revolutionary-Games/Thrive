@@ -1295,8 +1295,12 @@ public class OptionsMenu : ControlWithInput
             case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
                 return 7;
             default:
-                GD.PrintErr("invalid max entities count value");
-                return 3;
+                GD.PrintErr("invalid max entities count value (using closest value)");
+                return MaxEntitiesValueToIndex(ListUtils.FindClosestValue(value, Constants.TINY_MAX_SPAWNED_ENTITIES,
+                    Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES, Constants.SMALL_MAX_SPAWNED_ENTITIES,
+                    Constants.NORMAL_MAX_SPAWNED_ENTITIES, Constants.LARGE_MAX_SPAWNED_ENTITIES,
+                    Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES, Constants.HUGE_MAX_SPAWNED_ENTITIES,
+                    Constants.EXTREME_MAX_SPAWNED_ENTITIES));
         }
     }
 
