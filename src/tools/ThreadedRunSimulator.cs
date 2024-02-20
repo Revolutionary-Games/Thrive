@@ -428,8 +428,6 @@
                         MarkConcurrentlyRunningSystem(task, thread);
                         return true;
                     }
-
-                    // TODO: should this have a chance here to stop checking things for more randomness?
                 }
 
                 // If skipped earlier, try an exclusive task again
@@ -449,26 +447,52 @@
                 return false;
             }
 
+            /// <summary>
+            ///   Check for timing conflicts with all *other* threads
+            /// </summary>
+            /// <returns>True if can run in parallel</returns>
             private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
             {
-                // Check for timing conflicts with *other* allThreads
-                var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
-
                 // Read / write conflicts
-                if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
-                    return false;
-
-                if (otherWrites.Any(c =>
-                        systemToSchedule.WritesComponents.Contains(c) || systemToSchedule.ReadsComponents.Contains(c)))
+                foreach (var entry in componentReads)
                 {
-                    return false;
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var component in entry.Value)
+                    {
+                        if (systemToSchedule.WritesComponents.Contains(component))
+                            return false;
+                    }
+                }
+
+                foreach (var entry in componentWrites)
+                {
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var component in entry.Value)
+                    {
+                        if (systemToSchedule.WritesComponents.Contains(component) ||
+                            systemToSchedule.ReadsComponents.Contains(component))
+                        {
+                            return false;
+                        }
+                    }
                 }
 
                 // Conflicts with hard system ordering (should run after any of the other systems already running)
-                if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
-                    return false;
+                foreach (var entry in runSystems)
+                {
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var alreadyScheduled in entry.Value)
+                    {
+                        if (comparer.CompareWeak(systemToSchedule, alreadyScheduled) > 0)
+                            return false;
+                    }
+                }
 
                 // Check that the system is not running before a later system it should come after from a thread or
                 // the upcoming tasks
@@ -481,7 +505,7 @@
                     {
                         if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
                         {
-                            // Need to wait for this thread to manage to run this task
+                            // Need to wait for otherThread to manage to run the future system
                             return false;
                         }
                     }
@@ -735,7 +759,11 @@
 
             public bool HasUpcomingExclusiveTask => upcomingExclusiveTasks.Count > 0;
 
-            public IEnumerable<SystemToSchedule> GetUpcomingExclusiveTasks()
+            /// <summary>
+            ///   Gets upcoming exclusive tasks. DO NOT MODIFY THE RESULT VALUE.
+            /// </summary>
+            /// <returns>List of tasks, this is a basic list to avoid memory allocation on looping</returns>
+            public List<SystemToSchedule> GetUpcomingExclusiveTasks()
             {
                 return upcomingExclusiveTasks;
             }
