@@ -94,8 +94,8 @@ public class FossilisedSpecies
         if (orderByDate)
         {
             using var file = new File();
-            result = result.OrderBy(item =>
-                file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, item))).ToList();
+            result = result.OrderBy(s =>
+                file.GetModifiedTime(Path.Combine(Constants.FOSSILISED_SPECIES_FOLDER, s))).ToList();
         }
 
         return result;

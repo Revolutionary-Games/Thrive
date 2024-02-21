@@ -137,7 +137,7 @@ public class GUICommon : Node
         volume = Mathf.Clamp(volume, 0.0f, 1.0f);
 
         // Find a player not in use or create a new one if none are available.
-        var player = AudioSources.Find(nextPlayer => !nextPlayer.Playing);
+        var player = AudioSources.Find(p => !p.Playing);
 
         if (player == null)
         {

@@ -82,7 +82,7 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   match between these two.
     /// </summary>
     [JsonIgnore]
-    public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
+    public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
 
     [JsonIgnore]

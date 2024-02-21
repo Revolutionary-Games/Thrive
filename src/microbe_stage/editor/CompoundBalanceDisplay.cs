@@ -20,7 +20,7 @@ public class CompoundBalanceDisplay : VBoxContainer
         compoundListContainer = GetNode<VBoxContainer>(CompoundListContainerPath);
 
         childCache = new ChildObjectCache<Compound, CompoundAmount>(compoundListContainer,
-            compound => new CompoundAmount { Compound = compound, PrefixPositiveWithPlus = true });
+            c => new CompoundAmount { Compound = c, PrefixPositiveWithPlus = true });
     }
 
     public void UpdateBalances(Dictionary<Compound, CompoundBalance> balances)

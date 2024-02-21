@@ -439,8 +439,11 @@ public partial class CellEditorComponent :
             // Need to reapply the species as changes to it are ignored when the appearance tab is not shown
             UpdateCellVisualization();
 
-            placedHexes.ForEach(entry => entry.Visible = !MicrobePreviewMode);
-            placedModels.ForEach(entry => entry.Visible = !MicrobePreviewMode);
+            foreach (var hex in placedHexes)
+                hex.Visible = !MicrobePreviewMode;
+
+            foreach (var model in placedModels)
+                model.Visible = !MicrobePreviewMode;
         }
     }
 
@@ -1607,7 +1610,7 @@ public partial class CellEditorComponent :
     {
         foreach (var templateHex in organelles
                      .Where(o => o.Definition.InternalName != "cytoplasm")
-                     .SelectMany(o => o.RotatedHexes.Select(hex => hex + o.Position)))
+                     .SelectMany(o => o.RotatedHexes.Select(h => h + o.Position)))
         {
             var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex, hexTemporaryMemory);
 
@@ -2229,7 +2232,7 @@ public partial class CellEditorComponent :
         var input = newText.ToLower(CultureInfo.InvariantCulture);
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles().Where(
-            organelle => organelle.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
+            o => o.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
 
         foreach (var node in placeablePartSelectionElements.Values)
         {

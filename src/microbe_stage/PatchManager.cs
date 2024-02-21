@@ -205,7 +205,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
+        foreach (var entry in patch.SpeciesInPatch.OrderByDescending(s => s.Value))
         {
             var species = entry.Key;
             var population = entry.Value;
@@ -327,12 +327,12 @@ public class PatchManager : IChildPropertiesLoadCallback
     /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll(item =>
+        spawners.RemoveAll(spawner =>
         {
-            if (!item.Marked)
+            if (!spawner.Marked)
             {
-                GD.Print("Removed ", item.Name, " spawner.");
-                item.Spawner.DestroyQueued = true;
+                GD.Print("Removed ", spawner.Name, " spawner.");
+                spawner.Spawner.DestroyQueued = true;
                 return true;
             }
 
