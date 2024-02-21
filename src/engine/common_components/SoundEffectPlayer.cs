@@ -190,6 +190,48 @@
         }
 
         /// <summary>
+        ///   Stops all sounds that are currently playing
+        /// </summary>
+        /// <param name="soundEffectPlayer">The player that may have sounds</param>
+        /// <param name="immediately">
+        ///   If false, any looping sounds will only stop playing after their current loop ends
+        /// </param>
+        public static void StopAllSounds(this ref SoundEffectPlayer soundEffectPlayer, bool immediately = true)
+        {
+            SoundEffectSlot[]? slots = soundEffectPlayer.SoundEffectSlots;
+
+            if (slots == null)
+                return;
+
+            lock (slots)
+            {
+                int slotCount = slots.Length;
+
+                for (int i = 0; i < slotCount; ++i)
+                {
+                    ref var slot = ref slots[i];
+
+                    if (!slot.Play)
+                        continue;
+
+                    if (slot.Loop && !immediately)
+                    {
+                        // Stop after current loop
+                        slot.Loop = false;
+                    }
+                    else
+                    {
+                        slot.Play = false;
+                    }
+
+                    slot.InternalAppliedState = false;
+                }
+
+                soundEffectPlayer.SoundsApplied = false;
+            }
+        }
+
+        /// <summary>
         ///   Handles starting and turning up a looping sound effect. Used for microbe movement sound handling,
         ///   for example.
         /// </summary>

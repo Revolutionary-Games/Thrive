@@ -16,6 +16,9 @@
         private const double ExclusiveTaskChance = 0.90;
         private const double ChanceToShuffleThreadOrderOnTimeStep = 0.3;
         private const double ExclusiveContinueCheckChance = 0.95;
+        private const double SkipThreadWorkChance = 0.01;
+        private const double MoveSingleItemToOtherThreadChance = 0.30;
+        private const double ChanceToRetryBeforeBarrier = 0.90;
 
         // TODO: currently this doesn't really impact anything (or very unlikely for this to impact anything)
         private const double ChanceForNoWorkPerAheadTime = 0.5;
@@ -24,7 +27,8 @@
         private const double ChanceToShuffleNormalTasks = 0.2;
 
         /// <summary>
-        ///   Relative time cost of a barrier to running an average system
+        ///   Relative time cost of a barrier to running an average system (which is 1). For example 1.5 means that a
+        ///   barrier is as expensive as running 1.5 other systems.
         /// </summary>
         private const float TimeCostPerBarrier = 1.5f;
 
@@ -214,6 +218,7 @@
 
                     double neededTimeSkip = double.MaxValue;
                     bool anyThreadIsAtCurrentTime = false;
+                    bool skippedThread = false;
 
                     foreach (var thread in allThreads)
                     {
@@ -229,6 +234,13 @@
                         }
 
                         anyThreadIsAtCurrentTime = true;
+
+                        // Small chance to skip giving task to a thread to explore more options
+                        if (random.NextDouble() < SkipThreadWorkChance)
+                        {
+                            skippedThread = true;
+                            continue;
+                        }
 
                         // Thread is free, try to schedule work
                         if (ScheduleWorkForThread(thread))
@@ -258,9 +270,52 @@
                         continue;
                     }
 
+                    // When skipping threads needs to re-process the current thread situation until no threads are
+                    // skipped
+                    if (skippedThread)
+                        continue;
+
                     // If cannot schedule anything (and there's something to do), need to move to next group of barriers
                     if (HasUpcomingTasks)
                     {
+                        // If there are other threads with barely any work to do, there's a chance to steal their
+                        // work for another thread
+                        bool attemptTaskSteal = true;
+                        int activeThreads = 0;
+
+                        // Note that thread order is shuffled so the first thread is not necessarily the main thread
+                        // stealing work here
+                        for (int i = 1; i < allThreads.Count; ++i)
+                        {
+                            if (runSystems.TryGetValue(allThreads[i], out var systems))
+                            {
+                                if (systems.Count > 0)
+                                {
+                                    ++activeThreads;
+                                }
+
+                                if (systems.Count > 1)
+                                    attemptTaskSteal = false;
+                            }
+                        }
+
+                        if (runSystems.TryGetValue(allThreads[0], out var firstThreadSystems) &&
+                            firstThreadSystems.Count > 0)
+                        {
+                            ++activeThreads;
+                        }
+
+                        if (attemptTaskSteal && random.NextDouble() < MoveSingleItemToOtherThreadChance)
+                        {
+                            // Can steal work, don't need to add a barrier (if successful)
+                            if (StealWorkFromOtherThreads(allThreads[0]))
+                                continue;
+                        }
+
+                        // If only a single system is running, don't add a barrier yet but try to pack in more systems
+                        if (activeThreads == 1 && random.NextDouble() < ChanceToRetryBeforeBarrier)
+                            continue;
+
                         AddBarrierPoint();
                         timeSinceBarrier = 0;
                         stuckCount = 0;
@@ -272,7 +327,7 @@
                     {
                         ++stuckCount;
 
-                        if (stuckCount > 100)
+                        if (stuckCount > 150)
                             throw new Exception("Thread simulation is stuck");
                     }
                 }
@@ -365,8 +420,11 @@
                 }
 
                 // Prioritize running exclusive tasks a bit
+                bool triedExclusive = false;
                 if (thread.HasUpcomingExclusiveTask && random.NextDouble() < ExclusiveTaskChance)
                 {
+                    triedExclusive = true;
+
                     foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
                     {
                         if (CanRunSystemInParallel(exclusiveTask, thread))
@@ -389,47 +447,84 @@
                         MarkConcurrentlyRunningSystem(task, thread);
                         return true;
                     }
+                }
 
-                    // TODO: should this have a chance here to stop checking things for more randomness?
+                // If skipped earlier, try an exclusive task again
+                if (thread.HasUpcomingExclusiveTask && !triedExclusive)
+                {
+                    foreach (var exclusiveTask in thread.GetUpcomingExclusiveTasks())
+                    {
+                        if (CanRunSystemInParallel(exclusiveTask, thread))
+                        {
+                            MarkConcurrentlyRunningSystem(exclusiveTask, thread);
+                            return true;
+                        }
+                    }
                 }
 
                 // Thread cannot start work
                 return false;
             }
 
+            /// <summary>
+            ///   Check for timing conflicts with all *other* threads
+            /// </summary>
+            /// <returns>True if can run in parallel</returns>
             private bool CanRunSystemInParallel(SystemToSchedule systemToSchedule, Thread thread)
             {
-                // Check for timing conflicts with *other* allThreads
-                var otherReads = componentReads.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherWrites = componentWrites.Where(p => p.Key != thread).SelectMany(p => p.Value);
-                var otherSystems = runSystems.Where(p => p.Key != thread).SelectMany(p => p.Value);
-
                 // Read / write conflicts
-                if (otherReads.Any(c => systemToSchedule.WritesComponents.Contains(c)))
-                    return false;
-
-                if (otherWrites.Any(c =>
-                        systemToSchedule.WritesComponents.Contains(c) || systemToSchedule.ReadsComponents.Contains(c)))
+                foreach (var entry in componentReads)
                 {
-                    return false;
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var component in entry.Value)
+                    {
+                        if (systemToSchedule.WritesComponents.Contains(component))
+                            return false;
+                    }
+                }
+
+                foreach (var entry in componentWrites)
+                {
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var component in entry.Value)
+                    {
+                        if (systemToSchedule.WritesComponents.Contains(component) ||
+                            systemToSchedule.ReadsComponents.Contains(component))
+                        {
+                            return false;
+                        }
+                    }
                 }
 
                 // Conflicts with hard system ordering (should run after any of the other systems already running)
-                if (otherSystems.Any(s => comparer.CompareWeak(systemToSchedule, s) > 0))
-                    return false;
+                foreach (var entry in runSystems)
+                {
+                    if (entry.Key == thread)
+                        continue;
+
+                    foreach (var alreadyScheduled in entry.Value)
+                    {
+                        if (comparer.CompareWeak(systemToSchedule, alreadyScheduled) > 0)
+                            return false;
+                    }
+                }
 
                 // Check that the system is not running before a later system it should come after from a thread or
                 // the upcoming tasks
                 foreach (var otherThread in allThreads)
                 {
-                    if (otherThread == thread)
-                        continue;
+                    // Should not skip checking self as later exclusive systems shouldn't be allowed to run on the
+                    // same thread either
 
                     foreach (var futureSystem in otherThread.GetUpcomingExclusiveTasks())
                     {
                         if (comparer.CompareWeak(systemToSchedule, futureSystem) > 0)
                         {
-                            // Need to wait for this thread to manage to run this task
+                            // Need to wait for otherThread to manage to run the future system
                             return false;
                         }
                     }
@@ -502,6 +597,89 @@
                 {
                     threadWrites.Add(component);
                 }
+            }
+
+            /// <summary>
+            ///   Removes a system from a thread and recalculates the component data for that system. For use with
+            ///   task stealing.
+            /// </summary>
+            private void RemoveAndRebuildRunningSystemData(SystemToSchedule systemToRemove, Thread thread)
+            {
+                var newSystems = thread.GetTasksSinceLastBarrier();
+
+                if (newSystems.Contains(systemToRemove))
+                    throw new InvalidOperationException("System should already be removed from the thread");
+
+                if (runSystems.TryGetValue(thread, out var threadSystems))
+                {
+                    if (!threadSystems.Remove(systemToRemove))
+                        throw new Exception("Failed to remove system");
+                }
+                else
+                {
+                    throw new Exception("Failed to remove system");
+                }
+
+                // Component writes and reads
+                if (!componentReads.TryGetValue(thread, out var threadReads))
+                {
+                    throw new Exception("No reads to modify");
+                }
+
+                if (!componentWrites.TryGetValue(thread, out var threadWrites))
+                {
+                    throw new Exception("No writes to modify");
+                }
+
+                threadReads.Clear();
+                threadWrites.Clear();
+
+                foreach (var system in newSystems)
+                {
+                    foreach (var component in system.ReadsComponents)
+                    {
+                        threadReads.Add(component);
+                    }
+
+                    foreach (var component in system.WritesComponents)
+                    {
+                        threadWrites.Add(component);
+                    }
+                }
+            }
+
+            private bool StealWorkFromOtherThreads(Thread targetThread)
+            {
+                bool stoleWork = false;
+
+                foreach (var thread in allThreads)
+                {
+                    if (thread == targetThread)
+                        continue;
+
+                    if (!runSystems.TryGetValue(thread, out var potentialSystems) || potentialSystems.Count < 1)
+                        continue;
+
+                    if (potentialSystems.Count > 1)
+                        throw new Exception("Cannot take more than one task");
+
+                    var takenSystem = potentialSystems[0];
+
+                    // Cannot steal an exclusive task
+                    if (thread.IsExclusiveTask(takenSystem))
+                        continue;
+
+                    thread.ReportStolenTask(takenSystem);
+                    RemoveAndRebuildRunningSystemData(takenSystem, thread);
+
+                    if (!CanRunSystemInParallel(takenSystem, targetThread))
+                        throw new Exception("Target thread cannot take stolen task");
+
+                    MarkConcurrentlyRunningSystem(takenSystem, targetThread);
+                    stoleWork = true;
+                }
+
+                return stoleWork;
             }
 
             private void AnalyzeAndRemoveExtraBarriers()
@@ -600,7 +778,11 @@
 
             public bool HasUpcomingExclusiveTask => upcomingExclusiveTasks.Count > 0;
 
-            public IEnumerable<SystemToSchedule> GetUpcomingExclusiveTasks()
+            /// <summary>
+            ///   Gets upcoming exclusive tasks. DO NOT MODIFY THE RESULT VALUE.
+            /// </summary>
+            /// <returns>List of tasks, this is a basic list to avoid memory allocation on looping</returns>
+            public List<SystemToSchedule> GetUpcomingExclusiveTasks()
             {
                 return upcomingExclusiveTasks;
             }
@@ -620,6 +802,50 @@
                 // Move forward in time, this thread is busy for the time the system takes estimated to run
                 Time += system.RuntimeCost;
                 TimeSinceBarrier += system.RuntimeCost;
+            }
+
+            public bool IsExclusiveTask(SystemToSchedule system)
+            {
+                return originalExclusiveTasks.Contains(system);
+            }
+
+            public void ReportStolenTask(SystemToSchedule system)
+            {
+                if (threadTasks.IndexOf(system) != threadTasks.Count - 1)
+                    throw new ArgumentException("Can only steal latest task");
+
+                if (originalExclusiveTasks.Contains(system))
+                    throw new ArgumentException("Cannot steal an exclusive task");
+
+                if (!threadTasks.Remove(system))
+                    throw new ArgumentException("Failed to remove task from executed");
+
+                // Move back in time as if the system never ran
+                Time -= system.RuntimeCost;
+
+                // Recount the time since last barrier
+                if (threadBarrierPoints.Count < 1)
+                {
+                    // When no barriers, all costs are still active and can be adjusted like this
+                    TimeSinceBarrier -= system.RuntimeCost;
+
+                    if (TimeSinceBarrier < 0)
+                        throw new Exception("Time since barrier recalculation problem");
+
+                    return;
+                }
+
+                // If barrier was at the last point (which is now gone), remove it
+                threadBarrierPoints.RemoveAll(p => p == threadTasks.Count);
+
+                int lastBarrier = threadBarrierPoints.Max();
+
+                TimeSinceBarrier = 0;
+
+                for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+                {
+                    TimeSinceBarrier += threadTasks[i].RuntimeCost;
+                }
             }
 
             public void AddBarrier()
@@ -684,6 +910,24 @@
             public void RemoveBarrierWithIndex(int barrierIndexToRemove)
             {
                 threadBarrierPoints.RemoveAt(barrierIndexToRemove);
+            }
+
+            public IReadOnlyList<SystemToSchedule> GetTasksSinceLastBarrier()
+            {
+                // Can just return everything when no barriers
+                if (threadBarrierPoints.Count < 1)
+                    return threadTasks;
+
+                int lastBarrier = threadBarrierPoints.Max();
+
+                var result = new List<SystemToSchedule>();
+
+                for (int i = lastBarrier + 1; i < threadTasks.Count; ++i)
+                {
+                    result.Add(threadTasks[i]);
+                }
+
+                return result;
             }
 
             public void Reset(bool shuffle, Random? random)

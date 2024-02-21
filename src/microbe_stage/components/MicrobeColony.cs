@@ -751,68 +751,6 @@
             return result;
         }
 
-        /// <summary>
-        ///   Called for each newMember that is removed from a cell colony. Also called for the colony lead cell when
-        ///   colony is disbanding. Note that is in contrast to <see cref="OnColonyMemberAdded"/> which is not called
-        ///   on the lead cell.
-        /// </summary>
-        public static void OnColonyMemberRemoved(in Entity removedEntity, bool wasLeader)
-        {
-            // Restore physics
-            ref var physics = ref removedEntity.Get<Physics>();
-            physics.BodyDisabled = false;
-
-            if (removedEntity.Has<MicrobeEventCallbacks>())
-            {
-                ref var callbacks = ref removedEntity.Get<MicrobeEventCallbacks>();
-
-                callbacks.OnUnbound?.Invoke(removedEntity);
-            }
-
-            // For the lead cell when disbanding the colony we don't want to reset all stuff
-            if (wasLeader)
-                return;
-
-            if (removedEntity.Has<MicrobeAI>())
-            {
-                ref var ai = ref removedEntity.Get<MicrobeAI>();
-                ai.ResetAI(removedEntity);
-            }
-
-            ref var control = ref removedEntity.Get<MicrobeControl>();
-
-            // Reset movement to not immediately move after unbind
-            control.MovementDirection = Vector3.Zero;
-
-            // TODO: should we calculate a look at point here that doesn't cause immediate rotation?
-        }
-
-        /// <summary>
-        ///   Called for each newMember that is added to a cell colony. Not called for the lead cell.
-        /// </summary>
-        public static void OnColonyMemberAdded(ref MicrobeColony colony, in Entity addedEntity)
-        {
-            ref var physics = ref addedEntity.Get<Physics>();
-            physics.BodyDisabled = true;
-
-            ref var control = ref addedEntity.Get<MicrobeControl>();
-
-            // Move the added cell to the same state as the overall colony
-            control.State = colony.ColonyState;
-
-            if (addedEntity.Has<OrganelleContainer>())
-            {
-                ref var organelles = ref addedEntity.Get<OrganelleContainer>();
-
-                organelles.AllOrganellesDivided = false;
-            }
-
-            // Clear queued slime jet force
-            control.QueuedSlimeSecretionTime = 0;
-
-            ReportReproductionStatusOnAddToColony(addedEntity);
-        }
-
         public static void ReportReproductionStatusOnAddToColony(in Entity entity)
         {
             if (entity.Has<MicrobeEventCallbacks>() && !entity.Has<EarlyMulticellularSpeciesMember>())
@@ -1023,6 +961,75 @@
             {
                 if (!colonyMember.IsAlive)
                     throw new Exception("Colony has a non-alive member");
+            }
+        }
+
+        /// <summary>
+        ///   Called for each newMember that is added to a cell colony. Not called for the lead cell.
+        /// </summary>
+        private static void OnColonyMemberAdded(ref MicrobeColony colony, in Entity addedEntity)
+        {
+            ref var physics = ref addedEntity.Get<Physics>();
+            physics.BodyDisabled = true;
+
+            ref var control = ref addedEntity.Get<MicrobeControl>();
+
+            // Move the added cell to the same state as the overall colony
+            control.State = colony.ColonyState;
+
+            ResetReadyToReproduceStatus(addedEntity);
+
+            // Clear queued slime jet force
+            control.QueuedSlimeSecretionTime = 0;
+
+            ReportReproductionStatusOnAddToColony(addedEntity);
+        }
+
+        /// <summary>
+        ///   Called for each newMember that is removed from a cell colony. Also called for the colony lead cell when
+        ///   colony is disbanding. Note that is in contrast to <see cref="OnColonyMemberAdded"/> which is not called
+        ///   on the lead cell.
+        /// </summary>
+        private static void OnColonyMemberRemoved(in Entity removedEntity, bool wasLeader)
+        {
+            // Restore physics
+            ref var physics = ref removedEntity.Get<Physics>();
+            physics.BodyDisabled = false;
+
+            if (removedEntity.Has<MicrobeEventCallbacks>())
+            {
+                ref var callbacks = ref removedEntity.Get<MicrobeEventCallbacks>();
+
+                callbacks.OnUnbound?.Invoke(removedEntity);
+            }
+
+            // Reset reproduction status to cause a re-check afterwards to not lock the player out of the editor
+            ResetReadyToReproduceStatus(removedEntity);
+
+            // For the lead cell when disbanding the colony we don't want to reset all stuff
+            if (wasLeader)
+                return;
+
+            if (removedEntity.Has<MicrobeAI>())
+            {
+                ref var ai = ref removedEntity.Get<MicrobeAI>();
+                ai.ResetAI(removedEntity);
+            }
+
+            ref var control = ref removedEntity.Get<MicrobeControl>();
+
+            // Reset movement to not immediately move after unbind
+            control.MovementDirection = Vector3.Zero;
+
+            // TODO: should we calculate a look at point here that doesn't cause immediate rotation?
+        }
+
+        private static void ResetReadyToReproduceStatus(Entity colonyMember)
+        {
+            if (colonyMember.Has<OrganelleContainer>())
+            {
+                ref var organelles = ref colonyMember.Get<OrganelleContainer>();
+                organelles.AllOrganellesDivided = false;
             }
         }
 

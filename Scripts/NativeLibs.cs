@@ -258,7 +258,7 @@ public class NativeLibs
                 throw new NotImplementedException("Creating release packages for mac is not done");
 
             case Program.NativeLibOptions.OperationMode.Upload:
-                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken))
+                if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
                     ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
                     return await UploadMissingSymbolsToServer(cancellationToken);
@@ -890,7 +890,7 @@ public class NativeLibs
         return true;
     }
 
-    private async Task<bool> CheckAndUpload(Library library, PackagePlatform platform,
+    private async Task<bool?> CheckAndUpload(Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         var version = GetLibraryVersion(library);
@@ -901,7 +901,7 @@ public class NativeLibs
             ColourConsole.WriteWarningLine($"Skip checking uploading file that is missing locally: {file}");
 
             // For now this is not considered an error
-            return true;
+            return null;
         }
 
         bool debug = options.DebugLibrary;
@@ -909,6 +909,8 @@ public class NativeLibs
         if (string.IsNullOrEmpty(options.Key))
         {
             ColourConsole.WriteErrorLine("Key to access ThriveDevCenter is a required parameter");
+
+            // Explicit fail to stop trying
             return false;
         }
 
@@ -941,8 +943,8 @@ public class NativeLibs
 
         if (response.StatusCode == HttpStatusCode.NoContent)
         {
-            ColourConsole.WriteDebugLine("Server already has this");
-            return false;
+            // No preference to change the result
+            return null;
         }
 
         if (response.StatusCode == HttpStatusCode.OK)
