@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-    using Godot;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -146,27 +145,32 @@
         {
             var compoundName = Compound!.InternalName;
 
-            var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-            var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
-
-            string? formattedMin;
-            string? formattedMax;
+            // These are objects to allow LocalizedString and pure string parameters used in the final localized string
+            // which anyway takes plain objects as the format parameters
+            object? formattedMin;
+            object? formattedMax;
 
             switch (compoundName)
             {
                 case "sunlight":
-                    formattedMin = Min.HasValue ? unitFormat.FormatSafe(percentageFormat.FormatSafe(Min), "lx") : null;
-                    formattedMax = Max.HasValue ? unitFormat.FormatSafe(percentageFormat.FormatSafe(Max), "lx") : null;
+                    formattedMin = Min.HasValue ?
+                        new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), "lx") :
+                        null;
+                    formattedMax = Max.HasValue ?
+                        new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), "lx") :
+                        null;
                     break;
                 case "temperature":
-                    formattedMin = Min.HasValue ? unitFormat.FormatSafe(Min / 100, Compound.Unit) : null;
-                    formattedMax = Max.HasValue ? unitFormat.FormatSafe(Max / 100, Compound.Unit) : null;
+                    // TODO: automatically handle any compounds with unit set?
+                    var unit = Compound.Unit ?? "MISSING CONFIGURED UNIT";
+                    formattedMin = Min.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Min / 100, unit) : null;
+                    formattedMax = Max.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Max / 100, unit) : null;
                     break;
                 case "oxygen":
                 case "carbondioxide":
                 case "nitrogen":
-                    formattedMin = Min.HasValue ? percentageFormat.FormatSafe(Min) : null;
-                    formattedMax = Max.HasValue ? percentageFormat.FormatSafe(Max) : null;
+                    formattedMin = Min.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Min) : null;
+                    formattedMax = Max.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Max) : null;
                     break;
                 default:
                     formattedMin = Min?.ToString(CultureInfo.CurrentCulture);
