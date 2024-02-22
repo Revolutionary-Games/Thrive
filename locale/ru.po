@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-02-19 13:00+0200\n"
-"PO-Revision-Date: 2024-02-08 11:46+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"PO-Revision-Date: 2024-02-22 12:02+0000\n"
+"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.4\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -5004,16 +5004,13 @@ msgstr ""
 "\n"
 "Так же, помимо жгутиков, есть еще один способ для поднятия [b]скорости передвижения[/b] [thrive:icon]MovementIcon[/thrive:icon]. Достаточно сделать вашу мембрану более жидкой во[u] вкладке мембраны[/u]."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_MODIFY_ORGANELLE"
 msgstr ""
-"Удаление органелл также стоит ОМ, поскольку это мутация для вашего вида, если только они не были помещены в текущую сессию редактора.\n"
+"Вы можете [b]модифицировать[/b] эту органеллу. Модификация откроет [b]новые функции[/b] или [b]улучшения[/b] для органеллы.\n"
 "\n"
-"Вы можете щелкнуть правой кнопкой мыши на органеллы, чтобы открыть меню органелл, и выбрать опцию Удалить, чтобы удалить их.\n"
+"Для модификации. вам нужно нажать правой кнопкой мыши по органелле для [b]активации меню[/b],а затем нажать кнопку \"Модифицировать\".\n"
 "\n"
-"Если вы допустили ошибку, вы можете отменить любые изменения, внесенные в редакторе.\n"
-"\n"
-"Нажмите кнопку Отменить, чтобы продолжить."
+"Модифицируйте органеллу для продолжения."
 
 msgid "TUTORIAL_MICROBE_EDITOR_NEGATIVE_ATP_BALANCE"
 msgstr ""
@@ -5025,16 +5022,13 @@ msgstr ""
 "\n"
 "У вас так же есть вариант расширения вместимости соединений, позволяя клетке передвигаться лишь прерывисто."
 
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
-"Это основы редактирования вашего вида. В качестве вишенки на торте вы можете переименовать свой вид, нажав на текущее название вида и отредактировав текст.\n"
+"Вы ничего не изменили в вашем виде.\n"
 "\n"
-"Вы можете проверить другие вкладки редактора ячеек для получения еще большего количества опций.\n"
-"\n"
-"Чтобы выжить в этом жестоком мире, вам понадобится найти надёжный источник энергии, поскольку природная глюкоза быстро истощится.\n"
-"\n"
-"Удачи!"
+"Как только вы покинете редактор, [u]вы не сможете редактировать собственный вид, покуда вновь не сможете размножиться[/u]\n"
+"Для прогресса в игре вам необходимо эволюционировать. т.е адаптироваться под изменяющийся условия. А условия меняются часто. \n"
+"Так что мы рекомендуем вам менять ваш вид при любом возможном случае."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -5158,13 +5152,11 @@ msgstr "Это отладочная сборка, где приведенная 
 msgid "UNDERWATERCAVE"
 msgstr "Подводная пещера"
 
-#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
-msgstr "Отсоединённые Органеллы"
+msgstr "Не открыто"
 
-#, fuzzy
 msgid "UNDISCOVERED_PATCH"
-msgstr "Найти текущий биом"
+msgstr "Не открытый Биом"
 
 msgid "UNDO"
 msgstr "Отменить"
@@ -5193,17 +5185,14 @@ msgstr "Неизвестная кнопка мыши"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестно для Windows"
 
-#, fuzzy
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
-msgstr "Разместить органеллу (или другую вещь)"
+msgstr "?"
 
-#, fuzzy
 msgid "UNKNOWN_PATCH"
-msgstr "Неизвестная кнопка мыши"
+msgstr "Неизвестный Биом"
 
-#, fuzzy
 msgid "UNKNOWN_SHORT"
-msgstr "Неизвестная кнопка мыши"
+msgstr "?"
 
 msgid "UNKNOWN_VERSION"
 msgstr "Неизвестная версия"
@@ -5211,57 +5200,53 @@ msgstr "Неизвестная версия"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестный Workshop ID для этого мода"
 
-#, fuzzy
 msgid "UNLIMIT_GROWTH_SPEED"
-msgstr "Ограничить использование соединений роста"
+msgstr "Не ограничивать скорость роста"
 
-#, fuzzy
 msgid "UNLOCKED_NEW_ORGANELLE"
-msgstr "Разместить органеллу (или другую вещь)"
+msgstr "НОВОЕ"
 
-#, fuzzy
 msgid "UNLOCK_ALL_ORGANELLES"
-msgstr "Разместить Органеллу"
+msgstr "Открыть все органеллы"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "производство [thrive:compound type=\"atp\"][/thrive:compound] достигает {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] в биоме больше, чем {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] меньше, чем {1}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] в биоме между {1} и {2}"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} микробов поглощено (В данный момент{1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} микробов втянуто (В данный момент {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
-msgstr ""
+msgstr "избыток [thrive:compound type=\"atp\"][/thrive:compound] достигает {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
-msgstr ""
+msgstr "количество смертей достигает {0} ( в данный момент {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
-msgstr ""
+msgstr "организм содержит по крайней мере {1}{0} на протяжении {2} поколений (В данный момент {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
-msgstr ""
+msgstr "организм содержит по крайней мере {1}{0} на протяжении {2} поколений подряд (в данный момент {3})"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "Размножиться в {0} биоме"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
-msgstr "Скорость усвоения:"
+msgstr "Скорость становится ниже {0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr ""
+msgstr "[b]{0}[/b] открыто если"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -5322,9 +5307,8 @@ msgstr "Создание вида для увеличения биоразноо
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
-#, fuzzy
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
-msgstr "Установить вручную количество фоновых потоков"
+msgstr "Установить вручную количество собственных потоков на стороне экзекьютора"
 
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Используйте размер виртуального окна"
@@ -5716,13 +5700,18 @@ msgstr ""
 "\n"
 "Лизосома это Мембранная органелла, что содержит в себе гидролитические энзимы, что могут разбивать на простые соединения биомолекулы. Лизосомы позволяют растворять материалы с помощью процесса, именуемого \"эндоцитоз\" и очищать мусорную часть клетки в процессе, именуемой [b]аутофагией[/b]."
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
-msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+msgstr ""
+"Модифицируйте [b]Лизосому[/b] для выбора энзима, коей ей придётся синтезировать.\n"
+"Изначально, она содержит [b]Липазу[/b], что акцентируется на [b]Простых мембранах[/b] и [b]Двойных мембранах[/b].\n"
+"\n"
+"[b]Лизосома[/b] , помимо липазы, может синтезировать следующее:\n"
+"\n"
+"[indent]—   [b]Хитиназа[/b], Что акцентируется на [b]Хитиновой мембране[/b].[/indent]\n"
+"[indent]—   [b]Целлюлаза[/b], Что акцентируется на [b]Целлюлозной мембране[/b].[/indent]"
 
-#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
+msgstr "Процессы отсутствуют."
 
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr "Клетке необходимо ядро для получения лизосом."
