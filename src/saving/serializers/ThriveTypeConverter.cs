@@ -25,7 +25,7 @@ public class ThriveTypeConverter : TypeConverter
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     {
         return destinationType == StringType || destinationType.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
+            a => a.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
     public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
@@ -44,9 +44,9 @@ public class ThriveTypeConverter : TypeConverter
         {
             var type = value.GetType();
 
-            if (type.CustomAttributes.Any(attr =>
-                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+            if (type.CustomAttributes.Any(a =>
+                    a.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                    a.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
             {
                 type = type.BaseType;
             }

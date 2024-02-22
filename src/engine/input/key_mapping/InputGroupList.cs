@@ -43,8 +43,8 @@ public class InputGroupList : VBoxContainer
     ///   Is any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
-        .Any(group => group.Actions
-            .Any(action => action.Inputs.Any(singularInput => singularInput.WaitingForInput)));
+        .Any(g => g.Actions
+            .Any(a => a.Inputs.Any(i => i.WaitingForInput)));
 
     public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList ?? Array.Empty<InputGroupItem>();
 
@@ -127,11 +127,11 @@ public class InputGroupList : VBoxContainer
         // Take the ones with any interception of the environments.
         // Take the input actions.
         // Get the first action where the event collides or null if there aren't any.
-        return ActiveInputGroupList.Where(group => group.EnvironmentId.Any(x => environments.Contains(x)))
-            .SelectMany(group => group.Actions)
-            .Where(action => !Equals(inputActionItem, action))
-            .SelectMany(action => action.Inputs)
-            .FirstOrDefault(input => Equals(input, item));
+        return ActiveInputGroupList.Where(g => g.EnvironmentId.Any(e => environments.Contains(e)))
+            .SelectMany(g => g.Actions)
+            .Where(a => !Equals(inputActionItem, a))
+            .SelectMany(a => a.Inputs)
+            .FirstOrDefault(i => Equals(i, item));
     }
 
     /// <summary>

@@ -322,7 +322,7 @@ public class EvolutionaryTree : Control
     {
         var treeNodeSize = sizeFactor * TreeNodeSize;
 
-        foreach (var node in speciesNodes.Values.SelectMany(speciesNodeList => speciesNodeList))
+        foreach (var node in speciesNodes.Values.SelectMany(l => l))
         {
             node.RectMinSize = treeNodeSize;
 

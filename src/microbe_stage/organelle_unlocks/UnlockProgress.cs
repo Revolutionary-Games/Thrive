@@ -15,7 +15,7 @@ public class UnlockProgress
     /// </summary>
     [JsonProperty]
     private readonly HashSet<OrganelleDefinition> unlockedOrganelles =
-        SimulationParameters.Instance.GetAllOrganelles().Where(organelle => organelle.UnlockConditions == null)
+        SimulationParameters.Instance.GetAllOrganelles().Where(o => o.UnlockConditions == null)
             .ToHashSet();
 
     /// <summary>
@@ -60,10 +60,23 @@ public class UnlockProgress
         if (organelle.UnlockConditions == null || game.FreeBuild || UnlockAll)
             return true;
 
-        if (autoUnlock && organelle.UnlockConditions.Any(unlock => unlock.Satisfied(worldAndPlayerArgs)))
+        if (autoUnlock)
         {
-            UnlockOrganelle(organelle, game);
-            return true;
+            bool anyConditionSatisfied = false;
+            foreach (var condition in organelle.UnlockConditions)
+            {
+                if (condition.Satisfied(worldAndPlayerArgs))
+                {
+                    anyConditionSatisfied = true;
+                    break;
+                }
+            }
+
+            if (anyConditionSatisfied)
+            {
+                UnlockOrganelle(organelle, game);
+                return true;
+            }
         }
 
         return unlockedOrganelles.Contains(organelle);

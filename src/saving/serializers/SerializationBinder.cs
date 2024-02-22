@@ -25,9 +25,9 @@ public class SerializationBinder : DefaultSerializationBinder
         if (type.IsAbstract || type.IsInterface)
             throw new JsonException($"Dynamically typed JSON object is of interface or abstract type {typeName}");
 
-        if (type.CustomAttributes.Any(attr => attr.AttributeType == DynamicTypeAllowedAttribute ||
-                attr.AttributeType == AlwaysDynamicTypeAttribute || attr.AttributeType == SceneLoadedClassAttribute ||
-                attr.AttributeType == CustomizedRegistryTypeAttribute))
+        if (type.CustomAttributes.Any(a => a.AttributeType == DynamicTypeAllowedAttribute ||
+                a.AttributeType == AlwaysDynamicTypeAttribute || a.AttributeType == SceneLoadedClassAttribute ||
+                a.AttributeType == CustomizedRegistryTypeAttribute))
         {
             // Allowed type
             return originalType;

@@ -642,7 +642,7 @@ public class GameWorld : ISaveLoadable
             eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
 
         // Event already logged in timeline
-        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.Equals(description)))
+        if (eventsLog[TotalPassedTime].Any(e => e.Description.Equals(description)))
         {
             return;
         }

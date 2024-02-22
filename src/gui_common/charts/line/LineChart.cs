@@ -244,7 +244,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Returns the number of shown datasets.
     /// </summary>
-    public int VisibleDataSets => dataSets.Count(data => data.Value.Draw);
+    public int VisibleDataSets => dataSets.Count(d => d.Value.Draw);
 
     public override void _Ready()
     {

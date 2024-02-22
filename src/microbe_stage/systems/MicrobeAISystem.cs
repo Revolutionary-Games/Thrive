@@ -824,8 +824,8 @@
 
             if (detections is { Count: > 0 })
             {
-                ai.LastSmelledCompoundPosition = detections.OrderBy(detection =>
-                    weights.TryGetValue(detection.Compound, out var weight) ?
+                ai.LastSmelledCompoundPosition = detections.OrderBy(d =>
+                    weights.TryGetValue(d.Compound, out var weight) ?
                         weight :
                         0).First().Target;
                 ai.PursuitThreshold = position.Position.DistanceSquaredTo(ai.LastSmelledCompoundPosition.Value)

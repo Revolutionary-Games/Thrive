@@ -180,7 +180,7 @@ public static class ToolTipHelper
     /// </summary>
     public static Control? GetControlAssociatedWithToolTip(ICustomToolTip? tooltip)
     {
-        var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
+        var callbackData = ToolTipCallbacks.Find(c => c.ToolTip == tooltip);
 
         return callbackData?.ToolTipable;
     }
@@ -217,11 +217,11 @@ public static class ToolTipHelper
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
-        return ToolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
+        return ToolTipCallbacks.Find(c => c.ToolTipable == control && c.ToolTip == tooltip);
     }
 
     private static IEnumerable<ToolTipCallbackData> GetAllToolTipsForControl(Control control)
     {
-        return ToolTipCallbacks.Where(match => match.ToolTipable == control);
+        return ToolTipCallbacks.Where(c => c.ToolTipable == control);
     }
 }
