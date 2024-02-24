@@ -5,6 +5,8 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
+    using Godot;
+    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles taking energy from microbes for osmoregulation (staying alive) cost and dealing damage if there's not
@@ -141,7 +143,7 @@
         /// </summary>
         private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
         {
-            if (compounds.GetCompoundAmount(atp) > 0.1f)
+            if (compounds.GetCompoundAmount(atp) > Mathf.Epsilon)
                 return;
 
             health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,

@@ -15,11 +15,9 @@
     [ReadsComponent(typeof(MicrobeControl))]
     public sealed class StrainSystem : AEntitySetSystem<float>
     {
-        private readonly Compound atp;
 
         public StrainSystem(World world, IParallelRunner runner) : base(world, runner)
         {
-            atp = SimulationParameters.Instance.GetCompound("atp");
         }
 
         protected override void Update(float delta, in Entity entity)
@@ -56,22 +54,6 @@
                     strain.StrainDecreaseCooldown -= delta;
                     ReduceStrain(ref strain, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR);
                 }
-
-                if (strain.CurrentStrain < 0)
-                    strain.CurrentStrain = 0;
-            }
-
-            // If the entity is not moving, anyway remove some ATP due to strain
-            if (control.MovementDirection == Vector3.Zero)
-            {
-                var compounds = entity.Get<CompoundStorage>().Compounds;
-                var strainFraction = strain.CalculateStrainFraction();
-                compounds.TakeCompound(atp, Constants.PASSIVE_STRAIN_TO_ATP_USAGE * strainFraction *
-                    Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT * delta);
-
-                // Unset IsUnderStrain when not moving/movement system is not running
-
-                strain.IsUnderStrain = false;
             }
         }
 
@@ -85,6 +67,9 @@
             {
                 strain.ExcessStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
             }
+
+            if (strain.CurrentStrain < 0)
+                strain.CurrentStrain = 0;
         }
     }
 }

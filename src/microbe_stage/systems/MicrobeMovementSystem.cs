@@ -142,8 +142,19 @@
             ref CellProperties cellProperties, ref WorldPosition position,
             ref OrganelleContainer organelles, CompoundBag compounds, float delta)
         {
+            ref var strain = ref entity.Get<StrainAffected>();
+
             if (control.MovementDirection == Vector3.Zero)
             {
+                // Make sure the microbe is not under strain when not moving
+                strain.IsUnderStrain = false;
+
+                // Remove ATP due to strain even if not moving
+                // This is calculated similarily to the regular movement cost for consistency
+                var strainMultiplier = GetStrainMultiplier(ref strain) - 1.0f;
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+                compounds.TakeCompound(atp, strainCost);
+
                 // Slime jets work even when not holding down any movement keys
                 var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
 
@@ -170,14 +181,10 @@
             float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
                 cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
-            ref var strain = ref entity.Get<StrainAffected>();
-
-            var strainFraction = strain.CalculateStrainFraction();
-            var strainMultiplier = strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
-
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
-            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
+            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta *
+                GetStrainMultiplier(ref strain);
 
             var got = compounds.TakeCompound(atp, cost);
 
@@ -267,6 +274,12 @@
             // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
             // vector to work correctly
             return position.Rotation.Xform(movementVector);
+        }
+
+        private float GetStrainMultiplier(ref StrainAffected strain)
+        {
+            var strainFraction = strain.CalculateStrainFraction();
+            return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
         }
 
         private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)
