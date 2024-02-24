@@ -17,6 +17,8 @@
     /// </remarks>
     public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
     {
+        public Dictionary<Patch, Miche> MicheByPatch = new();
+
         /// <summary>
         ///   The per-species results
         /// </summary>
@@ -93,27 +95,6 @@
             MakeSureResultExistsForSpecies(species);
 
             results[species].SpreadToPatches.Add(migration);
-        }
-
-        /// <summary>
-        ///   Removes migrations specified for species for to/from patches where it split
-        /// </summary>
-        /// <param name="species">The species to check</param>
-        public void RemoveMigrationsForSplitPatches(Species species)
-        {
-            SpeciesResult result;
-
-            lock (results)
-            {
-                if (!results.TryGetValue(species, out result))
-                    return;
-            }
-
-            if (result.SplitOffPatches == null)
-                return;
-
-            result.SpreadToPatches.RemoveAll(s =>
-                result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
         }
 
         public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,

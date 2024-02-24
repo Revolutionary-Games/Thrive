@@ -38,6 +38,28 @@
     <Compile Include="src\tools\GenerateThreadedSystems.cs" />
     <Compile Include="src\tools\SystemToSchedule.cs" />
     <Compile Include="src\tools\ThreadedRunSimulator.cs" />
+    <Compile Include="src\auto-evo\Miche.cs" />
+    <Compile Include="src\auto-evo\MutationLogicFunctions.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\AddMultipleOrganelles.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\AddOrganelleAnywhere.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\ChangeBehaviorScore.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\ChangeMembraneType.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\CommonMutationFunctions.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\IMutationStrategy.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\LowerRigidity.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\MutationLibrary.cs" />
+    <Compile Include="src\auto-evo\mutation_strategy\RemoveAnyOrganelle.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\AutotrophEnergyEfficiencyPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\AvoidPredationSelectionPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\BePlayerSelectionPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\MetabolicStabilityPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\PredationEffectivenessPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\ReachCompoundCloudPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\SelectionPressure.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\StoragePressure.cs" />
+    <Compile Include="src\auto-evo\steps\GenerateMiche.cs" />
+    <Compile Include="src\auto-evo\steps\ModifyExistingSpecies.cs" />
+    <Compile Include="src\auto-evo\steps\MigrateSpecies.cs" />
     <Compile Include="src\tutorial\microbe_editor\AtpBalanceIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\ChemoreceptorPlacementTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\FlagellumPlacementTutorial.cs" />
@@ -69,9 +91,6 @@
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\RandomEncounterFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
-    <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
-    <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
-    <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\awakening_stage\BaseBuildableStructure.cs" />
     <Compile Include="src\awakening_stage\CraftingHelpers.cs" />
     <Compile Include="src\awakening_stage\CraftingRecipe.cs" />
@@ -758,13 +777,10 @@
     <Compile Include="src\auto-evo\records\SpeciesRecordFull.cs" />
     <Compile Include="src\auto-evo\records\SpeciesRecordLite.cs" />
     <Compile Include="src\auto-evo\steps\LambdaStep.cs" />
-    <Compile Include="src\auto-evo\steps\FindBestMutation.cs" />
-    <Compile Include="src\auto-evo\steps\FindBestMigration.cs" />
     <Compile Include="src\auto-evo\steps\CalculatePopulation.cs" />
     <Compile Include="src\auto-evo\SpeciesMigration.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationConfiguration.cs" />
     <Compile Include="src\auto-evo\simulation\PopulationSimulation.cs" />
-    <Compile Include="src\auto-evo\steps\VariantTryingStep.cs" />
     <Compile Include="src\auto-evo\ExternalEffect.cs" />
     <Compile Include="src\general\Jukebox.cs" />
     <Compile Include="src\general\MusicCategory.cs" />
@@ -955,7 +971,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
-    <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <ItemGroup>
