@@ -19,7 +19,7 @@
 // NOTE: the version info is read by a regex in a script so don't add complicated things to this file
 // NOTE: When changing the version number you need to also change "export_presets.cfg"
 
-[assembly: AssemblyVersion("0.6.5")]
+[assembly: AssemblyVersion("0.6.5.0")]
 
 [assembly: AssemblyInformationalVersion("")]
 
