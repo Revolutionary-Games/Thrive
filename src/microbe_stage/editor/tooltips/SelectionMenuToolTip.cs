@@ -220,7 +220,7 @@ public class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     public ModifierInfoLabel GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(found => found.Name == nodeName);
+        return modifierInfos.Find(m => m.Name == nodeName);
     }
 
     /// <summary>

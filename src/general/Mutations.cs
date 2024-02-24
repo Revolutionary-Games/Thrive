@@ -284,7 +284,7 @@ public class Mutations
                 {
                     // Duplicate an existing organelle, but only if there are any organelles where that is legal
                     var organellesThatCanBeDuplicated =
-                        parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        parentOrganelles.Organelles.Where(o => !o.Definition.Unique).ToList();
                     if (organellesThatCanBeDuplicated.Any())
                     {
                         AddNewOrganelle(mutatedOrganelles,
@@ -574,7 +574,7 @@ public class Mutations
                     letterPool = isVowel ? Vowels : Consonants;
 
                     // Take next letter in the pool (cycle if necessary);
-                    var nextIndex = letterPool.FindIndex(item => item == letter) + 1;
+                    var nextIndex = letterPool.FindIndex(l => l == letter) + 1;
                     nextIndex = nextIndex < letterPool.Count ? nextIndex : 0;
 
                     var nextLetterInPool = letterPool.ElementAt(nextIndex);

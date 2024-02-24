@@ -492,7 +492,7 @@ public class AutoEvoRun
                 GatherInfo(runSteps);
 
                 // +2 is for this step and the result apply step
-                totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
+                totalSteps = runSteps.Sum(s => s.TotalSteps) + 2;
 
                 Interlocked.Increment(ref completeSteps);
                 state = RunStage.Stepping;

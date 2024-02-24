@@ -414,10 +414,10 @@ public partial class MetaballBodyEditorComponent :
 
         var positions = MouseHoverPositions.ToList();
 
-        var cellTemplates = positions.Select(tuple => new MulticellularMetaball(cellType)
+        var cellTemplates = positions.Select(p => new MulticellularMetaball(cellType)
         {
-            Position = tuple.Position,
-            Parent = tuple.Parent,
+            Position = p.Position,
+            Parent = p.Parent,
         }).ToList();
 
         // TODO: it's extremely unlikely that metaballs would overlap exactly so we can probably remove the occupancy

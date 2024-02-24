@@ -123,7 +123,7 @@
 
                 estimateEntityCount = DespawnEntities();
 
-                spawnTypes.RemoveAll(entity => entity.DestroyQueued);
+                spawnTypes.RemoveAll(s => s.DestroyQueued);
 
                 SpawnAllTypes(ref spawnsLeftThisFrame);
             }

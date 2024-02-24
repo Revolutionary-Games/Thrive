@@ -106,7 +106,7 @@ public class WikiUpdater
     private TranslationPair ProcessOrganellesRootPage(IHtmlElement page)
     {
         var sections = GetMainBodySections(page);
-        var untranslatedSections = sections.Select(section => UntranslateSection(section, "ORGANELLES_ROOT")).ToList();
+        var untranslatedSections = sections.Select(s => UntranslateSection(s, "ORGANELLES_ROOT")).ToList();
 
         var untranslatedPage = new Wiki.Page("WIKI_PAGE_ORGANELLES_ROOT", "OrganellesRoot", ORGANELLE_CATEGORY,
             untranslatedSections);
@@ -132,8 +132,7 @@ public class WikiUpdater
             var internalName = page.QuerySelector("#info-box-internal-name")!.TextContent.Trim();
 
             var sections = GetMainBodySections(page);
-            var untranslatedSections = sections.Select(
-                section => UntranslateSection(section, untranslatedOrganelleName)).ToList();
+            var untranslatedSections = sections.Select(s => UntranslateSection(s, untranslatedOrganelleName)).ToList();
 
             var untranslatedPage = new Wiki.Page($"WIKI_PAGE_{untranslatedOrganelleName}",
                 internalName,
@@ -182,7 +181,7 @@ public class WikiUpdater
                     // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
                         .Where(c => c.TagName == "LI")
-                        .Select(li => $"[indent]—   {ConvertParagraphToBbcode(li)}[/indent]")
+                        .Select(l => $"[indent]—   {ConvertParagraphToBbcode(l)}[/indent]")
                         .Aggregate((a, b) => a + "\n" + b) + "\n\n";
                     break;
                 default:

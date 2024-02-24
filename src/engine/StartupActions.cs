@@ -47,7 +47,10 @@ public class StartupActions : Node
             {
                 if (!NativeInterop.CheckCPU())
                 {
-                    GD.Print("Thrive requires a new enough CPU to have SSE4.1, SSE4.2, and AVX (1)");
+                    // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
+                    // confusion with what they are missing
+                    GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
+                        "see above for what is detected as missing");
                     GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
                         "required instruction set extensions is required");
 

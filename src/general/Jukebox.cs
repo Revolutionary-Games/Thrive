@@ -72,8 +72,8 @@ public class Jukebox : Node
         }
     }
 
-    private List<string> PlayingTracks => audioPlayers.Where(player => player.Playing)
-        .Select(player => player.CurrentTrack).WhereNotNull().ToList();
+    private List<string> PlayingTracks => audioPlayers.Where(p => p.Playing)
+        .Select(p => p.CurrentTrack).WhereNotNull().ToList();
 
     public override void _Ready()
     {
@@ -501,15 +501,15 @@ public class Jukebox : Node
         var needToStartFrom = new List<TrackList>();
 
         var activeTracks = PlayingTracks;
-        var usablePlayers = audioPlayers.Where(player => !player.Playing).ToList();
+        var usablePlayers = audioPlayers.Where(p => !p.Playing).ToList();
 
         foreach (var list in target.TrackLists)
         {
             // Detecting playing tracks doesn't take context restrictions into account to allow context to change but
             // not then force 2 tracks to play at the same time from the same track list if the context switch didn't
             // force tracks to end
-            var trackResources = list.GetAllTracks().Select(track => track.ResourcePath);
-            if (activeTracks.Any(track => trackResources.Contains(track)))
+            var trackResources = list.GetAllTracks().Select(t => t.ResourcePath);
+            if (activeTracks.Any(t => trackResources.Contains(t)))
                 continue;
 
             needToStartFrom.Add(list);
@@ -519,7 +519,7 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
-            if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(track => track.PlayedOnce))
+            if (!list.Repeat && list.GetTracksForContexts(activeContexts).All(t => t.PlayedOnce))
                 continue;
 
             PlayNextTrackFromList(list, index =>
@@ -615,8 +615,8 @@ public class Jukebox : Node
 
                         // Store the position to resume from
                         track.PreviousPlayedPosition = audioPlayers
-                            .Where(player => player.Playing && player.CurrentTrack == track.ResourcePath)
-                            .Select(player => player.Player.GetPlaybackPosition()).First();
+                            .Where(p => p.Playing && p.CurrentTrack == track.ResourcePath)
+                            .Select(p => p.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {

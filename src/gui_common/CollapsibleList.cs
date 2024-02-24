@@ -110,12 +110,12 @@ public class CollapsibleList : VBoxContainer
     public T GetItem<T>(string name)
         where T : Control
     {
-        return (T)items.Find(match => match.Name == name);
+        return (T)items.Find(i => i.Name == name);
     }
 
     public void RemoveItem(string name)
     {
-        var found = items.Find(item => item.Name == name);
+        var found = items.Find(i => i.Name == name);
         found.QueueFree();
         items.Remove(found);
     }
@@ -123,7 +123,7 @@ public class CollapsibleList : VBoxContainer
     public void RemoveAllOfType<T>()
         where T : Control
     {
-        var found = items.FindAll(item => item is T);
+        var found = items.FindAll(i => i is T);
 
         foreach (var item in found)
         {

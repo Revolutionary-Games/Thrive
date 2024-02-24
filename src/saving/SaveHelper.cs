@@ -260,8 +260,8 @@ public static class SaveHelper
             case SaveOrder.LastModifiedFirst:
             {
                 using var file = new File();
-                result = result.OrderByDescending(item =>
-                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
+                result = result.OrderByDescending(s =>
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
 
                 break;
             }
@@ -269,8 +269,8 @@ public static class SaveHelper
             case SaveOrder.FirstModifiedFirst:
             {
                 using var file = new File();
-                result = result.OrderBy(item =>
-                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
+                result = result.OrderBy(s =>
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, s))).ToList();
 
                 break;
             }
