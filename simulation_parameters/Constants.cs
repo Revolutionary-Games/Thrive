@@ -582,6 +582,12 @@ public static class Constants
     public const int MAX_DAMAGE_EVENTS = 1000;
 
     /// <summary>
+    ///   The maximum amount of ATP for a cell to take damage from lack of ATP. This used to be a hard-coded zero
+    ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
+    /// </summary>
+    public const float ATP_DAMAGE_THRESHOLD = 0.05f;
+
+    /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;
