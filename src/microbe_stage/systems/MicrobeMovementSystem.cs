@@ -195,11 +195,6 @@
             {
                 // Not enough ATP to move at full speed
                 force *= 0.5f;
-
-                // Disable sprinting when low ATP
-                // Note: this disables the control itself, so the player will have to press the sprit
-                // key again
-                control.Sprinting = false;
             }
 
             // Speed from flagella (these also take ATP otherwise they won't work)

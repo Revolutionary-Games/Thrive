@@ -26,7 +26,7 @@
 
             if (strain.IsUnderStrain)
             {
-                var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_UPDATE;
+                var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND * delta;
                 strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 
                 if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_CELL)
@@ -40,19 +40,19 @@
             {
                 if (strain.StrainDecreaseCooldown <= Mathf.Epsilon)
                 {
-                    ReduceStrain(ref strain);
+                    ReduceStrain(ref strain, delta);
                 }
                 else
                 {
                     strain.StrainDecreaseCooldown -= delta;
-                    ReduceStrain(ref strain, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR);
+                    ReduceStrain(ref strain, delta, Constants.PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR);
                 }
             }
         }
 
-        private void ReduceStrain(ref StrainAffected strain, float divisor = 1.0f)
+        private void ReduceStrain(ref StrainAffected strain, float delta, float divisor = 1.0f)
         {
-            strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
+            strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_SECOND * delta / divisor;
 
             if (strain.CurrentStrain < 0)
                 strain.CurrentStrain = 0;

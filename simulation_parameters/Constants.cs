@@ -187,7 +187,7 @@ public static class Constants
 
     public const float MAX_STRAIN_PER_CELL = 100.0f;
 
-    public const float PASSIVE_STRAIN_DECREASE_PER_UPDATE = 0.5f;
+    public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
 
     public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_DIVISOR = 3.0f;
 
@@ -196,8 +196,6 @@ public static class Constants
     /// </summary>
     public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.5f;
 
-    public const float PASSIVE_STRAIN_TO_ATP_USAGE = 2.0f;
-
     /// <summary>
     ///   How much strain does not affect ATP usage at first
     /// </summary>
@@ -205,7 +203,7 @@ public static class Constants
 
     public const float STRAIN_DECREASE_COOLDOWN_SECONDS = 0.5f;
 
-    public const float SPRINTING_STRAIN_INCREASE_PER_UPDATE = 1.2f;
+    public const float SPRINTING_STRAIN_INCREASE_PER_SECOND = 72.0f;
 
     public const float SPRINTING_STRAIN_INCREASE_PER_HEX = 0.15f;
 

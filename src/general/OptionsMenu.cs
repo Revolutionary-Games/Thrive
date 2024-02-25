@@ -506,12 +506,6 @@ public class OptionsMenu : ControlWithInput
     {
         ResolveNodeReferences(true);
 
-        foreach (var mode in typeof(Settings.StrainBarVisibility).GetEnumValues().Cast<Settings.StrainBarVisibility>())
-        {
-            strainBarVisibilityMode.AddItem(
-                TranslationServer.Translate(mode.GetAttribute<DescriptionAttribute>().Description), (int)mode);
-        }
-
         if (IsVisibleInTree())
         {
             GD.Print("Immediately loading options menu items as it is visible in _Ready");

@@ -43,10 +43,10 @@ public class Settings
         Off = 0,
 
         [Description("STRAIN_BAR_VISIBILITY_CLOSE_TO_FULL")]
-        VisibleWhenCloseToFull = 2,
+        VisibleWhenCloseToFull = 1,
 
         [Description("STRAIN_BAR_VISIBILITY_OVER_ZERO")]
-        VisibleWhenOverZero = 1,
+        VisibleWhenOverZero = 2,
 
         [Description("STRAIN_BAR_VISIBILITY_ALWAYS_VISIBLE")]
         AlwaysVisible = 3,
