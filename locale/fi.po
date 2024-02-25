@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-04 12:45+0100\n"
+"POT-Creation-Date: 2024-02-25 17:15+0100\n"
 "PO-Revision-Date: 2023-12-25 11:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1494,6 +1494,9 @@ msgstr "Valittu tallennus ei ole yhteensopiva"
 msgid "ENABLE_EDITOR"
 msgstr "Avaa editorin lukitus"
 
+msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgstr ""
+
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Käytä käyttöliittymän valoefektejä"
 
@@ -1620,6 +1623,10 @@ msgstr "Poistu"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -5219,6 +5226,10 @@ msgstr ""
 
 msgid "TOGGLE_PAUSE"
 msgstr "Pysäytä"
+
+#, fuzzy
+msgid "TOGGLE_SPRINT_TOOLTIP"
+msgstr "Aloita/lopeta kiinnittyminen"
 
 msgid "TOGGLE_UNBINDING"
 msgstr "Aloita/Lopeta erkanemistila"

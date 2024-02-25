@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-04 12:45+0100\n"
-"PO-Revision-Date: 2024-02-04 13:02+0100\n"
+"POT-Creation-Date: 2024-02-25 17:15+0100\n"
+"PO-Revision-Date: 2024-02-25 17:34+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1415,6 +1415,9 @@ msgstr "Enable All Compatible Mods"
 msgid "ENABLE_EDITOR"
 msgstr "Enable the editor"
 
+msgid "ENABLE_EXPERIMENTAL_FEATURES"
+msgstr "Enable Experimental Features"
+
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI light effects"
 
@@ -1525,6 +1528,9 @@ msgstr "Exit"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Enable work in progress features. These features may be unstable and are unfinished, expect bugs."
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Export All Worlds"
@@ -4890,6 +4896,10 @@ msgstr "Toggle navigation tree"
 msgid "TOGGLE_PAUSE"
 msgstr "Pause"
 
+#, fuzzy
+msgid "TOGGLE_SPRINT_TOOLTIP"
+msgstr "Toggle binding mode. Touch other cells to create a colony."
+
 msgid "TOGGLE_UNBINDING"
 msgstr "Toggle unbinding"
 
@@ -6555,14 +6565,6 @@ msgstr "Zoom out"
 
 #~ msgid "AVERAGE"
 #~ msgstr "Average"
-
-#~ msgid "EXPERIMENTAL_LABEL"
-#~ msgstr "Experimental Settings"
-
-#~ msgid "EXPERIMENTAL_WARNING"
-#~ msgstr ""
-#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
