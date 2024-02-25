@@ -2095,6 +2095,7 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
 margin_right = 550.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2103,7 +2104,6 @@ __meta__ = {
 }
 
 [node name="Sprint" parent="ScrollContainer/HotBar" instance=ExtResource( 65 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 252.0

@@ -19,11 +19,6 @@
         public float CurrentStrain;
 
         /// <summary>
-        ///   Strain above <see cref="Constants.MAX_STRAIN_PER_CELL"/>
-        /// </summary>
-        public float ExcessStrain;
-
-        /// <summary>
         ///   The amount of time the player has to wait before <see cref="CurrentStrain"/> sarts to fall
         /// </summary>
         public float StrainDecreaseCooldown;

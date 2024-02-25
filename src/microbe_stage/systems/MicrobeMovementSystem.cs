@@ -23,10 +23,12 @@
     [ReadsComponent(typeof(AttachedToEntity))]
     [ReadsComponent(typeof(MicrobeColony))]
     [ReadsComponent(typeof(Health))]
-    [RunsAfter(typeof(StrainSystem))]
     [RunsAfter(typeof(PhysicsBodyCreationSystem))]
     [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
+    [RunsAfter(typeof(ProcessSystem))]
     [RunsBefore(typeof(PhysicsBodyControlSystem))]
+    [RunsBefore(typeof(StrainSystem))]
+    [RunsBefore(typeof(OsmoregulationAndHealingSystem))]
     public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     {
         private readonly PhysicalWorld physicalWorld;
@@ -151,7 +153,7 @@
 
                 // Remove ATP due to strain even if not moving
                 // This is calculated similarily to the regular movement cost for consistency
-                var strainMultiplier = GetStrainMultiplier(ref strain) - 1.0f;
+                var strainMultiplier = GetStrainMultiplier(ref strain);
                 var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
                 compounds.TakeCompound(atp, strainCost);
 
@@ -188,8 +190,6 @@
 
             var got = compounds.TakeCompound(atp, cost);
 
-            var canSprint = true;
-
             // Halve base movement speed if out of ATP
             if (got < cost)
             {
@@ -197,7 +197,9 @@
                 force *= 0.5f;
 
                 // Disable sprinting when low ATP
-                canSprint = false;
+                // Note: this disables the control itself, so the player will have to press the sprit
+                // key again
+                control.Sprinting = false;
             }
 
             // Speed from flagella (these also take ATP otherwise they won't work)
@@ -213,7 +215,7 @@
             force *= cellProperties.MembraneType.MovementFactor -
                 (cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER);
 
-            if (control.Sprinting && canSprint)
+            if (control.Sprinting)
             {
                 force *= Constants.SPRINTING_FORCE_MULTIPLIER;
                 strain.IsUnderStrain = true;

@@ -15,14 +15,12 @@
     [ReadsComponent(typeof(MicrobeControl))]
     public sealed class StrainSystem : AEntitySetSystem<float>
     {
-
         public StrainSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
 
         protected override void Update(float delta, in Entity entity)
         {
-            ref var control = ref entity.Get<MicrobeControl>();
             ref var strain = ref entity.Get<StrainAffected>();
             ref var organelles = ref entity.Get<OrganelleContainer>();
 
@@ -32,12 +30,7 @@
                 strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 
                 if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_CELL)
-                {
-                    var difference = strain.CurrentStrain - Constants.MAX_STRAIN_PER_CELL;
-                    strain.ExcessStrain += difference;
-
                     strain.CurrentStrain = Constants.MAX_STRAIN_PER_CELL;
-                }
 
                 strain.CurrentStrain += strainIncrease;
 
@@ -59,14 +52,7 @@
 
         private void ReduceStrain(ref StrainAffected strain, float divisor = 1.0f)
         {
-            if (strain.ExcessStrain <= Mathf.Epsilon)
-            {
-                strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
-            }
-            else
-            {
-                strain.ExcessStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
-            }
+            strain.CurrentStrain -= Constants.PASSIVE_STRAIN_DECREASE_PER_UPDATE / divisor;
 
             if (strain.CurrentStrain < 0)
                 strain.CurrentStrain = 0;
