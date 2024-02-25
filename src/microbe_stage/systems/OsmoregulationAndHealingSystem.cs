@@ -5,8 +5,6 @@
     using DefaultEcs;
     using DefaultEcs.System;
     using DefaultEcs.Threading;
-    using Godot;
-    using World = DefaultEcs.World;
 
     /// <summary>
     ///   Handles taking energy from microbes for osmoregulation (staying alive) cost and dealing damage if there's not
