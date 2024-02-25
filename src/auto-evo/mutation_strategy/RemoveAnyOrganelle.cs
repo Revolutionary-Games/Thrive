@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,8 @@ namespace AutoEvo
             if (newSpecies.Organelles.Count > 1)
             {
                 newSpecies.Organelles.RemoveHexAt(
-                    newSpecies.Organelles.ToList().ElementAt(random.Next(0, newSpecies.Organelles.Count)).Position);
+                    newSpecies.Organelles.ToList().ElementAt(random.Next(0, newSpecies.Organelles.Count)).Position,
+                    new List<Hex>());
             }
 
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);

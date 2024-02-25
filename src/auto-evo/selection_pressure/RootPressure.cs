@@ -1,27 +1,30 @@
 ﻿namespace AutoEvo
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Godot;
 
-    public class StoragePressure : SelectionPressure
+    public class RootPressure : SelectionPressure
     {
-        public Compound Compound;
+        private readonly Patch patch;
         private readonly float weight;
-        public StoragePressure(float weight, Compound compound) : base(
+
+        public RootPressure(Patch patch, float weight) : base(
             weight,
             new List<IMutationStrategy<MicrobeSpecies>>
             {
-                new AddOrganelleAnywhere(organelle => organelle.Components?.Storage?.Capacity > 0.5f),
+                // Add a little bit of randomness to the miche tree
+                new AddOrganelleAnywhere(_ => true),
+                new RemoveAnyOrganelle(),
             })
         {
-            Compound = compound;
+            this.patch = patch;
             this.weight = weight;
         }
 
         public override float Score(MicrobeSpecies species, SimulationCache cache)
         {
-            return species.StorageCapacity * weight;
+            return 1;
         }
     }
 }

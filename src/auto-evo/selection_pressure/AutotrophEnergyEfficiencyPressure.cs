@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -10,46 +10,51 @@ namespace AutoEvo
     {
         public Patch Patch;
         public Compound Compound;
+        public Compound OutCompound;
         private readonly float weight;
 
-        public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, float weight) : base(
+        public AutotrophEnergyEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
+        base(
             weight,
             new List<IMutationStrategy<MicrobeSpecies>>
             {
-                new AddOrganelleAnywhere(organelle => organelle.Name.Equals("rusticyanin")),
                 AddOrganelleAnywhere.ThatUseCompound(compound),
-                new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("cellulose")),
+                new RemoveAnyOrganelle(),
             })
         {
             Patch = patch;
             Compound = compound;
+            OutCompound = outCompound;
             EnergyProvided = 40000;
             this.weight = weight;
         }
 
         public override float Score(MicrobeSpecies species, SimulationCache cache)
         {
-            var score = 0.1f;
+            var compoundIn = 0.0f;
+            var compoundOut = 0.0f;
 
-            // We check generation from all the processes of the cell../
             foreach (var organelle in species.Organelles)
             {
-                GD.Print("hallo3");
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    GD.Print("hallo2");
                     // ... that uses the given compound (regardless of usage)
                     if (process.Process.Inputs.TryGetValue(Compound, out var inputAmount))
                     {
-                        GD.Print("hallo");
-                        var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(process, Patch.Biome, CompoundAmountType.Average).Efficiency;
+                        compoundIn += inputAmount;
 
-                        score += inputAmount * processEfficiency;
+                        if (process.Process.Outputs.TryGetValue(OutCompound, out var outputAmount))
+                        {
+                            compoundOut += outputAmount;
+                        }
                     }
                 }
             }
 
-            return score * weight;
+            if (compoundOut <= 0)
+                return -1;
+
+            return compoundOut / compoundIn * weight;
         }
     }
 }

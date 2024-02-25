@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -115,7 +115,7 @@ namespace AutoEvo
             var myScore = Pressure.Score(species, cache);
 
             // Prune branch if species fails any pressures
-            if (myScore <= 0)
+            if (myScore < 0)
                 return false;
 
             if (IsLeafNode() && Occupant == null)
@@ -128,12 +128,14 @@ namespace AutoEvo
 
             foreach (var currentSpecies in AllOccupants())
             {
-                newScores[currentSpecies] = scoresSoFar[currentSpecies] + Pressure.Score(currentSpecies, cache);
+                newScores[currentSpecies] = scoresSoFar[currentSpecies] +
+                    Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
             }
 
-            newScores[species] = scoresSoFar[species] + myScore;
-
-            if (IsLeafNode() && newScores[species] > newScores[Occupant!])
+            // We know Occupant isn't null because of an earlier check
+            // We check here to see if scores more than 0, beacuse
+            // scores is relative to the inserted species
+            if (IsLeafNode() && newScores[Occupant!] > 0)
             {
                 Occupant = species;
                 return true;

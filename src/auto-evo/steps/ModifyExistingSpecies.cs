@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -21,9 +21,13 @@ namespace AutoEvo
         public bool CanRunConcurrently => true;
 
         /// <summary>
-        ///   Returns a new list of all possible species that might emerge in response to the provided pressures, as well as a copy of the origonal species.
+        ///   Returns a new list of all possible species that might emerge in response to the provided pressures,
+        ///   as well as a copy of the origonal species.
         /// </summary>
-        /// <param name="results">RunResults needed to find latest copy of provided species. This object is NOT modified.</param>
+        /// <param name="results">
+        ///   RunResults needed to find latest copy of provided species.
+        ///   This object is NOT modified.
+        /// </param>
         /// <returns>List of viable variants, and the provided species</returns>
         public static List<MicrobeSpecies> ViableVariants(RunResults results,
             MicrobeSpecies species,
@@ -69,7 +73,8 @@ namespace AutoEvo
         }
 
         /// <summary>
-        ///   Returns new list containing only species from the provided list that don't score too badly in the provided list of selection pressures.
+        ///   Returns new list containing only species from the provided list that don't score too badly in the
+        ///   provided list of selection pressures.
         /// </summary>
         /// <returns>List of species not ruled to be inviable.</returns>
         public static List<MicrobeSpecies> PruneInviableSpecies(List<MicrobeSpecies> potentialVariants,
@@ -83,19 +88,10 @@ namespace AutoEvo
                 var combinedScores = 0.0;
                 foreach (var pastPressure in selectionPressures)
                 {
-                    var oldScore = pastPressure.Score(baseSpecies, cache);
-
-                    if (oldScore == 0)
-                        continue;
-
                     var newScore = pastPressure.Score(potentialVariant, cache);
-
-                    GD.Print("new: ", newScore, " old: ", oldScore);
-
-                    combinedScores += (newScore / oldScore - 1) * pastPressure.Strength;
+                    var oldScore = pastPressure.Score(baseSpecies, cache);
+                    combinedScores += pastPressure.WeightedComparedScores(newScore, oldScore);
                 }
-
-                GD.Print("combine: ", combinedScores);
 
                 if (combinedScores >= 0)
                 {
@@ -119,8 +115,8 @@ namespace AutoEvo
             var oldMiche = currentMiche.DeepCopy();
 
             // Put these in auto evo config
-            const int PossibleMutationsPerSpecies = 5;
-            const int TotalMutationsToTry = 20;
+            const int PossibleMutationsPerSpecies = 3;
+            const int TotalMutationsToTry = 15;
 
             var mutationsToTry = new List<Tuple<MicrobeSpecies, MicrobeSpecies>>();
 
@@ -172,7 +168,7 @@ namespace AutoEvo
                                 new KeyValuePair<Patch, long>(Patch, 1000),
                             },
                             RunResults.NewSpeciesType.FillNiche, pair.Item1);
-                        }
+                    }
                 }
             }
 
@@ -188,7 +184,8 @@ namespace AutoEvo
 
         private List<SelectionPressure> SpeciesDependentPressures(Miche miche, Species species)
         {
-            return new List<SelectionPressure>(PredatorsOf(miche, species).Select(x => new AvoidPredationSelectionPressure(x, 2.0f, Patch)).ToList());
+            return new List<SelectionPressure>(PredatorsOf(miche, species)
+                .Select(x => new AvoidPredationSelectionPressure(x, 5.0f, Patch)).ToList());
         }
 
         /// <summary>

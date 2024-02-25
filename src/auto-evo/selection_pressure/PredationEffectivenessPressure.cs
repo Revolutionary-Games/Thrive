@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -17,16 +17,19 @@ namespace AutoEvo
         private Patch patch;
         private float weight;
 
-        public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) : base(
+        public PredationEffectivenessPressure(MicrobeSpecies prey, Patch patch, float weight, SimulationCache cache) :
+        base(
             weight,
             new List<IMutationStrategy<MicrobeSpecies>>
             {
                 new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
                 AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
-                new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, AddOrganelleAnywhere.Direction.FRONT),
+                new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
+                    AddOrganelleAnywhere.Direction.FRONT),
                 new AddMultipleOrganelles(new List<AddOrganelleAnywhere>
                 {
-                    new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent, AddOrganelleAnywhere.Direction.REAR),
+                    new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+                        AddOrganelleAnywhere.Direction.REAR),
                     AddOrganelleAnywhere.ThatCreateCompound(ATP),
                 }),
 
@@ -34,7 +37,6 @@ namespace AutoEvo
                 // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.OPPORTUNISM, 150.0f),
                 // new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.FEAR, -150.0f),
                 new RemoveAnyOrganelle(),
-
                 new LowerRigidity(),
                 new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
             })
@@ -91,10 +93,7 @@ namespace AutoEvo
                 engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
             }
 
-            var predationToolsRawScores = cache.GetPredationToolsRawScores(microbeSpecies);
-            var pilusScore = predationToolsRawScores.PilusScore;
-            var oxytoxyScore = predationToolsRawScores.OxytoxyScore;
-            var mucilageScore = predationToolsRawScores.MucilageScore;
+            var (pilusScore, oxytoxyScore, mucilageScore) = cache.GetPredationToolsRawScores(microbeSpecies);
 
             // Pili are much more useful if the microbe can close to melee
             pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
@@ -111,9 +110,10 @@ namespace AutoEvo
 
         public override float Score(MicrobeSpecies species, SimulationCache cache)
         {
+            // No Canabalism
             if (species == Prey)
             {
-                return 0.0f;
+                return -1.0f;
             }
 
             var microbeSpecies = species;
@@ -125,7 +125,7 @@ namespace AutoEvo
             // Explicitly prohibit circular predation relationships
             if (reversePredatorScore > predatorScore)
             {
-                return 0.0f;
+                return -1.0f;
             }
 
             return predatorScore * weight;

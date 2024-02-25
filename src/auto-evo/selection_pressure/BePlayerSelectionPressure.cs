@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ namespace AutoEvo
 
         public override float Score(MicrobeSpecies species, SimulationCache cache)
         {
-            return species.PlayerSpecies ? 1.0f * weight : 0.0f;
+            return species.PlayerSpecies ? 1.0f * weight : -1.0f;
         }
     }
 }

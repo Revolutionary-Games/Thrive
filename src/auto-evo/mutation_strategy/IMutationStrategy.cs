@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System.Collections.Generic;
     public interface IMutationStrategy<T>

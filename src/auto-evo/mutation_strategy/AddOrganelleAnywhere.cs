@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -29,7 +29,8 @@ namespace AutoEvo
                 .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any(), direction);
         }
 
-        public static AddOrganelleAnywhere ThatCreateCompound(Compound compound, Direction direction = Direction.NEUTRAL)
+        public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
+            Direction direction = Direction.NEUTRAL)
         {
             var matches = SimulationParameters.Instance.GetAllOrganelles()
                 .Where(organelle => organelle.RunnableProcesses

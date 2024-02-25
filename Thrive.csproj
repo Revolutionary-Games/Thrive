@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Include="assets\models\PlaceholderTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\auto-evo\selection_pressure\RootPressure.cs" />
     <Compile Include="src\engine\attributes\ComponentIsReadByDefaultAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsConditionallyAttribute.cs" />
     <Compile Include="src\engine\attributes\RunsWithCustomCodeAttribute.cs" />

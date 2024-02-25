@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace AutoEvo
                             {
                                 result.Orientation = rotation;
 
-                                if (existingOrganelles.CanPlace(result))
+                                if (existingOrganelles.CanPlace(result, new List<Hex>(), new List<Hex>()))
                                 {
                                     return result;
                                 }

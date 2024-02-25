@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -10,14 +10,23 @@ namespace AutoEvo
     {
         public Species Predator;
         public Patch Patch;
+        private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+        private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
         private readonly float weight;
 
         public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight,
             new List<IMutationStrategy<MicrobeSpecies>>
             {
-                new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
-
-                // new LowerRigidity(),
+                AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
+                new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
+                    AddOrganelleAnywhere.Direction.FRONT),
+                new AddMultipleOrganelles(new List<AddOrganelleAnywhere>
+                {
+                    new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
+                        AddOrganelleAnywhere.Direction.REAR),
+                    AddOrganelleAnywhere.ThatCreateCompound(ATP),
+                }),
             })
         {
             Patch = patch;

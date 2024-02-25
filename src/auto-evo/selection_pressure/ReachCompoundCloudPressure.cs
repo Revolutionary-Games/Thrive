@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System.Collections.Generic;
 
@@ -9,8 +9,8 @@ namespace AutoEvo
             weight,
             new List<IMutationStrategy<MicrobeSpecies>>
             {
-                // new LowerRigidity(),
-                // new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+                new LowerRigidity(),
+                new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
             })
         {
             EnergyProvided = 2000;

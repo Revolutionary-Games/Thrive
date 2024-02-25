@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System;
     using System.Collections.Generic;
@@ -40,19 +40,24 @@ namespace AutoEvo
             switch (attribute)
             {
                 case BehaviorAttribute.ACTIVITY:
-                    newSpecies.Behaviour.Activity = Math.Max(Math.Min(newSpecies.Behaviour.Activity + change, Constants.MAX_SPECIES_ACTIVITY), 0);
+                    newSpecies.Behaviour.Activity = Math.Max(Math.Min(newSpecies.Behaviour.Activity + change,
+                        Constants.MAX_SPECIES_ACTIVITY), 0);
                     break;
                 case BehaviorAttribute.AGGRESSION:
-                    newSpecies.Behaviour.Aggression = Math.Max(Math.Min(newSpecies.Behaviour.Aggression + change, Constants.MAX_SPECIES_AGGRESSION), 0);
+                    newSpecies.Behaviour.Aggression = Math.Max(Math.Min(newSpecies.Behaviour.Aggression + change,
+                        Constants.MAX_SPECIES_AGGRESSION), 0);
                     break;
                 case BehaviorAttribute.OPPORTUNISM:
-                    newSpecies.Behaviour.Opportunism = Math.Max(Math.Min(newSpecies.Behaviour.Opportunism + change, Constants.MAX_SPECIES_OPPORTUNISM), 0);
+                    newSpecies.Behaviour.Opportunism = Math.Max(Math.Min(newSpecies.Behaviour.Opportunism + change,
+                        Constants.MAX_SPECIES_OPPORTUNISM), 0);
                     break;
                 case BehaviorAttribute.FEAR:
-                    newSpecies.Behaviour.Fear = Math.Max(Math.Min(newSpecies.Behaviour.Fear + change, Constants.MAX_SPECIES_FEAR), 0);
+                    newSpecies.Behaviour.Fear = Math.Max(Math.Min(newSpecies.Behaviour.Fear + change,
+                        Constants.MAX_SPECIES_FEAR), 0);
                     break;
                 case BehaviorAttribute.FOCUS:
-                    newSpecies.Behaviour.Focus = Math.Max(Math.Min(newSpecies.Behaviour.Focus + change, Constants.MAX_SPECIES_FOCUS), 0);
+                    newSpecies.Behaviour.Focus = Math.Max(Math.Min(newSpecies.Behaviour.Focus + change,
+                        Constants.MAX_SPECIES_FOCUS), 0);
                     break;
                 default:
                     break;

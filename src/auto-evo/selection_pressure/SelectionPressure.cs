@@ -1,4 +1,4 @@
-namespace AutoEvo
+﻿namespace AutoEvo
 {
     using System.Collections.Generic;
 
@@ -15,5 +15,34 @@ namespace AutoEvo
         }
 
         public abstract float Score(MicrobeSpecies species, SimulationCache cache);
+
+        /// <summary>
+        ///   Calculates the relative difference between the old and new scores
+        /// </summary>
+        public float WeightedComparedScores(float newScore, float oldScore)
+        {
+            if (newScore <= 0)
+            {
+                return -1;
+            }
+
+            if (oldScore == 0)
+            {
+                return newScore > 0 ? 1 : 0;
+            }
+
+            if (newScore > oldScore)
+            {
+                return newScore / oldScore * Strength;
+            }
+            else if (oldScore > newScore)
+            {
+                return -(oldScore / newScore) * Strength;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

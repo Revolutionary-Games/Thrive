@@ -532,8 +532,12 @@
                 foreach (var migration in resultEntry.Value.SpreadToPatches)
                 {
                     // Theoretically, nothing prevents migration from several patches, so no continue.
+                    // FIXME: Practically, adding the same key to a dictionary twice throws an error, so break.
                     if (migration.To == patch)
+                    {
                         migrationsToPatch.Add(resultEntry.Key, migration);
+                        break;
+                    }
                 }
             }
 
