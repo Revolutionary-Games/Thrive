@@ -77,6 +77,7 @@ GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxCon
 GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
+EnableExperimentalFeaturesButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
 
@@ -291,13 +292,13 @@ ExtendedBbcode = "NEW_GAME_SETTINGS_PERFORMANCE_OPTIONS_INFO"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 700.0
-margin_bottom = 48.0
+margin_top = 257.0
+margin_right = 550.0
+margin_bottom = 292.0
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 302.0
-margin_right = 432.0
-margin_bottom = 48.0
+margin_right = 130.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 pressed = true
@@ -306,9 +307,9 @@ group = SubResource( 5 )
 text = "DIFFICULTY"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 436.0
-margin_right = 566.0
-margin_bottom = 48.0
+margin_left = 134.0
+margin_right = 264.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
@@ -316,9 +317,9 @@ group = SubResource( 5 )
 text = "PLANET"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 570.0
-margin_right = 700.0
-margin_bottom = 48.0
+margin_left = 268.0
+margin_right = 398.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
@@ -327,9 +328,9 @@ text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 257.0
+margin_top = 40.0
 margin_right = 700.0
-margin_bottom = 857.0
+margin_bottom = 640.0
 rect_min_size = Vector2( 700, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -1189,6 +1190,31 @@ custom_fonts/font = ExtResource( 3 )
 text = "EASTER_EGGS_EXPLANATION"
 autowrap = true
 
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+margin_top = 110.0
+margin_right = 668.0
+margin_bottom = 114.0
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+margin_top = 124.0
+margin_right = 668.0
+margin_bottom = 169.0
+
+[node name="ExperimentalFeatures" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4" instance=ExtResource( 4 )]
+margin_right = 359.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "ENABLE_EXPERIMENTAL_FEATURES"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
+margin_top = 29.0
+margin_right = 668.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+text = "EXPERIMENTAL_FEATURES_EXPLANATION"
+autowrap = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 257.0
 margin_right = 550.0
@@ -1291,6 +1317,7 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs" to="." method="OnEasterEggsToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures" to="." method="OnExperimentalFeaturesToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]

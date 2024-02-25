@@ -147,6 +147,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath EasterEggsButtonPath = null!;
 
     [Export]
+    public NodePath EnableExperimentalFeaturesButtonPath = null!;
+
+    [Export]
     public NodePath StartButtonPath = null!;
 
     [Export]
@@ -206,6 +209,7 @@ public class NewGameSettings : ControlWithInput
     // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
+    private Button enableExperimentalFeaturesButton = null!;
 
     // Other
     private Container checkOptionsMenuAdviceContainer = null!;
@@ -287,6 +291,7 @@ public class NewGameSettings : ControlWithInput
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
+        enableExperimentalFeaturesButton = GetNode<Button>(EnableExperimentalFeaturesButtonPath);
         backButton = GetNode<Button>(BackButtonPath);
         startButton = GetNode<Button>(StartButtonPath);
 
@@ -401,6 +406,7 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButton.Selected = (int)settings.Origin;
 
         lawkButton.Pressed = settings.LAWK;
+        enableExperimentalFeaturesButton.Pressed = settings.ExperimentalFeatures;
         dayNightCycleButton.Pressed = settings.DayNightCycleEnabled;
         dayLength.Value = settings.DayLength;
 
@@ -488,6 +494,7 @@ public class NewGameSettings : ControlWithInput
                 GameSeedAdvancedPath.Dispose();
                 IncludeMulticellularButtonPath.Dispose();
                 EasterEggsButtonPath.Dispose();
+                EnableExperimentalFeaturesButtonPath.Dispose();
                 BackButtonPath.Dispose();
                 StartButtonPath.Dispose();
                 CheckOptionsMenuAdviceContainerPath.Dispose();
@@ -587,6 +594,7 @@ public class NewGameSettings : ControlWithInput
 
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.Pressed;
+        settings.ExperimentalFeatures = enableExperimentalFeaturesButton.Pressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.Pressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
@@ -950,6 +958,11 @@ public class NewGameSettings : ControlWithInput
     }
 
     private void OnEasterEggsToggled(bool pressed)
+    {
+        _ = pressed;
+    }
+
+    private void OnExperimentalFeaturesToggled(bool pressed)
     {
         _ = pressed;
     }

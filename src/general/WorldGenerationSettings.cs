@@ -54,6 +54,11 @@ public class WorldGenerationSettings
     public bool LAWK { get; set; }
 
     /// <summary>
+    ///   Whether or not experimental features are enabled this game
+    /// </summary>
+    public bool ExperimentalFeatures { get; set; }
+
+    /// <summary>
     ///   Chosen difficulty for this game
     /// </summary>
     public IDifficulty Difficulty { get; set; }
