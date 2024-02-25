@@ -118,7 +118,7 @@ public class Settings
     public SettingValue<ControllerType> ControllerPromptType { get; private set; } = new(ControllerType.Automatic);
 
     /// <summary>
-    ///  When should the strain bar be visible
+    ///   When should the strain bar be visible
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);
