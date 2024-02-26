@@ -7,9 +7,7 @@
     using Godot;
     using World = DefaultEcs.World;
 
-    [With(typeof(CompoundStorage))]
     [With(typeof(OrganelleContainer))]
-    [With(typeof(MicrobeControl))]
     [With(typeof(StrainAffected))]
     [ReadsComponent(typeof(OrganelleContainer))]
     [ReadsComponent(typeof(MicrobeControl))]
@@ -29,10 +27,10 @@
                 var strainIncrease = Constants.SPRINTING_STRAIN_INCREASE_PER_SECOND * delta;
                 strainIncrease += organelles.HexCount * Constants.SPRINTING_STRAIN_INCREASE_PER_HEX;
 
-                if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_CELL)
-                    strain.CurrentStrain = Constants.MAX_STRAIN_PER_CELL;
-
                 strain.CurrentStrain += strainIncrease;
+
+                if (strain.CurrentStrain > Constants.MAX_STRAIN_PER_ENTITY)
+                    strain.CurrentStrain = Constants.MAX_STRAIN_PER_ENTITY;
 
                 strain.StrainDecreaseCooldown = Constants.STRAIN_DECREASE_COOLDOWN_SECONDS;
             }

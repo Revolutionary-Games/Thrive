@@ -185,7 +185,7 @@ public static class Constants
 
     public const float BASE_MOVEMENT_FORCE = 900.0f;
 
-    public const float MAX_STRAIN_PER_CELL = 100.0f;
+    public const float MAX_STRAIN_PER_ENTITY = 100.0f;
 
     public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
 

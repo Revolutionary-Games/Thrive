@@ -1059,7 +1059,10 @@ public abstract class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSt
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
         bool showingSignaling, bool engulfOn, bool sprintOn, bool showEject)
     {
-        sprintHotkey.Visible = stage?.GameWorld.WorldSettings.ExperimentalFeatures == true;
+        if (stage == null)
+            throw new InvalidOperationException("Stage must be set before ability bar update");
+
+        sprintHotkey.Visible = stage.GameWorld.WorldSettings.ExperimentalFeatures;
 
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;

@@ -580,6 +580,7 @@ public class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
         {
             strainBar.Visible = false;
+            return;
         }
 
         var strainFraction = player.Get<StrainAffected>().CalculateStrainFraction();

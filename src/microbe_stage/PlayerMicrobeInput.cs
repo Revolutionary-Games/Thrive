@@ -301,7 +301,7 @@ public class PlayerMicrobeInput : NodeWithInput
     public bool StartSprint()
     {
         if (!stage.HasPlayer || !stage.GameWorld.WorldSettings.ExperimentalFeatures)
-            return true;
+            return false;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
         control.Sprinting = true;
@@ -313,7 +313,7 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyUp("g_sprint")]
     public void EndSprint()
     {
-        if (!stage.HasPlayer || !stage.GameWorld.WorldSettings.ExperimentalFeatures)
+        if (!stage.HasPlayer)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
@@ -323,7 +323,7 @@ public class PlayerMicrobeInput : NodeWithInput
 
     public void ToggleSprint()
     {
-        if (!stage.HasPlayer)
+        if (!stage.HasPlayer || !stage.GameWorld.WorldSettings.ExperimentalFeatures)
             return;
 
         ref var control = ref stage.Player.Get<MicrobeControl>();

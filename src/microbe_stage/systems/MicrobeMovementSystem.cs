@@ -145,6 +145,7 @@
             ref OrganelleContainer organelles, CompoundBag compounds, float delta)
         {
             ref var strain = ref entity.Get<StrainAffected>();
+            var strainMultiplier = GetStrainAtpMultiplier(ref strain);
 
             if (control.MovementDirection == Vector3.Zero)
             {
@@ -153,7 +154,6 @@
 
                 // Remove ATP due to strain even if not moving
                 // This is calculated similarily to the regular movement cost for consistency
-                var strainMultiplier = GetStrainMultiplier(ref strain);
                 var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
                 compounds.TakeCompound(atp, strainCost);
 
@@ -185,8 +185,7 @@
 
             // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
             // movement cost
-            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta *
-                GetStrainMultiplier(ref strain);
+            var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
             var got = compounds.TakeCompound(atp, cost);
 
@@ -273,7 +272,7 @@
             return position.Rotation.Xform(movementVector);
         }
 
-        private float GetStrainMultiplier(ref StrainAffected strain)
+        private float GetStrainAtpMultiplier(ref StrainAffected strain)
         {
             var strainFraction = strain.CalculateStrainFraction();
             return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
