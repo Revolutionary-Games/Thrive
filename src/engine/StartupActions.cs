@@ -47,12 +47,20 @@ public class StartupActions : Node
             {
                 if (!NativeInterop.CheckCPU())
                 {
-                    // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
-                    // confusion with what they are missing
-                    GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
-                        "see above for what is detected as missing");
-                    GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
-                        "required instruction set extensions is required");
+                    if (Engine.EditorHint)
+                    {
+                        GD.Print(
+                            "Skipping native library load in editor as it is not available (CPU check lib missing)");
+                    }
+                    else
+                    {
+                        // Thrive needs SSE4.1, SSE4.2, and AVX (1) currently, this is not told to the player to avoid
+                        // confusion with what they are missing
+                        GD.Print("Thrive requires a new enough CPU to have various extension instruction sets, " +
+                            "see above for what is detected as missing");
+                        GD.PrintErr("Detected CPU features are insufficient for running Thrive, a newer CPU with " +
+                            "required instruction set extensions is required");
+                    }
 
                     loadNative = false;
                 }
@@ -70,6 +78,11 @@ public class StartupActions : Node
             if (loadNative)
             {
                 NativeInterop.Load();
+            }
+            else if (Engine.EditorHint)
+            {
+                GD.Print("Skipping native library load in editor as the CPU feature check couldn't pass");
+                loadNative = false;
             }
             else
             {
