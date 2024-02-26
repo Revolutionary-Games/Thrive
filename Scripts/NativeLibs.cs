@@ -263,6 +263,9 @@ public class NativeLibs
                     return await UploadMissingSymbolsToServer(cancellationToken);
                 }
 
+                ColourConsole.WriteNormalLine("Skipping symbol upload check as the check upload operation " +
+                    "didn't return true");
+
                 // Check and upload step failed / or didn't upload anything
                 return false;
 
